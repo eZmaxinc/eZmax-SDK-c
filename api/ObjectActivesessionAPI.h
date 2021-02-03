@@ -5,13 +5,14 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
+#include "../model/activesession_get_current_v1_response.h"
 
 
 // Get Current Activesession
 //
-// Todo Description
+// Retrieve the details about the current activesession
 //
-void
-ActivesessionAPI_getCurrent(apiClient_t *apiClient);
+activesession_get_current_v1_response_t*
+ObjectActivesessionAPI_activesessionGetCurrentV1(apiClient_t *apiClient);
 
 
