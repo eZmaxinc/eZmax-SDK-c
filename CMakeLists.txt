@@ -128,6 +128,7 @@ set(SRCS
     model/franchisereferalincome_create_object_v1_response_m_payload.c
     model/franchisereferalincome_request.c
     model/franchisereferalincome_request_compound.c
+    model/global_customer_get_endpoint_v1_response.c
     model/multilingual_apikey_description.c
     model/phone_request.c
     model/user_create_ezsignuser_v1_request.c
@@ -143,6 +144,7 @@ set(SRCS
     model/webhook_user_user_created.c
     model/webhook_user_user_created_all_of.c
     model/website_request.c
+    api/GlobalCustomerAPI.c
     api/ModuleUserAPI.c
     api/ObjectActivesessionAPI.c
     api/ObjectApikeyAPI.c
@@ -254,6 +256,7 @@ set(HDRS
     model/franchisereferalincome_create_object_v1_response_m_payload.h
     model/franchisereferalincome_request.h
     model/franchisereferalincome_request_compound.h
+    model/global_customer_get_endpoint_v1_response.h
     model/multilingual_apikey_description.h
     model/phone_request.h
     model/user_create_ezsignuser_v1_request.h
@@ -269,6 +272,7 @@ set(HDRS
     model/webhook_user_user_created.h
     model/webhook_user_user_created_all_of.h
     model/website_request.h
+    api/GlobalCustomerAPI.h
     api/ModuleUserAPI.h
     api/ObjectActivesessionAPI.h
     api/ObjectApikeyAPI.h
@@ -298,6 +302,7 @@ set(HDRS "")
 ## This section shows how to use the above compiled libary to compile the source files
 ## set source files
 #set(SRCS
+#    unit-tests/manual-GlobalCustomerAPI.c
 #    unit-tests/manual-ModuleUserAPI.c
 #    unit-tests/manual-ObjectActivesessionAPI.c
 #    unit-tests/manual-ObjectApikeyAPI.c

@@ -294,7 +294,7 @@ end:
 // Retrieve an existing Ezsignfolder's children IDs
 //
 void
-ObjectEzsignfolderAPI_ezsignfolderGetObjectGetChildrenV1(apiClient_t *apiClient, int pkiEzsignfolderID )
+ObjectEzsignfolderAPI_ezsignfolderGetChildrenV1(apiClient_t *apiClient, int pkiEzsignfolderID )
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;

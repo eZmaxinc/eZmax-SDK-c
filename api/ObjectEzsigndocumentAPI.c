@@ -441,6 +441,70 @@ end:
 
 }
 
+// Retrieve an existing Ezsigndocument's children IDs
+//
+void
+ObjectEzsigndocumentAPI_ezsigndocumentGetChildrenV1(apiClient_t *apiClient, int pkiEzsigndocumentID )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_create();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/ezsigndocument/{pkiEzsigndocumentID}/getChildren")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/ezsigndocument/{pkiEzsigndocumentID}/getChildren");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsigndocumentID =  + strlen("{ pkiEzsigndocumentID }");
+    if(pkiEzsigndocumentID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsigndocumentID = malloc(sizeOfPathParams_pkiEzsigndocumentID);
+    snprintf(localVarToReplace_pkiEzsigndocumentID, sizeOfPathParams_pkiEzsigndocumentID, "{%s}", "pkiEzsigndocumentID");
+
+    char localVarBuff_pkiEzsigndocumentID[256];
+    intToStr(localVarBuff_pkiEzsigndocumentID, pkiEzsigndocumentID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigndocumentID, localVarBuff_pkiEzsigndocumentID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "GET");
+
+    if (apiClient->response_code == 404) {
+        printf("%s\n","The element you are trying to work on does not exist");
+    }
+    //No return type
+end:
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_free(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsigndocumentID);
+
+}
+
 // Retrieve a URL to download documents.
 //
 // This endpoint returns URLs to different files that can be downloaded during the signing process.  These links will expire after 5 minutes so the download of the file should be made soon after retrieving the link.
@@ -532,70 +596,6 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1(apiClient_t *apiClient, i
 end:
     free(localVarPath);
     return NULL;
-
-}
-
-// Retrieve an existing Ezsigndocument's children IDs
-//
-void
-ObjectEzsigndocumentAPI_ezsigndocumentGetObjectGetChildrenV1(apiClient_t *apiClient, int pkiEzsigndocumentID )
-{
-    list_t    *localVarQueryParameters = NULL;
-    list_t    *localVarHeaderParameters = NULL;
-    list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
-    list_t *localVarContentType = NULL;
-    char      *localVarBodyParameters = NULL;
-
-    // create the path
-    long sizeOfPath = strlen("/1/object/ezsigndocument/{pkiEzsigndocumentID}/getChildren")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsigndocument/{pkiEzsigndocumentID}/getChildren");
-
-
-    // Path Params
-    long sizeOfPathParams_pkiEzsigndocumentID =  + strlen("{ pkiEzsigndocumentID }");
-    if(pkiEzsigndocumentID == 0){
-        goto end;
-    }
-    char* localVarToReplace_pkiEzsigndocumentID = malloc(sizeOfPathParams_pkiEzsigndocumentID);
-    snprintf(localVarToReplace_pkiEzsigndocumentID, sizeOfPathParams_pkiEzsigndocumentID, "{%s}", "pkiEzsigndocumentID");
-
-    char localVarBuff_pkiEzsigndocumentID[256];
-    intToStr(localVarBuff_pkiEzsigndocumentID, pkiEzsigndocumentID);
-
-    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigndocumentID, localVarBuff_pkiEzsigndocumentID);
-
-
-
-    list_addElement(localVarHeaderType,"application/json"); //produces
-    apiClient_invoke(apiClient,
-                    localVarPath,
-                    localVarQueryParameters,
-                    localVarHeaderParameters,
-                    localVarFormParameters,
-                    localVarHeaderType,
-                    localVarContentType,
-                    localVarBodyParameters,
-                    "GET");
-
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
-    }
-    //No return type
-end:
-    if (apiClient->dataReceived) {
-        free(apiClient->dataReceived);
-        apiClient->dataReceived = NULL;
-        apiClient->dataReceivedLen = 0;
-    }
-    
-    
-    
-    list_free(localVarHeaderType);
-    
-    free(localVarPath);
-    free(localVarToReplace_pkiEzsigndocumentID);
 
 }
 

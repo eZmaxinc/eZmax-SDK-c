@@ -35,18 +35,18 @@ ezsignfoldersignerassociation_edit_object_v1_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationEditObjectV1(apiClient_t *apiClient, int pkiEzsignfoldersignerassociationID , ezsignfoldersignerassociation_edit_object_v1_request_t * ezsignfoldersignerassociation_edit_object_v1_request );
 
 
+// Retrieve an existing Ezsignfoldersignerassociation's children IDs
+//
+void
+ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetChildrenV1(apiClient_t *apiClient, int pkiEzsignfoldersignerassociationID );
+
+
 // Retrieve a Login Url to allow In-Person signing
 //
 // This endpoint returns a Login Url that can be used in a browser or embedded in an I-Frame to allow in person signing.  The signer Login type must be configured as In-Person.
 //
 ezsignfoldersignerassociation_get_in_person_login_url_v1_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetInPersonLoginUrlV1(apiClient_t *apiClient, int pkiEzsignfoldersignerassociationID );
-
-
-// Retrieve an existing Ezsignfoldersignerassociation's children IDs
-//
-void
-ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectGetChildrenV1(apiClient_t *apiClient, int pkiEzsignfoldersignerassociationID );
 
 
 // Retrieve an existing Ezsignfoldersignerassociation

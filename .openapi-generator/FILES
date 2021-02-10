@@ -1,6 +1,8 @@
 .openapi-generator-ignore
 CMakeLists.txt
 README.md
+api/GlobalCustomerAPI.c
+api/GlobalCustomerAPI.h
 api/ModuleUserAPI.c
 api/ModuleUserAPI.h
 api/ObjectActivesessionAPI.c
@@ -211,6 +213,8 @@ model/franchisereferalincome_request.c
 model/franchisereferalincome_request.h
 model/franchisereferalincome_request_compound.c
 model/franchisereferalincome_request_compound.h
+model/global_customer_get_endpoint_v1_response.c
+model/global_customer_get_endpoint_v1_response.h
 model/multilingual_apikey_description.c
 model/multilingual_apikey_description.h
 model/object.c
@@ -338,6 +342,7 @@ unit-test/test_franchisereferalincome_create_object_v1_response.c
 unit-test/test_franchisereferalincome_create_object_v1_response_m_payload.c
 unit-test/test_franchisereferalincome_request.c
 unit-test/test_franchisereferalincome_request_compound.c
+unit-test/test_global_customer_get_endpoint_v1_response.c
 unit-test/test_multilingual_apikey_description.c
 unit-test/test_phone_request.c
 unit-test/test_user_create_ezsignuser_v1_request.c

@@ -39,7 +39,7 @@ ObjectEzsignfolderAPI_ezsignfolderEditObjectV1(apiClient_t *apiClient, int pkiEz
 // Retrieve an existing Ezsignfolder's children IDs
 //
 void
-ObjectEzsignfolderAPI_ezsignfolderGetObjectGetChildrenV1(apiClient_t *apiClient, int pkiEzsignfolderID );
+ObjectEzsignfolderAPI_ezsignfolderGetChildrenV1(apiClient_t *apiClient, int pkiEzsignfolderID );
 
 
 // Retrieve an existing Ezsignfolder

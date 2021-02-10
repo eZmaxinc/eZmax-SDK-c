@@ -294,7 +294,7 @@ end:
 // Retrieve an existing Ezsignsignature's children IDs
 //
 void
-ObjectEzsignsignatureAPI_ezsignsignatureGetObjectGetChildrenV1(apiClient_t *apiClient, int pkiEzsignsignatureID )
+ObjectEzsignsignatureAPI_ezsignsignatureGetChildrenV1(apiClient_t *apiClient, int pkiEzsignsignatureID )
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;

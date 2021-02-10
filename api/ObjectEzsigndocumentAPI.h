@@ -48,18 +48,18 @@ ezsigndocument_edit_object_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentEditObjectV1(apiClient_t *apiClient, int pkiEzsigndocumentID , ezsigndocument_edit_object_v1_request_t * ezsigndocument_edit_object_v1_request );
 
 
+// Retrieve an existing Ezsigndocument's children IDs
+//
+void
+ObjectEzsigndocumentAPI_ezsigndocumentGetChildrenV1(apiClient_t *apiClient, int pkiEzsigndocumentID );
+
+
 // Retrieve a URL to download documents.
 //
 // This endpoint returns URLs to different files that can be downloaded during the signing process.  These links will expire after 5 minutes so the download of the file should be made soon after retrieving the link.
 //
 ezsigndocument_get_download_url_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1(apiClient_t *apiClient, int pkiEzsigndocumentID , ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_eDocumentType_e eDocumentType );
-
-
-// Retrieve an existing Ezsigndocument's children IDs
-//
-void
-ObjectEzsigndocumentAPI_ezsigndocumentGetObjectGetChildrenV1(apiClient_t *apiClient, int pkiEzsigndocumentID );
 
 
 // Retrieve an existing Ezsigndocument

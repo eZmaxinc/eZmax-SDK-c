@@ -37,7 +37,7 @@ ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV1(apiClient_t *apiClient, int
 // Retrieve an existing Ezsignsignature's children IDs
 //
 void
-ObjectEzsignsignatureAPI_ezsignsignatureGetObjectGetChildrenV1(apiClient_t *apiClient, int pkiEzsignsignatureID );
+ObjectEzsignsignatureAPI_ezsignsignatureGetChildrenV1(apiClient_t *apiClient, int pkiEzsignsignatureID );
 
 
 // Retrieve an existing Ezsignsignature
