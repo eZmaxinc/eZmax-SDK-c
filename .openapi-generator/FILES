@@ -3,6 +3,8 @@ CMakeLists.txt
 README.md
 api/GlobalCustomerAPI.c
 api/GlobalCustomerAPI.h
+api/ModuleSsprAPI.c
+api/ModuleSsprAPI.h
 api/ModuleUserAPI.c
 api/ModuleUserAPI.h
 api/ObjectActivesessionAPI.c

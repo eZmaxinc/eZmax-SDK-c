@@ -145,6 +145,7 @@ set(SRCS
     model/webhook_user_user_created_all_of.c
     model/website_request.c
     api/GlobalCustomerAPI.c
+    api/ModuleSsprAPI.c
     api/ModuleUserAPI.c
     api/ObjectActivesessionAPI.c
     api/ObjectApikeyAPI.c
@@ -273,6 +274,7 @@ set(HDRS
     model/webhook_user_user_created_all_of.h
     model/website_request.h
     api/GlobalCustomerAPI.h
+    api/ModuleSsprAPI.h
     api/ModuleUserAPI.h
     api/ObjectActivesessionAPI.h
     api/ObjectApikeyAPI.h
@@ -303,6 +305,7 @@ set(HDRS "")
 ## set source files
 #set(SRCS
 #    unit-tests/manual-GlobalCustomerAPI.c
+#    unit-tests/manual-ModuleSsprAPI.c
 #    unit-tests/manual-ModuleUserAPI.c
 #    unit-tests/manual-ObjectActivesessionAPI.c
 #    unit-tests/manual-ObjectApikeyAPI.c
