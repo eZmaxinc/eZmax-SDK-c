@@ -1,0 +1,38 @@
+/*
+ * unused_ezsignfoldersignerassociation_edit_object_v1_request.h
+ *
+ * Request for the /1/object/ezsignfoldersignerassociation/editObject API Request
+ */
+
+#ifndef _unused_ezsignfoldersignerassociation_edit_object_v1_request_H_
+#define _unused_ezsignfoldersignerassociation_edit_object_v1_request_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct unused_ezsignfoldersignerassociation_edit_object_v1_request_t unused_ezsignfoldersignerassociation_edit_object_v1_request_t;
+
+#include "ezsignfoldersignerassociation_request.h"
+
+
+
+typedef struct unused_ezsignfoldersignerassociation_edit_object_v1_request_t {
+    struct ezsignfoldersignerassociation_request_t *obj_ezsignfoldersignerassociation; //model
+
+} unused_ezsignfoldersignerassociation_edit_object_v1_request_t;
+
+unused_ezsignfoldersignerassociation_edit_object_v1_request_t *unused_ezsignfoldersignerassociation_edit_object_v1_request_create(
+    ezsignfoldersignerassociation_request_t *obj_ezsignfoldersignerassociation
+);
+
+void unused_ezsignfoldersignerassociation_edit_object_v1_request_free(unused_ezsignfoldersignerassociation_edit_object_v1_request_t *unused_ezsignfoldersignerassociation_edit_object_v1_request);
+
+unused_ezsignfoldersignerassociation_edit_object_v1_request_t *unused_ezsignfoldersignerassociation_edit_object_v1_request_parseFromJSON(cJSON *unused_ezsignfoldersignerassociation_edit_object_v1_requestJSON);
+
+cJSON *unused_ezsignfoldersignerassociation_edit_object_v1_request_convertToJSON(unused_ezsignfoldersignerassociation_edit_object_v1_request_t *unused_ezsignfoldersignerassociation_edit_object_v1_request);
+
+#endif /* _unused_ezsignfoldersignerassociation_edit_object_v1_request_H_ */
+

@@ -11,8 +11,6 @@
 #include "../model/ezsigndocument_create_object_v1_request.h"
 #include "../model/ezsigndocument_create_object_v1_response.h"
 #include "../model/ezsigndocument_delete_object_v1_response.h"
-#include "../model/ezsigndocument_edit_object_v1_request.h"
-#include "../model/ezsigndocument_edit_object_v1_response.h"
 #include "../model/ezsigndocument_get_download_url_v1_response.h"
 #include "../model/ezsigndocument_get_object_v1_response.h"
 
@@ -40,12 +38,6 @@ ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV1(apiClient_t *apiClient, lis
 //
 ezsigndocument_delete_object_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1(apiClient_t *apiClient, int pkiEzsigndocumentID );
-
-
-// Modify an existing Ezsigndocument
-//
-ezsigndocument_edit_object_v1_response_t*
-ObjectEzsigndocumentAPI_ezsigndocumentEditObjectV1(apiClient_t *apiClient, int pkiEzsigndocumentID , ezsigndocument_edit_object_v1_request_t * ezsigndocument_edit_object_v1_request );
 
 
 // Retrieve an existing Ezsigndocument's children IDs

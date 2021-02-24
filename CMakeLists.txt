@@ -69,8 +69,6 @@ set(SRCS
     model/ezsigndocument_create_object_v1_response.c
     model/ezsigndocument_create_object_v1_response_m_payload.c
     model/ezsigndocument_delete_object_v1_response.c
-    model/ezsigndocument_edit_object_v1_request.c
-    model/ezsigndocument_edit_object_v1_response.c
     model/ezsigndocument_get_download_url_v1_response.c
     model/ezsigndocument_get_download_url_v1_response_m_payload.c
     model/ezsigndocument_get_object_v1_response.c
@@ -84,8 +82,6 @@ set(SRCS
     model/ezsignfolder_create_object_v1_response.c
     model/ezsignfolder_create_object_v1_response_m_payload.c
     model/ezsignfolder_delete_object_v1_response.c
-    model/ezsignfolder_edit_object_v1_request.c
-    model/ezsignfolder_edit_object_v1_response.c
     model/ezsignfolder_get_object_v1_response.c
     model/ezsignfolder_get_object_v1_response_m_payload.c
     model/ezsignfolder_request.c
@@ -99,8 +95,6 @@ set(SRCS
     model/ezsignfoldersignerassociation_create_object_v1_response.c
     model/ezsignfoldersignerassociation_create_object_v1_response_m_payload.c
     model/ezsignfoldersignerassociation_delete_object_v1_response.c
-    model/ezsignfoldersignerassociation_edit_object_v1_request.c
-    model/ezsignfoldersignerassociation_edit_object_v1_response.c
     model/ezsignfoldersignerassociation_get_in_person_login_url_v1_response.c
     model/ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload.c
     model/ezsignfoldersignerassociation_get_object_v1_response.c
@@ -110,8 +104,6 @@ set(SRCS
     model/ezsignsignature_create_object_v1_response.c
     model/ezsignsignature_create_object_v1_response_m_payload.c
     model/ezsignsignature_delete_object_v1_response.c
-    model/ezsignsignature_edit_object_v1_request.c
-    model/ezsignsignature_edit_object_v1_response.c
     model/ezsignsignature_get_object_v1_response.c
     model/ezsignsignature_request.c
     model/ezsignsignature_request_compound.c
@@ -131,6 +123,14 @@ set(SRCS
     model/global_customer_get_endpoint_v1_response.c
     model/multilingual_apikey_description.c
     model/phone_request.c
+    model/unused_ezsigndocument_edit_object_v1_request.c
+    model/unused_ezsigndocument_edit_object_v1_response.c
+    model/unused_ezsignfolder_edit_object_v1_request.c
+    model/unused_ezsignfolder_edit_object_v1_response.c
+    model/unused_ezsignfoldersignerassociation_edit_object_v1_request.c
+    model/unused_ezsignfoldersignerassociation_edit_object_v1_response.c
+    model/unused_ezsignsignature_edit_object_v1_request.c
+    model/unused_ezsignsignature_edit_object_v1_response.c
     model/user_create_ezsignuser_v1_request.c
     model/user_create_ezsignuser_v1_response.c
     model/user_create_ezsignuser_v1_response_m_payload.c
@@ -198,8 +198,6 @@ set(HDRS
     model/ezsigndocument_create_object_v1_response.h
     model/ezsigndocument_create_object_v1_response_m_payload.h
     model/ezsigndocument_delete_object_v1_response.h
-    model/ezsigndocument_edit_object_v1_request.h
-    model/ezsigndocument_edit_object_v1_response.h
     model/ezsigndocument_get_download_url_v1_response.h
     model/ezsigndocument_get_download_url_v1_response_m_payload.h
     model/ezsigndocument_get_object_v1_response.h
@@ -213,8 +211,6 @@ set(HDRS
     model/ezsignfolder_create_object_v1_response.h
     model/ezsignfolder_create_object_v1_response_m_payload.h
     model/ezsignfolder_delete_object_v1_response.h
-    model/ezsignfolder_edit_object_v1_request.h
-    model/ezsignfolder_edit_object_v1_response.h
     model/ezsignfolder_get_object_v1_response.h
     model/ezsignfolder_get_object_v1_response_m_payload.h
     model/ezsignfolder_request.h
@@ -228,8 +224,6 @@ set(HDRS
     model/ezsignfoldersignerassociation_create_object_v1_response.h
     model/ezsignfoldersignerassociation_create_object_v1_response_m_payload.h
     model/ezsignfoldersignerassociation_delete_object_v1_response.h
-    model/ezsignfoldersignerassociation_edit_object_v1_request.h
-    model/ezsignfoldersignerassociation_edit_object_v1_response.h
     model/ezsignfoldersignerassociation_get_in_person_login_url_v1_response.h
     model/ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload.h
     model/ezsignfoldersignerassociation_get_object_v1_response.h
@@ -239,8 +233,6 @@ set(HDRS
     model/ezsignsignature_create_object_v1_response.h
     model/ezsignsignature_create_object_v1_response_m_payload.h
     model/ezsignsignature_delete_object_v1_response.h
-    model/ezsignsignature_edit_object_v1_request.h
-    model/ezsignsignature_edit_object_v1_response.h
     model/ezsignsignature_get_object_v1_response.h
     model/ezsignsignature_request.h
     model/ezsignsignature_request_compound.h
@@ -260,6 +252,14 @@ set(HDRS
     model/global_customer_get_endpoint_v1_response.h
     model/multilingual_apikey_description.h
     model/phone_request.h
+    model/unused_ezsigndocument_edit_object_v1_request.h
+    model/unused_ezsigndocument_edit_object_v1_response.h
+    model/unused_ezsignfolder_edit_object_v1_request.h
+    model/unused_ezsignfolder_edit_object_v1_response.h
+    model/unused_ezsignfoldersignerassociation_edit_object_v1_request.h
+    model/unused_ezsignfoldersignerassociation_edit_object_v1_response.h
+    model/unused_ezsignsignature_edit_object_v1_request.h
+    model/unused_ezsignsignature_edit_object_v1_response.h
     model/user_create_ezsignuser_v1_request.h
     model/user_create_ezsignuser_v1_response.h
     model/user_create_ezsignuser_v1_response_m_payload.h
