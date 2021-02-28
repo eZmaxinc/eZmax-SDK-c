@@ -115,6 +115,7 @@ set(SRCS
     model/field_e_ezsignfolder_step.c
     model/field_e_phone_type.c
     model/field_e_user_type.c
+    model/field_e_user_type_sspr.c
     model/franchisereferalincome_create_object_v1_request.c
     model/franchisereferalincome_create_object_v1_response.c
     model/franchisereferalincome_create_object_v1_response_m_payload.c
@@ -123,6 +124,11 @@ set(SRCS
     model/global_customer_get_endpoint_v1_response.c
     model/multilingual_apikey_description.c
     model/phone_request.c
+    model/sspr_reset_password_request_v1_request.c
+    model/sspr_reset_password_v1_request.c
+    model/sspr_send_usernames_v1_request.c
+    model/sspr_unlock_account_request_v1_request.c
+    model/sspr_unlock_account_v1_request.c
     model/unused_ezsigndocument_edit_object_v1_request.c
     model/unused_ezsigndocument_edit_object_v1_response.c
     model/unused_ezsignfolder_edit_object_v1_request.c
@@ -244,6 +250,7 @@ set(HDRS
     model/field_e_ezsignfolder_step.h
     model/field_e_phone_type.h
     model/field_e_user_type.h
+    model/field_e_user_type_sspr.h
     model/franchisereferalincome_create_object_v1_request.h
     model/franchisereferalincome_create_object_v1_response.h
     model/franchisereferalincome_create_object_v1_response_m_payload.h
@@ -252,6 +259,11 @@ set(HDRS
     model/global_customer_get_endpoint_v1_response.h
     model/multilingual_apikey_description.h
     model/phone_request.h
+    model/sspr_reset_password_request_v1_request.h
+    model/sspr_reset_password_v1_request.h
+    model/sspr_send_usernames_v1_request.h
+    model/sspr_unlock_account_request_v1_request.h
+    model/sspr_unlock_account_v1_request.h
     model/unused_ezsigndocument_edit_object_v1_request.h
     model/unused_ezsigndocument_edit_object_v1_response.h
     model/unused_ezsignfolder_edit_object_v1_request.h
