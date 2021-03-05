@@ -28,7 +28,9 @@ activesession_get_current_v1_response_m_payload_t* instantiate_activesession_get
       "0",
       "0",
       list_create(),
-      list_create()
+      list_create(),
+      70,
+      99
     );
   } else {
     activesession_get_current_v1_response_m_payload = activesession_get_current_v1_response_m_payload_create(
@@ -38,7 +40,9 @@ activesession_get_current_v1_response_m_payload_t* instantiate_activesession_get
       "0",
       "0",
       list_create(),
-      list_create()
+      list_create(),
+      70,
+      99
     );
   }
 

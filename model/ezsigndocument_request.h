@@ -41,7 +41,6 @@ typedef struct ezsigndocument_request_t {
     int fki_ezsignfolder_id; //numeric
     char *dt_ezsigndocument_duedate; // string
     int fki_language_id; //numeric
-    char *s_ezsigndocument_filename; // string
     char *s_ezsigndocument_name; // string
 
 } ezsigndocument_request_t;
@@ -53,7 +52,6 @@ ezsigndocument_request_t *ezsigndocument_request_create(
     int fki_ezsignfolder_id,
     char *dt_ezsigndocument_duedate,
     int fki_language_id,
-    char *s_ezsigndocument_filename,
     char *s_ezsigndocument_name
 );
 

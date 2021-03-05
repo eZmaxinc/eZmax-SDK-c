@@ -34,6 +34,8 @@ typedef struct activesession_get_current_v1_response_m_payload_t {
     char *s_department_name_x; // string
     list_t *a_registered_modules; //primitive container
     list_t *a_permissions; //primitive container
+    int fki_user_id; //numeric
+    int fki_apikey_id; //numeric
 
 } activesession_get_current_v1_response_m_payload_t;
 
@@ -44,7 +46,9 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
     char *s_company_name_x,
     char *s_department_name_x,
     list_t *a_registered_modules,
-    list_t *a_permissions
+    list_t *a_permissions,
+    int fki_user_id,
+    int fki_apikey_id
 );
 
 void activesession_get_current_v1_response_m_payload_free(activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_response_m_payload);

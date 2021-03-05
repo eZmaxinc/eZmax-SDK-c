@@ -27,7 +27,7 @@ sspr_unlock_account_v1_request_t* instantiate_sspr_unlock_account_v1_request(int
       ezmax_api_definition_sspr_unlock_account_v1_request__"Native",
       "example@domain.com",
       "JohnDoe",
-      "012345678901234567890123456789AB"
+      "012345678901234567890123456789ab"
     );
   } else {
     sspr_unlock_account_v1_request = sspr_unlock_account_v1_request_create(
@@ -36,7 +36,7 @@ sspr_unlock_account_v1_request_t* instantiate_sspr_unlock_account_v1_request(int
       ezmax_api_definition_sspr_unlock_account_v1_request__"Native",
       "example@domain.com",
       "JohnDoe",
-      "012345678901234567890123456789AB"
+      "012345678901234567890123456789ab"
     );
   }
 

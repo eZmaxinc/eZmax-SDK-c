@@ -26,7 +26,6 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
     int fki_ezsignfolder_id,
     char *dt_ezsigndocument_duedate,
     int fki_language_id,
-    char *s_ezsigndocument_filename,
     char *s_ezsigndocument_name,
     int pki_ezsigndocument_id,
     char *dt_ezsigndocument_firstsend,
@@ -46,7 +45,6 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
     ezsigndocument_get_object_v1_response_m_payload_local_var->fki_ezsignfolder_id = fki_ezsignfolder_id;
     ezsigndocument_get_object_v1_response_m_payload_local_var->dt_ezsigndocument_duedate = dt_ezsigndocument_duedate;
     ezsigndocument_get_object_v1_response_m_payload_local_var->fki_language_id = fki_language_id;
-    ezsigndocument_get_object_v1_response_m_payload_local_var->s_ezsigndocument_filename = s_ezsigndocument_filename;
     ezsigndocument_get_object_v1_response_m_payload_local_var->s_ezsigndocument_name = s_ezsigndocument_name;
     ezsigndocument_get_object_v1_response_m_payload_local_var->pki_ezsigndocument_id = pki_ezsigndocument_id;
     ezsigndocument_get_object_v1_response_m_payload_local_var->e_ezsigndocument_step = e_ezsigndocument_step;
@@ -72,10 +70,6 @@ void ezsigndocument_get_object_v1_response_m_payload_free(ezsigndocument_get_obj
     if (ezsigndocument_get_object_v1_response_m_payload->dt_ezsigndocument_duedate) {
         free(ezsigndocument_get_object_v1_response_m_payload->dt_ezsigndocument_duedate);
         ezsigndocument_get_object_v1_response_m_payload->dt_ezsigndocument_duedate = NULL;
-    }
-    if (ezsigndocument_get_object_v1_response_m_payload->s_ezsigndocument_filename) {
-        free(ezsigndocument_get_object_v1_response_m_payload->s_ezsigndocument_filename);
-        ezsigndocument_get_object_v1_response_m_payload->s_ezsigndocument_filename = NULL;
     }
     if (ezsigndocument_get_object_v1_response_m_payload->s_ezsigndocument_name) {
         free(ezsigndocument_get_object_v1_response_m_payload->s_ezsigndocument_name);
@@ -134,16 +128,6 @@ cJSON *ezsigndocument_get_object_v1_response_m_payload_convertToJSON(ezsigndocum
     
     if(cJSON_AddNumberToObject(item, "fkiLanguageID", ezsigndocument_get_object_v1_response_m_payload->fki_language_id) == NULL) {
     goto fail; //Numeric
-    }
-
-
-    // ezsigndocument_get_object_v1_response_m_payload->s_ezsigndocument_filename
-    if (!ezsigndocument_get_object_v1_response_m_payload->s_ezsigndocument_filename) {
-        goto fail;
-    }
-    
-    if(cJSON_AddStringToObject(item, "sEzsigndocumentFilename", ezsigndocument_get_object_v1_response_m_payload->s_ezsigndocument_filename) == NULL) {
-    goto fail; //String
     }
 
 
@@ -313,18 +297,6 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
     goto end; //Numeric
     }
 
-    // ezsigndocument_get_object_v1_response_m_payload->s_ezsigndocument_filename
-    cJSON *s_ezsigndocument_filename = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_object_v1_response_m_payloadJSON, "sEzsigndocumentFilename");
-    if (!s_ezsigndocument_filename) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(s_ezsigndocument_filename))
-    {
-    goto end; //String
-    }
-
     // ezsigndocument_get_object_v1_response_m_payload->s_ezsigndocument_name
     cJSON *s_ezsigndocument_name = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_object_v1_response_m_payloadJSON, "sEzsigndocumentName");
     if (!s_ezsigndocument_name) {
@@ -467,7 +439,6 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
         fki_ezsignfolder_id->valuedouble,
         strdup(dt_ezsigndocument_duedate->valuestring),
         fki_language_id->valuedouble,
-        strdup(s_ezsigndocument_filename->valuestring),
         strdup(s_ezsigndocument_name->valuestring),
         pki_ezsigndocument_id->valuedouble,
         strdup(dt_ezsigndocument_firstsend->valuestring),

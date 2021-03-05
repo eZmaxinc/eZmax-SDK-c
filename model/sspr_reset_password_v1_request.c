@@ -27,7 +27,8 @@ sspr_reset_password_v1_request_t *sspr_reset_password_v1_request_create(
     int fki_language_id,
     char *s_email_address,
     char *s_user_loginname,
-    char *bin_user_ssp_rtoken
+    char *bin_user_ssp_rtoken,
+    char *s_password
     ) {
     sspr_reset_password_v1_request_t *sspr_reset_password_v1_request_local_var = malloc(sizeof(sspr_reset_password_v1_request_t));
     if (!sspr_reset_password_v1_request_local_var) {
@@ -39,6 +40,7 @@ sspr_reset_password_v1_request_t *sspr_reset_password_v1_request_create(
     sspr_reset_password_v1_request_local_var->s_email_address = s_email_address;
     sspr_reset_password_v1_request_local_var->s_user_loginname = s_user_loginname;
     sspr_reset_password_v1_request_local_var->bin_user_ssp_rtoken = bin_user_ssp_rtoken;
+    sspr_reset_password_v1_request_local_var->s_password = s_password;
 
     return sspr_reset_password_v1_request_local_var;
 }
@@ -64,6 +66,10 @@ void sspr_reset_password_v1_request_free(sspr_reset_password_v1_request_t *sspr_
     if (sspr_reset_password_v1_request->bin_user_ssp_rtoken) {
         free(sspr_reset_password_v1_request->bin_user_ssp_rtoken);
         sspr_reset_password_v1_request->bin_user_ssp_rtoken = NULL;
+    }
+    if (sspr_reset_password_v1_request->s_password) {
+        free(sspr_reset_password_v1_request->s_password);
+        sspr_reset_password_v1_request->s_password = NULL;
     }
     free(sspr_reset_password_v1_request);
 }
@@ -117,6 +123,16 @@ cJSON *sspr_reset_password_v1_request_convertToJSON(sspr_reset_password_v1_reque
     }
     
     if(cJSON_AddStringToObject(item, "binUserSSPRtoken", sspr_reset_password_v1_request->bin_user_ssp_rtoken) == NULL) {
+    goto fail; //String
+    }
+
+
+    // sspr_reset_password_v1_request->s_password
+    if (!sspr_reset_password_v1_request->s_password) {
+        goto fail;
+    }
+    
+    if(cJSON_AddStringToObject(item, "sPassword", sspr_reset_password_v1_request->s_password) == NULL) {
     goto fail; //String
     }
 
@@ -193,13 +209,26 @@ sspr_reset_password_v1_request_t *sspr_reset_password_v1_request_parseFromJSON(c
     goto end; //String
     }
 
+    // sspr_reset_password_v1_request->s_password
+    cJSON *s_password = cJSON_GetObjectItemCaseSensitive(sspr_reset_password_v1_requestJSON, "sPassword");
+    if (!s_password) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_password))
+    {
+    goto end; //String
+    }
+
 
     sspr_reset_password_v1_request_local_var = sspr_reset_password_v1_request_create (
         strdup(pks_customer_code->valuestring),
         fki_language_id->valuedouble,
         s_email_address ? strdup(s_email_address->valuestring) : NULL,
         s_user_loginname ? strdup(s_user_loginname->valuestring) : NULL,
-        strdup(bin_user_ssp_rtoken->valuestring)
+        strdup(bin_user_ssp_rtoken->valuestring),
+        strdup(s_password->valuestring)
         );
 
     return sspr_reset_password_v1_request_local_var;

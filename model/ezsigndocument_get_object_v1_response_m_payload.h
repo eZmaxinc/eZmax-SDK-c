@@ -33,7 +33,6 @@ typedef struct ezsigndocument_get_object_v1_response_m_payload_t {
     int fki_ezsignfolder_id; //numeric
     char *dt_ezsigndocument_duedate; // string
     int fki_language_id; //numeric
-    char *s_ezsigndocument_filename; // string
     char *s_ezsigndocument_name; // string
     int pki_ezsigndocument_id; //numeric
     char *dt_ezsigndocument_firstsend; // string
@@ -52,7 +51,6 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
     int fki_ezsignfolder_id,
     char *dt_ezsigndocument_duedate,
     int fki_language_id,
-    char *s_ezsigndocument_filename,
     char *s_ezsigndocument_name,
     int pki_ezsigndocument_id,
     char *dt_ezsigndocument_firstsend,

@@ -33,6 +33,7 @@ typedef struct sspr_reset_password_v1_request_t {
     char *s_email_address; // string
     char *s_user_loginname; // string
     char *bin_user_ssp_rtoken; // string
+    char *s_password; // string
 
 } sspr_reset_password_v1_request_t;
 
@@ -41,7 +42,8 @@ sspr_reset_password_v1_request_t *sspr_reset_password_v1_request_create(
     int fki_language_id,
     char *s_email_address,
     char *s_user_loginname,
-    char *bin_user_ssp_rtoken
+    char *bin_user_ssp_rtoken,
+    char *s_password
 );
 
 void sspr_reset_password_v1_request_free(sspr_reset_password_v1_request_t *sspr_reset_password_v1_request);

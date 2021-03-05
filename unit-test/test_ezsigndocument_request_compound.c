@@ -28,7 +28,6 @@ ezsigndocument_request_compound_t* instantiate_ezsigndocument_request_compound(i
       1,
       "2020-12-31 23:59:59",
       2,
-      "0",
       "0"
     );
   } else {
@@ -39,7 +38,6 @@ ezsigndocument_request_compound_t* instantiate_ezsigndocument_request_compound(i
       1,
       "2020-12-31 23:59:59",
       2,
-      "0",
       "0"
     );
   }

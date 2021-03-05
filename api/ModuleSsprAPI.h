@@ -11,6 +11,7 @@
 #include "../model/sspr_send_usernames_v1_request.h"
 #include "../model/sspr_unlock_account_request_v1_request.h"
 #include "../model/sspr_unlock_account_v1_request.h"
+#include "../model/sspr_validate_token_v1_request.h"
 
 
 // Reset Password Request
@@ -51,5 +52,13 @@ ModuleSsprAPI_ssprUnlockAccountRequestV1(apiClient_t *apiClient, sspr_unlock_acc
 //
 void
 ModuleSsprAPI_ssprUnlockAccountV1(apiClient_t *apiClient, sspr_unlock_account_v1_request_t * sspr_unlock_account_v1_request );
+
+
+// Validate Token
+//
+// This endpoint validates if a Token is valid and not expired. If the token has less than an hour to its life, the TTL is reset to 1 hour.  sEmailAddress must be set if eUserTypeSSPR = EzsignUser  sUserLoginname must be set if eUserTypeSSPR = Native
+//
+void
+ModuleSsprAPI_ssprValidateTokenV1(apiClient_t *apiClient, sspr_validate_token_v1_request_t * sspr_validate_token_v1_request );
 
 

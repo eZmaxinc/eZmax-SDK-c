@@ -22,19 +22,19 @@ common_audit_t* instantiate_common_audit(int include_optional) {
   common_audit_t* common_audit = NULL;
   if (include_optional) {
     common_audit = common_audit_create(
-      56,
-      56,
-      56,
-      56,
+      70,
+      70,
+      99,
+      99,
       "2020-12-31 23:59:59",
       "2020-12-31 23:59:59"
     );
   } else {
     common_audit = common_audit_create(
-      56,
-      56,
-      56,
-      56,
+      70,
+      70,
+      99,
+      99,
       "2020-12-31 23:59:59",
       "2020-12-31 23:59:59"
     );

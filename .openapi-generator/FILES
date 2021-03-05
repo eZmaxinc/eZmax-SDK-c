@@ -219,6 +219,8 @@ model/sspr_unlock_account_request_v1_request.c
 model/sspr_unlock_account_request_v1_request.h
 model/sspr_unlock_account_v1_request.c
 model/sspr_unlock_account_v1_request.h
+model/sspr_validate_token_v1_request.c
+model/sspr_validate_token_v1_request.h
 model/unused_ezsigndocument_edit_object_v1_request.c
 model/unused_ezsigndocument_edit_object_v1_request.h
 model/unused_ezsigndocument_edit_object_v1_response.c
@@ -357,6 +359,7 @@ unit-test/test_sspr_reset_password_v1_request.c
 unit-test/test_sspr_send_usernames_v1_request.c
 unit-test/test_sspr_unlock_account_request_v1_request.c
 unit-test/test_sspr_unlock_account_v1_request.c
+unit-test/test_sspr_validate_token_v1_request.c
 unit-test/test_unused_ezsigndocument_edit_object_v1_request.c
 unit-test/test_unused_ezsigndocument_edit_object_v1_response.c
 unit-test/test_unused_ezsignfolder_edit_object_v1_request.c

@@ -129,6 +129,7 @@ set(SRCS
     model/sspr_send_usernames_v1_request.c
     model/sspr_unlock_account_request_v1_request.c
     model/sspr_unlock_account_v1_request.c
+    model/sspr_validate_token_v1_request.c
     model/unused_ezsigndocument_edit_object_v1_request.c
     model/unused_ezsigndocument_edit_object_v1_response.c
     model/unused_ezsignfolder_edit_object_v1_request.c
@@ -264,6 +265,7 @@ set(HDRS
     model/sspr_send_usernames_v1_request.h
     model/sspr_unlock_account_request_v1_request.h
     model/sspr_unlock_account_v1_request.h
+    model/sspr_validate_token_v1_request.h
     model/unused_ezsigndocument_edit_object_v1_request.h
     model/unused_ezsigndocument_edit_object_v1_response.h
     model/unused_ezsignfolder_edit_object_v1_request.h

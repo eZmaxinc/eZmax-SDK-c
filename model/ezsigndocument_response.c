@@ -26,7 +26,6 @@ ezsigndocument_response_t *ezsigndocument_response_create(
     int fki_ezsignfolder_id,
     char *dt_ezsigndocument_duedate,
     int fki_language_id,
-    char *s_ezsigndocument_filename,
     char *s_ezsigndocument_name,
     int pki_ezsigndocument_id,
     char *dt_ezsigndocument_firstsend,
@@ -46,7 +45,6 @@ ezsigndocument_response_t *ezsigndocument_response_create(
     ezsigndocument_response_local_var->fki_ezsignfolder_id = fki_ezsignfolder_id;
     ezsigndocument_response_local_var->dt_ezsigndocument_duedate = dt_ezsigndocument_duedate;
     ezsigndocument_response_local_var->fki_language_id = fki_language_id;
-    ezsigndocument_response_local_var->s_ezsigndocument_filename = s_ezsigndocument_filename;
     ezsigndocument_response_local_var->s_ezsigndocument_name = s_ezsigndocument_name;
     ezsigndocument_response_local_var->pki_ezsigndocument_id = pki_ezsigndocument_id;
     ezsigndocument_response_local_var->e_ezsigndocument_step = e_ezsigndocument_step;
@@ -72,10 +70,6 @@ void ezsigndocument_response_free(ezsigndocument_response_t *ezsigndocument_resp
     if (ezsigndocument_response->dt_ezsigndocument_duedate) {
         free(ezsigndocument_response->dt_ezsigndocument_duedate);
         ezsigndocument_response->dt_ezsigndocument_duedate = NULL;
-    }
-    if (ezsigndocument_response->s_ezsigndocument_filename) {
-        free(ezsigndocument_response->s_ezsigndocument_filename);
-        ezsigndocument_response->s_ezsigndocument_filename = NULL;
     }
     if (ezsigndocument_response->s_ezsigndocument_name) {
         free(ezsigndocument_response->s_ezsigndocument_name);
@@ -134,16 +128,6 @@ cJSON *ezsigndocument_response_convertToJSON(ezsigndocument_response_t *ezsigndo
     
     if(cJSON_AddNumberToObject(item, "fkiLanguageID", ezsigndocument_response->fki_language_id) == NULL) {
     goto fail; //Numeric
-    }
-
-
-    // ezsigndocument_response->s_ezsigndocument_filename
-    if (!ezsigndocument_response->s_ezsigndocument_filename) {
-        goto fail;
-    }
-    
-    if(cJSON_AddStringToObject(item, "sEzsigndocumentFilename", ezsigndocument_response->s_ezsigndocument_filename) == NULL) {
-    goto fail; //String
     }
 
 
@@ -313,18 +297,6 @@ ezsigndocument_response_t *ezsigndocument_response_parseFromJSON(cJSON *ezsigndo
     goto end; //Numeric
     }
 
-    // ezsigndocument_response->s_ezsigndocument_filename
-    cJSON *s_ezsigndocument_filename = cJSON_GetObjectItemCaseSensitive(ezsigndocument_responseJSON, "sEzsigndocumentFilename");
-    if (!s_ezsigndocument_filename) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(s_ezsigndocument_filename))
-    {
-    goto end; //String
-    }
-
     // ezsigndocument_response->s_ezsigndocument_name
     cJSON *s_ezsigndocument_name = cJSON_GetObjectItemCaseSensitive(ezsigndocument_responseJSON, "sEzsigndocumentName");
     if (!s_ezsigndocument_name) {
@@ -467,7 +439,6 @@ ezsigndocument_response_t *ezsigndocument_response_parseFromJSON(cJSON *ezsigndo
         fki_ezsignfolder_id->valuedouble,
         strdup(dt_ezsigndocument_duedate->valuestring),
         fki_language_id->valuedouble,
-        strdup(s_ezsigndocument_filename->valuestring),
         strdup(s_ezsigndocument_name->valuestring),
         pki_ezsigndocument_id->valuedouble,
         strdup(dt_ezsigndocument_firstsend->valuestring),

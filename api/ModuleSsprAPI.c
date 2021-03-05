@@ -387,3 +387,78 @@ end:
 
 }
 
+// Validate Token
+//
+// This endpoint validates if a Token is valid and not expired. If the token has less than an hour to its life, the TTL is reset to 1 hour.  sEmailAddress must be set if eUserTypeSSPR = EzsignUser  sUserLoginname must be set if eUserTypeSSPR = Native
+//
+void
+ModuleSsprAPI_ssprValidateTokenV1(apiClient_t *apiClient, sspr_validate_token_v1_request_t * sspr_validate_token_v1_request )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_create();
+    list_t *localVarContentType = list_create();
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/module/sspr/validateToken")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/module/sspr/validateToken");
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_sspr_validate_token_v1_request = NULL;
+    if (sspr_validate_token_v1_request != NULL)
+    {
+        //string
+        localVarSingleItemJSON_sspr_validate_token_v1_request = sspr_validate_token_v1_request_convertToJSON(sspr_validate_token_v1_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_sspr_validate_token_v1_request);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "POST");
+
+    if (apiClient->response_code == 204) {
+        printf("%s\n","The token is valid");
+    }
+    if (apiClient->response_code == 403) {
+        printf("%s\n","You are not allowed to call this function");
+    }
+    if (apiClient->response_code == 404) {
+        printf("%s\n","The element you are trying to work on does not exist");
+    }
+    if (apiClient->response_code == 422) {
+        printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    }
+    //No return type
+end:
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_free(localVarHeaderType);
+    list_free(localVarContentType);
+    free(localVarPath);
+    if (localVarSingleItemJSON_sspr_validate_token_v1_request) {
+        cJSON_Delete(localVarSingleItemJSON_sspr_validate_token_v1_request);
+        localVarSingleItemJSON_sspr_validate_token_v1_request = NULL;
+    }
+    free(localVarBodyParameters);
+
+}
+

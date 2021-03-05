@@ -46,7 +46,6 @@ ezsigndocument_request_t *ezsigndocument_request_create(
     int fki_ezsignfolder_id,
     char *dt_ezsigndocument_duedate,
     int fki_language_id,
-    char *s_ezsigndocument_filename,
     char *s_ezsigndocument_name
     ) {
     ezsigndocument_request_t *ezsigndocument_request_local_var = malloc(sizeof(ezsigndocument_request_t));
@@ -59,7 +58,6 @@ ezsigndocument_request_t *ezsigndocument_request_create(
     ezsigndocument_request_local_var->fki_ezsignfolder_id = fki_ezsignfolder_id;
     ezsigndocument_request_local_var->dt_ezsigndocument_duedate = dt_ezsigndocument_duedate;
     ezsigndocument_request_local_var->fki_language_id = fki_language_id;
-    ezsigndocument_request_local_var->s_ezsigndocument_filename = s_ezsigndocument_filename;
     ezsigndocument_request_local_var->s_ezsigndocument_name = s_ezsigndocument_name;
 
     return ezsigndocument_request_local_var;
@@ -74,10 +72,6 @@ void ezsigndocument_request_free(ezsigndocument_request_t *ezsigndocument_reques
     if (ezsigndocument_request->dt_ezsigndocument_duedate) {
         free(ezsigndocument_request->dt_ezsigndocument_duedate);
         ezsigndocument_request->dt_ezsigndocument_duedate = NULL;
-    }
-    if (ezsigndocument_request->s_ezsigndocument_filename) {
-        free(ezsigndocument_request->s_ezsigndocument_filename);
-        ezsigndocument_request->s_ezsigndocument_filename = NULL;
     }
     if (ezsigndocument_request->s_ezsigndocument_name) {
         free(ezsigndocument_request->s_ezsigndocument_name);
@@ -140,16 +134,6 @@ cJSON *ezsigndocument_request_convertToJSON(ezsigndocument_request_t *ezsigndocu
     
     if(cJSON_AddNumberToObject(item, "fkiLanguageID", ezsigndocument_request->fki_language_id) == NULL) {
     goto fail; //Numeric
-    }
-
-
-    // ezsigndocument_request->s_ezsigndocument_filename
-    if (!ezsigndocument_request->s_ezsigndocument_filename) {
-        goto fail;
-    }
-    
-    if(cJSON_AddStringToObject(item, "sEzsigndocumentFilename", ezsigndocument_request->s_ezsigndocument_filename) == NULL) {
-    goto fail; //String
     }
 
 
@@ -247,18 +231,6 @@ ezsigndocument_request_t *ezsigndocument_request_parseFromJSON(cJSON *ezsigndocu
     goto end; //Numeric
     }
 
-    // ezsigndocument_request->s_ezsigndocument_filename
-    cJSON *s_ezsigndocument_filename = cJSON_GetObjectItemCaseSensitive(ezsigndocument_requestJSON, "sEzsigndocumentFilename");
-    if (!s_ezsigndocument_filename) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(s_ezsigndocument_filename))
-    {
-    goto end; //String
-    }
-
     // ezsigndocument_request->s_ezsigndocument_name
     cJSON *s_ezsigndocument_name = cJSON_GetObjectItemCaseSensitive(ezsigndocument_requestJSON, "sEzsigndocumentName");
     if (!s_ezsigndocument_name) {
@@ -279,7 +251,6 @@ ezsigndocument_request_t *ezsigndocument_request_parseFromJSON(cJSON *ezsigndocu
         fki_ezsignfolder_id->valuedouble,
         strdup(dt_ezsigndocument_duedate->valuestring),
         fki_language_id->valuedouble,
-        strdup(s_ezsigndocument_filename->valuestring),
         strdup(s_ezsigndocument_name->valuestring)
         );
 

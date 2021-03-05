@@ -29,7 +29,9 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
     char *s_company_name_x,
     char *s_department_name_x,
     list_t *a_registered_modules,
-    list_t *a_permissions
+    list_t *a_permissions,
+    int fki_user_id,
+    int fki_apikey_id
     ) {
     activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_response_m_payload_local_var = malloc(sizeof(activesession_get_current_v1_response_m_payload_t));
     if (!activesession_get_current_v1_response_m_payload_local_var) {
@@ -42,6 +44,8 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
     activesession_get_current_v1_response_m_payload_local_var->s_department_name_x = s_department_name_x;
     activesession_get_current_v1_response_m_payload_local_var->a_registered_modules = a_registered_modules;
     activesession_get_current_v1_response_m_payload_local_var->a_permissions = a_permissions;
+    activesession_get_current_v1_response_m_payload_local_var->fki_user_id = fki_user_id;
+    activesession_get_current_v1_response_m_payload_local_var->fki_apikey_id = fki_apikey_id;
 
     return activesession_get_current_v1_response_m_payload_local_var;
 }
@@ -169,6 +173,26 @@ cJSON *activesession_get_current_v1_response_m_payload_convertToJSON(activesessi
     }
     }
 
+
+    // activesession_get_current_v1_response_m_payload->fki_user_id
+    if (!activesession_get_current_v1_response_m_payload->fki_user_id) {
+        goto fail;
+    }
+    
+    if(cJSON_AddNumberToObject(item, "fkiUserID", activesession_get_current_v1_response_m_payload->fki_user_id) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // activesession_get_current_v1_response_m_payload->fki_apikey_id
+    if (!activesession_get_current_v1_response_m_payload->fki_apikey_id) {
+        goto fail;
+    }
+    
+    if(cJSON_AddNumberToObject(item, "fkiApikeyID", activesession_get_current_v1_response_m_payload->fki_apikey_id) == NULL) {
+    goto fail; //Numeric
+    }
+
     return item;
 fail:
     if (item) {
@@ -289,6 +313,30 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
         list_addElement(a_permissionsList , &a_permissions_local->valuedouble);
     }
 
+    // activesession_get_current_v1_response_m_payload->fki_user_id
+    cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(activesession_get_current_v1_response_m_payloadJSON, "fkiUserID");
+    if (!fki_user_id) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(fki_user_id))
+    {
+    goto end; //Numeric
+    }
+
+    // activesession_get_current_v1_response_m_payload->fki_apikey_id
+    cJSON *fki_apikey_id = cJSON_GetObjectItemCaseSensitive(activesession_get_current_v1_response_m_payloadJSON, "fkiApikeyID");
+    if (!fki_apikey_id) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(fki_apikey_id))
+    {
+    goto end; //Numeric
+    }
+
 
     activesession_get_current_v1_response_m_payload_local_var = activesession_get_current_v1_response_m_payload_create (
         strdup(s_customer_code->valuestring),
@@ -297,7 +345,9 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
         strdup(s_company_name_x->valuestring),
         strdup(s_department_name_x->valuestring),
         a_registered_modulesList,
-        a_permissionsList
+        a_permissionsList,
+        fki_user_id->valuedouble,
+        fki_apikey_id->valuedouble
         );
 
     return activesession_get_current_v1_response_m_payload_local_var;

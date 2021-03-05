@@ -25,7 +25,7 @@ webhook_response_t* instantiate_webhook_response(int include_optional) {
       56,
       ezmax_api_definition_webhook_response_EWEBHOOKMODULE_Ezsign,
       ezmax_api_definition_webhook_response_EWEBHOOKEZSIGNEVENT_DocumentCompleted,
-      "0",
+      "demo",
       "0",
       "0",
       ezmax_api_definition_webhook_response_EWEBHOOKMANAGEMENTEVENT_UserCreated
@@ -35,7 +35,7 @@ webhook_response_t* instantiate_webhook_response(int include_optional) {
       56,
       ezmax_api_definition_webhook_response_EWEBHOOKMODULE_Ezsign,
       ezmax_api_definition_webhook_response_EWEBHOOKEZSIGNEVENT_DocumentCompleted,
-      "0",
+      "demo",
       "0",
       "0",
       ezmax_api_definition_webhook_response_EWEBHOOKMANAGEMENTEVENT_UserCreated
