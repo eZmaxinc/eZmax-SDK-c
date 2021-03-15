@@ -27,9 +27,9 @@ ModuleSsprAPI_ssprResetPasswordRequestV1(apiClient_t *apiClient, sspr_reset_pass
     char      *localVarBodyParameters = NULL;
 
     // create the path
-    long sizeOfPath = strlen("/1/module/sspr/resetPasswordRequest/")+1;
+    long sizeOfPath = strlen("/1/module/sspr/resetPasswordRequest")+1;
     char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/module/sspr/resetPasswordRequest/");
+    snprintf(localVarPath, sizeOfPath, "/1/module/sspr/resetPasswordRequest");
 
 
 
@@ -389,7 +389,7 @@ end:
 
 // Validate Token
 //
-// This endpoint validates if a Token is valid and not expired. If the token has less than an hour to its life, the TTL is reset to 1 hour.  sEmailAddress must be set if eUserTypeSSPR = EzsignUser  sUserLoginname must be set if eUserTypeSSPR = Native
+// This endpoint validates if a Token is valid and not expired.  sEmailAddress must be set if eUserTypeSSPR = EzsignUser  sUserLoginname must be set if eUserTypeSSPR = Native
 //
 void
 ModuleSsprAPI_ssprValidateTokenV1(apiClient_t *apiClient, sspr_validate_token_v1_request_t * sspr_validate_token_v1_request )
