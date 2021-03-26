@@ -60,9 +60,6 @@ ModuleSsprAPI_ssprResetPasswordRequestV1(apiClient_t *apiClient, sspr_reset_pass
     if (apiClient->response_code == 403) {
         printf("%s\n","You are not allowed to call this function");
     }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
-    }
     if (apiClient->response_code == 422) {
         printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
     }
@@ -134,9 +131,6 @@ ModuleSsprAPI_ssprResetPasswordV1(apiClient_t *apiClient, sspr_reset_password_v1
     }
     if (apiClient->response_code == 403) {
         printf("%s\n","You are not allowed to call this function");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
     }
     if (apiClient->response_code == 422) {
         printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
@@ -210,9 +204,6 @@ ModuleSsprAPI_ssprSendUsernamesV1(apiClient_t *apiClient, sspr_send_usernames_v1
     if (apiClient->response_code == 403) {
         printf("%s\n","You are not allowed to call this function");
     }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
-    }
     if (apiClient->response_code == 422) {
         printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
     }
@@ -284,9 +275,6 @@ ModuleSsprAPI_ssprUnlockAccountRequestV1(apiClient_t *apiClient, sspr_unlock_acc
     }
     if (apiClient->response_code == 403) {
         printf("%s\n","You are not allowed to call this function");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
     }
     if (apiClient->response_code == 422) {
         printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
@@ -360,9 +348,6 @@ ModuleSsprAPI_ssprUnlockAccountV1(apiClient_t *apiClient, sspr_unlock_account_v1
     if (apiClient->response_code == 403) {
         printf("%s\n","You are not allowed to call this function");
     }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
-    }
     if (apiClient->response_code == 422) {
         printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
     }
@@ -434,9 +419,6 @@ ModuleSsprAPI_ssprValidateTokenV1(apiClient_t *apiClient, sspr_validate_token_v1
     }
     if (apiClient->response_code == 403) {
         printf("%s\n","You are not allowed to call this function");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
     }
     if (apiClient->response_code == 422) {
         printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
