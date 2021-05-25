@@ -48,6 +48,9 @@ set(SRCS
     model/apikey_request_compound.c
     model/apikey_response.c
     model/attempt_response.c
+    model/authenticate_authenticate_v2_request.c
+    model/authenticate_authenticate_v2_response.c
+    model/authenticate_authenticate_v2_response_m_payload.c
     model/common_audit.c
     model/common_get_autocomplete_v1_response.c
     model/common_get_autocomplete_v1_response_m_payload.c
@@ -152,6 +155,7 @@ set(SRCS
     model/webhook_user_user_created_all_of.c
     model/website_request.c
     api/GlobalCustomerAPI.c
+    api/ModuleAuthenticateAPI.c
     api/ModuleSsprAPI.c
     api/ModuleUserAPI.c
     api/ObjectActivesessionAPI.c
@@ -184,6 +188,9 @@ set(HDRS
     model/apikey_request_compound.h
     model/apikey_response.h
     model/attempt_response.h
+    model/authenticate_authenticate_v2_request.h
+    model/authenticate_authenticate_v2_response.h
+    model/authenticate_authenticate_v2_response_m_payload.h
     model/common_audit.h
     model/common_get_autocomplete_v1_response.h
     model/common_get_autocomplete_v1_response_m_payload.h
@@ -288,6 +295,7 @@ set(HDRS
     model/webhook_user_user_created_all_of.h
     model/website_request.h
     api/GlobalCustomerAPI.h
+    api/ModuleAuthenticateAPI.h
     api/ModuleSsprAPI.h
     api/ModuleUserAPI.h
     api/ObjectActivesessionAPI.h
@@ -319,6 +327,7 @@ set(HDRS "")
 ## set source files
 #set(SRCS
 #    unit-tests/manual-GlobalCustomerAPI.c
+#    unit-tests/manual-ModuleAuthenticateAPI.c
 #    unit-tests/manual-ModuleSsprAPI.c
 #    unit-tests/manual-ModuleUserAPI.c
 #    unit-tests/manual-ObjectActivesessionAPI.c

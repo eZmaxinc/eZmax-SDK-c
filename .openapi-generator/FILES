@@ -3,6 +3,8 @@ CMakeLists.txt
 README.md
 api/GlobalCustomerAPI.c
 api/GlobalCustomerAPI.h
+api/ModuleAuthenticateAPI.c
+api/ModuleAuthenticateAPI.h
 api/ModuleSsprAPI.c
 api/ModuleSsprAPI.h
 api/ModuleUserAPI.c
@@ -28,6 +30,7 @@ api/ObjectFranchisereferalincomeAPI.h
 api/ObjectPeriodAPI.c
 api/ObjectPeriodAPI.h
 docs/GlobalCustomerAPI.md
+docs/ModuleAuthenticateAPI.md
 docs/ModuleSsprAPI.md
 docs/ModuleUserAPI.md
 docs/ObjectActivesessionAPI.md
@@ -50,6 +53,9 @@ docs/apikey_request.md
 docs/apikey_request_compound.md
 docs/apikey_response.md
 docs/attempt_response.md
+docs/authenticate_authenticate_v2_request.md
+docs/authenticate_authenticate_v2_response.md
+docs/authenticate_authenticate_v2_response_m_payload.md
 docs/common_audit.md
 docs/common_get_autocomplete_v1_response.md
 docs/common_get_autocomplete_v1_response_m_payload.md
@@ -181,6 +187,12 @@ model/apikey_response.c
 model/apikey_response.h
 model/attempt_response.c
 model/attempt_response.h
+model/authenticate_authenticate_v2_request.c
+model/authenticate_authenticate_v2_request.h
+model/authenticate_authenticate_v2_response.c
+model/authenticate_authenticate_v2_response.h
+model/authenticate_authenticate_v2_response_m_payload.c
+model/authenticate_authenticate_v2_response_m_payload.h
 model/common_audit.c
 model/common_audit.h
 model/common_get_autocomplete_v1_response.c
@@ -404,6 +416,9 @@ unit-test/test_apikey_request.c
 unit-test/test_apikey_request_compound.c
 unit-test/test_apikey_response.c
 unit-test/test_attempt_response.c
+unit-test/test_authenticate_authenticate_v2_request.c
+unit-test/test_authenticate_authenticate_v2_response.c
+unit-test/test_authenticate_authenticate_v2_response_m_payload.c
 unit-test/test_common_audit.c
 unit-test/test_common_get_autocomplete_v1_response.c
 unit-test/test_common_get_autocomplete_v1_response_m_payload.c

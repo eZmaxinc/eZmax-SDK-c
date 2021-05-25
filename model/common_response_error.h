@@ -20,11 +20,13 @@ typedef struct common_response_error_t common_response_error_t;
 
 typedef struct common_response_error_t {
     char *s_error_message; // string
+    char *e_error_code; // string
 
 } common_response_error_t;
 
 common_response_error_t *common_response_error_create(
-    char *s_error_message
+    char *s_error_message,
+    char *e_error_code
 );
 
 void common_response_error_free(common_response_error_t *common_response_error);
