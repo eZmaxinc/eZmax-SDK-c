@@ -116,6 +116,7 @@ set(SRCS
     model/field_e_ezsigndocument_step.c
     model/field_e_ezsignfolder_sendreminderfrequency.c
     model/field_e_ezsignfolder_step.c
+    model/field_e_ezsignsignature_type.c
     model/field_e_phone_type.c
     model/field_e_user_type.c
     model/field_e_user_type_sspr.c
@@ -256,6 +257,7 @@ set(HDRS
     model/field_e_ezsigndocument_step.h
     model/field_e_ezsignfolder_sendreminderfrequency.h
     model/field_e_ezsignfolder_step.h
+    model/field_e_ezsignsignature_type.h
     model/field_e_phone_type.h
     model/field_e_user_type.h
     model/field_e_user_type_sspr.h

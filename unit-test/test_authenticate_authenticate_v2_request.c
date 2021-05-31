@@ -25,14 +25,16 @@ authenticate_authenticate_v2_request_t* instantiate_authenticate_authenticate_v2
       "demo",
       "example@domain.com",
       "JohnDoe",
-      "Qwerty1234!"
+      "Qwerty1234!",
+      "VGhpcyBpcyBhbiBlbmNyeXB0ZWQgcGFzc3dvcmQ="
     );
   } else {
     authenticate_authenticate_v2_request = authenticate_authenticate_v2_request_create(
       "demo",
       "example@domain.com",
       "JohnDoe",
-      "Qwerty1234!"
+      "Qwerty1234!",
+      "VGhpcyBpcyBhbiBlbmNyeXB0ZWQgcGFzc3dvcmQ="
     );
   }
 

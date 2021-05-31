@@ -22,23 +22,23 @@ ezsignsignature_request_t* instantiate_ezsignsignature_request(int include_optio
   ezsignsignature_request_t* ezsignsignature_request = NULL;
   if (include_optional) {
     ezsignsignature_request = ezsignsignature_request_create(
-      56,
-      56,
-      56,
-      56,
-      56,
-      ezmax_api_definition_ezsignsignature_request_EEZSIGNSIGNATURETYPE_Acknowledgement,
-      56
+      20,
+      1,
+      200,
+      300,
+      1,
+      ezmax_api_definition_ezsignsignature_request__"Name",
+      97
     );
   } else {
     ezsignsignature_request = ezsignsignature_request_create(
-      56,
-      56,
-      56,
-      56,
-      56,
-      ezmax_api_definition_ezsignsignature_request_EEZSIGNSIGNATURETYPE_Acknowledgement,
-      56
+      20,
+      1,
+      200,
+      300,
+      1,
+      ezmax_api_definition_ezsignsignature_request__"Name",
+      97
     );
   }
 

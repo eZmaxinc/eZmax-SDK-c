@@ -23,11 +23,12 @@ unused_ezsignsignature_edit_object_v1_request_t* instantiate_unused_ezsignsignat
   unused_ezsignsignature_edit_object_v1_request_t* unused_ezsignsignature_edit_object_v1_request = NULL;
   if (include_optional) {
     unused_ezsignsignature_edit_object_v1_request = unused_ezsignsignature_edit_object_v1_request_create(
-      {"fkiEzsigndocumentID":48,"fkiEzsignfoldersignerassociationID":77,"iEzsignpagePagenumber":3,"iEzsignsignatureX":200,"iEzsignsignatureY":300,"iEzsignsignatureStep":1,"eEzsignsignatureType":"Name"}
+       // false, not to have infinite recursion
+      instantiate_ezsignsignature_request(0)
     );
   } else {
     unused_ezsignsignature_edit_object_v1_request = unused_ezsignsignature_edit_object_v1_request_create(
-      {"fkiEzsigndocumentID":48,"fkiEzsignfoldersignerassociationID":77,"iEzsignpagePagenumber":3,"iEzsignsignatureX":200,"iEzsignsignatureY":300,"iEzsignsignatureStep":1,"eEzsignsignatureType":"Name"}
+      NULL
     );
   }
 

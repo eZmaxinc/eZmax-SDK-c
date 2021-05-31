@@ -9,7 +9,8 @@ authenticate_authenticate_v2_request_t *authenticate_authenticate_v2_request_cre
     char *pks_customer_code,
     char *s_email_address,
     char *s_user_loginname,
-    char *s_password
+    char *s_password,
+    char *s_password_encrypted
     ) {
     authenticate_authenticate_v2_request_t *authenticate_authenticate_v2_request_local_var = malloc(sizeof(authenticate_authenticate_v2_request_t));
     if (!authenticate_authenticate_v2_request_local_var) {
@@ -19,6 +20,7 @@ authenticate_authenticate_v2_request_t *authenticate_authenticate_v2_request_cre
     authenticate_authenticate_v2_request_local_var->s_email_address = s_email_address;
     authenticate_authenticate_v2_request_local_var->s_user_loginname = s_user_loginname;
     authenticate_authenticate_v2_request_local_var->s_password = s_password;
+    authenticate_authenticate_v2_request_local_var->s_password_encrypted = s_password_encrypted;
 
     return authenticate_authenticate_v2_request_local_var;
 }
@@ -44,6 +46,10 @@ void authenticate_authenticate_v2_request_free(authenticate_authenticate_v2_requ
     if (authenticate_authenticate_v2_request->s_password) {
         free(authenticate_authenticate_v2_request->s_password);
         authenticate_authenticate_v2_request->s_password = NULL;
+    }
+    if (authenticate_authenticate_v2_request->s_password_encrypted) {
+        free(authenticate_authenticate_v2_request->s_password_encrypted);
+        authenticate_authenticate_v2_request->s_password_encrypted = NULL;
     }
     free(authenticate_authenticate_v2_request);
 }
@@ -78,13 +84,19 @@ cJSON *authenticate_authenticate_v2_request_convertToJSON(authenticate_authentic
 
 
     // authenticate_authenticate_v2_request->s_password
-    if (!authenticate_authenticate_v2_request->s_password) {
-        goto fail;
-    }
-    
+    if(authenticate_authenticate_v2_request->s_password) { 
     if(cJSON_AddStringToObject(item, "sPassword", authenticate_authenticate_v2_request->s_password) == NULL) {
     goto fail; //String
     }
+     } 
+
+
+    // authenticate_authenticate_v2_request->s_password_encrypted
+    if(authenticate_authenticate_v2_request->s_password_encrypted) { 
+    if(cJSON_AddStringToObject(item, "sPasswordEncrypted", authenticate_authenticate_v2_request->s_password_encrypted) == NULL) {
+    goto fail; //String
+    }
+     } 
 
     return item;
 fail:
@@ -130,14 +142,20 @@ authenticate_authenticate_v2_request_t *authenticate_authenticate_v2_request_par
 
     // authenticate_authenticate_v2_request->s_password
     cJSON *s_password = cJSON_GetObjectItemCaseSensitive(authenticate_authenticate_v2_requestJSON, "sPassword");
-    if (!s_password) {
-        goto end;
-    }
-
-    
+    if (s_password) { 
     if(!cJSON_IsString(s_password))
     {
     goto end; //String
+    }
+    }
+
+    // authenticate_authenticate_v2_request->s_password_encrypted
+    cJSON *s_password_encrypted = cJSON_GetObjectItemCaseSensitive(authenticate_authenticate_v2_requestJSON, "sPasswordEncrypted");
+    if (s_password_encrypted) { 
+    if(!cJSON_IsString(s_password_encrypted))
+    {
+    goto end; //String
+    }
     }
 
 
@@ -145,7 +163,8 @@ authenticate_authenticate_v2_request_t *authenticate_authenticate_v2_request_par
         strdup(pks_customer_code->valuestring),
         s_email_address ? strdup(s_email_address->valuestring) : NULL,
         s_user_loginname ? strdup(s_user_loginname->valuestring) : NULL,
-        strdup(s_password->valuestring)
+        s_password ? strdup(s_password->valuestring) : NULL,
+        s_password_encrypted ? strdup(s_password_encrypted->valuestring) : NULL
         );
 
     return authenticate_authenticate_v2_request_local_var;

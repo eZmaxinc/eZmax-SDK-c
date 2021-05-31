@@ -4,14 +4,14 @@
 #include "ezsignsignature_request.h"
 
 
-char* e_ezsignsignature_typeezsignsignature_request_ToString(ezmax_api_definition_ezsignsignature_request_EEZSIGNSIGNATURETYPE_e e_ezsignsignature_type) {
-    char* e_ezsignsignature_typeArray[] =  { "NULL", "Acknowledgement", "Handwritten", "Initials", "Name" };
+char* e_ezsignsignature_typeezsignsignature_request_ToString(ezmax_api_definition_ezsignsignature_request__e e_ezsignsignature_type) {
+    char* e_ezsignsignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name" };
 	return e_ezsignsignature_typeArray[e_ezsignsignature_type];
 }
 
-ezmax_api_definition_ezsignsignature_request_EEZSIGNSIGNATURETYPE_e e_ezsignsignature_typeezsignsignature_request_FromString(char* e_ezsignsignature_type){
+ezmax_api_definition_ezsignsignature_request__e e_ezsignsignature_typeezsignsignature_request_FromString(char* e_ezsignsignature_type){
     int stringToReturn = 0;
-    char *e_ezsignsignature_typeArray[] =  { "NULL", "Acknowledgement", "Handwritten", "Initials", "Name" };
+    char *e_ezsignsignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name" };
     size_t sizeofArray = sizeof(e_ezsignsignature_typeArray) / sizeof(e_ezsignsignature_typeArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(e_ezsignsignature_type, e_ezsignsignature_typeArray[stringToReturn]) == 0) {
@@ -28,7 +28,6 @@ ezsignsignature_request_t *ezsignsignature_request_create(
     int i_ezsignsignature_x,
     int i_ezsignsignature_y,
     int i_ezsignsignature_step,
-    ezmax_api_definition_ezsignsignature_request_EEZSIGNSIGNATURETYPE_e e_ezsignsignature_type,
     int fki_ezsigndocument_id
     ) {
     ezsignsignature_request_t *ezsignsignature_request_local_var = malloc(sizeof(ezsignsignature_request_t));
@@ -110,10 +109,6 @@ cJSON *ezsignsignature_request_convertToJSON(ezsignsignature_request_t *ezsignsi
 
     // ezsignsignature_request->e_ezsignsignature_type
     
-    if(cJSON_AddStringToObject(item, "eEzsignsignatureType", e_ezsignsignature_typeezsignsignature_request_ToString(ezsignsignature_request->e_ezsignsignature_type)) == NULL)
-    {
-    goto fail; //Enum
-    }
 
 
     // ezsignsignature_request->fki_ezsigndocument_id
@@ -203,13 +198,6 @@ ezsignsignature_request_t *ezsignsignature_request_parseFromJSON(cJSON *ezsignsi
         goto end;
     }
 
-    ezmax_api_definition_ezsignsignature_request_EEZSIGNSIGNATURETYPE_e e_ezsignsignature_typeVariable;
-    
-    if(!cJSON_IsString(e_ezsignsignature_type))
-    {
-    goto end; //Enum
-    }
-    e_ezsignsignature_typeVariable = e_ezsignsignature_typeezsignsignature_request_FromString(e_ezsignsignature_type->valuestring);
 
     // ezsignsignature_request->fki_ezsigndocument_id
     cJSON *fki_ezsigndocument_id = cJSON_GetObjectItemCaseSensitive(ezsignsignature_requestJSON, "fkiEzsigndocumentID");
@@ -230,7 +218,6 @@ ezsignsignature_request_t *ezsignsignature_request_parseFromJSON(cJSON *ezsignsi
         i_ezsignsignature_x->valuedouble,
         i_ezsignsignature_y->valuedouble,
         i_ezsignsignature_step->valuedouble,
-        e_ezsignsignature_typeVariable,
         fki_ezsigndocument_id->valuedouble
         );
 

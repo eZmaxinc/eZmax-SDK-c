@@ -15,14 +15,15 @@
 
 typedef struct ezsignsignature_request_t ezsignsignature_request_t;
 
+#include "field_e_ezsignsignature_type.h"
 
-// Enum EEZSIGNSIGNATURETYPE for ezsignsignature_request
+// Enum  for ezsignsignature_request
 
-typedef enum  { ezmax_api_definition_ezsignsignature_request_EEZSIGNSIGNATURETYPE_NULL = 0, ezmax_api_definition_ezsignsignature_request_EEZSIGNSIGNATURETYPE_Acknowledgement, ezmax_api_definition_ezsignsignature_request_EEZSIGNSIGNATURETYPE_Handwritten, ezmax_api_definition_ezsignsignature_request_EEZSIGNSIGNATURETYPE_Initials, ezmax_api_definition_ezsignsignature_request_EEZSIGNSIGNATURETYPE_Name } ezmax_api_definition_ezsignsignature_request_EEZSIGNSIGNATURETYPE_e;
+typedef enum  { ezmax_api_definition_ezsignsignature_request__NULL = 0, ezmax_api_definition_ezsignsignature_request__Acknowledgement, ezmax_api_definition_ezsignsignature_request__City, ezmax_api_definition_ezsignsignature_request__Handwritten, ezmax_api_definition_ezsignsignature_request__Initials, ezmax_api_definition_ezsignsignature_request__Name } ezmax_api_definition_ezsignsignature_request__e;
 
-char* ezsignsignature_request_e_ezsignsignature_type_ToString(ezmax_api_definition_ezsignsignature_request_EEZSIGNSIGNATURETYPE_e e_ezsignsignature_type);
+char* ezsignsignature_request_e_ezsignsignature_type_ToString(ezmax_api_definition_ezsignsignature_request__e e_ezsignsignature_type);
 
-ezmax_api_definition_ezsignsignature_request_EEZSIGNSIGNATURETYPE_e ezsignsignature_request_e_ezsignsignature_type_FromString(char* e_ezsignsignature_type);
+ezmax_api_definition_ezsignsignature_request__e ezsignsignature_request_e_ezsignsignature_type_FromString(char* e_ezsignsignature_type);
 
 
 
@@ -32,7 +33,6 @@ typedef struct ezsignsignature_request_t {
     int i_ezsignsignature_x; //numeric
     int i_ezsignsignature_y; //numeric
     int i_ezsignsignature_step; //numeric
-    ezmax_api_definition_ezsignsignature_request_EEZSIGNSIGNATURETYPE_e e_ezsignsignature_type; //enum
     int fki_ezsigndocument_id; //numeric
 
 } ezsignsignature_request_t;
@@ -43,7 +43,6 @@ ezsignsignature_request_t *ezsignsignature_request_create(
     int i_ezsignsignature_x,
     int i_ezsignsignature_y,
     int i_ezsignsignature_step,
-    ezmax_api_definition_ezsignsignature_request_EEZSIGNSIGNATURETYPE_e e_ezsignsignature_type,
     int fki_ezsigndocument_id
 );
 

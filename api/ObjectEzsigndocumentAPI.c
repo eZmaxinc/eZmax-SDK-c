@@ -14,13 +14,13 @@
 // Functions for enum EDOCUMENTTYPE for ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1
 
 static char* ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_ToString(ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_eDocumentType_e EDOCUMENTTYPE){
-    char *EDOCUMENTTYPEArray[] =  { "NULL", "Initial", "_Signed", "Proof", "Proofdocument" };
+    char *EDOCUMENTTYPEArray[] =  { "NULL", "Initial", "Signed", "Proof", "Proofdocument" };
     return EDOCUMENTTYPEArray[EDOCUMENTTYPE];
 }
 
 static ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_eDocumentType_e ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_FromString(char* EDOCUMENTTYPE){
     int stringToReturn = 0;
-    char *EDOCUMENTTYPEArray[] =  { "NULL", "Initial", "_Signed", "Proof", "Proofdocument" };
+    char *EDOCUMENTTYPEArray[] =  { "NULL", "Initial", "Signed", "Proof", "Proofdocument" };
     size_t sizeofArray = sizeof(EDOCUMENTTYPEArray) / sizeof(EDOCUMENTTYPEArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(EDOCUMENTTYPE, EDOCUMENTTYPEArray[stringToReturn]) == 0) {

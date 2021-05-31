@@ -24,13 +24,15 @@ ezsignsignature_create_object_v1_request_t* instantiate_ezsignsignature_create_o
   ezsignsignature_create_object_v1_request_t* ezsignsignature_create_object_v1_request = NULL;
   if (include_optional) {
     ezsignsignature_create_object_v1_request = ezsignsignature_create_object_v1_request_create(
-      {"fkiEzsigndocumentID":48,"fkiEzsignfoldersignerassociationID":77,"iEzsignpagePagenumber":3,"iEzsignsignatureX":200,"iEzsignsignatureY":300,"iEzsignsignatureStep":1,"eEzsignsignatureType":"Name"},
-      {"fkiEzsigndocumentID":48,"fkiEzsignfoldersignerassociationID":77,"iEzsignpagePagenumber":3,"iEzsignsignatureX":200,"iEzsignsignatureY":300,"iEzsignsignatureStep":1,"eEzsignsignatureType":"Name"}
+       // false, not to have infinite recursion
+      instantiate_ezsignsignature_request(0),
+       // false, not to have infinite recursion
+      instantiate_ezsignsignature_request_compound(0)
     );
   } else {
     ezsignsignature_create_object_v1_request = ezsignsignature_create_object_v1_request_create(
-      {"fkiEzsigndocumentID":48,"fkiEzsignfoldersignerassociationID":77,"iEzsignpagePagenumber":3,"iEzsignsignatureX":200,"iEzsignsignatureY":300,"iEzsignsignatureStep":1,"eEzsignsignatureType":"Name"},
-      {"fkiEzsigndocumentID":48,"fkiEzsignfoldersignerassociationID":77,"iEzsignpagePagenumber":3,"iEzsignsignatureX":200,"iEzsignsignatureY":300,"iEzsignsignatureStep":1,"eEzsignsignatureType":"Name"}
+      NULL,
+      NULL
     );
   }
 

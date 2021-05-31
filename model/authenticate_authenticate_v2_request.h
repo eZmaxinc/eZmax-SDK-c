@@ -23,6 +23,7 @@ typedef struct authenticate_authenticate_v2_request_t {
     char *s_email_address; // string
     char *s_user_loginname; // string
     char *s_password; // string
+    char *s_password_encrypted; // string
 
 } authenticate_authenticate_v2_request_t;
 
@@ -30,7 +31,8 @@ authenticate_authenticate_v2_request_t *authenticate_authenticate_v2_request_cre
     char *pks_customer_code,
     char *s_email_address,
     char *s_user_loginname,
-    char *s_password
+    char *s_password,
+    char *s_password_encrypted
 );
 
 void authenticate_authenticate_v2_request_free(authenticate_authenticate_v2_request_t *authenticate_authenticate_v2_request);
