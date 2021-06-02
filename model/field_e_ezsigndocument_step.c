@@ -5,13 +5,13 @@
 
 
 char* field_e_ezsigndocument_step_field_e_ezsigndocument_step_ToString(ezmax_api_definition_field_e_ezsigndocument_step__e field_e_ezsigndocument_step) {
-    char *field_e_ezsigndocument_stepArray[] =  { "NULL", "Unsent", "Unsigned", "PartiallySigned", "Completed" };
+    char *field_e_ezsigndocument_stepArray[] =  { "NULL", "Unsent", "Unsigned", "PartiallySigned", "DeclinedToSign", "PrematurelyEnded", "Completed" };
     return field_e_ezsigndocument_stepArray[field_e_ezsigndocument_step];
 }
 
 ezmax_api_definition_field_e_ezsigndocument_step__e field_e_ezsigndocument_step_field_e_ezsigndocument_step_FromString(char* field_e_ezsigndocument_step) {
     int stringToReturn = 0;
-    char *field_e_ezsigndocument_stepArray[] =  { "NULL", "Unsent", "Unsigned", "PartiallySigned", "Completed" };
+    char *field_e_ezsigndocument_stepArray[] =  { "NULL", "Unsent", "Unsigned", "PartiallySigned", "DeclinedToSign", "PrematurelyEnded", "Completed" };
     size_t sizeofArray = sizeof(field_e_ezsigndocument_stepArray) / sizeof(field_e_ezsigndocument_stepArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(field_e_ezsigndocument_step, field_e_ezsigndocument_stepArray[stringToReturn]) == 0) {
