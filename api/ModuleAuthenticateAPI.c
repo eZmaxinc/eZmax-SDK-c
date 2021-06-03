@@ -79,9 +79,9 @@ ModuleAuthenticateAPI_authenticateAuthenticateV2(apiClient_t *apiClient, ezmax_a
     char      *localVarBodyParameters = NULL;
 
     // create the path
-    long sizeOfPath = strlen("/2/module/authenticate/authenticate/ezsignuser/{eSessionType}")+1;
+    long sizeOfPath = strlen("/2/module/authenticate/authenticate/{eSessionType}")+1;
     char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/module/authenticate/authenticate/ezsignuser/{eSessionType}");
+    snprintf(localVarPath, sizeOfPath, "/2/module/authenticate/authenticate/{eSessionType}");
 
 
     // Path Params
