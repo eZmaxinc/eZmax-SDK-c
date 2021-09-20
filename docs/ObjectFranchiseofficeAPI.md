@@ -19,7 +19,7 @@ common_get_autocomplete_v1_response_t* ObjectFranchiseofficeAPI_franchiseofficeG
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **sSelector** | **ezmax_api_definition_franchiseofficeGetAutocompleteV1_sSelector_e** | The type of Franchiseoffices to return | 
 **sQuery** | **char \*** | Allow to filter on the option value | [optional] 
 

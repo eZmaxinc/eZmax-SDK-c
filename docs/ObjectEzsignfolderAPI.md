@@ -23,7 +23,7 @@ ezsignfolder_create_object_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderCrea
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **ezsignfolder_create_object_v1_request** | **[list_t](ezsignfolder_create_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -52,7 +52,7 @@ ezsignfolder_delete_object_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderDele
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **pkiEzsignfolderID** | **int** | The unique ID of the Ezsignfolder | 
 
 ### Return type
@@ -75,13 +75,15 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve an existing Ezsignfolder's children IDs
 //
+// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
+//
 void ObjectEzsignfolderAPI_ezsignfolderGetChildrenV1(apiClient_t *apiClient, int pkiEzsignfolderID);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **pkiEzsignfolderID** | **int** | The unique ID of the Ezsignfolder | 
 
 ### Return type
@@ -103,13 +105,15 @@ void
 ```c
 // Retrieve an existing Ezsignfolder
 //
+// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
+//
 ezsignfolder_get_object_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetObjectV1(apiClient_t *apiClient, int pkiEzsignfolderID);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **pkiEzsignfolderID** | **int** | The unique ID of the Ezsignfolder | 
 
 ### Return type
@@ -138,7 +142,7 @@ ezsignfolder_send_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderSendV1(apiCli
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **pkiEzsignfolderID** | **int** | The unique ID of the Ezsignfolder | 
 **ezsignfolder_send_v1_request** | **[ezsignfolder_send_v1_request_t](ezsignfolder_send_v1_request.md) \*** |  | 
 

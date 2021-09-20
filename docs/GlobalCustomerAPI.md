@@ -19,7 +19,7 @@ global_customer_get_endpoint_v1_response_t* GlobalCustomerAPI_globalCustomerGetE
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **pksCustomerCode** | **char \*** | The customer code assigned to your account | 
 **sInfrastructureproductCode** | **ezmax_api_definition_globalCustomerGetEndpointV1_sInfrastructureproductCode_e** | The infrastructure product Code  If undefined, \&quot;appcluster01\&quot; is assumed | [optional] 
 

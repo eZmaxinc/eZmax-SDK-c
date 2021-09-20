@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 2.6)
+cmake_minimum_required (VERSION 2.6...3.10.2)
 project (CGenerator)
 
 cmake_policy(SET CMP0063 NEW)
@@ -6,29 +6,36 @@ cmake_policy(SET CMP0063 NEW)
 set(CMAKE_C_VISIBILITY_PRESET default)
 set(CMAKE_CXX_VISIBILITY_PRESET default)
 set(CMAKE_VISIBILITY_INLINES_HIDDEN OFF)
-set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+
+option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
 
 find_package(OpenSSL)
 
 if (OPENSSL_FOUND)
-	message (STATUS "OPENSSL found")
-	set (CMAKE_C_FLAGS "-DOPENSSL")
-	include_directories(${OPENSSL_INCLUDE_DIR})
-	include_directories(${OPENSSL_INCLUDE_DIRS})
-	link_directories(${OPENSSL_LIBRARIES})
-	message(STATUS "Using OpenSSL ${OPENSSL_VERSION}")
-else() 
-	message (STATUS "OpenSSL Not found.")
+    message (STATUS "OPENSSL found")
+
+    set(CMAKE_C_FLAGS "-DOPENSSL")
+    if(CMAKE_VERSION VERSION_LESS 3.4)
+        include_directories(${OPENSSL_INCLUDE_DIR})
+        include_directories(${OPENSSL_INCLUDE_DIRS})
+        link_directories(${OPENSSL_LIBRARIES})
+    endif()
+
+    message(STATUS "Using OpenSSL ${OPENSSL_VERSION}")
+else()
+    message (STATUS "OpenSSL Not found.")
 endif()
 
 set(pkgName "ezmax_api_definition")
+set(VERSION 0.0.1) # this default version can be overridden in PreTarget.cmake
 
 find_package(CURL 7.58.0 REQUIRED)
 if(CURL_FOUND)
-	include_directories(${CURL_INCLUDE_DIR})
-	set(PLATFORM_LIBRARIES ${PLATFORM_LIBRARIES} ${CURL_LIBRARIES} )
+    include_directories(${CURL_INCLUDE_DIR})
+    set(PLATFORM_LIBRARIES ${PLATFORM_LIBRARIES} ${CURL_LIBRARIES} )
 else(CURL_FOUND)
-	message(FATAL_ERROR "Could not find the CURL library and development files.")
+    message(FATAL_ERROR "Could not find the CURL library and development files.")
 endif()
 
 set(SRCS
@@ -39,10 +46,12 @@ set(SRCS
     external/cJSON.c
     model/object.c
     model/activesession_get_current_v1_response.c
+    model/activesession_get_current_v1_response_all_of.c
     model/activesession_get_current_v1_response_m_payload.c
     model/address_request.c
     model/apikey_create_object_v1_request.c
     model/apikey_create_object_v1_response.c
+    model/apikey_create_object_v1_response_all_of.c
     model/apikey_create_object_v1_response_m_payload.c
     model/apikey_request.c
     model/apikey_request_compound.c
@@ -50,9 +59,11 @@ set(SRCS
     model/attempt_response.c
     model/authenticate_authenticate_v2_request.c
     model/authenticate_authenticate_v2_response.c
+    model/authenticate_authenticate_v2_response_all_of.c
     model/authenticate_authenticate_v2_response_m_payload.c
     model/common_audit.c
     model/common_get_autocomplete_v1_response.c
+    model/common_get_autocomplete_v1_response_all_of.c
     model/common_get_autocomplete_v1_response_m_payload.c
     model/common_response.c
     model/common_response_error.c
@@ -65,17 +76,25 @@ set(SRCS
     model/contact_request_compound_all_of.c
     model/contactinformations_request.c
     model/contactinformations_request_compound.c
+    model/contactinformations_request_compound_all_of.c
     model/email_request.c
     model/ezsigndocument_apply_ezsigntemplate_v1_request.c
     model/ezsigndocument_apply_ezsigntemplate_v1_response.c
     model/ezsigndocument_create_object_v1_request.c
     model/ezsigndocument_create_object_v1_response.c
+    model/ezsigndocument_create_object_v1_response_all_of.c
     model/ezsigndocument_create_object_v1_response_m_payload.c
     model/ezsigndocument_delete_object_v1_response.c
     model/ezsigndocument_get_download_url_v1_response.c
+    model/ezsigndocument_get_download_url_v1_response_all_of.c
     model/ezsigndocument_get_download_url_v1_response_m_payload.c
     model/ezsigndocument_get_object_v1_response.c
+    model/ezsigndocument_get_object_v1_response_all_of.c
     model/ezsigndocument_get_object_v1_response_m_payload.c
+    model/ezsigndocument_get_words_positions_v1_request.c
+    model/ezsigndocument_get_words_positions_v1_response.c
+    model/ezsigndocument_get_words_positions_v1_response_all_of.c
+    model/ezsigndocument_get_words_positions_v1_response_m_payload.c
     model/ezsigndocument_request.c
     model/ezsigndocument_request_compound.c
     model/ezsigndocument_response.c
@@ -86,32 +105,40 @@ set(SRCS
     model/ezsignfolder_create_object_v1_response_m_payload.c
     model/ezsignfolder_delete_object_v1_response.c
     model/ezsignfolder_get_object_v1_response.c
+    model/ezsignfolder_get_object_v1_response_all_of.c
     model/ezsignfolder_get_object_v1_response_m_payload.c
     model/ezsignfolder_request.c
     model/ezsignfolder_request_compound.c
+    model/ezsignfolder_request_compound_all_of.c
     model/ezsignfolder_response.c
-    model/ezsignfolder_response_all_of.c
     model/ezsignfolder_response_compound.c
     model/ezsignfolder_send_v1_request.c
     model/ezsignfolder_send_v1_response.c
     model/ezsignfoldersignerassociation_create_object_v1_request.c
     model/ezsignfoldersignerassociation_create_object_v1_response.c
+    model/ezsignfoldersignerassociation_create_object_v1_response_all_of.c
     model/ezsignfoldersignerassociation_create_object_v1_response_m_payload.c
     model/ezsignfoldersignerassociation_delete_object_v1_response.c
     model/ezsignfoldersignerassociation_get_in_person_login_url_v1_response.c
+    model/ezsignfoldersignerassociation_get_in_person_login_url_v1_response_all_of.c
     model/ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload.c
     model/ezsignfoldersignerassociation_get_object_v1_response.c
+    model/ezsignfoldersignerassociation_get_object_v1_response_all_of.c
     model/ezsignfoldersignerassociation_request.c
     model/ezsignfoldersignerassociation_request_compound.c
+    model/ezsignfoldersignerassociation_request_compound_all_of.c
     model/ezsignsignature_create_object_v1_request.c
     model/ezsignsignature_create_object_v1_response.c
+    model/ezsignsignature_create_object_v1_response_all_of.c
     model/ezsignsignature_create_object_v1_response_m_payload.c
     model/ezsignsignature_delete_object_v1_response.c
     model/ezsignsignature_get_object_v1_response.c
+    model/ezsignsignature_get_object_v1_response_all_of.c
     model/ezsignsignature_request.c
     model/ezsignsignature_request_compound.c
     model/ezsignsigner_request.c
     model/ezsignsigner_request_compound.c
+    model/ezsignsigner_request_compound_all_of.c
     model/ezsignsigner_request_compound_contact.c
     model/field_e_ezsigndocument_step.c
     model/field_e_ezsignfolder_sendreminderfrequency.c
@@ -122,9 +149,11 @@ set(SRCS
     model/field_e_user_type_sspr.c
     model/franchisereferalincome_create_object_v1_request.c
     model/franchisereferalincome_create_object_v1_response.c
+    model/franchisereferalincome_create_object_v1_response_all_of.c
     model/franchisereferalincome_create_object_v1_response_m_payload.c
     model/franchisereferalincome_request.c
     model/franchisereferalincome_request_compound.c
+    model/franchisereferalincome_request_compound_all_of.c
     model/global_customer_get_endpoint_v1_response.c
     model/multilingual_apikey_description.c
     model/phone_request.c
@@ -144,9 +173,9 @@ set(SRCS
     model/unused_ezsignsignature_edit_object_v1_response.c
     model/user_create_ezsignuser_v1_request.c
     model/user_create_ezsignuser_v1_response.c
+    model/user_create_ezsignuser_v1_response_all_of.c
     model/user_create_ezsignuser_v1_response_m_payload.c
     model/user_response.c
-    model/user_response_all_of.c
     model/webhook_ezsign_document_completed.c
     model/webhook_ezsign_document_completed_all_of.c
     model/webhook_ezsign_folder_completed.c
@@ -155,6 +184,7 @@ set(SRCS
     model/webhook_user_user_created.c
     model/webhook_user_user_created_all_of.c
     model/website_request.c
+    model/word_position_response.c
     api/GlobalCustomerAPI.c
     api/ModuleAuthenticateAPI.c
     api/ModuleSsprAPI.c
@@ -180,10 +210,12 @@ set(HDRS
     external/cJSON.h
     model/object.h
     model/activesession_get_current_v1_response.h
+    model/activesession_get_current_v1_response_all_of.h
     model/activesession_get_current_v1_response_m_payload.h
     model/address_request.h
     model/apikey_create_object_v1_request.h
     model/apikey_create_object_v1_response.h
+    model/apikey_create_object_v1_response_all_of.h
     model/apikey_create_object_v1_response_m_payload.h
     model/apikey_request.h
     model/apikey_request_compound.h
@@ -191,9 +223,11 @@ set(HDRS
     model/attempt_response.h
     model/authenticate_authenticate_v2_request.h
     model/authenticate_authenticate_v2_response.h
+    model/authenticate_authenticate_v2_response_all_of.h
     model/authenticate_authenticate_v2_response_m_payload.h
     model/common_audit.h
     model/common_get_autocomplete_v1_response.h
+    model/common_get_autocomplete_v1_response_all_of.h
     model/common_get_autocomplete_v1_response_m_payload.h
     model/common_response.h
     model/common_response_error.h
@@ -206,17 +240,25 @@ set(HDRS
     model/contact_request_compound_all_of.h
     model/contactinformations_request.h
     model/contactinformations_request_compound.h
+    model/contactinformations_request_compound_all_of.h
     model/email_request.h
     model/ezsigndocument_apply_ezsigntemplate_v1_request.h
     model/ezsigndocument_apply_ezsigntemplate_v1_response.h
     model/ezsigndocument_create_object_v1_request.h
     model/ezsigndocument_create_object_v1_response.h
+    model/ezsigndocument_create_object_v1_response_all_of.h
     model/ezsigndocument_create_object_v1_response_m_payload.h
     model/ezsigndocument_delete_object_v1_response.h
     model/ezsigndocument_get_download_url_v1_response.h
+    model/ezsigndocument_get_download_url_v1_response_all_of.h
     model/ezsigndocument_get_download_url_v1_response_m_payload.h
     model/ezsigndocument_get_object_v1_response.h
+    model/ezsigndocument_get_object_v1_response_all_of.h
     model/ezsigndocument_get_object_v1_response_m_payload.h
+    model/ezsigndocument_get_words_positions_v1_request.h
+    model/ezsigndocument_get_words_positions_v1_response.h
+    model/ezsigndocument_get_words_positions_v1_response_all_of.h
+    model/ezsigndocument_get_words_positions_v1_response_m_payload.h
     model/ezsigndocument_request.h
     model/ezsigndocument_request_compound.h
     model/ezsigndocument_response.h
@@ -227,32 +269,40 @@ set(HDRS
     model/ezsignfolder_create_object_v1_response_m_payload.h
     model/ezsignfolder_delete_object_v1_response.h
     model/ezsignfolder_get_object_v1_response.h
+    model/ezsignfolder_get_object_v1_response_all_of.h
     model/ezsignfolder_get_object_v1_response_m_payload.h
     model/ezsignfolder_request.h
     model/ezsignfolder_request_compound.h
+    model/ezsignfolder_request_compound_all_of.h
     model/ezsignfolder_response.h
-    model/ezsignfolder_response_all_of.h
     model/ezsignfolder_response_compound.h
     model/ezsignfolder_send_v1_request.h
     model/ezsignfolder_send_v1_response.h
     model/ezsignfoldersignerassociation_create_object_v1_request.h
     model/ezsignfoldersignerassociation_create_object_v1_response.h
+    model/ezsignfoldersignerassociation_create_object_v1_response_all_of.h
     model/ezsignfoldersignerassociation_create_object_v1_response_m_payload.h
     model/ezsignfoldersignerassociation_delete_object_v1_response.h
     model/ezsignfoldersignerassociation_get_in_person_login_url_v1_response.h
+    model/ezsignfoldersignerassociation_get_in_person_login_url_v1_response_all_of.h
     model/ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload.h
     model/ezsignfoldersignerassociation_get_object_v1_response.h
+    model/ezsignfoldersignerassociation_get_object_v1_response_all_of.h
     model/ezsignfoldersignerassociation_request.h
     model/ezsignfoldersignerassociation_request_compound.h
+    model/ezsignfoldersignerassociation_request_compound_all_of.h
     model/ezsignsignature_create_object_v1_request.h
     model/ezsignsignature_create_object_v1_response.h
+    model/ezsignsignature_create_object_v1_response_all_of.h
     model/ezsignsignature_create_object_v1_response_m_payload.h
     model/ezsignsignature_delete_object_v1_response.h
     model/ezsignsignature_get_object_v1_response.h
+    model/ezsignsignature_get_object_v1_response_all_of.h
     model/ezsignsignature_request.h
     model/ezsignsignature_request_compound.h
     model/ezsignsigner_request.h
     model/ezsignsigner_request_compound.h
+    model/ezsignsigner_request_compound_all_of.h
     model/ezsignsigner_request_compound_contact.h
     model/field_e_ezsigndocument_step.h
     model/field_e_ezsignfolder_sendreminderfrequency.h
@@ -263,9 +313,11 @@ set(HDRS
     model/field_e_user_type_sspr.h
     model/franchisereferalincome_create_object_v1_request.h
     model/franchisereferalincome_create_object_v1_response.h
+    model/franchisereferalincome_create_object_v1_response_all_of.h
     model/franchisereferalincome_create_object_v1_response_m_payload.h
     model/franchisereferalincome_request.h
     model/franchisereferalincome_request_compound.h
+    model/franchisereferalincome_request_compound_all_of.h
     model/global_customer_get_endpoint_v1_response.h
     model/multilingual_apikey_description.h
     model/phone_request.h
@@ -285,9 +337,9 @@ set(HDRS
     model/unused_ezsignsignature_edit_object_v1_response.h
     model/user_create_ezsignuser_v1_request.h
     model/user_create_ezsignuser_v1_response.h
+    model/user_create_ezsignuser_v1_response_all_of.h
     model/user_create_ezsignuser_v1_response_m_payload.h
     model/user_response.h
-    model/user_response_all_of.h
     model/webhook_ezsign_document_completed.h
     model/webhook_ezsign_document_completed_all_of.h
     model/webhook_ezsign_folder_completed.h
@@ -296,6 +348,7 @@ set(HDRS
     model/webhook_user_user_created.h
     model/webhook_user_user_created_all_of.h
     model/website_request.h
+    model/word_position_response.h
     api/GlobalCustomerAPI.h
     api/ModuleAuthenticateAPI.h
     api/ModuleSsprAPI.h
@@ -313,19 +366,77 @@ set(HDRS
 
 )
 
-# Add library with project file with projectname as library name
-add_library(${pkgName} SHARED ${SRCS} ${HDRS})
+include(PreTarget.cmake OPTIONAL)
+
+# Add library with project file with project name as library name
+add_library(${pkgName} ${SRCS} ${HDRS})
 # Link dependent libraries
-target_link_libraries(${pkgName} ${CURL_LIBRARIES} )
-#install library to destination
-install(TARGETS ${pkgName} DESTINATION ${CMAKE_INSTALL_PREFIX})
+if(NOT CMAKE_VERSION VERSION_LESS 3.4)
+    target_link_libraries(${pkgName} PRIVATE OpenSSL::SSL OpenSSL::Crypto)
+endif()
+target_link_libraries(${pkgName} PUBLIC ${CURL_LIBRARIES} )
+target_include_directories(
+    ${pkgName} PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}>
+    $<INSTALL_INTERFACE:include>
+)
+
+include(PostTarget.cmake OPTIONAL)
+
+# installation of libraries, headers, and config files
+if (NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/Config.cmake.in)
+    install(TARGETS ${pkgName} DESTINATION ${CMAKE_INSTALL_PREFIX})
+else()
+    include(GNUInstallDirs)
+    install(TARGETS ${pkgName} DESTINATION ${CMAKE_INSTALL_PREFIX} EXPORT ${pkgName}Targets)
+
+    foreach(HDR_FILE ${HDRS})
+        get_filename_component(HDR_DIRECTORY ${HDR_FILE} DIRECTORY)
+        get_filename_component(ABSOLUTE_HDR_DIRECTORY ${HDR_DIRECTORY} ABSOLUTE)
+        file(RELATIVE_PATH RELATIVE_HDR_PATH ${CMAKE_CURRENT_SOURCE_DIR} ${ABSOLUTE_HDR_DIRECTORY})
+        install(FILES ${HDR_FILE} DESTINATION include/${RELATIVE_HDR_PATH})
+    endforeach()
+
+    include(CMakePackageConfigHelpers)
+    write_basic_package_version_file(
+            "${CMAKE_CURRENT_BINARY_DIR}/${pkgName}/${pkgName}ConfigVersion.cmake"
+            VERSION "${VERSION}"
+            COMPATIBILITY AnyNewerVersion
+    )
+
+    export(EXPORT ${pkgName}Targets
+            FILE "${CMAKE_CURRENT_BINARY_DIR}/${pkgName}/${pkgName}Targets.cmake"
+            NAMESPACE ${pkgName}::
+            )
+
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Config.cmake.in
+            "${CMAKE_CURRENT_BINARY_DIR}/${pkgName}/${pkgName}Config.cmake"
+            @ONLY
+            )
+
+    set(ConfigPackageLocation lib/cmake/${pkgName})
+    install(EXPORT ${pkgName}Targets
+            FILE
+            ${pkgName}Targets.cmake
+            NAMESPACE
+            ${pkgName}::
+            DESTINATION
+            ${ConfigPackageLocation}
+            )
+    install(
+            FILES
+            "${CMAKE_CURRENT_BINARY_DIR}/${pkgName}/${pkgName}Config.cmake"
+            "${CMAKE_CURRENT_BINARY_DIR}/${pkgName}/${pkgName}ConfigVersion.cmake"
+            DESTINATION
+            ${ConfigPackageLocation}
+    )
+endif()
 
 # Setting file variables to null
 set(SRCS "")
 set(HDRS "")
 
 
-## This section shows how to use the above compiled libary to compile the source files
+## This section shows how to use the above compiled library to compile the source files
 ## set source files
 #set(SRCS
 #    unit-tests/manual-GlobalCustomerAPI.c
@@ -350,12 +461,12 @@ set(HDRS "")
 
 ## loop over all files in SRCS variable
 #foreach(SOURCE_FILE ${SRCS})
-#    # Get only the file name from the file as add_executable doesnot support executable with slash("/")
+#    # Get only the file name from the file as add_executable does not support executable with slash("/")
 #    get_filename_component(FILE_NAME_ONLY ${SOURCE_FILE} NAME_WE)
 #    # Remove .c from the file name and set it as executable name
 #    string( REPLACE ".c" "" EXECUTABLE_FILE ${FILE_NAME_ONLY})
 #    # Add executable for every source file in  SRCS
 #    add_executable(unit-${EXECUTABLE_FILE} ${SOURCE_FILE})
-#    # Link above created libary to executable and dependent libary curl
+#    # Link above created library to executable and dependent library curl
 #    target_link_libraries(unit-${EXECUTABLE_FILE} ${CURL_LIBRARIES} ${pkgName} )
 #endforeach(SOURCE_FILE ${SRCS})

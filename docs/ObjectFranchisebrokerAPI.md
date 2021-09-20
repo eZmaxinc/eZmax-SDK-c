@@ -19,7 +19,7 @@ common_get_autocomplete_v1_response_t* ObjectFranchisebrokerAPI_franchisebrokerG
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **sSelector** | **ezmax_api_definition_franchisebrokerGetAutocompleteV1_sSelector_e** | The type of Franchisebrokers to return | 
 **sQuery** | **char \*** | Allow to filter on the option value | [optional] 
 

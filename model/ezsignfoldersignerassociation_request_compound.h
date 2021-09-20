@@ -16,6 +16,7 @@
 typedef struct ezsignfoldersignerassociation_request_compound_t ezsignfoldersignerassociation_request_compound_t;
 
 #include "ezsignfoldersignerassociation_request.h"
+#include "ezsignfoldersignerassociation_request_compound_all_of.h"
 #include "ezsignsigner_request_compound.h"
 
 

@@ -19,7 +19,7 @@ activesession_get_current_v1_response_t* ObjectActivesessionAPI_activesessionGet
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 
 ### Return type
 

@@ -18,6 +18,7 @@ typedef struct ezsignsignature_get_object_v1_response_t ezsignsignature_get_obje
 #include "common_response.h"
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload.h"
+#include "ezsignsignature_get_object_v1_response_all_of.h"
 #include "object.h"
 
 

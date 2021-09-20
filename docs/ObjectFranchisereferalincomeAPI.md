@@ -19,7 +19,7 @@ franchisereferalincome_create_object_v1_response_t* ObjectFranchisereferalincome
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **franchisereferalincome_create_object_v1_request** | **[list_t](franchisereferalincome_create_object_v1_request.md) \*** |  | 
 
 ### Return type

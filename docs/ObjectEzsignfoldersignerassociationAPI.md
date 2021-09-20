@@ -23,7 +23,7 @@ ezsignfoldersignerassociation_create_object_v1_response_t* ObjectEzsignfoldersig
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **ezsignfoldersignerassociation_create_object_v1_request** | **[list_t](ezsignfoldersignerassociation_create_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -52,7 +52,7 @@ ezsignfoldersignerassociation_delete_object_v1_response_t* ObjectEzsignfoldersig
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **pkiEzsignfoldersignerassociationID** | **int** | The unique ID of the Ezsignfoldersignerassociation | 
 
 ### Return type
@@ -75,13 +75,15 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve an existing Ezsignfoldersignerassociation's children IDs
 //
+// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
+//
 void ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetChildrenV1(apiClient_t *apiClient, int pkiEzsignfoldersignerassociationID);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **pkiEzsignfoldersignerassociationID** | **int** | The unique ID of the Ezsignfoldersignerassociation | 
 
 ### Return type
@@ -111,7 +113,7 @@ ezsignfoldersignerassociation_get_in_person_login_url_v1_response_t* ObjectEzsig
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **pkiEzsignfoldersignerassociationID** | **int** | The unique ID of the Ezsignfoldersignerassociation | 
 
 ### Return type
@@ -134,13 +136,15 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve an existing Ezsignfoldersignerassociation
 //
+// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
+//
 ezsignfoldersignerassociation_get_object_v1_response_t* ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV1(apiClient_t *apiClient, int pkiEzsignfoldersignerassociationID);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **pkiEzsignfoldersignerassociationID** | **int** | The unique ID of the Ezsignfoldersignerassociation | 
 
 ### Return type

@@ -310,7 +310,13 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
         {
             goto end;
         }
-        list_addElement(a_permissionsList , &a_permissions_local->valuedouble);
+        double *a_permissions_local_value = (double *)calloc(1, sizeof(double));
+        if(!a_permissions_local_value)
+        {
+            goto end;
+        }
+        *a_permissions_local_value = a_permissions_local->valuedouble;
+        list_addElement(a_permissionsList , a_permissions_local_value);
     }
 
     // activesession_get_current_v1_response_m_payload->fki_user_id

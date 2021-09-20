@@ -19,7 +19,7 @@ user_create_ezsignuser_v1_response_t* ModuleUserAPI_userCreateEzsignuserV1(apiCl
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **user_create_ezsignuser_v1_request** | **[list_t](user_create_ezsignuser_v1_request.md) \*** |  | 
 
 ### Return type

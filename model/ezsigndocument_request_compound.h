@@ -38,7 +38,7 @@ ezmax_api_definition_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_e ezs
 typedef struct ezsigndocument_request_compound_t {
     ezmax_api_definition_ezsigndocument_request_compound_EEZSIGNDOCUMENTSOURCE_e e_ezsigndocument_source; //enum
     ezmax_api_definition_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_e e_ezsigndocument_format; //enum
-    char s_ezsigndocument_base64; //Byte
+    char *s_ezsigndocument_base64; //ByteArray
     int fki_ezsignfolder_id; //numeric
     char *dt_ezsigndocument_duedate; // string
     int fki_language_id; //numeric
@@ -49,7 +49,7 @@ typedef struct ezsigndocument_request_compound_t {
 ezsigndocument_request_compound_t *ezsigndocument_request_compound_create(
     ezmax_api_definition_ezsigndocument_request_compound_EEZSIGNDOCUMENTSOURCE_e e_ezsigndocument_source,
     ezmax_api_definition_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_e e_ezsigndocument_format,
-    char s_ezsigndocument_base64,
+    char *s_ezsigndocument_base64,
     int fki_ezsignfolder_id,
     char *dt_ezsigndocument_duedate,
     int fki_language_id,

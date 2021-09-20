@@ -19,7 +19,7 @@ authenticate_authenticate_v2_response_t* ModuleAuthenticateAPI_authenticateAuthe
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **eSessionType** | **ezmax_api_definition_authenticateAuthenticateV2_eSessionType_e** |  | 
 **authenticate_authenticate_v2_request** | **[authenticate_authenticate_v2_request_t](authenticate_authenticate_v2_request.md) \*** |  | 
 

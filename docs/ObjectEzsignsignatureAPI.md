@@ -22,7 +22,7 @@ ezsignsignature_create_object_v1_response_t* ObjectEzsignsignatureAPI_ezsignsign
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **ezsignsignature_create_object_v1_request** | **[list_t](ezsignsignature_create_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -51,7 +51,7 @@ ezsignsignature_delete_object_v1_response_t* ObjectEzsignsignatureAPI_ezsignsign
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **pkiEzsignsignatureID** | **int** | The unique ID of the Ezsignsignature | 
 
 ### Return type
@@ -74,13 +74,15 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve an existing Ezsignsignature's children IDs
 //
+// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
+//
 void ObjectEzsignsignatureAPI_ezsignsignatureGetChildrenV1(apiClient_t *apiClient, int pkiEzsignsignatureID);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **pkiEzsignsignatureID** | **int** | The unique ID of the Ezsignsignature | 
 
 ### Return type
@@ -102,13 +104,15 @@ void
 ```c
 // Retrieve an existing Ezsignsignature
 //
+// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
+//
 ezsignsignature_get_object_v1_response_t* ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV1(apiClient_t *apiClient, int pkiEzsignsignatureID);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **pkiEzsignsignatureID** | **int** | The unique ID of the Ezsignsignature | 
 
 ### Return type

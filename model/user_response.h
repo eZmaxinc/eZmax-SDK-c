@@ -17,7 +17,6 @@ typedef struct user_response_t user_response_t;
 
 #include "common_audit.h"
 #include "field_e_user_type.h"
-#include "user_response_all_of.h"
 
 // Enum  for user_response
 

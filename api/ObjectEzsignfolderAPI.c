@@ -200,6 +200,8 @@ end:
 
 // Retrieve an existing Ezsignfolder's children IDs
 //
+// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
+//
 void
 ObjectEzsignfolderAPI_ezsignfolderGetChildrenV1(apiClient_t *apiClient, int pkiEzsignfolderID )
 {
@@ -263,6 +265,8 @@ end:
 }
 
 // Retrieve an existing Ezsignfolder
+//
+// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
 //
 ezsignfolder_get_object_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetObjectV1(apiClient_t *apiClient, int pkiEzsignfolderID )

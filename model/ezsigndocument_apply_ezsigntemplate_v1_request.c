@@ -161,7 +161,13 @@ ezsigndocument_apply_ezsigntemplate_v1_request_t *ezsigndocument_apply_ezsigntem
         {
             goto end;
         }
-        list_addElement(a_pki_ezsignfoldersignerassociation_idList , &a_pki_ezsignfoldersignerassociation_id_local->valuedouble);
+        double *a_pki_ezsignfoldersignerassociation_id_local_value = (double *)calloc(1, sizeof(double));
+        if(!a_pki_ezsignfoldersignerassociation_id_local_value)
+        {
+            goto end;
+        }
+        *a_pki_ezsignfoldersignerassociation_id_local_value = a_pki_ezsignfoldersignerassociation_id_local->valuedouble;
+        list_addElement(a_pki_ezsignfoldersignerassociation_idList , a_pki_ezsignfoldersignerassociation_id_local_value);
     }
 
 

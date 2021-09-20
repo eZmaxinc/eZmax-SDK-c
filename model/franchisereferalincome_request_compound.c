@@ -93,7 +93,10 @@ cJSON *franchisereferalincome_request_compound_convertToJSON(franchisereferalinc
     cJSON *item = cJSON_CreateObject();
 
     // franchisereferalincome_request_compound->obj_address
-    if(franchisereferalincome_request_compound->obj_address) { 
+    if (!franchisereferalincome_request_compound->obj_address) {
+        goto fail;
+    }
+    
     cJSON *obj_address_local_JSON = address_request_convertToJSON(franchisereferalincome_request_compound->obj_address);
     if(obj_address_local_JSON == NULL) {
     goto fail; //model
@@ -102,7 +105,6 @@ cJSON *franchisereferalincome_request_compound_convertToJSON(franchisereferalinc
     if(item->child == NULL) {
     goto fail;
     }
-     } 
 
 
     // franchisereferalincome_request_compound->a_obj_contact
@@ -250,10 +252,13 @@ franchisereferalincome_request_compound_t *franchisereferalincome_request_compou
 
     // franchisereferalincome_request_compound->obj_address
     cJSON *obj_address = cJSON_GetObjectItemCaseSensitive(franchisereferalincome_request_compoundJSON, "objAddress");
-    address_request_t *obj_address_local_nonprim = NULL;
-    if (obj_address) { 
-    obj_address_local_nonprim = address_request_parseFromJSON(obj_address); //nonprimitive
+    if (!obj_address) {
+        goto end;
     }
+
+    address_request_t *obj_address_local_nonprim = NULL;
+    
+    obj_address_local_nonprim = address_request_parseFromJSON(obj_address); //nonprimitive
 
     // franchisereferalincome_request_compound->a_obj_contact
     cJSON *a_obj_contact = cJSON_GetObjectItemCaseSensitive(franchisereferalincome_request_compoundJSON, "a_objContact");
@@ -414,7 +419,7 @@ franchisereferalincome_request_compound_t *franchisereferalincome_request_compou
 
 
     franchisereferalincome_request_compound_local_var = franchisereferalincome_request_compound_create (
-        obj_address ? obj_address_local_nonprim : NULL,
+        obj_address_local_nonprim,
         a_obj_contactList,
         fki_franchisebroker_id->valuedouble,
         fki_franchisereferalincomeprogram_id->valuedouble,

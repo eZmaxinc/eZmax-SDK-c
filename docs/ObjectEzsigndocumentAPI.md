@@ -9,7 +9,9 @@ Method | HTTP request | Description
 [**ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1) | **DELETE** /1/object/ezsigndocument/{pkiEzsigndocumentID} | Delete an existing Ezsigndocument
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetChildrenV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetChildrenV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getChildren | Retrieve an existing Ezsigndocument&#39;s children IDs
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getDownloadUrl/{eDocumentType} | Retrieve a URL to download documents.
+[**ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getFormData | Retrieve an existing Ezsigndocument&#39;s Form Data
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID} | Retrieve an existing Ezsigndocument
+[**ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getWordsPositions | Retrieve positions X,Y of given words from a Ezsigndocument
 
 
 # **ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV1**
@@ -24,7 +26,7 @@ ezsigndocument_apply_ezsigntemplate_v1_response_t* ObjectEzsigndocumentAPI_ezsig
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **pkiEzsigndocumentID** | **int** | The unique ID of the Ezsigndocument | 
 **ezsigndocument_apply_ezsigntemplate_v1_request** | **[ezsigndocument_apply_ezsigntemplate_v1_request_t](ezsigndocument_apply_ezsigntemplate_v1_request.md) \*** |  | 
 
@@ -56,7 +58,7 @@ ezsigndocument_create_object_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocume
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **ezsigndocument_create_object_v1_request** | **[list_t](ezsigndocument_create_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -85,7 +87,7 @@ ezsigndocument_delete_object_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocume
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **pkiEzsigndocumentID** | **int** | The unique ID of the Ezsigndocument | 
 
 ### Return type
@@ -108,13 +110,15 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve an existing Ezsigndocument's children IDs
 //
+// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
+//
 void ObjectEzsigndocumentAPI_ezsigndocumentGetChildrenV1(apiClient_t *apiClient, int pkiEzsigndocumentID);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **pkiEzsigndocumentID** | **int** | The unique ID of the Ezsigndocument | 
 
 ### Return type
@@ -144,7 +148,7 @@ ezsigndocument_get_download_url_v1_response_t* ObjectEzsigndocumentAPI_ezsigndoc
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **pkiEzsigndocumentID** | **int** | The unique ID of the Ezsigndocument | 
 **eDocumentType** | **ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_eDocumentType_e** | The type of document to retrieve.  1. **Initial** Is the initial document before any signature were applied. 2. **Signed** Is the final document once all signatures were applied. 3. **Proofdocument** Is the evidence report. 4. **Proof** Is the complete evidence archive including all of the above and more.  | 
 
@@ -164,9 +168,43 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1**
+```c
+// Retrieve an existing Ezsigndocument's Form Data
+//
+// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
+//
+binary_t** ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1(apiClient_t *apiClient, int pkiEzsigndocumentID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsigndocumentID** | **int** | The unique ID of the Ezsigndocument | 
+
+### Return type
+
+binary_t**
+
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/zip, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV1**
 ```c
 // Retrieve an existing Ezsigndocument
+//
+// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
 //
 ezsigndocument_get_object_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV1(apiClient_t *apiClient, int pkiEzsigndocumentID);
 ```
@@ -174,7 +212,7 @@ ezsigndocument_get_object_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentG
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **pkiEzsigndocumentID** | **int** | The unique ID of the Ezsigndocument | 
 
 ### Return type
@@ -189,6 +227,38 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1**
+```c
+// Retrieve positions X,Y of given words from a Ezsigndocument
+//
+// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
+//
+ezsigndocument_get_words_positions_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1(apiClient_t *apiClient, int pkiEzsigndocumentID, ezsigndocument_get_words_positions_v1_request_t * ezsigndocument_get_words_positions_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsigndocumentID** | **int** | The unique ID of the Ezsigndocument | 
+**ezsigndocument_get_words_positions_v1_request** | **[ezsigndocument_get_words_positions_v1_request_t](ezsigndocument_get_words_positions_v1_request.md) \*** |  | 
+
+### Return type
+
+[ezsigndocument_get_words_positions_v1_response_t](ezsigndocument_get_words_positions_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

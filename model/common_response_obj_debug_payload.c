@@ -134,7 +134,13 @@ common_response_obj_debug_payload_t *common_response_obj_debug_payload_parseFrom
         {
             goto end;
         }
-        list_addElement(a_required_permissionsList , &a_required_permissions_local->valuedouble);
+        double *a_required_permissions_local_value = (double *)calloc(1, sizeof(double));
+        if(!a_required_permissions_local_value)
+        {
+            goto end;
+        }
+        *a_required_permissions_local_value = a_required_permissions_local->valuedouble;
+        list_addElement(a_required_permissionsList , a_required_permissions_local_value);
     }
 
 

@@ -15,6 +15,7 @@
 
 typedef struct authenticate_authenticate_v2_response_t authenticate_authenticate_v2_response_t;
 
+#include "authenticate_authenticate_v2_response_all_of.h"
 #include "authenticate_authenticate_v2_response_m_payload.h"
 #include "common_response.h"
 #include "common_response_obj_debug.h"

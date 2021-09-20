@@ -19,7 +19,7 @@ apikey_create_object_v1_response_t* ObjectApikeyAPI_apikeyCreateObjectV1(apiClie
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **apikey_create_object_v1_request** | **[list_t](apikey_create_object_v1_request.md) \*** |  | 
 
 ### Return type

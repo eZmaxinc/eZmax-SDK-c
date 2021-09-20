@@ -19,7 +19,7 @@ common_get_autocomplete_v1_response_t* ObjectPeriodAPI_periodGetAutocompleteV1(a
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **sSelector** | **ezmax_api_definition_periodGetAutocompleteV1_sSelector_e** | The types of Periods to return | 
 **sQuery** | **char \*** | Allow to filter on the option value | [optional] 
 

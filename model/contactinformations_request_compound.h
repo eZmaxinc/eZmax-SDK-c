@@ -17,6 +17,7 @@ typedef struct contactinformations_request_compound_t contactinformations_reques
 
 #include "address_request.h"
 #include "contactinformations_request.h"
+#include "contactinformations_request_compound_all_of.h"
 #include "email_request.h"
 #include "phone_request.h"
 #include "website_request.h"

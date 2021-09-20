@@ -24,7 +24,7 @@ void ModuleSsprAPI_ssprResetPasswordRequestV1(apiClient_t *apiClient, sspr_reset
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **sspr_reset_password_request_v1_request** | **[sspr_reset_password_request_v1_request_t](sspr_reset_password_request_v1_request.md) \*** |  | 
 
 ### Return type
@@ -54,7 +54,7 @@ void ModuleSsprAPI_ssprResetPasswordV1(apiClient_t *apiClient, sspr_reset_passwo
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **sspr_reset_password_v1_request** | **[sspr_reset_password_v1_request_t](sspr_reset_password_v1_request.md) \*** |  | 
 
 ### Return type
@@ -84,7 +84,7 @@ void ModuleSsprAPI_ssprSendUsernamesV1(apiClient_t *apiClient, sspr_send_usernam
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **sspr_send_usernames_v1_request** | **[sspr_send_usernames_v1_request_t](sspr_send_usernames_v1_request.md) \*** |  | 
 
 ### Return type
@@ -114,7 +114,7 @@ void ModuleSsprAPI_ssprUnlockAccountRequestV1(apiClient_t *apiClient, sspr_unloc
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **sspr_unlock_account_request_v1_request** | **[sspr_unlock_account_request_v1_request_t](sspr_unlock_account_request_v1_request.md) \*** |  | 
 
 ### Return type
@@ -144,7 +144,7 @@ void ModuleSsprAPI_ssprUnlockAccountV1(apiClient_t *apiClient, sspr_unlock_accou
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **sspr_unlock_account_v1_request** | **[sspr_unlock_account_v1_request_t](sspr_unlock_account_v1_request.md) \*** |  | 
 
 ### Return type
@@ -174,7 +174,7 @@ void ModuleSsprAPI_ssprValidateTokenV1(apiClient_t *apiClient, sspr_validate_tok
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration | 
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
 **sspr_validate_token_v1_request** | **[sspr_validate_token_v1_request_t](sspr_validate_token_v1_request.md) \*** |  | 
 
 ### Return type
