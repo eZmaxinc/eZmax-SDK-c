@@ -12,6 +12,7 @@
 #include "../model/ezsigndocument_create_object_v1_response.h"
 #include "../model/ezsigndocument_delete_object_v1_response.h"
 #include "../model/ezsigndocument_get_download_url_v1_response.h"
+#include "../model/ezsigndocument_get_ezsignpages_v1_response.h"
 #include "../model/ezsigndocument_get_object_v1_response.h"
 #include "../model/ezsigndocument_get_words_positions_v1_request.h"
 #include "../model/ezsigndocument_get_words_positions_v1_response.h"
@@ -56,6 +57,14 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetChildrenV1(apiClient_t *apiClient, int 
 //
 ezsigndocument_get_download_url_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1(apiClient_t *apiClient, int pkiEzsigndocumentID , ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_eDocumentType_e eDocumentType );
+
+
+// Retrieve an existing Ezsigndocument's Ezsignpages
+//
+// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
+//
+ezsigndocument_get_ezsignpages_v1_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignpagesV1(apiClient_t *apiClient, int pkiEzsigndocumentID );
 
 
 // Retrieve an existing Ezsigndocument's Form Data

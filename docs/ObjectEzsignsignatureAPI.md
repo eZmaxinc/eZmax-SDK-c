@@ -52,7 +52,7 @@ ezsignsignature_delete_object_v1_response_t* ObjectEzsignsignatureAPI_ezsignsign
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignsignatureID** | **int** | The unique ID of the Ezsignsignature | 
+**pkiEzsignsignatureID** | **int** |  | 
 
 ### Return type
 
@@ -83,7 +83,7 @@ void ObjectEzsignsignatureAPI_ezsignsignatureGetChildrenV1(apiClient_t *apiClien
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignsignatureID** | **int** | The unique ID of the Ezsignsignature | 
+**pkiEzsignsignatureID** | **int** |  | 
 
 ### Return type
 
@@ -113,7 +113,7 @@ ezsignsignature_get_object_v1_response_t* ObjectEzsignsignatureAPI_ezsignsignatu
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignsignatureID** | **int** | The unique ID of the Ezsignsignature | 
+**pkiEzsignsignatureID** | **int** |  | 
 
 ### Return type
 

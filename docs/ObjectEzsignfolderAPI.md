@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1) | **POST** /1/object/ezsignfolder | Create a new Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1) | **DELETE** /1/object/ezsignfolder/{pkiEzsignfolderID} | Delete an existing Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderGetChildrenV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetChildrenV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getChildren | Retrieve an existing Ezsignfolder&#39;s children IDs
+[**ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getFormsData | Retrieve an existing Ezsignfolder&#39;s forms data
 [**ObjectEzsignfolderAPI_ezsignfolderGetObjectV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetObjectV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID} | Retrieve an existing Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderSendV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderSendV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/send | Send the Ezsignfolder to the signatories for signature
 
@@ -53,7 +54,7 @@ ezsignfolder_delete_object_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderDele
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** | The unique ID of the Ezsignfolder | 
+**pkiEzsignfolderID** | **int** |  | 
 
 ### Return type
 
@@ -84,7 +85,7 @@ void ObjectEzsignfolderAPI_ezsignfolderGetChildrenV1(apiClient_t *apiClient, int
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** | The unique ID of the Ezsignfolder | 
+**pkiEzsignfolderID** | **int** |  | 
 
 ### Return type
 
@@ -101,6 +102,38 @@ void
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1**
+```c
+// Retrieve an existing Ezsignfolder's forms data
+//
+// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
+//
+binary_t** ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1(apiClient_t *apiClient, int pkiEzsignfolderID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsignfolderID** | **int** |  | 
+
+### Return type
+
+binary_t**
+
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/zip, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **ObjectEzsignfolderAPI_ezsignfolderGetObjectV1**
 ```c
 // Retrieve an existing Ezsignfolder
@@ -114,7 +147,7 @@ ezsignfolder_get_object_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetObje
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** | The unique ID of the Ezsignfolder | 
+**pkiEzsignfolderID** | **int** |  | 
 
 ### Return type
 
@@ -143,7 +176,7 @@ ezsignfolder_send_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderSendV1(apiCli
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** | The unique ID of the Ezsignfolder | 
+**pkiEzsignfolderID** | **int** |  | 
 **ezsignfolder_send_v1_request** | **[ezsignfolder_send_v1_request_t](ezsignfolder_send_v1_request.md) \*** |  | 
 
 ### Return type

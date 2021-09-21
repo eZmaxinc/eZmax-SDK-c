@@ -53,7 +53,7 @@ ezsignfoldersignerassociation_delete_object_v1_response_t* ObjectEzsignfoldersig
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfoldersignerassociationID** | **int** | The unique ID of the Ezsignfoldersignerassociation | 
+**pkiEzsignfoldersignerassociationID** | **int** |  | 
 
 ### Return type
 
@@ -84,7 +84,7 @@ void ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetChil
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfoldersignerassociationID** | **int** | The unique ID of the Ezsignfoldersignerassociation | 
+**pkiEzsignfoldersignerassociationID** | **int** |  | 
 
 ### Return type
 
@@ -114,7 +114,7 @@ ezsignfoldersignerassociation_get_in_person_login_url_v1_response_t* ObjectEzsig
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfoldersignerassociationID** | **int** | The unique ID of the Ezsignfoldersignerassociation | 
+**pkiEzsignfoldersignerassociationID** | **int** |  | 
 
 ### Return type
 
@@ -145,7 +145,7 @@ ezsignfoldersignerassociation_get_object_v1_response_t* ObjectEzsignfoldersigner
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfoldersignerassociationID** | **int** | The unique ID of the Ezsignfoldersignerassociation | 
+**pkiEzsignfoldersignerassociationID** | **int** |  | 
 
 ### Return type
 

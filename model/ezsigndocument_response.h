@@ -16,7 +16,6 @@
 typedef struct ezsigndocument_response_t ezsigndocument_response_t;
 
 #include "common_audit.h"
-#include "ezsigndocument_response_all_of.h"
 #include "field_e_ezsigndocument_step.h"
 
 // Enum  for ezsigndocument_response

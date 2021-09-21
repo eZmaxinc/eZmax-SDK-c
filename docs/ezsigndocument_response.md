@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **dt_ezsigndocument_duedate** | **char \*** | The maximum date and time at which the document can be signed. | 
 **fki_language_id** | **int** | The unique ID of the Language.  Valid values:  |Value|Description| |-|-| |1|French| |2|English| | 
 **s_ezsigndocument_name** | **char \*** | The name of the document that will be presented to Ezsignfoldersignerassociations | 
-**pki_ezsigndocument_id** | **int** | The unique ID of the Ezsigntemplate | 
+**pki_ezsigndocument_id** | **int** | The unique ID of the Ezsigndocument | 
 **e_ezsigndocument_step** |  |  | 
 **dt_ezsigndocument_firstsend** | **char \*** | The date and time when the Ezsigndocument was first sent. | 
 **dt_ezsigndocument_lastsend** | **char \*** | The date and time when the Ezsigndocument was sent the last time. | 

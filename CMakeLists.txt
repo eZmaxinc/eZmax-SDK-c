@@ -88,6 +88,9 @@ set(SRCS
     model/ezsigndocument_get_download_url_v1_response.c
     model/ezsigndocument_get_download_url_v1_response_all_of.c
     model/ezsigndocument_get_download_url_v1_response_m_payload.c
+    model/ezsigndocument_get_ezsignpages_v1_response.c
+    model/ezsigndocument_get_ezsignpages_v1_response_all_of.c
+    model/ezsigndocument_get_ezsignpages_v1_response_m_payload.c
     model/ezsigndocument_get_object_v1_response.c
     model/ezsigndocument_get_object_v1_response_all_of.c
     model/ezsigndocument_get_object_v1_response_m_payload.c
@@ -98,7 +101,6 @@ set(SRCS
     model/ezsigndocument_request.c
     model/ezsigndocument_request_compound.c
     model/ezsigndocument_response.c
-    model/ezsigndocument_response_all_of.c
     model/ezsigndocument_response_compound.c
     model/ezsignfolder_create_object_v1_request.c
     model/ezsignfolder_create_object_v1_response.c
@@ -127,6 +129,7 @@ set(SRCS
     model/ezsignfoldersignerassociation_request.c
     model/ezsignfoldersignerassociation_request_compound.c
     model/ezsignfoldersignerassociation_request_compound_all_of.c
+    model/ezsignpage_response.c
     model/ezsignsignature_create_object_v1_request.c
     model/ezsignsignature_create_object_v1_response.c
     model/ezsignsignature_create_object_v1_response_all_of.c
@@ -252,6 +255,9 @@ set(HDRS
     model/ezsigndocument_get_download_url_v1_response.h
     model/ezsigndocument_get_download_url_v1_response_all_of.h
     model/ezsigndocument_get_download_url_v1_response_m_payload.h
+    model/ezsigndocument_get_ezsignpages_v1_response.h
+    model/ezsigndocument_get_ezsignpages_v1_response_all_of.h
+    model/ezsigndocument_get_ezsignpages_v1_response_m_payload.h
     model/ezsigndocument_get_object_v1_response.h
     model/ezsigndocument_get_object_v1_response_all_of.h
     model/ezsigndocument_get_object_v1_response_m_payload.h
@@ -262,7 +268,6 @@ set(HDRS
     model/ezsigndocument_request.h
     model/ezsigndocument_request_compound.h
     model/ezsigndocument_response.h
-    model/ezsigndocument_response_all_of.h
     model/ezsigndocument_response_compound.h
     model/ezsignfolder_create_object_v1_request.h
     model/ezsignfolder_create_object_v1_response.h
@@ -291,6 +296,7 @@ set(HDRS
     model/ezsignfoldersignerassociation_request.h
     model/ezsignfoldersignerassociation_request_compound.h
     model/ezsignfoldersignerassociation_request_compound_all_of.h
+    model/ezsignpage_response.h
     model/ezsignsignature_create_object_v1_request.h
     model/ezsignsignature_create_object_v1_response.h
     model/ezsignsignature_create_object_v1_response_all_of.h
