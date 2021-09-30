@@ -9,6 +9,7 @@
 #include "../model/ezsignfolder_create_object_v1_request.h"
 #include "../model/ezsignfolder_create_object_v1_response.h"
 #include "../model/ezsignfolder_delete_object_v1_response.h"
+#include "../model/ezsignfolder_get_forms_data_v1_response.h"
 #include "../model/ezsignfolder_get_object_v1_response.h"
 #include "../model/ezsignfolder_send_v1_request.h"
 #include "../model/ezsignfolder_send_v1_response.h"
@@ -40,7 +41,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetChildrenV1(apiClient_t *apiClient, int pkiE
 //
 // ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
 //
-binary_t**
+ezsignfolder_get_forms_data_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1(apiClient_t *apiClient, int pkiEzsignfolderID );
 
 

@@ -8,11 +8,14 @@
 #include "../model/common_response_error.h"
 #include "../model/ezsigndocument_apply_ezsigntemplate_v1_request.h"
 #include "../model/ezsigndocument_apply_ezsigntemplate_v1_response.h"
+#include "../model/ezsigndocument_apply_ezsigntemplate_v2_request.h"
+#include "../model/ezsigndocument_apply_ezsigntemplate_v2_response.h"
 #include "../model/ezsigndocument_create_object_v1_request.h"
 #include "../model/ezsigndocument_create_object_v1_response.h"
 #include "../model/ezsigndocument_delete_object_v1_response.h"
 #include "../model/ezsigndocument_get_download_url_v1_response.h"
 #include "../model/ezsigndocument_get_ezsignpages_v1_response.h"
+#include "../model/ezsigndocument_get_form_data_v1_response.h"
 #include "../model/ezsigndocument_get_object_v1_response.h"
 #include "../model/ezsigndocument_get_words_positions_v1_request.h"
 #include "../model/ezsigndocument_get_words_positions_v1_response.h"
@@ -23,10 +26,18 @@ typedef enum  { ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYP
 
 // Apply an Ezsign Template to the Ezsigndocument.
 //
-// This endpoint applies a predefined template to the ezsign document. This allows to automatically apply all the form and signature fields on a document in a single step.  The document must not already have fields otherwise an error will be returned.
+// This function is deprecated. Please use *applyEzsigntemplate* instead which is doing the same thing but with a capital \"E\" to normalize the nomenclature.  This endpoint applies a predefined template to the ezsign document. This allows to automatically apply all the form and signature fields on a document in a single step.  The document must not already have fields otherwise an error will be returned.
 //
 ezsigndocument_apply_ezsigntemplate_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV1(apiClient_t *apiClient, int pkiEzsigndocumentID , ezsigndocument_apply_ezsigntemplate_v1_request_t * ezsigndocument_apply_ezsigntemplate_v1_request );
+
+
+// Apply an Ezsign Template to the Ezsigndocument.
+//
+// This endpoint applies a predefined template to the ezsign document. This allows to automatically apply all the form and signature fields on a document in a single step.  The document must not already have fields otherwise an error will be returned.
+//
+ezsigndocument_apply_ezsigntemplate_v2_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV2(apiClient_t *apiClient, int pkiEzsigndocumentID , ezsigndocument_apply_ezsigntemplate_v2_request_t * ezsigndocument_apply_ezsigntemplate_v2_request );
 
 
 // Create a new Ezsigndocument
@@ -61,8 +72,6 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1(apiClient_t *apiClient, i
 
 // Retrieve an existing Ezsigndocument's Ezsignpages
 //
-// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
-//
 ezsigndocument_get_ezsignpages_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignpagesV1(apiClient_t *apiClient, int pkiEzsigndocumentID );
 
@@ -71,7 +80,7 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignpagesV1(apiClient_t *apiClient, i
 //
 // ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
 //
-binary_t**
+ezsigndocument_get_form_data_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1(apiClient_t *apiClient, int pkiEzsigndocumentID );
 
 

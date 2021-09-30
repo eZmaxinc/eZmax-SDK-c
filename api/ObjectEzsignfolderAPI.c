@@ -268,7 +268,7 @@ end:
 //
 // ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
 //
-binary_t**
+ezsignfolder_get_forms_data_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1(apiClient_t *apiClient, int pkiEzsignfolderID )
 {
     list_t    *localVarQueryParameters = NULL;
@@ -299,8 +299,8 @@ ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1(apiClient_t *apiClient, int pki
 
 
 
-    list_addElement(localVarHeaderType,"application/zip"); //produces
     list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarHeaderType,"application/zip"); //produces
     apiClient_invoke(apiClient,
                     localVarPath,
                     localVarQueryParameters,
@@ -317,12 +317,21 @@ ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1(apiClient_t *apiClient, int pki
     if (apiClient->response_code == 404) {
         printf("%s\n","The element you are trying to work on does not exist");
     }
+    if (apiClient->response_code == 406) {
+        printf("%s\n","Accept header is not defined or invalid.");
+    }
     if (apiClient->response_code == 422) {
         printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
     }
-    //primitive return type simple
-    binary_t** elementToReturn =  strdup((binary_t**)apiClient->dataReceived);
+    //nonprimitive not container
+    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsignfolder_get_forms_data_v1_response_t *elementToReturn = ezsignfolder_get_forms_data_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
 
+    //return type
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
         apiClient->dataReceived = NULL;

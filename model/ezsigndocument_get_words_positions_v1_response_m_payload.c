@@ -25,7 +25,7 @@ void ezsigndocument_get_words_positions_v1_response_m_payload_free(ezsigndocumen
     listEntry_t *listEntry;
     if (ezsigndocument_get_words_positions_v1_response_m_payload->a_s_words) {
         list_ForEach(listEntry, ezsigndocument_get_words_positions_v1_response_m_payload->a_s_words) {
-            word_position_response_free(listEntry->data);
+            custom_word_position_response_free(listEntry->data);
         }
         list_free(ezsigndocument_get_words_positions_v1_response_m_payload->a_s_words);
         ezsigndocument_get_words_positions_v1_response_m_payload->a_s_words = NULL;
@@ -49,7 +49,7 @@ cJSON *ezsigndocument_get_words_positions_v1_response_m_payload_convertToJSON(ez
     listEntry_t *a_s_wordsListEntry;
     if (ezsigndocument_get_words_positions_v1_response_m_payload->a_s_words) {
     list_ForEach(a_s_wordsListEntry, ezsigndocument_get_words_positions_v1_response_m_payload->a_s_words) {
-    cJSON *itemLocal = word_position_response_convertToJSON(a_s_wordsListEntry->data);
+    cJSON *itemLocal = custom_word_position_response_convertToJSON(a_s_wordsListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -89,7 +89,7 @@ ezsigndocument_get_words_positions_v1_response_m_payload_t *ezsigndocument_get_w
         if(!cJSON_IsObject(a_s_words_local_nonprimitive)){
             goto end;
         }
-        word_position_response_t *a_s_wordsItem = word_position_response_parseFromJSON(a_s_words_local_nonprimitive);
+        custom_word_position_response_t *a_s_wordsItem = custom_word_position_response_parseFromJSON(a_s_words_local_nonprimitive);
 
         list_addElement(a_s_wordsList, a_s_wordsItem);
     }

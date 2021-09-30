@@ -43,6 +43,7 @@ ezsigndocument_request_t *ezsigndocument_request_create(
     ezmax_api_definition_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_e e_ezsigndocument_source,
     ezmax_api_definition_ezsigndocument_request_EEZSIGNDOCUMENTFORMAT_e e_ezsigndocument_format,
     char *s_ezsigndocument_base64,
+    char *s_ezsigndocument_base64,
     int fki_ezsignfolder_id,
     char *dt_ezsigndocument_duedate,
     int fki_language_id,
@@ -69,6 +70,10 @@ void ezsigndocument_request_free(ezsigndocument_request_t *ezsigndocument_reques
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsigndocument_request->s_ezsigndocument_base64) {
+        free(ezsigndocument_request->s_ezsigndocument_base64);
+        ezsigndocument_request->s_ezsigndocument_base64 = NULL;
+    }
     if (ezsigndocument_request->s_ezsigndocument_base64) {
         free(ezsigndocument_request->s_ezsigndocument_base64);
         ezsigndocument_request->s_ezsigndocument_base64 = NULL;
@@ -105,6 +110,9 @@ cJSON *ezsigndocument_request_convertToJSON(ezsigndocument_request_t *ezsigndocu
 
     // ezsigndocument_request->s_ezsigndocument_base64
     if(ezsigndocument_request->s_ezsigndocument_base64) { 
+    if(cJSON_AddStringToObject(item, "sEzsigndocumentBase64", ezsigndocument_request->s_ezsigndocument_base64) == NULL) {
+    goto fail; //String
+    }
     if(cJSON_AddStringToObject(item, "sEzsigndocumentBase64", ezsigndocument_request->s_ezsigndocument_base64) == NULL) {
     goto fail; //ByteArray
     }
@@ -195,6 +203,11 @@ ezsigndocument_request_t *ezsigndocument_request_parseFromJSON(cJSON *ezsigndocu
     if (s_ezsigndocument_base64) { 
     if(!cJSON_IsString(s_ezsigndocument_base64))
     {
+    goto end; //String
+    }
+    if (s_ezsigndocument_base64) { 
+    if(!cJSON_IsString(s_ezsigndocument_base64))
+    {
     goto end; //ByteArray
     }
     }
@@ -251,6 +264,7 @@ ezsigndocument_request_t *ezsigndocument_request_parseFromJSON(cJSON *ezsigndocu
     ezsigndocument_request_local_var = ezsigndocument_request_create (
         e_ezsigndocument_sourceVariable,
         e_ezsigndocument_formatVariable,
+        s_ezsigndocument_base64 ? strdup(s_ezsigndocument_base64->valuestring) : NULL,
         s_ezsigndocument_base64 ? strdup(s_ezsigndocument_base64->valuestring) : NULL,
         fki_ezsignfolder_id->valuedouble,
         strdup(dt_ezsigndocument_duedate->valuestring),

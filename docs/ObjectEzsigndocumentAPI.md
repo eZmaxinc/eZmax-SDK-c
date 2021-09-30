@@ -5,6 +5,7 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/applyezsigntemplate | Apply an Ezsign Template to the Ezsigndocument.
+[**ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV2**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV2) | **POST** /2/object/ezsigndocument/{pkiEzsigndocumentID}/applyEzsigntemplate | Apply an Ezsign Template to the Ezsigndocument.
 [**ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV1) | **POST** /1/object/ezsigndocument | Create a new Ezsigndocument
 [**ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1) | **DELETE** /1/object/ezsigndocument/{pkiEzsigndocumentID} | Delete an existing Ezsigndocument
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetChildrenV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetChildrenV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getChildren | Retrieve an existing Ezsigndocument&#39;s children IDs
@@ -19,7 +20,7 @@ Method | HTTP request | Description
 ```c
 // Apply an Ezsign Template to the Ezsigndocument.
 //
-// This endpoint applies a predefined template to the ezsign document. This allows to automatically apply all the form and signature fields on a document in a single step.  The document must not already have fields otherwise an error will be returned.
+// This function is deprecated. Please use *applyEzsigntemplate* instead which is doing the same thing but with a capital \"E\" to normalize the nomenclature.  This endpoint applies a predefined template to the ezsign document. This allows to automatically apply all the form and signature fields on a document in a single step.  The document must not already have fields otherwise an error will be returned.
 //
 ezsigndocument_apply_ezsigntemplate_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV1(apiClient_t *apiClient, int pkiEzsigndocumentID, ezsigndocument_apply_ezsigntemplate_v1_request_t * ezsigndocument_apply_ezsigntemplate_v1_request);
 ```
@@ -34,6 +35,38 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsigndocument_apply_ezsigntemplate_v1_response_t](ezsigndocument_apply_ezsigntemplate_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV2**
+```c
+// Apply an Ezsign Template to the Ezsigndocument.
+//
+// This endpoint applies a predefined template to the ezsign document. This allows to automatically apply all the form and signature fields on a document in a single step.  The document must not already have fields otherwise an error will be returned.
+//
+ezsigndocument_apply_ezsigntemplate_v2_response_t* ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV2(apiClient_t *apiClient, int pkiEzsigndocumentID, ezsigndocument_apply_ezsigntemplate_v2_request_t * ezsigndocument_apply_ezsigntemplate_v2_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsigndocumentID** | **int** |  | 
+**ezsigndocument_apply_ezsigntemplate_v2_request** | **[ezsigndocument_apply_ezsigntemplate_v2_request_t](ezsigndocument_apply_ezsigntemplate_v2_request.md) \*** |  | 
+
+### Return type
+
+[ezsigndocument_apply_ezsigntemplate_v2_response_t](ezsigndocument_apply_ezsigntemplate_v2_response.md) *
 
 
 ### Authorization
@@ -173,8 +206,6 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve an existing Ezsigndocument's Ezsignpages
 //
-// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
-//
 ezsigndocument_get_ezsignpages_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignpagesV1(apiClient_t *apiClient, int pkiEzsigndocumentID);
 ```
 
@@ -206,7 +237,7 @@ Name | Type | Description  | Notes
 //
 // ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
 //
-binary_t** ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1(apiClient_t *apiClient, int pkiEzsigndocumentID);
+ezsigndocument_get_form_data_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1(apiClient_t *apiClient, int pkiEzsigndocumentID);
 ```
 
 ### Parameters
@@ -217,8 +248,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-binary_t**
-
+[ezsigndocument_get_form_data_v1_response_t](ezsigndocument_get_form_data_v1_response.md) *
 
 
 ### Authorization
@@ -228,7 +258,7 @@ binary_t**
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/zip, application/json
+ - **Accept**: application/json, application/zip, text/csv
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

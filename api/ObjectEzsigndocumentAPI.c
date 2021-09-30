@@ -66,7 +66,7 @@ end:
 
 // Apply an Ezsign Template to the Ezsigndocument.
 //
-// This endpoint applies a predefined template to the ezsign document. This allows to automatically apply all the form and signature fields on a document in a single step.  The document must not already have fields otherwise an error will be returned.
+// This function is deprecated. Please use *applyEzsigntemplate* instead which is doing the same thing but with a capital \"E\" to normalize the nomenclature.  This endpoint applies a predefined template to the ezsign document. This allows to automatically apply all the form and signature fields on a document in a single step.  The document must not already have fields otherwise an error will be returned.
 //
 ezsigndocument_apply_ezsigntemplate_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV1(apiClient_t *apiClient, int pkiEzsigndocumentID , ezsigndocument_apply_ezsigntemplate_v1_request_t * ezsigndocument_apply_ezsigntemplate_v1_request )
@@ -153,6 +153,104 @@ ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV1(apiClient_t *apiClie
     if (localVarSingleItemJSON_ezsigndocument_apply_ezsigntemplate_v1_request) {
         cJSON_Delete(localVarSingleItemJSON_ezsigndocument_apply_ezsigntemplate_v1_request);
         localVarSingleItemJSON_ezsigndocument_apply_ezsigntemplate_v1_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Apply an Ezsign Template to the Ezsigndocument.
+//
+// This endpoint applies a predefined template to the ezsign document. This allows to automatically apply all the form and signature fields on a document in a single step.  The document must not already have fields otherwise an error will be returned.
+//
+ezsigndocument_apply_ezsigntemplate_v2_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV2(apiClient_t *apiClient, int pkiEzsigndocumentID , ezsigndocument_apply_ezsigntemplate_v2_request_t * ezsigndocument_apply_ezsigntemplate_v2_request )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_create();
+    list_t *localVarContentType = list_create();
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/2/object/ezsigndocument/{pkiEzsigndocumentID}/applyEzsigntemplate")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/2/object/ezsigndocument/{pkiEzsigndocumentID}/applyEzsigntemplate");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsigndocumentID =  + strlen("{ pkiEzsigndocumentID }");
+    if(pkiEzsigndocumentID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsigndocumentID = malloc(sizeOfPathParams_pkiEzsigndocumentID);
+    snprintf(localVarToReplace_pkiEzsigndocumentID, sizeOfPathParams_pkiEzsigndocumentID, "{%s}", "pkiEzsigndocumentID");
+
+    char localVarBuff_pkiEzsigndocumentID[256];
+    intToStr(localVarBuff_pkiEzsigndocumentID, pkiEzsigndocumentID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigndocumentID, localVarBuff_pkiEzsigndocumentID);
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_ezsigndocument_apply_ezsigntemplate_v2_request = NULL;
+    if (ezsigndocument_apply_ezsigntemplate_v2_request != NULL)
+    {
+        //string
+        localVarSingleItemJSON_ezsigndocument_apply_ezsigntemplate_v2_request = ezsigndocument_apply_ezsigntemplate_v2_request_convertToJSON(ezsigndocument_apply_ezsigntemplate_v2_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsigndocument_apply_ezsigntemplate_v2_request);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "POST");
+
+    if (apiClient->response_code == 200) {
+        printf("%s\n","Successful response");
+    }
+    if (apiClient->response_code == 404) {
+        printf("%s\n","The element you are trying to work on does not exist");
+    }
+    if (apiClient->response_code == 422) {
+        printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    }
+    //nonprimitive not container
+    cJSON *ObjectEzsigndocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsigndocument_apply_ezsigntemplate_v2_response_t *elementToReturn = ezsigndocument_apply_ezsigntemplate_v2_response_parseFromJSON(ObjectEzsigndocumentAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsigndocumentAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_free(localVarHeaderType);
+    list_free(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsigndocumentID);
+    if (localVarSingleItemJSON_ezsigndocument_apply_ezsigntemplate_v2_request) {
+        cJSON_Delete(localVarSingleItemJSON_ezsigndocument_apply_ezsigntemplate_v2_request);
+        localVarSingleItemJSON_ezsigndocument_apply_ezsigntemplate_v2_request = NULL;
     }
     free(localVarBodyParameters);
     return elementToReturn;
@@ -510,8 +608,6 @@ end:
 
 // Retrieve an existing Ezsigndocument's Ezsignpages
 //
-// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
-//
 ezsigndocument_get_ezsignpages_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignpagesV1(apiClient_t *apiClient, int pkiEzsigndocumentID )
 {
@@ -595,7 +691,7 @@ end:
 //
 // ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
 //
-binary_t**
+ezsigndocument_get_form_data_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1(apiClient_t *apiClient, int pkiEzsigndocumentID )
 {
     list_t    *localVarQueryParameters = NULL;
@@ -626,8 +722,9 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1(apiClient_t *apiClient, int 
 
 
 
-    list_addElement(localVarHeaderType,"application/zip"); //produces
     list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarHeaderType,"application/zip"); //produces
+    list_addElement(localVarHeaderType,"text/csv"); //produces
     apiClient_invoke(apiClient,
                     localVarPath,
                     localVarQueryParameters,
@@ -647,9 +744,18 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1(apiClient_t *apiClient, int 
     if (apiClient->response_code == 422) {
         printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
     }
-    //primitive return type simple
-    binary_t** elementToReturn =  strdup((binary_t**)apiClient->dataReceived);
+    if (apiClient->response_code == 406) {
+        printf("%s\n","Accept header is not defined or invalid.");
+    }
+    //nonprimitive not container
+    cJSON *ObjectEzsigndocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsigndocument_get_form_data_v1_response_t *elementToReturn = ezsigndocument_get_form_data_v1_response_parseFromJSON(ObjectEzsigndocumentAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsigndocumentAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
 
+    //return type
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
         apiClient->dataReceived = NULL;

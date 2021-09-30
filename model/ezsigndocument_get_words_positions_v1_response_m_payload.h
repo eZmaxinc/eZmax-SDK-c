@@ -15,7 +15,7 @@
 
 typedef struct ezsigndocument_get_words_positions_v1_response_m_payload_t ezsigndocument_get_words_positions_v1_response_m_payload_t;
 
-#include "word_position_response.h"
+#include "custom_word_position_response.h"
 
 
 

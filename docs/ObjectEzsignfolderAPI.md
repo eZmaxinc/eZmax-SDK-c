@@ -108,7 +108,7 @@ void
 //
 // ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
 //
-binary_t** ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1(apiClient_t *apiClient, int pkiEzsignfolderID);
+ezsignfolder_get_forms_data_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1(apiClient_t *apiClient, int pkiEzsignfolderID);
 ```
 
 ### Parameters
@@ -119,8 +119,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-binary_t**
-
+[ezsignfolder_get_forms_data_v1_response_t](ezsignfolder_get_forms_data_v1_response.md) *
 
 
 ### Authorization
@@ -130,7 +129,7 @@ binary_t**
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/zip, application/json
+ - **Accept**: application/json, application/zip
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
