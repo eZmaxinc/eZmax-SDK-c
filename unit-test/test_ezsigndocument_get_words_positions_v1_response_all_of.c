@@ -23,11 +23,12 @@ ezsigndocument_get_words_positions_v1_response_all_of_t* instantiate_ezsigndocum
   ezsigndocument_get_words_positions_v1_response_all_of_t* ezsigndocument_get_words_positions_v1_response_all_of = NULL;
   if (include_optional) {
     ezsigndocument_get_words_positions_v1_response_all_of = ezsigndocument_get_words_positions_v1_response_all_of_create(
-      {"a_sWords":[{"iPage":1,"iX":70,"iY":0},{"iPage":2,"iX":20,"iY":40}],"Your Word 1":[{"iPage":1,"iX":70,"iY":0},{"iPage":2,"iX":20,"iY":40}],"Your Word 2":[{"iPage":2,"iX":20,"iY":40}],"Your Word 3":[]}
+       // false, not to have infinite recursion
+      instantiate_ezsigndocument_get_words_positions_v1_response_m_payload(0)
     );
   } else {
     ezsigndocument_get_words_positions_v1_response_all_of = ezsigndocument_get_words_positions_v1_response_all_of_create(
-      {"a_sWords":[{"iPage":1,"iX":70,"iY":0},{"iPage":2,"iX":20,"iY":40}],"Your Word 1":[{"iPage":1,"iX":70,"iY":0},{"iPage":2,"iX":20,"iY":40}],"Your Word 2":[{"iPage":2,"iX":20,"iY":40}],"Your Word 3":[]}
+      NULL
     );
   }
 

@@ -20,12 +20,10 @@ typedef struct ezsigndocument_get_words_positions_v1_response_m_payload_t ezsign
 
 
 typedef struct ezsigndocument_get_words_positions_v1_response_m_payload_t {
-    list_t *a_s_words; //nonprimitive container
 
 } ezsigndocument_get_words_positions_v1_response_m_payload_t;
 
 ezsigndocument_get_words_positions_v1_response_m_payload_t *ezsigndocument_get_words_positions_v1_response_m_payload_create(
-    list_t *a_s_words
 );
 
 void ezsigndocument_get_words_positions_v1_response_m_payload_free(ezsigndocument_get_words_positions_v1_response_m_payload_t *ezsigndocument_get_words_positions_v1_response_m_payload);

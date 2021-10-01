@@ -16,15 +16,25 @@
 typedef struct ezsigndocument_get_words_positions_v1_request_t ezsigndocument_get_words_positions_v1_request_t;
 
 
+// Enum EGET for ezsigndocument_get_words_positions_v1_request
+
+typedef enum  { ezmax_api_definition_ezsigndocument_get_words_positions_v1_request_EGET_NULL = 0, ezmax_api_definition_ezsigndocument_get_words_positions_v1_request_EGET_All, ezmax_api_definition_ezsigndocument_get_words_positions_v1_request_EGET_Words } ezmax_api_definition_ezsigndocument_get_words_positions_v1_request_EGET_e;
+
+char* ezsigndocument_get_words_positions_v1_request_e_get_ToString(ezmax_api_definition_ezsigndocument_get_words_positions_v1_request_EGET_e e_get);
+
+ezmax_api_definition_ezsigndocument_get_words_positions_v1_request_EGET_e ezsigndocument_get_words_positions_v1_request_e_get_FromString(char* e_get);
+
 
 
 typedef struct ezsigndocument_get_words_positions_v1_request_t {
-    list_t *a_s_words; //primitive container
+    ezmax_api_definition_ezsigndocument_get_words_positions_v1_request_EGET_e e_get; //enum
+    list_t *a_s_word; //primitive container
 
 } ezsigndocument_get_words_positions_v1_request_t;
 
 ezsigndocument_get_words_positions_v1_request_t *ezsigndocument_get_words_positions_v1_request_create(
-    list_t *a_s_words
+    ezmax_api_definition_ezsigndocument_get_words_positions_v1_request_EGET_e e_get,
+    list_t *a_s_word
 );
 
 void ezsigndocument_get_words_positions_v1_request_free(ezsigndocument_get_words_positions_v1_request_t *ezsigndocument_get_words_positions_v1_request);
