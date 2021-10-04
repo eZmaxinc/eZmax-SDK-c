@@ -21,13 +21,13 @@ typedef struct custom_word_position_word_response_t custom_word_position_word_re
 
 typedef struct custom_word_position_word_response_t {
     char *s_word; // string
-    list_t *obj_word_position_occurence; //nonprimitive container
+    list_t *a_obj_word_position_occurence; //nonprimitive container
 
 } custom_word_position_word_response_t;
 
 custom_word_position_word_response_t *custom_word_position_word_response_create(
     char *s_word,
-    list_t *obj_word_position_occurence
+    list_t *a_obj_word_position_occurence
 );
 
 void custom_word_position_word_response_free(custom_word_position_word_response_t *custom_word_position_word_response);

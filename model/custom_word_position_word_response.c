@@ -7,14 +7,14 @@
 
 custom_word_position_word_response_t *custom_word_position_word_response_create(
     char *s_word,
-    list_t *obj_word_position_occurence
+    list_t *a_obj_word_position_occurence
     ) {
     custom_word_position_word_response_t *custom_word_position_word_response_local_var = malloc(sizeof(custom_word_position_word_response_t));
     if (!custom_word_position_word_response_local_var) {
         return NULL;
     }
     custom_word_position_word_response_local_var->s_word = s_word;
-    custom_word_position_word_response_local_var->obj_word_position_occurence = obj_word_position_occurence;
+    custom_word_position_word_response_local_var->a_obj_word_position_occurence = a_obj_word_position_occurence;
 
     return custom_word_position_word_response_local_var;
 }
@@ -29,12 +29,12 @@ void custom_word_position_word_response_free(custom_word_position_word_response_
         free(custom_word_position_word_response->s_word);
         custom_word_position_word_response->s_word = NULL;
     }
-    if (custom_word_position_word_response->obj_word_position_occurence) {
-        list_ForEach(listEntry, custom_word_position_word_response->obj_word_position_occurence) {
+    if (custom_word_position_word_response->a_obj_word_position_occurence) {
+        list_ForEach(listEntry, custom_word_position_word_response->a_obj_word_position_occurence) {
             custom_word_position_occurence_response_free(listEntry->data);
         }
-        list_free(custom_word_position_word_response->obj_word_position_occurence);
-        custom_word_position_word_response->obj_word_position_occurence = NULL;
+        list_free(custom_word_position_word_response->a_obj_word_position_occurence);
+        custom_word_position_word_response->a_obj_word_position_occurence = NULL;
     }
     free(custom_word_position_word_response);
 }
@@ -52,24 +52,24 @@ cJSON *custom_word_position_word_response_convertToJSON(custom_word_position_wor
     }
 
 
-    // custom_word_position_word_response->obj_word_position_occurence
-    if (!custom_word_position_word_response->obj_word_position_occurence) {
+    // custom_word_position_word_response->a_obj_word_position_occurence
+    if (!custom_word_position_word_response->a_obj_word_position_occurence) {
         goto fail;
     }
     
-    cJSON *obj_word_position_occurence = cJSON_AddArrayToObject(item, "objWordPositionOccurence");
-    if(obj_word_position_occurence == NULL) {
+    cJSON *a_obj_word_position_occurence = cJSON_AddArrayToObject(item, "a_objWordPositionOccurence");
+    if(a_obj_word_position_occurence == NULL) {
     goto fail; //nonprimitive container
     }
 
-    listEntry_t *obj_word_position_occurenceListEntry;
-    if (custom_word_position_word_response->obj_word_position_occurence) {
-    list_ForEach(obj_word_position_occurenceListEntry, custom_word_position_word_response->obj_word_position_occurence) {
-    cJSON *itemLocal = custom_word_position_occurence_response_convertToJSON(obj_word_position_occurenceListEntry->data);
+    listEntry_t *a_obj_word_position_occurenceListEntry;
+    if (custom_word_position_word_response->a_obj_word_position_occurence) {
+    list_ForEach(a_obj_word_position_occurenceListEntry, custom_word_position_word_response->a_obj_word_position_occurence) {
+    cJSON *itemLocal = custom_word_position_occurence_response_convertToJSON(a_obj_word_position_occurenceListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
-    cJSON_AddItemToArray(obj_word_position_occurence, itemLocal);
+    cJSON_AddItemToArray(a_obj_word_position_occurence, itemLocal);
     }
     }
 
@@ -97,35 +97,35 @@ custom_word_position_word_response_t *custom_word_position_word_response_parseFr
     goto end; //String
     }
 
-    // custom_word_position_word_response->obj_word_position_occurence
-    cJSON *obj_word_position_occurence = cJSON_GetObjectItemCaseSensitive(custom_word_position_word_responseJSON, "objWordPositionOccurence");
-    if (!obj_word_position_occurence) {
+    // custom_word_position_word_response->a_obj_word_position_occurence
+    cJSON *a_obj_word_position_occurence = cJSON_GetObjectItemCaseSensitive(custom_word_position_word_responseJSON, "a_objWordPositionOccurence");
+    if (!a_obj_word_position_occurence) {
         goto end;
     }
 
-    list_t *obj_word_position_occurenceList;
+    list_t *a_obj_word_position_occurenceList;
     
-    cJSON *obj_word_position_occurence_local_nonprimitive;
-    if(!cJSON_IsArray(obj_word_position_occurence)){
+    cJSON *a_obj_word_position_occurence_local_nonprimitive;
+    if(!cJSON_IsArray(a_obj_word_position_occurence)){
         goto end; //nonprimitive container
     }
 
-    obj_word_position_occurenceList = list_create();
+    a_obj_word_position_occurenceList = list_create();
 
-    cJSON_ArrayForEach(obj_word_position_occurence_local_nonprimitive,obj_word_position_occurence )
+    cJSON_ArrayForEach(a_obj_word_position_occurence_local_nonprimitive,a_obj_word_position_occurence )
     {
-        if(!cJSON_IsObject(obj_word_position_occurence_local_nonprimitive)){
+        if(!cJSON_IsObject(a_obj_word_position_occurence_local_nonprimitive)){
             goto end;
         }
-        custom_word_position_occurence_response_t *obj_word_position_occurenceItem = custom_word_position_occurence_response_parseFromJSON(obj_word_position_occurence_local_nonprimitive);
+        custom_word_position_occurence_response_t *a_obj_word_position_occurenceItem = custom_word_position_occurence_response_parseFromJSON(a_obj_word_position_occurence_local_nonprimitive);
 
-        list_addElement(obj_word_position_occurenceList, obj_word_position_occurenceItem);
+        list_addElement(a_obj_word_position_occurenceList, a_obj_word_position_occurenceItem);
     }
 
 
     custom_word_position_word_response_local_var = custom_word_position_word_response_create (
         strdup(s_word->valuestring),
-        obj_word_position_occurenceList
+        a_obj_word_position_occurenceList
         );
 
     return custom_word_position_word_response_local_var;
