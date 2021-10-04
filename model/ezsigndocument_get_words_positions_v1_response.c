@@ -6,7 +6,7 @@
 
 
 ezsigndocument_get_words_positions_v1_response_t *ezsigndocument_get_words_positions_v1_response_create(
-    ezsigndocument_get_words_positions_v1_response_m_payload_t *m_payload,
+    list_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
@@ -28,7 +28,10 @@ void ezsigndocument_get_words_positions_v1_response_free(ezsigndocument_get_word
     }
     listEntry_t *listEntry;
     if (ezsigndocument_get_words_positions_v1_response->m_payload) {
-        ezsigndocument_get_words_positions_v1_response_m_payload_free(ezsigndocument_get_words_positions_v1_response->m_payload);
+        list_ForEach(listEntry, ezsigndocument_get_words_positions_v1_response->m_payload) {
+            custom_word_position_word_response_free(listEntry->data);
+        }
+        list_free(ezsigndocument_get_words_positions_v1_response->m_payload);
         ezsigndocument_get_words_positions_v1_response->m_payload = NULL;
     }
     if (ezsigndocument_get_words_positions_v1_response->obj_debug_payload) {
@@ -50,13 +53,20 @@ cJSON *ezsigndocument_get_words_positions_v1_response_convertToJSON(ezsigndocume
         goto fail;
     }
     
-    cJSON *m_payload_local_JSON = ezsigndocument_get_words_positions_v1_response_m_payload_convertToJSON(ezsigndocument_get_words_positions_v1_response->m_payload);
-    if(m_payload_local_JSON == NULL) {
-    goto fail; //model
+    cJSON *m_payload = cJSON_AddArrayToObject(item, "mPayload");
+    if(m_payload == NULL) {
+    goto fail; //nonprimitive container
     }
-    cJSON_AddItemToObject(item, "mPayload", m_payload_local_JSON);
-    if(item->child == NULL) {
+
+    listEntry_t *m_payloadListEntry;
+    if (ezsigndocument_get_words_positions_v1_response->m_payload) {
+    list_ForEach(m_payloadListEntry, ezsigndocument_get_words_positions_v1_response->m_payload) {
+    cJSON *itemLocal = custom_word_position_word_response_convertToJSON(m_payloadListEntry->data);
+    if(itemLocal == NULL) {
     goto fail;
+    }
+    cJSON_AddItemToArray(m_payload, itemLocal);
+    }
     }
 
 
@@ -103,9 +113,24 @@ ezsigndocument_get_words_positions_v1_response_t *ezsigndocument_get_words_posit
         goto end;
     }
 
-    ezsigndocument_get_words_positions_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
+    list_t *m_payloadList;
     
-    m_payload_local_nonprim = ezsigndocument_get_words_positions_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
+    cJSON *m_payload_local_nonprimitive;
+    if(!cJSON_IsArray(m_payload)){
+        goto end; //nonprimitive container
+    }
+
+    m_payloadList = list_create();
+
+    cJSON_ArrayForEach(m_payload_local_nonprimitive,m_payload )
+    {
+        if(!cJSON_IsObject(m_payload_local_nonprimitive)){
+            goto end;
+        }
+        custom_word_position_word_response_t *m_payloadItem = custom_word_position_word_response_parseFromJSON(m_payload_local_nonprimitive);
+
+        list_addElement(m_payloadList, m_payloadItem);
+    }
 
     // ezsigndocument_get_words_positions_v1_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_words_positions_v1_responseJSON, "objDebugPayload");
@@ -123,17 +148,13 @@ ezsigndocument_get_words_positions_v1_response_t *ezsigndocument_get_words_posit
 
 
     ezsigndocument_get_words_positions_v1_response_local_var = ezsigndocument_get_words_positions_v1_response_create (
-        m_payload_local_nonprim,
+        m_payloadList,
         obj_debug_payload ? obj_debug_payload_local_nonprim : NULL,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
 
     return ezsigndocument_get_words_positions_v1_response_local_var;
 end:
-    if (m_payload_local_nonprim) {
-        ezsigndocument_get_words_positions_v1_response_m_payload_free(m_payload_local_nonprim);
-        m_payload_local_nonprim = NULL;
-    }
     if (obj_debug_payload_local_nonprim) {
         common_response_obj_debug_payload_free(obj_debug_payload_local_nonprim);
         obj_debug_payload_local_nonprim = NULL;

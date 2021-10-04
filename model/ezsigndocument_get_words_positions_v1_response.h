@@ -18,20 +18,20 @@ typedef struct ezsigndocument_get_words_positions_v1_response_t ezsigndocument_g
 #include "common_response.h"
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload.h"
+#include "custom_word_position_word_response.h"
 #include "ezsigndocument_get_words_positions_v1_response_all_of.h"
-#include "ezsigndocument_get_words_positions_v1_response_m_payload.h"
 
 
 
 typedef struct ezsigndocument_get_words_positions_v1_response_t {
-    struct ezsigndocument_get_words_positions_v1_response_m_payload_t *m_payload; //model
+    list_t *m_payload; //nonprimitive container
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
 
 } ezsigndocument_get_words_positions_v1_response_t;
 
 ezsigndocument_get_words_positions_v1_response_t *ezsigndocument_get_words_positions_v1_response_create(
-    ezsigndocument_get_words_positions_v1_response_m_payload_t *m_payload,
+    list_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
 );

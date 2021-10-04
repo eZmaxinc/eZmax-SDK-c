@@ -1,4 +1,4 @@
-# custom_word_position_response_t
+# custom_word_position_occurence_response_t
 
 ## Properties
 Name | Type | Description | Notes

@@ -15,17 +15,17 @@
 
 typedef struct ezsigndocument_get_words_positions_v1_response_all_of_t ezsigndocument_get_words_positions_v1_response_all_of_t;
 
-#include "ezsigndocument_get_words_positions_v1_response_m_payload.h"
+#include "custom_word_position_word_response.h"
 
 
 
 typedef struct ezsigndocument_get_words_positions_v1_response_all_of_t {
-    struct ezsigndocument_get_words_positions_v1_response_m_payload_t *m_payload; //model
+    list_t *m_payload; //nonprimitive container
 
 } ezsigndocument_get_words_positions_v1_response_all_of_t;
 
 ezsigndocument_get_words_positions_v1_response_all_of_t *ezsigndocument_get_words_positions_v1_response_all_of_create(
-    ezsigndocument_get_words_positions_v1_response_m_payload_t *m_payload
+    list_t *m_payload
 );
 
 void ezsigndocument_get_words_positions_v1_response_all_of_free(ezsigndocument_get_words_positions_v1_response_all_of_t *ezsigndocument_get_words_positions_v1_response_all_of);

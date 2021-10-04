@@ -78,7 +78,8 @@ docs/contactinformations_request_compound_all_of.md
 docs/custom_form_data_document_response.md
 docs/custom_form_data_folder_response.md
 docs/custom_form_data_signer_response.md
-docs/custom_word_position_response.md
+docs/custom_word_position_occurence_response.md
+docs/custom_word_position_word_response.md
 docs/email_request.md
 docs/ezsigndocument_apply_ezsigntemplate_v1_request.md
 docs/ezsigndocument_apply_ezsigntemplate_v1_response.md
@@ -104,7 +105,6 @@ docs/ezsigndocument_get_object_v1_response_m_payload.md
 docs/ezsigndocument_get_words_positions_v1_request.md
 docs/ezsigndocument_get_words_positions_v1_response.md
 docs/ezsigndocument_get_words_positions_v1_response_all_of.md
-docs/ezsigndocument_get_words_positions_v1_response_m_payload.md
 docs/ezsigndocument_request.md
 docs/ezsigndocument_request_compound.md
 docs/ezsigndocument_response.md
@@ -280,8 +280,10 @@ model/custom_form_data_folder_response.c
 model/custom_form_data_folder_response.h
 model/custom_form_data_signer_response.c
 model/custom_form_data_signer_response.h
-model/custom_word_position_response.c
-model/custom_word_position_response.h
+model/custom_word_position_occurence_response.c
+model/custom_word_position_occurence_response.h
+model/custom_word_position_word_response.c
+model/custom_word_position_word_response.h
 model/email_request.c
 model/email_request.h
 model/ezsigndocument_apply_ezsigntemplate_v1_request.c
@@ -332,8 +334,6 @@ model/ezsigndocument_get_words_positions_v1_response.c
 model/ezsigndocument_get_words_positions_v1_response.h
 model/ezsigndocument_get_words_positions_v1_response_all_of.c
 model/ezsigndocument_get_words_positions_v1_response_all_of.h
-model/ezsigndocument_get_words_positions_v1_response_m_payload.c
-model/ezsigndocument_get_words_positions_v1_response_m_payload.h
 model/ezsigndocument_request.c
 model/ezsigndocument_request.h
 model/ezsigndocument_request_compound.c
@@ -570,7 +570,8 @@ unit-test/test_contactinformations_request_compound_all_of.c
 unit-test/test_custom_form_data_document_response.c
 unit-test/test_custom_form_data_folder_response.c
 unit-test/test_custom_form_data_signer_response.c
-unit-test/test_custom_word_position_response.c
+unit-test/test_custom_word_position_occurence_response.c
+unit-test/test_custom_word_position_word_response.c
 unit-test/test_email_request.c
 unit-test/test_ezsigndocument_apply_ezsigntemplate_v1_request.c
 unit-test/test_ezsigndocument_apply_ezsigntemplate_v1_response.c
@@ -596,7 +597,6 @@ unit-test/test_ezsigndocument_get_object_v1_response_m_payload.c
 unit-test/test_ezsigndocument_get_words_positions_v1_request.c
 unit-test/test_ezsigndocument_get_words_positions_v1_response.c
 unit-test/test_ezsigndocument_get_words_positions_v1_response_all_of.c
-unit-test/test_ezsigndocument_get_words_positions_v1_response_m_payload.c
 unit-test/test_ezsigndocument_request.c
 unit-test/test_ezsigndocument_request_compound.c
 unit-test/test_ezsigndocument_response.c

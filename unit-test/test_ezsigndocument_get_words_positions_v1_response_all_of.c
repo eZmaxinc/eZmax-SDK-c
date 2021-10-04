@@ -16,19 +16,17 @@
 #include "../model/ezsigndocument_get_words_positions_v1_response_all_of.h"
 ezsigndocument_get_words_positions_v1_response_all_of_t* instantiate_ezsigndocument_get_words_positions_v1_response_all_of(int include_optional);
 
-#include "test_ezsigndocument_get_words_positions_v1_response_m_payload.c"
 
 
 ezsigndocument_get_words_positions_v1_response_all_of_t* instantiate_ezsigndocument_get_words_positions_v1_response_all_of(int include_optional) {
   ezsigndocument_get_words_positions_v1_response_all_of_t* ezsigndocument_get_words_positions_v1_response_all_of = NULL;
   if (include_optional) {
     ezsigndocument_get_words_positions_v1_response_all_of = ezsigndocument_get_words_positions_v1_response_all_of_create(
-       // false, not to have infinite recursion
-      instantiate_ezsigndocument_get_words_positions_v1_response_m_payload(0)
+      list_create()
     );
   } else {
     ezsigndocument_get_words_positions_v1_response_all_of = ezsigndocument_get_words_positions_v1_response_all_of_create(
-      NULL
+      list_create()
     );
   }
 

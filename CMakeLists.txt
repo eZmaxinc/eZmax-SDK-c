@@ -80,7 +80,8 @@ set(SRCS
     model/custom_form_data_document_response.c
     model/custom_form_data_folder_response.c
     model/custom_form_data_signer_response.c
-    model/custom_word_position_response.c
+    model/custom_word_position_occurence_response.c
+    model/custom_word_position_word_response.c
     model/email_request.c
     model/ezsigndocument_apply_ezsigntemplate_v1_request.c
     model/ezsigndocument_apply_ezsigntemplate_v1_response.c
@@ -106,7 +107,6 @@ set(SRCS
     model/ezsigndocument_get_words_positions_v1_request.c
     model/ezsigndocument_get_words_positions_v1_response.c
     model/ezsigndocument_get_words_positions_v1_response_all_of.c
-    model/ezsigndocument_get_words_positions_v1_response_m_payload.c
     model/ezsigndocument_request.c
     model/ezsigndocument_request_compound.c
     model/ezsigndocument_response.c
@@ -263,7 +263,8 @@ set(HDRS
     model/custom_form_data_document_response.h
     model/custom_form_data_folder_response.h
     model/custom_form_data_signer_response.h
-    model/custom_word_position_response.h
+    model/custom_word_position_occurence_response.h
+    model/custom_word_position_word_response.h
     model/email_request.h
     model/ezsigndocument_apply_ezsigntemplate_v1_request.h
     model/ezsigndocument_apply_ezsigntemplate_v1_response.h
@@ -289,7 +290,6 @@ set(HDRS
     model/ezsigndocument_get_words_positions_v1_request.h
     model/ezsigndocument_get_words_positions_v1_response.h
     model/ezsigndocument_get_words_positions_v1_response_all_of.h
-    model/ezsigndocument_get_words_positions_v1_response_m_payload.h
     model/ezsigndocument_request.h
     model/ezsigndocument_request_compound.h
     model/ezsigndocument_response.h
