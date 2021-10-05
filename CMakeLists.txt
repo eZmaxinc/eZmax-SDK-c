@@ -65,6 +65,7 @@ set(SRCS
     model/common_get_autocomplete_v1_response.c
     model/common_get_autocomplete_v1_response_all_of.c
     model/common_get_autocomplete_v1_response_m_payload.c
+    model/common_get_list_v1_response_m_payload.c
     model/common_response.c
     model/common_response_error.c
     model/common_response_obj_debug.c
@@ -141,6 +142,11 @@ set(SRCS
     model/ezsignfoldersignerassociation_request.c
     model/ezsignfoldersignerassociation_request_compound.c
     model/ezsignfoldersignerassociation_request_compound_all_of.c
+    model/ezsignfoldertype_get_list_v1_response.c
+    model/ezsignfoldertype_get_list_v1_response_all_of.c
+    model/ezsignfoldertype_get_list_v1_response_m_payload.c
+    model/ezsignfoldertype_get_list_v1_response_m_payload_all_of.c
+    model/ezsignfoldertype_list_element.c
     model/ezsignformfield_response.c
     model/ezsignformfield_response_compound.c
     model/ezsignformfieldgroup_response.c
@@ -213,6 +219,7 @@ set(SRCS
     api/ObjectEzsigndocumentAPI.c
     api/ObjectEzsignfolderAPI.c
     api/ObjectEzsignfoldersignerassociationAPI.c
+    api/ObjectEzsignfoldertypeAPI.c
     api/ObjectEzsignsignatureAPI.c
     api/ObjectFranchisebrokerAPI.c
     api/ObjectFranchiseofficeAPI.c
@@ -248,6 +255,7 @@ set(HDRS
     model/common_get_autocomplete_v1_response.h
     model/common_get_autocomplete_v1_response_all_of.h
     model/common_get_autocomplete_v1_response_m_payload.h
+    model/common_get_list_v1_response_m_payload.h
     model/common_response.h
     model/common_response_error.h
     model/common_response_obj_debug.h
@@ -324,6 +332,11 @@ set(HDRS
     model/ezsignfoldersignerassociation_request.h
     model/ezsignfoldersignerassociation_request_compound.h
     model/ezsignfoldersignerassociation_request_compound_all_of.h
+    model/ezsignfoldertype_get_list_v1_response.h
+    model/ezsignfoldertype_get_list_v1_response_all_of.h
+    model/ezsignfoldertype_get_list_v1_response_m_payload.h
+    model/ezsignfoldertype_get_list_v1_response_m_payload_all_of.h
+    model/ezsignfoldertype_list_element.h
     model/ezsignformfield_response.h
     model/ezsignformfield_response_compound.h
     model/ezsignformfieldgroup_response.h
@@ -396,6 +409,7 @@ set(HDRS
     api/ObjectEzsigndocumentAPI.h
     api/ObjectEzsignfolderAPI.h
     api/ObjectEzsignfoldersignerassociationAPI.h
+    api/ObjectEzsignfoldertypeAPI.h
     api/ObjectEzsignsignatureAPI.h
     api/ObjectFranchisebrokerAPI.h
     api/ObjectFranchiseofficeAPI.h
@@ -486,6 +500,7 @@ set(HDRS "")
 #    unit-tests/manual-ObjectEzsigndocumentAPI.c
 #    unit-tests/manual-ObjectEzsignfolderAPI.c
 #    unit-tests/manual-ObjectEzsignfoldersignerassociationAPI.c
+#    unit-tests/manual-ObjectEzsignfoldertypeAPI.c
 #    unit-tests/manual-ObjectEzsignsignatureAPI.c
 #    unit-tests/manual-ObjectFranchisebrokerAPI.c
 #    unit-tests/manual-ObjectFranchiseofficeAPI.c

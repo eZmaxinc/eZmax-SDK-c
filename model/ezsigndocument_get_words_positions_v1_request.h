@@ -28,12 +28,14 @@ ezmax_api_definition_ezsigndocument_get_words_positions_v1_request_EGET_e ezsign
 
 typedef struct ezsigndocument_get_words_positions_v1_request_t {
     ezmax_api_definition_ezsigndocument_get_words_positions_v1_request_EGET_e e_get; //enum
+    int b_word_case_sensitive; //boolean
     list_t *a_s_word; //primitive container
 
 } ezsigndocument_get_words_positions_v1_request_t;
 
 ezsigndocument_get_words_positions_v1_request_t *ezsigndocument_get_words_positions_v1_request_create(
     ezmax_api_definition_ezsigndocument_get_words_positions_v1_request_EGET_e e_get,
+    int b_word_case_sensitive,
     list_t *a_s_word
 );
 

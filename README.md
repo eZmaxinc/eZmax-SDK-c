@@ -97,6 +97,7 @@ Category | Method | HTTP request | Description
 *ObjectEzsignfoldersignerassociationAPI* | [**ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetChildrenV1**](docs/ObjectEzsignfoldersignerassociationAPI.md#ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetChildrenV1) | **GET** /1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}/getChildren | Retrieve an existing Ezsignfoldersignerassociation's children IDs
 *ObjectEzsignfoldersignerassociationAPI* | [**ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetInPersonLoginUrlV1**](docs/ObjectEzsignfoldersignerassociationAPI.md#ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetInPersonLoginUrlV1) | **GET** /1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}/getInPersonLoginUrl | Retrieve a Login Url to allow In-Person signing
 *ObjectEzsignfoldersignerassociationAPI* | [**ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV1**](docs/ObjectEzsignfoldersignerassociationAPI.md#ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV1) | **GET** /1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID} | Retrieve an existing Ezsignfoldersignerassociation
+*ObjectEzsignfoldertypeAPI* | [**ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1**](docs/ObjectEzsignfoldertypeAPI.md#ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1) | **GET** /1/object/ezsignfoldertype/getList | Retrieve Ezsignfoldertype list
 *ObjectEzsignsignatureAPI* | [**ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV1**](docs/ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV1) | **POST** /1/object/ezsignsignature | Create a new Ezsignsignature
 *ObjectEzsignsignatureAPI* | [**ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1**](docs/ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1) | **DELETE** /1/object/ezsignsignature/{pkiEzsignsignatureID} | Delete an existing Ezsignsignature
 *ObjectEzsignsignatureAPI* | [**ObjectEzsignsignatureAPI_ezsignsignatureGetChildrenV1**](docs/ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureGetChildrenV1) | **GET** /1/object/ezsignsignature/{pkiEzsignsignatureID}/getChildren | Retrieve an existing Ezsignsignature's children IDs
@@ -129,6 +130,7 @@ Category | Method | HTTP request | Description
  - [common_get_autocomplete_v1_response_t](docs/common_get_autocomplete_v1_response.md)
  - [common_get_autocomplete_v1_response_all_of_t](docs/common_get_autocomplete_v1_response_all_of.md)
  - [common_get_autocomplete_v1_response_m_payload_t](docs/common_get_autocomplete_v1_response_m_payload.md)
+ - [common_get_list_v1_response_m_payload_t](docs/common_get_list_v1_response_m_payload.md)
  - [common_response_t](docs/common_response.md)
  - [common_response_error_t](docs/common_response_error.md)
  - [common_response_obj_debug_t](docs/common_response_obj_debug.md)
@@ -205,6 +207,11 @@ Category | Method | HTTP request | Description
  - [ezsignfoldersignerassociation_request_t](docs/ezsignfoldersignerassociation_request.md)
  - [ezsignfoldersignerassociation_request_compound_t](docs/ezsignfoldersignerassociation_request_compound.md)
  - [ezsignfoldersignerassociation_request_compound_all_of_t](docs/ezsignfoldersignerassociation_request_compound_all_of.md)
+ - [ezsignfoldertype_get_list_v1_response_t](docs/ezsignfoldertype_get_list_v1_response.md)
+ - [ezsignfoldertype_get_list_v1_response_all_of_t](docs/ezsignfoldertype_get_list_v1_response_all_of.md)
+ - [ezsignfoldertype_get_list_v1_response_m_payload_t](docs/ezsignfoldertype_get_list_v1_response_m_payload.md)
+ - [ezsignfoldertype_get_list_v1_response_m_payload_all_of_t](docs/ezsignfoldertype_get_list_v1_response_m_payload_all_of.md)
+ - [ezsignfoldertype_list_element_t](docs/ezsignfoldertype_list_element.md)
  - [ezsignformfield_response_t](docs/ezsignformfield_response.md)
  - [ezsignformfield_response_compound_t](docs/ezsignformfield_response_compound.md)
  - [ezsignformfieldgroup_response_t](docs/ezsignformfieldgroup_response.md)
