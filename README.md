@@ -179,6 +179,7 @@ Category | Method | HTTP request | Description
  - [ezsigndocument_response_compound_t](docs/ezsigndocument_response_compound.md)
  - [ezsignfolder_create_object_v1_request_t](docs/ezsignfolder_create_object_v1_request.md)
  - [ezsignfolder_create_object_v1_response_t](docs/ezsignfolder_create_object_v1_response.md)
+ - [ezsignfolder_create_object_v1_response_all_of_t](docs/ezsignfolder_create_object_v1_response_all_of.md)
  - [ezsignfolder_create_object_v1_response_m_payload_t](docs/ezsignfolder_create_object_v1_response_m_payload.md)
  - [ezsignfolder_delete_object_v1_response_t](docs/ezsignfolder_delete_object_v1_response.md)
  - [ezsignfolder_get_forms_data_v1_response_t](docs/ezsignfolder_get_forms_data_v1_response.md)
