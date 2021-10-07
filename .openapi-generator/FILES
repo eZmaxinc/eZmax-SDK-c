@@ -80,8 +80,8 @@ docs/contactinformations_request.md
 docs/contactinformations_request_compound.md
 docs/contactinformations_request_compound_all_of.md
 docs/custom_form_data_document_response.md
-docs/custom_form_data_folder_response.md
 docs/custom_form_data_signer_response.md
+docs/custom_forms_data_folder_response.md
 docs/custom_word_position_occurence_response.md
 docs/custom_word_position_word_response.md
 docs/email_request.md
@@ -182,6 +182,7 @@ docs/franchisereferalincome_request.md
 docs/franchisereferalincome_request_compound.md
 docs/franchisereferalincome_request_compound_all_of.md
 docs/global_customer_get_endpoint_v1_response.md
+docs/header_accept_language.md
 docs/multilingual_apikey_description.md
 docs/phone_request.md
 docs/sspr_reset_password_request_v1_request.md
@@ -287,10 +288,10 @@ model/contactinformations_request_compound_all_of.c
 model/contactinformations_request_compound_all_of.h
 model/custom_form_data_document_response.c
 model/custom_form_data_document_response.h
-model/custom_form_data_folder_response.c
-model/custom_form_data_folder_response.h
 model/custom_form_data_signer_response.c
 model/custom_form_data_signer_response.h
+model/custom_forms_data_folder_response.c
+model/custom_forms_data_folder_response.h
 model/custom_word_position_occurence_response.c
 model/custom_word_position_occurence_response.h
 model/custom_word_position_word_response.c
@@ -491,6 +492,8 @@ model/franchisereferalincome_request_compound_all_of.c
 model/franchisereferalincome_request_compound_all_of.h
 model/global_customer_get_endpoint_v1_response.c
 model/global_customer_get_endpoint_v1_response.h
+model/header_accept_language.c
+model/header_accept_language.h
 model/multilingual_apikey_description.c
 model/multilingual_apikey_description.h
 model/object.c
@@ -590,8 +593,8 @@ unit-test/test_contactinformations_request.c
 unit-test/test_contactinformations_request_compound.c
 unit-test/test_contactinformations_request_compound_all_of.c
 unit-test/test_custom_form_data_document_response.c
-unit-test/test_custom_form_data_folder_response.c
 unit-test/test_custom_form_data_signer_response.c
+unit-test/test_custom_forms_data_folder_response.c
 unit-test/test_custom_word_position_occurence_response.c
 unit-test/test_custom_word_position_word_response.c
 unit-test/test_email_request.c
@@ -692,6 +695,7 @@ unit-test/test_franchisereferalincome_request.c
 unit-test/test_franchisereferalincome_request_compound.c
 unit-test/test_franchisereferalincome_request_compound_all_of.c
 unit-test/test_global_customer_get_endpoint_v1_response.c
+unit-test/test_header_accept_language.c
 unit-test/test_multilingual_apikey_description.c
 unit-test/test_phone_request.c
 unit-test/test_sspr_reset_password_request_v1_request.c

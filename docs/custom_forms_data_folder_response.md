@@ -1,4 +1,4 @@
-# custom_form_data_folder_response_t
+# custom_forms_data_folder_response_t
 
 ## Properties
 Name | Type | Description | Notes

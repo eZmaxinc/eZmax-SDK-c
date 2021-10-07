@@ -16,7 +16,7 @@
 typedef struct ezsignfolder_get_forms_data_v1_response_m_payload_t ezsignfolder_get_forms_data_v1_response_m_payload_t;
 
 #include "custom_form_data_document_response.h"
-#include "custom_form_data_folder_response.h"
+#include "custom_forms_data_folder_response.h"
 
 
 

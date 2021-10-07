@@ -79,8 +79,8 @@ set(SRCS
     model/contactinformations_request_compound.c
     model/contactinformations_request_compound_all_of.c
     model/custom_form_data_document_response.c
-    model/custom_form_data_folder_response.c
     model/custom_form_data_signer_response.c
+    model/custom_forms_data_folder_response.c
     model/custom_word_position_occurence_response.c
     model/custom_word_position_word_response.c
     model/email_request.c
@@ -181,6 +181,7 @@ set(SRCS
     model/franchisereferalincome_request_compound.c
     model/franchisereferalincome_request_compound_all_of.c
     model/global_customer_get_endpoint_v1_response.c
+    model/header_accept_language.c
     model/multilingual_apikey_description.c
     model/phone_request.c
     model/sspr_reset_password_request_v1_request.c
@@ -269,8 +270,8 @@ set(HDRS
     model/contactinformations_request_compound.h
     model/contactinformations_request_compound_all_of.h
     model/custom_form_data_document_response.h
-    model/custom_form_data_folder_response.h
     model/custom_form_data_signer_response.h
+    model/custom_forms_data_folder_response.h
     model/custom_word_position_occurence_response.h
     model/custom_word_position_word_response.h
     model/email_request.h
@@ -371,6 +372,7 @@ set(HDRS
     model/franchisereferalincome_request_compound.h
     model/franchisereferalincome_request_compound_all_of.h
     model/global_customer_get_endpoint_v1_response.h
+    model/header_accept_language.h
     model/multilingual_apikey_description.h
     model/phone_request.h
     model/sspr_reset_password_request_v1_request.h
