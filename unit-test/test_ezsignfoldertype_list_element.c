@@ -23,12 +23,16 @@ ezsignfoldertype_list_element_t* instantiate_ezsignfoldertype_list_element(int i
   if (include_optional) {
     ezsignfoldertype_list_element = ezsignfoldertype_list_element_create(
       5,
-      "Default"
+      ezmax_api_definition_ezsignfoldertype_list_element__User,
+      "Default",
+      1
     );
   } else {
     ezsignfoldertype_list_element = ezsignfoldertype_list_element_create(
       5,
-      "Default"
+      ezmax_api_definition_ezsignfoldertype_list_element__User,
+      "Default",
+      1
     );
   }
 

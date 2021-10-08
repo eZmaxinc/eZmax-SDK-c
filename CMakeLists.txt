@@ -68,8 +68,12 @@ set(SRCS
     model/common_get_list_v1_response_m_payload.c
     model/common_response.c
     model/common_response_error.c
+    model/common_response_filter.c
+    model/common_response_get_list.c
     model/common_response_obj_debug.c
     model/common_response_obj_debug_payload.c
+    model/common_response_obj_debug_payload_get_list.c
+    model/common_response_obj_debug_payload_get_list_all_of.c
     model/common_response_obj_sql_query.c
     model/common_webhook.c
     model/contact_request.c
@@ -170,6 +174,7 @@ set(SRCS
     model/field_e_ezsigndocument_step.c
     model/field_e_ezsignfolder_sendreminderfrequency.c
     model/field_e_ezsignfolder_step.c
+    model/field_e_ezsignfoldertype_privacylevel.c
     model/field_e_ezsignsignature_type.c
     model/field_e_phone_type.c
     model/field_e_user_type.c
@@ -260,8 +265,12 @@ set(HDRS
     model/common_get_list_v1_response_m_payload.h
     model/common_response.h
     model/common_response_error.h
+    model/common_response_filter.h
+    model/common_response_get_list.h
     model/common_response_obj_debug.h
     model/common_response_obj_debug_payload.h
+    model/common_response_obj_debug_payload_get_list.h
+    model/common_response_obj_debug_payload_get_list_all_of.h
     model/common_response_obj_sql_query.h
     model/common_webhook.h
     model/contact_request.h
@@ -362,6 +371,7 @@ set(HDRS
     model/field_e_ezsigndocument_step.h
     model/field_e_ezsignfolder_sendreminderfrequency.h
     model/field_e_ezsignfolder_step.h
+    model/field_e_ezsignfoldertype_privacylevel.h
     model/field_e_ezsignsignature_type.h
     model/field_e_phone_type.h
     model/field_e_user_type.h

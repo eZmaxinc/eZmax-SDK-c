@@ -22,14 +22,14 @@ common_response_obj_debug_payload_t* instantiate_common_response_obj_debug_paylo
   common_response_obj_debug_payload_t* common_response_obj_debug_payload = NULL;
   if (include_optional) {
     common_response_obj_debug_payload = common_response_obj_debug_payload_create(
-      56,
-      56,
+      1,
+      2,
       list_create()
     );
   } else {
     common_response_obj_debug_payload = common_response_obj_debug_payload_create(
-      56,
-      56,
+      1,
+      2,
       list_create()
     );
   }

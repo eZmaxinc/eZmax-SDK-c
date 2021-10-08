@@ -21,14 +21,14 @@ typedef struct common_response_obj_debug_payload_t common_response_obj_debug_pay
 typedef struct common_response_obj_debug_payload_t {
     int i_version_min; //numeric
     int i_version_max; //numeric
-    list_t *a_required_permissions; //primitive container
+    list_t *a_required_permission; //primitive container
 
 } common_response_obj_debug_payload_t;
 
 common_response_obj_debug_payload_t *common_response_obj_debug_payload_create(
     int i_version_min,
     int i_version_max,
-    list_t *a_required_permissions
+    list_t *a_required_permission
 );
 
 void common_response_obj_debug_payload_free(common_response_obj_debug_payload_t *common_response_obj_debug_payload);

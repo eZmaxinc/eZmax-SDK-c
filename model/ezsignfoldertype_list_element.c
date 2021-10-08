@@ -4,17 +4,37 @@
 #include "ezsignfoldertype_list_element.h"
 
 
+char* e_ezsignfoldertype_privacylevelezsignfoldertype_list_element_ToString(ezmax_api_definition_ezsignfoldertype_list_element__e e_ezsignfoldertype_privacylevel) {
+    char* e_ezsignfoldertype_privacylevelArray[] =  { "NULL", "User", "Usergroup" };
+	return e_ezsignfoldertype_privacylevelArray[e_ezsignfoldertype_privacylevel];
+}
+
+ezmax_api_definition_ezsignfoldertype_list_element__e e_ezsignfoldertype_privacylevelezsignfoldertype_list_element_FromString(char* e_ezsignfoldertype_privacylevel){
+    int stringToReturn = 0;
+    char *e_ezsignfoldertype_privacylevelArray[] =  { "NULL", "User", "Usergroup" };
+    size_t sizeofArray = sizeof(e_ezsignfoldertype_privacylevelArray) / sizeof(e_ezsignfoldertype_privacylevelArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(e_ezsignfoldertype_privacylevel, e_ezsignfoldertype_privacylevelArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
 
 ezsignfoldertype_list_element_t *ezsignfoldertype_list_element_create(
     int pki_ezsignfoldertype_id,
-    char *s_ezsignfoldertype_name_x
+    char *s_ezsignfoldertype_name_x,
+    int b_ezsignfoldertype_isactive
     ) {
     ezsignfoldertype_list_element_t *ezsignfoldertype_list_element_local_var = malloc(sizeof(ezsignfoldertype_list_element_t));
     if (!ezsignfoldertype_list_element_local_var) {
         return NULL;
     }
     ezsignfoldertype_list_element_local_var->pki_ezsignfoldertype_id = pki_ezsignfoldertype_id;
+    ezsignfoldertype_list_element_local_var->e_ezsignfoldertype_privacylevel = e_ezsignfoldertype_privacylevel;
     ezsignfoldertype_list_element_local_var->s_ezsignfoldertype_name_x = s_ezsignfoldertype_name_x;
+    ezsignfoldertype_list_element_local_var->b_ezsignfoldertype_isactive = b_ezsignfoldertype_isactive;
 
     return ezsignfoldertype_list_element_local_var;
 }
@@ -45,6 +65,10 @@ cJSON *ezsignfoldertype_list_element_convertToJSON(ezsignfoldertype_list_element
     }
 
 
+    // ezsignfoldertype_list_element->e_ezsignfoldertype_privacylevel
+    
+
+
     // ezsignfoldertype_list_element->s_ezsignfoldertype_name_x
     if (!ezsignfoldertype_list_element->s_ezsignfoldertype_name_x) {
         goto fail;
@@ -52,6 +76,16 @@ cJSON *ezsignfoldertype_list_element_convertToJSON(ezsignfoldertype_list_element
     
     if(cJSON_AddStringToObject(item, "sEzsignfoldertypeNameX", ezsignfoldertype_list_element->s_ezsignfoldertype_name_x) == NULL) {
     goto fail; //String
+    }
+
+
+    // ezsignfoldertype_list_element->b_ezsignfoldertype_isactive
+    if (!ezsignfoldertype_list_element->b_ezsignfoldertype_isactive) {
+        goto fail;
+    }
+    
+    if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeIsactive", ezsignfoldertype_list_element->b_ezsignfoldertype_isactive) == NULL) {
+    goto fail; //Bool
     }
 
     return item;
@@ -78,6 +112,13 @@ ezsignfoldertype_list_element_t *ezsignfoldertype_list_element_parseFromJSON(cJS
     goto end; //Numeric
     }
 
+    // ezsignfoldertype_list_element->e_ezsignfoldertype_privacylevel
+    cJSON *e_ezsignfoldertype_privacylevel = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_list_elementJSON, "eEzsignfoldertypePrivacylevel");
+    if (!e_ezsignfoldertype_privacylevel) {
+        goto end;
+    }
+
+
     // ezsignfoldertype_list_element->s_ezsignfoldertype_name_x
     cJSON *s_ezsignfoldertype_name_x = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_list_elementJSON, "sEzsignfoldertypeNameX");
     if (!s_ezsignfoldertype_name_x) {
@@ -90,10 +131,23 @@ ezsignfoldertype_list_element_t *ezsignfoldertype_list_element_parseFromJSON(cJS
     goto end; //String
     }
 
+    // ezsignfoldertype_list_element->b_ezsignfoldertype_isactive
+    cJSON *b_ezsignfoldertype_isactive = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_list_elementJSON, "bEzsignfoldertypeIsactive");
+    if (!b_ezsignfoldertype_isactive) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(b_ezsignfoldertype_isactive))
+    {
+    goto end; //Bool
+    }
+
 
     ezsignfoldertype_list_element_local_var = ezsignfoldertype_list_element_create (
         pki_ezsignfoldertype_id->valuedouble,
-        strdup(s_ezsignfoldertype_name_x->valuestring)
+        strdup(s_ezsignfoldertype_name_x->valuestring),
+        b_ezsignfoldertype_isactive->valueint
         );
 
     return ezsignfoldertype_list_element_local_var;

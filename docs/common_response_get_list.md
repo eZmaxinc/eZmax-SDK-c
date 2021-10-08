@@ -1,9 +1,8 @@
-# ezsignfoldertype_get_list_v1_response_t
+# common_response_get_list_t
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**m_payload** | [**ezsignfoldertype_get_list_v1_response_m_payload_t**](ezsignfoldertype_get_list_v1_response_m_payload.md) \* |  | 
 **obj_debug_payload** | [**common_response_obj_debug_payload_get_list_t**](common_response_obj_debug_payload_get_list.md) \* |  | [optional] 
 **obj_debug** | [**common_response_obj_debug_t**](common_response_obj_debug.md) \* |  | [optional] 
 

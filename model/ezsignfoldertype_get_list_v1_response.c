@@ -7,7 +7,7 @@
 
 ezsignfoldertype_get_list_v1_response_t *ezsignfoldertype_get_list_v1_response_create(
     ezsignfoldertype_get_list_v1_response_m_payload_t *m_payload,
-    common_response_obj_debug_payload_t *obj_debug_payload,
+    common_response_obj_debug_payload_get_list_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
     ezsignfoldertype_get_list_v1_response_t *ezsignfoldertype_get_list_v1_response_local_var = malloc(sizeof(ezsignfoldertype_get_list_v1_response_t));
@@ -32,7 +32,7 @@ void ezsignfoldertype_get_list_v1_response_free(ezsignfoldertype_get_list_v1_res
         ezsignfoldertype_get_list_v1_response->m_payload = NULL;
     }
     if (ezsignfoldertype_get_list_v1_response->obj_debug_payload) {
-        common_response_obj_debug_payload_free(ezsignfoldertype_get_list_v1_response->obj_debug_payload);
+        common_response_obj_debug_payload_get_list_free(ezsignfoldertype_get_list_v1_response->obj_debug_payload);
         ezsignfoldertype_get_list_v1_response->obj_debug_payload = NULL;
     }
     if (ezsignfoldertype_get_list_v1_response->obj_debug) {
@@ -62,7 +62,7 @@ cJSON *ezsignfoldertype_get_list_v1_response_convertToJSON(ezsignfoldertype_get_
 
     // ezsignfoldertype_get_list_v1_response->obj_debug_payload
     if(ezsignfoldertype_get_list_v1_response->obj_debug_payload) { 
-    cJSON *obj_debug_payload_local_JSON = common_response_obj_debug_payload_convertToJSON(ezsignfoldertype_get_list_v1_response->obj_debug_payload);
+    cJSON *obj_debug_payload_local_JSON = common_response_obj_debug_payload_get_list_convertToJSON(ezsignfoldertype_get_list_v1_response->obj_debug_payload);
     if(obj_debug_payload_local_JSON == NULL) {
     goto fail; //model
     }
@@ -109,9 +109,9 @@ ezsignfoldertype_get_list_v1_response_t *ezsignfoldertype_get_list_v1_response_p
 
     // ezsignfoldertype_get_list_v1_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_get_list_v1_responseJSON, "objDebugPayload");
-    common_response_obj_debug_payload_t *obj_debug_payload_local_nonprim = NULL;
+    common_response_obj_debug_payload_get_list_t *obj_debug_payload_local_nonprim = NULL;
     if (obj_debug_payload) { 
-    obj_debug_payload_local_nonprim = common_response_obj_debug_payload_parseFromJSON(obj_debug_payload); //nonprimitive
+    obj_debug_payload_local_nonprim = common_response_obj_debug_payload_get_list_parseFromJSON(obj_debug_payload); //nonprimitive
     }
 
     // ezsignfoldertype_get_list_v1_response->obj_debug
@@ -135,7 +135,7 @@ end:
         m_payload_local_nonprim = NULL;
     }
     if (obj_debug_payload_local_nonprim) {
-        common_response_obj_debug_payload_free(obj_debug_payload_local_nonprim);
+        common_response_obj_debug_payload_get_list_free(obj_debug_payload_local_nonprim);
         obj_debug_payload_local_nonprim = NULL;
     }
     if (obj_debug_local_nonprim) {

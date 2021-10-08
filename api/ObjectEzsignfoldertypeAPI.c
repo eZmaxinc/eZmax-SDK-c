@@ -14,13 +14,13 @@
 // Functions for enum EORDERBY for ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1
 
 static char* ezsignfoldertypeGetListV1_EORDERBY_ToString(ezmax_api_definition_ezsignfoldertypeGetListV1_eOrderBy_e EORDERBY){
-    char *EORDERBYArray[] =  { "NULL", "sEzsignfoldertypeNameX", "sEzsignfoldertypeNameX desc" };
+    char *EORDERBYArray[] =  { "NULL", "pkiEzsignfoldertypeID_ASC", "pkiEzsignfoldertypeID_DESC", "eEzsignfoldertypePrivacylevel_ASC", "eEzsignfoldertypePrivacylevel_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC", "bEzsignfoldertypeIsactive_ASC", "bEzsignfoldertypeIsactive_DESC" };
     return EORDERBYArray[EORDERBY];
 }
 
 static ezmax_api_definition_ezsignfoldertypeGetListV1_eOrderBy_e ezsignfoldertypeGetListV1_EORDERBY_FromString(char* EORDERBY){
     int stringToReturn = 0;
-    char *EORDERBYArray[] =  { "NULL", "sEzsignfoldertypeNameX", "sEzsignfoldertypeNameX desc" };
+    char *EORDERBYArray[] =  { "NULL", "pkiEzsignfoldertypeID_ASC", "pkiEzsignfoldertypeID_DESC", "eEzsignfoldertypePrivacylevel_ASC", "eEzsignfoldertypePrivacylevel_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC", "bEzsignfoldertypeIsactive_ASC", "bEzsignfoldertypeIsactive_DESC" };
     size_t sizeofArray = sizeof(EORDERBYArray) / sizeof(EORDERBYArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(EORDERBY, EORDERBYArray[stringToReturn]) == 0) {

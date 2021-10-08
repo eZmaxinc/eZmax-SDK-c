@@ -8,7 +8,7 @@
 common_response_obj_debug_payload_t *common_response_obj_debug_payload_create(
     int i_version_min,
     int i_version_max,
-    list_t *a_required_permissions
+    list_t *a_required_permission
     ) {
     common_response_obj_debug_payload_t *common_response_obj_debug_payload_local_var = malloc(sizeof(common_response_obj_debug_payload_t));
     if (!common_response_obj_debug_payload_local_var) {
@@ -16,7 +16,7 @@ common_response_obj_debug_payload_t *common_response_obj_debug_payload_create(
     }
     common_response_obj_debug_payload_local_var->i_version_min = i_version_min;
     common_response_obj_debug_payload_local_var->i_version_max = i_version_max;
-    common_response_obj_debug_payload_local_var->a_required_permissions = a_required_permissions;
+    common_response_obj_debug_payload_local_var->a_required_permission = a_required_permission;
 
     return common_response_obj_debug_payload_local_var;
 }
@@ -27,12 +27,12 @@ void common_response_obj_debug_payload_free(common_response_obj_debug_payload_t 
         return ;
     }
     listEntry_t *listEntry;
-    if (common_response_obj_debug_payload->a_required_permissions) {
-        list_ForEach(listEntry, common_response_obj_debug_payload->a_required_permissions) {
+    if (common_response_obj_debug_payload->a_required_permission) {
+        list_ForEach(listEntry, common_response_obj_debug_payload->a_required_permission) {
             free(listEntry->data);
         }
-        list_free(common_response_obj_debug_payload->a_required_permissions);
-        common_response_obj_debug_payload->a_required_permissions = NULL;
+        list_free(common_response_obj_debug_payload->a_required_permission);
+        common_response_obj_debug_payload->a_required_permission = NULL;
     }
     free(common_response_obj_debug_payload);
 }
@@ -60,19 +60,19 @@ cJSON *common_response_obj_debug_payload_convertToJSON(common_response_obj_debug
     }
 
 
-    // common_response_obj_debug_payload->a_required_permissions
-    if (!common_response_obj_debug_payload->a_required_permissions) {
+    // common_response_obj_debug_payload->a_required_permission
+    if (!common_response_obj_debug_payload->a_required_permission) {
         goto fail;
     }
     
-    cJSON *a_required_permissions = cJSON_AddArrayToObject(item, "a_RequiredPermissions");
-    if(a_required_permissions == NULL) {
+    cJSON *a_required_permission = cJSON_AddArrayToObject(item, "a_RequiredPermission");
+    if(a_required_permission == NULL) {
         goto fail; //primitive container
     }
 
-    listEntry_t *a_required_permissionsListEntry;
-    list_ForEach(a_required_permissionsListEntry, common_response_obj_debug_payload->a_required_permissions) {
-    if(cJSON_AddNumberToObject(a_required_permissions, "", *(double *)a_required_permissionsListEntry->data) == NULL)
+    listEntry_t *a_required_permissionListEntry;
+    list_ForEach(a_required_permissionListEntry, common_response_obj_debug_payload->a_required_permission) {
+    if(cJSON_AddNumberToObject(a_required_permission, "", *(double *)a_required_permissionListEntry->data) == NULL)
     {
         goto fail;
     }
@@ -114,40 +114,40 @@ common_response_obj_debug_payload_t *common_response_obj_debug_payload_parseFrom
     goto end; //Numeric
     }
 
-    // common_response_obj_debug_payload->a_required_permissions
-    cJSON *a_required_permissions = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payloadJSON, "a_RequiredPermissions");
-    if (!a_required_permissions) {
+    // common_response_obj_debug_payload->a_required_permission
+    cJSON *a_required_permission = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payloadJSON, "a_RequiredPermission");
+    if (!a_required_permission) {
         goto end;
     }
 
-    list_t *a_required_permissionsList;
+    list_t *a_required_permissionList;
     
-    cJSON *a_required_permissions_local;
-    if(!cJSON_IsArray(a_required_permissions)) {
+    cJSON *a_required_permission_local;
+    if(!cJSON_IsArray(a_required_permission)) {
         goto end;//primitive container
     }
-    a_required_permissionsList = list_create();
+    a_required_permissionList = list_create();
 
-    cJSON_ArrayForEach(a_required_permissions_local, a_required_permissions)
+    cJSON_ArrayForEach(a_required_permission_local, a_required_permission)
     {
-        if(!cJSON_IsNumber(a_required_permissions_local))
+        if(!cJSON_IsNumber(a_required_permission_local))
         {
             goto end;
         }
-        double *a_required_permissions_local_value = (double *)calloc(1, sizeof(double));
-        if(!a_required_permissions_local_value)
+        double *a_required_permission_local_value = (double *)calloc(1, sizeof(double));
+        if(!a_required_permission_local_value)
         {
             goto end;
         }
-        *a_required_permissions_local_value = a_required_permissions_local->valuedouble;
-        list_addElement(a_required_permissionsList , a_required_permissions_local_value);
+        *a_required_permission_local_value = a_required_permission_local->valuedouble;
+        list_addElement(a_required_permissionList , a_required_permission_local_value);
     }
 
 
     common_response_obj_debug_payload_local_var = common_response_obj_debug_payload_create (
         i_version_min->valuedouble,
         i_version_max->valuedouble,
-        a_required_permissionsList
+        a_required_permissionList
         );
 
     return common_response_obj_debug_payload_local_var;
