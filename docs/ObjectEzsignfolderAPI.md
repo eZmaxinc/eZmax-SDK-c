@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1) | **DELETE** /1/object/ezsignfolder/{pkiEzsignfolderID} | Delete an existing Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderGetChildrenV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetChildrenV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getChildren | Retrieve an existing Ezsignfolder&#39;s children IDs
 [**ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getFormsData | Retrieve an existing Ezsignfolder&#39;s forms data
+[**ObjectEzsignfolderAPI_ezsignfolderGetListV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetListV1) | **GET** /1/object/ezsignfolder/getList | Retrieve Ezsignfolder list
 [**ObjectEzsignfolderAPI_ezsignfolderGetObjectV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetObjectV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID} | Retrieve an existing Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderSendV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderSendV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/send | Send the Ezsignfolder to the signatories for signature
 
@@ -106,8 +107,6 @@ void
 ```c
 // Retrieve an existing Ezsignfolder's forms data
 //
-// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
-//
 ezsignfolder_get_forms_data_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1(apiClient_t *apiClient, int pkiEzsignfolderID);
 ```
 
@@ -130,6 +129,39 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json, application/zip
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsignfolderAPI_ezsignfolderGetListV1**
+```c
+// Retrieve Ezsignfolder list
+//
+ezsignfolder_get_list_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetListV1(apiClient_t *apiClient, ezmax_api_definition_ezsignfolderGetListV1_eOrderBy_e eOrderBy, int iRowMax, int iRowOffset, header_accept_language_e Accept_Language, char * sFilter);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**eOrderBy** | **ezmax_api_definition_ezsignfolderGetListV1_eOrderBy_e** | Specify how you want the results to be sorted | [optional] 
+**iRowMax** | **int** |  | [optional] 
+**iRowOffset** | **int** |  | [optional] 
+**Accept_Language** | **header_accept_language_e** |  | [optional] 
+**sFilter** | **char \*** |  | [optional] 
+
+### Return type
+
+[ezsignfolder_get_list_v1_response_t](ezsignfolder_get_list_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

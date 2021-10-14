@@ -78,8 +78,6 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignpagesV1(apiClient_t *apiClient, i
 
 // Retrieve an existing Ezsigndocument's Form Data
 //
-// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
-//
 ezsigndocument_get_form_data_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1(apiClient_t *apiClient, int pkiEzsigndocumentID );
 
@@ -93,8 +91,6 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV1(apiClient_t *apiClient, int pk
 
 
 // Retrieve positions X,Y of given words from a Ezsigndocument
-//
-// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
 //
 ezsigndocument_get_words_positions_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1(apiClient_t *apiClient, int pkiEzsigndocumentID , ezsigndocument_get_words_positions_v1_request_t * ezsigndocument_get_words_positions_v1_request );

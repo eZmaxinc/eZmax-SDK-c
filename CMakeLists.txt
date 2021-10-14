@@ -64,7 +64,6 @@ set(SRCS
     model/common_audit.c
     model/common_get_autocomplete_v1_response.c
     model/common_get_autocomplete_v1_response_all_of.c
-    model/common_get_autocomplete_v1_response_m_payload.c
     model/common_get_list_v1_response_m_payload.c
     model/common_response.c
     model/common_response_error.c
@@ -82,6 +81,7 @@ set(SRCS
     model/contactinformations_request.c
     model/contactinformations_request_compound.c
     model/contactinformations_request_compound_all_of.c
+    model/custom_autocomplete_element_response.c
     model/custom_form_data_document_response.c
     model/custom_form_data_signer_response.c
     model/custom_forms_data_folder_response.c
@@ -124,9 +124,14 @@ set(SRCS
     model/ezsignfolder_get_forms_data_v1_response.c
     model/ezsignfolder_get_forms_data_v1_response_all_of.c
     model/ezsignfolder_get_forms_data_v1_response_m_payload.c
+    model/ezsignfolder_get_list_v1_response.c
+    model/ezsignfolder_get_list_v1_response_all_of.c
+    model/ezsignfolder_get_list_v1_response_m_payload.c
+    model/ezsignfolder_get_list_v1_response_m_payload_all_of.c
     model/ezsignfolder_get_object_v1_response.c
     model/ezsignfolder_get_object_v1_response_all_of.c
     model/ezsignfolder_get_object_v1_response_m_payload.c
+    model/ezsignfolder_list_element.c
     model/ezsignfolder_request.c
     model/ezsignfolder_request_compound.c
     model/ezsignfolder_request_compound_all_of.c
@@ -261,7 +266,6 @@ set(HDRS
     model/common_audit.h
     model/common_get_autocomplete_v1_response.h
     model/common_get_autocomplete_v1_response_all_of.h
-    model/common_get_autocomplete_v1_response_m_payload.h
     model/common_get_list_v1_response_m_payload.h
     model/common_response.h
     model/common_response_error.h
@@ -279,6 +283,7 @@ set(HDRS
     model/contactinformations_request.h
     model/contactinformations_request_compound.h
     model/contactinformations_request_compound_all_of.h
+    model/custom_autocomplete_element_response.h
     model/custom_form_data_document_response.h
     model/custom_form_data_signer_response.h
     model/custom_forms_data_folder_response.h
@@ -321,9 +326,14 @@ set(HDRS
     model/ezsignfolder_get_forms_data_v1_response.h
     model/ezsignfolder_get_forms_data_v1_response_all_of.h
     model/ezsignfolder_get_forms_data_v1_response_m_payload.h
+    model/ezsignfolder_get_list_v1_response.h
+    model/ezsignfolder_get_list_v1_response_all_of.h
+    model/ezsignfolder_get_list_v1_response_m_payload.h
+    model/ezsignfolder_get_list_v1_response_m_payload_all_of.h
     model/ezsignfolder_get_object_v1_response.h
     model/ezsignfolder_get_object_v1_response_all_of.h
     model/ezsignfolder_get_object_v1_response_m_payload.h
+    model/ezsignfolder_list_element.h
     model/ezsignfolder_request.h
     model/ezsignfolder_request_compound.h
     model/ezsignfolder_request_compound_all_of.h

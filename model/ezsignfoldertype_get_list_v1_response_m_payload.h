@@ -1,7 +1,7 @@
 /*
  * ezsignfoldertype_get_list_v1_response_m_payload.h
  *
- * Payload for the /1/object/ezsignfolder/getList API Request
+ * Payload for the /1/object/ezsignfoldertype/getList API Request
  */
 
 #ifndef _ezsignfoldertype_get_list_v1_response_m_payload_H_

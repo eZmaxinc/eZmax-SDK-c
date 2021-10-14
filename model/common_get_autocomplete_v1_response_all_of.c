@@ -25,7 +25,7 @@ void common_get_autocomplete_v1_response_all_of_free(common_get_autocomplete_v1_
     listEntry_t *listEntry;
     if (common_get_autocomplete_v1_response_all_of->m_payload) {
         list_ForEach(listEntry, common_get_autocomplete_v1_response_all_of->m_payload) {
-            common_get_autocomplete_v1_response_m_payload_free(listEntry->data);
+            custom_autocomplete_element_response_free(listEntry->data);
         }
         list_free(common_get_autocomplete_v1_response_all_of->m_payload);
         common_get_autocomplete_v1_response_all_of->m_payload = NULL;
@@ -49,7 +49,7 @@ cJSON *common_get_autocomplete_v1_response_all_of_convertToJSON(common_get_autoc
     listEntry_t *m_payloadListEntry;
     if (common_get_autocomplete_v1_response_all_of->m_payload) {
     list_ForEach(m_payloadListEntry, common_get_autocomplete_v1_response_all_of->m_payload) {
-    cJSON *itemLocal = common_get_autocomplete_v1_response_m_payload_convertToJSON(m_payloadListEntry->data);
+    cJSON *itemLocal = custom_autocomplete_element_response_convertToJSON(m_payloadListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -89,7 +89,7 @@ common_get_autocomplete_v1_response_all_of_t *common_get_autocomplete_v1_respons
         if(!cJSON_IsObject(m_payload_local_nonprimitive)){
             goto end;
         }
-        common_get_autocomplete_v1_response_m_payload_t *m_payloadItem = common_get_autocomplete_v1_response_m_payload_parseFromJSON(m_payload_local_nonprimitive);
+        custom_autocomplete_element_response_t *m_payloadItem = custom_autocomplete_element_response_parseFromJSON(m_payload_local_nonprimitive);
 
         list_addElement(m_payloadList, m_payloadItem);
     }

@@ -10,9 +10,17 @@
 #include "../model/ezsignfolder_create_object_v1_response.h"
 #include "../model/ezsignfolder_delete_object_v1_response.h"
 #include "../model/ezsignfolder_get_forms_data_v1_response.h"
+#include "../model/ezsignfolder_get_list_v1_response.h"
 #include "../model/ezsignfolder_get_object_v1_response.h"
 #include "../model/ezsignfolder_send_v1_request.h"
 #include "../model/ezsignfolder_send_v1_response.h"
+#include "../model/header_accept_language.h"
+
+// Enum EORDERBY for ObjectEzsignfolderAPI_ezsignfolderGetListV1
+typedef enum  { ezmax_api_definition_ezsignfolderGetListV1_EORDERBY_NULL = 0, ezmax_api_definition_ezsignfolderGetListV1_EORDERBY_pkiEzsignfolderID_ASC, ezmax_api_definition_ezsignfolderGetListV1_EORDERBY_pkiEzsignfolderID_DESC, ezmax_api_definition_ezsignfolderGetListV1_EORDERBY_sEzsignfolderDescription, ezmax_api_definition_ezsignfolderGetListV1_EORDERBY_sEzsignfolderDescription_DESC } ezmax_api_definition_ezsignfolderGetListV1_eOrderBy_e;
+
+// Enum  for ObjectEzsignfolderAPI_ezsignfolderGetListV1
+typedef enum  { ezmax_api_definition_ezsignfolderGetListV1__NULL = 0, ezmax_api_definition_ezsignfolderGetListV1__*, ezmax_api_definition_ezsignfolderGetListV1__en, ezmax_api_definition_ezsignfolderGetListV1__fr } ezmax_api_definition_ezsignfolderGetListV1_Accept-Language_e;
 
 
 // Create a new Ezsignfolder
@@ -39,10 +47,14 @@ ObjectEzsignfolderAPI_ezsignfolderGetChildrenV1(apiClient_t *apiClient, int pkiE
 
 // Retrieve an existing Ezsignfolder's forms data
 //
-// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
-//
 ezsignfolder_get_forms_data_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1(apiClient_t *apiClient, int pkiEzsignfolderID );
+
+
+// Retrieve Ezsignfolder list
+//
+ezsignfolder_get_list_v1_response_t*
+ObjectEzsignfolderAPI_ezsignfolderGetListV1(apiClient_t *apiClient, ezmax_api_definition_ezsignfolderGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter );
 
 
 // Retrieve an existing Ezsignfolder
