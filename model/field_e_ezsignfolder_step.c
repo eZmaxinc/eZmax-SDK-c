@@ -5,13 +5,13 @@
 
 
 char* field_e_ezsignfolder_step_field_e_ezsignfolder_step_ToString(ezmax_api_definition_field_e_ezsignfolder_step__e field_e_ezsignfolder_step) {
-    char *field_e_ezsignfolder_stepArray[] =  { "NULL", "Unsent", "Sent", "PartiallySigned", "Expired", "Signed", "Completed", "Archived" };
+    char *field_e_ezsignfolder_stepArray[] =  { "NULL", "Unsent", "Sent", "PartiallySigned", "Expired", "Completed", "Archived" };
     return field_e_ezsignfolder_stepArray[field_e_ezsignfolder_step];
 }
 
 ezmax_api_definition_field_e_ezsignfolder_step__e field_e_ezsignfolder_step_field_e_ezsignfolder_step_FromString(char* field_e_ezsignfolder_step) {
     int stringToReturn = 0;
-    char *field_e_ezsignfolder_stepArray[] =  { "NULL", "Unsent", "Sent", "PartiallySigned", "Expired", "Signed", "Completed", "Archived" };
+    char *field_e_ezsignfolder_stepArray[] =  { "NULL", "Unsent", "Sent", "PartiallySigned", "Expired", "Completed", "Archived" };
     size_t sizeofArray = sizeof(field_e_ezsignfolder_stepArray) / sizeof(field_e_ezsignfolder_stepArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(field_e_ezsignfolder_step, field_e_ezsignfolder_stepArray[stringToReturn]) == 0) {

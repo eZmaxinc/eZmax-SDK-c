@@ -217,9 +217,9 @@ ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV1(apiClient_t *apiClie
     char      *localVarBodyParameters = NULL;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfoldertype/getAutocomplete/{sSelector}/")+1;
+    long sizeOfPath = strlen("/1/object/ezsignfoldertype/getAutocomplete/{sSelector}")+1;
     char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfoldertype/getAutocomplete/{sSelector}/");
+    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfoldertype/getAutocomplete/{sSelector}");
 
 
     // Path Params

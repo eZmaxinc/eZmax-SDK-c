@@ -14,13 +14,13 @@
 // Functions for enum EORDERBY for ObjectEzsignfolderAPI_ezsignfolderGetListV1
 
 static char* ezsignfolderGetListV1_EORDERBY_ToString(ezmax_api_definition_ezsignfolderGetListV1_eOrderBy_e EORDERBY){
-    char *EORDERBYArray[] =  { "NULL", "pkiEzsignfolderID_ASC", "pkiEzsignfolderID_DESC", "sEzsignfolderDescription", "sEzsignfolderDescription_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiEzsignfolderID_ASC", "pkiEzsignfolderID_DESC", "sEzsignfolderDescription_ASC", "sEzsignfolderDescription_DESC", "dtCreatedDate_ASC", "dtCreatedDate_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC", "eEzsignfolderStep_ASC", "eEzsignfolderStep_DESC", "dtEzsignfolderSentdate_ASC", "dtEzsignfolderSentdate_DESC", "dtDueDate_ASC", "dtDueDate_DESC", "iTotalDocument_ASC", "iTotalDocument_DESC", "iTotalDocumentEdm_ASC", "iTotalDocumentEdm_DESC", "iTotalSignature_ASC", "iTotalSignature_DESC", "iTotalSignatureSigned_ASC", "iTotalSignatureSigned_DESC" };
     return EORDERBYArray[EORDERBY];
 }
 
 static ezmax_api_definition_ezsignfolderGetListV1_eOrderBy_e ezsignfolderGetListV1_EORDERBY_FromString(char* EORDERBY){
     int stringToReturn = 0;
-    char *EORDERBYArray[] =  { "NULL", "pkiEzsignfolderID_ASC", "pkiEzsignfolderID_DESC", "sEzsignfolderDescription", "sEzsignfolderDescription_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiEzsignfolderID_ASC", "pkiEzsignfolderID_DESC", "sEzsignfolderDescription_ASC", "sEzsignfolderDescription_DESC", "dtCreatedDate_ASC", "dtCreatedDate_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC", "eEzsignfolderStep_ASC", "eEzsignfolderStep_DESC", "dtEzsignfolderSentdate_ASC", "dtEzsignfolderSentdate_DESC", "dtDueDate_ASC", "dtDueDate_DESC", "iTotalDocument_ASC", "iTotalDocument_DESC", "iTotalDocumentEdm_ASC", "iTotalDocumentEdm_DESC", "iTotalSignature_ASC", "iTotalSignature_DESC", "iTotalSignatureSigned_ASC", "iTotalSignatureSigned_DESC" };
     size_t sizeofArray = sizeof(EORDERBYArray) / sizeof(EORDERBYArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(EORDERBY, EORDERBYArray[stringToReturn]) == 0) {
@@ -445,6 +445,8 @@ end:
 }
 
 // Retrieve Ezsignfolder list
+//
+// Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eEzsignfolderStep | Unsent<br>Sent<br>PartiallySigned<br>Expired<br>Completed<br>Archived |
 //
 ezsignfolder_get_list_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetListV1(apiClient_t *apiClient, ezmax_api_definition_ezsignfolderGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter )

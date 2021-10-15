@@ -16,6 +16,8 @@
 #include "../model/ezsignfolder_list_element.h"
 ezsignfolder_list_element_t* instantiate_ezsignfolder_list_element(int include_optional);
 
+#include "test_one_ofstringnull.c"
+#include "test_one_ofstringnull.c"
 
 
 ezsignfolder_list_element_t* instantiate_ezsignfolder_list_element(int include_optional) {
@@ -23,12 +25,32 @@ ezsignfolder_list_element_t* instantiate_ezsignfolder_list_element(int include_o
   if (include_optional) {
     ezsignfolder_list_element = ezsignfolder_list_element_create(
       33,
-      "Test eZsign Folder"
+      5,
+      "Default",
+      "Test eZsign Folder",
+      ezmax_api_definition_ezsignfolder_list_element__"Completed",
+      "2020-12-31 23:59:59",
+      null,
+      null,
+      56,
+      56,
+      56,
+      56
     );
   } else {
     ezsignfolder_list_element = ezsignfolder_list_element_create(
       33,
-      "Test eZsign Folder"
+      5,
+      "Default",
+      "Test eZsign Folder",
+      ezmax_api_definition_ezsignfolder_list_element__"Completed",
+      "2020-12-31 23:59:59",
+      null,
+      null,
+      56,
+      56,
+      56,
+      56
     );
   }
 
