@@ -28,8 +28,8 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_create(
     char *s_ezsignfoldertype_name_x,
     char *s_ezsignfolder_description,
     char *dt_created_date,
-    one_ofstringnull_t *dt_ezsignfolder_sentdate,
-    one_ofstringnull_t *dt_due_date,
+    one_ofstringobject_t *dt_ezsignfolder_sentdate,
+    one_ofstringobject_t *dt_due_date,
     int i_total_document,
     int i_total_document_edm,
     int i_total_signature,
@@ -74,11 +74,11 @@ void ezsignfolder_list_element_free(ezsignfolder_list_element_t *ezsignfolder_li
         ezsignfolder_list_element->dt_created_date = NULL;
     }
     if (ezsignfolder_list_element->dt_ezsignfolder_sentdate) {
-        one_ofstringnull_free(ezsignfolder_list_element->dt_ezsignfolder_sentdate);
+        one_ofstringobject_free(ezsignfolder_list_element->dt_ezsignfolder_sentdate);
         ezsignfolder_list_element->dt_ezsignfolder_sentdate = NULL;
     }
     if (ezsignfolder_list_element->dt_due_date) {
-        one_ofstringnull_free(ezsignfolder_list_element->dt_due_date);
+        one_ofstringobject_free(ezsignfolder_list_element->dt_due_date);
         ezsignfolder_list_element->dt_due_date = NULL;
     }
     free(ezsignfolder_list_element);
@@ -146,7 +146,7 @@ cJSON *ezsignfolder_list_element_convertToJSON(ezsignfolder_list_element_t *ezsi
         goto fail;
     }
     
-    cJSON *dt_ezsignfolder_sentdate_local_JSON = one_ofstringnull_convertToJSON(ezsignfolder_list_element->dt_ezsignfolder_sentdate);
+    cJSON *dt_ezsignfolder_sentdate_local_JSON = one_ofstringobject_convertToJSON(ezsignfolder_list_element->dt_ezsignfolder_sentdate);
     if(dt_ezsignfolder_sentdate_local_JSON == NULL) {
     goto fail; //model
     }
@@ -161,7 +161,7 @@ cJSON *ezsignfolder_list_element_convertToJSON(ezsignfolder_list_element_t *ezsi
         goto fail;
     }
     
-    cJSON *dt_due_date_local_JSON = one_ofstringnull_convertToJSON(ezsignfolder_list_element->dt_due_date);
+    cJSON *dt_due_date_local_JSON = one_ofstringobject_convertToJSON(ezsignfolder_list_element->dt_due_date);
     if(dt_due_date_local_JSON == NULL) {
     goto fail; //model
     }
@@ -295,9 +295,9 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_parseFromJSON(cJSON *ezsi
         goto end;
     }
 
-    one_ofstringnull_t *dt_ezsignfolder_sentdate_local_nonprim = NULL;
+    one_ofstringobject_t *dt_ezsignfolder_sentdate_local_nonprim = NULL;
     
-    dt_ezsignfolder_sentdate_local_nonprim = one_ofstringnull_parseFromJSON(dt_ezsignfolder_sentdate); //nonprimitive
+    dt_ezsignfolder_sentdate_local_nonprim = one_ofstringobject_parseFromJSON(dt_ezsignfolder_sentdate); //nonprimitive
 
     // ezsignfolder_list_element->dt_due_date
     cJSON *dt_due_date = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "dtDueDate");
@@ -305,9 +305,9 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_parseFromJSON(cJSON *ezsi
         goto end;
     }
 
-    one_ofstringnull_t *dt_due_date_local_nonprim = NULL;
+    one_ofstringobject_t *dt_due_date_local_nonprim = NULL;
     
-    dt_due_date_local_nonprim = one_ofstringnull_parseFromJSON(dt_due_date); //nonprimitive
+    dt_due_date_local_nonprim = one_ofstringobject_parseFromJSON(dt_due_date); //nonprimitive
 
     // ezsignfolder_list_element->i_total_document
     cJSON *i_total_document = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "iTotalDocument");
@@ -375,11 +375,11 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_parseFromJSON(cJSON *ezsi
     return ezsignfolder_list_element_local_var;
 end:
     if (dt_ezsignfolder_sentdate_local_nonprim) {
-        one_ofstringnull_free(dt_ezsignfolder_sentdate_local_nonprim);
+        one_ofstringobject_free(dt_ezsignfolder_sentdate_local_nonprim);
         dt_ezsignfolder_sentdate_local_nonprim = NULL;
     }
     if (dt_due_date_local_nonprim) {
-        one_ofstringnull_free(dt_due_date_local_nonprim);
+        one_ofstringobject_free(dt_due_date_local_nonprim);
         dt_due_date_local_nonprim = NULL;
     }
     return NULL;

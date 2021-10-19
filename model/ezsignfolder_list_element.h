@@ -16,7 +16,7 @@
 typedef struct ezsignfolder_list_element_t ezsignfolder_list_element_t;
 
 #include "field_e_ezsignfolder_step.h"
-#include "one_ofstringnull.h"
+#include "one_ofstringobject.h"
 
 // Enum  for ezsignfolder_list_element
 
@@ -34,8 +34,8 @@ typedef struct ezsignfolder_list_element_t {
     char *s_ezsignfoldertype_name_x; // string
     char *s_ezsignfolder_description; // string
     char *dt_created_date; // string
-    struct one_ofstringnull_t *dt_ezsignfolder_sentdate; //model
-    struct one_ofstringnull_t *dt_due_date; //model
+    struct one_ofstringobject_t *dt_ezsignfolder_sentdate; //model
+    struct one_ofstringobject_t *dt_due_date; //model
     int i_total_document; //numeric
     int i_total_document_edm; //numeric
     int i_total_signature; //numeric
@@ -49,8 +49,8 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_create(
     char *s_ezsignfoldertype_name_x,
     char *s_ezsignfolder_description,
     char *dt_created_date,
-    one_ofstringnull_t *dt_ezsignfolder_sentdate,
-    one_ofstringnull_t *dt_due_date,
+    one_ofstringobject_t *dt_ezsignfolder_sentdate,
+    one_ofstringobject_t *dt_due_date,
     int i_total_document,
     int i_total_document_edm,
     int i_total_signature,

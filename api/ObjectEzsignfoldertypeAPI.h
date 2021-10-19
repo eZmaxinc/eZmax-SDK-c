@@ -28,7 +28,7 @@ typedef enum  { ezmax_api_definition_ezsignfoldertypeGetListV1__NULL = 0, ezmax_
 // Get the list of Ezsignfoldertypes to be used in a dropdown or autocomplete control.
 //
 common_get_autocomplete_v1_response_t*
-ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition_ezsignfoldertypeGetAutocompleteV1_sSelector_e sSelector , header_accept_language_e Accept_Language , char * sQuery );
+ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition_ezsignfoldertypeGetAutocompleteV1_sSelector_e sSelector , char * sQuery , header_accept_language_e Accept_Language );
 
 
 // Retrieve Ezsignfoldertype list

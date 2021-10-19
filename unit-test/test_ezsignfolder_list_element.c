@@ -16,8 +16,8 @@
 #include "../model/ezsignfolder_list_element.h"
 ezsignfolder_list_element_t* instantiate_ezsignfolder_list_element(int include_optional);
 
-#include "test_one_ofstringnull.c"
-#include "test_one_ofstringnull.c"
+#include "test_one_ofstringobject.c"
+#include "test_one_ofstringobject.c"
 
 
 ezsignfolder_list_element_t* instantiate_ezsignfolder_list_element(int include_optional) {
