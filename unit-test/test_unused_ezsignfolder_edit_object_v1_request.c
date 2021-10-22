@@ -23,11 +23,12 @@ unused_ezsignfolder_edit_object_v1_request_t* instantiate_unused_ezsignfolder_ed
   unused_ezsignfolder_edit_object_v1_request_t* unused_ezsignfolder_edit_object_v1_request = NULL;
   if (include_optional) {
     unused_ezsignfolder_edit_object_v1_request = unused_ezsignfolder_edit_object_v1_request_create(
-      {"fkiEzsignfoldertypeID":1,"sEzsignfolderDescription":"Test eZsign Folder","tEzsignfolderNote":"An extra notes we can add to the ezsign folder","fkiEzsigntsarequirementID":1,"eEzsignfolderSendreminderfrequency":"Daily"}
+       // false, not to have infinite recursion
+      instantiate_ezsignfolder_request(0)
     );
   } else {
     unused_ezsignfolder_edit_object_v1_request = unused_ezsignfolder_edit_object_v1_request_create(
-      {"fkiEzsignfoldertypeID":1,"sEzsignfolderDescription":"Test eZsign Folder","tEzsignfolderNote":"An extra notes we can add to the ezsign folder","fkiEzsigntsarequirementID":1,"eEzsignfolderSendreminderfrequency":"Daily"}
+      NULL
     );
   }
 

@@ -14,6 +14,7 @@
 #include "../model/ezsignfolder_get_object_v1_response.h"
 #include "../model/ezsignfolder_send_v1_request.h"
 #include "../model/ezsignfolder_send_v1_response.h"
+#include "../model/ezsignfolder_unsend_v1_response.h"
 #include "../model/header_accept_language.h"
 
 // Enum EORDERBY for ObjectEzsignfolderAPI_ezsignfolderGetListV1
@@ -71,5 +72,13 @@ ObjectEzsignfolderAPI_ezsignfolderGetObjectV1(apiClient_t *apiClient, int pkiEzs
 //
 ezsignfolder_send_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderSendV1(apiClient_t *apiClient, int pkiEzsignfolderID , ezsignfolder_send_v1_request_t * ezsignfolder_send_v1_request );
+
+
+// Unsend the Ezsignfolder
+//
+// Once an Ezsignfolder has been sent to signatories, it cannot be modified.  Using this endpoint, you can unsend the Ezsignfolder and make it modifiable again.  Signatories will receive an email informing them the signature process was aborted and they might receive a new invitation to sign.  ⚠️ Warning: Any signature previously made by signatories on \"Non-completed\" Ezsigndocuments will be lost.
+//
+ezsignfolder_unsend_v1_response_t*
+ObjectEzsignfolderAPI_ezsignfolderUnsendV1(apiClient_t *apiClient, int pkiEzsignfolderID , char * body );
 
 

@@ -24,12 +24,13 @@ ezsignfolder_create_object_v1_request_t* instantiate_ezsignfolder_create_object_
   ezsignfolder_create_object_v1_request_t* ezsignfolder_create_object_v1_request = NULL;
   if (include_optional) {
     ezsignfolder_create_object_v1_request = ezsignfolder_create_object_v1_request_create(
-      {"fkiEzsignfoldertypeID":1,"sEzsignfolderDescription":"Test eZsign Folder","tEzsignfolderNote":"An extra notes we can add to the ezsign folder","fkiEzsigntsarequirementID":1,"eEzsignfolderSendreminderfrequency":"Daily"},
+       // false, not to have infinite recursion
+      instantiate_ezsignfolder_request(0),
       {"fkiEzsignfoldertypeID":1,"sEzsignfolderDescription":"Test eZsign Folder","tEzsignfolderNote":"An extra notes we can add to the ezsign folder","fkiEzsigntsarequirementID":1,"eEzsignfolderSendreminderfrequency":"Daily"}
     );
   } else {
     ezsignfolder_create_object_v1_request = ezsignfolder_create_object_v1_request_create(
-      {"fkiEzsignfoldertypeID":1,"sEzsignfolderDescription":"Test eZsign Folder","tEzsignfolderNote":"An extra notes we can add to the ezsign folder","fkiEzsigntsarequirementID":1,"eEzsignfolderSendreminderfrequency":"Daily"},
+      NULL,
       {"fkiEzsignfoldertypeID":1,"sEzsignfolderDescription":"Test eZsign Folder","tEzsignfolderNote":"An extra notes we can add to the ezsign folder","fkiEzsigntsarequirementID":1,"eEzsignfolderSendreminderfrequency":"Daily"}
     );
   }

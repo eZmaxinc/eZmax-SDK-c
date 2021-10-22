@@ -6,8 +6,9 @@ Name | Type | Description | Notes
 **e_ezsigndocument_source** | **ezmax_api_definition_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_e** | Indicates where to look for the document binary content. | 
 **e_ezsigndocument_format** | **ezmax_api_definition_ezsigndocument_request_EEZSIGNDOCUMENTFORMAT_e** | Indicates the format of the document. | 
 **s_ezsigndocument_base64** | **char \*****char \*** | The Base64 encoded binary content of the document.  This field is Required when eEzsigndocumentSource &#x3D; Base64. | [optional] 
-**fki_ezsignfolder_id** | **int** | A reference to a valid Ezsignfolder.  That value is returned after a successful Ezsignfolder Creation. | 
-**dt_ezsigndocument_duedate** | **char \*** | Represent a Date Time. The timezone is the one configured in the User&#39;s profile. | 
+**s_ezsigndocument_password** | **char \*** | If the source document is password protected, the password to open/modify it. | [optional] [default to '']
+**fki_ezsignfolder_id** | **int** | The unique ID of the Ezsignfolder | 
+**dt_ezsigndocument_duedate** | **char \*** | The maximum date and time at which the document can be signed. | 
 **fki_language_id** | **int** | The unique ID of the Language.  Valid values:  |Value|Description| |-|-| |1|French| |2|English| | 
 **s_ezsigndocument_name** | **char \*** | The name of the document that will be presented to Ezsignfoldersignerassociations | 
 

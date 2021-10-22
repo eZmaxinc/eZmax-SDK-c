@@ -25,20 +25,22 @@ ezsigndocument_request_compound_t* instantiate_ezsigndocument_request_compound(i
       ezmax_api_definition_ezsigndocument_request_compound_EEZSIGNDOCUMENTSOURCE_Base64,
       ezmax_api_definition_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_Pdf,
       "YQ==",
-      1,
+      "0",
+      33,
       "2020-12-31 23:59:59",
       2,
-      "0"
+      "Contract #123"
     );
   } else {
     ezsigndocument_request_compound = ezsigndocument_request_compound_create(
       ezmax_api_definition_ezsigndocument_request_compound_EEZSIGNDOCUMENTSOURCE_Base64,
       ezmax_api_definition_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_Pdf,
       "YQ==",
-      1,
+      "0",
+      33,
       "2020-12-31 23:59:59",
       2,
-      "0"
+      "Contract #123"
     );
   }
 

@@ -25,8 +25,8 @@ ezsignfolder_request_compound_t* instantiate_ezsignfolder_request_compound(int i
       list_create(),
       5,
       92,
-      "0",
-      "0",
+      "Test eZsign Folder",
+      "An extra notes we can add to the ezsign folder",
       ezmax_api_definition_ezsignfolder_request_compound__"None"
     );
   } else {
@@ -34,8 +34,8 @@ ezsignfolder_request_compound_t* instantiate_ezsignfolder_request_compound(int i
       list_create(),
       5,
       92,
-      "0",
-      "0",
+      "Test eZsign Folder",
+      "An extra notes we can add to the ezsign folder",
       ezmax_api_definition_ezsignfolder_request_compound__"None"
     );
   }

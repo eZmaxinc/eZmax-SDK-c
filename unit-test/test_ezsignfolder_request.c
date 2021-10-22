@@ -24,16 +24,16 @@ ezsignfolder_request_t* instantiate_ezsignfolder_request(int include_optional) {
     ezsignfolder_request = ezsignfolder_request_create(
       5,
       92,
-      "0",
-      "0",
+      "Test eZsign Folder",
+      "An extra notes we can add to the ezsign folder",
       ezmax_api_definition_ezsignfolder_request__"None"
     );
   } else {
     ezsignfolder_request = ezsignfolder_request_create(
       5,
       92,
-      "0",
-      "0",
+      "Test eZsign Folder",
+      "An extra notes we can add to the ezsign folder",
       ezmax_api_definition_ezsignfolder_request__"None"
     );
   }

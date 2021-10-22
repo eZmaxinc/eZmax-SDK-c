@@ -44,6 +44,7 @@ ezsigndocument_request_compound_t *ezsigndocument_request_compound_create(
     ezmax_api_definition_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_e e_ezsigndocument_format,
     char *s_ezsigndocument_base64,
     char *s_ezsigndocument_base64,
+    char *s_ezsigndocument_password,
     int fki_ezsignfolder_id,
     char *dt_ezsigndocument_duedate,
     int fki_language_id,
@@ -56,6 +57,7 @@ ezsigndocument_request_compound_t *ezsigndocument_request_compound_create(
     ezsigndocument_request_compound_local_var->e_ezsigndocument_source = e_ezsigndocument_source;
     ezsigndocument_request_compound_local_var->e_ezsigndocument_format = e_ezsigndocument_format;
     ezsigndocument_request_compound_local_var->s_ezsigndocument_base64 = s_ezsigndocument_base64;
+    ezsigndocument_request_compound_local_var->s_ezsigndocument_password = s_ezsigndocument_password;
     ezsigndocument_request_compound_local_var->fki_ezsignfolder_id = fki_ezsignfolder_id;
     ezsigndocument_request_compound_local_var->dt_ezsigndocument_duedate = dt_ezsigndocument_duedate;
     ezsigndocument_request_compound_local_var->fki_language_id = fki_language_id;
@@ -77,6 +79,10 @@ void ezsigndocument_request_compound_free(ezsigndocument_request_compound_t *ezs
     if (ezsigndocument_request_compound->s_ezsigndocument_base64) {
         free(ezsigndocument_request_compound->s_ezsigndocument_base64);
         ezsigndocument_request_compound->s_ezsigndocument_base64 = NULL;
+    }
+    if (ezsigndocument_request_compound->s_ezsigndocument_password) {
+        free(ezsigndocument_request_compound->s_ezsigndocument_password);
+        ezsigndocument_request_compound->s_ezsigndocument_password = NULL;
     }
     if (ezsigndocument_request_compound->dt_ezsigndocument_duedate) {
         free(ezsigndocument_request_compound->dt_ezsigndocument_duedate);
@@ -115,6 +121,14 @@ cJSON *ezsigndocument_request_compound_convertToJSON(ezsigndocument_request_comp
     }
     if(cJSON_AddStringToObject(item, "sEzsigndocumentBase64", ezsigndocument_request_compound->s_ezsigndocument_base64) == NULL) {
     goto fail; //ByteArray
+    }
+     } 
+
+
+    // ezsigndocument_request_compound->s_ezsigndocument_password
+    if(ezsigndocument_request_compound->s_ezsigndocument_password) { 
+    if(cJSON_AddStringToObject(item, "sEzsigndocumentPassword", ezsigndocument_request_compound->s_ezsigndocument_password) == NULL) {
+    goto fail; //String
     }
      } 
 
@@ -212,6 +226,15 @@ ezsigndocument_request_compound_t *ezsigndocument_request_compound_parseFromJSON
     }
     }
 
+    // ezsigndocument_request_compound->s_ezsigndocument_password
+    cJSON *s_ezsigndocument_password = cJSON_GetObjectItemCaseSensitive(ezsigndocument_request_compoundJSON, "sEzsigndocumentPassword");
+    if (s_ezsigndocument_password) { 
+    if(!cJSON_IsString(s_ezsigndocument_password))
+    {
+    goto end; //String
+    }
+    }
+
     // ezsigndocument_request_compound->fki_ezsignfolder_id
     cJSON *fki_ezsignfolder_id = cJSON_GetObjectItemCaseSensitive(ezsigndocument_request_compoundJSON, "fkiEzsignfolderID");
     if (!fki_ezsignfolder_id) {
@@ -266,6 +289,7 @@ ezsigndocument_request_compound_t *ezsigndocument_request_compound_parseFromJSON
         e_ezsigndocument_formatVariable,
         s_ezsigndocument_base64 ? strdup(s_ezsigndocument_base64->valuestring) : NULL,
         s_ezsigndocument_base64 ? strdup(s_ezsigndocument_base64->valuestring) : NULL,
+        s_ezsigndocument_password ? strdup(s_ezsigndocument_password->valuestring) : NULL,
         fki_ezsignfolder_id->valuedouble,
         strdup(dt_ezsigndocument_duedate->valuestring),
         fki_language_id->valuedouble,

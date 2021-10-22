@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**ObjectEzsignfolderAPI_ezsignfolderGetListV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetListV1) | **GET** /1/object/ezsignfolder/getList | Retrieve Ezsignfolder list
 [**ObjectEzsignfolderAPI_ezsignfolderGetObjectV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetObjectV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID} | Retrieve an existing Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderSendV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderSendV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/send | Send the Ezsignfolder to the signatories for signature
+[**ObjectEzsignfolderAPI_ezsignfolderUnsendV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderUnsendV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/unsend | Unsend the Ezsignfolder
 
 
 # **ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1**
@@ -215,6 +216,38 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsignfolder_send_v1_response_t](ezsignfolder_send_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsignfolderAPI_ezsignfolderUnsendV1**
+```c
+// Unsend the Ezsignfolder
+//
+// Once an Ezsignfolder has been sent to signatories, it cannot be modified.  Using this endpoint, you can unsend the Ezsignfolder and make it modifiable again.  Signatories will receive an email informing them the signature process was aborted and they might receive a new invitation to sign.  ⚠️ Warning: Any signature previously made by signatories on \"Non-completed\" Ezsigndocuments will be lost.
+//
+ezsignfolder_unsend_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderUnsendV1(apiClient_t *apiClient, int pkiEzsignfolderID, char * body);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsignfolderID** | **int** |  | 
+**body** | **char \*** |  | 
+
+### Return type
+
+[ezsignfolder_unsend_v1_response_t](ezsignfolder_unsend_v1_response.md) *
 
 
 ### Authorization

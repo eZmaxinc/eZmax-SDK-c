@@ -5,6 +5,8 @@ api/GlobalCustomerAPI.c
 api/GlobalCustomerAPI.h
 api/ModuleAuthenticateAPI.c
 api/ModuleAuthenticateAPI.h
+api/ModuleListAPI.c
+api/ModuleListAPI.h
 api/ModuleSsprAPI.c
 api/ModuleSsprAPI.h
 api/ModuleUserAPI.c
@@ -33,6 +35,7 @@ api/ObjectPeriodAPI.c
 api/ObjectPeriodAPI.h
 docs/GlobalCustomerAPI.md
 docs/ModuleAuthenticateAPI.md
+docs/ModuleListAPI.md
 docs/ModuleSsprAPI.md
 docs/ModuleUserAPI.md
 docs/ObjectActivesessionAPI.md
@@ -140,6 +143,7 @@ docs/ezsignfolder_response.md
 docs/ezsignfolder_response_compound.md
 docs/ezsignfolder_send_v1_request.md
 docs/ezsignfolder_send_v1_response.md
+docs/ezsignfolder_unsend_v1_response.md
 docs/ezsignfoldersignerassociation_create_object_v1_request.md
 docs/ezsignfoldersignerassociation_create_object_v1_response.md
 docs/ezsignfoldersignerassociation_create_object_v1_response_all_of.md
@@ -194,6 +198,11 @@ docs/franchisereferalincome_request_compound.md
 docs/franchisereferalincome_request_compound_all_of.md
 docs/global_customer_get_endpoint_v1_response.md
 docs/header_accept_language.md
+docs/list_save_listpresentation_v1_request.md
+docs/list_save_listpresentation_v1_response.md
+docs/list_save_listpresentation_v1_response_all_of.md
+docs/list_save_listpresentation_v1_response_m_payload.md
+docs/listpresentation_request.md
 docs/multilingual_apikey_description.md
 docs/phone_request.md
 docs/sspr_reset_password_request_v1_request.md
@@ -419,6 +428,8 @@ model/ezsignfolder_send_v1_request.c
 model/ezsignfolder_send_v1_request.h
 model/ezsignfolder_send_v1_response.c
 model/ezsignfolder_send_v1_response.h
+model/ezsignfolder_unsend_v1_response.c
+model/ezsignfolder_unsend_v1_response.h
 model/ezsignfoldersignerassociation_create_object_v1_request.c
 model/ezsignfoldersignerassociation_create_object_v1_request.h
 model/ezsignfoldersignerassociation_create_object_v1_response.c
@@ -527,6 +538,16 @@ model/global_customer_get_endpoint_v1_response.c
 model/global_customer_get_endpoint_v1_response.h
 model/header_accept_language.c
 model/header_accept_language.h
+model/list_save_listpresentation_v1_request.c
+model/list_save_listpresentation_v1_request.h
+model/list_save_listpresentation_v1_response.c
+model/list_save_listpresentation_v1_response.h
+model/list_save_listpresentation_v1_response_all_of.c
+model/list_save_listpresentation_v1_response_all_of.h
+model/list_save_listpresentation_v1_response_m_payload.c
+model/list_save_listpresentation_v1_response_m_payload.h
+model/listpresentation_request.c
+model/listpresentation_request.h
 model/multilingual_apikey_description.c
 model/multilingual_apikey_description.h
 model/object.c
@@ -686,6 +707,7 @@ unit-test/test_ezsignfolder_response.c
 unit-test/test_ezsignfolder_response_compound.c
 unit-test/test_ezsignfolder_send_v1_request.c
 unit-test/test_ezsignfolder_send_v1_response.c
+unit-test/test_ezsignfolder_unsend_v1_response.c
 unit-test/test_ezsignfoldersignerassociation_create_object_v1_request.c
 unit-test/test_ezsignfoldersignerassociation_create_object_v1_response.c
 unit-test/test_ezsignfoldersignerassociation_create_object_v1_response_all_of.c
@@ -740,6 +762,11 @@ unit-test/test_franchisereferalincome_request_compound.c
 unit-test/test_franchisereferalincome_request_compound_all_of.c
 unit-test/test_global_customer_get_endpoint_v1_response.c
 unit-test/test_header_accept_language.c
+unit-test/test_list_save_listpresentation_v1_request.c
+unit-test/test_list_save_listpresentation_v1_response.c
+unit-test/test_list_save_listpresentation_v1_response_all_of.c
+unit-test/test_list_save_listpresentation_v1_response_m_payload.c
+unit-test/test_listpresentation_request.c
 unit-test/test_multilingual_apikey_description.c
 unit-test/test_phone_request.c
 unit-test/test_sspr_reset_password_request_v1_request.c
