@@ -18,20 +18,16 @@ typedef struct list_save_listpresentation_v1_response_t list_save_listpresentati
 #include "common_response.h"
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload.h"
-#include "list_save_listpresentation_v1_response_all_of.h"
-#include "list_save_listpresentation_v1_response_m_payload.h"
 
 
 
 typedef struct list_save_listpresentation_v1_response_t {
-    struct list_save_listpresentation_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
 
 } list_save_listpresentation_v1_response_t;
 
 list_save_listpresentation_v1_response_t *list_save_listpresentation_v1_response_create(
-    list_save_listpresentation_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
 );

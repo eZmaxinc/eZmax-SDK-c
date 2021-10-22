@@ -16,7 +16,6 @@
 #include "../model/list_save_listpresentation_v1_response.h"
 list_save_listpresentation_v1_response_t* instantiate_list_save_listpresentation_v1_response(int include_optional);
 
-#include "test_list_save_listpresentation_v1_response_m_payload.c"
 #include "test_common_response_obj_debug_payload.c"
 #include "test_common_response_obj_debug.c"
 
@@ -26,14 +25,11 @@ list_save_listpresentation_v1_response_t* instantiate_list_save_listpresentation
   if (include_optional) {
     list_save_listpresentation_v1_response = list_save_listpresentation_v1_response_create(
        // false, not to have infinite recursion
-      instantiate_list_save_listpresentation_v1_response_m_payload(0),
-       // false, not to have infinite recursion
       instantiate_common_response_obj_debug_payload(0),
       {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]}
     );
   } else {
     list_save_listpresentation_v1_response = list_save_listpresentation_v1_response_create(
-      NULL,
       NULL,
       {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]}
     );

@@ -6,7 +6,6 @@
 
 
 list_save_listpresentation_v1_response_t *list_save_listpresentation_v1_response_create(
-    list_save_listpresentation_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
@@ -14,7 +13,6 @@ list_save_listpresentation_v1_response_t *list_save_listpresentation_v1_response
     if (!list_save_listpresentation_v1_response_local_var) {
         return NULL;
     }
-    list_save_listpresentation_v1_response_local_var->m_payload = m_payload;
     list_save_listpresentation_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     list_save_listpresentation_v1_response_local_var->obj_debug = obj_debug;
 
@@ -27,10 +25,6 @@ void list_save_listpresentation_v1_response_free(list_save_listpresentation_v1_r
         return ;
     }
     listEntry_t *listEntry;
-    if (list_save_listpresentation_v1_response->m_payload) {
-        list_save_listpresentation_v1_response_m_payload_free(list_save_listpresentation_v1_response->m_payload);
-        list_save_listpresentation_v1_response->m_payload = NULL;
-    }
     if (list_save_listpresentation_v1_response->obj_debug_payload) {
         common_response_obj_debug_payload_free(list_save_listpresentation_v1_response->obj_debug_payload);
         list_save_listpresentation_v1_response->obj_debug_payload = NULL;
@@ -44,21 +38,6 @@ void list_save_listpresentation_v1_response_free(list_save_listpresentation_v1_r
 
 cJSON *list_save_listpresentation_v1_response_convertToJSON(list_save_listpresentation_v1_response_t *list_save_listpresentation_v1_response) {
     cJSON *item = cJSON_CreateObject();
-
-    // list_save_listpresentation_v1_response->m_payload
-    if (!list_save_listpresentation_v1_response->m_payload) {
-        goto fail;
-    }
-    
-    cJSON *m_payload_local_JSON = list_save_listpresentation_v1_response_m_payload_convertToJSON(list_save_listpresentation_v1_response->m_payload);
-    if(m_payload_local_JSON == NULL) {
-    goto fail; //model
-    }
-    cJSON_AddItemToObject(item, "mPayload", m_payload_local_JSON);
-    if(item->child == NULL) {
-    goto fail;
-    }
-
 
     // list_save_listpresentation_v1_response->obj_debug_payload
     if(list_save_listpresentation_v1_response->obj_debug_payload) { 
@@ -97,16 +76,6 @@ list_save_listpresentation_v1_response_t *list_save_listpresentation_v1_response
 
     list_save_listpresentation_v1_response_t *list_save_listpresentation_v1_response_local_var = NULL;
 
-    // list_save_listpresentation_v1_response->m_payload
-    cJSON *m_payload = cJSON_GetObjectItemCaseSensitive(list_save_listpresentation_v1_responseJSON, "mPayload");
-    if (!m_payload) {
-        goto end;
-    }
-
-    list_save_listpresentation_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
-    
-    m_payload_local_nonprim = list_save_listpresentation_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
-
     // list_save_listpresentation_v1_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(list_save_listpresentation_v1_responseJSON, "objDebugPayload");
     common_response_obj_debug_payload_t *obj_debug_payload_local_nonprim = NULL;
@@ -123,17 +92,12 @@ list_save_listpresentation_v1_response_t *list_save_listpresentation_v1_response
 
 
     list_save_listpresentation_v1_response_local_var = list_save_listpresentation_v1_response_create (
-        m_payload_local_nonprim,
         obj_debug_payload ? obj_debug_payload_local_nonprim : NULL,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
 
     return list_save_listpresentation_v1_response_local_var;
 end:
-    if (m_payload_local_nonprim) {
-        list_save_listpresentation_v1_response_m_payload_free(m_payload_local_nonprim);
-        m_payload_local_nonprim = NULL;
-    }
     if (obj_debug_payload_local_nonprim) {
         common_response_obj_debug_payload_free(obj_debug_payload_local_nonprim);
         obj_debug_payload_local_nonprim = NULL;

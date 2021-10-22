@@ -1,4 +1,4 @@
-# list_save_listpresentation_v1_response_m_payload_t
+# list_get_listpresentation_v1_response_m_payload_t
 
 ## Properties
 Name | Type | Description | Notes

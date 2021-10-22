@@ -12,12 +12,88 @@
 }while(0)
 
 
+// Get all Listpresentation for a specific list
+//
+// Retrive previously saved Listpresentation
+//
+list_get_listpresentation_v1_response_t*
+ModuleListAPI_listGetListpresentationV1(apiClient_t *apiClient, char * sListName )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_create();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/module/list/listpresentation/{sListName}")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/module/list/listpresentation/{sListName}");
+
+
+    // Path Params
+    long sizeOfPathParams_sListName = strlen(sListName)+3 + strlen("{ sListName }");
+    if(sListName == NULL) {
+        goto end;
+    }
+    char* localVarToReplace_sListName = malloc(sizeOfPathParams_sListName);
+    sprintf(localVarToReplace_sListName, "{%s}", "sListName");
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_sListName, sListName);
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "GET");
+
+    if (apiClient->response_code == 200) {
+        printf("%s\n","Successful response");
+    }
+    if (apiClient->response_code == 404) {
+        printf("%s\n","The element you are trying to work on does not exist");
+    }
+    //nonprimitive not container
+    cJSON *ModuleListAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    list_get_listpresentation_v1_response_t *elementToReturn = list_get_listpresentation_v1_response_parseFromJSON(ModuleListAPIlocalVarJSON);
+    cJSON_Delete(ModuleListAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_free(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_sListName);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Save all Listpresentation for a specific list
 //
 // Users can create many Listpresentations for lists in the system. They can customize orber by, filters, numbers of rows, etc.
 //
 list_save_listpresentation_v1_response_t*
-ModuleListAPI_listListpresentationV1(apiClient_t *apiClient, char * sListName , list_save_listpresentation_v1_request_t * list_save_listpresentation_v1_request )
+ModuleListAPI_listSaveListpresentationV1(apiClient_t *apiClient, char * sListName , list_save_listpresentation_v1_request_t * list_save_listpresentation_v1_request )
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;

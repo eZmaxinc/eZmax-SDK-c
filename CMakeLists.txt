@@ -194,10 +194,11 @@ set(SRCS
     model/franchisereferalincome_request_compound_all_of.c
     model/global_customer_get_endpoint_v1_response.c
     model/header_accept_language.c
+    model/list_get_listpresentation_v1_response.c
+    model/list_get_listpresentation_v1_response_all_of.c
+    model/list_get_listpresentation_v1_response_m_payload.c
     model/list_save_listpresentation_v1_request.c
     model/list_save_listpresentation_v1_response.c
-    model/list_save_listpresentation_v1_response_all_of.c
-    model/list_save_listpresentation_v1_response_m_payload.c
     model/listpresentation_request.c
     model/multilingual_apikey_description.c
     model/phone_request.c
@@ -403,10 +404,11 @@ set(HDRS
     model/franchisereferalincome_request_compound_all_of.h
     model/global_customer_get_endpoint_v1_response.h
     model/header_accept_language.h
+    model/list_get_listpresentation_v1_response.h
+    model/list_get_listpresentation_v1_response_all_of.h
+    model/list_get_listpresentation_v1_response_m_payload.h
     model/list_save_listpresentation_v1_request.h
     model/list_save_listpresentation_v1_response.h
-    model/list_save_listpresentation_v1_response_all_of.h
-    model/list_save_listpresentation_v1_response_m_payload.h
     model/listpresentation_request.h
     model/multilingual_apikey_description.h
     model/phone_request.h

@@ -67,7 +67,8 @@ Category | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *GlobalCustomerAPI* | [**GlobalCustomerAPI_globalCustomerGetEndpointV1**](docs/GlobalCustomerAPI.md#GlobalCustomerAPI_globalCustomerGetEndpointV1) | **GET** /1/customer/{pksCustomerCode}/endpoint | Get customer endpoint
 *ModuleAuthenticateAPI* | [**ModuleAuthenticateAPI_authenticateAuthenticateV2**](docs/ModuleAuthenticateAPI.md#ModuleAuthenticateAPI_authenticateAuthenticateV2) | **POST** /2/module/authenticate/authenticate/{eSessionType} | Authenticate a user
-*ModuleListAPI* | [**ModuleListAPI_listListpresentationV1**](docs/ModuleListAPI.md#ModuleListAPI_listListpresentationV1) | **POST** /1/module/list/listpresentation/{sListName} | Save all Listpresentation for a specific list
+*ModuleListAPI* | [**ModuleListAPI_listGetListpresentationV1**](docs/ModuleListAPI.md#ModuleListAPI_listGetListpresentationV1) | **GET** /1/module/list/listpresentation/{sListName} | Get all Listpresentation for a specific list
+*ModuleListAPI* | [**ModuleListAPI_listSaveListpresentationV1**](docs/ModuleListAPI.md#ModuleListAPI_listSaveListpresentationV1) | **POST** /1/module/list/listpresentation/{sListName} | Save all Listpresentation for a specific list
 *ModuleSsprAPI* | [**ModuleSsprAPI_ssprResetPasswordRequestV1**](docs/ModuleSsprAPI.md#ModuleSsprAPI_ssprResetPasswordRequestV1) | **POST** /1/module/sspr/resetPasswordRequest | Reset Password Request
 *ModuleSsprAPI* | [**ModuleSsprAPI_ssprResetPasswordV1**](docs/ModuleSsprAPI.md#ModuleSsprAPI_ssprResetPasswordV1) | **POST** /1/module/sspr/resetPassword | Reset Password
 *ModuleSsprAPI* | [**ModuleSsprAPI_ssprSendUsernamesV1**](docs/ModuleSsprAPI.md#ModuleSsprAPI_ssprSendUsernamesV1) | **POST** /1/module/sspr/sendUsernames | Send username(s)
@@ -263,10 +264,11 @@ Category | Method | HTTP request | Description
  - [franchisereferalincome_request_compound_all_of_t](docs/franchisereferalincome_request_compound_all_of.md)
  - [global_customer_get_endpoint_v1_response_t](docs/global_customer_get_endpoint_v1_response.md)
  - [header_accept_language_t](docs/header_accept_language.md)
+ - [list_get_listpresentation_v1_response_t](docs/list_get_listpresentation_v1_response.md)
+ - [list_get_listpresentation_v1_response_all_of_t](docs/list_get_listpresentation_v1_response_all_of.md)
+ - [list_get_listpresentation_v1_response_m_payload_t](docs/list_get_listpresentation_v1_response_m_payload.md)
  - [list_save_listpresentation_v1_request_t](docs/list_save_listpresentation_v1_request.md)
  - [list_save_listpresentation_v1_response_t](docs/list_save_listpresentation_v1_response.md)
- - [list_save_listpresentation_v1_response_all_of_t](docs/list_save_listpresentation_v1_response_all_of.md)
- - [list_save_listpresentation_v1_response_m_payload_t](docs/list_save_listpresentation_v1_response_m_payload.md)
  - [listpresentation_request_t](docs/listpresentation_request.md)
  - [multilingual_apikey_description_t](docs/multilingual_apikey_description.md)
  - [phone_request_t](docs/phone_request.md)
