@@ -25,6 +25,7 @@ typedef struct listpresentation_request_t {
     list_t *a_s_column_name; //primitive container
     int i_listpresentation_row_max; //numeric
     int i_listpresentation_row_offset; //numeric
+    int b_listpresentation_default; //boolean
 
 } listpresentation_request_t;
 
@@ -34,7 +35,8 @@ listpresentation_request_t *listpresentation_request_create(
     char *s_listpresentation_orderby,
     list_t *a_s_column_name,
     int i_listpresentation_row_max,
-    int i_listpresentation_row_offset
+    int i_listpresentation_row_offset,
+    int b_listpresentation_default
 );
 
 void listpresentation_request_free(listpresentation_request_t *listpresentation_request);

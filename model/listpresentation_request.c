@@ -11,7 +11,8 @@ listpresentation_request_t *listpresentation_request_create(
     char *s_listpresentation_orderby,
     list_t *a_s_column_name,
     int i_listpresentation_row_max,
-    int i_listpresentation_row_offset
+    int i_listpresentation_row_offset,
+    int b_listpresentation_default
     ) {
     listpresentation_request_t *listpresentation_request_local_var = malloc(sizeof(listpresentation_request_t));
     if (!listpresentation_request_local_var) {
@@ -23,6 +24,7 @@ listpresentation_request_t *listpresentation_request_create(
     listpresentation_request_local_var->a_s_column_name = a_s_column_name;
     listpresentation_request_local_var->i_listpresentation_row_max = i_listpresentation_row_max;
     listpresentation_request_local_var->i_listpresentation_row_offset = i_listpresentation_row_offset;
+    listpresentation_request_local_var->b_listpresentation_default = b_listpresentation_default;
 
     return listpresentation_request_local_var;
 }
@@ -126,6 +128,16 @@ cJSON *listpresentation_request_convertToJSON(listpresentation_request_t *listpr
     goto fail; //Numeric
     }
 
+
+    // listpresentation_request->b_listpresentation_default
+    if (!listpresentation_request->b_listpresentation_default) {
+        goto fail;
+    }
+    
+    if(cJSON_AddBoolToObject(item, "bListpresentationDefault", listpresentation_request->b_listpresentation_default) == NULL) {
+    goto fail; //Bool
+    }
+
     return item;
 fail:
     if (item) {
@@ -221,6 +233,18 @@ listpresentation_request_t *listpresentation_request_parseFromJSON(cJSON *listpr
     goto end; //Numeric
     }
 
+    // listpresentation_request->b_listpresentation_default
+    cJSON *b_listpresentation_default = cJSON_GetObjectItemCaseSensitive(listpresentation_requestJSON, "bListpresentationDefault");
+    if (!b_listpresentation_default) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(b_listpresentation_default))
+    {
+    goto end; //Bool
+    }
+
 
     listpresentation_request_local_var = listpresentation_request_create (
         strdup(s_listpresentation_description->valuestring),
@@ -228,7 +252,8 @@ listpresentation_request_t *listpresentation_request_parseFromJSON(cJSON *listpr
         strdup(s_listpresentation_orderby->valuestring),
         a_s_column_nameList,
         i_listpresentation_row_max->valuedouble,
-        i_listpresentation_row_offset->valuedouble
+        i_listpresentation_row_offset->valuedouble,
+        b_listpresentation_default->valueint
         );
 
     return listpresentation_request_local_var;
