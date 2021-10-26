@@ -71,6 +71,8 @@ docs/common_get_autocomplete_v1_response_all_of.md
 docs/common_get_list_v1_response_m_payload.md
 docs/common_response.md
 docs/common_response_error.md
+docs/common_response_error_s_temporary_file_url.md
+docs/common_response_error_s_temporary_file_url_all_of.md
 docs/common_response_filter.md
 docs/common_response_get_list.md
 docs/common_response_obj_debug.md
@@ -285,6 +287,10 @@ model/common_response.c
 model/common_response.h
 model/common_response_error.c
 model/common_response_error.h
+model/common_response_error_s_temporary_file_url.c
+model/common_response_error_s_temporary_file_url.h
+model/common_response_error_s_temporary_file_url_all_of.c
+model/common_response_error_s_temporary_file_url_all_of.h
 model/common_response_filter.c
 model/common_response_filter.h
 model/common_response_get_list.c
@@ -638,6 +644,8 @@ unit-test/test_common_get_autocomplete_v1_response_all_of.c
 unit-test/test_common_get_list_v1_response_m_payload.c
 unit-test/test_common_response.c
 unit-test/test_common_response_error.c
+unit-test/test_common_response_error_s_temporary_file_url.c
+unit-test/test_common_response_error_s_temporary_file_url_all_of.c
 unit-test/test_common_response_filter.c
 unit-test/test_common_response_get_list.c
 unit-test/test_common_response_obj_debug.c

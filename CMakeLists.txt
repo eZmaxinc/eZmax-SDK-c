@@ -67,6 +67,8 @@ set(SRCS
     model/common_get_list_v1_response_m_payload.c
     model/common_response.c
     model/common_response_error.c
+    model/common_response_error_s_temporary_file_url.c
+    model/common_response_error_s_temporary_file_url_all_of.c
     model/common_response_filter.c
     model/common_response_get_list.c
     model/common_response_obj_debug.c
@@ -277,6 +279,8 @@ set(HDRS
     model/common_get_list_v1_response_m_payload.h
     model/common_response.h
     model/common_response_error.h
+    model/common_response_error_s_temporary_file_url.h
+    model/common_response_error_s_temporary_file_url_all_of.h
     model/common_response_filter.h
     model/common_response_get_list.h
     model/common_response_obj_debug.h

@@ -6,6 +6,7 @@
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
+#include "../model/common_response_error_s_temporary_file_url.h"
 #include "../model/ezsigndocument_apply_ezsigntemplate_v1_request.h"
 #include "../model/ezsigndocument_apply_ezsigntemplate_v1_response.h"
 #include "../model/ezsigndocument_apply_ezsigntemplate_v2_request.h"
