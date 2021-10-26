@@ -18,7 +18,7 @@ typedef struct ezsigndocument_request_t ezsigndocument_request_t;
 
 // Enum EEZSIGNDOCUMENTSOURCE for ezsigndocument_request
 
-typedef enum  { ezmax_api_definition_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_NULL = 0, ezmax_api_definition_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_Base64 } ezmax_api_definition_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_e;
+typedef enum  { ezmax_api_definition_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_NULL = 0, ezmax_api_definition_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_Base64, ezmax_api_definition_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_Url } ezmax_api_definition_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_e;
 
 char* ezsigndocument_request_e_ezsigndocument_source_ToString(ezmax_api_definition_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_e e_ezsigndocument_source);
 
@@ -39,6 +39,8 @@ typedef struct ezsigndocument_request_t {
     ezmax_api_definition_ezsigndocument_request_EEZSIGNDOCUMENTFORMAT_e e_ezsigndocument_format; //enum
     char *s_ezsigndocument_base64; // string
     char *s_ezsigndocument_base64; //ByteArray
+    char *s_ezsigndocument_url; // string
+    int b_ezsigndocument_forcerepair; //boolean
     char *s_ezsigndocument_password; // string
     int fki_ezsignfolder_id; //numeric
     char *dt_ezsigndocument_duedate; // string
@@ -52,6 +54,8 @@ ezsigndocument_request_t *ezsigndocument_request_create(
     ezmax_api_definition_ezsigndocument_request_EEZSIGNDOCUMENTFORMAT_e e_ezsigndocument_format,
     char *s_ezsigndocument_base64,
     char *s_ezsigndocument_base64,
+    char *s_ezsigndocument_url,
+    int b_ezsigndocument_forcerepair,
     char *s_ezsigndocument_password,
     int fki_ezsignfolder_id,
     char *dt_ezsigndocument_duedate,

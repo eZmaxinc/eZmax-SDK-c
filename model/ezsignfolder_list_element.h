@@ -16,7 +16,16 @@
 typedef struct ezsignfolder_list_element_t ezsignfolder_list_element_t;
 
 #include "field_e_ezsignfolder_step.h"
+#include "field_e_ezsignfoldertype_privacylevel.h"
 #include "one_ofstringobject.h"
+
+// Enum  for ezsignfolder_list_element
+
+typedef enum  { ezmax_api_definition_ezsignfolder_list_element__NULL = 0, ezmax_api_definition_ezsignfolder_list_element__User, ezmax_api_definition_ezsignfolder_list_element__Usergroup } ezmax_api_definition_ezsignfolder_list_element__e;
+
+char* ezsignfolder_list_element_e_ezsignfoldertype_privacylevel_ToString(ezmax_api_definition_ezsignfolder_list_element__e e_ezsignfoldertype_privacylevel);
+
+ezmax_api_definition_ezsignfolder_list_element__e ezsignfolder_list_element_e_ezsignfoldertype_privacylevel_FromString(char* e_ezsignfoldertype_privacylevel);
 
 // Enum  for ezsignfolder_list_element
 

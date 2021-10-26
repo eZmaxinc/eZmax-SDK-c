@@ -23,7 +23,7 @@ listpresentation_request_t* instantiate_listpresentation_request(int include_opt
   if (include_optional) {
     listpresentation_request = listpresentation_request_create(
       "0",
-      "bField1 eq true and iField2 gte 0 and iField2 lte 1000 and sField3 eq 'Other' and eField4 eq 'Paid' and sField5 like '%needle%' and iField6 in '1,2,3'",
+      "bField1 eq true and iField2 gte 0 and iField2 lte 1000 and sField3 eq 'Other' and eField4 eq 'Paid' and sField5 like '%needle%' and iField6 in '1,2,3' and dtField7 rg '=m,=3mm'",
       "0",
       list_create(),
       100,
@@ -33,7 +33,7 @@ listpresentation_request_t* instantiate_listpresentation_request(int include_opt
   } else {
     listpresentation_request = listpresentation_request_create(
       "0",
-      "bField1 eq true and iField2 gte 0 and iField2 lte 1000 and sField3 eq 'Other' and eField4 eq 'Paid' and sField5 like '%needle%' and iField6 in '1,2,3'",
+      "bField1 eq true and iField2 gte 0 and iField2 lte 1000 and sField3 eq 'Other' and eField4 eq 'Paid' and sField5 like '%needle%' and iField6 in '1,2,3' and dtField7 rg '=m,=3mm'",
       "0",
       list_create(),
       100,

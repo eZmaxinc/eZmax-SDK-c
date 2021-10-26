@@ -4,6 +4,23 @@
 #include "ezsignfolder_list_element.h"
 
 
+char* e_ezsignfoldertype_privacylevelezsignfolder_list_element_ToString(ezmax_api_definition_ezsignfolder_list_element__e e_ezsignfoldertype_privacylevel) {
+    char* e_ezsignfoldertype_privacylevelArray[] =  { "NULL", "User", "Usergroup" };
+	return e_ezsignfoldertype_privacylevelArray[e_ezsignfoldertype_privacylevel];
+}
+
+ezmax_api_definition_ezsignfolder_list_element__e e_ezsignfoldertype_privacylevelezsignfolder_list_element_FromString(char* e_ezsignfoldertype_privacylevel){
+    int stringToReturn = 0;
+    char *e_ezsignfoldertype_privacylevelArray[] =  { "NULL", "User", "Usergroup" };
+    size_t sizeofArray = sizeof(e_ezsignfoldertype_privacylevelArray) / sizeof(e_ezsignfoldertype_privacylevelArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(e_ezsignfoldertype_privacylevel, e_ezsignfoldertype_privacylevelArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
 char* e_ezsignfolder_stepezsignfolder_list_element_ToString(ezmax_api_definition_ezsignfolder_list_element__e e_ezsignfolder_step) {
     char* e_ezsignfolder_stepArray[] =  { "NULL", "Unsent", "Sent", "PartiallySigned", "Expired", "Completed", "Archived" };
 	return e_ezsignfolder_stepArray[e_ezsignfolder_step];
@@ -41,6 +58,7 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_create(
     }
     ezsignfolder_list_element_local_var->pki_ezsignfolder_id = pki_ezsignfolder_id;
     ezsignfolder_list_element_local_var->fki_ezsignfoldertype_id = fki_ezsignfoldertype_id;
+    ezsignfolder_list_element_local_var->e_ezsignfoldertype_privacylevel = e_ezsignfoldertype_privacylevel;
     ezsignfolder_list_element_local_var->s_ezsignfoldertype_name_x = s_ezsignfoldertype_name_x;
     ezsignfolder_list_element_local_var->s_ezsignfolder_description = s_ezsignfolder_description;
     ezsignfolder_list_element_local_var->e_ezsignfolder_step = e_ezsignfolder_step;
@@ -105,6 +123,10 @@ cJSON *ezsignfolder_list_element_convertToJSON(ezsignfolder_list_element_t *ezsi
     if(cJSON_AddNumberToObject(item, "fkiEzsignfoldertypeID", ezsignfolder_list_element->fki_ezsignfoldertype_id) == NULL) {
     goto fail; //Numeric
     }
+
+
+    // ezsignfolder_list_element->e_ezsignfoldertype_privacylevel
+    
 
 
     // ezsignfolder_list_element->s_ezsignfoldertype_name_x
@@ -245,6 +267,13 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_parseFromJSON(cJSON *ezsi
     {
     goto end; //Numeric
     }
+
+    // ezsignfolder_list_element->e_ezsignfoldertype_privacylevel
+    cJSON *e_ezsignfoldertype_privacylevel = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "eEzsignfoldertypePrivacylevel");
+    if (!e_ezsignfoldertype_privacylevel) {
+        goto end;
+    }
+
 
     // ezsignfolder_list_element->s_ezsignfoldertype_name_x
     cJSON *s_ezsignfoldertype_name_x = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "sEzsignfoldertypeNameX");

@@ -26,6 +26,7 @@ ezsignfolder_list_element_t* instantiate_ezsignfolder_list_element(int include_o
     ezsignfolder_list_element = ezsignfolder_list_element_create(
       33,
       5,
+      ezmax_api_definition_ezsignfolder_list_element__User,
       "Default",
       "Test eZsign Folder",
       ezmax_api_definition_ezsignfolder_list_element__"Completed",
@@ -41,6 +42,7 @@ ezsignfolder_list_element_t* instantiate_ezsignfolder_list_element(int include_o
     ezsignfolder_list_element = ezsignfolder_list_element_create(
       33,
       5,
+      ezmax_api_definition_ezsignfolder_list_element__User,
       "Default",
       "Test eZsign Folder",
       ezmax_api_definition_ezsignfolder_list_element__"Completed",
