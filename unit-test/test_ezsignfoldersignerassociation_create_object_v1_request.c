@@ -24,13 +24,14 @@ ezsignfoldersignerassociation_create_object_v1_request_t* instantiate_ezsignfold
   ezsignfoldersignerassociation_create_object_v1_request_t* ezsignfoldersignerassociation_create_object_v1_request = NULL;
   if (include_optional) {
     ezsignfoldersignerassociation_create_object_v1_request = ezsignfoldersignerassociation_create_object_v1_request_create(
-      {"fkiUserID":48,"fkiEzsignfolderID":85},
+       // false, not to have infinite recursion
+      instantiate_ezsignfoldersignerassociation_request(0),
        // false, not to have infinite recursion
       instantiate_ezsignfoldersignerassociation_request_compound(0)
     );
   } else {
     ezsignfoldersignerassociation_create_object_v1_request = ezsignfoldersignerassociation_create_object_v1_request_create(
-      {"fkiUserID":48,"fkiEzsignfolderID":85},
+      NULL,
       NULL
     );
   }

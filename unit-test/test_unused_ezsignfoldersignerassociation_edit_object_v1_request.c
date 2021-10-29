@@ -23,11 +23,12 @@ unused_ezsignfoldersignerassociation_edit_object_v1_request_t* instantiate_unuse
   unused_ezsignfoldersignerassociation_edit_object_v1_request_t* unused_ezsignfoldersignerassociation_edit_object_v1_request = NULL;
   if (include_optional) {
     unused_ezsignfoldersignerassociation_edit_object_v1_request = unused_ezsignfoldersignerassociation_edit_object_v1_request_create(
-      {"fkiUserID":48,"fkiEzsignfolderID":85}
+       // false, not to have infinite recursion
+      instantiate_ezsignfoldersignerassociation_request(0)
     );
   } else {
     unused_ezsignfoldersignerassociation_edit_object_v1_request = unused_ezsignfoldersignerassociation_edit_object_v1_request_create(
-      {"fkiUserID":48,"fkiEzsignfolderID":85}
+      NULL
     );
   }
 

@@ -25,13 +25,15 @@ ezsignfoldersignerassociation_request_compound_t* instantiate_ezsignfoldersigner
     ezsignfoldersignerassociation_request_compound = ezsignfoldersignerassociation_request_compound_create(
        // false, not to have infinite recursion
       instantiate_ezsignsigner_request_compound(0),
-      1,
+      70,
+      33,
       1
     );
   } else {
     ezsignfoldersignerassociation_request_compound = ezsignfoldersignerassociation_request_compound_create(
       NULL,
-      1,
+      70,
+      33,
       1
     );
   }

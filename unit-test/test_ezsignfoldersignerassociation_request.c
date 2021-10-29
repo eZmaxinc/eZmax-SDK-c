@@ -22,12 +22,14 @@ ezsignfoldersignerassociation_request_t* instantiate_ezsignfoldersignerassociati
   ezsignfoldersignerassociation_request_t* ezsignfoldersignerassociation_request = NULL;
   if (include_optional) {
     ezsignfoldersignerassociation_request = ezsignfoldersignerassociation_request_create(
-      1,
+      70,
+      33,
       1
     );
   } else {
     ezsignfoldersignerassociation_request = ezsignfoldersignerassociation_request_create(
-      1,
+      70,
+      33,
       1
     );
   }

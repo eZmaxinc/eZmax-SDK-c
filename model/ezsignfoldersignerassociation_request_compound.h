@@ -25,13 +25,15 @@ typedef struct ezsignfoldersignerassociation_request_compound_t {
     struct ezsignsigner_request_compound_t *obj_ezsignsigner; //model
     int fki_user_id; //numeric
     int fki_ezsignfolder_id; //numeric
+    int b_ezsignfoldersignerassociation_receivecopy; //boolean
 
 } ezsignfoldersignerassociation_request_compound_t;
 
 ezsignfoldersignerassociation_request_compound_t *ezsignfoldersignerassociation_request_compound_create(
     ezsignsigner_request_compound_t *obj_ezsignsigner,
     int fki_user_id,
-    int fki_ezsignfolder_id
+    int fki_ezsignfolder_id,
+    int b_ezsignfoldersignerassociation_receivecopy
 );
 
 void ezsignfoldersignerassociation_request_compound_free(ezsignfoldersignerassociation_request_compound_t *ezsignfoldersignerassociation_request_compound);
