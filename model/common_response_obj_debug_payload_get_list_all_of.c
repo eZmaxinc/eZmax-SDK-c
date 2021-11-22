@@ -93,13 +93,15 @@ common_response_obj_debug_payload_get_list_all_of_t *common_response_obj_debug_p
 
     common_response_obj_debug_payload_get_list_all_of_t *common_response_obj_debug_payload_get_list_all_of_local_var = NULL;
 
+    // define the local variable for common_response_obj_debug_payload_get_list_all_of->a_filter
+    common_response_filter_t *a_filter_local_nonprim = NULL;
+
     // common_response_obj_debug_payload_get_list_all_of->a_filter
     cJSON *a_filter = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payload_get_list_all_ofJSON, "a_Filter");
     if (!a_filter) {
         goto end;
     }
 
-    common_response_filter_t *a_filter_local_nonprim = NULL;
     
     a_filter_local_nonprim = common_response_filter_parseFromJSON(a_filter); //nonprimitive
 

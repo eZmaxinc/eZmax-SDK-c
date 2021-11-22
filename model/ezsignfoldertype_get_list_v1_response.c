@@ -97,26 +97,32 @@ ezsignfoldertype_get_list_v1_response_t *ezsignfoldertype_get_list_v1_response_p
 
     ezsignfoldertype_get_list_v1_response_t *ezsignfoldertype_get_list_v1_response_local_var = NULL;
 
+    // define the local variable for ezsignfoldertype_get_list_v1_response->m_payload
+    ezsignfoldertype_get_list_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
+
+    // define the local variable for ezsignfoldertype_get_list_v1_response->obj_debug_payload
+    common_response_obj_debug_payload_get_list_t *obj_debug_payload_local_nonprim = NULL;
+
+    // define the local variable for ezsignfoldertype_get_list_v1_response->obj_debug
+    common_response_obj_debug_t *obj_debug_local_nonprim = NULL;
+
     // ezsignfoldertype_get_list_v1_response->m_payload
     cJSON *m_payload = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_get_list_v1_responseJSON, "mPayload");
     if (!m_payload) {
         goto end;
     }
 
-    ezsignfoldertype_get_list_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
     
     m_payload_local_nonprim = ezsignfoldertype_get_list_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
     // ezsignfoldertype_get_list_v1_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_get_list_v1_responseJSON, "objDebugPayload");
-    common_response_obj_debug_payload_get_list_t *obj_debug_payload_local_nonprim = NULL;
     if (obj_debug_payload) { 
     obj_debug_payload_local_nonprim = common_response_obj_debug_payload_get_list_parseFromJSON(obj_debug_payload); //nonprimitive
     }
 
     // ezsignfoldertype_get_list_v1_response->obj_debug
     cJSON *obj_debug = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_get_list_v1_responseJSON, "objDebug");
-    common_response_obj_debug_t *obj_debug_local_nonprim = NULL;
     if (obj_debug) { 
     obj_debug_local_nonprim = common_response_obj_debug_parseFromJSON(obj_debug); //nonprimitive
     }

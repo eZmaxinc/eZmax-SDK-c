@@ -59,13 +59,15 @@ apikey_create_object_v1_response_all_of_t *apikey_create_object_v1_response_all_
 
     apikey_create_object_v1_response_all_of_t *apikey_create_object_v1_response_all_of_local_var = NULL;
 
+    // define the local variable for apikey_create_object_v1_response_all_of->m_payload
+    apikey_create_object_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
+
     // apikey_create_object_v1_response_all_of->m_payload
     cJSON *m_payload = cJSON_GetObjectItemCaseSensitive(apikey_create_object_v1_response_all_ofJSON, "mPayload");
     if (!m_payload) {
         goto end;
     }
 
-    apikey_create_object_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
     
     m_payload_local_nonprim = apikey_create_object_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 

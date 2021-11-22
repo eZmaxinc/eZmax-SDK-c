@@ -76,16 +76,20 @@ apikey_create_object_v1_request_t *apikey_create_object_v1_request_parseFromJSON
 
     apikey_create_object_v1_request_t *apikey_create_object_v1_request_local_var = NULL;
 
+    // define the local variable for apikey_create_object_v1_request->obj_apikey
+    apikey_request_t *obj_apikey_local_nonprim = NULL;
+
+    // define the local variable for apikey_create_object_v1_request->obj_apikey_compound
+    apikey_request_compound_t *obj_apikey_compound_local_nonprim = NULL;
+
     // apikey_create_object_v1_request->obj_apikey
     cJSON *obj_apikey = cJSON_GetObjectItemCaseSensitive(apikey_create_object_v1_requestJSON, "objApikey");
-    apikey_request_t *obj_apikey_local_nonprim = NULL;
     if (obj_apikey) { 
     obj_apikey_local_nonprim = apikey_request_parseFromJSON(obj_apikey); //nonprimitive
     }
 
     // apikey_create_object_v1_request->obj_apikey_compound
     cJSON *obj_apikey_compound = cJSON_GetObjectItemCaseSensitive(apikey_create_object_v1_requestJSON, "objApikeyCompound");
-    apikey_request_compound_t *obj_apikey_compound_local_nonprim = NULL;
     if (obj_apikey_compound) { 
     obj_apikey_compound_local_nonprim = apikey_request_compound_parseFromJSON(obj_apikey_compound); //nonprimitive
     }

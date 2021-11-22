@@ -59,13 +59,15 @@ ezsignfolder_get_forms_data_v1_response_all_of_t *ezsignfolder_get_forms_data_v1
 
     ezsignfolder_get_forms_data_v1_response_all_of_t *ezsignfolder_get_forms_data_v1_response_all_of_local_var = NULL;
 
+    // define the local variable for ezsignfolder_get_forms_data_v1_response_all_of->m_payload
+    ezsignfolder_get_forms_data_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
+
     // ezsignfolder_get_forms_data_v1_response_all_of->m_payload
     cJSON *m_payload = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_forms_data_v1_response_all_ofJSON, "mPayload");
     if (!m_payload) {
         goto end;
     }
 
-    ezsignfolder_get_forms_data_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
     
     m_payload_local_nonprim = ezsignfolder_get_forms_data_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 

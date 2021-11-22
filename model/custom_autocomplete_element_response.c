@@ -91,6 +91,9 @@ custom_autocomplete_element_response_t *custom_autocomplete_element_response_par
 
     custom_autocomplete_element_response_t *custom_autocomplete_element_response_local_var = NULL;
 
+    // define the local variable for custom_autocomplete_element_response->m_value
+    one_ofintegerstring_t *m_value_local_nonprim = NULL;
+
     // custom_autocomplete_element_response->s_category
     cJSON *s_category = cJSON_GetObjectItemCaseSensitive(custom_autocomplete_element_responseJSON, "sCategory");
     if (!s_category) {
@@ -121,7 +124,6 @@ custom_autocomplete_element_response_t *custom_autocomplete_element_response_par
         goto end;
     }
 
-    one_ofintegerstring_t *m_value_local_nonprim = NULL;
     
     m_value_local_nonprim = one_ofintegerstring_parseFromJSON(m_value); //nonprimitive
 

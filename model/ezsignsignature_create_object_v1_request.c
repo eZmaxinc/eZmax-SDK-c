@@ -76,16 +76,20 @@ ezsignsignature_create_object_v1_request_t *ezsignsignature_create_object_v1_req
 
     ezsignsignature_create_object_v1_request_t *ezsignsignature_create_object_v1_request_local_var = NULL;
 
+    // define the local variable for ezsignsignature_create_object_v1_request->obj_ezsignsignature
+    ezsignsignature_request_t *obj_ezsignsignature_local_nonprim = NULL;
+
+    // define the local variable for ezsignsignature_create_object_v1_request->obj_ezsignsignature_compound
+    ezsignsignature_request_compound_t *obj_ezsignsignature_compound_local_nonprim = NULL;
+
     // ezsignsignature_create_object_v1_request->obj_ezsignsignature
     cJSON *obj_ezsignsignature = cJSON_GetObjectItemCaseSensitive(ezsignsignature_create_object_v1_requestJSON, "objEzsignsignature");
-    ezsignsignature_request_t *obj_ezsignsignature_local_nonprim = NULL;
     if (obj_ezsignsignature) { 
     obj_ezsignsignature_local_nonprim = ezsignsignature_request_parseFromJSON(obj_ezsignsignature); //nonprimitive
     }
 
     // ezsignsignature_create_object_v1_request->obj_ezsignsignature_compound
     cJSON *obj_ezsignsignature_compound = cJSON_GetObjectItemCaseSensitive(ezsignsignature_create_object_v1_requestJSON, "objEzsignsignatureCompound");
-    ezsignsignature_request_compound_t *obj_ezsignsignature_compound_local_nonprim = NULL;
     if (obj_ezsignsignature_compound) { 
     obj_ezsignsignature_compound_local_nonprim = ezsignsignature_request_compound_parseFromJSON(obj_ezsignsignature_compound); //nonprimitive
     }

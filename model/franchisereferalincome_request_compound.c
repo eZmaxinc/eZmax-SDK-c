@@ -250,13 +250,15 @@ franchisereferalincome_request_compound_t *franchisereferalincome_request_compou
 
     franchisereferalincome_request_compound_t *franchisereferalincome_request_compound_local_var = NULL;
 
+    // define the local variable for franchisereferalincome_request_compound->obj_address
+    address_request_t *obj_address_local_nonprim = NULL;
+
     // franchisereferalincome_request_compound->obj_address
     cJSON *obj_address = cJSON_GetObjectItemCaseSensitive(franchisereferalincome_request_compoundJSON, "objAddress");
     if (!obj_address) {
         goto end;
     }
 
-    address_request_t *obj_address_local_nonprim = NULL;
     
     obj_address_local_nonprim = address_request_parseFromJSON(obj_address); //nonprimitive
 

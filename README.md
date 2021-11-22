@@ -78,6 +78,7 @@ Category | Method | HTTP request | Description
 *ModuleUserAPI* | [**ModuleUserAPI_userCreateEzsignuserV1**](docs/ModuleUserAPI.md#ModuleUserAPI_userCreateEzsignuserV1) | **POST** /1/module/user/createezsignuser | Create a new User of type Ezsignuser
 *ObjectActivesessionAPI* | [**ObjectActivesessionAPI_activesessionGetCurrentV1**](docs/ObjectActivesessionAPI.md#ObjectActivesessionAPI_activesessionGetCurrentV1) | **GET** /1/object/activesession/getCurrent | Get Current Activesession
 *ObjectApikeyAPI* | [**ObjectApikeyAPI_apikeyCreateObjectV1**](docs/ObjectApikeyAPI.md#ObjectApikeyAPI_apikeyCreateObjectV1) | **POST** /1/object/apikey | Create a new Apikey
+*ObjectEzsignbulksendAPI* | [**ObjectEzsignbulksendAPI_ezsignbulksendGetListV1**](docs/ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendGetListV1) | **GET** /1/object/ezsignbulksend/getList | Retrieve Ezsignbulksend list
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/applyezsigntemplate | Apply an Ezsign Template to the Ezsigndocument.
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV2**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV2) | **POST** /2/object/ezsigndocument/{pkiEzsigndocumentID}/applyEzsigntemplate | Apply an Ezsign Template to the Ezsigndocument.
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV1) | **POST** /1/object/ezsigndocument | Create a new Ezsigndocument
@@ -160,6 +161,11 @@ Category | Method | HTTP request | Description
  - [custom_word_position_occurence_response_t](docs/custom_word_position_occurence_response.md)
  - [custom_word_position_word_response_t](docs/custom_word_position_word_response.md)
  - [email_request_t](docs/email_request.md)
+ - [ezsignbulksend_get_list_v1_response_t](docs/ezsignbulksend_get_list_v1_response.md)
+ - [ezsignbulksend_get_list_v1_response_all_of_t](docs/ezsignbulksend_get_list_v1_response_all_of.md)
+ - [ezsignbulksend_get_list_v1_response_m_payload_t](docs/ezsignbulksend_get_list_v1_response_m_payload.md)
+ - [ezsignbulksend_get_list_v1_response_m_payload_all_of_t](docs/ezsignbulksend_get_list_v1_response_m_payload_all_of.md)
+ - [ezsignbulksend_list_element_t](docs/ezsignbulksend_list_element.md)
  - [ezsigndocument_apply_ezsigntemplate_v1_request_t](docs/ezsigndocument_apply_ezsigntemplate_v1_request.md)
  - [ezsigndocument_apply_ezsigntemplate_v1_response_t](docs/ezsigndocument_apply_ezsigntemplate_v1_response.md)
  - [ezsigndocument_apply_ezsigntemplate_v2_request_t](docs/ezsigndocument_apply_ezsigntemplate_v2_request.md)

@@ -90,13 +90,15 @@ common_webhook_t *common_webhook_parseFromJSON(cJSON *common_webhookJSON){
 
     common_webhook_t *common_webhook_local_var = NULL;
 
+    // define the local variable for common_webhook->obj_webhook
+    webhook_response_t *obj_webhook_local_nonprim = NULL;
+
     // common_webhook->obj_webhook
     cJSON *obj_webhook = cJSON_GetObjectItemCaseSensitive(common_webhookJSON, "objWebhook");
     if (!obj_webhook) {
         goto end;
     }
 
-    webhook_response_t *obj_webhook_local_nonprim = NULL;
     
     obj_webhook_local_nonprim = webhook_response_parseFromJSON(obj_webhook); //nonprimitive
 

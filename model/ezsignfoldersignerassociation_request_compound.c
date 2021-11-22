@@ -89,9 +89,11 @@ ezsignfoldersignerassociation_request_compound_t *ezsignfoldersignerassociation_
 
     ezsignfoldersignerassociation_request_compound_t *ezsignfoldersignerassociation_request_compound_local_var = NULL;
 
+    // define the local variable for ezsignfoldersignerassociation_request_compound->obj_ezsignsigner
+    ezsignsigner_request_compound_t *obj_ezsignsigner_local_nonprim = NULL;
+
     // ezsignfoldersignerassociation_request_compound->obj_ezsignsigner
     cJSON *obj_ezsignsigner = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_request_compoundJSON, "objEzsignsigner");
-    ezsignsigner_request_compound_t *obj_ezsignsigner_local_nonprim = NULL;
     if (obj_ezsignsigner) { 
     obj_ezsignsigner_local_nonprim = ezsignsigner_request_compound_parseFromJSON(obj_ezsignsigner); //nonprimitive
     }

@@ -57,9 +57,11 @@ unused_ezsignfoldersignerassociation_edit_object_v1_request_t *unused_ezsignfold
 
     unused_ezsignfoldersignerassociation_edit_object_v1_request_t *unused_ezsignfoldersignerassociation_edit_object_v1_request_local_var = NULL;
 
+    // define the local variable for unused_ezsignfoldersignerassociation_edit_object_v1_request->obj_ezsignfoldersignerassociation
+    ezsignfoldersignerassociation_request_t *obj_ezsignfoldersignerassociation_local_nonprim = NULL;
+
     // unused_ezsignfoldersignerassociation_edit_object_v1_request->obj_ezsignfoldersignerassociation
     cJSON *obj_ezsignfoldersignerassociation = cJSON_GetObjectItemCaseSensitive(unused_ezsignfoldersignerassociation_edit_object_v1_requestJSON, "objEzsignfoldersignerassociation");
-    ezsignfoldersignerassociation_request_t *obj_ezsignfoldersignerassociation_local_nonprim = NULL;
     if (obj_ezsignfoldersignerassociation) { 
     obj_ezsignfoldersignerassociation_local_nonprim = ezsignfoldersignerassociation_request_parseFromJSON(obj_ezsignfoldersignerassociation); //nonprimitive
     }

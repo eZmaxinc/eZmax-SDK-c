@@ -76,16 +76,20 @@ franchisereferalincome_create_object_v1_request_t *franchisereferalincome_create
 
     franchisereferalincome_create_object_v1_request_t *franchisereferalincome_create_object_v1_request_local_var = NULL;
 
+    // define the local variable for franchisereferalincome_create_object_v1_request->obj_franchisereferalincome
+    franchisereferalincome_request_t *obj_franchisereferalincome_local_nonprim = NULL;
+
+    // define the local variable for franchisereferalincome_create_object_v1_request->obj_franchisereferalincome_compound
+    franchisereferalincome_request_compound_t *obj_franchisereferalincome_compound_local_nonprim = NULL;
+
     // franchisereferalincome_create_object_v1_request->obj_franchisereferalincome
     cJSON *obj_franchisereferalincome = cJSON_GetObjectItemCaseSensitive(franchisereferalincome_create_object_v1_requestJSON, "objFranchisereferalincome");
-    franchisereferalincome_request_t *obj_franchisereferalincome_local_nonprim = NULL;
     if (obj_franchisereferalincome) { 
     obj_franchisereferalincome_local_nonprim = franchisereferalincome_request_parseFromJSON(obj_franchisereferalincome); //nonprimitive
     }
 
     // franchisereferalincome_create_object_v1_request->obj_franchisereferalincome_compound
     cJSON *obj_franchisereferalincome_compound = cJSON_GetObjectItemCaseSensitive(franchisereferalincome_create_object_v1_requestJSON, "objFranchisereferalincomeCompound");
-    franchisereferalincome_request_compound_t *obj_franchisereferalincome_compound_local_nonprim = NULL;
     if (obj_franchisereferalincome_compound) { 
     obj_franchisereferalincome_compound_local_nonprim = franchisereferalincome_request_compound_parseFromJSON(obj_franchisereferalincome_compound); //nonprimitive
     }

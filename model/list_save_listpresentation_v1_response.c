@@ -76,16 +76,20 @@ list_save_listpresentation_v1_response_t *list_save_listpresentation_v1_response
 
     list_save_listpresentation_v1_response_t *list_save_listpresentation_v1_response_local_var = NULL;
 
+    // define the local variable for list_save_listpresentation_v1_response->obj_debug_payload
+    common_response_obj_debug_payload_t *obj_debug_payload_local_nonprim = NULL;
+
+    // define the local variable for list_save_listpresentation_v1_response->obj_debug
+    common_response_obj_debug_t *obj_debug_local_nonprim = NULL;
+
     // list_save_listpresentation_v1_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(list_save_listpresentation_v1_responseJSON, "objDebugPayload");
-    common_response_obj_debug_payload_t *obj_debug_payload_local_nonprim = NULL;
     if (obj_debug_payload) { 
     obj_debug_payload_local_nonprim = common_response_obj_debug_payload_parseFromJSON(obj_debug_payload); //nonprimitive
     }
 
     // list_save_listpresentation_v1_response->obj_debug
     cJSON *obj_debug = cJSON_GetObjectItemCaseSensitive(list_save_listpresentation_v1_responseJSON, "objDebug");
-    common_response_obj_debug_t *obj_debug_local_nonprim = NULL;
     if (obj_debug) { 
     obj_debug_local_nonprim = common_response_obj_debug_parseFromJSON(obj_debug); //nonprimitive
     }

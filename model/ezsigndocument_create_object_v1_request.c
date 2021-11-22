@@ -76,16 +76,20 @@ ezsigndocument_create_object_v1_request_t *ezsigndocument_create_object_v1_reque
 
     ezsigndocument_create_object_v1_request_t *ezsigndocument_create_object_v1_request_local_var = NULL;
 
+    // define the local variable for ezsigndocument_create_object_v1_request->obj_ezsigndocument
+    ezsigndocument_request_t *obj_ezsigndocument_local_nonprim = NULL;
+
+    // define the local variable for ezsigndocument_create_object_v1_request->obj_ezsigndocument_compound
+    ezsigndocument_request_compound_t *obj_ezsigndocument_compound_local_nonprim = NULL;
+
     // ezsigndocument_create_object_v1_request->obj_ezsigndocument
     cJSON *obj_ezsigndocument = cJSON_GetObjectItemCaseSensitive(ezsigndocument_create_object_v1_requestJSON, "objEzsigndocument");
-    ezsigndocument_request_t *obj_ezsigndocument_local_nonprim = NULL;
     if (obj_ezsigndocument) { 
     obj_ezsigndocument_local_nonprim = ezsigndocument_request_parseFromJSON(obj_ezsigndocument); //nonprimitive
     }
 
     // ezsigndocument_create_object_v1_request->obj_ezsigndocument_compound
     cJSON *obj_ezsigndocument_compound = cJSON_GetObjectItemCaseSensitive(ezsigndocument_create_object_v1_requestJSON, "objEzsigndocumentCompound");
-    ezsigndocument_request_compound_t *obj_ezsigndocument_compound_local_nonprim = NULL;
     if (obj_ezsigndocument_compound) { 
     obj_ezsigndocument_compound_local_nonprim = ezsigndocument_request_compound_parseFromJSON(obj_ezsigndocument_compound); //nonprimitive
     }

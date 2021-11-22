@@ -76,16 +76,20 @@ ezsignfolder_delete_object_v1_response_t *ezsignfolder_delete_object_v1_response
 
     ezsignfolder_delete_object_v1_response_t *ezsignfolder_delete_object_v1_response_local_var = NULL;
 
+    // define the local variable for ezsignfolder_delete_object_v1_response->obj_debug_payload
+    common_response_obj_debug_payload_t *obj_debug_payload_local_nonprim = NULL;
+
+    // define the local variable for ezsignfolder_delete_object_v1_response->obj_debug
+    common_response_obj_debug_t *obj_debug_local_nonprim = NULL;
+
     // ezsignfolder_delete_object_v1_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(ezsignfolder_delete_object_v1_responseJSON, "objDebugPayload");
-    common_response_obj_debug_payload_t *obj_debug_payload_local_nonprim = NULL;
     if (obj_debug_payload) { 
     obj_debug_payload_local_nonprim = common_response_obj_debug_payload_parseFromJSON(obj_debug_payload); //nonprimitive
     }
 
     // ezsignfolder_delete_object_v1_response->obj_debug
     cJSON *obj_debug = cJSON_GetObjectItemCaseSensitive(ezsignfolder_delete_object_v1_responseJSON, "objDebug");
-    common_response_obj_debug_t *obj_debug_local_nonprim = NULL;
     if (obj_debug) { 
     obj_debug_local_nonprim = common_response_obj_debug_parseFromJSON(obj_debug); //nonprimitive
     }

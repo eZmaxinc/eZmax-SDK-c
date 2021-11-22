@@ -203,6 +203,9 @@ ezsignfolder_response_compound_t *ezsignfolder_response_compound_parseFromJSON(c
 
     ezsignfolder_response_compound_t *ezsignfolder_response_compound_local_var = NULL;
 
+    // define the local variable for ezsignfolder_response_compound->obj_audit
+    common_audit_t *obj_audit_local_nonprim = NULL;
+
     // ezsignfolder_response_compound->fki_ezsignfoldertype_id
     cJSON *fki_ezsignfoldertype_id = cJSON_GetObjectItemCaseSensitive(ezsignfolder_response_compoundJSON, "fkiEzsignfoldertypeID");
     if (!fki_ezsignfoldertype_id) {
@@ -307,7 +310,6 @@ ezsignfolder_response_compound_t *ezsignfolder_response_compound_parseFromJSON(c
         goto end;
     }
 
-    common_audit_t *obj_audit_local_nonprim = NULL;
     
     obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
 

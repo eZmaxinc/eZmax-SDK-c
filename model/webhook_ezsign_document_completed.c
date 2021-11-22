@@ -111,13 +111,18 @@ webhook_ezsign_document_completed_t *webhook_ezsign_document_completed_parseFrom
 
     webhook_ezsign_document_completed_t *webhook_ezsign_document_completed_local_var = NULL;
 
+    // define the local variable for webhook_ezsign_document_completed->obj_ezsigndocument
+    ezsigndocument_response_t *obj_ezsigndocument_local_nonprim = NULL;
+
+    // define the local variable for webhook_ezsign_document_completed->obj_webhook
+    webhook_response_t *obj_webhook_local_nonprim = NULL;
+
     // webhook_ezsign_document_completed->obj_ezsigndocument
     cJSON *obj_ezsigndocument = cJSON_GetObjectItemCaseSensitive(webhook_ezsign_document_completedJSON, "objEzsigndocument");
     if (!obj_ezsigndocument) {
         goto end;
     }
 
-    ezsigndocument_response_t *obj_ezsigndocument_local_nonprim = NULL;
     
     obj_ezsigndocument_local_nonprim = ezsigndocument_response_parseFromJSON(obj_ezsigndocument); //nonprimitive
 
@@ -127,7 +132,6 @@ webhook_ezsign_document_completed_t *webhook_ezsign_document_completed_parseFrom
         goto end;
     }
 
-    webhook_response_t *obj_webhook_local_nonprim = NULL;
     
     obj_webhook_local_nonprim = webhook_response_parseFromJSON(obj_webhook); //nonprimitive
 

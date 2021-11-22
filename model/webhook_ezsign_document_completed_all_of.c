@@ -59,13 +59,15 @@ webhook_ezsign_document_completed_all_of_t *webhook_ezsign_document_completed_al
 
     webhook_ezsign_document_completed_all_of_t *webhook_ezsign_document_completed_all_of_local_var = NULL;
 
+    // define the local variable for webhook_ezsign_document_completed_all_of->obj_ezsigndocument
+    ezsigndocument_response_t *obj_ezsigndocument_local_nonprim = NULL;
+
     // webhook_ezsign_document_completed_all_of->obj_ezsigndocument
     cJSON *obj_ezsigndocument = cJSON_GetObjectItemCaseSensitive(webhook_ezsign_document_completed_all_ofJSON, "objEzsigndocument");
     if (!obj_ezsigndocument) {
         goto end;
     }
 
-    ezsigndocument_response_t *obj_ezsigndocument_local_nonprim = NULL;
     
     obj_ezsigndocument_local_nonprim = ezsigndocument_response_parseFromJSON(obj_ezsigndocument); //nonprimitive
 

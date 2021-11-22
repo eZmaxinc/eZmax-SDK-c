@@ -153,6 +153,9 @@ user_response_t *user_response_parseFromJSON(cJSON *user_responseJSON){
 
     user_response_t *user_response_local_var = NULL;
 
+    // define the local variable for user_response->obj_audit
+    common_audit_t *obj_audit_local_nonprim = NULL;
+
     // user_response->pki_user_id
     cJSON *pki_user_id = cJSON_GetObjectItemCaseSensitive(user_responseJSON, "pkiUserID");
     if (!pki_user_id) {
@@ -226,7 +229,6 @@ user_response_t *user_response_parseFromJSON(cJSON *user_responseJSON){
         goto end;
     }
 
-    common_audit_t *obj_audit_local_nonprim = NULL;
     
     obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
 

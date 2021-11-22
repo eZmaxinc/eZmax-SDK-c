@@ -59,13 +59,15 @@ user_create_ezsignuser_v1_response_all_of_t *user_create_ezsignuser_v1_response_
 
     user_create_ezsignuser_v1_response_all_of_t *user_create_ezsignuser_v1_response_all_of_local_var = NULL;
 
+    // define the local variable for user_create_ezsignuser_v1_response_all_of->m_payload
+    user_create_ezsignuser_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
+
     // user_create_ezsignuser_v1_response_all_of->m_payload
     cJSON *m_payload = cJSON_GetObjectItemCaseSensitive(user_create_ezsignuser_v1_response_all_ofJSON, "mPayload");
     if (!m_payload) {
         goto end;
     }
 
-    user_create_ezsignuser_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
     
     m_payload_local_nonprim = user_create_ezsignuser_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 

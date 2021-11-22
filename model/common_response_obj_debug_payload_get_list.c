@@ -145,6 +145,9 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
 
     common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_get_list_local_var = NULL;
 
+    // define the local variable for common_response_obj_debug_payload_get_list->a_filter
+    common_response_filter_t *a_filter_local_nonprim = NULL;
+
     // common_response_obj_debug_payload_get_list->i_version_min
     cJSON *i_version_min = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payload_get_listJSON, "iVersionMin");
     if (!i_version_min) {
@@ -204,7 +207,6 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
         goto end;
     }
 
-    common_response_filter_t *a_filter_local_nonprim = NULL;
     
     a_filter_local_nonprim = common_response_filter_parseFromJSON(a_filter); //nonprimitive
 

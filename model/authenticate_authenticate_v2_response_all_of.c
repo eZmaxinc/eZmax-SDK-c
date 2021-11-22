@@ -59,13 +59,15 @@ authenticate_authenticate_v2_response_all_of_t *authenticate_authenticate_v2_res
 
     authenticate_authenticate_v2_response_all_of_t *authenticate_authenticate_v2_response_all_of_local_var = NULL;
 
+    // define the local variable for authenticate_authenticate_v2_response_all_of->m_payload
+    authenticate_authenticate_v2_response_m_payload_t *m_payload_local_nonprim = NULL;
+
     // authenticate_authenticate_v2_response_all_of->m_payload
     cJSON *m_payload = cJSON_GetObjectItemCaseSensitive(authenticate_authenticate_v2_response_all_ofJSON, "mPayload");
     if (!m_payload) {
         goto end;
     }
 
-    authenticate_authenticate_v2_response_m_payload_t *m_payload_local_nonprim = NULL;
     
     m_payload_local_nonprim = authenticate_authenticate_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 

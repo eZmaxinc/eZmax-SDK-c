@@ -57,9 +57,11 @@ unused_ezsigndocument_edit_object_v1_request_t *unused_ezsigndocument_edit_objec
 
     unused_ezsigndocument_edit_object_v1_request_t *unused_ezsigndocument_edit_object_v1_request_local_var = NULL;
 
+    // define the local variable for unused_ezsigndocument_edit_object_v1_request->obj_ezsigndocument
+    ezsigndocument_request_t *obj_ezsigndocument_local_nonprim = NULL;
+
     // unused_ezsigndocument_edit_object_v1_request->obj_ezsigndocument
     cJSON *obj_ezsigndocument = cJSON_GetObjectItemCaseSensitive(unused_ezsigndocument_edit_object_v1_requestJSON, "objEzsigndocument");
-    ezsigndocument_request_t *obj_ezsigndocument_local_nonprim = NULL;
     if (obj_ezsigndocument) { 
     obj_ezsigndocument_local_nonprim = ezsigndocument_request_parseFromJSON(obj_ezsigndocument); //nonprimitive
     }

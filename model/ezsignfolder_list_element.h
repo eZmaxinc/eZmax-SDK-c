@@ -45,10 +45,10 @@ typedef struct ezsignfolder_list_element_t {
     char *dt_created_date; // string
     struct one_ofstringobject_t *dt_ezsignfolder_sentdate; //model
     struct one_ofstringobject_t *dt_due_date; //model
-    int i_total_document; //numeric
-    int i_total_document_edm; //numeric
-    int i_total_signature; //numeric
-    int i_total_signature_signed; //numeric
+    int i_ezsigndocument; //numeric
+    int i_ezsigndocument_edm; //numeric
+    int i_ezsignsignature; //numeric
+    int i_ezsignsignature_signed; //numeric
 
 } ezsignfolder_list_element_t;
 
@@ -60,10 +60,10 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_create(
     char *dt_created_date,
     one_ofstringobject_t *dt_ezsignfolder_sentdate,
     one_ofstringobject_t *dt_due_date,
-    int i_total_document,
-    int i_total_document_edm,
-    int i_total_signature,
-    int i_total_signature_signed
+    int i_ezsigndocument,
+    int i_ezsigndocument_edm,
+    int i_ezsignsignature,
+    int i_ezsignsignature_signed
 );
 
 void ezsignfolder_list_element_free(ezsignfolder_list_element_t *ezsignfolder_list_element);

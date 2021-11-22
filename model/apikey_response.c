@@ -106,13 +106,18 @@ apikey_response_t *apikey_response_parseFromJSON(cJSON *apikey_responseJSON){
 
     apikey_response_t *apikey_response_local_var = NULL;
 
+    // define the local variable for apikey_response->obj_apikey_description
+    multilingual_apikey_description_t *obj_apikey_description_local_nonprim = NULL;
+
+    // define the local variable for apikey_response->obj_audit
+    common_audit_t *obj_audit_local_nonprim = NULL;
+
     // apikey_response->obj_apikey_description
     cJSON *obj_apikey_description = cJSON_GetObjectItemCaseSensitive(apikey_responseJSON, "objApikeyDescription");
     if (!obj_apikey_description) {
         goto end;
     }
 
-    multilingual_apikey_description_t *obj_apikey_description_local_nonprim = NULL;
     
     obj_apikey_description_local_nonprim = multilingual_apikey_description_parseFromJSON(obj_apikey_description); //nonprimitive
 
@@ -143,7 +148,6 @@ apikey_response_t *apikey_response_parseFromJSON(cJSON *apikey_responseJSON){
         goto end;
     }
 
-    common_audit_t *obj_audit_local_nonprim = NULL;
     
     obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
 

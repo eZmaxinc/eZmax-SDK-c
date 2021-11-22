@@ -59,13 +59,15 @@ ezsignfoldersignerassociation_get_in_person_login_url_v1_response_all_of_t *ezsi
 
     ezsignfoldersignerassociation_get_in_person_login_url_v1_response_all_of_t *ezsignfoldersignerassociation_get_in_person_login_url_v1_response_all_of_local_var = NULL;
 
+    // define the local variable for ezsignfoldersignerassociation_get_in_person_login_url_v1_response_all_of->m_payload
+    ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
+
     // ezsignfoldersignerassociation_get_in_person_login_url_v1_response_all_of->m_payload
     cJSON *m_payload = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_get_in_person_login_url_v1_response_all_ofJSON, "mPayload");
     if (!m_payload) {
         goto end;
     }
 
-    ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
     
     m_payload_local_nonprim = ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 

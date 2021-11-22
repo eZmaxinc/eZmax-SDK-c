@@ -59,13 +59,15 @@ ezsignsigner_request_compound_all_of_t *ezsignsigner_request_compound_all_of_par
 
     ezsignsigner_request_compound_all_of_t *ezsignsigner_request_compound_all_of_local_var = NULL;
 
+    // define the local variable for ezsignsigner_request_compound_all_of->obj_contact
+    ezsignsigner_request_compound_contact_t *obj_contact_local_nonprim = NULL;
+
     // ezsignsigner_request_compound_all_of->obj_contact
     cJSON *obj_contact = cJSON_GetObjectItemCaseSensitive(ezsignsigner_request_compound_all_ofJSON, "objContact");
     if (!obj_contact) {
         goto end;
     }
 
-    ezsignsigner_request_compound_contact_t *obj_contact_local_nonprim = NULL;
     
     obj_contact_local_nonprim = ezsignsigner_request_compound_contact_parseFromJSON(obj_contact); //nonprimitive
 

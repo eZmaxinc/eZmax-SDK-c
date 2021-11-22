@@ -47,10 +47,10 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_create(
     char *dt_created_date,
     one_ofstringobject_t *dt_ezsignfolder_sentdate,
     one_ofstringobject_t *dt_due_date,
-    int i_total_document,
-    int i_total_document_edm,
-    int i_total_signature,
-    int i_total_signature_signed
+    int i_ezsigndocument,
+    int i_ezsigndocument_edm,
+    int i_ezsignsignature,
+    int i_ezsignsignature_signed
     ) {
     ezsignfolder_list_element_t *ezsignfolder_list_element_local_var = malloc(sizeof(ezsignfolder_list_element_t));
     if (!ezsignfolder_list_element_local_var) {
@@ -65,10 +65,10 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_create(
     ezsignfolder_list_element_local_var->dt_created_date = dt_created_date;
     ezsignfolder_list_element_local_var->dt_ezsignfolder_sentdate = dt_ezsignfolder_sentdate;
     ezsignfolder_list_element_local_var->dt_due_date = dt_due_date;
-    ezsignfolder_list_element_local_var->i_total_document = i_total_document;
-    ezsignfolder_list_element_local_var->i_total_document_edm = i_total_document_edm;
-    ezsignfolder_list_element_local_var->i_total_signature = i_total_signature;
-    ezsignfolder_list_element_local_var->i_total_signature_signed = i_total_signature_signed;
+    ezsignfolder_list_element_local_var->i_ezsigndocument = i_ezsigndocument;
+    ezsignfolder_list_element_local_var->i_ezsigndocument_edm = i_ezsigndocument_edm;
+    ezsignfolder_list_element_local_var->i_ezsignsignature = i_ezsignsignature;
+    ezsignfolder_list_element_local_var->i_ezsignsignature_signed = i_ezsignsignature_signed;
 
     return ezsignfolder_list_element_local_var;
 }
@@ -193,42 +193,42 @@ cJSON *ezsignfolder_list_element_convertToJSON(ezsignfolder_list_element_t *ezsi
     }
 
 
-    // ezsignfolder_list_element->i_total_document
-    if (!ezsignfolder_list_element->i_total_document) {
+    // ezsignfolder_list_element->i_ezsigndocument
+    if (!ezsignfolder_list_element->i_ezsigndocument) {
         goto fail;
     }
     
-    if(cJSON_AddNumberToObject(item, "iTotalDocument", ezsignfolder_list_element->i_total_document) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iEzsigndocument", ezsignfolder_list_element->i_ezsigndocument) == NULL) {
     goto fail; //Numeric
     }
 
 
-    // ezsignfolder_list_element->i_total_document_edm
-    if (!ezsignfolder_list_element->i_total_document_edm) {
+    // ezsignfolder_list_element->i_ezsigndocument_edm
+    if (!ezsignfolder_list_element->i_ezsigndocument_edm) {
         goto fail;
     }
     
-    if(cJSON_AddNumberToObject(item, "iTotalDocumentEdm", ezsignfolder_list_element->i_total_document_edm) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iEzsigndocumentEdm", ezsignfolder_list_element->i_ezsigndocument_edm) == NULL) {
     goto fail; //Numeric
     }
 
 
-    // ezsignfolder_list_element->i_total_signature
-    if (!ezsignfolder_list_element->i_total_signature) {
+    // ezsignfolder_list_element->i_ezsignsignature
+    if (!ezsignfolder_list_element->i_ezsignsignature) {
         goto fail;
     }
     
-    if(cJSON_AddNumberToObject(item, "iTotalSignature", ezsignfolder_list_element->i_total_signature) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iEzsignsignature", ezsignfolder_list_element->i_ezsignsignature) == NULL) {
     goto fail; //Numeric
     }
 
 
-    // ezsignfolder_list_element->i_total_signature_signed
-    if (!ezsignfolder_list_element->i_total_signature_signed) {
+    // ezsignfolder_list_element->i_ezsignsignature_signed
+    if (!ezsignfolder_list_element->i_ezsignsignature_signed) {
         goto fail;
     }
     
-    if(cJSON_AddNumberToObject(item, "iTotalSignatureSigned", ezsignfolder_list_element->i_total_signature_signed) == NULL) {
+    if(cJSON_AddNumberToObject(item, "iEzsignsignatureSigned", ezsignfolder_list_element->i_ezsignsignature_signed) == NULL) {
     goto fail; //Numeric
     }
 
@@ -243,6 +243,12 @@ fail:
 ezsignfolder_list_element_t *ezsignfolder_list_element_parseFromJSON(cJSON *ezsignfolder_list_elementJSON){
 
     ezsignfolder_list_element_t *ezsignfolder_list_element_local_var = NULL;
+
+    // define the local variable for ezsignfolder_list_element->dt_ezsignfolder_sentdate
+    one_ofstringobject_t *dt_ezsignfolder_sentdate_local_nonprim = NULL;
+
+    // define the local variable for ezsignfolder_list_element->dt_due_date
+    one_ofstringobject_t *dt_due_date_local_nonprim = NULL;
 
     // ezsignfolder_list_element->pki_ezsignfolder_id
     cJSON *pki_ezsignfolder_id = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "pkiEzsignfolderID");
@@ -324,7 +330,6 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_parseFromJSON(cJSON *ezsi
         goto end;
     }
 
-    one_ofstringobject_t *dt_ezsignfolder_sentdate_local_nonprim = NULL;
     
     dt_ezsignfolder_sentdate_local_nonprim = one_ofstringobject_parseFromJSON(dt_ezsignfolder_sentdate); //nonprimitive
 
@@ -334,54 +339,53 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_parseFromJSON(cJSON *ezsi
         goto end;
     }
 
-    one_ofstringobject_t *dt_due_date_local_nonprim = NULL;
     
     dt_due_date_local_nonprim = one_ofstringobject_parseFromJSON(dt_due_date); //nonprimitive
 
-    // ezsignfolder_list_element->i_total_document
-    cJSON *i_total_document = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "iTotalDocument");
-    if (!i_total_document) {
+    // ezsignfolder_list_element->i_ezsigndocument
+    cJSON *i_ezsigndocument = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "iEzsigndocument");
+    if (!i_ezsigndocument) {
         goto end;
     }
 
     
-    if(!cJSON_IsNumber(i_total_document))
+    if(!cJSON_IsNumber(i_ezsigndocument))
     {
     goto end; //Numeric
     }
 
-    // ezsignfolder_list_element->i_total_document_edm
-    cJSON *i_total_document_edm = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "iTotalDocumentEdm");
-    if (!i_total_document_edm) {
+    // ezsignfolder_list_element->i_ezsigndocument_edm
+    cJSON *i_ezsigndocument_edm = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "iEzsigndocumentEdm");
+    if (!i_ezsigndocument_edm) {
         goto end;
     }
 
     
-    if(!cJSON_IsNumber(i_total_document_edm))
+    if(!cJSON_IsNumber(i_ezsigndocument_edm))
     {
     goto end; //Numeric
     }
 
-    // ezsignfolder_list_element->i_total_signature
-    cJSON *i_total_signature = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "iTotalSignature");
-    if (!i_total_signature) {
+    // ezsignfolder_list_element->i_ezsignsignature
+    cJSON *i_ezsignsignature = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "iEzsignsignature");
+    if (!i_ezsignsignature) {
         goto end;
     }
 
     
-    if(!cJSON_IsNumber(i_total_signature))
+    if(!cJSON_IsNumber(i_ezsignsignature))
     {
     goto end; //Numeric
     }
 
-    // ezsignfolder_list_element->i_total_signature_signed
-    cJSON *i_total_signature_signed = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "iTotalSignatureSigned");
-    if (!i_total_signature_signed) {
+    // ezsignfolder_list_element->i_ezsignsignature_signed
+    cJSON *i_ezsignsignature_signed = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "iEzsignsignatureSigned");
+    if (!i_ezsignsignature_signed) {
         goto end;
     }
 
     
-    if(!cJSON_IsNumber(i_total_signature_signed))
+    if(!cJSON_IsNumber(i_ezsignsignature_signed))
     {
     goto end; //Numeric
     }
@@ -395,10 +399,10 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_parseFromJSON(cJSON *ezsi
         strdup(dt_created_date->valuestring),
         dt_ezsignfolder_sentdate_local_nonprim,
         dt_due_date_local_nonprim,
-        i_total_document->valuedouble,
-        i_total_document_edm->valuedouble,
-        i_total_signature->valuedouble,
-        i_total_signature_signed->valuedouble
+        i_ezsigndocument->valuedouble,
+        i_ezsigndocument_edm->valuedouble,
+        i_ezsignsignature->valuedouble,
+        i_ezsignsignature_signed->valuedouble
         );
 
     return ezsignfolder_list_element_local_var;

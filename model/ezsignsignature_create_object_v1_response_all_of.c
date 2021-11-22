@@ -59,13 +59,15 @@ ezsignsignature_create_object_v1_response_all_of_t *ezsignsignature_create_objec
 
     ezsignsignature_create_object_v1_response_all_of_t *ezsignsignature_create_object_v1_response_all_of_local_var = NULL;
 
+    // define the local variable for ezsignsignature_create_object_v1_response_all_of->m_payload
+    ezsignsignature_create_object_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
+
     // ezsignsignature_create_object_v1_response_all_of->m_payload
     cJSON *m_payload = cJSON_GetObjectItemCaseSensitive(ezsignsignature_create_object_v1_response_all_ofJSON, "mPayload");
     if (!m_payload) {
         goto end;
     }
 
-    ezsignsignature_create_object_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
     
     m_payload_local_nonprim = ezsignsignature_create_object_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 

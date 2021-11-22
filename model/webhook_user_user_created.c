@@ -111,13 +111,18 @@ webhook_user_user_created_t *webhook_user_user_created_parseFromJSON(cJSON *webh
 
     webhook_user_user_created_t *webhook_user_user_created_local_var = NULL;
 
+    // define the local variable for webhook_user_user_created->obj_user
+    user_response_t *obj_user_local_nonprim = NULL;
+
+    // define the local variable for webhook_user_user_created->obj_webhook
+    webhook_response_t *obj_webhook_local_nonprim = NULL;
+
     // webhook_user_user_created->obj_user
     cJSON *obj_user = cJSON_GetObjectItemCaseSensitive(webhook_user_user_createdJSON, "objUser");
     if (!obj_user) {
         goto end;
     }
 
-    user_response_t *obj_user_local_nonprim = NULL;
     
     obj_user_local_nonprim = user_response_parseFromJSON(obj_user); //nonprimitive
 
@@ -127,7 +132,6 @@ webhook_user_user_created_t *webhook_user_user_created_parseFromJSON(cJSON *webh
         goto end;
     }
 
-    webhook_response_t *obj_webhook_local_nonprim = NULL;
     
     obj_webhook_local_nonprim = webhook_response_parseFromJSON(obj_webhook); //nonprimitive
 

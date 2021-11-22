@@ -57,9 +57,11 @@ unused_ezsignsignature_edit_object_v1_request_t *unused_ezsignsignature_edit_obj
 
     unused_ezsignsignature_edit_object_v1_request_t *unused_ezsignsignature_edit_object_v1_request_local_var = NULL;
 
+    // define the local variable for unused_ezsignsignature_edit_object_v1_request->obj_ezsignsignature
+    ezsignsignature_request_t *obj_ezsignsignature_local_nonprim = NULL;
+
     // unused_ezsignsignature_edit_object_v1_request->obj_ezsignsignature
     cJSON *obj_ezsignsignature = cJSON_GetObjectItemCaseSensitive(unused_ezsignsignature_edit_object_v1_requestJSON, "objEzsignsignature");
-    ezsignsignature_request_t *obj_ezsignsignature_local_nonprim = NULL;
     if (obj_ezsignsignature) { 
     obj_ezsignsignature_local_nonprim = ezsignsignature_request_parseFromJSON(obj_ezsignsignature); //nonprimitive
     }

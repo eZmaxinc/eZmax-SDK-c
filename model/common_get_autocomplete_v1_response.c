@@ -107,6 +107,12 @@ common_get_autocomplete_v1_response_t *common_get_autocomplete_v1_response_parse
 
     common_get_autocomplete_v1_response_t *common_get_autocomplete_v1_response_local_var = NULL;
 
+    // define the local variable for common_get_autocomplete_v1_response->obj_debug_payload
+    common_response_obj_debug_payload_t *obj_debug_payload_local_nonprim = NULL;
+
+    // define the local variable for common_get_autocomplete_v1_response->obj_debug
+    common_response_obj_debug_t *obj_debug_local_nonprim = NULL;
+
     // common_get_autocomplete_v1_response->m_payload
     cJSON *m_payload = cJSON_GetObjectItemCaseSensitive(common_get_autocomplete_v1_responseJSON, "mPayload");
     if (!m_payload) {
@@ -134,14 +140,12 @@ common_get_autocomplete_v1_response_t *common_get_autocomplete_v1_response_parse
 
     // common_get_autocomplete_v1_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(common_get_autocomplete_v1_responseJSON, "objDebugPayload");
-    common_response_obj_debug_payload_t *obj_debug_payload_local_nonprim = NULL;
     if (obj_debug_payload) { 
     obj_debug_payload_local_nonprim = common_response_obj_debug_payload_parseFromJSON(obj_debug_payload); //nonprimitive
     }
 
     // common_get_autocomplete_v1_response->obj_debug
     cJSON *obj_debug = cJSON_GetObjectItemCaseSensitive(common_get_autocomplete_v1_responseJSON, "objDebug");
-    common_response_obj_debug_t *obj_debug_local_nonprim = NULL;
     if (obj_debug) { 
     obj_debug_local_nonprim = common_response_obj_debug_parseFromJSON(obj_debug); //nonprimitive
     }

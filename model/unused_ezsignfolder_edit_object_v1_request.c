@@ -57,9 +57,11 @@ unused_ezsignfolder_edit_object_v1_request_t *unused_ezsignfolder_edit_object_v1
 
     unused_ezsignfolder_edit_object_v1_request_t *unused_ezsignfolder_edit_object_v1_request_local_var = NULL;
 
+    // define the local variable for unused_ezsignfolder_edit_object_v1_request->obj_ezsignfolder
+    ezsignfolder_request_t *obj_ezsignfolder_local_nonprim = NULL;
+
     // unused_ezsignfolder_edit_object_v1_request->obj_ezsignfolder
     cJSON *obj_ezsignfolder = cJSON_GetObjectItemCaseSensitive(unused_ezsignfolder_edit_object_v1_requestJSON, "objEzsignfolder");
-    ezsignfolder_request_t *obj_ezsignfolder_local_nonprim = NULL;
     if (obj_ezsignfolder) { 
     obj_ezsignfolder_local_nonprim = ezsignfolder_request_parseFromJSON(obj_ezsignfolder); //nonprimitive
     }

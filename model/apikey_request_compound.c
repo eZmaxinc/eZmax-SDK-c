@@ -71,6 +71,9 @@ apikey_request_compound_t *apikey_request_compound_parseFromJSON(cJSON *apikey_r
 
     apikey_request_compound_t *apikey_request_compound_local_var = NULL;
 
+    // define the local variable for apikey_request_compound->obj_apikey_description
+    multilingual_apikey_description_t *obj_apikey_description_local_nonprim = NULL;
+
     // apikey_request_compound->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(apikey_request_compoundJSON, "fkiUserID");
     if (!fki_user_id) {
@@ -89,7 +92,6 @@ apikey_request_compound_t *apikey_request_compound_parseFromJSON(cJSON *apikey_r
         goto end;
     }
 
-    multilingual_apikey_description_t *obj_apikey_description_local_nonprim = NULL;
     
     obj_apikey_description_local_nonprim = multilingual_apikey_description_parseFromJSON(obj_apikey_description); //nonprimitive
 

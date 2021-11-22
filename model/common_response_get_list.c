@@ -76,16 +76,20 @@ common_response_get_list_t *common_response_get_list_parseFromJSON(cJSON *common
 
     common_response_get_list_t *common_response_get_list_local_var = NULL;
 
+    // define the local variable for common_response_get_list->obj_debug_payload
+    common_response_obj_debug_payload_get_list_t *obj_debug_payload_local_nonprim = NULL;
+
+    // define the local variable for common_response_get_list->obj_debug
+    common_response_obj_debug_t *obj_debug_local_nonprim = NULL;
+
     // common_response_get_list->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(common_response_get_listJSON, "objDebugPayload");
-    common_response_obj_debug_payload_get_list_t *obj_debug_payload_local_nonprim = NULL;
     if (obj_debug_payload) { 
     obj_debug_payload_local_nonprim = common_response_obj_debug_payload_get_list_parseFromJSON(obj_debug_payload); //nonprimitive
     }
 
     // common_response_get_list->obj_debug
     cJSON *obj_debug = cJSON_GetObjectItemCaseSensitive(common_response_get_listJSON, "objDebug");
-    common_response_obj_debug_t *obj_debug_local_nonprim = NULL;
     if (obj_debug) { 
     obj_debug_local_nonprim = common_response_obj_debug_parseFromJSON(obj_debug); //nonprimitive
     }

@@ -76,16 +76,20 @@ ezsignfolder_create_object_v1_request_t *ezsignfolder_create_object_v1_request_p
 
     ezsignfolder_create_object_v1_request_t *ezsignfolder_create_object_v1_request_local_var = NULL;
 
+    // define the local variable for ezsignfolder_create_object_v1_request->obj_ezsignfolder
+    ezsignfolder_request_t *obj_ezsignfolder_local_nonprim = NULL;
+
+    // define the local variable for ezsignfolder_create_object_v1_request->obj_ezsignfolder_compound
+    ezsignfolder_request_compound_t *obj_ezsignfolder_compound_local_nonprim = NULL;
+
     // ezsignfolder_create_object_v1_request->obj_ezsignfolder
     cJSON *obj_ezsignfolder = cJSON_GetObjectItemCaseSensitive(ezsignfolder_create_object_v1_requestJSON, "objEzsignfolder");
-    ezsignfolder_request_t *obj_ezsignfolder_local_nonprim = NULL;
     if (obj_ezsignfolder) { 
     obj_ezsignfolder_local_nonprim = ezsignfolder_request_parseFromJSON(obj_ezsignfolder); //nonprimitive
     }
 
     // ezsignfolder_create_object_v1_request->obj_ezsignfolder_compound
     cJSON *obj_ezsignfolder_compound = cJSON_GetObjectItemCaseSensitive(ezsignfolder_create_object_v1_requestJSON, "objEzsignfolderCompound");
-    ezsignfolder_request_compound_t *obj_ezsignfolder_compound_local_nonprim = NULL;
     if (obj_ezsignfolder_compound) { 
     obj_ezsignfolder_compound_local_nonprim = ezsignfolder_request_compound_parseFromJSON(obj_ezsignfolder_compound); //nonprimitive
     }

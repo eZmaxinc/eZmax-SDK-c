@@ -90,6 +90,11 @@ set(SRCS
     model/custom_word_position_occurence_response.c
     model/custom_word_position_word_response.c
     model/email_request.c
+    model/ezsignbulksend_get_list_v1_response.c
+    model/ezsignbulksend_get_list_v1_response_all_of.c
+    model/ezsignbulksend_get_list_v1_response_m_payload.c
+    model/ezsignbulksend_get_list_v1_response_m_payload_all_of.c
+    model/ezsignbulksend_list_element.c
     model/ezsigndocument_apply_ezsigntemplate_v1_request.c
     model/ezsigndocument_apply_ezsigntemplate_v1_response.c
     model/ezsigndocument_apply_ezsigntemplate_v2_request.c
@@ -238,6 +243,7 @@ set(SRCS
     api/ModuleUserAPI.c
     api/ObjectActivesessionAPI.c
     api/ObjectApikeyAPI.c
+    api/ObjectEzsignbulksendAPI.c
     api/ObjectEzsigndocumentAPI.c
     api/ObjectEzsignfolderAPI.c
     api/ObjectEzsignfoldersignerassociationAPI.c
@@ -302,6 +308,11 @@ set(HDRS
     model/custom_word_position_occurence_response.h
     model/custom_word_position_word_response.h
     model/email_request.h
+    model/ezsignbulksend_get_list_v1_response.h
+    model/ezsignbulksend_get_list_v1_response_all_of.h
+    model/ezsignbulksend_get_list_v1_response_m_payload.h
+    model/ezsignbulksend_get_list_v1_response_m_payload_all_of.h
+    model/ezsignbulksend_list_element.h
     model/ezsigndocument_apply_ezsigntemplate_v1_request.h
     model/ezsigndocument_apply_ezsigntemplate_v1_response.h
     model/ezsigndocument_apply_ezsigntemplate_v2_request.h
@@ -450,6 +461,7 @@ set(HDRS
     api/ModuleUserAPI.h
     api/ObjectActivesessionAPI.h
     api/ObjectApikeyAPI.h
+    api/ObjectEzsignbulksendAPI.h
     api/ObjectEzsigndocumentAPI.h
     api/ObjectEzsignfolderAPI.h
     api/ObjectEzsignfoldersignerassociationAPI.h
@@ -542,6 +554,7 @@ set(HDRS "")
 #    unit-tests/manual-ModuleUserAPI.c
 #    unit-tests/manual-ObjectActivesessionAPI.c
 #    unit-tests/manual-ObjectApikeyAPI.c
+#    unit-tests/manual-ObjectEzsignbulksendAPI.c
 #    unit-tests/manual-ObjectEzsigndocumentAPI.c
 #    unit-tests/manual-ObjectEzsignfolderAPI.c
 #    unit-tests/manual-ObjectEzsignfoldersignerassociationAPI.c

@@ -59,13 +59,15 @@ webhook_ezsign_folder_completed_all_of_t *webhook_ezsign_folder_completed_all_of
 
     webhook_ezsign_folder_completed_all_of_t *webhook_ezsign_folder_completed_all_of_local_var = NULL;
 
+    // define the local variable for webhook_ezsign_folder_completed_all_of->obj_ezsignfolder
+    ezsignfolder_response_t *obj_ezsignfolder_local_nonprim = NULL;
+
     // webhook_ezsign_folder_completed_all_of->obj_ezsignfolder
     cJSON *obj_ezsignfolder = cJSON_GetObjectItemCaseSensitive(webhook_ezsign_folder_completed_all_ofJSON, "objEzsignfolder");
     if (!obj_ezsignfolder) {
         goto end;
     }
 
-    ezsignfolder_response_t *obj_ezsignfolder_local_nonprim = NULL;
     
     obj_ezsignfolder_local_nonprim = ezsignfolder_response_parseFromJSON(obj_ezsignfolder); //nonprimitive
 

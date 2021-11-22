@@ -59,13 +59,15 @@ contact_request_compound_all_of_t *contact_request_compound_all_of_parseFromJSON
 
     contact_request_compound_all_of_t *contact_request_compound_all_of_local_var = NULL;
 
+    // define the local variable for contact_request_compound_all_of->obj_contactinformations
+    contactinformations_request_compound_t *obj_contactinformations_local_nonprim = NULL;
+
     // contact_request_compound_all_of->obj_contactinformations
     cJSON *obj_contactinformations = cJSON_GetObjectItemCaseSensitive(contact_request_compound_all_ofJSON, "objContactinformations");
     if (!obj_contactinformations) {
         goto end;
     }
 
-    contactinformations_request_compound_t *obj_contactinformations_local_nonprim = NULL;
     
     obj_contactinformations_local_nonprim = contactinformations_request_compound_parseFromJSON(obj_contactinformations); //nonprimitive
 

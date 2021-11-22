@@ -59,13 +59,15 @@ activesession_get_current_v1_response_all_of_t *activesession_get_current_v1_res
 
     activesession_get_current_v1_response_all_of_t *activesession_get_current_v1_response_all_of_local_var = NULL;
 
+    // define the local variable for activesession_get_current_v1_response_all_of->m_payload
+    activesession_get_current_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
+
     // activesession_get_current_v1_response_all_of->m_payload
     cJSON *m_payload = cJSON_GetObjectItemCaseSensitive(activesession_get_current_v1_response_all_ofJSON, "mPayload");
     if (!m_payload) {
         goto end;
     }
 
-    activesession_get_current_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
     
     m_payload_local_nonprim = activesession_get_current_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 

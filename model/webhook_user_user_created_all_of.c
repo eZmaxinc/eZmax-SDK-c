@@ -59,13 +59,15 @@ webhook_user_user_created_all_of_t *webhook_user_user_created_all_of_parseFromJS
 
     webhook_user_user_created_all_of_t *webhook_user_user_created_all_of_local_var = NULL;
 
+    // define the local variable for webhook_user_user_created_all_of->obj_user
+    user_response_t *obj_user_local_nonprim = NULL;
+
     // webhook_user_user_created_all_of->obj_user
     cJSON *obj_user = cJSON_GetObjectItemCaseSensitive(webhook_user_user_created_all_ofJSON, "objUser");
     if (!obj_user) {
         goto end;
     }
 
-    user_response_t *obj_user_local_nonprim = NULL;
     
     obj_user_local_nonprim = user_response_parseFromJSON(obj_user); //nonprimitive
 

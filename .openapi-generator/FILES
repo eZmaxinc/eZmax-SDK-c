@@ -15,6 +15,8 @@ api/ObjectActivesessionAPI.c
 api/ObjectActivesessionAPI.h
 api/ObjectApikeyAPI.c
 api/ObjectApikeyAPI.h
+api/ObjectEzsignbulksendAPI.c
+api/ObjectEzsignbulksendAPI.h
 api/ObjectEzsigndocumentAPI.c
 api/ObjectEzsigndocumentAPI.h
 api/ObjectEzsignfolderAPI.c
@@ -40,6 +42,7 @@ docs/ModuleSsprAPI.md
 docs/ModuleUserAPI.md
 docs/ObjectActivesessionAPI.md
 docs/ObjectApikeyAPI.md
+docs/ObjectEzsignbulksendAPI.md
 docs/ObjectEzsigndocumentAPI.md
 docs/ObjectEzsignfolderAPI.md
 docs/ObjectEzsignfoldersignerassociationAPI.md
@@ -94,6 +97,11 @@ docs/custom_forms_data_folder_response.md
 docs/custom_word_position_occurence_response.md
 docs/custom_word_position_word_response.md
 docs/email_request.md
+docs/ezsignbulksend_get_list_v1_response.md
+docs/ezsignbulksend_get_list_v1_response_all_of.md
+docs/ezsignbulksend_get_list_v1_response_m_payload.md
+docs/ezsignbulksend_get_list_v1_response_m_payload_all_of.md
+docs/ezsignbulksend_list_element.md
 docs/ezsigndocument_apply_ezsigntemplate_v1_request.md
 docs/ezsigndocument_apply_ezsigntemplate_v1_response.md
 docs/ezsigndocument_apply_ezsigntemplate_v2_request.md
@@ -333,6 +341,16 @@ model/custom_word_position_word_response.c
 model/custom_word_position_word_response.h
 model/email_request.c
 model/email_request.h
+model/ezsignbulksend_get_list_v1_response.c
+model/ezsignbulksend_get_list_v1_response.h
+model/ezsignbulksend_get_list_v1_response_all_of.c
+model/ezsignbulksend_get_list_v1_response_all_of.h
+model/ezsignbulksend_get_list_v1_response_m_payload.c
+model/ezsignbulksend_get_list_v1_response_m_payload.h
+model/ezsignbulksend_get_list_v1_response_m_payload_all_of.c
+model/ezsignbulksend_get_list_v1_response_m_payload_all_of.h
+model/ezsignbulksend_list_element.c
+model/ezsignbulksend_list_element.h
 model/ezsigndocument_apply_ezsigntemplate_v1_request.c
 model/ezsigndocument_apply_ezsigntemplate_v1_request.h
 model/ezsigndocument_apply_ezsigntemplate_v1_response.c
@@ -667,6 +685,11 @@ unit-test/test_custom_forms_data_folder_response.c
 unit-test/test_custom_word_position_occurence_response.c
 unit-test/test_custom_word_position_word_response.c
 unit-test/test_email_request.c
+unit-test/test_ezsignbulksend_get_list_v1_response.c
+unit-test/test_ezsignbulksend_get_list_v1_response_all_of.c
+unit-test/test_ezsignbulksend_get_list_v1_response_m_payload.c
+unit-test/test_ezsignbulksend_get_list_v1_response_m_payload_all_of.c
+unit-test/test_ezsignbulksend_list_element.c
 unit-test/test_ezsigndocument_apply_ezsigntemplate_v1_request.c
 unit-test/test_ezsigndocument_apply_ezsigntemplate_v1_response.c
 unit-test/test_ezsigndocument_apply_ezsigntemplate_v2_request.c
