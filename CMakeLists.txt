@@ -28,7 +28,11 @@ else()
 endif()
 
 set(pkgName "ezmax_api_definition")
-set(VERSION 0.0.1) # this default version can be overridden in PreTarget.cmake
+
+# this default version can be overridden in PreTarget.cmake
+set(PROJECT_VERSION_MAJOR 0)
+set(PROJECT_VERSION_MINOR 0)
+set(PROJECT_VERSION_PATCH 1)
 
 find_package(CURL 7.58.0 REQUIRED)
 if(CURL_FOUND)
@@ -184,11 +188,17 @@ set(SRCS
     model/ezsignsigner_request_compound.c
     model/ezsignsigner_request_compound_all_of.c
     model/ezsignsigner_request_compound_contact.c
+    model/ezsigntemplatepackage_get_list_v1_response.c
+    model/ezsigntemplatepackage_get_list_v1_response_all_of.c
+    model/ezsigntemplatepackage_get_list_v1_response_m_payload.c
+    model/ezsigntemplatepackage_get_list_v1_response_m_payload_all_of.c
+    model/ezsigntemplatepackage_list_element.c
     model/field_e_ezsigndocument_step.c
     model/field_e_ezsignfolder_sendreminderfrequency.c
     model/field_e_ezsignfolder_step.c
     model/field_e_ezsignfoldertype_privacylevel.c
     model/field_e_ezsignsignature_type.c
+    model/field_e_ezsigntemplatepackage_type.c
     model/field_e_phone_type.c
     model/field_e_user_type.c
     model/field_e_user_type_sspr.c
@@ -249,6 +259,7 @@ set(SRCS
     api/ObjectEzsignfoldersignerassociationAPI.c
     api/ObjectEzsignfoldertypeAPI.c
     api/ObjectEzsignsignatureAPI.c
+    api/ObjectEzsigntemplatepackageAPI.c
     api/ObjectFranchisebrokerAPI.c
     api/ObjectFranchiseofficeAPI.c
     api/ObjectFranchisereferalincomeAPI.c
@@ -402,11 +413,17 @@ set(HDRS
     model/ezsignsigner_request_compound.h
     model/ezsignsigner_request_compound_all_of.h
     model/ezsignsigner_request_compound_contact.h
+    model/ezsigntemplatepackage_get_list_v1_response.h
+    model/ezsigntemplatepackage_get_list_v1_response_all_of.h
+    model/ezsigntemplatepackage_get_list_v1_response_m_payload.h
+    model/ezsigntemplatepackage_get_list_v1_response_m_payload_all_of.h
+    model/ezsigntemplatepackage_list_element.h
     model/field_e_ezsigndocument_step.h
     model/field_e_ezsignfolder_sendreminderfrequency.h
     model/field_e_ezsignfolder_step.h
     model/field_e_ezsignfoldertype_privacylevel.h
     model/field_e_ezsignsignature_type.h
+    model/field_e_ezsigntemplatepackage_type.h
     model/field_e_phone_type.h
     model/field_e_user_type.h
     model/field_e_user_type_sspr.h
@@ -467,6 +484,7 @@ set(HDRS
     api/ObjectEzsignfoldersignerassociationAPI.h
     api/ObjectEzsignfoldertypeAPI.h
     api/ObjectEzsignsignatureAPI.h
+    api/ObjectEzsigntemplatepackageAPI.h
     api/ObjectFranchisebrokerAPI.h
     api/ObjectFranchiseofficeAPI.h
     api/ObjectFranchisereferalincomeAPI.h
@@ -475,6 +493,8 @@ set(HDRS
 )
 
 include(PreTarget.cmake OPTIONAL)
+
+set(PROJECT_VERSION_STRING "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
 
 # Add library with project file with project name as library name
 add_library(${pkgName} ${SRCS} ${HDRS})
@@ -492,22 +512,22 @@ include(PostTarget.cmake OPTIONAL)
 
 # installation of libraries, headers, and config files
 if (NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/Config.cmake.in)
-    install(TARGETS ${pkgName} DESTINATION ${CMAKE_INSTALL_PREFIX})
+    install(TARGETS ${pkgName} DESTINATION lib)
 else()
     include(GNUInstallDirs)
-    install(TARGETS ${pkgName} DESTINATION ${CMAKE_INSTALL_PREFIX} EXPORT ${pkgName}Targets)
+    install(TARGETS ${pkgName} DESTINATION lib EXPORT ${pkgName}Targets)
 
     foreach(HDR_FILE ${HDRS})
         get_filename_component(HDR_DIRECTORY ${HDR_FILE} DIRECTORY)
         get_filename_component(ABSOLUTE_HDR_DIRECTORY ${HDR_DIRECTORY} ABSOLUTE)
         file(RELATIVE_PATH RELATIVE_HDR_PATH ${CMAKE_CURRENT_SOURCE_DIR} ${ABSOLUTE_HDR_DIRECTORY})
-        install(FILES ${HDR_FILE} DESTINATION include/${RELATIVE_HDR_PATH})
+        install(FILES ${HDR_FILE} DESTINATION include/${pkgName}/${RELATIVE_HDR_PATH})
     endforeach()
 
     include(CMakePackageConfigHelpers)
     write_basic_package_version_file(
             "${CMAKE_CURRENT_BINARY_DIR}/${pkgName}/${pkgName}ConfigVersion.cmake"
-            VERSION "${VERSION}"
+            VERSION "${PROJECT_VERSION_STRING}"
             COMPATIBILITY AnyNewerVersion
     )
 
@@ -539,6 +559,9 @@ else()
     )
 endif()
 
+# make installation packages
+include(Packing.cmake OPTIONAL)
+
 # Setting file variables to null
 set(SRCS "")
 set(HDRS "")
@@ -560,6 +583,7 @@ set(HDRS "")
 #    unit-tests/manual-ObjectEzsignfoldersignerassociationAPI.c
 #    unit-tests/manual-ObjectEzsignfoldertypeAPI.c
 #    unit-tests/manual-ObjectEzsignsignatureAPI.c
+#    unit-tests/manual-ObjectEzsigntemplatepackageAPI.c
 #    unit-tests/manual-ObjectFranchisebrokerAPI.c
 #    unit-tests/manual-ObjectFranchiseofficeAPI.c
 #    unit-tests/manual-ObjectFranchisereferalincomeAPI.c

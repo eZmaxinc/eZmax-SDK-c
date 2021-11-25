@@ -108,6 +108,7 @@ Category | Method | HTTP request | Description
 *ObjectEzsignsignatureAPI* | [**ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1**](docs/ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1) | **DELETE** /1/object/ezsignsignature/{pkiEzsignsignatureID} | Delete an existing Ezsignsignature
 *ObjectEzsignsignatureAPI* | [**ObjectEzsignsignatureAPI_ezsignsignatureGetChildrenV1**](docs/ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureGetChildrenV1) | **GET** /1/object/ezsignsignature/{pkiEzsignsignatureID}/getChildren | Retrieve an existing Ezsignsignature's children IDs
 *ObjectEzsignsignatureAPI* | [**ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV1**](docs/ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV1) | **GET** /1/object/ezsignsignature/{pkiEzsignsignatureID} | Retrieve an existing Ezsignsignature
+*ObjectEzsigntemplatepackageAPI* | [**ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetListV1**](docs/ObjectEzsigntemplatepackageAPI.md#ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetListV1) | **GET** /1/object/ezsigntemplatepackage/getList | Retrieve Ezsigntemplatepackage list
 *ObjectFranchisebrokerAPI* | [**ObjectFranchisebrokerAPI_franchisebrokerGetAutocompleteV1**](docs/ObjectFranchisebrokerAPI.md#ObjectFranchisebrokerAPI_franchisebrokerGetAutocompleteV1) | **GET** /1/object/franchisebroker/getAutocomplete/{sSelector} | Retrieve Franchisebrokers and IDs
 *ObjectFranchiseofficeAPI* | [**ObjectFranchiseofficeAPI_franchiseofficeGetAutocompleteV1**](docs/ObjectFranchiseofficeAPI.md#ObjectFranchiseofficeAPI_franchiseofficeGetAutocompleteV1) | **GET** /1/object/franchiseoffice/getAutocomplete/{sSelector} | Retrieve Franchiseoffices and IDs
 *ObjectFranchisereferalincomeAPI* | [**ObjectFranchisereferalincomeAPI_franchisereferalincomeCreateObjectV1**](docs/ObjectFranchisereferalincomeAPI.md#ObjectFranchisereferalincomeAPI_franchisereferalincomeCreateObjectV1) | **POST** /1/object/franchisereferalincome | Create a new Franchisereferalincome
@@ -255,11 +256,17 @@ Category | Method | HTTP request | Description
  - [ezsignsigner_request_compound_t](docs/ezsignsigner_request_compound.md)
  - [ezsignsigner_request_compound_all_of_t](docs/ezsignsigner_request_compound_all_of.md)
  - [ezsignsigner_request_compound_contact_t](docs/ezsignsigner_request_compound_contact.md)
+ - [ezsigntemplatepackage_get_list_v1_response_t](docs/ezsigntemplatepackage_get_list_v1_response.md)
+ - [ezsigntemplatepackage_get_list_v1_response_all_of_t](docs/ezsigntemplatepackage_get_list_v1_response_all_of.md)
+ - [ezsigntemplatepackage_get_list_v1_response_m_payload_t](docs/ezsigntemplatepackage_get_list_v1_response_m_payload.md)
+ - [ezsigntemplatepackage_get_list_v1_response_m_payload_all_of_t](docs/ezsigntemplatepackage_get_list_v1_response_m_payload_all_of.md)
+ - [ezsigntemplatepackage_list_element_t](docs/ezsigntemplatepackage_list_element.md)
  - [field_e_ezsigndocument_step_t](docs/field_e_ezsigndocument_step.md)
  - [field_e_ezsignfolder_sendreminderfrequency_t](docs/field_e_ezsignfolder_sendreminderfrequency.md)
  - [field_e_ezsignfolder_step_t](docs/field_e_ezsignfolder_step.md)
  - [field_e_ezsignfoldertype_privacylevel_t](docs/field_e_ezsignfoldertype_privacylevel.md)
  - [field_e_ezsignsignature_type_t](docs/field_e_ezsignsignature_type.md)
+ - [field_e_ezsigntemplatepackage_type_t](docs/field_e_ezsigntemplatepackage_type.md)
  - [field_e_phone_type_t](docs/field_e_phone_type.md)
  - [field_e_user_type_t](docs/field_e_user_type.md)
  - [field_e_user_type_sspr_t](docs/field_e_user_type_sspr.md)
