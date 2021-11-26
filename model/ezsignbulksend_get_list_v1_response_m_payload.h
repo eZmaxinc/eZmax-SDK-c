@@ -22,14 +22,14 @@ typedef struct ezsignbulksend_get_list_v1_response_m_payload_t ezsignbulksend_ge
 
 
 typedef struct ezsignbulksend_get_list_v1_response_m_payload_t {
-    list_t *a_obj_ezsignfolder; //nonprimitive container
+    list_t *a_obj_ezsignbulksend; //nonprimitive container
     int i_row_returned; //numeric
     int i_row_filtered; //numeric
 
 } ezsignbulksend_get_list_v1_response_m_payload_t;
 
 ezsignbulksend_get_list_v1_response_m_payload_t *ezsignbulksend_get_list_v1_response_m_payload_create(
-    list_t *a_obj_ezsignfolder,
+    list_t *a_obj_ezsignbulksend,
     int i_row_returned,
     int i_row_filtered
 );

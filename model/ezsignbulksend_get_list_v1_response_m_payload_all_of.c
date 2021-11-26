@@ -6,13 +6,13 @@
 
 
 ezsignbulksend_get_list_v1_response_m_payload_all_of_t *ezsignbulksend_get_list_v1_response_m_payload_all_of_create(
-    list_t *a_obj_ezsignfolder
+    list_t *a_obj_ezsignbulksend
     ) {
     ezsignbulksend_get_list_v1_response_m_payload_all_of_t *ezsignbulksend_get_list_v1_response_m_payload_all_of_local_var = malloc(sizeof(ezsignbulksend_get_list_v1_response_m_payload_all_of_t));
     if (!ezsignbulksend_get_list_v1_response_m_payload_all_of_local_var) {
         return NULL;
     }
-    ezsignbulksend_get_list_v1_response_m_payload_all_of_local_var->a_obj_ezsignfolder = a_obj_ezsignfolder;
+    ezsignbulksend_get_list_v1_response_m_payload_all_of_local_var->a_obj_ezsignbulksend = a_obj_ezsignbulksend;
 
     return ezsignbulksend_get_list_v1_response_m_payload_all_of_local_var;
 }
@@ -23,12 +23,12 @@ void ezsignbulksend_get_list_v1_response_m_payload_all_of_free(ezsignbulksend_ge
         return ;
     }
     listEntry_t *listEntry;
-    if (ezsignbulksend_get_list_v1_response_m_payload_all_of->a_obj_ezsignfolder) {
-        list_ForEach(listEntry, ezsignbulksend_get_list_v1_response_m_payload_all_of->a_obj_ezsignfolder) {
+    if (ezsignbulksend_get_list_v1_response_m_payload_all_of->a_obj_ezsignbulksend) {
+        list_ForEach(listEntry, ezsignbulksend_get_list_v1_response_m_payload_all_of->a_obj_ezsignbulksend) {
             ezsignbulksend_list_element_free(listEntry->data);
         }
-        list_free(ezsignbulksend_get_list_v1_response_m_payload_all_of->a_obj_ezsignfolder);
-        ezsignbulksend_get_list_v1_response_m_payload_all_of->a_obj_ezsignfolder = NULL;
+        list_free(ezsignbulksend_get_list_v1_response_m_payload_all_of->a_obj_ezsignbulksend);
+        ezsignbulksend_get_list_v1_response_m_payload_all_of->a_obj_ezsignbulksend = NULL;
     }
     free(ezsignbulksend_get_list_v1_response_m_payload_all_of);
 }
@@ -36,24 +36,26 @@ void ezsignbulksend_get_list_v1_response_m_payload_all_of_free(ezsignbulksend_ge
 cJSON *ezsignbulksend_get_list_v1_response_m_payload_all_of_convertToJSON(ezsignbulksend_get_list_v1_response_m_payload_all_of_t *ezsignbulksend_get_list_v1_response_m_payload_all_of) {
     cJSON *item = cJSON_CreateObject();
 
-    // ezsignbulksend_get_list_v1_response_m_payload_all_of->a_obj_ezsignfolder
-    if(ezsignbulksend_get_list_v1_response_m_payload_all_of->a_obj_ezsignfolder) { 
-    cJSON *a_obj_ezsignfolder = cJSON_AddArrayToObject(item, "a_objEzsignfolder");
-    if(a_obj_ezsignfolder == NULL) {
+    // ezsignbulksend_get_list_v1_response_m_payload_all_of->a_obj_ezsignbulksend
+    if (!ezsignbulksend_get_list_v1_response_m_payload_all_of->a_obj_ezsignbulksend) {
+        goto fail;
+    }
+    
+    cJSON *a_obj_ezsignbulksend = cJSON_AddArrayToObject(item, "a_objEzsignbulksend");
+    if(a_obj_ezsignbulksend == NULL) {
     goto fail; //nonprimitive container
     }
 
-    listEntry_t *a_obj_ezsignfolderListEntry;
-    if (ezsignbulksend_get_list_v1_response_m_payload_all_of->a_obj_ezsignfolder) {
-    list_ForEach(a_obj_ezsignfolderListEntry, ezsignbulksend_get_list_v1_response_m_payload_all_of->a_obj_ezsignfolder) {
-    cJSON *itemLocal = ezsignbulksend_list_element_convertToJSON(a_obj_ezsignfolderListEntry->data);
+    listEntry_t *a_obj_ezsignbulksendListEntry;
+    if (ezsignbulksend_get_list_v1_response_m_payload_all_of->a_obj_ezsignbulksend) {
+    list_ForEach(a_obj_ezsignbulksendListEntry, ezsignbulksend_get_list_v1_response_m_payload_all_of->a_obj_ezsignbulksend) {
+    cJSON *itemLocal = ezsignbulksend_list_element_convertToJSON(a_obj_ezsignbulksendListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
-    cJSON_AddItemToArray(a_obj_ezsignfolder, itemLocal);
+    cJSON_AddItemToArray(a_obj_ezsignbulksend, itemLocal);
     }
     }
-     } 
 
     return item;
 fail:
@@ -67,31 +69,34 @@ ezsignbulksend_get_list_v1_response_m_payload_all_of_t *ezsignbulksend_get_list_
 
     ezsignbulksend_get_list_v1_response_m_payload_all_of_t *ezsignbulksend_get_list_v1_response_m_payload_all_of_local_var = NULL;
 
-    // ezsignbulksend_get_list_v1_response_m_payload_all_of->a_obj_ezsignfolder
-    cJSON *a_obj_ezsignfolder = cJSON_GetObjectItemCaseSensitive(ezsignbulksend_get_list_v1_response_m_payload_all_ofJSON, "a_objEzsignfolder");
-    list_t *a_obj_ezsignfolderList;
-    if (a_obj_ezsignfolder) { 
-    cJSON *a_obj_ezsignfolder_local_nonprimitive;
-    if(!cJSON_IsArray(a_obj_ezsignfolder)){
+    // ezsignbulksend_get_list_v1_response_m_payload_all_of->a_obj_ezsignbulksend
+    cJSON *a_obj_ezsignbulksend = cJSON_GetObjectItemCaseSensitive(ezsignbulksend_get_list_v1_response_m_payload_all_ofJSON, "a_objEzsignbulksend");
+    if (!a_obj_ezsignbulksend) {
+        goto end;
+    }
+
+    list_t *a_obj_ezsignbulksendList;
+    
+    cJSON *a_obj_ezsignbulksend_local_nonprimitive;
+    if(!cJSON_IsArray(a_obj_ezsignbulksend)){
         goto end; //nonprimitive container
     }
 
-    a_obj_ezsignfolderList = list_create();
+    a_obj_ezsignbulksendList = list_create();
 
-    cJSON_ArrayForEach(a_obj_ezsignfolder_local_nonprimitive,a_obj_ezsignfolder )
+    cJSON_ArrayForEach(a_obj_ezsignbulksend_local_nonprimitive,a_obj_ezsignbulksend )
     {
-        if(!cJSON_IsObject(a_obj_ezsignfolder_local_nonprimitive)){
+        if(!cJSON_IsObject(a_obj_ezsignbulksend_local_nonprimitive)){
             goto end;
         }
-        ezsignbulksend_list_element_t *a_obj_ezsignfolderItem = ezsignbulksend_list_element_parseFromJSON(a_obj_ezsignfolder_local_nonprimitive);
+        ezsignbulksend_list_element_t *a_obj_ezsignbulksendItem = ezsignbulksend_list_element_parseFromJSON(a_obj_ezsignbulksend_local_nonprimitive);
 
-        list_addElement(a_obj_ezsignfolderList, a_obj_ezsignfolderItem);
-    }
+        list_addElement(a_obj_ezsignbulksendList, a_obj_ezsignbulksendItem);
     }
 
 
     ezsignbulksend_get_list_v1_response_m_payload_all_of_local_var = ezsignbulksend_get_list_v1_response_m_payload_all_of_create (
-        a_obj_ezsignfolder ? a_obj_ezsignfolderList : NULL
+        a_obj_ezsignbulksendList
         );
 
     return ezsignbulksend_get_list_v1_response_m_payload_all_of_local_var;

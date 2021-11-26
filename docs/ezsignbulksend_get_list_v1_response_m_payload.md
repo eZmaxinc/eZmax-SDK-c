@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**a_obj_ezsignfolder** | [**list_t**](ezsignbulksend_list_element.md) \* |  | [optional] 
+**a_obj_ezsignbulksend** | [**list_t**](ezsignbulksend_list_element.md) \* |  | 
 **i_row_returned** | **int** | The number of rows returned | 
 **i_row_filtered** | **int** | The number of rows matching your filters (if any) or the total number of rows | 
 

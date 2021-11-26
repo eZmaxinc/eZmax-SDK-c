@@ -20,12 +20,12 @@ typedef struct ezsignbulksend_get_list_v1_response_m_payload_all_of_t ezsignbulk
 
 
 typedef struct ezsignbulksend_get_list_v1_response_m_payload_all_of_t {
-    list_t *a_obj_ezsignfolder; //nonprimitive container
+    list_t *a_obj_ezsignbulksend; //nonprimitive container
 
 } ezsignbulksend_get_list_v1_response_m_payload_all_of_t;
 
 ezsignbulksend_get_list_v1_response_m_payload_all_of_t *ezsignbulksend_get_list_v1_response_m_payload_all_of_create(
-    list_t *a_obj_ezsignfolder
+    list_t *a_obj_ezsignbulksend
 );
 
 void ezsignbulksend_get_list_v1_response_m_payload_all_of_free(ezsignbulksend_get_list_v1_response_m_payload_all_of_t *ezsignbulksend_get_list_v1_response_m_payload_all_of);

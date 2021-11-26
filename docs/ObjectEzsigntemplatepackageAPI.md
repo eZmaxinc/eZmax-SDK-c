@@ -11,7 +11,7 @@ Method | HTTP request | Description
 ```c
 // Retrieve Ezsigntemplatepackage list
 //
-// Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | ezsigntemplatepackage | Company<br>Department<br>Team<br>User<br>Usergroup |
+// Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eEzsigntemplatepackageType | Company<br>Department<br>Team<br>User<br>Usergroup |
 //
 ezsigntemplatepackage_get_list_v1_response_t* ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetListV1(apiClient_t *apiClient, ezmax_api_definition_ezsigntemplatepackageGetListV1_eOrderBy_e eOrderBy, int iRowMax, int iRowOffset, header_accept_language_e Accept_Language, char * sFilter);
 ```
