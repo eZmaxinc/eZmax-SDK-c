@@ -34,6 +34,7 @@ typedef struct ezsigndocument_response_t {
     int fki_language_id; //numeric
     char *s_ezsigndocument_name; // string
     int pki_ezsigndocument_id; //numeric
+    field_e_ezsigndocument_step_t *e_ezsigndocument_step; // custom
     char *dt_ezsigndocument_firstsend; // string
     char *dt_ezsigndocument_lastsend; // string
     int i_ezsigndocument_order; //numeric
@@ -52,6 +53,7 @@ ezsigndocument_response_t *ezsigndocument_response_create(
     int fki_language_id,
     char *s_ezsigndocument_name,
     int pki_ezsigndocument_id,
+    field_e_ezsigndocument_step_t *e_ezsigndocument_step,
     char *dt_ezsigndocument_firstsend,
     char *dt_ezsigndocument_lastsend,
     int i_ezsigndocument_order,

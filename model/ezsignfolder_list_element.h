@@ -17,7 +17,6 @@ typedef struct ezsignfolder_list_element_t ezsignfolder_list_element_t;
 
 #include "field_e_ezsignfolder_step.h"
 #include "field_e_ezsignfoldertype_privacylevel.h"
-#include "one_ofstringobject.h"
 
 // Enum  for ezsignfolder_list_element
 
@@ -40,11 +39,13 @@ ezmax_api_definition_ezsignfolder_list_element__e ezsignfolder_list_element_e_ez
 typedef struct ezsignfolder_list_element_t {
     int pki_ezsignfolder_id; //numeric
     int fki_ezsignfoldertype_id; //numeric
+    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel; // custom
     char *s_ezsignfoldertype_name_x; // string
     char *s_ezsignfolder_description; // string
+    field_e_ezsignfolder_step_t *e_ezsignfolder_step; // custom
     char *dt_created_date; // string
-    struct one_ofstringobject_t *dt_ezsignfolder_sentdate; //model
-    struct one_ofstringobject_t *dt_due_date; //model
+    char *dt_ezsignfolder_sentdate; // string
+    char *dt_due_date; // string
     int i_ezsigndocument; //numeric
     int i_ezsigndocument_edm; //numeric
     int i_ezsignsignature; //numeric
@@ -55,11 +56,13 @@ typedef struct ezsignfolder_list_element_t {
 ezsignfolder_list_element_t *ezsignfolder_list_element_create(
     int pki_ezsignfolder_id,
     int fki_ezsignfoldertype_id,
+    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel,
     char *s_ezsignfoldertype_name_x,
     char *s_ezsignfolder_description,
+    field_e_ezsignfolder_step_t *e_ezsignfolder_step,
     char *dt_created_date,
-    one_ofstringobject_t *dt_ezsignfolder_sentdate,
-    one_ofstringobject_t *dt_due_date,
+    char *dt_ezsignfolder_sentdate,
+    char *dt_due_date,
     int i_ezsigndocument,
     int i_ezsigndocument_edm,
     int i_ezsignsignature,

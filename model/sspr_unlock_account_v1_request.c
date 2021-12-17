@@ -25,6 +25,7 @@ ezmax_api_definition_sspr_unlock_account_v1_request__e e_user_type_ssprsspr_unlo
 sspr_unlock_account_v1_request_t *sspr_unlock_account_v1_request_create(
     char *pks_customer_code,
     int fki_language_id,
+    field_e_user_type_sspr_t *e_user_type_sspr,
     char *s_email_address,
     char *s_user_loginname,
     char *bin_user_ssp_rtoken
@@ -52,6 +53,10 @@ void sspr_unlock_account_v1_request_free(sspr_unlock_account_v1_request_t *sspr_
     if (sspr_unlock_account_v1_request->pks_customer_code) {
         free(sspr_unlock_account_v1_request->pks_customer_code);
         sspr_unlock_account_v1_request->pks_customer_code = NULL;
+    }
+    if (sspr_unlock_account_v1_request->e_user_type_sspr) {
+        field_e_user_type_sspr_free(sspr_unlock_account_v1_request->e_user_type_sspr);
+        sspr_unlock_account_v1_request->e_user_type_sspr = NULL;
     }
     if (sspr_unlock_account_v1_request->s_email_address) {
         free(sspr_unlock_account_v1_request->s_email_address);
@@ -93,6 +98,14 @@ cJSON *sspr_unlock_account_v1_request_convertToJSON(sspr_unlock_account_v1_reque
 
     // sspr_unlock_account_v1_request->e_user_type_sspr
     
+    cJSON *e_user_type_sspr_local_JSON = field_e_user_type_sspr_convertToJSON(sspr_unlock_account_v1_request->e_user_type_sspr);
+    if(e_user_type_sspr_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eUserTypeSSPR", e_user_type_sspr_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
 
 
     // sspr_unlock_account_v1_request->s_email_address
@@ -132,6 +145,9 @@ sspr_unlock_account_v1_request_t *sspr_unlock_account_v1_request_parseFromJSON(c
 
     sspr_unlock_account_v1_request_t *sspr_unlock_account_v1_request_local_var = NULL;
 
+    // define the local variable for sspr_unlock_account_v1_request->e_user_type_sspr
+    field_e_user_type_sspr_t *e_user_type_sspr_local_nonprim = NULL;
+
     // sspr_unlock_account_v1_request->pks_customer_code
     cJSON *pks_customer_code = cJSON_GetObjectItemCaseSensitive(sspr_unlock_account_v1_requestJSON, "pksCustomerCode");
     if (!pks_customer_code) {
@@ -162,6 +178,8 @@ sspr_unlock_account_v1_request_t *sspr_unlock_account_v1_request_parseFromJSON(c
         goto end;
     }
 
+    
+    e_user_type_sspr_local_nonprim = field_e_user_type_sspr_parseFromJSON(e_user_type_sspr); //custom
 
     // sspr_unlock_account_v1_request->s_email_address
     cJSON *s_email_address = cJSON_GetObjectItemCaseSensitive(sspr_unlock_account_v1_requestJSON, "sEmailAddress");
@@ -197,6 +215,7 @@ sspr_unlock_account_v1_request_t *sspr_unlock_account_v1_request_parseFromJSON(c
     sspr_unlock_account_v1_request_local_var = sspr_unlock_account_v1_request_create (
         strdup(pks_customer_code->valuestring),
         fki_language_id->valuedouble,
+        e_user_type_sspr_local_nonprim,
         s_email_address ? strdup(s_email_address->valuestring) : NULL,
         s_user_loginname ? strdup(s_user_loginname->valuestring) : NULL,
         strdup(bin_user_ssp_rtoken->valuestring)
@@ -204,6 +223,10 @@ sspr_unlock_account_v1_request_t *sspr_unlock_account_v1_request_parseFromJSON(c
 
     return sspr_unlock_account_v1_request_local_var;
 end:
+    if (e_user_type_sspr_local_nonprim) {
+        field_e_user_type_sspr_free(e_user_type_sspr_local_nonprim);
+        e_user_type_sspr_local_nonprim = NULL;
+    }
     return NULL;
 
 }

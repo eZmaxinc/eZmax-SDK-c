@@ -16,9 +16,6 @@
 #include "../model/ezsigntemplatepackage_list_element.h"
 ezsigntemplatepackage_list_element_t* instantiate_ezsigntemplatepackage_list_element(int include_optional);
 
-#include "test_one_ofintegerobject.c"
-#include "test_one_ofintegerobject.c"
-#include "test_one_ofintegerobject.c"
 
 
 ezsigntemplatepackage_list_element_t* instantiate_ezsigntemplatepackage_list_element(int include_optional) {
@@ -26,9 +23,9 @@ ezsigntemplatepackage_list_element_t* instantiate_ezsigntemplatepackage_list_ele
   if (include_optional) {
     ezsigntemplatepackage_list_element = ezsigntemplatepackage_list_element_create(
       99,
-      null,
-      null,
-      null,
+      1,
+      1,
+      5,
       2,
       ezmax_api_definition_ezsigntemplatepackage_list_element__"User",
       "Package for new clients",
@@ -38,9 +35,9 @@ ezsigntemplatepackage_list_element_t* instantiate_ezsigntemplatepackage_list_ele
   } else {
     ezsigntemplatepackage_list_element = ezsigntemplatepackage_list_element_create(
       99,
-      null,
-      null,
-      null,
+      1,
+      1,
+      5,
       2,
       ezmax_api_definition_ezsigntemplatepackage_list_element__"User",
       "Package for new clients",

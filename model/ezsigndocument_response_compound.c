@@ -28,6 +28,7 @@ ezsigndocument_response_compound_t *ezsigndocument_response_compound_create(
     int fki_language_id,
     char *s_ezsigndocument_name,
     int pki_ezsigndocument_id,
+    field_e_ezsigndocument_step_t *e_ezsigndocument_step,
     char *dt_ezsigndocument_firstsend,
     char *dt_ezsigndocument_lastsend,
     int i_ezsigndocument_order,
@@ -74,6 +75,10 @@ void ezsigndocument_response_compound_free(ezsigndocument_response_compound_t *e
     if (ezsigndocument_response_compound->s_ezsigndocument_name) {
         free(ezsigndocument_response_compound->s_ezsigndocument_name);
         ezsigndocument_response_compound->s_ezsigndocument_name = NULL;
+    }
+    if (ezsigndocument_response_compound->e_ezsigndocument_step) {
+        field_e_ezsigndocument_step_free(ezsigndocument_response_compound->e_ezsigndocument_step);
+        ezsigndocument_response_compound->e_ezsigndocument_step = NULL;
     }
     if (ezsigndocument_response_compound->dt_ezsigndocument_firstsend) {
         free(ezsigndocument_response_compound->dt_ezsigndocument_firstsend);
@@ -153,6 +158,14 @@ cJSON *ezsigndocument_response_compound_convertToJSON(ezsigndocument_response_co
 
     // ezsigndocument_response_compound->e_ezsigndocument_step
     
+    cJSON *e_ezsigndocument_step_local_JSON = field_e_ezsigndocument_step_convertToJSON(ezsigndocument_response_compound->e_ezsigndocument_step);
+    if(e_ezsigndocument_step_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsigndocumentStep", e_ezsigndocument_step_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
 
 
     // ezsigndocument_response_compound->dt_ezsigndocument_firstsend
@@ -261,6 +274,9 @@ ezsigndocument_response_compound_t *ezsigndocument_response_compound_parseFromJS
 
     ezsigndocument_response_compound_t *ezsigndocument_response_compound_local_var = NULL;
 
+    // define the local variable for ezsigndocument_response_compound->e_ezsigndocument_step
+    field_e_ezsigndocument_step_t *e_ezsigndocument_step_local_nonprim = NULL;
+
     // define the local variable for ezsigndocument_response_compound->obj_audit
     common_audit_t *obj_audit_local_nonprim = NULL;
 
@@ -330,6 +346,8 @@ ezsigndocument_response_compound_t *ezsigndocument_response_compound_parseFromJS
         goto end;
     }
 
+    
+    e_ezsigndocument_step_local_nonprim = field_e_ezsigndocument_step_parseFromJSON(e_ezsigndocument_step); //custom
 
     // ezsigndocument_response_compound->dt_ezsigndocument_firstsend
     cJSON *dt_ezsigndocument_firstsend = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compoundJSON, "dtEzsigndocumentFirstsend");
@@ -443,6 +461,7 @@ ezsigndocument_response_compound_t *ezsigndocument_response_compound_parseFromJS
         fki_language_id->valuedouble,
         strdup(s_ezsigndocument_name->valuestring),
         pki_ezsigndocument_id->valuedouble,
+        e_ezsigndocument_step_local_nonprim,
         strdup(dt_ezsigndocument_firstsend->valuestring),
         strdup(dt_ezsigndocument_lastsend->valuestring),
         i_ezsigndocument_order->valuedouble,
@@ -456,6 +475,10 @@ ezsigndocument_response_compound_t *ezsigndocument_response_compound_parseFromJS
 
     return ezsigndocument_response_compound_local_var;
 end:
+    if (e_ezsigndocument_step_local_nonprim) {
+        field_e_ezsigndocument_step_free(e_ezsigndocument_step_local_nonprim);
+        e_ezsigndocument_step_local_nonprim = NULL;
+    }
     if (obj_audit_local_nonprim) {
         common_audit_free(obj_audit_local_nonprim);
         obj_audit_local_nonprim = NULL;

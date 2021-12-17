@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pki_user_id** | **int** | The unique ID of the User | 
 **fki_language_id** | **int** | The unique ID of the Language.  Valid values:  |Value|Description| |-|-| |1|French| |2|English| | 
-**e_user_type** |  |  | 
+**e_user_type** | **field_e_user_type_t \*** |  | 
 **s_user_firstname** | **char \*** | The First name of the user | 
 **s_user_lastname** | **char \*** | The Last name of the user | 
 **s_user_loginname** | **char \*** | The Login name of the User. | 

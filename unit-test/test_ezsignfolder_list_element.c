@@ -16,8 +16,6 @@
 #include "../model/ezsignfolder_list_element.h"
 ezsignfolder_list_element_t* instantiate_ezsignfolder_list_element(int include_optional);
 
-#include "test_one_ofstringobject.c"
-#include "test_one_ofstringobject.c"
 
 
 ezsignfolder_list_element_t* instantiate_ezsignfolder_list_element(int include_optional) {
@@ -31,8 +29,8 @@ ezsignfolder_list_element_t* instantiate_ezsignfolder_list_element(int include_o
       "Test eZsign Folder",
       ezmax_api_definition_ezsignfolder_list_element__"Completed",
       "2020-12-31 23:59:59",
-      null,
-      null,
+      "2020-12-31 23:59:59",
+      "2020-12-31 23:59:59",
       56,
       56,
       56,
@@ -47,8 +45,8 @@ ezsignfolder_list_element_t* instantiate_ezsignfolder_list_element(int include_o
       "Test eZsign Folder",
       ezmax_api_definition_ezsignfolder_list_element__"Completed",
       "2020-12-31 23:59:59",
-      null,
-      null,
+      "2020-12-31 23:59:59",
+      "2020-12-31 23:59:59",
       56,
       56,
       56,

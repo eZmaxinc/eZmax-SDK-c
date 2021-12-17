@@ -31,6 +31,7 @@ ezmax_api_definition_user_response__e user_response_e_user_type_FromString(char*
 typedef struct user_response_t {
     int pki_user_id; //numeric
     int fki_language_id; //numeric
+    field_e_user_type_t *e_user_type; // custom
     char *s_user_firstname; // string
     char *s_user_lastname; // string
     char *s_user_loginname; // string
@@ -41,6 +42,7 @@ typedef struct user_response_t {
 user_response_t *user_response_create(
     int pki_user_id,
     int fki_language_id,
+    field_e_user_type_t *e_user_type,
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_user_loginname,

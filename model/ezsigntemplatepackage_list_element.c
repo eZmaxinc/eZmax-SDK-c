@@ -24,10 +24,11 @@ ezmax_api_definition_ezsigntemplatepackage_list_element__e e_ezsigntemplatepacka
 
 ezsigntemplatepackage_list_element_t *ezsigntemplatepackage_list_element_create(
     int pki_ezsigntemplatepackage_id,
-    one_ofintegerobject_t *fki_department_id,
-    one_ofintegerobject_t *fki_team_id,
-    one_ofintegerobject_t *fki_ezsignfoldertype_id,
+    int fki_department_id,
+    int fki_team_id,
+    int fki_ezsignfoldertype_id,
     int fki_language_id,
+    field_e_ezsigntemplatepackage_type_t *e_ezsigntemplatepackage_type,
     char *s_ezsigntemplatepackage_description,
     int b_ezsigntemplatepackage_isactive,
     int i_ezsigntemplatepackagemembership
@@ -55,17 +56,9 @@ void ezsigntemplatepackage_list_element_free(ezsigntemplatepackage_list_element_
         return ;
     }
     listEntry_t *listEntry;
-    if (ezsigntemplatepackage_list_element->fki_department_id) {
-        one_ofintegerobject_free(ezsigntemplatepackage_list_element->fki_department_id);
-        ezsigntemplatepackage_list_element->fki_department_id = NULL;
-    }
-    if (ezsigntemplatepackage_list_element->fki_team_id) {
-        one_ofintegerobject_free(ezsigntemplatepackage_list_element->fki_team_id);
-        ezsigntemplatepackage_list_element->fki_team_id = NULL;
-    }
-    if (ezsigntemplatepackage_list_element->fki_ezsignfoldertype_id) {
-        one_ofintegerobject_free(ezsigntemplatepackage_list_element->fki_ezsignfoldertype_id);
-        ezsigntemplatepackage_list_element->fki_ezsignfoldertype_id = NULL;
+    if (ezsigntemplatepackage_list_element->e_ezsigntemplatepackage_type) {
+        field_e_ezsigntemplatepackage_type_free(ezsigntemplatepackage_list_element->e_ezsigntemplatepackage_type);
+        ezsigntemplatepackage_list_element->e_ezsigntemplatepackage_type = NULL;
     }
     if (ezsigntemplatepackage_list_element->s_ezsigntemplatepackage_description) {
         free(ezsigntemplatepackage_list_element->s_ezsigntemplatepackage_description);
@@ -92,13 +85,8 @@ cJSON *ezsigntemplatepackage_list_element_convertToJSON(ezsigntemplatepackage_li
         goto fail;
     }
     
-    cJSON *fki_department_id_local_JSON = one_ofintegerobject_convertToJSON(ezsigntemplatepackage_list_element->fki_department_id);
-    if(fki_department_id_local_JSON == NULL) {
-    goto fail; //model
-    }
-    cJSON_AddItemToObject(item, "fkiDepartmentID", fki_department_id_local_JSON);
-    if(item->child == NULL) {
-    goto fail;
+    if(cJSON_AddNumberToObject(item, "fkiDepartmentID", ezsigntemplatepackage_list_element->fki_department_id) == NULL) {
+    goto fail; //Numeric
     }
 
 
@@ -107,13 +95,8 @@ cJSON *ezsigntemplatepackage_list_element_convertToJSON(ezsigntemplatepackage_li
         goto fail;
     }
     
-    cJSON *fki_team_id_local_JSON = one_ofintegerobject_convertToJSON(ezsigntemplatepackage_list_element->fki_team_id);
-    if(fki_team_id_local_JSON == NULL) {
-    goto fail; //model
-    }
-    cJSON_AddItemToObject(item, "fkiTeamID", fki_team_id_local_JSON);
-    if(item->child == NULL) {
-    goto fail;
+    if(cJSON_AddNumberToObject(item, "fkiTeamID", ezsigntemplatepackage_list_element->fki_team_id) == NULL) {
+    goto fail; //Numeric
     }
 
 
@@ -122,13 +105,8 @@ cJSON *ezsigntemplatepackage_list_element_convertToJSON(ezsigntemplatepackage_li
         goto fail;
     }
     
-    cJSON *fki_ezsignfoldertype_id_local_JSON = one_ofintegerobject_convertToJSON(ezsigntemplatepackage_list_element->fki_ezsignfoldertype_id);
-    if(fki_ezsignfoldertype_id_local_JSON == NULL) {
-    goto fail; //model
-    }
-    cJSON_AddItemToObject(item, "fkiEzsignfoldertypeID", fki_ezsignfoldertype_id_local_JSON);
-    if(item->child == NULL) {
-    goto fail;
+    if(cJSON_AddNumberToObject(item, "fkiEzsignfoldertypeID", ezsigntemplatepackage_list_element->fki_ezsignfoldertype_id) == NULL) {
+    goto fail; //Numeric
     }
 
 
@@ -144,6 +122,14 @@ cJSON *ezsigntemplatepackage_list_element_convertToJSON(ezsigntemplatepackage_li
 
     // ezsigntemplatepackage_list_element->e_ezsigntemplatepackage_type
     
+    cJSON *e_ezsigntemplatepackage_type_local_JSON = field_e_ezsigntemplatepackage_type_convertToJSON(ezsigntemplatepackage_list_element->e_ezsigntemplatepackage_type);
+    if(e_ezsigntemplatepackage_type_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsigntemplatepackageType", e_ezsigntemplatepackage_type_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
 
 
     // ezsigntemplatepackage_list_element->s_ezsigntemplatepackage_description
@@ -187,14 +173,8 @@ ezsigntemplatepackage_list_element_t *ezsigntemplatepackage_list_element_parseFr
 
     ezsigntemplatepackage_list_element_t *ezsigntemplatepackage_list_element_local_var = NULL;
 
-    // define the local variable for ezsigntemplatepackage_list_element->fki_department_id
-    one_ofintegerobject_t *fki_department_id_local_nonprim = NULL;
-
-    // define the local variable for ezsigntemplatepackage_list_element->fki_team_id
-    one_ofintegerobject_t *fki_team_id_local_nonprim = NULL;
-
-    // define the local variable for ezsigntemplatepackage_list_element->fki_ezsignfoldertype_id
-    one_ofintegerobject_t *fki_ezsignfoldertype_id_local_nonprim = NULL;
+    // define the local variable for ezsigntemplatepackage_list_element->e_ezsigntemplatepackage_type
+    field_e_ezsigntemplatepackage_type_t *e_ezsigntemplatepackage_type_local_nonprim = NULL;
 
     // ezsigntemplatepackage_list_element->pki_ezsigntemplatepackage_id
     cJSON *pki_ezsigntemplatepackage_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackage_list_elementJSON, "pkiEzsigntemplatepackageID");
@@ -215,7 +195,10 @@ ezsigntemplatepackage_list_element_t *ezsigntemplatepackage_list_element_parseFr
     }
 
     
-    fki_department_id_local_nonprim = one_ofintegerobject_parseFromJSON(fki_department_id); //nonprimitive
+    if(!cJSON_IsNumber(fki_department_id))
+    {
+    goto end; //Numeric
+    }
 
     // ezsigntemplatepackage_list_element->fki_team_id
     cJSON *fki_team_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackage_list_elementJSON, "fkiTeamID");
@@ -224,7 +207,10 @@ ezsigntemplatepackage_list_element_t *ezsigntemplatepackage_list_element_parseFr
     }
 
     
-    fki_team_id_local_nonprim = one_ofintegerobject_parseFromJSON(fki_team_id); //nonprimitive
+    if(!cJSON_IsNumber(fki_team_id))
+    {
+    goto end; //Numeric
+    }
 
     // ezsigntemplatepackage_list_element->fki_ezsignfoldertype_id
     cJSON *fki_ezsignfoldertype_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackage_list_elementJSON, "fkiEzsignfoldertypeID");
@@ -233,7 +219,10 @@ ezsigntemplatepackage_list_element_t *ezsigntemplatepackage_list_element_parseFr
     }
 
     
-    fki_ezsignfoldertype_id_local_nonprim = one_ofintegerobject_parseFromJSON(fki_ezsignfoldertype_id); //nonprimitive
+    if(!cJSON_IsNumber(fki_ezsignfoldertype_id))
+    {
+    goto end; //Numeric
+    }
 
     // ezsigntemplatepackage_list_element->fki_language_id
     cJSON *fki_language_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackage_list_elementJSON, "fkiLanguageID");
@@ -253,6 +242,8 @@ ezsigntemplatepackage_list_element_t *ezsigntemplatepackage_list_element_parseFr
         goto end;
     }
 
+    
+    e_ezsigntemplatepackage_type_local_nonprim = field_e_ezsigntemplatepackage_type_parseFromJSON(e_ezsigntemplatepackage_type); //custom
 
     // ezsigntemplatepackage_list_element->s_ezsigntemplatepackage_description
     cJSON *s_ezsigntemplatepackage_description = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackage_list_elementJSON, "sEzsigntemplatepackageDescription");
@@ -293,10 +284,11 @@ ezsigntemplatepackage_list_element_t *ezsigntemplatepackage_list_element_parseFr
 
     ezsigntemplatepackage_list_element_local_var = ezsigntemplatepackage_list_element_create (
         pki_ezsigntemplatepackage_id->valuedouble,
-        fki_department_id_local_nonprim,
-        fki_team_id_local_nonprim,
-        fki_ezsignfoldertype_id_local_nonprim,
+        fki_department_id->valuedouble,
+        fki_team_id->valuedouble,
+        fki_ezsignfoldertype_id->valuedouble,
         fki_language_id->valuedouble,
+        e_ezsigntemplatepackage_type_local_nonprim,
         strdup(s_ezsigntemplatepackage_description->valuestring),
         b_ezsigntemplatepackage_isactive->valueint,
         i_ezsigntemplatepackagemembership->valuedouble
@@ -304,17 +296,9 @@ ezsigntemplatepackage_list_element_t *ezsigntemplatepackage_list_element_parseFr
 
     return ezsigntemplatepackage_list_element_local_var;
 end:
-    if (fki_department_id_local_nonprim) {
-        one_ofintegerobject_free(fki_department_id_local_nonprim);
-        fki_department_id_local_nonprim = NULL;
-    }
-    if (fki_team_id_local_nonprim) {
-        one_ofintegerobject_free(fki_team_id_local_nonprim);
-        fki_team_id_local_nonprim = NULL;
-    }
-    if (fki_ezsignfoldertype_id_local_nonprim) {
-        one_ofintegerobject_free(fki_ezsignfoldertype_id_local_nonprim);
-        fki_ezsignfoldertype_id_local_nonprim = NULL;
+    if (e_ezsigntemplatepackage_type_local_nonprim) {
+        field_e_ezsigntemplatepackage_type_free(e_ezsigntemplatepackage_type_local_nonprim);
+        e_ezsigntemplatepackage_type_local_nonprim = NULL;
     }
     return NULL;
 

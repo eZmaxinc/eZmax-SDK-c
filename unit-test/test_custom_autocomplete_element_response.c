@@ -16,7 +16,6 @@
 #include "../model/custom_autocomplete_element_response.h"
 custom_autocomplete_element_response_t* instantiate_custom_autocomplete_element_response(int include_optional);
 
-#include "test_one_ofintegerstring.c"
 
 
 custom_autocomplete_element_response_t* instantiate_custom_autocomplete_element_response(int include_optional) {
@@ -25,13 +24,13 @@ custom_autocomplete_element_response_t* instantiate_custom_autocomplete_element_
     custom_autocomplete_element_response = custom_autocomplete_element_response_create(
       "0",
       "0",
-      null
+      "0"
     );
   } else {
     custom_autocomplete_element_response = custom_autocomplete_element_response_create(
       "0",
       "0",
-      null
+      "0"
     );
   }
 

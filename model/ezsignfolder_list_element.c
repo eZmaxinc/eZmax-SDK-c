@@ -42,11 +42,13 @@ ezmax_api_definition_ezsignfolder_list_element__e e_ezsignfolder_stepezsignfolde
 ezsignfolder_list_element_t *ezsignfolder_list_element_create(
     int pki_ezsignfolder_id,
     int fki_ezsignfoldertype_id,
+    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel,
     char *s_ezsignfoldertype_name_x,
     char *s_ezsignfolder_description,
+    field_e_ezsignfolder_step_t *e_ezsignfolder_step,
     char *dt_created_date,
-    one_ofstringobject_t *dt_ezsignfolder_sentdate,
-    one_ofstringobject_t *dt_due_date,
+    char *dt_ezsignfolder_sentdate,
+    char *dt_due_date,
     int i_ezsigndocument,
     int i_ezsigndocument_edm,
     int i_ezsignsignature,
@@ -79,6 +81,10 @@ void ezsignfolder_list_element_free(ezsignfolder_list_element_t *ezsignfolder_li
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsignfolder_list_element->e_ezsignfoldertype_privacylevel) {
+        field_e_ezsignfoldertype_privacylevel_free(ezsignfolder_list_element->e_ezsignfoldertype_privacylevel);
+        ezsignfolder_list_element->e_ezsignfoldertype_privacylevel = NULL;
+    }
     if (ezsignfolder_list_element->s_ezsignfoldertype_name_x) {
         free(ezsignfolder_list_element->s_ezsignfoldertype_name_x);
         ezsignfolder_list_element->s_ezsignfoldertype_name_x = NULL;
@@ -87,16 +93,20 @@ void ezsignfolder_list_element_free(ezsignfolder_list_element_t *ezsignfolder_li
         free(ezsignfolder_list_element->s_ezsignfolder_description);
         ezsignfolder_list_element->s_ezsignfolder_description = NULL;
     }
+    if (ezsignfolder_list_element->e_ezsignfolder_step) {
+        field_e_ezsignfolder_step_free(ezsignfolder_list_element->e_ezsignfolder_step);
+        ezsignfolder_list_element->e_ezsignfolder_step = NULL;
+    }
     if (ezsignfolder_list_element->dt_created_date) {
         free(ezsignfolder_list_element->dt_created_date);
         ezsignfolder_list_element->dt_created_date = NULL;
     }
     if (ezsignfolder_list_element->dt_ezsignfolder_sentdate) {
-        one_ofstringobject_free(ezsignfolder_list_element->dt_ezsignfolder_sentdate);
+        free(ezsignfolder_list_element->dt_ezsignfolder_sentdate);
         ezsignfolder_list_element->dt_ezsignfolder_sentdate = NULL;
     }
     if (ezsignfolder_list_element->dt_due_date) {
-        one_ofstringobject_free(ezsignfolder_list_element->dt_due_date);
+        free(ezsignfolder_list_element->dt_due_date);
         ezsignfolder_list_element->dt_due_date = NULL;
     }
     free(ezsignfolder_list_element);
@@ -127,6 +137,14 @@ cJSON *ezsignfolder_list_element_convertToJSON(ezsignfolder_list_element_t *ezsi
 
     // ezsignfolder_list_element->e_ezsignfoldertype_privacylevel
     
+    cJSON *e_ezsignfoldertype_privacylevel_local_JSON = field_e_ezsignfoldertype_privacylevel_convertToJSON(ezsignfolder_list_element->e_ezsignfoldertype_privacylevel);
+    if(e_ezsignfoldertype_privacylevel_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsignfoldertypePrivacylevel", e_ezsignfoldertype_privacylevel_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
 
 
     // ezsignfolder_list_element->s_ezsignfoldertype_name_x
@@ -151,6 +169,14 @@ cJSON *ezsignfolder_list_element_convertToJSON(ezsignfolder_list_element_t *ezsi
 
     // ezsignfolder_list_element->e_ezsignfolder_step
     
+    cJSON *e_ezsignfolder_step_local_JSON = field_e_ezsignfolder_step_convertToJSON(ezsignfolder_list_element->e_ezsignfolder_step);
+    if(e_ezsignfolder_step_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsignfolderStep", e_ezsignfolder_step_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
 
 
     // ezsignfolder_list_element->dt_created_date
@@ -168,13 +194,8 @@ cJSON *ezsignfolder_list_element_convertToJSON(ezsignfolder_list_element_t *ezsi
         goto fail;
     }
     
-    cJSON *dt_ezsignfolder_sentdate_local_JSON = one_ofstringobject_convertToJSON(ezsignfolder_list_element->dt_ezsignfolder_sentdate);
-    if(dt_ezsignfolder_sentdate_local_JSON == NULL) {
-    goto fail; //model
-    }
-    cJSON_AddItemToObject(item, "dtEzsignfolderSentdate", dt_ezsignfolder_sentdate_local_JSON);
-    if(item->child == NULL) {
-    goto fail;
+    if(cJSON_AddStringToObject(item, "dtEzsignfolderSentdate", ezsignfolder_list_element->dt_ezsignfolder_sentdate) == NULL) {
+    goto fail; //String
     }
 
 
@@ -183,13 +204,8 @@ cJSON *ezsignfolder_list_element_convertToJSON(ezsignfolder_list_element_t *ezsi
         goto fail;
     }
     
-    cJSON *dt_due_date_local_JSON = one_ofstringobject_convertToJSON(ezsignfolder_list_element->dt_due_date);
-    if(dt_due_date_local_JSON == NULL) {
-    goto fail; //model
-    }
-    cJSON_AddItemToObject(item, "dtDueDate", dt_due_date_local_JSON);
-    if(item->child == NULL) {
-    goto fail;
+    if(cJSON_AddStringToObject(item, "dtDueDate", ezsignfolder_list_element->dt_due_date) == NULL) {
+    goto fail; //String
     }
 
 
@@ -244,11 +260,11 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_parseFromJSON(cJSON *ezsi
 
     ezsignfolder_list_element_t *ezsignfolder_list_element_local_var = NULL;
 
-    // define the local variable for ezsignfolder_list_element->dt_ezsignfolder_sentdate
-    one_ofstringobject_t *dt_ezsignfolder_sentdate_local_nonprim = NULL;
+    // define the local variable for ezsignfolder_list_element->e_ezsignfoldertype_privacylevel
+    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel_local_nonprim = NULL;
 
-    // define the local variable for ezsignfolder_list_element->dt_due_date
-    one_ofstringobject_t *dt_due_date_local_nonprim = NULL;
+    // define the local variable for ezsignfolder_list_element->e_ezsignfolder_step
+    field_e_ezsignfolder_step_t *e_ezsignfolder_step_local_nonprim = NULL;
 
     // ezsignfolder_list_element->pki_ezsignfolder_id
     cJSON *pki_ezsignfolder_id = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "pkiEzsignfolderID");
@@ -280,6 +296,8 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_parseFromJSON(cJSON *ezsi
         goto end;
     }
 
+    
+    e_ezsignfoldertype_privacylevel_local_nonprim = field_e_ezsignfoldertype_privacylevel_parseFromJSON(e_ezsignfoldertype_privacylevel); //custom
 
     // ezsignfolder_list_element->s_ezsignfoldertype_name_x
     cJSON *s_ezsignfoldertype_name_x = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "sEzsignfoldertypeNameX");
@@ -311,6 +329,8 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_parseFromJSON(cJSON *ezsi
         goto end;
     }
 
+    
+    e_ezsignfolder_step_local_nonprim = field_e_ezsignfolder_step_parseFromJSON(e_ezsignfolder_step); //custom
 
     // ezsignfolder_list_element->dt_created_date
     cJSON *dt_created_date = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "dtCreatedDate");
@@ -331,7 +351,10 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_parseFromJSON(cJSON *ezsi
     }
 
     
-    dt_ezsignfolder_sentdate_local_nonprim = one_ofstringobject_parseFromJSON(dt_ezsignfolder_sentdate); //nonprimitive
+    if(!cJSON_IsString(dt_ezsignfolder_sentdate))
+    {
+    goto end; //String
+    }
 
     // ezsignfolder_list_element->dt_due_date
     cJSON *dt_due_date = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "dtDueDate");
@@ -340,7 +363,10 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_parseFromJSON(cJSON *ezsi
     }
 
     
-    dt_due_date_local_nonprim = one_ofstringobject_parseFromJSON(dt_due_date); //nonprimitive
+    if(!cJSON_IsString(dt_due_date))
+    {
+    goto end; //String
+    }
 
     // ezsignfolder_list_element->i_ezsigndocument
     cJSON *i_ezsigndocument = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "iEzsigndocument");
@@ -394,11 +420,13 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_parseFromJSON(cJSON *ezsi
     ezsignfolder_list_element_local_var = ezsignfolder_list_element_create (
         pki_ezsignfolder_id->valuedouble,
         fki_ezsignfoldertype_id->valuedouble,
+        e_ezsignfoldertype_privacylevel_local_nonprim,
         strdup(s_ezsignfoldertype_name_x->valuestring),
         strdup(s_ezsignfolder_description->valuestring),
+        e_ezsignfolder_step_local_nonprim,
         strdup(dt_created_date->valuestring),
-        dt_ezsignfolder_sentdate_local_nonprim,
-        dt_due_date_local_nonprim,
+        strdup(dt_ezsignfolder_sentdate->valuestring),
+        strdup(dt_due_date->valuestring),
         i_ezsigndocument->valuedouble,
         i_ezsigndocument_edm->valuedouble,
         i_ezsignsignature->valuedouble,
@@ -407,13 +435,13 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_parseFromJSON(cJSON *ezsi
 
     return ezsignfolder_list_element_local_var;
 end:
-    if (dt_ezsignfolder_sentdate_local_nonprim) {
-        one_ofstringobject_free(dt_ezsignfolder_sentdate_local_nonprim);
-        dt_ezsignfolder_sentdate_local_nonprim = NULL;
+    if (e_ezsignfoldertype_privacylevel_local_nonprim) {
+        field_e_ezsignfoldertype_privacylevel_free(e_ezsignfoldertype_privacylevel_local_nonprim);
+        e_ezsignfoldertype_privacylevel_local_nonprim = NULL;
     }
-    if (dt_due_date_local_nonprim) {
-        one_ofstringobject_free(dt_due_date_local_nonprim);
-        dt_due_date_local_nonprim = NULL;
+    if (e_ezsignfolder_step_local_nonprim) {
+        field_e_ezsignfolder_step_free(e_ezsignfolder_step_local_nonprim);
+        e_ezsignfolder_step_local_nonprim = NULL;
     }
     return NULL;
 

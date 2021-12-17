@@ -16,7 +16,6 @@
 typedef struct ezsigntemplatepackage_list_element_t ezsigntemplatepackage_list_element_t;
 
 #include "field_e_ezsigntemplatepackage_type.h"
-#include "one_ofintegerobject.h"
 
 // Enum  for ezsigntemplatepackage_list_element
 
@@ -30,10 +29,11 @@ ezmax_api_definition_ezsigntemplatepackage_list_element__e ezsigntemplatepackage
 
 typedef struct ezsigntemplatepackage_list_element_t {
     int pki_ezsigntemplatepackage_id; //numeric
-    struct one_ofintegerobject_t *fki_department_id; //model
-    struct one_ofintegerobject_t *fki_team_id; //model
-    struct one_ofintegerobject_t *fki_ezsignfoldertype_id; //model
+    int fki_department_id; //numeric
+    int fki_team_id; //numeric
+    int fki_ezsignfoldertype_id; //numeric
     int fki_language_id; //numeric
+    field_e_ezsigntemplatepackage_type_t *e_ezsigntemplatepackage_type; // custom
     char *s_ezsigntemplatepackage_description; // string
     int b_ezsigntemplatepackage_isactive; //boolean
     int i_ezsigntemplatepackagemembership; //numeric
@@ -42,10 +42,11 @@ typedef struct ezsigntemplatepackage_list_element_t {
 
 ezsigntemplatepackage_list_element_t *ezsigntemplatepackage_list_element_create(
     int pki_ezsigntemplatepackage_id,
-    one_ofintegerobject_t *fki_department_id,
-    one_ofintegerobject_t *fki_team_id,
-    one_ofintegerobject_t *fki_ezsignfoldertype_id,
+    int fki_department_id,
+    int fki_team_id,
+    int fki_ezsignfoldertype_id,
     int fki_language_id,
+    field_e_ezsigntemplatepackage_type_t *e_ezsigntemplatepackage_type,
     char *s_ezsigntemplatepackage_description,
     int b_ezsigntemplatepackage_isactive,
     int i_ezsigntemplatepackagemembership

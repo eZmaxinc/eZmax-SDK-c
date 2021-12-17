@@ -29,6 +29,7 @@ ezmax_api_definition_phone_request__e phone_request_e_phone_type_FromString(char
 
 typedef struct phone_request_t {
     int fki_phonetype_id; //numeric
+    field_e_phone_type_t *e_phone_type; // custom
     char *s_phone_region; // string
     char *s_phone_exchange; // string
     char *s_phone_number; // string
@@ -39,6 +40,7 @@ typedef struct phone_request_t {
 
 phone_request_t *phone_request_create(
     int fki_phonetype_id,
+    field_e_phone_type_t *e_phone_type,
     char *s_phone_region,
     char *s_phone_exchange,
     char *s_phone_number,

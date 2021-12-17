@@ -24,6 +24,7 @@ ezmax_api_definition_phone_request__e e_phone_typephone_request_FromString(char*
 
 phone_request_t *phone_request_create(
     int fki_phonetype_id,
+    field_e_phone_type_t *e_phone_type,
     char *s_phone_region,
     char *s_phone_exchange,
     char *s_phone_number,
@@ -51,6 +52,10 @@ void phone_request_free(phone_request_t *phone_request) {
         return ;
     }
     listEntry_t *listEntry;
+    if (phone_request->e_phone_type) {
+        field_e_phone_type_free(phone_request->e_phone_type);
+        phone_request->e_phone_type = NULL;
+    }
     if (phone_request->s_phone_region) {
         free(phone_request->s_phone_region);
         phone_request->s_phone_region = NULL;
@@ -89,6 +94,14 @@ cJSON *phone_request_convertToJSON(phone_request_t *phone_request) {
 
     // phone_request->e_phone_type
     
+    cJSON *e_phone_type_local_JSON = field_e_phone_type_convertToJSON(phone_request->e_phone_type);
+    if(e_phone_type_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "ePhoneType", e_phone_type_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
 
 
     // phone_request->s_phone_region
@@ -142,6 +155,9 @@ phone_request_t *phone_request_parseFromJSON(cJSON *phone_requestJSON){
 
     phone_request_t *phone_request_local_var = NULL;
 
+    // define the local variable for phone_request->e_phone_type
+    field_e_phone_type_t *e_phone_type_local_nonprim = NULL;
+
     // phone_request->fki_phonetype_id
     cJSON *fki_phonetype_id = cJSON_GetObjectItemCaseSensitive(phone_requestJSON, "fkiPhonetypeID");
     if (!fki_phonetype_id) {
@@ -160,6 +176,8 @@ phone_request_t *phone_request_parseFromJSON(cJSON *phone_requestJSON){
         goto end;
     }
 
+    
+    e_phone_type_local_nonprim = field_e_phone_type_parseFromJSON(e_phone_type); //custom
 
     // phone_request->s_phone_region
     cJSON *s_phone_region = cJSON_GetObjectItemCaseSensitive(phone_requestJSON, "sPhoneRegion");
@@ -209,6 +227,7 @@ phone_request_t *phone_request_parseFromJSON(cJSON *phone_requestJSON){
 
     phone_request_local_var = phone_request_create (
         fki_phonetype_id->valuedouble,
+        e_phone_type_local_nonprim,
         s_phone_region ? strdup(s_phone_region->valuestring) : NULL,
         s_phone_exchange ? strdup(s_phone_exchange->valuestring) : NULL,
         s_phone_number ? strdup(s_phone_number->valuestring) : NULL,
@@ -218,6 +237,10 @@ phone_request_t *phone_request_parseFromJSON(cJSON *phone_requestJSON){
 
     return phone_request_local_var;
 end:
+    if (e_phone_type_local_nonprim) {
+        field_e_phone_type_free(e_phone_type_local_nonprim);
+        e_phone_type_local_nonprim = NULL;
+    }
     return NULL;
 
 }

@@ -30,6 +30,7 @@ ezmax_api_definition_sspr_unlock_account_request_v1_request__e sspr_unlock_accou
 typedef struct sspr_unlock_account_request_v1_request_t {
     char *pks_customer_code; // string
     int fki_language_id; //numeric
+    field_e_user_type_sspr_t *e_user_type_sspr; // custom
     char *s_email_address; // string
     char *s_user_loginname; // string
 
@@ -38,6 +39,7 @@ typedef struct sspr_unlock_account_request_v1_request_t {
 sspr_unlock_account_request_v1_request_t *sspr_unlock_account_request_v1_request_create(
     char *pks_customer_code,
     int fki_language_id,
+    field_e_user_type_sspr_t *e_user_type_sspr,
     char *s_email_address,
     char *s_user_loginname
 );

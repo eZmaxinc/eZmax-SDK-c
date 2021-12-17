@@ -42,8 +42,10 @@ typedef struct ezsignfolder_response_t {
     int fki_ezsigntsarequirement_id; //numeric
     char *s_ezsignfolder_description; // string
     char *t_ezsignfolder_note; // string
+    field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency; // custom
     int pki_ezsignfolder_id; //numeric
     char *dt_ezsignfolder_sentdate; // string
+    field_e_ezsignfolder_step_t *e_ezsignfolder_step; // custom
     char *dt_ezsignfolder_close; // string
     struct common_audit_t *obj_audit; //model
 
@@ -54,8 +56,10 @@ ezsignfolder_response_t *ezsignfolder_response_create(
     int fki_ezsigntsarequirement_id,
     char *s_ezsignfolder_description,
     char *t_ezsignfolder_note,
+    field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency,
     int pki_ezsignfolder_id,
     char *dt_ezsignfolder_sentdate,
+    field_e_ezsignfolder_step_t *e_ezsignfolder_step,
     char *dt_ezsignfolder_close,
     common_audit_t *obj_audit
 );

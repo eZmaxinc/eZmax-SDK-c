@@ -28,6 +28,7 @@ ezsignsignature_request_t *ezsignsignature_request_create(
     int i_ezsignsignature_x,
     int i_ezsignsignature_y,
     int i_ezsignsignature_step,
+    field_e_ezsignsignature_type_t *e_ezsignsignature_type,
     int fki_ezsigndocument_id
     ) {
     ezsignsignature_request_t *ezsignsignature_request_local_var = malloc(sizeof(ezsignsignature_request_t));
@@ -51,6 +52,10 @@ void ezsignsignature_request_free(ezsignsignature_request_t *ezsignsignature_req
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsignsignature_request->e_ezsignsignature_type) {
+        field_e_ezsignsignature_type_free(ezsignsignature_request->e_ezsignsignature_type);
+        ezsignsignature_request->e_ezsignsignature_type = NULL;
+    }
     free(ezsignsignature_request);
 }
 
@@ -109,6 +114,14 @@ cJSON *ezsignsignature_request_convertToJSON(ezsignsignature_request_t *ezsignsi
 
     // ezsignsignature_request->e_ezsignsignature_type
     
+    cJSON *e_ezsignsignature_type_local_JSON = field_e_ezsignsignature_type_convertToJSON(ezsignsignature_request->e_ezsignsignature_type);
+    if(e_ezsignsignature_type_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsignsignatureType", e_ezsignsignature_type_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
 
 
     // ezsignsignature_request->fki_ezsigndocument_id
@@ -131,6 +144,9 @@ fail:
 ezsignsignature_request_t *ezsignsignature_request_parseFromJSON(cJSON *ezsignsignature_requestJSON){
 
     ezsignsignature_request_t *ezsignsignature_request_local_var = NULL;
+
+    // define the local variable for ezsignsignature_request->e_ezsignsignature_type
+    field_e_ezsignsignature_type_t *e_ezsignsignature_type_local_nonprim = NULL;
 
     // ezsignsignature_request->fki_ezsignfoldersignerassociation_id
     cJSON *fki_ezsignfoldersignerassociation_id = cJSON_GetObjectItemCaseSensitive(ezsignsignature_requestJSON, "fkiEzsignfoldersignerassociationID");
@@ -198,6 +214,8 @@ ezsignsignature_request_t *ezsignsignature_request_parseFromJSON(cJSON *ezsignsi
         goto end;
     }
 
+    
+    e_ezsignsignature_type_local_nonprim = field_e_ezsignsignature_type_parseFromJSON(e_ezsignsignature_type); //custom
 
     // ezsignsignature_request->fki_ezsigndocument_id
     cJSON *fki_ezsigndocument_id = cJSON_GetObjectItemCaseSensitive(ezsignsignature_requestJSON, "fkiEzsigndocumentID");
@@ -218,11 +236,16 @@ ezsignsignature_request_t *ezsignsignature_request_parseFromJSON(cJSON *ezsignsi
         i_ezsignsignature_x->valuedouble,
         i_ezsignsignature_y->valuedouble,
         i_ezsignsignature_step->valuedouble,
+        e_ezsignsignature_type_local_nonprim,
         fki_ezsigndocument_id->valuedouble
         );
 
     return ezsignsignature_request_local_var;
 end:
+    if (e_ezsignsignature_type_local_nonprim) {
+        field_e_ezsignsignature_type_free(e_ezsignsignature_type_local_nonprim);
+        e_ezsignsignature_type_local_nonprim = NULL;
+    }
     return NULL;
 
 }

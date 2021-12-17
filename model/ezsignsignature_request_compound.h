@@ -34,6 +34,7 @@ typedef struct ezsignsignature_request_compound_t {
     int i_ezsignsignature_x; //numeric
     int i_ezsignsignature_y; //numeric
     int i_ezsignsignature_step; //numeric
+    field_e_ezsignsignature_type_t *e_ezsignsignature_type; // custom
     int fki_ezsigndocument_id; //numeric
 
 } ezsignsignature_request_compound_t;
@@ -44,6 +45,7 @@ ezsignsignature_request_compound_t *ezsignsignature_request_compound_create(
     int i_ezsignsignature_x,
     int i_ezsignsignature_y,
     int i_ezsignsignature_step,
+    field_e_ezsignsignature_type_t *e_ezsignsignature_type,
     int fki_ezsigndocument_id
 );
 

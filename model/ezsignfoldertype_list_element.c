@@ -24,6 +24,7 @@ ezmax_api_definition_ezsignfoldertype_list_element__e e_ezsignfoldertype_privacy
 
 ezsignfoldertype_list_element_t *ezsignfoldertype_list_element_create(
     int pki_ezsignfoldertype_id,
+    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel,
     char *s_ezsignfoldertype_name_x,
     int b_ezsignfoldertype_isactive
     ) {
@@ -45,6 +46,10 @@ void ezsignfoldertype_list_element_free(ezsignfoldertype_list_element_t *ezsignf
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsignfoldertype_list_element->e_ezsignfoldertype_privacylevel) {
+        field_e_ezsignfoldertype_privacylevel_free(ezsignfoldertype_list_element->e_ezsignfoldertype_privacylevel);
+        ezsignfoldertype_list_element->e_ezsignfoldertype_privacylevel = NULL;
+    }
     if (ezsignfoldertype_list_element->s_ezsignfoldertype_name_x) {
         free(ezsignfoldertype_list_element->s_ezsignfoldertype_name_x);
         ezsignfoldertype_list_element->s_ezsignfoldertype_name_x = NULL;
@@ -67,6 +72,14 @@ cJSON *ezsignfoldertype_list_element_convertToJSON(ezsignfoldertype_list_element
 
     // ezsignfoldertype_list_element->e_ezsignfoldertype_privacylevel
     
+    cJSON *e_ezsignfoldertype_privacylevel_local_JSON = field_e_ezsignfoldertype_privacylevel_convertToJSON(ezsignfoldertype_list_element->e_ezsignfoldertype_privacylevel);
+    if(e_ezsignfoldertype_privacylevel_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsignfoldertypePrivacylevel", e_ezsignfoldertype_privacylevel_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
 
 
     // ezsignfoldertype_list_element->s_ezsignfoldertype_name_x
@@ -100,6 +113,9 @@ ezsignfoldertype_list_element_t *ezsignfoldertype_list_element_parseFromJSON(cJS
 
     ezsignfoldertype_list_element_t *ezsignfoldertype_list_element_local_var = NULL;
 
+    // define the local variable for ezsignfoldertype_list_element->e_ezsignfoldertype_privacylevel
+    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel_local_nonprim = NULL;
+
     // ezsignfoldertype_list_element->pki_ezsignfoldertype_id
     cJSON *pki_ezsignfoldertype_id = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_list_elementJSON, "pkiEzsignfoldertypeID");
     if (!pki_ezsignfoldertype_id) {
@@ -118,6 +134,8 @@ ezsignfoldertype_list_element_t *ezsignfoldertype_list_element_parseFromJSON(cJS
         goto end;
     }
 
+    
+    e_ezsignfoldertype_privacylevel_local_nonprim = field_e_ezsignfoldertype_privacylevel_parseFromJSON(e_ezsignfoldertype_privacylevel); //custom
 
     // ezsignfoldertype_list_element->s_ezsignfoldertype_name_x
     cJSON *s_ezsignfoldertype_name_x = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_list_elementJSON, "sEzsignfoldertypeNameX");
@@ -146,12 +164,17 @@ ezsignfoldertype_list_element_t *ezsignfoldertype_list_element_parseFromJSON(cJS
 
     ezsignfoldertype_list_element_local_var = ezsignfoldertype_list_element_create (
         pki_ezsignfoldertype_id->valuedouble,
+        e_ezsignfoldertype_privacylevel_local_nonprim,
         strdup(s_ezsignfoldertype_name_x->valuestring),
         b_ezsignfoldertype_isactive->valueint
         );
 
     return ezsignfoldertype_list_element_local_var;
 end:
+    if (e_ezsignfoldertype_privacylevel_local_nonprim) {
+        field_e_ezsignfoldertype_privacylevel_free(e_ezsignfoldertype_privacylevel_local_nonprim);
+        e_ezsignfoldertype_privacylevel_local_nonprim = NULL;
+    }
     return NULL;
 
 }

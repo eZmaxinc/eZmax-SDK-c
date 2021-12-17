@@ -29,6 +29,7 @@ ezmax_api_definition_ezsignfoldertype_list_element__e ezsignfoldertype_list_elem
 
 typedef struct ezsignfoldertype_list_element_t {
     int pki_ezsignfoldertype_id; //numeric
+    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel; // custom
     char *s_ezsignfoldertype_name_x; // string
     int b_ezsignfoldertype_isactive; //boolean
 
@@ -36,6 +37,7 @@ typedef struct ezsignfoldertype_list_element_t {
 
 ezsignfoldertype_list_element_t *ezsignfoldertype_list_element_create(
     int pki_ezsignfoldertype_id,
+    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel,
     char *s_ezsignfoldertype_name_x,
     int b_ezsignfoldertype_isactive
 );

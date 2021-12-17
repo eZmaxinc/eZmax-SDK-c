@@ -36,6 +36,7 @@ typedef struct ezsignfolder_request_compound_t {
     int fki_ezsigntsarequirement_id; //numeric
     char *s_ezsignfolder_description; // string
     char *t_ezsignfolder_note; // string
+    field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency; // custom
 
 } ezsignfolder_request_compound_t;
 
@@ -45,6 +46,7 @@ ezsignfolder_request_compound_t *ezsignfolder_request_compound_create(
     int fki_ezsigntsarequirement_id,
     char *s_ezsignfolder_description,
     char *t_ezsignfolder_note,
+    field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency
 );
 
 void ezsignfolder_request_compound_free(ezsignfolder_request_compound_t *ezsignfolder_request_compound);

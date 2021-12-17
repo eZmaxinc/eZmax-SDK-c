@@ -15,21 +15,20 @@
 
 typedef struct custom_autocomplete_element_response_t custom_autocomplete_element_response_t;
 
-#include "one_ofintegerstring.h"
 
 
 
 typedef struct custom_autocomplete_element_response_t {
     char *s_category; // string
     char *s_label; // string
-    struct one_ofintegerstring_t *m_value; //model
+    char *m_value; // string
 
 } custom_autocomplete_element_response_t;
 
 custom_autocomplete_element_response_t *custom_autocomplete_element_response_create(
     char *s_category,
     char *s_label,
-    one_ofintegerstring_t *m_value
+    char *m_value
 );
 
 void custom_autocomplete_element_response_free(custom_autocomplete_element_response_t *custom_autocomplete_element_response);

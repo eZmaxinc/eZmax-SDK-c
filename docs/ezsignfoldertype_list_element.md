@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pki_ezsignfoldertype_id** | **int** | The unique ID of the Ezsignfoldertype. | 
-**e_ezsignfoldertype_privacylevel** |  |  | 
+**e_ezsignfoldertype_privacylevel** | **field_e_ezsignfoldertype_privacylevel_t \*** |  | 
 **s_ezsignfoldertype_name_x** | **char \*** | The name of the Ezsignfoldertype in the language of the requester | 
 **b_ezsignfoldertype_isactive** | **int** | Whether the Ezsignfoldertype is active or not | 
 

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **fki_ezsignfoldertype_id** | **int** | The unique ID of the Ezsignfoldertype. | 
 **s_ezsignbulksend_description** | **char \*** | The description of the Ezsignbulksend | 
 **s_ezsignfoldertype_name_x** | **char \*** | The name of the Ezsignfoldertype in the language of the requester | 
-**e_ezsignfoldertype_privacylevel** |  |  | 
+**e_ezsignfoldertype_privacylevel** | **field_e_ezsignfoldertype_privacylevel_t \*** |  | 
 **b_ezsignbulksend_isactive** | **int** | Whether the Ezsignbulksend is active or not | 
 **i_ezsignbulksendtransmission** | **int** | The total number of Ezsignbulksendtransmissions in the Ezsignbulksend | 
 **i_ezsignfolder** | **int** | The total number of Ezsignfolders in the Ezsignbulksend | 

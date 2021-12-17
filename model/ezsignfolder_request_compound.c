@@ -28,6 +28,7 @@ ezsignfolder_request_compound_t *ezsignfolder_request_compound_create(
     int fki_ezsigntsarequirement_id,
     char *s_ezsignfolder_description,
     char *t_ezsignfolder_note,
+    field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency
     ) {
     ezsignfolder_request_compound_t *ezsignfolder_request_compound_local_var = malloc(sizeof(ezsignfolder_request_compound_t));
     if (!ezsignfolder_request_compound_local_var) {
@@ -63,6 +64,10 @@ void ezsignfolder_request_compound_free(ezsignfolder_request_compound_t *ezsignf
     if (ezsignfolder_request_compound->t_ezsignfolder_note) {
         free(ezsignfolder_request_compound->t_ezsignfolder_note);
         ezsignfolder_request_compound->t_ezsignfolder_note = NULL;
+    }
+    if (ezsignfolder_request_compound->e_ezsignfolder_sendreminderfrequency) {
+        field_e_ezsignfolder_sendreminderfrequency_free(ezsignfolder_request_compound->e_ezsignfolder_sendreminderfrequency);
+        ezsignfolder_request_compound->e_ezsignfolder_sendreminderfrequency = NULL;
     }
     free(ezsignfolder_request_compound);
 }
@@ -134,6 +139,14 @@ cJSON *ezsignfolder_request_compound_convertToJSON(ezsignfolder_request_compound
 
     // ezsignfolder_request_compound->e_ezsignfolder_sendreminderfrequency
     
+    cJSON *e_ezsignfolder_sendreminderfrequency_local_JSON = field_e_ezsignfolder_sendreminderfrequency_convertToJSON(ezsignfolder_request_compound->e_ezsignfolder_sendreminderfrequency);
+    if(e_ezsignfolder_sendreminderfrequency_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsignfolderSendreminderfrequency", e_ezsignfolder_sendreminderfrequency_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
 
     return item;
 fail:
@@ -146,6 +159,9 @@ fail:
 ezsignfolder_request_compound_t *ezsignfolder_request_compound_parseFromJSON(cJSON *ezsignfolder_request_compoundJSON){
 
     ezsignfolder_request_compound_t *ezsignfolder_request_compound_local_var = NULL;
+
+    // define the local variable for ezsignfolder_request_compound->e_ezsignfolder_sendreminderfrequency
+    field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency_local_nonprim = NULL;
 
     // ezsignfolder_request_compound->a_ezsignfoldersignerassociation
     cJSON *a_ezsignfoldersignerassociation = cJSON_GetObjectItemCaseSensitive(ezsignfolder_request_compoundJSON, "a_Ezsignfoldersignerassociation");
@@ -226,6 +242,8 @@ ezsignfolder_request_compound_t *ezsignfolder_request_compound_parseFromJSON(cJS
         goto end;
     }
 
+    
+    e_ezsignfolder_sendreminderfrequency_local_nonprim = field_e_ezsignfolder_sendreminderfrequency_parseFromJSON(e_ezsignfolder_sendreminderfrequency); //custom
 
 
     ezsignfolder_request_compound_local_var = ezsignfolder_request_compound_create (
@@ -234,10 +252,15 @@ ezsignfolder_request_compound_t *ezsignfolder_request_compound_parseFromJSON(cJS
         fki_ezsigntsarequirement_id->valuedouble,
         strdup(s_ezsignfolder_description->valuestring),
         strdup(t_ezsignfolder_note->valuestring),
+        e_ezsignfolder_sendreminderfrequency_local_nonprim
         );
 
     return ezsignfolder_request_compound_local_var;
 end:
+    if (e_ezsignfolder_sendreminderfrequency_local_nonprim) {
+        field_e_ezsignfolder_sendreminderfrequency_free(e_ezsignfolder_sendreminderfrequency_local_nonprim);
+        e_ezsignfolder_sendreminderfrequency_local_nonprim = NULL;
+    }
     return NULL;
 
 }

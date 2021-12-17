@@ -25,6 +25,7 @@ ezmax_api_definition_user_response__e e_user_typeuser_response_FromString(char* 
 user_response_t *user_response_create(
     int pki_user_id,
     int fki_language_id,
+    field_e_user_type_t *e_user_type,
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_user_loginname,
@@ -51,6 +52,10 @@ void user_response_free(user_response_t *user_response) {
         return ;
     }
     listEntry_t *listEntry;
+    if (user_response->e_user_type) {
+        field_e_user_type_free(user_response->e_user_type);
+        user_response->e_user_type = NULL;
+    }
     if (user_response->s_user_firstname) {
         free(user_response->s_user_firstname);
         user_response->s_user_firstname = NULL;
@@ -95,6 +100,14 @@ cJSON *user_response_convertToJSON(user_response_t *user_response) {
 
     // user_response->e_user_type
     
+    cJSON *e_user_type_local_JSON = field_e_user_type_convertToJSON(user_response->e_user_type);
+    if(e_user_type_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eUserType", e_user_type_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
 
 
     // user_response->s_user_firstname
@@ -153,6 +166,9 @@ user_response_t *user_response_parseFromJSON(cJSON *user_responseJSON){
 
     user_response_t *user_response_local_var = NULL;
 
+    // define the local variable for user_response->e_user_type
+    field_e_user_type_t *e_user_type_local_nonprim = NULL;
+
     // define the local variable for user_response->obj_audit
     common_audit_t *obj_audit_local_nonprim = NULL;
 
@@ -186,6 +202,8 @@ user_response_t *user_response_parseFromJSON(cJSON *user_responseJSON){
         goto end;
     }
 
+    
+    e_user_type_local_nonprim = field_e_user_type_parseFromJSON(e_user_type); //custom
 
     // user_response->s_user_firstname
     cJSON *s_user_firstname = cJSON_GetObjectItemCaseSensitive(user_responseJSON, "sUserFirstname");
@@ -236,6 +254,7 @@ user_response_t *user_response_parseFromJSON(cJSON *user_responseJSON){
     user_response_local_var = user_response_create (
         pki_user_id->valuedouble,
         fki_language_id->valuedouble,
+        e_user_type_local_nonprim,
         strdup(s_user_firstname->valuestring),
         strdup(s_user_lastname->valuestring),
         strdup(s_user_loginname->valuestring),
@@ -244,6 +263,10 @@ user_response_t *user_response_parseFromJSON(cJSON *user_responseJSON){
 
     return user_response_local_var;
 end:
+    if (e_user_type_local_nonprim) {
+        field_e_user_type_free(e_user_type_local_nonprim);
+        e_user_type_local_nonprim = NULL;
+    }
     if (obj_audit_local_nonprim) {
         common_audit_free(obj_audit_local_nonprim);
         obj_audit_local_nonprim = NULL;

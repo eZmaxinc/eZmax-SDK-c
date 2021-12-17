@@ -32,6 +32,7 @@ typedef struct ezsignbulksend_list_element_t {
     int fki_ezsignfoldertype_id; //numeric
     char *s_ezsignbulksend_description; // string
     char *s_ezsignfoldertype_name_x; // string
+    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel; // custom
     int b_ezsignbulksend_isactive; //boolean
     int i_ezsignbulksendtransmission; //numeric
     int i_ezsignfolder; //numeric
@@ -46,6 +47,7 @@ ezsignbulksend_list_element_t *ezsignbulksend_list_element_create(
     int fki_ezsignfoldertype_id,
     char *s_ezsignbulksend_description,
     char *s_ezsignfoldertype_name_x,
+    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel,
     int b_ezsignbulksend_isactive,
     int i_ezsignbulksendtransmission,
     int i_ezsignfolder,

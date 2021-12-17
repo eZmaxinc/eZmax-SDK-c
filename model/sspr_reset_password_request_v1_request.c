@@ -25,6 +25,7 @@ ezmax_api_definition_sspr_reset_password_request_v1_request__e e_user_type_ssprs
 sspr_reset_password_request_v1_request_t *sspr_reset_password_request_v1_request_create(
     char *pks_customer_code,
     int fki_language_id,
+    field_e_user_type_sspr_t *e_user_type_sspr,
     char *s_email_address,
     char *s_user_loginname
     ) {
@@ -50,6 +51,10 @@ void sspr_reset_password_request_v1_request_free(sspr_reset_password_request_v1_
     if (sspr_reset_password_request_v1_request->pks_customer_code) {
         free(sspr_reset_password_request_v1_request->pks_customer_code);
         sspr_reset_password_request_v1_request->pks_customer_code = NULL;
+    }
+    if (sspr_reset_password_request_v1_request->e_user_type_sspr) {
+        field_e_user_type_sspr_free(sspr_reset_password_request_v1_request->e_user_type_sspr);
+        sspr_reset_password_request_v1_request->e_user_type_sspr = NULL;
     }
     if (sspr_reset_password_request_v1_request->s_email_address) {
         free(sspr_reset_password_request_v1_request->s_email_address);
@@ -87,6 +92,14 @@ cJSON *sspr_reset_password_request_v1_request_convertToJSON(sspr_reset_password_
 
     // sspr_reset_password_request_v1_request->e_user_type_sspr
     
+    cJSON *e_user_type_sspr_local_JSON = field_e_user_type_sspr_convertToJSON(sspr_reset_password_request_v1_request->e_user_type_sspr);
+    if(e_user_type_sspr_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eUserTypeSSPR", e_user_type_sspr_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
 
 
     // sspr_reset_password_request_v1_request->s_email_address
@@ -115,6 +128,9 @@ fail:
 sspr_reset_password_request_v1_request_t *sspr_reset_password_request_v1_request_parseFromJSON(cJSON *sspr_reset_password_request_v1_requestJSON){
 
     sspr_reset_password_request_v1_request_t *sspr_reset_password_request_v1_request_local_var = NULL;
+
+    // define the local variable for sspr_reset_password_request_v1_request->e_user_type_sspr
+    field_e_user_type_sspr_t *e_user_type_sspr_local_nonprim = NULL;
 
     // sspr_reset_password_request_v1_request->pks_customer_code
     cJSON *pks_customer_code = cJSON_GetObjectItemCaseSensitive(sspr_reset_password_request_v1_requestJSON, "pksCustomerCode");
@@ -146,6 +162,8 @@ sspr_reset_password_request_v1_request_t *sspr_reset_password_request_v1_request
         goto end;
     }
 
+    
+    e_user_type_sspr_local_nonprim = field_e_user_type_sspr_parseFromJSON(e_user_type_sspr); //custom
 
     // sspr_reset_password_request_v1_request->s_email_address
     cJSON *s_email_address = cJSON_GetObjectItemCaseSensitive(sspr_reset_password_request_v1_requestJSON, "sEmailAddress");
@@ -169,12 +187,17 @@ sspr_reset_password_request_v1_request_t *sspr_reset_password_request_v1_request
     sspr_reset_password_request_v1_request_local_var = sspr_reset_password_request_v1_request_create (
         strdup(pks_customer_code->valuestring),
         fki_language_id->valuedouble,
+        e_user_type_sspr_local_nonprim,
         s_email_address ? strdup(s_email_address->valuestring) : NULL,
         s_user_loginname ? strdup(s_user_loginname->valuestring) : NULL
         );
 
     return sspr_reset_password_request_v1_request_local_var;
 end:
+    if (e_user_type_sspr_local_nonprim) {
+        field_e_user_type_sspr_free(e_user_type_sspr_local_nonprim);
+        e_user_type_sspr_local_nonprim = NULL;
+    }
     return NULL;
 
 }
