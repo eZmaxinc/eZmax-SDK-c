@@ -132,6 +132,9 @@ set(SRCS
     model/ezsignfolder_create_object_v1_response_all_of.c
     model/ezsignfolder_create_object_v1_response_m_payload.c
     model/ezsignfolder_delete_object_v1_response.c
+    model/ezsignfolder_get_ezsigndocuments_v1_response.c
+    model/ezsignfolder_get_ezsigndocuments_v1_response_all_of.c
+    model/ezsignfolder_get_ezsigndocuments_v1_response_m_payload.c
     model/ezsignfolder_get_forms_data_v1_response.c
     model/ezsignfolder_get_forms_data_v1_response_all_of.c
     model/ezsignfolder_get_forms_data_v1_response_m_payload.c
@@ -161,9 +164,12 @@ set(SRCS
     model/ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload.c
     model/ezsignfoldersignerassociation_get_object_v1_response.c
     model/ezsignfoldersignerassociation_get_object_v1_response_all_of.c
+    model/ezsignfoldersignerassociation_get_object_v1_response_m_payload.c
     model/ezsignfoldersignerassociation_request.c
     model/ezsignfoldersignerassociation_request_compound.c
     model/ezsignfoldersignerassociation_request_compound_all_of.c
+    model/ezsignfoldersignerassociation_response.c
+    model/ezsignfoldersignerassociation_response_compound.c
     model/ezsignfoldertype_get_list_v1_response.c
     model/ezsignfoldertype_get_list_v1_response_all_of.c
     model/ezsignfoldertype_get_list_v1_response_m_payload.c
@@ -357,6 +363,9 @@ set(HDRS
     model/ezsignfolder_create_object_v1_response_all_of.h
     model/ezsignfolder_create_object_v1_response_m_payload.h
     model/ezsignfolder_delete_object_v1_response.h
+    model/ezsignfolder_get_ezsigndocuments_v1_response.h
+    model/ezsignfolder_get_ezsigndocuments_v1_response_all_of.h
+    model/ezsignfolder_get_ezsigndocuments_v1_response_m_payload.h
     model/ezsignfolder_get_forms_data_v1_response.h
     model/ezsignfolder_get_forms_data_v1_response_all_of.h
     model/ezsignfolder_get_forms_data_v1_response_m_payload.h
@@ -386,9 +395,12 @@ set(HDRS
     model/ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload.h
     model/ezsignfoldersignerassociation_get_object_v1_response.h
     model/ezsignfoldersignerassociation_get_object_v1_response_all_of.h
+    model/ezsignfoldersignerassociation_get_object_v1_response_m_payload.h
     model/ezsignfoldersignerassociation_request.h
     model/ezsignfoldersignerassociation_request_compound.h
     model/ezsignfoldersignerassociation_request_compound_all_of.h
+    model/ezsignfoldersignerassociation_response.h
+    model/ezsignfoldersignerassociation_response_compound.h
     model/ezsignfoldertype_get_list_v1_response.h
     model/ezsignfoldertype_get_list_v1_response_all_of.h
     model/ezsignfoldertype_get_list_v1_response_m_payload.h

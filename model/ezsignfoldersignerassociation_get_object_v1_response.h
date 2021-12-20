@@ -19,19 +19,19 @@ typedef struct ezsignfoldersignerassociation_get_object_v1_response_t ezsignfold
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload.h"
 #include "ezsignfoldersignerassociation_get_object_v1_response_all_of.h"
-#include "object.h"
+#include "ezsignfoldersignerassociation_get_object_v1_response_m_payload.h"
 
 
 
 typedef struct ezsignfoldersignerassociation_get_object_v1_response_t {
-    object_t *m_payload; //object
+    struct ezsignfoldersignerassociation_get_object_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
 
 } ezsignfoldersignerassociation_get_object_v1_response_t;
 
 ezsignfoldersignerassociation_get_object_v1_response_t *ezsignfoldersignerassociation_get_object_v1_response_create(
-    object_t *m_payload,
+    ezsignfoldersignerassociation_get_object_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
 );

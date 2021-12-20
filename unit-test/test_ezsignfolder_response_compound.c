@@ -23,12 +23,17 @@ ezsignfolder_response_compound_t* instantiate_ezsignfolder_response_compound(int
   ezsignfolder_response_compound_t* ezsignfolder_response_compound = NULL;
   if (include_optional) {
     ezsignfolder_response_compound = ezsignfolder_response_compound_create(
+      33,
       5,
+      "Default",
+      1,
+      "Default",
       92,
+      "Default",
       "Test eZsign Folder",
       "An extra notes we can add to the ezsign folder",
       ezmax_api_definition_ezsignfolder_response_compound__"None",
-      33,
+      "2020-12-31 23:59:59",
       "2020-12-31 23:59:59",
       ezmax_api_definition_ezsignfolder_response_compound__"Completed",
       "2020-12-31 23:59:59",
@@ -36,12 +41,17 @@ ezsignfolder_response_compound_t* instantiate_ezsignfolder_response_compound(int
     );
   } else {
     ezsignfolder_response_compound = ezsignfolder_response_compound_create(
+      33,
       5,
+      "Default",
+      1,
+      "Default",
       92,
+      "Default",
       "Test eZsign Folder",
       "An extra notes we can add to the ezsign folder",
       ezmax_api_definition_ezsignfolder_response_compound__"None",
-      33,
+      "2020-12-31 23:59:59",
       "2020-12-31 23:59:59",
       ezmax_api_definition_ezsignfolder_response_compound__"Completed",
       "2020-12-31 23:59:59",

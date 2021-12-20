@@ -39,12 +39,17 @@ ezmax_api_definition_ezsignfolder_response_compound__e ezsignfolder_response_com
 
 
 typedef struct ezsignfolder_response_compound_t {
+    int pki_ezsignfolder_id; //numeric
     int fki_ezsignfoldertype_id; //numeric
+    char *s_ezsignfoldertype_name_x; // string
+    int fki_billingentityinternal_id; //numeric
+    char *s_billingentityinternal_description_x; // string
     int fki_ezsigntsarequirement_id; //numeric
+    char *s_ezsigntsarequirement_description_x; // string
     char *s_ezsignfolder_description; // string
     char *t_ezsignfolder_note; // string
     field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency; // custom
-    int pki_ezsignfolder_id; //numeric
+    char *dt_ezsignfolder_duedate; // string
     char *dt_ezsignfolder_sentdate; // string
     field_e_ezsignfolder_step_t *e_ezsignfolder_step; // custom
     char *dt_ezsignfolder_close; // string
@@ -53,12 +58,17 @@ typedef struct ezsignfolder_response_compound_t {
 } ezsignfolder_response_compound_t;
 
 ezsignfolder_response_compound_t *ezsignfolder_response_compound_create(
+    int pki_ezsignfolder_id,
     int fki_ezsignfoldertype_id,
+    char *s_ezsignfoldertype_name_x,
+    int fki_billingentityinternal_id,
+    char *s_billingentityinternal_description_x,
     int fki_ezsigntsarequirement_id,
+    char *s_ezsigntsarequirement_description_x,
     char *s_ezsignfolder_description,
     char *t_ezsignfolder_note,
     field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency,
-    int pki_ezsignfolder_id,
+    char *dt_ezsignfolder_duedate,
     char *dt_ezsignfolder_sentdate,
     field_e_ezsignfolder_step_t *e_ezsignfolder_step,
     char *dt_ezsignfolder_close,

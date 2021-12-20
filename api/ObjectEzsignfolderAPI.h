@@ -9,6 +9,7 @@
 #include "../model/ezsignfolder_create_object_v1_request.h"
 #include "../model/ezsignfolder_create_object_v1_response.h"
 #include "../model/ezsignfolder_delete_object_v1_response.h"
+#include "../model/ezsignfolder_get_ezsigndocuments_v1_response.h"
 #include "../model/ezsignfolder_get_forms_data_v1_response.h"
 #include "../model/ezsignfolder_get_list_v1_response.h"
 #include "../model/ezsignfolder_get_object_v1_response.h"
@@ -38,12 +39,10 @@ ezsignfolder_delete_object_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1(apiClient_t *apiClient, int pkiEzsignfolderID );
 
 
-// Retrieve an existing Ezsignfolder's children IDs
+// Retrieve an existing Ezsignfolder's Ezsigndocuments
 //
-// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
-//
-void
-ObjectEzsignfolderAPI_ezsignfolderGetChildrenV1(apiClient_t *apiClient, int pkiEzsignfolderID );
+ezsignfolder_get_ezsigndocuments_v1_response_t*
+ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1(apiClient_t *apiClient, int pkiEzsignfolderID );
 
 
 // Retrieve an existing Ezsignfolder's forms data
@@ -61,8 +60,6 @@ ObjectEzsignfolderAPI_ezsignfolderGetListV1(apiClient_t *apiClient, ezmax_api_de
 
 
 // Retrieve an existing Ezsignfolder
-//
-// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
 //
 ezsignfolder_get_object_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetObjectV1(apiClient_t *apiClient, int pkiEzsignfolderID );

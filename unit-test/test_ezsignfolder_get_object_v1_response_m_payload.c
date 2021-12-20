@@ -23,12 +23,17 @@ ezsignfolder_get_object_v1_response_m_payload_t* instantiate_ezsignfolder_get_ob
   ezsignfolder_get_object_v1_response_m_payload_t* ezsignfolder_get_object_v1_response_m_payload = NULL;
   if (include_optional) {
     ezsignfolder_get_object_v1_response_m_payload = ezsignfolder_get_object_v1_response_m_payload_create(
+      33,
       5,
+      "Default",
+      1,
+      "Default",
       92,
+      "Default",
       "Test eZsign Folder",
       "An extra notes we can add to the ezsign folder",
       ezmax_api_definition_ezsignfolder_get_object_v1_response_m_payload__"None",
-      33,
+      "2020-12-31 23:59:59",
       "2020-12-31 23:59:59",
       ezmax_api_definition_ezsignfolder_get_object_v1_response_m_payload__"Completed",
       "2020-12-31 23:59:59",
@@ -36,12 +41,17 @@ ezsignfolder_get_object_v1_response_m_payload_t* instantiate_ezsignfolder_get_ob
     );
   } else {
     ezsignfolder_get_object_v1_response_m_payload = ezsignfolder_get_object_v1_response_m_payload_create(
+      33,
       5,
+      "Default",
+      1,
+      "Default",
       92,
+      "Default",
       "Test eZsign Folder",
       "An extra notes we can add to the ezsign folder",
       ezmax_api_definition_ezsignfolder_get_object_v1_response_m_payload__"None",
-      33,
+      "2020-12-31 23:59:59",
       "2020-12-31 23:59:59",
       ezmax_api_definition_ezsignfolder_get_object_v1_response_m_payload__"Completed",
       "2020-12-31 23:59:59",

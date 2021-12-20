@@ -16,6 +16,7 @@
 #include "../model/ezsignfoldersignerassociation_get_object_v1_response.h"
 ezsignfoldersignerassociation_get_object_v1_response_t* instantiate_ezsignfoldersignerassociation_get_object_v1_response(int include_optional);
 
+#include "test_ezsignfoldersignerassociation_get_object_v1_response_m_payload.c"
 #include "test_common_response_obj_debug_payload.c"
 #include "test_common_response_obj_debug.c"
 
@@ -24,14 +25,15 @@ ezsignfoldersignerassociation_get_object_v1_response_t* instantiate_ezsignfolder
   ezsignfoldersignerassociation_get_object_v1_response_t* ezsignfoldersignerassociation_get_object_v1_response = NULL;
   if (include_optional) {
     ezsignfoldersignerassociation_get_object_v1_response = ezsignfoldersignerassociation_get_object_v1_response_create(
-      0,
+       // false, not to have infinite recursion
+      instantiate_ezsignfoldersignerassociation_get_object_v1_response_m_payload(0),
        // false, not to have infinite recursion
       instantiate_common_response_obj_debug_payload(0),
       {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]}
     );
   } else {
     ezsignfoldersignerassociation_get_object_v1_response = ezsignfoldersignerassociation_get_object_v1_response_create(
-      0,
+      NULL,
       NULL,
       {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]}
     );

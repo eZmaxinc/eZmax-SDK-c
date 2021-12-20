@@ -293,12 +293,10 @@ end:
 
 }
 
-// Retrieve an existing Ezsignfolder's children IDs
+// Retrieve an existing Ezsignfolder's Ezsigndocuments
 //
-// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
-//
-void
-ObjectEzsignfolderAPI_ezsignfolderGetChildrenV1(apiClient_t *apiClient, int pkiEzsignfolderID )
+ezsignfolder_get_ezsigndocuments_v1_response_t*
+ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1(apiClient_t *apiClient, int pkiEzsignfolderID )
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -308,9 +306,9 @@ ObjectEzsignfolderAPI_ezsignfolderGetChildrenV1(apiClient_t *apiClient, int pkiE
     char      *localVarBodyParameters = NULL;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}/getChildren")+1;
+    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsigndocuments")+1;
     char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}/getChildren");
+    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsigndocuments");
 
 
     // Path Params
@@ -339,11 +337,21 @@ ObjectEzsignfolderAPI_ezsignfolderGetChildrenV1(apiClient_t *apiClient, int pkiE
                     localVarBodyParameters,
                     "GET");
 
+    if (apiClient->response_code == 200) {
+        printf("%s\n","Successful response");
+    }
     if (apiClient->response_code == 404) {
         printf("%s\n","The element you are trying to work on does not exist");
     }
-    //No return type
-end:
+    //nonprimitive not container
+    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsignfolder_get_ezsigndocuments_v1_response_t *elementToReturn = ezsignfolder_get_ezsigndocuments_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
         apiClient->dataReceived = NULL;
@@ -356,6 +364,10 @@ end:
     
     free(localVarPath);
     free(localVarToReplace_pkiEzsignfolderID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
 
 }
 
@@ -623,8 +635,6 @@ end:
 }
 
 // Retrieve an existing Ezsignfolder
-//
-// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
 //
 ezsignfolder_get_object_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetObjectV1(apiClient_t *apiClient, int pkiEzsignfolderID )

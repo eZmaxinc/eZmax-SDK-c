@@ -15,17 +15,17 @@
 
 typedef struct ezsignfoldersignerassociation_get_object_v1_response_all_of_t ezsignfoldersignerassociation_get_object_v1_response_all_of_t;
 
-#include "object.h"
+#include "ezsignfoldersignerassociation_get_object_v1_response_m_payload.h"
 
 
 
 typedef struct ezsignfoldersignerassociation_get_object_v1_response_all_of_t {
-    object_t *m_payload; //object
+    struct ezsignfoldersignerassociation_get_object_v1_response_m_payload_t *m_payload; //model
 
 } ezsignfoldersignerassociation_get_object_v1_response_all_of_t;
 
 ezsignfoldersignerassociation_get_object_v1_response_all_of_t *ezsignfoldersignerassociation_get_object_v1_response_all_of_create(
-    object_t *m_payload
+    ezsignfoldersignerassociation_get_object_v1_response_m_payload_t *m_payload
 );
 
 void ezsignfoldersignerassociation_get_object_v1_response_all_of_free(ezsignfoldersignerassociation_get_object_v1_response_all_of_t *ezsignfoldersignerassociation_get_object_v1_response_all_of);

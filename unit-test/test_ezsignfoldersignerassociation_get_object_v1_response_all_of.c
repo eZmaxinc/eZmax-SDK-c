@@ -16,17 +16,19 @@
 #include "../model/ezsignfoldersignerassociation_get_object_v1_response_all_of.h"
 ezsignfoldersignerassociation_get_object_v1_response_all_of_t* instantiate_ezsignfoldersignerassociation_get_object_v1_response_all_of(int include_optional);
 
+#include "test_ezsignfoldersignerassociation_get_object_v1_response_m_payload.c"
 
 
 ezsignfoldersignerassociation_get_object_v1_response_all_of_t* instantiate_ezsignfoldersignerassociation_get_object_v1_response_all_of(int include_optional) {
   ezsignfoldersignerassociation_get_object_v1_response_all_of_t* ezsignfoldersignerassociation_get_object_v1_response_all_of = NULL;
   if (include_optional) {
     ezsignfoldersignerassociation_get_object_v1_response_all_of = ezsignfoldersignerassociation_get_object_v1_response_all_of_create(
-      0
+       // false, not to have infinite recursion
+      instantiate_ezsignfoldersignerassociation_get_object_v1_response_m_payload(0)
     );
   } else {
     ezsignfoldersignerassociation_get_object_v1_response_all_of = ezsignfoldersignerassociation_get_object_v1_response_all_of_create(
-      0
+      NULL
     );
   }
 

@@ -27,14 +27,6 @@ ezsignfoldersignerassociation_delete_object_v1_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationDeleteObjectV1(apiClient_t *apiClient, int pkiEzsignfoldersignerassociationID );
 
 
-// Retrieve an existing Ezsignfoldersignerassociation's children IDs
-//
-// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
-//
-void
-ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetChildrenV1(apiClient_t *apiClient, int pkiEzsignfoldersignerassociationID );
-
-
 // Retrieve a Login Url to allow In-Person signing
 //
 // This endpoint returns a Login Url that can be used in a browser or embedded in an I-Frame to allow in person signing.  The signer Login type must be configured as In-Person.
@@ -44,8 +36,6 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetInPersonL
 
 
 // Retrieve an existing Ezsignfoldersignerassociation
-//
-// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
 //
 ezsignfoldersignerassociation_get_object_v1_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV1(apiClient_t *apiClient, int pkiEzsignfoldersignerassociationID );

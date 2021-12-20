@@ -40,12 +40,17 @@ ezmax_api_definition_ezsignfolder_get_object_v1_response_m_payload__e e_ezsignfo
 }
 
 ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_response_m_payload_create(
+    int pki_ezsignfolder_id,
     int fki_ezsignfoldertype_id,
+    char *s_ezsignfoldertype_name_x,
+    int fki_billingentityinternal_id,
+    char *s_billingentityinternal_description_x,
     int fki_ezsigntsarequirement_id,
+    char *s_ezsigntsarequirement_description_x,
     char *s_ezsignfolder_description,
     char *t_ezsignfolder_note,
     field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency,
-    int pki_ezsignfolder_id,
+    char *dt_ezsignfolder_duedate,
     char *dt_ezsignfolder_sentdate,
     field_e_ezsignfolder_step_t *e_ezsignfolder_step,
     char *dt_ezsignfolder_close,
@@ -55,12 +60,17 @@ ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_resp
     if (!ezsignfolder_get_object_v1_response_m_payload_local_var) {
         return NULL;
     }
+    ezsignfolder_get_object_v1_response_m_payload_local_var->pki_ezsignfolder_id = pki_ezsignfolder_id;
     ezsignfolder_get_object_v1_response_m_payload_local_var->fki_ezsignfoldertype_id = fki_ezsignfoldertype_id;
+    ezsignfolder_get_object_v1_response_m_payload_local_var->s_ezsignfoldertype_name_x = s_ezsignfoldertype_name_x;
+    ezsignfolder_get_object_v1_response_m_payload_local_var->fki_billingentityinternal_id = fki_billingentityinternal_id;
+    ezsignfolder_get_object_v1_response_m_payload_local_var->s_billingentityinternal_description_x = s_billingentityinternal_description_x;
     ezsignfolder_get_object_v1_response_m_payload_local_var->fki_ezsigntsarequirement_id = fki_ezsigntsarequirement_id;
+    ezsignfolder_get_object_v1_response_m_payload_local_var->s_ezsigntsarequirement_description_x = s_ezsigntsarequirement_description_x;
     ezsignfolder_get_object_v1_response_m_payload_local_var->s_ezsignfolder_description = s_ezsignfolder_description;
     ezsignfolder_get_object_v1_response_m_payload_local_var->t_ezsignfolder_note = t_ezsignfolder_note;
     ezsignfolder_get_object_v1_response_m_payload_local_var->e_ezsignfolder_sendreminderfrequency = e_ezsignfolder_sendreminderfrequency;
-    ezsignfolder_get_object_v1_response_m_payload_local_var->pki_ezsignfolder_id = pki_ezsignfolder_id;
+    ezsignfolder_get_object_v1_response_m_payload_local_var->dt_ezsignfolder_duedate = dt_ezsignfolder_duedate;
     ezsignfolder_get_object_v1_response_m_payload_local_var->dt_ezsignfolder_sentdate = dt_ezsignfolder_sentdate;
     ezsignfolder_get_object_v1_response_m_payload_local_var->e_ezsignfolder_step = e_ezsignfolder_step;
     ezsignfolder_get_object_v1_response_m_payload_local_var->dt_ezsignfolder_close = dt_ezsignfolder_close;
@@ -75,6 +85,18 @@ void ezsignfolder_get_object_v1_response_m_payload_free(ezsignfolder_get_object_
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsignfolder_get_object_v1_response_m_payload->s_ezsignfoldertype_name_x) {
+        free(ezsignfolder_get_object_v1_response_m_payload->s_ezsignfoldertype_name_x);
+        ezsignfolder_get_object_v1_response_m_payload->s_ezsignfoldertype_name_x = NULL;
+    }
+    if (ezsignfolder_get_object_v1_response_m_payload->s_billingentityinternal_description_x) {
+        free(ezsignfolder_get_object_v1_response_m_payload->s_billingentityinternal_description_x);
+        ezsignfolder_get_object_v1_response_m_payload->s_billingentityinternal_description_x = NULL;
+    }
+    if (ezsignfolder_get_object_v1_response_m_payload->s_ezsigntsarequirement_description_x) {
+        free(ezsignfolder_get_object_v1_response_m_payload->s_ezsigntsarequirement_description_x);
+        ezsignfolder_get_object_v1_response_m_payload->s_ezsigntsarequirement_description_x = NULL;
+    }
     if (ezsignfolder_get_object_v1_response_m_payload->s_ezsignfolder_description) {
         free(ezsignfolder_get_object_v1_response_m_payload->s_ezsignfolder_description);
         ezsignfolder_get_object_v1_response_m_payload->s_ezsignfolder_description = NULL;
@@ -86,6 +108,10 @@ void ezsignfolder_get_object_v1_response_m_payload_free(ezsignfolder_get_object_
     if (ezsignfolder_get_object_v1_response_m_payload->e_ezsignfolder_sendreminderfrequency) {
         field_e_ezsignfolder_sendreminderfrequency_free(ezsignfolder_get_object_v1_response_m_payload->e_ezsignfolder_sendreminderfrequency);
         ezsignfolder_get_object_v1_response_m_payload->e_ezsignfolder_sendreminderfrequency = NULL;
+    }
+    if (ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_duedate) {
+        free(ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_duedate);
+        ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_duedate = NULL;
     }
     if (ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_sentdate) {
         free(ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_sentdate);
@@ -109,6 +135,16 @@ void ezsignfolder_get_object_v1_response_m_payload_free(ezsignfolder_get_object_
 cJSON *ezsignfolder_get_object_v1_response_m_payload_convertToJSON(ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_response_m_payload) {
     cJSON *item = cJSON_CreateObject();
 
+    // ezsignfolder_get_object_v1_response_m_payload->pki_ezsignfolder_id
+    if (!ezsignfolder_get_object_v1_response_m_payload->pki_ezsignfolder_id) {
+        goto fail;
+    }
+    
+    if(cJSON_AddNumberToObject(item, "pkiEzsignfolderID", ezsignfolder_get_object_v1_response_m_payload->pki_ezsignfolder_id) == NULL) {
+    goto fail; //Numeric
+    }
+
+
     // ezsignfolder_get_object_v1_response_m_payload->fki_ezsignfoldertype_id
     if (!ezsignfolder_get_object_v1_response_m_payload->fki_ezsignfoldertype_id) {
         goto fail;
@@ -119,6 +155,36 @@ cJSON *ezsignfolder_get_object_v1_response_m_payload_convertToJSON(ezsignfolder_
     }
 
 
+    // ezsignfolder_get_object_v1_response_m_payload->s_ezsignfoldertype_name_x
+    if (!ezsignfolder_get_object_v1_response_m_payload->s_ezsignfoldertype_name_x) {
+        goto fail;
+    }
+    
+    if(cJSON_AddStringToObject(item, "sEzsignfoldertypeNameX", ezsignfolder_get_object_v1_response_m_payload->s_ezsignfoldertype_name_x) == NULL) {
+    goto fail; //String
+    }
+
+
+    // ezsignfolder_get_object_v1_response_m_payload->fki_billingentityinternal_id
+    if (!ezsignfolder_get_object_v1_response_m_payload->fki_billingentityinternal_id) {
+        goto fail;
+    }
+    
+    if(cJSON_AddNumberToObject(item, "fkiBillingentityinternalID", ezsignfolder_get_object_v1_response_m_payload->fki_billingentityinternal_id) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // ezsignfolder_get_object_v1_response_m_payload->s_billingentityinternal_description_x
+    if (!ezsignfolder_get_object_v1_response_m_payload->s_billingentityinternal_description_x) {
+        goto fail;
+    }
+    
+    if(cJSON_AddStringToObject(item, "sBillingentityinternalDescriptionX", ezsignfolder_get_object_v1_response_m_payload->s_billingentityinternal_description_x) == NULL) {
+    goto fail; //String
+    }
+
+
     // ezsignfolder_get_object_v1_response_m_payload->fki_ezsigntsarequirement_id
     if (!ezsignfolder_get_object_v1_response_m_payload->fki_ezsigntsarequirement_id) {
         goto fail;
@@ -126,6 +192,16 @@ cJSON *ezsignfolder_get_object_v1_response_m_payload_convertToJSON(ezsignfolder_
     
     if(cJSON_AddNumberToObject(item, "fkiEzsigntsarequirementID", ezsignfolder_get_object_v1_response_m_payload->fki_ezsigntsarequirement_id) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // ezsignfolder_get_object_v1_response_m_payload->s_ezsigntsarequirement_description_x
+    if (!ezsignfolder_get_object_v1_response_m_payload->s_ezsigntsarequirement_description_x) {
+        goto fail;
+    }
+    
+    if(cJSON_AddStringToObject(item, "sEzsigntsarequirementDescriptionX", ezsignfolder_get_object_v1_response_m_payload->s_ezsigntsarequirement_description_x) == NULL) {
+    goto fail; //String
     }
 
 
@@ -161,13 +237,13 @@ cJSON *ezsignfolder_get_object_v1_response_m_payload_convertToJSON(ezsignfolder_
     }
 
 
-    // ezsignfolder_get_object_v1_response_m_payload->pki_ezsignfolder_id
-    if (!ezsignfolder_get_object_v1_response_m_payload->pki_ezsignfolder_id) {
+    // ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_duedate
+    if (!ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_duedate) {
         goto fail;
     }
     
-    if(cJSON_AddNumberToObject(item, "pkiEzsignfolderID", ezsignfolder_get_object_v1_response_m_payload->pki_ezsignfolder_id) == NULL) {
-    goto fail; //Numeric
+    if(cJSON_AddStringToObject(item, "dtEzsignfolderDuedate", ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_duedate) == NULL) {
+    goto fail; //String
     }
 
 
@@ -238,6 +314,18 @@ ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_resp
     // define the local variable for ezsignfolder_get_object_v1_response_m_payload->obj_audit
     common_audit_t *obj_audit_local_nonprim = NULL;
 
+    // ezsignfolder_get_object_v1_response_m_payload->pki_ezsignfolder_id
+    cJSON *pki_ezsignfolder_id = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_object_v1_response_m_payloadJSON, "pkiEzsignfolderID");
+    if (!pki_ezsignfolder_id) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(pki_ezsignfolder_id))
+    {
+    goto end; //Numeric
+    }
+
     // ezsignfolder_get_object_v1_response_m_payload->fki_ezsignfoldertype_id
     cJSON *fki_ezsignfoldertype_id = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_object_v1_response_m_payloadJSON, "fkiEzsignfoldertypeID");
     if (!fki_ezsignfoldertype_id) {
@@ -250,6 +338,42 @@ ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_resp
     goto end; //Numeric
     }
 
+    // ezsignfolder_get_object_v1_response_m_payload->s_ezsignfoldertype_name_x
+    cJSON *s_ezsignfoldertype_name_x = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_object_v1_response_m_payloadJSON, "sEzsignfoldertypeNameX");
+    if (!s_ezsignfoldertype_name_x) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_ezsignfoldertype_name_x))
+    {
+    goto end; //String
+    }
+
+    // ezsignfolder_get_object_v1_response_m_payload->fki_billingentityinternal_id
+    cJSON *fki_billingentityinternal_id = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_object_v1_response_m_payloadJSON, "fkiBillingentityinternalID");
+    if (!fki_billingentityinternal_id) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(fki_billingentityinternal_id))
+    {
+    goto end; //Numeric
+    }
+
+    // ezsignfolder_get_object_v1_response_m_payload->s_billingentityinternal_description_x
+    cJSON *s_billingentityinternal_description_x = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_object_v1_response_m_payloadJSON, "sBillingentityinternalDescriptionX");
+    if (!s_billingentityinternal_description_x) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_billingentityinternal_description_x))
+    {
+    goto end; //String
+    }
+
     // ezsignfolder_get_object_v1_response_m_payload->fki_ezsigntsarequirement_id
     cJSON *fki_ezsigntsarequirement_id = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_object_v1_response_m_payloadJSON, "fkiEzsigntsarequirementID");
     if (!fki_ezsigntsarequirement_id) {
@@ -260,6 +384,18 @@ ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_resp
     if(!cJSON_IsNumber(fki_ezsigntsarequirement_id))
     {
     goto end; //Numeric
+    }
+
+    // ezsignfolder_get_object_v1_response_m_payload->s_ezsigntsarequirement_description_x
+    cJSON *s_ezsigntsarequirement_description_x = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_object_v1_response_m_payloadJSON, "sEzsigntsarequirementDescriptionX");
+    if (!s_ezsigntsarequirement_description_x) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_ezsigntsarequirement_description_x))
+    {
+    goto end; //String
     }
 
     // ezsignfolder_get_object_v1_response_m_payload->s_ezsignfolder_description
@@ -295,16 +431,16 @@ ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_resp
     
     e_ezsignfolder_sendreminderfrequency_local_nonprim = field_e_ezsignfolder_sendreminderfrequency_parseFromJSON(e_ezsignfolder_sendreminderfrequency); //custom
 
-    // ezsignfolder_get_object_v1_response_m_payload->pki_ezsignfolder_id
-    cJSON *pki_ezsignfolder_id = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_object_v1_response_m_payloadJSON, "pkiEzsignfolderID");
-    if (!pki_ezsignfolder_id) {
+    // ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_duedate
+    cJSON *dt_ezsignfolder_duedate = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_object_v1_response_m_payloadJSON, "dtEzsignfolderDuedate");
+    if (!dt_ezsignfolder_duedate) {
         goto end;
     }
 
     
-    if(!cJSON_IsNumber(pki_ezsignfolder_id))
+    if(!cJSON_IsString(dt_ezsignfolder_duedate))
     {
-    goto end; //Numeric
+    goto end; //String
     }
 
     // ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_sentdate
@@ -351,12 +487,17 @@ ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_resp
 
 
     ezsignfolder_get_object_v1_response_m_payload_local_var = ezsignfolder_get_object_v1_response_m_payload_create (
+        pki_ezsignfolder_id->valuedouble,
         fki_ezsignfoldertype_id->valuedouble,
+        strdup(s_ezsignfoldertype_name_x->valuestring),
+        fki_billingentityinternal_id->valuedouble,
+        strdup(s_billingentityinternal_description_x->valuestring),
         fki_ezsigntsarequirement_id->valuedouble,
+        strdup(s_ezsigntsarequirement_description_x->valuestring),
         strdup(s_ezsignfolder_description->valuestring),
         strdup(t_ezsignfolder_note->valuestring),
         e_ezsignfolder_sendreminderfrequency_local_nonprim,
-        pki_ezsignfolder_id->valuedouble,
+        strdup(dt_ezsignfolder_duedate->valuestring),
         strdup(dt_ezsignfolder_sentdate->valuestring),
         e_ezsignfolder_step_local_nonprim,
         strdup(dt_ezsignfolder_close->valuestring),
