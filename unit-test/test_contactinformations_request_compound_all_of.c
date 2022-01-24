@@ -22,17 +22,17 @@ contactinformations_request_compound_all_of_t* instantiate_contactinformations_r
   contactinformations_request_compound_all_of_t* contactinformations_request_compound_all_of = NULL;
   if (include_optional) {
     contactinformations_request_compound_all_of = contactinformations_request_compound_all_of_create(
-      list_create(),
-      list_create(),
-      list_create(),
-      list_create()
+      list_createList(),
+      list_createList(),
+      list_createList(),
+      list_createList()
     );
   } else {
     contactinformations_request_compound_all_of = contactinformations_request_compound_all_of_create(
-      list_create(),
-      list_create(),
-      list_create(),
-      list_create()
+      list_createList(),
+      list_createList(),
+      list_createList(),
+      list_createList()
     );
   }
 

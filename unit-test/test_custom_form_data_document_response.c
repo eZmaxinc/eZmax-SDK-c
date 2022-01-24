@@ -26,7 +26,7 @@ custom_form_data_document_response_t* instantiate_custom_form_data_document_resp
       33,
       "Contract #123",
       "2020-12-31 23:59:59",
-      list_create()
+      list_createList()
     );
   } else {
     custom_form_data_document_response = custom_form_data_document_response_create(
@@ -34,7 +34,7 @@ custom_form_data_document_response_t* instantiate_custom_form_data_document_resp
       33,
       "Contract #123",
       "2020-12-31 23:59:59",
-      list_create()
+      list_createList()
     );
   }
 

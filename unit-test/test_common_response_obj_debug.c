@@ -26,7 +26,7 @@ common_response_obj_debug_t* instantiate_common_response_obj_debug(int include_o
       "0",
       56,
       56,
-      list_create()
+      list_createList()
     );
   } else {
     common_response_obj_debug = common_response_obj_debug_create(
@@ -34,7 +34,7 @@ common_response_obj_debug_t* instantiate_common_response_obj_debug(int include_o
       "0",
       56,
       56,
-      list_create()
+      list_createList()
     );
   }
 

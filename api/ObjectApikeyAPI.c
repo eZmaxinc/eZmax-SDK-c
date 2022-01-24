@@ -22,8 +22,8 @@ ObjectApikeyAPI_apikeyCreateObjectV1(apiClient_t *apiClient, list_t * apikey_cre
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
-    list_t *localVarContentType = list_create();
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
 
     // create the path
@@ -94,8 +94,8 @@ ObjectApikeyAPI_apikeyCreateObjectV1(apiClient_t *apiClient, list_t * apikey_cre
     
     
     
-    list_free(localVarHeaderType);
-    list_free(localVarContentType);
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
     free(localVarPath);
     if (localVarItemJSON_apikey_create_object_v1_request) {
         cJSON_Delete(localVarItemJSON_apikey_create_object_v1_request);

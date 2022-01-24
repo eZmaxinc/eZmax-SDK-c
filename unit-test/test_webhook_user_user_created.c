@@ -28,13 +28,13 @@ webhook_user_user_created_t* instantiate_webhook_user_user_created(int include_o
       instantiate_user_response(0),
        // false, not to have infinite recursion
       instantiate_webhook_response(0),
-      list_create()
+      list_createList()
     );
   } else {
     webhook_user_user_created = webhook_user_user_created_create(
       NULL,
       NULL,
-      list_create()
+      list_createList()
     );
   }
 

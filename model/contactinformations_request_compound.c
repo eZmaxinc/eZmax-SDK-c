@@ -41,28 +41,28 @@ void contactinformations_request_compound_free(contactinformations_request_compo
         list_ForEach(listEntry, contactinformations_request_compound->a_obj_address) {
             address_request_free(listEntry->data);
         }
-        list_free(contactinformations_request_compound->a_obj_address);
+        list_freeList(contactinformations_request_compound->a_obj_address);
         contactinformations_request_compound->a_obj_address = NULL;
     }
     if (contactinformations_request_compound->a_obj_phone) {
         list_ForEach(listEntry, contactinformations_request_compound->a_obj_phone) {
             phone_request_free(listEntry->data);
         }
-        list_free(contactinformations_request_compound->a_obj_phone);
+        list_freeList(contactinformations_request_compound->a_obj_phone);
         contactinformations_request_compound->a_obj_phone = NULL;
     }
     if (contactinformations_request_compound->a_obj_email) {
         list_ForEach(listEntry, contactinformations_request_compound->a_obj_email) {
             email_request_free(listEntry->data);
         }
-        list_free(contactinformations_request_compound->a_obj_email);
+        list_freeList(contactinformations_request_compound->a_obj_email);
         contactinformations_request_compound->a_obj_email = NULL;
     }
     if (contactinformations_request_compound->a_obj_website) {
         list_ForEach(listEntry, contactinformations_request_compound->a_obj_website) {
             website_request_free(listEntry->data);
         }
-        list_free(contactinformations_request_compound->a_obj_website);
+        list_freeList(contactinformations_request_compound->a_obj_website);
         contactinformations_request_compound->a_obj_website = NULL;
     }
     free(contactinformations_request_compound);
@@ -223,7 +223,7 @@ contactinformations_request_compound_t *contactinformations_request_compound_par
         goto end; //nonprimitive container
     }
 
-    a_obj_addressList = list_create();
+    a_obj_addressList = list_createList();
 
     cJSON_ArrayForEach(a_obj_address_local_nonprimitive,a_obj_address )
     {
@@ -248,7 +248,7 @@ contactinformations_request_compound_t *contactinformations_request_compound_par
         goto end; //nonprimitive container
     }
 
-    a_obj_phoneList = list_create();
+    a_obj_phoneList = list_createList();
 
     cJSON_ArrayForEach(a_obj_phone_local_nonprimitive,a_obj_phone )
     {
@@ -273,7 +273,7 @@ contactinformations_request_compound_t *contactinformations_request_compound_par
         goto end; //nonprimitive container
     }
 
-    a_obj_emailList = list_create();
+    a_obj_emailList = list_createList();
 
     cJSON_ArrayForEach(a_obj_email_local_nonprimitive,a_obj_email )
     {
@@ -298,7 +298,7 @@ contactinformations_request_compound_t *contactinformations_request_compound_par
         goto end; //nonprimitive container
     }
 
-    a_obj_websiteList = list_create();
+    a_obj_websiteList = list_createList();
 
     cJSON_ArrayForEach(a_obj_website_local_nonprimitive,a_obj_website )
     {

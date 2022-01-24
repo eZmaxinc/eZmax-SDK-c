@@ -16,7 +16,7 @@
 typedef struct ezsigndocument_get_object_v1_response_m_payload_t ezsigndocument_get_object_v1_response_m_payload_t;
 
 #include "common_audit.h"
-#include "ezsigndocument_response.h"
+#include "ezsigndocument_response_compound.h"
 #include "field_e_ezsigndocument_step.h"
 
 // Enum  for ezsigndocument_get_object_v1_response_m_payload

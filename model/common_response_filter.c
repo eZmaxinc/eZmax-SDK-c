@@ -32,7 +32,7 @@ void common_response_filter_free(common_response_filter_t *common_response_filte
             free (localKeyValue->value);
             keyValuePair_free(localKeyValue);
         }
-        list_free(common_response_filter->a_auto_type);
+        list_freeList(common_response_filter->a_auto_type);
         common_response_filter->a_auto_type = NULL;
     }
     if (common_response_filter->a_enum) {
@@ -42,7 +42,7 @@ void common_response_filter_free(common_response_filter_t *common_response_filte
             free (localKeyValue->value);
             keyValuePair_free(localKeyValue);
         }
-        list_free(common_response_filter->a_enum);
+        list_freeList(common_response_filter->a_enum);
         common_response_filter->a_enum = NULL;
     }
     free(common_response_filter);
@@ -106,7 +106,7 @@ common_response_filter_t *common_response_filter_parseFromJSON(cJSON *common_res
     if(!cJSON_IsObject(a_auto_type)) {
         goto end;//primitive map container
     }
-    a_auto_typeList = list_create();
+    a_auto_typeList = list_createList();
     keyValuePair_t *localMapKeyPair;
     cJSON_ArrayForEach(a_auto_type_local_map, a_auto_type)
     {
@@ -128,7 +128,7 @@ common_response_filter_t *common_response_filter_parseFromJSON(cJSON *common_res
     if(!cJSON_IsObject(a_enum)) {
         goto end;//primitive map container
     }
-    a_enumList = list_create();
+    a_enumList = list_createList();
     keyValuePair_t *localMapKeyPair;
     cJSON_ArrayForEach(a_enum_local_map, a_enum)
     {

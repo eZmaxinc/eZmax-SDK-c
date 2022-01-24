@@ -35,7 +35,7 @@ void custom_forms_data_folder_response_free(custom_forms_data_folder_response_t 
         list_ForEach(listEntry, custom_forms_data_folder_response->a_obj_form_data_document) {
             custom_form_data_document_response_free(listEntry->data);
         }
-        list_free(custom_forms_data_folder_response->a_obj_form_data_document);
+        list_freeList(custom_forms_data_folder_response->a_obj_form_data_document);
         custom_forms_data_folder_response->a_obj_form_data_document = NULL;
     }
     free(custom_forms_data_folder_response);
@@ -134,7 +134,7 @@ custom_forms_data_folder_response_t *custom_forms_data_folder_response_parseFrom
         goto end; //nonprimitive container
     }
 
-    a_obj_form_data_documentList = list_create();
+    a_obj_form_data_documentList = list_createList();
 
     cJSON_ArrayForEach(a_obj_form_data_document_local_nonprimitive,a_obj_form_data_document )
     {

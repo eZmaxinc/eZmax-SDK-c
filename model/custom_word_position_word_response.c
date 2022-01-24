@@ -33,7 +33,7 @@ void custom_word_position_word_response_free(custom_word_position_word_response_
         list_ForEach(listEntry, custom_word_position_word_response->a_obj_word_position_occurence) {
             custom_word_position_occurence_response_free(listEntry->data);
         }
-        list_free(custom_word_position_word_response->a_obj_word_position_occurence);
+        list_freeList(custom_word_position_word_response->a_obj_word_position_occurence);
         custom_word_position_word_response->a_obj_word_position_occurence = NULL;
     }
     free(custom_word_position_word_response);
@@ -110,7 +110,7 @@ custom_word_position_word_response_t *custom_word_position_word_response_parseFr
         goto end; //nonprimitive container
     }
 
-    a_obj_word_position_occurenceList = list_create();
+    a_obj_word_position_occurenceList = list_createList();
 
     cJSON_ArrayForEach(a_obj_word_position_occurence_local_nonprimitive,a_obj_word_position_occurence )
     {

@@ -27,7 +27,7 @@ void ezsignformfieldgroup_response_compound_all_of_free(ezsignformfieldgroup_res
         list_ForEach(listEntry, ezsignformfieldgroup_response_compound_all_of->a_obj_ezsignformfield) {
             ezsignformfield_response_free(listEntry->data);
         }
-        list_free(ezsignformfieldgroup_response_compound_all_of->a_obj_ezsignformfield);
+        list_freeList(ezsignformfieldgroup_response_compound_all_of->a_obj_ezsignformfield);
         ezsignformfieldgroup_response_compound_all_of->a_obj_ezsignformfield = NULL;
     }
     free(ezsignformfieldgroup_response_compound_all_of);
@@ -82,7 +82,7 @@ ezsignformfieldgroup_response_compound_all_of_t *ezsignformfieldgroup_response_c
         goto end; //nonprimitive container
     }
 
-    a_obj_ezsignformfieldList = list_create();
+    a_obj_ezsignformfieldList = list_createList();
 
     cJSON_ArrayForEach(a_obj_ezsignformfield_local_nonprimitive,a_obj_ezsignformfield )
     {

@@ -28,13 +28,13 @@ webhook_ezsign_folder_completed_t* instantiate_webhook_ezsign_folder_completed(i
       instantiate_ezsignfolder_response(0),
        // false, not to have infinite recursion
       instantiate_webhook_response(0),
-      list_create()
+      list_createList()
     );
   } else {
     webhook_ezsign_folder_completed = webhook_ezsign_folder_completed_create(
       NULL,
       NULL,
-      list_create()
+      list_createList()
     );
   }
 

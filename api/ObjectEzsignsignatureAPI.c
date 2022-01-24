@@ -22,8 +22,8 @@ ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV1(apiClient_t *apiClient, l
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
-    list_t *localVarContentType = list_create();
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
 
     // create the path
@@ -94,8 +94,8 @@ ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV1(apiClient_t *apiClient, l
     
     
     
-    list_free(localVarHeaderType);
-    list_free(localVarContentType);
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
     free(localVarPath);
     if (localVarItemJSON_ezsignsignature_create_object_v1_request) {
         cJSON_Delete(localVarItemJSON_ezsignsignature_create_object_v1_request);
@@ -125,7 +125,7 @@ ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1(apiClient_t *apiClient, i
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
+    list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
 
@@ -187,7 +187,7 @@ ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1(apiClient_t *apiClient, i
     
     
     
-    list_free(localVarHeaderType);
+    list_freeList(localVarHeaderType);
     
     free(localVarPath);
     free(localVarToReplace_pkiEzsignsignatureID);
@@ -208,7 +208,7 @@ ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV1(apiClient_t *apiClient, int 
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
+    list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
 
@@ -267,7 +267,7 @@ ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV1(apiClient_t *apiClient, int 
     
     
     
-    list_free(localVarHeaderType);
+    list_freeList(localVarHeaderType);
     
     free(localVarPath);
     free(localVarToReplace_pkiEzsignsignatureID);

@@ -43,7 +43,7 @@ void custom_form_data_document_response_free(custom_form_data_document_response_
         list_ForEach(listEntry, custom_form_data_document_response->a_obj_form_data_signer) {
             custom_form_data_signer_response_free(listEntry->data);
         }
-        list_free(custom_form_data_document_response->a_obj_form_data_signer);
+        list_freeList(custom_form_data_document_response->a_obj_form_data_signer);
         custom_form_data_document_response->a_obj_form_data_signer = NULL;
     }
     free(custom_form_data_document_response);
@@ -186,7 +186,7 @@ custom_form_data_document_response_t *custom_form_data_document_response_parseFr
         goto end; //nonprimitive container
     }
 
-    a_obj_form_data_signerList = list_create();
+    a_obj_form_data_signerList = list_createList();
 
     cJSON_ArrayForEach(a_obj_form_data_signer_local_nonprimitive,a_obj_form_data_signer )
     {

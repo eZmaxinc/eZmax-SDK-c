@@ -39,7 +39,7 @@ void webhook_ezsign_folder_completed_free(webhook_ezsign_folder_completed_t *web
         list_ForEach(listEntry, webhook_ezsign_folder_completed->a_obj_attempt) {
             attempt_response_free(listEntry->data);
         }
-        list_free(webhook_ezsign_folder_completed->a_obj_attempt);
+        list_freeList(webhook_ezsign_folder_completed->a_obj_attempt);
         webhook_ezsign_folder_completed->a_obj_attempt = NULL;
     }
     free(webhook_ezsign_folder_completed);
@@ -148,7 +148,7 @@ webhook_ezsign_folder_completed_t *webhook_ezsign_folder_completed_parseFromJSON
         goto end; //nonprimitive container
     }
 
-    a_obj_attemptList = list_create();
+    a_obj_attemptList = list_createList();
 
     cJSON_ArrayForEach(a_obj_attempt_local_nonprimitive,a_obj_attempt )
     {

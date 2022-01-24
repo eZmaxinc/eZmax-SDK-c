@@ -25,12 +25,12 @@ common_response_obj_debug_payload_get_list_all_of_t* instantiate_common_response
     common_response_obj_debug_payload_get_list_all_of = common_response_obj_debug_payload_get_list_all_of_create(
        // false, not to have infinite recursion
       instantiate_common_response_filter(0),
-      list_create()
+      list_createList()
     );
   } else {
     common_response_obj_debug_payload_get_list_all_of = common_response_obj_debug_payload_get_list_all_of_create(
       NULL,
-      list_create()
+      list_createList()
     );
   }
 

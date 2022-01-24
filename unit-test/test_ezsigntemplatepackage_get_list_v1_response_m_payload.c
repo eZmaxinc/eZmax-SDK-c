@@ -22,13 +22,13 @@ ezsigntemplatepackage_get_list_v1_response_m_payload_t* instantiate_ezsigntempla
   ezsigntemplatepackage_get_list_v1_response_m_payload_t* ezsigntemplatepackage_get_list_v1_response_m_payload = NULL;
   if (include_optional) {
     ezsigntemplatepackage_get_list_v1_response_m_payload = ezsigntemplatepackage_get_list_v1_response_m_payload_create(
-      list_create(),
+      list_createList(),
       100,
       533
     );
   } else {
     ezsigntemplatepackage_get_list_v1_response_m_payload = ezsigntemplatepackage_get_list_v1_response_m_payload_create(
-      list_create(),
+      list_createList(),
       100,
       533
     );

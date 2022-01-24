@@ -117,8 +117,8 @@ ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1(apiClient_t *apiClient, list_t 
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
-    list_t *localVarContentType = list_create();
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
 
     // create the path
@@ -189,8 +189,8 @@ ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1(apiClient_t *apiClient, list_t 
     
     
     
-    list_free(localVarHeaderType);
-    list_free(localVarContentType);
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
     free(localVarPath);
     if (localVarItemJSON_ezsignfolder_create_object_v1_request) {
         cJSON_Delete(localVarItemJSON_ezsignfolder_create_object_v1_request);
@@ -220,7 +220,7 @@ ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1(apiClient_t *apiClient, int pki
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
+    list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
 
@@ -282,7 +282,7 @@ ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1(apiClient_t *apiClient, int pki
     
     
     
-    list_free(localVarHeaderType);
+    list_freeList(localVarHeaderType);
     
     free(localVarPath);
     free(localVarToReplace_pkiEzsignfolderID);
@@ -301,7 +301,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1(apiClient_t *apiClient, i
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
+    list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
 
@@ -360,7 +360,85 @@ ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1(apiClient_t *apiClient, i
     
     
     
-    list_free(localVarHeaderType);
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsignfolderID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve an existing Ezsignfolder's Ezsignfoldersignerassociations
+//
+ezsignfolder_get_ezsignfoldersignerassociations_v1_response_t*
+ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1(apiClient_t *apiClient, int pkiEzsignfolderID )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsignfoldersignerassociations")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsignfoldersignerassociations");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    if(pkiEzsignfolderID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsignfolderID = malloc(sizeOfPathParams_pkiEzsignfolderID);
+    snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
+
+    char localVarBuff_pkiEzsignfolderID[256];
+    intToStr(localVarBuff_pkiEzsignfolderID, pkiEzsignfolderID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "GET");
+
+    if (apiClient->response_code == 200) {
+        printf("%s\n","Successful response");
+    }
+    if (apiClient->response_code == 404) {
+        printf("%s\n","The element you are trying to work on does not exist");
+    }
+    //nonprimitive not container
+    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsignfolder_get_ezsignfoldersignerassociations_v1_response_t *elementToReturn = ezsignfolder_get_ezsignfoldersignerassociations_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
     
     free(localVarPath);
     free(localVarToReplace_pkiEzsignfolderID);
@@ -379,7 +457,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1(apiClient_t *apiClient, int pki
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
+    list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
 
@@ -445,7 +523,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1(apiClient_t *apiClient, int pki
     
     
     
-    list_free(localVarHeaderType);
+    list_freeList(localVarHeaderType);
     
     free(localVarPath);
     free(localVarToReplace_pkiEzsignfolderID);
@@ -463,10 +541,10 @@ end:
 ezsignfolder_get_list_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetListV1(apiClient_t *apiClient, ezmax_api_definition_ezsignfolderGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter )
 {
-    list_t    *localVarQueryParameters = list_create();
-    list_t    *localVarHeaderParameters = list_create();
+    list_t    *localVarQueryParameters = list_createList();
+    list_t    *localVarHeaderParameters = list_createList();
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
+    list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
 
@@ -572,10 +650,10 @@ ObjectEzsignfolderAPI_ezsignfolderGetListV1(apiClient_t *apiClient, ezmax_api_de
         apiClient->dataReceived = NULL;
         apiClient->dataReceivedLen = 0;
     }
-    list_free(localVarQueryParameters);
-    list_free(localVarHeaderParameters);
+    list_freeList(localVarQueryParameters);
+    list_freeList(localVarHeaderParameters);
     
-    list_free(localVarHeaderType);
+    list_freeList(localVarHeaderType);
     
     free(localVarPath);
     if (keyHeader_Accept_Language) {
@@ -642,7 +720,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetObjectV1(apiClient_t *apiClient, int pkiEzs
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
+    list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
 
@@ -701,7 +779,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetObjectV1(apiClient_t *apiClient, int pkiEzs
     
     
     
-    list_free(localVarHeaderType);
+    list_freeList(localVarHeaderType);
     
     free(localVarPath);
     free(localVarToReplace_pkiEzsignfolderID);
@@ -720,8 +798,8 @@ ObjectEzsignfolderAPI_ezsignfolderSendV1(apiClient_t *apiClient, int pkiEzsignfo
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
-    list_t *localVarContentType = list_create();
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
 
     // create the path
@@ -792,8 +870,8 @@ ObjectEzsignfolderAPI_ezsignfolderSendV1(apiClient_t *apiClient, int pkiEzsignfo
     
     
     
-    list_free(localVarHeaderType);
-    list_free(localVarContentType);
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
     free(localVarPath);
     free(localVarToReplace_pkiEzsignfolderID);
     if (localVarSingleItemJSON_ezsignfolder_send_v1_request) {
@@ -818,8 +896,8 @@ ObjectEzsignfolderAPI_ezsignfolderUnsendV1(apiClient_t *apiClient, int pkiEzsign
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
-    list_t *localVarContentType = list_create();
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
 
     // create the path
@@ -890,8 +968,8 @@ ObjectEzsignfolderAPI_ezsignfolderUnsendV1(apiClient_t *apiClient, int pkiEzsign
     
     
     
-    list_free(localVarHeaderType);
-    list_free(localVarContentType);
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
     free(localVarPath);
     free(localVarToReplace_pkiEzsignfolderID);
     if (localVarSingleItemJSON_body) {

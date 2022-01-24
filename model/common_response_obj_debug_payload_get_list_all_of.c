@@ -36,7 +36,7 @@ void common_response_obj_debug_payload_get_list_all_of_free(common_response_obj_
             free (localKeyValue->value);
             keyValuePair_free(localKeyValue);
         }
-        list_free(common_response_obj_debug_payload_get_list_all_of->a_order_by);
+        list_freeList(common_response_obj_debug_payload_get_list_all_of->a_order_by);
         common_response_obj_debug_payload_get_list_all_of->a_order_by = NULL;
     }
     free(common_response_obj_debug_payload_get_list_all_of);
@@ -117,7 +117,7 @@ common_response_obj_debug_payload_get_list_all_of_t *common_response_obj_debug_p
     if(!cJSON_IsObject(a_order_by)) {
         goto end;//primitive map container
     }
-    a_order_byList = list_create();
+    a_order_byList = list_createList();
     keyValuePair_t *localMapKeyPair;
     cJSON_ArrayForEach(a_order_by_local_map, a_order_by)
     {

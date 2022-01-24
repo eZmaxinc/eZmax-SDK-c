@@ -22,8 +22,8 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateObject
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
-    list_t *localVarContentType = list_create();
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
 
     // create the path
@@ -94,8 +94,8 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateObject
     
     
     
-    list_free(localVarHeaderType);
-    list_free(localVarContentType);
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
     free(localVarPath);
     if (localVarItemJSON_ezsignfoldersignerassociation_create_object_v1_request) {
         cJSON_Delete(localVarItemJSON_ezsignfoldersignerassociation_create_object_v1_request);
@@ -125,7 +125,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationDeleteObject
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
+    list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
 
@@ -187,7 +187,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationDeleteObject
     
     
     
-    list_free(localVarHeaderType);
+    list_freeList(localVarHeaderType);
     
     free(localVarPath);
     free(localVarToReplace_pkiEzsignfoldersignerassociationID);
@@ -208,7 +208,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetInPersonL
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
+    list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
 
@@ -270,7 +270,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetInPersonL
     
     
     
-    list_free(localVarHeaderType);
+    list_freeList(localVarHeaderType);
     
     free(localVarPath);
     free(localVarToReplace_pkiEzsignfoldersignerassociationID);
@@ -289,7 +289,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV1(
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
+    list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
 
@@ -348,7 +348,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV1(
     
     
     
-    list_free(localVarHeaderType);
+    list_freeList(localVarHeaderType);
     
     free(localVarPath);
     free(localVarToReplace_pkiEzsignfoldersignerassociationID);

@@ -22,11 +22,11 @@ ezsigndocument_get_words_positions_v1_response_all_of_t* instantiate_ezsigndocum
   ezsigndocument_get_words_positions_v1_response_all_of_t* ezsigndocument_get_words_positions_v1_response_all_of = NULL;
   if (include_optional) {
     ezsigndocument_get_words_positions_v1_response_all_of = ezsigndocument_get_words_positions_v1_response_all_of_create(
-      list_create()
+      list_createList()
     );
   } else {
     ezsigndocument_get_words_positions_v1_response_all_of = ezsigndocument_get_words_positions_v1_response_all_of_create(
-      list_create()
+      list_createList()
     );
   }
 

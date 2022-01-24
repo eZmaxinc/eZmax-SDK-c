@@ -22,11 +22,11 @@ list_get_listpresentation_v1_response_m_payload_t* instantiate_list_get_listpres
   list_get_listpresentation_v1_response_m_payload_t* list_get_listpresentation_v1_response_m_payload = NULL;
   if (include_optional) {
     list_get_listpresentation_v1_response_m_payload = list_get_listpresentation_v1_response_m_payload_create(
-      list_create()
+      list_createList()
     );
   } else {
     list_get_listpresentation_v1_response_m_payload = list_get_listpresentation_v1_response_m_payload_create(
-      list_create()
+      list_createList()
     );
   }
 

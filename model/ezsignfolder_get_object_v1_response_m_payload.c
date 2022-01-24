@@ -52,6 +52,8 @@ ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_resp
     field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency,
     char *dt_ezsignfolder_duedate,
     char *dt_ezsignfolder_sentdate,
+    char *dt_ezsignfolder_scheduledarchive,
+    char *dt_ezsignfolder_scheduleddestruction,
     field_e_ezsignfolder_step_t *e_ezsignfolder_step,
     char *dt_ezsignfolder_close,
     common_audit_t *obj_audit
@@ -72,6 +74,8 @@ ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_resp
     ezsignfolder_get_object_v1_response_m_payload_local_var->e_ezsignfolder_sendreminderfrequency = e_ezsignfolder_sendreminderfrequency;
     ezsignfolder_get_object_v1_response_m_payload_local_var->dt_ezsignfolder_duedate = dt_ezsignfolder_duedate;
     ezsignfolder_get_object_v1_response_m_payload_local_var->dt_ezsignfolder_sentdate = dt_ezsignfolder_sentdate;
+    ezsignfolder_get_object_v1_response_m_payload_local_var->dt_ezsignfolder_scheduledarchive = dt_ezsignfolder_scheduledarchive;
+    ezsignfolder_get_object_v1_response_m_payload_local_var->dt_ezsignfolder_scheduleddestruction = dt_ezsignfolder_scheduleddestruction;
     ezsignfolder_get_object_v1_response_m_payload_local_var->e_ezsignfolder_step = e_ezsignfolder_step;
     ezsignfolder_get_object_v1_response_m_payload_local_var->dt_ezsignfolder_close = dt_ezsignfolder_close;
     ezsignfolder_get_object_v1_response_m_payload_local_var->obj_audit = obj_audit;
@@ -116,6 +120,14 @@ void ezsignfolder_get_object_v1_response_m_payload_free(ezsignfolder_get_object_
     if (ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_sentdate) {
         free(ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_sentdate);
         ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_sentdate = NULL;
+    }
+    if (ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_scheduledarchive) {
+        free(ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_scheduledarchive);
+        ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_scheduledarchive = NULL;
+    }
+    if (ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_scheduleddestruction) {
+        free(ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_scheduleddestruction);
+        ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_scheduleddestruction = NULL;
     }
     if (ezsignfolder_get_object_v1_response_m_payload->e_ezsignfolder_step) {
         field_e_ezsignfolder_step_free(ezsignfolder_get_object_v1_response_m_payload->e_ezsignfolder_step);
@@ -253,6 +265,26 @@ cJSON *ezsignfolder_get_object_v1_response_m_payload_convertToJSON(ezsignfolder_
     }
     
     if(cJSON_AddStringToObject(item, "dtEzsignfolderSentdate", ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_sentdate) == NULL) {
+    goto fail; //String
+    }
+
+
+    // ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_scheduledarchive
+    if (!ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_scheduledarchive) {
+        goto fail;
+    }
+    
+    if(cJSON_AddStringToObject(item, "dtEzsignfolderScheduledarchive", ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_scheduledarchive) == NULL) {
+    goto fail; //String
+    }
+
+
+    // ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_scheduleddestruction
+    if (!ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_scheduleddestruction) {
+        goto fail;
+    }
+    
+    if(cJSON_AddStringToObject(item, "dtEzsignfolderScheduleddestruction", ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_scheduleddestruction) == NULL) {
     goto fail; //String
     }
 
@@ -455,6 +487,30 @@ ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_resp
     goto end; //String
     }
 
+    // ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_scheduledarchive
+    cJSON *dt_ezsignfolder_scheduledarchive = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_object_v1_response_m_payloadJSON, "dtEzsignfolderScheduledarchive");
+    if (!dt_ezsignfolder_scheduledarchive) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(dt_ezsignfolder_scheduledarchive))
+    {
+    goto end; //String
+    }
+
+    // ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_scheduleddestruction
+    cJSON *dt_ezsignfolder_scheduleddestruction = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_object_v1_response_m_payloadJSON, "dtEzsignfolderScheduleddestruction");
+    if (!dt_ezsignfolder_scheduleddestruction) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(dt_ezsignfolder_scheduleddestruction))
+    {
+    goto end; //String
+    }
+
     // ezsignfolder_get_object_v1_response_m_payload->e_ezsignfolder_step
     cJSON *e_ezsignfolder_step = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_object_v1_response_m_payloadJSON, "eEzsignfolderStep");
     if (!e_ezsignfolder_step) {
@@ -499,6 +555,8 @@ ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_resp
         e_ezsignfolder_sendreminderfrequency_local_nonprim,
         strdup(dt_ezsignfolder_duedate->valuestring),
         strdup(dt_ezsignfolder_sentdate->valuestring),
+        strdup(dt_ezsignfolder_scheduledarchive->valuestring),
+        strdup(dt_ezsignfolder_scheduleddestruction->valuestring),
         e_ezsignfolder_step_local_nonprim,
         strdup(dt_ezsignfolder_close->valuestring),
         obj_audit_local_nonprim

@@ -22,11 +22,11 @@ list_save_listpresentation_v1_request_t* instantiate_list_save_listpresentation_
   list_save_listpresentation_v1_request_t* list_save_listpresentation_v1_request = NULL;
   if (include_optional) {
     list_save_listpresentation_v1_request = list_save_listpresentation_v1_request_create(
-      list_create()
+      list_createList()
     );
   } else {
     list_save_listpresentation_v1_request = list_save_listpresentation_v1_request_create(
-      list_create()
+      list_createList()
     );
   }
 

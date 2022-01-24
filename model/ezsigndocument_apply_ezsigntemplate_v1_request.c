@@ -31,14 +31,14 @@ void ezsigndocument_apply_ezsigntemplate_v1_request_free(ezsigndocument_apply_ez
         list_ForEach(listEntry, ezsigndocument_apply_ezsigntemplate_v1_request->a_s_ezsigntemplatesigner) {
             free(listEntry->data);
         }
-        list_free(ezsigndocument_apply_ezsigntemplate_v1_request->a_s_ezsigntemplatesigner);
+        list_freeList(ezsigndocument_apply_ezsigntemplate_v1_request->a_s_ezsigntemplatesigner);
         ezsigndocument_apply_ezsigntemplate_v1_request->a_s_ezsigntemplatesigner = NULL;
     }
     if (ezsigndocument_apply_ezsigntemplate_v1_request->a_pki_ezsignfoldersignerassociation_id) {
         list_ForEach(listEntry, ezsigndocument_apply_ezsigntemplate_v1_request->a_pki_ezsignfoldersignerassociation_id) {
             free(listEntry->data);
         }
-        list_free(ezsigndocument_apply_ezsigntemplate_v1_request->a_pki_ezsignfoldersignerassociation_id);
+        list_freeList(ezsigndocument_apply_ezsigntemplate_v1_request->a_pki_ezsignfoldersignerassociation_id);
         ezsigndocument_apply_ezsigntemplate_v1_request->a_pki_ezsignfoldersignerassociation_id = NULL;
     }
     free(ezsigndocument_apply_ezsigntemplate_v1_request);
@@ -130,7 +130,7 @@ ezsigndocument_apply_ezsigntemplate_v1_request_t *ezsigndocument_apply_ezsigntem
     if(!cJSON_IsArray(a_s_ezsigntemplatesigner)) {
         goto end;//primitive container
     }
-    a_s_ezsigntemplatesignerList = list_create();
+    a_s_ezsigntemplatesignerList = list_createList();
 
     cJSON_ArrayForEach(a_s_ezsigntemplatesigner_local, a_s_ezsigntemplatesigner)
     {
@@ -153,7 +153,7 @@ ezsigndocument_apply_ezsigntemplate_v1_request_t *ezsigndocument_apply_ezsigntem
     if(!cJSON_IsArray(a_pki_ezsignfoldersignerassociation_id)) {
         goto end;//primitive container
     }
-    a_pki_ezsignfoldersignerassociation_idList = list_create();
+    a_pki_ezsignfoldersignerassociation_idList = list_createList();
 
     cJSON_ArrayForEach(a_pki_ezsignfoldersignerassociation_id_local, a_pki_ezsignfoldersignerassociation_id)
     {

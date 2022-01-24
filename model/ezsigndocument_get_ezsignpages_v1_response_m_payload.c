@@ -27,7 +27,7 @@ void ezsigndocument_get_ezsignpages_v1_response_m_payload_free(ezsigndocument_ge
         list_ForEach(listEntry, ezsigndocument_get_ezsignpages_v1_response_m_payload->a_obj_ezsignpage) {
             ezsignpage_response_free(listEntry->data);
         }
-        list_free(ezsigndocument_get_ezsignpages_v1_response_m_payload->a_obj_ezsignpage);
+        list_freeList(ezsigndocument_get_ezsignpages_v1_response_m_payload->a_obj_ezsignpage);
         ezsigndocument_get_ezsignpages_v1_response_m_payload->a_obj_ezsignpage = NULL;
     }
     free(ezsigndocument_get_ezsignpages_v1_response_m_payload);
@@ -82,7 +82,7 @@ ezsigndocument_get_ezsignpages_v1_response_m_payload_t *ezsigndocument_get_ezsig
         goto end; //nonprimitive container
     }
 
-    a_obj_ezsignpageList = list_create();
+    a_obj_ezsignpageList = list_createList();
 
     cJSON_ArrayForEach(a_obj_ezsignpage_local_nonprimitive,a_obj_ezsignpage )
     {

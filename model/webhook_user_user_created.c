@@ -39,7 +39,7 @@ void webhook_user_user_created_free(webhook_user_user_created_t *webhook_user_us
         list_ForEach(listEntry, webhook_user_user_created->a_obj_attempt) {
             attempt_response_free(listEntry->data);
         }
-        list_free(webhook_user_user_created->a_obj_attempt);
+        list_freeList(webhook_user_user_created->a_obj_attempt);
         webhook_user_user_created->a_obj_attempt = NULL;
     }
     free(webhook_user_user_created);
@@ -148,7 +148,7 @@ webhook_user_user_created_t *webhook_user_user_created_parseFromJSON(cJSON *webh
         goto end; //nonprimitive container
     }
 
-    a_obj_attemptList = list_create();
+    a_obj_attemptList = list_createList();
 
     cJSON_ArrayForEach(a_obj_attempt_local_nonprimitive,a_obj_attempt )
     {

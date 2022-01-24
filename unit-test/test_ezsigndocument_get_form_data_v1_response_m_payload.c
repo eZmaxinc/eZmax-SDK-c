@@ -26,7 +26,7 @@ ezsigndocument_get_form_data_v1_response_m_payload_t* instantiate_ezsigndocument
       33,
       "Contract #123",
       "2020-12-31 23:59:59",
-      list_create()
+      list_createList()
     );
   } else {
     ezsigndocument_get_form_data_v1_response_m_payload = ezsigndocument_get_form_data_v1_response_m_payload_create(
@@ -34,7 +34,7 @@ ezsigndocument_get_form_data_v1_response_m_payload_t* instantiate_ezsigndocument
       33,
       "Contract #123",
       "2020-12-31 23:59:59",
-      list_create()
+      list_createList()
     );
   }
 

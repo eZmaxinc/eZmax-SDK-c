@@ -50,6 +50,8 @@ typedef struct ezsignfolder_response_t {
     field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency; // custom
     char *dt_ezsignfolder_duedate; // string
     char *dt_ezsignfolder_sentdate; // string
+    char *dt_ezsignfolder_scheduledarchive; // string
+    char *dt_ezsignfolder_scheduleddestruction; // string
     field_e_ezsignfolder_step_t *e_ezsignfolder_step; // custom
     char *dt_ezsignfolder_close; // string
     struct common_audit_t *obj_audit; //model
@@ -69,6 +71,8 @@ ezsignfolder_response_t *ezsignfolder_response_create(
     field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency,
     char *dt_ezsignfolder_duedate,
     char *dt_ezsignfolder_sentdate,
+    char *dt_ezsignfolder_scheduledarchive,
+    char *dt_ezsignfolder_scheduleddestruction,
     field_e_ezsignfolder_step_t *e_ezsignfolder_step,
     char *dt_ezsignfolder_close,
     common_audit_t *obj_audit

@@ -24,13 +24,13 @@ common_response_obj_debug_payload_t* instantiate_common_response_obj_debug_paylo
     common_response_obj_debug_payload = common_response_obj_debug_payload_create(
       1,
       2,
-      list_create()
+      list_createList()
     );
   } else {
     common_response_obj_debug_payload = common_response_obj_debug_payload_create(
       1,
       2,
-      list_create()
+      list_createList()
     );
   }
 

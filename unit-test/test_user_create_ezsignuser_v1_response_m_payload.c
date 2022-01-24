@@ -22,13 +22,13 @@ user_create_ezsignuser_v1_response_m_payload_t* instantiate_user_create_ezsignus
   user_create_ezsignuser_v1_response_m_payload_t* user_create_ezsignuser_v1_response_m_payload = NULL;
   if (include_optional) {
     user_create_ezsignuser_v1_response_m_payload = user_create_ezsignuser_v1_response_m_payload_create(
-      list_create(),
-      list_create()
+      list_createList(),
+      list_createList()
     );
   } else {
     user_create_ezsignuser_v1_response_m_payload = user_create_ezsignuser_v1_response_m_payload_create(
-      list_create(),
-      list_create()
+      list_createList(),
+      list_createList()
     );
   }
 

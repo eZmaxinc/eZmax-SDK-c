@@ -71,10 +71,10 @@ end:
 common_get_autocomplete_v1_response_t*
 ObjectFranchiseofficeAPI_franchiseofficeGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition_franchiseofficeGetAutocompleteV1_sSelector_e sSelector , char * sQuery )
 {
-    list_t    *localVarQueryParameters = list_create();
+    list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
+    list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
 
@@ -135,10 +135,10 @@ ObjectFranchiseofficeAPI_franchiseofficeGetAutocompleteV1(apiClient_t *apiClient
         apiClient->dataReceived = NULL;
         apiClient->dataReceivedLen = 0;
     }
-    list_free(localVarQueryParameters);
+    list_freeList(localVarQueryParameters);
     
     
-    list_free(localVarHeaderType);
+    list_freeList(localVarHeaderType);
     
     free(localVarPath);
     free(localVarToReplace_sSelector);

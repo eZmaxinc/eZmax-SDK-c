@@ -27,7 +27,7 @@ void apikey_create_object_v1_response_m_payload_free(apikey_create_object_v1_res
         list_ForEach(listEntry, apikey_create_object_v1_response_m_payload->a_obj_apikey) {
             apikey_response_free(listEntry->data);
         }
-        list_free(apikey_create_object_v1_response_m_payload->a_obj_apikey);
+        list_freeList(apikey_create_object_v1_response_m_payload->a_obj_apikey);
         apikey_create_object_v1_response_m_payload->a_obj_apikey = NULL;
     }
     free(apikey_create_object_v1_response_m_payload);
@@ -82,7 +82,7 @@ apikey_create_object_v1_response_m_payload_t *apikey_create_object_v1_response_m
         goto end; //nonprimitive container
     }
 
-    a_obj_apikeyList = list_create();
+    a_obj_apikeyList = list_createList();
 
     cJSON_ArrayForEach(a_obj_apikey_local_nonprimitive,a_obj_apikey )
     {

@@ -22,11 +22,11 @@ ezsignfoldertype_get_list_v1_response_m_payload_all_of_t* instantiate_ezsignfold
   ezsignfoldertype_get_list_v1_response_m_payload_all_of_t* ezsignfoldertype_get_list_v1_response_m_payload_all_of = NULL;
   if (include_optional) {
     ezsignfoldertype_get_list_v1_response_m_payload_all_of = ezsignfoldertype_get_list_v1_response_m_payload_all_of_create(
-      list_create()
+      list_createList()
     );
   } else {
     ezsignfoldertype_get_list_v1_response_m_payload_all_of = ezsignfoldertype_get_list_v1_response_m_payload_all_of_create(
-      list_create()
+      list_createList()
     );
   }
 

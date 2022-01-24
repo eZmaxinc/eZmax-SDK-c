@@ -22,11 +22,11 @@ ezsignfolder_create_object_v1_response_m_payload_t* instantiate_ezsignfolder_cre
   ezsignfolder_create_object_v1_response_m_payload_t* ezsignfolder_create_object_v1_response_m_payload = NULL;
   if (include_optional) {
     ezsignfolder_create_object_v1_response_m_payload = ezsignfolder_create_object_v1_response_m_payload_create(
-      list_create()
+      list_createList()
     );
   } else {
     ezsignfolder_create_object_v1_response_m_payload = ezsignfolder_create_object_v1_response_m_payload_create(
-      list_create()
+      list_createList()
     );
   }
 

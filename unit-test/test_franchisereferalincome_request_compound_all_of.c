@@ -25,12 +25,12 @@ franchisereferalincome_request_compound_all_of_t* instantiate_franchisereferalin
     franchisereferalincome_request_compound_all_of = franchisereferalincome_request_compound_all_of_create(
        // false, not to have infinite recursion
       instantiate_address_request(0),
-      list_create()
+      list_createList()
     );
   } else {
     franchisereferalincome_request_compound_all_of = franchisereferalincome_request_compound_all_of_create(
       NULL,
-      list_create()
+      list_createList()
     );
   }
 

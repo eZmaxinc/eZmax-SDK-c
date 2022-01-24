@@ -29,14 +29,14 @@ void user_create_ezsignuser_v1_response_m_payload_free(user_create_ezsignuser_v1
         list_ForEach(listEntry, user_create_ezsignuser_v1_response_m_payload->a_s_email_address_success) {
             free(listEntry->data);
         }
-        list_free(user_create_ezsignuser_v1_response_m_payload->a_s_email_address_success);
+        list_freeList(user_create_ezsignuser_v1_response_m_payload->a_s_email_address_success);
         user_create_ezsignuser_v1_response_m_payload->a_s_email_address_success = NULL;
     }
     if (user_create_ezsignuser_v1_response_m_payload->a_s_email_address_failure) {
         list_ForEach(listEntry, user_create_ezsignuser_v1_response_m_payload->a_s_email_address_failure) {
             free(listEntry->data);
         }
-        list_free(user_create_ezsignuser_v1_response_m_payload->a_s_email_address_failure);
+        list_freeList(user_create_ezsignuser_v1_response_m_payload->a_s_email_address_failure);
         user_create_ezsignuser_v1_response_m_payload->a_s_email_address_failure = NULL;
     }
     free(user_create_ezsignuser_v1_response_m_payload);
@@ -106,7 +106,7 @@ user_create_ezsignuser_v1_response_m_payload_t *user_create_ezsignuser_v1_respon
     if(!cJSON_IsArray(a_s_email_address_success)) {
         goto end;//primitive container
     }
-    a_s_email_address_successList = list_create();
+    a_s_email_address_successList = list_createList();
 
     cJSON_ArrayForEach(a_s_email_address_success_local, a_s_email_address_success)
     {
@@ -129,7 +129,7 @@ user_create_ezsignuser_v1_response_m_payload_t *user_create_ezsignuser_v1_respon
     if(!cJSON_IsArray(a_s_email_address_failure)) {
         goto end;//primitive container
     }
-    a_s_email_address_failureList = list_create();
+    a_s_email_address_failureList = list_createList();
 
     cJSON_ArrayForEach(a_s_email_address_failure_local, a_s_email_address_failure)
     {

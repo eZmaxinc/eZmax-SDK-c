@@ -27,7 +27,7 @@ void ezsignbulksend_get_list_v1_response_m_payload_all_of_free(ezsignbulksend_ge
         list_ForEach(listEntry, ezsignbulksend_get_list_v1_response_m_payload_all_of->a_obj_ezsignbulksend) {
             ezsignbulksend_list_element_free(listEntry->data);
         }
-        list_free(ezsignbulksend_get_list_v1_response_m_payload_all_of->a_obj_ezsignbulksend);
+        list_freeList(ezsignbulksend_get_list_v1_response_m_payload_all_of->a_obj_ezsignbulksend);
         ezsignbulksend_get_list_v1_response_m_payload_all_of->a_obj_ezsignbulksend = NULL;
     }
     free(ezsignbulksend_get_list_v1_response_m_payload_all_of);
@@ -82,7 +82,7 @@ ezsignbulksend_get_list_v1_response_m_payload_all_of_t *ezsignbulksend_get_list_
         goto end; //nonprimitive container
     }
 
-    a_obj_ezsignbulksendList = list_create();
+    a_obj_ezsignbulksendList = list_createList();
 
     cJSON_ArrayForEach(a_obj_ezsignbulksend_local_nonprimitive,a_obj_ezsignbulksend )
     {

@@ -35,6 +35,8 @@ ezsignfolder_get_object_v1_response_m_payload_t* instantiate_ezsignfolder_get_ob
       ezmax_api_definition_ezsignfolder_get_object_v1_response_m_payload__"None",
       "2020-12-31 23:59:59",
       "2020-12-31 23:59:59",
+      "2020-12-31 23:59:59",
+      "2020-12-31 23:59:59",
       ezmax_api_definition_ezsignfolder_get_object_v1_response_m_payload__"Completed",
       "2020-12-31 23:59:59",
       {"fkiUserIDCreated":35,"fkiUserIDModified":35,"fkiApikeyIDCreated":1,"fkiApikeyIDModified":1,"dtCreatedDate":"2020-12-31 23:59:59","dtModifiedDate":"2020-12-31 23:59:59"}
@@ -51,6 +53,8 @@ ezsignfolder_get_object_v1_response_m_payload_t* instantiate_ezsignfolder_get_ob
       "Test eZsign Folder",
       "An extra notes we can add to the ezsign folder",
       ezmax_api_definition_ezsignfolder_get_object_v1_response_m_payload__"None",
+      "2020-12-31 23:59:59",
+      "2020-12-31 23:59:59",
       "2020-12-31 23:59:59",
       "2020-12-31 23:59:59",
       ezmax_api_definition_ezsignfolder_get_object_v1_response_m_payload__"Completed",

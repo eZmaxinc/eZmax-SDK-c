@@ -33,7 +33,7 @@ void ezsignformfieldgroup_response_compound_free(ezsignformfieldgroup_response_c
         list_ForEach(listEntry, ezsignformfieldgroup_response_compound->a_obj_ezsignformfield) {
             ezsignformfield_response_free(listEntry->data);
         }
-        list_free(ezsignformfieldgroup_response_compound->a_obj_ezsignformfield);
+        list_freeList(ezsignformfieldgroup_response_compound->a_obj_ezsignformfield);
         ezsignformfieldgroup_response_compound->a_obj_ezsignformfield = NULL;
     }
     free(ezsignformfieldgroup_response_compound);
@@ -110,7 +110,7 @@ ezsignformfieldgroup_response_compound_t *ezsignformfieldgroup_response_compound
         goto end; //nonprimitive container
     }
 
-    a_obj_ezsignformfieldList = list_create();
+    a_obj_ezsignformfieldList = list_createList();
 
     cJSON_ArrayForEach(a_obj_ezsignformfield_local_nonprimitive,a_obj_ezsignformfield )
     {

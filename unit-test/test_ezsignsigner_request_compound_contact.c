@@ -22,19 +22,19 @@ ezsignsigner_request_compound_contact_t* instantiate_ezsignsigner_request_compou
   ezsignsigner_request_compound_contact_t* ezsignsigner_request_compound_contact = NULL;
   if (include_optional) {
     ezsignsigner_request_compound_contact = ezsignsigner_request_compound_contact_create(
-      "0",
-      "0",
+      "John",
+      "Doe",
       2,
-      "0",
+      "example@domain.com",
       "0",
       "0"
     );
   } else {
     ezsignsigner_request_compound_contact = ezsignsigner_request_compound_contact_create(
-      "0",
-      "0",
+      "John",
+      "Doe",
       2,
-      "0",
+      "example@domain.com",
       "0",
       "0"
     );

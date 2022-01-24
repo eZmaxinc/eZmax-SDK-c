@@ -35,7 +35,7 @@ void common_response_obj_debug_payload_get_list_free(common_response_obj_debug_p
         list_ForEach(listEntry, common_response_obj_debug_payload_get_list->a_required_permission) {
             free(listEntry->data);
         }
-        list_free(common_response_obj_debug_payload_get_list->a_required_permission);
+        list_freeList(common_response_obj_debug_payload_get_list->a_required_permission);
         common_response_obj_debug_payload_get_list->a_required_permission = NULL;
     }
     if (common_response_obj_debug_payload_get_list->a_filter) {
@@ -49,7 +49,7 @@ void common_response_obj_debug_payload_get_list_free(common_response_obj_debug_p
             free (localKeyValue->value);
             keyValuePair_free(localKeyValue);
         }
-        list_free(common_response_obj_debug_payload_get_list->a_order_by);
+        list_freeList(common_response_obj_debug_payload_get_list->a_order_by);
         common_response_obj_debug_payload_get_list->a_order_by = NULL;
     }
     free(common_response_obj_debug_payload_get_list);
@@ -184,7 +184,7 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
     if(!cJSON_IsArray(a_required_permission)) {
         goto end;//primitive container
     }
-    a_required_permissionList = list_create();
+    a_required_permissionList = list_createList();
 
     cJSON_ArrayForEach(a_required_permission_local, a_required_permission)
     {
@@ -222,7 +222,7 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
     if(!cJSON_IsObject(a_order_by)) {
         goto end;//primitive map container
     }
-    a_order_byList = list_create();
+    a_order_byList = list_createList();
     keyValuePair_t *localMapKeyPair;
     cJSON_ArrayForEach(a_order_by_local_map, a_order_by)
     {

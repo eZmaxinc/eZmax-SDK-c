@@ -22,11 +22,11 @@ apikey_create_object_v1_response_m_payload_t* instantiate_apikey_create_object_v
   apikey_create_object_v1_response_m_payload_t* apikey_create_object_v1_response_m_payload = NULL;
   if (include_optional) {
     apikey_create_object_v1_response_m_payload = apikey_create_object_v1_response_m_payload_create(
-      list_create()
+      list_createList()
     );
   } else {
     apikey_create_object_v1_response_m_payload = apikey_create_object_v1_response_m_payload_create(
-      list_create()
+      list_createList()
     );
   }
 

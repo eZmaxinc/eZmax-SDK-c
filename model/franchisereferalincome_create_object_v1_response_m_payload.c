@@ -27,7 +27,7 @@ void franchisereferalincome_create_object_v1_response_m_payload_free(franchisere
         list_ForEach(listEntry, franchisereferalincome_create_object_v1_response_m_payload->a_pki_franchisereferalincome_id) {
             free(listEntry->data);
         }
-        list_free(franchisereferalincome_create_object_v1_response_m_payload->a_pki_franchisereferalincome_id);
+        list_freeList(franchisereferalincome_create_object_v1_response_m_payload->a_pki_franchisereferalincome_id);
         franchisereferalincome_create_object_v1_response_m_payload->a_pki_franchisereferalincome_id = NULL;
     }
     free(franchisereferalincome_create_object_v1_response_m_payload);
@@ -78,7 +78,7 @@ franchisereferalincome_create_object_v1_response_m_payload_t *franchisereferalin
     if(!cJSON_IsArray(a_pki_franchisereferalincome_id)) {
         goto end;//primitive container
     }
-    a_pki_franchisereferalincome_idList = list_create();
+    a_pki_franchisereferalincome_idList = list_createList();
 
     cJSON_ArrayForEach(a_pki_franchisereferalincome_id_local, a_pki_franchisereferalincome_id)
     {

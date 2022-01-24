@@ -43,7 +43,7 @@ void ezsigndocument_get_form_data_v1_response_m_payload_free(ezsigndocument_get_
         list_ForEach(listEntry, ezsigndocument_get_form_data_v1_response_m_payload->a_obj_form_data_signer) {
             custom_form_data_signer_response_free(listEntry->data);
         }
-        list_free(ezsigndocument_get_form_data_v1_response_m_payload->a_obj_form_data_signer);
+        list_freeList(ezsigndocument_get_form_data_v1_response_m_payload->a_obj_form_data_signer);
         ezsigndocument_get_form_data_v1_response_m_payload->a_obj_form_data_signer = NULL;
     }
     free(ezsigndocument_get_form_data_v1_response_m_payload);
@@ -186,7 +186,7 @@ ezsigndocument_get_form_data_v1_response_m_payload_t *ezsigndocument_get_form_da
         goto end; //nonprimitive container
     }
 
-    a_obj_form_data_signerList = list_create();
+    a_obj_form_data_signerList = list_createList();
 
     cJSON_ArrayForEach(a_obj_form_data_signer_local_nonprimitive,a_obj_form_data_signer )
     {

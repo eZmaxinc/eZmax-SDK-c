@@ -91,6 +91,7 @@ Category | Method | HTTP request | Description
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1) | **POST** /1/object/ezsignfolder | Create a new Ezsignfolder
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1) | **DELETE** /1/object/ezsignfolder/{pkiEzsignfolderID} | Delete an existing Ezsignfolder
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsigndocuments | Retrieve an existing Ezsignfolder's Ezsigndocuments
+*ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsignfoldersignerassociations | Retrieve an existing Ezsignfolder's Ezsignfoldersignerassociations
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getFormsData | Retrieve an existing Ezsignfolder's forms data
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderGetListV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetListV1) | **GET** /1/object/ezsignfolder/getList | Retrieve Ezsignfolder list
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderGetObjectV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetObjectV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID} | Retrieve an existing Ezsignfolder
@@ -153,6 +154,8 @@ Category | Method | HTTP request | Description
  - [contactinformations_request_compound_t](docs/contactinformations_request_compound.md)
  - [contactinformations_request_compound_all_of_t](docs/contactinformations_request_compound_all_of.md)
  - [custom_autocomplete_element_response_t](docs/custom_autocomplete_element_response.md)
+ - [custom_ezsignfoldersignerassociationstatus_response_t](docs/custom_ezsignfoldersignerassociationstatus_response.md)
+ - [custom_ezsignsignaturestatus_response_t](docs/custom_ezsignsignaturestatus_response.md)
  - [custom_form_data_document_response_t](docs/custom_form_data_document_response.md)
  - [custom_form_data_signer_response_t](docs/custom_form_data_signer_response.md)
  - [custom_forms_data_folder_response_t](docs/custom_forms_data_folder_response.md)
@@ -200,6 +203,9 @@ Category | Method | HTTP request | Description
  - [ezsignfolder_get_ezsigndocuments_v1_response_t](docs/ezsignfolder_get_ezsigndocuments_v1_response.md)
  - [ezsignfolder_get_ezsigndocuments_v1_response_all_of_t](docs/ezsignfolder_get_ezsigndocuments_v1_response_all_of.md)
  - [ezsignfolder_get_ezsigndocuments_v1_response_m_payload_t](docs/ezsignfolder_get_ezsigndocuments_v1_response_m_payload.md)
+ - [ezsignfolder_get_ezsignfoldersignerassociations_v1_response_t](docs/ezsignfolder_get_ezsignfoldersignerassociations_v1_response.md)
+ - [ezsignfolder_get_ezsignfoldersignerassociations_v1_response_all_of_t](docs/ezsignfolder_get_ezsignfoldersignerassociations_v1_response_all_of.md)
+ - [ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload_t](docs/ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload.md)
  - [ezsignfolder_get_forms_data_v1_response_t](docs/ezsignfolder_get_forms_data_v1_response.md)
  - [ezsignfolder_get_forms_data_v1_response_all_of_t](docs/ezsignfolder_get_forms_data_v1_response_all_of.md)
  - [ezsignfolder_get_forms_data_v1_response_m_payload_t](docs/ezsignfolder_get_forms_data_v1_response_m_payload.md)
@@ -213,7 +219,6 @@ Category | Method | HTTP request | Description
  - [ezsignfolder_list_element_t](docs/ezsignfolder_list_element.md)
  - [ezsignfolder_request_t](docs/ezsignfolder_request.md)
  - [ezsignfolder_request_compound_t](docs/ezsignfolder_request_compound.md)
- - [ezsignfolder_request_compound_all_of_t](docs/ezsignfolder_request_compound_all_of.md)
  - [ezsignfolder_response_t](docs/ezsignfolder_response.md)
  - [ezsignfolder_response_compound_t](docs/ezsignfolder_response_compound.md)
  - [ezsignfolder_send_v1_request_t](docs/ezsignfolder_send_v1_request.md)
@@ -259,6 +264,10 @@ Category | Method | HTTP request | Description
  - [ezsignsigner_request_compound_t](docs/ezsignsigner_request_compound.md)
  - [ezsignsigner_request_compound_all_of_t](docs/ezsignsigner_request_compound_all_of.md)
  - [ezsignsigner_request_compound_contact_t](docs/ezsignsigner_request_compound_contact.md)
+ - [ezsignsigner_response_t](docs/ezsignsigner_response.md)
+ - [ezsignsigner_response_compound_t](docs/ezsignsigner_response_compound.md)
+ - [ezsignsigner_response_compound_all_of_t](docs/ezsignsigner_response_compound_all_of.md)
+ - [ezsignsigner_response_compound_contact_t](docs/ezsignsigner_response_compound_contact.md)
  - [ezsigntemplatepackage_get_list_v1_response_t](docs/ezsigntemplatepackage_get_list_v1_response.md)
  - [ezsigntemplatepackage_get_list_v1_response_all_of_t](docs/ezsigntemplatepackage_get_list_v1_response_all_of.md)
  - [ezsigntemplatepackage_get_list_v1_response_m_payload_t](docs/ezsigntemplatepackage_get_list_v1_response_m_payload.md)

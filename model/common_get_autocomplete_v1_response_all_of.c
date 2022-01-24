@@ -27,7 +27,7 @@ void common_get_autocomplete_v1_response_all_of_free(common_get_autocomplete_v1_
         list_ForEach(listEntry, common_get_autocomplete_v1_response_all_of->m_payload) {
             custom_autocomplete_element_response_free(listEntry->data);
         }
-        list_free(common_get_autocomplete_v1_response_all_of->m_payload);
+        list_freeList(common_get_autocomplete_v1_response_all_of->m_payload);
         common_get_autocomplete_v1_response_all_of->m_payload = NULL;
     }
     free(common_get_autocomplete_v1_response_all_of);
@@ -82,7 +82,7 @@ common_get_autocomplete_v1_response_all_of_t *common_get_autocomplete_v1_respons
         goto end; //nonprimitive container
     }
 
-    m_payloadList = list_create();
+    m_payloadList = list_createList();
 
     cJSON_ArrayForEach(m_payload_local_nonprimitive,m_payload )
     {

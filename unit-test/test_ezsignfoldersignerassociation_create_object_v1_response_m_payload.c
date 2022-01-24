@@ -22,11 +22,11 @@ ezsignfoldersignerassociation_create_object_v1_response_m_payload_t* instantiate
   ezsignfoldersignerassociation_create_object_v1_response_m_payload_t* ezsignfoldersignerassociation_create_object_v1_response_m_payload = NULL;
   if (include_optional) {
     ezsignfoldersignerassociation_create_object_v1_response_m_payload = ezsignfoldersignerassociation_create_object_v1_response_m_payload_create(
-      list_create()
+      list_createList()
     );
   } else {
     ezsignfoldersignerassociation_create_object_v1_response_m_payload = ezsignfoldersignerassociation_create_object_v1_response_m_payload_create(
-      list_create()
+      list_createList()
     );
   }
 

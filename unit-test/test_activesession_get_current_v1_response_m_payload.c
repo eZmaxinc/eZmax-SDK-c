@@ -27,8 +27,8 @@ activesession_get_current_v1_response_m_payload_t* instantiate_activesession_get
       2,
       "0",
       "0",
-      list_create(),
-      list_create(),
+      list_createList(),
+      list_createList(),
       70,
       99
     );
@@ -39,8 +39,8 @@ activesession_get_current_v1_response_m_payload_t* instantiate_activesession_get
       2,
       "0",
       "0",
-      list_create(),
-      list_create(),
+      list_createList(),
+      list_createList(),
       70,
       99
     );

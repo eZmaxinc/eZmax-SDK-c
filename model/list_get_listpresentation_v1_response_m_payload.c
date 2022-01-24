@@ -27,7 +27,7 @@ void list_get_listpresentation_v1_response_m_payload_free(list_get_listpresentat
         list_ForEach(listEntry, list_get_listpresentation_v1_response_m_payload->a_obj_listpresentation) {
             listpresentation_request_free(listEntry->data);
         }
-        list_free(list_get_listpresentation_v1_response_m_payload->a_obj_listpresentation);
+        list_freeList(list_get_listpresentation_v1_response_m_payload->a_obj_listpresentation);
         list_get_listpresentation_v1_response_m_payload->a_obj_listpresentation = NULL;
     }
     free(list_get_listpresentation_v1_response_m_payload);
@@ -82,7 +82,7 @@ list_get_listpresentation_v1_response_m_payload_t *list_get_listpresentation_v1_
         goto end; //nonprimitive container
     }
 
-    a_obj_listpresentationList = list_create();
+    a_obj_listpresentationList = list_createList();
 
     cJSON_ArrayForEach(a_obj_listpresentation_local_nonprimitive,a_obj_listpresentation )
     {

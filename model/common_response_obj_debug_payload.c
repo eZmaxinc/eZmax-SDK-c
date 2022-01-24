@@ -31,7 +31,7 @@ void common_response_obj_debug_payload_free(common_response_obj_debug_payload_t 
         list_ForEach(listEntry, common_response_obj_debug_payload->a_required_permission) {
             free(listEntry->data);
         }
-        list_free(common_response_obj_debug_payload->a_required_permission);
+        list_freeList(common_response_obj_debug_payload->a_required_permission);
         common_response_obj_debug_payload->a_required_permission = NULL;
     }
     free(common_response_obj_debug_payload);
@@ -126,7 +126,7 @@ common_response_obj_debug_payload_t *common_response_obj_debug_payload_parseFrom
     if(!cJSON_IsArray(a_required_permission)) {
         goto end;//primitive container
     }
-    a_required_permissionList = list_create();
+    a_required_permissionList = list_createList();
 
     cJSON_ArrayForEach(a_required_permission_local, a_required_permission)
     {

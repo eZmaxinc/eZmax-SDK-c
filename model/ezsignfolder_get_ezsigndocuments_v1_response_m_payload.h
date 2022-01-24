@@ -15,7 +15,7 @@
 
 typedef struct ezsignfolder_get_ezsigndocuments_v1_response_m_payload_t ezsignfolder_get_ezsigndocuments_v1_response_m_payload_t;
 
-#include "ezsigndocument_response.h"
+#include "ezsigndocument_response_compound.h"
 
 
 

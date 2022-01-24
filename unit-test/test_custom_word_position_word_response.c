@@ -23,12 +23,12 @@ custom_word_position_word_response_t* instantiate_custom_word_position_word_resp
   if (include_optional) {
     custom_word_position_word_response = custom_word_position_word_response_create(
       "0",
-      list_create()
+      list_createList()
     );
   } else {
     custom_word_position_word_response = custom_word_position_word_response_create(
       "0",
-      list_create()
+      list_createList()
     );
   }
 

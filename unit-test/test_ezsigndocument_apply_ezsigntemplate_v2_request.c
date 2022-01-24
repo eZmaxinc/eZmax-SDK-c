@@ -23,14 +23,14 @@ ezsigndocument_apply_ezsigntemplate_v2_request_t* instantiate_ezsigndocument_app
   if (include_optional) {
     ezsigndocument_apply_ezsigntemplate_v2_request = ezsigndocument_apply_ezsigntemplate_v2_request_create(
       36,
-      list_create(),
-      list_create()
+      list_createList(),
+      list_createList()
     );
   } else {
     ezsigndocument_apply_ezsigntemplate_v2_request = ezsigndocument_apply_ezsigntemplate_v2_request_create(
       36,
-      list_create(),
-      list_create()
+      list_createList(),
+      list_createList()
     );
   }
 

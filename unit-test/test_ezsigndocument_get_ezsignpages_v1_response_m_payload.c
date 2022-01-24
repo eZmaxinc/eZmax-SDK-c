@@ -22,11 +22,11 @@ ezsigndocument_get_ezsignpages_v1_response_m_payload_t* instantiate_ezsigndocume
   ezsigndocument_get_ezsignpages_v1_response_m_payload_t* ezsigndocument_get_ezsignpages_v1_response_m_payload = NULL;
   if (include_optional) {
     ezsigndocument_get_ezsignpages_v1_response_m_payload = ezsigndocument_get_ezsignpages_v1_response_m_payload_create(
-      list_create()
+      list_createList()
     );
   } else {
     ezsigndocument_get_ezsignpages_v1_response_m_payload = ezsigndocument_get_ezsignpages_v1_response_m_payload_create(
-      list_create()
+      list_createList()
     );
   }
 

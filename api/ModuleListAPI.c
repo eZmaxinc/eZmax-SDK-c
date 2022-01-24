@@ -22,7 +22,7 @@ ModuleListAPI_listGetListpresentationV1(apiClient_t *apiClient, char * sListName
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
+    list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
 
@@ -77,7 +77,7 @@ ModuleListAPI_listGetListpresentationV1(apiClient_t *apiClient, char * sListName
     
     
     
-    list_free(localVarHeaderType);
+    list_freeList(localVarHeaderType);
     
     free(localVarPath);
     free(localVarToReplace_sListName);
@@ -98,8 +98,8 @@ ModuleListAPI_listSaveListpresentationV1(apiClient_t *apiClient, char * sListNam
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
-    list_t *localVarContentType = list_create();
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
 
     // create the path
@@ -163,8 +163,8 @@ ModuleListAPI_listSaveListpresentationV1(apiClient_t *apiClient, char * sListNam
     
     
     
-    list_free(localVarHeaderType);
-    list_free(localVarContentType);
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
     free(localVarPath);
     free(localVarToReplace_sListName);
     if (localVarSingleItemJSON_list_save_listpresentation_v1_request) {

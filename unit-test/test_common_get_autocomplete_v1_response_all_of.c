@@ -22,11 +22,11 @@ common_get_autocomplete_v1_response_all_of_t* instantiate_common_get_autocomplet
   common_get_autocomplete_v1_response_all_of_t* common_get_autocomplete_v1_response_all_of = NULL;
   if (include_optional) {
     common_get_autocomplete_v1_response_all_of = common_get_autocomplete_v1_response_all_of_create(
-      list_create()
+      list_createList()
     );
   } else {
     common_get_autocomplete_v1_response_all_of = common_get_autocomplete_v1_response_all_of_create(
-      list_create()
+      list_createList()
     );
   }
 

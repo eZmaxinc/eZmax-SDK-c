@@ -22,11 +22,11 @@ franchisereferalincome_create_object_v1_response_m_payload_t* instantiate_franch
   franchisereferalincome_create_object_v1_response_m_payload_t* franchisereferalincome_create_object_v1_response_m_payload = NULL;
   if (include_optional) {
     franchisereferalincome_create_object_v1_response_m_payload = franchisereferalincome_create_object_v1_response_m_payload_create(
-      list_create()
+      list_createList()
     );
   } else {
     franchisereferalincome_create_object_v1_response_m_payload = franchisereferalincome_create_object_v1_response_m_payload_create(
-      list_create()
+      list_createList()
     );
   }
 

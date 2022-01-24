@@ -35,6 +35,8 @@ ezsignfolder_response_t* instantiate_ezsignfolder_response(int include_optional)
       ezmax_api_definition_ezsignfolder_response__"None",
       "2020-12-31 23:59:59",
       "2020-12-31 23:59:59",
+      "2020-12-31 23:59:59",
+      "2020-12-31 23:59:59",
       ezmax_api_definition_ezsignfolder_response__"Completed",
       "2020-12-31 23:59:59",
       {"fkiUserIDCreated":35,"fkiUserIDModified":35,"fkiApikeyIDCreated":1,"fkiApikeyIDModified":1,"dtCreatedDate":"2020-12-31 23:59:59","dtModifiedDate":"2020-12-31 23:59:59"}
@@ -51,6 +53,8 @@ ezsignfolder_response_t* instantiate_ezsignfolder_response(int include_optional)
       "Test eZsign Folder",
       "An extra notes we can add to the ezsign folder",
       ezmax_api_definition_ezsignfolder_response__"None",
+      "2020-12-31 23:59:59",
+      "2020-12-31 23:59:59",
       "2020-12-31 23:59:59",
       "2020-12-31 23:59:59",
       ezmax_api_definition_ezsignfolder_response__"Completed",

@@ -31,7 +31,7 @@ void ezsigndocument_get_words_positions_v1_response_free(ezsigndocument_get_word
         list_ForEach(listEntry, ezsigndocument_get_words_positions_v1_response->m_payload) {
             custom_word_position_word_response_free(listEntry->data);
         }
-        list_free(ezsigndocument_get_words_positions_v1_response->m_payload);
+        list_freeList(ezsigndocument_get_words_positions_v1_response->m_payload);
         ezsigndocument_get_words_positions_v1_response->m_payload = NULL;
     }
     if (ezsigndocument_get_words_positions_v1_response->obj_debug_payload) {
@@ -126,7 +126,7 @@ ezsigndocument_get_words_positions_v1_response_t *ezsigndocument_get_words_posit
         goto end; //nonprimitive container
     }
 
-    m_payloadList = list_create();
+    m_payloadList = list_createList();
 
     cJSON_ArrayForEach(m_payload_local_nonprimitive,m_payload )
     {

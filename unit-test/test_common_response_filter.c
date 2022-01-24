@@ -22,13 +22,13 @@ common_response_filter_t* instantiate_common_response_filter(int include_optiona
   common_response_filter_t* common_response_filter = NULL;
   if (include_optional) {
     common_response_filter = common_response_filter_create(
-      list_create(),
-      list_create()
+      list_createList(),
+      list_createList()
     );
   } else {
     common_response_filter = common_response_filter_create(
-      list_create(),
-      list_create()
+      list_createList(),
+      list_createList()
     );
   }
 

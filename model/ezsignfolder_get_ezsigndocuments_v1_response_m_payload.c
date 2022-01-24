@@ -25,9 +25,9 @@ void ezsignfolder_get_ezsigndocuments_v1_response_m_payload_free(ezsignfolder_ge
     listEntry_t *listEntry;
     if (ezsignfolder_get_ezsigndocuments_v1_response_m_payload->a_obj_ezsigndocument) {
         list_ForEach(listEntry, ezsignfolder_get_ezsigndocuments_v1_response_m_payload->a_obj_ezsigndocument) {
-            ezsigndocument_response_free(listEntry->data);
+            ezsigndocument_response_compound_free(listEntry->data);
         }
-        list_free(ezsignfolder_get_ezsigndocuments_v1_response_m_payload->a_obj_ezsigndocument);
+        list_freeList(ezsignfolder_get_ezsigndocuments_v1_response_m_payload->a_obj_ezsigndocument);
         ezsignfolder_get_ezsigndocuments_v1_response_m_payload->a_obj_ezsigndocument = NULL;
     }
     free(ezsignfolder_get_ezsigndocuments_v1_response_m_payload);
@@ -49,7 +49,7 @@ cJSON *ezsignfolder_get_ezsigndocuments_v1_response_m_payload_convertToJSON(ezsi
     listEntry_t *a_obj_ezsigndocumentListEntry;
     if (ezsignfolder_get_ezsigndocuments_v1_response_m_payload->a_obj_ezsigndocument) {
     list_ForEach(a_obj_ezsigndocumentListEntry, ezsignfolder_get_ezsigndocuments_v1_response_m_payload->a_obj_ezsigndocument) {
-    cJSON *itemLocal = ezsigndocument_response_convertToJSON(a_obj_ezsigndocumentListEntry->data);
+    cJSON *itemLocal = ezsigndocument_response_compound_convertToJSON(a_obj_ezsigndocumentListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -82,14 +82,14 @@ ezsignfolder_get_ezsigndocuments_v1_response_m_payload_t *ezsignfolder_get_ezsig
         goto end; //nonprimitive container
     }
 
-    a_obj_ezsigndocumentList = list_create();
+    a_obj_ezsigndocumentList = list_createList();
 
     cJSON_ArrayForEach(a_obj_ezsigndocument_local_nonprimitive,a_obj_ezsigndocument )
     {
         if(!cJSON_IsObject(a_obj_ezsigndocument_local_nonprimitive)){
             goto end;
         }
-        ezsigndocument_response_t *a_obj_ezsigndocumentItem = ezsigndocument_response_parseFromJSON(a_obj_ezsigndocument_local_nonprimitive);
+        ezsigndocument_response_compound_t *a_obj_ezsigndocumentItem = ezsigndocument_response_compound_parseFromJSON(a_obj_ezsigndocument_local_nonprimitive);
 
         list_addElement(a_obj_ezsigndocumentList, a_obj_ezsigndocumentItem);
     }

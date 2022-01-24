@@ -23,12 +23,12 @@ ezsignformfieldgroup_response_compound_t* instantiate_ezsignformfieldgroup_respo
   if (include_optional) {
     ezsignformfieldgroup_response_compound = ezsignformfieldgroup_response_compound_create(
       "Allergies",
-      list_create()
+      list_createList()
     );
   } else {
     ezsignformfieldgroup_response_compound = ezsignformfieldgroup_response_compound_create(
       "Allergies",
-      list_create()
+      list_createList()
     );
   }
 

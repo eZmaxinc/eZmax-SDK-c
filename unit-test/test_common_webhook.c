@@ -25,12 +25,12 @@ common_webhook_t* instantiate_common_webhook(int include_optional) {
     common_webhook = common_webhook_create(
        // false, not to have infinite recursion
       instantiate_webhook_response(0),
-      list_create()
+      list_createList()
     );
   } else {
     common_webhook = common_webhook_create(
       NULL,
-      list_create()
+      list_createList()
     );
   }
 

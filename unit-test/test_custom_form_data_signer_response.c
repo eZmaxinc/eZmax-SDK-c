@@ -26,7 +26,7 @@ custom_form_data_signer_response_t* instantiate_custom_form_data_signer_response
       70,
       "John",
       "Doe",
-      list_create()
+      list_createList()
     );
   } else {
     custom_form_data_signer_response = custom_form_data_signer_response_create(
@@ -34,7 +34,7 @@ custom_form_data_signer_response_t* instantiate_custom_form_data_signer_response
       70,
       "John",
       "Doe",
-      list_create()
+      list_createList()
     );
   }
 

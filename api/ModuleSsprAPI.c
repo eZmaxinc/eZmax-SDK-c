@@ -22,8 +22,8 @@ ModuleSsprAPI_ssprResetPasswordRequestV1(apiClient_t *apiClient, sspr_reset_pass
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
-    list_t *localVarContentType = list_create();
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
 
     // create the path
@@ -73,8 +73,8 @@ end:
     
     
     
-    list_free(localVarHeaderType);
-    list_free(localVarContentType);
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
     free(localVarPath);
     if (localVarSingleItemJSON_sspr_reset_password_request_v1_request) {
         cJSON_Delete(localVarSingleItemJSON_sspr_reset_password_request_v1_request);
@@ -94,8 +94,8 @@ ModuleSsprAPI_ssprResetPasswordV1(apiClient_t *apiClient, sspr_reset_password_v1
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
-    list_t *localVarContentType = list_create();
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
 
     // create the path
@@ -145,8 +145,8 @@ end:
     
     
     
-    list_free(localVarHeaderType);
-    list_free(localVarContentType);
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
     free(localVarPath);
     if (localVarSingleItemJSON_sspr_reset_password_v1_request) {
         cJSON_Delete(localVarSingleItemJSON_sspr_reset_password_v1_request);
@@ -166,8 +166,8 @@ ModuleSsprAPI_ssprSendUsernamesV1(apiClient_t *apiClient, sspr_send_usernames_v1
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
-    list_t *localVarContentType = list_create();
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
 
     // create the path
@@ -217,8 +217,8 @@ end:
     
     
     
-    list_free(localVarHeaderType);
-    list_free(localVarContentType);
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
     free(localVarPath);
     if (localVarSingleItemJSON_sspr_send_usernames_v1_request) {
         cJSON_Delete(localVarSingleItemJSON_sspr_send_usernames_v1_request);
@@ -238,8 +238,8 @@ ModuleSsprAPI_ssprUnlockAccountRequestV1(apiClient_t *apiClient, sspr_unlock_acc
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
-    list_t *localVarContentType = list_create();
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
 
     // create the path
@@ -289,8 +289,8 @@ end:
     
     
     
-    list_free(localVarHeaderType);
-    list_free(localVarContentType);
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
     free(localVarPath);
     if (localVarSingleItemJSON_sspr_unlock_account_request_v1_request) {
         cJSON_Delete(localVarSingleItemJSON_sspr_unlock_account_request_v1_request);
@@ -310,8 +310,8 @@ ModuleSsprAPI_ssprUnlockAccountV1(apiClient_t *apiClient, sspr_unlock_account_v1
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
-    list_t *localVarContentType = list_create();
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
 
     // create the path
@@ -361,8 +361,8 @@ end:
     
     
     
-    list_free(localVarHeaderType);
-    list_free(localVarContentType);
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
     free(localVarPath);
     if (localVarSingleItemJSON_sspr_unlock_account_v1_request) {
         cJSON_Delete(localVarSingleItemJSON_sspr_unlock_account_v1_request);
@@ -382,8 +382,8 @@ ModuleSsprAPI_ssprValidateTokenV1(apiClient_t *apiClient, sspr_validate_token_v1
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
-    list_t *localVarContentType = list_create();
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
 
     // create the path
@@ -433,8 +433,8 @@ end:
     
     
     
-    list_free(localVarHeaderType);
-    list_free(localVarContentType);
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
     free(localVarPath);
     if (localVarSingleItemJSON_sspr_validate_token_v1_request) {
         cJSON_Delete(localVarSingleItemJSON_sspr_validate_token_v1_request);

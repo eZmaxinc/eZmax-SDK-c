@@ -27,7 +27,7 @@ void ezsignfoldersignerassociation_create_object_v1_response_m_payload_free(ezsi
         list_ForEach(listEntry, ezsignfoldersignerassociation_create_object_v1_response_m_payload->a_pki_ezsignfoldersignerassociation_id) {
             free(listEntry->data);
         }
-        list_free(ezsignfoldersignerassociation_create_object_v1_response_m_payload->a_pki_ezsignfoldersignerassociation_id);
+        list_freeList(ezsignfoldersignerassociation_create_object_v1_response_m_payload->a_pki_ezsignfoldersignerassociation_id);
         ezsignfoldersignerassociation_create_object_v1_response_m_payload->a_pki_ezsignfoldersignerassociation_id = NULL;
     }
     free(ezsignfoldersignerassociation_create_object_v1_response_m_payload);
@@ -78,7 +78,7 @@ ezsignfoldersignerassociation_create_object_v1_response_m_payload_t *ezsignfolde
     if(!cJSON_IsArray(a_pki_ezsignfoldersignerassociation_id)) {
         goto end;//primitive container
     }
-    a_pki_ezsignfoldersignerassociation_idList = list_create();
+    a_pki_ezsignfoldersignerassociation_idList = list_createList();
 
     cJSON_ArrayForEach(a_pki_ezsignfoldersignerassociation_id_local, a_pki_ezsignfoldersignerassociation_id)
     {

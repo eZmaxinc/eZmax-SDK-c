@@ -22,11 +22,11 @@ ezsignformfieldgroup_response_compound_all_of_t* instantiate_ezsignformfieldgrou
   ezsignformfieldgroup_response_compound_all_of_t* ezsignformfieldgroup_response_compound_all_of = NULL;
   if (include_optional) {
     ezsignformfieldgroup_response_compound_all_of = ezsignformfieldgroup_response_compound_all_of_create(
-      list_create()
+      list_createList()
     );
   } else {
     ezsignformfieldgroup_response_compound_all_of = ezsignformfieldgroup_response_compound_all_of_create(
-      list_create()
+      list_createList()
     );
   }
 

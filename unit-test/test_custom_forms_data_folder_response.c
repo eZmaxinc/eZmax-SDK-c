@@ -24,13 +24,13 @@ custom_forms_data_folder_response_t* instantiate_custom_forms_data_folder_respon
     custom_forms_data_folder_response = custom_forms_data_folder_response_create(
       33,
       "Test eZsign Folder",
-      list_create()
+      list_createList()
     );
   } else {
     custom_forms_data_folder_response = custom_forms_data_folder_response_create(
       33,
       "Test eZsign Folder",
-      list_create()
+      list_createList()
     );
   }
 

@@ -71,10 +71,10 @@ end:
 global_customer_get_endpoint_v1_response_t*
 GlobalCustomerAPI_globalCustomerGetEndpointV1(apiClient_t *apiClient, char * pksCustomerCode , ezmax_api_definition_globalCustomerGetEndpointV1_sInfrastructureproductCode_e sInfrastructureproductCode )
 {
-    list_t    *localVarQueryParameters = list_create();
+    list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
+    list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
 
@@ -139,10 +139,10 @@ GlobalCustomerAPI_globalCustomerGetEndpointV1(apiClient_t *apiClient, char * pks
         apiClient->dataReceived = NULL;
         apiClient->dataReceivedLen = 0;
     }
-    list_free(localVarQueryParameters);
+    list_freeList(localVarQueryParameters);
     
     
-    list_free(localVarHeaderType);
+    list_freeList(localVarHeaderType);
     
     free(localVarPath);
     free(localVarToReplace_pksCustomerCode);

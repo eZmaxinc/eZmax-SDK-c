@@ -33,7 +33,7 @@ void common_webhook_free(common_webhook_t *common_webhook) {
         list_ForEach(listEntry, common_webhook->a_obj_attempt) {
             attempt_response_free(listEntry->data);
         }
-        list_free(common_webhook->a_obj_attempt);
+        list_freeList(common_webhook->a_obj_attempt);
         common_webhook->a_obj_attempt = NULL;
     }
     free(common_webhook);
@@ -115,7 +115,7 @@ common_webhook_t *common_webhook_parseFromJSON(cJSON *common_webhookJSON){
         goto end; //nonprimitive container
     }
 
-    a_obj_attemptList = list_create();
+    a_obj_attemptList = list_createList();
 
     cJSON_ArrayForEach(a_obj_attempt_local_nonprimitive,a_obj_attempt )
     {

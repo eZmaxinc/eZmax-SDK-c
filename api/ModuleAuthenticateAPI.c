@@ -74,8 +74,8 @@ ModuleAuthenticateAPI_authenticateAuthenticateV2(apiClient_t *apiClient, ezmax_a
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
-    list_t *localVarContentType = list_create();
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
 
     // create the path
@@ -139,8 +139,8 @@ ModuleAuthenticateAPI_authenticateAuthenticateV2(apiClient_t *apiClient, ezmax_a
     
     
     
-    list_free(localVarHeaderType);
-    list_free(localVarContentType);
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
     free(localVarPath);
     free(localVarToReplace_eSessionType);
     if (localVarSingleItemJSON_authenticate_authenticate_v2_request) {

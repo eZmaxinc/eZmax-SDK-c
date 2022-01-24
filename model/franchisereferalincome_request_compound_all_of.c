@@ -33,7 +33,7 @@ void franchisereferalincome_request_compound_all_of_free(franchisereferalincome_
         list_ForEach(listEntry, franchisereferalincome_request_compound_all_of->a_obj_contact) {
             contact_request_compound_free(listEntry->data);
         }
-        list_free(franchisereferalincome_request_compound_all_of->a_obj_contact);
+        list_freeList(franchisereferalincome_request_compound_all_of->a_obj_contact);
         franchisereferalincome_request_compound_all_of->a_obj_contact = NULL;
     }
     free(franchisereferalincome_request_compound_all_of);
@@ -110,7 +110,7 @@ franchisereferalincome_request_compound_all_of_t *franchisereferalincome_request
         goto end; //nonprimitive container
     }
 
-    a_obj_contactList = list_create();
+    a_obj_contactList = list_createList();
 
     cJSON_ArrayForEach(a_obj_contact_local_nonprimitive,a_obj_contact )
     {

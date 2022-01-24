@@ -72,14 +72,14 @@ void activesession_get_current_v1_response_m_payload_free(activesession_get_curr
         list_ForEach(listEntry, activesession_get_current_v1_response_m_payload->a_registered_modules) {
             free(listEntry->data);
         }
-        list_free(activesession_get_current_v1_response_m_payload->a_registered_modules);
+        list_freeList(activesession_get_current_v1_response_m_payload->a_registered_modules);
         activesession_get_current_v1_response_m_payload->a_registered_modules = NULL;
     }
     if (activesession_get_current_v1_response_m_payload->a_permissions) {
         list_ForEach(listEntry, activesession_get_current_v1_response_m_payload->a_permissions) {
             free(listEntry->data);
         }
-        list_free(activesession_get_current_v1_response_m_payload->a_permissions);
+        list_freeList(activesession_get_current_v1_response_m_payload->a_permissions);
         activesession_get_current_v1_response_m_payload->a_permissions = NULL;
     }
     free(activesession_get_current_v1_response_m_payload);
@@ -279,7 +279,7 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
     if(!cJSON_IsArray(a_registered_modules)) {
         goto end;//primitive container
     }
-    a_registered_modulesList = list_create();
+    a_registered_modulesList = list_createList();
 
     cJSON_ArrayForEach(a_registered_modules_local, a_registered_modules)
     {
@@ -302,7 +302,7 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
     if(!cJSON_IsArray(a_permissions)) {
         goto end;//primitive container
     }
-    a_permissionsList = list_create();
+    a_permissionsList = list_createList();
 
     cJSON_ArrayForEach(a_permissions_local, a_permissions)
     {

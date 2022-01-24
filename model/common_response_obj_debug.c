@@ -43,7 +43,7 @@ void common_response_obj_debug_free(common_response_obj_debug_t *common_response
         list_ForEach(listEntry, common_response_obj_debug->a_obj_sql_query) {
             common_response_obj_sql_query_free(listEntry->data);
         }
-        list_free(common_response_obj_debug->a_obj_sql_query);
+        list_freeList(common_response_obj_debug->a_obj_sql_query);
         common_response_obj_debug->a_obj_sql_query = NULL;
     }
     free(common_response_obj_debug);
@@ -186,7 +186,7 @@ common_response_obj_debug_t *common_response_obj_debug_parseFromJSON(cJSON *comm
         goto end; //nonprimitive container
     }
 
-    a_obj_sql_queryList = list_create();
+    a_obj_sql_queryList = list_createList();
 
     cJSON_ArrayForEach(a_obj_sql_query_local_nonprimitive,a_obj_sql_query )
     {

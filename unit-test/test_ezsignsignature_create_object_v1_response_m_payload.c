@@ -22,11 +22,11 @@ ezsignsignature_create_object_v1_response_m_payload_t* instantiate_ezsignsignatu
   ezsignsignature_create_object_v1_response_m_payload_t* ezsignsignature_create_object_v1_response_m_payload = NULL;
   if (include_optional) {
     ezsignsignature_create_object_v1_response_m_payload = ezsignsignature_create_object_v1_response_m_payload_create(
-      list_create()
+      list_createList()
     );
   } else {
     ezsignsignature_create_object_v1_response_m_payload = ezsignsignature_create_object_v1_response_m_payload_create(
-      list_create()
+      list_createList()
     );
   }
 

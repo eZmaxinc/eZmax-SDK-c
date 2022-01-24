@@ -114,10 +114,10 @@ end:
 ezsigntemplatepackage_get_list_v1_response_t*
 ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetListV1(apiClient_t *apiClient, ezmax_api_definition_ezsigntemplatepackageGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter )
 {
-    list_t    *localVarQueryParameters = list_create();
-    list_t    *localVarHeaderParameters = list_create();
+    list_t    *localVarQueryParameters = list_createList();
+    list_t    *localVarHeaderParameters = list_createList();
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
+    list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
 
@@ -223,10 +223,10 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetListV1(apiClient_t *apiCl
         apiClient->dataReceived = NULL;
         apiClient->dataReceivedLen = 0;
     }
-    list_free(localVarQueryParameters);
-    list_free(localVarHeaderParameters);
+    list_freeList(localVarQueryParameters);
+    list_freeList(localVarHeaderParameters);
     
-    list_free(localVarHeaderType);
+    list_freeList(localVarHeaderType);
     
     free(localVarPath);
     if (keyHeader_Accept_Language) {

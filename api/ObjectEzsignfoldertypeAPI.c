@@ -209,10 +209,10 @@ end:
 common_get_autocomplete_v1_response_t*
 ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition_ezsignfoldertypeGetAutocompleteV1_sSelector_e sSelector , char * sQuery , header_accept_language_e Accept_Language )
 {
-    list_t    *localVarQueryParameters = list_create();
-    list_t    *localVarHeaderParameters = list_create();
+    list_t    *localVarQueryParameters = list_createList();
+    list_t    *localVarHeaderParameters = list_createList();
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
+    list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
 
@@ -285,10 +285,10 @@ ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV1(apiClient_t *apiClie
         apiClient->dataReceived = NULL;
         apiClient->dataReceivedLen = 0;
     }
-    list_free(localVarQueryParameters);
-    list_free(localVarHeaderParameters);
+    list_freeList(localVarQueryParameters);
+    list_freeList(localVarHeaderParameters);
     
-    list_free(localVarHeaderType);
+    list_freeList(localVarHeaderType);
     
     free(localVarPath);
     free(localVarToReplace_sSelector);
@@ -323,10 +323,10 @@ end:
 ezsignfoldertype_get_list_v1_response_t*
 ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1(apiClient_t *apiClient, ezmax_api_definition_ezsignfoldertypeGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter )
 {
-    list_t    *localVarQueryParameters = list_create();
-    list_t    *localVarHeaderParameters = list_create();
+    list_t    *localVarQueryParameters = list_createList();
+    list_t    *localVarHeaderParameters = list_createList();
     list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_create();
+    list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
 
@@ -432,10 +432,10 @@ ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1(apiClient_t *apiClient, ezma
         apiClient->dataReceived = NULL;
         apiClient->dataReceivedLen = 0;
     }
-    list_free(localVarQueryParameters);
-    list_free(localVarHeaderParameters);
+    list_freeList(localVarQueryParameters);
+    list_freeList(localVarHeaderParameters);
     
-    list_free(localVarHeaderType);
+    list_freeList(localVarHeaderType);
     
     free(localVarPath);
     if (keyHeader_Accept_Language) {

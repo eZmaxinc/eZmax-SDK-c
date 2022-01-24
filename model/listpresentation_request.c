@@ -51,7 +51,7 @@ void listpresentation_request_free(listpresentation_request_t *listpresentation_
         list_ForEach(listEntry, listpresentation_request->a_s_column_name) {
             free(listEntry->data);
         }
-        list_free(listpresentation_request->a_s_column_name);
+        list_freeList(listpresentation_request->a_s_column_name);
         listpresentation_request->a_s_column_name = NULL;
     }
     free(listpresentation_request);
@@ -198,7 +198,7 @@ listpresentation_request_t *listpresentation_request_parseFromJSON(cJSON *listpr
     if(!cJSON_IsArray(a_s_column_name)) {
         goto end;//primitive container
     }
-    a_s_column_nameList = list_create();
+    a_s_column_nameList = list_createList();
 
     cJSON_ArrayForEach(a_s_column_name_local, a_s_column_name)
     {

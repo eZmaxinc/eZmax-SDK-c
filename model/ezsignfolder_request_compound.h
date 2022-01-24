@@ -16,8 +16,6 @@
 typedef struct ezsignfolder_request_compound_t ezsignfolder_request_compound_t;
 
 #include "ezsignfolder_request.h"
-#include "ezsignfolder_request_compound_all_of.h"
-#include "ezsignfoldersignerassociation_request.h"
 #include "field_e_ezsignfolder_sendreminderfrequency.h"
 
 // Enum  for ezsignfolder_request_compound
@@ -31,7 +29,6 @@ ezmax_api_definition_ezsignfolder_request_compound__e ezsignfolder_request_compo
 
 
 typedef struct ezsignfolder_request_compound_t {
-    list_t *a_ezsignfoldersignerassociation; //nonprimitive container
     int fki_ezsignfoldertype_id; //numeric
     int fki_ezsigntsarequirement_id; //numeric
     char *s_ezsignfolder_description; // string
@@ -41,7 +38,6 @@ typedef struct ezsignfolder_request_compound_t {
 } ezsignfolder_request_compound_t;
 
 ezsignfolder_request_compound_t *ezsignfolder_request_compound_create(
-    list_t *a_ezsignfoldersignerassociation,
     int fki_ezsignfoldertype_id,
     int fki_ezsigntsarequirement_id,
     char *s_ezsignfolder_description,

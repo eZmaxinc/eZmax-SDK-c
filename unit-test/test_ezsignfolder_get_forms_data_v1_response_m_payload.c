@@ -24,13 +24,13 @@ ezsignfolder_get_forms_data_v1_response_m_payload_t* instantiate_ezsignfolder_ge
     ezsignfolder_get_forms_data_v1_response_m_payload = ezsignfolder_get_forms_data_v1_response_m_payload_create(
       33,
       "Test eZsign Folder",
-      list_create()
+      list_createList()
     );
   } else {
     ezsignfolder_get_forms_data_v1_response_m_payload = ezsignfolder_get_forms_data_v1_response_m_payload_create(
       33,
       "Test eZsign Folder",
-      list_create()
+      list_createList()
     );
   }
 

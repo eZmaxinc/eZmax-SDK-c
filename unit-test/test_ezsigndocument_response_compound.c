@@ -23,6 +23,11 @@ ezsigndocument_response_compound_t* instantiate_ezsigndocument_response_compound
   ezsigndocument_response_compound_t* ezsigndocument_response_compound = NULL;
   if (include_optional) {
     ezsigndocument_response_compound = ezsigndocument_response_compound_create(
+      2,
+      1,
+      2,
+      0,
+      list_createList(),
       33,
       "2020-12-31 23:59:59",
       2,
@@ -41,6 +46,11 @@ ezsigndocument_response_compound_t* instantiate_ezsigndocument_response_compound
     );
   } else {
     ezsigndocument_response_compound = ezsigndocument_response_compound_create(
+      2,
+      1,
+      2,
+      0,
+      list_createList(),
       33,
       "2020-12-31 23:59:59",
       2,

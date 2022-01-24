@@ -10,6 +10,7 @@
 #include "../model/ezsignfolder_create_object_v1_response.h"
 #include "../model/ezsignfolder_delete_object_v1_response.h"
 #include "../model/ezsignfolder_get_ezsigndocuments_v1_response.h"
+#include "../model/ezsignfolder_get_ezsignfoldersignerassociations_v1_response.h"
 #include "../model/ezsignfolder_get_forms_data_v1_response.h"
 #include "../model/ezsignfolder_get_list_v1_response.h"
 #include "../model/ezsignfolder_get_object_v1_response.h"
@@ -43,6 +44,12 @@ ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1(apiClient_t *apiClient, int pki
 //
 ezsignfolder_get_ezsigndocuments_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1(apiClient_t *apiClient, int pkiEzsignfolderID );
+
+
+// Retrieve an existing Ezsignfolder's Ezsignfoldersignerassociations
+//
+ezsignfolder_get_ezsignfoldersignerassociations_v1_response_t*
+ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1(apiClient_t *apiClient, int pkiEzsignfolderID );
 
 
 // Retrieve an existing Ezsignfolder's forms data

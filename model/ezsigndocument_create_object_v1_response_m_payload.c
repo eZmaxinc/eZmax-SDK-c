@@ -27,7 +27,7 @@ void ezsigndocument_create_object_v1_response_m_payload_free(ezsigndocument_crea
         list_ForEach(listEntry, ezsigndocument_create_object_v1_response_m_payload->a_pki_ezsigndocument_id) {
             free(listEntry->data);
         }
-        list_free(ezsigndocument_create_object_v1_response_m_payload->a_pki_ezsigndocument_id);
+        list_freeList(ezsigndocument_create_object_v1_response_m_payload->a_pki_ezsigndocument_id);
         ezsigndocument_create_object_v1_response_m_payload->a_pki_ezsigndocument_id = NULL;
     }
     free(ezsigndocument_create_object_v1_response_m_payload);
@@ -78,7 +78,7 @@ ezsigndocument_create_object_v1_response_m_payload_t *ezsigndocument_create_obje
     if(!cJSON_IsArray(a_pki_ezsigndocument_id)) {
         goto end;//primitive container
     }
-    a_pki_ezsigndocument_idList = list_create();
+    a_pki_ezsigndocument_idList = list_createList();
 
     cJSON_ArrayForEach(a_pki_ezsigndocument_id_local, a_pki_ezsigndocument_id)
     {

@@ -43,7 +43,7 @@ void custom_form_data_signer_response_free(custom_form_data_signer_response_t *c
         list_ForEach(listEntry, custom_form_data_signer_response->a_obj_ezsignformfieldgroup_compound) {
             ezsignformfieldgroup_response_compound_free(listEntry->data);
         }
-        list_free(custom_form_data_signer_response->a_obj_ezsignformfieldgroup_compound);
+        list_freeList(custom_form_data_signer_response->a_obj_ezsignformfieldgroup_compound);
         custom_form_data_signer_response->a_obj_ezsignformfieldgroup_compound = NULL;
     }
     free(custom_form_data_signer_response);
@@ -181,7 +181,7 @@ custom_form_data_signer_response_t *custom_form_data_signer_response_parseFromJS
         goto end; //nonprimitive container
     }
 
-    a_obj_ezsignformfieldgroup_compoundList = list_create();
+    a_obj_ezsignformfieldgroup_compoundList = list_createList();
 
     cJSON_ArrayForEach(a_obj_ezsignformfieldgroup_compound_local_nonprimitive,a_obj_ezsignformfieldgroup_compound )
     {

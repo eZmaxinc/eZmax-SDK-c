@@ -31,7 +31,7 @@ void ezsignfolder_get_list_v1_response_m_payload_free(ezsignfolder_get_list_v1_r
         list_ForEach(listEntry, ezsignfolder_get_list_v1_response_m_payload->a_obj_ezsignfolder) {
             ezsignfolder_list_element_free(listEntry->data);
         }
-        list_free(ezsignfolder_get_list_v1_response_m_payload->a_obj_ezsignfolder);
+        list_freeList(ezsignfolder_get_list_v1_response_m_payload->a_obj_ezsignfolder);
         ezsignfolder_get_list_v1_response_m_payload->a_obj_ezsignfolder = NULL;
     }
     free(ezsignfolder_get_list_v1_response_m_payload);
@@ -106,7 +106,7 @@ ezsignfolder_get_list_v1_response_m_payload_t *ezsignfolder_get_list_v1_response
         goto end; //nonprimitive container
     }
 
-    a_obj_ezsignfolderList = list_create();
+    a_obj_ezsignfolderList = list_createList();
 
     cJSON_ArrayForEach(a_obj_ezsignfolder_local_nonprimitive,a_obj_ezsignfolder )
     {
