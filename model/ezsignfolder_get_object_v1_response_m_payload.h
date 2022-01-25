@@ -16,7 +16,7 @@
 typedef struct ezsignfolder_get_object_v1_response_m_payload_t ezsignfolder_get_object_v1_response_m_payload_t;
 
 #include "common_audit.h"
-#include "ezsignfolder_response.h"
+#include "ezsignfolder_response_compound.h"
 #include "field_e_ezsignfolder_sendreminderfrequency.h"
 #include "field_e_ezsignfolder_step.h"
 
