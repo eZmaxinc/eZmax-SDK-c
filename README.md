@@ -260,6 +260,7 @@ Category | Method | HTTP request | Description
  - [ezsignsignature_get_object_v1_response_all_of_t](docs/ezsignsignature_get_object_v1_response_all_of.md)
  - [ezsignsignature_request_t](docs/ezsignsignature_request.md)
  - [ezsignsignature_request_compound_t](docs/ezsignsignature_request_compound.md)
+ - [ezsignsignaturecustomdate_request_t](docs/ezsignsignaturecustomdate_request.md)
  - [ezsignsigner_request_t](docs/ezsignsigner_request.md)
  - [ezsignsigner_request_compound_t](docs/ezsignsigner_request_compound.md)
  - [ezsignsigner_request_compound_all_of_t](docs/ezsignsigner_request_compound_all_of.md)

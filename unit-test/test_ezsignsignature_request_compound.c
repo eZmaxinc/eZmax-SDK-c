@@ -22,6 +22,8 @@ ezsignsignature_request_compound_t* instantiate_ezsignsignature_request_compound
   ezsignsignature_request_compound_t* ezsignsignature_request_compound = NULL;
   if (include_optional) {
     ezsignsignature_request_compound = ezsignsignature_request_compound_create(
+      1,
+      list_createList(),
       20,
       1,
       200,
@@ -32,6 +34,8 @@ ezsignsignature_request_compound_t* instantiate_ezsignsignature_request_compound
     );
   } else {
     ezsignsignature_request_compound = ezsignsignature_request_compound_create(
+      1,
+      list_createList(),
       20,
       1,
       200,

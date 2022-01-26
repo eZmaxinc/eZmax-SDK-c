@@ -16,6 +16,7 @@
 typedef struct ezsignsignature_request_compound_t ezsignsignature_request_compound_t;
 
 #include "ezsignsignature_request.h"
+#include "ezsignsignaturecustomdate_request.h"
 #include "field_e_ezsignsignature_type.h"
 
 // Enum  for ezsignsignature_request_compound
@@ -29,6 +30,8 @@ ezmax_api_definition_ezsignsignature_request_compound__e ezsignsignature_request
 
 
 typedef struct ezsignsignature_request_compound_t {
+    int b_ezsignsignature_customdate; //boolean
+    list_t *a_obj_ezsignsignaturecustomdate; //nonprimitive container
     int fki_ezsignfoldersignerassociation_id; //numeric
     int i_ezsignpage_pagenumber; //numeric
     int i_ezsignsignature_x; //numeric
@@ -40,6 +43,8 @@ typedef struct ezsignsignature_request_compound_t {
 } ezsignsignature_request_compound_t;
 
 ezsignsignature_request_compound_t *ezsignsignature_request_compound_create(
+    int b_ezsignsignature_customdate,
+    list_t *a_obj_ezsignsignaturecustomdate,
     int fki_ezsignfoldersignerassociation_id,
     int i_ezsignpage_pagenumber,
     int i_ezsignsignature_x,

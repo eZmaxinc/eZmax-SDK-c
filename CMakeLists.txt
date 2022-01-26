@@ -194,6 +194,7 @@ set(SRCS
     model/ezsignsignature_get_object_v1_response_all_of.c
     model/ezsignsignature_request.c
     model/ezsignsignature_request_compound.c
+    model/ezsignsignaturecustomdate_request.c
     model/ezsignsigner_request.c
     model/ezsignsigner_request_compound.c
     model/ezsignsigner_request_compound_all_of.c
@@ -433,6 +434,7 @@ set(HDRS
     model/ezsignsignature_get_object_v1_response_all_of.h
     model/ezsignsignature_request.h
     model/ezsignsignature_request_compound.h
+    model/ezsignsignaturecustomdate_request.h
     model/ezsignsigner_request.h
     model/ezsignsigner_request_compound.h
     model/ezsignsigner_request_compound_all_of.h

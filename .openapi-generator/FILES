@@ -201,6 +201,7 @@ docs/ezsignsignature_get_object_v1_response.md
 docs/ezsignsignature_get_object_v1_response_all_of.md
 docs/ezsignsignature_request.md
 docs/ezsignsignature_request_compound.md
+docs/ezsignsignaturecustomdate_request.md
 docs/ezsignsigner_request.md
 docs/ezsignsigner_request_compound.md
 docs/ezsignsigner_request_compound_all_of.md
@@ -565,6 +566,8 @@ model/ezsignsignature_request.c
 model/ezsignsignature_request.h
 model/ezsignsignature_request_compound.c
 model/ezsignsignature_request_compound.h
+model/ezsignsignaturecustomdate_request.c
+model/ezsignsignaturecustomdate_request.h
 model/ezsignsigner_request.c
 model/ezsignsigner_request.h
 model/ezsignsigner_request_compound.c
@@ -849,6 +852,7 @@ unit-test/test_ezsignsignature_get_object_v1_response.c
 unit-test/test_ezsignsignature_get_object_v1_response_all_of.c
 unit-test/test_ezsignsignature_request.c
 unit-test/test_ezsignsignature_request_compound.c
+unit-test/test_ezsignsignaturecustomdate_request.c
 unit-test/test_ezsignsigner_request.c
 unit-test/test_ezsignsigner_request_compound.c
 unit-test/test_ezsignsigner_request_compound_all_of.c
