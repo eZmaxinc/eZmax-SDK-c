@@ -8,8 +8,6 @@
 ezsignfoldersignerassociation_get_object_v1_response_m_payload_t *ezsignfoldersignerassociation_get_object_v1_response_m_payload_create(
     int pki_ezsignfoldersignerassociation_id,
     int fki_ezsignfolder_id,
-    int fki_ezsignsigner_id,
-    int fki_user_id,
     int b_ezsignfoldersignerassociation_receivecopy
     ) {
     ezsignfoldersignerassociation_get_object_v1_response_m_payload_t *ezsignfoldersignerassociation_get_object_v1_response_m_payload_local_var = malloc(sizeof(ezsignfoldersignerassociation_get_object_v1_response_m_payload_t));
@@ -18,8 +16,6 @@ ezsignfoldersignerassociation_get_object_v1_response_m_payload_t *ezsignfoldersi
     }
     ezsignfoldersignerassociation_get_object_v1_response_m_payload_local_var->pki_ezsignfoldersignerassociation_id = pki_ezsignfoldersignerassociation_id;
     ezsignfoldersignerassociation_get_object_v1_response_m_payload_local_var->fki_ezsignfolder_id = fki_ezsignfolder_id;
-    ezsignfoldersignerassociation_get_object_v1_response_m_payload_local_var->fki_ezsignsigner_id = fki_ezsignsigner_id;
-    ezsignfoldersignerassociation_get_object_v1_response_m_payload_local_var->fki_user_id = fki_user_id;
     ezsignfoldersignerassociation_get_object_v1_response_m_payload_local_var->b_ezsignfoldersignerassociation_receivecopy = b_ezsignfoldersignerassociation_receivecopy;
 
     return ezsignfoldersignerassociation_get_object_v1_response_m_payload_local_var;
@@ -53,26 +49,6 @@ cJSON *ezsignfoldersignerassociation_get_object_v1_response_m_payload_convertToJ
     }
     
     if(cJSON_AddNumberToObject(item, "fkiEzsignfolderID", ezsignfoldersignerassociation_get_object_v1_response_m_payload->fki_ezsignfolder_id) == NULL) {
-    goto fail; //Numeric
-    }
-
-
-    // ezsignfoldersignerassociation_get_object_v1_response_m_payload->fki_ezsignsigner_id
-    if (!ezsignfoldersignerassociation_get_object_v1_response_m_payload->fki_ezsignsigner_id) {
-        goto fail;
-    }
-    
-    if(cJSON_AddNumberToObject(item, "fkiEzsignsignerID", ezsignfoldersignerassociation_get_object_v1_response_m_payload->fki_ezsignsigner_id) == NULL) {
-    goto fail; //Numeric
-    }
-
-
-    // ezsignfoldersignerassociation_get_object_v1_response_m_payload->fki_user_id
-    if (!ezsignfoldersignerassociation_get_object_v1_response_m_payload->fki_user_id) {
-        goto fail;
-    }
-    
-    if(cJSON_AddNumberToObject(item, "fkiUserID", ezsignfoldersignerassociation_get_object_v1_response_m_payload->fki_user_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -122,30 +98,6 @@ ezsignfoldersignerassociation_get_object_v1_response_m_payload_t *ezsignfoldersi
     goto end; //Numeric
     }
 
-    // ezsignfoldersignerassociation_get_object_v1_response_m_payload->fki_ezsignsigner_id
-    cJSON *fki_ezsignsigner_id = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_get_object_v1_response_m_payloadJSON, "fkiEzsignsignerID");
-    if (!fki_ezsignsigner_id) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsNumber(fki_ezsignsigner_id))
-    {
-    goto end; //Numeric
-    }
-
-    // ezsignfoldersignerassociation_get_object_v1_response_m_payload->fki_user_id
-    cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_get_object_v1_response_m_payloadJSON, "fkiUserID");
-    if (!fki_user_id) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsNumber(fki_user_id))
-    {
-    goto end; //Numeric
-    }
-
     // ezsignfoldersignerassociation_get_object_v1_response_m_payload->b_ezsignfoldersignerassociation_receivecopy
     cJSON *b_ezsignfoldersignerassociation_receivecopy = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_get_object_v1_response_m_payloadJSON, "bEzsignfoldersignerassociationReceivecopy");
     if (!b_ezsignfoldersignerassociation_receivecopy) {
@@ -162,8 +114,6 @@ ezsignfoldersignerassociation_get_object_v1_response_m_payload_t *ezsignfoldersi
     ezsignfoldersignerassociation_get_object_v1_response_m_payload_local_var = ezsignfoldersignerassociation_get_object_v1_response_m_payload_create (
         pki_ezsignfoldersignerassociation_id->valuedouble,
         fki_ezsignfolder_id->valuedouble,
-        fki_ezsignsigner_id->valuedouble,
-        fki_user_id->valuedouble,
         b_ezsignfoldersignerassociation_receivecopy->valueint
         );
 

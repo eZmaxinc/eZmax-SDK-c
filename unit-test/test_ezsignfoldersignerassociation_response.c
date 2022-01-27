@@ -24,16 +24,12 @@ ezsignfoldersignerassociation_response_t* instantiate_ezsignfoldersignerassociat
     ezsignfoldersignerassociation_response = ezsignfoldersignerassociation_response_create(
       20,
       33,
-      89,
-      70,
       1
     );
   } else {
     ezsignfoldersignerassociation_response = ezsignfoldersignerassociation_response_create(
       20,
       33,
-      89,
-      70,
       1
     );
   }

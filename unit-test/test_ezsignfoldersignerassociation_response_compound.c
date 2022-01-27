@@ -16,24 +16,28 @@
 #include "../model/ezsignfoldersignerassociation_response_compound.h"
 ezsignfoldersignerassociation_response_compound_t* instantiate_ezsignfoldersignerassociation_response_compound(int include_optional);
 
+#include "test_ezsignfoldersignerassociation_response_compound_user.c"
+#include "test_ezsignsigner_response_compound.c"
 
 
 ezsignfoldersignerassociation_response_compound_t* instantiate_ezsignfoldersignerassociation_response_compound(int include_optional) {
   ezsignfoldersignerassociation_response_compound_t* ezsignfoldersignerassociation_response_compound = NULL;
   if (include_optional) {
     ezsignfoldersignerassociation_response_compound = ezsignfoldersignerassociation_response_compound_create(
+       // false, not to have infinite recursion
+      instantiate_ezsignfoldersignerassociation_response_compound_user(0),
+       // false, not to have infinite recursion
+      instantiate_ezsignsigner_response_compound(0),
       20,
       33,
-      89,
-      70,
       1
     );
   } else {
     ezsignfoldersignerassociation_response_compound = ezsignfoldersignerassociation_response_compound_create(
+      NULL,
+      NULL,
       20,
       33,
-      89,
-      70,
       1
     );
   }

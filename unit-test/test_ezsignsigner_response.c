@@ -22,17 +22,19 @@ ezsignsigner_response_t* instantiate_ezsignsigner_response(int include_optional)
   ezsignsigner_response_t* ezsignsigner_response = NULL;
   if (include_optional) {
     ezsignsigner_response = ezsignsigner_response_create(
+      89,
       1,
       7,
-      ezmax_api_definition_ezsignsigner_response_EEZSIGNSIGNERLOGINTYPE_Password,
-      "0"
+      2,
+      "Email and phone or SMS"
     );
   } else {
     ezsignsigner_response = ezsignsigner_response_create(
+      89,
       1,
       7,
-      ezmax_api_definition_ezsignsigner_response_EEZSIGNSIGNERLOGINTYPE_Password,
-      "0"
+      2,
+      "Email and phone or SMS"
     );
   }
 

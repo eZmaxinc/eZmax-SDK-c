@@ -23,8 +23,8 @@ typedef struct ezsignsigner_response_compound_contact_t {
     char *s_contact_lastname; // string
     int fki_language_id; //numeric
     char *s_email_address; // string
-    char *s_phone_number; // string
-    char *s_phone_number_cell; // string
+    char *s_phone_e164; // string
+    char *s_phone_e164_cell; // string
 
 } ezsignsigner_response_compound_contact_t;
 
@@ -33,8 +33,8 @@ ezsignsigner_response_compound_contact_t *ezsignsigner_response_compound_contact
     char *s_contact_lastname,
     int fki_language_id,
     char *s_email_address,
-    char *s_phone_number,
-    char *s_phone_number_cell
+    char *s_phone_e164,
+    char *s_phone_e164_cell
 );
 
 void ezsignsigner_response_compound_contact_free(ezsignsigner_response_compound_contact_t *ezsignsigner_response_compound_contact);

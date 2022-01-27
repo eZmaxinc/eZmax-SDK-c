@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**a_obj_ezsignfoldersignerassociation** | [**list_t**](ezsignfoldersignerassociation_response.md) \* |  | 
+**a_obj_ezsignfoldersignerassociation** | [**list_t**](ezsignfoldersignerassociation_response_compound.md) \* |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

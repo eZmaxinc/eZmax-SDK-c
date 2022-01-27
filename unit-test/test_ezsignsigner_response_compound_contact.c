@@ -26,8 +26,8 @@ ezsignsigner_response_compound_contact_t* instantiate_ezsignsigner_response_comp
       "Doe",
       2,
       "example@domain.com",
-      "0",
-      "0"
+      "+5149901516",
+      "+5149901516"
     );
   } else {
     ezsignsigner_response_compound_contact = ezsignsigner_response_compound_contact_create(
@@ -35,8 +35,8 @@ ezsignsigner_response_compound_contact_t* instantiate_ezsignsigner_response_comp
       "Doe",
       2,
       "example@domain.com",
-      "0",
-      "0"
+      "+5149901516",
+      "+5149901516"
     );
   }
 

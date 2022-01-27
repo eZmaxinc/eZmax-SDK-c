@@ -174,6 +174,7 @@ set(SRCS
     model/ezsignfoldersignerassociation_request_compound_all_of.c
     model/ezsignfoldersignerassociation_response.c
     model/ezsignfoldersignerassociation_response_compound.c
+    model/ezsignfoldersignerassociation_response_compound_user.c
     model/ezsignfoldertype_get_list_v1_response.c
     model/ezsignfoldertype_get_list_v1_response_all_of.c
     model/ezsignfoldertype_get_list_v1_response_m_payload.c
@@ -414,6 +415,7 @@ set(HDRS
     model/ezsignfoldersignerassociation_request_compound_all_of.h
     model/ezsignfoldersignerassociation_response.h
     model/ezsignfoldersignerassociation_response_compound.h
+    model/ezsignfoldersignerassociation_response_compound_user.h
     model/ezsignfoldertype_get_list_v1_response.h
     model/ezsignfoldertype_get_list_v1_response_all_of.h
     model/ezsignfoldertype_get_list_v1_response_m_payload.h

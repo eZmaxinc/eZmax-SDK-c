@@ -21,8 +21,6 @@ typedef struct ezsignfoldersignerassociation_response_t ezsignfoldersignerassoci
 typedef struct ezsignfoldersignerassociation_response_t {
     int pki_ezsignfoldersignerassociation_id; //numeric
     int fki_ezsignfolder_id; //numeric
-    int fki_ezsignsigner_id; //numeric
-    int fki_user_id; //numeric
     int b_ezsignfoldersignerassociation_receivecopy; //boolean
 
 } ezsignfoldersignerassociation_response_t;
@@ -30,8 +28,6 @@ typedef struct ezsignfoldersignerassociation_response_t {
 ezsignfoldersignerassociation_response_t *ezsignfoldersignerassociation_response_create(
     int pki_ezsignfoldersignerassociation_id,
     int fki_ezsignfolder_id,
-    int fki_ezsignsigner_id,
-    int fki_user_id,
     int b_ezsignfoldersignerassociation_receivecopy
 );
 

@@ -240,6 +240,7 @@ Category | Method | HTTP request | Description
  - [ezsignfoldersignerassociation_request_compound_all_of_t](docs/ezsignfoldersignerassociation_request_compound_all_of.md)
  - [ezsignfoldersignerassociation_response_t](docs/ezsignfoldersignerassociation_response.md)
  - [ezsignfoldersignerassociation_response_compound_t](docs/ezsignfoldersignerassociation_response_compound.md)
+ - [ezsignfoldersignerassociation_response_compound_user_t](docs/ezsignfoldersignerassociation_response_compound_user.md)
  - [ezsignfoldertype_get_list_v1_response_t](docs/ezsignfoldertype_get_list_v1_response.md)
  - [ezsignfoldertype_get_list_v1_response_all_of_t](docs/ezsignfoldertype_get_list_v1_response_all_of.md)
  - [ezsignfoldertype_get_list_v1_response_m_payload_t](docs/ezsignfoldertype_get_list_v1_response_m_payload.md)

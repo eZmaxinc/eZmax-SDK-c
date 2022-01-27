@@ -23,19 +23,22 @@ ezsignsigner_response_compound_t* instantiate_ezsignsigner_response_compound(int
   ezsignsigner_response_compound_t* ezsignsigner_response_compound = NULL;
   if (include_optional) {
     ezsignsigner_response_compound = ezsignsigner_response_compound_create(
-      {"sContactFirstname":"John","sContactLastname":"Doe","fkiLanguageID":1,"sEmailAddress":"johh.doe@domain.com","sPhoneNumber":"5149901516","sPhoneNumberCell":"5149901516"},
+       // false, not to have infinite recursion
+      instantiate_ezsignsigner_response_compound_contact(0),
+      89,
       1,
       7,
-      ezmax_api_definition_ezsignsigner_response_compound_EEZSIGNSIGNERLOGINTYPE_Password,
-      "0"
+      2,
+      "Email and phone or SMS"
     );
   } else {
     ezsignsigner_response_compound = ezsignsigner_response_compound_create(
-      {"sContactFirstname":"John","sContactLastname":"Doe","fkiLanguageID":1,"sEmailAddress":"johh.doe@domain.com","sPhoneNumber":"5149901516","sPhoneNumberCell":"5149901516"},
+      NULL,
+      89,
       1,
       7,
-      ezmax_api_definition_ezsignsigner_response_compound_EEZSIGNSIGNERLOGINTYPE_Password,
-      "0"
+      2,
+      "Email and phone or SMS"
     );
   }
 

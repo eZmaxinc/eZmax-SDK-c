@@ -24,16 +24,12 @@ ezsignfoldersignerassociation_get_object_v1_response_m_payload_t* instantiate_ez
     ezsignfoldersignerassociation_get_object_v1_response_m_payload = ezsignfoldersignerassociation_get_object_v1_response_m_payload_create(
       20,
       33,
-      89,
-      70,
       1
     );
   } else {
     ezsignfoldersignerassociation_get_object_v1_response_m_payload = ezsignfoldersignerassociation_get_object_v1_response_m_payload_create(
       20,
       33,
-      89,
-      70,
       1
     );
   }
