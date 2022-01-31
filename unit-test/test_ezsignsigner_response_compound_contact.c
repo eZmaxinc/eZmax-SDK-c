@@ -22,6 +22,7 @@ ezsignsigner_response_compound_contact_t* instantiate_ezsignsigner_response_comp
   ezsignsigner_response_compound_contact_t* ezsignsigner_response_compound_contact = NULL;
   if (include_optional) {
     ezsignsigner_response_compound_contact = ezsignsigner_response_compound_contact_create(
+      21,
       "John",
       "Doe",
       2,
@@ -31,6 +32,7 @@ ezsignsigner_response_compound_contact_t* instantiate_ezsignsigner_response_comp
     );
   } else {
     ezsignsigner_response_compound_contact = ezsignsigner_response_compound_contact_create(
+      21,
       "John",
       "Doe",
       2,

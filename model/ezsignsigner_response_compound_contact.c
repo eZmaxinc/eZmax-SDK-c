@@ -6,6 +6,7 @@
 
 
 ezsignsigner_response_compound_contact_t *ezsignsigner_response_compound_contact_create(
+    int pki_contact_id,
     char *s_contact_firstname,
     char *s_contact_lastname,
     int fki_language_id,
@@ -17,6 +18,7 @@ ezsignsigner_response_compound_contact_t *ezsignsigner_response_compound_contact
     if (!ezsignsigner_response_compound_contact_local_var) {
         return NULL;
     }
+    ezsignsigner_response_compound_contact_local_var->pki_contact_id = pki_contact_id;
     ezsignsigner_response_compound_contact_local_var->s_contact_firstname = s_contact_firstname;
     ezsignsigner_response_compound_contact_local_var->s_contact_lastname = s_contact_lastname;
     ezsignsigner_response_compound_contact_local_var->fki_language_id = fki_language_id;
@@ -58,6 +60,16 @@ void ezsignsigner_response_compound_contact_free(ezsignsigner_response_compound_
 
 cJSON *ezsignsigner_response_compound_contact_convertToJSON(ezsignsigner_response_compound_contact_t *ezsignsigner_response_compound_contact) {
     cJSON *item = cJSON_CreateObject();
+
+    // ezsignsigner_response_compound_contact->pki_contact_id
+    if (!ezsignsigner_response_compound_contact->pki_contact_id) {
+        goto fail;
+    }
+    
+    if(cJSON_AddNumberToObject(item, "pkiContactID", ezsignsigner_response_compound_contact->pki_contact_id) == NULL) {
+    goto fail; //Numeric
+    }
+
 
     // ezsignsigner_response_compound_contact->s_contact_firstname
     if (!ezsignsigner_response_compound_contact->s_contact_firstname) {
@@ -124,6 +136,18 @@ ezsignsigner_response_compound_contact_t *ezsignsigner_response_compound_contact
 
     ezsignsigner_response_compound_contact_t *ezsignsigner_response_compound_contact_local_var = NULL;
 
+    // ezsignsigner_response_compound_contact->pki_contact_id
+    cJSON *pki_contact_id = cJSON_GetObjectItemCaseSensitive(ezsignsigner_response_compound_contactJSON, "pkiContactID");
+    if (!pki_contact_id) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(pki_contact_id))
+    {
+    goto end; //Numeric
+    }
+
     // ezsignsigner_response_compound_contact->s_contact_firstname
     cJSON *s_contact_firstname = cJSON_GetObjectItemCaseSensitive(ezsignsigner_response_compound_contactJSON, "sContactFirstname");
     if (!s_contact_firstname) {
@@ -189,6 +213,7 @@ ezsignsigner_response_compound_contact_t *ezsignsigner_response_compound_contact
 
 
     ezsignsigner_response_compound_contact_local_var = ezsignsigner_response_compound_contact_create (
+        pki_contact_id->valuedouble,
         strdup(s_contact_firstname->valuestring),
         strdup(s_contact_lastname->valuestring),
         fki_language_id->valuedouble,

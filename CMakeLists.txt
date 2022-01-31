@@ -262,6 +262,7 @@ set(SRCS
     model/webhook_user_user_created.c
     model/webhook_user_user_created_all_of.c
     model/website_request.c
+    model/xxxx.c
     api/GlobalCustomerAPI.c
     api/ModuleAuthenticateAPI.c
     api/ModuleListAPI.c
@@ -503,6 +504,7 @@ set(HDRS
     model/webhook_user_user_created.h
     model/webhook_user_user_created_all_of.h
     model/website_request.h
+    model/xxxx.h
     api/GlobalCustomerAPI.h
     api/ModuleAuthenticateAPI.h
     api/ModuleListAPI.h

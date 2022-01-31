@@ -269,6 +269,7 @@ docs/webhook_response.md
 docs/webhook_user_user_created.md
 docs/webhook_user_user_created_all_of.md
 docs/website_request.md
+docs/xxxx.md
 external/cJSON.c
 external/cJSON.h
 external/cJSON.licence
@@ -705,6 +706,8 @@ model/webhook_user_user_created_all_of.c
 model/webhook_user_user_created_all_of.h
 model/website_request.c
 model/website_request.h
+model/xxxx.c
+model/xxxx.h
 src/apiClient.c
 src/apiKey.c
 src/binary.c
@@ -923,3 +926,4 @@ unit-test/test_webhook_response.c
 unit-test/test_webhook_user_user_created.c
 unit-test/test_webhook_user_user_created_all_of.c
 unit-test/test_website_request.c
+unit-test/test_xxxx.c

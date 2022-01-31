@@ -328,6 +328,7 @@ Category | Method | HTTP request | Description
  - [webhook_user_user_created_t](docs/webhook_user_user_created.md)
  - [webhook_user_user_created_all_of_t](docs/webhook_user_user_created_all_of.md)
  - [website_request_t](docs/website_request.md)
+ - [xxxx_t](docs/xxxx.md)
 
 
 ## Documentation for Authorization
