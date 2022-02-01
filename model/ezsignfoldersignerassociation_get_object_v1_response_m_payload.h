@@ -16,10 +16,14 @@
 typedef struct ezsignfoldersignerassociation_get_object_v1_response_m_payload_t ezsignfoldersignerassociation_get_object_v1_response_m_payload_t;
 
 #include "ezsignfoldersignerassociation_response_compound.h"
+#include "ezsignfoldersignerassociation_response_compound_user.h"
+#include "ezsignsigner_response_compound.h"
 
 
 
 typedef struct ezsignfoldersignerassociation_get_object_v1_response_m_payload_t {
+    struct ezsignfoldersignerassociation_response_compound_user_t *obj_user; //model
+    struct ezsignsigner_response_compound_t *obj_ezsignsigner; //model
     int pki_ezsignfoldersignerassociation_id; //numeric
     int fki_ezsignfolder_id; //numeric
     int b_ezsignfoldersignerassociation_receivecopy; //boolean
@@ -27,6 +31,8 @@ typedef struct ezsignfoldersignerassociation_get_object_v1_response_m_payload_t 
 } ezsignfoldersignerassociation_get_object_v1_response_m_payload_t;
 
 ezsignfoldersignerassociation_get_object_v1_response_m_payload_t *ezsignfoldersignerassociation_get_object_v1_response_m_payload_create(
+    ezsignfoldersignerassociation_response_compound_user_t *obj_user,
+    ezsignsigner_response_compound_t *obj_ezsignsigner,
     int pki_ezsignfoldersignerassociation_id,
     int fki_ezsignfolder_id,
     int b_ezsignfoldersignerassociation_receivecopy

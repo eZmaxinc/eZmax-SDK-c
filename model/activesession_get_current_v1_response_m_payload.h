@@ -15,6 +15,7 @@
 
 typedef struct activesession_get_current_v1_response_m_payload_t activesession_get_current_v1_response_m_payload_t;
 
+#include "field_e_activesession_weekdaystart.h"
 
 // Enum EACTIVESESSIONSESSIONTYPE for activesession_get_current_v1_response_m_payload
 
@@ -24,11 +25,20 @@ char* activesession_get_current_v1_response_m_payload_e_activesession_sessiontyp
 
 ezmax_api_definition_activesession_get_current_v1_response_m_payload_EACTIVESESSIONSESSIONTYPE_e activesession_get_current_v1_response_m_payload_e_activesession_sessiontype_FromString(char* e_activesession_sessiontype);
 
+// Enum  for activesession_get_current_v1_response_m_payload
+
+typedef enum  { ezmax_api_definition_activesession_get_current_v1_response_m_payload__NULL = 0, ezmax_api_definition_activesession_get_current_v1_response_m_payload__Sunday, ezmax_api_definition_activesession_get_current_v1_response_m_payload__Monday, ezmax_api_definition_activesession_get_current_v1_response_m_payload__Tuesday, ezmax_api_definition_activesession_get_current_v1_response_m_payload__Wednesday, ezmax_api_definition_activesession_get_current_v1_response_m_payload__Thursday, ezmax_api_definition_activesession_get_current_v1_response_m_payload__Friday, ezmax_api_definition_activesession_get_current_v1_response_m_payload__Saturday } ezmax_api_definition_activesession_get_current_v1_response_m_payload__e;
+
+char* activesession_get_current_v1_response_m_payload_e_activesession_weekdaystart_ToString(ezmax_api_definition_activesession_get_current_v1_response_m_payload__e e_activesession_weekdaystart);
+
+ezmax_api_definition_activesession_get_current_v1_response_m_payload__e activesession_get_current_v1_response_m_payload_e_activesession_weekdaystart_FromString(char* e_activesession_weekdaystart);
+
 
 
 typedef struct activesession_get_current_v1_response_m_payload_t {
     char *s_customer_code; // string
     ezmax_api_definition_activesession_get_current_v1_response_m_payload_EACTIVESESSIONSESSIONTYPE_e e_activesession_sessiontype; //enum
+    field_e_activesession_weekdaystart_t *e_activesession_weekdaystart; // custom
     int fki_language_id; //numeric
     char *s_company_name_x; // string
     char *s_department_name_x; // string
@@ -42,6 +52,7 @@ typedef struct activesession_get_current_v1_response_m_payload_t {
 activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_response_m_payload_create(
     char *s_customer_code,
     ezmax_api_definition_activesession_get_current_v1_response_m_payload_EACTIVESESSIONSESSIONTYPE_e e_activesession_sessiontype,
+    field_e_activesession_weekdaystart_t *e_activesession_weekdaystart,
     int fki_language_id,
     char *s_company_name_x,
     char *s_department_name_x,

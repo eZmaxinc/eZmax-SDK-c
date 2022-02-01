@@ -16,6 +16,7 @@
 typedef struct ezsignsignature_request_compound_t ezsignsignature_request_compound_t;
 
 #include "ezsignsignature_request.h"
+#include "ezsignsignature_request_compound_all_of.h"
 #include "ezsignsignaturecustomdate_request.h"
 #include "field_e_ezsignsignature_type.h"
 

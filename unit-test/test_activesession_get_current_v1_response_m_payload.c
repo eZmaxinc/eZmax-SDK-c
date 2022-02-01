@@ -24,6 +24,7 @@ activesession_get_current_v1_response_m_payload_t* instantiate_activesession_get
     activesession_get_current_v1_response_m_payload = activesession_get_current_v1_response_m_payload_create(
       "0",
       ezmax_api_definition_activesession_get_current_v1_response_m_payload_EACTIVESESSIONSESSIONTYPE_Normal,
+      ezmax_api_definition_activesession_get_current_v1_response_m_payload__"Sunday",
       2,
       "0",
       "0",
@@ -36,6 +37,7 @@ activesession_get_current_v1_response_m_payload_t* instantiate_activesession_get
     activesession_get_current_v1_response_m_payload = activesession_get_current_v1_response_m_payload_create(
       "0",
       ezmax_api_definition_activesession_get_current_v1_response_m_payload_EACTIVESESSIONSESSIONTYPE_Normal,
+      ezmax_api_definition_activesession_get_current_v1_response_m_payload__"Sunday",
       2,
       "0",
       "0",

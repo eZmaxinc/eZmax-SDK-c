@@ -129,6 +129,7 @@ set(SRCS
     model/ezsigndocument_request_compound.c
     model/ezsigndocument_response.c
     model/ezsigndocument_response_compound.c
+    model/ezsigndocument_response_compound_all_of.c
     model/ezsignfolder_create_object_v1_request.c
     model/ezsignfolder_create_object_v1_response.c
     model/ezsignfolder_create_object_v1_response_all_of.c
@@ -174,6 +175,7 @@ set(SRCS
     model/ezsignfoldersignerassociation_request_compound_all_of.c
     model/ezsignfoldersignerassociation_response.c
     model/ezsignfoldersignerassociation_response_compound.c
+    model/ezsignfoldersignerassociation_response_compound_all_of.c
     model/ezsignfoldersignerassociation_response_compound_user.c
     model/ezsignfoldertype_get_list_v1_response.c
     model/ezsignfoldertype_get_list_v1_response_all_of.c
@@ -195,6 +197,7 @@ set(SRCS
     model/ezsignsignature_get_object_v1_response_all_of.c
     model/ezsignsignature_request.c
     model/ezsignsignature_request_compound.c
+    model/ezsignsignature_request_compound_all_of.c
     model/ezsignsignaturecustomdate_request.c
     model/ezsignsigner_request.c
     model/ezsignsigner_request_compound.c
@@ -209,6 +212,7 @@ set(SRCS
     model/ezsigntemplatepackage_get_list_v1_response_m_payload.c
     model/ezsigntemplatepackage_get_list_v1_response_m_payload_all_of.c
     model/ezsigntemplatepackage_list_element.c
+    model/field_e_activesession_weekdaystart.c
     model/field_e_ezsigndocument_step.c
     model/field_e_ezsignfolder_sendreminderfrequency.c
     model/field_e_ezsignfolder_step.c
@@ -371,6 +375,7 @@ set(HDRS
     model/ezsigndocument_request_compound.h
     model/ezsigndocument_response.h
     model/ezsigndocument_response_compound.h
+    model/ezsigndocument_response_compound_all_of.h
     model/ezsignfolder_create_object_v1_request.h
     model/ezsignfolder_create_object_v1_response.h
     model/ezsignfolder_create_object_v1_response_all_of.h
@@ -416,6 +421,7 @@ set(HDRS
     model/ezsignfoldersignerassociation_request_compound_all_of.h
     model/ezsignfoldersignerassociation_response.h
     model/ezsignfoldersignerassociation_response_compound.h
+    model/ezsignfoldersignerassociation_response_compound_all_of.h
     model/ezsignfoldersignerassociation_response_compound_user.h
     model/ezsignfoldertype_get_list_v1_response.h
     model/ezsignfoldertype_get_list_v1_response_all_of.h
@@ -437,6 +443,7 @@ set(HDRS
     model/ezsignsignature_get_object_v1_response_all_of.h
     model/ezsignsignature_request.h
     model/ezsignsignature_request_compound.h
+    model/ezsignsignature_request_compound_all_of.h
     model/ezsignsignaturecustomdate_request.h
     model/ezsignsigner_request.h
     model/ezsignsigner_request_compound.h
@@ -451,6 +458,7 @@ set(HDRS
     model/ezsigntemplatepackage_get_list_v1_response_m_payload.h
     model/ezsigntemplatepackage_get_list_v1_response_m_payload_all_of.h
     model/ezsigntemplatepackage_list_element.h
+    model/field_e_activesession_weekdaystart.h
     model/field_e_ezsigndocument_step.h
     model/field_e_ezsignfolder_sendreminderfrequency.h
     model/field_e_ezsignfolder_step.h

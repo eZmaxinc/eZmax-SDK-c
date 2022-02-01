@@ -16,6 +16,7 @@
 typedef struct ezsigndocument_get_object_v1_response_m_payload_t ezsigndocument_get_object_v1_response_m_payload_t;
 
 #include "common_audit.h"
+#include "custom_ezsignfoldersignerassociationstatus_response.h"
 #include "ezsigndocument_response_compound.h"
 #include "field_e_ezsigndocument_step.h"
 
@@ -30,6 +31,11 @@ ezmax_api_definition_ezsigndocument_get_object_v1_response_m_payload__e ezsigndo
 
 
 typedef struct ezsigndocument_get_object_v1_response_m_payload_t {
+    int i_ezsigndocument_stepformtotal; //numeric
+    int i_ezsigndocument_stepformcurrent; //numeric
+    int i_ezsigndocument_stepsignaturetotal; //numeric
+    int i_ezsigndocument_stepsignature_current; //numeric
+    list_t *a_obj_ezsignfoldersignerassociationstatus; //nonprimitive container
     int fki_ezsignfolder_id; //numeric
     char *dt_ezsigndocument_duedate; // string
     int fki_language_id; //numeric
@@ -49,6 +55,11 @@ typedef struct ezsigndocument_get_object_v1_response_m_payload_t {
 } ezsigndocument_get_object_v1_response_m_payload_t;
 
 ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_response_m_payload_create(
+    int i_ezsigndocument_stepformtotal,
+    int i_ezsigndocument_stepformcurrent,
+    int i_ezsigndocument_stepsignaturetotal,
+    int i_ezsigndocument_stepsignature_current,
+    list_t *a_obj_ezsignfoldersignerassociationstatus,
     int fki_ezsignfolder_id,
     char *dt_ezsigndocument_duedate,
     int fki_language_id,

@@ -18,6 +18,7 @@ typedef struct ezsigndocument_response_compound_t ezsigndocument_response_compou
 #include "common_audit.h"
 #include "custom_ezsignfoldersignerassociationstatus_response.h"
 #include "ezsigndocument_response.h"
+#include "ezsigndocument_response_compound_all_of.h"
 #include "field_e_ezsigndocument_step.h"
 
 // Enum  for ezsigndocument_response_compound

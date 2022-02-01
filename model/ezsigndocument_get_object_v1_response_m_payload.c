@@ -23,6 +23,11 @@ ezmax_api_definition_ezsigndocument_get_object_v1_response_m_payload__e e_ezsign
 }
 
 ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_response_m_payload_create(
+    int i_ezsigndocument_stepformtotal,
+    int i_ezsigndocument_stepformcurrent,
+    int i_ezsigndocument_stepsignaturetotal,
+    int i_ezsigndocument_stepsignature_current,
+    list_t *a_obj_ezsignfoldersignerassociationstatus,
     int fki_ezsignfolder_id,
     char *dt_ezsigndocument_duedate,
     int fki_language_id,
@@ -43,6 +48,11 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
     if (!ezsigndocument_get_object_v1_response_m_payload_local_var) {
         return NULL;
     }
+    ezsigndocument_get_object_v1_response_m_payload_local_var->i_ezsigndocument_stepformtotal = i_ezsigndocument_stepformtotal;
+    ezsigndocument_get_object_v1_response_m_payload_local_var->i_ezsigndocument_stepformcurrent = i_ezsigndocument_stepformcurrent;
+    ezsigndocument_get_object_v1_response_m_payload_local_var->i_ezsigndocument_stepsignaturetotal = i_ezsigndocument_stepsignaturetotal;
+    ezsigndocument_get_object_v1_response_m_payload_local_var->i_ezsigndocument_stepsignature_current = i_ezsigndocument_stepsignature_current;
+    ezsigndocument_get_object_v1_response_m_payload_local_var->a_obj_ezsignfoldersignerassociationstatus = a_obj_ezsignfoldersignerassociationstatus;
     ezsigndocument_get_object_v1_response_m_payload_local_var->fki_ezsignfolder_id = fki_ezsignfolder_id;
     ezsigndocument_get_object_v1_response_m_payload_local_var->dt_ezsigndocument_duedate = dt_ezsigndocument_duedate;
     ezsigndocument_get_object_v1_response_m_payload_local_var->fki_language_id = fki_language_id;
@@ -68,6 +78,13 @@ void ezsigndocument_get_object_v1_response_m_payload_free(ezsigndocument_get_obj
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsigndocument_get_object_v1_response_m_payload->a_obj_ezsignfoldersignerassociationstatus) {
+        list_ForEach(listEntry, ezsigndocument_get_object_v1_response_m_payload->a_obj_ezsignfoldersignerassociationstatus) {
+            custom_ezsignfoldersignerassociationstatus_response_free(listEntry->data);
+        }
+        list_freeList(ezsigndocument_get_object_v1_response_m_payload->a_obj_ezsignfoldersignerassociationstatus);
+        ezsigndocument_get_object_v1_response_m_payload->a_obj_ezsignfoldersignerassociationstatus = NULL;
+    }
     if (ezsigndocument_get_object_v1_response_m_payload->dt_ezsigndocument_duedate) {
         free(ezsigndocument_get_object_v1_response_m_payload->dt_ezsigndocument_duedate);
         ezsigndocument_get_object_v1_response_m_payload->dt_ezsigndocument_duedate = NULL;
@@ -105,6 +122,68 @@ void ezsigndocument_get_object_v1_response_m_payload_free(ezsigndocument_get_obj
 
 cJSON *ezsigndocument_get_object_v1_response_m_payload_convertToJSON(ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_response_m_payload) {
     cJSON *item = cJSON_CreateObject();
+
+    // ezsigndocument_get_object_v1_response_m_payload->i_ezsigndocument_stepformtotal
+    if (!ezsigndocument_get_object_v1_response_m_payload->i_ezsigndocument_stepformtotal) {
+        goto fail;
+    }
+    
+    if(cJSON_AddNumberToObject(item, "iEzsigndocumentStepformtotal", ezsigndocument_get_object_v1_response_m_payload->i_ezsigndocument_stepformtotal) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // ezsigndocument_get_object_v1_response_m_payload->i_ezsigndocument_stepformcurrent
+    if (!ezsigndocument_get_object_v1_response_m_payload->i_ezsigndocument_stepformcurrent) {
+        goto fail;
+    }
+    
+    if(cJSON_AddNumberToObject(item, "iEzsigndocumentStepformcurrent", ezsigndocument_get_object_v1_response_m_payload->i_ezsigndocument_stepformcurrent) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // ezsigndocument_get_object_v1_response_m_payload->i_ezsigndocument_stepsignaturetotal
+    if (!ezsigndocument_get_object_v1_response_m_payload->i_ezsigndocument_stepsignaturetotal) {
+        goto fail;
+    }
+    
+    if(cJSON_AddNumberToObject(item, "iEzsigndocumentStepsignaturetotal", ezsigndocument_get_object_v1_response_m_payload->i_ezsigndocument_stepsignaturetotal) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // ezsigndocument_get_object_v1_response_m_payload->i_ezsigndocument_stepsignature_current
+    if (!ezsigndocument_get_object_v1_response_m_payload->i_ezsigndocument_stepsignature_current) {
+        goto fail;
+    }
+    
+    if(cJSON_AddNumberToObject(item, "iEzsigndocumentStepsignatureCurrent", ezsigndocument_get_object_v1_response_m_payload->i_ezsigndocument_stepsignature_current) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // ezsigndocument_get_object_v1_response_m_payload->a_obj_ezsignfoldersignerassociationstatus
+    if (!ezsigndocument_get_object_v1_response_m_payload->a_obj_ezsignfoldersignerassociationstatus) {
+        goto fail;
+    }
+    
+    cJSON *a_obj_ezsignfoldersignerassociationstatus = cJSON_AddArrayToObject(item, "a_objEzsignfoldersignerassociationstatus");
+    if(a_obj_ezsignfoldersignerassociationstatus == NULL) {
+    goto fail; //nonprimitive container
+    }
+
+    listEntry_t *a_obj_ezsignfoldersignerassociationstatusListEntry;
+    if (ezsigndocument_get_object_v1_response_m_payload->a_obj_ezsignfoldersignerassociationstatus) {
+    list_ForEach(a_obj_ezsignfoldersignerassociationstatusListEntry, ezsigndocument_get_object_v1_response_m_payload->a_obj_ezsignfoldersignerassociationstatus) {
+    cJSON *itemLocal = custom_ezsignfoldersignerassociationstatus_response_convertToJSON(a_obj_ezsignfoldersignerassociationstatusListEntry->data);
+    if(itemLocal == NULL) {
+    goto fail;
+    }
+    cJSON_AddItemToArray(a_obj_ezsignfoldersignerassociationstatus, itemLocal);
+    }
+    }
+
 
     // ezsigndocument_get_object_v1_response_m_payload->fki_ezsignfolder_id
     if (!ezsigndocument_get_object_v1_response_m_payload->fki_ezsignfolder_id) {
@@ -279,6 +358,79 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
 
     // define the local variable for ezsigndocument_get_object_v1_response_m_payload->obj_audit
     common_audit_t *obj_audit_local_nonprim = NULL;
+
+    // ezsigndocument_get_object_v1_response_m_payload->i_ezsigndocument_stepformtotal
+    cJSON *i_ezsigndocument_stepformtotal = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_object_v1_response_m_payloadJSON, "iEzsigndocumentStepformtotal");
+    if (!i_ezsigndocument_stepformtotal) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_ezsigndocument_stepformtotal))
+    {
+    goto end; //Numeric
+    }
+
+    // ezsigndocument_get_object_v1_response_m_payload->i_ezsigndocument_stepformcurrent
+    cJSON *i_ezsigndocument_stepformcurrent = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_object_v1_response_m_payloadJSON, "iEzsigndocumentStepformcurrent");
+    if (!i_ezsigndocument_stepformcurrent) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_ezsigndocument_stepformcurrent))
+    {
+    goto end; //Numeric
+    }
+
+    // ezsigndocument_get_object_v1_response_m_payload->i_ezsigndocument_stepsignaturetotal
+    cJSON *i_ezsigndocument_stepsignaturetotal = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_object_v1_response_m_payloadJSON, "iEzsigndocumentStepsignaturetotal");
+    if (!i_ezsigndocument_stepsignaturetotal) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_ezsigndocument_stepsignaturetotal))
+    {
+    goto end; //Numeric
+    }
+
+    // ezsigndocument_get_object_v1_response_m_payload->i_ezsigndocument_stepsignature_current
+    cJSON *i_ezsigndocument_stepsignature_current = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_object_v1_response_m_payloadJSON, "iEzsigndocumentStepsignatureCurrent");
+    if (!i_ezsigndocument_stepsignature_current) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_ezsigndocument_stepsignature_current))
+    {
+    goto end; //Numeric
+    }
+
+    // ezsigndocument_get_object_v1_response_m_payload->a_obj_ezsignfoldersignerassociationstatus
+    cJSON *a_obj_ezsignfoldersignerassociationstatus = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_object_v1_response_m_payloadJSON, "a_objEzsignfoldersignerassociationstatus");
+    if (!a_obj_ezsignfoldersignerassociationstatus) {
+        goto end;
+    }
+
+    list_t *a_obj_ezsignfoldersignerassociationstatusList;
+    
+    cJSON *a_obj_ezsignfoldersignerassociationstatus_local_nonprimitive;
+    if(!cJSON_IsArray(a_obj_ezsignfoldersignerassociationstatus)){
+        goto end; //nonprimitive container
+    }
+
+    a_obj_ezsignfoldersignerassociationstatusList = list_createList();
+
+    cJSON_ArrayForEach(a_obj_ezsignfoldersignerassociationstatus_local_nonprimitive,a_obj_ezsignfoldersignerassociationstatus )
+    {
+        if(!cJSON_IsObject(a_obj_ezsignfoldersignerassociationstatus_local_nonprimitive)){
+            goto end;
+        }
+        custom_ezsignfoldersignerassociationstatus_response_t *a_obj_ezsignfoldersignerassociationstatusItem = custom_ezsignfoldersignerassociationstatus_response_parseFromJSON(a_obj_ezsignfoldersignerassociationstatus_local_nonprimitive);
+
+        list_addElement(a_obj_ezsignfoldersignerassociationstatusList, a_obj_ezsignfoldersignerassociationstatusItem);
+    }
 
     // ezsigndocument_get_object_v1_response_m_payload->fki_ezsignfolder_id
     cJSON *fki_ezsignfolder_id = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_object_v1_response_m_payloadJSON, "fkiEzsignfolderID");
@@ -456,6 +608,11 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
 
 
     ezsigndocument_get_object_v1_response_m_payload_local_var = ezsigndocument_get_object_v1_response_m_payload_create (
+        i_ezsigndocument_stepformtotal->valuedouble,
+        i_ezsigndocument_stepformcurrent->valuedouble,
+        i_ezsigndocument_stepsignaturetotal->valuedouble,
+        i_ezsigndocument_stepsignature_current->valuedouble,
+        a_obj_ezsignfoldersignerassociationstatusList,
         fki_ezsignfolder_id->valuedouble,
         strdup(dt_ezsigndocument_duedate->valuestring),
         fki_language_id->valuedouble,

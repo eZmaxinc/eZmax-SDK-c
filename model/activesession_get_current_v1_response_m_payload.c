@@ -21,10 +21,28 @@ ezmax_api_definition_activesession_get_current_v1_response_m_payload_EACTIVESESS
     }
     return 0;
 }
+char* e_activesession_weekdaystartactivesession_get_current_v1_response_m_payload_ToString(ezmax_api_definition_activesession_get_current_v1_response_m_payload__e e_activesession_weekdaystart) {
+    char* e_activesession_weekdaystartArray[] =  { "NULL", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+	return e_activesession_weekdaystartArray[e_activesession_weekdaystart];
+}
+
+ezmax_api_definition_activesession_get_current_v1_response_m_payload__e e_activesession_weekdaystartactivesession_get_current_v1_response_m_payload_FromString(char* e_activesession_weekdaystart){
+    int stringToReturn = 0;
+    char *e_activesession_weekdaystartArray[] =  { "NULL", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+    size_t sizeofArray = sizeof(e_activesession_weekdaystartArray) / sizeof(e_activesession_weekdaystartArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(e_activesession_weekdaystart, e_activesession_weekdaystartArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
 
 activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_response_m_payload_create(
     char *s_customer_code,
     ezmax_api_definition_activesession_get_current_v1_response_m_payload_EACTIVESESSIONSESSIONTYPE_e e_activesession_sessiontype,
+    field_e_activesession_weekdaystart_t *e_activesession_weekdaystart,
     int fki_language_id,
     char *s_company_name_x,
     char *s_department_name_x,
@@ -39,6 +57,7 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
     }
     activesession_get_current_v1_response_m_payload_local_var->s_customer_code = s_customer_code;
     activesession_get_current_v1_response_m_payload_local_var->e_activesession_sessiontype = e_activesession_sessiontype;
+    activesession_get_current_v1_response_m_payload_local_var->e_activesession_weekdaystart = e_activesession_weekdaystart;
     activesession_get_current_v1_response_m_payload_local_var->fki_language_id = fki_language_id;
     activesession_get_current_v1_response_m_payload_local_var->s_company_name_x = s_company_name_x;
     activesession_get_current_v1_response_m_payload_local_var->s_department_name_x = s_department_name_x;
@@ -59,6 +78,10 @@ void activesession_get_current_v1_response_m_payload_free(activesession_get_curr
     if (activesession_get_current_v1_response_m_payload->s_customer_code) {
         free(activesession_get_current_v1_response_m_payload->s_customer_code);
         activesession_get_current_v1_response_m_payload->s_customer_code = NULL;
+    }
+    if (activesession_get_current_v1_response_m_payload->e_activesession_weekdaystart) {
+        field_e_activesession_weekdaystart_free(activesession_get_current_v1_response_m_payload->e_activesession_weekdaystart);
+        activesession_get_current_v1_response_m_payload->e_activesession_weekdaystart = NULL;
     }
     if (activesession_get_current_v1_response_m_payload->s_company_name_x) {
         free(activesession_get_current_v1_response_m_payload->s_company_name_x);
@@ -103,6 +126,18 @@ cJSON *activesession_get_current_v1_response_m_payload_convertToJSON(activesessi
     if(cJSON_AddStringToObject(item, "eActivesessionSessiontype", e_activesession_sessiontypeactivesession_get_current_v1_response_m_payload_ToString(activesession_get_current_v1_response_m_payload->e_activesession_sessiontype)) == NULL)
     {
     goto fail; //Enum
+    }
+
+
+    // activesession_get_current_v1_response_m_payload->e_activesession_weekdaystart
+    
+    cJSON *e_activesession_weekdaystart_local_JSON = field_e_activesession_weekdaystart_convertToJSON(activesession_get_current_v1_response_m_payload->e_activesession_weekdaystart);
+    if(e_activesession_weekdaystart_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eActivesessionWeekdaystart", e_activesession_weekdaystart_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
     }
 
 
@@ -205,6 +240,9 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
 
     activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_response_m_payload_local_var = NULL;
 
+    // define the local variable for activesession_get_current_v1_response_m_payload->e_activesession_weekdaystart
+    field_e_activesession_weekdaystart_t *e_activesession_weekdaystart_local_nonprim = NULL;
+
     // activesession_get_current_v1_response_m_payload->s_customer_code
     cJSON *s_customer_code = cJSON_GetObjectItemCaseSensitive(activesession_get_current_v1_response_m_payloadJSON, "sCustomerCode");
     if (!s_customer_code) {
@@ -230,6 +268,15 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
     goto end; //Enum
     }
     e_activesession_sessiontypeVariable = e_activesession_sessiontypeactivesession_get_current_v1_response_m_payload_FromString(e_activesession_sessiontype->valuestring);
+
+    // activesession_get_current_v1_response_m_payload->e_activesession_weekdaystart
+    cJSON *e_activesession_weekdaystart = cJSON_GetObjectItemCaseSensitive(activesession_get_current_v1_response_m_payloadJSON, "eActivesessionWeekdaystart");
+    if (!e_activesession_weekdaystart) {
+        goto end;
+    }
+
+    
+    e_activesession_weekdaystart_local_nonprim = field_e_activesession_weekdaystart_parseFromJSON(e_activesession_weekdaystart); //custom
 
     // activesession_get_current_v1_response_m_payload->fki_language_id
     cJSON *fki_language_id = cJSON_GetObjectItemCaseSensitive(activesession_get_current_v1_response_m_payloadJSON, "fkiLanguageID");
@@ -347,6 +394,7 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
     activesession_get_current_v1_response_m_payload_local_var = activesession_get_current_v1_response_m_payload_create (
         strdup(s_customer_code->valuestring),
         e_activesession_sessiontypeVariable,
+        e_activesession_weekdaystart_local_nonprim,
         fki_language_id->valuedouble,
         strdup(s_company_name_x->valuestring),
         strdup(s_department_name_x->valuestring),
@@ -358,6 +406,10 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
 
     return activesession_get_current_v1_response_m_payload_local_var;
 end:
+    if (e_activesession_weekdaystart_local_nonprim) {
+        field_e_activesession_weekdaystart_free(e_activesession_weekdaystart_local_nonprim);
+        e_activesession_weekdaystart_local_nonprim = NULL;
+    }
     return NULL;
 
 }

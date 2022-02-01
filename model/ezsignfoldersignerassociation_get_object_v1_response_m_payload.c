@@ -6,6 +6,8 @@
 
 
 ezsignfoldersignerassociation_get_object_v1_response_m_payload_t *ezsignfoldersignerassociation_get_object_v1_response_m_payload_create(
+    ezsignfoldersignerassociation_response_compound_user_t *obj_user,
+    ezsignsigner_response_compound_t *obj_ezsignsigner,
     int pki_ezsignfoldersignerassociation_id,
     int fki_ezsignfolder_id,
     int b_ezsignfoldersignerassociation_receivecopy
@@ -14,6 +16,8 @@ ezsignfoldersignerassociation_get_object_v1_response_m_payload_t *ezsignfoldersi
     if (!ezsignfoldersignerassociation_get_object_v1_response_m_payload_local_var) {
         return NULL;
     }
+    ezsignfoldersignerassociation_get_object_v1_response_m_payload_local_var->obj_user = obj_user;
+    ezsignfoldersignerassociation_get_object_v1_response_m_payload_local_var->obj_ezsignsigner = obj_ezsignsigner;
     ezsignfoldersignerassociation_get_object_v1_response_m_payload_local_var->pki_ezsignfoldersignerassociation_id = pki_ezsignfoldersignerassociation_id;
     ezsignfoldersignerassociation_get_object_v1_response_m_payload_local_var->fki_ezsignfolder_id = fki_ezsignfolder_id;
     ezsignfoldersignerassociation_get_object_v1_response_m_payload_local_var->b_ezsignfoldersignerassociation_receivecopy = b_ezsignfoldersignerassociation_receivecopy;
@@ -27,11 +31,45 @@ void ezsignfoldersignerassociation_get_object_v1_response_m_payload_free(ezsignf
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsignfoldersignerassociation_get_object_v1_response_m_payload->obj_user) {
+        ezsignfoldersignerassociation_response_compound_user_free(ezsignfoldersignerassociation_get_object_v1_response_m_payload->obj_user);
+        ezsignfoldersignerassociation_get_object_v1_response_m_payload->obj_user = NULL;
+    }
+    if (ezsignfoldersignerassociation_get_object_v1_response_m_payload->obj_ezsignsigner) {
+        ezsignsigner_response_compound_free(ezsignfoldersignerassociation_get_object_v1_response_m_payload->obj_ezsignsigner);
+        ezsignfoldersignerassociation_get_object_v1_response_m_payload->obj_ezsignsigner = NULL;
+    }
     free(ezsignfoldersignerassociation_get_object_v1_response_m_payload);
 }
 
 cJSON *ezsignfoldersignerassociation_get_object_v1_response_m_payload_convertToJSON(ezsignfoldersignerassociation_get_object_v1_response_m_payload_t *ezsignfoldersignerassociation_get_object_v1_response_m_payload) {
     cJSON *item = cJSON_CreateObject();
+
+    // ezsignfoldersignerassociation_get_object_v1_response_m_payload->obj_user
+    if(ezsignfoldersignerassociation_get_object_v1_response_m_payload->obj_user) { 
+    cJSON *obj_user_local_JSON = ezsignfoldersignerassociation_response_compound_user_convertToJSON(ezsignfoldersignerassociation_get_object_v1_response_m_payload->obj_user);
+    if(obj_user_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objUser", obj_user_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+     } 
+
+
+    // ezsignfoldersignerassociation_get_object_v1_response_m_payload->obj_ezsignsigner
+    if(ezsignfoldersignerassociation_get_object_v1_response_m_payload->obj_ezsignsigner) { 
+    cJSON *obj_ezsignsigner_local_JSON = ezsignsigner_response_compound_convertToJSON(ezsignfoldersignerassociation_get_object_v1_response_m_payload->obj_ezsignsigner);
+    if(obj_ezsignsigner_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objEzsignsigner", obj_ezsignsigner_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+     } 
+
 
     // ezsignfoldersignerassociation_get_object_v1_response_m_payload->pki_ezsignfoldersignerassociation_id
     if (!ezsignfoldersignerassociation_get_object_v1_response_m_payload->pki_ezsignfoldersignerassociation_id) {
@@ -74,6 +112,24 @@ ezsignfoldersignerassociation_get_object_v1_response_m_payload_t *ezsignfoldersi
 
     ezsignfoldersignerassociation_get_object_v1_response_m_payload_t *ezsignfoldersignerassociation_get_object_v1_response_m_payload_local_var = NULL;
 
+    // define the local variable for ezsignfoldersignerassociation_get_object_v1_response_m_payload->obj_user
+    ezsignfoldersignerassociation_response_compound_user_t *obj_user_local_nonprim = NULL;
+
+    // define the local variable for ezsignfoldersignerassociation_get_object_v1_response_m_payload->obj_ezsignsigner
+    ezsignsigner_response_compound_t *obj_ezsignsigner_local_nonprim = NULL;
+
+    // ezsignfoldersignerassociation_get_object_v1_response_m_payload->obj_user
+    cJSON *obj_user = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_get_object_v1_response_m_payloadJSON, "objUser");
+    if (obj_user) { 
+    obj_user_local_nonprim = ezsignfoldersignerassociation_response_compound_user_parseFromJSON(obj_user); //nonprimitive
+    }
+
+    // ezsignfoldersignerassociation_get_object_v1_response_m_payload->obj_ezsignsigner
+    cJSON *obj_ezsignsigner = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_get_object_v1_response_m_payloadJSON, "objEzsignsigner");
+    if (obj_ezsignsigner) { 
+    obj_ezsignsigner_local_nonprim = ezsignsigner_response_compound_parseFromJSON(obj_ezsignsigner); //nonprimitive
+    }
+
     // ezsignfoldersignerassociation_get_object_v1_response_m_payload->pki_ezsignfoldersignerassociation_id
     cJSON *pki_ezsignfoldersignerassociation_id = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_get_object_v1_response_m_payloadJSON, "pkiEzsignfoldersignerassociationID");
     if (!pki_ezsignfoldersignerassociation_id) {
@@ -112,6 +168,8 @@ ezsignfoldersignerassociation_get_object_v1_response_m_payload_t *ezsignfoldersi
 
 
     ezsignfoldersignerassociation_get_object_v1_response_m_payload_local_var = ezsignfoldersignerassociation_get_object_v1_response_m_payload_create (
+        obj_user ? obj_user_local_nonprim : NULL,
+        obj_ezsignsigner ? obj_ezsignsigner_local_nonprim : NULL,
         pki_ezsignfoldersignerassociation_id->valuedouble,
         fki_ezsignfolder_id->valuedouble,
         b_ezsignfoldersignerassociation_receivecopy->valueint
@@ -119,6 +177,14 @@ ezsignfoldersignerassociation_get_object_v1_response_m_payload_t *ezsignfoldersi
 
     return ezsignfoldersignerassociation_get_object_v1_response_m_payload_local_var;
 end:
+    if (obj_user_local_nonprim) {
+        ezsignfoldersignerassociation_response_compound_user_free(obj_user_local_nonprim);
+        obj_user_local_nonprim = NULL;
+    }
+    if (obj_ezsignsigner_local_nonprim) {
+        ezsignsigner_response_compound_free(obj_ezsignsigner_local_nonprim);
+        obj_ezsignsigner_local_nonprim = NULL;
+    }
     return NULL;
 
 }

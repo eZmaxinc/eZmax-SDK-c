@@ -23,6 +23,11 @@ ezsigndocument_get_object_v1_response_m_payload_t* instantiate_ezsigndocument_ge
   ezsigndocument_get_object_v1_response_m_payload_t* ezsigndocument_get_object_v1_response_m_payload = NULL;
   if (include_optional) {
     ezsigndocument_get_object_v1_response_m_payload = ezsigndocument_get_object_v1_response_m_payload_create(
+      2,
+      1,
+      2,
+      0,
+      list_createList(),
       33,
       "2020-12-31 23:59:59",
       2,
@@ -41,6 +46,11 @@ ezsigndocument_get_object_v1_response_m_payload_t* instantiate_ezsigndocument_ge
     );
   } else {
     ezsigndocument_get_object_v1_response_m_payload = ezsigndocument_get_object_v1_response_m_payload_create(
+      2,
+      1,
+      2,
+      0,
+      list_createList(),
       33,
       "2020-12-31 23:59:59",
       2,
