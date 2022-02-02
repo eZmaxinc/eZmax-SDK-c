@@ -52,6 +52,11 @@ set(SRCS
     model/activesession_get_current_v1_response.c
     model/activesession_get_current_v1_response_all_of.c
     model/activesession_get_current_v1_response_m_payload.c
+    model/activesession_response.c
+    model/activesession_response_compound.c
+    model/activesession_response_compound_all_of.c
+    model/activesession_response_compound_apikey.c
+    model/activesession_response_compound_user.c
     model/address_request.c
     model/apikey_create_object_v1_request.c
     model/apikey_create_object_v1_response.c
@@ -212,6 +217,7 @@ set(SRCS
     model/ezsigntemplatepackage_get_list_v1_response_m_payload.c
     model/ezsigntemplatepackage_get_list_v1_response_m_payload_all_of.c
     model/ezsigntemplatepackage_list_element.c
+    model/field_e_activesession_sessiontype.c
     model/field_e_activesession_weekdaystart.c
     model/field_e_ezsigndocument_step.c
     model/field_e_ezsignfolder_sendreminderfrequency.c
@@ -266,7 +272,6 @@ set(SRCS
     model/webhook_user_user_created.c
     model/webhook_user_user_created_all_of.c
     model/website_request.c
-    model/xxxx.c
     api/GlobalCustomerAPI.c
     api/ModuleAuthenticateAPI.c
     api/ModuleListAPI.c
@@ -298,6 +303,11 @@ set(HDRS
     model/activesession_get_current_v1_response.h
     model/activesession_get_current_v1_response_all_of.h
     model/activesession_get_current_v1_response_m_payload.h
+    model/activesession_response.h
+    model/activesession_response_compound.h
+    model/activesession_response_compound_all_of.h
+    model/activesession_response_compound_apikey.h
+    model/activesession_response_compound_user.h
     model/address_request.h
     model/apikey_create_object_v1_request.h
     model/apikey_create_object_v1_response.h
@@ -458,6 +468,7 @@ set(HDRS
     model/ezsigntemplatepackage_get_list_v1_response_m_payload.h
     model/ezsigntemplatepackage_get_list_v1_response_m_payload_all_of.h
     model/ezsigntemplatepackage_list_element.h
+    model/field_e_activesession_sessiontype.h
     model/field_e_activesession_weekdaystart.h
     model/field_e_ezsigndocument_step.h
     model/field_e_ezsignfolder_sendreminderfrequency.h
@@ -512,7 +523,6 @@ set(HDRS
     model/webhook_user_user_created.h
     model/webhook_user_user_created_all_of.h
     model/website_request.h
-    model/xxxx.h
     api/GlobalCustomerAPI.h
     api/ModuleAuthenticateAPI.h
     api/ModuleListAPI.h

@@ -1,4 +1,4 @@
-# activesession_get_current_v1_response_m_payload_t
+# activesession_response_compound_t
 
 ## Properties
 Name | Type | Description | Notes

@@ -59,6 +59,11 @@ docs/ObjectPeriodAPI.md
 docs/activesession_get_current_v1_response.md
 docs/activesession_get_current_v1_response_all_of.md
 docs/activesession_get_current_v1_response_m_payload.md
+docs/activesession_response.md
+docs/activesession_response_compound.md
+docs/activesession_response_compound_all_of.md
+docs/activesession_response_compound_apikey.md
+docs/activesession_response_compound_user.md
 docs/address_request.md
 docs/apikey_create_object_v1_request.md
 docs/apikey_create_object_v1_response.md
@@ -219,6 +224,7 @@ docs/ezsigntemplatepackage_get_list_v1_response_all_of.md
 docs/ezsigntemplatepackage_get_list_v1_response_m_payload.md
 docs/ezsigntemplatepackage_get_list_v1_response_m_payload_all_of.md
 docs/ezsigntemplatepackage_list_element.md
+docs/field_e_activesession_sessiontype.md
 docs/field_e_activesession_weekdaystart.md
 docs/field_e_ezsigndocument_step.md
 docs/field_e_ezsignfolder_sendreminderfrequency.md
@@ -273,7 +279,6 @@ docs/webhook_response.md
 docs/webhook_user_user_created.md
 docs/webhook_user_user_created_all_of.md
 docs/website_request.md
-docs/xxxx.md
 external/cJSON.c
 external/cJSON.h
 external/cJSON.licence
@@ -288,6 +293,16 @@ model/activesession_get_current_v1_response_all_of.c
 model/activesession_get_current_v1_response_all_of.h
 model/activesession_get_current_v1_response_m_payload.c
 model/activesession_get_current_v1_response_m_payload.h
+model/activesession_response.c
+model/activesession_response.h
+model/activesession_response_compound.c
+model/activesession_response_compound.h
+model/activesession_response_compound_all_of.c
+model/activesession_response_compound_all_of.h
+model/activesession_response_compound_apikey.c
+model/activesession_response_compound_apikey.h
+model/activesession_response_compound_user.c
+model/activesession_response_compound_user.h
 model/address_request.c
 model/address_request.h
 model/apikey_create_object_v1_request.c
@@ -608,6 +623,8 @@ model/ezsigntemplatepackage_get_list_v1_response_m_payload_all_of.c
 model/ezsigntemplatepackage_get_list_v1_response_m_payload_all_of.h
 model/ezsigntemplatepackage_list_element.c
 model/ezsigntemplatepackage_list_element.h
+model/field_e_activesession_sessiontype.c
+model/field_e_activesession_sessiontype.h
 model/field_e_activesession_weekdaystart.c
 model/field_e_activesession_weekdaystart.h
 model/field_e_ezsigndocument_step.c
@@ -718,8 +735,6 @@ model/webhook_user_user_created_all_of.c
 model/webhook_user_user_created_all_of.h
 model/website_request.c
 model/website_request.h
-model/xxxx.c
-model/xxxx.h
 src/apiClient.c
 src/apiKey.c
 src/binary.c
@@ -728,6 +743,11 @@ uncrustify-rules.cfg
 unit-test/test_activesession_get_current_v1_response.c
 unit-test/test_activesession_get_current_v1_response_all_of.c
 unit-test/test_activesession_get_current_v1_response_m_payload.c
+unit-test/test_activesession_response.c
+unit-test/test_activesession_response_compound.c
+unit-test/test_activesession_response_compound_all_of.c
+unit-test/test_activesession_response_compound_apikey.c
+unit-test/test_activesession_response_compound_user.c
 unit-test/test_address_request.c
 unit-test/test_apikey_create_object_v1_request.c
 unit-test/test_apikey_create_object_v1_response.c
@@ -888,6 +908,7 @@ unit-test/test_ezsigntemplatepackage_get_list_v1_response_all_of.c
 unit-test/test_ezsigntemplatepackage_get_list_v1_response_m_payload.c
 unit-test/test_ezsigntemplatepackage_get_list_v1_response_m_payload_all_of.c
 unit-test/test_ezsigntemplatepackage_list_element.c
+unit-test/test_field_e_activesession_sessiontype.c
 unit-test/test_field_e_activesession_weekdaystart.c
 unit-test/test_field_e_ezsigndocument_step.c
 unit-test/test_field_e_ezsignfolder_sendreminderfrequency.c
@@ -942,4 +963,3 @@ unit-test/test_webhook_response.c
 unit-test/test_webhook_user_user_created.c
 unit-test/test_webhook_user_user_created_all_of.c
 unit-test/test_website_request.c
-unit-test/test_xxxx.c

@@ -118,6 +118,11 @@ Category | Method | HTTP request | Description
  - [activesession_get_current_v1_response_t](docs/activesession_get_current_v1_response.md)
  - [activesession_get_current_v1_response_all_of_t](docs/activesession_get_current_v1_response_all_of.md)
  - [activesession_get_current_v1_response_m_payload_t](docs/activesession_get_current_v1_response_m_payload.md)
+ - [activesession_response_t](docs/activesession_response.md)
+ - [activesession_response_compound_t](docs/activesession_response_compound.md)
+ - [activesession_response_compound_all_of_t](docs/activesession_response_compound_all_of.md)
+ - [activesession_response_compound_apikey_t](docs/activesession_response_compound_apikey.md)
+ - [activesession_response_compound_user_t](docs/activesession_response_compound_user.md)
  - [address_request_t](docs/address_request.md)
  - [apikey_create_object_v1_request_t](docs/apikey_create_object_v1_request.md)
  - [apikey_create_object_v1_response_t](docs/apikey_create_object_v1_response.md)
@@ -278,6 +283,7 @@ Category | Method | HTTP request | Description
  - [ezsigntemplatepackage_get_list_v1_response_m_payload_t](docs/ezsigntemplatepackage_get_list_v1_response_m_payload.md)
  - [ezsigntemplatepackage_get_list_v1_response_m_payload_all_of_t](docs/ezsigntemplatepackage_get_list_v1_response_m_payload_all_of.md)
  - [ezsigntemplatepackage_list_element_t](docs/ezsigntemplatepackage_list_element.md)
+ - [field_e_activesession_sessiontype_t](docs/field_e_activesession_sessiontype.md)
  - [field_e_activesession_weekdaystart_t](docs/field_e_activesession_weekdaystart.md)
  - [field_e_ezsigndocument_step_t](docs/field_e_ezsigndocument_step.md)
  - [field_e_ezsignfolder_sendreminderfrequency_t](docs/field_e_ezsignfolder_sendreminderfrequency.md)
@@ -332,7 +338,6 @@ Category | Method | HTTP request | Description
  - [webhook_user_user_created_t](docs/webhook_user_user_created.md)
  - [webhook_user_user_created_all_of_t](docs/webhook_user_user_created_all_of.md)
  - [website_request_t](docs/website_request.md)
- - [xxxx_t](docs/xxxx.md)
 
 
 ## Documentation for Authorization

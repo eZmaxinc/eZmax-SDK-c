@@ -16,35 +16,45 @@
 #include "../model/activesession_get_current_v1_response_m_payload.h"
 activesession_get_current_v1_response_m_payload_t* instantiate_activesession_get_current_v1_response_m_payload(int include_optional);
 
+#include "test_activesession_response_compound_user.c"
+#include "test_activesession_response_compound_user.c"
+#include "test_activesession_response_compound_apikey.c"
 
 
 activesession_get_current_v1_response_m_payload_t* instantiate_activesession_get_current_v1_response_m_payload(int include_optional) {
   activesession_get_current_v1_response_m_payload_t* activesession_get_current_v1_response_m_payload = NULL;
   if (include_optional) {
     activesession_get_current_v1_response_m_payload = activesession_get_current_v1_response_m_payload_create(
-      "0",
-      ezmax_api_definition_activesession_get_current_v1_response_m_payload_EACTIVESESSIONSESSIONTYPE_Normal,
+      list_createList(),
+       // false, not to have infinite recursion
+      instantiate_activesession_response_compound_user(0),
+       // false, not to have infinite recursion
+      instantiate_activesession_response_compound_user(0),
+       // false, not to have infinite recursion
+      instantiate_activesession_response_compound_apikey(0),
+      list_createList(),
+      ezmax_api_definition_activesession_get_current_v1_response_m_payload__"Normal",
       ezmax_api_definition_activesession_get_current_v1_response_m_payload__"Sunday",
       2,
-      "0",
-      "0",
-      list_createList(),
-      list_createList(),
-      70,
-      99
+      "Acme inc.",
+      "Head Office",
+      false,
+      "demo"
     );
   } else {
     activesession_get_current_v1_response_m_payload = activesession_get_current_v1_response_m_payload_create(
-      "0",
-      ezmax_api_definition_activesession_get_current_v1_response_m_payload_EACTIVESESSIONSESSIONTYPE_Normal,
+      list_createList(),
+      NULL,
+      NULL,
+      NULL,
+      list_createList(),
+      ezmax_api_definition_activesession_get_current_v1_response_m_payload__"Normal",
       ezmax_api_definition_activesession_get_current_v1_response_m_payload__"Sunday",
       2,
-      "0",
-      "0",
-      list_createList(),
-      list_createList(),
-      70,
-      99
+      "Acme inc.",
+      "Head Office",
+      false,
+      "demo"
     );
   }
 

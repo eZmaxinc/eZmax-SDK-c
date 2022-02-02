@@ -15,15 +15,19 @@
 
 typedef struct activesession_get_current_v1_response_m_payload_t activesession_get_current_v1_response_m_payload_t;
 
+#include "activesession_response_compound.h"
+#include "activesession_response_compound_apikey.h"
+#include "activesession_response_compound_user.h"
+#include "field_e_activesession_sessiontype.h"
 #include "field_e_activesession_weekdaystart.h"
 
-// Enum EACTIVESESSIONSESSIONTYPE for activesession_get_current_v1_response_m_payload
+// Enum  for activesession_get_current_v1_response_m_payload
 
-typedef enum  { ezmax_api_definition_activesession_get_current_v1_response_m_payload_EACTIVESESSIONSESSIONTYPE_NULL = 0, ezmax_api_definition_activesession_get_current_v1_response_m_payload_EACTIVESESSIONSESSIONTYPE_Normal } ezmax_api_definition_activesession_get_current_v1_response_m_payload_EACTIVESESSIONSESSIONTYPE_e;
+typedef enum  { ezmax_api_definition_activesession_get_current_v1_response_m_payload__NULL = 0, ezmax_api_definition_activesession_get_current_v1_response_m_payload__Normal } ezmax_api_definition_activesession_get_current_v1_response_m_payload__e;
 
-char* activesession_get_current_v1_response_m_payload_e_activesession_sessiontype_ToString(ezmax_api_definition_activesession_get_current_v1_response_m_payload_EACTIVESESSIONSESSIONTYPE_e e_activesession_sessiontype);
+char* activesession_get_current_v1_response_m_payload_e_activesession_sessiontype_ToString(ezmax_api_definition_activesession_get_current_v1_response_m_payload__e e_activesession_sessiontype);
 
-ezmax_api_definition_activesession_get_current_v1_response_m_payload_EACTIVESESSIONSESSIONTYPE_e activesession_get_current_v1_response_m_payload_e_activesession_sessiontype_FromString(char* e_activesession_sessiontype);
+ezmax_api_definition_activesession_get_current_v1_response_m_payload__e activesession_get_current_v1_response_m_payload_e_activesession_sessiontype_FromString(char* e_activesession_sessiontype);
 
 // Enum  for activesession_get_current_v1_response_m_payload
 
@@ -36,30 +40,34 @@ ezmax_api_definition_activesession_get_current_v1_response_m_payload__e activese
 
 
 typedef struct activesession_get_current_v1_response_m_payload_t {
-    char *s_customer_code; // string
-    ezmax_api_definition_activesession_get_current_v1_response_m_payload_EACTIVESESSIONSESSIONTYPE_e e_activesession_sessiontype; //enum
+    list_t *a_pki_permission_id; //primitive container
+    struct activesession_response_compound_user_t *obj_user_real; //model
+    struct activesession_response_compound_user_t *obj_user_cloned; //model
+    struct activesession_response_compound_apikey_t *obj_apikey; //model
+    list_t *a_e_module_internalname; //primitive container
+    field_e_activesession_sessiontype_t *e_activesession_sessiontype; // custom
     field_e_activesession_weekdaystart_t *e_activesession_weekdaystart; // custom
     int fki_language_id; //numeric
     char *s_company_name_x; // string
     char *s_department_name_x; // string
-    list_t *a_registered_modules; //primitive container
-    list_t *a_permissions; //primitive container
-    int fki_user_id; //numeric
-    int fki_apikey_id; //numeric
+    int b_activesession_debug; //boolean
+    char *pks_customer_code; // string
 
 } activesession_get_current_v1_response_m_payload_t;
 
 activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_response_m_payload_create(
-    char *s_customer_code,
-    ezmax_api_definition_activesession_get_current_v1_response_m_payload_EACTIVESESSIONSESSIONTYPE_e e_activesession_sessiontype,
+    list_t *a_pki_permission_id,
+    activesession_response_compound_user_t *obj_user_real,
+    activesession_response_compound_user_t *obj_user_cloned,
+    activesession_response_compound_apikey_t *obj_apikey,
+    list_t *a_e_module_internalname,
+    field_e_activesession_sessiontype_t *e_activesession_sessiontype,
     field_e_activesession_weekdaystart_t *e_activesession_weekdaystart,
     int fki_language_id,
     char *s_company_name_x,
     char *s_department_name_x,
-    list_t *a_registered_modules,
-    list_t *a_permissions,
-    int fki_user_id,
-    int fki_apikey_id
+    int b_activesession_debug,
+    char *pks_customer_code
 );
 
 void activesession_get_current_v1_response_m_payload_free(activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_response_m_payload);
