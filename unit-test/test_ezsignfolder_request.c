@@ -22,6 +22,7 @@ ezsignfolder_request_t* instantiate_ezsignfolder_request(int include_optional) {
   ezsignfolder_request_t* ezsignfolder_request = NULL;
   if (include_optional) {
     ezsignfolder_request = ezsignfolder_request_create(
+      33,
       5,
       92,
       "Test eZsign Folder",
@@ -30,6 +31,7 @@ ezsignfolder_request_t* instantiate_ezsignfolder_request(int include_optional) {
     );
   } else {
     ezsignfolder_request = ezsignfolder_request_create(
+      33,
       5,
       92,
       "Test eZsign Folder",

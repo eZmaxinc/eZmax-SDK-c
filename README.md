@@ -90,6 +90,7 @@ Category | Method | HTTP request | Description
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getWordsPositions | Retrieve positions X,Y of given words from a Ezsigndocument
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1) | **POST** /1/object/ezsignfolder | Create a new Ezsignfolder
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1) | **DELETE** /1/object/ezsignfolder/{pkiEzsignfolderID} | Delete an existing Ezsignfolder
+*ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderEditObjectV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderEditObjectV1) | **PUT** /1/object/ezsignfolder/{pkiEzsignfolderID} | Edit an Ezsignfolder
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsigndocuments | Retrieve an existing Ezsignfolder's Ezsigndocuments
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsignfoldersignerassociations | Retrieve an existing Ezsignfolder's Ezsignfoldersignerassociations
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getFormsData | Retrieve an existing Ezsignfolder's forms data
@@ -206,6 +207,8 @@ Category | Method | HTTP request | Description
  - [ezsignfolder_create_object_v1_response_all_of_t](docs/ezsignfolder_create_object_v1_response_all_of.md)
  - [ezsignfolder_create_object_v1_response_m_payload_t](docs/ezsignfolder_create_object_v1_response_m_payload.md)
  - [ezsignfolder_delete_object_v1_response_t](docs/ezsignfolder_delete_object_v1_response.md)
+ - [ezsignfolder_edit_object_v1_request_t](docs/ezsignfolder_edit_object_v1_request.md)
+ - [ezsignfolder_edit_object_v1_response_t](docs/ezsignfolder_edit_object_v1_response.md)
  - [ezsignfolder_get_ezsigndocuments_v1_response_t](docs/ezsignfolder_get_ezsigndocuments_v1_response.md)
  - [ezsignfolder_get_ezsigndocuments_v1_response_all_of_t](docs/ezsignfolder_get_ezsigndocuments_v1_response_all_of.md)
  - [ezsignfolder_get_ezsigndocuments_v1_response_m_payload_t](docs/ezsignfolder_get_ezsigndocuments_v1_response_m_payload.md)

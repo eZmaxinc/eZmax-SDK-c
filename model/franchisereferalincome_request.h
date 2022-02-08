@@ -19,6 +19,7 @@ typedef struct franchisereferalincome_request_t franchisereferalincome_request_t
 
 
 typedef struct franchisereferalincome_request_t {
+    int pki_franchisereferalincome_id; //numeric
     int fki_franchisebroker_id; //numeric
     int fki_franchisereferalincomeprogram_id; //numeric
     int fki_period_id; //numeric
@@ -34,6 +35,7 @@ typedef struct franchisereferalincome_request_t {
 } franchisereferalincome_request_t;
 
 franchisereferalincome_request_t *franchisereferalincome_request_create(
+    int pki_franchisereferalincome_id,
     int fki_franchisebroker_id,
     int fki_franchisereferalincomeprogram_id,
     int fki_period_id,

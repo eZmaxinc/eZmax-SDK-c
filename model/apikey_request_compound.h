@@ -21,12 +21,14 @@ typedef struct apikey_request_compound_t apikey_request_compound_t;
 
 
 typedef struct apikey_request_compound_t {
+    int pki_apikey_id; //numeric
     int fki_user_id; //numeric
     struct multilingual_apikey_description_t *obj_apikey_description; //model
 
 } apikey_request_compound_t;
 
 apikey_request_compound_t *apikey_request_compound_create(
+    int pki_apikey_id,
     int fki_user_id,
     multilingual_apikey_description_t *obj_apikey_description
 );

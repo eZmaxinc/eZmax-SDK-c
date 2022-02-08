@@ -6,6 +6,7 @@
 
 
 apikey_request_compound_t *apikey_request_compound_create(
+    int pki_apikey_id,
     int fki_user_id,
     multilingual_apikey_description_t *obj_apikey_description
     ) {
@@ -13,6 +14,7 @@ apikey_request_compound_t *apikey_request_compound_create(
     if (!apikey_request_compound_local_var) {
         return NULL;
     }
+    apikey_request_compound_local_var->pki_apikey_id = pki_apikey_id;
     apikey_request_compound_local_var->fki_user_id = fki_user_id;
     apikey_request_compound_local_var->obj_apikey_description = obj_apikey_description;
 
@@ -34,6 +36,14 @@ void apikey_request_compound_free(apikey_request_compound_t *apikey_request_comp
 
 cJSON *apikey_request_compound_convertToJSON(apikey_request_compound_t *apikey_request_compound) {
     cJSON *item = cJSON_CreateObject();
+
+    // apikey_request_compound->pki_apikey_id
+    if(apikey_request_compound->pki_apikey_id) { 
+    if(cJSON_AddNumberToObject(item, "pkiApikeyID", apikey_request_compound->pki_apikey_id) == NULL) {
+    goto fail; //Numeric
+    }
+     } 
+
 
     // apikey_request_compound->fki_user_id
     if (!apikey_request_compound->fki_user_id) {
@@ -74,6 +84,15 @@ apikey_request_compound_t *apikey_request_compound_parseFromJSON(cJSON *apikey_r
     // define the local variable for apikey_request_compound->obj_apikey_description
     multilingual_apikey_description_t *obj_apikey_description_local_nonprim = NULL;
 
+    // apikey_request_compound->pki_apikey_id
+    cJSON *pki_apikey_id = cJSON_GetObjectItemCaseSensitive(apikey_request_compoundJSON, "pkiApikeyID");
+    if (pki_apikey_id) { 
+    if(!cJSON_IsNumber(pki_apikey_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
     // apikey_request_compound->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(apikey_request_compoundJSON, "fkiUserID");
     if (!fki_user_id) {
@@ -97,6 +116,7 @@ apikey_request_compound_t *apikey_request_compound_parseFromJSON(cJSON *apikey_r
 
 
     apikey_request_compound_local_var = apikey_request_compound_create (
+        pki_apikey_id ? pki_apikey_id->valuedouble : 0,
         fki_user_id->valuedouble,
         obj_apikey_description_local_nonprim
         );

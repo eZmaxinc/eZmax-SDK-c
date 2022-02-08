@@ -22,6 +22,7 @@ franchisereferalincome_request_t* instantiate_franchisereferalincome_request(int
   franchisereferalincome_request_t* franchisereferalincome_request = NULL;
   if (include_optional) {
     franchisereferalincome_request = franchisereferalincome_request_create(
+      35,
       61,
       51,
       21,
@@ -36,6 +37,7 @@ franchisereferalincome_request_t* instantiate_franchisereferalincome_request(int
     );
   } else {
     franchisereferalincome_request = franchisereferalincome_request_create(
+      35,
       61,
       51,
       21,

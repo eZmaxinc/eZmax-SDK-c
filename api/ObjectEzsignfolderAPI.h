@@ -9,6 +9,8 @@
 #include "../model/ezsignfolder_create_object_v1_request.h"
 #include "../model/ezsignfolder_create_object_v1_response.h"
 #include "../model/ezsignfolder_delete_object_v1_response.h"
+#include "../model/ezsignfolder_edit_object_v1_request.h"
+#include "../model/ezsignfolder_edit_object_v1_response.h"
 #include "../model/ezsignfolder_get_ezsigndocuments_v1_response.h"
 #include "../model/ezsignfolder_get_ezsignfoldersignerassociations_v1_response.h"
 #include "../model/ezsignfolder_get_forms_data_v1_response.h"
@@ -38,6 +40,12 @@ ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1(apiClient_t *apiClient, list_t 
 //
 ezsignfolder_delete_object_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1(apiClient_t *apiClient, int pkiEzsignfolderID );
+
+
+// Edit an Ezsignfolder
+//
+ezsignfolder_edit_object_v1_response_t*
+ObjectEzsignfolderAPI_ezsignfolderEditObjectV1(apiClient_t *apiClient, int pkiEzsignfolderID , ezsignfolder_edit_object_v1_request_t * ezsignfolder_edit_object_v1_request );
 
 
 // Retrieve an existing Ezsignfolder's Ezsigndocuments

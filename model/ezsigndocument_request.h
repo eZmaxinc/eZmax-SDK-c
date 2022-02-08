@@ -35,6 +35,7 @@ ezmax_api_definition_ezsigndocument_request_EEZSIGNDOCUMENTFORMAT_e ezsigndocume
 
 
 typedef struct ezsigndocument_request_t {
+    int pki_ezsigndocument_id; //numeric
     ezmax_api_definition_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_e e_ezsigndocument_source; //enum
     ezmax_api_definition_ezsigndocument_request_EEZSIGNDOCUMENTFORMAT_e e_ezsigndocument_format; //enum
     char *s_ezsigndocument_base64; //ByteArray
@@ -49,6 +50,7 @@ typedef struct ezsigndocument_request_t {
 } ezsigndocument_request_t;
 
 ezsigndocument_request_t *ezsigndocument_request_create(
+    int pki_ezsigndocument_id,
     ezmax_api_definition_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_e e_ezsigndocument_source,
     ezmax_api_definition_ezsigndocument_request_EEZSIGNDOCUMENTFORMAT_e e_ezsigndocument_format,
     char *s_ezsigndocument_base64,

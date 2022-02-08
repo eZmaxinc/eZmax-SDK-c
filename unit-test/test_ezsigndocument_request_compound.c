@@ -22,6 +22,7 @@ ezsigndocument_request_compound_t* instantiate_ezsigndocument_request_compound(i
   ezsigndocument_request_compound_t* ezsigndocument_request_compound = NULL;
   if (include_optional) {
     ezsigndocument_request_compound = ezsigndocument_request_compound_create(
+      97,
       ezmax_api_definition_ezsigndocument_request_compound_EEZSIGNDOCUMENTSOURCE_Base64,
       ezmax_api_definition_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_Pdf,
       "YQ==",
@@ -35,6 +36,7 @@ ezsigndocument_request_compound_t* instantiate_ezsigndocument_request_compound(i
     );
   } else {
     ezsigndocument_request_compound = ezsigndocument_request_compound_create(
+      97,
       ezmax_api_definition_ezsigndocument_request_compound_EEZSIGNDOCUMENTSOURCE_Base64,
       ezmax_api_definition_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_Pdf,
       "YQ==",

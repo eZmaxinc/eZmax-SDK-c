@@ -22,6 +22,7 @@ ezsignfolder_request_compound_t* instantiate_ezsignfolder_request_compound(int i
   ezsignfolder_request_compound_t* ezsignfolder_request_compound = NULL;
   if (include_optional) {
     ezsignfolder_request_compound = ezsignfolder_request_compound_create(
+      33,
       5,
       92,
       "Test eZsign Folder",
@@ -30,6 +31,7 @@ ezsignfolder_request_compound_t* instantiate_ezsignfolder_request_compound(int i
     );
   } else {
     ezsignfolder_request_compound = ezsignfolder_request_compound_create(
+      33,
       5,
       92,
       "Test eZsign Folder",

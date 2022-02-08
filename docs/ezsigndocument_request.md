@@ -3,6 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**pki_ezsigndocument_id** | **int** | The unique ID of the Ezsigndocument | [optional] 
 **e_ezsigndocument_source** | **ezmax_api_definition_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_e** | Indicates where to look for the document binary content. | 
 **e_ezsigndocument_format** | **ezmax_api_definition_ezsigndocument_request_EEZSIGNDOCUMENTFORMAT_e** | Indicates the format of the document. | 
 **s_ezsigndocument_base64** | **char \*** | The Base64 encoded binary content of the document.  This field is Required when eEzsigndocumentSource &#x3D; Base64. | [optional] 

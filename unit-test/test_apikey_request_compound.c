@@ -23,11 +23,13 @@ apikey_request_compound_t* instantiate_apikey_request_compound(int include_optio
   apikey_request_compound_t* apikey_request_compound = NULL;
   if (include_optional) {
     apikey_request_compound = apikey_request_compound_create(
+      99,
       70,
       {"sApikeyDescription1":"Projet X","sApikeyDescription2":"Project X"}
     );
   } else {
     apikey_request_compound = apikey_request_compound_create(
+      99,
       70,
       {"sApikeyDescription1":"Projet X","sApikeyDescription2":"Project X"}
     );

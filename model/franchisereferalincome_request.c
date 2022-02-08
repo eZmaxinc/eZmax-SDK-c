@@ -6,6 +6,7 @@
 
 
 franchisereferalincome_request_t *franchisereferalincome_request_create(
+    int pki_franchisereferalincome_id,
     int fki_franchisebroker_id,
     int fki_franchisereferalincomeprogram_id,
     int fki_period_id,
@@ -22,6 +23,7 @@ franchisereferalincome_request_t *franchisereferalincome_request_create(
     if (!franchisereferalincome_request_local_var) {
         return NULL;
     }
+    franchisereferalincome_request_local_var->pki_franchisereferalincome_id = pki_franchisereferalincome_id;
     franchisereferalincome_request_local_var->fki_franchisebroker_id = fki_franchisebroker_id;
     franchisereferalincome_request_local_var->fki_franchisereferalincomeprogram_id = fki_franchisereferalincomeprogram_id;
     franchisereferalincome_request_local_var->fki_period_id = fki_period_id;
@@ -76,6 +78,14 @@ void franchisereferalincome_request_free(franchisereferalincome_request_t *franc
 
 cJSON *franchisereferalincome_request_convertToJSON(franchisereferalincome_request_t *franchisereferalincome_request) {
     cJSON *item = cJSON_CreateObject();
+
+    // franchisereferalincome_request->pki_franchisereferalincome_id
+    if(franchisereferalincome_request->pki_franchisereferalincome_id) { 
+    if(cJSON_AddNumberToObject(item, "pkiFranchisereferalincomeID", franchisereferalincome_request->pki_franchisereferalincome_id) == NULL) {
+    goto fail; //Numeric
+    }
+     } 
+
 
     // franchisereferalincome_request->fki_franchisebroker_id
     if (!franchisereferalincome_request->fki_franchisebroker_id) {
@@ -197,6 +207,15 @@ fail:
 franchisereferalincome_request_t *franchisereferalincome_request_parseFromJSON(cJSON *franchisereferalincome_requestJSON){
 
     franchisereferalincome_request_t *franchisereferalincome_request_local_var = NULL;
+
+    // franchisereferalincome_request->pki_franchisereferalincome_id
+    cJSON *pki_franchisereferalincome_id = cJSON_GetObjectItemCaseSensitive(franchisereferalincome_requestJSON, "pkiFranchisereferalincomeID");
+    if (pki_franchisereferalincome_id) { 
+    if(!cJSON_IsNumber(pki_franchisereferalincome_id))
+    {
+    goto end; //Numeric
+    }
+    }
 
     // franchisereferalincome_request->fki_franchisebroker_id
     cJSON *fki_franchisebroker_id = cJSON_GetObjectItemCaseSensitive(franchisereferalincome_requestJSON, "fkiFranchisebrokerID");
@@ -332,6 +351,7 @@ franchisereferalincome_request_t *franchisereferalincome_request_parseFromJSON(c
 
 
     franchisereferalincome_request_local_var = franchisereferalincome_request_create (
+        pki_franchisereferalincome_id ? pki_franchisereferalincome_id->valuedouble : 0,
         fki_franchisebroker_id->valuedouble,
         fki_franchisereferalincomeprogram_id->valuedouble,
         fki_period_id->valuedouble,

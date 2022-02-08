@@ -26,6 +26,7 @@ franchisereferalincome_request_compound_t* instantiate_franchisereferalincome_re
        // false, not to have infinite recursion
       instantiate_address_request(0),
       list_createList(),
+      35,
       61,
       51,
       21,
@@ -42,6 +43,7 @@ franchisereferalincome_request_compound_t* instantiate_franchisereferalincome_re
     franchisereferalincome_request_compound = franchisereferalincome_request_compound_create(
       NULL,
       list_createList(),
+      35,
       61,
       51,
       21,

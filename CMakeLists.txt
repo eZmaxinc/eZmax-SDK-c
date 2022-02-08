@@ -140,6 +140,8 @@ set(SRCS
     model/ezsignfolder_create_object_v1_response_all_of.c
     model/ezsignfolder_create_object_v1_response_m_payload.c
     model/ezsignfolder_delete_object_v1_response.c
+    model/ezsignfolder_edit_object_v1_request.c
+    model/ezsignfolder_edit_object_v1_response.c
     model/ezsignfolder_get_ezsigndocuments_v1_response.c
     model/ezsignfolder_get_ezsigndocuments_v1_response_all_of.c
     model/ezsignfolder_get_ezsigndocuments_v1_response_m_payload.c
@@ -391,6 +393,8 @@ set(HDRS
     model/ezsignfolder_create_object_v1_response_all_of.h
     model/ezsignfolder_create_object_v1_response_m_payload.h
     model/ezsignfolder_delete_object_v1_response.h
+    model/ezsignfolder_edit_object_v1_request.h
+    model/ezsignfolder_edit_object_v1_response.h
     model/ezsignfolder_get_ezsigndocuments_v1_response.h
     model/ezsignfolder_get_ezsigndocuments_v1_response_all_of.h
     model/ezsignfolder_get_ezsigndocuments_v1_response_m_payload.h

@@ -28,6 +28,7 @@ ezmax_api_definition_ezsignsignature_request__e ezsignsignature_request_e_ezsign
 
 
 typedef struct ezsignsignature_request_t {
+    int pki_ezsignsignature_id; //numeric
     int fki_ezsignfoldersignerassociation_id; //numeric
     int i_ezsignpage_pagenumber; //numeric
     int i_ezsignsignature_x; //numeric
@@ -39,6 +40,7 @@ typedef struct ezsignsignature_request_t {
 } ezsignsignature_request_t;
 
 ezsignsignature_request_t *ezsignsignature_request_create(
+    int pki_ezsignsignature_id,
     int fki_ezsignfoldersignerassociation_id,
     int i_ezsignpage_pagenumber,
     int i_ezsignsignature_x,

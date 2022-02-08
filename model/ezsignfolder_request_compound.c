@@ -23,6 +23,7 @@ ezmax_api_definition_ezsignfolder_request_compound__e e_ezsignfolder_sendreminde
 }
 
 ezsignfolder_request_compound_t *ezsignfolder_request_compound_create(
+    int pki_ezsignfolder_id,
     int fki_ezsignfoldertype_id,
     int fki_ezsigntsarequirement_id,
     char *s_ezsignfolder_description,
@@ -33,6 +34,7 @@ ezsignfolder_request_compound_t *ezsignfolder_request_compound_create(
     if (!ezsignfolder_request_compound_local_var) {
         return NULL;
     }
+    ezsignfolder_request_compound_local_var->pki_ezsignfolder_id = pki_ezsignfolder_id;
     ezsignfolder_request_compound_local_var->fki_ezsignfoldertype_id = fki_ezsignfoldertype_id;
     ezsignfolder_request_compound_local_var->fki_ezsigntsarequirement_id = fki_ezsigntsarequirement_id;
     ezsignfolder_request_compound_local_var->s_ezsignfolder_description = s_ezsignfolder_description;
@@ -65,6 +67,14 @@ void ezsignfolder_request_compound_free(ezsignfolder_request_compound_t *ezsignf
 
 cJSON *ezsignfolder_request_compound_convertToJSON(ezsignfolder_request_compound_t *ezsignfolder_request_compound) {
     cJSON *item = cJSON_CreateObject();
+
+    // ezsignfolder_request_compound->pki_ezsignfolder_id
+    if(ezsignfolder_request_compound->pki_ezsignfolder_id) { 
+    if(cJSON_AddNumberToObject(item, "pkiEzsignfolderID", ezsignfolder_request_compound->pki_ezsignfolder_id) == NULL) {
+    goto fail; //Numeric
+    }
+     } 
+
 
     // ezsignfolder_request_compound->fki_ezsignfoldertype_id
     if (!ezsignfolder_request_compound->fki_ezsignfoldertype_id) {
@@ -132,6 +142,15 @@ ezsignfolder_request_compound_t *ezsignfolder_request_compound_parseFromJSON(cJS
     // define the local variable for ezsignfolder_request_compound->e_ezsignfolder_sendreminderfrequency
     field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency_local_nonprim = NULL;
 
+    // ezsignfolder_request_compound->pki_ezsignfolder_id
+    cJSON *pki_ezsignfolder_id = cJSON_GetObjectItemCaseSensitive(ezsignfolder_request_compoundJSON, "pkiEzsignfolderID");
+    if (pki_ezsignfolder_id) { 
+    if(!cJSON_IsNumber(pki_ezsignfolder_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
     // ezsignfolder_request_compound->fki_ezsignfoldertype_id
     cJSON *fki_ezsignfoldertype_id = cJSON_GetObjectItemCaseSensitive(ezsignfolder_request_compoundJSON, "fkiEzsignfoldertypeID");
     if (!fki_ezsignfoldertype_id) {
@@ -191,6 +210,7 @@ ezsignfolder_request_compound_t *ezsignfolder_request_compound_parseFromJSON(cJS
 
 
     ezsignfolder_request_compound_local_var = ezsignfolder_request_compound_create (
+        pki_ezsignfolder_id ? pki_ezsignfolder_id->valuedouble : 0,
         fki_ezsignfoldertype_id->valuedouble,
         fki_ezsigntsarequirement_id->valuedouble,
         strdup(s_ezsignfolder_description->valuestring),

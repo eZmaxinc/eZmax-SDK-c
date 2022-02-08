@@ -8,6 +8,7 @@
 franchisereferalincome_request_compound_t *franchisereferalincome_request_compound_create(
     address_request_t *obj_address,
     list_t *a_obj_contact,
+    int pki_franchisereferalincome_id,
     int fki_franchisebroker_id,
     int fki_franchisereferalincomeprogram_id,
     int fki_period_id,
@@ -26,6 +27,7 @@ franchisereferalincome_request_compound_t *franchisereferalincome_request_compou
     }
     franchisereferalincome_request_compound_local_var->obj_address = obj_address;
     franchisereferalincome_request_compound_local_var->a_obj_contact = a_obj_contact;
+    franchisereferalincome_request_compound_local_var->pki_franchisereferalincome_id = pki_franchisereferalincome_id;
     franchisereferalincome_request_compound_local_var->fki_franchisebroker_id = fki_franchisebroker_id;
     franchisereferalincome_request_compound_local_var->fki_franchisereferalincomeprogram_id = fki_franchisereferalincomeprogram_id;
     franchisereferalincome_request_compound_local_var->fki_period_id = fki_period_id;
@@ -127,6 +129,14 @@ cJSON *franchisereferalincome_request_compound_convertToJSON(franchisereferalinc
     cJSON_AddItemToArray(a_obj_contact, itemLocal);
     }
     }
+
+
+    // franchisereferalincome_request_compound->pki_franchisereferalincome_id
+    if(franchisereferalincome_request_compound->pki_franchisereferalincome_id) { 
+    if(cJSON_AddNumberToObject(item, "pkiFranchisereferalincomeID", franchisereferalincome_request_compound->pki_franchisereferalincome_id) == NULL) {
+    goto fail; //Numeric
+    }
+     } 
 
 
     // franchisereferalincome_request_compound->fki_franchisebroker_id
@@ -287,6 +297,15 @@ franchisereferalincome_request_compound_t *franchisereferalincome_request_compou
         list_addElement(a_obj_contactList, a_obj_contactItem);
     }
 
+    // franchisereferalincome_request_compound->pki_franchisereferalincome_id
+    cJSON *pki_franchisereferalincome_id = cJSON_GetObjectItemCaseSensitive(franchisereferalincome_request_compoundJSON, "pkiFranchisereferalincomeID");
+    if (pki_franchisereferalincome_id) { 
+    if(!cJSON_IsNumber(pki_franchisereferalincome_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
     // franchisereferalincome_request_compound->fki_franchisebroker_id
     cJSON *fki_franchisebroker_id = cJSON_GetObjectItemCaseSensitive(franchisereferalincome_request_compoundJSON, "fkiFranchisebrokerID");
     if (!fki_franchisebroker_id) {
@@ -423,6 +442,7 @@ franchisereferalincome_request_compound_t *franchisereferalincome_request_compou
     franchisereferalincome_request_compound_local_var = franchisereferalincome_request_compound_create (
         obj_address_local_nonprim,
         a_obj_contactList,
+        pki_franchisereferalincome_id ? pki_franchisereferalincome_id->valuedouble : 0,
         fki_franchisebroker_id->valuedouble,
         fki_franchisereferalincomeprogram_id->valuedouble,
         fki_period_id->valuedouble,

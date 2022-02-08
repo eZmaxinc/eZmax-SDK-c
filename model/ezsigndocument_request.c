@@ -40,6 +40,7 @@ ezmax_api_definition_ezsigndocument_request_EEZSIGNDOCUMENTFORMAT_e e_ezsigndocu
 }
 
 ezsigndocument_request_t *ezsigndocument_request_create(
+    int pki_ezsigndocument_id,
     ezmax_api_definition_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_e e_ezsigndocument_source,
     ezmax_api_definition_ezsigndocument_request_EEZSIGNDOCUMENTFORMAT_e e_ezsigndocument_format,
     char *s_ezsigndocument_base64,
@@ -55,6 +56,7 @@ ezsigndocument_request_t *ezsigndocument_request_create(
     if (!ezsigndocument_request_local_var) {
         return NULL;
     }
+    ezsigndocument_request_local_var->pki_ezsigndocument_id = pki_ezsigndocument_id;
     ezsigndocument_request_local_var->e_ezsigndocument_source = e_ezsigndocument_source;
     ezsigndocument_request_local_var->e_ezsigndocument_format = e_ezsigndocument_format;
     ezsigndocument_request_local_var->s_ezsigndocument_base64 = s_ezsigndocument_base64;
@@ -100,6 +102,14 @@ void ezsigndocument_request_free(ezsigndocument_request_t *ezsigndocument_reques
 
 cJSON *ezsigndocument_request_convertToJSON(ezsigndocument_request_t *ezsigndocument_request) {
     cJSON *item = cJSON_CreateObject();
+
+    // ezsigndocument_request->pki_ezsigndocument_id
+    if(ezsigndocument_request->pki_ezsigndocument_id) { 
+    if(cJSON_AddNumberToObject(item, "pkiEzsigndocumentID", ezsigndocument_request->pki_ezsigndocument_id) == NULL) {
+    goto fail; //Numeric
+    }
+     } 
+
 
     // ezsigndocument_request->e_ezsigndocument_source
     
@@ -199,6 +209,15 @@ fail:
 ezsigndocument_request_t *ezsigndocument_request_parseFromJSON(cJSON *ezsigndocument_requestJSON){
 
     ezsigndocument_request_t *ezsigndocument_request_local_var = NULL;
+
+    // ezsigndocument_request->pki_ezsigndocument_id
+    cJSON *pki_ezsigndocument_id = cJSON_GetObjectItemCaseSensitive(ezsigndocument_requestJSON, "pkiEzsigndocumentID");
+    if (pki_ezsigndocument_id) { 
+    if(!cJSON_IsNumber(pki_ezsigndocument_id))
+    {
+    goto end; //Numeric
+    }
+    }
 
     // ezsigndocument_request->e_ezsigndocument_source
     cJSON *e_ezsigndocument_source = cJSON_GetObjectItemCaseSensitive(ezsigndocument_requestJSON, "eEzsigndocumentSource");
@@ -314,6 +333,7 @@ ezsigndocument_request_t *ezsigndocument_request_parseFromJSON(cJSON *ezsigndocu
 
 
     ezsigndocument_request_local_var = ezsigndocument_request_create (
+        pki_ezsigndocument_id ? pki_ezsigndocument_id->valuedouble : 0,
         e_ezsigndocument_sourceVariable,
         e_ezsigndocument_formatVariable,
         s_ezsigndocument_base64 ? strdup(s_ezsigndocument_base64->valuestring) : NULL,

@@ -22,6 +22,7 @@ ezsignsignature_request_t* instantiate_ezsignsignature_request(int include_optio
   ezsignsignature_request_t* ezsignsignature_request = NULL;
   if (include_optional) {
     ezsignsignature_request = ezsignsignature_request_create(
+      49,
       20,
       1,
       200,
@@ -32,6 +33,7 @@ ezsignsignature_request_t* instantiate_ezsignsignature_request(int include_optio
     );
   } else {
     ezsignsignature_request = ezsignsignature_request_create(
+      49,
       20,
       1,
       200,

@@ -33,6 +33,7 @@ ezmax_api_definition_ezsignsignature_request_compound__e ezsignsignature_request
 typedef struct ezsignsignature_request_compound_t {
     int b_ezsignsignature_customdate; //boolean
     list_t *a_obj_ezsignsignaturecustomdate; //nonprimitive container
+    int pki_ezsignsignature_id; //numeric
     int fki_ezsignfoldersignerassociation_id; //numeric
     int i_ezsignpage_pagenumber; //numeric
     int i_ezsignsignature_x; //numeric
@@ -46,6 +47,7 @@ typedef struct ezsignsignature_request_compound_t {
 ezsignsignature_request_compound_t *ezsignsignature_request_compound_create(
     int b_ezsignsignature_customdate,
     list_t *a_obj_ezsignsignaturecustomdate,
+    int pki_ezsignsignature_id,
     int fki_ezsignfoldersignerassociation_id,
     int i_ezsignpage_pagenumber,
     int i_ezsignsignature_x,

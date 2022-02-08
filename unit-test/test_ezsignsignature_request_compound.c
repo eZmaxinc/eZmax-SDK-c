@@ -24,6 +24,7 @@ ezsignsignature_request_compound_t* instantiate_ezsignsignature_request_compound
     ezsignsignature_request_compound = ezsignsignature_request_compound_create(
       1,
       list_createList(),
+      49,
       20,
       1,
       200,
@@ -36,6 +37,7 @@ ezsignsignature_request_compound_t* instantiate_ezsignsignature_request_compound
     ezsignsignature_request_compound = ezsignsignature_request_compound_create(
       1,
       list_createList(),
+      49,
       20,
       1,
       200,

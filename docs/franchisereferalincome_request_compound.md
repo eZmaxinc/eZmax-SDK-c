@@ -5,6 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **obj_address** | [**address_request_t**](address_request.md) \* |  | 
 **a_obj_contact** | [**list_t**](contact_request_compound.md) \* |  | 
+**pki_franchisereferalincome_id** | **int** | The unique ID of the Franchisereferalincome | [optional] 
 **fki_franchisebroker_id** | **int** | The unique ID of the Franchisebroker | 
 **fki_franchisereferalincomeprogram_id** | **int** | The unique ID of the Franchisereferalincomeprogram | 
 **fki_period_id** | **int** | The unique ID of the Period | 

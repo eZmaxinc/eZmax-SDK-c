@@ -23,11 +23,13 @@ apikey_request_t* instantiate_apikey_request(int include_optional) {
   apikey_request_t* apikey_request = NULL;
   if (include_optional) {
     apikey_request = apikey_request_create(
+      99,
       70,
       {"sApikeyDescription1":"Projet X","sApikeyDescription2":"Project X"}
     );
   } else {
     apikey_request = apikey_request_create(
+      99,
       70,
       {"sApikeyDescription1":"Projet X","sApikeyDescription2":"Project X"}
     );

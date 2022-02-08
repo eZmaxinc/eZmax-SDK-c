@@ -7,6 +7,7 @@
 
 ezsignfoldersignerassociation_request_compound_t *ezsignfoldersignerassociation_request_compound_create(
     ezsignsigner_request_compound_t *obj_ezsignsigner,
+    int pki_ezsignfoldersignerassociation_id,
     int fki_user_id,
     int fki_ezsignfolder_id,
     int b_ezsignfoldersignerassociation_receivecopy
@@ -16,6 +17,7 @@ ezsignfoldersignerassociation_request_compound_t *ezsignfoldersignerassociation_
         return NULL;
     }
     ezsignfoldersignerassociation_request_compound_local_var->obj_ezsignsigner = obj_ezsignsigner;
+    ezsignfoldersignerassociation_request_compound_local_var->pki_ezsignfoldersignerassociation_id = pki_ezsignfoldersignerassociation_id;
     ezsignfoldersignerassociation_request_compound_local_var->fki_user_id = fki_user_id;
     ezsignfoldersignerassociation_request_compound_local_var->fki_ezsignfolder_id = fki_ezsignfolder_id;
     ezsignfoldersignerassociation_request_compound_local_var->b_ezsignfoldersignerassociation_receivecopy = b_ezsignfoldersignerassociation_receivecopy;
@@ -48,6 +50,14 @@ cJSON *ezsignfoldersignerassociation_request_compound_convertToJSON(ezsignfolder
     cJSON_AddItemToObject(item, "objEzsignsigner", obj_ezsignsigner_local_JSON);
     if(item->child == NULL) {
     goto fail;
+    }
+     } 
+
+
+    // ezsignfoldersignerassociation_request_compound->pki_ezsignfoldersignerassociation_id
+    if(ezsignfoldersignerassociation_request_compound->pki_ezsignfoldersignerassociation_id) { 
+    if(cJSON_AddNumberToObject(item, "pkiEzsignfoldersignerassociationID", ezsignfoldersignerassociation_request_compound->pki_ezsignfoldersignerassociation_id) == NULL) {
+    goto fail; //Numeric
     }
      } 
 
@@ -98,6 +108,15 @@ ezsignfoldersignerassociation_request_compound_t *ezsignfoldersignerassociation_
     obj_ezsignsigner_local_nonprim = ezsignsigner_request_compound_parseFromJSON(obj_ezsignsigner); //nonprimitive
     }
 
+    // ezsignfoldersignerassociation_request_compound->pki_ezsignfoldersignerassociation_id
+    cJSON *pki_ezsignfoldersignerassociation_id = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_request_compoundJSON, "pkiEzsignfoldersignerassociationID");
+    if (pki_ezsignfoldersignerassociation_id) { 
+    if(!cJSON_IsNumber(pki_ezsignfoldersignerassociation_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
     // ezsignfoldersignerassociation_request_compound->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_request_compoundJSON, "fkiUserID");
     if (fki_user_id) { 
@@ -131,6 +150,7 @@ ezsignfoldersignerassociation_request_compound_t *ezsignfoldersignerassociation_
 
     ezsignfoldersignerassociation_request_compound_local_var = ezsignfoldersignerassociation_request_compound_create (
         obj_ezsignsigner ? obj_ezsignsigner_local_nonprim : NULL,
+        pki_ezsignfoldersignerassociation_id ? pki_ezsignfoldersignerassociation_id->valuedouble : 0,
         fki_user_id ? fki_user_id->valuedouble : 0,
         fki_ezsignfolder_id->valuedouble,
         b_ezsignfoldersignerassociation_receivecopy ? b_ezsignfoldersignerassociation_receivecopy->valueint : 0
