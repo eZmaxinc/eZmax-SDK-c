@@ -130,8 +130,11 @@ set(SRCS
     model/ezsigndocument_get_words_positions_v1_request.c
     model/ezsigndocument_get_words_positions_v1_response.c
     model/ezsigndocument_get_words_positions_v1_response_all_of.c
+    model/ezsigndocument_patch_object_v1_request.c
+    model/ezsigndocument_patch_object_v1_response.c
     model/ezsigndocument_request.c
     model/ezsigndocument_request_compound.c
+    model/ezsigndocument_request_patch.c
     model/ezsigndocument_response.c
     model/ezsigndocument_response_compound.c
     model/ezsigndocument_response_compound_all_of.c
@@ -383,8 +386,11 @@ set(HDRS
     model/ezsigndocument_get_words_positions_v1_request.h
     model/ezsigndocument_get_words_positions_v1_response.h
     model/ezsigndocument_get_words_positions_v1_response_all_of.h
+    model/ezsigndocument_patch_object_v1_request.h
+    model/ezsigndocument_patch_object_v1_response.h
     model/ezsigndocument_request.h
     model/ezsigndocument_request_compound.h
+    model/ezsigndocument_request_patch.h
     model/ezsigndocument_response.h
     model/ezsigndocument_response_compound.h
     model/ezsigndocument_response_compound_all_of.h

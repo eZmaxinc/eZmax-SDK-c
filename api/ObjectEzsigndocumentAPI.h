@@ -20,6 +20,8 @@
 #include "../model/ezsigndocument_get_object_v1_response.h"
 #include "../model/ezsigndocument_get_words_positions_v1_request.h"
 #include "../model/ezsigndocument_get_words_positions_v1_response.h"
+#include "../model/ezsigndocument_patch_object_v1_request.h"
+#include "../model/ezsigndocument_patch_object_v1_response.h"
 
 // Enum EDOCUMENTTYPE for ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1
 typedef enum  { ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_NULL = 0, ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_Initial, ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE__Signed, ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_Proof, ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_Proofdocument } ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_eDocumentType_e;
@@ -87,5 +89,11 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV1(apiClient_t *apiClient, int pk
 //
 ezsigndocument_get_words_positions_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1(apiClient_t *apiClient, int pkiEzsigndocumentID , ezsigndocument_get_words_positions_v1_request_t * ezsigndocument_get_words_positions_v1_request );
+
+
+// Patch an existing Ezsigndocument
+//
+ezsigndocument_patch_object_v1_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1(apiClient_t *apiClient, int pkiEzsigndocumentID , ezsigndocument_patch_object_v1_request_t * ezsigndocument_patch_object_v1_request );
 
 

@@ -88,9 +88,10 @@ Category | Method | HTTP request | Description
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getFormData | Retrieve an existing Ezsigndocument's Form Data
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID} | Retrieve an existing Ezsigndocument
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getWordsPositions | Retrieve positions X,Y of given words from a Ezsigndocument
+*ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1) | **PATCH** /1/object/ezsigndocument/{pkiEzsigndocumentID} | Patch an existing Ezsigndocument
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1) | **POST** /1/object/ezsignfolder | Create a new Ezsignfolder
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1) | **DELETE** /1/object/ezsignfolder/{pkiEzsignfolderID} | Delete an existing Ezsignfolder
-*ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderEditObjectV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderEditObjectV1) | **PUT** /1/object/ezsignfolder/{pkiEzsignfolderID} | Edit an Ezsignfolder
+*ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderEditObjectV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderEditObjectV1) | **PUT** /1/object/ezsignfolder/{pkiEzsignfolderID} | Modify an existing Ezsignfolder
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsigndocuments | Retrieve an existing Ezsignfolder's Ezsigndocuments
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsignfoldersignerassociations | Retrieve an existing Ezsignfolder's Ezsignfoldersignerassociations
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getFormsData | Retrieve an existing Ezsignfolder's forms data
@@ -197,8 +198,11 @@ Category | Method | HTTP request | Description
  - [ezsigndocument_get_words_positions_v1_request_t](docs/ezsigndocument_get_words_positions_v1_request.md)
  - [ezsigndocument_get_words_positions_v1_response_t](docs/ezsigndocument_get_words_positions_v1_response.md)
  - [ezsigndocument_get_words_positions_v1_response_all_of_t](docs/ezsigndocument_get_words_positions_v1_response_all_of.md)
+ - [ezsigndocument_patch_object_v1_request_t](docs/ezsigndocument_patch_object_v1_request.md)
+ - [ezsigndocument_patch_object_v1_response_t](docs/ezsigndocument_patch_object_v1_response.md)
  - [ezsigndocument_request_t](docs/ezsigndocument_request.md)
  - [ezsigndocument_request_compound_t](docs/ezsigndocument_request_compound.md)
+ - [ezsigndocument_request_patch_t](docs/ezsigndocument_request_patch.md)
  - [ezsigndocument_response_t](docs/ezsigndocument_response.md)
  - [ezsigndocument_response_compound_t](docs/ezsigndocument_response_compound.md)
  - [ezsigndocument_response_compound_all_of_t](docs/ezsigndocument_response_compound_all_of.md)
