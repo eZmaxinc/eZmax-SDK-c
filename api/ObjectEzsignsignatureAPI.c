@@ -198,6 +198,102 @@ end:
 
 }
 
+// Edit an existing Ezsignsignature
+//
+ezsignsignature_edit_object_v1_response_t*
+ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV1(apiClient_t *apiClient, int pkiEzsignsignatureID , ezsignsignature_edit_object_v1_request_t * ezsignsignature_edit_object_v1_request )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/ezsignsignature/{pkiEzsignsignatureID}")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignsignature/{pkiEzsignsignatureID}");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsignsignatureID =  + strlen("{ pkiEzsignsignatureID }");
+    if(pkiEzsignsignatureID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsignsignatureID = malloc(sizeOfPathParams_pkiEzsignsignatureID);
+    snprintf(localVarToReplace_pkiEzsignsignatureID, sizeOfPathParams_pkiEzsignsignatureID, "{%s}", "pkiEzsignsignatureID");
+
+    char localVarBuff_pkiEzsignsignatureID[256];
+    intToStr(localVarBuff_pkiEzsignsignatureID, pkiEzsignsignatureID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignsignatureID, localVarBuff_pkiEzsignsignatureID);
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_ezsignsignature_edit_object_v1_request = NULL;
+    if (ezsignsignature_edit_object_v1_request != NULL)
+    {
+        //string
+        localVarSingleItemJSON_ezsignsignature_edit_object_v1_request = ezsignsignature_edit_object_v1_request_convertToJSON(ezsignsignature_edit_object_v1_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignsignature_edit_object_v1_request);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "PUT");
+
+    if (apiClient->response_code == 200) {
+        printf("%s\n","Successful response");
+    }
+    if (apiClient->response_code == 404) {
+        printf("%s\n","The element you are trying to work on does not exist");
+    }
+    if (apiClient->response_code == 422) {
+        printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    }
+    //nonprimitive not container
+    cJSON *ObjectEzsignsignatureAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsignsignature_edit_object_v1_response_t *elementToReturn = ezsignsignature_edit_object_v1_response_parseFromJSON(ObjectEzsignsignatureAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsignsignatureAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsignsignatureID);
+    if (localVarSingleItemJSON_ezsignsignature_edit_object_v1_request) {
+        cJSON_Delete(localVarSingleItemJSON_ezsignsignature_edit_object_v1_request);
+        localVarSingleItemJSON_ezsignsignature_edit_object_v1_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Retrieve an existing Ezsignsignature
 //
 // ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.

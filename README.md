@@ -107,6 +107,7 @@ Category | Method | HTTP request | Description
 *ObjectEzsignfoldertypeAPI* | [**ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1**](docs/ObjectEzsignfoldertypeAPI.md#ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1) | **GET** /1/object/ezsignfoldertype/getList | Retrieve Ezsignfoldertype list
 *ObjectEzsignsignatureAPI* | [**ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV1**](docs/ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV1) | **POST** /1/object/ezsignsignature | Create a new Ezsignsignature
 *ObjectEzsignsignatureAPI* | [**ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1**](docs/ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1) | **DELETE** /1/object/ezsignsignature/{pkiEzsignsignatureID} | Delete an existing Ezsignsignature
+*ObjectEzsignsignatureAPI* | [**ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV1**](docs/ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV1) | **PUT** /1/object/ezsignsignature/{pkiEzsignsignatureID} | Edit an existing Ezsignsignature
 *ObjectEzsignsignatureAPI* | [**ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV1**](docs/ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV1) | **GET** /1/object/ezsignsignature/{pkiEzsignsignatureID} | Retrieve an existing Ezsignsignature
 *ObjectEzsigntemplatepackageAPI* | [**ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetListV1**](docs/ObjectEzsigntemplatepackageAPI.md#ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetListV1) | **GET** /1/object/ezsigntemplatepackage/getList | Retrieve Ezsigntemplatepackage list
 *ObjectFranchisebrokerAPI* | [**ObjectFranchisebrokerAPI_franchisebrokerGetAutocompleteV1**](docs/ObjectFranchisebrokerAPI.md#ObjectFranchisebrokerAPI_franchisebrokerGetAutocompleteV1) | **GET** /1/object/franchisebroker/getAutocomplete/{sSelector} | Retrieve Franchisebrokers and IDs
@@ -271,6 +272,8 @@ Category | Method | HTTP request | Description
  - [ezsignsignature_create_object_v1_response_all_of_t](docs/ezsignsignature_create_object_v1_response_all_of.md)
  - [ezsignsignature_create_object_v1_response_m_payload_t](docs/ezsignsignature_create_object_v1_response_m_payload.md)
  - [ezsignsignature_delete_object_v1_response_t](docs/ezsignsignature_delete_object_v1_response.md)
+ - [ezsignsignature_edit_object_v1_request_t](docs/ezsignsignature_edit_object_v1_request.md)
+ - [ezsignsignature_edit_object_v1_response_t](docs/ezsignsignature_edit_object_v1_response.md)
  - [ezsignsignature_get_object_v1_response_t](docs/ezsignsignature_get_object_v1_response.md)
  - [ezsignsignature_get_object_v1_response_all_of_t](docs/ezsignsignature_get_object_v1_response_all_of.md)
  - [ezsignsignature_request_t](docs/ezsignsignature_request.md)

@@ -203,6 +203,8 @@ set(SRCS
     model/ezsignsignature_create_object_v1_response_all_of.c
     model/ezsignsignature_create_object_v1_response_m_payload.c
     model/ezsignsignature_delete_object_v1_response.c
+    model/ezsignsignature_edit_object_v1_request.c
+    model/ezsignsignature_edit_object_v1_response.c
     model/ezsignsignature_get_object_v1_response.c
     model/ezsignsignature_get_object_v1_response_all_of.c
     model/ezsignsignature_request.c
@@ -459,6 +461,8 @@ set(HDRS
     model/ezsignsignature_create_object_v1_response_all_of.h
     model/ezsignsignature_create_object_v1_response_m_payload.h
     model/ezsignsignature_delete_object_v1_response.h
+    model/ezsignsignature_edit_object_v1_request.h
+    model/ezsignsignature_edit_object_v1_response.h
     model/ezsignsignature_get_object_v1_response.h
     model/ezsignsignature_get_object_v1_response_all_of.h
     model/ezsignsignature_request.h

@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV1**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV1) | **POST** /1/object/ezsignsignature | Create a new Ezsignsignature
 [**ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1) | **DELETE** /1/object/ezsignsignature/{pkiEzsignsignatureID} | Delete an existing Ezsignsignature
+[**ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV1**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV1) | **PUT** /1/object/ezsignsignature/{pkiEzsignsignatureID} | Edit an existing Ezsignsignature
 [**ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV1**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV1) | **GET** /1/object/ezsignsignature/{pkiEzsignsignatureID} | Retrieve an existing Ezsignsignature
 
 
@@ -65,6 +66,36 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV1**
+```c
+// Edit an existing Ezsignsignature
+//
+ezsignsignature_edit_object_v1_response_t* ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV1(apiClient_t *apiClient, int pkiEzsignsignatureID, ezsignsignature_edit_object_v1_request_t * ezsignsignature_edit_object_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsignsignatureID** | **int** |  | 
+**ezsignsignature_edit_object_v1_request** | **[ezsignsignature_edit_object_v1_request_t](ezsignsignature_edit_object_v1_request.md) \*** |  | 
+
+### Return type
+
+[ezsignsignature_edit_object_v1_response_t](ezsignsignature_edit_object_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
