@@ -22,12 +22,14 @@ ezsignsignaturecustomdate_request_t* instantiate_ezsignsignaturecustomdate_reque
   ezsignsignaturecustomdate_request_t* ezsignsignaturecustomdate_request = NULL;
   if (include_optional) {
     ezsignsignaturecustomdate_request = ezsignsignaturecustomdate_request_create(
+      27,
       200,
       300,
       "Signature date: {YYYY}/{MM}/{DD} {hh}:{mm}{ss} {Z}"
     );
   } else {
     ezsignsignaturecustomdate_request = ezsignsignaturecustomdate_request_create(
+      27,
       200,
       300,
       "Signature date: {YYYY}/{MM}/{DD} {hh}:{mm}{ss} {Z}"
