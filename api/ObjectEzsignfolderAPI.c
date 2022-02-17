@@ -293,7 +293,7 @@ end:
 
 }
 
-// Modify an existing Ezsignfolder
+// Edit an existing Ezsignfolder
 //
 ezsignfolder_edit_object_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderEditObjectV1(apiClient_t *apiClient, int pkiEzsignfolderID , ezsignfolder_edit_object_v1_request_t * ezsignfolder_edit_object_v1_request )

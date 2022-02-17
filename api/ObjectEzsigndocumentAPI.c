@@ -325,9 +325,6 @@ ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV1(apiClient_t *apiClient, lis
     if (apiClient->response_code == 201) {
         printf("%s\n","Successful response");
     }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
-    }
     if (apiClient->response_code == 422) {
         printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body. If the error is recoverable sTemporaryFileUrl will be set and you can use this url to try a new request without sending the file over again");
     }
@@ -445,6 +442,132 @@ ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1(apiClient_t *apiClient, int
     
     free(localVarPath);
     free(localVarToReplace_pkiEzsigndocumentID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Edit multiple ezsignsignatures
+//
+// Using this endpoint, you can edit multiple ezsignsignatures at the same time.
+//
+ezsigndocument_edit_ezsignsignatures_v1_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1(apiClient_t *apiClient, int pkiEzsigndocumentID , list_t * ezsignsignature_request_compound )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/ezsigndocument/{pkiEzsigndocumentID}/editEzsignsignatures")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/ezsigndocument/{pkiEzsigndocumentID}/editEzsignsignatures");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsigndocumentID =  + strlen("{ pkiEzsigndocumentID }");
+    if(pkiEzsigndocumentID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsigndocumentID = malloc(sizeOfPathParams_pkiEzsigndocumentID);
+    snprintf(localVarToReplace_pkiEzsigndocumentID, sizeOfPathParams_pkiEzsigndocumentID, "{%s}", "pkiEzsigndocumentID");
+
+    char localVarBuff_pkiEzsigndocumentID[256];
+    intToStr(localVarBuff_pkiEzsigndocumentID, pkiEzsigndocumentID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigndocumentID, localVarBuff_pkiEzsigndocumentID);
+
+
+
+
+    // Body Param
+    //notstring
+    cJSON *localVar_ezsignsignature_request_compound = NULL;
+    cJSON *localVarItemJSON_ezsignsignature_request_compound = NULL;
+    cJSON *localVarSingleItemJSON_ezsignsignature_request_compound = NULL;
+    if (ezsignsignature_request_compound != NULL)
+    {
+        localVarItemJSON_ezsignsignature_request_compound = cJSON_CreateObject();
+        localVarSingleItemJSON_ezsignsignature_request_compound = cJSON_AddArrayToObject(localVarItemJSON_ezsignsignature_request_compound, "ezsignsignature_request_compound");
+        if (localVarSingleItemJSON_ezsignsignature_request_compound == NULL)
+        {
+            // nonprimitive container
+
+            goto end;
+        }
+    }
+
+    listEntry_t *ezsignsignature_request_compoundBodyListEntry;
+    list_ForEach(ezsignsignature_request_compoundBodyListEntry, ezsignsignature_request_compound)
+    {
+        localVar_ezsignsignature_request_compound = ezsignsignature_request_compound_convertToJSON(ezsignsignature_request_compoundBodyListEntry->data);
+        if(localVar_ezsignsignature_request_compound == NULL)
+        {
+            goto end;
+        }
+        cJSON_AddItemToArray(localVarSingleItemJSON_ezsignsignature_request_compound, localVar_ezsignsignature_request_compound);
+        localVarBodyParameters = cJSON_Print(localVarItemJSON_ezsignsignature_request_compound);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "PUT");
+
+    if (apiClient->response_code == 200) {
+        printf("%s\n","Successful response");
+    }
+    if (apiClient->response_code == 404) {
+        printf("%s\n","The element you are trying to work on does not exist");
+    }
+    if (apiClient->response_code == 422) {
+        printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    }
+    //nonprimitive not container
+    cJSON *ObjectEzsigndocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsigndocument_edit_ezsignsignatures_v1_response_t *elementToReturn = ezsigndocument_edit_ezsignsignatures_v1_response_parseFromJSON(ObjectEzsigndocumentAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsigndocumentAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsigndocumentID);
+    if (localVarItemJSON_ezsignsignature_request_compound) {
+        cJSON_Delete(localVarItemJSON_ezsignsignature_request_compound);
+        localVarItemJSON_ezsignsignature_request_compound = NULL;
+    }
+    if (localVarSingleItemJSON_ezsignsignature_request_compound) {
+        cJSON_Delete(localVarSingleItemJSON_ezsignsignature_request_compound);
+        localVarSingleItemJSON_ezsignsignature_request_compound = NULL;
+    }
+    if (localVar_ezsignsignature_request_compound) {
+        cJSON_Delete(localVar_ezsignsignature_request_compound);
+        localVar_ezsignsignature_request_compound = NULL;
+    }
+    free(localVarBodyParameters);
     return elementToReturn;
 end:
     free(localVarPath);
