@@ -147,7 +147,7 @@ Name | Type | Description  | Notes
 //
 // Using this endpoint, you can edit multiple ezsignsignatures at the same time.
 //
-ezsigndocument_edit_ezsignsignatures_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1(apiClient_t *apiClient, int pkiEzsigndocumentID, list_t * ezsignsignature_request_compound);
+ezsigndocument_edit_ezsignsignatures_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1(apiClient_t *apiClient, int pkiEzsigndocumentID, ezsigndocument_edit_ezsignsignatures_v1_request_t * ezsigndocument_edit_ezsignsignatures_v1_request);
 ```
 
 ### Parameters
@@ -155,7 +155,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **pkiEzsigndocumentID** | **int** |  | 
-**ezsignsignature_request_compound** | **[list_t](ezsignsignature_request_compound.md) \*** |  | 
+**ezsigndocument_edit_ezsignsignatures_v1_request** | **[ezsigndocument_edit_ezsignsignatures_v1_request_t](ezsigndocument_edit_ezsignsignatures_v1_request.md) \*** |  | 
 
 ### Return type
 

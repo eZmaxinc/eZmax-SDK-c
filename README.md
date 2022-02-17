@@ -185,6 +185,7 @@ Category | Method | HTTP request | Description
  - [ezsigndocument_create_object_v1_response_all_of_t](docs/ezsigndocument_create_object_v1_response_all_of.md)
  - [ezsigndocument_create_object_v1_response_m_payload_t](docs/ezsigndocument_create_object_v1_response_m_payload.md)
  - [ezsigndocument_delete_object_v1_response_t](docs/ezsigndocument_delete_object_v1_response.md)
+ - [ezsigndocument_edit_ezsignsignatures_v1_request_t](docs/ezsigndocument_edit_ezsignsignatures_v1_request.md)
  - [ezsigndocument_edit_ezsignsignatures_v1_response_t](docs/ezsigndocument_edit_ezsignsignatures_v1_response.md)
  - [ezsigndocument_get_download_url_v1_response_t](docs/ezsigndocument_get_download_url_v1_response.md)
  - [ezsigndocument_get_download_url_v1_response_all_of_t](docs/ezsigndocument_get_download_url_v1_response_all_of.md)

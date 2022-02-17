@@ -115,6 +115,7 @@ set(SRCS
     model/ezsigndocument_create_object_v1_response_all_of.c
     model/ezsigndocument_create_object_v1_response_m_payload.c
     model/ezsigndocument_delete_object_v1_response.c
+    model/ezsigndocument_edit_ezsignsignatures_v1_request.c
     model/ezsigndocument_edit_ezsignsignatures_v1_response.c
     model/ezsigndocument_get_download_url_v1_response.c
     model/ezsigndocument_get_download_url_v1_response_all_of.c
@@ -374,6 +375,7 @@ set(HDRS
     model/ezsigndocument_create_object_v1_response_all_of.h
     model/ezsigndocument_create_object_v1_response_m_payload.h
     model/ezsigndocument_delete_object_v1_response.h
+    model/ezsigndocument_edit_ezsignsignatures_v1_request.h
     model/ezsigndocument_edit_ezsignsignatures_v1_response.h
     model/ezsigndocument_get_download_url_v1_response.h
     model/ezsigndocument_get_download_url_v1_response_all_of.h

@@ -454,7 +454,7 @@ end:
 // Using this endpoint, you can edit multiple ezsignsignatures at the same time.
 //
 ezsigndocument_edit_ezsignsignatures_v1_response_t*
-ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1(apiClient_t *apiClient, int pkiEzsigndocumentID , list_t * ezsignsignature_request_compound )
+ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1(apiClient_t *apiClient, int pkiEzsigndocumentID , ezsigndocument_edit_ezsignsignatures_v1_request_t * ezsigndocument_edit_ezsignsignatures_v1_request )
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -486,32 +486,12 @@ ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1(apiClient_t *apiCli
 
 
     // Body Param
-    //notstring
-    cJSON *localVar_ezsignsignature_request_compound = NULL;
-    cJSON *localVarItemJSON_ezsignsignature_request_compound = NULL;
-    cJSON *localVarSingleItemJSON_ezsignsignature_request_compound = NULL;
-    if (ezsignsignature_request_compound != NULL)
+    cJSON *localVarSingleItemJSON_ezsigndocument_edit_ezsignsignatures_v1_request = NULL;
+    if (ezsigndocument_edit_ezsignsignatures_v1_request != NULL)
     {
-        localVarItemJSON_ezsignsignature_request_compound = cJSON_CreateObject();
-        localVarSingleItemJSON_ezsignsignature_request_compound = cJSON_AddArrayToObject(localVarItemJSON_ezsignsignature_request_compound, "ezsignsignature_request_compound");
-        if (localVarSingleItemJSON_ezsignsignature_request_compound == NULL)
-        {
-            // nonprimitive container
-
-            goto end;
-        }
-    }
-
-    listEntry_t *ezsignsignature_request_compoundBodyListEntry;
-    list_ForEach(ezsignsignature_request_compoundBodyListEntry, ezsignsignature_request_compound)
-    {
-        localVar_ezsignsignature_request_compound = ezsignsignature_request_compound_convertToJSON(ezsignsignature_request_compoundBodyListEntry->data);
-        if(localVar_ezsignsignature_request_compound == NULL)
-        {
-            goto end;
-        }
-        cJSON_AddItemToArray(localVarSingleItemJSON_ezsignsignature_request_compound, localVar_ezsignsignature_request_compound);
-        localVarBodyParameters = cJSON_Print(localVarItemJSON_ezsignsignature_request_compound);
+        //string
+        localVarSingleItemJSON_ezsigndocument_edit_ezsignsignatures_v1_request = ezsigndocument_edit_ezsignsignatures_v1_request_convertToJSON(ezsigndocument_edit_ezsignsignatures_v1_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsigndocument_edit_ezsignsignatures_v1_request);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -555,17 +535,9 @@ ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1(apiClient_t *apiCli
     list_freeList(localVarContentType);
     free(localVarPath);
     free(localVarToReplace_pkiEzsigndocumentID);
-    if (localVarItemJSON_ezsignsignature_request_compound) {
-        cJSON_Delete(localVarItemJSON_ezsignsignature_request_compound);
-        localVarItemJSON_ezsignsignature_request_compound = NULL;
-    }
-    if (localVarSingleItemJSON_ezsignsignature_request_compound) {
-        cJSON_Delete(localVarSingleItemJSON_ezsignsignature_request_compound);
-        localVarSingleItemJSON_ezsignsignature_request_compound = NULL;
-    }
-    if (localVar_ezsignsignature_request_compound) {
-        cJSON_Delete(localVar_ezsignsignature_request_compound);
-        localVar_ezsignsignature_request_compound = NULL;
+    if (localVarSingleItemJSON_ezsigndocument_edit_ezsignsignatures_v1_request) {
+        cJSON_Delete(localVarSingleItemJSON_ezsigndocument_edit_ezsignsignatures_v1_request);
+        localVarSingleItemJSON_ezsigndocument_edit_ezsignsignatures_v1_request = NULL;
     }
     free(localVarBodyParameters);
     return elementToReturn;

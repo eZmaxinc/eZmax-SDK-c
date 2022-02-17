@@ -14,6 +14,7 @@
 #include "../model/ezsigndocument_create_object_v1_request.h"
 #include "../model/ezsigndocument_create_object_v1_response.h"
 #include "../model/ezsigndocument_delete_object_v1_response.h"
+#include "../model/ezsigndocument_edit_ezsignsignatures_v1_request.h"
 #include "../model/ezsigndocument_edit_ezsignsignatures_v1_response.h"
 #include "../model/ezsigndocument_get_download_url_v1_response.h"
 #include "../model/ezsigndocument_get_ezsignpages_v1_response.h"
@@ -23,7 +24,6 @@
 #include "../model/ezsigndocument_get_words_positions_v1_response.h"
 #include "../model/ezsigndocument_patch_object_v1_request.h"
 #include "../model/ezsigndocument_patch_object_v1_response.h"
-#include "../model/ezsignsignature_request_compound.h"
 
 // Enum EDOCUMENTTYPE for ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1
 typedef enum  { ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_NULL = 0, ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_Initial, ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE__Signed, ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_Proof, ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_Proofdocument } ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_eDocumentType_e;
@@ -64,7 +64,7 @@ ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1(apiClient_t *apiClient, int
 // Using this endpoint, you can edit multiple ezsignsignatures at the same time.
 //
 ezsigndocument_edit_ezsignsignatures_v1_response_t*
-ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1(apiClient_t *apiClient, int pkiEzsigndocumentID , list_t * ezsignsignature_request_compound );
+ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1(apiClient_t *apiClient, int pkiEzsigndocumentID , ezsigndocument_edit_ezsignsignatures_v1_request_t * ezsigndocument_edit_ezsignsignatures_v1_request );
 
 
 // Retrieve a URL to download documents.
