@@ -8,6 +8,8 @@
 #include "../model/common_response_error.h"
 #include "../model/ezsignfolder_create_object_v1_request.h"
 #include "../model/ezsignfolder_create_object_v1_response.h"
+#include "../model/ezsignfolder_create_object_v2_request.h"
+#include "../model/ezsignfolder_create_object_v2_response.h"
 #include "../model/ezsignfolder_delete_object_v1_response.h"
 #include "../model/ezsignfolder_edit_object_v1_request.h"
 #include "../model/ezsignfolder_edit_object_v1_response.h"
@@ -35,6 +37,14 @@ typedef enum  { ezmax_api_definition_ezsignfolderGetListV1__NULL = 0, ezmax_api_
 //
 ezsignfolder_create_object_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1(apiClient_t *apiClient, list_t * ezsignfolder_create_object_v1_request );
+
+
+// Create a new Ezsignfolder
+//
+// The endpoint allows to create one or many elements at once.
+//
+ezsignfolder_create_object_v2_response_t*
+ObjectEzsignfolderAPI_ezsignfolderCreateObjectV2(apiClient_t *apiClient, ezsignfolder_create_object_v2_request_t * ezsignfolder_create_object_v2_request );
 
 
 // Delete an existing Ezsignfolder

@@ -117,6 +117,83 @@ end:
 
 }
 
+// Create a new Ezsignsignature
+//
+// The endpoint allows to create one or many elements at once.
+//
+ezsignsignature_create_object_v2_response_t*
+ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV2(apiClient_t *apiClient, ezsignsignature_create_object_v2_request_t * ezsignsignature_create_object_v2_request )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/2/object/ezsignsignature")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/2/object/ezsignsignature");
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_ezsignsignature_create_object_v2_request = NULL;
+    if (ezsignsignature_create_object_v2_request != NULL)
+    {
+        //string
+        localVarSingleItemJSON_ezsignsignature_create_object_v2_request = ezsignsignature_create_object_v2_request_convertToJSON(ezsignsignature_create_object_v2_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignsignature_create_object_v2_request);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "POST");
+
+    if (apiClient->response_code == 201) {
+        printf("%s\n","Successful response");
+    }
+    //nonprimitive not container
+    cJSON *ObjectEzsignsignatureAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsignsignature_create_object_v2_response_t *elementToReturn = ezsignsignature_create_object_v2_response_parseFromJSON(ObjectEzsignsignatureAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsignsignatureAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    if (localVarSingleItemJSON_ezsignsignature_create_object_v2_request) {
+        cJSON_Delete(localVarSingleItemJSON_ezsignsignature_create_object_v2_request);
+        localVarSingleItemJSON_ezsignsignature_create_object_v2_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Delete an existing Ezsignsignature
 //
 // 

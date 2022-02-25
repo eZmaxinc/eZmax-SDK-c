@@ -13,6 +13,8 @@
 #include "../model/ezsigndocument_apply_ezsigntemplate_v2_response.h"
 #include "../model/ezsigndocument_create_object_v1_request.h"
 #include "../model/ezsigndocument_create_object_v1_response.h"
+#include "../model/ezsigndocument_create_object_v2_request.h"
+#include "../model/ezsigndocument_create_object_v2_response.h"
 #include "../model/ezsigndocument_delete_object_v1_response.h"
 #include "../model/ezsigndocument_edit_ezsignsignatures_v1_request.h"
 #include "../model/ezsigndocument_edit_ezsignsignatures_v1_response.h"
@@ -53,6 +55,14 @@ ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV2(apiClient_t *apiClie
 //
 ezsigndocument_create_object_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV1(apiClient_t *apiClient, list_t * ezsigndocument_create_object_v1_request );
+
+
+// Create a new Ezsigndocument
+//
+// The endpoint allows to create one or many elements at once.
+//
+ezsigndocument_create_object_v2_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV2(apiClient_t *apiClient, ezsigndocument_create_object_v2_request_t * ezsigndocument_create_object_v2_request );
 
 
 // Delete an existing Ezsigndocument

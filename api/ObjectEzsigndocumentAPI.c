@@ -368,6 +368,86 @@ end:
 
 }
 
+// Create a new Ezsigndocument
+//
+// The endpoint allows to create one or many elements at once.
+//
+ezsigndocument_create_object_v2_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV2(apiClient_t *apiClient, ezsigndocument_create_object_v2_request_t * ezsigndocument_create_object_v2_request )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/2/object/ezsigndocument")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/2/object/ezsigndocument");
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_ezsigndocument_create_object_v2_request = NULL;
+    if (ezsigndocument_create_object_v2_request != NULL)
+    {
+        //string
+        localVarSingleItemJSON_ezsigndocument_create_object_v2_request = ezsigndocument_create_object_v2_request_convertToJSON(ezsigndocument_create_object_v2_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsigndocument_create_object_v2_request);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "POST");
+
+    if (apiClient->response_code == 201) {
+        printf("%s\n","Successful response");
+    }
+    if (apiClient->response_code == 422) {
+        printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body. If the error is recoverable sTemporaryFileUrl will be set and you can use this url to try a new request without sending the file over again");
+    }
+    //nonprimitive not container
+    cJSON *ObjectEzsigndocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsigndocument_create_object_v2_response_t *elementToReturn = ezsigndocument_create_object_v2_response_parseFromJSON(ObjectEzsigndocumentAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsigndocumentAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    if (localVarSingleItemJSON_ezsigndocument_create_object_v2_request) {
+        cJSON_Delete(localVarSingleItemJSON_ezsigndocument_create_object_v2_request);
+        localVarSingleItemJSON_ezsigndocument_create_object_v2_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Delete an existing Ezsigndocument
 //
 // 

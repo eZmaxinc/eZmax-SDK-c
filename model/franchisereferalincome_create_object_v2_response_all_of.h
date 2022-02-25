@@ -1,0 +1,38 @@
+/*
+ * franchisereferalincome_create_object_v2_response_all_of.h
+ *
+ * 
+ */
+
+#ifndef _franchisereferalincome_create_object_v2_response_all_of_H_
+#define _franchisereferalincome_create_object_v2_response_all_of_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct franchisereferalincome_create_object_v2_response_all_of_t franchisereferalincome_create_object_v2_response_all_of_t;
+
+#include "franchisereferalincome_create_object_v2_response_m_payload.h"
+
+
+
+typedef struct franchisereferalincome_create_object_v2_response_all_of_t {
+    struct franchisereferalincome_create_object_v2_response_m_payload_t *m_payload; //model
+
+} franchisereferalincome_create_object_v2_response_all_of_t;
+
+franchisereferalincome_create_object_v2_response_all_of_t *franchisereferalincome_create_object_v2_response_all_of_create(
+    franchisereferalincome_create_object_v2_response_m_payload_t *m_payload
+);
+
+void franchisereferalincome_create_object_v2_response_all_of_free(franchisereferalincome_create_object_v2_response_all_of_t *franchisereferalincome_create_object_v2_response_all_of);
+
+franchisereferalincome_create_object_v2_response_all_of_t *franchisereferalincome_create_object_v2_response_all_of_parseFromJSON(cJSON *franchisereferalincome_create_object_v2_response_all_ofJSON);
+
+cJSON *franchisereferalincome_create_object_v2_response_all_of_convertToJSON(franchisereferalincome_create_object_v2_response_all_of_t *franchisereferalincome_create_object_v2_response_all_of);
+
+#endif /* _franchisereferalincome_create_object_v2_response_all_of_H_ */
+

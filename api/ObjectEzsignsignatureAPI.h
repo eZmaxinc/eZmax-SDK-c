@@ -8,6 +8,8 @@
 #include "../model/common_response_error.h"
 #include "../model/ezsignsignature_create_object_v1_request.h"
 #include "../model/ezsignsignature_create_object_v1_response.h"
+#include "../model/ezsignsignature_create_object_v2_request.h"
+#include "../model/ezsignsignature_create_object_v2_response.h"
 #include "../model/ezsignsignature_delete_object_v1_response.h"
 #include "../model/ezsignsignature_edit_object_v1_request.h"
 #include "../model/ezsignsignature_edit_object_v1_response.h"
@@ -20,6 +22,14 @@
 //
 ezsignsignature_create_object_v1_response_t*
 ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV1(apiClient_t *apiClient, list_t * ezsignsignature_create_object_v1_request );
+
+
+// Create a new Ezsignsignature
+//
+// The endpoint allows to create one or many elements at once.
+//
+ezsignsignature_create_object_v2_response_t*
+ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV2(apiClient_t *apiClient, ezsignsignature_create_object_v2_request_t * ezsignsignature_create_object_v2_request );
 
 
 // Delete an existing Ezsignsignature

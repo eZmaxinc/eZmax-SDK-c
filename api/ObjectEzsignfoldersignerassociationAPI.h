@@ -8,6 +8,8 @@
 #include "../model/common_response_error.h"
 #include "../model/ezsignfoldersignerassociation_create_object_v1_request.h"
 #include "../model/ezsignfoldersignerassociation_create_object_v1_response.h"
+#include "../model/ezsignfoldersignerassociation_create_object_v2_request.h"
+#include "../model/ezsignfoldersignerassociation_create_object_v2_response.h"
 #include "../model/ezsignfoldersignerassociation_delete_object_v1_response.h"
 #include "../model/ezsignfoldersignerassociation_get_in_person_login_url_v1_response.h"
 #include "../model/ezsignfoldersignerassociation_get_object_v1_response.h"
@@ -19,6 +21,14 @@
 //
 ezsignfoldersignerassociation_create_object_v1_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateObjectV1(apiClient_t *apiClient, list_t * ezsignfoldersignerassociation_create_object_v1_request );
+
+
+// Create a new Ezsignfoldersignerassociation
+//
+// The endpoint allows to create one or many elements at once.
+//
+ezsignfoldersignerassociation_create_object_v2_response_t*
+ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateObjectV2(apiClient_t *apiClient, ezsignfoldersignerassociation_create_object_v2_request_t * ezsignfoldersignerassociation_create_object_v2_request );
 
 
 // Delete an existing Ezsignfoldersignerassociation

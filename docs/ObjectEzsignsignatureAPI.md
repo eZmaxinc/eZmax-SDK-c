@@ -5,6 +5,7 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV1**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV1) | **POST** /1/object/ezsignsignature | Create a new Ezsignsignature
+[**ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV2**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV2) | **POST** /2/object/ezsignsignature | Create a new Ezsignsignature
 [**ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1) | **DELETE** /1/object/ezsignsignature/{pkiEzsignsignatureID} | Delete an existing Ezsignsignature
 [**ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV1**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV1) | **PUT** /1/object/ezsignsignature/{pkiEzsignsignatureID} | Edit an existing Ezsignsignature
 [**ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV1**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV1) | **GET** /1/object/ezsignsignature/{pkiEzsignsignatureID} | Retrieve an existing Ezsignsignature
@@ -28,6 +29,37 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsignsignature_create_object_v1_response_t](ezsignsignature_create_object_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV2**
+```c
+// Create a new Ezsignsignature
+//
+// The endpoint allows to create one or many elements at once.
+//
+ezsignsignature_create_object_v2_response_t* ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV2(apiClient_t *apiClient, ezsignsignature_create_object_v2_request_t * ezsignsignature_create_object_v2_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**ezsignsignature_create_object_v2_request** | **[ezsignsignature_create_object_v2_request_t](ezsignsignature_create_object_v2_request.md) \*** |  | 
+
+### Return type
+
+[ezsignsignature_create_object_v2_response_t](ezsignsignature_create_object_v2_response.md) *
 
 
 ### Authorization

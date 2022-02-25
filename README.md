@@ -72,11 +72,13 @@ Category | Method | HTTP request | Description
 *ModuleUserAPI* | [**ModuleUserAPI_userCreateEzsignuserV1**](docs/ModuleUserAPI.md#ModuleUserAPI_userCreateEzsignuserV1) | **POST** /1/module/user/createezsignuser | Create a new User of type Ezsignuser
 *ObjectActivesessionAPI* | [**ObjectActivesessionAPI_activesessionGetCurrentV1**](docs/ObjectActivesessionAPI.md#ObjectActivesessionAPI_activesessionGetCurrentV1) | **GET** /1/object/activesession/getCurrent | Get Current Activesession
 *ObjectApikeyAPI* | [**ObjectApikeyAPI_apikeyCreateObjectV1**](docs/ObjectApikeyAPI.md#ObjectApikeyAPI_apikeyCreateObjectV1) | **POST** /1/object/apikey | Create a new Apikey
+*ObjectApikeyAPI* | [**ObjectApikeyAPI_apikeyCreateObjectV2**](docs/ObjectApikeyAPI.md#ObjectApikeyAPI_apikeyCreateObjectV2) | **POST** /2/object/apikey | Create a new Apikey
 *ObjectEzsignbulksendAPI* | [**ObjectEzsignbulksendAPI_ezsignbulksendGetListV1**](docs/ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendGetListV1) | **GET** /1/object/ezsignbulksend/getList | Retrieve Ezsignbulksend list
 *ObjectEzsignbulksendAPI* | [**ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV1**](docs/ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV1) | **GET** /1/object/ezsignbulksend/{pkiEzsignbulksendID} | Retrieve an existing Ezsignbulksend
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/applyezsigntemplate | Apply an Ezsign Template to the Ezsigndocument.
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV2**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV2) | **POST** /2/object/ezsigndocument/{pkiEzsigndocumentID}/applyEzsigntemplate | Apply an Ezsign Template to the Ezsigndocument.
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV1) | **POST** /1/object/ezsigndocument | Create a new Ezsigndocument
+*ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV2**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV2) | **POST** /2/object/ezsigndocument | Create a new Ezsigndocument
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1) | **DELETE** /1/object/ezsigndocument/{pkiEzsigndocumentID} | Delete an existing Ezsigndocument
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1) | **PUT** /1/object/ezsigndocument/{pkiEzsigndocumentID}/editEzsignsignatures | Edit multiple ezsignsignatures
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/endPrematurely | End prematurely
@@ -88,6 +90,7 @@ Category | Method | HTTP request | Description
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getWordsPositions | Retrieve positions X,Y of given words from a Ezsigndocument
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1) | **PATCH** /1/object/ezsigndocument/{pkiEzsigndocumentID} | Patch an existing Ezsigndocument
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1) | **POST** /1/object/ezsignfolder | Create a new Ezsignfolder
+*ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderCreateObjectV2**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderCreateObjectV2) | **POST** /2/object/ezsignfolder | Create a new Ezsignfolder
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1) | **DELETE** /1/object/ezsignfolder/{pkiEzsignfolderID} | Delete an existing Ezsignfolder
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderEditObjectV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderEditObjectV1) | **PUT** /1/object/ezsignfolder/{pkiEzsignfolderID} | Edit an existing Ezsignfolder
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsigndocuments | Retrieve an existing Ezsignfolder's Ezsigndocuments
@@ -98,12 +101,14 @@ Category | Method | HTTP request | Description
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderSendV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderSendV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/send | Send the Ezsignfolder to the signatories for signature
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderUnsendV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderUnsendV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/unsend | Unsend the Ezsignfolder
 *ObjectEzsignfoldersignerassociationAPI* | [**ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateObjectV1**](docs/ObjectEzsignfoldersignerassociationAPI.md#ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateObjectV1) | **POST** /1/object/ezsignfoldersignerassociation | Create a new Ezsignfoldersignerassociation
+*ObjectEzsignfoldersignerassociationAPI* | [**ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateObjectV2**](docs/ObjectEzsignfoldersignerassociationAPI.md#ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateObjectV2) | **POST** /2/object/ezsignfoldersignerassociation | Create a new Ezsignfoldersignerassociation
 *ObjectEzsignfoldersignerassociationAPI* | [**ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationDeleteObjectV1**](docs/ObjectEzsignfoldersignerassociationAPI.md#ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationDeleteObjectV1) | **DELETE** /1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID} | Delete an existing Ezsignfoldersignerassociation
 *ObjectEzsignfoldersignerassociationAPI* | [**ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetInPersonLoginUrlV1**](docs/ObjectEzsignfoldersignerassociationAPI.md#ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetInPersonLoginUrlV1) | **GET** /1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}/getInPersonLoginUrl | Retrieve a Login Url to allow In-Person signing
 *ObjectEzsignfoldersignerassociationAPI* | [**ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV1**](docs/ObjectEzsignfoldersignerassociationAPI.md#ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV1) | **GET** /1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID} | Retrieve an existing Ezsignfoldersignerassociation
 *ObjectEzsignfoldertypeAPI* | [**ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV1**](docs/ObjectEzsignfoldertypeAPI.md#ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV1) | **GET** /1/object/ezsignfoldertype/getAutocomplete/{sSelector} | Retrieve Ezsignfoldertypes and IDs
 *ObjectEzsignfoldertypeAPI* | [**ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1**](docs/ObjectEzsignfoldertypeAPI.md#ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1) | **GET** /1/object/ezsignfoldertype/getList | Retrieve Ezsignfoldertype list
 *ObjectEzsignsignatureAPI* | [**ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV1**](docs/ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV1) | **POST** /1/object/ezsignsignature | Create a new Ezsignsignature
+*ObjectEzsignsignatureAPI* | [**ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV2**](docs/ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV2) | **POST** /2/object/ezsignsignature | Create a new Ezsignsignature
 *ObjectEzsignsignatureAPI* | [**ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1**](docs/ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1) | **DELETE** /1/object/ezsignsignature/{pkiEzsignsignatureID} | Delete an existing Ezsignsignature
 *ObjectEzsignsignatureAPI* | [**ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV1**](docs/ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV1) | **PUT** /1/object/ezsignsignature/{pkiEzsignsignatureID} | Edit an existing Ezsignsignature
 *ObjectEzsignsignatureAPI* | [**ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV1**](docs/ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV1) | **GET** /1/object/ezsignsignature/{pkiEzsignsignatureID} | Retrieve an existing Ezsignsignature
@@ -111,6 +116,7 @@ Category | Method | HTTP request | Description
 *ObjectFranchisebrokerAPI* | [**ObjectFranchisebrokerAPI_franchisebrokerGetAutocompleteV1**](docs/ObjectFranchisebrokerAPI.md#ObjectFranchisebrokerAPI_franchisebrokerGetAutocompleteV1) | **GET** /1/object/franchisebroker/getAutocomplete/{sSelector} | Retrieve Franchisebrokers and IDs
 *ObjectFranchiseofficeAPI* | [**ObjectFranchiseofficeAPI_franchiseofficeGetAutocompleteV1**](docs/ObjectFranchiseofficeAPI.md#ObjectFranchiseofficeAPI_franchiseofficeGetAutocompleteV1) | **GET** /1/object/franchiseoffice/getAutocomplete/{sSelector} | Retrieve Franchiseoffices and IDs
 *ObjectFranchisereferalincomeAPI* | [**ObjectFranchisereferalincomeAPI_franchisereferalincomeCreateObjectV1**](docs/ObjectFranchisereferalincomeAPI.md#ObjectFranchisereferalincomeAPI_franchisereferalincomeCreateObjectV1) | **POST** /1/object/franchisereferalincome | Create a new Franchisereferalincome
+*ObjectFranchisereferalincomeAPI* | [**ObjectFranchisereferalincomeAPI_franchisereferalincomeCreateObjectV2**](docs/ObjectFranchisereferalincomeAPI.md#ObjectFranchisereferalincomeAPI_franchisereferalincomeCreateObjectV2) | **POST** /2/object/franchisereferalincome | Create a new Franchisereferalincome
 *ObjectPeriodAPI* | [**ObjectPeriodAPI_periodGetAutocompleteV1**](docs/ObjectPeriodAPI.md#ObjectPeriodAPI_periodGetAutocompleteV1) | **GET** /1/object/period/getAutocomplete/{sSelector} | Retrieve Periods and IDs
 
 
@@ -129,6 +135,10 @@ Category | Method | HTTP request | Description
  - [apikey_create_object_v1_response_t](docs/apikey_create_object_v1_response.md)
  - [apikey_create_object_v1_response_all_of_t](docs/apikey_create_object_v1_response_all_of.md)
  - [apikey_create_object_v1_response_m_payload_t](docs/apikey_create_object_v1_response_m_payload.md)
+ - [apikey_create_object_v2_request_t](docs/apikey_create_object_v2_request.md)
+ - [apikey_create_object_v2_response_t](docs/apikey_create_object_v2_response.md)
+ - [apikey_create_object_v2_response_all_of_t](docs/apikey_create_object_v2_response_all_of.md)
+ - [apikey_create_object_v2_response_m_payload_t](docs/apikey_create_object_v2_response_m_payload.md)
  - [apikey_request_t](docs/apikey_request.md)
  - [apikey_request_compound_t](docs/apikey_request_compound.md)
  - [apikey_response_t](docs/apikey_response.md)
@@ -186,6 +196,10 @@ Category | Method | HTTP request | Description
  - [ezsigndocument_create_object_v1_response_t](docs/ezsigndocument_create_object_v1_response.md)
  - [ezsigndocument_create_object_v1_response_all_of_t](docs/ezsigndocument_create_object_v1_response_all_of.md)
  - [ezsigndocument_create_object_v1_response_m_payload_t](docs/ezsigndocument_create_object_v1_response_m_payload.md)
+ - [ezsigndocument_create_object_v2_request_t](docs/ezsigndocument_create_object_v2_request.md)
+ - [ezsigndocument_create_object_v2_response_t](docs/ezsigndocument_create_object_v2_response.md)
+ - [ezsigndocument_create_object_v2_response_all_of_t](docs/ezsigndocument_create_object_v2_response_all_of.md)
+ - [ezsigndocument_create_object_v2_response_m_payload_t](docs/ezsigndocument_create_object_v2_response_m_payload.md)
  - [ezsigndocument_delete_object_v1_response_t](docs/ezsigndocument_delete_object_v1_response.md)
  - [ezsigndocument_edit_ezsignsignatures_v1_request_t](docs/ezsigndocument_edit_ezsignsignatures_v1_request.md)
  - [ezsigndocument_edit_ezsignsignatures_v1_response_t](docs/ezsigndocument_edit_ezsignsignatures_v1_response.md)
@@ -221,6 +235,10 @@ Category | Method | HTTP request | Description
  - [ezsignfolder_create_object_v1_response_t](docs/ezsignfolder_create_object_v1_response.md)
  - [ezsignfolder_create_object_v1_response_all_of_t](docs/ezsignfolder_create_object_v1_response_all_of.md)
  - [ezsignfolder_create_object_v1_response_m_payload_t](docs/ezsignfolder_create_object_v1_response_m_payload.md)
+ - [ezsignfolder_create_object_v2_request_t](docs/ezsignfolder_create_object_v2_request.md)
+ - [ezsignfolder_create_object_v2_response_t](docs/ezsignfolder_create_object_v2_response.md)
+ - [ezsignfolder_create_object_v2_response_all_of_t](docs/ezsignfolder_create_object_v2_response_all_of.md)
+ - [ezsignfolder_create_object_v2_response_m_payload_t](docs/ezsignfolder_create_object_v2_response_m_payload.md)
  - [ezsignfolder_delete_object_v1_response_t](docs/ezsignfolder_delete_object_v1_response.md)
  - [ezsignfolder_edit_object_v1_request_t](docs/ezsignfolder_edit_object_v1_request.md)
  - [ezsignfolder_edit_object_v1_response_t](docs/ezsignfolder_edit_object_v1_response.md)
@@ -252,6 +270,10 @@ Category | Method | HTTP request | Description
  - [ezsignfoldersignerassociation_create_object_v1_response_t](docs/ezsignfoldersignerassociation_create_object_v1_response.md)
  - [ezsignfoldersignerassociation_create_object_v1_response_all_of_t](docs/ezsignfoldersignerassociation_create_object_v1_response_all_of.md)
  - [ezsignfoldersignerassociation_create_object_v1_response_m_payload_t](docs/ezsignfoldersignerassociation_create_object_v1_response_m_payload.md)
+ - [ezsignfoldersignerassociation_create_object_v2_request_t](docs/ezsignfoldersignerassociation_create_object_v2_request.md)
+ - [ezsignfoldersignerassociation_create_object_v2_response_t](docs/ezsignfoldersignerassociation_create_object_v2_response.md)
+ - [ezsignfoldersignerassociation_create_object_v2_response_all_of_t](docs/ezsignfoldersignerassociation_create_object_v2_response_all_of.md)
+ - [ezsignfoldersignerassociation_create_object_v2_response_m_payload_t](docs/ezsignfoldersignerassociation_create_object_v2_response_m_payload.md)
  - [ezsignfoldersignerassociation_delete_object_v1_response_t](docs/ezsignfoldersignerassociation_delete_object_v1_response.md)
  - [ezsignfoldersignerassociation_get_in_person_login_url_v1_response_t](docs/ezsignfoldersignerassociation_get_in_person_login_url_v1_response.md)
  - [ezsignfoldersignerassociation_get_in_person_login_url_v1_response_all_of_t](docs/ezsignfoldersignerassociation_get_in_person_login_url_v1_response_all_of.md)
@@ -281,6 +303,10 @@ Category | Method | HTTP request | Description
  - [ezsignsignature_create_object_v1_response_t](docs/ezsignsignature_create_object_v1_response.md)
  - [ezsignsignature_create_object_v1_response_all_of_t](docs/ezsignsignature_create_object_v1_response_all_of.md)
  - [ezsignsignature_create_object_v1_response_m_payload_t](docs/ezsignsignature_create_object_v1_response_m_payload.md)
+ - [ezsignsignature_create_object_v2_request_t](docs/ezsignsignature_create_object_v2_request.md)
+ - [ezsignsignature_create_object_v2_response_t](docs/ezsignsignature_create_object_v2_response.md)
+ - [ezsignsignature_create_object_v2_response_all_of_t](docs/ezsignsignature_create_object_v2_response_all_of.md)
+ - [ezsignsignature_create_object_v2_response_m_payload_t](docs/ezsignsignature_create_object_v2_response_m_payload.md)
  - [ezsignsignature_delete_object_v1_response_t](docs/ezsignsignature_delete_object_v1_response.md)
  - [ezsignsignature_edit_object_v1_request_t](docs/ezsignsignature_edit_object_v1_request.md)
  - [ezsignsignature_edit_object_v1_response_t](docs/ezsignsignature_edit_object_v1_response.md)
@@ -319,6 +345,10 @@ Category | Method | HTTP request | Description
  - [franchisereferalincome_create_object_v1_response_t](docs/franchisereferalincome_create_object_v1_response.md)
  - [franchisereferalincome_create_object_v1_response_all_of_t](docs/franchisereferalincome_create_object_v1_response_all_of.md)
  - [franchisereferalincome_create_object_v1_response_m_payload_t](docs/franchisereferalincome_create_object_v1_response_m_payload.md)
+ - [franchisereferalincome_create_object_v2_request_t](docs/franchisereferalincome_create_object_v2_request.md)
+ - [franchisereferalincome_create_object_v2_response_t](docs/franchisereferalincome_create_object_v2_response.md)
+ - [franchisereferalincome_create_object_v2_response_all_of_t](docs/franchisereferalincome_create_object_v2_response_all_of.md)
+ - [franchisereferalincome_create_object_v2_response_m_payload_t](docs/franchisereferalincome_create_object_v2_response_m_payload.md)
  - [franchisereferalincome_request_t](docs/franchisereferalincome_request.md)
  - [franchisereferalincome_request_compound_t](docs/franchisereferalincome_request_compound.md)
  - [franchisereferalincome_request_compound_all_of_t](docs/franchisereferalincome_request_compound_all_of.md)

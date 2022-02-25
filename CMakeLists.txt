@@ -62,6 +62,10 @@ set(SRCS
     model/apikey_create_object_v1_response.c
     model/apikey_create_object_v1_response_all_of.c
     model/apikey_create_object_v1_response_m_payload.c
+    model/apikey_create_object_v2_request.c
+    model/apikey_create_object_v2_response.c
+    model/apikey_create_object_v2_response_all_of.c
+    model/apikey_create_object_v2_response_m_payload.c
     model/apikey_request.c
     model/apikey_request_compound.c
     model/apikey_response.c
@@ -119,6 +123,10 @@ set(SRCS
     model/ezsigndocument_create_object_v1_response.c
     model/ezsigndocument_create_object_v1_response_all_of.c
     model/ezsigndocument_create_object_v1_response_m_payload.c
+    model/ezsigndocument_create_object_v2_request.c
+    model/ezsigndocument_create_object_v2_response.c
+    model/ezsigndocument_create_object_v2_response_all_of.c
+    model/ezsigndocument_create_object_v2_response_m_payload.c
     model/ezsigndocument_delete_object_v1_response.c
     model/ezsigndocument_edit_ezsignsignatures_v1_request.c
     model/ezsigndocument_edit_ezsignsignatures_v1_response.c
@@ -154,6 +162,10 @@ set(SRCS
     model/ezsignfolder_create_object_v1_response.c
     model/ezsignfolder_create_object_v1_response_all_of.c
     model/ezsignfolder_create_object_v1_response_m_payload.c
+    model/ezsignfolder_create_object_v2_request.c
+    model/ezsignfolder_create_object_v2_response.c
+    model/ezsignfolder_create_object_v2_response_all_of.c
+    model/ezsignfolder_create_object_v2_response_m_payload.c
     model/ezsignfolder_delete_object_v1_response.c
     model/ezsignfolder_edit_object_v1_request.c
     model/ezsignfolder_edit_object_v1_response.c
@@ -185,6 +197,10 @@ set(SRCS
     model/ezsignfoldersignerassociation_create_object_v1_response.c
     model/ezsignfoldersignerassociation_create_object_v1_response_all_of.c
     model/ezsignfoldersignerassociation_create_object_v1_response_m_payload.c
+    model/ezsignfoldersignerassociation_create_object_v2_request.c
+    model/ezsignfoldersignerassociation_create_object_v2_response.c
+    model/ezsignfoldersignerassociation_create_object_v2_response_all_of.c
+    model/ezsignfoldersignerassociation_create_object_v2_response_m_payload.c
     model/ezsignfoldersignerassociation_delete_object_v1_response.c
     model/ezsignfoldersignerassociation_get_in_person_login_url_v1_response.c
     model/ezsignfoldersignerassociation_get_in_person_login_url_v1_response_all_of.c
@@ -214,6 +230,10 @@ set(SRCS
     model/ezsignsignature_create_object_v1_response.c
     model/ezsignsignature_create_object_v1_response_all_of.c
     model/ezsignsignature_create_object_v1_response_m_payload.c
+    model/ezsignsignature_create_object_v2_request.c
+    model/ezsignsignature_create_object_v2_response.c
+    model/ezsignsignature_create_object_v2_response_all_of.c
+    model/ezsignsignature_create_object_v2_response_m_payload.c
     model/ezsignsignature_delete_object_v1_response.c
     model/ezsignsignature_edit_object_v1_request.c
     model/ezsignsignature_edit_object_v1_response.c
@@ -252,6 +272,10 @@ set(SRCS
     model/franchisereferalincome_create_object_v1_response.c
     model/franchisereferalincome_create_object_v1_response_all_of.c
     model/franchisereferalincome_create_object_v1_response_m_payload.c
+    model/franchisereferalincome_create_object_v2_request.c
+    model/franchisereferalincome_create_object_v2_response.c
+    model/franchisereferalincome_create_object_v2_response_all_of.c
+    model/franchisereferalincome_create_object_v2_response_m_payload.c
     model/franchisereferalincome_request.c
     model/franchisereferalincome_request_compound.c
     model/franchisereferalincome_request_compound_all_of.c
@@ -324,6 +348,10 @@ set(HDRS
     model/apikey_create_object_v1_response.h
     model/apikey_create_object_v1_response_all_of.h
     model/apikey_create_object_v1_response_m_payload.h
+    model/apikey_create_object_v2_request.h
+    model/apikey_create_object_v2_response.h
+    model/apikey_create_object_v2_response_all_of.h
+    model/apikey_create_object_v2_response_m_payload.h
     model/apikey_request.h
     model/apikey_request_compound.h
     model/apikey_response.h
@@ -381,6 +409,10 @@ set(HDRS
     model/ezsigndocument_create_object_v1_response.h
     model/ezsigndocument_create_object_v1_response_all_of.h
     model/ezsigndocument_create_object_v1_response_m_payload.h
+    model/ezsigndocument_create_object_v2_request.h
+    model/ezsigndocument_create_object_v2_response.h
+    model/ezsigndocument_create_object_v2_response_all_of.h
+    model/ezsigndocument_create_object_v2_response_m_payload.h
     model/ezsigndocument_delete_object_v1_response.h
     model/ezsigndocument_edit_ezsignsignatures_v1_request.h
     model/ezsigndocument_edit_ezsignsignatures_v1_response.h
@@ -416,6 +448,10 @@ set(HDRS
     model/ezsignfolder_create_object_v1_response.h
     model/ezsignfolder_create_object_v1_response_all_of.h
     model/ezsignfolder_create_object_v1_response_m_payload.h
+    model/ezsignfolder_create_object_v2_request.h
+    model/ezsignfolder_create_object_v2_response.h
+    model/ezsignfolder_create_object_v2_response_all_of.h
+    model/ezsignfolder_create_object_v2_response_m_payload.h
     model/ezsignfolder_delete_object_v1_response.h
     model/ezsignfolder_edit_object_v1_request.h
     model/ezsignfolder_edit_object_v1_response.h
@@ -447,6 +483,10 @@ set(HDRS
     model/ezsignfoldersignerassociation_create_object_v1_response.h
     model/ezsignfoldersignerassociation_create_object_v1_response_all_of.h
     model/ezsignfoldersignerassociation_create_object_v1_response_m_payload.h
+    model/ezsignfoldersignerassociation_create_object_v2_request.h
+    model/ezsignfoldersignerassociation_create_object_v2_response.h
+    model/ezsignfoldersignerassociation_create_object_v2_response_all_of.h
+    model/ezsignfoldersignerassociation_create_object_v2_response_m_payload.h
     model/ezsignfoldersignerassociation_delete_object_v1_response.h
     model/ezsignfoldersignerassociation_get_in_person_login_url_v1_response.h
     model/ezsignfoldersignerassociation_get_in_person_login_url_v1_response_all_of.h
@@ -476,6 +516,10 @@ set(HDRS
     model/ezsignsignature_create_object_v1_response.h
     model/ezsignsignature_create_object_v1_response_all_of.h
     model/ezsignsignature_create_object_v1_response_m_payload.h
+    model/ezsignsignature_create_object_v2_request.h
+    model/ezsignsignature_create_object_v2_response.h
+    model/ezsignsignature_create_object_v2_response_all_of.h
+    model/ezsignsignature_create_object_v2_response_m_payload.h
     model/ezsignsignature_delete_object_v1_response.h
     model/ezsignsignature_edit_object_v1_request.h
     model/ezsignsignature_edit_object_v1_response.h
@@ -514,6 +558,10 @@ set(HDRS
     model/franchisereferalincome_create_object_v1_response.h
     model/franchisereferalincome_create_object_v1_response_all_of.h
     model/franchisereferalincome_create_object_v1_response_m_payload.h
+    model/franchisereferalincome_create_object_v2_request.h
+    model/franchisereferalincome_create_object_v2_response.h
+    model/franchisereferalincome_create_object_v2_response_all_of.h
+    model/franchisereferalincome_create_object_v2_response_m_payload.h
     model/franchisereferalincome_request.h
     model/franchisereferalincome_request_compound.h
     model/franchisereferalincome_request_compound_all_of.h
