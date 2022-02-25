@@ -9,10 +9,12 @@ Method | HTTP request | Description
 [**ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV1) | **POST** /1/object/ezsigndocument | Create a new Ezsigndocument
 [**ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1) | **DELETE** /1/object/ezsigndocument/{pkiEzsigndocumentID} | Delete an existing Ezsigndocument
 [**ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1) | **PUT** /1/object/ezsigndocument/{pkiEzsigndocumentID}/editEzsignsignatures | Edit multiple ezsignsignatures
+[**ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/endPrematurely | End prematurely
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getDownloadUrl/{eDocumentType} | Retrieve a URL to download documents.
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignpagesV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignpagesV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getEzsignpages | Retrieve an existing Ezsigndocument&#39;s Ezsignpages
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getFormData | Retrieve an existing Ezsigndocument&#39;s Form Data
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID} | Retrieve an existing Ezsigndocument
+[**ObjectEzsigndocumentAPI_ezsigndocumentGetTemporaryProofV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetTemporaryProofV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getTemporaryProof | Retrieve the temporary proof
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getWordsPositions | Retrieve positions X,Y of given words from a Ezsigndocument
 [**ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1) | **PATCH** /1/object/ezsigndocument/{pkiEzsigndocumentID} | Patch an existing Ezsigndocument
 
@@ -116,6 +118,8 @@ Name | Type | Description  | Notes
 ```c
 // Delete an existing Ezsigndocument
 //
+// 
+//
 ezsigndocument_delete_object_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1(apiClient_t *apiClient, int pkiEzsigndocumentID);
 ```
 
@@ -173,6 +177,37 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1**
+```c
+// End prematurely
+//
+// End prematurely an Ezsigndocument when some signatures are still required
+//
+ezsigndocument_end_prematurely_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1(apiClient_t *apiClient, int pkiEzsigndocumentID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsigndocumentID** | **int** |  | 
+
+### Return type
+
+[ezsigndocument_end_prematurely_v1_response_t](ezsigndocument_end_prematurely_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1**
 ```c
 // Retrieve a URL to download documents.
@@ -209,6 +244,8 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve an existing Ezsigndocument's Ezsignpages
 //
+// 
+//
 ezsigndocument_get_ezsignpages_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignpagesV1(apiClient_t *apiClient, int pkiEzsigndocumentID);
 ```
 
@@ -237,6 +274,8 @@ Name | Type | Description  | Notes
 # **ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1**
 ```c
 // Retrieve an existing Ezsigndocument's Form Data
+//
+// 
 //
 ezsigndocument_get_form_data_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1(apiClient_t *apiClient, int pkiEzsigndocumentID);
 ```
@@ -267,8 +306,6 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve an existing Ezsigndocument
 //
-// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
-//
 ezsigndocument_get_object_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV1(apiClient_t *apiClient, int pkiEzsigndocumentID);
 ```
 
@@ -294,9 +331,42 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **ObjectEzsigndocumentAPI_ezsigndocumentGetTemporaryProofV1**
+```c
+// Retrieve the temporary proof
+//
+// Retrieve the temporary proof while the Ezsigndocument is being processed since the proof isn't available until the Ezsigndocument is completed
+//
+ezsigndocument_get_temporary_proof_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentGetTemporaryProofV1(apiClient_t *apiClient, int pkiEzsigndocumentID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsigndocumentID** | **int** |  | 
+
+### Return type
+
+[ezsigndocument_get_temporary_proof_v1_response_t](ezsigndocument_get_temporary_proof_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1**
 ```c
 // Retrieve positions X,Y of given words from a Ezsigndocument
+//
+// 
 //
 ezsigndocument_get_words_positions_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1(apiClient_t *apiClient, int pkiEzsigndocumentID, ezsigndocument_get_words_positions_v1_request_t * ezsigndocument_get_words_positions_v1_request);
 ```
@@ -327,6 +397,8 @@ Name | Type | Description  | Notes
 # **ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1**
 ```c
 // Patch an existing Ezsigndocument
+//
+// 
 //
 ezsigndocument_patch_object_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1(apiClient_t *apiClient, int pkiEzsigndocumentID, ezsigndocument_patch_object_v1_request_t * ezsigndocument_patch_object_v1_request);
 ```

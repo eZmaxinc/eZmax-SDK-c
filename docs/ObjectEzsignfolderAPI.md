@@ -51,6 +51,8 @@ Name | Type | Description  | Notes
 ```c
 // Delete an existing Ezsignfolder
 //
+// 
+//
 ezsignfolder_delete_object_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1(apiClient_t *apiClient, int pkiEzsignfolderID);
 ```
 
@@ -79,6 +81,8 @@ Name | Type | Description  | Notes
 # **ObjectEzsignfolderAPI_ezsignfolderEditObjectV1**
 ```c
 // Edit an existing Ezsignfolder
+//
+// 
 //
 ezsignfolder_edit_object_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderEditObjectV1(apiClient_t *apiClient, int pkiEzsignfolderID, ezsignfolder_edit_object_v1_request_t * ezsignfolder_edit_object_v1_request);
 ```
@@ -110,6 +114,8 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve an existing Ezsignfolder's Ezsigndocuments
 //
+// 
+//
 ezsignfolder_get_ezsigndocuments_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1(apiClient_t *apiClient, int pkiEzsignfolderID);
 ```
 
@@ -139,6 +145,8 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve an existing Ezsignfolder's Ezsignfoldersignerassociations
 //
+// 
+//
 ezsignfolder_get_ezsignfoldersignerassociations_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1(apiClient_t *apiClient, int pkiEzsignfolderID);
 ```
 
@@ -167,6 +175,8 @@ Name | Type | Description  | Notes
 # **ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1**
 ```c
 // Retrieve an existing Ezsignfolder's forms data
+//
+// 
 //
 ezsignfolder_get_forms_data_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1(apiClient_t *apiClient, int pkiEzsignfolderID);
 ```
@@ -232,6 +242,8 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve an existing Ezsignfolder
 //
+// 
+//
 ezsignfolder_get_object_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetObjectV1(apiClient_t *apiClient, int pkiEzsignfolderID);
 ```
 
@@ -260,6 +272,8 @@ Name | Type | Description  | Notes
 # **ObjectEzsignfolderAPI_ezsignfolderSendV1**
 ```c
 // Send the Ezsignfolder to the signatories for signature
+//
+// 
 //
 ezsignfolder_send_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderSendV1(apiClient_t *apiClient, int pkiEzsignfolderID, ezsignfolder_send_v1_request_t * ezsignfolder_send_v1_request);
 ```
@@ -293,7 +307,7 @@ Name | Type | Description  | Notes
 //
 // Once an Ezsignfolder has been sent to signatories, it cannot be modified.  Using this endpoint, you can unsend the Ezsignfolder and make it modifiable again.  Signatories will receive an email informing them the signature process was aborted and they might receive a new invitation to sign.  ⚠️ Warning: Any signature previously made by signatories on \"Non-completed\" Ezsigndocuments will be lost.
 //
-ezsignfolder_unsend_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderUnsendV1(apiClient_t *apiClient, int pkiEzsignfolderID, char * body);
+ezsignfolder_unsend_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderUnsendV1(apiClient_t *apiClient, int pkiEzsignfolderID, object_t * body);
 ```
 
 ### Parameters
@@ -301,7 +315,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **pkiEzsignfolderID** | **int** |  | 
-**body** | **char \*** |  | 
+**body** | **[object_t](object.md) \*** |  | 
 
 ### Return type
 

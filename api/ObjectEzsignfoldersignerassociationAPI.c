@@ -119,6 +119,8 @@ end:
 
 // Delete an existing Ezsignfoldersignerassociation
 //
+// 
+//
 ezsignfoldersignerassociation_delete_object_v1_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationDeleteObjectV1(apiClient_t *apiClient, int pkiEzsignfoldersignerassociationID )
 {
@@ -282,6 +284,8 @@ end:
 }
 
 // Retrieve an existing Ezsignfoldersignerassociation
+//
+// 
 //
 ezsignfoldersignerassociation_get_object_v1_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV1(apiClient_t *apiClient, int pkiEzsignfoldersignerassociationID )

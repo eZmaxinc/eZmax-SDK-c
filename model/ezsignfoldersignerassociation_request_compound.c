@@ -42,7 +42,10 @@ cJSON *ezsignfoldersignerassociation_request_compound_convertToJSON(ezsignfolder
     cJSON *item = cJSON_CreateObject();
 
     // ezsignfoldersignerassociation_request_compound->obj_ezsignsigner
-    if(ezsignfoldersignerassociation_request_compound->obj_ezsignsigner) { 
+    if (!ezsignfoldersignerassociation_request_compound->obj_ezsignsigner) {
+        goto fail;
+    }
+    
     cJSON *obj_ezsignsigner_local_JSON = ezsignsigner_request_compound_convertToJSON(ezsignfoldersignerassociation_request_compound->obj_ezsignsigner);
     if(obj_ezsignsigner_local_JSON == NULL) {
     goto fail; //model
@@ -51,7 +54,6 @@ cJSON *ezsignfoldersignerassociation_request_compound_convertToJSON(ezsignfolder
     if(item->child == NULL) {
     goto fail;
     }
-     } 
 
 
     // ezsignfoldersignerassociation_request_compound->pki_ezsignfoldersignerassociation_id
@@ -104,9 +106,12 @@ ezsignfoldersignerassociation_request_compound_t *ezsignfoldersignerassociation_
 
     // ezsignfoldersignerassociation_request_compound->obj_ezsignsigner
     cJSON *obj_ezsignsigner = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_request_compoundJSON, "objEzsignsigner");
-    if (obj_ezsignsigner) { 
-    obj_ezsignsigner_local_nonprim = ezsignsigner_request_compound_parseFromJSON(obj_ezsignsigner); //nonprimitive
+    if (!obj_ezsignsigner) {
+        goto end;
     }
+
+    
+    obj_ezsignsigner_local_nonprim = ezsignsigner_request_compound_parseFromJSON(obj_ezsignsigner); //nonprimitive
 
     // ezsignfoldersignerassociation_request_compound->pki_ezsignfoldersignerassociation_id
     cJSON *pki_ezsignfoldersignerassociation_id = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_request_compoundJSON, "pkiEzsignfoldersignerassociationID");
@@ -149,7 +154,7 @@ ezsignfoldersignerassociation_request_compound_t *ezsignfoldersignerassociation_
 
 
     ezsignfoldersignerassociation_request_compound_local_var = ezsignfoldersignerassociation_request_compound_create (
-        obj_ezsignsigner ? obj_ezsignsigner_local_nonprim : NULL,
+        obj_ezsignsigner_local_nonprim,
         pki_ezsignfoldersignerassociation_id ? pki_ezsignfoldersignerassociation_id->valuedouble : 0,
         fki_user_id ? fki_user_id->valuedouble : 0,
         fki_ezsignfolder_id->valuedouble,

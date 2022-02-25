@@ -370,6 +370,8 @@ end:
 
 // Delete an existing Ezsigndocument
 //
+// 
+//
 ezsigndocument_delete_object_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1(apiClient_t *apiClient, int pkiEzsigndocumentID )
 {
@@ -547,6 +549,89 @@ end:
 
 }
 
+// End prematurely
+//
+// End prematurely an Ezsigndocument when some signatures are still required
+//
+ezsigndocument_end_prematurely_v1_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1(apiClient_t *apiClient, int pkiEzsigndocumentID )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/ezsigndocument/{pkiEzsigndocumentID}/endPrematurely")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/ezsigndocument/{pkiEzsigndocumentID}/endPrematurely");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsigndocumentID =  + strlen("{ pkiEzsigndocumentID }");
+    if(pkiEzsigndocumentID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsigndocumentID = malloc(sizeOfPathParams_pkiEzsigndocumentID);
+    snprintf(localVarToReplace_pkiEzsigndocumentID, sizeOfPathParams_pkiEzsigndocumentID, "{%s}", "pkiEzsigndocumentID");
+
+    char localVarBuff_pkiEzsigndocumentID[256];
+    intToStr(localVarBuff_pkiEzsigndocumentID, pkiEzsigndocumentID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigndocumentID, localVarBuff_pkiEzsigndocumentID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "POST");
+
+    if (apiClient->response_code == 200) {
+        printf("%s\n","Successful response");
+    }
+    if (apiClient->response_code == 404) {
+        printf("%s\n","The element you are trying to work on does not exist");
+    }
+    if (apiClient->response_code == 422) {
+        printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    }
+    //nonprimitive not container
+    cJSON *ObjectEzsigndocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsigndocument_end_prematurely_v1_response_t *elementToReturn = ezsigndocument_end_prematurely_v1_response_parseFromJSON(ObjectEzsigndocumentAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsigndocumentAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsigndocumentID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Retrieve a URL to download documents.
 //
 // This endpoint returns URLs to different files that can be downloaded during the signing process.  These links will expire after 5 minutes so the download of the file should be made soon after retrieving the link.
@@ -643,6 +728,8 @@ end:
 
 // Retrieve an existing Ezsigndocument's Ezsignpages
 //
+// 
+//
 ezsigndocument_get_ezsignpages_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignpagesV1(apiClient_t *apiClient, int pkiEzsigndocumentID )
 {
@@ -723,6 +810,8 @@ end:
 }
 
 // Retrieve an existing Ezsigndocument's Form Data
+//
+// 
 //
 ezsigndocument_get_form_data_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1(apiClient_t *apiClient, int pkiEzsigndocumentID )
@@ -810,8 +899,6 @@ end:
 
 // Retrieve an existing Ezsigndocument
 //
-// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
-//
 ezsigndocument_get_object_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV1(apiClient_t *apiClient, int pkiEzsigndocumentID )
 {
@@ -888,7 +975,92 @@ end:
 
 }
 
+// Retrieve the temporary proof
+//
+// Retrieve the temporary proof while the Ezsigndocument is being processed since the proof isn't available until the Ezsigndocument is completed
+//
+ezsigndocument_get_temporary_proof_v1_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentGetTemporaryProofV1(apiClient_t *apiClient, int pkiEzsigndocumentID )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/ezsigndocument/{pkiEzsigndocumentID}/getTemporaryProof")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/ezsigndocument/{pkiEzsigndocumentID}/getTemporaryProof");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsigndocumentID =  + strlen("{ pkiEzsigndocumentID }");
+    if(pkiEzsigndocumentID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsigndocumentID = malloc(sizeOfPathParams_pkiEzsigndocumentID);
+    snprintf(localVarToReplace_pkiEzsigndocumentID, sizeOfPathParams_pkiEzsigndocumentID, "{%s}", "pkiEzsigndocumentID");
+
+    char localVarBuff_pkiEzsigndocumentID[256];
+    intToStr(localVarBuff_pkiEzsigndocumentID, pkiEzsigndocumentID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigndocumentID, localVarBuff_pkiEzsigndocumentID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "GET");
+
+    if (apiClient->response_code == 200) {
+        printf("%s\n","Successful response");
+    }
+    if (apiClient->response_code == 404) {
+        printf("%s\n","The element you are trying to work on does not exist");
+    }
+    if (apiClient->response_code == 422) {
+        printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    }
+    //nonprimitive not container
+    cJSON *ObjectEzsigndocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsigndocument_get_temporary_proof_v1_response_t *elementToReturn = ezsigndocument_get_temporary_proof_v1_response_parseFromJSON(ObjectEzsigndocumentAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsigndocumentAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsigndocumentID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Retrieve positions X,Y of given words from a Ezsigndocument
+//
+// 
 //
 ezsigndocument_get_words_positions_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1(apiClient_t *apiClient, int pkiEzsigndocumentID , ezsigndocument_get_words_positions_v1_request_t * ezsigndocument_get_words_positions_v1_request )
@@ -985,6 +1157,8 @@ end:
 }
 
 // Patch an existing Ezsigndocument
+//
+// 
 //
 ezsigndocument_patch_object_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1(apiClient_t *apiClient, int pkiEzsigndocumentID , ezsigndocument_patch_object_v1_request_t * ezsigndocument_patch_object_v1_request )

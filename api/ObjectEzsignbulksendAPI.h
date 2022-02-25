@@ -7,6 +7,7 @@
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
 #include "../model/ezsignbulksend_get_list_v1_response.h"
+#include "../model/ezsignbulksend_get_object_v1_response.h"
 #include "../model/header_accept_language.h"
 
 // Enum EORDERBY for ObjectEzsignbulksendAPI_ezsignbulksendGetListV1
@@ -22,5 +23,13 @@ typedef enum  { ezmax_api_definition_ezsignbulksendGetListV1__NULL = 0, ezmax_ap
 //
 ezsignbulksend_get_list_v1_response_t*
 ObjectEzsignbulksendAPI_ezsignbulksendGetListV1(apiClient_t *apiClient, ezmax_api_definition_ezsignbulksendGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter );
+
+
+// Retrieve an existing Ezsignbulksend
+//
+// 
+//
+ezsignbulksend_get_object_v1_response_t*
+ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV1(apiClient_t *apiClient, int pkiEzsignbulksendID );
 
 

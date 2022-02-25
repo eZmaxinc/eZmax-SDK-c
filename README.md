@@ -69,25 +69,22 @@ Category | Method | HTTP request | Description
 *ModuleAuthenticateAPI* | [**ModuleAuthenticateAPI_authenticateAuthenticateV2**](docs/ModuleAuthenticateAPI.md#ModuleAuthenticateAPI_authenticateAuthenticateV2) | **POST** /2/module/authenticate/authenticate/{eSessionType} | Authenticate a user
 *ModuleListAPI* | [**ModuleListAPI_listGetListpresentationV1**](docs/ModuleListAPI.md#ModuleListAPI_listGetListpresentationV1) | **GET** /1/module/list/listpresentation/{sListName} | Get all Listpresentation for a specific list
 *ModuleListAPI* | [**ModuleListAPI_listSaveListpresentationV1**](docs/ModuleListAPI.md#ModuleListAPI_listSaveListpresentationV1) | **POST** /1/module/list/listpresentation/{sListName} | Save all Listpresentation for a specific list
-*ModuleSsprAPI* | [**ModuleSsprAPI_ssprResetPasswordRequestV1**](docs/ModuleSsprAPI.md#ModuleSsprAPI_ssprResetPasswordRequestV1) | **POST** /1/module/sspr/resetPasswordRequest | Reset Password Request
-*ModuleSsprAPI* | [**ModuleSsprAPI_ssprResetPasswordV1**](docs/ModuleSsprAPI.md#ModuleSsprAPI_ssprResetPasswordV1) | **POST** /1/module/sspr/resetPassword | Reset Password
-*ModuleSsprAPI* | [**ModuleSsprAPI_ssprSendUsernamesV1**](docs/ModuleSsprAPI.md#ModuleSsprAPI_ssprSendUsernamesV1) | **POST** /1/module/sspr/sendUsernames | Send username(s)
-*ModuleSsprAPI* | [**ModuleSsprAPI_ssprUnlockAccountRequestV1**](docs/ModuleSsprAPI.md#ModuleSsprAPI_ssprUnlockAccountRequestV1) | **POST** /1/module/sspr/unlockAccountRequest | Unlock Account Request
-*ModuleSsprAPI* | [**ModuleSsprAPI_ssprUnlockAccountV1**](docs/ModuleSsprAPI.md#ModuleSsprAPI_ssprUnlockAccountV1) | **POST** /1/module/sspr/unlockAccount | Unlock Account
-*ModuleSsprAPI* | [**ModuleSsprAPI_ssprValidateTokenV1**](docs/ModuleSsprAPI.md#ModuleSsprAPI_ssprValidateTokenV1) | **POST** /1/module/sspr/validateToken | Validate Token
 *ModuleUserAPI* | [**ModuleUserAPI_userCreateEzsignuserV1**](docs/ModuleUserAPI.md#ModuleUserAPI_userCreateEzsignuserV1) | **POST** /1/module/user/createezsignuser | Create a new User of type Ezsignuser
 *ObjectActivesessionAPI* | [**ObjectActivesessionAPI_activesessionGetCurrentV1**](docs/ObjectActivesessionAPI.md#ObjectActivesessionAPI_activesessionGetCurrentV1) | **GET** /1/object/activesession/getCurrent | Get Current Activesession
 *ObjectApikeyAPI* | [**ObjectApikeyAPI_apikeyCreateObjectV1**](docs/ObjectApikeyAPI.md#ObjectApikeyAPI_apikeyCreateObjectV1) | **POST** /1/object/apikey | Create a new Apikey
 *ObjectEzsignbulksendAPI* | [**ObjectEzsignbulksendAPI_ezsignbulksendGetListV1**](docs/ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendGetListV1) | **GET** /1/object/ezsignbulksend/getList | Retrieve Ezsignbulksend list
+*ObjectEzsignbulksendAPI* | [**ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV1**](docs/ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV1) | **GET** /1/object/ezsignbulksend/{pkiEzsignbulksendID} | Retrieve an existing Ezsignbulksend
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/applyezsigntemplate | Apply an Ezsign Template to the Ezsigndocument.
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV2**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV2) | **POST** /2/object/ezsigndocument/{pkiEzsigndocumentID}/applyEzsigntemplate | Apply an Ezsign Template to the Ezsigndocument.
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV1) | **POST** /1/object/ezsigndocument | Create a new Ezsigndocument
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1) | **DELETE** /1/object/ezsigndocument/{pkiEzsigndocumentID} | Delete an existing Ezsigndocument
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1) | **PUT** /1/object/ezsigndocument/{pkiEzsigndocumentID}/editEzsignsignatures | Edit multiple ezsignsignatures
+*ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/endPrematurely | End prematurely
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getDownloadUrl/{eDocumentType} | Retrieve a URL to download documents.
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignpagesV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignpagesV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getEzsignpages | Retrieve an existing Ezsigndocument's Ezsignpages
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getFormData | Retrieve an existing Ezsigndocument's Form Data
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID} | Retrieve an existing Ezsigndocument
+*ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentGetTemporaryProofV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetTemporaryProofV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getTemporaryProof | Retrieve the temporary proof
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getWordsPositions | Retrieve positions X,Y of given words from a Ezsigndocument
 *ObjectEzsigndocumentAPI* | [**ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1**](docs/ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1) | **PATCH** /1/object/ezsigndocument/{pkiEzsigndocumentID} | Patch an existing Ezsigndocument
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1) | **POST** /1/object/ezsignfolder | Create a new Ezsignfolder
@@ -175,7 +172,12 @@ Category | Method | HTTP request | Description
  - [ezsignbulksend_get_list_v1_response_all_of_t](docs/ezsignbulksend_get_list_v1_response_all_of.md)
  - [ezsignbulksend_get_list_v1_response_m_payload_t](docs/ezsignbulksend_get_list_v1_response_m_payload.md)
  - [ezsignbulksend_get_list_v1_response_m_payload_all_of_t](docs/ezsignbulksend_get_list_v1_response_m_payload_all_of.md)
+ - [ezsignbulksend_get_object_v1_response_t](docs/ezsignbulksend_get_object_v1_response.md)
+ - [ezsignbulksend_get_object_v1_response_all_of_t](docs/ezsignbulksend_get_object_v1_response_all_of.md)
+ - [ezsignbulksend_get_object_v1_response_m_payload_t](docs/ezsignbulksend_get_object_v1_response_m_payload.md)
  - [ezsignbulksend_list_element_t](docs/ezsignbulksend_list_element.md)
+ - [ezsignbulksend_response_t](docs/ezsignbulksend_response.md)
+ - [ezsignbulksend_response_compound_t](docs/ezsignbulksend_response_compound.md)
  - [ezsigndocument_apply_ezsigntemplate_v1_request_t](docs/ezsigndocument_apply_ezsigntemplate_v1_request.md)
  - [ezsigndocument_apply_ezsigntemplate_v1_response_t](docs/ezsigndocument_apply_ezsigntemplate_v1_response.md)
  - [ezsigndocument_apply_ezsigntemplate_v2_request_t](docs/ezsigndocument_apply_ezsigntemplate_v2_request.md)
@@ -187,6 +189,7 @@ Category | Method | HTTP request | Description
  - [ezsigndocument_delete_object_v1_response_t](docs/ezsigndocument_delete_object_v1_response.md)
  - [ezsigndocument_edit_ezsignsignatures_v1_request_t](docs/ezsigndocument_edit_ezsignsignatures_v1_request.md)
  - [ezsigndocument_edit_ezsignsignatures_v1_response_t](docs/ezsigndocument_edit_ezsignsignatures_v1_response.md)
+ - [ezsigndocument_end_prematurely_v1_response_t](docs/ezsigndocument_end_prematurely_v1_response.md)
  - [ezsigndocument_get_download_url_v1_response_t](docs/ezsigndocument_get_download_url_v1_response.md)
  - [ezsigndocument_get_download_url_v1_response_all_of_t](docs/ezsigndocument_get_download_url_v1_response_all_of.md)
  - [ezsigndocument_get_download_url_v1_response_m_payload_t](docs/ezsigndocument_get_download_url_v1_response_m_payload.md)
@@ -199,6 +202,9 @@ Category | Method | HTTP request | Description
  - [ezsigndocument_get_object_v1_response_t](docs/ezsigndocument_get_object_v1_response.md)
  - [ezsigndocument_get_object_v1_response_all_of_t](docs/ezsigndocument_get_object_v1_response_all_of.md)
  - [ezsigndocument_get_object_v1_response_m_payload_t](docs/ezsigndocument_get_object_v1_response_m_payload.md)
+ - [ezsigndocument_get_temporary_proof_v1_response_t](docs/ezsigndocument_get_temporary_proof_v1_response.md)
+ - [ezsigndocument_get_temporary_proof_v1_response_all_of_t](docs/ezsigndocument_get_temporary_proof_v1_response_all_of.md)
+ - [ezsigndocument_get_temporary_proof_v1_response_m_payload_t](docs/ezsigndocument_get_temporary_proof_v1_response_m_payload.md)
  - [ezsigndocument_get_words_positions_v1_request_t](docs/ezsigndocument_get_words_positions_v1_request.md)
  - [ezsigndocument_get_words_positions_v1_response_t](docs/ezsigndocument_get_words_positions_v1_response.md)
  - [ezsigndocument_get_words_positions_v1_response_all_of_t](docs/ezsigndocument_get_words_positions_v1_response_all_of.md)
@@ -210,6 +216,7 @@ Category | Method | HTTP request | Description
  - [ezsigndocument_response_t](docs/ezsigndocument_response.md)
  - [ezsigndocument_response_compound_t](docs/ezsigndocument_response_compound.md)
  - [ezsigndocument_response_compound_all_of_t](docs/ezsigndocument_response_compound_all_of.md)
+ - [ezsigndocumentlog_response_t](docs/ezsigndocumentlog_response.md)
  - [ezsignfolder_create_object_v1_request_t](docs/ezsignfolder_create_object_v1_request.md)
  - [ezsignfolder_create_object_v1_response_t](docs/ezsignfolder_create_object_v1_response.md)
  - [ezsignfolder_create_object_v1_response_all_of_t](docs/ezsignfolder_create_object_v1_response_all_of.md)
@@ -299,6 +306,7 @@ Category | Method | HTTP request | Description
  - [field_e_activesession_sessiontype_t](docs/field_e_activesession_sessiontype.md)
  - [field_e_activesession_weekdaystart_t](docs/field_e_activesession_weekdaystart.md)
  - [field_e_ezsigndocument_step_t](docs/field_e_ezsigndocument_step.md)
+ - [field_e_ezsigndocumentlog_type_t](docs/field_e_ezsigndocumentlog_type.md)
  - [field_e_ezsignfolder_sendreminderfrequency_t](docs/field_e_ezsignfolder_sendreminderfrequency.md)
  - [field_e_ezsignfolder_step_t](docs/field_e_ezsignfolder_step.md)
  - [field_e_ezsignfoldertype_privacylevel_t](docs/field_e_ezsignfoldertype_privacylevel.md)
@@ -330,14 +338,6 @@ Category | Method | HTTP request | Description
  - [sspr_unlock_account_request_v1_request_t](docs/sspr_unlock_account_request_v1_request.md)
  - [sspr_unlock_account_v1_request_t](docs/sspr_unlock_account_v1_request.md)
  - [sspr_validate_token_v1_request_t](docs/sspr_validate_token_v1_request.md)
- - [unused_ezsigndocument_edit_object_v1_request_t](docs/unused_ezsigndocument_edit_object_v1_request.md)
- - [unused_ezsigndocument_edit_object_v1_response_t](docs/unused_ezsigndocument_edit_object_v1_response.md)
- - [unused_ezsignfolder_edit_object_v1_request_t](docs/unused_ezsignfolder_edit_object_v1_request.md)
- - [unused_ezsignfolder_edit_object_v1_response_t](docs/unused_ezsignfolder_edit_object_v1_response.md)
- - [unused_ezsignfoldersignerassociation_edit_object_v1_request_t](docs/unused_ezsignfoldersignerassociation_edit_object_v1_request.md)
- - [unused_ezsignfoldersignerassociation_edit_object_v1_response_t](docs/unused_ezsignfoldersignerassociation_edit_object_v1_response.md)
- - [unused_ezsignsignature_edit_object_v1_request_t](docs/unused_ezsignsignature_edit_object_v1_request.md)
- - [unused_ezsignsignature_edit_object_v1_response_t](docs/unused_ezsignsignature_edit_object_v1_response.md)
  - [user_create_ezsignuser_v1_request_t](docs/user_create_ezsignuser_v1_request.md)
  - [user_create_ezsignuser_v1_response_t](docs/user_create_ezsignuser_v1_response.md)
  - [user_create_ezsignuser_v1_response_all_of_t](docs/user_create_ezsignuser_v1_response_all_of.md)

@@ -45,6 +45,8 @@ Name | Type | Description  | Notes
 ```c
 // Delete an existing Ezsignsignature
 //
+// 
+//
 ezsignsignature_delete_object_v1_response_t* ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1(apiClient_t *apiClient, int pkiEzsignsignatureID);
 ```
 
@@ -73,6 +75,8 @@ Name | Type | Description  | Notes
 # **ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV1**
 ```c
 // Edit an existing Ezsignsignature
+//
+// 
 //
 ezsignsignature_edit_object_v1_response_t* ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV1(apiClient_t *apiClient, int pkiEzsignsignatureID, ezsignsignature_edit_object_v1_request_t * ezsignsignature_edit_object_v1_request);
 ```

@@ -105,7 +105,12 @@ set(SRCS
     model/ezsignbulksend_get_list_v1_response_all_of.c
     model/ezsignbulksend_get_list_v1_response_m_payload.c
     model/ezsignbulksend_get_list_v1_response_m_payload_all_of.c
+    model/ezsignbulksend_get_object_v1_response.c
+    model/ezsignbulksend_get_object_v1_response_all_of.c
+    model/ezsignbulksend_get_object_v1_response_m_payload.c
     model/ezsignbulksend_list_element.c
+    model/ezsignbulksend_response.c
+    model/ezsignbulksend_response_compound.c
     model/ezsigndocument_apply_ezsigntemplate_v1_request.c
     model/ezsigndocument_apply_ezsigntemplate_v1_response.c
     model/ezsigndocument_apply_ezsigntemplate_v2_request.c
@@ -117,6 +122,7 @@ set(SRCS
     model/ezsigndocument_delete_object_v1_response.c
     model/ezsigndocument_edit_ezsignsignatures_v1_request.c
     model/ezsigndocument_edit_ezsignsignatures_v1_response.c
+    model/ezsigndocument_end_prematurely_v1_response.c
     model/ezsigndocument_get_download_url_v1_response.c
     model/ezsigndocument_get_download_url_v1_response_all_of.c
     model/ezsigndocument_get_download_url_v1_response_m_payload.c
@@ -129,6 +135,9 @@ set(SRCS
     model/ezsigndocument_get_object_v1_response.c
     model/ezsigndocument_get_object_v1_response_all_of.c
     model/ezsigndocument_get_object_v1_response_m_payload.c
+    model/ezsigndocument_get_temporary_proof_v1_response.c
+    model/ezsigndocument_get_temporary_proof_v1_response_all_of.c
+    model/ezsigndocument_get_temporary_proof_v1_response_m_payload.c
     model/ezsigndocument_get_words_positions_v1_request.c
     model/ezsigndocument_get_words_positions_v1_response.c
     model/ezsigndocument_get_words_positions_v1_response_all_of.c
@@ -140,6 +149,7 @@ set(SRCS
     model/ezsigndocument_response.c
     model/ezsigndocument_response_compound.c
     model/ezsigndocument_response_compound_all_of.c
+    model/ezsigndocumentlog_response.c
     model/ezsignfolder_create_object_v1_request.c
     model/ezsignfolder_create_object_v1_response.c
     model/ezsignfolder_create_object_v1_response_all_of.c
@@ -229,6 +239,7 @@ set(SRCS
     model/field_e_activesession_sessiontype.c
     model/field_e_activesession_weekdaystart.c
     model/field_e_ezsigndocument_step.c
+    model/field_e_ezsigndocumentlog_type.c
     model/field_e_ezsignfolder_sendreminderfrequency.c
     model/field_e_ezsignfolder_step.c
     model/field_e_ezsignfoldertype_privacylevel.c
@@ -260,14 +271,6 @@ set(SRCS
     model/sspr_unlock_account_request_v1_request.c
     model/sspr_unlock_account_v1_request.c
     model/sspr_validate_token_v1_request.c
-    model/unused_ezsigndocument_edit_object_v1_request.c
-    model/unused_ezsigndocument_edit_object_v1_response.c
-    model/unused_ezsignfolder_edit_object_v1_request.c
-    model/unused_ezsignfolder_edit_object_v1_response.c
-    model/unused_ezsignfoldersignerassociation_edit_object_v1_request.c
-    model/unused_ezsignfoldersignerassociation_edit_object_v1_response.c
-    model/unused_ezsignsignature_edit_object_v1_request.c
-    model/unused_ezsignsignature_edit_object_v1_response.c
     model/user_create_ezsignuser_v1_request.c
     model/user_create_ezsignuser_v1_response.c
     model/user_create_ezsignuser_v1_response_all_of.c
@@ -284,7 +287,6 @@ set(SRCS
     api/GlobalCustomerAPI.c
     api/ModuleAuthenticateAPI.c
     api/ModuleListAPI.c
-    api/ModuleSsprAPI.c
     api/ModuleUserAPI.c
     api/ObjectActivesessionAPI.c
     api/ObjectApikeyAPI.c
@@ -365,7 +367,12 @@ set(HDRS
     model/ezsignbulksend_get_list_v1_response_all_of.h
     model/ezsignbulksend_get_list_v1_response_m_payload.h
     model/ezsignbulksend_get_list_v1_response_m_payload_all_of.h
+    model/ezsignbulksend_get_object_v1_response.h
+    model/ezsignbulksend_get_object_v1_response_all_of.h
+    model/ezsignbulksend_get_object_v1_response_m_payload.h
     model/ezsignbulksend_list_element.h
+    model/ezsignbulksend_response.h
+    model/ezsignbulksend_response_compound.h
     model/ezsigndocument_apply_ezsigntemplate_v1_request.h
     model/ezsigndocument_apply_ezsigntemplate_v1_response.h
     model/ezsigndocument_apply_ezsigntemplate_v2_request.h
@@ -377,6 +384,7 @@ set(HDRS
     model/ezsigndocument_delete_object_v1_response.h
     model/ezsigndocument_edit_ezsignsignatures_v1_request.h
     model/ezsigndocument_edit_ezsignsignatures_v1_response.h
+    model/ezsigndocument_end_prematurely_v1_response.h
     model/ezsigndocument_get_download_url_v1_response.h
     model/ezsigndocument_get_download_url_v1_response_all_of.h
     model/ezsigndocument_get_download_url_v1_response_m_payload.h
@@ -389,6 +397,9 @@ set(HDRS
     model/ezsigndocument_get_object_v1_response.h
     model/ezsigndocument_get_object_v1_response_all_of.h
     model/ezsigndocument_get_object_v1_response_m_payload.h
+    model/ezsigndocument_get_temporary_proof_v1_response.h
+    model/ezsigndocument_get_temporary_proof_v1_response_all_of.h
+    model/ezsigndocument_get_temporary_proof_v1_response_m_payload.h
     model/ezsigndocument_get_words_positions_v1_request.h
     model/ezsigndocument_get_words_positions_v1_response.h
     model/ezsigndocument_get_words_positions_v1_response_all_of.h
@@ -400,6 +411,7 @@ set(HDRS
     model/ezsigndocument_response.h
     model/ezsigndocument_response_compound.h
     model/ezsigndocument_response_compound_all_of.h
+    model/ezsigndocumentlog_response.h
     model/ezsignfolder_create_object_v1_request.h
     model/ezsignfolder_create_object_v1_response.h
     model/ezsignfolder_create_object_v1_response_all_of.h
@@ -489,6 +501,7 @@ set(HDRS
     model/field_e_activesession_sessiontype.h
     model/field_e_activesession_weekdaystart.h
     model/field_e_ezsigndocument_step.h
+    model/field_e_ezsigndocumentlog_type.h
     model/field_e_ezsignfolder_sendreminderfrequency.h
     model/field_e_ezsignfolder_step.h
     model/field_e_ezsignfoldertype_privacylevel.h
@@ -520,14 +533,6 @@ set(HDRS
     model/sspr_unlock_account_request_v1_request.h
     model/sspr_unlock_account_v1_request.h
     model/sspr_validate_token_v1_request.h
-    model/unused_ezsigndocument_edit_object_v1_request.h
-    model/unused_ezsigndocument_edit_object_v1_response.h
-    model/unused_ezsignfolder_edit_object_v1_request.h
-    model/unused_ezsignfolder_edit_object_v1_response.h
-    model/unused_ezsignfoldersignerassociation_edit_object_v1_request.h
-    model/unused_ezsignfoldersignerassociation_edit_object_v1_response.h
-    model/unused_ezsignsignature_edit_object_v1_request.h
-    model/unused_ezsignsignature_edit_object_v1_response.h
     model/user_create_ezsignuser_v1_request.h
     model/user_create_ezsignuser_v1_response.h
     model/user_create_ezsignuser_v1_response_all_of.h
@@ -544,7 +549,6 @@ set(HDRS
     api/GlobalCustomerAPI.h
     api/ModuleAuthenticateAPI.h
     api/ModuleListAPI.h
-    api/ModuleSsprAPI.h
     api/ModuleUserAPI.h
     api/ObjectActivesessionAPI.h
     api/ObjectApikeyAPI.h
@@ -643,7 +647,6 @@ set(HDRS "")
 #    unit-tests/manual-GlobalCustomerAPI.c
 #    unit-tests/manual-ModuleAuthenticateAPI.c
 #    unit-tests/manual-ModuleListAPI.c
-#    unit-tests/manual-ModuleSsprAPI.c
 #    unit-tests/manual-ModuleUserAPI.c
 #    unit-tests/manual-ObjectActivesessionAPI.c
 #    unit-tests/manual-ObjectApikeyAPI.c

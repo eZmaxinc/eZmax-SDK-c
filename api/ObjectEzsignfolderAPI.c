@@ -214,6 +214,8 @@ end:
 
 // Delete an existing Ezsignfolder
 //
+// 
+//
 ezsignfolder_delete_object_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1(apiClient_t *apiClient, int pkiEzsignfolderID )
 {
@@ -294,6 +296,8 @@ end:
 }
 
 // Edit an existing Ezsignfolder
+//
+// 
 //
 ezsignfolder_edit_object_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderEditObjectV1(apiClient_t *apiClient, int pkiEzsignfolderID , ezsignfolder_edit_object_v1_request_t * ezsignfolder_edit_object_v1_request )
@@ -391,6 +395,8 @@ end:
 
 // Retrieve an existing Ezsignfolder's Ezsigndocuments
 //
+// 
+//
 ezsignfolder_get_ezsigndocuments_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1(apiClient_t *apiClient, int pkiEzsignfolderID )
 {
@@ -469,6 +475,8 @@ end:
 
 // Retrieve an existing Ezsignfolder's Ezsignfoldersignerassociations
 //
+// 
+//
 ezsignfolder_get_ezsignfoldersignerassociations_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1(apiClient_t *apiClient, int pkiEzsignfolderID )
 {
@@ -546,6 +554,8 @@ end:
 }
 
 // Retrieve an existing Ezsignfolder's forms data
+//
+// 
 //
 ezsignfolder_get_forms_data_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1(apiClient_t *apiClient, int pkiEzsignfolderID )
@@ -810,6 +820,8 @@ end:
 
 // Retrieve an existing Ezsignfolder
 //
+// 
+//
 ezsignfolder_get_object_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetObjectV1(apiClient_t *apiClient, int pkiEzsignfolderID )
 {
@@ -887,6 +899,8 @@ end:
 }
 
 // Send the Ezsignfolder to the signatories for signature
+//
+// 
 //
 ezsignfolder_send_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderSendV1(apiClient_t *apiClient, int pkiEzsignfolderID , ezsignfolder_send_v1_request_t * ezsignfolder_send_v1_request )
@@ -987,7 +1001,7 @@ end:
 // Once an Ezsignfolder has been sent to signatories, it cannot be modified.  Using this endpoint, you can unsend the Ezsignfolder and make it modifiable again.  Signatories will receive an email informing them the signature process was aborted and they might receive a new invitation to sign.  ⚠️ Warning: Any signature previously made by signatories on \"Non-completed\" Ezsigndocuments will be lost.
 //
 ezsignfolder_unsend_v1_response_t*
-ObjectEzsignfolderAPI_ezsignfolderUnsendV1(apiClient_t *apiClient, int pkiEzsignfolderID , char * body )
+ObjectEzsignfolderAPI_ezsignfolderUnsendV1(apiClient_t *apiClient, int pkiEzsignfolderID , object_t * body )
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1023,7 +1037,7 @@ ObjectEzsignfolderAPI_ezsignfolderUnsendV1(apiClient_t *apiClient, int pkiEzsign
     if (body != NULL)
     {
         //string
-        localVarSingleItemJSON_body = char_convertToJSON(body);
+        localVarSingleItemJSON_body = object_convertToJSON(body);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_body);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces

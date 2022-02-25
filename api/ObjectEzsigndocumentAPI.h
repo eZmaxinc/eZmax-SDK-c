@@ -16,10 +16,12 @@
 #include "../model/ezsigndocument_delete_object_v1_response.h"
 #include "../model/ezsigndocument_edit_ezsignsignatures_v1_request.h"
 #include "../model/ezsigndocument_edit_ezsignsignatures_v1_response.h"
+#include "../model/ezsigndocument_end_prematurely_v1_response.h"
 #include "../model/ezsigndocument_get_download_url_v1_response.h"
 #include "../model/ezsigndocument_get_ezsignpages_v1_response.h"
 #include "../model/ezsigndocument_get_form_data_v1_response.h"
 #include "../model/ezsigndocument_get_object_v1_response.h"
+#include "../model/ezsigndocument_get_temporary_proof_v1_response.h"
 #include "../model/ezsigndocument_get_words_positions_v1_request.h"
 #include "../model/ezsigndocument_get_words_positions_v1_response.h"
 #include "../model/ezsigndocument_patch_object_v1_request.h"
@@ -55,6 +57,8 @@ ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV1(apiClient_t *apiClient, lis
 
 // Delete an existing Ezsigndocument
 //
+// 
+//
 ezsigndocument_delete_object_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1(apiClient_t *apiClient, int pkiEzsigndocumentID );
 
@@ -67,6 +71,14 @@ ezsigndocument_edit_ezsignsignatures_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1(apiClient_t *apiClient, int pkiEzsigndocumentID , ezsigndocument_edit_ezsignsignatures_v1_request_t * ezsigndocument_edit_ezsignsignatures_v1_request );
 
 
+// End prematurely
+//
+// End prematurely an Ezsigndocument when some signatures are still required
+//
+ezsigndocument_end_prematurely_v1_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1(apiClient_t *apiClient, int pkiEzsigndocumentID );
+
+
 // Retrieve a URL to download documents.
 //
 // This endpoint returns URLs to different files that can be downloaded during the signing process.  These links will expire after 5 minutes so the download of the file should be made soon after retrieving the link.
@@ -77,11 +89,15 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1(apiClient_t *apiClient, i
 
 // Retrieve an existing Ezsigndocument's Ezsignpages
 //
+// 
+//
 ezsigndocument_get_ezsignpages_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignpagesV1(apiClient_t *apiClient, int pkiEzsigndocumentID );
 
 
 // Retrieve an existing Ezsigndocument's Form Data
+//
+// 
 //
 ezsigndocument_get_form_data_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1(apiClient_t *apiClient, int pkiEzsigndocumentID );
@@ -89,19 +105,29 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1(apiClient_t *apiClient, int 
 
 // Retrieve an existing Ezsigndocument
 //
-// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
-//
 ezsigndocument_get_object_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV1(apiClient_t *apiClient, int pkiEzsigndocumentID );
 
 
+// Retrieve the temporary proof
+//
+// Retrieve the temporary proof while the Ezsigndocument is being processed since the proof isn't available until the Ezsigndocument is completed
+//
+ezsigndocument_get_temporary_proof_v1_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentGetTemporaryProofV1(apiClient_t *apiClient, int pkiEzsigndocumentID );
+
+
 // Retrieve positions X,Y of given words from a Ezsigndocument
+//
+// 
 //
 ezsigndocument_get_words_positions_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1(apiClient_t *apiClient, int pkiEzsigndocumentID , ezsigndocument_get_words_positions_v1_request_t * ezsigndocument_get_words_positions_v1_request );
 
 
 // Patch an existing Ezsigndocument
+//
+// 
 //
 ezsigndocument_patch_object_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1(apiClient_t *apiClient, int pkiEzsigndocumentID , ezsigndocument_patch_object_v1_request_t * ezsigndocument_patch_object_v1_request );
