@@ -6,7 +6,7 @@
 
 
 ezsignsignature_get_object_v1_response_t *ezsignsignature_get_object_v1_response_create(
-    object_t *m_payload,
+    ezsignsignature_get_object_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
@@ -28,7 +28,7 @@ void ezsignsignature_get_object_v1_response_free(ezsignsignature_get_object_v1_r
     }
     listEntry_t *listEntry;
     if (ezsignsignature_get_object_v1_response->m_payload) {
-        object_free(ezsignsignature_get_object_v1_response->m_payload);
+        ezsignsignature_get_object_v1_response_m_payload_free(ezsignsignature_get_object_v1_response->m_payload);
         ezsignsignature_get_object_v1_response->m_payload = NULL;
     }
     if (ezsignsignature_get_object_v1_response->obj_debug_payload) {
@@ -50,11 +50,11 @@ cJSON *ezsignsignature_get_object_v1_response_convertToJSON(ezsignsignature_get_
         goto fail;
     }
     
-    cJSON *m_payload_object = object_convertToJSON(ezsignsignature_get_object_v1_response->m_payload);
-    if(m_payload_object == NULL) {
+    cJSON *m_payload_local_JSON = ezsignsignature_get_object_v1_response_m_payload_convertToJSON(ezsignsignature_get_object_v1_response->m_payload);
+    if(m_payload_local_JSON == NULL) {
     goto fail; //model
     }
-    cJSON_AddItemToObject(item, "mPayload", m_payload_object);
+    cJSON_AddItemToObject(item, "mPayload", m_payload_local_JSON);
     if(item->child == NULL) {
     goto fail;
     }
@@ -97,6 +97,9 @@ ezsignsignature_get_object_v1_response_t *ezsignsignature_get_object_v1_response
 
     ezsignsignature_get_object_v1_response_t *ezsignsignature_get_object_v1_response_local_var = NULL;
 
+    // define the local variable for ezsignsignature_get_object_v1_response->m_payload
+    ezsignsignature_get_object_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
+
     // define the local variable for ezsignsignature_get_object_v1_response->obj_debug_payload
     common_response_obj_debug_payload_t *obj_debug_payload_local_nonprim = NULL;
 
@@ -109,9 +112,8 @@ ezsignsignature_get_object_v1_response_t *ezsignsignature_get_object_v1_response
         goto end;
     }
 
-    object_t *m_payload_local_object = NULL;
     
-    m_payload_local_object = object_parseFromJSON(m_payload); //object
+    m_payload_local_nonprim = ezsignsignature_get_object_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
     // ezsignsignature_get_object_v1_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(ezsignsignature_get_object_v1_responseJSON, "objDebugPayload");
@@ -127,13 +129,17 @@ ezsignsignature_get_object_v1_response_t *ezsignsignature_get_object_v1_response
 
 
     ezsignsignature_get_object_v1_response_local_var = ezsignsignature_get_object_v1_response_create (
-        m_payload_local_object,
+        m_payload_local_nonprim,
         obj_debug_payload ? obj_debug_payload_local_nonprim : NULL,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
 
     return ezsignsignature_get_object_v1_response_local_var;
 end:
+    if (m_payload_local_nonprim) {
+        ezsignsignature_get_object_v1_response_m_payload_free(m_payload_local_nonprim);
+        m_payload_local_nonprim = NULL;
+    }
     if (obj_debug_payload_local_nonprim) {
         common_response_obj_debug_payload_free(obj_debug_payload_local_nonprim);
         obj_debug_payload_local_nonprim = NULL;

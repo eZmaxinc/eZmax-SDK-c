@@ -15,17 +15,17 @@
 
 typedef struct ezsigndocument_get_temporary_proof_v1_response_m_payload_t ezsigndocument_get_temporary_proof_v1_response_m_payload_t;
 
-#include "ezsigndocumentlog_response.h"
+#include "ezsigndocumentlog_response_compound.h"
 
 
 
 typedef struct ezsigndocument_get_temporary_proof_v1_response_m_payload_t {
-    struct ezsigndocumentlog_response_t *a_obj_ezsigndocumentlog; //model
+    struct ezsigndocumentlog_response_compound_t *a_obj_ezsigndocumentlog; //model
 
 } ezsigndocument_get_temporary_proof_v1_response_m_payload_t;
 
 ezsigndocument_get_temporary_proof_v1_response_m_payload_t *ezsigndocument_get_temporary_proof_v1_response_m_payload_create(
-    ezsigndocumentlog_response_t *a_obj_ezsigndocumentlog
+    ezsigndocumentlog_response_compound_t *a_obj_ezsigndocumentlog
 );
 
 void ezsigndocument_get_temporary_proof_v1_response_m_payload_free(ezsigndocument_get_temporary_proof_v1_response_m_payload_t *ezsigndocument_get_temporary_proof_v1_response_m_payload);

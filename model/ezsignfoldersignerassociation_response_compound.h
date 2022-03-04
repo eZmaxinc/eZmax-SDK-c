@@ -23,20 +23,20 @@ typedef struct ezsignfoldersignerassociation_response_compound_t ezsignfoldersig
 
 
 typedef struct ezsignfoldersignerassociation_response_compound_t {
-    struct ezsignfoldersignerassociation_response_compound_user_t *obj_user; //model
-    struct ezsignsigner_response_compound_t *obj_ezsignsigner; //model
     int pki_ezsignfoldersignerassociation_id; //numeric
     int fki_ezsignfolder_id; //numeric
     int b_ezsignfoldersignerassociation_receivecopy; //boolean
+    struct ezsignfoldersignerassociation_response_compound_user_t *obj_user; //model
+    struct ezsignsigner_response_compound_t *obj_ezsignsigner; //model
 
 } ezsignfoldersignerassociation_response_compound_t;
 
 ezsignfoldersignerassociation_response_compound_t *ezsignfoldersignerassociation_response_compound_create(
-    ezsignfoldersignerassociation_response_compound_user_t *obj_user,
-    ezsignsigner_response_compound_t *obj_ezsignsigner,
     int pki_ezsignfoldersignerassociation_id,
     int fki_ezsignfolder_id,
-    int b_ezsignfoldersignerassociation_receivecopy
+    int b_ezsignfoldersignerassociation_receivecopy,
+    ezsignfoldersignerassociation_response_compound_user_t *obj_user,
+    ezsignsigner_response_compound_t *obj_ezsignsigner
 );
 
 void ezsignfoldersignerassociation_response_compound_free(ezsignfoldersignerassociation_response_compound_t *ezsignfoldersignerassociation_response_compound);

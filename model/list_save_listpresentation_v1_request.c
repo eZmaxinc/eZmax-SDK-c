@@ -25,7 +25,7 @@ void list_save_listpresentation_v1_request_free(list_save_listpresentation_v1_re
     listEntry_t *listEntry;
     if (list_save_listpresentation_v1_request->a_obj_listpresentation) {
         list_ForEach(listEntry, list_save_listpresentation_v1_request->a_obj_listpresentation) {
-            listpresentation_request_free(listEntry->data);
+            listpresentation_request_compound_free(listEntry->data);
         }
         list_freeList(list_save_listpresentation_v1_request->a_obj_listpresentation);
         list_save_listpresentation_v1_request->a_obj_listpresentation = NULL;
@@ -49,7 +49,7 @@ cJSON *list_save_listpresentation_v1_request_convertToJSON(list_save_listpresent
     listEntry_t *a_obj_listpresentationListEntry;
     if (list_save_listpresentation_v1_request->a_obj_listpresentation) {
     list_ForEach(a_obj_listpresentationListEntry, list_save_listpresentation_v1_request->a_obj_listpresentation) {
-    cJSON *itemLocal = listpresentation_request_convertToJSON(a_obj_listpresentationListEntry->data);
+    cJSON *itemLocal = listpresentation_request_compound_convertToJSON(a_obj_listpresentationListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -89,7 +89,7 @@ list_save_listpresentation_v1_request_t *list_save_listpresentation_v1_request_p
         if(!cJSON_IsObject(a_obj_listpresentation_local_nonprimitive)){
             goto end;
         }
-        listpresentation_request_t *a_obj_listpresentationItem = listpresentation_request_parseFromJSON(a_obj_listpresentation_local_nonprimitive);
+        listpresentation_request_compound_t *a_obj_listpresentationItem = listpresentation_request_compound_parseFromJSON(a_obj_listpresentation_local_nonprimitive);
 
         list_addElement(a_obj_listpresentationList, a_obj_listpresentationItem);
     }

@@ -6,6 +6,7 @@
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
+#include "../model/ezsignbulksend_get_ezsignbulksendtransmissions_v1_response.h"
 #include "../model/ezsignbulksend_get_list_v1_response.h"
 #include "../model/ezsignbulksend_get_object_v1_response.h"
 #include "../model/header_accept_language.h"
@@ -15,6 +16,14 @@ typedef enum  { ezmax_api_definition_ezsignbulksendGetListV1_EORDERBY_NULL = 0, 
 
 // Enum  for ObjectEzsignbulksendAPI_ezsignbulksendGetListV1
 typedef enum  { ezmax_api_definition_ezsignbulksendGetListV1__NULL = 0, ezmax_api_definition_ezsignbulksendGetListV1__*, ezmax_api_definition_ezsignbulksendGetListV1__en, ezmax_api_definition_ezsignbulksendGetListV1__fr } ezmax_api_definition_ezsignbulksendGetListV1_Accept-Language_e;
+
+
+// Retrieve an existing Ezsignbulksend's Ezsignbulksendtransmissions
+//
+// 
+//
+ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_t*
+ObjectEzsignbulksendAPI_ezsignbulksendGetEzsignbulksendtransmissionsV1(apiClient_t *apiClient, int pkiEzsignbulksendID );
 
 
 // Retrieve Ezsignbulksend list

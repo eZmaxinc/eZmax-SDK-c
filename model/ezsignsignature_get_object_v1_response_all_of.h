@@ -15,17 +15,17 @@
 
 typedef struct ezsignsignature_get_object_v1_response_all_of_t ezsignsignature_get_object_v1_response_all_of_t;
 
-#include "object.h"
+#include "ezsignsignature_get_object_v1_response_m_payload.h"
 
 
 
 typedef struct ezsignsignature_get_object_v1_response_all_of_t {
-    object_t *m_payload; //object
+    struct ezsignsignature_get_object_v1_response_m_payload_t *m_payload; //model
 
 } ezsignsignature_get_object_v1_response_all_of_t;
 
 ezsignsignature_get_object_v1_response_all_of_t *ezsignsignature_get_object_v1_response_all_of_create(
-    object_t *m_payload
+    ezsignsignature_get_object_v1_response_m_payload_t *m_payload
 );
 
 void ezsignsignature_get_object_v1_response_all_of_free(ezsignsignature_get_object_v1_response_all_of_t *ezsignsignature_get_object_v1_response_all_of);

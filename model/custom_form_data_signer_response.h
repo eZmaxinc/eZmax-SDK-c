@@ -15,7 +15,7 @@
 
 typedef struct custom_form_data_signer_response_t custom_form_data_signer_response_t;
 
-#include "ezsignformfieldgroup_response_compound.h"
+#include "custom_form_data_ezsignformfieldgroup_response.h"
 
 
 
@@ -24,7 +24,7 @@ typedef struct custom_form_data_signer_response_t {
     int fki_user_id; //numeric
     char *s_contact_firstname; // string
     char *s_contact_lastname; // string
-    list_t *a_obj_ezsignformfieldgroup_compound; //nonprimitive container
+    list_t *a_obj_ezsignformfieldgroup; //nonprimitive container
 
 } custom_form_data_signer_response_t;
 
@@ -33,7 +33,7 @@ custom_form_data_signer_response_t *custom_form_data_signer_response_create(
     int fki_user_id,
     char *s_contact_firstname,
     char *s_contact_lastname,
-    list_t *a_obj_ezsignformfieldgroup_compound
+    list_t *a_obj_ezsignformfieldgroup
 );
 
 void custom_form_data_signer_response_free(custom_form_data_signer_response_t *custom_form_data_signer_response);

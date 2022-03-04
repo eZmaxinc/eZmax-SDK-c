@@ -23,20 +23,20 @@ ezsignfoldersignerassociation_request_compound_t* instantiate_ezsignfoldersigner
   ezsignfoldersignerassociation_request_compound_t* ezsignfoldersignerassociation_request_compound = NULL;
   if (include_optional) {
     ezsignfoldersignerassociation_request_compound = ezsignfoldersignerassociation_request_compound_create(
-       // false, not to have infinite recursion
-      instantiate_ezsignsigner_request_compound(0),
       20,
       70,
       33,
-      1
+      1,
+       // false, not to have infinite recursion
+      instantiate_ezsignsigner_request_compound(0)
     );
   } else {
     ezsignfoldersignerassociation_request_compound = ezsignfoldersignerassociation_request_compound_create(
-      NULL,
       20,
       70,
       33,
-      1
+      1,
+      NULL
     );
   }
 

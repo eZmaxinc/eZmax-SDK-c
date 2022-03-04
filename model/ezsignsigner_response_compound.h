@@ -22,22 +22,22 @@ typedef struct ezsignsigner_response_compound_t ezsignsigner_response_compound_t
 
 
 typedef struct ezsignsigner_response_compound_t {
-    struct ezsignsigner_response_compound_contact_t *obj_contact; //model
     int pki_ezsignsigner_id; //numeric
     int fki_taxassignment_id; //numeric
     int fki_secretquestion_id; //numeric
     int fki_userlogintype_id; //numeric
     char *s_userlogintype_description_x; // string
+    struct ezsignsigner_response_compound_contact_t *obj_contact; //model
 
 } ezsignsigner_response_compound_t;
 
 ezsignsigner_response_compound_t *ezsignsigner_response_compound_create(
-    ezsignsigner_response_compound_contact_t *obj_contact,
     int pki_ezsignsigner_id,
     int fki_taxassignment_id,
     int fki_secretquestion_id,
     int fki_userlogintype_id,
-    char *s_userlogintype_description_x
+    char *s_userlogintype_description_x,
+    ezsignsigner_response_compound_contact_t *obj_contact
 );
 
 void ezsignsigner_response_compound_free(ezsignsigner_response_compound_t *ezsignsigner_response_compound);

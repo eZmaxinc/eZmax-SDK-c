@@ -1,7 +1,7 @@
 /*
  * email_request.h
  *
- * A Contact Object
+ * An Email Object
  */
 
 #ifndef _email_request_H_

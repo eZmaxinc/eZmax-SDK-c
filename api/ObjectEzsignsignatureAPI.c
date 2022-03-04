@@ -377,7 +377,7 @@ end:
 
 // Retrieve an existing Ezsignsignature
 //
-// ## ⚠️EARLY ADOPTERS WARNING  ### This endpoint is not officially released. Its definition might still change and it might not be available in every environment and region.
+// 
 //
 ezsignsignature_get_object_v1_response_t*
 ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV1(apiClient_t *apiClient, int pkiEzsignsignatureID )

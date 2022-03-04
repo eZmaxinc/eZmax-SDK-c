@@ -23,6 +23,7 @@ ezmax_api_definition_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_e e_ezsignsigne
 }
 
 ezsignsigner_request_t *ezsignsigner_request_create(
+    int fki_userlogintype_id,
     int fki_taxassignment_id,
     int fki_secretquestion_id,
     ezmax_api_definition_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_e e_ezsignsigner_logintype,
@@ -32,6 +33,7 @@ ezsignsigner_request_t *ezsignsigner_request_create(
     if (!ezsignsigner_request_local_var) {
         return NULL;
     }
+    ezsignsigner_request_local_var->fki_userlogintype_id = fki_userlogintype_id;
     ezsignsigner_request_local_var->fki_taxassignment_id = fki_taxassignment_id;
     ezsignsigner_request_local_var->fki_secretquestion_id = fki_secretquestion_id;
     ezsignsigner_request_local_var->e_ezsignsigner_logintype = e_ezsignsigner_logintype;
@@ -55,6 +57,14 @@ void ezsignsigner_request_free(ezsignsigner_request_t *ezsignsigner_request) {
 
 cJSON *ezsignsigner_request_convertToJSON(ezsignsigner_request_t *ezsignsigner_request) {
     cJSON *item = cJSON_CreateObject();
+
+    // ezsignsigner_request->fki_userlogintype_id
+    if(ezsignsigner_request->fki_userlogintype_id) { 
+    if(cJSON_AddNumberToObject(item, "fkiUserlogintypeID", ezsignsigner_request->fki_userlogintype_id) == NULL) {
+    goto fail; //Numeric
+    }
+     } 
+
 
     // ezsignsigner_request->fki_taxassignment_id
     if (!ezsignsigner_request->fki_taxassignment_id) {
@@ -80,6 +90,7 @@ cJSON *ezsignsigner_request_convertToJSON(ezsignsigner_request_t *ezsignsigner_r
     {
     goto fail; //Enum
     }
+    
 
 
     // ezsignsigner_request->s_ezsignsigner_secretanswer
@@ -100,6 +111,15 @@ fail:
 ezsignsigner_request_t *ezsignsigner_request_parseFromJSON(cJSON *ezsignsigner_requestJSON){
 
     ezsignsigner_request_t *ezsignsigner_request_local_var = NULL;
+
+    // ezsignsigner_request->fki_userlogintype_id
+    cJSON *fki_userlogintype_id = cJSON_GetObjectItemCaseSensitive(ezsignsigner_requestJSON, "fkiUserlogintypeID");
+    if (fki_userlogintype_id) { 
+    if(!cJSON_IsNumber(fki_userlogintype_id))
+    {
+    goto end; //Numeric
+    }
+    }
 
     // ezsignsigner_request->fki_taxassignment_id
     cJSON *fki_taxassignment_id = cJSON_GetObjectItemCaseSensitive(ezsignsigner_requestJSON, "fkiTaxassignmentID");
@@ -124,17 +144,14 @@ ezsignsigner_request_t *ezsignsigner_request_parseFromJSON(cJSON *ezsignsigner_r
 
     // ezsignsigner_request->e_ezsignsigner_logintype
     cJSON *e_ezsignsigner_logintype = cJSON_GetObjectItemCaseSensitive(ezsignsigner_requestJSON, "eEzsignsignerLogintype");
-    if (!e_ezsignsigner_logintype) {
-        goto end;
-    }
-
     ezmax_api_definition_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_e e_ezsignsigner_logintypeVariable;
-    
+    if (e_ezsignsigner_logintype) { 
     if(!cJSON_IsString(e_ezsignsigner_logintype))
     {
     goto end; //Enum
     }
     e_ezsignsigner_logintypeVariable = e_ezsignsigner_logintypeezsignsigner_request_FromString(e_ezsignsigner_logintype->valuestring);
+    }
 
     // ezsignsigner_request->s_ezsignsigner_secretanswer
     cJSON *s_ezsignsigner_secretanswer = cJSON_GetObjectItemCaseSensitive(ezsignsigner_requestJSON, "sEzsignsignerSecretanswer");
@@ -147,9 +164,10 @@ ezsignsigner_request_t *ezsignsigner_request_parseFromJSON(cJSON *ezsignsigner_r
 
 
     ezsignsigner_request_local_var = ezsignsigner_request_create (
+        fki_userlogintype_id ? fki_userlogintype_id->valuedouble : 0,
         fki_taxassignment_id->valuedouble,
         fki_secretquestion_id ? fki_secretquestion_id->valuedouble : 0,
-        e_ezsignsigner_logintypeVariable,
+        e_ezsignsigner_logintype ? e_ezsignsigner_logintypeVariable : -1,
         s_ezsignsigner_secretanswer ? strdup(s_ezsignsigner_secretanswer->valuestring) : NULL
         );
 

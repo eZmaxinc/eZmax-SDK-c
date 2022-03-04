@@ -23,8 +23,6 @@ typedef struct franchisereferalincome_request_compound_t franchisereferalincome_
 
 
 typedef struct franchisereferalincome_request_compound_t {
-    struct address_request_t *obj_address; //model
-    list_t *a_obj_contact; //nonprimitive container
     int pki_franchisereferalincome_id; //numeric
     int fki_franchisebroker_id; //numeric
     int fki_franchisereferalincomeprogram_id; //numeric
@@ -37,12 +35,12 @@ typedef struct franchisereferalincome_request_compound_t {
     char *t_franchisereferalincome_comment; // string
     int fki_franchiseoffice_id; //numeric
     char *s_franchisereferalincome_remoteid; // string
+    struct address_request_t *obj_address; //model
+    list_t *a_obj_contact; //nonprimitive container
 
 } franchisereferalincome_request_compound_t;
 
 franchisereferalincome_request_compound_t *franchisereferalincome_request_compound_create(
-    address_request_t *obj_address,
-    list_t *a_obj_contact,
     int pki_franchisereferalincome_id,
     int fki_franchisebroker_id,
     int fki_franchisereferalincomeprogram_id,
@@ -54,7 +52,9 @@ franchisereferalincome_request_compound_t *franchisereferalincome_request_compou
     char *dt_franchisereferalincome_disbursed,
     char *t_franchisereferalincome_comment,
     int fki_franchiseoffice_id,
-    char *s_franchisereferalincome_remoteid
+    char *s_franchisereferalincome_remoteid,
+    address_request_t *obj_address,
+    list_t *a_obj_contact
 );
 
 void franchisereferalincome_request_compound_free(franchisereferalincome_request_compound_t *franchisereferalincome_request_compound);

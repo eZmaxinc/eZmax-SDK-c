@@ -22,24 +22,24 @@ typedef struct contact_request_compound_t contact_request_compound_t;
 
 
 typedef struct contact_request_compound_t {
-    struct contactinformations_request_compound_t *obj_contactinformations; //model
     int fki_contacttitle_id; //numeric
     int fki_language_id; //numeric
     char *s_contact_firstname; // string
     char *s_contact_lastname; // string
     char *s_contact_company; // string
     char *dt_contact_birthdate; // string
+    struct contactinformations_request_compound_t *obj_contactinformations; //model
 
 } contact_request_compound_t;
 
 contact_request_compound_t *contact_request_compound_create(
-    contactinformations_request_compound_t *obj_contactinformations,
     int fki_contacttitle_id,
     int fki_language_id,
     char *s_contact_firstname,
     char *s_contact_lastname,
     char *s_contact_company,
-    char *dt_contact_birthdate
+    char *dt_contact_birthdate,
+    contactinformations_request_compound_t *obj_contactinformations
 );
 
 void contact_request_compound_free(contact_request_compound_t *contact_request_compound);

@@ -29,7 +29,8 @@ ezsignbulksend_get_object_v1_response_m_payload_t* instantiate_ezsignbulksend_ge
       "Test eZsign Bulk Send",
       "This is a note",
       1,
-      {"fkiUserIDCreated":35,"fkiUserIDModified":35,"fkiApikeyIDCreated":1,"fkiApikeyIDModified":1,"dtCreatedDate":"2020-12-31 23:59:59","dtModifiedDate":"2020-12-31 23:59:59"}
+       // false, not to have infinite recursion
+      instantiate_common_audit(0)
     );
   } else {
     ezsignbulksend_get_object_v1_response_m_payload = ezsignbulksend_get_object_v1_response_m_payload_create(
@@ -39,7 +40,7 @@ ezsignbulksend_get_object_v1_response_m_payload_t* instantiate_ezsignbulksend_ge
       "Test eZsign Bulk Send",
       "This is a note",
       1,
-      {"fkiUserIDCreated":35,"fkiUserIDModified":35,"fkiApikeyIDCreated":1,"fkiApikeyIDModified":1,"dtCreatedDate":"2020-12-31 23:59:59","dtModifiedDate":"2020-12-31 23:59:59"}
+      NULL
     );
   }
 

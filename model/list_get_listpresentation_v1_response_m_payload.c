@@ -25,7 +25,7 @@ void list_get_listpresentation_v1_response_m_payload_free(list_get_listpresentat
     listEntry_t *listEntry;
     if (list_get_listpresentation_v1_response_m_payload->a_obj_listpresentation) {
         list_ForEach(listEntry, list_get_listpresentation_v1_response_m_payload->a_obj_listpresentation) {
-            listpresentation_request_free(listEntry->data);
+            listpresentation_response_compound_free(listEntry->data);
         }
         list_freeList(list_get_listpresentation_v1_response_m_payload->a_obj_listpresentation);
         list_get_listpresentation_v1_response_m_payload->a_obj_listpresentation = NULL;
@@ -49,7 +49,7 @@ cJSON *list_get_listpresentation_v1_response_m_payload_convertToJSON(list_get_li
     listEntry_t *a_obj_listpresentationListEntry;
     if (list_get_listpresentation_v1_response_m_payload->a_obj_listpresentation) {
     list_ForEach(a_obj_listpresentationListEntry, list_get_listpresentation_v1_response_m_payload->a_obj_listpresentation) {
-    cJSON *itemLocal = listpresentation_request_convertToJSON(a_obj_listpresentationListEntry->data);
+    cJSON *itemLocal = listpresentation_response_compound_convertToJSON(a_obj_listpresentationListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -89,7 +89,7 @@ list_get_listpresentation_v1_response_m_payload_t *list_get_listpresentation_v1_
         if(!cJSON_IsObject(a_obj_listpresentation_local_nonprimitive)){
             goto end;
         }
-        listpresentation_request_t *a_obj_listpresentationItem = listpresentation_request_parseFromJSON(a_obj_listpresentation_local_nonprimitive);
+        listpresentation_response_compound_t *a_obj_listpresentationItem = listpresentation_response_compound_parseFromJSON(a_obj_listpresentation_local_nonprimitive);
 
         list_addElement(a_obj_listpresentationList, a_obj_listpresentationItem);
     }

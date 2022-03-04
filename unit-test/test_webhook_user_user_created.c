@@ -16,7 +16,7 @@
 #include "../model/webhook_user_user_created.h"
 webhook_user_user_created_t* instantiate_webhook_user_user_created(int include_optional);
 
-#include "test_user_response.c"
+#include "test_user_response_compound.c"
 #include "test_webhook_response.c"
 
 
@@ -25,7 +25,7 @@ webhook_user_user_created_t* instantiate_webhook_user_user_created(int include_o
   if (include_optional) {
     webhook_user_user_created = webhook_user_user_created_create(
        // false, not to have infinite recursion
-      instantiate_user_response(0),
+      instantiate_user_response_compound(0),
        // false, not to have infinite recursion
       instantiate_webhook_response(0),
       list_createList()

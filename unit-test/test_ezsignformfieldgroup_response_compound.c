@@ -16,19 +16,53 @@
 #include "../model/ezsignformfieldgroup_response_compound.h"
 ezsignformfieldgroup_response_compound_t* instantiate_ezsignformfieldgroup_response_compound(int include_optional);
 
+#include "test_ezsignformfieldgroupsigner_response_compound.c"
 
 
 ezsignformfieldgroup_response_compound_t* instantiate_ezsignformfieldgroup_response_compound(int include_optional) {
   ezsignformfieldgroup_response_compound_t* ezsignformfieldgroup_response_compound = NULL;
   if (include_optional) {
     ezsignformfieldgroup_response_compound = ezsignformfieldgroup_response_compound_create(
+      26,
+      97,
+      ezmax_api_definition_ezsignformfieldgroup_response_compound__"Text",
+      ezmax_api_definition_ezsignformfieldgroup_response_compound__"One",
       "Allergies",
-      list_createList()
+      1,
+      "Foo",
+      1,
+      2,
+      1,
+      75,
+      1,
+      "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
+      "Please enter a valid email address",
+      ezmax_api_definition_ezsignformfieldgroup_response_compound__"TopLeft",
+      list_createList(),
+      list_createList(),
+       // false, not to have infinite recursion
+      instantiate_ezsignformfieldgroupsigner_response_compound(0)
     );
   } else {
     ezsignformfieldgroup_response_compound = ezsignformfieldgroup_response_compound_create(
+      26,
+      97,
+      ezmax_api_definition_ezsignformfieldgroup_response_compound__"Text",
+      ezmax_api_definition_ezsignformfieldgroup_response_compound__"One",
       "Allergies",
-      list_createList()
+      1,
+      "Foo",
+      1,
+      2,
+      1,
+      75,
+      1,
+      "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
+      "Please enter a valid email address",
+      ezmax_api_definition_ezsignformfieldgroup_response_compound__"TopLeft",
+      list_createList(),
+      list_createList(),
+      NULL
     );
   }
 

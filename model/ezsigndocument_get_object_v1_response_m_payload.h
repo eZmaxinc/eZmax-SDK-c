@@ -31,11 +31,6 @@ ezmax_api_definition_ezsigndocument_get_object_v1_response_m_payload__e ezsigndo
 
 
 typedef struct ezsigndocument_get_object_v1_response_m_payload_t {
-    int i_ezsigndocument_stepformtotal; //numeric
-    int i_ezsigndocument_stepformcurrent; //numeric
-    int i_ezsigndocument_stepsignaturetotal; //numeric
-    int i_ezsigndocument_stepsignature_current; //numeric
-    list_t *a_obj_ezsignfoldersignerassociationstatus; //nonprimitive container
     int fki_ezsignfolder_id; //numeric
     char *dt_ezsigndocument_duedate; // string
     int fki_language_id; //numeric
@@ -51,15 +46,15 @@ typedef struct ezsigndocument_get_object_v1_response_m_payload_t {
     char *s_ezsigndocument_md5initial; // string
     char *s_ezsigndocument_md5signed; // string
     struct common_audit_t *obj_audit; //model
+    int i_ezsigndocument_stepformtotal; //numeric
+    int i_ezsigndocument_stepformcurrent; //numeric
+    int i_ezsigndocument_stepsignaturetotal; //numeric
+    int i_ezsigndocument_stepsignature_current; //numeric
+    list_t *a_obj_ezsignfoldersignerassociationstatus; //nonprimitive container
 
 } ezsigndocument_get_object_v1_response_m_payload_t;
 
 ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_response_m_payload_create(
-    int i_ezsigndocument_stepformtotal,
-    int i_ezsigndocument_stepformcurrent,
-    int i_ezsigndocument_stepsignaturetotal,
-    int i_ezsigndocument_stepsignature_current,
-    list_t *a_obj_ezsignfoldersignerassociationstatus,
     int fki_ezsignfolder_id,
     char *dt_ezsigndocument_duedate,
     int fki_language_id,
@@ -74,7 +69,12 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
     int i_ezsigndocument_signaturetotal,
     char *s_ezsigndocument_md5initial,
     char *s_ezsigndocument_md5signed,
-    common_audit_t *obj_audit
+    common_audit_t *obj_audit,
+    int i_ezsigndocument_stepformtotal,
+    int i_ezsigndocument_stepformcurrent,
+    int i_ezsigndocument_stepsignaturetotal,
+    int i_ezsigndocument_stepsignature_current,
+    list_t *a_obj_ezsignfoldersignerassociationstatus
 );
 
 void ezsigndocument_get_object_v1_response_m_payload_free(ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_response_m_payload);

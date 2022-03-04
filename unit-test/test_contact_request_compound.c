@@ -23,24 +23,24 @@ contact_request_compound_t* instantiate_contact_request_compound(int include_opt
   contact_request_compound_t* contact_request_compound = NULL;
   if (include_optional) {
     contact_request_compound = contact_request_compound_create(
-       // false, not to have infinite recursion
-      instantiate_contactinformations_request_compound(0),
       2,
       2,
       "John",
       "Doe",
       "eZmax Solutions Inc.",
-      "1980-01-01"
+      "1980-01-01",
+       // false, not to have infinite recursion
+      instantiate_contactinformations_request_compound(0)
     );
   } else {
     contact_request_compound = contact_request_compound_create(
-      NULL,
       2,
       2,
       "John",
       "Doe",
       "eZmax Solutions Inc.",
-      "1980-01-01"
+      "1980-01-01",
+      NULL
     );
   }
 

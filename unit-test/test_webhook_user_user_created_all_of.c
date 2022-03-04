@@ -16,7 +16,7 @@
 #include "../model/webhook_user_user_created_all_of.h"
 webhook_user_user_created_all_of_t* instantiate_webhook_user_user_created_all_of(int include_optional);
 
-#include "test_user_response.c"
+#include "test_user_response_compound.c"
 
 
 webhook_user_user_created_all_of_t* instantiate_webhook_user_user_created_all_of(int include_optional) {
@@ -24,7 +24,7 @@ webhook_user_user_created_all_of_t* instantiate_webhook_user_user_created_all_of
   if (include_optional) {
     webhook_user_user_created_all_of = webhook_user_user_created_all_of_create(
        // false, not to have infinite recursion
-      instantiate_user_response(0)
+      instantiate_user_response_compound(0)
     );
   } else {
     webhook_user_user_created_all_of = webhook_user_user_created_all_of_create(

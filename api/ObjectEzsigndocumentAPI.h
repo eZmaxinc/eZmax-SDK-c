@@ -16,11 +16,15 @@
 #include "../model/ezsigndocument_create_object_v2_request.h"
 #include "../model/ezsigndocument_create_object_v2_response.h"
 #include "../model/ezsigndocument_delete_object_v1_response.h"
+#include "../model/ezsigndocument_edit_ezsignformfieldgroups_v1_request.h"
+#include "../model/ezsigndocument_edit_ezsignformfieldgroups_v1_response.h"
 #include "../model/ezsigndocument_edit_ezsignsignatures_v1_request.h"
 #include "../model/ezsigndocument_edit_ezsignsignatures_v1_response.h"
 #include "../model/ezsigndocument_end_prematurely_v1_response.h"
 #include "../model/ezsigndocument_get_download_url_v1_response.h"
+#include "../model/ezsigndocument_get_ezsignformfieldgroups_v1_response.h"
 #include "../model/ezsigndocument_get_ezsignpages_v1_response.h"
+#include "../model/ezsigndocument_get_ezsignsignatures_v1_response.h"
 #include "../model/ezsigndocument_get_form_data_v1_response.h"
 #include "../model/ezsigndocument_get_object_v1_response.h"
 #include "../model/ezsigndocument_get_temporary_proof_v1_response.h"
@@ -28,6 +32,7 @@
 #include "../model/ezsigndocument_get_words_positions_v1_response.h"
 #include "../model/ezsigndocument_patch_object_v1_request.h"
 #include "../model/ezsigndocument_patch_object_v1_response.h"
+#include "../model/object.h"
 
 // Enum EDOCUMENTTYPE for ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1
 typedef enum  { ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_NULL = 0, ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_Initial, ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE__Signed, ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_Proof, ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_Proofdocument } ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_eDocumentType_e;
@@ -73,9 +78,17 @@ ezsigndocument_delete_object_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1(apiClient_t *apiClient, int pkiEzsigndocumentID );
 
 
-// Edit multiple ezsignsignatures
+// Edit multiple Ezsignformfieldgroups
 //
-// Using this endpoint, you can edit multiple ezsignsignatures at the same time.
+// Using this endpoint, you can edit multiple Ezsignformfieldgroups at the same time.
+//
+ezsigndocument_edit_ezsignformfieldgroups_v1_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignformfieldgroupsV1(apiClient_t *apiClient, int pkiEzsigndocumentID , ezsigndocument_edit_ezsignformfieldgroups_v1_request_t * ezsigndocument_edit_ezsignformfieldgroups_v1_request );
+
+
+// Edit multiple Ezsignsignatures
+//
+// Using this endpoint, you can edit multiple Ezsignsignatures at the same time.
 //
 ezsigndocument_edit_ezsignsignatures_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1(apiClient_t *apiClient, int pkiEzsigndocumentID , ezsigndocument_edit_ezsignsignatures_v1_request_t * ezsigndocument_edit_ezsignsignatures_v1_request );
@@ -86,7 +99,7 @@ ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1(apiClient_t *apiCli
 // End prematurely an Ezsigndocument when some signatures are still required
 //
 ezsigndocument_end_prematurely_v1_response_t*
-ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1(apiClient_t *apiClient, int pkiEzsigndocumentID );
+ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1(apiClient_t *apiClient, int pkiEzsigndocumentID , object_t * body );
 
 
 // Retrieve a URL to download documents.
@@ -97,12 +110,28 @@ ezsigndocument_get_download_url_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1(apiClient_t *apiClient, int pkiEzsigndocumentID , ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_eDocumentType_e eDocumentType );
 
 
+// Retrieve an existing Ezsigndocument's Ezsignformfieldgroups
+//
+// 
+//
+ezsigndocument_get_ezsignformfieldgroups_v1_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignformfieldgroupsV1(apiClient_t *apiClient, int pkiEzsigndocumentID );
+
+
 // Retrieve an existing Ezsigndocument's Ezsignpages
 //
 // 
 //
 ezsigndocument_get_ezsignpages_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignpagesV1(apiClient_t *apiClient, int pkiEzsigndocumentID );
+
+
+// Retrieve an existing Ezsigndocument's Ezsignsignatures
+//
+// 
+//
+ezsigndocument_get_ezsignsignatures_v1_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignsignaturesV1(apiClient_t *apiClient, int pkiEzsigndocumentID );
 
 
 // Retrieve an existing Ezsigndocument's Form Data

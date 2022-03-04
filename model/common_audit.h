@@ -1,7 +1,7 @@
 /*
  * common_audit.h
  *
- * Gives informations about the user that created the object and the last user to have modified it.  If the object was never modified after creation, both Created and Modified informations will be the same.  Apikey details will only be provided if the changes were made by an API key.  
+ * Gives informations about the user that created the object and the last user to have modified it.  If the object was never modified after creation, objAuditdetailModified won&#39;t be returned. 
  */
 
 #ifndef _common_audit_H_
@@ -15,26 +15,19 @@
 
 typedef struct common_audit_t common_audit_t;
 
+#include "common_auditdetail.h"
 
 
 
 typedef struct common_audit_t {
-    int fki_user_id_created; //numeric
-    int fki_user_id_modified; //numeric
-    int fki_apikey_id_created; //numeric
-    int fki_apikey_id_modified; //numeric
-    char *dt_created_date; // string
-    char *dt_modified_date; // string
+    struct common_auditdetail_t *obj_auditdetail_created; //model
+    struct common_auditdetail_t *obj_auditdetail_modified; //model
 
 } common_audit_t;
 
 common_audit_t *common_audit_create(
-    int fki_user_id_created,
-    int fki_user_id_modified,
-    int fki_apikey_id_created,
-    int fki_apikey_id_modified,
-    char *dt_created_date,
-    char *dt_modified_date
+    common_auditdetail_t *obj_auditdetail_created,
+    common_auditdetail_t *obj_auditdetail_modified
 );
 
 void common_audit_free(common_audit_t *common_audit);

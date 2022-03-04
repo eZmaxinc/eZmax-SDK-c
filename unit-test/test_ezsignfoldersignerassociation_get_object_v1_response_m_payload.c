@@ -24,21 +24,21 @@ ezsignfoldersignerassociation_get_object_v1_response_m_payload_t* instantiate_ez
   ezsignfoldersignerassociation_get_object_v1_response_m_payload_t* ezsignfoldersignerassociation_get_object_v1_response_m_payload = NULL;
   if (include_optional) {
     ezsignfoldersignerassociation_get_object_v1_response_m_payload = ezsignfoldersignerassociation_get_object_v1_response_m_payload_create(
+      20,
+      33,
+      1,
        // false, not to have infinite recursion
       instantiate_ezsignfoldersignerassociation_response_compound_user(0),
        // false, not to have infinite recursion
-      instantiate_ezsignsigner_response_compound(0),
-      20,
-      33,
-      1
+      instantiate_ezsignsigner_response_compound(0)
     );
   } else {
     ezsignfoldersignerassociation_get_object_v1_response_m_payload = ezsignfoldersignerassociation_get_object_v1_response_m_payload_create(
-      NULL,
-      NULL,
       20,
       33,
-      1
+      1,
+      NULL,
+      NULL
     );
   }
 

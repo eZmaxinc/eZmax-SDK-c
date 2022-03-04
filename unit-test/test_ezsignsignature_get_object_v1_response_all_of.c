@@ -16,17 +16,19 @@
 #include "../model/ezsignsignature_get_object_v1_response_all_of.h"
 ezsignsignature_get_object_v1_response_all_of_t* instantiate_ezsignsignature_get_object_v1_response_all_of(int include_optional);
 
+#include "test_ezsignsignature_get_object_v1_response_m_payload.c"
 
 
 ezsignsignature_get_object_v1_response_all_of_t* instantiate_ezsignsignature_get_object_v1_response_all_of(int include_optional) {
   ezsignsignature_get_object_v1_response_all_of_t* ezsignsignature_get_object_v1_response_all_of = NULL;
   if (include_optional) {
     ezsignsignature_get_object_v1_response_all_of = ezsignsignature_get_object_v1_response_all_of_create(
-      0
+       // false, not to have infinite recursion
+      instantiate_ezsignsignature_get_object_v1_response_m_payload(0)
     );
   } else {
     ezsignsignature_get_object_v1_response_all_of = ezsignsignature_get_object_v1_response_all_of_create(
-      0
+      NULL
     );
   }
 

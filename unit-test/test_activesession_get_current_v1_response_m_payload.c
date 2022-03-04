@@ -25,6 +25,13 @@ activesession_get_current_v1_response_m_payload_t* instantiate_activesession_get
   activesession_get_current_v1_response_m_payload_t* activesession_get_current_v1_response_m_payload = NULL;
   if (include_optional) {
     activesession_get_current_v1_response_m_payload = activesession_get_current_v1_response_m_payload_create(
+      ezmax_api_definition_activesession_get_current_v1_response_m_payload__"Normal",
+      ezmax_api_definition_activesession_get_current_v1_response_m_payload__"Sunday",
+      2,
+      "Acme inc.",
+      "Head Office",
+      false,
+      "demo",
       list_createList(),
        // false, not to have infinite recursion
       instantiate_activesession_response_compound_user(0),
@@ -32,29 +39,22 @@ activesession_get_current_v1_response_m_payload_t* instantiate_activesession_get
       instantiate_activesession_response_compound_user(0),
        // false, not to have infinite recursion
       instantiate_activesession_response_compound_apikey(0),
-      list_createList(),
-      ezmax_api_definition_activesession_get_current_v1_response_m_payload__"Normal",
-      ezmax_api_definition_activesession_get_current_v1_response_m_payload__"Sunday",
-      2,
-      "Acme inc.",
-      "Head Office",
-      false,
-      "demo"
+      list_createList()
     );
   } else {
     activesession_get_current_v1_response_m_payload = activesession_get_current_v1_response_m_payload_create(
-      list_createList(),
-      NULL,
-      NULL,
-      NULL,
-      list_createList(),
       ezmax_api_definition_activesession_get_current_v1_response_m_payload__"Normal",
       ezmax_api_definition_activesession_get_current_v1_response_m_payload__"Sunday",
       2,
       "Acme inc.",
       "Head Office",
       false,
-      "demo"
+      "demo",
+      list_createList(),
+      NULL,
+      NULL,
+      NULL,
+      list_createList()
     );
   }
 

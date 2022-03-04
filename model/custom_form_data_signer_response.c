@@ -10,7 +10,7 @@ custom_form_data_signer_response_t *custom_form_data_signer_response_create(
     int fki_user_id,
     char *s_contact_firstname,
     char *s_contact_lastname,
-    list_t *a_obj_ezsignformfieldgroup_compound
+    list_t *a_obj_ezsignformfieldgroup
     ) {
     custom_form_data_signer_response_t *custom_form_data_signer_response_local_var = malloc(sizeof(custom_form_data_signer_response_t));
     if (!custom_form_data_signer_response_local_var) {
@@ -20,7 +20,7 @@ custom_form_data_signer_response_t *custom_form_data_signer_response_create(
     custom_form_data_signer_response_local_var->fki_user_id = fki_user_id;
     custom_form_data_signer_response_local_var->s_contact_firstname = s_contact_firstname;
     custom_form_data_signer_response_local_var->s_contact_lastname = s_contact_lastname;
-    custom_form_data_signer_response_local_var->a_obj_ezsignformfieldgroup_compound = a_obj_ezsignformfieldgroup_compound;
+    custom_form_data_signer_response_local_var->a_obj_ezsignformfieldgroup = a_obj_ezsignformfieldgroup;
 
     return custom_form_data_signer_response_local_var;
 }
@@ -39,12 +39,12 @@ void custom_form_data_signer_response_free(custom_form_data_signer_response_t *c
         free(custom_form_data_signer_response->s_contact_lastname);
         custom_form_data_signer_response->s_contact_lastname = NULL;
     }
-    if (custom_form_data_signer_response->a_obj_ezsignformfieldgroup_compound) {
-        list_ForEach(listEntry, custom_form_data_signer_response->a_obj_ezsignformfieldgroup_compound) {
-            ezsignformfieldgroup_response_compound_free(listEntry->data);
+    if (custom_form_data_signer_response->a_obj_ezsignformfieldgroup) {
+        list_ForEach(listEntry, custom_form_data_signer_response->a_obj_ezsignformfieldgroup) {
+            custom_form_data_ezsignformfieldgroup_response_free(listEntry->data);
         }
-        list_freeList(custom_form_data_signer_response->a_obj_ezsignformfieldgroup_compound);
-        custom_form_data_signer_response->a_obj_ezsignformfieldgroup_compound = NULL;
+        list_freeList(custom_form_data_signer_response->a_obj_ezsignformfieldgroup);
+        custom_form_data_signer_response->a_obj_ezsignformfieldgroup = NULL;
     }
     free(custom_form_data_signer_response);
 }
@@ -90,24 +90,24 @@ cJSON *custom_form_data_signer_response_convertToJSON(custom_form_data_signer_re
     }
 
 
-    // custom_form_data_signer_response->a_obj_ezsignformfieldgroup_compound
-    if (!custom_form_data_signer_response->a_obj_ezsignformfieldgroup_compound) {
+    // custom_form_data_signer_response->a_obj_ezsignformfieldgroup
+    if (!custom_form_data_signer_response->a_obj_ezsignformfieldgroup) {
         goto fail;
     }
     
-    cJSON *a_obj_ezsignformfieldgroup_compound = cJSON_AddArrayToObject(item, "a_objEzsignformfieldgroupCompound");
-    if(a_obj_ezsignformfieldgroup_compound == NULL) {
+    cJSON *a_obj_ezsignformfieldgroup = cJSON_AddArrayToObject(item, "a_objEzsignformfieldgroup");
+    if(a_obj_ezsignformfieldgroup == NULL) {
     goto fail; //nonprimitive container
     }
 
-    listEntry_t *a_obj_ezsignformfieldgroup_compoundListEntry;
-    if (custom_form_data_signer_response->a_obj_ezsignformfieldgroup_compound) {
-    list_ForEach(a_obj_ezsignformfieldgroup_compoundListEntry, custom_form_data_signer_response->a_obj_ezsignformfieldgroup_compound) {
-    cJSON *itemLocal = ezsignformfieldgroup_response_compound_convertToJSON(a_obj_ezsignformfieldgroup_compoundListEntry->data);
+    listEntry_t *a_obj_ezsignformfieldgroupListEntry;
+    if (custom_form_data_signer_response->a_obj_ezsignformfieldgroup) {
+    list_ForEach(a_obj_ezsignformfieldgroupListEntry, custom_form_data_signer_response->a_obj_ezsignformfieldgroup) {
+    cJSON *itemLocal = custom_form_data_ezsignformfieldgroup_response_convertToJSON(a_obj_ezsignformfieldgroupListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
-    cJSON_AddItemToArray(a_obj_ezsignformfieldgroup_compound, itemLocal);
+    cJSON_AddItemToArray(a_obj_ezsignformfieldgroup, itemLocal);
     }
     }
 
@@ -168,29 +168,29 @@ custom_form_data_signer_response_t *custom_form_data_signer_response_parseFromJS
     goto end; //String
     }
 
-    // custom_form_data_signer_response->a_obj_ezsignformfieldgroup_compound
-    cJSON *a_obj_ezsignformfieldgroup_compound = cJSON_GetObjectItemCaseSensitive(custom_form_data_signer_responseJSON, "a_objEzsignformfieldgroupCompound");
-    if (!a_obj_ezsignformfieldgroup_compound) {
+    // custom_form_data_signer_response->a_obj_ezsignformfieldgroup
+    cJSON *a_obj_ezsignformfieldgroup = cJSON_GetObjectItemCaseSensitive(custom_form_data_signer_responseJSON, "a_objEzsignformfieldgroup");
+    if (!a_obj_ezsignformfieldgroup) {
         goto end;
     }
 
-    list_t *a_obj_ezsignformfieldgroup_compoundList;
+    list_t *a_obj_ezsignformfieldgroupList;
     
-    cJSON *a_obj_ezsignformfieldgroup_compound_local_nonprimitive;
-    if(!cJSON_IsArray(a_obj_ezsignformfieldgroup_compound)){
+    cJSON *a_obj_ezsignformfieldgroup_local_nonprimitive;
+    if(!cJSON_IsArray(a_obj_ezsignformfieldgroup)){
         goto end; //nonprimitive container
     }
 
-    a_obj_ezsignformfieldgroup_compoundList = list_createList();
+    a_obj_ezsignformfieldgroupList = list_createList();
 
-    cJSON_ArrayForEach(a_obj_ezsignformfieldgroup_compound_local_nonprimitive,a_obj_ezsignformfieldgroup_compound )
+    cJSON_ArrayForEach(a_obj_ezsignformfieldgroup_local_nonprimitive,a_obj_ezsignformfieldgroup )
     {
-        if(!cJSON_IsObject(a_obj_ezsignformfieldgroup_compound_local_nonprimitive)){
+        if(!cJSON_IsObject(a_obj_ezsignformfieldgroup_local_nonprimitive)){
             goto end;
         }
-        ezsignformfieldgroup_response_compound_t *a_obj_ezsignformfieldgroup_compoundItem = ezsignformfieldgroup_response_compound_parseFromJSON(a_obj_ezsignformfieldgroup_compound_local_nonprimitive);
+        custom_form_data_ezsignformfieldgroup_response_t *a_obj_ezsignformfieldgroupItem = custom_form_data_ezsignformfieldgroup_response_parseFromJSON(a_obj_ezsignformfieldgroup_local_nonprimitive);
 
-        list_addElement(a_obj_ezsignformfieldgroup_compoundList, a_obj_ezsignformfieldgroup_compoundItem);
+        list_addElement(a_obj_ezsignformfieldgroupList, a_obj_ezsignformfieldgroupItem);
     }
 
 
@@ -199,7 +199,7 @@ custom_form_data_signer_response_t *custom_form_data_signer_response_parseFromJS
         fki_user_id ? fki_user_id->valuedouble : 0,
         strdup(s_contact_firstname->valuestring),
         strdup(s_contact_lastname->valuestring),
-        a_obj_ezsignformfieldgroup_compoundList
+        a_obj_ezsignformfieldgroupList
         );
 
     return custom_form_data_signer_response_local_var;

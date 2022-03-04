@@ -22,13 +22,29 @@ ezsignformfield_response_t* instantiate_ezsignformfield_response(int include_opt
   ezsignformfield_response_t* ezsignformfield_response = NULL;
   if (include_optional) {
     ezsignformfield_response = ezsignformfield_response_create(
+      32,
+      1,
       "Peanuts",
-      "Yes"
+      "Yes",
+      200,
+      300,
+      102,
+      22,
+      1,
+      "Montreal"
     );
   } else {
     ezsignformfield_response = ezsignformfield_response_create(
+      32,
+      1,
       "Peanuts",
-      "Yes"
+      "Yes",
+      200,
+      300,
+      102,
+      22,
+      1,
+      "Montreal"
     );
   }
 

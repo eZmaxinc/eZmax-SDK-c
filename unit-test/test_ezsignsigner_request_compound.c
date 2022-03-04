@@ -23,19 +23,21 @@ ezsignsigner_request_compound_t* instantiate_ezsignsigner_request_compound(int i
   ezsignsigner_request_compound_t* ezsignsigner_request_compound = NULL;
   if (include_optional) {
     ezsignsigner_request_compound = ezsignsigner_request_compound_create(
-      {"sContactFirstname":"John","sContactLastname":"Doe","fkiLanguageID":1,"sEmailAddress":"johh.doe@domain.com","sPhoneNumber":"5149901516","sPhoneNumberCell":"5149901516"},
+      2,
       1,
       7,
       ezmax_api_definition_ezsignsigner_request_compound_EEZSIGNSIGNERLOGINTYPE_Password,
-      "0"
+      "0",
+      {"sContactFirstname":"John","sContactLastname":"Doe","fkiLanguageID":1,"sEmailAddress":"johh.doe@domain.com","sPhoneNumber":"5149901516","sPhoneNumberCell":"5149901516"}
     );
   } else {
     ezsignsigner_request_compound = ezsignsigner_request_compound_create(
-      {"sContactFirstname":"John","sContactLastname":"Doe","fkiLanguageID":1,"sEmailAddress":"johh.doe@domain.com","sPhoneNumber":"5149901516","sPhoneNumberCell":"5149901516"},
+      2,
       1,
       7,
       ezmax_api_definition_ezsignsigner_request_compound_EEZSIGNSIGNERLOGINTYPE_Password,
-      "0"
+      "0",
+      {"sContactFirstname":"John","sContactLastname":"Doe","fkiLanguageID":1,"sEmailAddress":"johh.doe@domain.com","sPhoneNumber":"5149901516","sPhoneNumberCell":"5149901516"}
     );
   }
 

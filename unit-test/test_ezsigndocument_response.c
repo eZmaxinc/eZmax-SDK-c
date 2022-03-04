@@ -37,7 +37,8 @@ ezsigndocument_response_t* instantiate_ezsigndocument_response(int include_optio
       4,
       "012345678901234567890123456789AB",
       "012345678901234567890123456789AB",
-      {"fkiUserIDCreated":35,"fkiUserIDModified":35,"fkiApikeyIDCreated":1,"fkiApikeyIDModified":1,"dtCreatedDate":"2020-12-31 23:59:59","dtModifiedDate":"2020-12-31 23:59:59"}
+       // false, not to have infinite recursion
+      instantiate_common_audit(0)
     );
   } else {
     ezsigndocument_response = ezsigndocument_response_create(
@@ -55,7 +56,7 @@ ezsigndocument_response_t* instantiate_ezsigndocument_response(int include_optio
       4,
       "012345678901234567890123456789AB",
       "012345678901234567890123456789AB",
-      {"fkiUserIDCreated":35,"fkiUserIDModified":35,"fkiApikeyIDCreated":1,"fkiApikeyIDModified":1,"dtCreatedDate":"2020-12-31 23:59:59","dtModifiedDate":"2020-12-31 23:59:59"}
+      NULL
     );
   }
 

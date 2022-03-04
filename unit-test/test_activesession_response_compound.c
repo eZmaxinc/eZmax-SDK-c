@@ -25,6 +25,13 @@ activesession_response_compound_t* instantiate_activesession_response_compound(i
   activesession_response_compound_t* activesession_response_compound = NULL;
   if (include_optional) {
     activesession_response_compound = activesession_response_compound_create(
+      ezmax_api_definition_activesession_response_compound__"Normal",
+      ezmax_api_definition_activesession_response_compound__"Sunday",
+      2,
+      "Acme inc.",
+      "Head Office",
+      false,
+      "demo",
       list_createList(),
        // false, not to have infinite recursion
       instantiate_activesession_response_compound_user(0),
@@ -32,29 +39,22 @@ activesession_response_compound_t* instantiate_activesession_response_compound(i
       instantiate_activesession_response_compound_user(0),
        // false, not to have infinite recursion
       instantiate_activesession_response_compound_apikey(0),
-      list_createList(),
-      ezmax_api_definition_activesession_response_compound__"Normal",
-      ezmax_api_definition_activesession_response_compound__"Sunday",
-      2,
-      "Acme inc.",
-      "Head Office",
-      false,
-      "demo"
+      list_createList()
     );
   } else {
     activesession_response_compound = activesession_response_compound_create(
-      list_createList(),
-      NULL,
-      NULL,
-      NULL,
-      list_createList(),
       ezmax_api_definition_activesession_response_compound__"Normal",
       ezmax_api_definition_activesession_response_compound__"Sunday",
       2,
       "Acme inc.",
       "Head Office",
       false,
-      "demo"
+      "demo",
+      list_createList(),
+      NULL,
+      NULL,
+      NULL,
+      list_createList()
     );
   }
 

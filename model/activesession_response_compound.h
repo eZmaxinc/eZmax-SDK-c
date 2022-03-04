@@ -41,11 +41,6 @@ ezmax_api_definition_activesession_response_compound__e activesession_response_c
 
 
 typedef struct activesession_response_compound_t {
-    list_t *a_pki_permission_id; //primitive container
-    struct activesession_response_compound_user_t *obj_user_real; //model
-    struct activesession_response_compound_user_t *obj_user_cloned; //model
-    struct activesession_response_compound_apikey_t *obj_apikey; //model
-    list_t *a_e_module_internalname; //primitive container
     field_e_activesession_sessiontype_t *e_activesession_sessiontype; // custom
     field_e_activesession_weekdaystart_t *e_activesession_weekdaystart; // custom
     int fki_language_id; //numeric
@@ -53,22 +48,27 @@ typedef struct activesession_response_compound_t {
     char *s_department_name_x; // string
     int b_activesession_debug; //boolean
     char *pks_customer_code; // string
+    list_t *a_pki_permission_id; //primitive container
+    struct activesession_response_compound_user_t *obj_user_real; //model
+    struct activesession_response_compound_user_t *obj_user_cloned; //model
+    struct activesession_response_compound_apikey_t *obj_apikey; //model
+    list_t *a_e_module_internalname; //primitive container
 
 } activesession_response_compound_t;
 
 activesession_response_compound_t *activesession_response_compound_create(
-    list_t *a_pki_permission_id,
-    activesession_response_compound_user_t *obj_user_real,
-    activesession_response_compound_user_t *obj_user_cloned,
-    activesession_response_compound_apikey_t *obj_apikey,
-    list_t *a_e_module_internalname,
     field_e_activesession_sessiontype_t *e_activesession_sessiontype,
     field_e_activesession_weekdaystart_t *e_activesession_weekdaystart,
     int fki_language_id,
     char *s_company_name_x,
     char *s_department_name_x,
     int b_activesession_debug,
-    char *pks_customer_code
+    char *pks_customer_code,
+    list_t *a_pki_permission_id,
+    activesession_response_compound_user_t *obj_user_real,
+    activesession_response_compound_user_t *obj_user_cloned,
+    activesession_response_compound_apikey_t *obj_apikey,
+    list_t *a_e_module_internalname
 );
 
 void activesession_response_compound_free(activesession_response_compound_t *activesession_response_compound);

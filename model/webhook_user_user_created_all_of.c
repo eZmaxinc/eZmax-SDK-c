@@ -6,7 +6,7 @@
 
 
 webhook_user_user_created_all_of_t *webhook_user_user_created_all_of_create(
-    user_response_t *obj_user
+    user_response_compound_t *obj_user
     ) {
     webhook_user_user_created_all_of_t *webhook_user_user_created_all_of_local_var = malloc(sizeof(webhook_user_user_created_all_of_t));
     if (!webhook_user_user_created_all_of_local_var) {
@@ -24,7 +24,7 @@ void webhook_user_user_created_all_of_free(webhook_user_user_created_all_of_t *w
     }
     listEntry_t *listEntry;
     if (webhook_user_user_created_all_of->obj_user) {
-        user_response_free(webhook_user_user_created_all_of->obj_user);
+        user_response_compound_free(webhook_user_user_created_all_of->obj_user);
         webhook_user_user_created_all_of->obj_user = NULL;
     }
     free(webhook_user_user_created_all_of);
@@ -38,7 +38,7 @@ cJSON *webhook_user_user_created_all_of_convertToJSON(webhook_user_user_created_
         goto fail;
     }
     
-    cJSON *obj_user_local_JSON = user_response_convertToJSON(webhook_user_user_created_all_of->obj_user);
+    cJSON *obj_user_local_JSON = user_response_compound_convertToJSON(webhook_user_user_created_all_of->obj_user);
     if(obj_user_local_JSON == NULL) {
     goto fail; //model
     }
@@ -60,7 +60,7 @@ webhook_user_user_created_all_of_t *webhook_user_user_created_all_of_parseFromJS
     webhook_user_user_created_all_of_t *webhook_user_user_created_all_of_local_var = NULL;
 
     // define the local variable for webhook_user_user_created_all_of->obj_user
-    user_response_t *obj_user_local_nonprim = NULL;
+    user_response_compound_t *obj_user_local_nonprim = NULL;
 
     // webhook_user_user_created_all_of->obj_user
     cJSON *obj_user = cJSON_GetObjectItemCaseSensitive(webhook_user_user_created_all_ofJSON, "objUser");
@@ -69,7 +69,7 @@ webhook_user_user_created_all_of_t *webhook_user_user_created_all_of_parseFromJS
     }
 
     
-    obj_user_local_nonprim = user_response_parseFromJSON(obj_user); //nonprimitive
+    obj_user_local_nonprim = user_response_compound_parseFromJSON(obj_user); //nonprimitive
 
 
     webhook_user_user_created_all_of_local_var = webhook_user_user_created_all_of_create (
@@ -79,7 +79,7 @@ webhook_user_user_created_all_of_t *webhook_user_user_created_all_of_parseFromJS
     return webhook_user_user_created_all_of_local_var;
 end:
     if (obj_user_local_nonprim) {
-        user_response_free(obj_user_local_nonprim);
+        user_response_compound_free(obj_user_local_nonprim);
         obj_user_local_nonprim = NULL;
     }
     return NULL;

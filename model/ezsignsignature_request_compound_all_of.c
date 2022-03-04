@@ -27,7 +27,7 @@ void ezsignsignature_request_compound_all_of_free(ezsignsignature_request_compou
     listEntry_t *listEntry;
     if (ezsignsignature_request_compound_all_of->a_obj_ezsignsignaturecustomdate) {
         list_ForEach(listEntry, ezsignsignature_request_compound_all_of->a_obj_ezsignsignaturecustomdate) {
-            ezsignsignaturecustomdate_request_free(listEntry->data);
+            ezsignsignaturecustomdate_request_compound_free(listEntry->data);
         }
         list_freeList(ezsignsignature_request_compound_all_of->a_obj_ezsignsignaturecustomdate);
         ezsignsignature_request_compound_all_of->a_obj_ezsignsignaturecustomdate = NULL;
@@ -56,7 +56,7 @@ cJSON *ezsignsignature_request_compound_all_of_convertToJSON(ezsignsignature_req
     listEntry_t *a_obj_ezsignsignaturecustomdateListEntry;
     if (ezsignsignature_request_compound_all_of->a_obj_ezsignsignaturecustomdate) {
     list_ForEach(a_obj_ezsignsignaturecustomdateListEntry, ezsignsignature_request_compound_all_of->a_obj_ezsignsignaturecustomdate) {
-    cJSON *itemLocal = ezsignsignaturecustomdate_request_convertToJSON(a_obj_ezsignsignaturecustomdateListEntry->data);
+    cJSON *itemLocal = ezsignsignaturecustomdate_request_compound_convertToJSON(a_obj_ezsignsignaturecustomdateListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -102,7 +102,7 @@ ezsignsignature_request_compound_all_of_t *ezsignsignature_request_compound_all_
         if(!cJSON_IsObject(a_obj_ezsignsignaturecustomdate_local_nonprimitive)){
             goto end;
         }
-        ezsignsignaturecustomdate_request_t *a_obj_ezsignsignaturecustomdateItem = ezsignsignaturecustomdate_request_parseFromJSON(a_obj_ezsignsignaturecustomdate_local_nonprimitive);
+        ezsignsignaturecustomdate_request_compound_t *a_obj_ezsignsignaturecustomdateItem = ezsignsignaturecustomdate_request_compound_parseFromJSON(a_obj_ezsignsignaturecustomdate_local_nonprimitive);
 
         list_addElement(a_obj_ezsignsignaturecustomdateList, a_obj_ezsignsignaturecustomdateItem);
     }

@@ -9,10 +9,13 @@ Method | HTTP request | Description
 [**ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV1) | **POST** /1/object/ezsigndocument | Create a new Ezsigndocument
 [**ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV2**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV2) | **POST** /2/object/ezsigndocument | Create a new Ezsigndocument
 [**ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1) | **DELETE** /1/object/ezsigndocument/{pkiEzsigndocumentID} | Delete an existing Ezsigndocument
-[**ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1) | **PUT** /1/object/ezsigndocument/{pkiEzsigndocumentID}/editEzsignsignatures | Edit multiple ezsignsignatures
+[**ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignformfieldgroupsV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignformfieldgroupsV1) | **PUT** /1/object/ezsigndocument/{pkiEzsigndocumentID}/editEzsignformfieldgroups | Edit multiple Ezsignformfieldgroups
+[**ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1) | **PUT** /1/object/ezsigndocument/{pkiEzsigndocumentID}/editEzsignsignatures | Edit multiple Ezsignsignatures
 [**ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/endPrematurely | End prematurely
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getDownloadUrl/{eDocumentType} | Retrieve a URL to download documents.
+[**ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignformfieldgroupsV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignformfieldgroupsV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getEzsignformfieldgroups | Retrieve an existing Ezsigndocument&#39;s Ezsignformfieldgroups
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignpagesV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignpagesV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getEzsignpages | Retrieve an existing Ezsigndocument&#39;s Ezsignpages
+[**ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignsignaturesV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignsignaturesV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getEzsignsignatures | Retrieve an existing Ezsigndocument&#39;s Ezsignsignatures
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getFormData | Retrieve an existing Ezsigndocument&#39;s Form Data
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID} | Retrieve an existing Ezsigndocument
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetTemporaryProofV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetTemporaryProofV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getTemporaryProof | Retrieve the temporary proof
@@ -177,11 +180,43 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignformfieldgroupsV1**
+```c
+// Edit multiple Ezsignformfieldgroups
+//
+// Using this endpoint, you can edit multiple Ezsignformfieldgroups at the same time.
+//
+ezsigndocument_edit_ezsignformfieldgroups_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignformfieldgroupsV1(apiClient_t *apiClient, int pkiEzsigndocumentID, ezsigndocument_edit_ezsignformfieldgroups_v1_request_t * ezsigndocument_edit_ezsignformfieldgroups_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsigndocumentID** | **int** |  | 
+**ezsigndocument_edit_ezsignformfieldgroups_v1_request** | **[ezsigndocument_edit_ezsignformfieldgroups_v1_request_t](ezsigndocument_edit_ezsignformfieldgroups_v1_request.md) \*** |  | 
+
+### Return type
+
+[ezsigndocument_edit_ezsignformfieldgroups_v1_response_t](ezsigndocument_edit_ezsignformfieldgroups_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1**
 ```c
-// Edit multiple ezsignsignatures
+// Edit multiple Ezsignsignatures
 //
-// Using this endpoint, you can edit multiple ezsignsignatures at the same time.
+// Using this endpoint, you can edit multiple Ezsignsignatures at the same time.
 //
 ezsigndocument_edit_ezsignsignatures_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1(apiClient_t *apiClient, int pkiEzsigndocumentID, ezsigndocument_edit_ezsignsignatures_v1_request_t * ezsigndocument_edit_ezsignsignatures_v1_request);
 ```
@@ -215,7 +250,7 @@ Name | Type | Description  | Notes
 //
 // End prematurely an Ezsigndocument when some signatures are still required
 //
-ezsigndocument_end_prematurely_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1(apiClient_t *apiClient, int pkiEzsigndocumentID);
+ezsigndocument_end_prematurely_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1(apiClient_t *apiClient, int pkiEzsigndocumentID, object_t * body);
 ```
 
 ### Parameters
@@ -223,6 +258,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **pkiEzsigndocumentID** | **int** |  | 
+**body** | **[object_t](object.md) \*** |  | 
 
 ### Return type
 
@@ -235,7 +271,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -272,6 +308,37 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignformfieldgroupsV1**
+```c
+// Retrieve an existing Ezsigndocument's Ezsignformfieldgroups
+//
+// 
+//
+ezsigndocument_get_ezsignformfieldgroups_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignformfieldgroupsV1(apiClient_t *apiClient, int pkiEzsigndocumentID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsigndocumentID** | **int** |  | 
+
+### Return type
+
+[ezsigndocument_get_ezsignformfieldgroups_v1_response_t](ezsigndocument_get_ezsignformfieldgroups_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignpagesV1**
 ```c
 // Retrieve an existing Ezsigndocument's Ezsignpages
@@ -290,6 +357,37 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsigndocument_get_ezsignpages_v1_response_t](ezsigndocument_get_ezsignpages_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignsignaturesV1**
+```c
+// Retrieve an existing Ezsigndocument's Ezsignsignatures
+//
+// 
+//
+ezsigndocument_get_ezsignsignatures_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignsignaturesV1(apiClient_t *apiClient, int pkiEzsigndocumentID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsigndocumentID** | **int** |  | 
+
+### Return type
+
+[ezsigndocument_get_ezsignsignatures_v1_response_t](ezsigndocument_get_ezsignsignatures_v1_response.md) *
 
 
 ### Authorization

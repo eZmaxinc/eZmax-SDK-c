@@ -23,8 +23,6 @@ ezmax_api_definition_ezsignsignature_request_compound__e e_ezsignsignature_typee
 }
 
 ezsignsignature_request_compound_t *ezsignsignature_request_compound_create(
-    int b_ezsignsignature_customdate,
-    list_t *a_obj_ezsignsignaturecustomdate,
     int pki_ezsignsignature_id,
     int fki_ezsignfoldersignerassociation_id,
     int i_ezsignpage_pagenumber,
@@ -32,14 +30,14 @@ ezsignsignature_request_compound_t *ezsignsignature_request_compound_create(
     int i_ezsignsignature_y,
     int i_ezsignsignature_step,
     field_e_ezsignsignature_type_t *e_ezsignsignature_type,
-    int fki_ezsigndocument_id
+    int fki_ezsigndocument_id,
+    int b_ezsignsignature_customdate,
+    list_t *a_obj_ezsignsignaturecustomdate
     ) {
     ezsignsignature_request_compound_t *ezsignsignature_request_compound_local_var = malloc(sizeof(ezsignsignature_request_compound_t));
     if (!ezsignsignature_request_compound_local_var) {
         return NULL;
     }
-    ezsignsignature_request_compound_local_var->b_ezsignsignature_customdate = b_ezsignsignature_customdate;
-    ezsignsignature_request_compound_local_var->a_obj_ezsignsignaturecustomdate = a_obj_ezsignsignaturecustomdate;
     ezsignsignature_request_compound_local_var->pki_ezsignsignature_id = pki_ezsignsignature_id;
     ezsignsignature_request_compound_local_var->fki_ezsignfoldersignerassociation_id = fki_ezsignfoldersignerassociation_id;
     ezsignsignature_request_compound_local_var->i_ezsignpage_pagenumber = i_ezsignpage_pagenumber;
@@ -48,6 +46,8 @@ ezsignsignature_request_compound_t *ezsignsignature_request_compound_create(
     ezsignsignature_request_compound_local_var->i_ezsignsignature_step = i_ezsignsignature_step;
     ezsignsignature_request_compound_local_var->e_ezsignsignature_type = e_ezsignsignature_type;
     ezsignsignature_request_compound_local_var->fki_ezsigndocument_id = fki_ezsigndocument_id;
+    ezsignsignature_request_compound_local_var->b_ezsignsignature_customdate = b_ezsignsignature_customdate;
+    ezsignsignature_request_compound_local_var->a_obj_ezsignsignaturecustomdate = a_obj_ezsignsignaturecustomdate;
 
     return ezsignsignature_request_compound_local_var;
 }
@@ -58,50 +58,22 @@ void ezsignsignature_request_compound_free(ezsignsignature_request_compound_t *e
         return ;
     }
     listEntry_t *listEntry;
-    if (ezsignsignature_request_compound->a_obj_ezsignsignaturecustomdate) {
-        list_ForEach(listEntry, ezsignsignature_request_compound->a_obj_ezsignsignaturecustomdate) {
-            ezsignsignaturecustomdate_request_free(listEntry->data);
-        }
-        list_freeList(ezsignsignature_request_compound->a_obj_ezsignsignaturecustomdate);
-        ezsignsignature_request_compound->a_obj_ezsignsignaturecustomdate = NULL;
-    }
     if (ezsignsignature_request_compound->e_ezsignsignature_type) {
         field_e_ezsignsignature_type_free(ezsignsignature_request_compound->e_ezsignsignature_type);
         ezsignsignature_request_compound->e_ezsignsignature_type = NULL;
+    }
+    if (ezsignsignature_request_compound->a_obj_ezsignsignaturecustomdate) {
+        list_ForEach(listEntry, ezsignsignature_request_compound->a_obj_ezsignsignaturecustomdate) {
+            ezsignsignaturecustomdate_request_compound_free(listEntry->data);
+        }
+        list_freeList(ezsignsignature_request_compound->a_obj_ezsignsignaturecustomdate);
+        ezsignsignature_request_compound->a_obj_ezsignsignaturecustomdate = NULL;
     }
     free(ezsignsignature_request_compound);
 }
 
 cJSON *ezsignsignature_request_compound_convertToJSON(ezsignsignature_request_compound_t *ezsignsignature_request_compound) {
     cJSON *item = cJSON_CreateObject();
-
-    // ezsignsignature_request_compound->b_ezsignsignature_customdate
-    if(ezsignsignature_request_compound->b_ezsignsignature_customdate) { 
-    if(cJSON_AddBoolToObject(item, "bEzsignsignatureCustomdate", ezsignsignature_request_compound->b_ezsignsignature_customdate) == NULL) {
-    goto fail; //Bool
-    }
-     } 
-
-
-    // ezsignsignature_request_compound->a_obj_ezsignsignaturecustomdate
-    if(ezsignsignature_request_compound->a_obj_ezsignsignaturecustomdate) { 
-    cJSON *a_obj_ezsignsignaturecustomdate = cJSON_AddArrayToObject(item, "a_objEzsignsignaturecustomdate");
-    if(a_obj_ezsignsignaturecustomdate == NULL) {
-    goto fail; //nonprimitive container
-    }
-
-    listEntry_t *a_obj_ezsignsignaturecustomdateListEntry;
-    if (ezsignsignature_request_compound->a_obj_ezsignsignaturecustomdate) {
-    list_ForEach(a_obj_ezsignsignaturecustomdateListEntry, ezsignsignature_request_compound->a_obj_ezsignsignaturecustomdate) {
-    cJSON *itemLocal = ezsignsignaturecustomdate_request_convertToJSON(a_obj_ezsignsignaturecustomdateListEntry->data);
-    if(itemLocal == NULL) {
-    goto fail;
-    }
-    cJSON_AddItemToArray(a_obj_ezsignsignaturecustomdate, itemLocal);
-    }
-    }
-     } 
-
 
     // ezsignsignature_request_compound->pki_ezsignsignature_id
     if(ezsignsignature_request_compound->pki_ezsignsignature_id) { 
@@ -182,6 +154,34 @@ cJSON *ezsignsignature_request_compound_convertToJSON(ezsignsignature_request_co
     goto fail; //Numeric
     }
 
+
+    // ezsignsignature_request_compound->b_ezsignsignature_customdate
+    if(ezsignsignature_request_compound->b_ezsignsignature_customdate) { 
+    if(cJSON_AddBoolToObject(item, "bEzsignsignatureCustomdate", ezsignsignature_request_compound->b_ezsignsignature_customdate) == NULL) {
+    goto fail; //Bool
+    }
+     } 
+
+
+    // ezsignsignature_request_compound->a_obj_ezsignsignaturecustomdate
+    if(ezsignsignature_request_compound->a_obj_ezsignsignaturecustomdate) { 
+    cJSON *a_obj_ezsignsignaturecustomdate = cJSON_AddArrayToObject(item, "a_objEzsignsignaturecustomdate");
+    if(a_obj_ezsignsignaturecustomdate == NULL) {
+    goto fail; //nonprimitive container
+    }
+
+    listEntry_t *a_obj_ezsignsignaturecustomdateListEntry;
+    if (ezsignsignature_request_compound->a_obj_ezsignsignaturecustomdate) {
+    list_ForEach(a_obj_ezsignsignaturecustomdateListEntry, ezsignsignature_request_compound->a_obj_ezsignsignaturecustomdate) {
+    cJSON *itemLocal = ezsignsignaturecustomdate_request_compound_convertToJSON(a_obj_ezsignsignaturecustomdateListEntry->data);
+    if(itemLocal == NULL) {
+    goto fail;
+    }
+    cJSON_AddItemToArray(a_obj_ezsignsignaturecustomdate, itemLocal);
+    }
+    }
+     } 
+
     return item;
 fail:
     if (item) {
@@ -196,37 +196,6 @@ ezsignsignature_request_compound_t *ezsignsignature_request_compound_parseFromJS
 
     // define the local variable for ezsignsignature_request_compound->e_ezsignsignature_type
     field_e_ezsignsignature_type_t *e_ezsignsignature_type_local_nonprim = NULL;
-
-    // ezsignsignature_request_compound->b_ezsignsignature_customdate
-    cJSON *b_ezsignsignature_customdate = cJSON_GetObjectItemCaseSensitive(ezsignsignature_request_compoundJSON, "bEzsignsignatureCustomdate");
-    if (b_ezsignsignature_customdate) { 
-    if(!cJSON_IsBool(b_ezsignsignature_customdate))
-    {
-    goto end; //Bool
-    }
-    }
-
-    // ezsignsignature_request_compound->a_obj_ezsignsignaturecustomdate
-    cJSON *a_obj_ezsignsignaturecustomdate = cJSON_GetObjectItemCaseSensitive(ezsignsignature_request_compoundJSON, "a_objEzsignsignaturecustomdate");
-    list_t *a_obj_ezsignsignaturecustomdateList;
-    if (a_obj_ezsignsignaturecustomdate) { 
-    cJSON *a_obj_ezsignsignaturecustomdate_local_nonprimitive;
-    if(!cJSON_IsArray(a_obj_ezsignsignaturecustomdate)){
-        goto end; //nonprimitive container
-    }
-
-    a_obj_ezsignsignaturecustomdateList = list_createList();
-
-    cJSON_ArrayForEach(a_obj_ezsignsignaturecustomdate_local_nonprimitive,a_obj_ezsignsignaturecustomdate )
-    {
-        if(!cJSON_IsObject(a_obj_ezsignsignaturecustomdate_local_nonprimitive)){
-            goto end;
-        }
-        ezsignsignaturecustomdate_request_t *a_obj_ezsignsignaturecustomdateItem = ezsignsignaturecustomdate_request_parseFromJSON(a_obj_ezsignsignaturecustomdate_local_nonprimitive);
-
-        list_addElement(a_obj_ezsignsignaturecustomdateList, a_obj_ezsignsignaturecustomdateItem);
-    }
-    }
 
     // ezsignsignature_request_compound->pki_ezsignsignature_id
     cJSON *pki_ezsignsignature_id = cJSON_GetObjectItemCaseSensitive(ezsignsignature_request_compoundJSON, "pkiEzsignsignatureID");
@@ -318,10 +287,39 @@ ezsignsignature_request_compound_t *ezsignsignature_request_compound_parseFromJS
     goto end; //Numeric
     }
 
+    // ezsignsignature_request_compound->b_ezsignsignature_customdate
+    cJSON *b_ezsignsignature_customdate = cJSON_GetObjectItemCaseSensitive(ezsignsignature_request_compoundJSON, "bEzsignsignatureCustomdate");
+    if (b_ezsignsignature_customdate) { 
+    if(!cJSON_IsBool(b_ezsignsignature_customdate))
+    {
+    goto end; //Bool
+    }
+    }
+
+    // ezsignsignature_request_compound->a_obj_ezsignsignaturecustomdate
+    cJSON *a_obj_ezsignsignaturecustomdate = cJSON_GetObjectItemCaseSensitive(ezsignsignature_request_compoundJSON, "a_objEzsignsignaturecustomdate");
+    list_t *a_obj_ezsignsignaturecustomdateList;
+    if (a_obj_ezsignsignaturecustomdate) { 
+    cJSON *a_obj_ezsignsignaturecustomdate_local_nonprimitive;
+    if(!cJSON_IsArray(a_obj_ezsignsignaturecustomdate)){
+        goto end; //nonprimitive container
+    }
+
+    a_obj_ezsignsignaturecustomdateList = list_createList();
+
+    cJSON_ArrayForEach(a_obj_ezsignsignaturecustomdate_local_nonprimitive,a_obj_ezsignsignaturecustomdate )
+    {
+        if(!cJSON_IsObject(a_obj_ezsignsignaturecustomdate_local_nonprimitive)){
+            goto end;
+        }
+        ezsignsignaturecustomdate_request_compound_t *a_obj_ezsignsignaturecustomdateItem = ezsignsignaturecustomdate_request_compound_parseFromJSON(a_obj_ezsignsignaturecustomdate_local_nonprimitive);
+
+        list_addElement(a_obj_ezsignsignaturecustomdateList, a_obj_ezsignsignaturecustomdateItem);
+    }
+    }
+
 
     ezsignsignature_request_compound_local_var = ezsignsignature_request_compound_create (
-        b_ezsignsignature_customdate ? b_ezsignsignature_customdate->valueint : 0,
-        a_obj_ezsignsignaturecustomdate ? a_obj_ezsignsignaturecustomdateList : NULL,
         pki_ezsignsignature_id ? pki_ezsignsignature_id->valuedouble : 0,
         fki_ezsignfoldersignerassociation_id->valuedouble,
         i_ezsignpage_pagenumber->valuedouble,
@@ -329,7 +327,9 @@ ezsignsignature_request_compound_t *ezsignsignature_request_compound_parseFromJS
         i_ezsignsignature_y->valuedouble,
         i_ezsignsignature_step->valuedouble,
         e_ezsignsignature_type_local_nonprim,
-        fki_ezsigndocument_id->valuedouble
+        fki_ezsigndocument_id->valuedouble,
+        b_ezsignsignature_customdate ? b_ezsignsignature_customdate->valueint : 0,
+        a_obj_ezsignsignaturecustomdate ? a_obj_ezsignsignaturecustomdateList : NULL
         );
 
     return ezsignsignature_request_compound_local_var;

@@ -32,11 +32,6 @@ ezmax_api_definition_ezsigndocument_response_compound__e ezsigndocument_response
 
 
 typedef struct ezsigndocument_response_compound_t {
-    int i_ezsigndocument_stepformtotal; //numeric
-    int i_ezsigndocument_stepformcurrent; //numeric
-    int i_ezsigndocument_stepsignaturetotal; //numeric
-    int i_ezsigndocument_stepsignature_current; //numeric
-    list_t *a_obj_ezsignfoldersignerassociationstatus; //nonprimitive container
     int fki_ezsignfolder_id; //numeric
     char *dt_ezsigndocument_duedate; // string
     int fki_language_id; //numeric
@@ -52,15 +47,15 @@ typedef struct ezsigndocument_response_compound_t {
     char *s_ezsigndocument_md5initial; // string
     char *s_ezsigndocument_md5signed; // string
     struct common_audit_t *obj_audit; //model
+    int i_ezsigndocument_stepformtotal; //numeric
+    int i_ezsigndocument_stepformcurrent; //numeric
+    int i_ezsigndocument_stepsignaturetotal; //numeric
+    int i_ezsigndocument_stepsignature_current; //numeric
+    list_t *a_obj_ezsignfoldersignerassociationstatus; //nonprimitive container
 
 } ezsigndocument_response_compound_t;
 
 ezsigndocument_response_compound_t *ezsigndocument_response_compound_create(
-    int i_ezsigndocument_stepformtotal,
-    int i_ezsigndocument_stepformcurrent,
-    int i_ezsigndocument_stepsignaturetotal,
-    int i_ezsigndocument_stepsignature_current,
-    list_t *a_obj_ezsignfoldersignerassociationstatus,
     int fki_ezsignfolder_id,
     char *dt_ezsigndocument_duedate,
     int fki_language_id,
@@ -75,7 +70,12 @@ ezsigndocument_response_compound_t *ezsigndocument_response_compound_create(
     int i_ezsigndocument_signaturetotal,
     char *s_ezsigndocument_md5initial,
     char *s_ezsigndocument_md5signed,
-    common_audit_t *obj_audit
+    common_audit_t *obj_audit,
+    int i_ezsigndocument_stepformtotal,
+    int i_ezsigndocument_stepformcurrent,
+    int i_ezsigndocument_stepsignaturetotal,
+    int i_ezsigndocument_stepsignature_current,
+    list_t *a_obj_ezsignfoldersignerassociationstatus
 );
 
 void ezsigndocument_response_compound_free(ezsigndocument_response_compound_t *ezsigndocument_response_compound);

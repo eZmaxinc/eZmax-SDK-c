@@ -3,11 +3,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**i_ezsigndocument_stepformtotal** | **int** | The total number of steps in the form filling phase | 
-**i_ezsigndocument_stepformcurrent** | **int** | The current step in the form filling phase | 
-**i_ezsigndocument_stepsignaturetotal** | **int** | The total number of steps in the signature filling phase | 
-**i_ezsigndocument_stepsignature_current** | **int** | The current step in the signature phase | 
-**a_obj_ezsignfoldersignerassociationstatus** | [**list_t**](custom_ezsignfoldersignerassociationstatus_response.md) \* |  | 
 **fki_ezsignfolder_id** | **int** | The unique ID of the Ezsignfolder | 
 **dt_ezsigndocument_duedate** | **char \*** | The maximum date and time at which the Ezsigndocument can be signed. | 
 **fki_language_id** | **int** | The unique ID of the Language.  Valid values:  |Value|Description| |-|-| |1|French| |2|English| | 
@@ -23,6 +18,11 @@ Name | Type | Description | Notes
 **s_ezsigndocument_md5initial** | **char \*** | MD5 Hash of the initial PDF Document before signatures were applied to it. | 
 **s_ezsigndocument_md5signed** | **char \*** | MD5 Hash of the final PDF Document after all signatures were applied to it. | 
 **obj_audit** | [**common_audit_t**](common_audit.md) \* |  | 
+**i_ezsigndocument_stepformtotal** | **int** | The total number of steps in the form filling phase | 
+**i_ezsigndocument_stepformcurrent** | **int** | The current step in the form filling phase | 
+**i_ezsigndocument_stepsignaturetotal** | **int** | The total number of steps in the signature filling phase | 
+**i_ezsigndocument_stepsignature_current** | **int** | The current step in the signature phase | 
+**a_obj_ezsignfoldersignerassociationstatus** | [**list_t**](custom_ezsignfoldersignerassociationstatus_response.md) \* |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

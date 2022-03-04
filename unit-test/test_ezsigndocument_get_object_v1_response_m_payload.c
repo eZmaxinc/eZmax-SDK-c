@@ -23,11 +23,6 @@ ezsigndocument_get_object_v1_response_m_payload_t* instantiate_ezsigndocument_ge
   ezsigndocument_get_object_v1_response_m_payload_t* ezsigndocument_get_object_v1_response_m_payload = NULL;
   if (include_optional) {
     ezsigndocument_get_object_v1_response_m_payload = ezsigndocument_get_object_v1_response_m_payload_create(
-      2,
-      1,
-      2,
-      0,
-      list_createList(),
       33,
       "2020-12-31 23:59:59",
       2,
@@ -42,15 +37,16 @@ ezsigndocument_get_object_v1_response_m_payload_t* instantiate_ezsigndocument_ge
       4,
       "012345678901234567890123456789AB",
       "012345678901234567890123456789AB",
-      {"fkiUserIDCreated":35,"fkiUserIDModified":35,"fkiApikeyIDCreated":1,"fkiApikeyIDModified":1,"dtCreatedDate":"2020-12-31 23:59:59","dtModifiedDate":"2020-12-31 23:59:59"}
+       // false, not to have infinite recursion
+      instantiate_common_audit(0),
+      2,
+      1,
+      2,
+      0,
+      list_createList()
     );
   } else {
     ezsigndocument_get_object_v1_response_m_payload = ezsigndocument_get_object_v1_response_m_payload_create(
-      2,
-      1,
-      2,
-      0,
-      list_createList(),
       33,
       "2020-12-31 23:59:59",
       2,
@@ -65,7 +61,12 @@ ezsigndocument_get_object_v1_response_m_payload_t* instantiate_ezsigndocument_ge
       4,
       "012345678901234567890123456789AB",
       "012345678901234567890123456789AB",
-      {"fkiUserIDCreated":35,"fkiUserIDModified":35,"fkiApikeyIDCreated":1,"fkiApikeyIDModified":1,"dtCreatedDate":"2020-12-31 23:59:59","dtModifiedDate":"2020-12-31 23:59:59"}
+      NULL,
+      2,
+      1,
+      2,
+      0,
+      list_createList()
     );
   }
 

@@ -6,7 +6,7 @@
 
 
 ezsigndocument_get_temporary_proof_v1_response_m_payload_t *ezsigndocument_get_temporary_proof_v1_response_m_payload_create(
-    ezsigndocumentlog_response_t *a_obj_ezsigndocumentlog
+    ezsigndocumentlog_response_compound_t *a_obj_ezsigndocumentlog
     ) {
     ezsigndocument_get_temporary_proof_v1_response_m_payload_t *ezsigndocument_get_temporary_proof_v1_response_m_payload_local_var = malloc(sizeof(ezsigndocument_get_temporary_proof_v1_response_m_payload_t));
     if (!ezsigndocument_get_temporary_proof_v1_response_m_payload_local_var) {
@@ -24,7 +24,7 @@ void ezsigndocument_get_temporary_proof_v1_response_m_payload_free(ezsigndocumen
     }
     listEntry_t *listEntry;
     if (ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog) {
-        ezsigndocumentlog_response_free(ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog);
+        ezsigndocumentlog_response_compound_free(ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog);
         ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog = NULL;
     }
     free(ezsigndocument_get_temporary_proof_v1_response_m_payload);
@@ -38,7 +38,7 @@ cJSON *ezsigndocument_get_temporary_proof_v1_response_m_payload_convertToJSON(ez
         goto fail;
     }
     
-    cJSON *a_obj_ezsigndocumentlog_local_JSON = ezsigndocumentlog_response_convertToJSON(ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog);
+    cJSON *a_obj_ezsigndocumentlog_local_JSON = ezsigndocumentlog_response_compound_convertToJSON(ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog);
     if(a_obj_ezsigndocumentlog_local_JSON == NULL) {
     goto fail; //model
     }
@@ -60,7 +60,7 @@ ezsigndocument_get_temporary_proof_v1_response_m_payload_t *ezsigndocument_get_t
     ezsigndocument_get_temporary_proof_v1_response_m_payload_t *ezsigndocument_get_temporary_proof_v1_response_m_payload_local_var = NULL;
 
     // define the local variable for ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog
-    ezsigndocumentlog_response_t *a_obj_ezsigndocumentlog_local_nonprim = NULL;
+    ezsigndocumentlog_response_compound_t *a_obj_ezsigndocumentlog_local_nonprim = NULL;
 
     // ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog
     cJSON *a_obj_ezsigndocumentlog = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_temporary_proof_v1_response_m_payloadJSON, "a_objEzsigndocumentlog");
@@ -69,7 +69,7 @@ ezsigndocument_get_temporary_proof_v1_response_m_payload_t *ezsigndocument_get_t
     }
 
     
-    a_obj_ezsigndocumentlog_local_nonprim = ezsigndocumentlog_response_parseFromJSON(a_obj_ezsigndocumentlog); //nonprimitive
+    a_obj_ezsigndocumentlog_local_nonprim = ezsigndocumentlog_response_compound_parseFromJSON(a_obj_ezsigndocumentlog); //nonprimitive
 
 
     ezsigndocument_get_temporary_proof_v1_response_m_payload_local_var = ezsigndocument_get_temporary_proof_v1_response_m_payload_create (
@@ -79,7 +79,7 @@ ezsigndocument_get_temporary_proof_v1_response_m_payload_t *ezsigndocument_get_t
     return ezsigndocument_get_temporary_proof_v1_response_m_payload_local_var;
 end:
     if (a_obj_ezsigndocumentlog_local_nonprim) {
-        ezsigndocumentlog_response_free(a_obj_ezsigndocumentlog_local_nonprim);
+        ezsigndocumentlog_response_compound_free(a_obj_ezsigndocumentlog_local_nonprim);
         a_obj_ezsigndocumentlog_local_nonprim = NULL;
     }
     return NULL;

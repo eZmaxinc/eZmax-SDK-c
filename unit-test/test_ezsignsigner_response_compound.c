@@ -23,22 +23,22 @@ ezsignsigner_response_compound_t* instantiate_ezsignsigner_response_compound(int
   ezsignsigner_response_compound_t* ezsignsigner_response_compound = NULL;
   if (include_optional) {
     ezsignsigner_response_compound = ezsignsigner_response_compound_create(
-       // false, not to have infinite recursion
-      instantiate_ezsignsigner_response_compound_contact(0),
       89,
       1,
       7,
       2,
-      "Email and phone or SMS"
+      "Email and phone or SMS",
+       // false, not to have infinite recursion
+      instantiate_ezsignsigner_response_compound_contact(0)
     );
   } else {
     ezsignsigner_response_compound = ezsignsigner_response_compound_create(
-      NULL,
       89,
       1,
       7,
       2,
-      "Email and phone or SMS"
+      "Email and phone or SMS",
+      NULL
     );
   }
 

@@ -15,17 +15,17 @@
 
 typedef struct webhook_user_user_created_all_of_t webhook_user_user_created_all_of_t;
 
-#include "user_response.h"
+#include "user_response_compound.h"
 
 
 
 typedef struct webhook_user_user_created_all_of_t {
-    struct user_response_t *obj_user; //model
+    struct user_response_compound_t *obj_user; //model
 
 } webhook_user_user_created_all_of_t;
 
 webhook_user_user_created_all_of_t *webhook_user_user_created_all_of_create(
-    user_response_t *obj_user
+    user_response_compound_t *obj_user
 );
 
 void webhook_user_user_created_all_of_free(webhook_user_user_created_all_of_t *webhook_user_user_created_all_of);

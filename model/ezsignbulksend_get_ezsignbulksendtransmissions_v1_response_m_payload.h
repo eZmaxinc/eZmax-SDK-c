@@ -1,0 +1,38 @@
+/*
+ * ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload.h
+ *
+ * Payload for the /1/object/ezsignbulksend/{pkiEzsignbulksend}/getEzsignbulksendtransmissions API Request
+ */
+
+#ifndef _ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_H_
+#define _ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_t ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_t;
+
+#include "ezsignbulksendtransmission_response_compound.h"
+
+
+
+typedef struct ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_t {
+    list_t *a_obj_ezsignbulksendtransmission; //nonprimitive container
+
+} ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_t;
+
+ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_t *ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_create(
+    list_t *a_obj_ezsignbulksendtransmission
+);
+
+void ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_free(ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_t *ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload);
+
+ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_t *ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_parseFromJSON(cJSON *ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payloadJSON);
+
+cJSON *ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_convertToJSON(ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_t *ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload);
+
+#endif /* _ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_H_ */
+

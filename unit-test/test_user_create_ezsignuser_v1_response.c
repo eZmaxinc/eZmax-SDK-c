@@ -28,13 +28,13 @@ user_create_ezsignuser_v1_response_t* instantiate_user_create_ezsignuser_v1_resp
       {"a_sEmailAddressSuccess":["someone@example.com","someone2@example.com"],"a_sEmailAddressFailure":["UserAlreadyExists@example.com"]},
        // false, not to have infinite recursion
       instantiate_common_response_obj_debug_payload(0),
-      {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]}
+      {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objSQLQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]}
     );
   } else {
     user_create_ezsignuser_v1_response = user_create_ezsignuser_v1_response_create(
       {"a_sEmailAddressSuccess":["someone@example.com","someone2@example.com"],"a_sEmailAddressFailure":["UserAlreadyExists@example.com"]},
       NULL,
-      {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]}
+      {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objSQLQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]}
     );
   }
 

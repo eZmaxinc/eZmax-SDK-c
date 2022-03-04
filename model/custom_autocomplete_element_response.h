@@ -1,7 +1,7 @@
 /*
  * custom_autocomplete_element_response.h
  *
- * Generic Autocomplete Response
+ * Generic AutocompleteElement Response
  */
 
 #ifndef _custom_autocomplete_element_response_H_

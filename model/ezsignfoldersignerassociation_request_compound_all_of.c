@@ -34,10 +34,7 @@ cJSON *ezsignfoldersignerassociation_request_compound_all_of_convertToJSON(ezsig
     cJSON *item = cJSON_CreateObject();
 
     // ezsignfoldersignerassociation_request_compound_all_of->obj_ezsignsigner
-    if (!ezsignfoldersignerassociation_request_compound_all_of->obj_ezsignsigner) {
-        goto fail;
-    }
-    
+    if(ezsignfoldersignerassociation_request_compound_all_of->obj_ezsignsigner) { 
     cJSON *obj_ezsignsigner_local_JSON = ezsignsigner_request_compound_convertToJSON(ezsignfoldersignerassociation_request_compound_all_of->obj_ezsignsigner);
     if(obj_ezsignsigner_local_JSON == NULL) {
     goto fail; //model
@@ -46,6 +43,7 @@ cJSON *ezsignfoldersignerassociation_request_compound_all_of_convertToJSON(ezsig
     if(item->child == NULL) {
     goto fail;
     }
+     } 
 
     return item;
 fail:
@@ -64,16 +62,13 @@ ezsignfoldersignerassociation_request_compound_all_of_t *ezsignfoldersignerassoc
 
     // ezsignfoldersignerassociation_request_compound_all_of->obj_ezsignsigner
     cJSON *obj_ezsignsigner = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_request_compound_all_ofJSON, "objEzsignsigner");
-    if (!obj_ezsignsigner) {
-        goto end;
-    }
-
-    
+    if (obj_ezsignsigner) { 
     obj_ezsignsigner_local_nonprim = ezsignsigner_request_compound_parseFromJSON(obj_ezsignsigner); //nonprimitive
+    }
 
 
     ezsignfoldersignerassociation_request_compound_all_of_local_var = ezsignfoldersignerassociation_request_compound_all_of_create (
-        obj_ezsignsigner_local_nonprim
+        obj_ezsignsigner ? obj_ezsignsigner_local_nonprim : NULL
         );
 
     return ezsignfoldersignerassociation_request_compound_all_of_local_var;

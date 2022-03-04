@@ -16,27 +16,23 @@
 #include "../model/common_audit.h"
 common_audit_t* instantiate_common_audit(int include_optional);
 
+#include "test_common_auditdetail.c"
+#include "test_common_auditdetail.c"
 
 
 common_audit_t* instantiate_common_audit(int include_optional) {
   common_audit_t* common_audit = NULL;
   if (include_optional) {
     common_audit = common_audit_create(
-      70,
-      70,
-      99,
-      99,
-      "2020-12-31 23:59:59",
-      "2020-12-31 23:59:59"
+       // false, not to have infinite recursion
+      instantiate_common_auditdetail(0),
+       // false, not to have infinite recursion
+      instantiate_common_auditdetail(0)
     );
   } else {
     common_audit = common_audit_create(
-      70,
-      70,
-      99,
-      99,
-      "2020-12-31 23:59:59",
-      "2020-12-31 23:59:59"
+      NULL,
+      NULL
     );
   }
 

@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**m_payload** | [**object_t**](.md) \* | Payload for the /1/object/ezsignsignature/getObject API Request | 
+**m_payload** | [**ezsignsignature_get_object_v1_response_m_payload_t**](ezsignsignature_get_object_v1_response_m_payload.md) \* |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

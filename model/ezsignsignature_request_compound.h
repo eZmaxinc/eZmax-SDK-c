@@ -17,7 +17,7 @@ typedef struct ezsignsignature_request_compound_t ezsignsignature_request_compou
 
 #include "ezsignsignature_request.h"
 #include "ezsignsignature_request_compound_all_of.h"
-#include "ezsignsignaturecustomdate_request.h"
+#include "ezsignsignaturecustomdate_request_compound.h"
 #include "field_e_ezsignsignature_type.h"
 
 // Enum  for ezsignsignature_request_compound
@@ -31,8 +31,6 @@ ezmax_api_definition_ezsignsignature_request_compound__e ezsignsignature_request
 
 
 typedef struct ezsignsignature_request_compound_t {
-    int b_ezsignsignature_customdate; //boolean
-    list_t *a_obj_ezsignsignaturecustomdate; //nonprimitive container
     int pki_ezsignsignature_id; //numeric
     int fki_ezsignfoldersignerassociation_id; //numeric
     int i_ezsignpage_pagenumber; //numeric
@@ -41,12 +39,12 @@ typedef struct ezsignsignature_request_compound_t {
     int i_ezsignsignature_step; //numeric
     field_e_ezsignsignature_type_t *e_ezsignsignature_type; // custom
     int fki_ezsigndocument_id; //numeric
+    int b_ezsignsignature_customdate; //boolean
+    list_t *a_obj_ezsignsignaturecustomdate; //nonprimitive container
 
 } ezsignsignature_request_compound_t;
 
 ezsignsignature_request_compound_t *ezsignsignature_request_compound_create(
-    int b_ezsignsignature_customdate,
-    list_t *a_obj_ezsignsignaturecustomdate,
     int pki_ezsignsignature_id,
     int fki_ezsignfoldersignerassociation_id,
     int i_ezsignpage_pagenumber,
@@ -54,7 +52,9 @@ ezsignsignature_request_compound_t *ezsignsignature_request_compound_create(
     int i_ezsignsignature_y,
     int i_ezsignsignature_step,
     field_e_ezsignsignature_type_t *e_ezsignsignature_type,
-    int fki_ezsigndocument_id
+    int fki_ezsigndocument_id,
+    int b_ezsignsignature_customdate,
+    list_t *a_obj_ezsignsignaturecustomdate
 );
 
 void ezsignsignature_request_compound_free(ezsignsignature_request_compound_t *ezsignsignature_request_compound);

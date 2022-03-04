@@ -22,6 +22,7 @@ ezsignsigner_request_t* instantiate_ezsignsigner_request(int include_optional) {
   ezsignsigner_request_t* ezsignsigner_request = NULL;
   if (include_optional) {
     ezsignsigner_request = ezsignsigner_request_create(
+      2,
       1,
       7,
       ezmax_api_definition_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_Password,
@@ -29,6 +30,7 @@ ezsignsigner_request_t* instantiate_ezsignsigner_request(int include_optional) {
     );
   } else {
     ezsignsigner_request = ezsignsigner_request_create(
+      2,
       1,
       7,
       ezmax_api_definition_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_Password,

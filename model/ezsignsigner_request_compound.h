@@ -30,20 +30,22 @@ ezmax_api_definition_ezsignsigner_request_compound_EEZSIGNSIGNERLOGINTYPE_e ezsi
 
 
 typedef struct ezsignsigner_request_compound_t {
-    struct ezsignsigner_request_compound_contact_t *obj_contact; //model
+    int fki_userlogintype_id; //numeric
     int fki_taxassignment_id; //numeric
     int fki_secretquestion_id; //numeric
     ezmax_api_definition_ezsignsigner_request_compound_EEZSIGNSIGNERLOGINTYPE_e e_ezsignsigner_logintype; //enum
     char *s_ezsignsigner_secretanswer; // string
+    struct ezsignsigner_request_compound_contact_t *obj_contact; //model
 
 } ezsignsigner_request_compound_t;
 
 ezsignsigner_request_compound_t *ezsignsigner_request_compound_create(
-    ezsignsigner_request_compound_contact_t *obj_contact,
+    int fki_userlogintype_id,
     int fki_taxassignment_id,
     int fki_secretquestion_id,
     ezmax_api_definition_ezsignsigner_request_compound_EEZSIGNSIGNERLOGINTYPE_e e_ezsignsigner_logintype,
-    char *s_ezsignsigner_secretanswer
+    char *s_ezsignsigner_secretanswer,
+    ezsignsigner_request_compound_contact_t *obj_contact
 );
 
 void ezsignsigner_request_compound_free(ezsignsigner_request_compound_t *ezsignsigner_request_compound);

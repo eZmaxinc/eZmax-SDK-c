@@ -23,9 +23,6 @@ franchisereferalincome_request_compound_t* instantiate_franchisereferalincome_re
   franchisereferalincome_request_compound_t* franchisereferalincome_request_compound = NULL;
   if (include_optional) {
     franchisereferalincome_request_compound = franchisereferalincome_request_compound_create(
-       // false, not to have infinite recursion
-      instantiate_address_request(0),
-      list_createList(),
       35,
       61,
       51,
@@ -37,12 +34,13 @@ franchisereferalincome_request_compound_t* instantiate_franchisereferalincome_re
       "2020-12-31",
       "This is a comment",
       50,
-      "0"
+      "0",
+       // false, not to have infinite recursion
+      instantiate_address_request(0),
+      list_createList()
     );
   } else {
     franchisereferalincome_request_compound = franchisereferalincome_request_compound_create(
-      NULL,
-      list_createList(),
       35,
       61,
       51,
@@ -54,7 +52,9 @@ franchisereferalincome_request_compound_t* instantiate_franchisereferalincome_re
       "2020-12-31",
       "This is a comment",
       50,
-      "0"
+      "0",
+      NULL,
+      list_createList()
     );
   }
 

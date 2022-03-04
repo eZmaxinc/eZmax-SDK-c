@@ -6,23 +6,23 @@
 
 
 ezsignsigner_response_compound_t *ezsignsigner_response_compound_create(
-    ezsignsigner_response_compound_contact_t *obj_contact,
     int pki_ezsignsigner_id,
     int fki_taxassignment_id,
     int fki_secretquestion_id,
     int fki_userlogintype_id,
-    char *s_userlogintype_description_x
+    char *s_userlogintype_description_x,
+    ezsignsigner_response_compound_contact_t *obj_contact
     ) {
     ezsignsigner_response_compound_t *ezsignsigner_response_compound_local_var = malloc(sizeof(ezsignsigner_response_compound_t));
     if (!ezsignsigner_response_compound_local_var) {
         return NULL;
     }
-    ezsignsigner_response_compound_local_var->obj_contact = obj_contact;
     ezsignsigner_response_compound_local_var->pki_ezsignsigner_id = pki_ezsignsigner_id;
     ezsignsigner_response_compound_local_var->fki_taxassignment_id = fki_taxassignment_id;
     ezsignsigner_response_compound_local_var->fki_secretquestion_id = fki_secretquestion_id;
     ezsignsigner_response_compound_local_var->fki_userlogintype_id = fki_userlogintype_id;
     ezsignsigner_response_compound_local_var->s_userlogintype_description_x = s_userlogintype_description_x;
+    ezsignsigner_response_compound_local_var->obj_contact = obj_contact;
 
     return ezsignsigner_response_compound_local_var;
 }
@@ -33,34 +33,19 @@ void ezsignsigner_response_compound_free(ezsignsigner_response_compound_t *ezsig
         return ;
     }
     listEntry_t *listEntry;
-    if (ezsignsigner_response_compound->obj_contact) {
-        ezsignsigner_response_compound_contact_free(ezsignsigner_response_compound->obj_contact);
-        ezsignsigner_response_compound->obj_contact = NULL;
-    }
     if (ezsignsigner_response_compound->s_userlogintype_description_x) {
         free(ezsignsigner_response_compound->s_userlogintype_description_x);
         ezsignsigner_response_compound->s_userlogintype_description_x = NULL;
+    }
+    if (ezsignsigner_response_compound->obj_contact) {
+        ezsignsigner_response_compound_contact_free(ezsignsigner_response_compound->obj_contact);
+        ezsignsigner_response_compound->obj_contact = NULL;
     }
     free(ezsignsigner_response_compound);
 }
 
 cJSON *ezsignsigner_response_compound_convertToJSON(ezsignsigner_response_compound_t *ezsignsigner_response_compound) {
     cJSON *item = cJSON_CreateObject();
-
-    // ezsignsigner_response_compound->obj_contact
-    if (!ezsignsigner_response_compound->obj_contact) {
-        goto fail;
-    }
-    
-    cJSON *obj_contact_local_JSON = ezsignsigner_response_compound_contact_convertToJSON(ezsignsigner_response_compound->obj_contact);
-    if(obj_contact_local_JSON == NULL) {
-    goto fail; //model
-    }
-    cJSON_AddItemToObject(item, "objContact", obj_contact_local_JSON);
-    if(item->child == NULL) {
-    goto fail;
-    }
-
 
     // ezsignsigner_response_compound->pki_ezsignsigner_id
     if (!ezsignsigner_response_compound->pki_ezsignsigner_id) {
@@ -109,6 +94,21 @@ cJSON *ezsignsigner_response_compound_convertToJSON(ezsignsigner_response_compou
     goto fail; //String
     }
 
+
+    // ezsignsigner_response_compound->obj_contact
+    if (!ezsignsigner_response_compound->obj_contact) {
+        goto fail;
+    }
+    
+    cJSON *obj_contact_local_JSON = ezsignsigner_response_compound_contact_convertToJSON(ezsignsigner_response_compound->obj_contact);
+    if(obj_contact_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objContact", obj_contact_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
     return item;
 fail:
     if (item) {
@@ -123,15 +123,6 @@ ezsignsigner_response_compound_t *ezsignsigner_response_compound_parseFromJSON(c
 
     // define the local variable for ezsignsigner_response_compound->obj_contact
     ezsignsigner_response_compound_contact_t *obj_contact_local_nonprim = NULL;
-
-    // ezsignsigner_response_compound->obj_contact
-    cJSON *obj_contact = cJSON_GetObjectItemCaseSensitive(ezsignsigner_response_compoundJSON, "objContact");
-    if (!obj_contact) {
-        goto end;
-    }
-
-    
-    obj_contact_local_nonprim = ezsignsigner_response_compound_contact_parseFromJSON(obj_contact); //nonprimitive
 
     // ezsignsigner_response_compound->pki_ezsignsigner_id
     cJSON *pki_ezsignsigner_id = cJSON_GetObjectItemCaseSensitive(ezsignsigner_response_compoundJSON, "pkiEzsignsignerID");
@@ -190,14 +181,23 @@ ezsignsigner_response_compound_t *ezsignsigner_response_compound_parseFromJSON(c
     goto end; //String
     }
 
+    // ezsignsigner_response_compound->obj_contact
+    cJSON *obj_contact = cJSON_GetObjectItemCaseSensitive(ezsignsigner_response_compoundJSON, "objContact");
+    if (!obj_contact) {
+        goto end;
+    }
+
+    
+    obj_contact_local_nonprim = ezsignsigner_response_compound_contact_parseFromJSON(obj_contact); //nonprimitive
+
 
     ezsignsigner_response_compound_local_var = ezsignsigner_response_compound_create (
-        obj_contact_local_nonprim,
         pki_ezsignsigner_id->valuedouble,
         fki_taxassignment_id->valuedouble,
         fki_secretquestion_id ? fki_secretquestion_id->valuedouble : 0,
         fki_userlogintype_id->valuedouble,
-        strdup(s_userlogintype_description_x->valuestring)
+        strdup(s_userlogintype_description_x->valuestring),
+        obj_contact_local_nonprim
         );
 
     return ezsignsigner_response_compound_local_var;

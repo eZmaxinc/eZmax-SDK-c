@@ -15,36 +15,36 @@
 
 typedef struct contactinformations_request_compound_t contactinformations_request_compound_t;
 
-#include "address_request.h"
+#include "address_request_compound.h"
 #include "contactinformations_request.h"
 #include "contactinformations_request_compound_all_of.h"
-#include "email_request.h"
-#include "phone_request.h"
-#include "website_request.h"
+#include "email_request_compound.h"
+#include "phone_request_compound.h"
+#include "website_request_compound.h"
 
 
 
 typedef struct contactinformations_request_compound_t {
-    list_t *a_obj_address; //nonprimitive container
-    list_t *a_obj_phone; //nonprimitive container
-    list_t *a_obj_email; //nonprimitive container
-    list_t *a_obj_website; //nonprimitive container
     int i_address_default; //numeric
     int i_phone_default; //numeric
     int i_email_default; //numeric
     int i_website_default; //numeric
+    list_t *a_obj_address; //nonprimitive container
+    list_t *a_obj_phone; //nonprimitive container
+    list_t *a_obj_email; //nonprimitive container
+    list_t *a_obj_website; //nonprimitive container
 
 } contactinformations_request_compound_t;
 
 contactinformations_request_compound_t *contactinformations_request_compound_create(
-    list_t *a_obj_address,
-    list_t *a_obj_phone,
-    list_t *a_obj_email,
-    list_t *a_obj_website,
     int i_address_default,
     int i_phone_default,
     int i_email_default,
-    int i_website_default
+    int i_website_default,
+    list_t *a_obj_address,
+    list_t *a_obj_phone,
+    list_t *a_obj_email,
+    list_t *a_obj_website
 );
 
 void contactinformations_request_compound_free(contactinformations_request_compound_t *contactinformations_request_compound);

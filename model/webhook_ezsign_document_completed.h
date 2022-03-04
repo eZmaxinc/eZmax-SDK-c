@@ -15,7 +15,7 @@
 
 typedef struct webhook_ezsign_document_completed_t webhook_ezsign_document_completed_t;
 
-#include "attempt_response.h"
+#include "attempt_response_compound.h"
 #include "common_webhook.h"
 #include "ezsigndocument_response.h"
 #include "webhook_ezsign_document_completed_all_of.h"

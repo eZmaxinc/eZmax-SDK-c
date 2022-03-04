@@ -39,7 +39,8 @@ ezsignfolder_response_compound_t* instantiate_ezsignfolder_response_compound(int
       "2020-12-31 23:59:59",
       ezmax_api_definition_ezsignfolder_response_compound__"Completed",
       "2020-12-31 23:59:59",
-      {"fkiUserIDCreated":35,"fkiUserIDModified":35,"fkiApikeyIDCreated":1,"fkiApikeyIDModified":1,"dtCreatedDate":"2020-12-31 23:59:59","dtModifiedDate":"2020-12-31 23:59:59"}
+       // false, not to have infinite recursion
+      instantiate_common_audit(0)
     );
   } else {
     ezsignfolder_response_compound = ezsignfolder_response_compound_create(
@@ -59,7 +60,7 @@ ezsignfolder_response_compound_t* instantiate_ezsignfolder_response_compound(int
       "2020-12-31 23:59:59",
       ezmax_api_definition_ezsignfolder_response_compound__"Completed",
       "2020-12-31 23:59:59",
-      {"fkiUserIDCreated":35,"fkiUserIDModified":35,"fkiApikeyIDCreated":1,"fkiApikeyIDModified":1,"dtCreatedDate":"2020-12-31 23:59:59","dtModifiedDate":"2020-12-31 23:59:59"}
+      NULL
     );
   }
 
