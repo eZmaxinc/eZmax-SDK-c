@@ -60,18 +60,17 @@ cJSON *ezsignformfield_request_compound_convertToJSON(ezsignformfield_request_co
     cJSON *item = cJSON_CreateObject();
 
     // ezsignformfield_request_compound->pki_ezsignformfield_id
-    if(ezsignformfield_request_compound->pki_ezsignformfield_id) { 
+    if(ezsignformfield_request_compound->pki_ezsignformfield_id) {
     if(cJSON_AddNumberToObject(item, "pkiEzsignformfieldID", ezsignformfield_request_compound->pki_ezsignformfield_id) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // ezsignformfield_request_compound->i_ezsignpage_pagenumber
     if (!ezsignformfield_request_compound->i_ezsignpage_pagenumber) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEzsignpagePagenumber", ezsignformfield_request_compound->i_ezsignpage_pagenumber) == NULL) {
     goto fail; //Numeric
     }
@@ -81,25 +80,23 @@ cJSON *ezsignformfield_request_compound_convertToJSON(ezsignformfield_request_co
     if (!ezsignformfield_request_compound->s_ezsignformfield_label) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sEzsignformfieldLabel", ezsignformfield_request_compound->s_ezsignformfield_label) == NULL) {
     goto fail; //String
     }
 
 
     // ezsignformfield_request_compound->s_ezsignformfield_value
-    if(ezsignformfield_request_compound->s_ezsignformfield_value) { 
+    if(ezsignformfield_request_compound->s_ezsignformfield_value) {
     if(cJSON_AddStringToObject(item, "sEzsignformfieldValue", ezsignformfield_request_compound->s_ezsignformfield_value) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // ezsignformfield_request_compound->i_ezsignformfield_x
     if (!ezsignformfield_request_compound->i_ezsignformfield_x) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEzsignformfieldX", ezsignformfield_request_compound->i_ezsignformfield_x) == NULL) {
     goto fail; //Numeric
     }
@@ -109,7 +106,6 @@ cJSON *ezsignformfield_request_compound_convertToJSON(ezsignformfield_request_co
     if (!ezsignformfield_request_compound->i_ezsignformfield_y) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEzsignformfieldY", ezsignformfield_request_compound->i_ezsignformfield_y) == NULL) {
     goto fail; //Numeric
     }
@@ -119,7 +115,6 @@ cJSON *ezsignformfield_request_compound_convertToJSON(ezsignformfield_request_co
     if (!ezsignformfield_request_compound->i_ezsignformfield_width) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEzsignformfieldWidth", ezsignformfield_request_compound->i_ezsignformfield_width) == NULL) {
     goto fail; //Numeric
     }
@@ -129,26 +124,25 @@ cJSON *ezsignformfield_request_compound_convertToJSON(ezsignformfield_request_co
     if (!ezsignformfield_request_compound->i_ezsignformfield_height) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEzsignformfieldHeight", ezsignformfield_request_compound->i_ezsignformfield_height) == NULL) {
     goto fail; //Numeric
     }
 
 
     // ezsignformfield_request_compound->b_ezsignformfield_selected
-    if(ezsignformfield_request_compound->b_ezsignformfield_selected) { 
+    if(ezsignformfield_request_compound->b_ezsignformfield_selected) {
     if(cJSON_AddBoolToObject(item, "bEzsignformfieldSelected", ezsignformfield_request_compound->b_ezsignformfield_selected) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // ezsignformfield_request_compound->s_ezsignformfield_enteredvalue
-    if(ezsignformfield_request_compound->s_ezsignformfield_enteredvalue) { 
+    if(ezsignformfield_request_compound->s_ezsignformfield_enteredvalue) {
     if(cJSON_AddStringToObject(item, "sEzsignformfieldEnteredvalue", ezsignformfield_request_compound->s_ezsignformfield_enteredvalue) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

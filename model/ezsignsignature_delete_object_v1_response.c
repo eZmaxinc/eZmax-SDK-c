@@ -40,7 +40,7 @@ cJSON *ezsignsignature_delete_object_v1_response_convertToJSON(ezsignsignature_d
     cJSON *item = cJSON_CreateObject();
 
     // ezsignsignature_delete_object_v1_response->obj_debug_payload
-    if(ezsignsignature_delete_object_v1_response->obj_debug_payload) { 
+    if(ezsignsignature_delete_object_v1_response->obj_debug_payload) {
     cJSON *obj_debug_payload_local_JSON = common_response_obj_debug_payload_convertToJSON(ezsignsignature_delete_object_v1_response->obj_debug_payload);
     if(obj_debug_payload_local_JSON == NULL) {
     goto fail; //model
@@ -49,11 +49,11 @@ cJSON *ezsignsignature_delete_object_v1_response_convertToJSON(ezsignsignature_d
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // ezsignsignature_delete_object_v1_response->obj_debug
-    if(ezsignsignature_delete_object_v1_response->obj_debug) { 
+    if(ezsignsignature_delete_object_v1_response->obj_debug) {
     cJSON *obj_debug_local_JSON = common_response_obj_debug_convertToJSON(ezsignsignature_delete_object_v1_response->obj_debug);
     if(obj_debug_local_JSON == NULL) {
     goto fail; //model
@@ -62,7 +62,7 @@ cJSON *ezsignsignature_delete_object_v1_response_convertToJSON(ezsignsignature_d
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:

@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**m_payload** | [**list_t**](custom_word_position_word_response.md) \* | Payload for the /1/object/ezsigndocument/{pkiEzsigndocumentID}/getWordsPositions API Request | 
+**m_payload** | [**list_t**](custom_word_position_word_response.md) \* | Payload for POST /1/object/ezsigndocument/{pkiEzsigndocumentID}/getWordsPositions | 
 **obj_debug_payload** | [**common_response_obj_debug_payload_t**](common_response_obj_debug_payload.md) \* |  | [optional] 
 **obj_debug** | [**common_response_obj_debug_t**](common_response_obj_debug.md) \* |  | [optional] 
 

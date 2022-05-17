@@ -49,7 +49,6 @@ cJSON *ezsignfoldersignerassociation_response_compound_convertToJSON(ezsignfolde
     if (!ezsignfoldersignerassociation_response_compound->pki_ezsignfoldersignerassociation_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "pkiEzsignfoldersignerassociationID", ezsignfoldersignerassociation_response_compound->pki_ezsignfoldersignerassociation_id) == NULL) {
     goto fail; //Numeric
     }
@@ -59,7 +58,6 @@ cJSON *ezsignfoldersignerassociation_response_compound_convertToJSON(ezsignfolde
     if (!ezsignfoldersignerassociation_response_compound->fki_ezsignfolder_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiEzsignfolderID", ezsignfoldersignerassociation_response_compound->fki_ezsignfolder_id) == NULL) {
     goto fail; //Numeric
     }
@@ -69,14 +67,13 @@ cJSON *ezsignfoldersignerassociation_response_compound_convertToJSON(ezsignfolde
     if (!ezsignfoldersignerassociation_response_compound->b_ezsignfoldersignerassociation_receivecopy) {
         goto fail;
     }
-    
     if(cJSON_AddBoolToObject(item, "bEzsignfoldersignerassociationReceivecopy", ezsignfoldersignerassociation_response_compound->b_ezsignfoldersignerassociation_receivecopy) == NULL) {
     goto fail; //Bool
     }
 
 
     // ezsignfoldersignerassociation_response_compound->obj_user
-    if(ezsignfoldersignerassociation_response_compound->obj_user) { 
+    if(ezsignfoldersignerassociation_response_compound->obj_user) {
     cJSON *obj_user_local_JSON = ezsignfoldersignerassociation_response_compound_user_convertToJSON(ezsignfoldersignerassociation_response_compound->obj_user);
     if(obj_user_local_JSON == NULL) {
     goto fail; //model
@@ -85,11 +82,11 @@ cJSON *ezsignfoldersignerassociation_response_compound_convertToJSON(ezsignfolde
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // ezsignfoldersignerassociation_response_compound->obj_ezsignsigner
-    if(ezsignfoldersignerassociation_response_compound->obj_ezsignsigner) { 
+    if(ezsignfoldersignerassociation_response_compound->obj_ezsignsigner) {
     cJSON *obj_ezsignsigner_local_JSON = ezsignsigner_response_compound_convertToJSON(ezsignfoldersignerassociation_response_compound->obj_ezsignsigner);
     if(obj_ezsignsigner_local_JSON == NULL) {
     goto fail; //model
@@ -98,7 +95,7 @@ cJSON *ezsignfoldersignerassociation_response_compound_convertToJSON(ezsignfolde
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:

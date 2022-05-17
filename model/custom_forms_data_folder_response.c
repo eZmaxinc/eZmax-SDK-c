@@ -48,7 +48,6 @@ cJSON *custom_forms_data_folder_response_convertToJSON(custom_forms_data_folder_
     if (!custom_forms_data_folder_response->pki_ezsignfolder_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "pkiEzsignfolderID", custom_forms_data_folder_response->pki_ezsignfolder_id) == NULL) {
     goto fail; //Numeric
     }
@@ -58,7 +57,6 @@ cJSON *custom_forms_data_folder_response_convertToJSON(custom_forms_data_folder_
     if (!custom_forms_data_folder_response->s_ezsignfolder_description) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sEzsignfolderDescription", custom_forms_data_folder_response->s_ezsignfolder_description) == NULL) {
     goto fail; //String
     }
@@ -68,7 +66,6 @@ cJSON *custom_forms_data_folder_response_convertToJSON(custom_forms_data_folder_
     if (!custom_forms_data_folder_response->a_obj_form_data_document) {
         goto fail;
     }
-    
     cJSON *a_obj_form_data_document = cJSON_AddArrayToObject(item, "a_objFormDataDocument");
     if(a_obj_form_data_document == NULL) {
     goto fail; //nonprimitive container
@@ -96,6 +93,9 @@ fail:
 custom_forms_data_folder_response_t *custom_forms_data_folder_response_parseFromJSON(cJSON *custom_forms_data_folder_responseJSON){
 
     custom_forms_data_folder_response_t *custom_forms_data_folder_response_local_var = NULL;
+
+    // define the local list for custom_forms_data_folder_response->a_obj_form_data_document
+    list_t *a_obj_form_data_documentList = NULL;
 
     // custom_forms_data_folder_response->pki_ezsignfolder_id
     cJSON *pki_ezsignfolder_id = cJSON_GetObjectItemCaseSensitive(custom_forms_data_folder_responseJSON, "pkiEzsignfolderID");
@@ -127,9 +127,8 @@ custom_forms_data_folder_response_t *custom_forms_data_folder_response_parseFrom
         goto end;
     }
 
-    list_t *a_obj_form_data_documentList;
     
-    cJSON *a_obj_form_data_document_local_nonprimitive;
+    cJSON *a_obj_form_data_document_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_form_data_document)){
         goto end; //nonprimitive container
     }
@@ -155,6 +154,15 @@ custom_forms_data_folder_response_t *custom_forms_data_folder_response_parseFrom
 
     return custom_forms_data_folder_response_local_var;
 end:
+    if (a_obj_form_data_documentList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_form_data_documentList) {
+            custom_form_data_document_response_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_form_data_documentList);
+        a_obj_form_data_documentList = NULL;
+    }
     return NULL;
 
 }

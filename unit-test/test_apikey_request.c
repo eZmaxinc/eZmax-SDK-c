@@ -25,13 +25,14 @@ apikey_request_t* instantiate_apikey_request(int include_optional) {
     apikey_request = apikey_request_create(
       99,
       70,
-      {"sApikeyDescription1":"Projet X","sApikeyDescription2":"Project X"}
+       // false, not to have infinite recursion
+      instantiate_multilingual_apikey_description(0)
     );
   } else {
     apikey_request = apikey_request_create(
       99,
       70,
-      {"sApikeyDescription1":"Projet X","sApikeyDescription2":"Project X"}
+      NULL
     );
   }
 

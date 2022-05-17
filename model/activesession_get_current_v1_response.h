@@ -1,7 +1,7 @@
 /*
  * activesession_get_current_v1_response.h
  *
- * Response for the /1/object/activesession/getCurrent API Request
+ * Response for GET /1/object/activesession/getCurrent
  */
 
 #ifndef _activesession_get_current_v1_response_H_

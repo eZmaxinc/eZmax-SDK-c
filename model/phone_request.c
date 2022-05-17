@@ -4,12 +4,12 @@
 #include "phone_request.h"
 
 
-char* e_phone_typephone_request_ToString(ezmax_api_definition_phone_request__e e_phone_type) {
+char* e_phone_typephone_request_ToString(ezmax_api_definition__full_phone_request__e e_phone_type) {
     char* e_phone_typeArray[] =  { "NULL", "Local", "International" };
 	return e_phone_typeArray[e_phone_type];
 }
 
-ezmax_api_definition_phone_request__e e_phone_typephone_request_FromString(char* e_phone_type){
+ezmax_api_definition__full_phone_request__e e_phone_typephone_request_FromString(char* e_phone_type){
     int stringToReturn = 0;
     char *e_phone_typeArray[] =  { "NULL", "Local", "International" };
     size_t sizeofArray = sizeof(e_phone_typeArray) / sizeof(e_phone_typeArray[0]);
@@ -86,14 +86,15 @@ cJSON *phone_request_convertToJSON(phone_request_t *phone_request) {
     if (!phone_request->fki_phonetype_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiPhonetypeID", phone_request->fki_phonetype_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // phone_request->e_phone_type
-    
+    if (ezmax_api_definition__full_phone_request__NULL == phone_request->e_phone_type) {
+        goto fail;
+    }
     cJSON *e_phone_type_local_JSON = field_e_phone_type_convertToJSON(phone_request->e_phone_type);
     if(e_phone_type_local_JSON == NULL) {
         goto fail; // custom
@@ -105,43 +106,43 @@ cJSON *phone_request_convertToJSON(phone_request_t *phone_request) {
 
 
     // phone_request->s_phone_region
-    if(phone_request->s_phone_region) { 
+    if(phone_request->s_phone_region) {
     if(cJSON_AddStringToObject(item, "sPhoneRegion", phone_request->s_phone_region) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // phone_request->s_phone_exchange
-    if(phone_request->s_phone_exchange) { 
+    if(phone_request->s_phone_exchange) {
     if(cJSON_AddStringToObject(item, "sPhoneExchange", phone_request->s_phone_exchange) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // phone_request->s_phone_number
-    if(phone_request->s_phone_number) { 
+    if(phone_request->s_phone_number) {
     if(cJSON_AddStringToObject(item, "sPhoneNumber", phone_request->s_phone_number) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // phone_request->s_phone_international
-    if(phone_request->s_phone_international) { 
+    if(phone_request->s_phone_international) {
     if(cJSON_AddStringToObject(item, "sPhoneInternational", phone_request->s_phone_international) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // phone_request->s_phone_extension
-    if(phone_request->s_phone_extension) { 
+    if(phone_request->s_phone_extension) {
     if(cJSON_AddStringToObject(item, "sPhoneExtension", phone_request->s_phone_extension) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

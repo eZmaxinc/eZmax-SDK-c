@@ -49,7 +49,6 @@ cJSON *user_create_ezsignuser_v1_response_m_payload_convertToJSON(user_create_ez
     if (!user_create_ezsignuser_v1_response_m_payload->a_s_email_address_success) {
         goto fail;
     }
-    
     cJSON *a_s_email_address_success = cJSON_AddArrayToObject(item, "a_sEmailAddressSuccess");
     if(a_s_email_address_success == NULL) {
         goto fail; //primitive container
@@ -68,7 +67,6 @@ cJSON *user_create_ezsignuser_v1_response_m_payload_convertToJSON(user_create_ez
     if (!user_create_ezsignuser_v1_response_m_payload->a_s_email_address_failure) {
         goto fail;
     }
-    
     cJSON *a_s_email_address_failure = cJSON_AddArrayToObject(item, "a_sEmailAddressFailure");
     if(a_s_email_address_failure == NULL) {
         goto fail; //primitive container
@@ -94,15 +92,20 @@ user_create_ezsignuser_v1_response_m_payload_t *user_create_ezsignuser_v1_respon
 
     user_create_ezsignuser_v1_response_m_payload_t *user_create_ezsignuser_v1_response_m_payload_local_var = NULL;
 
+    // define the local list for user_create_ezsignuser_v1_response_m_payload->a_s_email_address_success
+    list_t *a_s_email_address_successList = NULL;
+
+    // define the local list for user_create_ezsignuser_v1_response_m_payload->a_s_email_address_failure
+    list_t *a_s_email_address_failureList = NULL;
+
     // user_create_ezsignuser_v1_response_m_payload->a_s_email_address_success
     cJSON *a_s_email_address_success = cJSON_GetObjectItemCaseSensitive(user_create_ezsignuser_v1_response_m_payloadJSON, "a_sEmailAddressSuccess");
     if (!a_s_email_address_success) {
         goto end;
     }
 
-    list_t *a_s_email_address_successList;
     
-    cJSON *a_s_email_address_success_local;
+    cJSON *a_s_email_address_success_local = NULL;
     if(!cJSON_IsArray(a_s_email_address_success)) {
         goto end;//primitive container
     }
@@ -123,9 +126,8 @@ user_create_ezsignuser_v1_response_m_payload_t *user_create_ezsignuser_v1_respon
         goto end;
     }
 
-    list_t *a_s_email_address_failureList;
     
-    cJSON *a_s_email_address_failure_local;
+    cJSON *a_s_email_address_failure_local = NULL;
     if(!cJSON_IsArray(a_s_email_address_failure)) {
         goto end;//primitive container
     }
@@ -148,6 +150,24 @@ user_create_ezsignuser_v1_response_m_payload_t *user_create_ezsignuser_v1_respon
 
     return user_create_ezsignuser_v1_response_m_payload_local_var;
 end:
+    if (a_s_email_address_successList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_s_email_address_successList) {
+            free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_s_email_address_successList);
+        a_s_email_address_successList = NULL;
+    }
+    if (a_s_email_address_failureList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_s_email_address_failureList) {
+            free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_s_email_address_failureList);
+        a_s_email_address_failureList = NULL;
+    }
     return NULL;
 
 }

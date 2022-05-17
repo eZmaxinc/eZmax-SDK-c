@@ -1,7 +1,7 @@
 /*
  * ezsigndocument_edit_ezsignsignatures_v1_request.h
  *
- * Request for the /1/object/ezsigndocument/{pkiEzsigndocumentID}/editEzsignsignatures API Request
+ * Request for PUT /1/object/ezsigndocument/{pkiEzsigndocumentID}/editEzsignsignatures
  */
 
 #ifndef _ezsigndocument_edit_ezsignsignatures_v1_request_H_

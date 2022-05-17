@@ -23,26 +23,24 @@ ezsigntemplatepackage_list_element_t* instantiate_ezsigntemplatepackage_list_ele
   if (include_optional) {
     ezsigntemplatepackage_list_element = ezsigntemplatepackage_list_element_create(
       99,
-      1,
-      1,
       5,
       2,
-      ezmax_api_definition_ezsigntemplatepackage_list_element__"User",
       "Package for new clients",
       1,
-      56
+      1,
+      56,
+      "Default"
     );
   } else {
     ezsigntemplatepackage_list_element = ezsigntemplatepackage_list_element_create(
       99,
-      1,
-      1,
       5,
       2,
-      ezmax_api_definition_ezsigntemplatepackage_list_element__"User",
       "Package for new clients",
       1,
-      56
+      1,
+      56,
+      "Default"
     );
   }
 

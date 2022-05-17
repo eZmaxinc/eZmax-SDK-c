@@ -13,12 +13,12 @@
 
 // Functions for enum SINFRASTRUCTUREPRODUCTCODE for GlobalCustomerAPI_globalCustomerGetEndpointV1
 
-static char* globalCustomerGetEndpointV1_SINFRASTRUCTUREPRODUCTCODE_ToString(ezmax_api_definition_globalCustomerGetEndpointV1_sInfrastructureproductCode_e SINFRASTRUCTUREPRODUCTCODE){
+static char* globalCustomerGetEndpointV1_SINFRASTRUCTUREPRODUCTCODE_ToString(ezmax_api_definition__full_globalCustomerGetEndpointV1_sInfrastructureproductCode_e SINFRASTRUCTUREPRODUCTCODE){
     char *SINFRASTRUCTUREPRODUCTCODEArray[] =  { "NULL", "appcluster01", "ezsignuser" };
     return SINFRASTRUCTUREPRODUCTCODEArray[SINFRASTRUCTUREPRODUCTCODE];
 }
 
-static ezmax_api_definition_globalCustomerGetEndpointV1_sInfrastructureproductCode_e globalCustomerGetEndpointV1_SINFRASTRUCTUREPRODUCTCODE_FromString(char* SINFRASTRUCTUREPRODUCTCODE){
+static ezmax_api_definition__full_globalCustomerGetEndpointV1_sInfrastructureproductCode_e globalCustomerGetEndpointV1_SINFRASTRUCTUREPRODUCTCODE_FromString(char* SINFRASTRUCTUREPRODUCTCODE){
     int stringToReturn = 0;
     char *SINFRASTRUCTUREPRODUCTCODEArray[] =  { "NULL", "appcluster01", "ezsignuser" };
     size_t sizeofArray = sizeof(SINFRASTRUCTUREPRODUCTCODEArray) / sizeof(SINFRASTRUCTUREPRODUCTCODEArray[0]);
@@ -35,7 +35,7 @@ static ezmax_api_definition_globalCustomerGetEndpointV1_sInfrastructureproductCo
 // Function globalCustomerGetEndpointV1_SINFRASTRUCTUREPRODUCTCODE_convertToJSON is not currently used,
 // since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
 //
-static cJSON *globalCustomerGetEndpointV1_SINFRASTRUCTUREPRODUCTCODE_convertToJSON(ezmax_api_definition_globalCustomerGetEndpointV1_sInfrastructureproductCode_e SINFRASTRUCTUREPRODUCTCODE) {
+static cJSON *globalCustomerGetEndpointV1_SINFRASTRUCTUREPRODUCTCODE_convertToJSON(ezmax_api_definition__full_globalCustomerGetEndpointV1_sInfrastructureproductCode_e SINFRASTRUCTUREPRODUCTCODE) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "sInfrastructureproductCode", globalCustomerGetEndpointV1_SINFRASTRUCTUREPRODUCTCODE_ToString(SINFRASTRUCTUREPRODUCTCODE)) == NULL) {
         goto fail;
@@ -49,8 +49,8 @@ static cJSON *globalCustomerGetEndpointV1_SINFRASTRUCTUREPRODUCTCODE_convertToJS
 // Function globalCustomerGetEndpointV1_SINFRASTRUCTUREPRODUCTCODE_parseFromJSON is not currently used,
 // since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
 //
-static ezmax_api_definition_globalCustomerGetEndpointV1_sInfrastructureproductCode_e globalCustomerGetEndpointV1_SINFRASTRUCTUREPRODUCTCODE_parseFromJSON(cJSON* SINFRASTRUCTUREPRODUCTCODEJSON) {
-    ezmax_api_definition_globalCustomerGetEndpointV1_sInfrastructureproductCode_e SINFRASTRUCTUREPRODUCTCODEVariable = 0;
+static ezmax_api_definition__full_globalCustomerGetEndpointV1_sInfrastructureproductCode_e globalCustomerGetEndpointV1_SINFRASTRUCTUREPRODUCTCODE_parseFromJSON(cJSON* SINFRASTRUCTUREPRODUCTCODEJSON) {
+    ezmax_api_definition__full_globalCustomerGetEndpointV1_sInfrastructureproductCode_e SINFRASTRUCTUREPRODUCTCODEVariable = 0;
     cJSON *SINFRASTRUCTUREPRODUCTCODEVar = cJSON_GetObjectItemCaseSensitive(SINFRASTRUCTUREPRODUCTCODEJSON, "sInfrastructureproductCode");
     if(!cJSON_IsString(SINFRASTRUCTUREPRODUCTCODEVar) || (SINFRASTRUCTUREPRODUCTCODEVar->valuestring == NULL))
     {
@@ -69,7 +69,7 @@ end:
 // Retrieve the customer's specific server endpoint where to send requests. This will help locate the proper region (ie: sInfrastructureregionCode) and the proper environment (ie: sInfrastructureenvironmenttypeDescription) where the customer's data is stored.
 //
 global_customer_get_endpoint_v1_response_t*
-GlobalCustomerAPI_globalCustomerGetEndpointV1(apiClient_t *apiClient, char * pksCustomerCode , ezmax_api_definition_globalCustomerGetEndpointV1_sInfrastructureproductCode_e sInfrastructureproductCode )
+GlobalCustomerAPI_globalCustomerGetEndpointV1(apiClient_t *apiClient, char * pksCustomerCode , ezmax_api_definition__full_globalCustomerGetEndpointV1_sInfrastructureproductCode_e sInfrastructureproductCode )
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
@@ -98,7 +98,7 @@ GlobalCustomerAPI_globalCustomerGetEndpointV1(apiClient_t *apiClient, char * pks
 
     // query parameters
     char *keyQuery_sInfrastructureproductCode = NULL;
-    ezmax_api_definition_globalCustomerGetEndpointV1_sInfrastructureproductCode_e valueQuery_sInfrastructureproductCode ;
+    ezmax_api_definition__full_globalCustomerGetEndpointV1_sInfrastructureproductCode_e valueQuery_sInfrastructureproductCode ;
     keyValuePair_t *keyPairQuery_sInfrastructureproductCode = 0;
     if (sInfrastructureproductCode)
     {
@@ -119,12 +119,14 @@ GlobalCustomerAPI_globalCustomerGetEndpointV1(apiClient_t *apiClient, char * pks
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successful response");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The element you are trying to work on does not exist");
+    //}
     //nonprimitive not container
     cJSON *GlobalCustomerAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     global_customer_get_endpoint_v1_response_t *elementToReturn = global_customer_get_endpoint_v1_response_parseFromJSON(GlobalCustomerAPIlocalVarJSON);

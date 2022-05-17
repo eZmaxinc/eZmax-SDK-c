@@ -37,7 +37,6 @@ cJSON *ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_paylo
     if (!ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload->s_login_url) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sLoginUrl", ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload->s_login_url) == NULL) {
     goto fail; //String
     }

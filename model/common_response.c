@@ -40,7 +40,7 @@ cJSON *common_response_convertToJSON(common_response_t *common_response) {
     cJSON *item = cJSON_CreateObject();
 
     // common_response->obj_debug_payload
-    if(common_response->obj_debug_payload) { 
+    if(common_response->obj_debug_payload) {
     cJSON *obj_debug_payload_local_JSON = common_response_obj_debug_payload_convertToJSON(common_response->obj_debug_payload);
     if(obj_debug_payload_local_JSON == NULL) {
     goto fail; //model
@@ -49,11 +49,11 @@ cJSON *common_response_convertToJSON(common_response_t *common_response) {
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // common_response->obj_debug
-    if(common_response->obj_debug) { 
+    if(common_response->obj_debug) {
     cJSON *obj_debug_local_JSON = common_response_obj_debug_convertToJSON(common_response->obj_debug);
     if(obj_debug_local_JSON == NULL) {
     goto fail; //model
@@ -62,7 +62,7 @@ cJSON *common_response_convertToJSON(common_response_t *common_response) {
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:

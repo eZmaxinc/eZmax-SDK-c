@@ -40,7 +40,6 @@ cJSON *ezsignfoldertype_get_list_v1_response_m_payload_all_of_convertToJSON(ezsi
     if (!ezsignfoldertype_get_list_v1_response_m_payload_all_of->a_obj_ezsignfoldertype) {
         goto fail;
     }
-    
     cJSON *a_obj_ezsignfoldertype = cJSON_AddArrayToObject(item, "a_objEzsignfoldertype");
     if(a_obj_ezsignfoldertype == NULL) {
     goto fail; //nonprimitive container
@@ -69,15 +68,17 @@ ezsignfoldertype_get_list_v1_response_m_payload_all_of_t *ezsignfoldertype_get_l
 
     ezsignfoldertype_get_list_v1_response_m_payload_all_of_t *ezsignfoldertype_get_list_v1_response_m_payload_all_of_local_var = NULL;
 
+    // define the local list for ezsignfoldertype_get_list_v1_response_m_payload_all_of->a_obj_ezsignfoldertype
+    list_t *a_obj_ezsignfoldertypeList = NULL;
+
     // ezsignfoldertype_get_list_v1_response_m_payload_all_of->a_obj_ezsignfoldertype
     cJSON *a_obj_ezsignfoldertype = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_get_list_v1_response_m_payload_all_ofJSON, "a_objEzsignfoldertype");
     if (!a_obj_ezsignfoldertype) {
         goto end;
     }
 
-    list_t *a_obj_ezsignfoldertypeList;
     
-    cJSON *a_obj_ezsignfoldertype_local_nonprimitive;
+    cJSON *a_obj_ezsignfoldertype_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_ezsignfoldertype)){
         goto end; //nonprimitive container
     }
@@ -101,6 +102,15 @@ ezsignfoldertype_get_list_v1_response_m_payload_all_of_t *ezsignfoldertype_get_l
 
     return ezsignfoldertype_get_list_v1_response_m_payload_all_of_local_var;
 end:
+    if (a_obj_ezsignfoldertypeList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_ezsignfoldertypeList) {
+            ezsignfoldertype_list_element_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_ezsignfoldertypeList);
+        a_obj_ezsignfoldertypeList = NULL;
+    }
     return NULL;
 
 }

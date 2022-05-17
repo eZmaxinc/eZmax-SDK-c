@@ -32,18 +32,17 @@ cJSON *ezsignformfieldgroupsigner_request_compound_convertToJSON(ezsignformfield
     cJSON *item = cJSON_CreateObject();
 
     // ezsignformfieldgroupsigner_request_compound->pki_ezsignformfieldgroupsigner_id
-    if(ezsignformfieldgroupsigner_request_compound->pki_ezsignformfieldgroupsigner_id) { 
+    if(ezsignformfieldgroupsigner_request_compound->pki_ezsignformfieldgroupsigner_id) {
     if(cJSON_AddNumberToObject(item, "pkiEzsignformfieldgroupsignerID", ezsignformfieldgroupsigner_request_compound->pki_ezsignformfieldgroupsigner_id) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // ezsignformfieldgroupsigner_request_compound->fki_ezsignfoldersignerassociation_id
     if (!ezsignformfieldgroupsigner_request_compound->fki_ezsignfoldersignerassociation_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiEzsignfoldersignerassociationID", ezsignformfieldgroupsigner_request_compound->fki_ezsignfoldersignerassociation_id) == NULL) {
     goto fail; //Numeric
     }

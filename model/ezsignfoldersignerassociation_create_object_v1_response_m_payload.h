@@ -1,7 +1,7 @@
 /*
  * ezsignfoldersignerassociation_create_object_v1_response_m_payload.h
  *
- * Payload for the /1/object/ezsignfoldersignerassociation/createObject API Request
+ * Payload for POST /1/object/ezsignfoldersignerassociation
  */
 
 #ifndef _ezsignfoldersignerassociation_create_object_v1_response_m_payload_H_

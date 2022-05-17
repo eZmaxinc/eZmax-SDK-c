@@ -37,7 +37,6 @@ cJSON *global_customer_get_endpoint_v1_response_convertToJSON(global_customer_ge
     if (!global_customer_get_endpoint_v1_response->s_endpoint_url) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sEndpointURL", global_customer_get_endpoint_v1_response->s_endpoint_url) == NULL) {
     goto fail; //String
     }

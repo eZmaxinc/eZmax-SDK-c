@@ -25,6 +25,7 @@ typedef struct ezsignsigner_response_compound_contact_t {
     int fki_language_id; //numeric
     char *s_email_address; // string
     char *s_phone_e164; // string
+    char *s_phone_extension; // string
     char *s_phone_e164_cell; // string
 
 } ezsignsigner_response_compound_contact_t;
@@ -36,6 +37,7 @@ ezsignsigner_response_compound_contact_t *ezsignsigner_response_compound_contact
     int fki_language_id,
     char *s_email_address,
     char *s_phone_e164,
+    char *s_phone_extension,
     char *s_phone_e164_cell
 );
 

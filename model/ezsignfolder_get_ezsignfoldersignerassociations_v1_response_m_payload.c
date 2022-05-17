@@ -40,7 +40,6 @@ cJSON *ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload_con
     if (!ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload->a_obj_ezsignfoldersignerassociation) {
         goto fail;
     }
-    
     cJSON *a_obj_ezsignfoldersignerassociation = cJSON_AddArrayToObject(item, "a_objEzsignfoldersignerassociation");
     if(a_obj_ezsignfoldersignerassociation == NULL) {
     goto fail; //nonprimitive container
@@ -69,15 +68,17 @@ ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload_t *ezsignf
 
     ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload_t *ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload_local_var = NULL;
 
+    // define the local list for ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload->a_obj_ezsignfoldersignerassociation
+    list_t *a_obj_ezsignfoldersignerassociationList = NULL;
+
     // ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload->a_obj_ezsignfoldersignerassociation
     cJSON *a_obj_ezsignfoldersignerassociation = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payloadJSON, "a_objEzsignfoldersignerassociation");
     if (!a_obj_ezsignfoldersignerassociation) {
         goto end;
     }
 
-    list_t *a_obj_ezsignfoldersignerassociationList;
     
-    cJSON *a_obj_ezsignfoldersignerassociation_local_nonprimitive;
+    cJSON *a_obj_ezsignfoldersignerassociation_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_ezsignfoldersignerassociation)){
         goto end; //nonprimitive container
     }
@@ -101,6 +102,15 @@ ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload_t *ezsignf
 
     return ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload_local_var;
 end:
+    if (a_obj_ezsignfoldersignerassociationList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_ezsignfoldersignerassociationList) {
+            ezsignfoldersignerassociation_response_compound_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_ezsignfoldersignerassociationList);
+        a_obj_ezsignfoldersignerassociationList = NULL;
+    }
     return NULL;
 
 }

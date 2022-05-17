@@ -1,7 +1,7 @@
 /*
  * ezsignsignature_edit_object_v1_response.h
  *
- * Response for the /1/object/ezsignsignature/editObject API Request
+ * Response for PUT /1/object/ezsignsignature/{pkiEzsignsignatureID}
  */
 
 #ifndef _ezsignsignature_edit_object_v1_response_H_

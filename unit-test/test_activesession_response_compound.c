@@ -25,8 +25,8 @@ activesession_response_compound_t* instantiate_activesession_response_compound(i
   activesession_response_compound_t* activesession_response_compound = NULL;
   if (include_optional) {
     activesession_response_compound = activesession_response_compound_create(
-      ezmax_api_definition_activesession_response_compound__"Normal",
-      ezmax_api_definition_activesession_response_compound__"Sunday",
+      ezmax_api_definition__full_activesession_response_compound__"Normal",
+      ezmax_api_definition__full_activesession_response_compound__"Sunday",
       2,
       "Acme inc.",
       "Head Office",
@@ -43,8 +43,8 @@ activesession_response_compound_t* instantiate_activesession_response_compound(i
     );
   } else {
     activesession_response_compound = activesession_response_compound_create(
-      ezmax_api_definition_activesession_response_compound__"Normal",
-      ezmax_api_definition_activesession_response_compound__"Sunday",
+      ezmax_api_definition__full_activesession_response_compound__"Normal",
+      ezmax_api_definition__full_activesession_response_compound__"Sunday",
       2,
       "Acme inc.",
       "Head Office",

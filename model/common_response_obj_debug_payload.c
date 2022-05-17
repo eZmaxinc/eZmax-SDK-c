@@ -44,7 +44,6 @@ cJSON *common_response_obj_debug_payload_convertToJSON(common_response_obj_debug
     if (!common_response_obj_debug_payload->i_version_min) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iVersionMin", common_response_obj_debug_payload->i_version_min) == NULL) {
     goto fail; //Numeric
     }
@@ -54,7 +53,6 @@ cJSON *common_response_obj_debug_payload_convertToJSON(common_response_obj_debug
     if (!common_response_obj_debug_payload->i_version_max) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iVersionMax", common_response_obj_debug_payload->i_version_max) == NULL) {
     goto fail; //Numeric
     }
@@ -64,7 +62,6 @@ cJSON *common_response_obj_debug_payload_convertToJSON(common_response_obj_debug
     if (!common_response_obj_debug_payload->a_required_permission) {
         goto fail;
     }
-    
     cJSON *a_required_permission = cJSON_AddArrayToObject(item, "a_RequiredPermission");
     if(a_required_permission == NULL) {
         goto fail; //primitive container
@@ -89,6 +86,9 @@ fail:
 common_response_obj_debug_payload_t *common_response_obj_debug_payload_parseFromJSON(cJSON *common_response_obj_debug_payloadJSON){
 
     common_response_obj_debug_payload_t *common_response_obj_debug_payload_local_var = NULL;
+
+    // define the local list for common_response_obj_debug_payload->a_required_permission
+    list_t *a_required_permissionList = NULL;
 
     // common_response_obj_debug_payload->i_version_min
     cJSON *i_version_min = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payloadJSON, "iVersionMin");
@@ -120,9 +120,8 @@ common_response_obj_debug_payload_t *common_response_obj_debug_payload_parseFrom
         goto end;
     }
 
-    list_t *a_required_permissionList;
     
-    cJSON *a_required_permission_local;
+    cJSON *a_required_permission_local = NULL;
     if(!cJSON_IsArray(a_required_permission)) {
         goto end;//primitive container
     }
@@ -152,6 +151,15 @@ common_response_obj_debug_payload_t *common_response_obj_debug_payload_parseFrom
 
     return common_response_obj_debug_payload_local_var;
 end:
+    if (a_required_permissionList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_required_permissionList) {
+            free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_required_permissionList);
+        a_required_permissionList = NULL;
+    }
     return NULL;
 
 }

@@ -4,12 +4,12 @@
 #include "ezsignsigner_request.h"
 
 
-char* e_ezsignsigner_logintypeezsignsigner_request_ToString(ezmax_api_definition_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_e e_ezsignsigner_logintype) {
+char* e_ezsignsigner_logintypeezsignsigner_request_ToString(ezmax_api_definition__full_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_e e_ezsignsigner_logintype) {
     char* e_ezsignsigner_logintypeArray[] =  { "NULL", "Password", "PasswordPhone", "PasswordQuestion", "InPersonPhone", "InPerson" };
 	return e_ezsignsigner_logintypeArray[e_ezsignsigner_logintype];
 }
 
-ezmax_api_definition_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_e e_ezsignsigner_logintypeezsignsigner_request_FromString(char* e_ezsignsigner_logintype){
+ezmax_api_definition__full_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_e e_ezsignsigner_logintypeezsignsigner_request_FromString(char* e_ezsignsigner_logintype){
     int stringToReturn = 0;
     char *e_ezsignsigner_logintypeArray[] =  { "NULL", "Password", "PasswordPhone", "PasswordQuestion", "InPersonPhone", "InPerson" };
     size_t sizeofArray = sizeof(e_ezsignsigner_logintypeArray) / sizeof(e_ezsignsigner_logintypeArray[0]);
@@ -26,7 +26,7 @@ ezsignsigner_request_t *ezsignsigner_request_create(
     int fki_userlogintype_id,
     int fki_taxassignment_id,
     int fki_secretquestion_id,
-    ezmax_api_definition_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_e e_ezsignsigner_logintype,
+    ezmax_api_definition__full_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_e e_ezsignsigner_logintype,
     char *s_ezsignsigner_secretanswer
     ) {
     ezsignsigner_request_t *ezsignsigner_request_local_var = malloc(sizeof(ezsignsigner_request_t));
@@ -59,46 +59,45 @@ cJSON *ezsignsigner_request_convertToJSON(ezsignsigner_request_t *ezsignsigner_r
     cJSON *item = cJSON_CreateObject();
 
     // ezsignsigner_request->fki_userlogintype_id
-    if(ezsignsigner_request->fki_userlogintype_id) { 
+    if(ezsignsigner_request->fki_userlogintype_id) {
     if(cJSON_AddNumberToObject(item, "fkiUserlogintypeID", ezsignsigner_request->fki_userlogintype_id) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // ezsignsigner_request->fki_taxassignment_id
     if (!ezsignsigner_request->fki_taxassignment_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiTaxassignmentID", ezsignsigner_request->fki_taxassignment_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // ezsignsigner_request->fki_secretquestion_id
-    if(ezsignsigner_request->fki_secretquestion_id) { 
+    if(ezsignsigner_request->fki_secretquestion_id) {
     if(cJSON_AddNumberToObject(item, "fkiSecretquestionID", ezsignsigner_request->fki_secretquestion_id) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // ezsignsigner_request->e_ezsignsigner_logintype
-    
+    if(ezsignsigner_request->e_ezsignsigner_logintype != ezmax_api_definition__full_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_NULL) {
     if(cJSON_AddStringToObject(item, "eEzsignsignerLogintype", e_ezsignsigner_logintypeezsignsigner_request_ToString(ezsignsigner_request->e_ezsignsigner_logintype)) == NULL)
     {
     goto fail; //Enum
     }
-    
+    }
 
 
     // ezsignsigner_request->s_ezsignsigner_secretanswer
-    if(ezsignsigner_request->s_ezsignsigner_secretanswer) { 
+    if(ezsignsigner_request->s_ezsignsigner_secretanswer) {
     if(cJSON_AddStringToObject(item, "sEzsignsignerSecretanswer", ezsignsigner_request->s_ezsignsigner_secretanswer) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:
@@ -144,7 +143,7 @@ ezsignsigner_request_t *ezsignsigner_request_parseFromJSON(cJSON *ezsignsigner_r
 
     // ezsignsigner_request->e_ezsignsigner_logintype
     cJSON *e_ezsignsigner_logintype = cJSON_GetObjectItemCaseSensitive(ezsignsigner_requestJSON, "eEzsignsignerLogintype");
-    ezmax_api_definition_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_e e_ezsignsigner_logintypeVariable;
+    ezmax_api_definition__full_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_e e_ezsignsigner_logintypeVariable;
     if (e_ezsignsigner_logintype) { 
     if(!cJSON_IsString(e_ezsignsigner_logintype))
     {

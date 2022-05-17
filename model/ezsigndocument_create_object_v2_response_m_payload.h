@@ -1,7 +1,7 @@
 /*
  * ezsigndocument_create_object_v2_response_m_payload.h
  *
- * Payload for the /2/object/ezsigndocument/createObject API Request
+ * Payload for POST /2/object/ezsigndocument
  */
 
 #ifndef _ezsigndocument_create_object_v2_response_m_payload_H_

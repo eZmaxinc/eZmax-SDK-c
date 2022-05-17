@@ -1,0 +1,39 @@
+/*
+ * ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload.h
+ *
+ * Payload for DELETE /1/object/ezsigntemplatepackagesignermembership/{pkiEzsigntemplatepackagesignermembershipID}
+ */
+
+#ifndef _ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_H_
+#define _ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_t ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_t;
+
+
+
+
+typedef struct ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_t {
+    int b_ezsigntemplatepackage_needvalidation; //boolean
+    int b_ezsignbulksend_needvalidation; //boolean
+
+} ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_t;
+
+ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_t *ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_create(
+    int b_ezsigntemplatepackage_needvalidation,
+    int b_ezsignbulksend_needvalidation
+);
+
+void ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_free(ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_t *ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload);
+
+ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_t *ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_parseFromJSON(cJSON *ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payloadJSON);
+
+cJSON *ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_convertToJSON(ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_t *ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload);
+
+#endif /* _ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_H_ */
+

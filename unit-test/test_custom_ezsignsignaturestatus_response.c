@@ -22,14 +22,14 @@ custom_ezsignsignaturestatus_response_t* instantiate_custom_ezsignsignaturestatu
   custom_ezsignsignaturestatus_response_t* custom_ezsignsignaturestatus_response = NULL;
   if (include_optional) {
     custom_ezsignsignaturestatus_response = custom_ezsignsignaturestatus_response_create(
-      ezmax_api_definition_custom_ezsignsignaturestatus_response_EEZSIGNSIGNATURESTATUSSTEPTYPE_Form,
+      ezmax_api_definition__full_custom_ezsignsignaturestatus_response_EEZSIGNSIGNATURESTATUSSTEPTYPE_Form,
       1,
       2,
       1
     );
   } else {
     custom_ezsignsignaturestatus_response = custom_ezsignsignaturestatus_response_create(
-      ezmax_api_definition_custom_ezsignsignaturestatus_response_EEZSIGNSIGNATURESTATUSSTEPTYPE_Form,
+      ezmax_api_definition__full_custom_ezsignsignaturestatus_response_EEZSIGNSIGNATURESTATUSSTEPTYPE_Form,
       1,
       2,
       1

@@ -16,6 +16,7 @@
 #include "../model/ezsigndocument_edit_ezsignsignatures_v1_response.h"
 ezsigndocument_edit_ezsignsignatures_v1_response_t* instantiate_ezsigndocument_edit_ezsignsignatures_v1_response(int include_optional);
 
+#include "test_ezsigndocument_edit_ezsignsignatures_v1_response_m_payload.c"
 #include "test_common_response_obj_debug_payload.c"
 #include "test_common_response_obj_debug.c"
 
@@ -25,11 +26,14 @@ ezsigndocument_edit_ezsignsignatures_v1_response_t* instantiate_ezsigndocument_e
   if (include_optional) {
     ezsigndocument_edit_ezsignsignatures_v1_response = ezsigndocument_edit_ezsignsignatures_v1_response_create(
        // false, not to have infinite recursion
+      instantiate_ezsigndocument_edit_ezsignsignatures_v1_response_m_payload(0),
+       // false, not to have infinite recursion
       instantiate_common_response_obj_debug_payload(0),
       {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objSQLQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]}
     );
   } else {
     ezsigndocument_edit_ezsignsignatures_v1_response = ezsigndocument_edit_ezsignsignatures_v1_response_create(
+      NULL,
       NULL,
       {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objSQLQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]}
     );

@@ -1,7 +1,7 @@
 /*
  * ezsignfolder_delete_object_v1_response.h
  *
- * Response for the /1/object/ezsignfolder/deleteObject API Request
+ * Response for DELETE /1/object/ezsignfolder/{pkiEzsignfolderID}
  */
 
 #ifndef _ezsignfolder_delete_object_v1_response_H_

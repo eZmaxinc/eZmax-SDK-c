@@ -23,11 +23,12 @@ ezsignsignature_create_object_v1_response_all_of_t* instantiate_ezsignsignature_
   ezsignsignature_create_object_v1_response_all_of_t* ezsignsignature_create_object_v1_response_all_of = NULL;
   if (include_optional) {
     ezsignsignature_create_object_v1_response_all_of = ezsignsignature_create_object_v1_response_all_of_create(
-      {"a_pkiEzsignsignatureID":[95,96]}
+       // false, not to have infinite recursion
+      instantiate_ezsignsignature_create_object_v1_response_m_payload(0)
     );
   } else {
     ezsignsignature_create_object_v1_response_all_of = ezsignsignature_create_object_v1_response_all_of_create(
-      {"a_pkiEzsignsignatureID":[95,96]}
+      NULL
     );
   }
 

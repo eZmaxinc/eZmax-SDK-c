@@ -45,7 +45,6 @@ cJSON *attempt_response_compound_convertToJSON(attempt_response_compound_t *atte
     if (!attempt_response_compound->dt_attempt_start) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "dtAttemptStart", attempt_response_compound->dt_attempt_start) == NULL) {
     goto fail; //String
     }
@@ -55,7 +54,6 @@ cJSON *attempt_response_compound_convertToJSON(attempt_response_compound_t *atte
     if (!attempt_response_compound->s_attempt_result) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sAttemptResult", attempt_response_compound->s_attempt_result) == NULL) {
     goto fail; //String
     }
@@ -65,7 +63,6 @@ cJSON *attempt_response_compound_convertToJSON(attempt_response_compound_t *atte
     if (!attempt_response_compound->i_attempt_duration) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iAttemptDuration", attempt_response_compound->i_attempt_duration) == NULL) {
     goto fail; //Numeric
     }

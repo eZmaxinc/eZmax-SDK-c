@@ -1,7 +1,7 @@
 /*
  * ezsignbulksend_get_list_v1_response_m_payload.h
  *
- * Payload for the /1/object/ezsignbulksend/getList API Request
+ * Payload for GET /1/object/ezsignbulksend/getList
  */
 
 #ifndef _ezsignbulksend_get_list_v1_response_m_payload_H_

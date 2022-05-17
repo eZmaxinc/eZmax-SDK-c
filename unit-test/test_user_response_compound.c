@@ -25,7 +25,7 @@ user_response_compound_t* instantiate_user_response_compound(int include_optiona
     user_response_compound = user_response_compound_create(
       70,
       2,
-      ezmax_api_definition_user_response_compound__"RewardDistributorServer",
+      ezmax_api_definition__full_user_response_compound__"RewardDistributorServer",
       "John",
       "Doe",
       "JohnDoe",
@@ -36,7 +36,7 @@ user_response_compound_t* instantiate_user_response_compound(int include_optiona
     user_response_compound = user_response_compound_create(
       70,
       2,
-      ezmax_api_definition_user_response_compound__"RewardDistributorServer",
+      ezmax_api_definition__full_user_response_compound__"RewardDistributorServer",
       "John",
       "Doe",
       "JohnDoe",

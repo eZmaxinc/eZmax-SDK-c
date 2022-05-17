@@ -1,0 +1,84 @@
+/*
+ * ezsigntemplatesignature_response.h
+ *
+ * A Ezsigntemplatesignature Object
+ */
+
+#ifndef _ezsigntemplatesignature_response_H_
+#define _ezsigntemplatesignature_response_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct ezsigntemplatesignature_response_t ezsigntemplatesignature_response_t;
+
+#include "field_e_ezsigntemplatesignature_font.h"
+#include "field_e_ezsigntemplatesignature_tooltipposition.h"
+#include "field_e_ezsigntemplatesignature_type.h"
+
+// Enum  for ezsigntemplatesignature_response
+
+typedef enum  { ezmax_api_definition__full_ezsigntemplatesignature_response__NULL = 0, ezmax_api_definition__full_ezsigntemplatesignature_response__Acknowledgement, ezmax_api_definition__full_ezsigntemplatesignature_response__City, ezmax_api_definition__full_ezsigntemplatesignature_response__Handwritten, ezmax_api_definition__full_ezsigntemplatesignature_response__Initials, ezmax_api_definition__full_ezsigntemplatesignature_response__Name } ezmax_api_definition__full_ezsigntemplatesignature_response__e;
+
+char* ezsigntemplatesignature_response_e_ezsigntemplatesignature_type_ToString(ezmax_api_definition__full_ezsigntemplatesignature_response__e e_ezsigntemplatesignature_type);
+
+ezmax_api_definition__full_ezsigntemplatesignature_response__e ezsigntemplatesignature_response_e_ezsigntemplatesignature_type_FromString(char* e_ezsigntemplatesignature_type);
+
+// Enum  for ezsigntemplatesignature_response
+
+typedef enum  { ezmax_api_definition__full_ezsigntemplatesignature_response__NULL = 0, ezmax_api_definition__full_ezsigntemplatesignature_response__TopLeft, ezmax_api_definition__full_ezsigntemplatesignature_response__TopCenter, ezmax_api_definition__full_ezsigntemplatesignature_response__TopRight, ezmax_api_definition__full_ezsigntemplatesignature_response__MiddleLeft, ezmax_api_definition__full_ezsigntemplatesignature_response__MiddleRight, ezmax_api_definition__full_ezsigntemplatesignature_response__BottomLeft, ezmax_api_definition__full_ezsigntemplatesignature_response__BottomCenter, ezmax_api_definition__full_ezsigntemplatesignature_response__BottomRight } ezmax_api_definition__full_ezsigntemplatesignature_response__e;
+
+char* ezsigntemplatesignature_response_e_ezsigntemplatesignature_tooltipposition_ToString(ezmax_api_definition__full_ezsigntemplatesignature_response__e e_ezsigntemplatesignature_tooltipposition);
+
+ezmax_api_definition__full_ezsigntemplatesignature_response__e ezsigntemplatesignature_response_e_ezsigntemplatesignature_tooltipposition_FromString(char* e_ezsigntemplatesignature_tooltipposition);
+
+// Enum  for ezsigntemplatesignature_response
+
+typedef enum  { ezmax_api_definition__full_ezsigntemplatesignature_response__NULL = 0, ezmax_api_definition__full_ezsigntemplatesignature_response__Normal, ezmax_api_definition__full_ezsigntemplatesignature_response__Cursive } ezmax_api_definition__full_ezsigntemplatesignature_response__e;
+
+char* ezsigntemplatesignature_response_e_ezsigntemplatesignature_font_ToString(ezmax_api_definition__full_ezsigntemplatesignature_response__e e_ezsigntemplatesignature_font);
+
+ezmax_api_definition__full_ezsigntemplatesignature_response__e ezsigntemplatesignature_response_e_ezsigntemplatesignature_font_FromString(char* e_ezsigntemplatesignature_font);
+
+
+
+typedef struct ezsigntemplatesignature_response_t {
+    int pki_ezsigntemplatesignature_id; //numeric
+    int fki_ezsigntemplatedocument_id; //numeric
+    int fki_ezsigntemplatesigner_id; //numeric
+    int i_ezsigntemplatedocumentpage_pagenumber; //numeric
+    int i_ezsigntemplatesignature_x; //numeric
+    int i_ezsigntemplatesignature_y; //numeric
+    int i_ezsigntemplatesignature_step; //numeric
+    field_e_ezsigntemplatesignature_type_t *e_ezsigntemplatesignature_type; // custom
+    char *t_ezsigntemplatesignature_tooltip; // string
+    field_e_ezsigntemplatesignature_tooltipposition_t *e_ezsigntemplatesignature_tooltipposition; // custom
+    field_e_ezsigntemplatesignature_font_t *e_ezsigntemplatesignature_font; // custom
+
+} ezsigntemplatesignature_response_t;
+
+ezsigntemplatesignature_response_t *ezsigntemplatesignature_response_create(
+    int pki_ezsigntemplatesignature_id,
+    int fki_ezsigntemplatedocument_id,
+    int fki_ezsigntemplatesigner_id,
+    int i_ezsigntemplatedocumentpage_pagenumber,
+    int i_ezsigntemplatesignature_x,
+    int i_ezsigntemplatesignature_y,
+    int i_ezsigntemplatesignature_step,
+    field_e_ezsigntemplatesignature_type_t *e_ezsigntemplatesignature_type,
+    char *t_ezsigntemplatesignature_tooltip,
+    field_e_ezsigntemplatesignature_tooltipposition_t *e_ezsigntemplatesignature_tooltipposition,
+    field_e_ezsigntemplatesignature_font_t *e_ezsigntemplatesignature_font
+);
+
+void ezsigntemplatesignature_response_free(ezsigntemplatesignature_response_t *ezsigntemplatesignature_response);
+
+ezsigntemplatesignature_response_t *ezsigntemplatesignature_response_parseFromJSON(cJSON *ezsigntemplatesignature_responseJSON);
+
+cJSON *ezsigntemplatesignature_response_convertToJSON(ezsigntemplatesignature_response_t *ezsigntemplatesignature_response);
+
+#endif /* _ezsigntemplatesignature_response_H_ */
+

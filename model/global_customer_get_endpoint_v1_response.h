@@ -1,7 +1,7 @@
 /*
  * global_customer_get_endpoint_v1_response.h
  *
- * Response for the /1/customer/{pksCustomerCode}/endpoint API Request
+ * Response for GET /1/customer/{pksCustomerCode}/endpoint
  */
 
 #ifndef _global_customer_get_endpoint_v1_response_H_

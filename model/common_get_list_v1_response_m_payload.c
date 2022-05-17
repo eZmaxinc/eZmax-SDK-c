@@ -35,7 +35,6 @@ cJSON *common_get_list_v1_response_m_payload_convertToJSON(common_get_list_v1_re
     if (!common_get_list_v1_response_m_payload->i_row_returned) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iRowReturned", common_get_list_v1_response_m_payload->i_row_returned) == NULL) {
     goto fail; //Numeric
     }
@@ -45,7 +44,6 @@ cJSON *common_get_list_v1_response_m_payload_convertToJSON(common_get_list_v1_re
     if (!common_get_list_v1_response_m_payload->i_row_filtered) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iRowFiltered", common_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
     goto fail; //Numeric
     }

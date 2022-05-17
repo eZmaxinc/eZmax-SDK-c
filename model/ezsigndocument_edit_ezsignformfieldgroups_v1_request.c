@@ -40,7 +40,6 @@ cJSON *ezsigndocument_edit_ezsignformfieldgroups_v1_request_convertToJSON(ezsign
     if (!ezsigndocument_edit_ezsignformfieldgroups_v1_request->a_obj_ezsignformfieldgroup) {
         goto fail;
     }
-    
     cJSON *a_obj_ezsignformfieldgroup = cJSON_AddArrayToObject(item, "a_objEzsignformfieldgroup");
     if(a_obj_ezsignformfieldgroup == NULL) {
     goto fail; //nonprimitive container
@@ -69,15 +68,17 @@ ezsigndocument_edit_ezsignformfieldgroups_v1_request_t *ezsigndocument_edit_ezsi
 
     ezsigndocument_edit_ezsignformfieldgroups_v1_request_t *ezsigndocument_edit_ezsignformfieldgroups_v1_request_local_var = NULL;
 
+    // define the local list for ezsigndocument_edit_ezsignformfieldgroups_v1_request->a_obj_ezsignformfieldgroup
+    list_t *a_obj_ezsignformfieldgroupList = NULL;
+
     // ezsigndocument_edit_ezsignformfieldgroups_v1_request->a_obj_ezsignformfieldgroup
     cJSON *a_obj_ezsignformfieldgroup = cJSON_GetObjectItemCaseSensitive(ezsigndocument_edit_ezsignformfieldgroups_v1_requestJSON, "a_objEzsignformfieldgroup");
     if (!a_obj_ezsignformfieldgroup) {
         goto end;
     }
 
-    list_t *a_obj_ezsignformfieldgroupList;
     
-    cJSON *a_obj_ezsignformfieldgroup_local_nonprimitive;
+    cJSON *a_obj_ezsignformfieldgroup_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_ezsignformfieldgroup)){
         goto end; //nonprimitive container
     }
@@ -101,6 +102,15 @@ ezsigndocument_edit_ezsignformfieldgroups_v1_request_t *ezsigndocument_edit_ezsi
 
     return ezsigndocument_edit_ezsignformfieldgroups_v1_request_local_var;
 end:
+    if (a_obj_ezsignformfieldgroupList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_ezsignformfieldgroupList) {
+            ezsignformfieldgroup_request_compound_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_ezsignformfieldgroupList);
+        a_obj_ezsignformfieldgroupList = NULL;
+    }
     return NULL;
 
 }

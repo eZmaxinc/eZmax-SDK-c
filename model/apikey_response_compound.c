@@ -51,7 +51,6 @@ cJSON *apikey_response_compound_convertToJSON(apikey_response_compound_t *apikey
     if (!apikey_response_compound->obj_apikey_description) {
         goto fail;
     }
-    
     cJSON *obj_apikey_description_local_JSON = multilingual_apikey_description_convertToJSON(apikey_response_compound->obj_apikey_description);
     if(obj_apikey_description_local_JSON == NULL) {
     goto fail; //model
@@ -63,18 +62,17 @@ cJSON *apikey_response_compound_convertToJSON(apikey_response_compound_t *apikey
 
 
     // apikey_response_compound->s_computed_token
-    if(apikey_response_compound->s_computed_token) { 
+    if(apikey_response_compound->s_computed_token) {
     if(cJSON_AddStringToObject(item, "sComputedToken", apikey_response_compound->s_computed_token) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // apikey_response_compound->pki_apikey_id
     if (!apikey_response_compound->pki_apikey_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "pkiApikeyID", apikey_response_compound->pki_apikey_id) == NULL) {
     goto fail; //Numeric
     }
@@ -84,7 +82,6 @@ cJSON *apikey_response_compound_convertToJSON(apikey_response_compound_t *apikey
     if (!apikey_response_compound->obj_audit) {
         goto fail;
     }
-    
     cJSON *obj_audit_local_JSON = common_audit_convertToJSON(apikey_response_compound->obj_audit);
     if(obj_audit_local_JSON == NULL) {
     goto fail; //model

@@ -1,0 +1,37 @@
+/*
+ * ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_m_payload.h
+ *
+ * Payload for PUT /1/object/ezsigntemplatedocument/{pkiEzsigntemplatedocumentID}/editEzsigntemplatesignatures
+ */
+
+#ifndef _ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_m_payload_H_
+#define _ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_m_payload_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_m_payload_t ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_m_payload_t;
+
+
+
+
+typedef struct ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_m_payload_t {
+    list_t *a_pki_ezsigntemplatesignature_id; //primitive container
+
+} ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_m_payload_t;
+
+ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_m_payload_t *ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_m_payload_create(
+    list_t *a_pki_ezsigntemplatesignature_id
+);
+
+void ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_m_payload_free(ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_m_payload_t *ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_m_payload);
+
+ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_m_payload_t *ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_m_payload_parseFromJSON(cJSON *ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_m_payloadJSON);
+
+cJSON *ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_m_payload_convertToJSON(ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_m_payload_t *ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_m_payload);
+
+#endif /* _ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_m_payload_H_ */
+

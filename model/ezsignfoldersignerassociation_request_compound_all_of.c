@@ -34,7 +34,7 @@ cJSON *ezsignfoldersignerassociation_request_compound_all_of_convertToJSON(ezsig
     cJSON *item = cJSON_CreateObject();
 
     // ezsignfoldersignerassociation_request_compound_all_of->obj_ezsignsigner
-    if(ezsignfoldersignerassociation_request_compound_all_of->obj_ezsignsigner) { 
+    if(ezsignfoldersignerassociation_request_compound_all_of->obj_ezsignsigner) {
     cJSON *obj_ezsignsigner_local_JSON = ezsignsigner_request_compound_convertToJSON(ezsignfoldersignerassociation_request_compound_all_of->obj_ezsignsigner);
     if(obj_ezsignsigner_local_JSON == NULL) {
     goto fail; //model
@@ -43,7 +43,7 @@ cJSON *ezsignfoldersignerassociation_request_compound_all_of_convertToJSON(ezsig
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:

@@ -1,7 +1,7 @@
 /*
  * ezsignformfieldgroup_create_object_v1_response.h
  *
- * Response for the /1/object/ezsignformfieldgroup/createObject API Request
+ * Response for POST /1/object/ezsignformfieldgroup
  */
 
 #ifndef _ezsignformfieldgroup_create_object_v1_response_H_

@@ -52,7 +52,6 @@ cJSON *common_get_autocomplete_v1_response_convertToJSON(common_get_autocomplete
     if (!common_get_autocomplete_v1_response->m_payload) {
         goto fail;
     }
-    
     cJSON *m_payload = cJSON_AddArrayToObject(item, "mPayload");
     if(m_payload == NULL) {
     goto fail; //nonprimitive container
@@ -71,7 +70,7 @@ cJSON *common_get_autocomplete_v1_response_convertToJSON(common_get_autocomplete
 
 
     // common_get_autocomplete_v1_response->obj_debug_payload
-    if(common_get_autocomplete_v1_response->obj_debug_payload) { 
+    if(common_get_autocomplete_v1_response->obj_debug_payload) {
     cJSON *obj_debug_payload_local_JSON = common_response_obj_debug_payload_convertToJSON(common_get_autocomplete_v1_response->obj_debug_payload);
     if(obj_debug_payload_local_JSON == NULL) {
     goto fail; //model
@@ -80,11 +79,11 @@ cJSON *common_get_autocomplete_v1_response_convertToJSON(common_get_autocomplete
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // common_get_autocomplete_v1_response->obj_debug
-    if(common_get_autocomplete_v1_response->obj_debug) { 
+    if(common_get_autocomplete_v1_response->obj_debug) {
     cJSON *obj_debug_local_JSON = common_response_obj_debug_convertToJSON(common_get_autocomplete_v1_response->obj_debug);
     if(obj_debug_local_JSON == NULL) {
     goto fail; //model
@@ -93,7 +92,7 @@ cJSON *common_get_autocomplete_v1_response_convertToJSON(common_get_autocomplete
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:
@@ -107,6 +106,9 @@ common_get_autocomplete_v1_response_t *common_get_autocomplete_v1_response_parse
 
     common_get_autocomplete_v1_response_t *common_get_autocomplete_v1_response_local_var = NULL;
 
+    // define the local list for common_get_autocomplete_v1_response->m_payload
+    list_t *m_payloadList = NULL;
+
     // define the local variable for common_get_autocomplete_v1_response->obj_debug_payload
     common_response_obj_debug_payload_t *obj_debug_payload_local_nonprim = NULL;
 
@@ -119,9 +121,8 @@ common_get_autocomplete_v1_response_t *common_get_autocomplete_v1_response_parse
         goto end;
     }
 
-    list_t *m_payloadList;
     
-    cJSON *m_payload_local_nonprimitive;
+    cJSON *m_payload_local_nonprimitive = NULL;
     if(!cJSON_IsArray(m_payload)){
         goto end; //nonprimitive container
     }
@@ -159,6 +160,15 @@ common_get_autocomplete_v1_response_t *common_get_autocomplete_v1_response_parse
 
     return common_get_autocomplete_v1_response_local_var;
 end:
+    if (m_payloadList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, m_payloadList) {
+            custom_autocomplete_element_response_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(m_payloadList);
+        m_payloadList = NULL;
+    }
     if (obj_debug_payload_local_nonprim) {
         common_response_obj_debug_payload_free(obj_debug_payload_local_nonprim);
         obj_debug_payload_local_nonprim = NULL;

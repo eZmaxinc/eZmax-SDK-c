@@ -4,12 +4,12 @@
 #include "user_response.h"
 
 
-char* e_user_typeuser_response_ToString(ezmax_api_definition_user_response__e e_user_type) {
+char* e_user_typeuser_response_ToString(ezmax_api_definition__full_user_response__e e_user_type) {
     char* e_user_typeArray[] =  { "NULL", "AgentBroker", "Assistant", "Attendance", "Customer", "Employee", "Ezcom", "EzsignSigner", "EzsignUser", "FranchiseCustomerServer", "Normal", "RewardAdministration", "RewardMember", "RewardRepresentative", "RewardCustomer", "RewardDistributorServer", "Supplier", "VetrxCustomer", "Vetrxcustomergroup", "VetrxCustomerServer", "VetrxManufacturer", "VetrxVendor" };
 	return e_user_typeArray[e_user_type];
 }
 
-ezmax_api_definition_user_response__e e_user_typeuser_response_FromString(char* e_user_type){
+ezmax_api_definition__full_user_response__e e_user_typeuser_response_FromString(char* e_user_type){
     int stringToReturn = 0;
     char *e_user_typeArray[] =  { "NULL", "AgentBroker", "Assistant", "Attendance", "Customer", "Employee", "Ezcom", "EzsignSigner", "EzsignUser", "FranchiseCustomerServer", "Normal", "RewardAdministration", "RewardMember", "RewardRepresentative", "RewardCustomer", "RewardDistributorServer", "Supplier", "VetrxCustomer", "Vetrxcustomergroup", "VetrxCustomerServer", "VetrxManufacturer", "VetrxVendor" };
     size_t sizeofArray = sizeof(e_user_typeArray) / sizeof(e_user_typeArray[0]);
@@ -82,7 +82,6 @@ cJSON *user_response_convertToJSON(user_response_t *user_response) {
     if (!user_response->pki_user_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "pkiUserID", user_response->pki_user_id) == NULL) {
     goto fail; //Numeric
     }
@@ -92,14 +91,15 @@ cJSON *user_response_convertToJSON(user_response_t *user_response) {
     if (!user_response->fki_language_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiLanguageID", user_response->fki_language_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // user_response->e_user_type
-    
+    if (ezmax_api_definition__full_user_response__NULL == user_response->e_user_type) {
+        goto fail;
+    }
     cJSON *e_user_type_local_JSON = field_e_user_type_convertToJSON(user_response->e_user_type);
     if(e_user_type_local_JSON == NULL) {
         goto fail; // custom
@@ -114,7 +114,6 @@ cJSON *user_response_convertToJSON(user_response_t *user_response) {
     if (!user_response->s_user_firstname) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sUserFirstname", user_response->s_user_firstname) == NULL) {
     goto fail; //String
     }
@@ -124,7 +123,6 @@ cJSON *user_response_convertToJSON(user_response_t *user_response) {
     if (!user_response->s_user_lastname) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sUserLastname", user_response->s_user_lastname) == NULL) {
     goto fail; //String
     }
@@ -134,7 +132,6 @@ cJSON *user_response_convertToJSON(user_response_t *user_response) {
     if (!user_response->s_user_loginname) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sUserLoginname", user_response->s_user_loginname) == NULL) {
     goto fail; //String
     }
@@ -144,7 +141,6 @@ cJSON *user_response_convertToJSON(user_response_t *user_response) {
     if (!user_response->obj_audit) {
         goto fail;
     }
-    
     cJSON *obj_audit_local_JSON = common_audit_convertToJSON(user_response->obj_audit);
     if(obj_audit_local_JSON == NULL) {
     goto fail; //model

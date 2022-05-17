@@ -40,7 +40,6 @@ cJSON *apikey_create_object_v2_response_m_payload_convertToJSON(apikey_create_ob
     if (!apikey_create_object_v2_response_m_payload->a_obj_apikey) {
         goto fail;
     }
-    
     cJSON *a_obj_apikey = cJSON_AddArrayToObject(item, "a_objApikey");
     if(a_obj_apikey == NULL) {
     goto fail; //nonprimitive container
@@ -69,15 +68,17 @@ apikey_create_object_v2_response_m_payload_t *apikey_create_object_v2_response_m
 
     apikey_create_object_v2_response_m_payload_t *apikey_create_object_v2_response_m_payload_local_var = NULL;
 
+    // define the local list for apikey_create_object_v2_response_m_payload->a_obj_apikey
+    list_t *a_obj_apikeyList = NULL;
+
     // apikey_create_object_v2_response_m_payload->a_obj_apikey
     cJSON *a_obj_apikey = cJSON_GetObjectItemCaseSensitive(apikey_create_object_v2_response_m_payloadJSON, "a_objApikey");
     if (!a_obj_apikey) {
         goto end;
     }
 
-    list_t *a_obj_apikeyList;
     
-    cJSON *a_obj_apikey_local_nonprimitive;
+    cJSON *a_obj_apikey_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_apikey)){
         goto end; //nonprimitive container
     }
@@ -101,6 +102,15 @@ apikey_create_object_v2_response_m_payload_t *apikey_create_object_v2_response_m
 
     return apikey_create_object_v2_response_m_payload_local_var;
 end:
+    if (a_obj_apikeyList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_apikeyList) {
+            apikey_response_compound_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_apikeyList);
+        a_obj_apikeyList = NULL;
+    }
     return NULL;
 
 }

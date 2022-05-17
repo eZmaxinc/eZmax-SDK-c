@@ -37,7 +37,9 @@ cJSON *ezsigndocument_get_ezsignformfieldgroups_v1_response_m_payload_convertToJ
     cJSON *item = cJSON_CreateObject();
 
     // ezsigndocument_get_ezsignformfieldgroups_v1_response_m_payload->a_obj_ezsignformfieldgroup
-    if(ezsigndocument_get_ezsignformfieldgroups_v1_response_m_payload->a_obj_ezsignformfieldgroup) { 
+    if (!ezsigndocument_get_ezsignformfieldgroups_v1_response_m_payload->a_obj_ezsignformfieldgroup) {
+        goto fail;
+    }
     cJSON *a_obj_ezsignformfieldgroup = cJSON_AddArrayToObject(item, "a_objEzsignformfieldgroup");
     if(a_obj_ezsignformfieldgroup == NULL) {
     goto fail; //nonprimitive container
@@ -53,7 +55,6 @@ cJSON *ezsigndocument_get_ezsignformfieldgroups_v1_response_m_payload_convertToJ
     cJSON_AddItemToArray(a_obj_ezsignformfieldgroup, itemLocal);
     }
     }
-     } 
 
     return item;
 fail:
@@ -67,11 +68,17 @@ ezsigndocument_get_ezsignformfieldgroups_v1_response_m_payload_t *ezsigndocument
 
     ezsigndocument_get_ezsignformfieldgroups_v1_response_m_payload_t *ezsigndocument_get_ezsignformfieldgroups_v1_response_m_payload_local_var = NULL;
 
+    // define the local list for ezsigndocument_get_ezsignformfieldgroups_v1_response_m_payload->a_obj_ezsignformfieldgroup
+    list_t *a_obj_ezsignformfieldgroupList = NULL;
+
     // ezsigndocument_get_ezsignformfieldgroups_v1_response_m_payload->a_obj_ezsignformfieldgroup
     cJSON *a_obj_ezsignformfieldgroup = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_ezsignformfieldgroups_v1_response_m_payloadJSON, "a_objEzsignformfieldgroup");
-    list_t *a_obj_ezsignformfieldgroupList;
-    if (a_obj_ezsignformfieldgroup) { 
-    cJSON *a_obj_ezsignformfieldgroup_local_nonprimitive;
+    if (!a_obj_ezsignformfieldgroup) {
+        goto end;
+    }
+
+    
+    cJSON *a_obj_ezsignformfieldgroup_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_ezsignformfieldgroup)){
         goto end; //nonprimitive container
     }
@@ -87,15 +94,23 @@ ezsigndocument_get_ezsignformfieldgroups_v1_response_m_payload_t *ezsigndocument
 
         list_addElement(a_obj_ezsignformfieldgroupList, a_obj_ezsignformfieldgroupItem);
     }
-    }
 
 
     ezsigndocument_get_ezsignformfieldgroups_v1_response_m_payload_local_var = ezsigndocument_get_ezsignformfieldgroups_v1_response_m_payload_create (
-        a_obj_ezsignformfieldgroup ? a_obj_ezsignformfieldgroupList : NULL
+        a_obj_ezsignformfieldgroupList
         );
 
     return ezsigndocument_get_ezsignformfieldgroups_v1_response_m_payload_local_var;
 end:
+    if (a_obj_ezsignformfieldgroupList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_ezsignformfieldgroupList) {
+            ezsignformfieldgroup_response_compound_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_ezsignformfieldgroupList);
+        a_obj_ezsignformfieldgroupList = NULL;
+    }
     return NULL;
 
 }

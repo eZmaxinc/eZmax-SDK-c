@@ -1,7 +1,7 @@
 /*
  * ezsignfolder_create_object_v2_response_m_payload.h
  *
- * Payload for the /2/object/ezsignfolder/createObject API Request
+ * Payload for POST /2/object/ezsignfolder
  */
 
 #ifndef _ezsignfolder_create_object_v2_response_m_payload_H_

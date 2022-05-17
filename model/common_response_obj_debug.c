@@ -56,7 +56,6 @@ cJSON *common_response_obj_debug_convertToJSON(common_response_obj_debug_t *comm
     if (!common_response_obj_debug->s_memory_usage) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sMemoryUsage", common_response_obj_debug->s_memory_usage) == NULL) {
     goto fail; //String
     }
@@ -66,7 +65,6 @@ cJSON *common_response_obj_debug_convertToJSON(common_response_obj_debug_t *comm
     if (!common_response_obj_debug->s_run_time) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sRunTime", common_response_obj_debug->s_run_time) == NULL) {
     goto fail; //String
     }
@@ -76,7 +74,6 @@ cJSON *common_response_obj_debug_convertToJSON(common_response_obj_debug_t *comm
     if (!common_response_obj_debug->i_sql_selects) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iSQLSelects", common_response_obj_debug->i_sql_selects) == NULL) {
     goto fail; //Numeric
     }
@@ -86,7 +83,6 @@ cJSON *common_response_obj_debug_convertToJSON(common_response_obj_debug_t *comm
     if (!common_response_obj_debug->i_sql_queries) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iSQLQueries", common_response_obj_debug->i_sql_queries) == NULL) {
     goto fail; //Numeric
     }
@@ -96,7 +92,6 @@ cJSON *common_response_obj_debug_convertToJSON(common_response_obj_debug_t *comm
     if (!common_response_obj_debug->a_obj_sql_query) {
         goto fail;
     }
-    
     cJSON *a_obj_sql_query = cJSON_AddArrayToObject(item, "a_objSQLQuery");
     if(a_obj_sql_query == NULL) {
     goto fail; //nonprimitive container
@@ -124,6 +119,9 @@ fail:
 common_response_obj_debug_t *common_response_obj_debug_parseFromJSON(cJSON *common_response_obj_debugJSON){
 
     common_response_obj_debug_t *common_response_obj_debug_local_var = NULL;
+
+    // define the local list for common_response_obj_debug->a_obj_sql_query
+    list_t *a_obj_sql_queryList = NULL;
 
     // common_response_obj_debug->s_memory_usage
     cJSON *s_memory_usage = cJSON_GetObjectItemCaseSensitive(common_response_obj_debugJSON, "sMemoryUsage");
@@ -179,9 +177,8 @@ common_response_obj_debug_t *common_response_obj_debug_parseFromJSON(cJSON *comm
         goto end;
     }
 
-    list_t *a_obj_sql_queryList;
     
-    cJSON *a_obj_sql_query_local_nonprimitive;
+    cJSON *a_obj_sql_query_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_sql_query)){
         goto end; //nonprimitive container
     }
@@ -209,6 +206,15 @@ common_response_obj_debug_t *common_response_obj_debug_parseFromJSON(cJSON *comm
 
     return common_response_obj_debug_local_var;
 end:
+    if (a_obj_sql_queryList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_sql_queryList) {
+            common_response_obj_sql_query_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_sql_queryList);
+        a_obj_sql_queryList = NULL;
+    }
     return NULL;
 
 }

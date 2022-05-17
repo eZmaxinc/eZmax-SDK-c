@@ -1,7 +1,7 @@
 /*
  * ezsignfolder_create_object_v2_request.h
  *
- * Request for the /2/object/ezsignfolder/createObject API Request
+ * Request for POST /2/object/ezsignfolder
  */
 
 #ifndef _ezsignfolder_create_object_v2_request_H_

@@ -57,7 +57,6 @@ cJSON *activesession_response_compound_user_convertToJSON(activesession_response
     if (!activesession_response_compound_user->pki_user_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "pkiUserID", activesession_response_compound_user->pki_user_id) == NULL) {
     goto fail; //Numeric
     }
@@ -67,7 +66,6 @@ cJSON *activesession_response_compound_user_convertToJSON(activesession_response
     if (!activesession_response_compound_user->s_avatar_url) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sAvatarUrl", activesession_response_compound_user->s_avatar_url) == NULL) {
     goto fail; //String
     }
@@ -77,7 +75,6 @@ cJSON *activesession_response_compound_user_convertToJSON(activesession_response
     if (!activesession_response_compound_user->s_user_firstname) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sUserFirstname", activesession_response_compound_user->s_user_firstname) == NULL) {
     goto fail; //String
     }
@@ -87,7 +84,6 @@ cJSON *activesession_response_compound_user_convertToJSON(activesession_response
     if (!activesession_response_compound_user->s_user_lastname) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sUserLastname", activesession_response_compound_user->s_user_lastname) == NULL) {
     goto fail; //String
     }
@@ -97,7 +93,6 @@ cJSON *activesession_response_compound_user_convertToJSON(activesession_response
     if (!activesession_response_compound_user->s_email_address) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sEmailAddress", activesession_response_compound_user->s_email_address) == NULL) {
     goto fail; //String
     }

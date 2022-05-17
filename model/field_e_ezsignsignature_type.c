@@ -4,12 +4,12 @@
 #include "field_e_ezsignsignature_type.h"
 
 
-char* field_e_ezsignsignature_type_field_e_ezsignsignature_type_ToString(ezmax_api_definition_field_e_ezsignsignature_type__e field_e_ezsignsignature_type) {
+char* field_e_ezsignsignature_type_field_e_ezsignsignature_type_ToString(ezmax_api_definition__full_field_e_ezsignsignature_type__e field_e_ezsignsignature_type) {
     char *field_e_ezsignsignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name" };
     return field_e_ezsignsignature_typeArray[field_e_ezsignsignature_type];
 }
 
-ezmax_api_definition_field_e_ezsignsignature_type__e field_e_ezsignsignature_type_field_e_ezsignsignature_type_FromString(char* field_e_ezsignsignature_type) {
+ezmax_api_definition__full_field_e_ezsignsignature_type__e field_e_ezsignsignature_type_field_e_ezsignsignature_type_FromString(char* field_e_ezsignsignature_type) {
     int stringToReturn = 0;
     char *field_e_ezsignsignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name" };
     size_t sizeofArray = sizeof(field_e_ezsignsignature_typeArray) / sizeof(field_e_ezsignsignature_typeArray[0]);
@@ -22,7 +22,7 @@ ezmax_api_definition_field_e_ezsignsignature_type__e field_e_ezsignsignature_typ
     return 0;
 }
 
-cJSON *field_e_ezsignsignature_type_field_e_ezsignsignature_type_convertToJSON(ezmax_api_definition_field_e_ezsignsignature_type__e field_e_ezsignsignature_type) {
+cJSON *field_e_ezsignsignature_type_field_e_ezsignsignature_type_convertToJSON(ezmax_api_definition__full_field_e_ezsignsignature_type__e field_e_ezsignsignature_type) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsignsignature_type", field_e_ezsignsignature_type_field_e_ezsignsignature_type_ToString(field_e_ezsignsignature_type)) == NULL) {
         goto fail;
@@ -33,9 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition_field_e_ezsignsignature_type__e field_e_ezsignsignature_type_field_e_ezsignsignature_type_parseFromJSON(cJSON *field_e_ezsignsignature_typeJSON) {
-    ezmax_api_definition_field_e_ezsignsignature_type__e *field_e_ezsignsignature_type = NULL;
-    ezmax_api_definition_field_e_ezsignsignature_type__e field_e_ezsignsignature_typeVariable;
+ezmax_api_definition__full_field_e_ezsignsignature_type__e field_e_ezsignsignature_type_field_e_ezsignsignature_type_parseFromJSON(cJSON *field_e_ezsignsignature_typeJSON) {
+    ezmax_api_definition__full_field_e_ezsignsignature_type__e *field_e_ezsignsignature_type = NULL;
+    ezmax_api_definition__full_field_e_ezsignsignature_type__e field_e_ezsignsignature_typeVariable;
     cJSON *field_e_ezsignsignature_typeVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsignsignature_typeJSON, "field_e_ezsignsignature_type");
     if(!cJSON_IsString(field_e_ezsignsignature_typeVar) || (field_e_ezsignsignature_typeVar->valuestring == NULL)){
         goto end;

@@ -46,7 +46,6 @@ cJSON *custom_form_data_ezsignformfieldgroup_response_convertToJSON(custom_form_
     if (!custom_form_data_ezsignformfieldgroup_response->s_ezsignformfieldgroup_label) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sEzsignformfieldgroupLabel", custom_form_data_ezsignformfieldgroup_response->s_ezsignformfieldgroup_label) == NULL) {
     goto fail; //String
     }
@@ -56,7 +55,6 @@ cJSON *custom_form_data_ezsignformfieldgroup_response_convertToJSON(custom_form_
     if (!custom_form_data_ezsignformfieldgroup_response->a_obj_ezsignformfield) {
         goto fail;
     }
-    
     cJSON *a_obj_ezsignformfield = cJSON_AddArrayToObject(item, "a_objEzsignformfield");
     if(a_obj_ezsignformfield == NULL) {
     goto fail; //nonprimitive container
@@ -85,6 +83,9 @@ custom_form_data_ezsignformfieldgroup_response_t *custom_form_data_ezsignformfie
 
     custom_form_data_ezsignformfieldgroup_response_t *custom_form_data_ezsignformfieldgroup_response_local_var = NULL;
 
+    // define the local list for custom_form_data_ezsignformfieldgroup_response->a_obj_ezsignformfield
+    list_t *a_obj_ezsignformfieldList = NULL;
+
     // custom_form_data_ezsignformfieldgroup_response->s_ezsignformfieldgroup_label
     cJSON *s_ezsignformfieldgroup_label = cJSON_GetObjectItemCaseSensitive(custom_form_data_ezsignformfieldgroup_responseJSON, "sEzsignformfieldgroupLabel");
     if (!s_ezsignformfieldgroup_label) {
@@ -103,9 +104,8 @@ custom_form_data_ezsignformfieldgroup_response_t *custom_form_data_ezsignformfie
         goto end;
     }
 
-    list_t *a_obj_ezsignformfieldList;
     
-    cJSON *a_obj_ezsignformfield_local_nonprimitive;
+    cJSON *a_obj_ezsignformfield_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_ezsignformfield)){
         goto end; //nonprimitive container
     }
@@ -130,6 +130,15 @@ custom_form_data_ezsignformfieldgroup_response_t *custom_form_data_ezsignformfie
 
     return custom_form_data_ezsignformfieldgroup_response_local_var;
 end:
+    if (a_obj_ezsignformfieldList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_ezsignformfieldList) {
+            custom_form_data_ezsignformfield_response_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_ezsignformfieldList);
+        a_obj_ezsignformfieldList = NULL;
+    }
     return NULL;
 
 }

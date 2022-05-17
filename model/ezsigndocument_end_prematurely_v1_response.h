@@ -1,7 +1,7 @@
 /*
  * ezsigndocument_end_prematurely_v1_response.h
  *
- * Response for the /1/object/ezsigndocument/{pkiEzsigndocument}/endPrematurely API Request
+ * Response for POST /1/object/ezsigndocument/{pkiEzsigndocument}/endPrematurely
  */
 
 #ifndef _ezsigndocument_end_prematurely_v1_response_H_

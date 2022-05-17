@@ -75,7 +75,6 @@ cJSON *user_create_ezsignuser_v1_request_convertToJSON(user_create_ezsignuser_v1
     if (!user_create_ezsignuser_v1_request->fki_language_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiLanguageID", user_create_ezsignuser_v1_request->fki_language_id) == NULL) {
     goto fail; //Numeric
     }
@@ -85,7 +84,6 @@ cJSON *user_create_ezsignuser_v1_request_convertToJSON(user_create_ezsignuser_v1
     if (!user_create_ezsignuser_v1_request->s_user_firstname) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sUserFirstname", user_create_ezsignuser_v1_request->s_user_firstname) == NULL) {
     goto fail; //String
     }
@@ -95,7 +93,6 @@ cJSON *user_create_ezsignuser_v1_request_convertToJSON(user_create_ezsignuser_v1
     if (!user_create_ezsignuser_v1_request->s_user_lastname) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sUserLastname", user_create_ezsignuser_v1_request->s_user_lastname) == NULL) {
     goto fail; //String
     }
@@ -105,7 +102,6 @@ cJSON *user_create_ezsignuser_v1_request_convertToJSON(user_create_ezsignuser_v1
     if (!user_create_ezsignuser_v1_request->s_email_address) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sEmailAddress", user_create_ezsignuser_v1_request->s_email_address) == NULL) {
     goto fail; //String
     }
@@ -115,7 +111,6 @@ cJSON *user_create_ezsignuser_v1_request_convertToJSON(user_create_ezsignuser_v1
     if (!user_create_ezsignuser_v1_request->s_phone_region) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sPhoneRegion", user_create_ezsignuser_v1_request->s_phone_region) == NULL) {
     goto fail; //String
     }
@@ -125,7 +120,6 @@ cJSON *user_create_ezsignuser_v1_request_convertToJSON(user_create_ezsignuser_v1
     if (!user_create_ezsignuser_v1_request->s_phone_exchange) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sPhoneExchange", user_create_ezsignuser_v1_request->s_phone_exchange) == NULL) {
     goto fail; //String
     }
@@ -135,18 +129,17 @@ cJSON *user_create_ezsignuser_v1_request_convertToJSON(user_create_ezsignuser_v1
     if (!user_create_ezsignuser_v1_request->s_phone_number) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sPhoneNumber", user_create_ezsignuser_v1_request->s_phone_number) == NULL) {
     goto fail; //String
     }
 
 
     // user_create_ezsignuser_v1_request->s_phone_extension
-    if(user_create_ezsignuser_v1_request->s_phone_extension) { 
+    if(user_create_ezsignuser_v1_request->s_phone_extension) {
     if(cJSON_AddStringToObject(item, "sPhoneExtension", user_create_ezsignuser_v1_request->s_phone_extension) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

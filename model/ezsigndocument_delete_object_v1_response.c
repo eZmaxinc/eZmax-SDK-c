@@ -40,7 +40,7 @@ cJSON *ezsigndocument_delete_object_v1_response_convertToJSON(ezsigndocument_del
     cJSON *item = cJSON_CreateObject();
 
     // ezsigndocument_delete_object_v1_response->obj_debug_payload
-    if(ezsigndocument_delete_object_v1_response->obj_debug_payload) { 
+    if(ezsigndocument_delete_object_v1_response->obj_debug_payload) {
     cJSON *obj_debug_payload_local_JSON = common_response_obj_debug_payload_convertToJSON(ezsigndocument_delete_object_v1_response->obj_debug_payload);
     if(obj_debug_payload_local_JSON == NULL) {
     goto fail; //model
@@ -49,11 +49,11 @@ cJSON *ezsigndocument_delete_object_v1_response_convertToJSON(ezsigndocument_del
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // ezsigndocument_delete_object_v1_response->obj_debug
-    if(ezsigndocument_delete_object_v1_response->obj_debug) { 
+    if(ezsigndocument_delete_object_v1_response->obj_debug) {
     cJSON *obj_debug_local_JSON = common_response_obj_debug_convertToJSON(ezsigndocument_delete_object_v1_response->obj_debug);
     if(obj_debug_local_JSON == NULL) {
     goto fail; //model
@@ -62,7 +62,7 @@ cJSON *ezsigndocument_delete_object_v1_response_convertToJSON(ezsigndocument_del
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:

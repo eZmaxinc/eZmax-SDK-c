@@ -63,7 +63,6 @@ cJSON *ezsignformfield_response_convertToJSON(ezsignformfield_response_t *ezsign
     if (!ezsignformfield_response->pki_ezsignformfield_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "pkiEzsignformfieldID", ezsignformfield_response->pki_ezsignformfield_id) == NULL) {
     goto fail; //Numeric
     }
@@ -73,7 +72,6 @@ cJSON *ezsignformfield_response_convertToJSON(ezsignformfield_response_t *ezsign
     if (!ezsignformfield_response->i_ezsignpage_pagenumber) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEzsignpagePagenumber", ezsignformfield_response->i_ezsignpage_pagenumber) == NULL) {
     goto fail; //Numeric
     }
@@ -83,7 +81,6 @@ cJSON *ezsignformfield_response_convertToJSON(ezsignformfield_response_t *ezsign
     if (!ezsignformfield_response->s_ezsignformfield_label) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sEzsignformfieldLabel", ezsignformfield_response->s_ezsignformfield_label) == NULL) {
     goto fail; //String
     }
@@ -93,7 +90,6 @@ cJSON *ezsignformfield_response_convertToJSON(ezsignformfield_response_t *ezsign
     if (!ezsignformfield_response->s_ezsignformfield_value) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sEzsignformfieldValue", ezsignformfield_response->s_ezsignformfield_value) == NULL) {
     goto fail; //String
     }
@@ -103,7 +99,6 @@ cJSON *ezsignformfield_response_convertToJSON(ezsignformfield_response_t *ezsign
     if (!ezsignformfield_response->i_ezsignformfield_x) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEzsignformfieldX", ezsignformfield_response->i_ezsignformfield_x) == NULL) {
     goto fail; //Numeric
     }
@@ -113,7 +108,6 @@ cJSON *ezsignformfield_response_convertToJSON(ezsignformfield_response_t *ezsign
     if (!ezsignformfield_response->i_ezsignformfield_y) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEzsignformfieldY", ezsignformfield_response->i_ezsignformfield_y) == NULL) {
     goto fail; //Numeric
     }
@@ -123,7 +117,6 @@ cJSON *ezsignformfield_response_convertToJSON(ezsignformfield_response_t *ezsign
     if (!ezsignformfield_response->i_ezsignformfield_width) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEzsignformfieldWidth", ezsignformfield_response->i_ezsignformfield_width) == NULL) {
     goto fail; //Numeric
     }
@@ -133,26 +126,25 @@ cJSON *ezsignformfield_response_convertToJSON(ezsignformfield_response_t *ezsign
     if (!ezsignformfield_response->i_ezsignformfield_height) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEzsignformfieldHeight", ezsignformfield_response->i_ezsignformfield_height) == NULL) {
     goto fail; //Numeric
     }
 
 
     // ezsignformfield_response->b_ezsignformfield_selected
-    if(ezsignformfield_response->b_ezsignformfield_selected) { 
+    if(ezsignformfield_response->b_ezsignformfield_selected) {
     if(cJSON_AddBoolToObject(item, "bEzsignformfieldSelected", ezsignformfield_response->b_ezsignformfield_selected) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // ezsignformfield_response->s_ezsignformfield_enteredvalue
-    if(ezsignformfield_response->s_ezsignformfield_enteredvalue) { 
+    if(ezsignformfield_response->s_ezsignformfield_enteredvalue) {
     if(cJSON_AddStringToObject(item, "sEzsignformfieldEnteredvalue", ezsignformfield_response->s_ezsignformfield_enteredvalue) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

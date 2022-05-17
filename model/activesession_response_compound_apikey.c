@@ -39,7 +39,6 @@ cJSON *activesession_response_compound_apikey_convertToJSON(activesession_respon
     if (!activesession_response_compound_apikey->pki_apikey_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "pkiApikeyID", activesession_response_compound_apikey->pki_apikey_id) == NULL) {
     goto fail; //Numeric
     }
@@ -49,7 +48,6 @@ cJSON *activesession_response_compound_apikey_convertToJSON(activesession_respon
     if (!activesession_response_compound_apikey->s_apikey_description_x) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sApikeyDescriptionX", activesession_response_compound_apikey->s_apikey_description_x) == NULL) {
     goto fail; //String
     }

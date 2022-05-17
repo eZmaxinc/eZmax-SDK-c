@@ -44,7 +44,6 @@ cJSON *ezsignfolder_get_list_v1_response_m_payload_convertToJSON(ezsignfolder_ge
     if (!ezsignfolder_get_list_v1_response_m_payload->a_obj_ezsignfolder) {
         goto fail;
     }
-    
     cJSON *a_obj_ezsignfolder = cJSON_AddArrayToObject(item, "a_objEzsignfolder");
     if(a_obj_ezsignfolder == NULL) {
     goto fail; //nonprimitive container
@@ -66,7 +65,6 @@ cJSON *ezsignfolder_get_list_v1_response_m_payload_convertToJSON(ezsignfolder_ge
     if (!ezsignfolder_get_list_v1_response_m_payload->i_row_returned) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iRowReturned", ezsignfolder_get_list_v1_response_m_payload->i_row_returned) == NULL) {
     goto fail; //Numeric
     }
@@ -76,7 +74,6 @@ cJSON *ezsignfolder_get_list_v1_response_m_payload_convertToJSON(ezsignfolder_ge
     if (!ezsignfolder_get_list_v1_response_m_payload->i_row_filtered) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iRowFiltered", ezsignfolder_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
     goto fail; //Numeric
     }
@@ -93,15 +90,17 @@ ezsignfolder_get_list_v1_response_m_payload_t *ezsignfolder_get_list_v1_response
 
     ezsignfolder_get_list_v1_response_m_payload_t *ezsignfolder_get_list_v1_response_m_payload_local_var = NULL;
 
+    // define the local list for ezsignfolder_get_list_v1_response_m_payload->a_obj_ezsignfolder
+    list_t *a_obj_ezsignfolderList = NULL;
+
     // ezsignfolder_get_list_v1_response_m_payload->a_obj_ezsignfolder
     cJSON *a_obj_ezsignfolder = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_list_v1_response_m_payloadJSON, "a_objEzsignfolder");
     if (!a_obj_ezsignfolder) {
         goto end;
     }
 
-    list_t *a_obj_ezsignfolderList;
     
-    cJSON *a_obj_ezsignfolder_local_nonprimitive;
+    cJSON *a_obj_ezsignfolder_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_ezsignfolder)){
         goto end; //nonprimitive container
     }
@@ -151,6 +150,15 @@ ezsignfolder_get_list_v1_response_m_payload_t *ezsignfolder_get_list_v1_response
 
     return ezsignfolder_get_list_v1_response_m_payload_local_var;
 end:
+    if (a_obj_ezsignfolderList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_ezsignfolderList) {
+            ezsignfolder_list_element_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_ezsignfolderList);
+        a_obj_ezsignfolderList = NULL;
+    }
     return NULL;
 
 }

@@ -13,12 +13,12 @@
 
 // Functions for enum SSELECTOR for ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV1
 
-static char* ezsignfoldertypeGetAutocompleteV1_SSELECTOR_ToString(ezmax_api_definition_ezsignfoldertypeGetAutocompleteV1_sSelector_e SSELECTOR){
+static char* ezsignfoldertypeGetAutocompleteV1_SSELECTOR_ToString(ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV1_sSelector_e SSELECTOR){
     char *SSELECTORArray[] =  { "NULL", "Active", "All" };
     return SSELECTORArray[SSELECTOR];
 }
 
-static ezmax_api_definition_ezsignfoldertypeGetAutocompleteV1_sSelector_e ezsignfoldertypeGetAutocompleteV1_SSELECTOR_FromString(char* SSELECTOR){
+static ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV1_sSelector_e ezsignfoldertypeGetAutocompleteV1_SSELECTOR_FromString(char* SSELECTOR){
     int stringToReturn = 0;
     char *SSELECTORArray[] =  { "NULL", "Active", "All" };
     size_t sizeofArray = sizeof(SSELECTORArray) / sizeof(SSELECTORArray[0]);
@@ -35,7 +35,7 @@ static ezmax_api_definition_ezsignfoldertypeGetAutocompleteV1_sSelector_e ezsign
 // Function ezsignfoldertypeGetAutocompleteV1_SSELECTOR_convertToJSON is not currently used,
 // since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
 //
-static cJSON *ezsignfoldertypeGetAutocompleteV1_SSELECTOR_convertToJSON(ezmax_api_definition_ezsignfoldertypeGetAutocompleteV1_sSelector_e SSELECTOR) {
+static cJSON *ezsignfoldertypeGetAutocompleteV1_SSELECTOR_convertToJSON(ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV1_sSelector_e SSELECTOR) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "sSelector", ezsignfoldertypeGetAutocompleteV1_SSELECTOR_ToString(SSELECTOR)) == NULL) {
         goto fail;
@@ -49,8 +49,8 @@ static cJSON *ezsignfoldertypeGetAutocompleteV1_SSELECTOR_convertToJSON(ezmax_ap
 // Function ezsignfoldertypeGetAutocompleteV1_SSELECTOR_parseFromJSON is not currently used,
 // since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
 //
-static ezmax_api_definition_ezsignfoldertypeGetAutocompleteV1_sSelector_e ezsignfoldertypeGetAutocompleteV1_SSELECTOR_parseFromJSON(cJSON* SSELECTORJSON) {
-    ezmax_api_definition_ezsignfoldertypeGetAutocompleteV1_sSelector_e SSELECTORVariable = 0;
+static ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV1_sSelector_e ezsignfoldertypeGetAutocompleteV1_SSELECTOR_parseFromJSON(cJSON* SSELECTORJSON) {
+    ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV1_sSelector_e SSELECTORVariable = 0;
     cJSON *SSELECTORVar = cJSON_GetObjectItemCaseSensitive(SSELECTORJSON, "sSelector");
     if(!cJSON_IsString(SSELECTORVar) || (SSELECTORVar->valuestring == NULL))
     {
@@ -65,12 +65,12 @@ end:
 
 // Functions for enum  for ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV1
 
-static char* ezsignfoldertypeGetAutocompleteV1__ToString(ezmax_api_definition_ezsignfoldertypeGetAutocompleteV1_Accept-Language_e ){
+static char* ezsignfoldertypeGetAutocompleteV1__ToString(ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV1_Accept-Language_e ){
     char *Array[] =  { "NULL", "*", "en", "fr" };
     return Array[];
 }
 
-static ezmax_api_definition_ezsignfoldertypeGetAutocompleteV1_Accept-Language_e ezsignfoldertypeGetAutocompleteV1__FromString(char* ){
+static ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV1_Accept-Language_e ezsignfoldertypeGetAutocompleteV1__FromString(char* ){
     int stringToReturn = 0;
     char *Array[] =  { "NULL", "*", "en", "fr" };
     size_t sizeofArray = sizeof(Array) / sizeof(Array[0]);
@@ -87,7 +87,7 @@ static ezmax_api_definition_ezsignfoldertypeGetAutocompleteV1_Accept-Language_e 
 // Function ezsignfoldertypeGetAutocompleteV1__convertToJSON is not currently used,
 // since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
 //
-static cJSON *ezsignfoldertypeGetAutocompleteV1__convertToJSON(ezmax_api_definition_ezsignfoldertypeGetAutocompleteV1_Accept-Language_e ) {
+static cJSON *ezsignfoldertypeGetAutocompleteV1__convertToJSON(ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV1_Accept-Language_e ) {
     cJSON *item = cJSON_CreateObject();
     return item;
     fail:
@@ -98,8 +98,8 @@ static cJSON *ezsignfoldertypeGetAutocompleteV1__convertToJSON(ezmax_api_definit
 // Function ezsignfoldertypeGetAutocompleteV1__parseFromJSON is not currently used,
 // since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
 //
-static ezmax_api_definition_ezsignfoldertypeGetAutocompleteV1_Accept-Language_e ezsignfoldertypeGetAutocompleteV1__parseFromJSON(cJSON* JSON) {
-    ezmax_api_definition_ezsignfoldertypeGetAutocompleteV1_Accept-Language_e Variable = 0;
+static ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV1_Accept-Language_e ezsignfoldertypeGetAutocompleteV1__parseFromJSON(cJSON* JSON) {
+    ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV1_Accept-Language_e Variable = 0;
     return Variable;
 end:
     return 0;
@@ -108,12 +108,12 @@ end:
 
 // Functions for enum EORDERBY for ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1
 
-static char* ezsignfoldertypeGetListV1_EORDERBY_ToString(ezmax_api_definition_ezsignfoldertypeGetListV1_eOrderBy_e EORDERBY){
+static char* ezsignfoldertypeGetListV1_EORDERBY_ToString(ezmax_api_definition__full_ezsignfoldertypeGetListV1_eOrderBy_e EORDERBY){
     char *EORDERBYArray[] =  { "NULL", "pkiEzsignfoldertypeID_ASC", "pkiEzsignfoldertypeID_DESC", "eEzsignfoldertypePrivacylevel_ASC", "eEzsignfoldertypePrivacylevel_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC", "bEzsignfoldertypeIsactive_ASC", "bEzsignfoldertypeIsactive_DESC" };
     return EORDERBYArray[EORDERBY];
 }
 
-static ezmax_api_definition_ezsignfoldertypeGetListV1_eOrderBy_e ezsignfoldertypeGetListV1_EORDERBY_FromString(char* EORDERBY){
+static ezmax_api_definition__full_ezsignfoldertypeGetListV1_eOrderBy_e ezsignfoldertypeGetListV1_EORDERBY_FromString(char* EORDERBY){
     int stringToReturn = 0;
     char *EORDERBYArray[] =  { "NULL", "pkiEzsignfoldertypeID_ASC", "pkiEzsignfoldertypeID_DESC", "eEzsignfoldertypePrivacylevel_ASC", "eEzsignfoldertypePrivacylevel_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC", "bEzsignfoldertypeIsactive_ASC", "bEzsignfoldertypeIsactive_DESC" };
     size_t sizeofArray = sizeof(EORDERBYArray) / sizeof(EORDERBYArray[0]);
@@ -130,7 +130,7 @@ static ezmax_api_definition_ezsignfoldertypeGetListV1_eOrderBy_e ezsignfoldertyp
 // Function ezsignfoldertypeGetListV1_EORDERBY_convertToJSON is not currently used,
 // since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
 //
-static cJSON *ezsignfoldertypeGetListV1_EORDERBY_convertToJSON(ezmax_api_definition_ezsignfoldertypeGetListV1_eOrderBy_e EORDERBY) {
+static cJSON *ezsignfoldertypeGetListV1_EORDERBY_convertToJSON(ezmax_api_definition__full_ezsignfoldertypeGetListV1_eOrderBy_e EORDERBY) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "eOrderBy", ezsignfoldertypeGetListV1_EORDERBY_ToString(EORDERBY)) == NULL) {
         goto fail;
@@ -144,8 +144,8 @@ static cJSON *ezsignfoldertypeGetListV1_EORDERBY_convertToJSON(ezmax_api_definit
 // Function ezsignfoldertypeGetListV1_EORDERBY_parseFromJSON is not currently used,
 // since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
 //
-static ezmax_api_definition_ezsignfoldertypeGetListV1_eOrderBy_e ezsignfoldertypeGetListV1_EORDERBY_parseFromJSON(cJSON* EORDERBYJSON) {
-    ezmax_api_definition_ezsignfoldertypeGetListV1_eOrderBy_e EORDERBYVariable = 0;
+static ezmax_api_definition__full_ezsignfoldertypeGetListV1_eOrderBy_e ezsignfoldertypeGetListV1_EORDERBY_parseFromJSON(cJSON* EORDERBYJSON) {
+    ezmax_api_definition__full_ezsignfoldertypeGetListV1_eOrderBy_e EORDERBYVariable = 0;
     cJSON *EORDERBYVar = cJSON_GetObjectItemCaseSensitive(EORDERBYJSON, "eOrderBy");
     if(!cJSON_IsString(EORDERBYVar) || (EORDERBYVar->valuestring == NULL))
     {
@@ -160,12 +160,12 @@ end:
 
 // Functions for enum  for ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1
 
-static char* ezsignfoldertypeGetListV1__ToString(ezmax_api_definition_ezsignfoldertypeGetListV1_Accept-Language_e ){
+static char* ezsignfoldertypeGetListV1__ToString(ezmax_api_definition__full_ezsignfoldertypeGetListV1_Accept-Language_e ){
     char *Array[] =  { "NULL", "*", "en", "fr" };
     return Array[];
 }
 
-static ezmax_api_definition_ezsignfoldertypeGetListV1_Accept-Language_e ezsignfoldertypeGetListV1__FromString(char* ){
+static ezmax_api_definition__full_ezsignfoldertypeGetListV1_Accept-Language_e ezsignfoldertypeGetListV1__FromString(char* ){
     int stringToReturn = 0;
     char *Array[] =  { "NULL", "*", "en", "fr" };
     size_t sizeofArray = sizeof(Array) / sizeof(Array[0]);
@@ -182,7 +182,7 @@ static ezmax_api_definition_ezsignfoldertypeGetListV1_Accept-Language_e ezsignfo
 // Function ezsignfoldertypeGetListV1__convertToJSON is not currently used,
 // since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
 //
-static cJSON *ezsignfoldertypeGetListV1__convertToJSON(ezmax_api_definition_ezsignfoldertypeGetListV1_Accept-Language_e ) {
+static cJSON *ezsignfoldertypeGetListV1__convertToJSON(ezmax_api_definition__full_ezsignfoldertypeGetListV1_Accept-Language_e ) {
     cJSON *item = cJSON_CreateObject();
     return item;
     fail:
@@ -193,8 +193,8 @@ static cJSON *ezsignfoldertypeGetListV1__convertToJSON(ezmax_api_definition_ezsi
 // Function ezsignfoldertypeGetListV1__parseFromJSON is not currently used,
 // since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
 //
-static ezmax_api_definition_ezsignfoldertypeGetListV1_Accept-Language_e ezsignfoldertypeGetListV1__parseFromJSON(cJSON* JSON) {
-    ezmax_api_definition_ezsignfoldertypeGetListV1_Accept-Language_e Variable = 0;
+static ezmax_api_definition__full_ezsignfoldertypeGetListV1_Accept-Language_e ezsignfoldertypeGetListV1__parseFromJSON(cJSON* JSON) {
+    ezmax_api_definition__full_ezsignfoldertypeGetListV1_Accept-Language_e Variable = 0;
     return Variable;
 end:
     return 0;
@@ -207,7 +207,7 @@ end:
 // Get the list of Ezsignfoldertypes to be used in a dropdown or autocomplete control.
 //
 common_get_autocomplete_v1_response_t*
-ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition_ezsignfoldertypeGetAutocompleteV1_sSelector_e sSelector , char * sQuery , header_accept_language_e Accept_Language )
+ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV1_sSelector_e sSelector , char * sQuery , header_accept_language_e Accept_Language )
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -268,9 +268,10 @@ ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV1(apiClient_t *apiClie
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successful response");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
     //nonprimitive not container
     cJSON *ObjectEzsignfoldertypeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     common_get_autocomplete_v1_response_t *elementToReturn = common_get_autocomplete_v1_response_parseFromJSON(ObjectEzsignfoldertypeAPIlocalVarJSON);
@@ -321,7 +322,7 @@ end:
 // Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eEzsignfoldertypePrivacylevel | User<br>Usergroup |
 //
 ezsignfoldertype_get_list_v1_response_t*
-ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1(apiClient_t *apiClient, ezmax_api_definition_ezsignfoldertypeGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter )
+ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsignfoldertypeGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter )
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -352,7 +353,7 @@ ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1(apiClient_t *apiClient, ezma
 
     // query parameters
     char *keyQuery_eOrderBy = NULL;
-    ezmax_api_definition_ezsignfoldertypeGetListV1_eOrderBy_e valueQuery_eOrderBy ;
+    ezmax_api_definition__full_ezsignfoldertypeGetListV1_eOrderBy_e valueQuery_eOrderBy ;
     keyValuePair_t *keyPairQuery_eOrderBy = 0;
     if (eOrderBy)
     {
@@ -412,12 +413,14 @@ ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1(apiClient_t *apiClient, ezma
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successful response");
-    }
-    if (apiClient->response_code == 406) {
-        printf("%s\n","One of the accept header is not defined or invalid.");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 406) {
+    //    printf("%s\n","One of the accept header is not defined or invalid.");
+    //}
     //nonprimitive not container
     cJSON *ObjectEzsignfoldertypeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     ezsignfoldertype_get_list_v1_response_t *elementToReturn = ezsignfoldertype_get_list_v1_response_parseFromJSON(ObjectEzsignfoldertypeAPIlocalVarJSON);

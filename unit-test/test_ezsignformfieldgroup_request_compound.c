@@ -24,8 +24,8 @@ ezsignformfieldgroup_request_compound_t* instantiate_ezsignformfieldgroup_reques
     ezsignformfieldgroup_request_compound = ezsignformfieldgroup_request_compound_create(
       26,
       97,
-      ezmax_api_definition_ezsignformfieldgroup_request_compound__"Text",
-      ezmax_api_definition_ezsignformfieldgroup_request_compound__"One",
+      ezmax_api_definition__full_ezsignformfieldgroup_request_compound__"Text",
+      ezmax_api_definition__full_ezsignformfieldgroup_request_compound__"One",
       "Allergies",
       1,
       "Foo",
@@ -36,7 +36,7 @@ ezsignformfieldgroup_request_compound_t* instantiate_ezsignformfieldgroup_reques
       1,
       "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
       "Please enter a valid email address",
-      ezmax_api_definition_ezsignformfieldgroup_request_compound__"TopLeft",
+      ezmax_api_definition__full_ezsignformfieldgroup_request_compound__"TopLeft",
       list_createList(),
       list_createList(),
       list_createList()
@@ -45,8 +45,8 @@ ezsignformfieldgroup_request_compound_t* instantiate_ezsignformfieldgroup_reques
     ezsignformfieldgroup_request_compound = ezsignformfieldgroup_request_compound_create(
       26,
       97,
-      ezmax_api_definition_ezsignformfieldgroup_request_compound__"Text",
-      ezmax_api_definition_ezsignformfieldgroup_request_compound__"One",
+      ezmax_api_definition__full_ezsignformfieldgroup_request_compound__"Text",
+      ezmax_api_definition__full_ezsignformfieldgroup_request_compound__"One",
       "Allergies",
       1,
       "Foo",
@@ -57,7 +57,7 @@ ezsignformfieldgroup_request_compound_t* instantiate_ezsignformfieldgroup_reques
       1,
       "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
       "Please enter a valid email address",
-      ezmax_api_definition_ezsignformfieldgroup_request_compound__"TopLeft",
+      ezmax_api_definition__full_ezsignformfieldgroup_request_compound__"TopLeft",
       list_createList(),
       list_createList(),
       list_createList()

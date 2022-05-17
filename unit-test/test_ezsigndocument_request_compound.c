@@ -23,29 +23,35 @@ ezsigndocument_request_compound_t* instantiate_ezsigndocument_request_compound(i
   if (include_optional) {
     ezsigndocument_request_compound = ezsigndocument_request_compound_create(
       97,
-      ezmax_api_definition_ezsigndocument_request_compound_EEZSIGNDOCUMENTSOURCE_Base64,
-      ezmax_api_definition_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_Pdf,
+      33,
+      36,
+      20,
+      2,
+      ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTSOURCE_Base64,
+      ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_Pdf,
       "YQ==",
       "http://www.example.com/document.pdf",
       1,
-      "0",
-      33,
+      "SecretPassword123",
+      ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORM_Keep,
       "2020-12-31 23:59:59",
-      2,
       "Contract #123"
     );
   } else {
     ezsigndocument_request_compound = ezsigndocument_request_compound_create(
       97,
-      ezmax_api_definition_ezsigndocument_request_compound_EEZSIGNDOCUMENTSOURCE_Base64,
-      ezmax_api_definition_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_Pdf,
+      33,
+      36,
+      20,
+      2,
+      ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTSOURCE_Base64,
+      ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_Pdf,
       "YQ==",
       "http://www.example.com/document.pdf",
       1,
-      "0",
-      33,
+      "SecretPassword123",
+      ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORM_Keep,
       "2020-12-31 23:59:59",
-      2,
       "Contract #123"
     );
   }

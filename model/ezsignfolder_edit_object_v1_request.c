@@ -37,7 +37,6 @@ cJSON *ezsignfolder_edit_object_v1_request_convertToJSON(ezsignfolder_edit_objec
     if (!ezsignfolder_edit_object_v1_request->obj_ezsignfolder) {
         goto fail;
     }
-    
     cJSON *obj_ezsignfolder_local_JSON = ezsignfolder_request_compound_convertToJSON(ezsignfolder_edit_object_v1_request->obj_ezsignfolder);
     if(obj_ezsignfolder_local_JSON == NULL) {
     goto fail; //model

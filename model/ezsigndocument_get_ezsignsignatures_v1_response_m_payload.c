@@ -37,7 +37,9 @@ cJSON *ezsigndocument_get_ezsignsignatures_v1_response_m_payload_convertToJSON(e
     cJSON *item = cJSON_CreateObject();
 
     // ezsigndocument_get_ezsignsignatures_v1_response_m_payload->a_obj_ezsignsignature
-    if(ezsigndocument_get_ezsignsignatures_v1_response_m_payload->a_obj_ezsignsignature) { 
+    if (!ezsigndocument_get_ezsignsignatures_v1_response_m_payload->a_obj_ezsignsignature) {
+        goto fail;
+    }
     cJSON *a_obj_ezsignsignature = cJSON_AddArrayToObject(item, "a_objEzsignsignature");
     if(a_obj_ezsignsignature == NULL) {
     goto fail; //nonprimitive container
@@ -53,7 +55,6 @@ cJSON *ezsigndocument_get_ezsignsignatures_v1_response_m_payload_convertToJSON(e
     cJSON_AddItemToArray(a_obj_ezsignsignature, itemLocal);
     }
     }
-     } 
 
     return item;
 fail:
@@ -67,11 +68,17 @@ ezsigndocument_get_ezsignsignatures_v1_response_m_payload_t *ezsigndocument_get_
 
     ezsigndocument_get_ezsignsignatures_v1_response_m_payload_t *ezsigndocument_get_ezsignsignatures_v1_response_m_payload_local_var = NULL;
 
+    // define the local list for ezsigndocument_get_ezsignsignatures_v1_response_m_payload->a_obj_ezsignsignature
+    list_t *a_obj_ezsignsignatureList = NULL;
+
     // ezsigndocument_get_ezsignsignatures_v1_response_m_payload->a_obj_ezsignsignature
     cJSON *a_obj_ezsignsignature = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_ezsignsignatures_v1_response_m_payloadJSON, "a_objEzsignsignature");
-    list_t *a_obj_ezsignsignatureList;
-    if (a_obj_ezsignsignature) { 
-    cJSON *a_obj_ezsignsignature_local_nonprimitive;
+    if (!a_obj_ezsignsignature) {
+        goto end;
+    }
+
+    
+    cJSON *a_obj_ezsignsignature_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_ezsignsignature)){
         goto end; //nonprimitive container
     }
@@ -87,15 +94,23 @@ ezsigndocument_get_ezsignsignatures_v1_response_m_payload_t *ezsigndocument_get_
 
         list_addElement(a_obj_ezsignsignatureList, a_obj_ezsignsignatureItem);
     }
-    }
 
 
     ezsigndocument_get_ezsignsignatures_v1_response_m_payload_local_var = ezsigndocument_get_ezsignsignatures_v1_response_m_payload_create (
-        a_obj_ezsignsignature ? a_obj_ezsignsignatureList : NULL
+        a_obj_ezsignsignatureList
         );
 
     return ezsigndocument_get_ezsignsignatures_v1_response_m_payload_local_var;
 end:
+    if (a_obj_ezsignsignatureList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_ezsignsignatureList) {
+            ezsignsignature_response_compound_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_ezsignsignatureList);
+        a_obj_ezsignsignatureList = NULL;
+    }
     return NULL;
 
 }

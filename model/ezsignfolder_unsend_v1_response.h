@@ -1,7 +1,7 @@
 /*
  * ezsignfolder_unsend_v1_response.h
  *
- * Response for the /1/object/ezsignfolder/{pkiEzsignfolderID}/unsend API Request
+ * Response for POST /1/object/ezsignfolder/{pkiEzsignfolderID}/unsend
  */
 
 #ifndef _ezsignfolder_unsend_v1_response_H_

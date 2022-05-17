@@ -1,7 +1,7 @@
 /*
  * ezsignbulksendtransmission_get_object_v1_response_m_payload.h
  *
- * Payload for the /1/object/ezsignbulksendtransmission/{pkiEzsignbulksendtransmissionID}/getObject API Request
+ * Payload for GET /1/object/ezsignbulksendtransmission/{pkiEzsignbulksendtransmissionID}
  */
 
 #ifndef _ezsignbulksendtransmission_get_object_v1_response_m_payload_H_
@@ -16,6 +16,7 @@
 typedef struct ezsignbulksendtransmission_get_object_v1_response_m_payload_t ezsignbulksendtransmission_get_object_v1_response_m_payload_t;
 
 #include "common_audit.h"
+#include "custom_ezsignfoldertransmission_response.h"
 #include "ezsignbulksendtransmission_response_compound.h"
 
 
@@ -26,6 +27,7 @@ typedef struct ezsignbulksendtransmission_get_object_v1_response_m_payload_t {
     char *s_ezsignbulksendtransmission_description; // string
     int i_ezsignbulksendtransmission_errors; //numeric
     struct common_audit_t *obj_audit; //model
+    list_t *a_obj_ezsignfoldertransmission; //nonprimitive container
 
 } ezsignbulksendtransmission_get_object_v1_response_m_payload_t;
 
@@ -34,7 +36,8 @@ ezsignbulksendtransmission_get_object_v1_response_m_payload_t *ezsignbulksendtra
     int fki_ezsignbulksend_id,
     char *s_ezsignbulksendtransmission_description,
     int i_ezsignbulksendtransmission_errors,
-    common_audit_t *obj_audit
+    common_audit_t *obj_audit,
+    list_t *a_obj_ezsignfoldertransmission
 );
 
 void ezsignbulksendtransmission_get_object_v1_response_m_payload_free(ezsignbulksendtransmission_get_object_v1_response_m_payload_t *ezsignbulksendtransmission_get_object_v1_response_m_payload);

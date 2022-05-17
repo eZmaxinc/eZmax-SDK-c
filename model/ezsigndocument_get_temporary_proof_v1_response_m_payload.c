@@ -6,7 +6,7 @@
 
 
 ezsigndocument_get_temporary_proof_v1_response_m_payload_t *ezsigndocument_get_temporary_proof_v1_response_m_payload_create(
-    ezsigndocumentlog_response_compound_t *a_obj_ezsigndocumentlog
+    list_t *a_obj_ezsigndocumentlog
     ) {
     ezsigndocument_get_temporary_proof_v1_response_m_payload_t *ezsigndocument_get_temporary_proof_v1_response_m_payload_local_var = malloc(sizeof(ezsigndocument_get_temporary_proof_v1_response_m_payload_t));
     if (!ezsigndocument_get_temporary_proof_v1_response_m_payload_local_var) {
@@ -24,7 +24,10 @@ void ezsigndocument_get_temporary_proof_v1_response_m_payload_free(ezsigndocumen
     }
     listEntry_t *listEntry;
     if (ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog) {
-        ezsigndocumentlog_response_compound_free(ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog);
+        list_ForEach(listEntry, ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog) {
+            ezsigndocumentlog_response_compound_free(listEntry->data);
+        }
+        list_freeList(ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog);
         ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog = NULL;
     }
     free(ezsigndocument_get_temporary_proof_v1_response_m_payload);
@@ -37,14 +40,20 @@ cJSON *ezsigndocument_get_temporary_proof_v1_response_m_payload_convertToJSON(ez
     if (!ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog) {
         goto fail;
     }
-    
-    cJSON *a_obj_ezsigndocumentlog_local_JSON = ezsigndocumentlog_response_compound_convertToJSON(ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog);
-    if(a_obj_ezsigndocumentlog_local_JSON == NULL) {
-    goto fail; //model
+    cJSON *a_obj_ezsigndocumentlog = cJSON_AddArrayToObject(item, "a_objEzsigndocumentlog");
+    if(a_obj_ezsigndocumentlog == NULL) {
+    goto fail; //nonprimitive container
     }
-    cJSON_AddItemToObject(item, "a_objEzsigndocumentlog", a_obj_ezsigndocumentlog_local_JSON);
-    if(item->child == NULL) {
+
+    listEntry_t *a_obj_ezsigndocumentlogListEntry;
+    if (ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog) {
+    list_ForEach(a_obj_ezsigndocumentlogListEntry, ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog) {
+    cJSON *itemLocal = ezsigndocumentlog_response_compound_convertToJSON(a_obj_ezsigndocumentlogListEntry->data);
+    if(itemLocal == NULL) {
     goto fail;
+    }
+    cJSON_AddItemToArray(a_obj_ezsigndocumentlog, itemLocal);
+    }
     }
 
     return item;
@@ -59,8 +68,8 @@ ezsigndocument_get_temporary_proof_v1_response_m_payload_t *ezsigndocument_get_t
 
     ezsigndocument_get_temporary_proof_v1_response_m_payload_t *ezsigndocument_get_temporary_proof_v1_response_m_payload_local_var = NULL;
 
-    // define the local variable for ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog
-    ezsigndocumentlog_response_compound_t *a_obj_ezsigndocumentlog_local_nonprim = NULL;
+    // define the local list for ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog
+    list_t *a_obj_ezsigndocumentlogList = NULL;
 
     // ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog
     cJSON *a_obj_ezsigndocumentlog = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_temporary_proof_v1_response_m_payloadJSON, "a_objEzsigndocumentlog");
@@ -69,18 +78,38 @@ ezsigndocument_get_temporary_proof_v1_response_m_payload_t *ezsigndocument_get_t
     }
 
     
-    a_obj_ezsigndocumentlog_local_nonprim = ezsigndocumentlog_response_compound_parseFromJSON(a_obj_ezsigndocumentlog); //nonprimitive
+    cJSON *a_obj_ezsigndocumentlog_local_nonprimitive = NULL;
+    if(!cJSON_IsArray(a_obj_ezsigndocumentlog)){
+        goto end; //nonprimitive container
+    }
+
+    a_obj_ezsigndocumentlogList = list_createList();
+
+    cJSON_ArrayForEach(a_obj_ezsigndocumentlog_local_nonprimitive,a_obj_ezsigndocumentlog )
+    {
+        if(!cJSON_IsObject(a_obj_ezsigndocumentlog_local_nonprimitive)){
+            goto end;
+        }
+        ezsigndocumentlog_response_compound_t *a_obj_ezsigndocumentlogItem = ezsigndocumentlog_response_compound_parseFromJSON(a_obj_ezsigndocumentlog_local_nonprimitive);
+
+        list_addElement(a_obj_ezsigndocumentlogList, a_obj_ezsigndocumentlogItem);
+    }
 
 
     ezsigndocument_get_temporary_proof_v1_response_m_payload_local_var = ezsigndocument_get_temporary_proof_v1_response_m_payload_create (
-        a_obj_ezsigndocumentlog_local_nonprim
+        a_obj_ezsigndocumentlogList
         );
 
     return ezsigndocument_get_temporary_proof_v1_response_m_payload_local_var;
 end:
-    if (a_obj_ezsigndocumentlog_local_nonprim) {
-        ezsigndocumentlog_response_compound_free(a_obj_ezsigndocumentlog_local_nonprim);
-        a_obj_ezsigndocumentlog_local_nonprim = NULL;
+    if (a_obj_ezsigndocumentlogList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_ezsigndocumentlogList) {
+            ezsigndocumentlog_response_compound_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_ezsigndocumentlogList);
+        a_obj_ezsigndocumentlogList = NULL;
     }
     return NULL;
 

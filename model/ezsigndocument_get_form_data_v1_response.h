@@ -1,7 +1,7 @@
 /*
  * ezsigndocument_get_form_data_v1_response.h
  *
- * Response for the /1/object/ezsigndocument/{pkiEzsigndocument}/getFormData API Request
+ * Response for GET /1/object/ezsigndocument/{pkiEzsigndocument}/getFormData
  */
 
 #ifndef _ezsigndocument_get_form_data_v1_response_H_

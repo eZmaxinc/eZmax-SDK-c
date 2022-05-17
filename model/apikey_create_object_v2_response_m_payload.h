@@ -1,7 +1,7 @@
 /*
  * apikey_create_object_v2_response_m_payload.h
  *
- * Payload for the /2/object/apikey/createObject API Request
+ * Payload for POST /2/object/apikey
  */
 
 #ifndef _apikey_create_object_v2_response_m_payload_H_

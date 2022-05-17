@@ -1,7 +1,7 @@
 /*
  * ezsignsignature_create_object_v1_response_m_payload.h
  *
- * Payload for the /1/object/ezsignsignature/createObject API Request
+ * Payload for POST /1/object/ezsignsignature
  */
 
 #ifndef _ezsignsignature_create_object_v1_response_m_payload_H_

@@ -16,7 +16,6 @@
 #include "../model/ezsignformfieldgroup_response_compound_all_of.h"
 ezsignformfieldgroup_response_compound_all_of_t* instantiate_ezsignformfieldgroup_response_compound_all_of(int include_optional);
 
-#include "test_ezsignformfieldgroupsigner_response_compound.c"
 
 
 ezsignformfieldgroup_response_compound_all_of_t* instantiate_ezsignformfieldgroup_response_compound_all_of(int include_optional) {
@@ -25,14 +24,13 @@ ezsignformfieldgroup_response_compound_all_of_t* instantiate_ezsignformfieldgrou
     ezsignformfieldgroup_response_compound_all_of = ezsignformfieldgroup_response_compound_all_of_create(
       list_createList(),
       list_createList(),
-       // false, not to have infinite recursion
-      instantiate_ezsignformfieldgroupsigner_response_compound(0)
+      list_createList()
     );
   } else {
     ezsignformfieldgroup_response_compound_all_of = ezsignformfieldgroup_response_compound_all_of_create(
       list_createList(),
       list_createList(),
-      NULL
+      list_createList()
     );
   }
 

@@ -26,21 +26,31 @@ ezsignbulksend_get_object_v1_response_m_payload_t* instantiate_ezsignbulksend_ge
       8,
       5,
       2,
+      "English",
+      "Default",
       "Test eZsign Bulk Send",
       "This is a note",
       1,
+      1,
        // false, not to have infinite recursion
-      instantiate_common_audit(0)
+      instantiate_common_audit(0),
+      list_createList(),
+      list_createList()
     );
   } else {
     ezsignbulksend_get_object_v1_response_m_payload = ezsignbulksend_get_object_v1_response_m_payload_create(
       8,
       5,
       2,
+      "English",
+      "Default",
       "Test eZsign Bulk Send",
       "This is a note",
       1,
-      NULL
+      1,
+      NULL,
+      list_createList(),
+      list_createList()
     );
   }
 

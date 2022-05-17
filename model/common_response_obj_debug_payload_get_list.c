@@ -62,7 +62,6 @@ cJSON *common_response_obj_debug_payload_get_list_convertToJSON(common_response_
     if (!common_response_obj_debug_payload_get_list->i_version_min) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iVersionMin", common_response_obj_debug_payload_get_list->i_version_min) == NULL) {
     goto fail; //Numeric
     }
@@ -72,7 +71,6 @@ cJSON *common_response_obj_debug_payload_get_list_convertToJSON(common_response_
     if (!common_response_obj_debug_payload_get_list->i_version_max) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iVersionMax", common_response_obj_debug_payload_get_list->i_version_max) == NULL) {
     goto fail; //Numeric
     }
@@ -82,7 +80,6 @@ cJSON *common_response_obj_debug_payload_get_list_convertToJSON(common_response_
     if (!common_response_obj_debug_payload_get_list->a_required_permission) {
         goto fail;
     }
-    
     cJSON *a_required_permission = cJSON_AddArrayToObject(item, "a_RequiredPermission");
     if(a_required_permission == NULL) {
         goto fail; //primitive container
@@ -101,7 +98,6 @@ cJSON *common_response_obj_debug_payload_get_list_convertToJSON(common_response_
     if (!common_response_obj_debug_payload_get_list->a_filter) {
         goto fail;
     }
-    
     cJSON *a_filter_local_JSON = common_response_filter_convertToJSON(common_response_obj_debug_payload_get_list->a_filter);
     if(a_filter_local_JSON == NULL) {
     goto fail; //model
@@ -116,7 +112,6 @@ cJSON *common_response_obj_debug_payload_get_list_convertToJSON(common_response_
     if (!common_response_obj_debug_payload_get_list->a_order_by) {
         goto fail;
     }
-    
     cJSON *a_order_by = cJSON_AddObjectToObject(item, "a_OrderBy");
     if(a_order_by == NULL) {
         goto fail; //primitive map container
@@ -145,8 +140,14 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
 
     common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_get_list_local_var = NULL;
 
+    // define the local list for common_response_obj_debug_payload_get_list->a_required_permission
+    list_t *a_required_permissionList = NULL;
+
     // define the local variable for common_response_obj_debug_payload_get_list->a_filter
     common_response_filter_t *a_filter_local_nonprim = NULL;
+
+    // define the local map for common_response_obj_debug_payload_get_list->a_order_by
+    list_t *a_order_byList = NULL;
 
     // common_response_obj_debug_payload_get_list->i_version_min
     cJSON *i_version_min = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payload_get_listJSON, "iVersionMin");
@@ -178,9 +179,8 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
         goto end;
     }
 
-    list_t *a_required_permissionList;
     
-    cJSON *a_required_permission_local;
+    cJSON *a_required_permission_local = NULL;
     if(!cJSON_IsArray(a_required_permission)) {
         goto end;//primitive container
     }
@@ -216,9 +216,8 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
         goto end;
     }
 
-    list_t *a_order_byList;
     
-    cJSON *a_order_by_local_map;
+    cJSON *a_order_by_local_map = NULL;
     if(!cJSON_IsObject(a_order_by)) {
         goto end;//primitive map container
     }
@@ -246,9 +245,32 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
 
     return common_response_obj_debug_payload_get_list_local_var;
 end:
+    if (a_required_permissionList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_required_permissionList) {
+            free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_required_permissionList);
+        a_required_permissionList = NULL;
+    }
     if (a_filter_local_nonprim) {
         common_response_filter_free(a_filter_local_nonprim);
         a_filter_local_nonprim = NULL;
+    }
+    if (a_order_byList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_order_byList) {
+            keyValuePair_t *localKeyValue = (keyValuePair_t*) listEntry->data;
+            free(localKeyValue->key);
+            localKeyValue->key = NULL;
+            free(localKeyValue->value);
+            localKeyValue->value = NULL;
+            keyValuePair_free(localKeyValue);
+            localKeyValue = NULL;
+        }
+        list_freeList(a_order_byList);
+        a_order_byList = NULL;
     }
     return NULL;
 

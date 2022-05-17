@@ -43,7 +43,6 @@ cJSON *common_audit_convertToJSON(common_audit_t *common_audit) {
     if (!common_audit->obj_auditdetail_created) {
         goto fail;
     }
-    
     cJSON *obj_auditdetail_created_local_JSON = common_auditdetail_convertToJSON(common_audit->obj_auditdetail_created);
     if(obj_auditdetail_created_local_JSON == NULL) {
     goto fail; //model
@@ -55,7 +54,7 @@ cJSON *common_audit_convertToJSON(common_audit_t *common_audit) {
 
 
     // common_audit->obj_auditdetail_modified
-    if(common_audit->obj_auditdetail_modified) { 
+    if(common_audit->obj_auditdetail_modified) {
     cJSON *obj_auditdetail_modified_local_JSON = common_auditdetail_convertToJSON(common_audit->obj_auditdetail_modified);
     if(obj_auditdetail_modified_local_JSON == NULL) {
     goto fail; //model
@@ -64,7 +63,7 @@ cJSON *common_audit_convertToJSON(common_audit_t *common_audit) {
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:

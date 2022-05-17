@@ -45,7 +45,6 @@ cJSON *ezsignsigner_response_convertToJSON(ezsignsigner_response_t *ezsignsigner
     if (!ezsignsigner_response->pki_ezsignsigner_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "pkiEzsignsignerID", ezsignsigner_response->pki_ezsignsigner_id) == NULL) {
     goto fail; //Numeric
     }
@@ -55,25 +54,23 @@ cJSON *ezsignsigner_response_convertToJSON(ezsignsigner_response_t *ezsignsigner
     if (!ezsignsigner_response->fki_taxassignment_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiTaxassignmentID", ezsignsigner_response->fki_taxassignment_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // ezsignsigner_response->fki_secretquestion_id
-    if(ezsignsigner_response->fki_secretquestion_id) { 
+    if(ezsignsigner_response->fki_secretquestion_id) {
     if(cJSON_AddNumberToObject(item, "fkiSecretquestionID", ezsignsigner_response->fki_secretquestion_id) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // ezsignsigner_response->fki_userlogintype_id
     if (!ezsignsigner_response->fki_userlogintype_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiUserlogintypeID", ezsignsigner_response->fki_userlogintype_id) == NULL) {
     goto fail; //Numeric
     }
@@ -83,7 +80,6 @@ cJSON *ezsignsigner_response_convertToJSON(ezsignsigner_response_t *ezsignsigner
     if (!ezsignsigner_response->s_userlogintype_description_x) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sUserlogintypeDescriptionX", ezsignsigner_response->s_userlogintype_description_x) == NULL) {
     goto fail; //String
     }

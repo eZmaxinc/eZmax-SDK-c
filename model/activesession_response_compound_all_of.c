@@ -67,7 +67,6 @@ cJSON *activesession_response_compound_all_of_convertToJSON(activesession_respon
     if (!activesession_response_compound_all_of->a_pki_permission_id) {
         goto fail;
     }
-    
     cJSON *a_pki_permission_id = cJSON_AddArrayToObject(item, "a_pkiPermissionID");
     if(a_pki_permission_id == NULL) {
         goto fail; //primitive container
@@ -86,7 +85,6 @@ cJSON *activesession_response_compound_all_of_convertToJSON(activesession_respon
     if (!activesession_response_compound_all_of->obj_user_real) {
         goto fail;
     }
-    
     cJSON *obj_user_real_local_JSON = activesession_response_compound_user_convertToJSON(activesession_response_compound_all_of->obj_user_real);
     if(obj_user_real_local_JSON == NULL) {
     goto fail; //model
@@ -98,7 +96,7 @@ cJSON *activesession_response_compound_all_of_convertToJSON(activesession_respon
 
 
     // activesession_response_compound_all_of->obj_user_cloned
-    if(activesession_response_compound_all_of->obj_user_cloned) { 
+    if(activesession_response_compound_all_of->obj_user_cloned) {
     cJSON *obj_user_cloned_local_JSON = activesession_response_compound_user_convertToJSON(activesession_response_compound_all_of->obj_user_cloned);
     if(obj_user_cloned_local_JSON == NULL) {
     goto fail; //model
@@ -107,11 +105,11 @@ cJSON *activesession_response_compound_all_of_convertToJSON(activesession_respon
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // activesession_response_compound_all_of->obj_apikey
-    if(activesession_response_compound_all_of->obj_apikey) { 
+    if(activesession_response_compound_all_of->obj_apikey) {
     cJSON *obj_apikey_local_JSON = activesession_response_compound_apikey_convertToJSON(activesession_response_compound_all_of->obj_apikey);
     if(obj_apikey_local_JSON == NULL) {
     goto fail; //model
@@ -120,14 +118,13 @@ cJSON *activesession_response_compound_all_of_convertToJSON(activesession_respon
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // activesession_response_compound_all_of->a_e_module_internalname
     if (!activesession_response_compound_all_of->a_e_module_internalname) {
         goto fail;
     }
-    
     cJSON *a_e_module_internalname = cJSON_AddArrayToObject(item, "a_eModuleInternalname");
     if(a_e_module_internalname == NULL) {
         goto fail; //primitive container
@@ -153,6 +150,9 @@ activesession_response_compound_all_of_t *activesession_response_compound_all_of
 
     activesession_response_compound_all_of_t *activesession_response_compound_all_of_local_var = NULL;
 
+    // define the local list for activesession_response_compound_all_of->a_pki_permission_id
+    list_t *a_pki_permission_idList = NULL;
+
     // define the local variable for activesession_response_compound_all_of->obj_user_real
     activesession_response_compound_user_t *obj_user_real_local_nonprim = NULL;
 
@@ -162,15 +162,17 @@ activesession_response_compound_all_of_t *activesession_response_compound_all_of
     // define the local variable for activesession_response_compound_all_of->obj_apikey
     activesession_response_compound_apikey_t *obj_apikey_local_nonprim = NULL;
 
+    // define the local list for activesession_response_compound_all_of->a_e_module_internalname
+    list_t *a_e_module_internalnameList = NULL;
+
     // activesession_response_compound_all_of->a_pki_permission_id
     cJSON *a_pki_permission_id = cJSON_GetObjectItemCaseSensitive(activesession_response_compound_all_ofJSON, "a_pkiPermissionID");
     if (!a_pki_permission_id) {
         goto end;
     }
 
-    list_t *a_pki_permission_idList;
     
-    cJSON *a_pki_permission_id_local;
+    cJSON *a_pki_permission_id_local = NULL;
     if(!cJSON_IsArray(a_pki_permission_id)) {
         goto end;//primitive container
     }
@@ -218,9 +220,8 @@ activesession_response_compound_all_of_t *activesession_response_compound_all_of
         goto end;
     }
 
-    list_t *a_e_module_internalnameList;
     
-    cJSON *a_e_module_internalname_local;
+    cJSON *a_e_module_internalname_local = NULL;
     if(!cJSON_IsArray(a_e_module_internalname)) {
         goto end;//primitive container
     }
@@ -246,6 +247,15 @@ activesession_response_compound_all_of_t *activesession_response_compound_all_of
 
     return activesession_response_compound_all_of_local_var;
 end:
+    if (a_pki_permission_idList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_pki_permission_idList) {
+            free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_pki_permission_idList);
+        a_pki_permission_idList = NULL;
+    }
     if (obj_user_real_local_nonprim) {
         activesession_response_compound_user_free(obj_user_real_local_nonprim);
         obj_user_real_local_nonprim = NULL;
@@ -257,6 +267,15 @@ end:
     if (obj_apikey_local_nonprim) {
         activesession_response_compound_apikey_free(obj_apikey_local_nonprim);
         obj_apikey_local_nonprim = NULL;
+    }
+    if (a_e_module_internalnameList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_e_module_internalnameList) {
+            free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_e_module_internalnameList);
+        a_e_module_internalnameList = NULL;
     }
     return NULL;
 

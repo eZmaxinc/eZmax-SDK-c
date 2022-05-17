@@ -37,7 +37,6 @@ cJSON *ezsignsigner_request_compound_all_of_convertToJSON(ezsignsigner_request_c
     if (!ezsignsigner_request_compound_all_of->obj_contact) {
         goto fail;
     }
-    
     cJSON *obj_contact_local_JSON = ezsignsigner_request_compound_contact_convertToJSON(ezsignsigner_request_compound_all_of->obj_contact);
     if(obj_contact_local_JSON == NULL) {
     goto fail; //model

@@ -34,27 +34,27 @@ cJSON *custom_word_position_occurence_response_convertToJSON(custom_word_positio
     cJSON *item = cJSON_CreateObject();
 
     // custom_word_position_occurence_response->i_page
-    if(custom_word_position_occurence_response->i_page) { 
+    if(custom_word_position_occurence_response->i_page) {
     if(cJSON_AddNumberToObject(item, "iPage", custom_word_position_occurence_response->i_page) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // custom_word_position_occurence_response->i_x
-    if(custom_word_position_occurence_response->i_x) { 
+    if(custom_word_position_occurence_response->i_x) {
     if(cJSON_AddNumberToObject(item, "iX", custom_word_position_occurence_response->i_x) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // custom_word_position_occurence_response->i_y
-    if(custom_word_position_occurence_response->i_y) { 
+    if(custom_word_position_occurence_response->i_y) {
     if(cJSON_AddNumberToObject(item, "iY", custom_word_position_occurence_response->i_y) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
     return item;
 fail:

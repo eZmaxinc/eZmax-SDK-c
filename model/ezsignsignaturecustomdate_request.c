@@ -40,18 +40,17 @@ cJSON *ezsignsignaturecustomdate_request_convertToJSON(ezsignsignaturecustomdate
     cJSON *item = cJSON_CreateObject();
 
     // ezsignsignaturecustomdate_request->pki_ezsignsignaturecustomdate_id
-    if(ezsignsignaturecustomdate_request->pki_ezsignsignaturecustomdate_id) { 
+    if(ezsignsignaturecustomdate_request->pki_ezsignsignaturecustomdate_id) {
     if(cJSON_AddNumberToObject(item, "pkiEzsignsignaturecustomdateID", ezsignsignaturecustomdate_request->pki_ezsignsignaturecustomdate_id) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // ezsignsignaturecustomdate_request->i_ezsignsignaturecustomdate_x
     if (!ezsignsignaturecustomdate_request->i_ezsignsignaturecustomdate_x) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEzsignsignaturecustomdateX", ezsignsignaturecustomdate_request->i_ezsignsignaturecustomdate_x) == NULL) {
     goto fail; //Numeric
     }
@@ -61,7 +60,6 @@ cJSON *ezsignsignaturecustomdate_request_convertToJSON(ezsignsignaturecustomdate
     if (!ezsignsignaturecustomdate_request->i_ezsignsignaturecustomdate_y) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEzsignsignaturecustomdateY", ezsignsignaturecustomdate_request->i_ezsignsignaturecustomdate_y) == NULL) {
     goto fail; //Numeric
     }
@@ -71,7 +69,6 @@ cJSON *ezsignsignaturecustomdate_request_convertToJSON(ezsignsignaturecustomdate
     if (!ezsignsignaturecustomdate_request->s_ezsignsignaturecustomdate_format) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sEzsignsignaturecustomdateFormat", ezsignsignaturecustomdate_request->s_ezsignsignaturecustomdate_format) == NULL) {
     goto fail; //String
     }

@@ -1,7 +1,7 @@
 /*
  * ezsignsignature_delete_object_v1_response.h
  *
- * Response for the /1/object/ezsignsignature/deleteObject API Request
+ * Response for DELETE /1/object/ezsignsignature/{pkiEzsignsignatureID}
  */
 
 #ifndef _ezsignsignature_delete_object_v1_response_H_

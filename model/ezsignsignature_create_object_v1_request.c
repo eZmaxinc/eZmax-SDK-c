@@ -40,7 +40,7 @@ cJSON *ezsignsignature_create_object_v1_request_convertToJSON(ezsignsignature_cr
     cJSON *item = cJSON_CreateObject();
 
     // ezsignsignature_create_object_v1_request->obj_ezsignsignature
-    if(ezsignsignature_create_object_v1_request->obj_ezsignsignature) { 
+    if(ezsignsignature_create_object_v1_request->obj_ezsignsignature) {
     cJSON *obj_ezsignsignature_local_JSON = ezsignsignature_request_convertToJSON(ezsignsignature_create_object_v1_request->obj_ezsignsignature);
     if(obj_ezsignsignature_local_JSON == NULL) {
     goto fail; //model
@@ -49,11 +49,11 @@ cJSON *ezsignsignature_create_object_v1_request_convertToJSON(ezsignsignature_cr
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // ezsignsignature_create_object_v1_request->obj_ezsignsignature_compound
-    if(ezsignsignature_create_object_v1_request->obj_ezsignsignature_compound) { 
+    if(ezsignsignature_create_object_v1_request->obj_ezsignsignature_compound) {
     cJSON *obj_ezsignsignature_compound_local_JSON = ezsignsignature_request_compound_convertToJSON(ezsignsignature_create_object_v1_request->obj_ezsignsignature_compound);
     if(obj_ezsignsignature_compound_local_JSON == NULL) {
     goto fail; //model
@@ -62,7 +62,7 @@ cJSON *ezsignsignature_create_object_v1_request_convertToJSON(ezsignsignature_cr
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:

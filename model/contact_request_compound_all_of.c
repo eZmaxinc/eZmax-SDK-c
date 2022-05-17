@@ -37,7 +37,6 @@ cJSON *contact_request_compound_all_of_convertToJSON(contact_request_compound_al
     if (!contact_request_compound_all_of->obj_contactinformations) {
         goto fail;
     }
-    
     cJSON *obj_contactinformations_local_JSON = contactinformations_request_compound_convertToJSON(contact_request_compound_all_of->obj_contactinformations);
     if(obj_contactinformations_local_JSON == NULL) {
     goto fail; //model

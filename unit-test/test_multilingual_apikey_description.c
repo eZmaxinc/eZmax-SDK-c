@@ -22,13 +22,13 @@ multilingual_apikey_description_t* instantiate_multilingual_apikey_description(i
   multilingual_apikey_description_t* multilingual_apikey_description = NULL;
   if (include_optional) {
     multilingual_apikey_description = multilingual_apikey_description_create(
-      "0",
-      "0"
+      "Projet X",
+      "Project X"
     );
   } else {
     multilingual_apikey_description = multilingual_apikey_description_create(
-      "0",
-      "0"
+      "Projet X",
+      "Project X"
     );
   }
 

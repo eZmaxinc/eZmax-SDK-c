@@ -24,10 +24,12 @@ custom_autocomplete_element_response_t* instantiate_custom_autocomplete_element_
     custom_autocomplete_element_response = custom_autocomplete_element_response_create(
       "0",
       "0",
+      "0",
       "0"
     );
   } else {
     custom_autocomplete_element_response = custom_autocomplete_element_response_create(
+      "0",
       "0",
       "0",
       "0"

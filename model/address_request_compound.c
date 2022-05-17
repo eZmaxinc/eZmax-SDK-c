@@ -67,7 +67,6 @@ cJSON *address_request_compound_convertToJSON(address_request_compound_t *addres
     if (!address_request_compound->fki_addresstype_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiAddresstypeID", address_request_compound->fki_addresstype_id) == NULL) {
     goto fail; //Numeric
     }
@@ -77,7 +76,6 @@ cJSON *address_request_compound_convertToJSON(address_request_compound_t *addres
     if (!address_request_compound->s_address_civic) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sAddressCivic", address_request_compound->s_address_civic) == NULL) {
     goto fail; //String
     }
@@ -87,7 +85,6 @@ cJSON *address_request_compound_convertToJSON(address_request_compound_t *addres
     if (!address_request_compound->s_address_street) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sAddressStreet", address_request_compound->s_address_street) == NULL) {
     goto fail; //String
     }
@@ -97,7 +94,6 @@ cJSON *address_request_compound_convertToJSON(address_request_compound_t *addres
     if (!address_request_compound->s_address_suite) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sAddressSuite", address_request_compound->s_address_suite) == NULL) {
     goto fail; //String
     }
@@ -107,7 +103,6 @@ cJSON *address_request_compound_convertToJSON(address_request_compound_t *addres
     if (!address_request_compound->s_address_city) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sAddressCity", address_request_compound->s_address_city) == NULL) {
     goto fail; //String
     }
@@ -117,7 +112,6 @@ cJSON *address_request_compound_convertToJSON(address_request_compound_t *addres
     if (!address_request_compound->fki_province_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiProvinceID", address_request_compound->fki_province_id) == NULL) {
     goto fail; //Numeric
     }
@@ -127,7 +121,6 @@ cJSON *address_request_compound_convertToJSON(address_request_compound_t *addres
     if (!address_request_compound->fki_country_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiCountryID", address_request_compound->fki_country_id) == NULL) {
     goto fail; //Numeric
     }
@@ -137,7 +130,6 @@ cJSON *address_request_compound_convertToJSON(address_request_compound_t *addres
     if (!address_request_compound->s_address_zip) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sAddressZip", address_request_compound->s_address_zip) == NULL) {
     goto fail; //String
     }

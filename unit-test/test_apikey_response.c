@@ -24,7 +24,8 @@ apikey_response_t* instantiate_apikey_response(int include_optional) {
   apikey_response_t* apikey_response = NULL;
   if (include_optional) {
     apikey_response = apikey_response_create(
-      {"sApikeyDescription1":"Projet X","sApikeyDescription2":"Project X"},
+       // false, not to have infinite recursion
+      instantiate_multilingual_apikey_description(0),
       "0",
       99,
        // false, not to have infinite recursion
@@ -32,7 +33,7 @@ apikey_response_t* instantiate_apikey_response(int include_optional) {
     );
   } else {
     apikey_response = apikey_response_create(
-      {"sApikeyDescription1":"Projet X","sApikeyDescription2":"Project X"},
+      NULL,
       "0",
       99,
       NULL

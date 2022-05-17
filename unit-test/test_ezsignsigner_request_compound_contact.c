@@ -26,6 +26,9 @@ ezsignsigner_request_compound_contact_t* instantiate_ezsignsigner_request_compou
       "Doe",
       2,
       "example@domain.com",
+      "+15149901516",
+      "123",
+      "+15149901516",
       "0",
       "0"
     );
@@ -35,6 +38,9 @@ ezsignsigner_request_compound_contact_t* instantiate_ezsignsigner_request_compou
       "Doe",
       2,
       "example@domain.com",
+      "+15149901516",
+      "123",
+      "+15149901516",
       "0",
       "0"
     );

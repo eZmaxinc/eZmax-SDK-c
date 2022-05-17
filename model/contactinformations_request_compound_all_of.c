@@ -67,7 +67,6 @@ cJSON *contactinformations_request_compound_all_of_convertToJSON(contactinformat
     if (!contactinformations_request_compound_all_of->a_obj_address) {
         goto fail;
     }
-    
     cJSON *a_obj_address = cJSON_AddArrayToObject(item, "a_objAddress");
     if(a_obj_address == NULL) {
     goto fail; //nonprimitive container
@@ -89,7 +88,6 @@ cJSON *contactinformations_request_compound_all_of_convertToJSON(contactinformat
     if (!contactinformations_request_compound_all_of->a_obj_phone) {
         goto fail;
     }
-    
     cJSON *a_obj_phone = cJSON_AddArrayToObject(item, "a_objPhone");
     if(a_obj_phone == NULL) {
     goto fail; //nonprimitive container
@@ -111,7 +109,6 @@ cJSON *contactinformations_request_compound_all_of_convertToJSON(contactinformat
     if (!contactinformations_request_compound_all_of->a_obj_email) {
         goto fail;
     }
-    
     cJSON *a_obj_email = cJSON_AddArrayToObject(item, "a_objEmail");
     if(a_obj_email == NULL) {
     goto fail; //nonprimitive container
@@ -133,7 +130,6 @@ cJSON *contactinformations_request_compound_all_of_convertToJSON(contactinformat
     if (!contactinformations_request_compound_all_of->a_obj_website) {
         goto fail;
     }
-    
     cJSON *a_obj_website = cJSON_AddArrayToObject(item, "a_objWebsite");
     if(a_obj_website == NULL) {
     goto fail; //nonprimitive container
@@ -162,15 +158,26 @@ contactinformations_request_compound_all_of_t *contactinformations_request_compo
 
     contactinformations_request_compound_all_of_t *contactinformations_request_compound_all_of_local_var = NULL;
 
+    // define the local list for contactinformations_request_compound_all_of->a_obj_address
+    list_t *a_obj_addressList = NULL;
+
+    // define the local list for contactinformations_request_compound_all_of->a_obj_phone
+    list_t *a_obj_phoneList = NULL;
+
+    // define the local list for contactinformations_request_compound_all_of->a_obj_email
+    list_t *a_obj_emailList = NULL;
+
+    // define the local list for contactinformations_request_compound_all_of->a_obj_website
+    list_t *a_obj_websiteList = NULL;
+
     // contactinformations_request_compound_all_of->a_obj_address
     cJSON *a_obj_address = cJSON_GetObjectItemCaseSensitive(contactinformations_request_compound_all_ofJSON, "a_objAddress");
     if (!a_obj_address) {
         goto end;
     }
 
-    list_t *a_obj_addressList;
     
-    cJSON *a_obj_address_local_nonprimitive;
+    cJSON *a_obj_address_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_address)){
         goto end; //nonprimitive container
     }
@@ -193,9 +200,8 @@ contactinformations_request_compound_all_of_t *contactinformations_request_compo
         goto end;
     }
 
-    list_t *a_obj_phoneList;
     
-    cJSON *a_obj_phone_local_nonprimitive;
+    cJSON *a_obj_phone_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_phone)){
         goto end; //nonprimitive container
     }
@@ -218,9 +224,8 @@ contactinformations_request_compound_all_of_t *contactinformations_request_compo
         goto end;
     }
 
-    list_t *a_obj_emailList;
     
-    cJSON *a_obj_email_local_nonprimitive;
+    cJSON *a_obj_email_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_email)){
         goto end; //nonprimitive container
     }
@@ -243,9 +248,8 @@ contactinformations_request_compound_all_of_t *contactinformations_request_compo
         goto end;
     }
 
-    list_t *a_obj_websiteList;
     
-    cJSON *a_obj_website_local_nonprimitive;
+    cJSON *a_obj_website_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_website)){
         goto end; //nonprimitive container
     }
@@ -272,6 +276,42 @@ contactinformations_request_compound_all_of_t *contactinformations_request_compo
 
     return contactinformations_request_compound_all_of_local_var;
 end:
+    if (a_obj_addressList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_addressList) {
+            address_request_compound_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_addressList);
+        a_obj_addressList = NULL;
+    }
+    if (a_obj_phoneList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_phoneList) {
+            phone_request_compound_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_phoneList);
+        a_obj_phoneList = NULL;
+    }
+    if (a_obj_emailList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_emailList) {
+            email_request_compound_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_emailList);
+        a_obj_emailList = NULL;
+    }
+    if (a_obj_websiteList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_websiteList) {
+            website_request_compound_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_websiteList);
+        a_obj_websiteList = NULL;
+    }
     return NULL;
 
 }

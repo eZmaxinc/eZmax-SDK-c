@@ -39,7 +39,6 @@ cJSON *website_request_compound_convertToJSON(website_request_compound_t *websit
     if (!website_request_compound->fki_websitetype_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiWebsitetypeID", website_request_compound->fki_websitetype_id) == NULL) {
     goto fail; //Numeric
     }
@@ -49,7 +48,6 @@ cJSON *website_request_compound_convertToJSON(website_request_compound_t *websit
     if (!website_request_compound->s_website_address) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sWebsiteAddress", website_request_compound->s_website_address) == NULL) {
     goto fail; //String
     }

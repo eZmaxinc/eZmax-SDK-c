@@ -1,7 +1,7 @@
 /*
  * ezsignfolder_edit_object_v1_response.h
  *
- * Response for the /1/object/ezsignfolder/editObject API Request
+ * Response for PUT /1/object/ezsignfolder/{pkiEzsignfolderID}
  */
 
 #ifndef _ezsignfolder_edit_object_v1_response_H_

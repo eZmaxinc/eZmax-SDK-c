@@ -40,7 +40,7 @@ cJSON *apikey_create_object_v1_request_convertToJSON(apikey_create_object_v1_req
     cJSON *item = cJSON_CreateObject();
 
     // apikey_create_object_v1_request->obj_apikey
-    if(apikey_create_object_v1_request->obj_apikey) { 
+    if(apikey_create_object_v1_request->obj_apikey) {
     cJSON *obj_apikey_local_JSON = apikey_request_convertToJSON(apikey_create_object_v1_request->obj_apikey);
     if(obj_apikey_local_JSON == NULL) {
     goto fail; //model
@@ -49,11 +49,11 @@ cJSON *apikey_create_object_v1_request_convertToJSON(apikey_create_object_v1_req
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // apikey_create_object_v1_request->obj_apikey_compound
-    if(apikey_create_object_v1_request->obj_apikey_compound) { 
+    if(apikey_create_object_v1_request->obj_apikey_compound) {
     cJSON *obj_apikey_compound_local_JSON = apikey_request_compound_convertToJSON(apikey_create_object_v1_request->obj_apikey_compound);
     if(obj_apikey_compound_local_JSON == NULL) {
     goto fail; //model
@@ -62,7 +62,7 @@ cJSON *apikey_create_object_v1_request_convertToJSON(apikey_create_object_v1_req
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:

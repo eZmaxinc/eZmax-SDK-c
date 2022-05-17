@@ -1,7 +1,7 @@
 /*
  * ezsigndocument_get_download_url_v1_response.h
  *
- * Response for the /1/object/ezsigndocument/{pkiEzsigndocument}/getDownloadUrl API Request
+ * Response for GET /1/object/ezsigndocument/{pkiEzsigndocument}/getDownloadUrl
  */
 
 #ifndef _ezsigndocument_get_download_url_v1_response_H_

@@ -52,7 +52,6 @@ cJSON *webhook_user_user_created_convertToJSON(webhook_user_user_created_t *webh
     if (!webhook_user_user_created->obj_user) {
         goto fail;
     }
-    
     cJSON *obj_user_local_JSON = user_response_compound_convertToJSON(webhook_user_user_created->obj_user);
     if(obj_user_local_JSON == NULL) {
     goto fail; //model
@@ -67,7 +66,6 @@ cJSON *webhook_user_user_created_convertToJSON(webhook_user_user_created_t *webh
     if (!webhook_user_user_created->obj_webhook) {
         goto fail;
     }
-    
     cJSON *obj_webhook_local_JSON = webhook_response_convertToJSON(webhook_user_user_created->obj_webhook);
     if(obj_webhook_local_JSON == NULL) {
     goto fail; //model
@@ -82,7 +80,6 @@ cJSON *webhook_user_user_created_convertToJSON(webhook_user_user_created_t *webh
     if (!webhook_user_user_created->a_obj_attempt) {
         goto fail;
     }
-    
     cJSON *a_obj_attempt = cJSON_AddArrayToObject(item, "a_objAttempt");
     if(a_obj_attempt == NULL) {
     goto fail; //nonprimitive container
@@ -117,6 +114,9 @@ webhook_user_user_created_t *webhook_user_user_created_parseFromJSON(cJSON *webh
     // define the local variable for webhook_user_user_created->obj_webhook
     webhook_response_t *obj_webhook_local_nonprim = NULL;
 
+    // define the local list for webhook_user_user_created->a_obj_attempt
+    list_t *a_obj_attemptList = NULL;
+
     // webhook_user_user_created->obj_user
     cJSON *obj_user = cJSON_GetObjectItemCaseSensitive(webhook_user_user_createdJSON, "objUser");
     if (!obj_user) {
@@ -141,9 +141,8 @@ webhook_user_user_created_t *webhook_user_user_created_parseFromJSON(cJSON *webh
         goto end;
     }
 
-    list_t *a_obj_attemptList;
     
-    cJSON *a_obj_attempt_local_nonprimitive;
+    cJSON *a_obj_attempt_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_attempt)){
         goto end; //nonprimitive container
     }
@@ -176,6 +175,15 @@ end:
     if (obj_webhook_local_nonprim) {
         webhook_response_free(obj_webhook_local_nonprim);
         obj_webhook_local_nonprim = NULL;
+    }
+    if (a_obj_attemptList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_attemptList) {
+            attempt_response_compound_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_attemptList);
+        a_obj_attemptList = NULL;
     }
     return NULL;
 

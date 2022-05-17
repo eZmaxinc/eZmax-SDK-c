@@ -40,7 +40,6 @@ cJSON *ezsignfolder_create_object_v1_response_m_payload_convertToJSON(ezsignfold
     if (!ezsignfolder_create_object_v1_response_m_payload->a_pki_ezsignfolder_id) {
         goto fail;
     }
-    
     cJSON *a_pki_ezsignfolder_id = cJSON_AddArrayToObject(item, "a_pkiEzsignfolderID");
     if(a_pki_ezsignfolder_id == NULL) {
         goto fail; //primitive container
@@ -66,15 +65,17 @@ ezsignfolder_create_object_v1_response_m_payload_t *ezsignfolder_create_object_v
 
     ezsignfolder_create_object_v1_response_m_payload_t *ezsignfolder_create_object_v1_response_m_payload_local_var = NULL;
 
+    // define the local list for ezsignfolder_create_object_v1_response_m_payload->a_pki_ezsignfolder_id
+    list_t *a_pki_ezsignfolder_idList = NULL;
+
     // ezsignfolder_create_object_v1_response_m_payload->a_pki_ezsignfolder_id
     cJSON *a_pki_ezsignfolder_id = cJSON_GetObjectItemCaseSensitive(ezsignfolder_create_object_v1_response_m_payloadJSON, "a_pkiEzsignfolderID");
     if (!a_pki_ezsignfolder_id) {
         goto end;
     }
 
-    list_t *a_pki_ezsignfolder_idList;
     
-    cJSON *a_pki_ezsignfolder_id_local;
+    cJSON *a_pki_ezsignfolder_id_local = NULL;
     if(!cJSON_IsArray(a_pki_ezsignfolder_id)) {
         goto end;//primitive container
     }
@@ -102,6 +103,15 @@ ezsignfolder_create_object_v1_response_m_payload_t *ezsignfolder_create_object_v
 
     return ezsignfolder_create_object_v1_response_m_payload_local_var;
 end:
+    if (a_pki_ezsignfolder_idList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_pki_ezsignfolder_idList) {
+            free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_pki_ezsignfolder_idList);
+        a_pki_ezsignfolder_idList = NULL;
+    }
     return NULL;
 
 }

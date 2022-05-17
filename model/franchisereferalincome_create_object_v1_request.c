@@ -40,7 +40,7 @@ cJSON *franchisereferalincome_create_object_v1_request_convertToJSON(franchisere
     cJSON *item = cJSON_CreateObject();
 
     // franchisereferalincome_create_object_v1_request->obj_franchisereferalincome
-    if(franchisereferalincome_create_object_v1_request->obj_franchisereferalincome) { 
+    if(franchisereferalincome_create_object_v1_request->obj_franchisereferalincome) {
     cJSON *obj_franchisereferalincome_local_JSON = franchisereferalincome_request_convertToJSON(franchisereferalincome_create_object_v1_request->obj_franchisereferalincome);
     if(obj_franchisereferalincome_local_JSON == NULL) {
     goto fail; //model
@@ -49,11 +49,11 @@ cJSON *franchisereferalincome_create_object_v1_request_convertToJSON(franchisere
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // franchisereferalincome_create_object_v1_request->obj_franchisereferalincome_compound
-    if(franchisereferalincome_create_object_v1_request->obj_franchisereferalincome_compound) { 
+    if(franchisereferalincome_create_object_v1_request->obj_franchisereferalincome_compound) {
     cJSON *obj_franchisereferalincome_compound_local_JSON = franchisereferalincome_request_compound_convertToJSON(franchisereferalincome_create_object_v1_request->obj_franchisereferalincome_compound);
     if(obj_franchisereferalincome_compound_local_JSON == NULL) {
     goto fail; //model
@@ -62,7 +62,7 @@ cJSON *franchisereferalincome_create_object_v1_request_convertToJSON(franchisere
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:

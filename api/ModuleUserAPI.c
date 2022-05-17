@@ -74,9 +74,10 @@ ModuleUserAPI_userCreateEzsignuserV1(apiClient_t *apiClient, list_t * user_creat
                     localVarBodyParameters,
                     "POST");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successful response");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
     //nonprimitive not container
     cJSON *ModuleUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     user_create_ezsignuser_v1_response_t *elementToReturn = user_create_ezsignuser_v1_response_parseFromJSON(ModuleUserAPIlocalVarJSON);

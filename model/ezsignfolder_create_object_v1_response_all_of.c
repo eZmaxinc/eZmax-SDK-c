@@ -37,7 +37,6 @@ cJSON *ezsignfolder_create_object_v1_response_all_of_convertToJSON(ezsignfolder_
     if (!ezsignfolder_create_object_v1_response_all_of->m_payload) {
         goto fail;
     }
-    
     cJSON *m_payload_local_JSON = ezsignfolder_create_object_v1_response_m_payload_convertToJSON(ezsignfolder_create_object_v1_response_all_of->m_payload);
     if(m_payload_local_JSON == NULL) {
     goto fail; //model

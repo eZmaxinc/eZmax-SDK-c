@@ -1,7 +1,7 @@
 /*
  * ezsigndocument_get_ezsignformfieldgroups_v1_response_m_payload.h
  *
- * Payload for the /1/object/ezsigndocument/{pkiEzsigndocument}/getEzsignformfieldgroups API Request
+ * Payload for GET /1/object/ezsigndocument/{pkiEzsigndocument}/getEzsignformfieldgroups
  */
 
 #ifndef _ezsigndocument_get_ezsignformfieldgroups_v1_response_m_payload_H_

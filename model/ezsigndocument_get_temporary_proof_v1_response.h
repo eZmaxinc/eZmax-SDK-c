@@ -1,7 +1,7 @@
 /*
  * ezsigndocument_get_temporary_proof_v1_response.h
  *
- * Response for the /1/object/ezsigndocument/{pkiEzsigndocumentID}/getTemporaryProof API Request
+ * Response for GET /1/object/ezsigndocument/{pkiEzsigndocumentID}/getTemporaryProof
  */
 
 #ifndef _ezsigndocument_get_temporary_proof_v1_response_H_

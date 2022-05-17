@@ -59,7 +59,6 @@ cJSON *contact_request_convertToJSON(contact_request_t *contact_request) {
     if (!contact_request->fki_contacttitle_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiContacttitleID", contact_request->fki_contacttitle_id) == NULL) {
     goto fail; //Numeric
     }
@@ -69,7 +68,6 @@ cJSON *contact_request_convertToJSON(contact_request_t *contact_request) {
     if (!contact_request->fki_language_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiLanguageID", contact_request->fki_language_id) == NULL) {
     goto fail; //Numeric
     }
@@ -79,7 +77,6 @@ cJSON *contact_request_convertToJSON(contact_request_t *contact_request) {
     if (!contact_request->s_contact_firstname) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sContactFirstname", contact_request->s_contact_firstname) == NULL) {
     goto fail; //String
     }
@@ -89,7 +86,6 @@ cJSON *contact_request_convertToJSON(contact_request_t *contact_request) {
     if (!contact_request->s_contact_lastname) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sContactLastname", contact_request->s_contact_lastname) == NULL) {
     goto fail; //String
     }
@@ -99,18 +95,17 @@ cJSON *contact_request_convertToJSON(contact_request_t *contact_request) {
     if (!contact_request->s_contact_company) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sContactCompany", contact_request->s_contact_company) == NULL) {
     goto fail; //String
     }
 
 
     // contact_request->dt_contact_birthdate
-    if(contact_request->dt_contact_birthdate) { 
+    if(contact_request->dt_contact_birthdate) {
     if(cJSON_AddStringToObject(item, "dtContactBirthdate", contact_request->dt_contact_birthdate) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

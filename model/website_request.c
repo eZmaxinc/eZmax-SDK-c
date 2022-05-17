@@ -39,7 +39,6 @@ cJSON *website_request_convertToJSON(website_request_t *website_request) {
     if (!website_request->fki_websitetype_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiWebsitetypeID", website_request->fki_websitetype_id) == NULL) {
     goto fail; //Numeric
     }
@@ -49,7 +48,6 @@ cJSON *website_request_convertToJSON(website_request_t *website_request) {
     if (!website_request->s_website_address) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sWebsiteAddress", website_request->s_website_address) == NULL) {
     goto fail; //String
     }

@@ -65,25 +65,23 @@ cJSON *common_auditdetail_convertToJSON(common_auditdetail_t *common_auditdetail
     if (!common_auditdetail->fki_user_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiUserID", common_auditdetail->fki_user_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // common_auditdetail->fki_apikey_id
-    if(common_auditdetail->fki_apikey_id) { 
+    if(common_auditdetail->fki_apikey_id) {
     if(cJSON_AddNumberToObject(item, "fkiApikeyID", common_auditdetail->fki_apikey_id) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // common_auditdetail->s_user_loginname
     if (!common_auditdetail->s_user_loginname) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sUserLoginname", common_auditdetail->s_user_loginname) == NULL) {
     goto fail; //String
     }
@@ -93,7 +91,6 @@ cJSON *common_auditdetail_convertToJSON(common_auditdetail_t *common_auditdetail
     if (!common_auditdetail->s_user_lastname) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sUserLastname", common_auditdetail->s_user_lastname) == NULL) {
     goto fail; //String
     }
@@ -103,25 +100,23 @@ cJSON *common_auditdetail_convertToJSON(common_auditdetail_t *common_auditdetail
     if (!common_auditdetail->s_user_firstname) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sUserFirstname", common_auditdetail->s_user_firstname) == NULL) {
     goto fail; //String
     }
 
 
     // common_auditdetail->s_apikey_description_x
-    if(common_auditdetail->s_apikey_description_x) { 
+    if(common_auditdetail->s_apikey_description_x) {
     if(cJSON_AddStringToObject(item, "sApikeyDescriptionX", common_auditdetail->s_apikey_description_x) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // common_auditdetail->dt_auditdetail_date
     if (!common_auditdetail->dt_auditdetail_date) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "dtAuditdetailDate", common_auditdetail->dt_auditdetail_date) == NULL) {
     goto fail; //String
     }

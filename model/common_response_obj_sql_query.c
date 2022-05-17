@@ -39,7 +39,6 @@ cJSON *common_response_obj_sql_query_convertToJSON(common_response_obj_sql_query
     if (!common_response_obj_sql_query->s_query) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sQuery", common_response_obj_sql_query->s_query) == NULL) {
     goto fail; //String
     }
@@ -49,7 +48,6 @@ cJSON *common_response_obj_sql_query_convertToJSON(common_response_obj_sql_query
     if (!common_response_obj_sql_query->f_duration) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fDuration", common_response_obj_sql_query->f_duration) == NULL) {
     goto fail; //Numeric
     }

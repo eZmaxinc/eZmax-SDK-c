@@ -1,7 +1,7 @@
 /*
  * ezsigndocument_get_ezsignpages_v1_response_m_payload.h
  *
- * Payload for the /1/object/ezsigndocument/{pkiEzsigndocument}/getEzsignpages API Request
+ * Payload for GET /1/object/ezsigndocument/{pkiEzsigndocument}/getEzsignpages
  */
 
 #ifndef _ezsigndocument_get_ezsignpages_v1_response_m_payload_H_

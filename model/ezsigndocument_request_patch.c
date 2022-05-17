@@ -40,19 +40,19 @@ cJSON *ezsigndocument_request_patch_convertToJSON(ezsigndocument_request_patch_t
     cJSON *item = cJSON_CreateObject();
 
     // ezsigndocument_request_patch->dt_ezsigndocument_duedate
-    if(ezsigndocument_request_patch->dt_ezsigndocument_duedate) { 
+    if(ezsigndocument_request_patch->dt_ezsigndocument_duedate) {
     if(cJSON_AddStringToObject(item, "dtEzsigndocumentDuedate", ezsigndocument_request_patch->dt_ezsigndocument_duedate) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // ezsigndocument_request_patch->s_ezsigndocument_name
-    if(ezsigndocument_request_patch->s_ezsigndocument_name) { 
+    if(ezsigndocument_request_patch->s_ezsigndocument_name) {
     if(cJSON_AddStringToObject(item, "sEzsigndocumentName", ezsigndocument_request_patch->s_ezsigndocument_name) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

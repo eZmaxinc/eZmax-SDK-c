@@ -1,0 +1,91 @@
+/*
+ * ezsigntemplatesignature_request_compound.h
+ *
+ * A Ezsigntemplatesignature Object and children
+ */
+
+#ifndef _ezsigntemplatesignature_request_compound_H_
+#define _ezsigntemplatesignature_request_compound_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct ezsigntemplatesignature_request_compound_t ezsigntemplatesignature_request_compound_t;
+
+#include "ezsigntemplatesignature_request.h"
+#include "ezsigntemplatesignature_request_compound_all_of.h"
+#include "ezsigntemplatesignaturecustomdate_request_compound.h"
+#include "field_e_ezsigntemplatesignature_font.h"
+#include "field_e_ezsigntemplatesignature_tooltipposition.h"
+#include "field_e_ezsigntemplatesignature_type.h"
+
+// Enum  for ezsigntemplatesignature_request_compound
+
+typedef enum  { ezmax_api_definition__full_ezsigntemplatesignature_request_compound__NULL = 0, ezmax_api_definition__full_ezsigntemplatesignature_request_compound__Acknowledgement, ezmax_api_definition__full_ezsigntemplatesignature_request_compound__City, ezmax_api_definition__full_ezsigntemplatesignature_request_compound__Handwritten, ezmax_api_definition__full_ezsigntemplatesignature_request_compound__Initials, ezmax_api_definition__full_ezsigntemplatesignature_request_compound__Name } ezmax_api_definition__full_ezsigntemplatesignature_request_compound__e;
+
+char* ezsigntemplatesignature_request_compound_e_ezsigntemplatesignature_type_ToString(ezmax_api_definition__full_ezsigntemplatesignature_request_compound__e e_ezsigntemplatesignature_type);
+
+ezmax_api_definition__full_ezsigntemplatesignature_request_compound__e ezsigntemplatesignature_request_compound_e_ezsigntemplatesignature_type_FromString(char* e_ezsigntemplatesignature_type);
+
+// Enum  for ezsigntemplatesignature_request_compound
+
+typedef enum  { ezmax_api_definition__full_ezsigntemplatesignature_request_compound__NULL = 0, ezmax_api_definition__full_ezsigntemplatesignature_request_compound__TopLeft, ezmax_api_definition__full_ezsigntemplatesignature_request_compound__TopCenter, ezmax_api_definition__full_ezsigntemplatesignature_request_compound__TopRight, ezmax_api_definition__full_ezsigntemplatesignature_request_compound__MiddleLeft, ezmax_api_definition__full_ezsigntemplatesignature_request_compound__MiddleRight, ezmax_api_definition__full_ezsigntemplatesignature_request_compound__BottomLeft, ezmax_api_definition__full_ezsigntemplatesignature_request_compound__BottomCenter, ezmax_api_definition__full_ezsigntemplatesignature_request_compound__BottomRight } ezmax_api_definition__full_ezsigntemplatesignature_request_compound__e;
+
+char* ezsigntemplatesignature_request_compound_e_ezsigntemplatesignature_tooltipposition_ToString(ezmax_api_definition__full_ezsigntemplatesignature_request_compound__e e_ezsigntemplatesignature_tooltipposition);
+
+ezmax_api_definition__full_ezsigntemplatesignature_request_compound__e ezsigntemplatesignature_request_compound_e_ezsigntemplatesignature_tooltipposition_FromString(char* e_ezsigntemplatesignature_tooltipposition);
+
+// Enum  for ezsigntemplatesignature_request_compound
+
+typedef enum  { ezmax_api_definition__full_ezsigntemplatesignature_request_compound__NULL = 0, ezmax_api_definition__full_ezsigntemplatesignature_request_compound__Normal, ezmax_api_definition__full_ezsigntemplatesignature_request_compound__Cursive } ezmax_api_definition__full_ezsigntemplatesignature_request_compound__e;
+
+char* ezsigntemplatesignature_request_compound_e_ezsigntemplatesignature_font_ToString(ezmax_api_definition__full_ezsigntemplatesignature_request_compound__e e_ezsigntemplatesignature_font);
+
+ezmax_api_definition__full_ezsigntemplatesignature_request_compound__e ezsigntemplatesignature_request_compound_e_ezsigntemplatesignature_font_FromString(char* e_ezsigntemplatesignature_font);
+
+
+
+typedef struct ezsigntemplatesignature_request_compound_t {
+    int pki_ezsigntemplatesignature_id; //numeric
+    int fki_ezsigntemplatedocument_id; //numeric
+    int fki_ezsigntemplatesigner_id; //numeric
+    int i_ezsigntemplatedocumentpage_pagenumber; //numeric
+    int i_ezsigntemplatesignature_x; //numeric
+    int i_ezsigntemplatesignature_y; //numeric
+    int i_ezsigntemplatesignature_step; //numeric
+    field_e_ezsigntemplatesignature_type_t *e_ezsigntemplatesignature_type; // custom
+    char *t_ezsigntemplatesignature_tooltip; // string
+    field_e_ezsigntemplatesignature_tooltipposition_t *e_ezsigntemplatesignature_tooltipposition; // custom
+    field_e_ezsigntemplatesignature_font_t *e_ezsigntemplatesignature_font; // custom
+    int b_ezsigntemplatesignature_customdate; //boolean
+    list_t *a_obj_ezsigntemplatesignaturecustomdate; //nonprimitive container
+
+} ezsigntemplatesignature_request_compound_t;
+
+ezsigntemplatesignature_request_compound_t *ezsigntemplatesignature_request_compound_create(
+    int pki_ezsigntemplatesignature_id,
+    int fki_ezsigntemplatedocument_id,
+    int fki_ezsigntemplatesigner_id,
+    int i_ezsigntemplatedocumentpage_pagenumber,
+    int i_ezsigntemplatesignature_x,
+    int i_ezsigntemplatesignature_y,
+    int i_ezsigntemplatesignature_step,
+    field_e_ezsigntemplatesignature_type_t *e_ezsigntemplatesignature_type,
+    char *t_ezsigntemplatesignature_tooltip,
+    field_e_ezsigntemplatesignature_tooltipposition_t *e_ezsigntemplatesignature_tooltipposition,
+    field_e_ezsigntemplatesignature_font_t *e_ezsigntemplatesignature_font,
+    int b_ezsigntemplatesignature_customdate,
+    list_t *a_obj_ezsigntemplatesignaturecustomdate
+);
+
+void ezsigntemplatesignature_request_compound_free(ezsigntemplatesignature_request_compound_t *ezsigntemplatesignature_request_compound);
+
+ezsigntemplatesignature_request_compound_t *ezsigntemplatesignature_request_compound_parseFromJSON(cJSON *ezsigntemplatesignature_request_compoundJSON);
+
+cJSON *ezsigntemplatesignature_request_compound_convertToJSON(ezsigntemplatesignature_request_compound_t *ezsigntemplatesignature_request_compound);
+
+#endif /* _ezsigntemplatesignature_request_compound_H_ */
+

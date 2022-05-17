@@ -40,7 +40,6 @@ cJSON *ezsigntemplatepackage_get_list_v1_response_m_payload_all_of_convertToJSON
     if (!ezsigntemplatepackage_get_list_v1_response_m_payload_all_of->a_obj_ezsigntemplatepackage) {
         goto fail;
     }
-    
     cJSON *a_obj_ezsigntemplatepackage = cJSON_AddArrayToObject(item, "a_objEzsigntemplatepackage");
     if(a_obj_ezsigntemplatepackage == NULL) {
     goto fail; //nonprimitive container
@@ -69,15 +68,17 @@ ezsigntemplatepackage_get_list_v1_response_m_payload_all_of_t *ezsigntemplatepac
 
     ezsigntemplatepackage_get_list_v1_response_m_payload_all_of_t *ezsigntemplatepackage_get_list_v1_response_m_payload_all_of_local_var = NULL;
 
+    // define the local list for ezsigntemplatepackage_get_list_v1_response_m_payload_all_of->a_obj_ezsigntemplatepackage
+    list_t *a_obj_ezsigntemplatepackageList = NULL;
+
     // ezsigntemplatepackage_get_list_v1_response_m_payload_all_of->a_obj_ezsigntemplatepackage
     cJSON *a_obj_ezsigntemplatepackage = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackage_get_list_v1_response_m_payload_all_ofJSON, "a_objEzsigntemplatepackage");
     if (!a_obj_ezsigntemplatepackage) {
         goto end;
     }
 
-    list_t *a_obj_ezsigntemplatepackageList;
     
-    cJSON *a_obj_ezsigntemplatepackage_local_nonprimitive;
+    cJSON *a_obj_ezsigntemplatepackage_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_ezsigntemplatepackage)){
         goto end; //nonprimitive container
     }
@@ -101,6 +102,15 @@ ezsigntemplatepackage_get_list_v1_response_m_payload_all_of_t *ezsigntemplatepac
 
     return ezsigntemplatepackage_get_list_v1_response_m_payload_all_of_local_var;
 end:
+    if (a_obj_ezsigntemplatepackageList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_ezsigntemplatepackageList) {
+            ezsigntemplatepackage_list_element_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_ezsigntemplatepackageList);
+        a_obj_ezsigntemplatepackageList = NULL;
+    }
     return NULL;
 
 }

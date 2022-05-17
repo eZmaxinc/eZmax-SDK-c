@@ -37,7 +37,6 @@ cJSON *activesession_get_current_v1_response_all_of_convertToJSON(activesession_
     if (!activesession_get_current_v1_response_all_of->m_payload) {
         goto fail;
     }
-    
     cJSON *m_payload_local_JSON = activesession_get_current_v1_response_m_payload_convertToJSON(activesession_get_current_v1_response_all_of->m_payload);
     if(m_payload_local_JSON == NULL) {
     goto fail; //model

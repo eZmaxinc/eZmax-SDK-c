@@ -40,7 +40,6 @@ cJSON *common_get_autocomplete_v1_response_all_of_convertToJSON(common_get_autoc
     if (!common_get_autocomplete_v1_response_all_of->m_payload) {
         goto fail;
     }
-    
     cJSON *m_payload = cJSON_AddArrayToObject(item, "mPayload");
     if(m_payload == NULL) {
     goto fail; //nonprimitive container
@@ -69,15 +68,17 @@ common_get_autocomplete_v1_response_all_of_t *common_get_autocomplete_v1_respons
 
     common_get_autocomplete_v1_response_all_of_t *common_get_autocomplete_v1_response_all_of_local_var = NULL;
 
+    // define the local list for common_get_autocomplete_v1_response_all_of->m_payload
+    list_t *m_payloadList = NULL;
+
     // common_get_autocomplete_v1_response_all_of->m_payload
     cJSON *m_payload = cJSON_GetObjectItemCaseSensitive(common_get_autocomplete_v1_response_all_ofJSON, "mPayload");
     if (!m_payload) {
         goto end;
     }
 
-    list_t *m_payloadList;
     
-    cJSON *m_payload_local_nonprimitive;
+    cJSON *m_payload_local_nonprimitive = NULL;
     if(!cJSON_IsArray(m_payload)){
         goto end; //nonprimitive container
     }
@@ -101,6 +102,15 @@ common_get_autocomplete_v1_response_all_of_t *common_get_autocomplete_v1_respons
 
     return common_get_autocomplete_v1_response_all_of_local_var;
 end:
+    if (m_payloadList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, m_payloadList) {
+            custom_autocomplete_element_response_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(m_payloadList);
+        m_payloadList = NULL;
+    }
     return NULL;
 
 }

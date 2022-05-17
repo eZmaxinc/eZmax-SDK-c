@@ -1,7 +1,7 @@
 /*
  * ezsignfolder_get_ezsigndocuments_v1_response.h
  *
- * Response for the /1/object/ezsignfolder/{pkiEzsignfolder}/getEzsigndocuments API Request
+ * Response for GET /1/object/ezsignfolder/{pkiEzsignfolder}/getEzsigndocuments
  */
 
 #ifndef _ezsignfolder_get_ezsigndocuments_v1_response_H_

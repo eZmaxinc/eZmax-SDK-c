@@ -4,12 +4,12 @@
 #include "ezsigndocumentlog_response_compound.h"
 
 
-char* e_ezsigndocumentlog_typeezsigndocumentlog_response_compound_ToString(ezmax_api_definition_ezsigndocumentlog_response_compound__e e_ezsigndocumentlog_type) {
+char* e_ezsigndocumentlog_typeezsigndocumentlog_response_compound_ToString(ezmax_api_definition__full_ezsigndocumentlog_response_compound__e e_ezsigndocumentlog_type) {
     char* e_ezsigndocumentlog_typeArray[] =  { "NULL", "Clone", "Login", "Sendcode", "Badcode", "Goodcode", "Authentication", "Createpage", "Download", "Send", "Sign", "Upload", "View", "Completion", "Changelimitdate", "Unsign", "ImportFromInstanet", "SendEmail", "FormCompletion", "SignatureAttachmentAdd", "SignatureAttachmentValidation", "SignatureAttachmentRefused", "SignatureAttachmentDeleted", "DeclinedToSign" };
 	return e_ezsigndocumentlog_typeArray[e_ezsigndocumentlog_type];
 }
 
-ezmax_api_definition_ezsigndocumentlog_response_compound__e e_ezsigndocumentlog_typeezsigndocumentlog_response_compound_FromString(char* e_ezsigndocumentlog_type){
+ezmax_api_definition__full_ezsigndocumentlog_response_compound__e e_ezsigndocumentlog_typeezsigndocumentlog_response_compound_FromString(char* e_ezsigndocumentlog_type){
     int stringToReturn = 0;
     char *e_ezsigndocumentlog_typeArray[] =  { "NULL", "Clone", "Login", "Sendcode", "Badcode", "Goodcode", "Authentication", "Createpage", "Download", "Send", "Sign", "Upload", "View", "Completion", "Changelimitdate", "Unsign", "ImportFromInstanet", "SendEmail", "FormCompletion", "SignatureAttachmentAdd", "SignatureAttachmentValidation", "SignatureAttachmentRefused", "SignatureAttachmentDeleted", "DeclinedToSign" };
     size_t sizeofArray = sizeof(e_ezsigndocumentlog_typeArray) / sizeof(e_ezsigndocumentlog_typeArray[0]);
@@ -85,22 +85,18 @@ cJSON *ezsigndocumentlog_response_compound_convertToJSON(ezsigndocumentlog_respo
     cJSON *item = cJSON_CreateObject();
 
     // ezsigndocumentlog_response_compound->fki_user_id
-    if (!ezsigndocumentlog_response_compound->fki_user_id) {
-        goto fail;
-    }
-    
+    if(ezsigndocumentlog_response_compound->fki_user_id) {
     if(cJSON_AddNumberToObject(item, "fkiUserID", ezsigndocumentlog_response_compound->fki_user_id) == NULL) {
     goto fail; //Numeric
+    }
     }
 
 
     // ezsigndocumentlog_response_compound->fki_ezsignsigner_id
-    if (!ezsigndocumentlog_response_compound->fki_ezsignsigner_id) {
-        goto fail;
-    }
-    
+    if(ezsigndocumentlog_response_compound->fki_ezsignsigner_id) {
     if(cJSON_AddNumberToObject(item, "fkiEzsignsignerID", ezsigndocumentlog_response_compound->fki_ezsignsigner_id) == NULL) {
     goto fail; //Numeric
+    }
     }
 
 
@@ -108,14 +104,15 @@ cJSON *ezsigndocumentlog_response_compound_convertToJSON(ezsigndocumentlog_respo
     if (!ezsigndocumentlog_response_compound->dt_ezsigndocumentlog_datetime) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "dtEzsigndocumentlogDatetime", ezsigndocumentlog_response_compound->dt_ezsigndocumentlog_datetime) == NULL) {
     goto fail; //String
     }
 
 
     // ezsigndocumentlog_response_compound->e_ezsigndocumentlog_type
-    
+    if (ezmax_api_definition__full_ezsigndocumentlog_response_compound__NULL == ezsigndocumentlog_response_compound->e_ezsigndocumentlog_type) {
+        goto fail;
+    }
     cJSON *e_ezsigndocumentlog_type_local_JSON = field_e_ezsigndocumentlog_type_convertToJSON(ezsigndocumentlog_response_compound->e_ezsigndocumentlog_type);
     if(e_ezsigndocumentlog_type_local_JSON == NULL) {
         goto fail; // custom
@@ -130,7 +127,6 @@ cJSON *ezsigndocumentlog_response_compound_convertToJSON(ezsigndocumentlog_respo
     if (!ezsigndocumentlog_response_compound->s_ezsigndocumentlog_detail) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sEzsigndocumentlogDetail", ezsigndocumentlog_response_compound->s_ezsigndocumentlog_detail) == NULL) {
     goto fail; //String
     }
@@ -140,7 +136,6 @@ cJSON *ezsigndocumentlog_response_compound_convertToJSON(ezsigndocumentlog_respo
     if (!ezsigndocumentlog_response_compound->s_ezsigndocumentlog_lastname) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sEzsigndocumentlogLastname", ezsigndocumentlog_response_compound->s_ezsigndocumentlog_lastname) == NULL) {
     goto fail; //String
     }
@@ -150,7 +145,6 @@ cJSON *ezsigndocumentlog_response_compound_convertToJSON(ezsigndocumentlog_respo
     if (!ezsigndocumentlog_response_compound->s_ezsigndocumentlog_firstname) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sEzsigndocumentlogFirstname", ezsigndocumentlog_response_compound->s_ezsigndocumentlog_firstname) == NULL) {
     goto fail; //String
     }
@@ -160,7 +154,6 @@ cJSON *ezsigndocumentlog_response_compound_convertToJSON(ezsigndocumentlog_respo
     if (!ezsigndocumentlog_response_compound->s_ezsigndocumentlog_ip) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sEzsigndocumentlogIP", ezsigndocumentlog_response_compound->s_ezsigndocumentlog_ip) == NULL) {
     goto fail; //String
     }
@@ -182,26 +175,20 @@ ezsigndocumentlog_response_compound_t *ezsigndocumentlog_response_compound_parse
 
     // ezsigndocumentlog_response_compound->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(ezsigndocumentlog_response_compoundJSON, "fkiUserID");
-    if (!fki_user_id) {
-        goto end;
-    }
-
-    
+    if (fki_user_id) { 
     if(!cJSON_IsNumber(fki_user_id))
     {
     goto end; //Numeric
     }
+    }
 
     // ezsigndocumentlog_response_compound->fki_ezsignsigner_id
     cJSON *fki_ezsignsigner_id = cJSON_GetObjectItemCaseSensitive(ezsigndocumentlog_response_compoundJSON, "fkiEzsignsignerID");
-    if (!fki_ezsignsigner_id) {
-        goto end;
-    }
-
-    
+    if (fki_ezsignsigner_id) { 
     if(!cJSON_IsNumber(fki_ezsignsigner_id))
     {
     goto end; //Numeric
+    }
     }
 
     // ezsigndocumentlog_response_compound->dt_ezsigndocumentlog_datetime
@@ -275,8 +262,8 @@ ezsigndocumentlog_response_compound_t *ezsigndocumentlog_response_compound_parse
 
 
     ezsigndocumentlog_response_compound_local_var = ezsigndocumentlog_response_compound_create (
-        fki_user_id->valuedouble,
-        fki_ezsignsigner_id->valuedouble,
+        fki_user_id ? fki_user_id->valuedouble : 0,
+        fki_ezsignsigner_id ? fki_ezsignsigner_id->valuedouble : 0,
         strdup(dt_ezsigndocumentlog_datetime->valuestring),
         e_ezsigndocumentlog_type_local_nonprim,
         strdup(s_ezsigndocumentlog_detail->valuestring),

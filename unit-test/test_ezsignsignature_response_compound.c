@@ -23,26 +23,32 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
   if (include_optional) {
     ezsignsignature_response_compound = ezsignsignature_response_compound_create(
       49,
+      97,
       20,
       1,
       200,
       300,
       1,
-      ezmax_api_definition_ezsignsignature_response_compound__"Name",
-      97,
+      ezmax_api_definition__full_ezsignsignature_response_compound__"Name",
+      "Please sign here if you agree to the terms",
+      ezmax_api_definition__full_ezsignsignature_response_compound__"TopLeft",
+      ezmax_api_definition__full_ezsignsignature_response_compound__Normal,
       1,
       list_createList()
     );
   } else {
     ezsignsignature_response_compound = ezsignsignature_response_compound_create(
       49,
+      97,
       20,
       1,
       200,
       300,
       1,
-      ezmax_api_definition_ezsignsignature_response_compound__"Name",
-      97,
+      ezmax_api_definition__full_ezsignsignature_response_compound__"Name",
+      "Please sign here if you agree to the terms",
+      ezmax_api_definition__full_ezsignsignature_response_compound__"TopLeft",
+      ezmax_api_definition__full_ezsignsignature_response_compound__Normal,
       1,
       list_createList()
     );

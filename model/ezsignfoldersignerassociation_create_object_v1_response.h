@@ -1,7 +1,7 @@
 /*
  * ezsignfoldersignerassociation_create_object_v1_response.h
  *
- * Response for the /1/object/ezsignfoldersignerassociation/createObject API Request
+ * Response for POST /1/object/ezsignfoldersignerassociation
  */
 
 #ifndef _ezsignfoldersignerassociation_create_object_v1_response_H_

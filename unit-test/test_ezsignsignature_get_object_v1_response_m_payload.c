@@ -23,26 +23,32 @@ ezsignsignature_get_object_v1_response_m_payload_t* instantiate_ezsignsignature_
   if (include_optional) {
     ezsignsignature_get_object_v1_response_m_payload = ezsignsignature_get_object_v1_response_m_payload_create(
       49,
+      97,
       20,
       1,
       200,
       300,
       1,
-      ezmax_api_definition_ezsignsignature_get_object_v1_response_m_payload__"Name",
-      97,
+      ezmax_api_definition__full_ezsignsignature_get_object_v1_response_m_payload__"Name",
+      "Please sign here if you agree to the terms",
+      ezmax_api_definition__full_ezsignsignature_get_object_v1_response_m_payload__"TopLeft",
+      ezmax_api_definition__full_ezsignsignature_get_object_v1_response_m_payload__Normal,
       1,
       list_createList()
     );
   } else {
     ezsignsignature_get_object_v1_response_m_payload = ezsignsignature_get_object_v1_response_m_payload_create(
       49,
+      97,
       20,
       1,
       200,
       300,
       1,
-      ezmax_api_definition_ezsignsignature_get_object_v1_response_m_payload__"Name",
-      97,
+      ezmax_api_definition__full_ezsignsignature_get_object_v1_response_m_payload__"Name",
+      "Please sign here if you agree to the terms",
+      ezmax_api_definition__full_ezsignsignature_get_object_v1_response_m_payload__"TopLeft",
+      ezmax_api_definition__full_ezsignsignature_get_object_v1_response_m_payload__Normal,
       1,
       list_createList()
     );

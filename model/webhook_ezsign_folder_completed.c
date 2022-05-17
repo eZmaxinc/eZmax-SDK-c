@@ -52,7 +52,6 @@ cJSON *webhook_ezsign_folder_completed_convertToJSON(webhook_ezsign_folder_compl
     if (!webhook_ezsign_folder_completed->obj_ezsignfolder) {
         goto fail;
     }
-    
     cJSON *obj_ezsignfolder_local_JSON = ezsignfolder_response_convertToJSON(webhook_ezsign_folder_completed->obj_ezsignfolder);
     if(obj_ezsignfolder_local_JSON == NULL) {
     goto fail; //model
@@ -67,7 +66,6 @@ cJSON *webhook_ezsign_folder_completed_convertToJSON(webhook_ezsign_folder_compl
     if (!webhook_ezsign_folder_completed->obj_webhook) {
         goto fail;
     }
-    
     cJSON *obj_webhook_local_JSON = webhook_response_convertToJSON(webhook_ezsign_folder_completed->obj_webhook);
     if(obj_webhook_local_JSON == NULL) {
     goto fail; //model
@@ -82,7 +80,6 @@ cJSON *webhook_ezsign_folder_completed_convertToJSON(webhook_ezsign_folder_compl
     if (!webhook_ezsign_folder_completed->a_obj_attempt) {
         goto fail;
     }
-    
     cJSON *a_obj_attempt = cJSON_AddArrayToObject(item, "a_objAttempt");
     if(a_obj_attempt == NULL) {
     goto fail; //nonprimitive container
@@ -117,6 +114,9 @@ webhook_ezsign_folder_completed_t *webhook_ezsign_folder_completed_parseFromJSON
     // define the local variable for webhook_ezsign_folder_completed->obj_webhook
     webhook_response_t *obj_webhook_local_nonprim = NULL;
 
+    // define the local list for webhook_ezsign_folder_completed->a_obj_attempt
+    list_t *a_obj_attemptList = NULL;
+
     // webhook_ezsign_folder_completed->obj_ezsignfolder
     cJSON *obj_ezsignfolder = cJSON_GetObjectItemCaseSensitive(webhook_ezsign_folder_completedJSON, "objEzsignfolder");
     if (!obj_ezsignfolder) {
@@ -141,9 +141,8 @@ webhook_ezsign_folder_completed_t *webhook_ezsign_folder_completed_parseFromJSON
         goto end;
     }
 
-    list_t *a_obj_attemptList;
     
-    cJSON *a_obj_attempt_local_nonprimitive;
+    cJSON *a_obj_attempt_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_attempt)){
         goto end; //nonprimitive container
     }
@@ -176,6 +175,15 @@ end:
     if (obj_webhook_local_nonprim) {
         webhook_response_free(obj_webhook_local_nonprim);
         obj_webhook_local_nonprim = NULL;
+    }
+    if (a_obj_attemptList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_attemptList) {
+            attempt_response_compound_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_attemptList);
+        a_obj_attemptList = NULL;
     }
     return NULL;
 

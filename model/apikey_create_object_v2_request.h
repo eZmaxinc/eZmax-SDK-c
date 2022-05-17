@@ -1,7 +1,7 @@
 /*
  * apikey_create_object_v2_request.h
  *
- * Request for the /2/object/apikey/createObject API Request
+ * Request for POST /2/object/apikey
  */
 
 #ifndef _apikey_create_object_v2_request_H_

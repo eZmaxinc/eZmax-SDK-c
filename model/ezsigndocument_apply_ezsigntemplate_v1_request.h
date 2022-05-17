@@ -1,7 +1,7 @@
 /*
  * ezsigndocument_apply_ezsigntemplate_v1_request.h
  *
- * Request for the /1/object/ezsigndocument/{pkiEzsigndocumentID}/applyezsigntemplate API Request
+ * Request for POST /1/object/ezsigndocument/{pkiEzsigndocumentID}/applyezsigntemplate
  */
 
 #ifndef _ezsigndocument_apply_ezsigntemplate_v1_request_H_

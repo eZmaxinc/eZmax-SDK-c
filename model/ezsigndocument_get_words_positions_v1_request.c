@@ -4,12 +4,12 @@
 #include "ezsigndocument_get_words_positions_v1_request.h"
 
 
-char* e_getezsigndocument_get_words_positions_v1_request_ToString(ezmax_api_definition_ezsigndocument_get_words_positions_v1_request_EGET_e e_get) {
+char* e_getezsigndocument_get_words_positions_v1_request_ToString(ezmax_api_definition__full_ezsigndocument_get_words_positions_v1_request_EGET_e e_get) {
     char* e_getArray[] =  { "NULL", "All", "Words" };
 	return e_getArray[e_get];
 }
 
-ezmax_api_definition_ezsigndocument_get_words_positions_v1_request_EGET_e e_getezsigndocument_get_words_positions_v1_request_FromString(char* e_get){
+ezmax_api_definition__full_ezsigndocument_get_words_positions_v1_request_EGET_e e_getezsigndocument_get_words_positions_v1_request_FromString(char* e_get){
     int stringToReturn = 0;
     char *e_getArray[] =  { "NULL", "All", "Words" };
     size_t sizeofArray = sizeof(e_getArray) / sizeof(e_getArray[0]);
@@ -23,7 +23,7 @@ ezmax_api_definition_ezsigndocument_get_words_positions_v1_request_EGET_e e_gete
 }
 
 ezsigndocument_get_words_positions_v1_request_t *ezsigndocument_get_words_positions_v1_request_create(
-    ezmax_api_definition_ezsigndocument_get_words_positions_v1_request_EGET_e e_get,
+    ezmax_api_definition__full_ezsigndocument_get_words_positions_v1_request_EGET_e e_get,
     int b_word_case_sensitive,
     list_t *a_s_word
     ) {
@@ -58,7 +58,9 @@ cJSON *ezsigndocument_get_words_positions_v1_request_convertToJSON(ezsigndocumen
     cJSON *item = cJSON_CreateObject();
 
     // ezsigndocument_get_words_positions_v1_request->e_get
-    
+    if (ezmax_api_definition__full_ezsigndocument_get_words_positions_v1_request_EGET_NULL == ezsigndocument_get_words_positions_v1_request->e_get) {
+        goto fail;
+    }
     if(cJSON_AddStringToObject(item, "eGet", e_getezsigndocument_get_words_positions_v1_request_ToString(ezsigndocument_get_words_positions_v1_request->e_get)) == NULL)
     {
     goto fail; //Enum
@@ -69,14 +71,13 @@ cJSON *ezsigndocument_get_words_positions_v1_request_convertToJSON(ezsigndocumen
     if (!ezsigndocument_get_words_positions_v1_request->b_word_case_sensitive) {
         goto fail;
     }
-    
     if(cJSON_AddBoolToObject(item, "bWordCaseSensitive", ezsigndocument_get_words_positions_v1_request->b_word_case_sensitive) == NULL) {
     goto fail; //Bool
     }
 
 
     // ezsigndocument_get_words_positions_v1_request->a_s_word
-    if(ezsigndocument_get_words_positions_v1_request->a_s_word) { 
+    if(ezsigndocument_get_words_positions_v1_request->a_s_word) {
     cJSON *a_s_word = cJSON_AddArrayToObject(item, "a_sWord");
     if(a_s_word == NULL) {
         goto fail; //primitive container
@@ -89,7 +90,7 @@ cJSON *ezsigndocument_get_words_positions_v1_request_convertToJSON(ezsigndocumen
         goto fail;
     }
     }
-     } 
+    }
 
     return item;
 fail:
@@ -103,13 +104,16 @@ ezsigndocument_get_words_positions_v1_request_t *ezsigndocument_get_words_positi
 
     ezsigndocument_get_words_positions_v1_request_t *ezsigndocument_get_words_positions_v1_request_local_var = NULL;
 
+    // define the local list for ezsigndocument_get_words_positions_v1_request->a_s_word
+    list_t *a_s_wordList = NULL;
+
     // ezsigndocument_get_words_positions_v1_request->e_get
     cJSON *e_get = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_words_positions_v1_requestJSON, "eGet");
     if (!e_get) {
         goto end;
     }
 
-    ezmax_api_definition_ezsigndocument_get_words_positions_v1_request_EGET_e e_getVariable;
+    ezmax_api_definition__full_ezsigndocument_get_words_positions_v1_request_EGET_e e_getVariable;
     
     if(!cJSON_IsString(e_get))
     {
@@ -131,9 +135,8 @@ ezsigndocument_get_words_positions_v1_request_t *ezsigndocument_get_words_positi
 
     // ezsigndocument_get_words_positions_v1_request->a_s_word
     cJSON *a_s_word = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_words_positions_v1_requestJSON, "a_sWord");
-    list_t *a_s_wordList;
     if (a_s_word) { 
-    cJSON *a_s_word_local;
+    cJSON *a_s_word_local = NULL;
     if(!cJSON_IsArray(a_s_word)) {
         goto end;//primitive container
     }
@@ -158,6 +161,15 @@ ezsigndocument_get_words_positions_v1_request_t *ezsigndocument_get_words_positi
 
     return ezsigndocument_get_words_positions_v1_request_local_var;
 end:
+    if (a_s_wordList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_s_wordList) {
+            free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_s_wordList);
+        a_s_wordList = NULL;
+    }
     return NULL;
 
 }

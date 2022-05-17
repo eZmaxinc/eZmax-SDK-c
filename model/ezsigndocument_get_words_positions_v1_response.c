@@ -52,7 +52,6 @@ cJSON *ezsigndocument_get_words_positions_v1_response_convertToJSON(ezsigndocume
     if (!ezsigndocument_get_words_positions_v1_response->m_payload) {
         goto fail;
     }
-    
     cJSON *m_payload = cJSON_AddArrayToObject(item, "mPayload");
     if(m_payload == NULL) {
     goto fail; //nonprimitive container
@@ -71,7 +70,7 @@ cJSON *ezsigndocument_get_words_positions_v1_response_convertToJSON(ezsigndocume
 
 
     // ezsigndocument_get_words_positions_v1_response->obj_debug_payload
-    if(ezsigndocument_get_words_positions_v1_response->obj_debug_payload) { 
+    if(ezsigndocument_get_words_positions_v1_response->obj_debug_payload) {
     cJSON *obj_debug_payload_local_JSON = common_response_obj_debug_payload_convertToJSON(ezsigndocument_get_words_positions_v1_response->obj_debug_payload);
     if(obj_debug_payload_local_JSON == NULL) {
     goto fail; //model
@@ -80,11 +79,11 @@ cJSON *ezsigndocument_get_words_positions_v1_response_convertToJSON(ezsigndocume
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // ezsigndocument_get_words_positions_v1_response->obj_debug
-    if(ezsigndocument_get_words_positions_v1_response->obj_debug) { 
+    if(ezsigndocument_get_words_positions_v1_response->obj_debug) {
     cJSON *obj_debug_local_JSON = common_response_obj_debug_convertToJSON(ezsigndocument_get_words_positions_v1_response->obj_debug);
     if(obj_debug_local_JSON == NULL) {
     goto fail; //model
@@ -93,7 +92,7 @@ cJSON *ezsigndocument_get_words_positions_v1_response_convertToJSON(ezsigndocume
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:
@@ -107,6 +106,9 @@ ezsigndocument_get_words_positions_v1_response_t *ezsigndocument_get_words_posit
 
     ezsigndocument_get_words_positions_v1_response_t *ezsigndocument_get_words_positions_v1_response_local_var = NULL;
 
+    // define the local list for ezsigndocument_get_words_positions_v1_response->m_payload
+    list_t *m_payloadList = NULL;
+
     // define the local variable for ezsigndocument_get_words_positions_v1_response->obj_debug_payload
     common_response_obj_debug_payload_t *obj_debug_payload_local_nonprim = NULL;
 
@@ -119,9 +121,8 @@ ezsigndocument_get_words_positions_v1_response_t *ezsigndocument_get_words_posit
         goto end;
     }
 
-    list_t *m_payloadList;
     
-    cJSON *m_payload_local_nonprimitive;
+    cJSON *m_payload_local_nonprimitive = NULL;
     if(!cJSON_IsArray(m_payload)){
         goto end; //nonprimitive container
     }
@@ -159,6 +160,15 @@ ezsigndocument_get_words_positions_v1_response_t *ezsigndocument_get_words_posit
 
     return ezsigndocument_get_words_positions_v1_response_local_var;
 end:
+    if (m_payloadList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, m_payloadList) {
+            custom_word_position_word_response_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(m_payloadList);
+        m_payloadList = NULL;
+    }
     if (obj_debug_payload_local_nonprim) {
         common_response_obj_debug_payload_free(obj_debug_payload_local_nonprim);
         obj_debug_payload_local_nonprim = NULL;

@@ -40,7 +40,7 @@ cJSON *ezsignfolder_edit_object_v1_response_convertToJSON(ezsignfolder_edit_obje
     cJSON *item = cJSON_CreateObject();
 
     // ezsignfolder_edit_object_v1_response->obj_debug_payload
-    if(ezsignfolder_edit_object_v1_response->obj_debug_payload) { 
+    if(ezsignfolder_edit_object_v1_response->obj_debug_payload) {
     cJSON *obj_debug_payload_local_JSON = common_response_obj_debug_payload_convertToJSON(ezsignfolder_edit_object_v1_response->obj_debug_payload);
     if(obj_debug_payload_local_JSON == NULL) {
     goto fail; //model
@@ -49,11 +49,11 @@ cJSON *ezsignfolder_edit_object_v1_response_convertToJSON(ezsignfolder_edit_obje
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // ezsignfolder_edit_object_v1_response->obj_debug
-    if(ezsignfolder_edit_object_v1_response->obj_debug) { 
+    if(ezsignfolder_edit_object_v1_response->obj_debug) {
     cJSON *obj_debug_local_JSON = common_response_obj_debug_convertToJSON(ezsignfolder_edit_object_v1_response->obj_debug);
     if(obj_debug_local_JSON == NULL) {
     goto fail; //model
@@ -62,7 +62,7 @@ cJSON *ezsignfolder_edit_object_v1_response_convertToJSON(ezsignfolder_edit_obje
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:

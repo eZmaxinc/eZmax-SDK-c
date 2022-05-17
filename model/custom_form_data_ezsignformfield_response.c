@@ -43,7 +43,6 @@ cJSON *custom_form_data_ezsignformfield_response_convertToJSON(custom_form_data_
     if (!custom_form_data_ezsignformfield_response->s_ezsignformfield_label) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sEzsignformfieldLabel", custom_form_data_ezsignformfield_response->s_ezsignformfield_label) == NULL) {
     goto fail; //String
     }
@@ -53,7 +52,6 @@ cJSON *custom_form_data_ezsignformfield_response_convertToJSON(custom_form_data_
     if (!custom_form_data_ezsignformfield_response->s_ezsignformfield_value) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sEzsignformfieldValue", custom_form_data_ezsignformfield_response->s_ezsignformfield_value) == NULL) {
     goto fail; //String
     }

@@ -11,6 +11,8 @@
 #include "../model/ezsignfoldersignerassociation_create_object_v2_request.h"
 #include "../model/ezsignfoldersignerassociation_create_object_v2_response.h"
 #include "../model/ezsignfoldersignerassociation_delete_object_v1_response.h"
+#include "../model/ezsignfoldersignerassociation_edit_object_v1_request.h"
+#include "../model/ezsignfoldersignerassociation_edit_object_v1_response.h"
 #include "../model/ezsignfoldersignerassociation_get_in_person_login_url_v1_response.h"
 #include "../model/ezsignfoldersignerassociation_get_object_v1_response.h"
 
@@ -37,6 +39,14 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateObject
 //
 ezsignfoldersignerassociation_delete_object_v1_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationDeleteObjectV1(apiClient_t *apiClient, int pkiEzsignfoldersignerassociationID );
+
+
+// Edit an existing Ezsignfoldersignerassociation
+//
+// 
+//
+ezsignfoldersignerassociation_edit_object_v1_response_t*
+ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationEditObjectV1(apiClient_t *apiClient, int pkiEzsignfoldersignerassociationID , ezsignfoldersignerassociation_edit_object_v1_request_t * ezsignfoldersignerassociation_edit_object_v1_request );
 
 
 // Retrieve a Login Url to allow In-Person signing

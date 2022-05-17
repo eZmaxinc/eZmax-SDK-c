@@ -65,7 +65,6 @@ cJSON *contact_request_compound_convertToJSON(contact_request_compound_t *contac
     if (!contact_request_compound->fki_contacttitle_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiContacttitleID", contact_request_compound->fki_contacttitle_id) == NULL) {
     goto fail; //Numeric
     }
@@ -75,7 +74,6 @@ cJSON *contact_request_compound_convertToJSON(contact_request_compound_t *contac
     if (!contact_request_compound->fki_language_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiLanguageID", contact_request_compound->fki_language_id) == NULL) {
     goto fail; //Numeric
     }
@@ -85,7 +83,6 @@ cJSON *contact_request_compound_convertToJSON(contact_request_compound_t *contac
     if (!contact_request_compound->s_contact_firstname) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sContactFirstname", contact_request_compound->s_contact_firstname) == NULL) {
     goto fail; //String
     }
@@ -95,7 +92,6 @@ cJSON *contact_request_compound_convertToJSON(contact_request_compound_t *contac
     if (!contact_request_compound->s_contact_lastname) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sContactLastname", contact_request_compound->s_contact_lastname) == NULL) {
     goto fail; //String
     }
@@ -105,25 +101,23 @@ cJSON *contact_request_compound_convertToJSON(contact_request_compound_t *contac
     if (!contact_request_compound->s_contact_company) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sContactCompany", contact_request_compound->s_contact_company) == NULL) {
     goto fail; //String
     }
 
 
     // contact_request_compound->dt_contact_birthdate
-    if(contact_request_compound->dt_contact_birthdate) { 
+    if(contact_request_compound->dt_contact_birthdate) {
     if(cJSON_AddStringToObject(item, "dtContactBirthdate", contact_request_compound->dt_contact_birthdate) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // contact_request_compound->obj_contactinformations
     if (!contact_request_compound->obj_contactinformations) {
         goto fail;
     }
-    
     cJSON *obj_contactinformations_local_JSON = contactinformations_request_compound_convertToJSON(contact_request_compound->obj_contactinformations);
     if(obj_contactinformations_local_JSON == NULL) {
     goto fail; //model

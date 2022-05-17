@@ -40,19 +40,19 @@ cJSON *multilingual_apikey_description_convertToJSON(multilingual_apikey_descrip
     cJSON *item = cJSON_CreateObject();
 
     // multilingual_apikey_description->s_apikey_description1
-    if(multilingual_apikey_description->s_apikey_description1) { 
+    if(multilingual_apikey_description->s_apikey_description1) {
     if(cJSON_AddStringToObject(item, "sApikeyDescription1", multilingual_apikey_description->s_apikey_description1) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // multilingual_apikey_description->s_apikey_description2
-    if(multilingual_apikey_description->s_apikey_description2) { 
+    if(multilingual_apikey_description->s_apikey_description2) {
     if(cJSON_AddStringToObject(item, "sApikeyDescription2", multilingual_apikey_description->s_apikey_description2) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

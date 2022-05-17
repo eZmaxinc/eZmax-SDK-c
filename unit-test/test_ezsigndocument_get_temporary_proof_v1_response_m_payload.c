@@ -16,19 +16,17 @@
 #include "../model/ezsigndocument_get_temporary_proof_v1_response_m_payload.h"
 ezsigndocument_get_temporary_proof_v1_response_m_payload_t* instantiate_ezsigndocument_get_temporary_proof_v1_response_m_payload(int include_optional);
 
-#include "test_ezsigndocumentlog_response_compound.c"
 
 
 ezsigndocument_get_temporary_proof_v1_response_m_payload_t* instantiate_ezsigndocument_get_temporary_proof_v1_response_m_payload(int include_optional) {
   ezsigndocument_get_temporary_proof_v1_response_m_payload_t* ezsigndocument_get_temporary_proof_v1_response_m_payload = NULL;
   if (include_optional) {
     ezsigndocument_get_temporary_proof_v1_response_m_payload = ezsigndocument_get_temporary_proof_v1_response_m_payload_create(
-       // false, not to have infinite recursion
-      instantiate_ezsigndocumentlog_response_compound(0)
+      list_createList()
     );
   } else {
     ezsigndocument_get_temporary_proof_v1_response_m_payload = ezsigndocument_get_temporary_proof_v1_response_m_payload_create(
-      NULL
+      list_createList()
     );
   }
 

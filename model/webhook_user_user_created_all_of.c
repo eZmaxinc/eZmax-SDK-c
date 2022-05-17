@@ -37,7 +37,6 @@ cJSON *webhook_user_user_created_all_of_convertToJSON(webhook_user_user_created_
     if (!webhook_user_user_created_all_of->obj_user) {
         goto fail;
     }
-    
     cJSON *obj_user_local_JSON = user_response_compound_convertToJSON(webhook_user_user_created_all_of->obj_user);
     if(obj_user_local_JSON == NULL) {
     goto fail; //model

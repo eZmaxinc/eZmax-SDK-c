@@ -40,7 +40,6 @@ cJSON *ezsignfoldersignerassociation_create_object_v1_response_m_payload_convert
     if (!ezsignfoldersignerassociation_create_object_v1_response_m_payload->a_pki_ezsignfoldersignerassociation_id) {
         goto fail;
     }
-    
     cJSON *a_pki_ezsignfoldersignerassociation_id = cJSON_AddArrayToObject(item, "a_pkiEzsignfoldersignerassociationID");
     if(a_pki_ezsignfoldersignerassociation_id == NULL) {
         goto fail; //primitive container
@@ -66,15 +65,17 @@ ezsignfoldersignerassociation_create_object_v1_response_m_payload_t *ezsignfolde
 
     ezsignfoldersignerassociation_create_object_v1_response_m_payload_t *ezsignfoldersignerassociation_create_object_v1_response_m_payload_local_var = NULL;
 
+    // define the local list for ezsignfoldersignerassociation_create_object_v1_response_m_payload->a_pki_ezsignfoldersignerassociation_id
+    list_t *a_pki_ezsignfoldersignerassociation_idList = NULL;
+
     // ezsignfoldersignerassociation_create_object_v1_response_m_payload->a_pki_ezsignfoldersignerassociation_id
     cJSON *a_pki_ezsignfoldersignerassociation_id = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_create_object_v1_response_m_payloadJSON, "a_pkiEzsignfoldersignerassociationID");
     if (!a_pki_ezsignfoldersignerassociation_id) {
         goto end;
     }
 
-    list_t *a_pki_ezsignfoldersignerassociation_idList;
     
-    cJSON *a_pki_ezsignfoldersignerassociation_id_local;
+    cJSON *a_pki_ezsignfoldersignerassociation_id_local = NULL;
     if(!cJSON_IsArray(a_pki_ezsignfoldersignerassociation_id)) {
         goto end;//primitive container
     }
@@ -102,6 +103,15 @@ ezsignfoldersignerassociation_create_object_v1_response_m_payload_t *ezsignfolde
 
     return ezsignfoldersignerassociation_create_object_v1_response_m_payload_local_var;
 end:
+    if (a_pki_ezsignfoldersignerassociation_idList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_pki_ezsignfoldersignerassociation_idList) {
+            free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_pki_ezsignfoldersignerassociation_idList);
+        a_pki_ezsignfoldersignerassociation_idList = NULL;
+    }
     return NULL;
 
 }

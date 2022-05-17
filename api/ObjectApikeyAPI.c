@@ -74,9 +74,10 @@ ObjectApikeyAPI_apikeyCreateObjectV1(apiClient_t *apiClient, list_t * apikey_cre
                     localVarBodyParameters,
                     "POST");
 
-    if (apiClient->response_code == 201) {
-        printf("%s\n","Successful response");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 201) {
+    //    printf("%s\n","Successful response");
+    //}
     //nonprimitive not container
     cJSON *ObjectApikeyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     apikey_create_object_v1_response_t *elementToReturn = apikey_create_object_v1_response_parseFromJSON(ObjectApikeyAPIlocalVarJSON);
@@ -159,9 +160,10 @@ ObjectApikeyAPI_apikeyCreateObjectV2(apiClient_t *apiClient, apikey_create_objec
                     localVarBodyParameters,
                     "POST");
 
-    if (apiClient->response_code == 201) {
-        printf("%s\n","Successful response");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 201) {
+    //    printf("%s\n","Successful response");
+    //}
     //nonprimitive not container
     cJSON *ObjectApikeyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     apikey_create_object_v2_response_t *elementToReturn = apikey_create_object_v2_response_parseFromJSON(ObjectApikeyAPIlocalVarJSON);

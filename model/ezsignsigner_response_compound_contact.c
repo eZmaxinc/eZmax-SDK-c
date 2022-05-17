@@ -12,6 +12,7 @@ ezsignsigner_response_compound_contact_t *ezsignsigner_response_compound_contact
     int fki_language_id,
     char *s_email_address,
     char *s_phone_e164,
+    char *s_phone_extension,
     char *s_phone_e164_cell
     ) {
     ezsignsigner_response_compound_contact_t *ezsignsigner_response_compound_contact_local_var = malloc(sizeof(ezsignsigner_response_compound_contact_t));
@@ -24,6 +25,7 @@ ezsignsigner_response_compound_contact_t *ezsignsigner_response_compound_contact
     ezsignsigner_response_compound_contact_local_var->fki_language_id = fki_language_id;
     ezsignsigner_response_compound_contact_local_var->s_email_address = s_email_address;
     ezsignsigner_response_compound_contact_local_var->s_phone_e164 = s_phone_e164;
+    ezsignsigner_response_compound_contact_local_var->s_phone_extension = s_phone_extension;
     ezsignsigner_response_compound_contact_local_var->s_phone_e164_cell = s_phone_e164_cell;
 
     return ezsignsigner_response_compound_contact_local_var;
@@ -51,6 +53,10 @@ void ezsignsigner_response_compound_contact_free(ezsignsigner_response_compound_
         free(ezsignsigner_response_compound_contact->s_phone_e164);
         ezsignsigner_response_compound_contact->s_phone_e164 = NULL;
     }
+    if (ezsignsigner_response_compound_contact->s_phone_extension) {
+        free(ezsignsigner_response_compound_contact->s_phone_extension);
+        ezsignsigner_response_compound_contact->s_phone_extension = NULL;
+    }
     if (ezsignsigner_response_compound_contact->s_phone_e164_cell) {
         free(ezsignsigner_response_compound_contact->s_phone_e164_cell);
         ezsignsigner_response_compound_contact->s_phone_e164_cell = NULL;
@@ -65,7 +71,6 @@ cJSON *ezsignsigner_response_compound_contact_convertToJSON(ezsignsigner_respons
     if (!ezsignsigner_response_compound_contact->pki_contact_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "pkiContactID", ezsignsigner_response_compound_contact->pki_contact_id) == NULL) {
     goto fail; //Numeric
     }
@@ -75,7 +80,6 @@ cJSON *ezsignsigner_response_compound_contact_convertToJSON(ezsignsigner_respons
     if (!ezsignsigner_response_compound_contact->s_contact_firstname) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sContactFirstname", ezsignsigner_response_compound_contact->s_contact_firstname) == NULL) {
     goto fail; //String
     }
@@ -85,7 +89,6 @@ cJSON *ezsignsigner_response_compound_contact_convertToJSON(ezsignsigner_respons
     if (!ezsignsigner_response_compound_contact->s_contact_lastname) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sContactLastname", ezsignsigner_response_compound_contact->s_contact_lastname) == NULL) {
     goto fail; //String
     }
@@ -95,34 +98,41 @@ cJSON *ezsignsigner_response_compound_contact_convertToJSON(ezsignsigner_respons
     if (!ezsignsigner_response_compound_contact->fki_language_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiLanguageID", ezsignsigner_response_compound_contact->fki_language_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // ezsignsigner_response_compound_contact->s_email_address
-    if(ezsignsigner_response_compound_contact->s_email_address) { 
+    if(ezsignsigner_response_compound_contact->s_email_address) {
     if(cJSON_AddStringToObject(item, "sEmailAddress", ezsignsigner_response_compound_contact->s_email_address) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // ezsignsigner_response_compound_contact->s_phone_e164
-    if(ezsignsigner_response_compound_contact->s_phone_e164) { 
+    if(ezsignsigner_response_compound_contact->s_phone_e164) {
     if(cJSON_AddStringToObject(item, "sPhoneE164", ezsignsigner_response_compound_contact->s_phone_e164) == NULL) {
     goto fail; //String
     }
-     } 
+    }
+
+
+    // ezsignsigner_response_compound_contact->s_phone_extension
+    if(ezsignsigner_response_compound_contact->s_phone_extension) {
+    if(cJSON_AddStringToObject(item, "sPhoneExtension", ezsignsigner_response_compound_contact->s_phone_extension) == NULL) {
+    goto fail; //String
+    }
+    }
 
 
     // ezsignsigner_response_compound_contact->s_phone_e164_cell
-    if(ezsignsigner_response_compound_contact->s_phone_e164_cell) { 
+    if(ezsignsigner_response_compound_contact->s_phone_e164_cell) {
     if(cJSON_AddStringToObject(item, "sPhoneE164Cell", ezsignsigner_response_compound_contact->s_phone_e164_cell) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:
@@ -202,6 +212,15 @@ ezsignsigner_response_compound_contact_t *ezsignsigner_response_compound_contact
     }
     }
 
+    // ezsignsigner_response_compound_contact->s_phone_extension
+    cJSON *s_phone_extension = cJSON_GetObjectItemCaseSensitive(ezsignsigner_response_compound_contactJSON, "sPhoneExtension");
+    if (s_phone_extension) { 
+    if(!cJSON_IsString(s_phone_extension))
+    {
+    goto end; //String
+    }
+    }
+
     // ezsignsigner_response_compound_contact->s_phone_e164_cell
     cJSON *s_phone_e164_cell = cJSON_GetObjectItemCaseSensitive(ezsignsigner_response_compound_contactJSON, "sPhoneE164Cell");
     if (s_phone_e164_cell) { 
@@ -219,6 +238,7 @@ ezsignsigner_response_compound_contact_t *ezsignsigner_response_compound_contact
         fki_language_id->valuedouble,
         s_email_address ? strdup(s_email_address->valuestring) : NULL,
         s_phone_e164 ? strdup(s_phone_e164->valuestring) : NULL,
+        s_phone_extension ? strdup(s_phone_extension->valuestring) : NULL,
         s_phone_e164_cell ? strdup(s_phone_e164_cell->valuestring) : NULL
         );
 

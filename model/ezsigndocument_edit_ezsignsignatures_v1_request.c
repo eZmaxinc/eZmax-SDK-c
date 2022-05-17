@@ -40,7 +40,6 @@ cJSON *ezsigndocument_edit_ezsignsignatures_v1_request_convertToJSON(ezsigndocum
     if (!ezsigndocument_edit_ezsignsignatures_v1_request->a_obj_ezsignsignature) {
         goto fail;
     }
-    
     cJSON *a_obj_ezsignsignature = cJSON_AddArrayToObject(item, "a_objEzsignsignature");
     if(a_obj_ezsignsignature == NULL) {
     goto fail; //nonprimitive container
@@ -69,15 +68,17 @@ ezsigndocument_edit_ezsignsignatures_v1_request_t *ezsigndocument_edit_ezsignsig
 
     ezsigndocument_edit_ezsignsignatures_v1_request_t *ezsigndocument_edit_ezsignsignatures_v1_request_local_var = NULL;
 
+    // define the local list for ezsigndocument_edit_ezsignsignatures_v1_request->a_obj_ezsignsignature
+    list_t *a_obj_ezsignsignatureList = NULL;
+
     // ezsigndocument_edit_ezsignsignatures_v1_request->a_obj_ezsignsignature
     cJSON *a_obj_ezsignsignature = cJSON_GetObjectItemCaseSensitive(ezsigndocument_edit_ezsignsignatures_v1_requestJSON, "a_objEzsignsignature");
     if (!a_obj_ezsignsignature) {
         goto end;
     }
 
-    list_t *a_obj_ezsignsignatureList;
     
-    cJSON *a_obj_ezsignsignature_local_nonprimitive;
+    cJSON *a_obj_ezsignsignature_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_ezsignsignature)){
         goto end; //nonprimitive container
     }
@@ -101,6 +102,15 @@ ezsigndocument_edit_ezsignsignatures_v1_request_t *ezsigndocument_edit_ezsignsig
 
     return ezsigndocument_edit_ezsignsignatures_v1_request_local_var;
 end:
+    if (a_obj_ezsignsignatureList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_ezsignsignatureList) {
+            ezsignsignature_request_compound_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_ezsignsignatureList);
+        a_obj_ezsignsignatureList = NULL;
+    }
     return NULL;
 
 }

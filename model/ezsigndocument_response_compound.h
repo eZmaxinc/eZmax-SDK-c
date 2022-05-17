@@ -23,11 +23,11 @@ typedef struct ezsigndocument_response_compound_t ezsigndocument_response_compou
 
 // Enum  for ezsigndocument_response_compound
 
-typedef enum  { ezmax_api_definition_ezsigndocument_response_compound__NULL = 0, ezmax_api_definition_ezsigndocument_response_compound__Unsent, ezmax_api_definition_ezsigndocument_response_compound___Unsigned, ezmax_api_definition_ezsigndocument_response_compound__PartiallySigned, ezmax_api_definition_ezsigndocument_response_compound__DeclinedToSign, ezmax_api_definition_ezsigndocument_response_compound__PrematurelyEnded, ezmax_api_definition_ezsigndocument_response_compound__Completed } ezmax_api_definition_ezsigndocument_response_compound__e;
+typedef enum  { ezmax_api_definition__full_ezsigndocument_response_compound__NULL = 0, ezmax_api_definition__full_ezsigndocument_response_compound__Unsent, ezmax_api_definition__full_ezsigndocument_response_compound___Unsigned, ezmax_api_definition__full_ezsigndocument_response_compound__PartiallySigned, ezmax_api_definition__full_ezsigndocument_response_compound__DeclinedToSign, ezmax_api_definition__full_ezsigndocument_response_compound__PrematurelyEnded, ezmax_api_definition__full_ezsigndocument_response_compound__Completed } ezmax_api_definition__full_ezsigndocument_response_compound__e;
 
-char* ezsigndocument_response_compound_e_ezsigndocument_step_ToString(ezmax_api_definition_ezsigndocument_response_compound__e e_ezsigndocument_step);
+char* ezsigndocument_response_compound_e_ezsigndocument_step_ToString(ezmax_api_definition__full_ezsigndocument_response_compound__e e_ezsigndocument_step);
 
-ezmax_api_definition_ezsigndocument_response_compound__e ezsigndocument_response_compound_e_ezsigndocument_step_FromString(char* e_ezsigndocument_step);
+ezmax_api_definition__full_ezsigndocument_response_compound__e ezsigndocument_response_compound_e_ezsigndocument_step_FromString(char* e_ezsigndocument_step);
 
 
 
@@ -46,6 +46,7 @@ typedef struct ezsigndocument_response_compound_t {
     int i_ezsigndocument_signaturetotal; //numeric
     char *s_ezsigndocument_md5initial; // string
     char *s_ezsigndocument_md5signed; // string
+    int b_ezsigndocument_ezsignform; //boolean
     struct common_audit_t *obj_audit; //model
     int i_ezsigndocument_stepformtotal; //numeric
     int i_ezsigndocument_stepformcurrent; //numeric
@@ -70,6 +71,7 @@ ezsigndocument_response_compound_t *ezsigndocument_response_compound_create(
     int i_ezsigndocument_signaturetotal,
     char *s_ezsigndocument_md5initial,
     char *s_ezsigndocument_md5signed,
+    int b_ezsigndocument_ezsignform,
     common_audit_t *obj_audit,
     int i_ezsigndocument_stepformtotal,
     int i_ezsigndocument_stepformcurrent,

@@ -37,7 +37,6 @@ cJSON *ezsigndocument_patch_object_v1_request_convertToJSON(ezsigndocument_patch
     if (!ezsigndocument_patch_object_v1_request->obj_ezsigndocument) {
         goto fail;
     }
-    
     cJSON *obj_ezsigndocument_local_JSON = ezsigndocument_request_patch_convertToJSON(ezsigndocument_patch_object_v1_request->obj_ezsigndocument);
     if(obj_ezsigndocument_local_JSON == NULL) {
     goto fail; //model

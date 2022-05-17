@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**e_activesession_sessiontype** | **field_e_activesession_sessiontype_t \*** |  | 
+**e_activesession_usertype** | **field_e_activesession_usertype_t \*** |  | 
 **e_activesession_weekdaystart** | **field_e_activesession_weekdaystart_t \*** |  | 
 **fki_language_id** | **int** | The unique ID of the Language.  Valid values:  |Value|Description| |-|-| |1|French| |2|English| | 
 **s_company_name_x** | **char \*** | The Name of the Company in the language of the requester | 

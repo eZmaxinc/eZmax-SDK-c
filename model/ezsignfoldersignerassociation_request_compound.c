@@ -42,41 +42,40 @@ cJSON *ezsignfoldersignerassociation_request_compound_convertToJSON(ezsignfolder
     cJSON *item = cJSON_CreateObject();
 
     // ezsignfoldersignerassociation_request_compound->pki_ezsignfoldersignerassociation_id
-    if(ezsignfoldersignerassociation_request_compound->pki_ezsignfoldersignerassociation_id) { 
+    if(ezsignfoldersignerassociation_request_compound->pki_ezsignfoldersignerassociation_id) {
     if(cJSON_AddNumberToObject(item, "pkiEzsignfoldersignerassociationID", ezsignfoldersignerassociation_request_compound->pki_ezsignfoldersignerassociation_id) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // ezsignfoldersignerassociation_request_compound->fki_user_id
-    if(ezsignfoldersignerassociation_request_compound->fki_user_id) { 
+    if(ezsignfoldersignerassociation_request_compound->fki_user_id) {
     if(cJSON_AddNumberToObject(item, "fkiUserID", ezsignfoldersignerassociation_request_compound->fki_user_id) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // ezsignfoldersignerassociation_request_compound->fki_ezsignfolder_id
     if (!ezsignfoldersignerassociation_request_compound->fki_ezsignfolder_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiEzsignfolderID", ezsignfoldersignerassociation_request_compound->fki_ezsignfolder_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // ezsignfoldersignerassociation_request_compound->b_ezsignfoldersignerassociation_receivecopy
-    if(ezsignfoldersignerassociation_request_compound->b_ezsignfoldersignerassociation_receivecopy) { 
+    if(ezsignfoldersignerassociation_request_compound->b_ezsignfoldersignerassociation_receivecopy) {
     if(cJSON_AddBoolToObject(item, "bEzsignfoldersignerassociationReceivecopy", ezsignfoldersignerassociation_request_compound->b_ezsignfoldersignerassociation_receivecopy) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // ezsignfoldersignerassociation_request_compound->obj_ezsignsigner
-    if(ezsignfoldersignerassociation_request_compound->obj_ezsignsigner) { 
+    if(ezsignfoldersignerassociation_request_compound->obj_ezsignsigner) {
     cJSON *obj_ezsignsigner_local_JSON = ezsignsigner_request_compound_convertToJSON(ezsignfoldersignerassociation_request_compound->obj_ezsignsigner);
     if(obj_ezsignsigner_local_JSON == NULL) {
     goto fail; //model
@@ -85,7 +84,7 @@ cJSON *ezsignfoldersignerassociation_request_compound_convertToJSON(ezsignfolder
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:

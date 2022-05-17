@@ -4,12 +4,12 @@
 #include "field_e_ezsignformfieldgroup_signerrequirement.h"
 
 
-char* field_e_ezsignformfieldgroup_signerrequirement_field_e_ezsignformfieldgroup_signerrequirement_ToString(ezmax_api_definition_field_e_ezsignformfieldgroup_signerrequirement__e field_e_ezsignformfieldgroup_signerrequirement) {
+char* field_e_ezsignformfieldgroup_signerrequirement_field_e_ezsignformfieldgroup_signerrequirement_ToString(ezmax_api_definition__full_field_e_ezsignformfieldgroup_signerrequirement__e field_e_ezsignformfieldgroup_signerrequirement) {
     char *field_e_ezsignformfieldgroup_signerrequirementArray[] =  { "NULL", "All", "One" };
     return field_e_ezsignformfieldgroup_signerrequirementArray[field_e_ezsignformfieldgroup_signerrequirement];
 }
 
-ezmax_api_definition_field_e_ezsignformfieldgroup_signerrequirement__e field_e_ezsignformfieldgroup_signerrequirement_field_e_ezsignformfieldgroup_signerrequirement_FromString(char* field_e_ezsignformfieldgroup_signerrequirement) {
+ezmax_api_definition__full_field_e_ezsignformfieldgroup_signerrequirement__e field_e_ezsignformfieldgroup_signerrequirement_field_e_ezsignformfieldgroup_signerrequirement_FromString(char* field_e_ezsignformfieldgroup_signerrequirement) {
     int stringToReturn = 0;
     char *field_e_ezsignformfieldgroup_signerrequirementArray[] =  { "NULL", "All", "One" };
     size_t sizeofArray = sizeof(field_e_ezsignformfieldgroup_signerrequirementArray) / sizeof(field_e_ezsignformfieldgroup_signerrequirementArray[0]);
@@ -22,7 +22,7 @@ ezmax_api_definition_field_e_ezsignformfieldgroup_signerrequirement__e field_e_e
     return 0;
 }
 
-cJSON *field_e_ezsignformfieldgroup_signerrequirement_field_e_ezsignformfieldgroup_signerrequirement_convertToJSON(ezmax_api_definition_field_e_ezsignformfieldgroup_signerrequirement__e field_e_ezsignformfieldgroup_signerrequirement) {
+cJSON *field_e_ezsignformfieldgroup_signerrequirement_field_e_ezsignformfieldgroup_signerrequirement_convertToJSON(ezmax_api_definition__full_field_e_ezsignformfieldgroup_signerrequirement__e field_e_ezsignformfieldgroup_signerrequirement) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsignformfieldgroup_signerrequirement", field_e_ezsignformfieldgroup_signerrequirement_field_e_ezsignformfieldgroup_signerrequirement_ToString(field_e_ezsignformfieldgroup_signerrequirement)) == NULL) {
         goto fail;
@@ -33,9 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition_field_e_ezsignformfieldgroup_signerrequirement__e field_e_ezsignformfieldgroup_signerrequirement_field_e_ezsignformfieldgroup_signerrequirement_parseFromJSON(cJSON *field_e_ezsignformfieldgroup_signerrequirementJSON) {
-    ezmax_api_definition_field_e_ezsignformfieldgroup_signerrequirement__e *field_e_ezsignformfieldgroup_signerrequirement = NULL;
-    ezmax_api_definition_field_e_ezsignformfieldgroup_signerrequirement__e field_e_ezsignformfieldgroup_signerrequirementVariable;
+ezmax_api_definition__full_field_e_ezsignformfieldgroup_signerrequirement__e field_e_ezsignformfieldgroup_signerrequirement_field_e_ezsignformfieldgroup_signerrequirement_parseFromJSON(cJSON *field_e_ezsignformfieldgroup_signerrequirementJSON) {
+    ezmax_api_definition__full_field_e_ezsignformfieldgroup_signerrequirement__e *field_e_ezsignformfieldgroup_signerrequirement = NULL;
+    ezmax_api_definition__full_field_e_ezsignformfieldgroup_signerrequirement__e field_e_ezsignformfieldgroup_signerrequirementVariable;
     cJSON *field_e_ezsignformfieldgroup_signerrequirementVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsignformfieldgroup_signerrequirementJSON, "field_e_ezsignformfieldgroup_signerrequirement");
     if(!cJSON_IsString(field_e_ezsignformfieldgroup_signerrequirementVar) || (field_e_ezsignformfieldgroup_signerrequirementVar->valuestring == NULL)){
         goto end;

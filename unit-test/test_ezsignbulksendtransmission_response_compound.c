@@ -28,7 +28,8 @@ ezsignbulksendtransmission_response_compound_t* instantiate_ezsignbulksendtransm
       "Test eZsign Bulk Send Transmission #1",
       1,
        // false, not to have infinite recursion
-      instantiate_common_audit(0)
+      instantiate_common_audit(0),
+      list_createList()
     );
   } else {
     ezsignbulksendtransmission_response_compound = ezsignbulksendtransmission_response_compound_create(
@@ -36,7 +37,8 @@ ezsignbulksendtransmission_response_compound_t* instantiate_ezsignbulksendtransm
       8,
       "Test eZsign Bulk Send Transmission #1",
       1,
-      NULL
+      NULL,
+      list_createList()
     );
   }
 

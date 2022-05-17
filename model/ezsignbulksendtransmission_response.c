@@ -49,7 +49,6 @@ cJSON *ezsignbulksendtransmission_response_convertToJSON(ezsignbulksendtransmiss
     if (!ezsignbulksendtransmission_response->pki_ezsignbulksendtransmission_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "pkiEzsignbulksendtransmissionID", ezsignbulksendtransmission_response->pki_ezsignbulksendtransmission_id) == NULL) {
     goto fail; //Numeric
     }
@@ -59,7 +58,6 @@ cJSON *ezsignbulksendtransmission_response_convertToJSON(ezsignbulksendtransmiss
     if (!ezsignbulksendtransmission_response->fki_ezsignbulksend_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiEzsignbulksendID", ezsignbulksendtransmission_response->fki_ezsignbulksend_id) == NULL) {
     goto fail; //Numeric
     }
@@ -69,7 +67,6 @@ cJSON *ezsignbulksendtransmission_response_convertToJSON(ezsignbulksendtransmiss
     if (!ezsignbulksendtransmission_response->s_ezsignbulksendtransmission_description) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sEzsignbulksendtransmissionDescription", ezsignbulksendtransmission_response->s_ezsignbulksendtransmission_description) == NULL) {
     goto fail; //String
     }
@@ -79,7 +76,6 @@ cJSON *ezsignbulksendtransmission_response_convertToJSON(ezsignbulksendtransmiss
     if (!ezsignbulksendtransmission_response->i_ezsignbulksendtransmission_errors) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEzsignbulksendtransmissionErrors", ezsignbulksendtransmission_response->i_ezsignbulksendtransmission_errors) == NULL) {
     goto fail; //Numeric
     }
@@ -89,7 +85,6 @@ cJSON *ezsignbulksendtransmission_response_convertToJSON(ezsignbulksendtransmiss
     if (!ezsignbulksendtransmission_response->obj_audit) {
         goto fail;
     }
-    
     cJSON *obj_audit_local_JSON = common_audit_convertToJSON(ezsignbulksendtransmission_response->obj_audit);
     if(obj_audit_local_JSON == NULL) {
     goto fail; //model

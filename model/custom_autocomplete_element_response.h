@@ -21,6 +21,7 @@ typedef struct custom_autocomplete_element_response_t custom_autocomplete_elemen
 typedef struct custom_autocomplete_element_response_t {
     char *s_category; // string
     char *s_label; // string
+    char *s_value; // string
     char *m_value; // string
 
 } custom_autocomplete_element_response_t;
@@ -28,6 +29,7 @@ typedef struct custom_autocomplete_element_response_t {
 custom_autocomplete_element_response_t *custom_autocomplete_element_response_create(
     char *s_category,
     char *s_label,
+    char *s_value,
     char *m_value
 );
 

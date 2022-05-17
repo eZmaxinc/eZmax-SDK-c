@@ -1,7 +1,7 @@
 /*
  * ezsigndocument_get_object_v1_response_m_payload.h
  *
- * Payload for the /1/object/ezsigndocument/getObject API Request
+ * Payload for GET /1/object/ezsigndocument/{pkiEzsigndocumentID}
  */
 
 #ifndef _ezsigndocument_get_object_v1_response_m_payload_H_
@@ -22,11 +22,11 @@ typedef struct ezsigndocument_get_object_v1_response_m_payload_t ezsigndocument_
 
 // Enum  for ezsigndocument_get_object_v1_response_m_payload
 
-typedef enum  { ezmax_api_definition_ezsigndocument_get_object_v1_response_m_payload__NULL = 0, ezmax_api_definition_ezsigndocument_get_object_v1_response_m_payload__Unsent, ezmax_api_definition_ezsigndocument_get_object_v1_response_m_payload___Unsigned, ezmax_api_definition_ezsigndocument_get_object_v1_response_m_payload__PartiallySigned, ezmax_api_definition_ezsigndocument_get_object_v1_response_m_payload__DeclinedToSign, ezmax_api_definition_ezsigndocument_get_object_v1_response_m_payload__PrematurelyEnded, ezmax_api_definition_ezsigndocument_get_object_v1_response_m_payload__Completed } ezmax_api_definition_ezsigndocument_get_object_v1_response_m_payload__e;
+typedef enum  { ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__NULL = 0, ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__Unsent, ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload___Unsigned, ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__PartiallySigned, ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__DeclinedToSign, ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__PrematurelyEnded, ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__Completed } ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__e;
 
-char* ezsigndocument_get_object_v1_response_m_payload_e_ezsigndocument_step_ToString(ezmax_api_definition_ezsigndocument_get_object_v1_response_m_payload__e e_ezsigndocument_step);
+char* ezsigndocument_get_object_v1_response_m_payload_e_ezsigndocument_step_ToString(ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__e e_ezsigndocument_step);
 
-ezmax_api_definition_ezsigndocument_get_object_v1_response_m_payload__e ezsigndocument_get_object_v1_response_m_payload_e_ezsigndocument_step_FromString(char* e_ezsigndocument_step);
+ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__e ezsigndocument_get_object_v1_response_m_payload_e_ezsigndocument_step_FromString(char* e_ezsigndocument_step);
 
 
 
@@ -45,6 +45,7 @@ typedef struct ezsigndocument_get_object_v1_response_m_payload_t {
     int i_ezsigndocument_signaturetotal; //numeric
     char *s_ezsigndocument_md5initial; // string
     char *s_ezsigndocument_md5signed; // string
+    int b_ezsigndocument_ezsignform; //boolean
     struct common_audit_t *obj_audit; //model
     int i_ezsigndocument_stepformtotal; //numeric
     int i_ezsigndocument_stepformcurrent; //numeric
@@ -69,6 +70,7 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
     int i_ezsigndocument_signaturetotal,
     char *s_ezsigndocument_md5initial,
     char *s_ezsigndocument_md5signed,
+    int b_ezsigndocument_ezsignform,
     common_audit_t *obj_audit,
     int i_ezsigndocument_stepformtotal,
     int i_ezsigndocument_stepformcurrent,

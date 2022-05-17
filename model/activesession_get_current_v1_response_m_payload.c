@@ -4,29 +4,29 @@
 #include "activesession_get_current_v1_response_m_payload.h"
 
 
-char* e_activesession_sessiontypeactivesession_get_current_v1_response_m_payload_ToString(ezmax_api_definition_activesession_get_current_v1_response_m_payload__e e_activesession_sessiontype) {
-    char* e_activesession_sessiontypeArray[] =  { "NULL", "Normal" };
-	return e_activesession_sessiontypeArray[e_activesession_sessiontype];
+char* e_activesession_usertypeactivesession_get_current_v1_response_m_payload_ToString(ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__e e_activesession_usertype) {
+    char* e_activesession_usertypeArray[] =  { "NULL", "AgentBroker", "Assistant", "EzsignUser", "Normal" };
+	return e_activesession_usertypeArray[e_activesession_usertype];
 }
 
-ezmax_api_definition_activesession_get_current_v1_response_m_payload__e e_activesession_sessiontypeactivesession_get_current_v1_response_m_payload_FromString(char* e_activesession_sessiontype){
+ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__e e_activesession_usertypeactivesession_get_current_v1_response_m_payload_FromString(char* e_activesession_usertype){
     int stringToReturn = 0;
-    char *e_activesession_sessiontypeArray[] =  { "NULL", "Normal" };
-    size_t sizeofArray = sizeof(e_activesession_sessiontypeArray) / sizeof(e_activesession_sessiontypeArray[0]);
+    char *e_activesession_usertypeArray[] =  { "NULL", "AgentBroker", "Assistant", "EzsignUser", "Normal" };
+    size_t sizeofArray = sizeof(e_activesession_usertypeArray) / sizeof(e_activesession_usertypeArray[0]);
     while(stringToReturn < sizeofArray) {
-        if(strcmp(e_activesession_sessiontype, e_activesession_sessiontypeArray[stringToReturn]) == 0) {
+        if(strcmp(e_activesession_usertype, e_activesession_usertypeArray[stringToReturn]) == 0) {
             return stringToReturn;
         }
         stringToReturn++;
     }
     return 0;
 }
-char* e_activesession_weekdaystartactivesession_get_current_v1_response_m_payload_ToString(ezmax_api_definition_activesession_get_current_v1_response_m_payload__e e_activesession_weekdaystart) {
+char* e_activesession_weekdaystartactivesession_get_current_v1_response_m_payload_ToString(ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__e e_activesession_weekdaystart) {
     char* e_activesession_weekdaystartArray[] =  { "NULL", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 	return e_activesession_weekdaystartArray[e_activesession_weekdaystart];
 }
 
-ezmax_api_definition_activesession_get_current_v1_response_m_payload__e e_activesession_weekdaystartactivesession_get_current_v1_response_m_payload_FromString(char* e_activesession_weekdaystart){
+ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__e e_activesession_weekdaystartactivesession_get_current_v1_response_m_payload_FromString(char* e_activesession_weekdaystart){
     int stringToReturn = 0;
     char *e_activesession_weekdaystartArray[] =  { "NULL", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
     size_t sizeofArray = sizeof(e_activesession_weekdaystartArray) / sizeof(e_activesession_weekdaystartArray[0]);
@@ -40,7 +40,7 @@ ezmax_api_definition_activesession_get_current_v1_response_m_payload__e e_active
 }
 
 activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_response_m_payload_create(
-    field_e_activesession_sessiontype_t *e_activesession_sessiontype,
+    field_e_activesession_usertype_t *e_activesession_usertype,
     field_e_activesession_weekdaystart_t *e_activesession_weekdaystart,
     int fki_language_id,
     char *s_company_name_x,
@@ -57,7 +57,7 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
     if (!activesession_get_current_v1_response_m_payload_local_var) {
         return NULL;
     }
-    activesession_get_current_v1_response_m_payload_local_var->e_activesession_sessiontype = e_activesession_sessiontype;
+    activesession_get_current_v1_response_m_payload_local_var->e_activesession_usertype = e_activesession_usertype;
     activesession_get_current_v1_response_m_payload_local_var->e_activesession_weekdaystart = e_activesession_weekdaystart;
     activesession_get_current_v1_response_m_payload_local_var->fki_language_id = fki_language_id;
     activesession_get_current_v1_response_m_payload_local_var->s_company_name_x = s_company_name_x;
@@ -79,9 +79,9 @@ void activesession_get_current_v1_response_m_payload_free(activesession_get_curr
         return ;
     }
     listEntry_t *listEntry;
-    if (activesession_get_current_v1_response_m_payload->e_activesession_sessiontype) {
-        field_e_activesession_sessiontype_free(activesession_get_current_v1_response_m_payload->e_activesession_sessiontype);
-        activesession_get_current_v1_response_m_payload->e_activesession_sessiontype = NULL;
+    if (activesession_get_current_v1_response_m_payload->e_activesession_usertype) {
+        field_e_activesession_usertype_free(activesession_get_current_v1_response_m_payload->e_activesession_usertype);
+        activesession_get_current_v1_response_m_payload->e_activesession_usertype = NULL;
     }
     if (activesession_get_current_v1_response_m_payload->e_activesession_weekdaystart) {
         field_e_activesession_weekdaystart_free(activesession_get_current_v1_response_m_payload->e_activesession_weekdaystart);
@@ -131,20 +131,24 @@ void activesession_get_current_v1_response_m_payload_free(activesession_get_curr
 cJSON *activesession_get_current_v1_response_m_payload_convertToJSON(activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_response_m_payload) {
     cJSON *item = cJSON_CreateObject();
 
-    // activesession_get_current_v1_response_m_payload->e_activesession_sessiontype
-    
-    cJSON *e_activesession_sessiontype_local_JSON = field_e_activesession_sessiontype_convertToJSON(activesession_get_current_v1_response_m_payload->e_activesession_sessiontype);
-    if(e_activesession_sessiontype_local_JSON == NULL) {
+    // activesession_get_current_v1_response_m_payload->e_activesession_usertype
+    if (ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__NULL == activesession_get_current_v1_response_m_payload->e_activesession_usertype) {
+        goto fail;
+    }
+    cJSON *e_activesession_usertype_local_JSON = field_e_activesession_usertype_convertToJSON(activesession_get_current_v1_response_m_payload->e_activesession_usertype);
+    if(e_activesession_usertype_local_JSON == NULL) {
         goto fail; // custom
     }
-    cJSON_AddItemToObject(item, "eActivesessionSessiontype", e_activesession_sessiontype_local_JSON);
+    cJSON_AddItemToObject(item, "eActivesessionUsertype", e_activesession_usertype_local_JSON);
     if(item->child == NULL) {
         goto fail;
     }
 
 
     // activesession_get_current_v1_response_m_payload->e_activesession_weekdaystart
-    
+    if (ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__NULL == activesession_get_current_v1_response_m_payload->e_activesession_weekdaystart) {
+        goto fail;
+    }
     cJSON *e_activesession_weekdaystart_local_JSON = field_e_activesession_weekdaystart_convertToJSON(activesession_get_current_v1_response_m_payload->e_activesession_weekdaystart);
     if(e_activesession_weekdaystart_local_JSON == NULL) {
         goto fail; // custom
@@ -159,7 +163,6 @@ cJSON *activesession_get_current_v1_response_m_payload_convertToJSON(activesessi
     if (!activesession_get_current_v1_response_m_payload->fki_language_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiLanguageID", activesession_get_current_v1_response_m_payload->fki_language_id) == NULL) {
     goto fail; //Numeric
     }
@@ -169,7 +172,6 @@ cJSON *activesession_get_current_v1_response_m_payload_convertToJSON(activesessi
     if (!activesession_get_current_v1_response_m_payload->s_company_name_x) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sCompanyNameX", activesession_get_current_v1_response_m_payload->s_company_name_x) == NULL) {
     goto fail; //String
     }
@@ -179,7 +181,6 @@ cJSON *activesession_get_current_v1_response_m_payload_convertToJSON(activesessi
     if (!activesession_get_current_v1_response_m_payload->s_department_name_x) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sDepartmentNameX", activesession_get_current_v1_response_m_payload->s_department_name_x) == NULL) {
     goto fail; //String
     }
@@ -189,7 +190,6 @@ cJSON *activesession_get_current_v1_response_m_payload_convertToJSON(activesessi
     if (!activesession_get_current_v1_response_m_payload->b_activesession_debug) {
         goto fail;
     }
-    
     if(cJSON_AddBoolToObject(item, "bActivesessionDebug", activesession_get_current_v1_response_m_payload->b_activesession_debug) == NULL) {
     goto fail; //Bool
     }
@@ -199,7 +199,6 @@ cJSON *activesession_get_current_v1_response_m_payload_convertToJSON(activesessi
     if (!activesession_get_current_v1_response_m_payload->pks_customer_code) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "pksCustomerCode", activesession_get_current_v1_response_m_payload->pks_customer_code) == NULL) {
     goto fail; //String
     }
@@ -209,7 +208,6 @@ cJSON *activesession_get_current_v1_response_m_payload_convertToJSON(activesessi
     if (!activesession_get_current_v1_response_m_payload->a_pki_permission_id) {
         goto fail;
     }
-    
     cJSON *a_pki_permission_id = cJSON_AddArrayToObject(item, "a_pkiPermissionID");
     if(a_pki_permission_id == NULL) {
         goto fail; //primitive container
@@ -228,7 +226,6 @@ cJSON *activesession_get_current_v1_response_m_payload_convertToJSON(activesessi
     if (!activesession_get_current_v1_response_m_payload->obj_user_real) {
         goto fail;
     }
-    
     cJSON *obj_user_real_local_JSON = activesession_response_compound_user_convertToJSON(activesession_get_current_v1_response_m_payload->obj_user_real);
     if(obj_user_real_local_JSON == NULL) {
     goto fail; //model
@@ -240,7 +237,7 @@ cJSON *activesession_get_current_v1_response_m_payload_convertToJSON(activesessi
 
 
     // activesession_get_current_v1_response_m_payload->obj_user_cloned
-    if(activesession_get_current_v1_response_m_payload->obj_user_cloned) { 
+    if(activesession_get_current_v1_response_m_payload->obj_user_cloned) {
     cJSON *obj_user_cloned_local_JSON = activesession_response_compound_user_convertToJSON(activesession_get_current_v1_response_m_payload->obj_user_cloned);
     if(obj_user_cloned_local_JSON == NULL) {
     goto fail; //model
@@ -249,11 +246,11 @@ cJSON *activesession_get_current_v1_response_m_payload_convertToJSON(activesessi
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // activesession_get_current_v1_response_m_payload->obj_apikey
-    if(activesession_get_current_v1_response_m_payload->obj_apikey) { 
+    if(activesession_get_current_v1_response_m_payload->obj_apikey) {
     cJSON *obj_apikey_local_JSON = activesession_response_compound_apikey_convertToJSON(activesession_get_current_v1_response_m_payload->obj_apikey);
     if(obj_apikey_local_JSON == NULL) {
     goto fail; //model
@@ -262,14 +259,13 @@ cJSON *activesession_get_current_v1_response_m_payload_convertToJSON(activesessi
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // activesession_get_current_v1_response_m_payload->a_e_module_internalname
     if (!activesession_get_current_v1_response_m_payload->a_e_module_internalname) {
         goto fail;
     }
-    
     cJSON *a_e_module_internalname = cJSON_AddArrayToObject(item, "a_eModuleInternalname");
     if(a_e_module_internalname == NULL) {
         goto fail; //primitive container
@@ -295,11 +291,14 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
 
     activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_response_m_payload_local_var = NULL;
 
-    // define the local variable for activesession_get_current_v1_response_m_payload->e_activesession_sessiontype
-    field_e_activesession_sessiontype_t *e_activesession_sessiontype_local_nonprim = NULL;
+    // define the local variable for activesession_get_current_v1_response_m_payload->e_activesession_usertype
+    field_e_activesession_usertype_t *e_activesession_usertype_local_nonprim = NULL;
 
     // define the local variable for activesession_get_current_v1_response_m_payload->e_activesession_weekdaystart
     field_e_activesession_weekdaystart_t *e_activesession_weekdaystart_local_nonprim = NULL;
+
+    // define the local list for activesession_get_current_v1_response_m_payload->a_pki_permission_id
+    list_t *a_pki_permission_idList = NULL;
 
     // define the local variable for activesession_get_current_v1_response_m_payload->obj_user_real
     activesession_response_compound_user_t *obj_user_real_local_nonprim = NULL;
@@ -310,14 +309,17 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
     // define the local variable for activesession_get_current_v1_response_m_payload->obj_apikey
     activesession_response_compound_apikey_t *obj_apikey_local_nonprim = NULL;
 
-    // activesession_get_current_v1_response_m_payload->e_activesession_sessiontype
-    cJSON *e_activesession_sessiontype = cJSON_GetObjectItemCaseSensitive(activesession_get_current_v1_response_m_payloadJSON, "eActivesessionSessiontype");
-    if (!e_activesession_sessiontype) {
+    // define the local list for activesession_get_current_v1_response_m_payload->a_e_module_internalname
+    list_t *a_e_module_internalnameList = NULL;
+
+    // activesession_get_current_v1_response_m_payload->e_activesession_usertype
+    cJSON *e_activesession_usertype = cJSON_GetObjectItemCaseSensitive(activesession_get_current_v1_response_m_payloadJSON, "eActivesessionUsertype");
+    if (!e_activesession_usertype) {
         goto end;
     }
 
     
-    e_activesession_sessiontype_local_nonprim = field_e_activesession_sessiontype_parseFromJSON(e_activesession_sessiontype); //custom
+    e_activesession_usertype_local_nonprim = field_e_activesession_usertype_parseFromJSON(e_activesession_usertype); //custom
 
     // activesession_get_current_v1_response_m_payload->e_activesession_weekdaystart
     cJSON *e_activesession_weekdaystart = cJSON_GetObjectItemCaseSensitive(activesession_get_current_v1_response_m_payloadJSON, "eActivesessionWeekdaystart");
@@ -394,9 +396,8 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
         goto end;
     }
 
-    list_t *a_pki_permission_idList;
     
-    cJSON *a_pki_permission_id_local;
+    cJSON *a_pki_permission_id_local = NULL;
     if(!cJSON_IsArray(a_pki_permission_id)) {
         goto end;//primitive container
     }
@@ -444,9 +445,8 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
         goto end;
     }
 
-    list_t *a_e_module_internalnameList;
     
-    cJSON *a_e_module_internalname_local;
+    cJSON *a_e_module_internalname_local = NULL;
     if(!cJSON_IsArray(a_e_module_internalname)) {
         goto end;//primitive container
     }
@@ -463,7 +463,7 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
 
 
     activesession_get_current_v1_response_m_payload_local_var = activesession_get_current_v1_response_m_payload_create (
-        e_activesession_sessiontype_local_nonprim,
+        e_activesession_usertype_local_nonprim,
         e_activesession_weekdaystart_local_nonprim,
         fki_language_id->valuedouble,
         strdup(s_company_name_x->valuestring),
@@ -479,13 +479,22 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
 
     return activesession_get_current_v1_response_m_payload_local_var;
 end:
-    if (e_activesession_sessiontype_local_nonprim) {
-        field_e_activesession_sessiontype_free(e_activesession_sessiontype_local_nonprim);
-        e_activesession_sessiontype_local_nonprim = NULL;
+    if (e_activesession_usertype_local_nonprim) {
+        field_e_activesession_usertype_free(e_activesession_usertype_local_nonprim);
+        e_activesession_usertype_local_nonprim = NULL;
     }
     if (e_activesession_weekdaystart_local_nonprim) {
         field_e_activesession_weekdaystart_free(e_activesession_weekdaystart_local_nonprim);
         e_activesession_weekdaystart_local_nonprim = NULL;
+    }
+    if (a_pki_permission_idList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_pki_permission_idList) {
+            free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_pki_permission_idList);
+        a_pki_permission_idList = NULL;
     }
     if (obj_user_real_local_nonprim) {
         activesession_response_compound_user_free(obj_user_real_local_nonprim);
@@ -498,6 +507,15 @@ end:
     if (obj_apikey_local_nonprim) {
         activesession_response_compound_apikey_free(obj_apikey_local_nonprim);
         obj_apikey_local_nonprim = NULL;
+    }
+    if (a_e_module_internalnameList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_e_module_internalnameList) {
+            free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_e_module_internalnameList);
+        a_e_module_internalnameList = NULL;
     }
     return NULL;
 

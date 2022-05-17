@@ -1,7 +1,7 @@
 /*
  * ezsigndocument_patch_object_v1_response.h
  *
- * Response for the /1/object/ezsigndocument/patchObject API Request
+ * Response for PATCH /1/object/ezsigndocument/{pkiEzsigndocumentID}
  */
 
 #ifndef _ezsigndocument_patch_object_v1_response_H_

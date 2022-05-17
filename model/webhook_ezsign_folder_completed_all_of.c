@@ -37,7 +37,6 @@ cJSON *webhook_ezsign_folder_completed_all_of_convertToJSON(webhook_ezsign_folde
     if (!webhook_ezsign_folder_completed_all_of->obj_ezsignfolder) {
         goto fail;
     }
-    
     cJSON *obj_ezsignfolder_local_JSON = ezsignfolder_response_convertToJSON(webhook_ezsign_folder_completed_all_of->obj_ezsignfolder);
     if(obj_ezsignfolder_local_JSON == NULL) {
     goto fail; //model

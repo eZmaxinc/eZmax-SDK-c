@@ -22,23 +22,27 @@ webhook_response_t* instantiate_webhook_response(int include_optional) {
   webhook_response_t* webhook_response = NULL;
   if (include_optional) {
     webhook_response = webhook_response_create(
-      56,
-      ezmax_api_definition_webhook_response_EWEBHOOKMODULE_Ezsign,
-      ezmax_api_definition_webhook_response_EWEBHOOKEZSIGNEVENT_DocumentCompleted,
       "demo",
+      56,
+      ezmax_api_definition__full_webhook_response_EWEBHOOKMODULE_Ezsign,
+      ezmax_api_definition__full_webhook_response_EWEBHOOKEZSIGNEVENT_DocumentCompleted,
+      ezmax_api_definition__full_webhook_response_EWEBHOOKMANAGEMENTEVENT_UserCreated,
       "0",
-      "0",
-      ezmax_api_definition_webhook_response_EWEBHOOKMANAGEMENTEVENT_UserCreated
+      1,
+      1,
+      "0"
     );
   } else {
     webhook_response = webhook_response_create(
-      56,
-      ezmax_api_definition_webhook_response_EWEBHOOKMODULE_Ezsign,
-      ezmax_api_definition_webhook_response_EWEBHOOKEZSIGNEVENT_DocumentCompleted,
       "demo",
+      56,
+      ezmax_api_definition__full_webhook_response_EWEBHOOKMODULE_Ezsign,
+      ezmax_api_definition__full_webhook_response_EWEBHOOKEZSIGNEVENT_DocumentCompleted,
+      ezmax_api_definition__full_webhook_response_EWEBHOOKMANAGEMENTEVENT_UserCreated,
       "0",
-      "0",
-      ezmax_api_definition_webhook_response_EWEBHOOKMANAGEMENTEVENT_UserCreated
+      1,
+      1,
+      "0"
     );
   }
 

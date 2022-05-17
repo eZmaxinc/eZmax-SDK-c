@@ -54,9 +54,10 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupCreateObjectV1(apiClient_t *ap
                     localVarBodyParameters,
                     "POST");
 
-    if (apiClient->response_code == 201) {
-        printf("%s\n","Successful response");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 201) {
+    //    printf("%s\n","Successful response");
+    //}
     //nonprimitive not container
     cJSON *ObjectEzsignformfieldgroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     ezsignformfieldgroup_create_object_v1_response_t *elementToReturn = ezsignformfieldgroup_create_object_v1_response_parseFromJSON(ObjectEzsignformfieldgroupAPIlocalVarJSON);
@@ -135,15 +136,18 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupDeleteObjectV1(apiClient_t *ap
                     localVarBodyParameters,
                     "DELETE");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successful response");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
-    }
-    if (apiClient->response_code == 422) {
-        printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The element you are trying to work on does not exist");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //}
     //nonprimitive not container
     cJSON *ObjectEzsignformfieldgroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     ezsignformfieldgroup_delete_object_v1_response_t *elementToReturn = ezsignformfieldgroup_delete_object_v1_response_parseFromJSON(ObjectEzsignformfieldgroupAPIlocalVarJSON);
@@ -228,15 +232,18 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupEditObjectV1(apiClient_t *apiC
                     localVarBodyParameters,
                     "PUT");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successful response");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
-    }
-    if (apiClient->response_code == 422) {
-        printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The element you are trying to work on does not exist");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //}
     //nonprimitive not container
     cJSON *ObjectEzsignformfieldgroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     ezsignformfieldgroup_edit_object_v1_response_t *elementToReturn = ezsignformfieldgroup_edit_object_v1_response_parseFromJSON(ObjectEzsignformfieldgroupAPIlocalVarJSON);
@@ -314,12 +321,14 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupGetObjectV1(apiClient_t *apiCl
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successful response");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The element you are trying to work on does not exist");
+    //}
     //nonprimitive not container
     cJSON *ObjectEzsignformfieldgroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     ezsignformfieldgroup_get_object_v1_response_t *elementToReturn = ezsignformfieldgroup_get_object_v1_response_parseFromJSON(ObjectEzsignformfieldgroupAPIlocalVarJSON);

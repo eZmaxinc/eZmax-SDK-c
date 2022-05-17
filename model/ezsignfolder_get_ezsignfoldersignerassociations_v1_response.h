@@ -1,7 +1,7 @@
 /*
  * ezsignfolder_get_ezsignfoldersignerassociations_v1_response.h
  *
- * Response for the /1/object/ezsignfolder/{pkiEzsignfolder}/getEzsignfoldersignerassociations API Request
+ * Response for GET /1/object/ezsignfolder/{pkiEzsignfolder}/getEzsignfoldersignerassociations
  */
 
 #ifndef _ezsignfolder_get_ezsignfoldersignerassociations_v1_response_H_

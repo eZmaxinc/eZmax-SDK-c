@@ -46,29 +46,28 @@ cJSON *common_response_error_s_temporary_file_url_convertToJSON(common_response_
     cJSON *item = cJSON_CreateObject();
 
     // common_response_error_s_temporary_file_url->s_temporary_file_url
-    if(common_response_error_s_temporary_file_url->s_temporary_file_url) { 
+    if(common_response_error_s_temporary_file_url->s_temporary_file_url) {
     if(cJSON_AddStringToObject(item, "sTemporaryFileUrl", common_response_error_s_temporary_file_url->s_temporary_file_url) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
 
     // common_response_error_s_temporary_file_url->s_error_message
     if (!common_response_error_s_temporary_file_url->s_error_message) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sErrorMessage", common_response_error_s_temporary_file_url->s_error_message) == NULL) {
     goto fail; //String
     }
 
 
     // common_response_error_s_temporary_file_url->e_error_code
-    if(common_response_error_s_temporary_file_url->e_error_code) { 
+    if(common_response_error_s_temporary_file_url->e_error_code) {
     if(cJSON_AddStringToObject(item, "eErrorCode", common_response_error_s_temporary_file_url->e_error_code) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

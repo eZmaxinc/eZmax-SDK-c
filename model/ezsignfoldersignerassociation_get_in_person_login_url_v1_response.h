@@ -1,7 +1,7 @@
 /*
  * ezsignfoldersignerassociation_get_in_person_login_url_v1_response.h
  *
- * Response for the /1/object/ezsignfoldersignerassociation/getInPersonLoginUrl API Request
+ * Response for GET /1/object/ezsignfoldersignerassociation/getInPersonLoginUrl
  */
 
 #ifndef _ezsignfoldersignerassociation_get_in_person_login_url_v1_response_H_

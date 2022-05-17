@@ -25,7 +25,7 @@ user_response_t* instantiate_user_response(int include_optional) {
     user_response = user_response_create(
       70,
       2,
-      ezmax_api_definition_user_response__"RewardDistributorServer",
+      ezmax_api_definition__full_user_response__"RewardDistributorServer",
       "John",
       "Doe",
       "JohnDoe",
@@ -36,7 +36,7 @@ user_response_t* instantiate_user_response(int include_optional) {
     user_response = user_response_create(
       70,
       2,
-      ezmax_api_definition_user_response__"RewardDistributorServer",
+      ezmax_api_definition__full_user_response__"RewardDistributorServer",
       "John",
       "Doe",
       "JohnDoe",

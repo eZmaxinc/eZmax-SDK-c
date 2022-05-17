@@ -4,12 +4,12 @@
 #include "ezsignfoldertype_list_element.h"
 
 
-char* e_ezsignfoldertype_privacylevelezsignfoldertype_list_element_ToString(ezmax_api_definition_ezsignfoldertype_list_element__e e_ezsignfoldertype_privacylevel) {
+char* e_ezsignfoldertype_privacylevelezsignfoldertype_list_element_ToString(ezmax_api_definition__full_ezsignfoldertype_list_element__e e_ezsignfoldertype_privacylevel) {
     char* e_ezsignfoldertype_privacylevelArray[] =  { "NULL", "User", "Usergroup" };
 	return e_ezsignfoldertype_privacylevelArray[e_ezsignfoldertype_privacylevel];
 }
 
-ezmax_api_definition_ezsignfoldertype_list_element__e e_ezsignfoldertype_privacylevelezsignfoldertype_list_element_FromString(char* e_ezsignfoldertype_privacylevel){
+ezmax_api_definition__full_ezsignfoldertype_list_element__e e_ezsignfoldertype_privacylevelezsignfoldertype_list_element_FromString(char* e_ezsignfoldertype_privacylevel){
     int stringToReturn = 0;
     char *e_ezsignfoldertype_privacylevelArray[] =  { "NULL", "User", "Usergroup" };
     size_t sizeofArray = sizeof(e_ezsignfoldertype_privacylevelArray) / sizeof(e_ezsignfoldertype_privacylevelArray[0]);
@@ -64,14 +64,15 @@ cJSON *ezsignfoldertype_list_element_convertToJSON(ezsignfoldertype_list_element
     if (!ezsignfoldertype_list_element->pki_ezsignfoldertype_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "pkiEzsignfoldertypeID", ezsignfoldertype_list_element->pki_ezsignfoldertype_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // ezsignfoldertype_list_element->e_ezsignfoldertype_privacylevel
-    
+    if (ezmax_api_definition__full_ezsignfoldertype_list_element__NULL == ezsignfoldertype_list_element->e_ezsignfoldertype_privacylevel) {
+        goto fail;
+    }
     cJSON *e_ezsignfoldertype_privacylevel_local_JSON = field_e_ezsignfoldertype_privacylevel_convertToJSON(ezsignfoldertype_list_element->e_ezsignfoldertype_privacylevel);
     if(e_ezsignfoldertype_privacylevel_local_JSON == NULL) {
         goto fail; // custom
@@ -86,7 +87,6 @@ cJSON *ezsignfoldertype_list_element_convertToJSON(ezsignfoldertype_list_element
     if (!ezsignfoldertype_list_element->s_ezsignfoldertype_name_x) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sEzsignfoldertypeNameX", ezsignfoldertype_list_element->s_ezsignfoldertype_name_x) == NULL) {
     goto fail; //String
     }
@@ -96,7 +96,6 @@ cJSON *ezsignfoldertype_list_element_convertToJSON(ezsignfoldertype_list_element
     if (!ezsignfoldertype_list_element->b_ezsignfoldertype_isactive) {
         goto fail;
     }
-    
     if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeIsactive", ezsignfoldertype_list_element->b_ezsignfoldertype_isactive) == NULL) {
     goto fail; //Bool
     }

@@ -37,7 +37,6 @@ cJSON *webhook_ezsign_document_completed_all_of_convertToJSON(webhook_ezsign_doc
     if (!webhook_ezsign_document_completed_all_of->obj_ezsigndocument) {
         goto fail;
     }
-    
     cJSON *obj_ezsigndocument_local_JSON = ezsigndocument_response_convertToJSON(webhook_ezsign_document_completed_all_of->obj_ezsigndocument);
     if(obj_ezsigndocument_local_JSON == NULL) {
     goto fail; //model

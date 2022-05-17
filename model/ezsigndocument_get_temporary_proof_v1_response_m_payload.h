@@ -1,7 +1,7 @@
 /*
  * ezsigndocument_get_temporary_proof_v1_response_m_payload.h
  *
- * Payload for the /1/object/ezsigndocument/{pkiEzsigndocumentID}/getTemporaryProof API Request
+ * Payload for GET /1/object/ezsigndocument/{pkiEzsigndocumentID}/getTemporaryProof
  */
 
 #ifndef _ezsigndocument_get_temporary_proof_v1_response_m_payload_H_
@@ -20,12 +20,12 @@ typedef struct ezsigndocument_get_temporary_proof_v1_response_m_payload_t ezsign
 
 
 typedef struct ezsigndocument_get_temporary_proof_v1_response_m_payload_t {
-    struct ezsigndocumentlog_response_compound_t *a_obj_ezsigndocumentlog; //model
+    list_t *a_obj_ezsigndocumentlog; //nonprimitive container
 
 } ezsigndocument_get_temporary_proof_v1_response_m_payload_t;
 
 ezsigndocument_get_temporary_proof_v1_response_m_payload_t *ezsigndocument_get_temporary_proof_v1_response_m_payload_create(
-    ezsigndocumentlog_response_compound_t *a_obj_ezsigndocumentlog
+    list_t *a_obj_ezsigndocumentlog
 );
 
 void ezsigndocument_get_temporary_proof_v1_response_m_payload_free(ezsigndocument_get_temporary_proof_v1_response_m_payload_t *ezsigndocument_get_temporary_proof_v1_response_m_payload);

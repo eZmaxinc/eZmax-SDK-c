@@ -40,7 +40,6 @@ cJSON *ezsignsignature_create_object_v2_response_m_payload_convertToJSON(ezsigns
     if (!ezsignsignature_create_object_v2_response_m_payload->a_pki_ezsignsignature_id) {
         goto fail;
     }
-    
     cJSON *a_pki_ezsignsignature_id = cJSON_AddArrayToObject(item, "a_pkiEzsignsignatureID");
     if(a_pki_ezsignsignature_id == NULL) {
         goto fail; //primitive container
@@ -66,15 +65,17 @@ ezsignsignature_create_object_v2_response_m_payload_t *ezsignsignature_create_ob
 
     ezsignsignature_create_object_v2_response_m_payload_t *ezsignsignature_create_object_v2_response_m_payload_local_var = NULL;
 
+    // define the local list for ezsignsignature_create_object_v2_response_m_payload->a_pki_ezsignsignature_id
+    list_t *a_pki_ezsignsignature_idList = NULL;
+
     // ezsignsignature_create_object_v2_response_m_payload->a_pki_ezsignsignature_id
     cJSON *a_pki_ezsignsignature_id = cJSON_GetObjectItemCaseSensitive(ezsignsignature_create_object_v2_response_m_payloadJSON, "a_pkiEzsignsignatureID");
     if (!a_pki_ezsignsignature_id) {
         goto end;
     }
 
-    list_t *a_pki_ezsignsignature_idList;
     
-    cJSON *a_pki_ezsignsignature_id_local;
+    cJSON *a_pki_ezsignsignature_id_local = NULL;
     if(!cJSON_IsArray(a_pki_ezsignsignature_id)) {
         goto end;//primitive container
     }
@@ -102,6 +103,15 @@ ezsignsignature_create_object_v2_response_m_payload_t *ezsignsignature_create_ob
 
     return ezsignsignature_create_object_v2_response_m_payload_local_var;
 end:
+    if (a_pki_ezsignsignature_idList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_pki_ezsignsignature_idList) {
+            free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_pki_ezsignsignature_idList);
+        a_pki_ezsignsignature_idList = NULL;
+    }
     return NULL;
 
 }

@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **s_ezsignfolder_description** | **char \*** | The description of the Ezsignfolder | 
 **e_ezsignfolder_step** | **field_e_ezsignfolder_step_t \*** |  | 
 **dt_created_date** | **char \*** | The date and time at which the object was created | 
-**dt_ezsignfolder_sentdate** | **char \*** | The date and time at which the Ezsign folder was sent the last time. | 
-**dt_due_date** | **char \*** | Represent a Date Time. The timezone is the one configured in the User&#39;s profile. | 
+**dt_ezsignfolder_sentdate** | **char \*** | The date and time at which the Ezsign folder was sent the last time. | [optional] 
+**dt_ezsignfolder_duedate** | **char \*** | The maximum date and time at which the Ezsignfolder can be signed. | [optional] 
 **i_ezsigndocument** | **int** | The total number of Ezsigndocument in the folder | 
 **i_ezsigndocument_edm** | **int** | The total number of Ezsigndocument in the folder that were saved in the edm system | 
 **i_ezsignsignature** | **int** | The total number of signature blocks in all Ezsigndocuments in the folder | 

@@ -49,7 +49,6 @@ cJSON *apikey_create_object_v2_response_convertToJSON(apikey_create_object_v2_re
     if (!apikey_create_object_v2_response->m_payload) {
         goto fail;
     }
-    
     cJSON *m_payload_local_JSON = apikey_create_object_v2_response_m_payload_convertToJSON(apikey_create_object_v2_response->m_payload);
     if(m_payload_local_JSON == NULL) {
     goto fail; //model
@@ -61,7 +60,7 @@ cJSON *apikey_create_object_v2_response_convertToJSON(apikey_create_object_v2_re
 
 
     // apikey_create_object_v2_response->obj_debug_payload
-    if(apikey_create_object_v2_response->obj_debug_payload) { 
+    if(apikey_create_object_v2_response->obj_debug_payload) {
     cJSON *obj_debug_payload_local_JSON = common_response_obj_debug_payload_convertToJSON(apikey_create_object_v2_response->obj_debug_payload);
     if(obj_debug_payload_local_JSON == NULL) {
     goto fail; //model
@@ -70,11 +69,11 @@ cJSON *apikey_create_object_v2_response_convertToJSON(apikey_create_object_v2_re
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // apikey_create_object_v2_response->obj_debug
-    if(apikey_create_object_v2_response->obj_debug) { 
+    if(apikey_create_object_v2_response->obj_debug) {
     cJSON *obj_debug_local_JSON = common_response_obj_debug_convertToJSON(apikey_create_object_v2_response->obj_debug);
     if(obj_debug_local_JSON == NULL) {
     goto fail; //model
@@ -83,7 +82,7 @@ cJSON *apikey_create_object_v2_response_convertToJSON(apikey_create_object_v2_re
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:

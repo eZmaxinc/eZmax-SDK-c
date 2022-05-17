@@ -13,12 +13,12 @@
 
 // Functions for enum SSELECTOR for ObjectPeriodAPI_periodGetAutocompleteV1
 
-static char* periodGetAutocompleteV1_SSELECTOR_ToString(ezmax_api_definition_periodGetAutocompleteV1_sSelector_e SSELECTOR){
+static char* periodGetAutocompleteV1_SSELECTOR_ToString(ezmax_api_definition__full_periodGetAutocompleteV1_sSelector_e SSELECTOR){
     char *SSELECTORArray[] =  { "NULL", "ActiveNormal", "ActiveNormalAndEndOfYear", "AllNormal", "AllNormalAndEndOfYear" };
     return SSELECTORArray[SSELECTOR];
 }
 
-static ezmax_api_definition_periodGetAutocompleteV1_sSelector_e periodGetAutocompleteV1_SSELECTOR_FromString(char* SSELECTOR){
+static ezmax_api_definition__full_periodGetAutocompleteV1_sSelector_e periodGetAutocompleteV1_SSELECTOR_FromString(char* SSELECTOR){
     int stringToReturn = 0;
     char *SSELECTORArray[] =  { "NULL", "ActiveNormal", "ActiveNormalAndEndOfYear", "AllNormal", "AllNormalAndEndOfYear" };
     size_t sizeofArray = sizeof(SSELECTORArray) / sizeof(SSELECTORArray[0]);
@@ -35,7 +35,7 @@ static ezmax_api_definition_periodGetAutocompleteV1_sSelector_e periodGetAutocom
 // Function periodGetAutocompleteV1_SSELECTOR_convertToJSON is not currently used,
 // since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
 //
-static cJSON *periodGetAutocompleteV1_SSELECTOR_convertToJSON(ezmax_api_definition_periodGetAutocompleteV1_sSelector_e SSELECTOR) {
+static cJSON *periodGetAutocompleteV1_SSELECTOR_convertToJSON(ezmax_api_definition__full_periodGetAutocompleteV1_sSelector_e SSELECTOR) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "sSelector", periodGetAutocompleteV1_SSELECTOR_ToString(SSELECTOR)) == NULL) {
         goto fail;
@@ -49,8 +49,8 @@ static cJSON *periodGetAutocompleteV1_SSELECTOR_convertToJSON(ezmax_api_definiti
 // Function periodGetAutocompleteV1_SSELECTOR_parseFromJSON is not currently used,
 // since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
 //
-static ezmax_api_definition_periodGetAutocompleteV1_sSelector_e periodGetAutocompleteV1_SSELECTOR_parseFromJSON(cJSON* SSELECTORJSON) {
-    ezmax_api_definition_periodGetAutocompleteV1_sSelector_e SSELECTORVariable = 0;
+static ezmax_api_definition__full_periodGetAutocompleteV1_sSelector_e periodGetAutocompleteV1_SSELECTOR_parseFromJSON(cJSON* SSELECTORJSON) {
+    ezmax_api_definition__full_periodGetAutocompleteV1_sSelector_e SSELECTORVariable = 0;
     cJSON *SSELECTORVar = cJSON_GetObjectItemCaseSensitive(SSELECTORJSON, "sSelector");
     if(!cJSON_IsString(SSELECTORVar) || (SSELECTORVar->valuestring == NULL))
     {
@@ -63,16 +63,59 @@ end:
 }
 */
 
+// Functions for enum  for ObjectPeriodAPI_periodGetAutocompleteV1
+
+static char* periodGetAutocompleteV1__ToString(ezmax_api_definition__full_periodGetAutocompleteV1_Accept-Language_e ){
+    char *Array[] =  { "NULL", "*", "en", "fr" };
+    return Array[];
+}
+
+static ezmax_api_definition__full_periodGetAutocompleteV1_Accept-Language_e periodGetAutocompleteV1__FromString(char* ){
+    int stringToReturn = 0;
+    char *Array[] =  { "NULL", "*", "en", "fr" };
+    size_t sizeofArray = sizeof(Array) / sizeof(Array[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(, Array[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
+
+/*
+// Function periodGetAutocompleteV1__convertToJSON is not currently used,
+// since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
+//
+static cJSON *periodGetAutocompleteV1__convertToJSON(ezmax_api_definition__full_periodGetAutocompleteV1_Accept-Language_e ) {
+    cJSON *item = cJSON_CreateObject();
+    return item;
+    fail:
+    cJSON_Delete(item);
+    return NULL;
+}
+
+// Function periodGetAutocompleteV1__parseFromJSON is not currently used,
+// since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
+//
+static ezmax_api_definition__full_periodGetAutocompleteV1_Accept-Language_e periodGetAutocompleteV1__parseFromJSON(cJSON* JSON) {
+    ezmax_api_definition__full_periodGetAutocompleteV1_Accept-Language_e Variable = 0;
+    return Variable;
+end:
+    return 0;
+}
+*/
+
 
 // Retrieve Periods and IDs
 //
 // Get the list of Periods to be used in a dropdown or autocomplete control.
 //
 common_get_autocomplete_v1_response_t*
-ObjectPeriodAPI_periodGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition_periodGetAutocompleteV1_sSelector_e sSelector , char * sQuery )
+ObjectPeriodAPI_periodGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_periodGetAutocompleteV1_sSelector_e sSelector , char * sQuery , header_accept_language_e Accept_Language )
 {
     list_t    *localVarQueryParameters = list_createList();
-    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarHeaderParameters = list_createList();
     list_t    *localVarFormParameters = NULL;
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
@@ -94,6 +137,18 @@ ObjectPeriodAPI_periodGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_defini
 
     localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, sSelector);
 
+
+
+    // header parameters
+    char *keyHeader_Accept_Language = NULL;
+    header_accept_language_e valueHeader_Accept_Language = 0;
+    keyValuePair_t *keyPairHeader_Accept_Language = 0;
+    if (Accept_Language) {
+        keyHeader_Accept_Language = strdup("Accept-Language");
+        valueHeader_Accept_Language = (Accept_Language);
+        keyPairHeader_Accept_Language = keyValuePair_create(keyHeader_Accept_Language, (void *)&valueHeader_Accept_Language);
+        list_addElement(localVarHeaderParameters,keyPairHeader_Accept_Language);
+    }
 
 
     // query parameters
@@ -118,9 +173,10 @@ ObjectPeriodAPI_periodGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_defini
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successful response");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
     //nonprimitive not container
     cJSON *ObjectPeriodAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     common_get_autocomplete_v1_response_t *elementToReturn = common_get_autocomplete_v1_response_parseFromJSON(ObjectPeriodAPIlocalVarJSON);
@@ -136,12 +192,17 @@ ObjectPeriodAPI_periodGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_defini
         apiClient->dataReceivedLen = 0;
     }
     list_freeList(localVarQueryParameters);
-    
+    list_freeList(localVarHeaderParameters);
     
     list_freeList(localVarHeaderType);
     
     free(localVarPath);
     free(localVarToReplace_sSelector);
+    if (keyHeader_Accept_Language) {
+        free(keyHeader_Accept_Language);
+        keyHeader_Accept_Language = NULL;
+    }
+    free(keyPairHeader_Accept_Language);
     if(keyQuery_sQuery){
         free(keyQuery_sQuery);
         keyQuery_sQuery = NULL;

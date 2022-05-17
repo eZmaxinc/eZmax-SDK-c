@@ -56,25 +56,23 @@ cJSON *custom_form_data_signer_response_convertToJSON(custom_form_data_signer_re
     if (!custom_form_data_signer_response->fki_ezsignfoldersignerassociation_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiEzsignfoldersignerassociationID", custom_form_data_signer_response->fki_ezsignfoldersignerassociation_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // custom_form_data_signer_response->fki_user_id
-    if(custom_form_data_signer_response->fki_user_id) { 
+    if(custom_form_data_signer_response->fki_user_id) {
     if(cJSON_AddNumberToObject(item, "fkiUserID", custom_form_data_signer_response->fki_user_id) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // custom_form_data_signer_response->s_contact_firstname
     if (!custom_form_data_signer_response->s_contact_firstname) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sContactFirstname", custom_form_data_signer_response->s_contact_firstname) == NULL) {
     goto fail; //String
     }
@@ -84,7 +82,6 @@ cJSON *custom_form_data_signer_response_convertToJSON(custom_form_data_signer_re
     if (!custom_form_data_signer_response->s_contact_lastname) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sContactLastname", custom_form_data_signer_response->s_contact_lastname) == NULL) {
     goto fail; //String
     }
@@ -94,7 +91,6 @@ cJSON *custom_form_data_signer_response_convertToJSON(custom_form_data_signer_re
     if (!custom_form_data_signer_response->a_obj_ezsignformfieldgroup) {
         goto fail;
     }
-    
     cJSON *a_obj_ezsignformfieldgroup = cJSON_AddArrayToObject(item, "a_objEzsignformfieldgroup");
     if(a_obj_ezsignformfieldgroup == NULL) {
     goto fail; //nonprimitive container
@@ -122,6 +118,9 @@ fail:
 custom_form_data_signer_response_t *custom_form_data_signer_response_parseFromJSON(cJSON *custom_form_data_signer_responseJSON){
 
     custom_form_data_signer_response_t *custom_form_data_signer_response_local_var = NULL;
+
+    // define the local list for custom_form_data_signer_response->a_obj_ezsignformfieldgroup
+    list_t *a_obj_ezsignformfieldgroupList = NULL;
 
     // custom_form_data_signer_response->fki_ezsignfoldersignerassociation_id
     cJSON *fki_ezsignfoldersignerassociation_id = cJSON_GetObjectItemCaseSensitive(custom_form_data_signer_responseJSON, "fkiEzsignfoldersignerassociationID");
@@ -174,9 +173,8 @@ custom_form_data_signer_response_t *custom_form_data_signer_response_parseFromJS
         goto end;
     }
 
-    list_t *a_obj_ezsignformfieldgroupList;
     
-    cJSON *a_obj_ezsignformfieldgroup_local_nonprimitive;
+    cJSON *a_obj_ezsignformfieldgroup_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_ezsignformfieldgroup)){
         goto end; //nonprimitive container
     }
@@ -204,6 +202,15 @@ custom_form_data_signer_response_t *custom_form_data_signer_response_parseFromJS
 
     return custom_form_data_signer_response_local_var;
 end:
+    if (a_obj_ezsignformfieldgroupList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_ezsignformfieldgroupList) {
+            custom_form_data_ezsignformfieldgroup_response_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_ezsignformfieldgroupList);
+        a_obj_ezsignformfieldgroupList = NULL;
+    }
     return NULL;
 
 }

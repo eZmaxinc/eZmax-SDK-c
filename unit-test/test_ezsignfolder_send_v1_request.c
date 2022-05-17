@@ -22,11 +22,27 @@ ezsignfolder_send_v1_request_t* instantiate_ezsignfolder_send_v1_request(int inc
   ezsignfolder_send_v1_request_t* ezsignfolder_send_v1_request = NULL;
   if (include_optional) {
     ezsignfolder_send_v1_request = ezsignfolder_send_v1_request_create(
-      "0"
+      "Hi John,
+
+This is the document I need you to review.
+
+Could you sign it before monday please.
+
+Best Regards.
+
+Mary"
     );
   } else {
     ezsignfolder_send_v1_request = ezsignfolder_send_v1_request_create(
-      "0"
+      "Hi John,
+
+This is the document I need you to review.
+
+Could you sign it before monday please.
+
+Best Regards.
+
+Mary"
     );
   }
 

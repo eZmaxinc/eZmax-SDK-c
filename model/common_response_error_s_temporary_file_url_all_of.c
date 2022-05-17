@@ -34,11 +34,11 @@ cJSON *common_response_error_s_temporary_file_url_all_of_convertToJSON(common_re
     cJSON *item = cJSON_CreateObject();
 
     // common_response_error_s_temporary_file_url_all_of->s_temporary_file_url
-    if(common_response_error_s_temporary_file_url_all_of->s_temporary_file_url) { 
+    if(common_response_error_s_temporary_file_url_all_of->s_temporary_file_url) {
     if(cJSON_AddStringToObject(item, "sTemporaryFileUrl", common_response_error_s_temporary_file_url_all_of->s_temporary_file_url) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

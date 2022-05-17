@@ -23,11 +23,12 @@ ezsignfolder_create_object_v2_response_all_of_t* instantiate_ezsignfolder_create
   ezsignfolder_create_object_v2_response_all_of_t* ezsignfolder_create_object_v2_response_all_of = NULL;
   if (include_optional) {
     ezsignfolder_create_object_v2_response_all_of = ezsignfolder_create_object_v2_response_all_of_create(
-      {"a_pkiEzsignfolderID":[95,96]}
+       // false, not to have infinite recursion
+      instantiate_ezsignfolder_create_object_v2_response_m_payload(0)
     );
   } else {
     ezsignfolder_create_object_v2_response_all_of = ezsignfolder_create_object_v2_response_all_of_create(
-      {"a_pkiEzsignfolderID":[95,96]}
+      NULL
     );
   }
 

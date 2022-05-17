@@ -46,7 +46,6 @@ cJSON *common_webhook_convertToJSON(common_webhook_t *common_webhook) {
     if (!common_webhook->obj_webhook) {
         goto fail;
     }
-    
     cJSON *obj_webhook_local_JSON = webhook_response_convertToJSON(common_webhook->obj_webhook);
     if(obj_webhook_local_JSON == NULL) {
     goto fail; //model
@@ -61,7 +60,6 @@ cJSON *common_webhook_convertToJSON(common_webhook_t *common_webhook) {
     if (!common_webhook->a_obj_attempt) {
         goto fail;
     }
-    
     cJSON *a_obj_attempt = cJSON_AddArrayToObject(item, "a_objAttempt");
     if(a_obj_attempt == NULL) {
     goto fail; //nonprimitive container
@@ -93,6 +91,9 @@ common_webhook_t *common_webhook_parseFromJSON(cJSON *common_webhookJSON){
     // define the local variable for common_webhook->obj_webhook
     webhook_response_t *obj_webhook_local_nonprim = NULL;
 
+    // define the local list for common_webhook->a_obj_attempt
+    list_t *a_obj_attemptList = NULL;
+
     // common_webhook->obj_webhook
     cJSON *obj_webhook = cJSON_GetObjectItemCaseSensitive(common_webhookJSON, "objWebhook");
     if (!obj_webhook) {
@@ -108,9 +109,8 @@ common_webhook_t *common_webhook_parseFromJSON(cJSON *common_webhookJSON){
         goto end;
     }
 
-    list_t *a_obj_attemptList;
     
-    cJSON *a_obj_attempt_local_nonprimitive;
+    cJSON *a_obj_attempt_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_attempt)){
         goto end; //nonprimitive container
     }
@@ -138,6 +138,15 @@ end:
     if (obj_webhook_local_nonprim) {
         webhook_response_free(obj_webhook_local_nonprim);
         obj_webhook_local_nonprim = NULL;
+    }
+    if (a_obj_attemptList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_attemptList) {
+            attempt_response_compound_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_attemptList);
+        a_obj_attemptList = NULL;
     }
     return NULL;
 

@@ -43,7 +43,6 @@ cJSON *ezsignsignaturecustomdate_response_convertToJSON(ezsignsignaturecustomdat
     if (!ezsignsignaturecustomdate_response->pki_ezsignsignaturecustomdate_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "pkiEzsignsignaturecustomdateID", ezsignsignaturecustomdate_response->pki_ezsignsignaturecustomdate_id) == NULL) {
     goto fail; //Numeric
     }
@@ -53,7 +52,6 @@ cJSON *ezsignsignaturecustomdate_response_convertToJSON(ezsignsignaturecustomdat
     if (!ezsignsignaturecustomdate_response->i_ezsignsignaturecustomdate_x) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEzsignsignaturecustomdateX", ezsignsignaturecustomdate_response->i_ezsignsignaturecustomdate_x) == NULL) {
     goto fail; //Numeric
     }
@@ -63,7 +61,6 @@ cJSON *ezsignsignaturecustomdate_response_convertToJSON(ezsignsignaturecustomdat
     if (!ezsignsignaturecustomdate_response->i_ezsignsignaturecustomdate_y) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEzsignsignaturecustomdateY", ezsignsignaturecustomdate_response->i_ezsignsignaturecustomdate_y) == NULL) {
     goto fail; //Numeric
     }
@@ -73,7 +70,6 @@ cJSON *ezsignsignaturecustomdate_response_convertToJSON(ezsignsignaturecustomdat
     if (!ezsignsignaturecustomdate_response->s_ezsignsignaturecustomdate_format) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sEzsignsignaturecustomdateFormat", ezsignsignaturecustomdate_response->s_ezsignsignaturecustomdate_format) == NULL) {
     goto fail; //String
     }

@@ -23,6 +23,9 @@ typedef struct ezsignsigner_request_compound_contact_t {
     char *s_contact_lastname; // string
     int fki_language_id; //numeric
     char *s_email_address; // string
+    char *s_phone_e164; // string
+    char *s_phone_extension; // string
+    char *s_phone_e164_cell; // string
     char *s_phone_number; // string
     char *s_phone_number_cell; // string
 
@@ -33,6 +36,9 @@ ezsignsigner_request_compound_contact_t *ezsignsigner_request_compound_contact_c
     char *s_contact_lastname,
     int fki_language_id,
     char *s_email_address,
+    char *s_phone_e164,
+    char *s_phone_extension,
+    char *s_phone_e164_cell,
     char *s_phone_number,
     char *s_phone_number_cell
 );

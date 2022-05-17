@@ -1,7 +1,7 @@
 /*
  * ezsignfolder_send_v1_request.h
  *
- * Request for the /1/object/ezsignfolder/{pkiEzsignfolderID}/send API Request
+ * Request for POST /1/object/ezsignfolder/{pkiEzsignfolderID}/send
  */
 
 #ifndef _ezsignfolder_send_v1_request_H_

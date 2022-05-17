@@ -39,7 +39,6 @@ cJSON *contactinformations_request_convertToJSON(contactinformations_request_t *
     if (!contactinformations_request->i_address_default) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iAddressDefault", contactinformations_request->i_address_default) == NULL) {
     goto fail; //Numeric
     }
@@ -49,7 +48,6 @@ cJSON *contactinformations_request_convertToJSON(contactinformations_request_t *
     if (!contactinformations_request->i_phone_default) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iPhoneDefault", contactinformations_request->i_phone_default) == NULL) {
     goto fail; //Numeric
     }
@@ -59,7 +57,6 @@ cJSON *contactinformations_request_convertToJSON(contactinformations_request_t *
     if (!contactinformations_request->i_email_default) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEmailDefault", contactinformations_request->i_email_default) == NULL) {
     goto fail; //Numeric
     }
@@ -69,7 +66,6 @@ cJSON *contactinformations_request_convertToJSON(contactinformations_request_t *
     if (!contactinformations_request->i_website_default) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iWebsiteDefault", contactinformations_request->i_website_default) == NULL) {
     goto fail; //Numeric
     }

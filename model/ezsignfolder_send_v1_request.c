@@ -37,7 +37,6 @@ cJSON *ezsignfolder_send_v1_request_convertToJSON(ezsignfolder_send_v1_request_t
     if (!ezsignfolder_send_v1_request->t_extra_message) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "tExtraMessage", ezsignfolder_send_v1_request->t_extra_message) == NULL) {
     goto fail; //String
     }

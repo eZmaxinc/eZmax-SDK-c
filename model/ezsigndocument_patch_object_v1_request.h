@@ -1,7 +1,7 @@
 /*
  * ezsigndocument_patch_object_v1_request.h
  *
- * Request for the /1/object/ezsigndocument/pathObject API Request
+ * Request for PATCH /1/object/ezsigndocument/{pkiEzsigndocumentID}
  */
 
 #ifndef _ezsigndocument_patch_object_v1_request_H_

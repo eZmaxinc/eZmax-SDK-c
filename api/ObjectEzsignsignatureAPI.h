@@ -14,6 +14,8 @@
 #include "../model/ezsignsignature_edit_object_v1_request.h"
 #include "../model/ezsignsignature_edit_object_v1_response.h"
 #include "../model/ezsignsignature_get_object_v1_response.h"
+#include "../model/ezsignsignature_sign_v1_request.h"
+#include "../model/ezsignsignature_sign_v1_response.h"
 
 
 // Create a new Ezsignsignature
@@ -54,5 +56,13 @@ ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV1(apiClient_t *apiClient, int
 //
 ezsignsignature_get_object_v1_response_t*
 ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV1(apiClient_t *apiClient, int pkiEzsignsignatureID );
+
+
+// Sign the Ezsignsignature
+//
+// 
+//
+ezsignsignature_sign_v1_response_t*
+ObjectEzsignsignatureAPI_ezsignsignatureSignV1(apiClient_t *apiClient, int pkiEzsignsignatureID , ezsignsignature_sign_v1_request_t * ezsignsignature_sign_v1_request );
 
 

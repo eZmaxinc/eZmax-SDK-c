@@ -16,7 +16,9 @@
 typedef struct ezsignbulksendtransmission_response_compound_t ezsignbulksendtransmission_response_compound_t;
 
 #include "common_audit.h"
+#include "custom_ezsignfoldertransmission_response.h"
 #include "ezsignbulksendtransmission_response.h"
+#include "ezsignbulksendtransmission_response_compound_all_of.h"
 
 
 
@@ -26,6 +28,7 @@ typedef struct ezsignbulksendtransmission_response_compound_t {
     char *s_ezsignbulksendtransmission_description; // string
     int i_ezsignbulksendtransmission_errors; //numeric
     struct common_audit_t *obj_audit; //model
+    list_t *a_obj_ezsignfoldertransmission; //nonprimitive container
 
 } ezsignbulksendtransmission_response_compound_t;
 
@@ -34,7 +37,8 @@ ezsignbulksendtransmission_response_compound_t *ezsignbulksendtransmission_respo
     int fki_ezsignbulksend_id,
     char *s_ezsignbulksendtransmission_description,
     int i_ezsignbulksendtransmission_errors,
-    common_audit_t *obj_audit
+    common_audit_t *obj_audit,
+    list_t *a_obj_ezsignfoldertransmission
 );
 
 void ezsignbulksendtransmission_response_compound_free(ezsignbulksendtransmission_response_compound_t *ezsignbulksendtransmission_response_compound);

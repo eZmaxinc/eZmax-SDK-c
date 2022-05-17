@@ -13,12 +13,12 @@
 
 // Functions for enum EDOCUMENTTYPE for ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1
 
-static char* ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_ToString(ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_eDocumentType_e EDOCUMENTTYPE){
+static char* ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_ToString(ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_eDocumentType_e EDOCUMENTTYPE){
     char *EDOCUMENTTYPEArray[] =  { "NULL", "Initial", "Signed", "Proof", "Proofdocument" };
     return EDOCUMENTTYPEArray[EDOCUMENTTYPE];
 }
 
-static ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_eDocumentType_e ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_FromString(char* EDOCUMENTTYPE){
+static ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_eDocumentType_e ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_FromString(char* EDOCUMENTTYPE){
     int stringToReturn = 0;
     char *EDOCUMENTTYPEArray[] =  { "NULL", "Initial", "Signed", "Proof", "Proofdocument" };
     size_t sizeofArray = sizeof(EDOCUMENTTYPEArray) / sizeof(EDOCUMENTTYPEArray[0]);
@@ -35,7 +35,7 @@ static ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_eDocumentType_e ezsig
 // Function ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_convertToJSON is not currently used,
 // since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
 //
-static cJSON *ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_convertToJSON(ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_eDocumentType_e EDOCUMENTTYPE) {
+static cJSON *ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_convertToJSON(ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_eDocumentType_e EDOCUMENTTYPE) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "eDocumentType", ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_ToString(EDOCUMENTTYPE)) == NULL) {
         goto fail;
@@ -49,8 +49,8 @@ static cJSON *ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_convertToJSON(ezmax_a
 // Function ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_parseFromJSON is not currently used,
 // since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
 //
-static ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_eDocumentType_e ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_parseFromJSON(cJSON* EDOCUMENTTYPEJSON) {
-    ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_eDocumentType_e EDOCUMENTTYPEVariable = 0;
+static ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_eDocumentType_e ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_parseFromJSON(cJSON* EDOCUMENTTYPEJSON) {
+    ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_eDocumentType_e EDOCUMENTTYPEVariable = 0;
     cJSON *EDOCUMENTTYPEVar = cJSON_GetObjectItemCaseSensitive(EDOCUMENTTYPEJSON, "eDocumentType");
     if(!cJSON_IsString(EDOCUMENTTYPEVar) || (EDOCUMENTTYPEVar->valuestring == NULL))
     {
@@ -64,7 +64,7 @@ end:
 */
 
 
-// Apply an Ezsign Template to the Ezsigndocument.
+// Apply an Ezsigntemplate to the Ezsigndocument.
 //
 // This function is deprecated. Please use *applyEzsigntemplate* instead which is doing the same thing but with a capital \"E\" to normalize the nomenclature.  This endpoint applies a predefined template to the ezsign document. This allows to automatically apply all the form and signature fields on a document in a single step.  The document must not already have fields otherwise an error will be returned.
 //
@@ -120,15 +120,18 @@ ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV1(apiClient_t *apiClie
                     localVarBodyParameters,
                     "POST");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successful response");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
-    }
-    if (apiClient->response_code == 422) {
-        printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The element you are trying to work on does not exist");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //}
     //nonprimitive not container
     cJSON *ObjectEzsigndocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     ezsigndocument_apply_ezsigntemplate_v1_response_t *elementToReturn = ezsigndocument_apply_ezsigntemplate_v1_response_parseFromJSON(ObjectEzsigndocumentAPIlocalVarJSON);
@@ -162,7 +165,7 @@ end:
 
 }
 
-// Apply an Ezsign Template to the Ezsigndocument.
+// Apply an Ezsigntemplate to the Ezsigndocument.
 //
 // This endpoint applies a predefined template to the ezsign document. This allows to automatically apply all the form and signature fields on a document in a single step.  The document must not already have fields otherwise an error will be returned.
 //
@@ -218,15 +221,18 @@ ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV2(apiClient_t *apiClie
                     localVarBodyParameters,
                     "POST");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successful response");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
-    }
-    if (apiClient->response_code == 422) {
-        printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The element you are trying to work on does not exist");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //}
     //nonprimitive not container
     cJSON *ObjectEzsigndocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     ezsigndocument_apply_ezsigntemplate_v2_response_t *elementToReturn = ezsigndocument_apply_ezsigntemplate_v2_response_parseFromJSON(ObjectEzsigndocumentAPIlocalVarJSON);
@@ -322,12 +328,14 @@ ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV1(apiClient_t *apiClient, lis
                     localVarBodyParameters,
                     "POST");
 
-    if (apiClient->response_code == 201) {
-        printf("%s\n","Successful response");
-    }
-    if (apiClient->response_code == 422) {
-        printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body. If the error is recoverable sTemporaryFileUrl will be set and you can use this url to try a new request without sending the file over again");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 201) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body. If the error is recoverable sTemporaryFileUrl will be set and you can use this url to try a new request without sending the file over again");
+    //}
     //nonprimitive not container
     cJSON *ObjectEzsigndocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     ezsigndocument_create_object_v1_response_t *elementToReturn = ezsigndocument_create_object_v1_response_parseFromJSON(ObjectEzsigndocumentAPIlocalVarJSON);
@@ -410,12 +418,14 @@ ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV2(apiClient_t *apiClient, ezs
                     localVarBodyParameters,
                     "POST");
 
-    if (apiClient->response_code == 201) {
-        printf("%s\n","Successful response");
-    }
-    if (apiClient->response_code == 422) {
-        printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body. If the error is recoverable sTemporaryFileUrl will be set and you can use this url to try a new request without sending the file over again");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 201) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body. If the error is recoverable sTemporaryFileUrl will be set and you can use this url to try a new request without sending the file over again");
+    //}
     //nonprimitive not container
     cJSON *ObjectEzsigndocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     ezsigndocument_create_object_v2_response_t *elementToReturn = ezsigndocument_create_object_v2_response_parseFromJSON(ObjectEzsigndocumentAPIlocalVarJSON);
@@ -494,15 +504,18 @@ ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1(apiClient_t *apiClient, int
                     localVarBodyParameters,
                     "DELETE");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successful response");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
-    }
-    if (apiClient->response_code == 422) {
-        printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The element you are trying to work on does not exist");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //}
     //nonprimitive not container
     cJSON *ObjectEzsigndocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     ezsigndocument_delete_object_v1_response_t *elementToReturn = ezsigndocument_delete_object_v1_response_parseFromJSON(ObjectEzsigndocumentAPIlocalVarJSON);
@@ -587,15 +600,18 @@ ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignformfieldgroupsV1(apiClient_t *a
                     localVarBodyParameters,
                     "PUT");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successful response");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
-    }
-    if (apiClient->response_code == 422) {
-        printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The element you are trying to work on does not exist");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //}
     //nonprimitive not container
     cJSON *ObjectEzsigndocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     ezsigndocument_edit_ezsignformfieldgroups_v1_response_t *elementToReturn = ezsigndocument_edit_ezsignformfieldgroups_v1_response_parseFromJSON(ObjectEzsigndocumentAPIlocalVarJSON);
@@ -685,15 +701,18 @@ ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1(apiClient_t *apiCli
                     localVarBodyParameters,
                     "PUT");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successful response");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
-    }
-    if (apiClient->response_code == 422) {
-        printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The element you are trying to work on does not exist");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //}
     //nonprimitive not container
     cJSON *ObjectEzsigndocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     ezsigndocument_edit_ezsignsignatures_v1_response_t *elementToReturn = ezsigndocument_edit_ezsignsignatures_v1_response_parseFromJSON(ObjectEzsigndocumentAPIlocalVarJSON);
@@ -783,15 +802,18 @@ ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1(apiClient_t *apiClient, i
                     localVarBodyParameters,
                     "POST");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successful response");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
-    }
-    if (apiClient->response_code == 422) {
-        printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The element you are trying to work on does not exist");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //}
     //nonprimitive not container
     cJSON *ObjectEzsigndocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     ezsigndocument_end_prematurely_v1_response_t *elementToReturn = ezsigndocument_end_prematurely_v1_response_parseFromJSON(ObjectEzsigndocumentAPIlocalVarJSON);
@@ -825,12 +847,98 @@ end:
 
 }
 
+// Retrieve actionable elements for the Ezsigndocument
+//
+// Return the Ezsignsignatures that can be signed and Ezsignformfieldgroups that can be filled by the current user at the current step in the process
+//
+ezsigndocument_get_actionable_elements_v1_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsV1(apiClient_t *apiClient, int pkiEzsigndocumentID )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/ezsigndocument/{pkiEzsigndocumentID}/getActionableElements")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/ezsigndocument/{pkiEzsigndocumentID}/getActionableElements");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsigndocumentID =  + strlen("{ pkiEzsigndocumentID }");
+    if(pkiEzsigndocumentID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsigndocumentID = malloc(sizeOfPathParams_pkiEzsigndocumentID);
+    snprintf(localVarToReplace_pkiEzsigndocumentID, sizeOfPathParams_pkiEzsigndocumentID, "{%s}", "pkiEzsigndocumentID");
+
+    char localVarBuff_pkiEzsigndocumentID[256];
+    intToStr(localVarBuff_pkiEzsigndocumentID, pkiEzsigndocumentID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigndocumentID, localVarBuff_pkiEzsigndocumentID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The element you are trying to work on does not exist");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectEzsigndocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsigndocument_get_actionable_elements_v1_response_t *elementToReturn = ezsigndocument_get_actionable_elements_v1_response_parseFromJSON(ObjectEzsigndocumentAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsigndocumentAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsigndocumentID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Retrieve a URL to download documents.
 //
 // This endpoint returns URLs to different files that can be downloaded during the signing process.  These links will expire after 5 minutes so the download of the file should be made soon after retrieving the link.
 //
 ezsigndocument_get_download_url_v1_response_t*
-ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1(apiClient_t *apiClient, int pkiEzsigndocumentID , ezmax_api_definition_ezsigndocumentGetDownloadUrlV1_eDocumentType_e eDocumentType )
+ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1(apiClient_t *apiClient, int pkiEzsigndocumentID , ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_eDocumentType_e eDocumentType )
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -881,15 +989,18 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1(apiClient_t *apiClient, i
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successful response");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
-    }
-    if (apiClient->response_code == 422) {
-        printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The element you are trying to work on does not exist");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //}
     //nonprimitive not container
     cJSON *ObjectEzsigndocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     ezsigndocument_get_download_url_v1_response_t *elementToReturn = ezsigndocument_get_download_url_v1_response_parseFromJSON(ObjectEzsigndocumentAPIlocalVarJSON);
@@ -965,15 +1076,18 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignformfieldgroupsV1(apiClient_t *ap
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successful response");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
-    }
-    if (apiClient->response_code == 422) {
-        printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The element you are trying to work on does not exist");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //}
     //nonprimitive not container
     cJSON *ObjectEzsigndocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     ezsigndocument_get_ezsignformfieldgroups_v1_response_t *elementToReturn = ezsigndocument_get_ezsignformfieldgroups_v1_response_parseFromJSON(ObjectEzsigndocumentAPIlocalVarJSON);
@@ -1048,15 +1162,18 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignpagesV1(apiClient_t *apiClient, i
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successful response");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
-    }
-    if (apiClient->response_code == 422) {
-        printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The element you are trying to work on does not exist");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //}
     //nonprimitive not container
     cJSON *ObjectEzsigndocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     ezsigndocument_get_ezsignpages_v1_response_t *elementToReturn = ezsigndocument_get_ezsignpages_v1_response_parseFromJSON(ObjectEzsigndocumentAPIlocalVarJSON);
@@ -1131,15 +1248,18 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignsignaturesV1(apiClient_t *apiClie
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successful response");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
-    }
-    if (apiClient->response_code == 422) {
-        printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The element you are trying to work on does not exist");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //}
     //nonprimitive not container
     cJSON *ObjectEzsigndocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     ezsigndocument_get_ezsignsignatures_v1_response_t *elementToReturn = ezsigndocument_get_ezsignsignatures_v1_response_parseFromJSON(ObjectEzsigndocumentAPIlocalVarJSON);
@@ -1216,18 +1336,22 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1(apiClient_t *apiClient, int 
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successful response");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
-    }
-    if (apiClient->response_code == 406) {
-        printf("%s\n","One of the accept header is not defined or invalid.");
-    }
-    if (apiClient->response_code == 422) {
-        printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The element you are trying to work on does not exist");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 406) {
+    //    printf("%s\n","One of the accept header is not defined or invalid.");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //}
     //nonprimitive not container
     cJSON *ObjectEzsigndocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     ezsigndocument_get_form_data_v1_response_t *elementToReturn = ezsigndocument_get_form_data_v1_response_parseFromJSON(ObjectEzsigndocumentAPIlocalVarJSON);
@@ -1300,12 +1424,14 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV1(apiClient_t *apiClient, int pk
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successful response");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The element you are trying to work on does not exist");
+    //}
     //nonprimitive not container
     cJSON *ObjectEzsigndocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     ezsigndocument_get_object_v1_response_t *elementToReturn = ezsigndocument_get_object_v1_response_parseFromJSON(ObjectEzsigndocumentAPIlocalVarJSON);
@@ -1380,15 +1506,18 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetTemporaryProofV1(apiClient_t *apiClient
                     localVarBodyParameters,
                     "GET");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successful response");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
-    }
-    if (apiClient->response_code == 422) {
-        printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The element you are trying to work on does not exist");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //}
     //nonprimitive not container
     cJSON *ObjectEzsigndocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     ezsigndocument_get_temporary_proof_v1_response_t *elementToReturn = ezsigndocument_get_temporary_proof_v1_response_parseFromJSON(ObjectEzsigndocumentAPIlocalVarJSON);
@@ -1473,15 +1602,18 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1(apiClient_t *apiClient
                     localVarBodyParameters,
                     "POST");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successful response");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
-    }
-    if (apiClient->response_code == 422) {
-        printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The element you are trying to work on does not exist");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //}
     //nonprimitive not container
     cJSON *ObjectEzsigndocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     ezsigndocument_get_words_positions_v1_response_t *elementToReturn = ezsigndocument_get_words_positions_v1_response_parseFromJSON(ObjectEzsigndocumentAPIlocalVarJSON);
@@ -1571,15 +1703,18 @@ ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1(apiClient_t *apiClient, int 
                     localVarBodyParameters,
                     "PATCH");
 
-    if (apiClient->response_code == 200) {
-        printf("%s\n","Successful response");
-    }
-    if (apiClient->response_code == 404) {
-        printf("%s\n","The element you are trying to work on does not exist");
-    }
-    if (apiClient->response_code == 422) {
-        printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The element you are trying to work on does not exist");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //}
     //nonprimitive not container
     cJSON *ObjectEzsigndocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     ezsigndocument_patch_object_v1_response_t *elementToReturn = ezsigndocument_patch_object_v1_response_parseFromJSON(ObjectEzsigndocumentAPIlocalVarJSON);
@@ -1604,6 +1739,107 @@ ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1(apiClient_t *apiClient, int 
     if (localVarSingleItemJSON_ezsigndocument_patch_object_v1_request) {
         cJSON_Delete(localVarSingleItemJSON_ezsigndocument_patch_object_v1_request);
         localVarSingleItemJSON_ezsigndocument_patch_object_v1_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Unsend the Ezsigndocument
+//
+// Once an Ezsigndocument has been sent to signatories, it cannot be modified.  Using this endpoint, you can unsend the Ezsigndocument and make it modifiable again.  Signatories will receive an email informing them the signature process was aborted and they might receive a new invitation to sign.  ⚠️ Warning: Any signature previously made by signatories on this Ezsigndocumentswill be lost.
+//
+ezsigndocument_unsend_v1_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentUnsendV1(apiClient_t *apiClient, int pkiEzsigndocumentID , object_t * body )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/ezsigndocument/{pkiEzsigndocumentID}/unsend")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/ezsigndocument/{pkiEzsigndocumentID}/unsend");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsigndocumentID =  + strlen("{ pkiEzsigndocumentID }");
+    if(pkiEzsigndocumentID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsigndocumentID = malloc(sizeOfPathParams_pkiEzsigndocumentID);
+    snprintf(localVarToReplace_pkiEzsigndocumentID, sizeOfPathParams_pkiEzsigndocumentID, "{%s}", "pkiEzsigndocumentID");
+
+    char localVarBuff_pkiEzsigndocumentID[256];
+    intToStr(localVarBuff_pkiEzsigndocumentID, pkiEzsigndocumentID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigndocumentID, localVarBuff_pkiEzsigndocumentID);
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_body = NULL;
+    if (body != NULL)
+    {
+        //string
+        localVarSingleItemJSON_body = object_convertToJSON(body);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_body);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "POST");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The element you are trying to work on does not exist");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectEzsigndocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsigndocument_unsend_v1_response_t *elementToReturn = ezsigndocument_unsend_v1_response_parseFromJSON(ObjectEzsigndocumentAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsigndocumentAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsigndocumentID);
+    if (localVarSingleItemJSON_body) {
+        cJSON_Delete(localVarSingleItemJSON_body);
+        localVarSingleItemJSON_body = NULL;
     }
     free(localVarBodyParameters);
     return elementToReturn;

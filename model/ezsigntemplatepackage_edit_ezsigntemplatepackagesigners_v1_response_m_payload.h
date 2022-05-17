@@ -1,0 +1,37 @@
+/*
+ * ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_m_payload.h
+ *
+ * Payload for PUT /1/object/ezsigntemplatepackage/{pkiEzsigntemplatepackageID}/editEzsigntemplatepackagesigners
+ */
+
+#ifndef _ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_m_payload_H_
+#define _ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_m_payload_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_m_payload_t ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_m_payload_t;
+
+
+
+
+typedef struct ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_m_payload_t {
+    list_t *a_pki_ezsigntemplatepackagesigner_id; //primitive container
+
+} ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_m_payload_t;
+
+ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_m_payload_t *ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_m_payload_create(
+    list_t *a_pki_ezsigntemplatepackagesigner_id
+);
+
+void ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_m_payload_free(ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_m_payload_t *ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_m_payload);
+
+ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_m_payload_t *ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_m_payload_parseFromJSON(cJSON *ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_m_payloadJSON);
+
+cJSON *ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_m_payload_convertToJSON(ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_m_payload_t *ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_m_payload);
+
+#endif /* _ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_m_payload_H_ */
+

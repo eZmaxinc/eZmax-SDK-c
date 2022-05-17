@@ -40,7 +40,6 @@ cJSON *ezsignfolder_get_ezsigndocuments_v1_response_m_payload_convertToJSON(ezsi
     if (!ezsignfolder_get_ezsigndocuments_v1_response_m_payload->a_obj_ezsigndocument) {
         goto fail;
     }
-    
     cJSON *a_obj_ezsigndocument = cJSON_AddArrayToObject(item, "a_objEzsigndocument");
     if(a_obj_ezsigndocument == NULL) {
     goto fail; //nonprimitive container
@@ -69,15 +68,17 @@ ezsignfolder_get_ezsigndocuments_v1_response_m_payload_t *ezsignfolder_get_ezsig
 
     ezsignfolder_get_ezsigndocuments_v1_response_m_payload_t *ezsignfolder_get_ezsigndocuments_v1_response_m_payload_local_var = NULL;
 
+    // define the local list for ezsignfolder_get_ezsigndocuments_v1_response_m_payload->a_obj_ezsigndocument
+    list_t *a_obj_ezsigndocumentList = NULL;
+
     // ezsignfolder_get_ezsigndocuments_v1_response_m_payload->a_obj_ezsigndocument
     cJSON *a_obj_ezsigndocument = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_ezsigndocuments_v1_response_m_payloadJSON, "a_objEzsigndocument");
     if (!a_obj_ezsigndocument) {
         goto end;
     }
 
-    list_t *a_obj_ezsigndocumentList;
     
-    cJSON *a_obj_ezsigndocument_local_nonprimitive;
+    cJSON *a_obj_ezsigndocument_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_ezsigndocument)){
         goto end; //nonprimitive container
     }
@@ -101,6 +102,15 @@ ezsignfolder_get_ezsigndocuments_v1_response_m_payload_t *ezsignfolder_get_ezsig
 
     return ezsignfolder_get_ezsigndocuments_v1_response_m_payload_local_var;
 end:
+    if (a_obj_ezsigndocumentList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_ezsigndocumentList) {
+            ezsigndocument_response_compound_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_ezsigndocumentList);
+        a_obj_ezsigndocumentList = NULL;
+    }
     return NULL;
 
 }

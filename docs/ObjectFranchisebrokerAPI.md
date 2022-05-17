@@ -13,15 +13,16 @@ Method | HTTP request | Description
 //
 // Get the list of Franchisebrokers to be used in a dropdown or autocomplete control.
 //
-common_get_autocomplete_v1_response_t* ObjectFranchisebrokerAPI_franchisebrokerGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition_franchisebrokerGetAutocompleteV1_sSelector_e sSelector, char * sQuery);
+common_get_autocomplete_v1_response_t* ObjectFranchisebrokerAPI_franchisebrokerGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_franchisebrokerGetAutocompleteV1_sSelector_e sSelector, char * sQuery, header_accept_language_e Accept_Language);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**sSelector** | **ezmax_api_definition_franchisebrokerGetAutocompleteV1_sSelector_e** | The type of Franchisebrokers to return | 
+**sSelector** | **ezmax_api_definition__full_franchisebrokerGetAutocompleteV1_sSelector_e** | The type of Franchisebrokers to return | 
 **sQuery** | **char \*** | Allow to filter the returned results | [optional] 
+**Accept_Language** | **header_accept_language_e** |  | [optional] 
 
 ### Return type
 

@@ -49,7 +49,6 @@ cJSON *ezsignpage_response_compound_convertToJSON(ezsignpage_response_compound_t
     if (!ezsignpage_response_compound->pki_ezsignpage_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "pkiEzsignpageID", ezsignpage_response_compound->pki_ezsignpage_id) == NULL) {
     goto fail; //Numeric
     }
@@ -59,7 +58,6 @@ cJSON *ezsignpage_response_compound_convertToJSON(ezsignpage_response_compound_t
     if (!ezsignpage_response_compound->i_ezsignpage_widthimage) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEzsignpageWidthimage", ezsignpage_response_compound->i_ezsignpage_widthimage) == NULL) {
     goto fail; //Numeric
     }
@@ -69,7 +67,6 @@ cJSON *ezsignpage_response_compound_convertToJSON(ezsignpage_response_compound_t
     if (!ezsignpage_response_compound->i_ezsignpage_heightimage) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEzsignpageHeightimage", ezsignpage_response_compound->i_ezsignpage_heightimage) == NULL) {
     goto fail; //Numeric
     }
@@ -79,7 +76,6 @@ cJSON *ezsignpage_response_compound_convertToJSON(ezsignpage_response_compound_t
     if (!ezsignpage_response_compound->i_ezsignpage_widthpdf) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEzsignpageWidthpdf", ezsignpage_response_compound->i_ezsignpage_widthpdf) == NULL) {
     goto fail; //Numeric
     }
@@ -89,7 +85,6 @@ cJSON *ezsignpage_response_compound_convertToJSON(ezsignpage_response_compound_t
     if (!ezsignpage_response_compound->i_ezsignpage_heightpdf) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEzsignpageHeightpdf", ezsignpage_response_compound->i_ezsignpage_heightpdf) == NULL) {
     goto fail; //Numeric
     }
@@ -99,7 +94,6 @@ cJSON *ezsignpage_response_compound_convertToJSON(ezsignpage_response_compound_t
     if (!ezsignpage_response_compound->i_ezsignpage_pagenumber) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEzsignpagePagenumber", ezsignpage_response_compound->i_ezsignpage_pagenumber) == NULL) {
     goto fail; //Numeric
     }
@@ -109,7 +103,6 @@ cJSON *ezsignpage_response_compound_convertToJSON(ezsignpage_response_compound_t
     if (!ezsignpage_response_compound->s_image_url) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sImageUrl", ezsignpage_response_compound->s_image_url) == NULL) {
     goto fail; //String
     }

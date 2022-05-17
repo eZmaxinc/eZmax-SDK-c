@@ -51,7 +51,6 @@ cJSON *ezsignsigner_response_compound_convertToJSON(ezsignsigner_response_compou
     if (!ezsignsigner_response_compound->pki_ezsignsigner_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "pkiEzsignsignerID", ezsignsigner_response_compound->pki_ezsignsigner_id) == NULL) {
     goto fail; //Numeric
     }
@@ -61,25 +60,23 @@ cJSON *ezsignsigner_response_compound_convertToJSON(ezsignsigner_response_compou
     if (!ezsignsigner_response_compound->fki_taxassignment_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiTaxassignmentID", ezsignsigner_response_compound->fki_taxassignment_id) == NULL) {
     goto fail; //Numeric
     }
 
 
     // ezsignsigner_response_compound->fki_secretquestion_id
-    if(ezsignsigner_response_compound->fki_secretquestion_id) { 
+    if(ezsignsigner_response_compound->fki_secretquestion_id) {
     if(cJSON_AddNumberToObject(item, "fkiSecretquestionID", ezsignsigner_response_compound->fki_secretquestion_id) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // ezsignsigner_response_compound->fki_userlogintype_id
     if (!ezsignsigner_response_compound->fki_userlogintype_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiUserlogintypeID", ezsignsigner_response_compound->fki_userlogintype_id) == NULL) {
     goto fail; //Numeric
     }
@@ -89,7 +86,6 @@ cJSON *ezsignsigner_response_compound_convertToJSON(ezsignsigner_response_compou
     if (!ezsignsigner_response_compound->s_userlogintype_description_x) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sUserlogintypeDescriptionX", ezsignsigner_response_compound->s_userlogintype_description_x) == NULL) {
     goto fail; //String
     }
@@ -99,7 +95,6 @@ cJSON *ezsignsigner_response_compound_convertToJSON(ezsignsigner_response_compou
     if (!ezsignsigner_response_compound->obj_contact) {
         goto fail;
     }
-    
     cJSON *obj_contact_local_JSON = ezsignsigner_response_compound_contact_convertToJSON(ezsignsigner_response_compound->obj_contact);
     if(obj_contact_local_JSON == NULL) {
     goto fail; //model

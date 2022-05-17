@@ -43,18 +43,17 @@ cJSON *common_response_error_convertToJSON(common_response_error_t *common_respo
     if (!common_response_error->s_error_message) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sErrorMessage", common_response_error->s_error_message) == NULL) {
     goto fail; //String
     }
 
 
     // common_response_error->e_error_code
-    if(common_response_error->e_error_code) { 
+    if(common_response_error->e_error_code) {
     if(cJSON_AddStringToObject(item, "eErrorCode", common_response_error->e_error_code) == NULL) {
     goto fail; //String
     }
-     } 
+    }
 
     return item;
 fail:

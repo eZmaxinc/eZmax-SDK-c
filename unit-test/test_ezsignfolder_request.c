@@ -24,19 +24,19 @@ ezsignfolder_request_t* instantiate_ezsignfolder_request(int include_optional) {
     ezsignfolder_request = ezsignfolder_request_create(
       33,
       5,
-      92,
+      1,
       "Test eZsign Folder",
       "This is a note",
-      ezmax_api_definition_ezsignfolder_request__"None"
+      ezmax_api_definition__full_ezsignfolder_request__"None"
     );
   } else {
     ezsignfolder_request = ezsignfolder_request_create(
       33,
       5,
-      92,
+      1,
       "Test eZsign Folder",
       "This is a note",
-      ezmax_api_definition_ezsignfolder_request__"None"
+      ezmax_api_definition__full_ezsignfolder_request__"None"
     );
   }
 

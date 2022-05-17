@@ -37,7 +37,6 @@ cJSON *ezsignfoldersignerassociation_get_in_person_login_url_v1_response_all_of_
     if (!ezsignfoldersignerassociation_get_in_person_login_url_v1_response_all_of->m_payload) {
         goto fail;
     }
-    
     cJSON *m_payload_local_JSON = ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_convertToJSON(ezsignfoldersignerassociation_get_in_person_login_url_v1_response_all_of->m_payload);
     if(m_payload_local_JSON == NULL) {
     goto fail; //model

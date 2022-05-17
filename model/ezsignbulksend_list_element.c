@@ -4,30 +4,13 @@
 #include "ezsignbulksend_list_element.h"
 
 
-char* e_ezsignfoldertype_privacylevelezsignbulksend_list_element_ToString(ezmax_api_definition_ezsignbulksend_list_element__e e_ezsignfoldertype_privacylevel) {
-    char* e_ezsignfoldertype_privacylevelArray[] =  { "NULL", "User", "Usergroup" };
-	return e_ezsignfoldertype_privacylevelArray[e_ezsignfoldertype_privacylevel];
-}
-
-ezmax_api_definition_ezsignbulksend_list_element__e e_ezsignfoldertype_privacylevelezsignbulksend_list_element_FromString(char* e_ezsignfoldertype_privacylevel){
-    int stringToReturn = 0;
-    char *e_ezsignfoldertype_privacylevelArray[] =  { "NULL", "User", "Usergroup" };
-    size_t sizeofArray = sizeof(e_ezsignfoldertype_privacylevelArray) / sizeof(e_ezsignfoldertype_privacylevelArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_ezsignfoldertype_privacylevel, e_ezsignfoldertype_privacylevelArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
 
 ezsignbulksend_list_element_t *ezsignbulksend_list_element_create(
     int pki_ezsignbulksend_id,
     int fki_ezsignfoldertype_id,
     char *s_ezsignbulksend_description,
     char *s_ezsignfoldertype_name_x,
-    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel,
+    int b_ezsignbulksend_needvalidation,
     int b_ezsignbulksend_isactive,
     int i_ezsignbulksendtransmission,
     int i_ezsignfolder,
@@ -43,7 +26,7 @@ ezsignbulksend_list_element_t *ezsignbulksend_list_element_create(
     ezsignbulksend_list_element_local_var->fki_ezsignfoldertype_id = fki_ezsignfoldertype_id;
     ezsignbulksend_list_element_local_var->s_ezsignbulksend_description = s_ezsignbulksend_description;
     ezsignbulksend_list_element_local_var->s_ezsignfoldertype_name_x = s_ezsignfoldertype_name_x;
-    ezsignbulksend_list_element_local_var->e_ezsignfoldertype_privacylevel = e_ezsignfoldertype_privacylevel;
+    ezsignbulksend_list_element_local_var->b_ezsignbulksend_needvalidation = b_ezsignbulksend_needvalidation;
     ezsignbulksend_list_element_local_var->b_ezsignbulksend_isactive = b_ezsignbulksend_isactive;
     ezsignbulksend_list_element_local_var->i_ezsignbulksendtransmission = i_ezsignbulksendtransmission;
     ezsignbulksend_list_element_local_var->i_ezsignfolder = i_ezsignfolder;
@@ -68,10 +51,6 @@ void ezsignbulksend_list_element_free(ezsignbulksend_list_element_t *ezsignbulks
         free(ezsignbulksend_list_element->s_ezsignfoldertype_name_x);
         ezsignbulksend_list_element->s_ezsignfoldertype_name_x = NULL;
     }
-    if (ezsignbulksend_list_element->e_ezsignfoldertype_privacylevel) {
-        field_e_ezsignfoldertype_privacylevel_free(ezsignbulksend_list_element->e_ezsignfoldertype_privacylevel);
-        ezsignbulksend_list_element->e_ezsignfoldertype_privacylevel = NULL;
-    }
     free(ezsignbulksend_list_element);
 }
 
@@ -82,7 +61,6 @@ cJSON *ezsignbulksend_list_element_convertToJSON(ezsignbulksend_list_element_t *
     if (!ezsignbulksend_list_element->pki_ezsignbulksend_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "pkiEzsignbulksendID", ezsignbulksend_list_element->pki_ezsignbulksend_id) == NULL) {
     goto fail; //Numeric
     }
@@ -92,7 +70,6 @@ cJSON *ezsignbulksend_list_element_convertToJSON(ezsignbulksend_list_element_t *
     if (!ezsignbulksend_list_element->fki_ezsignfoldertype_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiEzsignfoldertypeID", ezsignbulksend_list_element->fki_ezsignfoldertype_id) == NULL) {
     goto fail; //Numeric
     }
@@ -102,7 +79,6 @@ cJSON *ezsignbulksend_list_element_convertToJSON(ezsignbulksend_list_element_t *
     if (!ezsignbulksend_list_element->s_ezsignbulksend_description) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sEzsignbulksendDescription", ezsignbulksend_list_element->s_ezsignbulksend_description) == NULL) {
     goto fail; //String
     }
@@ -112,21 +88,17 @@ cJSON *ezsignbulksend_list_element_convertToJSON(ezsignbulksend_list_element_t *
     if (!ezsignbulksend_list_element->s_ezsignfoldertype_name_x) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sEzsignfoldertypeNameX", ezsignbulksend_list_element->s_ezsignfoldertype_name_x) == NULL) {
     goto fail; //String
     }
 
 
-    // ezsignbulksend_list_element->e_ezsignfoldertype_privacylevel
-    
-    cJSON *e_ezsignfoldertype_privacylevel_local_JSON = field_e_ezsignfoldertype_privacylevel_convertToJSON(ezsignbulksend_list_element->e_ezsignfoldertype_privacylevel);
-    if(e_ezsignfoldertype_privacylevel_local_JSON == NULL) {
-        goto fail; // custom
-    }
-    cJSON_AddItemToObject(item, "eEzsignfoldertypePrivacylevel", e_ezsignfoldertype_privacylevel_local_JSON);
-    if(item->child == NULL) {
+    // ezsignbulksend_list_element->b_ezsignbulksend_needvalidation
+    if (!ezsignbulksend_list_element->b_ezsignbulksend_needvalidation) {
         goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "bEzsignbulksendNeedvalidation", ezsignbulksend_list_element->b_ezsignbulksend_needvalidation) == NULL) {
+    goto fail; //Bool
     }
 
 
@@ -134,7 +106,6 @@ cJSON *ezsignbulksend_list_element_convertToJSON(ezsignbulksend_list_element_t *
     if (!ezsignbulksend_list_element->b_ezsignbulksend_isactive) {
         goto fail;
     }
-    
     if(cJSON_AddBoolToObject(item, "bEzsignbulksendIsactive", ezsignbulksend_list_element->b_ezsignbulksend_isactive) == NULL) {
     goto fail; //Bool
     }
@@ -144,7 +115,6 @@ cJSON *ezsignbulksend_list_element_convertToJSON(ezsignbulksend_list_element_t *
     if (!ezsignbulksend_list_element->i_ezsignbulksendtransmission) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEzsignbulksendtransmission", ezsignbulksend_list_element->i_ezsignbulksendtransmission) == NULL) {
     goto fail; //Numeric
     }
@@ -154,7 +124,6 @@ cJSON *ezsignbulksend_list_element_convertToJSON(ezsignbulksend_list_element_t *
     if (!ezsignbulksend_list_element->i_ezsignfolder) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEzsignfolder", ezsignbulksend_list_element->i_ezsignfolder) == NULL) {
     goto fail; //Numeric
     }
@@ -164,7 +133,6 @@ cJSON *ezsignbulksend_list_element_convertToJSON(ezsignbulksend_list_element_t *
     if (!ezsignbulksend_list_element->i_ezsigndocument) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEzsigndocument", ezsignbulksend_list_element->i_ezsigndocument) == NULL) {
     goto fail; //Numeric
     }
@@ -174,7 +142,6 @@ cJSON *ezsignbulksend_list_element_convertToJSON(ezsignbulksend_list_element_t *
     if (!ezsignbulksend_list_element->i_ezsignsignature) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEzsignsignature", ezsignbulksend_list_element->i_ezsignsignature) == NULL) {
     goto fail; //Numeric
     }
@@ -184,7 +151,6 @@ cJSON *ezsignbulksend_list_element_convertToJSON(ezsignbulksend_list_element_t *
     if (!ezsignbulksend_list_element->i_ezsignsignature_signed) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iEzsignsignatureSigned", ezsignbulksend_list_element->i_ezsignsignature_signed) == NULL) {
     goto fail; //Numeric
     }
@@ -200,9 +166,6 @@ fail:
 ezsignbulksend_list_element_t *ezsignbulksend_list_element_parseFromJSON(cJSON *ezsignbulksend_list_elementJSON){
 
     ezsignbulksend_list_element_t *ezsignbulksend_list_element_local_var = NULL;
-
-    // define the local variable for ezsignbulksend_list_element->e_ezsignfoldertype_privacylevel
-    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel_local_nonprim = NULL;
 
     // ezsignbulksend_list_element->pki_ezsignbulksend_id
     cJSON *pki_ezsignbulksend_id = cJSON_GetObjectItemCaseSensitive(ezsignbulksend_list_elementJSON, "pkiEzsignbulksendID");
@@ -252,14 +215,17 @@ ezsignbulksend_list_element_t *ezsignbulksend_list_element_parseFromJSON(cJSON *
     goto end; //String
     }
 
-    // ezsignbulksend_list_element->e_ezsignfoldertype_privacylevel
-    cJSON *e_ezsignfoldertype_privacylevel = cJSON_GetObjectItemCaseSensitive(ezsignbulksend_list_elementJSON, "eEzsignfoldertypePrivacylevel");
-    if (!e_ezsignfoldertype_privacylevel) {
+    // ezsignbulksend_list_element->b_ezsignbulksend_needvalidation
+    cJSON *b_ezsignbulksend_needvalidation = cJSON_GetObjectItemCaseSensitive(ezsignbulksend_list_elementJSON, "bEzsignbulksendNeedvalidation");
+    if (!b_ezsignbulksend_needvalidation) {
         goto end;
     }
 
     
-    e_ezsignfoldertype_privacylevel_local_nonprim = field_e_ezsignfoldertype_privacylevel_parseFromJSON(e_ezsignfoldertype_privacylevel); //custom
+    if(!cJSON_IsBool(b_ezsignbulksend_needvalidation))
+    {
+    goto end; //Bool
+    }
 
     // ezsignbulksend_list_element->b_ezsignbulksend_isactive
     cJSON *b_ezsignbulksend_isactive = cJSON_GetObjectItemCaseSensitive(ezsignbulksend_list_elementJSON, "bEzsignbulksendIsactive");
@@ -339,7 +305,7 @@ ezsignbulksend_list_element_t *ezsignbulksend_list_element_parseFromJSON(cJSON *
         fki_ezsignfoldertype_id->valuedouble,
         strdup(s_ezsignbulksend_description->valuestring),
         strdup(s_ezsignfoldertype_name_x->valuestring),
-        e_ezsignfoldertype_privacylevel_local_nonprim,
+        b_ezsignbulksend_needvalidation->valueint,
         b_ezsignbulksend_isactive->valueint,
         i_ezsignbulksendtransmission->valuedouble,
         i_ezsignfolder->valuedouble,
@@ -350,10 +316,6 @@ ezsignbulksend_list_element_t *ezsignbulksend_list_element_parseFromJSON(cJSON *
 
     return ezsignbulksend_list_element_local_var;
 end:
-    if (e_ezsignfoldertype_privacylevel_local_nonprim) {
-        field_e_ezsignfoldertype_privacylevel_free(e_ezsignfoldertype_privacylevel_local_nonprim);
-        e_ezsignfoldertype_privacylevel_local_nonprim = NULL;
-    }
     return NULL;
 
 }

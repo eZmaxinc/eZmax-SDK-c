@@ -1,0 +1,38 @@
+/*
+ * ezsigntemplatepackagesignermembership_get_object_v1_response_all_of.h
+ *
+ * 
+ */
+
+#ifndef _ezsigntemplatepackagesignermembership_get_object_v1_response_all_of_H_
+#define _ezsigntemplatepackagesignermembership_get_object_v1_response_all_of_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct ezsigntemplatepackagesignermembership_get_object_v1_response_all_of_t ezsigntemplatepackagesignermembership_get_object_v1_response_all_of_t;
+
+#include "ezsigntemplatepackagesignermembership_get_object_v1_response_m_payload.h"
+
+
+
+typedef struct ezsigntemplatepackagesignermembership_get_object_v1_response_all_of_t {
+    struct ezsigntemplatepackagesignermembership_get_object_v1_response_m_payload_t *m_payload; //model
+
+} ezsigntemplatepackagesignermembership_get_object_v1_response_all_of_t;
+
+ezsigntemplatepackagesignermembership_get_object_v1_response_all_of_t *ezsigntemplatepackagesignermembership_get_object_v1_response_all_of_create(
+    ezsigntemplatepackagesignermembership_get_object_v1_response_m_payload_t *m_payload
+);
+
+void ezsigntemplatepackagesignermembership_get_object_v1_response_all_of_free(ezsigntemplatepackagesignermembership_get_object_v1_response_all_of_t *ezsigntemplatepackagesignermembership_get_object_v1_response_all_of);
+
+ezsigntemplatepackagesignermembership_get_object_v1_response_all_of_t *ezsigntemplatepackagesignermembership_get_object_v1_response_all_of_parseFromJSON(cJSON *ezsigntemplatepackagesignermembership_get_object_v1_response_all_ofJSON);
+
+cJSON *ezsigntemplatepackagesignermembership_get_object_v1_response_all_of_convertToJSON(ezsigntemplatepackagesignermembership_get_object_v1_response_all_of_t *ezsigntemplatepackagesignermembership_get_object_v1_response_all_of);
+
+#endif /* _ezsigntemplatepackagesignermembership_get_object_v1_response_all_of_H_ */
+

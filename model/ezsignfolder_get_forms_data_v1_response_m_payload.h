@@ -1,7 +1,7 @@
 /*
  * ezsignfolder_get_forms_data_v1_response_m_payload.h
  *
- * Payload for the /1/object/ezsignfolder/{pkiEzsigndocument}/getFormsData API Request
+ * Payload for GET /1/object/ezsignfolder/{pkiEzsigndocument}/getFormsData
  */
 
 #ifndef _ezsignfolder_get_forms_data_v1_response_m_payload_H_
@@ -15,22 +15,17 @@
 
 typedef struct ezsignfolder_get_forms_data_v1_response_m_payload_t ezsignfolder_get_forms_data_v1_response_m_payload_t;
 
-#include "custom_form_data_document_response.h"
 #include "custom_forms_data_folder_response.h"
 
 
 
 typedef struct ezsignfolder_get_forms_data_v1_response_m_payload_t {
-    int pki_ezsignfolder_id; //numeric
-    char *s_ezsignfolder_description; // string
-    list_t *a_obj_form_data_document; //nonprimitive container
+    struct custom_forms_data_folder_response_t *obj_forms_data_folder; //model
 
 } ezsignfolder_get_forms_data_v1_response_m_payload_t;
 
 ezsignfolder_get_forms_data_v1_response_m_payload_t *ezsignfolder_get_forms_data_v1_response_m_payload_create(
-    int pki_ezsignfolder_id,
-    char *s_ezsignfolder_description,
-    list_t *a_obj_form_data_document
+    custom_forms_data_folder_response_t *obj_forms_data_folder
 );
 
 void ezsignfolder_get_forms_data_v1_response_m_payload_free(ezsignfolder_get_forms_data_v1_response_m_payload_t *ezsignfolder_get_forms_data_v1_response_m_payload);

@@ -44,7 +44,6 @@ cJSON *ezsignfoldertype_get_list_v1_response_m_payload_convertToJSON(ezsignfolde
     if (!ezsignfoldertype_get_list_v1_response_m_payload->a_obj_ezsignfoldertype) {
         goto fail;
     }
-    
     cJSON *a_obj_ezsignfoldertype = cJSON_AddArrayToObject(item, "a_objEzsignfoldertype");
     if(a_obj_ezsignfoldertype == NULL) {
     goto fail; //nonprimitive container
@@ -66,7 +65,6 @@ cJSON *ezsignfoldertype_get_list_v1_response_m_payload_convertToJSON(ezsignfolde
     if (!ezsignfoldertype_get_list_v1_response_m_payload->i_row_returned) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iRowReturned", ezsignfoldertype_get_list_v1_response_m_payload->i_row_returned) == NULL) {
     goto fail; //Numeric
     }
@@ -76,7 +74,6 @@ cJSON *ezsignfoldertype_get_list_v1_response_m_payload_convertToJSON(ezsignfolde
     if (!ezsignfoldertype_get_list_v1_response_m_payload->i_row_filtered) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iRowFiltered", ezsignfoldertype_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
     goto fail; //Numeric
     }
@@ -93,15 +90,17 @@ ezsignfoldertype_get_list_v1_response_m_payload_t *ezsignfoldertype_get_list_v1_
 
     ezsignfoldertype_get_list_v1_response_m_payload_t *ezsignfoldertype_get_list_v1_response_m_payload_local_var = NULL;
 
+    // define the local list for ezsignfoldertype_get_list_v1_response_m_payload->a_obj_ezsignfoldertype
+    list_t *a_obj_ezsignfoldertypeList = NULL;
+
     // ezsignfoldertype_get_list_v1_response_m_payload->a_obj_ezsignfoldertype
     cJSON *a_obj_ezsignfoldertype = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_get_list_v1_response_m_payloadJSON, "a_objEzsignfoldertype");
     if (!a_obj_ezsignfoldertype) {
         goto end;
     }
 
-    list_t *a_obj_ezsignfoldertypeList;
     
-    cJSON *a_obj_ezsignfoldertype_local_nonprimitive;
+    cJSON *a_obj_ezsignfoldertype_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_ezsignfoldertype)){
         goto end; //nonprimitive container
     }
@@ -151,6 +150,15 @@ ezsignfoldertype_get_list_v1_response_m_payload_t *ezsignfoldertype_get_list_v1_
 
     return ezsignfoldertype_get_list_v1_response_m_payload_local_var;
 end:
+    if (a_obj_ezsignfoldertypeList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_ezsignfoldertypeList) {
+            ezsignfoldertype_list_element_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_ezsignfoldertypeList);
+        a_obj_ezsignfoldertypeList = NULL;
+    }
     return NULL;
 
 }

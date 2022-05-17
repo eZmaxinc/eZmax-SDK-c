@@ -37,7 +37,6 @@ cJSON *ezsignformfieldgroup_edit_object_v1_request_convertToJSON(ezsignformfield
     if (!ezsignformfieldgroup_edit_object_v1_request->obj_ezsignformfieldgroup) {
         goto fail;
     }
-    
     cJSON *obj_ezsignformfieldgroup_local_JSON = ezsignformfieldgroup_request_compound_convertToJSON(ezsignformfieldgroup_edit_object_v1_request->obj_ezsignformfieldgroup);
     if(obj_ezsignformfieldgroup_local_JSON == NULL) {
     goto fail; //model

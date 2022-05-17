@@ -26,18 +26,19 @@ ezsignsigner_request_compound_t* instantiate_ezsignsigner_request_compound(int i
       2,
       1,
       7,
-      ezmax_api_definition_ezsignsigner_request_compound_EEZSIGNSIGNERLOGINTYPE_Password,
+      ezmax_api_definition__full_ezsignsigner_request_compound_EEZSIGNSIGNERLOGINTYPE_Password,
       "0",
-      {"sContactFirstname":"John","sContactLastname":"Doe","fkiLanguageID":1,"sEmailAddress":"johh.doe@domain.com","sPhoneNumber":"5149901516","sPhoneNumberCell":"5149901516"}
+       // false, not to have infinite recursion
+      instantiate_ezsignsigner_request_compound_contact(0)
     );
   } else {
     ezsignsigner_request_compound = ezsignsigner_request_compound_create(
       2,
       1,
       7,
-      ezmax_api_definition_ezsignsigner_request_compound_EEZSIGNSIGNERLOGINTYPE_Password,
+      ezmax_api_definition__full_ezsignsigner_request_compound_EEZSIGNSIGNERLOGINTYPE_Password,
       "0",
-      {"sContactFirstname":"John","sContactLastname":"Doe","fkiLanguageID":1,"sEmailAddress":"johh.doe@domain.com","sPhoneNumber":"5149901516","sPhoneNumberCell":"5149901516"}
+      NULL
     );
   }
 

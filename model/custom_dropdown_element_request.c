@@ -43,7 +43,6 @@ cJSON *custom_dropdown_element_request_convertToJSON(custom_dropdown_element_req
     if (!custom_dropdown_element_request->s_label) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sLabel", custom_dropdown_element_request->s_label) == NULL) {
     goto fail; //String
     }
@@ -53,7 +52,6 @@ cJSON *custom_dropdown_element_request_convertToJSON(custom_dropdown_element_req
     if (!custom_dropdown_element_request->s_value) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sValue", custom_dropdown_element_request->s_value) == NULL) {
     goto fail; //String
     }

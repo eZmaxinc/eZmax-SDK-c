@@ -23,11 +23,12 @@ ezsignfoldersignerassociation_create_object_v2_response_all_of_t* instantiate_ez
   ezsignfoldersignerassociation_create_object_v2_response_all_of_t* ezsignfoldersignerassociation_create_object_v2_response_all_of = NULL;
   if (include_optional) {
     ezsignfoldersignerassociation_create_object_v2_response_all_of = ezsignfoldersignerassociation_create_object_v2_response_all_of_create(
-      {"a_pkiEzsignfoldersignerassociationID":[95,96]}
+       // false, not to have infinite recursion
+      instantiate_ezsignfoldersignerassociation_create_object_v2_response_m_payload(0)
     );
   } else {
     ezsignfoldersignerassociation_create_object_v2_response_all_of = ezsignfoldersignerassociation_create_object_v2_response_all_of_create(
-      {"a_pkiEzsignfoldersignerassociationID":[95,96]}
+      NULL
     );
   }
 

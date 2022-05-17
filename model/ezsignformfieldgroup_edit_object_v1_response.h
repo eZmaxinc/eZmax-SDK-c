@@ -1,7 +1,7 @@
 /*
  * ezsignformfieldgroup_edit_object_v1_response.h
  *
- * Response for the /1/object/ezsignformfieldgroup/editObject API Request
+ * Response for PUT /1/object/ezsignformfieldgroup/{pkiEzsignfoldersignerassociationID}
  */
 
 #ifndef _ezsignformfieldgroup_edit_object_v1_response_H_

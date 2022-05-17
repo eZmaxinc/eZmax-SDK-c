@@ -23,11 +23,12 @@ franchisereferalincome_create_object_v1_response_all_of_t* instantiate_franchise
   franchisereferalincome_create_object_v1_response_all_of_t* franchisereferalincome_create_object_v1_response_all_of = NULL;
   if (include_optional) {
     franchisereferalincome_create_object_v1_response_all_of = franchisereferalincome_create_object_v1_response_all_of_create(
-      {"a_pkiFranchisereferalincomeID":[95,96]}
+       // false, not to have infinite recursion
+      instantiate_franchisereferalincome_create_object_v1_response_m_payload(0)
     );
   } else {
     franchisereferalincome_create_object_v1_response_all_of = franchisereferalincome_create_object_v1_response_all_of_create(
-      {"a_pkiFranchisereferalincomeID":[95,96]}
+      NULL
     );
   }
 

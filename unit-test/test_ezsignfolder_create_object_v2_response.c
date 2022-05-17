@@ -25,14 +25,15 @@ ezsignfolder_create_object_v2_response_t* instantiate_ezsignfolder_create_object
   ezsignfolder_create_object_v2_response_t* ezsignfolder_create_object_v2_response = NULL;
   if (include_optional) {
     ezsignfolder_create_object_v2_response = ezsignfolder_create_object_v2_response_create(
-      {"a_pkiEzsignfolderID":[95,96]},
+       // false, not to have infinite recursion
+      instantiate_ezsignfolder_create_object_v2_response_m_payload(0),
        // false, not to have infinite recursion
       instantiate_common_response_obj_debug_payload(0),
       {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objSQLQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]}
     );
   } else {
     ezsignfolder_create_object_v2_response = ezsignfolder_create_object_v2_response_create(
-      {"a_pkiEzsignfolderID":[95,96]},
+      NULL,
       NULL,
       {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objSQLQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]}
     );

@@ -40,7 +40,7 @@ cJSON *ezsigndocument_create_object_v1_request_convertToJSON(ezsigndocument_crea
     cJSON *item = cJSON_CreateObject();
 
     // ezsigndocument_create_object_v1_request->obj_ezsigndocument
-    if(ezsigndocument_create_object_v1_request->obj_ezsigndocument) { 
+    if(ezsigndocument_create_object_v1_request->obj_ezsigndocument) {
     cJSON *obj_ezsigndocument_local_JSON = ezsigndocument_request_convertToJSON(ezsigndocument_create_object_v1_request->obj_ezsigndocument);
     if(obj_ezsigndocument_local_JSON == NULL) {
     goto fail; //model
@@ -49,11 +49,11 @@ cJSON *ezsigndocument_create_object_v1_request_convertToJSON(ezsigndocument_crea
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // ezsigndocument_create_object_v1_request->obj_ezsigndocument_compound
-    if(ezsigndocument_create_object_v1_request->obj_ezsigndocument_compound) { 
+    if(ezsigndocument_create_object_v1_request->obj_ezsigndocument_compound) {
     cJSON *obj_ezsigndocument_compound_local_JSON = ezsigndocument_request_compound_convertToJSON(ezsigndocument_create_object_v1_request->obj_ezsigndocument_compound);
     if(obj_ezsigndocument_compound_local_JSON == NULL) {
     goto fail; //model
@@ -62,7 +62,7 @@ cJSON *ezsigndocument_create_object_v1_request_convertToJSON(ezsigndocument_crea
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:

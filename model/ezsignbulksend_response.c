@@ -9,8 +9,11 @@ ezsignbulksend_response_t *ezsignbulksend_response_create(
     int pki_ezsignbulksend_id,
     int fki_ezsignfoldertype_id,
     int fki_language_id,
+    char *s_language_name_x,
+    char *s_ezsignfoldertype_name_x,
     char *s_ezsignbulksend_description,
     char *t_ezsignbulksend_note,
+    int b_ezsignbulksend_needvalidation,
     int b_ezsignbulksend_isactive,
     common_audit_t *obj_audit
     ) {
@@ -21,8 +24,11 @@ ezsignbulksend_response_t *ezsignbulksend_response_create(
     ezsignbulksend_response_local_var->pki_ezsignbulksend_id = pki_ezsignbulksend_id;
     ezsignbulksend_response_local_var->fki_ezsignfoldertype_id = fki_ezsignfoldertype_id;
     ezsignbulksend_response_local_var->fki_language_id = fki_language_id;
+    ezsignbulksend_response_local_var->s_language_name_x = s_language_name_x;
+    ezsignbulksend_response_local_var->s_ezsignfoldertype_name_x = s_ezsignfoldertype_name_x;
     ezsignbulksend_response_local_var->s_ezsignbulksend_description = s_ezsignbulksend_description;
     ezsignbulksend_response_local_var->t_ezsignbulksend_note = t_ezsignbulksend_note;
+    ezsignbulksend_response_local_var->b_ezsignbulksend_needvalidation = b_ezsignbulksend_needvalidation;
     ezsignbulksend_response_local_var->b_ezsignbulksend_isactive = b_ezsignbulksend_isactive;
     ezsignbulksend_response_local_var->obj_audit = obj_audit;
 
@@ -35,6 +41,14 @@ void ezsignbulksend_response_free(ezsignbulksend_response_t *ezsignbulksend_resp
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsignbulksend_response->s_language_name_x) {
+        free(ezsignbulksend_response->s_language_name_x);
+        ezsignbulksend_response->s_language_name_x = NULL;
+    }
+    if (ezsignbulksend_response->s_ezsignfoldertype_name_x) {
+        free(ezsignbulksend_response->s_ezsignfoldertype_name_x);
+        ezsignbulksend_response->s_ezsignfoldertype_name_x = NULL;
+    }
     if (ezsignbulksend_response->s_ezsignbulksend_description) {
         free(ezsignbulksend_response->s_ezsignbulksend_description);
         ezsignbulksend_response->s_ezsignbulksend_description = NULL;
@@ -57,7 +71,6 @@ cJSON *ezsignbulksend_response_convertToJSON(ezsignbulksend_response_t *ezsignbu
     if (!ezsignbulksend_response->pki_ezsignbulksend_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "pkiEzsignbulksendID", ezsignbulksend_response->pki_ezsignbulksend_id) == NULL) {
     goto fail; //Numeric
     }
@@ -67,7 +80,6 @@ cJSON *ezsignbulksend_response_convertToJSON(ezsignbulksend_response_t *ezsignbu
     if (!ezsignbulksend_response->fki_ezsignfoldertype_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiEzsignfoldertypeID", ezsignbulksend_response->fki_ezsignfoldertype_id) == NULL) {
     goto fail; //Numeric
     }
@@ -77,9 +89,26 @@ cJSON *ezsignbulksend_response_convertToJSON(ezsignbulksend_response_t *ezsignbu
     if (!ezsignbulksend_response->fki_language_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiLanguageID", ezsignbulksend_response->fki_language_id) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // ezsignbulksend_response->s_language_name_x
+    if (!ezsignbulksend_response->s_language_name_x) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "sLanguageNameX", ezsignbulksend_response->s_language_name_x) == NULL) {
+    goto fail; //String
+    }
+
+
+    // ezsignbulksend_response->s_ezsignfoldertype_name_x
+    if (!ezsignbulksend_response->s_ezsignfoldertype_name_x) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "sEzsignfoldertypeNameX", ezsignbulksend_response->s_ezsignfoldertype_name_x) == NULL) {
+    goto fail; //String
     }
 
 
@@ -87,7 +116,6 @@ cJSON *ezsignbulksend_response_convertToJSON(ezsignbulksend_response_t *ezsignbu
     if (!ezsignbulksend_response->s_ezsignbulksend_description) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sEzsignbulksendDescription", ezsignbulksend_response->s_ezsignbulksend_description) == NULL) {
     goto fail; //String
     }
@@ -97,9 +125,17 @@ cJSON *ezsignbulksend_response_convertToJSON(ezsignbulksend_response_t *ezsignbu
     if (!ezsignbulksend_response->t_ezsignbulksend_note) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "tEzsignbulksendNote", ezsignbulksend_response->t_ezsignbulksend_note) == NULL) {
     goto fail; //String
+    }
+
+
+    // ezsignbulksend_response->b_ezsignbulksend_needvalidation
+    if (!ezsignbulksend_response->b_ezsignbulksend_needvalidation) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "bEzsignbulksendNeedvalidation", ezsignbulksend_response->b_ezsignbulksend_needvalidation) == NULL) {
+    goto fail; //Bool
     }
 
 
@@ -107,7 +143,6 @@ cJSON *ezsignbulksend_response_convertToJSON(ezsignbulksend_response_t *ezsignbu
     if (!ezsignbulksend_response->b_ezsignbulksend_isactive) {
         goto fail;
     }
-    
     if(cJSON_AddBoolToObject(item, "bEzsignbulksendIsactive", ezsignbulksend_response->b_ezsignbulksend_isactive) == NULL) {
     goto fail; //Bool
     }
@@ -117,7 +152,6 @@ cJSON *ezsignbulksend_response_convertToJSON(ezsignbulksend_response_t *ezsignbu
     if (!ezsignbulksend_response->obj_audit) {
         goto fail;
     }
-    
     cJSON *obj_audit_local_JSON = common_audit_convertToJSON(ezsignbulksend_response->obj_audit);
     if(obj_audit_local_JSON == NULL) {
     goto fail; //model
@@ -178,6 +212,30 @@ ezsignbulksend_response_t *ezsignbulksend_response_parseFromJSON(cJSON *ezsignbu
     goto end; //Numeric
     }
 
+    // ezsignbulksend_response->s_language_name_x
+    cJSON *s_language_name_x = cJSON_GetObjectItemCaseSensitive(ezsignbulksend_responseJSON, "sLanguageNameX");
+    if (!s_language_name_x) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_language_name_x))
+    {
+    goto end; //String
+    }
+
+    // ezsignbulksend_response->s_ezsignfoldertype_name_x
+    cJSON *s_ezsignfoldertype_name_x = cJSON_GetObjectItemCaseSensitive(ezsignbulksend_responseJSON, "sEzsignfoldertypeNameX");
+    if (!s_ezsignfoldertype_name_x) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_ezsignfoldertype_name_x))
+    {
+    goto end; //String
+    }
+
     // ezsignbulksend_response->s_ezsignbulksend_description
     cJSON *s_ezsignbulksend_description = cJSON_GetObjectItemCaseSensitive(ezsignbulksend_responseJSON, "sEzsignbulksendDescription");
     if (!s_ezsignbulksend_description) {
@@ -200,6 +258,18 @@ ezsignbulksend_response_t *ezsignbulksend_response_parseFromJSON(cJSON *ezsignbu
     if(!cJSON_IsString(t_ezsignbulksend_note))
     {
     goto end; //String
+    }
+
+    // ezsignbulksend_response->b_ezsignbulksend_needvalidation
+    cJSON *b_ezsignbulksend_needvalidation = cJSON_GetObjectItemCaseSensitive(ezsignbulksend_responseJSON, "bEzsignbulksendNeedvalidation");
+    if (!b_ezsignbulksend_needvalidation) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(b_ezsignbulksend_needvalidation))
+    {
+    goto end; //Bool
     }
 
     // ezsignbulksend_response->b_ezsignbulksend_isactive
@@ -228,8 +298,11 @@ ezsignbulksend_response_t *ezsignbulksend_response_parseFromJSON(cJSON *ezsignbu
         pki_ezsignbulksend_id->valuedouble,
         fki_ezsignfoldertype_id->valuedouble,
         fki_language_id->valuedouble,
+        strdup(s_language_name_x->valuestring),
+        strdup(s_ezsignfoldertype_name_x->valuestring),
         strdup(s_ezsignbulksend_description->valuestring),
         strdup(t_ezsignbulksend_note->valuestring),
+        b_ezsignbulksend_needvalidation->valueint,
         b_ezsignbulksend_isactive->valueint,
         obj_audit_local_nonprim
         );

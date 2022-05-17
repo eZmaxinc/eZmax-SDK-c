@@ -1,7 +1,7 @@
 /*
  * ezsignbulksend_get_object_v1_response.h
  *
- * Response for the /1/object/ezsignbulksend/getObject API Request
+ * Response for GET /1/object/ezsignbulksend/{pkiEzsignbulksendID}
  */
 
 #ifndef _ezsignbulksend_get_object_v1_response_H_

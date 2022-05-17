@@ -37,7 +37,6 @@ cJSON *ezsignfoldersignerassociation_response_convertToJSON(ezsignfoldersigneras
     if (!ezsignfoldersignerassociation_response->pki_ezsignfoldersignerassociation_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "pkiEzsignfoldersignerassociationID", ezsignfoldersignerassociation_response->pki_ezsignfoldersignerassociation_id) == NULL) {
     goto fail; //Numeric
     }
@@ -47,7 +46,6 @@ cJSON *ezsignfoldersignerassociation_response_convertToJSON(ezsignfoldersigneras
     if (!ezsignfoldersignerassociation_response->fki_ezsignfolder_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiEzsignfolderID", ezsignfoldersignerassociation_response->fki_ezsignfolder_id) == NULL) {
     goto fail; //Numeric
     }
@@ -57,7 +55,6 @@ cJSON *ezsignfoldersignerassociation_response_convertToJSON(ezsignfoldersigneras
     if (!ezsignfoldersignerassociation_response->b_ezsignfoldersignerassociation_receivecopy) {
         goto fail;
     }
-    
     if(cJSON_AddBoolToObject(item, "bEzsignfoldersignerassociationReceivecopy", ezsignfoldersignerassociation_response->b_ezsignfoldersignerassociation_receivecopy) == NULL) {
     goto fail; //Bool
     }

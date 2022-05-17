@@ -1,7 +1,7 @@
 /*
  * ezsigndocument_delete_object_v1_response.h
  *
- * Response for the /1/object/ezsigndocument/deleteObject API Request
+ * Response for DELETE /1/object/ezsigndocument/{pkiEzsigndocumentID}
  */
 
 #ifndef _ezsigndocument_delete_object_v1_response_H_

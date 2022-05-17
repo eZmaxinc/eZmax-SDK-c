@@ -1,7 +1,7 @@
 /*
  * ezsigndocument_apply_ezsigntemplate_v1_response.h
  *
- * Response for the /1/object/ezsigndocument/{pkiEzsigndocument}/applyEzsigntemplate API Request
+ * Response for POST /1/object/ezsigndocument/{pkiEzsigndocument}/applyEzsigntemplate
  */
 
 #ifndef _ezsigndocument_apply_ezsigntemplate_v1_response_H_

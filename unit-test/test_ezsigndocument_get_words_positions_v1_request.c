@@ -22,13 +22,13 @@ ezsigndocument_get_words_positions_v1_request_t* instantiate_ezsigndocument_get_
   ezsigndocument_get_words_positions_v1_request_t* ezsigndocument_get_words_positions_v1_request = NULL;
   if (include_optional) {
     ezsigndocument_get_words_positions_v1_request = ezsigndocument_get_words_positions_v1_request_create(
-      ezmax_api_definition_ezsigndocument_get_words_positions_v1_request_EGET_All,
+      ezmax_api_definition__full_ezsigndocument_get_words_positions_v1_request_EGET_All,
       1,
       list_createList()
     );
   } else {
     ezsigndocument_get_words_positions_v1_request = ezsigndocument_get_words_positions_v1_request_create(
-      ezmax_api_definition_ezsigndocument_get_words_positions_v1_request_EGET_All,
+      ezmax_api_definition__full_ezsigndocument_get_words_positions_v1_request_EGET_All,
       1,
       list_createList()
     );

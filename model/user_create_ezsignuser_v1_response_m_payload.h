@@ -1,7 +1,7 @@
 /*
  * user_create_ezsignuser_v1_response_m_payload.h
  *
- * Payload for the /1/module/user/createEzsignuser API Request
+ * Payload for POST /1/module/user/createEzsignuser
  */
 
 #ifndef _user_create_ezsignuser_v1_response_m_payload_H_

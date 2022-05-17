@@ -26,21 +26,31 @@ ezsignbulksend_response_compound_t* instantiate_ezsignbulksend_response_compound
       8,
       5,
       2,
+      "English",
+      "Default",
       "Test eZsign Bulk Send",
       "This is a note",
       1,
+      1,
        // false, not to have infinite recursion
-      instantiate_common_audit(0)
+      instantiate_common_audit(0),
+      list_createList(),
+      list_createList()
     );
   } else {
     ezsignbulksend_response_compound = ezsignbulksend_response_compound_create(
       8,
       5,
       2,
+      "English",
+      "Default",
       "Test eZsign Bulk Send",
       "This is a note",
       1,
-      NULL
+      1,
+      NULL,
+      list_createList(),
+      list_createList()
     );
   }
 

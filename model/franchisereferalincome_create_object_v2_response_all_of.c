@@ -37,7 +37,6 @@ cJSON *franchisereferalincome_create_object_v2_response_all_of_convertToJSON(fra
     if (!franchisereferalincome_create_object_v2_response_all_of->m_payload) {
         goto fail;
     }
-    
     cJSON *m_payload_local_JSON = franchisereferalincome_create_object_v2_response_m_payload_convertToJSON(franchisereferalincome_create_object_v2_response_all_of->m_payload);
     if(m_payload_local_JSON == NULL) {
     goto fail; //model

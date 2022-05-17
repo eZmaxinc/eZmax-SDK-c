@@ -1,0 +1,32 @@
+/*
+ * field_e_activesession_usertype.h
+ *
+ * The Type of User for the Activesession
+ */
+
+#ifndef _field_e_activesession_usertype_H_
+#define _field_e_activesession_usertype_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_activesession_usertype_t field_e_activesession_usertype_t;
+
+
+// Enum  for field_e_activesession_usertype
+
+typedef enum { ezmax_api_definition__full_field_e_activesession_usertype__NULL = 0, ezmax_api_definition__full_field_e_activesession_usertype__AgentBroker, ezmax_api_definition__full_field_e_activesession_usertype__Assistant, ezmax_api_definition__full_field_e_activesession_usertype__EzsignUser, ezmax_api_definition__full_field_e_activesession_usertype__Normal } ezmax_api_definition__full_field_e_activesession_usertype__e;
+
+char* field_e_activesession_usertype_field_e_activesession_usertype_ToString(ezmax_api_definition__full_field_e_activesession_usertype__e field_e_activesession_usertype);
+
+ezmax_api_definition__full_field_e_activesession_usertype__e field_e_activesession_usertype_field_e_activesession_usertype_FromString(char* field_e_activesession_usertype);
+
+//cJSON *field_e_activesession_usertype_field_e_activesession_usertype_convertToJSON(ezmax_api_definition__full_field_e_activesession_usertype__e field_e_activesession_usertype);
+
+//ezmax_api_definition__full_field_e_activesession_usertype__e field_e_activesession_usertype_field_e_activesession_usertype_parseFromJSON(cJSON *field_e_activesession_usertypeJSON);
+
+#endif /* _field_e_activesession_usertype_H_ */
+

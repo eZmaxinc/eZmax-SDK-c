@@ -1,7 +1,7 @@
 /*
  * ezsigntemplatepackage_get_list_v1_response_m_payload.h
  *
- * Payload for the /1/object/ezsigntemplatepackage/getList API Request
+ * Payload for GET /1/object/ezsigntemplatepackage/getList
  */
 
 #ifndef _ezsigntemplatepackage_get_list_v1_response_m_payload_H_

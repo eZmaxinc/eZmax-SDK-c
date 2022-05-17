@@ -15,15 +15,6 @@
 
 typedef struct ezsignbulksend_list_element_t ezsignbulksend_list_element_t;
 
-#include "field_e_ezsignfoldertype_privacylevel.h"
-
-// Enum  for ezsignbulksend_list_element
-
-typedef enum  { ezmax_api_definition_ezsignbulksend_list_element__NULL = 0, ezmax_api_definition_ezsignbulksend_list_element__User, ezmax_api_definition_ezsignbulksend_list_element__Usergroup } ezmax_api_definition_ezsignbulksend_list_element__e;
-
-char* ezsignbulksend_list_element_e_ezsignfoldertype_privacylevel_ToString(ezmax_api_definition_ezsignbulksend_list_element__e e_ezsignfoldertype_privacylevel);
-
-ezmax_api_definition_ezsignbulksend_list_element__e ezsignbulksend_list_element_e_ezsignfoldertype_privacylevel_FromString(char* e_ezsignfoldertype_privacylevel);
 
 
 
@@ -32,7 +23,7 @@ typedef struct ezsignbulksend_list_element_t {
     int fki_ezsignfoldertype_id; //numeric
     char *s_ezsignbulksend_description; // string
     char *s_ezsignfoldertype_name_x; // string
-    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel; // custom
+    int b_ezsignbulksend_needvalidation; //boolean
     int b_ezsignbulksend_isactive; //boolean
     int i_ezsignbulksendtransmission; //numeric
     int i_ezsignfolder; //numeric
@@ -47,7 +38,7 @@ ezsignbulksend_list_element_t *ezsignbulksend_list_element_create(
     int fki_ezsignfoldertype_id,
     char *s_ezsignbulksend_description,
     char *s_ezsignfoldertype_name_x,
-    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel,
+    int b_ezsignbulksend_needvalidation,
     int b_ezsignbulksend_isactive,
     int i_ezsignbulksendtransmission,
     int i_ezsignfolder,

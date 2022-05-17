@@ -56,7 +56,6 @@ cJSON *custom_form_data_document_response_convertToJSON(custom_form_data_documen
     if (!custom_form_data_document_response->pki_ezsigndocument_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "pkiEzsigndocumentID", custom_form_data_document_response->pki_ezsigndocument_id) == NULL) {
     goto fail; //Numeric
     }
@@ -66,7 +65,6 @@ cJSON *custom_form_data_document_response_convertToJSON(custom_form_data_documen
     if (!custom_form_data_document_response->fki_ezsignfolder_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiEzsignfolderID", custom_form_data_document_response->fki_ezsignfolder_id) == NULL) {
     goto fail; //Numeric
     }
@@ -76,7 +74,6 @@ cJSON *custom_form_data_document_response_convertToJSON(custom_form_data_documen
     if (!custom_form_data_document_response->s_ezsigndocument_name) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sEzsigndocumentName", custom_form_data_document_response->s_ezsigndocument_name) == NULL) {
     goto fail; //String
     }
@@ -86,7 +83,6 @@ cJSON *custom_form_data_document_response_convertToJSON(custom_form_data_documen
     if (!custom_form_data_document_response->dt_modified_date) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "dtModifiedDate", custom_form_data_document_response->dt_modified_date) == NULL) {
     goto fail; //String
     }
@@ -96,7 +92,6 @@ cJSON *custom_form_data_document_response_convertToJSON(custom_form_data_documen
     if (!custom_form_data_document_response->a_obj_form_data_signer) {
         goto fail;
     }
-    
     cJSON *a_obj_form_data_signer = cJSON_AddArrayToObject(item, "a_objFormDataSigner");
     if(a_obj_form_data_signer == NULL) {
     goto fail; //nonprimitive container
@@ -124,6 +119,9 @@ fail:
 custom_form_data_document_response_t *custom_form_data_document_response_parseFromJSON(cJSON *custom_form_data_document_responseJSON){
 
     custom_form_data_document_response_t *custom_form_data_document_response_local_var = NULL;
+
+    // define the local list for custom_form_data_document_response->a_obj_form_data_signer
+    list_t *a_obj_form_data_signerList = NULL;
 
     // custom_form_data_document_response->pki_ezsigndocument_id
     cJSON *pki_ezsigndocument_id = cJSON_GetObjectItemCaseSensitive(custom_form_data_document_responseJSON, "pkiEzsigndocumentID");
@@ -179,9 +177,8 @@ custom_form_data_document_response_t *custom_form_data_document_response_parseFr
         goto end;
     }
 
-    list_t *a_obj_form_data_signerList;
     
-    cJSON *a_obj_form_data_signer_local_nonprimitive;
+    cJSON *a_obj_form_data_signer_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_form_data_signer)){
         goto end; //nonprimitive container
     }
@@ -209,6 +206,15 @@ custom_form_data_document_response_t *custom_form_data_document_response_parseFr
 
     return custom_form_data_document_response_local_var;
 end:
+    if (a_obj_form_data_signerList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_form_data_signerList) {
+            custom_form_data_signer_response_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_form_data_signerList);
+        a_obj_form_data_signerList = NULL;
+    }
     return NULL;
 
 }

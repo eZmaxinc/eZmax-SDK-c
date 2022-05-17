@@ -49,7 +49,6 @@ cJSON *common_response_obj_debug_payload_get_list_all_of_convertToJSON(common_re
     if (!common_response_obj_debug_payload_get_list_all_of->a_filter) {
         goto fail;
     }
-    
     cJSON *a_filter_local_JSON = common_response_filter_convertToJSON(common_response_obj_debug_payload_get_list_all_of->a_filter);
     if(a_filter_local_JSON == NULL) {
     goto fail; //model
@@ -64,7 +63,6 @@ cJSON *common_response_obj_debug_payload_get_list_all_of_convertToJSON(common_re
     if (!common_response_obj_debug_payload_get_list_all_of->a_order_by) {
         goto fail;
     }
-    
     cJSON *a_order_by = cJSON_AddObjectToObject(item, "a_OrderBy");
     if(a_order_by == NULL) {
         goto fail; //primitive map container
@@ -96,6 +94,9 @@ common_response_obj_debug_payload_get_list_all_of_t *common_response_obj_debug_p
     // define the local variable for common_response_obj_debug_payload_get_list_all_of->a_filter
     common_response_filter_t *a_filter_local_nonprim = NULL;
 
+    // define the local map for common_response_obj_debug_payload_get_list_all_of->a_order_by
+    list_t *a_order_byList = NULL;
+
     // common_response_obj_debug_payload_get_list_all_of->a_filter
     cJSON *a_filter = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payload_get_list_all_ofJSON, "a_Filter");
     if (!a_filter) {
@@ -111,9 +112,8 @@ common_response_obj_debug_payload_get_list_all_of_t *common_response_obj_debug_p
         goto end;
     }
 
-    list_t *a_order_byList;
     
-    cJSON *a_order_by_local_map;
+    cJSON *a_order_by_local_map = NULL;
     if(!cJSON_IsObject(a_order_by)) {
         goto end;//primitive map container
     }
@@ -141,6 +141,20 @@ end:
     if (a_filter_local_nonprim) {
         common_response_filter_free(a_filter_local_nonprim);
         a_filter_local_nonprim = NULL;
+    }
+    if (a_order_byList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_order_byList) {
+            keyValuePair_t *localKeyValue = (keyValuePair_t*) listEntry->data;
+            free(localKeyValue->key);
+            localKeyValue->key = NULL;
+            free(localKeyValue->value);
+            localKeyValue->value = NULL;
+            keyValuePair_free(localKeyValue);
+            localKeyValue = NULL;
+        }
+        list_freeList(a_order_byList);
+        a_order_byList = NULL;
     }
     return NULL;
 

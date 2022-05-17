@@ -40,7 +40,6 @@ cJSON *ezsignbulksend_get_list_v1_response_m_payload_all_of_convertToJSON(ezsign
     if (!ezsignbulksend_get_list_v1_response_m_payload_all_of->a_obj_ezsignbulksend) {
         goto fail;
     }
-    
     cJSON *a_obj_ezsignbulksend = cJSON_AddArrayToObject(item, "a_objEzsignbulksend");
     if(a_obj_ezsignbulksend == NULL) {
     goto fail; //nonprimitive container
@@ -69,15 +68,17 @@ ezsignbulksend_get_list_v1_response_m_payload_all_of_t *ezsignbulksend_get_list_
 
     ezsignbulksend_get_list_v1_response_m_payload_all_of_t *ezsignbulksend_get_list_v1_response_m_payload_all_of_local_var = NULL;
 
+    // define the local list for ezsignbulksend_get_list_v1_response_m_payload_all_of->a_obj_ezsignbulksend
+    list_t *a_obj_ezsignbulksendList = NULL;
+
     // ezsignbulksend_get_list_v1_response_m_payload_all_of->a_obj_ezsignbulksend
     cJSON *a_obj_ezsignbulksend = cJSON_GetObjectItemCaseSensitive(ezsignbulksend_get_list_v1_response_m_payload_all_ofJSON, "a_objEzsignbulksend");
     if (!a_obj_ezsignbulksend) {
         goto end;
     }
 
-    list_t *a_obj_ezsignbulksendList;
     
-    cJSON *a_obj_ezsignbulksend_local_nonprimitive;
+    cJSON *a_obj_ezsignbulksend_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_ezsignbulksend)){
         goto end; //nonprimitive container
     }
@@ -101,6 +102,15 @@ ezsignbulksend_get_list_v1_response_m_payload_all_of_t *ezsignbulksend_get_list_
 
     return ezsignbulksend_get_list_v1_response_m_payload_all_of_local_var;
 end:
+    if (a_obj_ezsignbulksendList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_ezsignbulksendList) {
+            ezsignbulksend_list_element_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_ezsignbulksendList);
+        a_obj_ezsignbulksendList = NULL;
+    }
     return NULL;
 
 }

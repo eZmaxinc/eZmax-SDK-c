@@ -1,0 +1,38 @@
+/*
+ * ezsignbulksenddocumentmapping_create_object_v1_response_all_of.h
+ *
+ * 
+ */
+
+#ifndef _ezsignbulksenddocumentmapping_create_object_v1_response_all_of_H_
+#define _ezsignbulksenddocumentmapping_create_object_v1_response_all_of_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct ezsignbulksenddocumentmapping_create_object_v1_response_all_of_t ezsignbulksenddocumentmapping_create_object_v1_response_all_of_t;
+
+#include "ezsignbulksenddocumentmapping_create_object_v1_response_m_payload.h"
+
+
+
+typedef struct ezsignbulksenddocumentmapping_create_object_v1_response_all_of_t {
+    struct ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_t *m_payload; //model
+
+} ezsignbulksenddocumentmapping_create_object_v1_response_all_of_t;
+
+ezsignbulksenddocumentmapping_create_object_v1_response_all_of_t *ezsignbulksenddocumentmapping_create_object_v1_response_all_of_create(
+    ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_t *m_payload
+);
+
+void ezsignbulksenddocumentmapping_create_object_v1_response_all_of_free(ezsignbulksenddocumentmapping_create_object_v1_response_all_of_t *ezsignbulksenddocumentmapping_create_object_v1_response_all_of);
+
+ezsignbulksenddocumentmapping_create_object_v1_response_all_of_t *ezsignbulksenddocumentmapping_create_object_v1_response_all_of_parseFromJSON(cJSON *ezsignbulksenddocumentmapping_create_object_v1_response_all_ofJSON);
+
+cJSON *ezsignbulksenddocumentmapping_create_object_v1_response_all_of_convertToJSON(ezsignbulksenddocumentmapping_create_object_v1_response_all_of_t *ezsignbulksenddocumentmapping_create_object_v1_response_all_of);
+
+#endif /* _ezsignbulksenddocumentmapping_create_object_v1_response_all_of_H_ */
+

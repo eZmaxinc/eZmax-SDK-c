@@ -1,7 +1,7 @@
 /*
  * ezsignfoldersignerassociation_get_object_v1_response_m_payload.h
  *
- * Payload for the /1/object/ezsignfoldersignerassociation/getObject API Request
+ * Payload for GET /1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}
  */
 
 #ifndef _ezsignfoldersignerassociation_get_object_v1_response_m_payload_H_

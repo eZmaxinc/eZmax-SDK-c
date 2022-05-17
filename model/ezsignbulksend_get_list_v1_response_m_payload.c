@@ -44,7 +44,6 @@ cJSON *ezsignbulksend_get_list_v1_response_m_payload_convertToJSON(ezsignbulksen
     if (!ezsignbulksend_get_list_v1_response_m_payload->a_obj_ezsignbulksend) {
         goto fail;
     }
-    
     cJSON *a_obj_ezsignbulksend = cJSON_AddArrayToObject(item, "a_objEzsignbulksend");
     if(a_obj_ezsignbulksend == NULL) {
     goto fail; //nonprimitive container
@@ -66,7 +65,6 @@ cJSON *ezsignbulksend_get_list_v1_response_m_payload_convertToJSON(ezsignbulksen
     if (!ezsignbulksend_get_list_v1_response_m_payload->i_row_returned) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iRowReturned", ezsignbulksend_get_list_v1_response_m_payload->i_row_returned) == NULL) {
     goto fail; //Numeric
     }
@@ -76,7 +74,6 @@ cJSON *ezsignbulksend_get_list_v1_response_m_payload_convertToJSON(ezsignbulksen
     if (!ezsignbulksend_get_list_v1_response_m_payload->i_row_filtered) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "iRowFiltered", ezsignbulksend_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
     goto fail; //Numeric
     }
@@ -93,15 +90,17 @@ ezsignbulksend_get_list_v1_response_m_payload_t *ezsignbulksend_get_list_v1_resp
 
     ezsignbulksend_get_list_v1_response_m_payload_t *ezsignbulksend_get_list_v1_response_m_payload_local_var = NULL;
 
+    // define the local list for ezsignbulksend_get_list_v1_response_m_payload->a_obj_ezsignbulksend
+    list_t *a_obj_ezsignbulksendList = NULL;
+
     // ezsignbulksend_get_list_v1_response_m_payload->a_obj_ezsignbulksend
     cJSON *a_obj_ezsignbulksend = cJSON_GetObjectItemCaseSensitive(ezsignbulksend_get_list_v1_response_m_payloadJSON, "a_objEzsignbulksend");
     if (!a_obj_ezsignbulksend) {
         goto end;
     }
 
-    list_t *a_obj_ezsignbulksendList;
     
-    cJSON *a_obj_ezsignbulksend_local_nonprimitive;
+    cJSON *a_obj_ezsignbulksend_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_ezsignbulksend)){
         goto end; //nonprimitive container
     }
@@ -151,6 +150,15 @@ ezsignbulksend_get_list_v1_response_m_payload_t *ezsignbulksend_get_list_v1_resp
 
     return ezsignbulksend_get_list_v1_response_m_payload_local_var;
 end:
+    if (a_obj_ezsignbulksendList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_ezsignbulksendList) {
+            ezsignbulksend_list_element_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_ezsignbulksendList);
+        a_obj_ezsignbulksendList = NULL;
+    }
     return NULL;
 
 }

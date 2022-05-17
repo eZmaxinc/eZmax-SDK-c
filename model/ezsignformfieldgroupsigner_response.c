@@ -35,7 +35,6 @@ cJSON *ezsignformfieldgroupsigner_response_convertToJSON(ezsignformfieldgroupsig
     if (!ezsignformfieldgroupsigner_response->pki_ezsignformfieldgroupsigner_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "pkiEzsignformfieldgroupsignerID", ezsignformfieldgroupsigner_response->pki_ezsignformfieldgroupsigner_id) == NULL) {
     goto fail; //Numeric
     }
@@ -45,7 +44,6 @@ cJSON *ezsignformfieldgroupsigner_response_convertToJSON(ezsignformfieldgroupsig
     if (!ezsignformfieldgroupsigner_response->fki_ezsignfoldersignerassociation_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiEzsignfoldersignerassociationID", ezsignformfieldgroupsigner_response->fki_ezsignfoldersignerassociation_id) == NULL) {
     goto fail; //Numeric
     }

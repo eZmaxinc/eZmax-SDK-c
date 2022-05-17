@@ -49,7 +49,6 @@ cJSON *activesession_get_current_v1_response_convertToJSON(activesession_get_cur
     if (!activesession_get_current_v1_response->m_payload) {
         goto fail;
     }
-    
     cJSON *m_payload_local_JSON = activesession_get_current_v1_response_m_payload_convertToJSON(activesession_get_current_v1_response->m_payload);
     if(m_payload_local_JSON == NULL) {
     goto fail; //model
@@ -61,7 +60,7 @@ cJSON *activesession_get_current_v1_response_convertToJSON(activesession_get_cur
 
 
     // activesession_get_current_v1_response->obj_debug_payload
-    if(activesession_get_current_v1_response->obj_debug_payload) { 
+    if(activesession_get_current_v1_response->obj_debug_payload) {
     cJSON *obj_debug_payload_local_JSON = common_response_obj_debug_payload_convertToJSON(activesession_get_current_v1_response->obj_debug_payload);
     if(obj_debug_payload_local_JSON == NULL) {
     goto fail; //model
@@ -70,11 +69,11 @@ cJSON *activesession_get_current_v1_response_convertToJSON(activesession_get_cur
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // activesession_get_current_v1_response->obj_debug
-    if(activesession_get_current_v1_response->obj_debug) { 
+    if(activesession_get_current_v1_response->obj_debug) {
     cJSON *obj_debug_local_JSON = common_response_obj_debug_convertToJSON(activesession_get_current_v1_response->obj_debug);
     if(obj_debug_local_JSON == NULL) {
     goto fail; //model
@@ -83,7 +82,7 @@ cJSON *activesession_get_current_v1_response_convertToJSON(activesession_get_cur
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:

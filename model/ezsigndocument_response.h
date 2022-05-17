@@ -20,11 +20,11 @@ typedef struct ezsigndocument_response_t ezsigndocument_response_t;
 
 // Enum  for ezsigndocument_response
 
-typedef enum  { ezmax_api_definition_ezsigndocument_response__NULL = 0, ezmax_api_definition_ezsigndocument_response__Unsent, ezmax_api_definition_ezsigndocument_response___Unsigned, ezmax_api_definition_ezsigndocument_response__PartiallySigned, ezmax_api_definition_ezsigndocument_response__DeclinedToSign, ezmax_api_definition_ezsigndocument_response__PrematurelyEnded, ezmax_api_definition_ezsigndocument_response__Completed } ezmax_api_definition_ezsigndocument_response__e;
+typedef enum  { ezmax_api_definition__full_ezsigndocument_response__NULL = 0, ezmax_api_definition__full_ezsigndocument_response__Unsent, ezmax_api_definition__full_ezsigndocument_response___Unsigned, ezmax_api_definition__full_ezsigndocument_response__PartiallySigned, ezmax_api_definition__full_ezsigndocument_response__DeclinedToSign, ezmax_api_definition__full_ezsigndocument_response__PrematurelyEnded, ezmax_api_definition__full_ezsigndocument_response__Completed } ezmax_api_definition__full_ezsigndocument_response__e;
 
-char* ezsigndocument_response_e_ezsigndocument_step_ToString(ezmax_api_definition_ezsigndocument_response__e e_ezsigndocument_step);
+char* ezsigndocument_response_e_ezsigndocument_step_ToString(ezmax_api_definition__full_ezsigndocument_response__e e_ezsigndocument_step);
 
-ezmax_api_definition_ezsigndocument_response__e ezsigndocument_response_e_ezsigndocument_step_FromString(char* e_ezsigndocument_step);
+ezmax_api_definition__full_ezsigndocument_response__e ezsigndocument_response_e_ezsigndocument_step_FromString(char* e_ezsigndocument_step);
 
 
 
@@ -43,6 +43,7 @@ typedef struct ezsigndocument_response_t {
     int i_ezsigndocument_signaturetotal; //numeric
     char *s_ezsigndocument_md5initial; // string
     char *s_ezsigndocument_md5signed; // string
+    int b_ezsigndocument_ezsignform; //boolean
     struct common_audit_t *obj_audit; //model
 
 } ezsigndocument_response_t;
@@ -62,6 +63,7 @@ ezsigndocument_response_t *ezsigndocument_response_create(
     int i_ezsigndocument_signaturetotal,
     char *s_ezsigndocument_md5initial,
     char *s_ezsigndocument_md5signed,
+    int b_ezsigndocument_ezsignform,
     common_audit_t *obj_audit
 );
 

@@ -43,7 +43,7 @@ cJSON *franchisereferalincome_request_compound_all_of_convertToJSON(franchiseref
     cJSON *item = cJSON_CreateObject();
 
     // franchisereferalincome_request_compound_all_of->obj_address
-    if(franchisereferalincome_request_compound_all_of->obj_address) { 
+    if(franchisereferalincome_request_compound_all_of->obj_address) {
     cJSON *obj_address_local_JSON = address_request_convertToJSON(franchisereferalincome_request_compound_all_of->obj_address);
     if(obj_address_local_JSON == NULL) {
     goto fail; //model
@@ -52,14 +52,13 @@ cJSON *franchisereferalincome_request_compound_all_of_convertToJSON(franchiseref
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // franchisereferalincome_request_compound_all_of->a_obj_contact
     if (!franchisereferalincome_request_compound_all_of->a_obj_contact) {
         goto fail;
     }
-    
     cJSON *a_obj_contact = cJSON_AddArrayToObject(item, "a_objContact");
     if(a_obj_contact == NULL) {
     goto fail; //nonprimitive container
@@ -91,6 +90,9 @@ franchisereferalincome_request_compound_all_of_t *franchisereferalincome_request
     // define the local variable for franchisereferalincome_request_compound_all_of->obj_address
     address_request_t *obj_address_local_nonprim = NULL;
 
+    // define the local list for franchisereferalincome_request_compound_all_of->a_obj_contact
+    list_t *a_obj_contactList = NULL;
+
     // franchisereferalincome_request_compound_all_of->obj_address
     cJSON *obj_address = cJSON_GetObjectItemCaseSensitive(franchisereferalincome_request_compound_all_ofJSON, "objAddress");
     if (obj_address) { 
@@ -103,9 +105,8 @@ franchisereferalincome_request_compound_all_of_t *franchisereferalincome_request
         goto end;
     }
 
-    list_t *a_obj_contactList;
     
-    cJSON *a_obj_contact_local_nonprimitive;
+    cJSON *a_obj_contact_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_contact)){
         goto end; //nonprimitive container
     }
@@ -133,6 +134,15 @@ end:
     if (obj_address_local_nonprim) {
         address_request_free(obj_address_local_nonprim);
         obj_address_local_nonprim = NULL;
+    }
+    if (a_obj_contactList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_contactList) {
+            contact_request_compound_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_contactList);
+        a_obj_contactList = NULL;
     }
     return NULL;
 

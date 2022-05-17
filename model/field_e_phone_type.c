@@ -4,12 +4,12 @@
 #include "field_e_phone_type.h"
 
 
-char* field_e_phone_type_field_e_phone_type_ToString(ezmax_api_definition_field_e_phone_type__e field_e_phone_type) {
+char* field_e_phone_type_field_e_phone_type_ToString(ezmax_api_definition__full_field_e_phone_type__e field_e_phone_type) {
     char *field_e_phone_typeArray[] =  { "NULL", "Local", "International" };
     return field_e_phone_typeArray[field_e_phone_type];
 }
 
-ezmax_api_definition_field_e_phone_type__e field_e_phone_type_field_e_phone_type_FromString(char* field_e_phone_type) {
+ezmax_api_definition__full_field_e_phone_type__e field_e_phone_type_field_e_phone_type_FromString(char* field_e_phone_type) {
     int stringToReturn = 0;
     char *field_e_phone_typeArray[] =  { "NULL", "Local", "International" };
     size_t sizeofArray = sizeof(field_e_phone_typeArray) / sizeof(field_e_phone_typeArray[0]);
@@ -22,7 +22,7 @@ ezmax_api_definition_field_e_phone_type__e field_e_phone_type_field_e_phone_type
     return 0;
 }
 
-cJSON *field_e_phone_type_field_e_phone_type_convertToJSON(ezmax_api_definition_field_e_phone_type__e field_e_phone_type) {
+cJSON *field_e_phone_type_field_e_phone_type_convertToJSON(ezmax_api_definition__full_field_e_phone_type__e field_e_phone_type) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_phone_type", field_e_phone_type_field_e_phone_type_ToString(field_e_phone_type)) == NULL) {
         goto fail;
@@ -33,9 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition_field_e_phone_type__e field_e_phone_type_field_e_phone_type_parseFromJSON(cJSON *field_e_phone_typeJSON) {
-    ezmax_api_definition_field_e_phone_type__e *field_e_phone_type = NULL;
-    ezmax_api_definition_field_e_phone_type__e field_e_phone_typeVariable;
+ezmax_api_definition__full_field_e_phone_type__e field_e_phone_type_field_e_phone_type_parseFromJSON(cJSON *field_e_phone_typeJSON) {
+    ezmax_api_definition__full_field_e_phone_type__e *field_e_phone_type = NULL;
+    ezmax_api_definition__full_field_e_phone_type__e field_e_phone_typeVariable;
     cJSON *field_e_phone_typeVar = cJSON_GetObjectItemCaseSensitive(field_e_phone_typeJSON, "field_e_phone_type");
     if(!cJSON_IsString(field_e_phone_typeVar) || (field_e_phone_typeVar->valuestring == NULL)){
         goto end;

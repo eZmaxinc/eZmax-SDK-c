@@ -40,7 +40,7 @@ cJSON *ezsignfoldersignerassociation_delete_object_v1_response_convertToJSON(ezs
     cJSON *item = cJSON_CreateObject();
 
     // ezsignfoldersignerassociation_delete_object_v1_response->obj_debug_payload
-    if(ezsignfoldersignerassociation_delete_object_v1_response->obj_debug_payload) { 
+    if(ezsignfoldersignerassociation_delete_object_v1_response->obj_debug_payload) {
     cJSON *obj_debug_payload_local_JSON = common_response_obj_debug_payload_convertToJSON(ezsignfoldersignerassociation_delete_object_v1_response->obj_debug_payload);
     if(obj_debug_payload_local_JSON == NULL) {
     goto fail; //model
@@ -49,11 +49,11 @@ cJSON *ezsignfoldersignerassociation_delete_object_v1_response_convertToJSON(ezs
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // ezsignfoldersignerassociation_delete_object_v1_response->obj_debug
-    if(ezsignfoldersignerassociation_delete_object_v1_response->obj_debug) { 
+    if(ezsignfoldersignerassociation_delete_object_v1_response->obj_debug) {
     cJSON *obj_debug_local_JSON = common_response_obj_debug_convertToJSON(ezsignfoldersignerassociation_delete_object_v1_response->obj_debug);
     if(obj_debug_local_JSON == NULL) {
     goto fail; //model
@@ -62,7 +62,7 @@ cJSON *ezsignfoldersignerassociation_delete_object_v1_response_convertToJSON(ezs
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:

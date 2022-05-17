@@ -49,7 +49,6 @@ cJSON *franchisereferalincome_create_object_v2_response_convertToJSON(franchiser
     if (!franchisereferalincome_create_object_v2_response->m_payload) {
         goto fail;
     }
-    
     cJSON *m_payload_local_JSON = franchisereferalincome_create_object_v2_response_m_payload_convertToJSON(franchisereferalincome_create_object_v2_response->m_payload);
     if(m_payload_local_JSON == NULL) {
     goto fail; //model
@@ -61,7 +60,7 @@ cJSON *franchisereferalincome_create_object_v2_response_convertToJSON(franchiser
 
 
     // franchisereferalincome_create_object_v2_response->obj_debug_payload
-    if(franchisereferalincome_create_object_v2_response->obj_debug_payload) { 
+    if(franchisereferalincome_create_object_v2_response->obj_debug_payload) {
     cJSON *obj_debug_payload_local_JSON = common_response_obj_debug_payload_convertToJSON(franchisereferalincome_create_object_v2_response->obj_debug_payload);
     if(obj_debug_payload_local_JSON == NULL) {
     goto fail; //model
@@ -70,11 +69,11 @@ cJSON *franchisereferalincome_create_object_v2_response_convertToJSON(franchiser
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // franchisereferalincome_create_object_v2_response->obj_debug
-    if(franchisereferalincome_create_object_v2_response->obj_debug) { 
+    if(franchisereferalincome_create_object_v2_response->obj_debug) {
     cJSON *obj_debug_local_JSON = common_response_obj_debug_convertToJSON(franchisereferalincome_create_object_v2_response->obj_debug);
     if(obj_debug_local_JSON == NULL) {
     goto fail; //model
@@ -83,7 +82,7 @@ cJSON *franchisereferalincome_create_object_v2_response_convertToJSON(franchiser
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:

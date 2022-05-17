@@ -1,7 +1,7 @@
 /*
  * ezsigndocument_get_words_positions_v1_response.h
  *
- * Response for the /1/object/ezsigndocument/{pkiEzsigndocumentID}/getWordsPositions API Request
+ * Response for POST /1/object/ezsigndocument/{pkiEzsigndocumentID}/getWordsPositions
  */
 
 #ifndef _ezsigndocument_get_words_positions_v1_response_H_

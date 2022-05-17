@@ -16,21 +16,19 @@
 #include "../model/ezsignfolder_get_forms_data_v1_response_m_payload.h"
 ezsignfolder_get_forms_data_v1_response_m_payload_t* instantiate_ezsignfolder_get_forms_data_v1_response_m_payload(int include_optional);
 
+#include "test_custom_forms_data_folder_response.c"
 
 
 ezsignfolder_get_forms_data_v1_response_m_payload_t* instantiate_ezsignfolder_get_forms_data_v1_response_m_payload(int include_optional) {
   ezsignfolder_get_forms_data_v1_response_m_payload_t* ezsignfolder_get_forms_data_v1_response_m_payload = NULL;
   if (include_optional) {
     ezsignfolder_get_forms_data_v1_response_m_payload = ezsignfolder_get_forms_data_v1_response_m_payload_create(
-      33,
-      "Test eZsign Folder",
-      list_createList()
+       // false, not to have infinite recursion
+      instantiate_custom_forms_data_folder_response(0)
     );
   } else {
     ezsignfolder_get_forms_data_v1_response_m_payload = ezsignfolder_get_forms_data_v1_response_m_payload_create(
-      33,
-      "Test eZsign Folder",
-      list_createList()
+      NULL
     );
   }
 

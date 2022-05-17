@@ -1,0 +1,58 @@
+/*
+ * ezsignbulksend_create_ezsignbulksendtransmission_v1_request.h
+ *
+ * Request for POST /1/object/ezsignbulksend/{pkiEzsignbulksendID}/createEzsignbulksendtransmission
+ */
+
+#ifndef _ezsignbulksend_create_ezsignbulksendtransmission_v1_request_H_
+#define _ezsignbulksend_create_ezsignbulksendtransmission_v1_request_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct ezsignbulksend_create_ezsignbulksendtransmission_v1_request_t ezsignbulksend_create_ezsignbulksendtransmission_v1_request_t;
+
+#include "field_e_ezsignfolder_sendreminderfrequency.h"
+
+// Enum  for ezsignbulksend_create_ezsignbulksendtransmission_v1_request
+
+typedef enum  { ezmax_api_definition__full_ezsignbulksend_create_ezsignbulksendtransmission_v1_request__NULL = 0, ezmax_api_definition__full_ezsignbulksend_create_ezsignbulksendtransmission_v1_request__None, ezmax_api_definition__full_ezsignbulksend_create_ezsignbulksendtransmission_v1_request__Daily, ezmax_api_definition__full_ezsignbulksend_create_ezsignbulksendtransmission_v1_request__Weekly } ezmax_api_definition__full_ezsignbulksend_create_ezsignbulksendtransmission_v1_request__e;
+
+char* ezsignbulksend_create_ezsignbulksendtransmission_v1_request_e_ezsignfolder_sendreminderfrequency_ToString(ezmax_api_definition__full_ezsignbulksend_create_ezsignbulksendtransmission_v1_request__e e_ezsignfolder_sendreminderfrequency);
+
+ezmax_api_definition__full_ezsignbulksend_create_ezsignbulksendtransmission_v1_request__e ezsignbulksend_create_ezsignbulksendtransmission_v1_request_e_ezsignfolder_sendreminderfrequency_FromString(char* e_ezsignfolder_sendreminderfrequency);
+
+
+
+typedef struct ezsignbulksend_create_ezsignbulksendtransmission_v1_request_t {
+    int fki_userlogintype_id; //numeric
+    int fki_ezsigntsarequirement_id; //numeric
+    char *s_ezsignbulksendtransmission_description; // string
+    char *dt_ezsigndocument_duedate; // string
+    field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency; // custom
+    char *t_extra_message; // string
+    char *s_csv_base64; //ByteArray
+
+} ezsignbulksend_create_ezsignbulksendtransmission_v1_request_t;
+
+ezsignbulksend_create_ezsignbulksendtransmission_v1_request_t *ezsignbulksend_create_ezsignbulksendtransmission_v1_request_create(
+    int fki_userlogintype_id,
+    int fki_ezsigntsarequirement_id,
+    char *s_ezsignbulksendtransmission_description,
+    char *dt_ezsigndocument_duedate,
+    field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency,
+    char *t_extra_message,
+    char *s_csv_base64
+);
+
+void ezsignbulksend_create_ezsignbulksendtransmission_v1_request_free(ezsignbulksend_create_ezsignbulksendtransmission_v1_request_t *ezsignbulksend_create_ezsignbulksendtransmission_v1_request);
+
+ezsignbulksend_create_ezsignbulksendtransmission_v1_request_t *ezsignbulksend_create_ezsignbulksendtransmission_v1_request_parseFromJSON(cJSON *ezsignbulksend_create_ezsignbulksendtransmission_v1_requestJSON);
+
+cJSON *ezsignbulksend_create_ezsignbulksendtransmission_v1_request_convertToJSON(ezsignbulksend_create_ezsignbulksendtransmission_v1_request_t *ezsignbulksend_create_ezsignbulksendtransmission_v1_request);
+
+#endif /* _ezsignbulksend_create_ezsignbulksendtransmission_v1_request_H_ */
+

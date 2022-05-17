@@ -80,18 +80,17 @@ cJSON *franchisereferalincome_request_convertToJSON(franchisereferalincome_reque
     cJSON *item = cJSON_CreateObject();
 
     // franchisereferalincome_request->pki_franchisereferalincome_id
-    if(franchisereferalincome_request->pki_franchisereferalincome_id) { 
+    if(franchisereferalincome_request->pki_franchisereferalincome_id) {
     if(cJSON_AddNumberToObject(item, "pkiFranchisereferalincomeID", franchisereferalincome_request->pki_franchisereferalincome_id) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // franchisereferalincome_request->fki_franchisebroker_id
     if (!franchisereferalincome_request->fki_franchisebroker_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiFranchisebrokerID", franchisereferalincome_request->fki_franchisebroker_id) == NULL) {
     goto fail; //Numeric
     }
@@ -101,7 +100,6 @@ cJSON *franchisereferalincome_request_convertToJSON(franchisereferalincome_reque
     if (!franchisereferalincome_request->fki_franchisereferalincomeprogram_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiFranchisereferalincomeprogramID", franchisereferalincome_request->fki_franchisereferalincomeprogram_id) == NULL) {
     goto fail; //Numeric
     }
@@ -111,7 +109,6 @@ cJSON *franchisereferalincome_request_convertToJSON(franchisereferalincome_reque
     if (!franchisereferalincome_request->fki_period_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiPeriodID", franchisereferalincome_request->fki_period_id) == NULL) {
     goto fail; //Numeric
     }
@@ -121,7 +118,6 @@ cJSON *franchisereferalincome_request_convertToJSON(franchisereferalincome_reque
     if (!franchisereferalincome_request->d_franchisereferalincome_loan) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "dFranchisereferalincomeLoan", franchisereferalincome_request->d_franchisereferalincome_loan) == NULL) {
     goto fail; //String
     }
@@ -131,7 +127,6 @@ cJSON *franchisereferalincome_request_convertToJSON(franchisereferalincome_reque
     if (!franchisereferalincome_request->d_franchisereferalincome_franchiseamount) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "dFranchisereferalincomeFranchiseamount", franchisereferalincome_request->d_franchisereferalincome_franchiseamount) == NULL) {
     goto fail; //String
     }
@@ -141,7 +136,6 @@ cJSON *franchisereferalincome_request_convertToJSON(franchisereferalincome_reque
     if (!franchisereferalincome_request->d_franchisereferalincome_franchisoramount) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "dFranchisereferalincomeFranchisoramount", franchisereferalincome_request->d_franchisereferalincome_franchisoramount) == NULL) {
     goto fail; //String
     }
@@ -151,7 +145,6 @@ cJSON *franchisereferalincome_request_convertToJSON(franchisereferalincome_reque
     if (!franchisereferalincome_request->d_franchisereferalincome_agentamount) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "dFranchisereferalincomeAgentamount", franchisereferalincome_request->d_franchisereferalincome_agentamount) == NULL) {
     goto fail; //String
     }
@@ -161,7 +154,6 @@ cJSON *franchisereferalincome_request_convertToJSON(franchisereferalincome_reque
     if (!franchisereferalincome_request->dt_franchisereferalincome_disbursed) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "dtFranchisereferalincomeDisbursed", franchisereferalincome_request->dt_franchisereferalincome_disbursed) == NULL) {
     goto fail; //String
     }
@@ -171,7 +163,6 @@ cJSON *franchisereferalincome_request_convertToJSON(franchisereferalincome_reque
     if (!franchisereferalincome_request->t_franchisereferalincome_comment) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "tFranchisereferalincomeComment", franchisereferalincome_request->t_franchisereferalincome_comment) == NULL) {
     goto fail; //String
     }
@@ -181,7 +172,6 @@ cJSON *franchisereferalincome_request_convertToJSON(franchisereferalincome_reque
     if (!franchisereferalincome_request->fki_franchiseoffice_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiFranchiseofficeID", franchisereferalincome_request->fki_franchiseoffice_id) == NULL) {
     goto fail; //Numeric
     }
@@ -191,7 +181,6 @@ cJSON *franchisereferalincome_request_convertToJSON(franchisereferalincome_reque
     if (!franchisereferalincome_request->s_franchisereferalincome_remoteid) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sFranchisereferalincomeRemoteid", franchisereferalincome_request->s_franchisereferalincome_remoteid) == NULL) {
     goto fail; //String
     }

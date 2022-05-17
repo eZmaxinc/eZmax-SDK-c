@@ -40,7 +40,6 @@ cJSON *ezsignformfieldgroup_create_object_v1_response_m_payload_convertToJSON(ez
     if (!ezsignformfieldgroup_create_object_v1_response_m_payload->a_pki_ezsignformfieldgroup_id) {
         goto fail;
     }
-    
     cJSON *a_pki_ezsignformfieldgroup_id = cJSON_AddArrayToObject(item, "a_pkiEzsignformfieldgroupID");
     if(a_pki_ezsignformfieldgroup_id == NULL) {
         goto fail; //primitive container
@@ -66,15 +65,17 @@ ezsignformfieldgroup_create_object_v1_response_m_payload_t *ezsignformfieldgroup
 
     ezsignformfieldgroup_create_object_v1_response_m_payload_t *ezsignformfieldgroup_create_object_v1_response_m_payload_local_var = NULL;
 
+    // define the local list for ezsignformfieldgroup_create_object_v1_response_m_payload->a_pki_ezsignformfieldgroup_id
+    list_t *a_pki_ezsignformfieldgroup_idList = NULL;
+
     // ezsignformfieldgroup_create_object_v1_response_m_payload->a_pki_ezsignformfieldgroup_id
     cJSON *a_pki_ezsignformfieldgroup_id = cJSON_GetObjectItemCaseSensitive(ezsignformfieldgroup_create_object_v1_response_m_payloadJSON, "a_pkiEzsignformfieldgroupID");
     if (!a_pki_ezsignformfieldgroup_id) {
         goto end;
     }
 
-    list_t *a_pki_ezsignformfieldgroup_idList;
     
-    cJSON *a_pki_ezsignformfieldgroup_id_local;
+    cJSON *a_pki_ezsignformfieldgroup_id_local = NULL;
     if(!cJSON_IsArray(a_pki_ezsignformfieldgroup_id)) {
         goto end;//primitive container
     }
@@ -102,6 +103,15 @@ ezsignformfieldgroup_create_object_v1_response_m_payload_t *ezsignformfieldgroup
 
     return ezsignformfieldgroup_create_object_v1_response_m_payload_local_var;
 end:
+    if (a_pki_ezsignformfieldgroup_idList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_pki_ezsignformfieldgroup_idList) {
+            free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_pki_ezsignformfieldgroup_idList);
+        a_pki_ezsignformfieldgroup_idList = NULL;
+    }
     return NULL;
 
 }

@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 **s_ezsignfolder_description** | **char \*** | The description of the Ezsignfolder | 
 **t_ezsignfolder_note** | **char \*** | Note about the Ezsignfolder | 
 **e_ezsignfolder_sendreminderfrequency** | **field_e_ezsignfolder_sendreminderfrequency_t \*** |  | 
-**dt_ezsignfolder_duedate** | **char \*** | The maximum date and time at which the Ezsignfolder can be signed. | 
-**dt_ezsignfolder_sentdate** | **char \*** | The date and time at which the Ezsign folder was sent the last time. | 
+**dt_ezsignfolder_duedate** | **char \*** | The maximum date and time at which the Ezsignfolder can be signed. | [optional] 
+**dt_ezsignfolder_sentdate** | **char \*** | The date and time at which the Ezsign folder was sent the last time. | [optional] 
 **dt_ezsignfolder_scheduledarchive** | **char \*** | The scheduled date and time at which the Ezsignfolder should be archived. | 
 **dt_ezsignfolder_scheduleddestruction** | **char \*** | The scheduled date and time at which the Ezsignfolder should be Destroyed. | 
 **e_ezsignfolder_step** | **field_e_ezsignfolder_step_t \*** |  | 

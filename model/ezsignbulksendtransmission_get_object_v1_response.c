@@ -49,7 +49,6 @@ cJSON *ezsignbulksendtransmission_get_object_v1_response_convertToJSON(ezsignbul
     if (!ezsignbulksendtransmission_get_object_v1_response->m_payload) {
         goto fail;
     }
-    
     cJSON *m_payload_local_JSON = ezsignbulksendtransmission_get_object_v1_response_m_payload_convertToJSON(ezsignbulksendtransmission_get_object_v1_response->m_payload);
     if(m_payload_local_JSON == NULL) {
     goto fail; //model
@@ -61,7 +60,7 @@ cJSON *ezsignbulksendtransmission_get_object_v1_response_convertToJSON(ezsignbul
 
 
     // ezsignbulksendtransmission_get_object_v1_response->obj_debug_payload
-    if(ezsignbulksendtransmission_get_object_v1_response->obj_debug_payload) { 
+    if(ezsignbulksendtransmission_get_object_v1_response->obj_debug_payload) {
     cJSON *obj_debug_payload_local_JSON = common_response_obj_debug_payload_convertToJSON(ezsignbulksendtransmission_get_object_v1_response->obj_debug_payload);
     if(obj_debug_payload_local_JSON == NULL) {
     goto fail; //model
@@ -70,11 +69,11 @@ cJSON *ezsignbulksendtransmission_get_object_v1_response_convertToJSON(ezsignbul
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // ezsignbulksendtransmission_get_object_v1_response->obj_debug
-    if(ezsignbulksendtransmission_get_object_v1_response->obj_debug) { 
+    if(ezsignbulksendtransmission_get_object_v1_response->obj_debug) {
     cJSON *obj_debug_local_JSON = common_response_obj_debug_convertToJSON(ezsignbulksendtransmission_get_object_v1_response->obj_debug);
     if(obj_debug_local_JSON == NULL) {
     goto fail; //model
@@ -83,7 +82,7 @@ cJSON *ezsignbulksendtransmission_get_object_v1_response_convertToJSON(ezsignbul
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:

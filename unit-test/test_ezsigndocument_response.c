@@ -28,7 +28,7 @@ ezsigndocument_response_t* instantiate_ezsigndocument_response(int include_optio
       2,
       "Contract #123",
       97,
-      ezmax_api_definition_ezsigndocument_response__"Completed",
+      ezmax_api_definition__full_ezsigndocument_response__"Completed",
       "2020-12-31 23:59:59",
       "2020-12-31 23:59:59",
       1,
@@ -37,6 +37,7 @@ ezsigndocument_response_t* instantiate_ezsigndocument_response(int include_optio
       4,
       "012345678901234567890123456789AB",
       "012345678901234567890123456789AB",
+      true,
        // false, not to have infinite recursion
       instantiate_common_audit(0)
     );
@@ -47,7 +48,7 @@ ezsigndocument_response_t* instantiate_ezsigndocument_response(int include_optio
       2,
       "Contract #123",
       97,
-      ezmax_api_definition_ezsigndocument_response__"Completed",
+      ezmax_api_definition__full_ezsigndocument_response__"Completed",
       "2020-12-31 23:59:59",
       "2020-12-31 23:59:59",
       1,
@@ -56,6 +57,7 @@ ezsigndocument_response_t* instantiate_ezsigndocument_response(int include_optio
       4,
       "012345678901234567890123456789AB",
       "012345678901234567890123456789AB",
+      true,
       NULL
     );
   }

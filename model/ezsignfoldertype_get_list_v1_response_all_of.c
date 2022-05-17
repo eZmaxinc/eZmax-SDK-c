@@ -37,7 +37,6 @@ cJSON *ezsignfoldertype_get_list_v1_response_all_of_convertToJSON(ezsignfolderty
     if (!ezsignfoldertype_get_list_v1_response_all_of->m_payload) {
         goto fail;
     }
-    
     cJSON *m_payload_local_JSON = ezsignfoldertype_get_list_v1_response_m_payload_convertToJSON(ezsignfoldertype_get_list_v1_response_all_of->m_payload);
     if(m_payload_local_JSON == NULL) {
     goto fail; //model

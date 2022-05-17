@@ -38,18 +38,17 @@ cJSON *apikey_request_compound_convertToJSON(apikey_request_compound_t *apikey_r
     cJSON *item = cJSON_CreateObject();
 
     // apikey_request_compound->pki_apikey_id
-    if(apikey_request_compound->pki_apikey_id) { 
+    if(apikey_request_compound->pki_apikey_id) {
     if(cJSON_AddNumberToObject(item, "pkiApikeyID", apikey_request_compound->pki_apikey_id) == NULL) {
     goto fail; //Numeric
     }
-     } 
+    }
 
 
     // apikey_request_compound->fki_user_id
     if (!apikey_request_compound->fki_user_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiUserID", apikey_request_compound->fki_user_id) == NULL) {
     goto fail; //Numeric
     }
@@ -59,7 +58,6 @@ cJSON *apikey_request_compound_convertToJSON(apikey_request_compound_t *apikey_r
     if (!apikey_request_compound->obj_apikey_description) {
         goto fail;
     }
-    
     cJSON *obj_apikey_description_local_JSON = multilingual_apikey_description_convertToJSON(apikey_request_compound->obj_apikey_description);
     if(obj_apikey_description_local_JSON == NULL) {
     goto fail; //model

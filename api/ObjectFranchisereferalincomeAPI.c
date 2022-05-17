@@ -74,9 +74,10 @@ ObjectFranchisereferalincomeAPI_franchisereferalincomeCreateObjectV1(apiClient_t
                     localVarBodyParameters,
                     "POST");
 
-    if (apiClient->response_code == 201) {
-        printf("%s\n","Successful response");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 201) {
+    //    printf("%s\n","Successful response");
+    //}
     //nonprimitive not container
     cJSON *ObjectFranchisereferalincomeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     franchisereferalincome_create_object_v1_response_t *elementToReturn = franchisereferalincome_create_object_v1_response_parseFromJSON(ObjectFranchisereferalincomeAPIlocalVarJSON);
@@ -159,9 +160,10 @@ ObjectFranchisereferalincomeAPI_franchisereferalincomeCreateObjectV2(apiClient_t
                     localVarBodyParameters,
                     "POST");
 
-    if (apiClient->response_code == 201) {
-        printf("%s\n","Successful response");
-    }
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 201) {
+    //    printf("%s\n","Successful response");
+    //}
     //nonprimitive not container
     cJSON *ObjectFranchisereferalincomeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     franchisereferalincome_create_object_v2_response_t *elementToReturn = franchisereferalincome_create_object_v2_response_parseFromJSON(ObjectFranchisereferalincomeAPIlocalVarJSON);

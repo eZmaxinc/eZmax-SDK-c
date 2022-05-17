@@ -1,7 +1,7 @@
 /*
  * franchisereferalincome_create_object_v1_response.h
  *
- * Response for the /1/object/franchisereferalincome/createObject API Request
+ * Response for POST /1/object/franchisereferalincome
  */
 
 #ifndef _franchisereferalincome_create_object_v1_response_H_

@@ -1,7 +1,7 @@
 /*
  * common_get_autocomplete_v1_response.h
  *
- * Response for the /1/object/xxx/getAutocomplete API Request
+ * Response for GET /1/object/xxx/getAutocomplete
  */
 
 #ifndef _common_get_autocomplete_v1_response_H_

@@ -25,7 +25,7 @@ ezsignsigner_request_t* instantiate_ezsignsigner_request(int include_optional) {
       2,
       1,
       7,
-      ezmax_api_definition_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_Password,
+      ezmax_api_definition__full_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_Password,
       "0"
     );
   } else {
@@ -33,7 +33,7 @@ ezsignsigner_request_t* instantiate_ezsignsigner_request(int include_optional) {
       2,
       1,
       7,
-      ezmax_api_definition_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_Password,
+      ezmax_api_definition__full_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_Password,
       "0"
     );
   }

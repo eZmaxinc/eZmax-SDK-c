@@ -6,9 +6,13 @@
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
 #include "../model/common_get_autocomplete_v1_response.h"
+#include "../model/header_accept_language.h"
 
 // Enum SSELECTOR for ObjectFranchiseofficeAPI_franchiseofficeGetAutocompleteV1
-typedef enum  { ezmax_api_definition_franchiseofficeGetAutocompleteV1_SSELECTOR_NULL = 0, ezmax_api_definition_franchiseofficeGetAutocompleteV1_SSELECTOR_Active, ezmax_api_definition_franchiseofficeGetAutocompleteV1_SSELECTOR_All } ezmax_api_definition_franchiseofficeGetAutocompleteV1_sSelector_e;
+typedef enum  { ezmax_api_definition__full_franchiseofficeGetAutocompleteV1_SSELECTOR_NULL = 0, ezmax_api_definition__full_franchiseofficeGetAutocompleteV1_SSELECTOR_Active, ezmax_api_definition__full_franchiseofficeGetAutocompleteV1_SSELECTOR_All } ezmax_api_definition__full_franchiseofficeGetAutocompleteV1_sSelector_e;
+
+// Enum  for ObjectFranchiseofficeAPI_franchiseofficeGetAutocompleteV1
+typedef enum  { ezmax_api_definition__full_franchiseofficeGetAutocompleteV1__NULL = 0, ezmax_api_definition__full_franchiseofficeGetAutocompleteV1__*, ezmax_api_definition__full_franchiseofficeGetAutocompleteV1__en, ezmax_api_definition__full_franchiseofficeGetAutocompleteV1__fr } ezmax_api_definition__full_franchiseofficeGetAutocompleteV1_Accept-Language_e;
 
 
 // Retrieve Franchiseoffices and IDs
@@ -16,6 +20,6 @@ typedef enum  { ezmax_api_definition_franchiseofficeGetAutocompleteV1_SSELECTOR_
 // Get the list of Franchiseoffices to be used in a dropdown or autocomplete control.
 //
 common_get_autocomplete_v1_response_t*
-ObjectFranchiseofficeAPI_franchiseofficeGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition_franchiseofficeGetAutocompleteV1_sSelector_e sSelector , char * sQuery );
+ObjectFranchiseofficeAPI_franchiseofficeGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_franchiseofficeGetAutocompleteV1_sSelector_e sSelector , char * sQuery , header_accept_language_e Accept_Language );
 
 

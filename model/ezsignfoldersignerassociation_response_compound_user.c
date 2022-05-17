@@ -53,7 +53,6 @@ cJSON *ezsignfoldersignerassociation_response_compound_user_convertToJSON(ezsign
     if (!ezsignfoldersignerassociation_response_compound_user->pki_user_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "pkiUserID", ezsignfoldersignerassociation_response_compound_user->pki_user_id) == NULL) {
     goto fail; //Numeric
     }
@@ -63,7 +62,6 @@ cJSON *ezsignfoldersignerassociation_response_compound_user_convertToJSON(ezsign
     if (!ezsignfoldersignerassociation_response_compound_user->fki_language_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiLanguageID", ezsignfoldersignerassociation_response_compound_user->fki_language_id) == NULL) {
     goto fail; //Numeric
     }
@@ -73,7 +71,6 @@ cJSON *ezsignfoldersignerassociation_response_compound_user_convertToJSON(ezsign
     if (!ezsignfoldersignerassociation_response_compound_user->s_user_firstname) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sUserFirstname", ezsignfoldersignerassociation_response_compound_user->s_user_firstname) == NULL) {
     goto fail; //String
     }
@@ -83,7 +80,6 @@ cJSON *ezsignfoldersignerassociation_response_compound_user_convertToJSON(ezsign
     if (!ezsignfoldersignerassociation_response_compound_user->s_user_lastname) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sUserLastname", ezsignfoldersignerassociation_response_compound_user->s_user_lastname) == NULL) {
     goto fail; //String
     }
@@ -93,7 +89,6 @@ cJSON *ezsignfoldersignerassociation_response_compound_user_convertToJSON(ezsign
     if (!ezsignfoldersignerassociation_response_compound_user->s_email_address) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sEmailAddress", ezsignfoldersignerassociation_response_compound_user->s_email_address) == NULL) {
     goto fail; //String
     }

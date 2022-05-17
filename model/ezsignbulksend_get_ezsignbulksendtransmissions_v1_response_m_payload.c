@@ -40,7 +40,6 @@ cJSON *ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_conv
     if (!ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload->a_obj_ezsignbulksendtransmission) {
         goto fail;
     }
-    
     cJSON *a_obj_ezsignbulksendtransmission = cJSON_AddArrayToObject(item, "a_objEzsignbulksendtransmission");
     if(a_obj_ezsignbulksendtransmission == NULL) {
     goto fail; //nonprimitive container
@@ -69,15 +68,17 @@ ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_t *ezsignbu
 
     ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_t *ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_local_var = NULL;
 
+    // define the local list for ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload->a_obj_ezsignbulksendtransmission
+    list_t *a_obj_ezsignbulksendtransmissionList = NULL;
+
     // ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload->a_obj_ezsignbulksendtransmission
     cJSON *a_obj_ezsignbulksendtransmission = cJSON_GetObjectItemCaseSensitive(ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payloadJSON, "a_objEzsignbulksendtransmission");
     if (!a_obj_ezsignbulksendtransmission) {
         goto end;
     }
 
-    list_t *a_obj_ezsignbulksendtransmissionList;
     
-    cJSON *a_obj_ezsignbulksendtransmission_local_nonprimitive;
+    cJSON *a_obj_ezsignbulksendtransmission_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_ezsignbulksendtransmission)){
         goto end; //nonprimitive container
     }
@@ -101,6 +102,15 @@ ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_t *ezsignbu
 
     return ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload_local_var;
 end:
+    if (a_obj_ezsignbulksendtransmissionList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_ezsignbulksendtransmissionList) {
+            ezsignbulksendtransmission_response_compound_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_ezsignbulksendtransmissionList);
+        a_obj_ezsignbulksendtransmissionList = NULL;
+    }
     return NULL;
 
 }

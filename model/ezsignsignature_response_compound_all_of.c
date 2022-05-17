@@ -39,15 +39,15 @@ cJSON *ezsignsignature_response_compound_all_of_convertToJSON(ezsignsignature_re
     cJSON *item = cJSON_CreateObject();
 
     // ezsignsignature_response_compound_all_of->b_ezsignsignature_customdate
-    if(ezsignsignature_response_compound_all_of->b_ezsignsignature_customdate) { 
+    if(ezsignsignature_response_compound_all_of->b_ezsignsignature_customdate) {
     if(cJSON_AddBoolToObject(item, "bEzsignsignatureCustomdate", ezsignsignature_response_compound_all_of->b_ezsignsignature_customdate) == NULL) {
     goto fail; //Bool
     }
-     } 
+    }
 
 
     // ezsignsignature_response_compound_all_of->a_obj_ezsignsignaturecustomdate
-    if(ezsignsignature_response_compound_all_of->a_obj_ezsignsignaturecustomdate) { 
+    if(ezsignsignature_response_compound_all_of->a_obj_ezsignsignaturecustomdate) {
     cJSON *a_obj_ezsignsignaturecustomdate = cJSON_AddArrayToObject(item, "a_objEzsignsignaturecustomdate");
     if(a_obj_ezsignsignaturecustomdate == NULL) {
     goto fail; //nonprimitive container
@@ -63,7 +63,7 @@ cJSON *ezsignsignature_response_compound_all_of_convertToJSON(ezsignsignature_re
     cJSON_AddItemToArray(a_obj_ezsignsignaturecustomdate, itemLocal);
     }
     }
-     } 
+    }
 
     return item;
 fail:
@@ -77,6 +77,9 @@ ezsignsignature_response_compound_all_of_t *ezsignsignature_response_compound_al
 
     ezsignsignature_response_compound_all_of_t *ezsignsignature_response_compound_all_of_local_var = NULL;
 
+    // define the local list for ezsignsignature_response_compound_all_of->a_obj_ezsignsignaturecustomdate
+    list_t *a_obj_ezsignsignaturecustomdateList = NULL;
+
     // ezsignsignature_response_compound_all_of->b_ezsignsignature_customdate
     cJSON *b_ezsignsignature_customdate = cJSON_GetObjectItemCaseSensitive(ezsignsignature_response_compound_all_ofJSON, "bEzsignsignatureCustomdate");
     if (b_ezsignsignature_customdate) { 
@@ -88,9 +91,8 @@ ezsignsignature_response_compound_all_of_t *ezsignsignature_response_compound_al
 
     // ezsignsignature_response_compound_all_of->a_obj_ezsignsignaturecustomdate
     cJSON *a_obj_ezsignsignaturecustomdate = cJSON_GetObjectItemCaseSensitive(ezsignsignature_response_compound_all_ofJSON, "a_objEzsignsignaturecustomdate");
-    list_t *a_obj_ezsignsignaturecustomdateList;
     if (a_obj_ezsignsignaturecustomdate) { 
-    cJSON *a_obj_ezsignsignaturecustomdate_local_nonprimitive;
+    cJSON *a_obj_ezsignsignaturecustomdate_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_ezsignsignaturecustomdate)){
         goto end; //nonprimitive container
     }
@@ -116,6 +118,15 @@ ezsignsignature_response_compound_all_of_t *ezsignsignature_response_compound_al
 
     return ezsignsignature_response_compound_all_of_local_var;
 end:
+    if (a_obj_ezsignsignaturecustomdateList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_ezsignsignaturecustomdateList) {
+            ezsignsignaturecustomdate_response_compound_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_ezsignsignaturecustomdateList);
+        a_obj_ezsignsignaturecustomdateList = NULL;
+    }
     return NULL;
 
 }

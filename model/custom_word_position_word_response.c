@@ -46,7 +46,6 @@ cJSON *custom_word_position_word_response_convertToJSON(custom_word_position_wor
     if (!custom_word_position_word_response->s_word) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sWord", custom_word_position_word_response->s_word) == NULL) {
     goto fail; //String
     }
@@ -56,7 +55,6 @@ cJSON *custom_word_position_word_response_convertToJSON(custom_word_position_wor
     if (!custom_word_position_word_response->a_obj_word_position_occurence) {
         goto fail;
     }
-    
     cJSON *a_obj_word_position_occurence = cJSON_AddArrayToObject(item, "a_objWordPositionOccurence");
     if(a_obj_word_position_occurence == NULL) {
     goto fail; //nonprimitive container
@@ -85,6 +83,9 @@ custom_word_position_word_response_t *custom_word_position_word_response_parseFr
 
     custom_word_position_word_response_t *custom_word_position_word_response_local_var = NULL;
 
+    // define the local list for custom_word_position_word_response->a_obj_word_position_occurence
+    list_t *a_obj_word_position_occurenceList = NULL;
+
     // custom_word_position_word_response->s_word
     cJSON *s_word = cJSON_GetObjectItemCaseSensitive(custom_word_position_word_responseJSON, "sWord");
     if (!s_word) {
@@ -103,9 +104,8 @@ custom_word_position_word_response_t *custom_word_position_word_response_parseFr
         goto end;
     }
 
-    list_t *a_obj_word_position_occurenceList;
     
-    cJSON *a_obj_word_position_occurence_local_nonprimitive;
+    cJSON *a_obj_word_position_occurence_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_word_position_occurence)){
         goto end; //nonprimitive container
     }
@@ -130,6 +130,15 @@ custom_word_position_word_response_t *custom_word_position_word_response_parseFr
 
     return custom_word_position_word_response_local_var;
 end:
+    if (a_obj_word_position_occurenceList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_word_position_occurenceList) {
+            custom_word_position_occurence_response_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_word_position_occurenceList);
+        a_obj_word_position_occurenceList = NULL;
+    }
     return NULL;
 
 }

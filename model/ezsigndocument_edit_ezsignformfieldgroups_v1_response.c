@@ -6,6 +6,7 @@
 
 
 ezsigndocument_edit_ezsignformfieldgroups_v1_response_t *ezsigndocument_edit_ezsignformfieldgroups_v1_response_create(
+    ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
@@ -13,6 +14,7 @@ ezsigndocument_edit_ezsignformfieldgroups_v1_response_t *ezsigndocument_edit_ezs
     if (!ezsigndocument_edit_ezsignformfieldgroups_v1_response_local_var) {
         return NULL;
     }
+    ezsigndocument_edit_ezsignformfieldgroups_v1_response_local_var->m_payload = m_payload;
     ezsigndocument_edit_ezsignformfieldgroups_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsigndocument_edit_ezsignformfieldgroups_v1_response_local_var->obj_debug = obj_debug;
 
@@ -25,6 +27,10 @@ void ezsigndocument_edit_ezsignformfieldgroups_v1_response_free(ezsigndocument_e
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsigndocument_edit_ezsignformfieldgroups_v1_response->m_payload) {
+        ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_free(ezsigndocument_edit_ezsignformfieldgroups_v1_response->m_payload);
+        ezsigndocument_edit_ezsignformfieldgroups_v1_response->m_payload = NULL;
+    }
     if (ezsigndocument_edit_ezsignformfieldgroups_v1_response->obj_debug_payload) {
         common_response_obj_debug_payload_free(ezsigndocument_edit_ezsignformfieldgroups_v1_response->obj_debug_payload);
         ezsigndocument_edit_ezsignformfieldgroups_v1_response->obj_debug_payload = NULL;
@@ -39,8 +45,22 @@ void ezsigndocument_edit_ezsignformfieldgroups_v1_response_free(ezsigndocument_e
 cJSON *ezsigndocument_edit_ezsignformfieldgroups_v1_response_convertToJSON(ezsigndocument_edit_ezsignformfieldgroups_v1_response_t *ezsigndocument_edit_ezsignformfieldgroups_v1_response) {
     cJSON *item = cJSON_CreateObject();
 
+    // ezsigndocument_edit_ezsignformfieldgroups_v1_response->m_payload
+    if (!ezsigndocument_edit_ezsignformfieldgroups_v1_response->m_payload) {
+        goto fail;
+    }
+    cJSON *m_payload_local_JSON = ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_convertToJSON(ezsigndocument_edit_ezsignformfieldgroups_v1_response->m_payload);
+    if(m_payload_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "mPayload", m_payload_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
+
     // ezsigndocument_edit_ezsignformfieldgroups_v1_response->obj_debug_payload
-    if(ezsigndocument_edit_ezsignformfieldgroups_v1_response->obj_debug_payload) { 
+    if(ezsigndocument_edit_ezsignformfieldgroups_v1_response->obj_debug_payload) {
     cJSON *obj_debug_payload_local_JSON = common_response_obj_debug_payload_convertToJSON(ezsigndocument_edit_ezsignformfieldgroups_v1_response->obj_debug_payload);
     if(obj_debug_payload_local_JSON == NULL) {
     goto fail; //model
@@ -49,11 +69,11 @@ cJSON *ezsigndocument_edit_ezsignformfieldgroups_v1_response_convertToJSON(ezsig
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // ezsigndocument_edit_ezsignformfieldgroups_v1_response->obj_debug
-    if(ezsigndocument_edit_ezsignformfieldgroups_v1_response->obj_debug) { 
+    if(ezsigndocument_edit_ezsignformfieldgroups_v1_response->obj_debug) {
     cJSON *obj_debug_local_JSON = common_response_obj_debug_convertToJSON(ezsigndocument_edit_ezsignformfieldgroups_v1_response->obj_debug);
     if(obj_debug_local_JSON == NULL) {
     goto fail; //model
@@ -62,7 +82,7 @@ cJSON *ezsigndocument_edit_ezsignformfieldgroups_v1_response_convertToJSON(ezsig
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:
@@ -76,11 +96,23 @@ ezsigndocument_edit_ezsignformfieldgroups_v1_response_t *ezsigndocument_edit_ezs
 
     ezsigndocument_edit_ezsignformfieldgroups_v1_response_t *ezsigndocument_edit_ezsignformfieldgroups_v1_response_local_var = NULL;
 
+    // define the local variable for ezsigndocument_edit_ezsignformfieldgroups_v1_response->m_payload
+    ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
+
     // define the local variable for ezsigndocument_edit_ezsignformfieldgroups_v1_response->obj_debug_payload
     common_response_obj_debug_payload_t *obj_debug_payload_local_nonprim = NULL;
 
     // define the local variable for ezsigndocument_edit_ezsignformfieldgroups_v1_response->obj_debug
     common_response_obj_debug_t *obj_debug_local_nonprim = NULL;
+
+    // ezsigndocument_edit_ezsignformfieldgroups_v1_response->m_payload
+    cJSON *m_payload = cJSON_GetObjectItemCaseSensitive(ezsigndocument_edit_ezsignformfieldgroups_v1_responseJSON, "mPayload");
+    if (!m_payload) {
+        goto end;
+    }
+
+    
+    m_payload_local_nonprim = ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
     // ezsigndocument_edit_ezsignformfieldgroups_v1_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(ezsigndocument_edit_ezsignformfieldgroups_v1_responseJSON, "objDebugPayload");
@@ -96,12 +128,17 @@ ezsigndocument_edit_ezsignformfieldgroups_v1_response_t *ezsigndocument_edit_ezs
 
 
     ezsigndocument_edit_ezsignformfieldgroups_v1_response_local_var = ezsigndocument_edit_ezsignformfieldgroups_v1_response_create (
+        m_payload_local_nonprim,
         obj_debug_payload ? obj_debug_payload_local_nonprim : NULL,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
 
     return ezsigndocument_edit_ezsignformfieldgroups_v1_response_local_var;
 end:
+    if (m_payload_local_nonprim) {
+        ezsigndocument_edit_ezsignformfieldgroups_v1_response_m_payload_free(m_payload_local_nonprim);
+        m_payload_local_nonprim = NULL;
+    }
     if (obj_debug_payload_local_nonprim) {
         common_response_obj_debug_payload_free(obj_debug_payload_local_nonprim);
         obj_debug_payload_local_nonprim = NULL;

@@ -1,7 +1,7 @@
 /*
  * ezsignsignature_create_object_v2_request.h
  *
- * Request for the /2/object/ezsignsignature/createObject API Request
+ * Request for POST /2/object/ezsignsignature
  */
 
 #ifndef _ezsignsignature_create_object_v2_request_H_

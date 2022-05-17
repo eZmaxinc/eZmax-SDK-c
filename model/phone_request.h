@@ -19,11 +19,11 @@ typedef struct phone_request_t phone_request_t;
 
 // Enum  for phone_request
 
-typedef enum  { ezmax_api_definition_phone_request__NULL = 0, ezmax_api_definition_phone_request__Local, ezmax_api_definition_phone_request__International } ezmax_api_definition_phone_request__e;
+typedef enum  { ezmax_api_definition__full_phone_request__NULL = 0, ezmax_api_definition__full_phone_request__Local, ezmax_api_definition__full_phone_request__International } ezmax_api_definition__full_phone_request__e;
 
-char* phone_request_e_phone_type_ToString(ezmax_api_definition_phone_request__e e_phone_type);
+char* phone_request_e_phone_type_ToString(ezmax_api_definition__full_phone_request__e e_phone_type);
 
-ezmax_api_definition_phone_request__e phone_request_e_phone_type_FromString(char* e_phone_type);
+ezmax_api_definition__full_phone_request__e phone_request_e_phone_type_FromString(char* e_phone_type);
 
 
 

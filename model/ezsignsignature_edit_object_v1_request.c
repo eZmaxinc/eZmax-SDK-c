@@ -37,7 +37,6 @@ cJSON *ezsignsignature_edit_object_v1_request_convertToJSON(ezsignsignature_edit
     if (!ezsignsignature_edit_object_v1_request->obj_ezsignsignature) {
         goto fail;
     }
-    
     cJSON *obj_ezsignsignature_local_JSON = ezsignsignature_request_compound_convertToJSON(ezsignsignature_edit_object_v1_request->obj_ezsignsignature);
     if(obj_ezsignsignature_local_JSON == NULL) {
     goto fail; //model

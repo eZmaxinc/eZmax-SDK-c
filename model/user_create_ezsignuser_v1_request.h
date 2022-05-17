@@ -1,7 +1,7 @@
 /*
  * user_create_ezsignuser_v1_request.h
  *
- * Request for the /1/module/user/createEzsignuser API Request
+ * Request for POST /1/module/user/createEzsignuser
  */
 
 #ifndef _user_create_ezsignuser_v1_request_H_

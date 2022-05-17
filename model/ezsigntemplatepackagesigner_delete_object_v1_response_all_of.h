@@ -1,0 +1,38 @@
+/*
+ * ezsigntemplatepackagesigner_delete_object_v1_response_all_of.h
+ *
+ * 
+ */
+
+#ifndef _ezsigntemplatepackagesigner_delete_object_v1_response_all_of_H_
+#define _ezsigntemplatepackagesigner_delete_object_v1_response_all_of_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct ezsigntemplatepackagesigner_delete_object_v1_response_all_of_t ezsigntemplatepackagesigner_delete_object_v1_response_all_of_t;
+
+#include "ezsigntemplatepackagesigner_delete_object_v1_response_m_payload.h"
+
+
+
+typedef struct ezsigntemplatepackagesigner_delete_object_v1_response_all_of_t {
+    struct ezsigntemplatepackagesigner_delete_object_v1_response_m_payload_t *m_payload; //model
+
+} ezsigntemplatepackagesigner_delete_object_v1_response_all_of_t;
+
+ezsigntemplatepackagesigner_delete_object_v1_response_all_of_t *ezsigntemplatepackagesigner_delete_object_v1_response_all_of_create(
+    ezsigntemplatepackagesigner_delete_object_v1_response_m_payload_t *m_payload
+);
+
+void ezsigntemplatepackagesigner_delete_object_v1_response_all_of_free(ezsigntemplatepackagesigner_delete_object_v1_response_all_of_t *ezsigntemplatepackagesigner_delete_object_v1_response_all_of);
+
+ezsigntemplatepackagesigner_delete_object_v1_response_all_of_t *ezsigntemplatepackagesigner_delete_object_v1_response_all_of_parseFromJSON(cJSON *ezsigntemplatepackagesigner_delete_object_v1_response_all_ofJSON);
+
+cJSON *ezsigntemplatepackagesigner_delete_object_v1_response_all_of_convertToJSON(ezsigntemplatepackagesigner_delete_object_v1_response_all_of_t *ezsigntemplatepackagesigner_delete_object_v1_response_all_of);
+
+#endif /* _ezsigntemplatepackagesigner_delete_object_v1_response_all_of_H_ */
+

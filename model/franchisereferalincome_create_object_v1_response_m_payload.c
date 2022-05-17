@@ -40,7 +40,6 @@ cJSON *franchisereferalincome_create_object_v1_response_m_payload_convertToJSON(
     if (!franchisereferalincome_create_object_v1_response_m_payload->a_pki_franchisereferalincome_id) {
         goto fail;
     }
-    
     cJSON *a_pki_franchisereferalincome_id = cJSON_AddArrayToObject(item, "a_pkiFranchisereferalincomeID");
     if(a_pki_franchisereferalincome_id == NULL) {
         goto fail; //primitive container
@@ -66,15 +65,17 @@ franchisereferalincome_create_object_v1_response_m_payload_t *franchisereferalin
 
     franchisereferalincome_create_object_v1_response_m_payload_t *franchisereferalincome_create_object_v1_response_m_payload_local_var = NULL;
 
+    // define the local list for franchisereferalincome_create_object_v1_response_m_payload->a_pki_franchisereferalincome_id
+    list_t *a_pki_franchisereferalincome_idList = NULL;
+
     // franchisereferalincome_create_object_v1_response_m_payload->a_pki_franchisereferalincome_id
     cJSON *a_pki_franchisereferalincome_id = cJSON_GetObjectItemCaseSensitive(franchisereferalincome_create_object_v1_response_m_payloadJSON, "a_pkiFranchisereferalincomeID");
     if (!a_pki_franchisereferalincome_id) {
         goto end;
     }
 
-    list_t *a_pki_franchisereferalincome_idList;
     
-    cJSON *a_pki_franchisereferalincome_id_local;
+    cJSON *a_pki_franchisereferalincome_id_local = NULL;
     if(!cJSON_IsArray(a_pki_franchisereferalincome_id)) {
         goto end;//primitive container
     }
@@ -102,6 +103,15 @@ franchisereferalincome_create_object_v1_response_m_payload_t *franchisereferalin
 
     return franchisereferalincome_create_object_v1_response_m_payload_local_var;
 end:
+    if (a_pki_franchisereferalincome_idList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_pki_franchisereferalincome_idList) {
+            free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_pki_franchisereferalincome_idList);
+        a_pki_franchisereferalincome_idList = NULL;
+    }
     return NULL;
 
 }

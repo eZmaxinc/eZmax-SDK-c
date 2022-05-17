@@ -39,7 +39,6 @@ cJSON *email_request_convertToJSON(email_request_t *email_request) {
     if (!email_request->fki_emailtype_id) {
         goto fail;
     }
-    
     if(cJSON_AddNumberToObject(item, "fkiEmailtypeID", email_request->fki_emailtype_id) == NULL) {
     goto fail; //Numeric
     }
@@ -49,7 +48,6 @@ cJSON *email_request_convertToJSON(email_request_t *email_request) {
     if (!email_request->s_email_address) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sEmailAddress", email_request->s_email_address) == NULL) {
     goto fail; //String
     }

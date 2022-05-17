@@ -16,7 +16,6 @@
 #include "../model/ezsignformfieldgroup_response_compound.h"
 ezsignformfieldgroup_response_compound_t* instantiate_ezsignformfieldgroup_response_compound(int include_optional);
 
-#include "test_ezsignformfieldgroupsigner_response_compound.c"
 
 
 ezsignformfieldgroup_response_compound_t* instantiate_ezsignformfieldgroup_response_compound(int include_optional) {
@@ -25,8 +24,8 @@ ezsignformfieldgroup_response_compound_t* instantiate_ezsignformfieldgroup_respo
     ezsignformfieldgroup_response_compound = ezsignformfieldgroup_response_compound_create(
       26,
       97,
-      ezmax_api_definition_ezsignformfieldgroup_response_compound__"Text",
-      ezmax_api_definition_ezsignformfieldgroup_response_compound__"One",
+      ezmax_api_definition__full_ezsignformfieldgroup_response_compound__"Text",
+      ezmax_api_definition__full_ezsignformfieldgroup_response_compound__"One",
       "Allergies",
       1,
       "Foo",
@@ -37,18 +36,17 @@ ezsignformfieldgroup_response_compound_t* instantiate_ezsignformfieldgroup_respo
       1,
       "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
       "Please enter a valid email address",
-      ezmax_api_definition_ezsignformfieldgroup_response_compound__"TopLeft",
+      ezmax_api_definition__full_ezsignformfieldgroup_response_compound__"TopLeft",
       list_createList(),
       list_createList(),
-       // false, not to have infinite recursion
-      instantiate_ezsignformfieldgroupsigner_response_compound(0)
+      list_createList()
     );
   } else {
     ezsignformfieldgroup_response_compound = ezsignformfieldgroup_response_compound_create(
       26,
       97,
-      ezmax_api_definition_ezsignformfieldgroup_response_compound__"Text",
-      ezmax_api_definition_ezsignformfieldgroup_response_compound__"One",
+      ezmax_api_definition__full_ezsignformfieldgroup_response_compound__"Text",
+      ezmax_api_definition__full_ezsignformfieldgroup_response_compound__"One",
       "Allergies",
       1,
       "Foo",
@@ -59,10 +57,10 @@ ezsignformfieldgroup_response_compound_t* instantiate_ezsignformfieldgroup_respo
       1,
       "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
       "Please enter a valid email address",
-      ezmax_api_definition_ezsignformfieldgroup_response_compound__"TopLeft",
+      ezmax_api_definition__full_ezsignformfieldgroup_response_compound__"TopLeft",
       list_createList(),
       list_createList(),
-      NULL
+      list_createList()
     );
   }
 

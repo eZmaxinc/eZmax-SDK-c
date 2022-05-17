@@ -16,25 +16,19 @@
 #include "../model/ezsigndocument_get_form_data_v1_response_m_payload.h"
 ezsigndocument_get_form_data_v1_response_m_payload_t* instantiate_ezsigndocument_get_form_data_v1_response_m_payload(int include_optional);
 
+#include "test_custom_form_data_document_response.c"
 
 
 ezsigndocument_get_form_data_v1_response_m_payload_t* instantiate_ezsigndocument_get_form_data_v1_response_m_payload(int include_optional) {
   ezsigndocument_get_form_data_v1_response_m_payload_t* ezsigndocument_get_form_data_v1_response_m_payload = NULL;
   if (include_optional) {
     ezsigndocument_get_form_data_v1_response_m_payload = ezsigndocument_get_form_data_v1_response_m_payload_create(
-      97,
-      33,
-      "Contract #123",
-      "2020-12-31 23:59:59",
-      list_createList()
+       // false, not to have infinite recursion
+      instantiate_custom_form_data_document_response(0)
     );
   } else {
     ezsigndocument_get_form_data_v1_response_m_payload = ezsigndocument_get_form_data_v1_response_m_payload_create(
-      97,
-      33,
-      "Contract #123",
-      "2020-12-31 23:59:59",
-      list_createList()
+      NULL
     );
   }
 

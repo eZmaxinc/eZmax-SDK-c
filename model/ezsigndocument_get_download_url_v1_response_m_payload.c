@@ -37,7 +37,6 @@ cJSON *ezsigndocument_get_download_url_v1_response_m_payload_convertToJSON(ezsig
     if (!ezsigndocument_get_download_url_v1_response_m_payload->s_download_url) {
         goto fail;
     }
-    
     if(cJSON_AddStringToObject(item, "sDownloadUrl", ezsigndocument_get_download_url_v1_response_m_payload->s_download_url) == NULL) {
     goto fail; //String
     }

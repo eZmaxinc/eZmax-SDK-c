@@ -40,7 +40,7 @@ cJSON *ezsignfoldersignerassociation_create_object_v1_request_convertToJSON(ezsi
     cJSON *item = cJSON_CreateObject();
 
     // ezsignfoldersignerassociation_create_object_v1_request->obj_ezsignfoldersignerassociation
-    if(ezsignfoldersignerassociation_create_object_v1_request->obj_ezsignfoldersignerassociation) { 
+    if(ezsignfoldersignerassociation_create_object_v1_request->obj_ezsignfoldersignerassociation) {
     cJSON *obj_ezsignfoldersignerassociation_local_JSON = ezsignfoldersignerassociation_request_convertToJSON(ezsignfoldersignerassociation_create_object_v1_request->obj_ezsignfoldersignerassociation);
     if(obj_ezsignfoldersignerassociation_local_JSON == NULL) {
     goto fail; //model
@@ -49,11 +49,11 @@ cJSON *ezsignfoldersignerassociation_create_object_v1_request_convertToJSON(ezsi
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
 
     // ezsignfoldersignerassociation_create_object_v1_request->obj_ezsignfoldersignerassociation_compound
-    if(ezsignfoldersignerassociation_create_object_v1_request->obj_ezsignfoldersignerassociation_compound) { 
+    if(ezsignfoldersignerassociation_create_object_v1_request->obj_ezsignfoldersignerassociation_compound) {
     cJSON *obj_ezsignfoldersignerassociation_compound_local_JSON = ezsignfoldersignerassociation_request_compound_convertToJSON(ezsignfoldersignerassociation_create_object_v1_request->obj_ezsignfoldersignerassociation_compound);
     if(obj_ezsignfoldersignerassociation_compound_local_JSON == NULL) {
     goto fail; //model
@@ -62,7 +62,7 @@ cJSON *ezsignfoldersignerassociation_create_object_v1_request_convertToJSON(ezsi
     if(item->child == NULL) {
     goto fail;
     }
-     } 
+    }
 
     return item;
 fail:

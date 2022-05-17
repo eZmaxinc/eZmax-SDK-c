@@ -23,11 +23,12 @@ ezsignsigner_request_compound_all_of_t* instantiate_ezsignsigner_request_compoun
   ezsignsigner_request_compound_all_of_t* ezsignsigner_request_compound_all_of = NULL;
   if (include_optional) {
     ezsignsigner_request_compound_all_of = ezsignsigner_request_compound_all_of_create(
-      {"sContactFirstname":"John","sContactLastname":"Doe","fkiLanguageID":1,"sEmailAddress":"johh.doe@domain.com","sPhoneNumber":"5149901516","sPhoneNumberCell":"5149901516"}
+       // false, not to have infinite recursion
+      instantiate_ezsignsigner_request_compound_contact(0)
     );
   } else {
     ezsignsigner_request_compound_all_of = ezsignsigner_request_compound_all_of_create(
-      {"sContactFirstname":"John","sContactLastname":"Doe","fkiLanguageID":1,"sEmailAddress":"johh.doe@domain.com","sPhoneNumber":"5149901516","sPhoneNumberCell":"5149901516"}
+      NULL
     );
   }
 
