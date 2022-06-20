@@ -49,10 +49,11 @@ cJSON *common_response_error_convertToJSON(common_response_error_t *common_respo
 
 
     // common_response_error->e_error_code
-    if(common_response_error->e_error_code) {
+    if (!common_response_error->e_error_code) {
+        goto fail;
+    }
     if(cJSON_AddStringToObject(item, "eErrorCode", common_response_error->e_error_code) == NULL) {
     goto fail; //String
-    }
     }
 
     return item;
@@ -81,17 +82,20 @@ common_response_error_t *common_response_error_parseFromJSON(cJSON *common_respo
 
     // common_response_error->e_error_code
     cJSON *e_error_code = cJSON_GetObjectItemCaseSensitive(common_response_errorJSON, "eErrorCode");
-    if (e_error_code) { 
+    if (!e_error_code) {
+        goto end;
+    }
+
+    
     if(!cJSON_IsString(e_error_code))
     {
     goto end; //String
-    }
     }
 
 
     common_response_error_local_var = common_response_error_create (
         strdup(s_error_message->valuestring),
-        e_error_code ? strdup(e_error_code->valuestring) : NULL
+        strdup(e_error_code->valuestring)
         );
 
     return common_response_error_local_var;

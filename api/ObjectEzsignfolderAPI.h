@@ -13,6 +13,9 @@
 #include "../model/ezsignfolder_create_object_v2_request.h"
 #include "../model/ezsignfolder_create_object_v2_response.h"
 #include "../model/ezsignfolder_delete_object_v1_response.h"
+#include "../model/ezsignfolder_dispose_ezsignfolders_v1_request.h"
+#include "../model/ezsignfolder_dispose_ezsignfolders_v1_response.h"
+#include "../model/ezsignfolder_dispose_v1_response.h"
 #include "../model/ezsignfolder_edit_object_v1_request.h"
 #include "../model/ezsignfolder_edit_object_v1_response.h"
 #include "../model/ezsignfolder_get_actionable_elements_v1_response.h"
@@ -72,6 +75,22 @@ ObjectEzsignfolderAPI_ezsignfolderCreateObjectV2(apiClient_t *apiClient, ezsignf
 //
 ezsignfolder_delete_object_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1(apiClient_t *apiClient, int pkiEzsignfolderID );
+
+
+// Dispose Ezsignfolders
+//
+// 
+//
+ezsignfolder_dispose_ezsignfolders_v1_response_t*
+ObjectEzsignfolderAPI_ezsignfolderDisposeEzsignfoldersV1(apiClient_t *apiClient, ezsignfolder_dispose_ezsignfolders_v1_request_t * ezsignfolder_dispose_ezsignfolders_v1_request );
+
+
+// Dispose the Ezsignfolder
+//
+// 
+//
+ezsignfolder_dispose_v1_response_t*
+ObjectEzsignfolderAPI_ezsignfolderDisposeV1(apiClient_t *apiClient, int pkiEzsignfolderID , object_t * body );
 
 
 // Edit an existing Ezsignfolder

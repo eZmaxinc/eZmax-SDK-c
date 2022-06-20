@@ -63,10 +63,11 @@ cJSON *common_response_error_s_temporary_file_url_convertToJSON(common_response_
 
 
     // common_response_error_s_temporary_file_url->e_error_code
-    if(common_response_error_s_temporary_file_url->e_error_code) {
+    if (!common_response_error_s_temporary_file_url->e_error_code) {
+        goto fail;
+    }
     if(cJSON_AddStringToObject(item, "eErrorCode", common_response_error_s_temporary_file_url->e_error_code) == NULL) {
     goto fail; //String
-    }
     }
 
     return item;
@@ -104,18 +105,21 @@ common_response_error_s_temporary_file_url_t *common_response_error_s_temporary_
 
     // common_response_error_s_temporary_file_url->e_error_code
     cJSON *e_error_code = cJSON_GetObjectItemCaseSensitive(common_response_error_s_temporary_file_urlJSON, "eErrorCode");
-    if (e_error_code) { 
+    if (!e_error_code) {
+        goto end;
+    }
+
+    
     if(!cJSON_IsString(e_error_code))
     {
     goto end; //String
-    }
     }
 
 
     common_response_error_s_temporary_file_url_local_var = common_response_error_s_temporary_file_url_create (
         s_temporary_file_url ? strdup(s_temporary_file_url->valuestring) : NULL,
         strdup(s_error_message->valuestring),
-        e_error_code ? strdup(e_error_code->valuestring) : NULL
+        strdup(e_error_code->valuestring)
         );
 
     return common_response_error_s_temporary_file_url_local_var;

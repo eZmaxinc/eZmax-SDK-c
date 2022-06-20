@@ -48,6 +48,34 @@ ObjectActivesessionAPI_activesessionGetCurrentV1(apiClient_t *apiClient)
     //if (apiClient->response_code == 200) {
     //    printf("%s\n","OK");
     //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 350) {
+    //    printf("%s\n","The user must authenticate before he can continue with this request");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 351) {
+    //    printf("%s\n","The user is configured with 2FA and needs to validate its phone number before he can continue with this request");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 352) {
+    //    printf("%s\n","The user is configured with 2FA and needs to answer a Secretquestion before he can continue with this request");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 353) {
+    //    printf("%s\n","The user must accept clauses before he can continue with this request");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 354) {
+    //    printf("%s\n","The user&#39;s computer must be validated before he can continue with this request");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 355) {
+    //    printf("%s\n","The user must change its password before he can continue with this request");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 356) {
+    //    printf("%s\n","The user is not running the latest version of the native application. He must valide or update its version before he can continue with this request");
+    //}
     //nonprimitive not container
     cJSON *ObjectActivesessionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     activesession_get_current_v1_response_t *elementToReturn = activesession_get_current_v1_response_parseFromJSON(ObjectActivesessionAPIlocalVarJSON);

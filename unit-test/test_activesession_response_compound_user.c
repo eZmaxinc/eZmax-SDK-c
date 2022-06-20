@@ -23,18 +23,28 @@ activesession_response_compound_user_t* instantiate_activesession_response_compo
   if (include_optional) {
     activesession_response_compound_user = activesession_response_compound_user_create(
       70,
+      247,
       "http://www.website.com/avatar.jpg",
       "John",
       "Doe",
-      "example@domain.com"
+      "example@domain.com",
+      ezmax_api_definition__full_activesession_response_compound_user__"None",
+      3752795,
+      false,
+      25
     );
   } else {
     activesession_response_compound_user = activesession_response_compound_user_create(
       70,
+      247,
       "http://www.website.com/avatar.jpg",
       "John",
       "Doe",
-      "example@domain.com"
+      "example@domain.com",
+      ezmax_api_definition__full_activesession_response_compound_user__"None",
+      3752795,
+      false,
+      25
     );
   }
 

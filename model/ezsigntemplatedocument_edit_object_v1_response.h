@@ -18,18 +18,22 @@ typedef struct ezsigntemplatedocument_edit_object_v1_response_t ezsigntemplatedo
 #include "common_response.h"
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload.h"
+#include "common_response_warning.h"
+#include "ezsigntemplatedocument_edit_object_v1_response_all_of.h"
 
 
 
 typedef struct ezsigntemplatedocument_edit_object_v1_response_t {
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    list_t *a_obj_warning; //nonprimitive container
 
 } ezsigntemplatedocument_edit_object_v1_response_t;
 
 ezsigntemplatedocument_edit_object_v1_response_t *ezsigntemplatedocument_edit_object_v1_response_create(
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    list_t *a_obj_warning
 );
 
 void ezsigntemplatedocument_edit_object_v1_response_free(ezsigntemplatedocument_edit_object_v1_response_t *ezsigntemplatedocument_edit_object_v1_response);

@@ -1,0 +1,32 @@
+/*
+ * field_e_user_ezsignsendreminderfrequency.h
+ *
+ * Frequency at which reminders will be sent to signers that haven&#39;t signed the documents
+ */
+
+#ifndef _field_e_user_ezsignsendreminderfrequency_H_
+#define _field_e_user_ezsignsendreminderfrequency_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_user_ezsignsendreminderfrequency_t field_e_user_ezsignsendreminderfrequency_t;
+
+
+// Enum  for field_e_user_ezsignsendreminderfrequency
+
+typedef enum { ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__NULL = 0, ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__None, ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__Daily, ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__Weekly } ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__e;
+
+char* field_e_user_ezsignsendreminderfrequency_field_e_user_ezsignsendreminderfrequency_ToString(ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__e field_e_user_ezsignsendreminderfrequency);
+
+ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__e field_e_user_ezsignsendreminderfrequency_field_e_user_ezsignsendreminderfrequency_FromString(char* field_e_user_ezsignsendreminderfrequency);
+
+//cJSON *field_e_user_ezsignsendreminderfrequency_field_e_user_ezsignsendreminderfrequency_convertToJSON(ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__e field_e_user_ezsignsendreminderfrequency);
+
+//ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__e field_e_user_ezsignsendreminderfrequency_field_e_user_ezsignsendreminderfrequency_parseFromJSON(cJSON *field_e_user_ezsignsendreminderfrequencyJSON);
+
+#endif /* _field_e_user_ezsignsendreminderfrequency_H_ */
+

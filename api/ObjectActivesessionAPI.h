@@ -6,6 +6,7 @@
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
 #include "../model/activesession_get_current_v1_response.h"
+#include "../model/common_response_redirect_s_secretquestion_text_x.h"
 
 
 // Get Current Activesession

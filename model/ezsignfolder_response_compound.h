@@ -48,11 +48,12 @@ typedef struct ezsignfolder_response_compound_t {
     char *s_ezsigntsarequirement_description_x; // string
     char *s_ezsignfolder_description; // string
     char *t_ezsignfolder_note; // string
+    int b_ezsignfolder_isdisposable; //boolean
     field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency; // custom
     char *dt_ezsignfolder_duedate; // string
     char *dt_ezsignfolder_sentdate; // string
     char *dt_ezsignfolder_scheduledarchive; // string
-    char *dt_ezsignfolder_scheduleddestruction; // string
+    char *dt_ezsignfolder_scheduleddispose; // string
     field_e_ezsignfolder_step_t *e_ezsignfolder_step; // custom
     char *dt_ezsignfolder_close; // string
     struct common_audit_t *obj_audit; //model
@@ -69,11 +70,12 @@ ezsignfolder_response_compound_t *ezsignfolder_response_compound_create(
     char *s_ezsigntsarequirement_description_x,
     char *s_ezsignfolder_description,
     char *t_ezsignfolder_note,
+    int b_ezsignfolder_isdisposable,
     field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency,
     char *dt_ezsignfolder_duedate,
     char *dt_ezsignfolder_sentdate,
     char *dt_ezsignfolder_scheduledarchive,
-    char *dt_ezsignfolder_scheduleddestruction,
+    char *dt_ezsignfolder_scheduleddispose,
     field_e_ezsignfolder_step_t *e_ezsignfolder_step,
     char *dt_ezsignfolder_close,
     common_audit_t *obj_audit

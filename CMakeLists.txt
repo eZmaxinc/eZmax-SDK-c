@@ -96,6 +96,8 @@ set(SRCS
     model/common_response_obj_debug_payload_get_list.c
     model/common_response_obj_debug_payload_get_list_all_of.c
     model/common_response_obj_sql_query.c
+    model/common_response_redirect_s_secretquestion_text_x.c
+    model/common_response_warning.c
     model/common_webhook.c
     model/contact_request.c
     model/contact_request_compound.c
@@ -272,6 +274,9 @@ set(SRCS
     model/ezsignfolder_create_object_v2_response_all_of.c
     model/ezsignfolder_create_object_v2_response_m_payload.c
     model/ezsignfolder_delete_object_v1_response.c
+    model/ezsignfolder_dispose_ezsignfolders_v1_request.c
+    model/ezsignfolder_dispose_ezsignfolders_v1_response.c
+    model/ezsignfolder_dispose_v1_response.c
     model/ezsignfolder_edit_object_v1_request.c
     model/ezsignfolder_edit_object_v1_response.c
     model/ezsignfolder_get_actionable_elements_v1_response.c
@@ -431,6 +436,7 @@ set(SRCS
     model/ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_m_payload.c
     model/ezsigntemplatedocument_edit_object_v1_request.c
     model/ezsigntemplatedocument_edit_object_v1_response.c
+    model/ezsigntemplatedocument_edit_object_v1_response_all_of.c
     model/ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response.c
     model/ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response_all_of.c
     model/ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response_m_payload.c
@@ -601,6 +607,7 @@ set(SRCS
     model/field_e_ezsigntemplatesignature_type.c
     model/field_e_notificationpreference_status.c
     model/field_e_phone_type.c
+    model/field_e_user_ezsignsendreminderfrequency.c
     model/field_e_user_type.c
     model/franchisereferalincome_create_object_v1_request.c
     model/franchisereferalincome_create_object_v1_response.c
@@ -620,6 +627,9 @@ set(SRCS
     model/notificationsection_get_notificationtests_v1_response_all_of.c
     model/notificationsection_get_notificationtests_v1_response_m_payload.c
     model/notificationsubsection_response.c
+    model/notificationtest_get_elements_v1_response.c
+    model/notificationtest_get_elements_v1_response_all_of.c
+    model/notificationtest_get_elements_v1_response_m_payload.c
     model/notificationtest_response.c
     model/phone_request.c
     model/phone_request_compound.c
@@ -643,6 +653,8 @@ set(SRCS
     api/ModuleUserAPI.c
     api/ObjectActivesessionAPI.c
     api/ObjectApikeyAPI.c
+    api/ObjectBillingentityinternalAPI.c
+    api/ObjectBrandingAPI.c
     api/ObjectEzsignbulksendAPI.c
     api/ObjectEzsignbulksenddocumentmappingAPI.c
     api/ObjectEzsignbulksendsignermappingAPI.c
@@ -667,8 +679,13 @@ set(SRCS
     api/ObjectFranchiseofficeAPI.c
     api/ObjectFranchisereferalincomeAPI.c
     api/ObjectNotificationsectionAPI.c
+    api/ObjectNotificationtestAPI.c
     api/ObjectPeriodAPI.c
     api/ObjectSecretquestionAPI.c
+    api/ObjectTaxassignmentAPI.c
+    api/ObjectTimezoneAPI.c
+    api/ObjectUserAPI.c
+    api/ObjectUsergroupAPI.c
 
 )
 
@@ -721,6 +738,8 @@ set(HDRS
     model/common_response_obj_debug_payload_get_list.h
     model/common_response_obj_debug_payload_get_list_all_of.h
     model/common_response_obj_sql_query.h
+    model/common_response_redirect_s_secretquestion_text_x.h
+    model/common_response_warning.h
     model/common_webhook.h
     model/contact_request.h
     model/contact_request_compound.h
@@ -897,6 +916,9 @@ set(HDRS
     model/ezsignfolder_create_object_v2_response_all_of.h
     model/ezsignfolder_create_object_v2_response_m_payload.h
     model/ezsignfolder_delete_object_v1_response.h
+    model/ezsignfolder_dispose_ezsignfolders_v1_request.h
+    model/ezsignfolder_dispose_ezsignfolders_v1_response.h
+    model/ezsignfolder_dispose_v1_response.h
     model/ezsignfolder_edit_object_v1_request.h
     model/ezsignfolder_edit_object_v1_response.h
     model/ezsignfolder_get_actionable_elements_v1_response.h
@@ -1056,6 +1078,7 @@ set(HDRS
     model/ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_m_payload.h
     model/ezsigntemplatedocument_edit_object_v1_request.h
     model/ezsigntemplatedocument_edit_object_v1_response.h
+    model/ezsigntemplatedocument_edit_object_v1_response_all_of.h
     model/ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response.h
     model/ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response_all_of.h
     model/ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response_m_payload.h
@@ -1226,6 +1249,7 @@ set(HDRS
     model/field_e_ezsigntemplatesignature_type.h
     model/field_e_notificationpreference_status.h
     model/field_e_phone_type.h
+    model/field_e_user_ezsignsendreminderfrequency.h
     model/field_e_user_type.h
     model/franchisereferalincome_create_object_v1_request.h
     model/franchisereferalincome_create_object_v1_response.h
@@ -1245,6 +1269,9 @@ set(HDRS
     model/notificationsection_get_notificationtests_v1_response_all_of.h
     model/notificationsection_get_notificationtests_v1_response_m_payload.h
     model/notificationsubsection_response.h
+    model/notificationtest_get_elements_v1_response.h
+    model/notificationtest_get_elements_v1_response_all_of.h
+    model/notificationtest_get_elements_v1_response_m_payload.h
     model/notificationtest_response.h
     model/phone_request.h
     model/phone_request_compound.h
@@ -1268,6 +1295,8 @@ set(HDRS
     api/ModuleUserAPI.h
     api/ObjectActivesessionAPI.h
     api/ObjectApikeyAPI.h
+    api/ObjectBillingentityinternalAPI.h
+    api/ObjectBrandingAPI.h
     api/ObjectEzsignbulksendAPI.h
     api/ObjectEzsignbulksenddocumentmappingAPI.h
     api/ObjectEzsignbulksendsignermappingAPI.h
@@ -1292,8 +1321,13 @@ set(HDRS
     api/ObjectFranchiseofficeAPI.h
     api/ObjectFranchisereferalincomeAPI.h
     api/ObjectNotificationsectionAPI.h
+    api/ObjectNotificationtestAPI.h
     api/ObjectPeriodAPI.h
     api/ObjectSecretquestionAPI.h
+    api/ObjectTaxassignmentAPI.h
+    api/ObjectTimezoneAPI.h
+    api/ObjectUserAPI.h
+    api/ObjectUsergroupAPI.h
 
 )
 
@@ -1380,6 +1414,8 @@ set(HDRS "")
 #    unit-tests/manual-ModuleUserAPI.c
 #    unit-tests/manual-ObjectActivesessionAPI.c
 #    unit-tests/manual-ObjectApikeyAPI.c
+#    unit-tests/manual-ObjectBillingentityinternalAPI.c
+#    unit-tests/manual-ObjectBrandingAPI.c
 #    unit-tests/manual-ObjectEzsignbulksendAPI.c
 #    unit-tests/manual-ObjectEzsignbulksenddocumentmappingAPI.c
 #    unit-tests/manual-ObjectEzsignbulksendsignermappingAPI.c
@@ -1404,8 +1440,13 @@ set(HDRS "")
 #    unit-tests/manual-ObjectFranchiseofficeAPI.c
 #    unit-tests/manual-ObjectFranchisereferalincomeAPI.c
 #    unit-tests/manual-ObjectNotificationsectionAPI.c
+#    unit-tests/manual-ObjectNotificationtestAPI.c
 #    unit-tests/manual-ObjectPeriodAPI.c
 #    unit-tests/manual-ObjectSecretquestionAPI.c
+#    unit-tests/manual-ObjectTaxassignmentAPI.c
+#    unit-tests/manual-ObjectTimezoneAPI.c
+#    unit-tests/manual-ObjectUserAPI.c
+#    unit-tests/manual-ObjectUsergroupAPI.c
 #)
 
 ##set header files

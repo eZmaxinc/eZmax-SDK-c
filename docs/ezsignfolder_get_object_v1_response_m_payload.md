@@ -12,11 +12,12 @@ Name | Type | Description | Notes
 **s_ezsigntsarequirement_description_x** | **char \*** | The description of the Ezsigntsarequirement in the language of the requester | 
 **s_ezsignfolder_description** | **char \*** | The description of the Ezsignfolder | 
 **t_ezsignfolder_note** | **char \*** | Note about the Ezsignfolder | 
+**b_ezsignfolder_isdisposable** | **int** | If the Ezsigndocument can be disposed | 
 **e_ezsignfolder_sendreminderfrequency** | **field_e_ezsignfolder_sendreminderfrequency_t \*** |  | 
 **dt_ezsignfolder_duedate** | **char \*** | The maximum date and time at which the Ezsignfolder can be signed. | [optional] 
 **dt_ezsignfolder_sentdate** | **char \*** | The date and time at which the Ezsign folder was sent the last time. | [optional] 
-**dt_ezsignfolder_scheduledarchive** | **char \*** | The scheduled date and time at which the Ezsignfolder should be archived. | 
-**dt_ezsignfolder_scheduleddestruction** | **char \*** | The scheduled date and time at which the Ezsignfolder should be Destroyed. | 
+**dt_ezsignfolder_scheduledarchive** | **char \*** | The scheduled date and time at which the Ezsignfolder should be archived. | [optional] 
+**dt_ezsignfolder_scheduleddispose** | **char \*** | The scheduled date at which the Ezsignfolder should be Disposed. | [optional] 
 **e_ezsignfolder_step** | **field_e_ezsignfolder_step_t \*** |  | 
 **dt_ezsignfolder_close** | **char \*** | The date and time at which the folder was closed. Either by applying the last signature or by completing it prematurely. | 
 **obj_audit** | [**common_audit_t**](common_audit.md) \* |  | 

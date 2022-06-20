@@ -9,6 +9,8 @@ Method | HTTP request | Description
 [**ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1) | **POST** /1/object/ezsignfolder | Create a new Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderCreateObjectV2**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderCreateObjectV2) | **POST** /2/object/ezsignfolder | Create a new Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1) | **DELETE** /1/object/ezsignfolder/{pkiEzsignfolderID} | Delete an existing Ezsignfolder
+[**ObjectEzsignfolderAPI_ezsignfolderDisposeEzsignfoldersV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderDisposeEzsignfoldersV1) | **POST** /1/object/ezsignfolder/disposeEzsignfolders | Dispose Ezsignfolders
+[**ObjectEzsignfolderAPI_ezsignfolderDisposeV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderDisposeV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/dispose | Dispose the Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderEditObjectV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderEditObjectV1) | **PUT** /1/object/ezsignfolder/{pkiEzsignfolderID} | Edit an existing Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getActionableElements | Retrieve actionable elements for the Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsigndocuments | Retrieve an existing Ezsignfolder&#39;s Ezsigndocuments
@@ -172,6 +174,69 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsignfolderAPI_ezsignfolderDisposeEzsignfoldersV1**
+```c
+// Dispose Ezsignfolders
+//
+// 
+//
+ezsignfolder_dispose_ezsignfolders_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderDisposeEzsignfoldersV1(apiClient_t *apiClient, ezsignfolder_dispose_ezsignfolders_v1_request_t * ezsignfolder_dispose_ezsignfolders_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**ezsignfolder_dispose_ezsignfolders_v1_request** | **[ezsignfolder_dispose_ezsignfolders_v1_request_t](ezsignfolder_dispose_ezsignfolders_v1_request.md) \*** |  | 
+
+### Return type
+
+[ezsignfolder_dispose_ezsignfolders_v1_response_t](ezsignfolder_dispose_ezsignfolders_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsignfolderAPI_ezsignfolderDisposeV1**
+```c
+// Dispose the Ezsignfolder
+//
+// 
+//
+ezsignfolder_dispose_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderDisposeV1(apiClient_t *apiClient, int pkiEzsignfolderID, object_t * body);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsignfolderID** | **int** |  | 
+**body** | **[object_t](object.md) \*** |  | 
+
+### Return type
+
+[ezsignfolder_dispose_v1_response_t](ezsignfolder_dispose_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
