@@ -300,11 +300,10 @@ cJSON *ezsignfolder_response_compound_convertToJSON(ezsignfolder_response_compou
 
 
     // ezsignfolder_response_compound->dt_ezsignfolder_close
-    if (!ezsignfolder_response_compound->dt_ezsignfolder_close) {
-        goto fail;
-    }
+    if(ezsignfolder_response_compound->dt_ezsignfolder_close) {
     if(cJSON_AddStringToObject(item, "dtEzsignfolderClose", ezsignfolder_response_compound->dt_ezsignfolder_close) == NULL) {
     goto fail; //String
+    }
     }
 
 
@@ -518,14 +517,11 @@ ezsignfolder_response_compound_t *ezsignfolder_response_compound_parseFromJSON(c
 
     // ezsignfolder_response_compound->dt_ezsignfolder_close
     cJSON *dt_ezsignfolder_close = cJSON_GetObjectItemCaseSensitive(ezsignfolder_response_compoundJSON, "dtEzsignfolderClose");
-    if (!dt_ezsignfolder_close) {
-        goto end;
-    }
-
-    
+    if (dt_ezsignfolder_close) { 
     if(!cJSON_IsString(dt_ezsignfolder_close))
     {
     goto end; //String
+    }
     }
 
     // ezsignfolder_response_compound->obj_audit
@@ -555,7 +551,7 @@ ezsignfolder_response_compound_t *ezsignfolder_response_compound_parseFromJSON(c
         dt_ezsignfolder_scheduledarchive ? strdup(dt_ezsignfolder_scheduledarchive->valuestring) : NULL,
         dt_ezsignfolder_scheduleddispose ? strdup(dt_ezsignfolder_scheduleddispose->valuestring) : NULL,
         e_ezsignfolder_step_local_nonprim,
-        strdup(dt_ezsignfolder_close->valuestring),
+        dt_ezsignfolder_close ? strdup(dt_ezsignfolder_close->valuestring) : NULL,
         obj_audit_local_nonprim
         );
 

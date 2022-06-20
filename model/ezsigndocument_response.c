@@ -168,20 +168,18 @@ cJSON *ezsigndocument_response_convertToJSON(ezsigndocument_response_t *ezsigndo
 
 
     // ezsigndocument_response->dt_ezsigndocument_firstsend
-    if (!ezsigndocument_response->dt_ezsigndocument_firstsend) {
-        goto fail;
-    }
+    if(ezsigndocument_response->dt_ezsigndocument_firstsend) {
     if(cJSON_AddStringToObject(item, "dtEzsigndocumentFirstsend", ezsigndocument_response->dt_ezsigndocument_firstsend) == NULL) {
     goto fail; //String
+    }
     }
 
 
     // ezsigndocument_response->dt_ezsigndocument_lastsend
-    if (!ezsigndocument_response->dt_ezsigndocument_lastsend) {
-        goto fail;
-    }
+    if(ezsigndocument_response->dt_ezsigndocument_lastsend) {
     if(cJSON_AddStringToObject(item, "dtEzsigndocumentLastsend", ezsigndocument_response->dt_ezsigndocument_lastsend) == NULL) {
     goto fail; //String
+    }
     }
 
 
@@ -350,26 +348,20 @@ ezsigndocument_response_t *ezsigndocument_response_parseFromJSON(cJSON *ezsigndo
 
     // ezsigndocument_response->dt_ezsigndocument_firstsend
     cJSON *dt_ezsigndocument_firstsend = cJSON_GetObjectItemCaseSensitive(ezsigndocument_responseJSON, "dtEzsigndocumentFirstsend");
-    if (!dt_ezsigndocument_firstsend) {
-        goto end;
-    }
-
-    
+    if (dt_ezsigndocument_firstsend) { 
     if(!cJSON_IsString(dt_ezsigndocument_firstsend))
     {
     goto end; //String
     }
+    }
 
     // ezsigndocument_response->dt_ezsigndocument_lastsend
     cJSON *dt_ezsigndocument_lastsend = cJSON_GetObjectItemCaseSensitive(ezsigndocument_responseJSON, "dtEzsigndocumentLastsend");
-    if (!dt_ezsigndocument_lastsend) {
-        goto end;
-    }
-
-    
+    if (dt_ezsigndocument_lastsend) { 
     if(!cJSON_IsString(dt_ezsigndocument_lastsend))
     {
     goto end; //String
+    }
     }
 
     // ezsigndocument_response->i_ezsigndocument_order
@@ -473,8 +465,8 @@ ezsigndocument_response_t *ezsigndocument_response_parseFromJSON(cJSON *ezsigndo
         strdup(s_ezsigndocument_name->valuestring),
         pki_ezsigndocument_id->valuedouble,
         e_ezsigndocument_step_local_nonprim,
-        strdup(dt_ezsigndocument_firstsend->valuestring),
-        strdup(dt_ezsigndocument_lastsend->valuestring),
+        dt_ezsigndocument_firstsend ? strdup(dt_ezsigndocument_firstsend->valuestring) : NULL,
+        dt_ezsigndocument_lastsend ? strdup(dt_ezsigndocument_lastsend->valuestring) : NULL,
         i_ezsigndocument_order->valuedouble,
         i_ezsigndocument_pagetotal->valuedouble,
         i_ezsigndocument_signaturesigned->valuedouble,
