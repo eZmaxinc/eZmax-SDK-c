@@ -25,14 +25,32 @@ ezsignfoldersignerassociation_request_t* instantiate_ezsignfoldersignerassociati
       20,
       70,
       33,
-      1
+      1,
+      "Hi John,
+
+This is the document I need you to review.
+
+Could you sign it before Monday please.
+
+Best Regards.
+
+Mary"
     );
   } else {
     ezsignfoldersignerassociation_request = ezsignfoldersignerassociation_request_create(
       20,
       70,
       33,
-      1
+      1,
+      "Hi John,
+
+This is the document I need you to review.
+
+Could you sign it before Monday please.
+
+Best Regards.
+
+Mary"
     );
   }
 

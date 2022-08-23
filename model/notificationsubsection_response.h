@@ -15,12 +15,15 @@
 
 typedef struct notificationsubsection_response_t notificationsubsection_response_t;
 
+#include "multilingual_notificationsubsection_name.h"
 
 
 
 typedef struct notificationsubsection_response_t {
     int pki_notificationsubsection_id; //numeric
     int fki_notificationsection_id; //numeric
+    struct multilingual_notificationsubsection_name_t *obj_notificationsubsection_name; //model
+    char *s_notificationsection_name_x; // string
     char *s_notificationsubsection_name_x; // string
 
 } notificationsubsection_response_t;
@@ -28,6 +31,8 @@ typedef struct notificationsubsection_response_t {
 notificationsubsection_response_t *notificationsubsection_response_create(
     int pki_notificationsubsection_id,
     int fki_notificationsection_id,
+    multilingual_notificationsubsection_name_t *obj_notificationsubsection_name,
+    char *s_notificationsection_name_x,
     char *s_notificationsubsection_name_x
 );
 

@@ -18,13 +18,14 @@ typedef struct ezsignsignature_request_compound_t ezsignsignature_request_compou
 #include "ezsignsignature_request.h"
 #include "ezsignsignature_request_compound_all_of.h"
 #include "ezsignsignaturecustomdate_request_compound.h"
+#include "field_e_ezsignsignature_attachmentnamesource.h"
 #include "field_e_ezsignsignature_font.h"
 #include "field_e_ezsignsignature_tooltipposition.h"
 #include "field_e_ezsignsignature_type.h"
 
 // Enum  for ezsignsignature_request_compound
 
-typedef enum  { ezmax_api_definition__full_ezsignsignature_request_compound__NULL = 0, ezmax_api_definition__full_ezsignsignature_request_compound__Acknowledgement, ezmax_api_definition__full_ezsignsignature_request_compound__City, ezmax_api_definition__full_ezsignsignature_request_compound__Handwritten, ezmax_api_definition__full_ezsignsignature_request_compound__Initials, ezmax_api_definition__full_ezsignsignature_request_compound__Name } ezmax_api_definition__full_ezsignsignature_request_compound__e;
+typedef enum  { ezmax_api_definition__full_ezsignsignature_request_compound__NULL = 0, ezmax_api_definition__full_ezsignsignature_request_compound__Acknowledgement, ezmax_api_definition__full_ezsignsignature_request_compound__City, ezmax_api_definition__full_ezsignsignature_request_compound__Handwritten, ezmax_api_definition__full_ezsignsignature_request_compound__Initials, ezmax_api_definition__full_ezsignsignature_request_compound__Name, ezmax_api_definition__full_ezsignsignature_request_compound__Attachments } ezmax_api_definition__full_ezsignsignature_request_compound__e;
 
 char* ezsignsignature_request_compound_e_ezsignsignature_type_ToString(ezmax_api_definition__full_ezsignsignature_request_compound__e e_ezsignsignature_type);
 
@@ -46,6 +47,14 @@ char* ezsignsignature_request_compound_e_ezsignsignature_font_ToString(ezmax_api
 
 ezmax_api_definition__full_ezsignsignature_request_compound__e ezsignsignature_request_compound_e_ezsignsignature_font_FromString(char* e_ezsignsignature_font);
 
+// Enum  for ezsignsignature_request_compound
+
+typedef enum  { ezmax_api_definition__full_ezsignsignature_request_compound__NULL = 0, ezmax_api_definition__full_ezsignsignature_request_compound__Description, ezmax_api_definition__full_ezsignsignature_request_compound__Customer, ezmax_api_definition__full_ezsignsignature_request_compound__DescriptionCustomer } ezmax_api_definition__full_ezsignsignature_request_compound__e;
+
+char* ezsignsignature_request_compound_e_ezsignsignature_attachmentnamesource_ToString(ezmax_api_definition__full_ezsignsignature_request_compound__e e_ezsignsignature_attachmentnamesource);
+
+ezmax_api_definition__full_ezsignsignature_request_compound__e ezsignsignature_request_compound_e_ezsignsignature_attachmentnamesource_FromString(char* e_ezsignsignature_attachmentnamesource);
+
 
 
 typedef struct ezsignsignature_request_compound_t {
@@ -60,6 +69,11 @@ typedef struct ezsignsignature_request_compound_t {
     char *t_ezsignsignature_tooltip; // string
     field_e_ezsignsignature_tooltipposition_t *e_ezsignsignature_tooltipposition; // custom
     field_e_ezsignsignature_font_t *e_ezsignsignature_font; // custom
+    int fki_user_id; //numeric
+    int b_ezsignsignature_required; //boolean
+    field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource; // custom
+    char *s_ezsignsignature_attachmentdescription; // string
+    int i_ezsignsignature_validationstep; //numeric
     int b_ezsignsignature_customdate; //boolean
     list_t *a_obj_ezsignsignaturecustomdate; //nonprimitive container
 
@@ -77,6 +91,11 @@ ezsignsignature_request_compound_t *ezsignsignature_request_compound_create(
     char *t_ezsignsignature_tooltip,
     field_e_ezsignsignature_tooltipposition_t *e_ezsignsignature_tooltipposition,
     field_e_ezsignsignature_font_t *e_ezsignsignature_font,
+    int fki_user_id,
+    int b_ezsignsignature_required,
+    field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource,
+    char *s_ezsignsignature_attachmentdescription,
+    int i_ezsignsignature_validationstep,
     int b_ezsignsignature_customdate,
     list_t *a_obj_ezsignsignaturecustomdate
 );

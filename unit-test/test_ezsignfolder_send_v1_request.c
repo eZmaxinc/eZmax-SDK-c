@@ -26,7 +26,7 @@ ezsignfolder_send_v1_request_t* instantiate_ezsignfolder_send_v1_request(int inc
 
 This is the document I need you to review.
 
-Could you sign it before monday please.
+Could you sign it before Monday please.
 
 Best Regards.
 
@@ -38,7 +38,7 @@ Mary"
 
 This is the document I need you to review.
 
-Could you sign it before monday please.
+Could you sign it before Monday please.
 
 Best Regards.
 

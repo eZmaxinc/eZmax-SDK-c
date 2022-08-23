@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pki_notificationtest_id** | **int** | The unique ID of the Notificationtest | 
+**obj_notificationtest_name** | [**multilingual_notificationtest_name_t**](multilingual_notificationtest_name.md) \* |  | 
 **fki_notificationsubsection_id** | **int** | The unique ID of the Notificationsubsection | 
 **s_notificationtest_function** | **char \*** | The function name of the Notificationtest | 
 **s_notificationtest_name_x** | **char \*** | The name of the Notificationtest in the language of the requester | 

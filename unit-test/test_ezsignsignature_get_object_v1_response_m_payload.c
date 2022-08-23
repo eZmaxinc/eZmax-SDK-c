@@ -34,6 +34,11 @@ ezsignsignature_get_object_v1_response_m_payload_t* instantiate_ezsignsignature_
       ezmax_api_definition__full_ezsignsignature_get_object_v1_response_m_payload__"TopLeft",
       ezmax_api_definition__full_ezsignsignature_get_object_v1_response_m_payload__Normal,
       1,
+      "Attachment",
+      ezmax_api_definition__full_ezsignsignature_get_object_v1_response_m_payload__"Description",
+      1,
+      70,
+      1,
       list_createList()
     );
   } else {
@@ -49,6 +54,11 @@ ezsignsignature_get_object_v1_response_m_payload_t* instantiate_ezsignsignature_
       "Please sign here if you agree to the terms",
       ezmax_api_definition__full_ezsignsignature_get_object_v1_response_m_payload__"TopLeft",
       ezmax_api_definition__full_ezsignsignature_get_object_v1_response_m_payload__Normal,
+      1,
+      "Attachment",
+      ezmax_api_definition__full_ezsignsignature_get_object_v1_response_m_payload__"Description",
+      1,
+      70,
       1,
       list_createList()
     );

@@ -10,10 +10,10 @@ ezsigntemplatepackage_list_element_t *ezsigntemplatepackage_list_element_create(
     int fki_ezsignfoldertype_id,
     int fki_language_id,
     char *s_ezsigntemplatepackage_description,
-    int b_ezsigntemplatepackage_isactive,
     int b_ezsigntemplatepackage_needvalidation,
     int i_ezsigntemplatepackagemembership,
-    char *s_ezsignfoldertype_name_x
+    char *s_ezsignfoldertype_name_x,
+    int b_ezsigntemplatepackage_isactive
     ) {
     ezsigntemplatepackage_list_element_t *ezsigntemplatepackage_list_element_local_var = malloc(sizeof(ezsigntemplatepackage_list_element_t));
     if (!ezsigntemplatepackage_list_element_local_var) {
@@ -23,10 +23,10 @@ ezsigntemplatepackage_list_element_t *ezsigntemplatepackage_list_element_create(
     ezsigntemplatepackage_list_element_local_var->fki_ezsignfoldertype_id = fki_ezsignfoldertype_id;
     ezsigntemplatepackage_list_element_local_var->fki_language_id = fki_language_id;
     ezsigntemplatepackage_list_element_local_var->s_ezsigntemplatepackage_description = s_ezsigntemplatepackage_description;
-    ezsigntemplatepackage_list_element_local_var->b_ezsigntemplatepackage_isactive = b_ezsigntemplatepackage_isactive;
     ezsigntemplatepackage_list_element_local_var->b_ezsigntemplatepackage_needvalidation = b_ezsigntemplatepackage_needvalidation;
     ezsigntemplatepackage_list_element_local_var->i_ezsigntemplatepackagemembership = i_ezsigntemplatepackagemembership;
     ezsigntemplatepackage_list_element_local_var->s_ezsignfoldertype_name_x = s_ezsignfoldertype_name_x;
+    ezsigntemplatepackage_list_element_local_var->b_ezsigntemplatepackage_isactive = b_ezsigntemplatepackage_isactive;
 
     return ezsigntemplatepackage_list_element_local_var;
 }
@@ -87,15 +87,6 @@ cJSON *ezsigntemplatepackage_list_element_convertToJSON(ezsigntemplatepackage_li
     }
 
 
-    // ezsigntemplatepackage_list_element->b_ezsigntemplatepackage_isactive
-    if (!ezsigntemplatepackage_list_element->b_ezsigntemplatepackage_isactive) {
-        goto fail;
-    }
-    if(cJSON_AddBoolToObject(item, "bEzsigntemplatepackageIsactive", ezsigntemplatepackage_list_element->b_ezsigntemplatepackage_isactive) == NULL) {
-    goto fail; //Bool
-    }
-
-
     // ezsigntemplatepackage_list_element->b_ezsigntemplatepackage_needvalidation
     if (!ezsigntemplatepackage_list_element->b_ezsigntemplatepackage_needvalidation) {
         goto fail;
@@ -120,6 +111,15 @@ cJSON *ezsigntemplatepackage_list_element_convertToJSON(ezsigntemplatepackage_li
     }
     if(cJSON_AddStringToObject(item, "sEzsignfoldertypeNameX", ezsigntemplatepackage_list_element->s_ezsignfoldertype_name_x) == NULL) {
     goto fail; //String
+    }
+
+
+    // ezsigntemplatepackage_list_element->b_ezsigntemplatepackage_isactive
+    if (!ezsigntemplatepackage_list_element->b_ezsigntemplatepackage_isactive) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "bEzsigntemplatepackageIsactive", ezsigntemplatepackage_list_element->b_ezsigntemplatepackage_isactive) == NULL) {
+    goto fail; //Bool
     }
 
     return item;
@@ -182,18 +182,6 @@ ezsigntemplatepackage_list_element_t *ezsigntemplatepackage_list_element_parseFr
     goto end; //String
     }
 
-    // ezsigntemplatepackage_list_element->b_ezsigntemplatepackage_isactive
-    cJSON *b_ezsigntemplatepackage_isactive = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackage_list_elementJSON, "bEzsigntemplatepackageIsactive");
-    if (!b_ezsigntemplatepackage_isactive) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsBool(b_ezsigntemplatepackage_isactive))
-    {
-    goto end; //Bool
-    }
-
     // ezsigntemplatepackage_list_element->b_ezsigntemplatepackage_needvalidation
     cJSON *b_ezsigntemplatepackage_needvalidation = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackage_list_elementJSON, "bEzsigntemplatepackageNeedvalidation");
     if (!b_ezsigntemplatepackage_needvalidation) {
@@ -230,16 +218,28 @@ ezsigntemplatepackage_list_element_t *ezsigntemplatepackage_list_element_parseFr
     goto end; //String
     }
 
+    // ezsigntemplatepackage_list_element->b_ezsigntemplatepackage_isactive
+    cJSON *b_ezsigntemplatepackage_isactive = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackage_list_elementJSON, "bEzsigntemplatepackageIsactive");
+    if (!b_ezsigntemplatepackage_isactive) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(b_ezsigntemplatepackage_isactive))
+    {
+    goto end; //Bool
+    }
+
 
     ezsigntemplatepackage_list_element_local_var = ezsigntemplatepackage_list_element_create (
         pki_ezsigntemplatepackage_id->valuedouble,
         fki_ezsignfoldertype_id->valuedouble,
         fki_language_id->valuedouble,
         strdup(s_ezsigntemplatepackage_description->valuestring),
-        b_ezsigntemplatepackage_isactive->valueint,
         b_ezsigntemplatepackage_needvalidation->valueint,
         i_ezsigntemplatepackagemembership->valuedouble,
-        strdup(s_ezsignfoldertype_name_x->valuestring)
+        strdup(s_ezsignfoldertype_name_x->valuestring),
+        b_ezsigntemplatepackage_isactive->valueint
         );
 
     return ezsigntemplatepackage_list_element_local_var;

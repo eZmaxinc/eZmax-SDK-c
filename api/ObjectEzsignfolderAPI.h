@@ -24,12 +24,16 @@
 #include "../model/ezsignfolder_get_forms_data_v1_response.h"
 #include "../model/ezsignfolder_get_list_v1_response.h"
 #include "../model/ezsignfolder_get_object_v1_response.h"
+#include "../model/ezsignfolder_import_ezsignfoldersignerassociations_v1_request.h"
+#include "../model/ezsignfolder_import_ezsignfoldersignerassociations_v1_response.h"
 #include "../model/ezsignfolder_import_ezsigntemplatepackage_v1_request.h"
 #include "../model/ezsignfolder_import_ezsigntemplatepackage_v1_response.h"
 #include "../model/ezsignfolder_reorder_v1_request.h"
 #include "../model/ezsignfolder_reorder_v1_response.h"
 #include "../model/ezsignfolder_send_v1_request.h"
 #include "../model/ezsignfolder_send_v1_response.h"
+#include "../model/ezsignfolder_send_v2_request.h"
+#include "../model/ezsignfolder_send_v2_response.h"
 #include "../model/ezsignfolder_unsend_v1_response.h"
 #include "../model/header_accept_language.h"
 #include "../model/object.h"
@@ -147,6 +151,14 @@ ezsignfolder_get_object_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetObjectV1(apiClient_t *apiClient, int pkiEzsignfolderID );
 
 
+// Import an existing Ezsignfoldersignerassociation into this Ezsignfolder
+//
+// 
+//
+ezsignfolder_import_ezsignfoldersignerassociations_v1_response_t*
+ObjectEzsignfolderAPI_ezsignfolderImportEzsignfoldersignerassociationsV1(apiClient_t *apiClient, int pkiEzsignfolderID , ezsignfolder_import_ezsignfoldersignerassociations_v1_request_t * ezsignfolder_import_ezsignfoldersignerassociations_v1_request );
+
+
 // Import an Ezsigntemplatepackage in the Ezsignfolder.
 //
 // This endpoint imports all of the Ezsigntemplates from the Ezsigntemplatepackage into the Ezsignfolder as Ezsigndocuments.  This allows to automatically apply all the Ezsigntemplateformfieldgroups and Ezsigntemplatesignatures on the newly created Ezsigndocuments in a single step.
@@ -167,6 +179,14 @@ ObjectEzsignfolderAPI_ezsignfolderReorderV1(apiClient_t *apiClient, int pkiEzsig
 //
 ezsignfolder_send_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderSendV1(apiClient_t *apiClient, int pkiEzsignfolderID , ezsignfolder_send_v1_request_t * ezsignfolder_send_v1_request );
+
+
+// Send the Ezsignfolder to the signatories for signature
+//
+// 
+//
+ezsignfolder_send_v2_response_t*
+ObjectEzsignfolderAPI_ezsignfolderSendV2(apiClient_t *apiClient, int pkiEzsignfolderID , ezsignfolder_send_v2_request_t * ezsignfolder_send_v2_request );
 
 
 // Unsend the Ezsignfolder

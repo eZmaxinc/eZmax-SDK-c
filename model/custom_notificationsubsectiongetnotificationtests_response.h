@@ -17,6 +17,7 @@ typedef struct custom_notificationsubsectiongetnotificationtests_response_t cust
 
 #include "custom_notificationsubsectiongetnotificationtests_response_all_of.h"
 #include "custom_notificationtestgetnotificationtests_response.h"
+#include "multilingual_notificationsubsection_name.h"
 #include "notificationsubsection_response.h"
 
 
@@ -24,6 +25,8 @@ typedef struct custom_notificationsubsectiongetnotificationtests_response_t cust
 typedef struct custom_notificationsubsectiongetnotificationtests_response_t {
     int pki_notificationsubsection_id; //numeric
     int fki_notificationsection_id; //numeric
+    struct multilingual_notificationsubsection_name_t *obj_notificationsubsection_name; //model
+    char *s_notificationsection_name_x; // string
     char *s_notificationsubsection_name_x; // string
     list_t *a_obj_notificationtest; //nonprimitive container
 
@@ -32,6 +35,8 @@ typedef struct custom_notificationsubsectiongetnotificationtests_response_t {
 custom_notificationsubsectiongetnotificationtests_response_t *custom_notificationsubsectiongetnotificationtests_response_create(
     int pki_notificationsubsection_id,
     int fki_notificationsection_id,
+    multilingual_notificationsubsection_name_t *obj_notificationsubsection_name,
+    char *s_notificationsection_name_x,
     char *s_notificationsubsection_name_x,
     list_t *a_obj_notificationtest
 );

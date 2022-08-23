@@ -29,7 +29,7 @@ ezsigntemplatepackage_response_compound_t* instantiate_ezsigntemplatepackage_res
       "Package for new clients",
       1,
       1,
-      1,
+      true,
       "Default",
       list_createList(),
       list_createList()
@@ -43,7 +43,7 @@ ezsigntemplatepackage_response_compound_t* instantiate_ezsigntemplatepackage_res
       "Package for new clients",
       1,
       1,
-      1,
+      true,
       "Default",
       list_createList(),
       list_createList()

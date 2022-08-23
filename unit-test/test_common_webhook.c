@@ -16,7 +16,7 @@
 #include "../model/common_webhook.h"
 common_webhook_t* instantiate_common_webhook(int include_optional);
 
-#include "test_webhook_response.c"
+#include "test_custom_webhook_response.c"
 
 
 common_webhook_t* instantiate_common_webhook(int include_optional) {
@@ -24,7 +24,7 @@ common_webhook_t* instantiate_common_webhook(int include_optional) {
   if (include_optional) {
     common_webhook = common_webhook_create(
        // false, not to have infinite recursion
-      instantiate_webhook_response(0),
+      instantiate_custom_webhook_response(0),
       list_createList()
     );
   } else {

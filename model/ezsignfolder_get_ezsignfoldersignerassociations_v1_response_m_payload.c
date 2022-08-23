@@ -25,7 +25,7 @@ void ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload_free(
     listEntry_t *listEntry;
     if (ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload->a_obj_ezsignfoldersignerassociation) {
         list_ForEach(listEntry, ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload->a_obj_ezsignfoldersignerassociation) {
-            ezsignfoldersignerassociation_response_compound_free(listEntry->data);
+            custom_ezsignfoldersignerassociation_actionable_element_response_free(listEntry->data);
         }
         list_freeList(ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload->a_obj_ezsignfoldersignerassociation);
         ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload->a_obj_ezsignfoldersignerassociation = NULL;
@@ -48,7 +48,7 @@ cJSON *ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload_con
     listEntry_t *a_obj_ezsignfoldersignerassociationListEntry;
     if (ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload->a_obj_ezsignfoldersignerassociation) {
     list_ForEach(a_obj_ezsignfoldersignerassociationListEntry, ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload->a_obj_ezsignfoldersignerassociation) {
-    cJSON *itemLocal = ezsignfoldersignerassociation_response_compound_convertToJSON(a_obj_ezsignfoldersignerassociationListEntry->data);
+    cJSON *itemLocal = custom_ezsignfoldersignerassociation_actionable_element_response_convertToJSON(a_obj_ezsignfoldersignerassociationListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -90,7 +90,7 @@ ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload_t *ezsignf
         if(!cJSON_IsObject(a_obj_ezsignfoldersignerassociation_local_nonprimitive)){
             goto end;
         }
-        ezsignfoldersignerassociation_response_compound_t *a_obj_ezsignfoldersignerassociationItem = ezsignfoldersignerassociation_response_compound_parseFromJSON(a_obj_ezsignfoldersignerassociation_local_nonprimitive);
+        custom_ezsignfoldersignerassociation_actionable_element_response_t *a_obj_ezsignfoldersignerassociationItem = custom_ezsignfoldersignerassociation_actionable_element_response_parseFromJSON(a_obj_ezsignfoldersignerassociation_local_nonprimitive);
 
         list_addElement(a_obj_ezsignfoldersignerassociationList, a_obj_ezsignfoldersignerassociationItem);
     }
@@ -105,7 +105,7 @@ end:
     if (a_obj_ezsignfoldersignerassociationList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsignfoldersignerassociationList) {
-            ezsignfoldersignerassociation_response_compound_free(listEntry->data);
+            custom_ezsignfoldersignerassociation_actionable_element_response_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_ezsignfoldersignerassociationList);

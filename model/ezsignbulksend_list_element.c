@@ -11,12 +11,12 @@ ezsignbulksend_list_element_t *ezsignbulksend_list_element_create(
     char *s_ezsignbulksend_description,
     char *s_ezsignfoldertype_name_x,
     int b_ezsignbulksend_needvalidation,
-    int b_ezsignbulksend_isactive,
     int i_ezsignbulksendtransmission,
     int i_ezsignfolder,
     int i_ezsigndocument,
     int i_ezsignsignature,
-    int i_ezsignsignature_signed
+    int i_ezsignsignature_signed,
+    int b_ezsignbulksend_isactive
     ) {
     ezsignbulksend_list_element_t *ezsignbulksend_list_element_local_var = malloc(sizeof(ezsignbulksend_list_element_t));
     if (!ezsignbulksend_list_element_local_var) {
@@ -27,12 +27,12 @@ ezsignbulksend_list_element_t *ezsignbulksend_list_element_create(
     ezsignbulksend_list_element_local_var->s_ezsignbulksend_description = s_ezsignbulksend_description;
     ezsignbulksend_list_element_local_var->s_ezsignfoldertype_name_x = s_ezsignfoldertype_name_x;
     ezsignbulksend_list_element_local_var->b_ezsignbulksend_needvalidation = b_ezsignbulksend_needvalidation;
-    ezsignbulksend_list_element_local_var->b_ezsignbulksend_isactive = b_ezsignbulksend_isactive;
     ezsignbulksend_list_element_local_var->i_ezsignbulksendtransmission = i_ezsignbulksendtransmission;
     ezsignbulksend_list_element_local_var->i_ezsignfolder = i_ezsignfolder;
     ezsignbulksend_list_element_local_var->i_ezsigndocument = i_ezsigndocument;
     ezsignbulksend_list_element_local_var->i_ezsignsignature = i_ezsignsignature;
     ezsignbulksend_list_element_local_var->i_ezsignsignature_signed = i_ezsignsignature_signed;
+    ezsignbulksend_list_element_local_var->b_ezsignbulksend_isactive = b_ezsignbulksend_isactive;
 
     return ezsignbulksend_list_element_local_var;
 }
@@ -102,15 +102,6 @@ cJSON *ezsignbulksend_list_element_convertToJSON(ezsignbulksend_list_element_t *
     }
 
 
-    // ezsignbulksend_list_element->b_ezsignbulksend_isactive
-    if (!ezsignbulksend_list_element->b_ezsignbulksend_isactive) {
-        goto fail;
-    }
-    if(cJSON_AddBoolToObject(item, "bEzsignbulksendIsactive", ezsignbulksend_list_element->b_ezsignbulksend_isactive) == NULL) {
-    goto fail; //Bool
-    }
-
-
     // ezsignbulksend_list_element->i_ezsignbulksendtransmission
     if (!ezsignbulksend_list_element->i_ezsignbulksendtransmission) {
         goto fail;
@@ -153,6 +144,15 @@ cJSON *ezsignbulksend_list_element_convertToJSON(ezsignbulksend_list_element_t *
     }
     if(cJSON_AddNumberToObject(item, "iEzsignsignatureSigned", ezsignbulksend_list_element->i_ezsignsignature_signed) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // ezsignbulksend_list_element->b_ezsignbulksend_isactive
+    if (!ezsignbulksend_list_element->b_ezsignbulksend_isactive) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "bEzsignbulksendIsactive", ezsignbulksend_list_element->b_ezsignbulksend_isactive) == NULL) {
+    goto fail; //Bool
     }
 
     return item;
@@ -227,18 +227,6 @@ ezsignbulksend_list_element_t *ezsignbulksend_list_element_parseFromJSON(cJSON *
     goto end; //Bool
     }
 
-    // ezsignbulksend_list_element->b_ezsignbulksend_isactive
-    cJSON *b_ezsignbulksend_isactive = cJSON_GetObjectItemCaseSensitive(ezsignbulksend_list_elementJSON, "bEzsignbulksendIsactive");
-    if (!b_ezsignbulksend_isactive) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsBool(b_ezsignbulksend_isactive))
-    {
-    goto end; //Bool
-    }
-
     // ezsignbulksend_list_element->i_ezsignbulksendtransmission
     cJSON *i_ezsignbulksendtransmission = cJSON_GetObjectItemCaseSensitive(ezsignbulksend_list_elementJSON, "iEzsignbulksendtransmission");
     if (!i_ezsignbulksendtransmission) {
@@ -299,6 +287,18 @@ ezsignbulksend_list_element_t *ezsignbulksend_list_element_parseFromJSON(cJSON *
     goto end; //Numeric
     }
 
+    // ezsignbulksend_list_element->b_ezsignbulksend_isactive
+    cJSON *b_ezsignbulksend_isactive = cJSON_GetObjectItemCaseSensitive(ezsignbulksend_list_elementJSON, "bEzsignbulksendIsactive");
+    if (!b_ezsignbulksend_isactive) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(b_ezsignbulksend_isactive))
+    {
+    goto end; //Bool
+    }
+
 
     ezsignbulksend_list_element_local_var = ezsignbulksend_list_element_create (
         pki_ezsignbulksend_id->valuedouble,
@@ -306,12 +306,12 @@ ezsignbulksend_list_element_t *ezsignbulksend_list_element_parseFromJSON(cJSON *
         strdup(s_ezsignbulksend_description->valuestring),
         strdup(s_ezsignfoldertype_name_x->valuestring),
         b_ezsignbulksend_needvalidation->valueint,
-        b_ezsignbulksend_isactive->valueint,
         i_ezsignbulksendtransmission->valuedouble,
         i_ezsignfolder->valuedouble,
         i_ezsigndocument->valuedouble,
         i_ezsignsignature->valuedouble,
-        i_ezsignsignature_signed->valuedouble
+        i_ezsignsignature_signed->valuedouble,
+        b_ezsignbulksend_isactive->valueint
         );
 
     return ezsignbulksend_list_element_local_var;

@@ -27,7 +27,7 @@ ezsigntemplatepackage_request_compound_t* instantiate_ezsigntemplatepackage_requ
       2,
       "Package for new clients",
       1,
-      1
+      true
     );
   } else {
     ezsigntemplatepackage_request_compound = ezsigntemplatepackage_request_compound_create(
@@ -36,7 +36,7 @@ ezsigntemplatepackage_request_compound_t* instantiate_ezsigntemplatepackage_requ
       2,
       "Package for new clients",
       1,
-      1
+      true
     );
   }
 

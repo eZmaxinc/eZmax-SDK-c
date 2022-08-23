@@ -23,6 +23,7 @@ typedef struct ezsignfoldersignerassociation_request_t {
     int fki_user_id; //numeric
     int fki_ezsignfolder_id; //numeric
     int b_ezsignfoldersignerassociation_receivecopy; //boolean
+    char *t_ezsignfoldersignerassociation_message; // string
 
 } ezsignfoldersignerassociation_request_t;
 
@@ -30,7 +31,8 @@ ezsignfoldersignerassociation_request_t *ezsignfoldersignerassociation_request_c
     int pki_ezsignfoldersignerassociation_id,
     int fki_user_id,
     int fki_ezsignfolder_id,
-    int b_ezsignfoldersignerassociation_receivecopy
+    int b_ezsignfoldersignerassociation_receivecopy,
+    char *t_ezsignfoldersignerassociation_message
 );
 
 void ezsignfoldersignerassociation_request_free(ezsignfoldersignerassociation_request_t *ezsignfoldersignerassociation_request);

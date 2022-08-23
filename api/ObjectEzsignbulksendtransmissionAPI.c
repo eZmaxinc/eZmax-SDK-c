@@ -65,15 +65,15 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetCsvErrorsV1(api
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The element you are trying to work on does not exist");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 406) {
-    //    printf("%s\n","One of the accept header is not defined or invalid.");
+    //    printf("%s\n","The URL is valid, but one of the Accept header is not defined or invalid. For example, you set the header \&quot;Accept: application/json\&quot; but the function can only return \&quot;Content-type: image/png\&quot;");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //primitive return type simple
     char* elementToReturn =  strdup((char*)apiClient->dataReceived);
@@ -150,15 +150,15 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetFormsDataV1(api
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The element you are trying to work on does not exist");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 406) {
-    //    printf("%s\n","One of the accept header is not defined or invalid.");
+    //    printf("%s\n","The URL is valid, but one of the Accept header is not defined or invalid. For example, you set the header \&quot;Accept: application/json\&quot; but the function can only return \&quot;Content-type: image/png\&quot;");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignbulksendtransmissionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
@@ -240,7 +240,7 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetObjectV1(apiCli
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The element you are trying to work on does not exist");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignbulksendtransmissionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);

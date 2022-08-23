@@ -63,6 +63,58 @@ end:
 }
 */
 
+// Functions for enum EFILTERACTIVE for ObjectEzsigntsarequirementAPI_ezsigntsarequirementGetAutocompleteV1
+
+static char* ezsigntsarequirementGetAutocompleteV1_EFILTERACTIVE_ToString(ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV1_eFilterActive_e EFILTERACTIVE){
+    char *EFILTERACTIVEArray[] =  { "NULL", "All", "Active", "Inactive" };
+    return EFILTERACTIVEArray[EFILTERACTIVE];
+}
+
+static ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV1_eFilterActive_e ezsigntsarequirementGetAutocompleteV1_EFILTERACTIVE_FromString(char* EFILTERACTIVE){
+    int stringToReturn = 0;
+    char *EFILTERACTIVEArray[] =  { "NULL", "All", "Active", "Inactive" };
+    size_t sizeofArray = sizeof(EFILTERACTIVEArray) / sizeof(EFILTERACTIVEArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(EFILTERACTIVE, EFILTERACTIVEArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
+
+/*
+// Function ezsigntsarequirementGetAutocompleteV1_EFILTERACTIVE_convertToJSON is not currently used,
+// since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
+//
+static cJSON *ezsigntsarequirementGetAutocompleteV1_EFILTERACTIVE_convertToJSON(ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV1_eFilterActive_e EFILTERACTIVE) {
+    cJSON *item = cJSON_CreateObject();
+    if(cJSON_AddStringToObject(item, "eFilterActive", ezsigntsarequirementGetAutocompleteV1_EFILTERACTIVE_ToString(EFILTERACTIVE)) == NULL) {
+        goto fail;
+    }
+    return item;
+    fail:
+    cJSON_Delete(item);
+    return NULL;
+}
+
+// Function ezsigntsarequirementGetAutocompleteV1_EFILTERACTIVE_parseFromJSON is not currently used,
+// since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
+//
+static ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV1_eFilterActive_e ezsigntsarequirementGetAutocompleteV1_EFILTERACTIVE_parseFromJSON(cJSON* EFILTERACTIVEJSON) {
+    ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV1_eFilterActive_e EFILTERACTIVEVariable = 0;
+    cJSON *EFILTERACTIVEVar = cJSON_GetObjectItemCaseSensitive(EFILTERACTIVEJSON, "eFilterActive");
+    if(!cJSON_IsString(EFILTERACTIVEVar) || (EFILTERACTIVEVar->valuestring == NULL))
+    {
+        goto end;
+    }
+    EFILTERACTIVEVariable = ezsigntsarequirementGetAutocompleteV1_EFILTERACTIVE_FromString(EFILTERACTIVEVar->valuestring);
+    return EFILTERACTIVEVariable;
+end:
+    return 0;
+}
+*/
+
 // Functions for enum  for ObjectEzsigntsarequirementAPI_ezsigntsarequirementGetAutocompleteV1
 
 static char* ezsigntsarequirementGetAutocompleteV1__ToString(ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV1_Accept-Language_e ){
@@ -112,7 +164,7 @@ end:
 // Get the list of Ezsigntsarequirement to be used in a dropdown or autocomplete control.
 //
 common_get_autocomplete_disabled_v1_response_t*
-ObjectEzsigntsarequirementAPI_ezsigntsarequirementGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV1_sSelector_e sSelector , int fkiEzsignfoldertypeID , char * sQuery , header_accept_language_e Accept_Language )
+ObjectEzsigntsarequirementAPI_ezsigntsarequirementGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV1_sSelector_e sSelector , int fkiEzsignfoldertypeID , ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV1_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language )
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -165,6 +217,19 @@ ObjectEzsigntsarequirementAPI_ezsigntsarequirementGetAutocompleteV1(apiClient_t 
     }
 
     // query parameters
+    char *keyQuery_eFilterActive = NULL;
+    ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV1_eFilterActive_e valueQuery_eFilterActive ;
+    keyValuePair_t *keyPairQuery_eFilterActive = 0;
+    if (eFilterActive)
+    {
+        keyQuery_eFilterActive = strdup("eFilterActive");
+        valueQuery_eFilterActive = (eFilterActive);
+        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(ezsigntsarequirementGetAutocompleteV1_EFILTERACTIVE_ToString(
+		valueQuery_eFilterActive)));
+        list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
+    }
+
+    // query parameters
     char *keyQuery_sQuery = NULL;
     char * valueQuery_sQuery = NULL;
     keyValuePair_t *keyPairQuery_sQuery = 0;
@@ -192,7 +257,7 @@ ObjectEzsigntsarequirementAPI_ezsigntsarequirementGetAutocompleteV1(apiClient_t 
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigntsarequirementAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
@@ -231,6 +296,14 @@ ObjectEzsigntsarequirementAPI_ezsigntsarequirementGetAutocompleteV1(apiClient_t 
     if(keyPairQuery_fkiEzsignfoldertypeID){
         keyValuePair_free(keyPairQuery_fkiEzsignfoldertypeID);
         keyPairQuery_fkiEzsignfoldertypeID = NULL;
+    }
+    if(keyQuery_eFilterActive){
+        free(keyQuery_eFilterActive);
+        keyQuery_eFilterActive = NULL;
+    }
+    if(keyPairQuery_eFilterActive){
+        keyValuePair_free(keyPairQuery_eFilterActive);
+        keyPairQuery_eFilterActive = NULL;
     }
     if(keyQuery_sQuery){
         free(keyQuery_sQuery);

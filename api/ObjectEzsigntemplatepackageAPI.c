@@ -63,6 +63,58 @@ end:
 }
 */
 
+// Functions for enum EFILTERACTIVE for ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV1
+
+static char* ezsigntemplatepackageGetAutocompleteV1_EFILTERACTIVE_ToString(ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_eFilterActive_e EFILTERACTIVE){
+    char *EFILTERACTIVEArray[] =  { "NULL", "All", "Active", "Inactive" };
+    return EFILTERACTIVEArray[EFILTERACTIVE];
+}
+
+static ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_eFilterActive_e ezsigntemplatepackageGetAutocompleteV1_EFILTERACTIVE_FromString(char* EFILTERACTIVE){
+    int stringToReturn = 0;
+    char *EFILTERACTIVEArray[] =  { "NULL", "All", "Active", "Inactive" };
+    size_t sizeofArray = sizeof(EFILTERACTIVEArray) / sizeof(EFILTERACTIVEArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(EFILTERACTIVE, EFILTERACTIVEArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
+
+/*
+// Function ezsigntemplatepackageGetAutocompleteV1_EFILTERACTIVE_convertToJSON is not currently used,
+// since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
+//
+static cJSON *ezsigntemplatepackageGetAutocompleteV1_EFILTERACTIVE_convertToJSON(ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_eFilterActive_e EFILTERACTIVE) {
+    cJSON *item = cJSON_CreateObject();
+    if(cJSON_AddStringToObject(item, "eFilterActive", ezsigntemplatepackageGetAutocompleteV1_EFILTERACTIVE_ToString(EFILTERACTIVE)) == NULL) {
+        goto fail;
+    }
+    return item;
+    fail:
+    cJSON_Delete(item);
+    return NULL;
+}
+
+// Function ezsigntemplatepackageGetAutocompleteV1_EFILTERACTIVE_parseFromJSON is not currently used,
+// since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
+//
+static ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_eFilterActive_e ezsigntemplatepackageGetAutocompleteV1_EFILTERACTIVE_parseFromJSON(cJSON* EFILTERACTIVEJSON) {
+    ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_eFilterActive_e EFILTERACTIVEVariable = 0;
+    cJSON *EFILTERACTIVEVar = cJSON_GetObjectItemCaseSensitive(EFILTERACTIVEJSON, "eFilterActive");
+    if(!cJSON_IsString(EFILTERACTIVEVar) || (EFILTERACTIVEVar->valuestring == NULL))
+    {
+        goto end;
+    }
+    EFILTERACTIVEVariable = ezsigntemplatepackageGetAutocompleteV1_EFILTERACTIVE_FromString(EFILTERACTIVEVar->valuestring);
+    return EFILTERACTIVEVariable;
+end:
+    return 0;
+}
+*/
+
 // Functions for enum  for ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV1
 
 static char* ezsigntemplatepackageGetAutocompleteV1__ToString(ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_Accept-Language_e ){
@@ -109,13 +161,13 @@ end:
 // Functions for enum EORDERBY for ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetListV1
 
 static char* ezsigntemplatepackageGetListV1_EORDERBY_ToString(ezmax_api_definition__full_ezsigntemplatepackageGetListV1_eOrderBy_e EORDERBY){
-    char *EORDERBYArray[] =  { "NULL", "pkiEzsigntemplatepackageID_ASC", "pkiEzsigntemplatepackageID_DESC", "fkiTeamID_ASC", "fkiTeamID_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "fkiLanguageID_ASC", "fkiLanguageID_DESC", "eEzsigntemplatepackageType_ASC", "eEzsigntemplatepackageType_DESC", "sEzsigntemplatepackageTypedescriptionX_ASC", "sEzsigntemplatepackageTypedescriptionX_DESC", "sEzsigntemplatepackageDescription_ASC", "sEzsigntemplatepackageDescription_DESC", "bEzsigntemplatepackageIsactive_ASC", "bEzsigntemplatepackageIsactive_DESC", "bEzsigntemplatepackageNeedvalidation_ASC", "bEzsigntemplatepackageNeedvalidation_DESC", "iEzsigntemplatepackagemembership_ASC", "iEzsigntemplatepackagemembership_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiEzsigntemplatepackageID_ASC", "pkiEzsigntemplatepackageID_DESC", "fkiTeamID_ASC", "fkiTeamID_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "fkiLanguageID_ASC", "fkiLanguageID_DESC", "eEzsigntemplatepackageType_ASC", "eEzsigntemplatepackageType_DESC", "sEzsigntemplatepackageTypedescriptionX_ASC", "sEzsigntemplatepackageTypedescriptionX_DESC", "sEzsigntemplatepackageDescription_ASC", "sEzsigntemplatepackageDescription_DESC", "bEzsigntemplatepackageNeedvalidation_ASC", "bEzsigntemplatepackageNeedvalidation_DESC", "iEzsigntemplatepackagemembership_ASC", "iEzsigntemplatepackagemembership_DESC", "bEzsigntemplatepackageIsactive_ASC", "bEzsigntemplatepackageIsactive_DESC" };
     return EORDERBYArray[EORDERBY];
 }
 
 static ezmax_api_definition__full_ezsigntemplatepackageGetListV1_eOrderBy_e ezsigntemplatepackageGetListV1_EORDERBY_FromString(char* EORDERBY){
     int stringToReturn = 0;
-    char *EORDERBYArray[] =  { "NULL", "pkiEzsigntemplatepackageID_ASC", "pkiEzsigntemplatepackageID_DESC", "fkiTeamID_ASC", "fkiTeamID_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "fkiLanguageID_ASC", "fkiLanguageID_DESC", "eEzsigntemplatepackageType_ASC", "eEzsigntemplatepackageType_DESC", "sEzsigntemplatepackageTypedescriptionX_ASC", "sEzsigntemplatepackageTypedescriptionX_DESC", "sEzsigntemplatepackageDescription_ASC", "sEzsigntemplatepackageDescription_DESC", "bEzsigntemplatepackageIsactive_ASC", "bEzsigntemplatepackageIsactive_DESC", "bEzsigntemplatepackageNeedvalidation_ASC", "bEzsigntemplatepackageNeedvalidation_DESC", "iEzsigntemplatepackagemembership_ASC", "iEzsigntemplatepackagemembership_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiEzsigntemplatepackageID_ASC", "pkiEzsigntemplatepackageID_DESC", "fkiTeamID_ASC", "fkiTeamID_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "fkiLanguageID_ASC", "fkiLanguageID_DESC", "eEzsigntemplatepackageType_ASC", "eEzsigntemplatepackageType_DESC", "sEzsigntemplatepackageTypedescriptionX_ASC", "sEzsigntemplatepackageTypedescriptionX_DESC", "sEzsigntemplatepackageDescription_ASC", "sEzsigntemplatepackageDescription_DESC", "bEzsigntemplatepackageNeedvalidation_ASC", "bEzsigntemplatepackageNeedvalidation_DESC", "iEzsigntemplatepackagemembership_ASC", "iEzsigntemplatepackagemembership_DESC", "bEzsigntemplatepackageIsactive_ASC", "bEzsigntemplatepackageIsactive_DESC" };
     size_t sizeofArray = sizeof(EORDERBYArray) / sizeof(EORDERBYArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(EORDERBY, EORDERBYArray[stringToReturn]) == 0) {
@@ -332,7 +384,7 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageDeleteObjectV1(apiClient_t *
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The element you are trying to work on does not exist");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigntemplatepackageAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
@@ -424,11 +476,11 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditEzsigntemplatepackagesig
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The element you are trying to work on does not exist");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigntemplatepackageAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
@@ -525,11 +577,11 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditObjectV1(apiClient_t *ap
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The element you are trying to work on does not exist");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigntemplatepackageAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
@@ -569,7 +621,7 @@ end:
 // Get the list of Ezsigntemplatepackage to be used in a dropdown or autocomplete control.
 //
 common_get_autocomplete_disabled_v1_response_t*
-ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_sSelector_e sSelector , char * sQuery , header_accept_language_e Accept_Language )
+ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_sSelector_e sSelector , ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language )
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -607,6 +659,19 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV1(apiClient_
         list_addElement(localVarHeaderParameters,keyPairHeader_Accept_Language);
     }
 
+
+    // query parameters
+    char *keyQuery_eFilterActive = NULL;
+    ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_eFilterActive_e valueQuery_eFilterActive ;
+    keyValuePair_t *keyPairQuery_eFilterActive = 0;
+    if (eFilterActive)
+    {
+        keyQuery_eFilterActive = strdup("eFilterActive");
+        valueQuery_eFilterActive = (eFilterActive);
+        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(ezsigntemplatepackageGetAutocompleteV1_EFILTERACTIVE_ToString(
+		valueQuery_eFilterActive)));
+        list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
+    }
 
     // query parameters
     char *keyQuery_sQuery = NULL;
@@ -660,6 +725,14 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV1(apiClient_
         keyHeader_Accept_Language = NULL;
     }
     free(keyPairHeader_Accept_Language);
+    if(keyQuery_eFilterActive){
+        free(keyQuery_eFilterActive);
+        keyQuery_eFilterActive = NULL;
+    }
+    if(keyPairQuery_eFilterActive){
+        keyValuePair_free(keyPairQuery_eFilterActive);
+        keyPairQuery_eFilterActive = NULL;
+    }
     if(keyQuery_sQuery){
         free(keyQuery_sQuery);
         keyQuery_sQuery = NULL;
@@ -781,7 +854,7 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetListV1(apiClient_t *apiCl
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 406) {
-    //    printf("%s\n","One of the accept header is not defined or invalid.");
+    //    printf("%s\n","The URL is valid, but one of the Accept header is not defined or invalid. For example, you set the header \&quot;Accept: application/json\&quot; but the function can only return \&quot;Content-type: image/png\&quot;");
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigntemplatepackageAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
@@ -911,7 +984,7 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetObjectV1(apiClient_t *api
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The element you are trying to work on does not exist");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigntemplatepackageAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);

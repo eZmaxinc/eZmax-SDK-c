@@ -1,7 +1,7 @@
 /*
  * multilingual_apikey_description.h
  *
- * Description of the API Key  
+ * Description of the API Key
  */
 
 #ifndef _multilingual_apikey_description_H_

@@ -18,9 +18,11 @@ Method | HTTP request | Description
 [**ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getFormsData | Retrieve an existing Ezsignfolder&#39;s forms data
 [**ObjectEzsignfolderAPI_ezsignfolderGetListV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetListV1) | **GET** /1/object/ezsignfolder/getList | Retrieve Ezsignfolder list
 [**ObjectEzsignfolderAPI_ezsignfolderGetObjectV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetObjectV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID} | Retrieve an existing Ezsignfolder
+[**ObjectEzsignfolderAPI_ezsignfolderImportEzsignfoldersignerassociationsV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderImportEzsignfoldersignerassociationsV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/importEzsignfoldersignerassociations | Import an existing Ezsignfoldersignerassociation into this Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/importEzsigntemplatepackage | Import an Ezsigntemplatepackage in the Ezsignfolder.
 [**ObjectEzsignfolderAPI_ezsignfolderReorderV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderReorderV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/reorder | Reorder Ezsigndocuments in the Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderSendV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderSendV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/send | Send the Ezsignfolder to the signatories for signature
+[**ObjectEzsignfolderAPI_ezsignfolderSendV2**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderSendV2) | **POST** /2/object/ezsignfolder/{pkiEzsignfolderID}/send | Send the Ezsignfolder to the signatories for signature
 [**ObjectEzsignfolderAPI_ezsignfolderUnsendV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderUnsendV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/unsend | Unsend the Ezsignfolder
 
 
@@ -461,6 +463,38 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **ObjectEzsignfolderAPI_ezsignfolderImportEzsignfoldersignerassociationsV1**
+```c
+// Import an existing Ezsignfoldersignerassociation into this Ezsignfolder
+//
+// 
+//
+ezsignfolder_import_ezsignfoldersignerassociations_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderImportEzsignfoldersignerassociationsV1(apiClient_t *apiClient, int pkiEzsignfolderID, ezsignfolder_import_ezsignfoldersignerassociations_v1_request_t * ezsignfolder_import_ezsignfoldersignerassociations_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsignfolderID** | **int** |  | 
+**ezsignfolder_import_ezsignfoldersignerassociations_v1_request** | **[ezsignfolder_import_ezsignfoldersignerassociations_v1_request_t](ezsignfolder_import_ezsignfoldersignerassociations_v1_request.md) \*** |  | 
+
+### Return type
+
+[ezsignfolder_import_ezsignfoldersignerassociations_v1_response_t](ezsignfolder_import_ezsignfoldersignerassociations_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV1**
 ```c
 // Import an Ezsigntemplatepackage in the Ezsignfolder.
@@ -542,6 +576,38 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsignfolder_send_v1_response_t](ezsignfolder_send_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsignfolderAPI_ezsignfolderSendV2**
+```c
+// Send the Ezsignfolder to the signatories for signature
+//
+// 
+//
+ezsignfolder_send_v2_response_t* ObjectEzsignfolderAPI_ezsignfolderSendV2(apiClient_t *apiClient, int pkiEzsignfolderID, ezsignfolder_send_v2_request_t * ezsignfolder_send_v2_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsignfolderID** | **int** |  | 
+**ezsignfolder_send_v2_request** | **[ezsignfolder_send_v2_request_t](ezsignfolder_send_v2_request.md) \*** |  | 
+
+### Return type
+
+[ezsignfolder_send_v2_response_t](ezsignfolder_send_v2_response.md) *
 
 
 ### Authorization

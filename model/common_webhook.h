@@ -16,18 +16,18 @@
 typedef struct common_webhook_t common_webhook_t;
 
 #include "attempt_response_compound.h"
-#include "webhook_response.h"
+#include "custom_webhook_response.h"
 
 
 
 typedef struct common_webhook_t {
-    struct webhook_response_t *obj_webhook; //model
+    struct custom_webhook_response_t *obj_webhook; //model
     list_t *a_obj_attempt; //nonprimitive container
 
 } common_webhook_t;
 
 common_webhook_t *common_webhook_create(
-    webhook_response_t *obj_webhook,
+    custom_webhook_response_t *obj_webhook,
     list_t *a_obj_attempt
 );
 

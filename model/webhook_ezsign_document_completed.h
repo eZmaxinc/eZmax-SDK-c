@@ -17,22 +17,22 @@ typedef struct webhook_ezsign_document_completed_t webhook_ezsign_document_compl
 
 #include "attempt_response_compound.h"
 #include "common_webhook.h"
+#include "custom_webhook_response.h"
 #include "ezsigndocument_response.h"
 #include "webhook_ezsign_document_completed_all_of.h"
-#include "webhook_response.h"
 
 
 
 typedef struct webhook_ezsign_document_completed_t {
     struct ezsigndocument_response_t *obj_ezsigndocument; //model
-    struct webhook_response_t *obj_webhook; //model
+    struct custom_webhook_response_t *obj_webhook; //model
     list_t *a_obj_attempt; //nonprimitive container
 
 } webhook_ezsign_document_completed_t;
 
 webhook_ezsign_document_completed_t *webhook_ezsign_document_completed_create(
     ezsigndocument_response_t *obj_ezsigndocument,
-    webhook_response_t *obj_webhook,
+    custom_webhook_response_t *obj_webhook,
     list_t *a_obj_attempt
 );
 

@@ -57,6 +57,7 @@ ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_resp
     char *dt_ezsignfolder_scheduleddispose,
     field_e_ezsignfolder_step_t *e_ezsignfolder_step,
     char *dt_ezsignfolder_close,
+    char *t_ezsignfolder_message,
     common_audit_t *obj_audit
     ) {
     ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_response_m_payload_local_var = malloc(sizeof(ezsignfolder_get_object_v1_response_m_payload_t));
@@ -80,6 +81,7 @@ ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_resp
     ezsignfolder_get_object_v1_response_m_payload_local_var->dt_ezsignfolder_scheduleddispose = dt_ezsignfolder_scheduleddispose;
     ezsignfolder_get_object_v1_response_m_payload_local_var->e_ezsignfolder_step = e_ezsignfolder_step;
     ezsignfolder_get_object_v1_response_m_payload_local_var->dt_ezsignfolder_close = dt_ezsignfolder_close;
+    ezsignfolder_get_object_v1_response_m_payload_local_var->t_ezsignfolder_message = t_ezsignfolder_message;
     ezsignfolder_get_object_v1_response_m_payload_local_var->obj_audit = obj_audit;
 
     return ezsignfolder_get_object_v1_response_m_payload_local_var;
@@ -138,6 +140,10 @@ void ezsignfolder_get_object_v1_response_m_payload_free(ezsignfolder_get_object_
     if (ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_close) {
         free(ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_close);
         ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_close = NULL;
+    }
+    if (ezsignfolder_get_object_v1_response_m_payload->t_ezsignfolder_message) {
+        free(ezsignfolder_get_object_v1_response_m_payload->t_ezsignfolder_message);
+        ezsignfolder_get_object_v1_response_m_payload->t_ezsignfolder_message = NULL;
     }
     if (ezsignfolder_get_object_v1_response_m_payload->obj_audit) {
         common_audit_free(ezsignfolder_get_object_v1_response_m_payload->obj_audit);
@@ -304,6 +310,15 @@ cJSON *ezsignfolder_get_object_v1_response_m_payload_convertToJSON(ezsignfolder_
     if(cJSON_AddStringToObject(item, "dtEzsignfolderClose", ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_close) == NULL) {
     goto fail; //String
     }
+    }
+
+
+    // ezsignfolder_get_object_v1_response_m_payload->t_ezsignfolder_message
+    if (!ezsignfolder_get_object_v1_response_m_payload->t_ezsignfolder_message) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "tEzsignfolderMessage", ezsignfolder_get_object_v1_response_m_payload->t_ezsignfolder_message) == NULL) {
+    goto fail; //String
     }
 
 
@@ -524,6 +539,18 @@ ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_resp
     }
     }
 
+    // ezsignfolder_get_object_v1_response_m_payload->t_ezsignfolder_message
+    cJSON *t_ezsignfolder_message = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_object_v1_response_m_payloadJSON, "tEzsignfolderMessage");
+    if (!t_ezsignfolder_message) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(t_ezsignfolder_message))
+    {
+    goto end; //String
+    }
+
     // ezsignfolder_get_object_v1_response_m_payload->obj_audit
     cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_object_v1_response_m_payloadJSON, "objAudit");
     if (!obj_audit) {
@@ -552,6 +579,7 @@ ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_resp
         dt_ezsignfolder_scheduleddispose ? strdup(dt_ezsignfolder_scheduleddispose->valuestring) : NULL,
         e_ezsignfolder_step_local_nonprim,
         dt_ezsignfolder_close ? strdup(dt_ezsignfolder_close->valuestring) : NULL,
+        strdup(t_ezsignfolder_message->valuestring),
         obj_audit_local_nonprim
         );
 

@@ -7,7 +7,7 @@
 
 webhook_ezsign_folder_completed_t *webhook_ezsign_folder_completed_create(
     ezsignfolder_response_t *obj_ezsignfolder,
-    webhook_response_t *obj_webhook,
+    custom_webhook_response_t *obj_webhook,
     list_t *a_obj_attempt
     ) {
     webhook_ezsign_folder_completed_t *webhook_ezsign_folder_completed_local_var = malloc(sizeof(webhook_ezsign_folder_completed_t));
@@ -32,7 +32,7 @@ void webhook_ezsign_folder_completed_free(webhook_ezsign_folder_completed_t *web
         webhook_ezsign_folder_completed->obj_ezsignfolder = NULL;
     }
     if (webhook_ezsign_folder_completed->obj_webhook) {
-        webhook_response_free(webhook_ezsign_folder_completed->obj_webhook);
+        custom_webhook_response_free(webhook_ezsign_folder_completed->obj_webhook);
         webhook_ezsign_folder_completed->obj_webhook = NULL;
     }
     if (webhook_ezsign_folder_completed->a_obj_attempt) {
@@ -66,7 +66,7 @@ cJSON *webhook_ezsign_folder_completed_convertToJSON(webhook_ezsign_folder_compl
     if (!webhook_ezsign_folder_completed->obj_webhook) {
         goto fail;
     }
-    cJSON *obj_webhook_local_JSON = webhook_response_convertToJSON(webhook_ezsign_folder_completed->obj_webhook);
+    cJSON *obj_webhook_local_JSON = custom_webhook_response_convertToJSON(webhook_ezsign_folder_completed->obj_webhook);
     if(obj_webhook_local_JSON == NULL) {
     goto fail; //model
     }
@@ -112,7 +112,7 @@ webhook_ezsign_folder_completed_t *webhook_ezsign_folder_completed_parseFromJSON
     ezsignfolder_response_t *obj_ezsignfolder_local_nonprim = NULL;
 
     // define the local variable for webhook_ezsign_folder_completed->obj_webhook
-    webhook_response_t *obj_webhook_local_nonprim = NULL;
+    custom_webhook_response_t *obj_webhook_local_nonprim = NULL;
 
     // define the local list for webhook_ezsign_folder_completed->a_obj_attempt
     list_t *a_obj_attemptList = NULL;
@@ -133,7 +133,7 @@ webhook_ezsign_folder_completed_t *webhook_ezsign_folder_completed_parseFromJSON
     }
 
     
-    obj_webhook_local_nonprim = webhook_response_parseFromJSON(obj_webhook); //nonprimitive
+    obj_webhook_local_nonprim = custom_webhook_response_parseFromJSON(obj_webhook); //nonprimitive
 
     // webhook_ezsign_folder_completed->a_obj_attempt
     cJSON *a_obj_attempt = cJSON_GetObjectItemCaseSensitive(webhook_ezsign_folder_completedJSON, "a_objAttempt");
@@ -173,7 +173,7 @@ end:
         obj_ezsignfolder_local_nonprim = NULL;
     }
     if (obj_webhook_local_nonprim) {
-        webhook_response_free(obj_webhook_local_nonprim);
+        custom_webhook_response_free(obj_webhook_local_nonprim);
         obj_webhook_local_nonprim = NULL;
     }
     if (a_obj_attemptList) {

@@ -8,6 +8,8 @@
 custom_notificationsubsectiongetnotificationtests_response_t *custom_notificationsubsectiongetnotificationtests_response_create(
     int pki_notificationsubsection_id,
     int fki_notificationsection_id,
+    multilingual_notificationsubsection_name_t *obj_notificationsubsection_name,
+    char *s_notificationsection_name_x,
     char *s_notificationsubsection_name_x,
     list_t *a_obj_notificationtest
     ) {
@@ -17,6 +19,8 @@ custom_notificationsubsectiongetnotificationtests_response_t *custom_notificatio
     }
     custom_notificationsubsectiongetnotificationtests_response_local_var->pki_notificationsubsection_id = pki_notificationsubsection_id;
     custom_notificationsubsectiongetnotificationtests_response_local_var->fki_notificationsection_id = fki_notificationsection_id;
+    custom_notificationsubsectiongetnotificationtests_response_local_var->obj_notificationsubsection_name = obj_notificationsubsection_name;
+    custom_notificationsubsectiongetnotificationtests_response_local_var->s_notificationsection_name_x = s_notificationsection_name_x;
     custom_notificationsubsectiongetnotificationtests_response_local_var->s_notificationsubsection_name_x = s_notificationsubsection_name_x;
     custom_notificationsubsectiongetnotificationtests_response_local_var->a_obj_notificationtest = a_obj_notificationtest;
 
@@ -29,6 +33,14 @@ void custom_notificationsubsectiongetnotificationtests_response_free(custom_noti
         return ;
     }
     listEntry_t *listEntry;
+    if (custom_notificationsubsectiongetnotificationtests_response->obj_notificationsubsection_name) {
+        multilingual_notificationsubsection_name_free(custom_notificationsubsectiongetnotificationtests_response->obj_notificationsubsection_name);
+        custom_notificationsubsectiongetnotificationtests_response->obj_notificationsubsection_name = NULL;
+    }
+    if (custom_notificationsubsectiongetnotificationtests_response->s_notificationsection_name_x) {
+        free(custom_notificationsubsectiongetnotificationtests_response->s_notificationsection_name_x);
+        custom_notificationsubsectiongetnotificationtests_response->s_notificationsection_name_x = NULL;
+    }
     if (custom_notificationsubsectiongetnotificationtests_response->s_notificationsubsection_name_x) {
         free(custom_notificationsubsectiongetnotificationtests_response->s_notificationsubsection_name_x);
         custom_notificationsubsectiongetnotificationtests_response->s_notificationsubsection_name_x = NULL;
@@ -61,6 +73,27 @@ cJSON *custom_notificationsubsectiongetnotificationtests_response_convertToJSON(
     }
     if(cJSON_AddNumberToObject(item, "fkiNotificationsectionID", custom_notificationsubsectiongetnotificationtests_response->fki_notificationsection_id) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // custom_notificationsubsectiongetnotificationtests_response->obj_notificationsubsection_name
+    if(custom_notificationsubsectiongetnotificationtests_response->obj_notificationsubsection_name) {
+    cJSON *obj_notificationsubsection_name_local_JSON = multilingual_notificationsubsection_name_convertToJSON(custom_notificationsubsectiongetnotificationtests_response->obj_notificationsubsection_name);
+    if(obj_notificationsubsection_name_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objNotificationsubsectionName", obj_notificationsubsection_name_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+    }
+
+
+    // custom_notificationsubsectiongetnotificationtests_response->s_notificationsection_name_x
+    if(custom_notificationsubsectiongetnotificationtests_response->s_notificationsection_name_x) {
+    if(cJSON_AddStringToObject(item, "sNotificationsectionNameX", custom_notificationsubsectiongetnotificationtests_response->s_notificationsection_name_x) == NULL) {
+    goto fail; //String
+    }
     }
 
 
@@ -105,6 +138,9 @@ custom_notificationsubsectiongetnotificationtests_response_t *custom_notificatio
 
     custom_notificationsubsectiongetnotificationtests_response_t *custom_notificationsubsectiongetnotificationtests_response_local_var = NULL;
 
+    // define the local variable for custom_notificationsubsectiongetnotificationtests_response->obj_notificationsubsection_name
+    multilingual_notificationsubsection_name_t *obj_notificationsubsection_name_local_nonprim = NULL;
+
     // define the local list for custom_notificationsubsectiongetnotificationtests_response->a_obj_notificationtest
     list_t *a_obj_notificationtestList = NULL;
 
@@ -130,6 +166,21 @@ custom_notificationsubsectiongetnotificationtests_response_t *custom_notificatio
     if(!cJSON_IsNumber(fki_notificationsection_id))
     {
     goto end; //Numeric
+    }
+
+    // custom_notificationsubsectiongetnotificationtests_response->obj_notificationsubsection_name
+    cJSON *obj_notificationsubsection_name = cJSON_GetObjectItemCaseSensitive(custom_notificationsubsectiongetnotificationtests_responseJSON, "objNotificationsubsectionName");
+    if (obj_notificationsubsection_name) { 
+    obj_notificationsubsection_name_local_nonprim = multilingual_notificationsubsection_name_parseFromJSON(obj_notificationsubsection_name); //nonprimitive
+    }
+
+    // custom_notificationsubsectiongetnotificationtests_response->s_notificationsection_name_x
+    cJSON *s_notificationsection_name_x = cJSON_GetObjectItemCaseSensitive(custom_notificationsubsectiongetnotificationtests_responseJSON, "sNotificationsectionNameX");
+    if (s_notificationsection_name_x) { 
+    if(!cJSON_IsString(s_notificationsection_name_x))
+    {
+    goto end; //String
+    }
     }
 
     // custom_notificationsubsectiongetnotificationtests_response->s_notificationsubsection_name_x
@@ -172,12 +223,18 @@ custom_notificationsubsectiongetnotificationtests_response_t *custom_notificatio
     custom_notificationsubsectiongetnotificationtests_response_local_var = custom_notificationsubsectiongetnotificationtests_response_create (
         pki_notificationsubsection_id->valuedouble,
         fki_notificationsection_id->valuedouble,
+        obj_notificationsubsection_name ? obj_notificationsubsection_name_local_nonprim : NULL,
+        s_notificationsection_name_x ? strdup(s_notificationsection_name_x->valuestring) : NULL,
         strdup(s_notificationsubsection_name_x->valuestring),
         a_obj_notificationtestList
         );
 
     return custom_notificationsubsectiongetnotificationtests_response_local_var;
 end:
+    if (obj_notificationsubsection_name_local_nonprim) {
+        multilingual_notificationsubsection_name_free(obj_notificationsubsection_name_local_nonprim);
+        obj_notificationsubsection_name_local_nonprim = NULL;
+    }
     if (a_obj_notificationtestList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_notificationtestList) {

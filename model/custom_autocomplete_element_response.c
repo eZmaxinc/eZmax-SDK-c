@@ -9,7 +9,8 @@ custom_autocomplete_element_response_t *custom_autocomplete_element_response_cre
     char *s_category,
     char *s_label,
     char *s_value,
-    char *m_value
+    char *m_value,
+    int b_active
     ) {
     custom_autocomplete_element_response_t *custom_autocomplete_element_response_local_var = malloc(sizeof(custom_autocomplete_element_response_t));
     if (!custom_autocomplete_element_response_local_var) {
@@ -19,6 +20,7 @@ custom_autocomplete_element_response_t *custom_autocomplete_element_response_cre
     custom_autocomplete_element_response_local_var->s_label = s_label;
     custom_autocomplete_element_response_local_var->s_value = s_value;
     custom_autocomplete_element_response_local_var->m_value = m_value;
+    custom_autocomplete_element_response_local_var->b_active = b_active;
 
     return custom_autocomplete_element_response_local_var;
 }
@@ -85,6 +87,15 @@ cJSON *custom_autocomplete_element_response_convertToJSON(custom_autocomplete_el
     }
     }
 
+
+    // custom_autocomplete_element_response->b_active
+    if (!custom_autocomplete_element_response->b_active) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "bActive", custom_autocomplete_element_response->b_active) == NULL) {
+    goto fail; //Bool
+    }
+
     return item;
 fail:
     if (item) {
@@ -142,12 +153,25 @@ custom_autocomplete_element_response_t *custom_autocomplete_element_response_par
     }
     }
 
+    // custom_autocomplete_element_response->b_active
+    cJSON *b_active = cJSON_GetObjectItemCaseSensitive(custom_autocomplete_element_responseJSON, "bActive");
+    if (!b_active) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(b_active))
+    {
+    goto end; //Bool
+    }
+
 
     custom_autocomplete_element_response_local_var = custom_autocomplete_element_response_create (
         strdup(s_category->valuestring),
         strdup(s_label->valuestring),
         strdup(s_value->valuestring),
-        m_value ? strdup(m_value->valuestring) : NULL
+        m_value ? strdup(m_value->valuestring) : NULL,
+        b_active->valueint
         );
 
     return custom_autocomplete_element_response_local_var;

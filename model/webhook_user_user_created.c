@@ -7,7 +7,7 @@
 
 webhook_user_user_created_t *webhook_user_user_created_create(
     user_response_compound_t *obj_user,
-    webhook_response_t *obj_webhook,
+    custom_webhook_response_t *obj_webhook,
     list_t *a_obj_attempt
     ) {
     webhook_user_user_created_t *webhook_user_user_created_local_var = malloc(sizeof(webhook_user_user_created_t));
@@ -32,7 +32,7 @@ void webhook_user_user_created_free(webhook_user_user_created_t *webhook_user_us
         webhook_user_user_created->obj_user = NULL;
     }
     if (webhook_user_user_created->obj_webhook) {
-        webhook_response_free(webhook_user_user_created->obj_webhook);
+        custom_webhook_response_free(webhook_user_user_created->obj_webhook);
         webhook_user_user_created->obj_webhook = NULL;
     }
     if (webhook_user_user_created->a_obj_attempt) {
@@ -66,7 +66,7 @@ cJSON *webhook_user_user_created_convertToJSON(webhook_user_user_created_t *webh
     if (!webhook_user_user_created->obj_webhook) {
         goto fail;
     }
-    cJSON *obj_webhook_local_JSON = webhook_response_convertToJSON(webhook_user_user_created->obj_webhook);
+    cJSON *obj_webhook_local_JSON = custom_webhook_response_convertToJSON(webhook_user_user_created->obj_webhook);
     if(obj_webhook_local_JSON == NULL) {
     goto fail; //model
     }
@@ -112,7 +112,7 @@ webhook_user_user_created_t *webhook_user_user_created_parseFromJSON(cJSON *webh
     user_response_compound_t *obj_user_local_nonprim = NULL;
 
     // define the local variable for webhook_user_user_created->obj_webhook
-    webhook_response_t *obj_webhook_local_nonprim = NULL;
+    custom_webhook_response_t *obj_webhook_local_nonprim = NULL;
 
     // define the local list for webhook_user_user_created->a_obj_attempt
     list_t *a_obj_attemptList = NULL;
@@ -133,7 +133,7 @@ webhook_user_user_created_t *webhook_user_user_created_parseFromJSON(cJSON *webh
     }
 
     
-    obj_webhook_local_nonprim = webhook_response_parseFromJSON(obj_webhook); //nonprimitive
+    obj_webhook_local_nonprim = custom_webhook_response_parseFromJSON(obj_webhook); //nonprimitive
 
     // webhook_user_user_created->a_obj_attempt
     cJSON *a_obj_attempt = cJSON_GetObjectItemCaseSensitive(webhook_user_user_createdJSON, "a_objAttempt");
@@ -173,7 +173,7 @@ end:
         obj_user_local_nonprim = NULL;
     }
     if (obj_webhook_local_nonprim) {
-        webhook_response_free(obj_webhook_local_nonprim);
+        custom_webhook_response_free(obj_webhook_local_nonprim);
         obj_webhook_local_nonprim = NULL;
     }
     if (a_obj_attemptList) {

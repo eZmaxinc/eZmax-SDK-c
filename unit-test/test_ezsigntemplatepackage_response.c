@@ -29,7 +29,7 @@ ezsigntemplatepackage_response_t* instantiate_ezsigntemplatepackage_response(int
       "Package for new clients",
       1,
       1,
-      1,
+      true,
       "Default"
     );
   } else {
@@ -41,7 +41,7 @@ ezsigntemplatepackage_response_t* instantiate_ezsigntemplatepackage_response(int
       "Package for new clients",
       1,
       1,
-      1,
+      true,
       "Default"
     );
   }

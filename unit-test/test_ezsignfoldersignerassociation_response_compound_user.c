@@ -26,7 +26,7 @@ ezsignfoldersignerassociation_response_compound_user_t* instantiate_ezsignfolder
       2,
       "John",
       "Doe",
-      "example@domain.com"
+      "email@example.com"
     );
   } else {
     ezsignfoldersignerassociation_response_compound_user = ezsignfoldersignerassociation_response_compound_user_create(
@@ -34,7 +34,7 @@ ezsignfoldersignerassociation_response_compound_user_t* instantiate_ezsignfolder
       2,
       "John",
       "Doe",
-      "example@domain.com"
+      "email@example.com"
     );
   }
 

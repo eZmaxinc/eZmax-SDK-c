@@ -25,6 +25,7 @@ ezsigndocument_get_object_v1_response_m_payload_t* instantiate_ezsigndocument_ge
     ezsigndocument_get_object_v1_response_m_payload = ezsigndocument_get_object_v1_response_m_payload_create(
       33,
       "2020-12-31 23:59:59",
+      "2020-12-31 23:59:59",
       2,
       "Contract #123",
       97,
@@ -49,6 +50,7 @@ ezsigndocument_get_object_v1_response_m_payload_t* instantiate_ezsigndocument_ge
   } else {
     ezsigndocument_get_object_v1_response_m_payload = ezsigndocument_get_object_v1_response_m_payload_create(
       33,
+      "2020-12-31 23:59:59",
       "2020-12-31 23:59:59",
       2,
       "Contract #123",

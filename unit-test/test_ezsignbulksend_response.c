@@ -31,7 +31,7 @@ ezsignbulksend_response_t* instantiate_ezsignbulksend_response(int include_optio
       "Test eZsign Bulk Send",
       "This is a note",
       1,
-      1,
+      true,
        // false, not to have infinite recursion
       instantiate_common_audit(0)
     );
@@ -45,7 +45,7 @@ ezsignbulksend_response_t* instantiate_ezsignbulksend_response(int include_optio
       "Test eZsign Bulk Send",
       "This is a note",
       1,
-      1,
+      true,
       NULL
     );
   }

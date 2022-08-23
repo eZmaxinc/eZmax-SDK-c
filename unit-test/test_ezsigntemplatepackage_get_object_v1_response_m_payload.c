@@ -29,7 +29,7 @@ ezsigntemplatepackage_get_object_v1_response_m_payload_t* instantiate_ezsigntemp
       "Package for new clients",
       1,
       1,
-      1,
+      true,
       "Default",
       list_createList(),
       list_createList()
@@ -43,7 +43,7 @@ ezsigntemplatepackage_get_object_v1_response_m_payload_t* instantiate_ezsigntemp
       "Package for new clients",
       1,
       1,
-      1,
+      true,
       "Default",
       list_createList(),
       list_createList()

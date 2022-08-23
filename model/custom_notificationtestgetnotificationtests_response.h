@@ -17,6 +17,7 @@ typedef struct custom_notificationtestgetnotificationtests_response_t custom_not
 
 #include "custom_notificationtestgetnotificationtests_response_all_of.h"
 #include "field_e_notificationpreference_status.h"
+#include "multilingual_notificationtest_name.h"
 #include "notificationtest_response.h"
 
 // Enum  for custom_notificationtestgetnotificationtests_response
@@ -31,6 +32,7 @@ ezmax_api_definition__full_custom_notificationtestgetnotificationtests_response_
 
 typedef struct custom_notificationtestgetnotificationtests_response_t {
     int pki_notificationtest_id; //numeric
+    struct multilingual_notificationtest_name_t *obj_notificationtest_name; //model
     int fki_notificationsubsection_id; //numeric
     char *s_notificationtest_function; // string
     char *s_notificationtest_name_x; // string
@@ -41,6 +43,7 @@ typedef struct custom_notificationtestgetnotificationtests_response_t {
 
 custom_notificationtestgetnotificationtests_response_t *custom_notificationtestgetnotificationtests_response_create(
     int pki_notificationtest_id,
+    multilingual_notificationtest_name_t *obj_notificationtest_name,
     int fki_notificationsubsection_id,
     char *s_notificationtest_function,
     char *s_notificationtest_name_x,

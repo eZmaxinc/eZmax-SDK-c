@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 //
 // Get the list of Ezsigntemplatepackage to be used in a dropdown or autocomplete control.
 //
-common_get_autocomplete_disabled_v1_response_t* ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_sSelector_e sSelector, char * sQuery, header_accept_language_e Accept_Language);
+common_get_autocomplete_disabled_v1_response_t* ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_sSelector_e sSelector, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_eFilterActive_e eFilterActive, char * sQuery, header_accept_language_e Accept_Language);
 ```
 
 ### Parameters
@@ -153,6 +153,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **sSelector** | **ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_sSelector_e** | The type of Ezsigntemplatepackages to return | 
+**eFilterActive** | **ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_eFilterActive_e** | Specify which results we want to display. | [optional] [default to &#39;Active&#39;]
 **sQuery** | **char \*** | Allow to filter the returned results | [optional] 
 **Accept_Language** | **header_accept_language_e** |  | [optional] 
 

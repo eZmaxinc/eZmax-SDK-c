@@ -26,7 +26,8 @@ custom_autocomplete_element_disabled_response_t* instantiate_custom_autocomplete
       "0",
       "0",
       "0",
-      "0"
+      "0",
+      1
     );
   } else {
     custom_autocomplete_element_disabled_response = custom_autocomplete_element_disabled_response_create(
@@ -34,7 +35,8 @@ custom_autocomplete_element_disabled_response_t* instantiate_custom_autocomplete
       "0",
       "0",
       "0",
-      "0"
+      "0",
+      1
     );
   }
 

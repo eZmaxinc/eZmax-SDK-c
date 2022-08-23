@@ -5,13 +5,13 @@
 
 
 char* e_ezsignsignature_typeezsignsignature_get_object_v1_response_m_payload_ToString(ezmax_api_definition__full_ezsignsignature_get_object_v1_response_m_payload__e e_ezsignsignature_type) {
-    char* e_ezsignsignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name" };
+    char* e_ezsignsignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name", "Attachments" };
 	return e_ezsignsignature_typeArray[e_ezsignsignature_type];
 }
 
 ezmax_api_definition__full_ezsignsignature_get_object_v1_response_m_payload__e e_ezsignsignature_typeezsignsignature_get_object_v1_response_m_payload_FromString(char* e_ezsignsignature_type){
     int stringToReturn = 0;
-    char *e_ezsignsignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name" };
+    char *e_ezsignsignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name", "Attachments" };
     size_t sizeofArray = sizeof(e_ezsignsignature_typeArray) / sizeof(e_ezsignsignature_typeArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(e_ezsignsignature_type, e_ezsignsignature_typeArray[stringToReturn]) == 0) {
@@ -55,6 +55,23 @@ ezmax_api_definition__full_ezsignsignature_get_object_v1_response_m_payload__e e
     }
     return 0;
 }
+char* e_ezsignsignature_attachmentnamesourceezsignsignature_get_object_v1_response_m_payload_ToString(ezmax_api_definition__full_ezsignsignature_get_object_v1_response_m_payload__e e_ezsignsignature_attachmentnamesource) {
+    char* e_ezsignsignature_attachmentnamesourceArray[] =  { "NULL", "Description", "Customer", "DescriptionCustomer" };
+	return e_ezsignsignature_attachmentnamesourceArray[e_ezsignsignature_attachmentnamesource];
+}
+
+ezmax_api_definition__full_ezsignsignature_get_object_v1_response_m_payload__e e_ezsignsignature_attachmentnamesourceezsignsignature_get_object_v1_response_m_payload_FromString(char* e_ezsignsignature_attachmentnamesource){
+    int stringToReturn = 0;
+    char *e_ezsignsignature_attachmentnamesourceArray[] =  { "NULL", "Description", "Customer", "DescriptionCustomer" };
+    size_t sizeofArray = sizeof(e_ezsignsignature_attachmentnamesourceArray) / sizeof(e_ezsignsignature_attachmentnamesourceArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(e_ezsignsignature_attachmentnamesource, e_ezsignsignature_attachmentnamesourceArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
 
 ezsignsignature_get_object_v1_response_m_payload_t *ezsignsignature_get_object_v1_response_m_payload_create(
     int pki_ezsignsignature_id,
@@ -68,6 +85,11 @@ ezsignsignature_get_object_v1_response_m_payload_t *ezsignsignature_get_object_v
     char *t_ezsignsignature_tooltip,
     field_e_ezsignsignature_tooltipposition_t *e_ezsignsignature_tooltipposition,
     field_e_ezsignsignature_font_t *e_ezsignsignature_font,
+    int i_ezsignsignature_validationstep,
+    char *s_ezsignsignature_attachmentdescription,
+    field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource,
+    int b_ezsignsignature_required,
+    int fki_user_id,
     int b_ezsignsignature_customdate,
     list_t *a_obj_ezsignsignaturecustomdate
     ) {
@@ -86,6 +108,11 @@ ezsignsignature_get_object_v1_response_m_payload_t *ezsignsignature_get_object_v
     ezsignsignature_get_object_v1_response_m_payload_local_var->t_ezsignsignature_tooltip = t_ezsignsignature_tooltip;
     ezsignsignature_get_object_v1_response_m_payload_local_var->e_ezsignsignature_tooltipposition = e_ezsignsignature_tooltipposition;
     ezsignsignature_get_object_v1_response_m_payload_local_var->e_ezsignsignature_font = e_ezsignsignature_font;
+    ezsignsignature_get_object_v1_response_m_payload_local_var->i_ezsignsignature_validationstep = i_ezsignsignature_validationstep;
+    ezsignsignature_get_object_v1_response_m_payload_local_var->s_ezsignsignature_attachmentdescription = s_ezsignsignature_attachmentdescription;
+    ezsignsignature_get_object_v1_response_m_payload_local_var->e_ezsignsignature_attachmentnamesource = e_ezsignsignature_attachmentnamesource;
+    ezsignsignature_get_object_v1_response_m_payload_local_var->b_ezsignsignature_required = b_ezsignsignature_required;
+    ezsignsignature_get_object_v1_response_m_payload_local_var->fki_user_id = fki_user_id;
     ezsignsignature_get_object_v1_response_m_payload_local_var->b_ezsignsignature_customdate = b_ezsignsignature_customdate;
     ezsignsignature_get_object_v1_response_m_payload_local_var->a_obj_ezsignsignaturecustomdate = a_obj_ezsignsignaturecustomdate;
 
@@ -113,6 +140,14 @@ void ezsignsignature_get_object_v1_response_m_payload_free(ezsignsignature_get_o
     if (ezsignsignature_get_object_v1_response_m_payload->e_ezsignsignature_font) {
         field_e_ezsignsignature_font_free(ezsignsignature_get_object_v1_response_m_payload->e_ezsignsignature_font);
         ezsignsignature_get_object_v1_response_m_payload->e_ezsignsignature_font = NULL;
+    }
+    if (ezsignsignature_get_object_v1_response_m_payload->s_ezsignsignature_attachmentdescription) {
+        free(ezsignsignature_get_object_v1_response_m_payload->s_ezsignsignature_attachmentdescription);
+        ezsignsignature_get_object_v1_response_m_payload->s_ezsignsignature_attachmentdescription = NULL;
+    }
+    if (ezsignsignature_get_object_v1_response_m_payload->e_ezsignsignature_attachmentnamesource) {
+        field_e_ezsignsignature_attachmentnamesource_free(ezsignsignature_get_object_v1_response_m_payload->e_ezsignsignature_attachmentnamesource);
+        ezsignsignature_get_object_v1_response_m_payload->e_ezsignsignature_attachmentnamesource = NULL;
     }
     if (ezsignsignature_get_object_v1_response_m_payload->a_obj_ezsignsignaturecustomdate) {
         list_ForEach(listEntry, ezsignsignature_get_object_v1_response_m_payload->a_obj_ezsignsignaturecustomdate) {
@@ -238,6 +273,51 @@ cJSON *ezsignsignature_get_object_v1_response_m_payload_convertToJSON(ezsignsign
     }
 
 
+    // ezsignsignature_get_object_v1_response_m_payload->i_ezsignsignature_validationstep
+    if(ezsignsignature_get_object_v1_response_m_payload->i_ezsignsignature_validationstep) {
+    if(cJSON_AddNumberToObject(item, "iEzsignsignatureValidationstep", ezsignsignature_get_object_v1_response_m_payload->i_ezsignsignature_validationstep) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // ezsignsignature_get_object_v1_response_m_payload->s_ezsignsignature_attachmentdescription
+    if(ezsignsignature_get_object_v1_response_m_payload->s_ezsignsignature_attachmentdescription) {
+    if(cJSON_AddStringToObject(item, "sEzsignsignatureAttachmentdescription", ezsignsignature_get_object_v1_response_m_payload->s_ezsignsignature_attachmentdescription) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // ezsignsignature_get_object_v1_response_m_payload->e_ezsignsignature_attachmentnamesource
+    if(ezsignsignature_get_object_v1_response_m_payload->e_ezsignsignature_attachmentnamesource != ezmax_api_definition__full_ezsignsignature_get_object_v1_response_m_payload__NULL) {
+    cJSON *e_ezsignsignature_attachmentnamesource_local_JSON = field_e_ezsignsignature_attachmentnamesource_convertToJSON(ezsignsignature_get_object_v1_response_m_payload->e_ezsignsignature_attachmentnamesource);
+    if(e_ezsignsignature_attachmentnamesource_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsignsignatureAttachmentnamesource", e_ezsignsignature_attachmentnamesource_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
+    }
+
+
+    // ezsignsignature_get_object_v1_response_m_payload->b_ezsignsignature_required
+    if(ezsignsignature_get_object_v1_response_m_payload->b_ezsignsignature_required) {
+    if(cJSON_AddBoolToObject(item, "bEzsignsignatureRequired", ezsignsignature_get_object_v1_response_m_payload->b_ezsignsignature_required) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
+    // ezsignsignature_get_object_v1_response_m_payload->fki_user_id
+    if(ezsignsignature_get_object_v1_response_m_payload->fki_user_id) {
+    if(cJSON_AddNumberToObject(item, "fkiUserID", ezsignsignature_get_object_v1_response_m_payload->fki_user_id) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
     // ezsignsignature_get_object_v1_response_m_payload->b_ezsignsignature_customdate
     if(ezsignsignature_get_object_v1_response_m_payload->b_ezsignsignature_customdate) {
     if(cJSON_AddBoolToObject(item, "bEzsignsignatureCustomdate", ezsignsignature_get_object_v1_response_m_payload->b_ezsignsignature_customdate) == NULL) {
@@ -285,6 +365,9 @@ ezsignsignature_get_object_v1_response_m_payload_t *ezsignsignature_get_object_v
 
     // define the local variable for ezsignsignature_get_object_v1_response_m_payload->e_ezsignsignature_font
     field_e_ezsignsignature_font_t *e_ezsignsignature_font_local_nonprim = NULL;
+
+    // define the local variable for ezsignsignature_get_object_v1_response_m_payload->e_ezsignsignature_attachmentnamesource
+    field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource_local_nonprim = NULL;
 
     // define the local list for ezsignsignature_get_object_v1_response_m_payload->a_obj_ezsignsignaturecustomdate
     list_t *a_obj_ezsignsignaturecustomdateList = NULL;
@@ -403,6 +486,48 @@ ezsignsignature_get_object_v1_response_m_payload_t *ezsignsignature_get_object_v
     e_ezsignsignature_font_local_nonprim = field_e_ezsignsignature_font_parseFromJSON(e_ezsignsignature_font); //custom
     }
 
+    // ezsignsignature_get_object_v1_response_m_payload->i_ezsignsignature_validationstep
+    cJSON *i_ezsignsignature_validationstep = cJSON_GetObjectItemCaseSensitive(ezsignsignature_get_object_v1_response_m_payloadJSON, "iEzsignsignatureValidationstep");
+    if (i_ezsignsignature_validationstep) { 
+    if(!cJSON_IsNumber(i_ezsignsignature_validationstep))
+    {
+    goto end; //Numeric
+    }
+    }
+
+    // ezsignsignature_get_object_v1_response_m_payload->s_ezsignsignature_attachmentdescription
+    cJSON *s_ezsignsignature_attachmentdescription = cJSON_GetObjectItemCaseSensitive(ezsignsignature_get_object_v1_response_m_payloadJSON, "sEzsignsignatureAttachmentdescription");
+    if (s_ezsignsignature_attachmentdescription) { 
+    if(!cJSON_IsString(s_ezsignsignature_attachmentdescription))
+    {
+    goto end; //String
+    }
+    }
+
+    // ezsignsignature_get_object_v1_response_m_payload->e_ezsignsignature_attachmentnamesource
+    cJSON *e_ezsignsignature_attachmentnamesource = cJSON_GetObjectItemCaseSensitive(ezsignsignature_get_object_v1_response_m_payloadJSON, "eEzsignsignatureAttachmentnamesource");
+    if (e_ezsignsignature_attachmentnamesource) { 
+    e_ezsignsignature_attachmentnamesource_local_nonprim = field_e_ezsignsignature_attachmentnamesource_parseFromJSON(e_ezsignsignature_attachmentnamesource); //custom
+    }
+
+    // ezsignsignature_get_object_v1_response_m_payload->b_ezsignsignature_required
+    cJSON *b_ezsignsignature_required = cJSON_GetObjectItemCaseSensitive(ezsignsignature_get_object_v1_response_m_payloadJSON, "bEzsignsignatureRequired");
+    if (b_ezsignsignature_required) { 
+    if(!cJSON_IsBool(b_ezsignsignature_required))
+    {
+    goto end; //Bool
+    }
+    }
+
+    // ezsignsignature_get_object_v1_response_m_payload->fki_user_id
+    cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(ezsignsignature_get_object_v1_response_m_payloadJSON, "fkiUserID");
+    if (fki_user_id) { 
+    if(!cJSON_IsNumber(fki_user_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
     // ezsignsignature_get_object_v1_response_m_payload->b_ezsignsignature_customdate
     cJSON *b_ezsignsignature_customdate = cJSON_GetObjectItemCaseSensitive(ezsignsignature_get_object_v1_response_m_payloadJSON, "bEzsignsignatureCustomdate");
     if (b_ezsignsignature_customdate) { 
@@ -446,6 +571,11 @@ ezsignsignature_get_object_v1_response_m_payload_t *ezsignsignature_get_object_v
         t_ezsignsignature_tooltip ? strdup(t_ezsignsignature_tooltip->valuestring) : NULL,
         e_ezsignsignature_tooltipposition ? e_ezsignsignature_tooltipposition_local_nonprim : NULL,
         e_ezsignsignature_font ? e_ezsignsignature_font_local_nonprim : NULL,
+        i_ezsignsignature_validationstep ? i_ezsignsignature_validationstep->valuedouble : 0,
+        s_ezsignsignature_attachmentdescription ? strdup(s_ezsignsignature_attachmentdescription->valuestring) : NULL,
+        e_ezsignsignature_attachmentnamesource ? e_ezsignsignature_attachmentnamesource_local_nonprim : NULL,
+        b_ezsignsignature_required ? b_ezsignsignature_required->valueint : 0,
+        fki_user_id ? fki_user_id->valuedouble : 0,
         b_ezsignsignature_customdate ? b_ezsignsignature_customdate->valueint : 0,
         a_obj_ezsignsignaturecustomdate ? a_obj_ezsignsignaturecustomdateList : NULL
         );
@@ -463,6 +593,10 @@ end:
     if (e_ezsignsignature_font_local_nonprim) {
         field_e_ezsignsignature_font_free(e_ezsignsignature_font_local_nonprim);
         e_ezsignsignature_font_local_nonprim = NULL;
+    }
+    if (e_ezsignsignature_attachmentnamesource_local_nonprim) {
+        field_e_ezsignsignature_attachmentnamesource_free(e_ezsignsignature_attachmentnamesource_local_nonprim);
+        e_ezsignsignature_attachmentnamesource_local_nonprim = NULL;
     }
     if (a_obj_ezsignsignaturecustomdateList) {
         listEntry_t *listEntry = NULL;

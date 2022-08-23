@@ -1,0 +1,32 @@
+/*
+ * field_e_ezsignfoldertype_sendreminderfrequency.h
+ *
+ * Frequency at which reminders will be sent to signers that haven&#39;t signed the documents
+ */
+
+#ifndef _field_e_ezsignfoldertype_sendreminderfrequency_H_
+#define _field_e_ezsignfoldertype_sendreminderfrequency_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_ezsignfoldertype_sendreminderfrequency_t field_e_ezsignfoldertype_sendreminderfrequency_t;
+
+
+// Enum  for field_e_ezsignfoldertype_sendreminderfrequency
+
+typedef enum { ezmax_api_definition__full_field_e_ezsignfoldertype_sendreminderfrequency__NULL = 0, ezmax_api_definition__full_field_e_ezsignfoldertype_sendreminderfrequency__None, ezmax_api_definition__full_field_e_ezsignfoldertype_sendreminderfrequency__Daily, ezmax_api_definition__full_field_e_ezsignfoldertype_sendreminderfrequency__Weekly } ezmax_api_definition__full_field_e_ezsignfoldertype_sendreminderfrequency__e;
+
+char* field_e_ezsignfoldertype_sendreminderfrequency_field_e_ezsignfoldertype_sendreminderfrequency_ToString(ezmax_api_definition__full_field_e_ezsignfoldertype_sendreminderfrequency__e field_e_ezsignfoldertype_sendreminderfrequency);
+
+ezmax_api_definition__full_field_e_ezsignfoldertype_sendreminderfrequency__e field_e_ezsignfoldertype_sendreminderfrequency_field_e_ezsignfoldertype_sendreminderfrequency_FromString(char* field_e_ezsignfoldertype_sendreminderfrequency);
+
+//cJSON *field_e_ezsignfoldertype_sendreminderfrequency_field_e_ezsignfoldertype_sendreminderfrequency_convertToJSON(ezmax_api_definition__full_field_e_ezsignfoldertype_sendreminderfrequency__e field_e_ezsignfoldertype_sendreminderfrequency);
+
+//ezmax_api_definition__full_field_e_ezsignfoldertype_sendreminderfrequency__e field_e_ezsignfoldertype_sendreminderfrequency_field_e_ezsignfoldertype_sendreminderfrequency_parseFromJSON(cJSON *field_e_ezsignfoldertype_sendreminderfrequencyJSON);
+
+#endif /* _field_e_ezsignfoldertype_sendreminderfrequency_H_ */
+

@@ -34,6 +34,11 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
       ezmax_api_definition__full_ezsignsignature_response_compound__"TopLeft",
       ezmax_api_definition__full_ezsignsignature_response_compound__Normal,
       1,
+      "Attachment",
+      ezmax_api_definition__full_ezsignsignature_response_compound__"Description",
+      1,
+      70,
+      1,
       list_createList()
     );
   } else {
@@ -49,6 +54,11 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
       "Please sign here if you agree to the terms",
       ezmax_api_definition__full_ezsignsignature_response_compound__"TopLeft",
       ezmax_api_definition__full_ezsignsignature_response_compound__Normal,
+      1,
+      "Attachment",
+      ezmax_api_definition__full_ezsignsignature_response_compound__"Description",
+      1,
+      70,
       1,
       list_createList()
     );

@@ -26,6 +26,7 @@ typedef struct custom_autocomplete_element_disabled_response_t {
     char *s_label; // string
     char *s_value; // string
     char *m_value; // string
+    int b_active; //boolean
 
 } custom_autocomplete_element_disabled_response_t;
 
@@ -34,7 +35,8 @@ custom_autocomplete_element_disabled_response_t *custom_autocomplete_element_dis
     char *s_category,
     char *s_label,
     char *s_value,
-    char *m_value
+    char *m_value,
+    int b_active
 );
 
 void custom_autocomplete_element_disabled_response_free(custom_autocomplete_element_disabled_response_t *custom_autocomplete_element_disabled_response);

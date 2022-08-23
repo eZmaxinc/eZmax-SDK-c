@@ -32,7 +32,12 @@ ezsignsignature_request_t* instantiate_ezsignsignature_request(int include_optio
       97,
       "Please sign here if you agree to the terms",
       ezmax_api_definition__full_ezsignsignature_request__"TopLeft",
-      ezmax_api_definition__full_ezsignsignature_request__Normal
+      ezmax_api_definition__full_ezsignsignature_request__Normal,
+      70,
+      1,
+      ezmax_api_definition__full_ezsignsignature_request__"Description",
+      "Attachment",
+      1
     );
   } else {
     ezsignsignature_request = ezsignsignature_request_create(
@@ -46,7 +51,12 @@ ezsignsignature_request_t* instantiate_ezsignsignature_request(int include_optio
       97,
       "Please sign here if you agree to the terms",
       ezmax_api_definition__full_ezsignsignature_request__"TopLeft",
-      ezmax_api_definition__full_ezsignsignature_request__Normal
+      ezmax_api_definition__full_ezsignsignature_request__Normal,
+      70,
+      1,
+      ezmax_api_definition__full_ezsignsignature_request__"Description",
+      "Attachment",
+      1
     );
   }
 

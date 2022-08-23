@@ -142,7 +142,7 @@ ObjectEzsigntemplatepackagesignerAPI_ezsigntemplatepackagesignerDeleteObjectV1(a
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The element you are trying to work on does not exist");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigntemplatepackagesignerAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
@@ -234,11 +234,11 @@ ObjectEzsigntemplatepackagesignerAPI_ezsigntemplatepackagesignerEditObjectV1(api
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The element you are trying to work on does not exist");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigntemplatepackagesignerAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
@@ -325,7 +325,7 @@ ObjectEzsigntemplatepackagesignerAPI_ezsigntemplatepackagesignerGetObjectV1(apiC
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The element you are trying to work on does not exist");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigntemplatepackagesignerAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);

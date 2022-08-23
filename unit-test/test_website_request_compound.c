@@ -23,12 +23,12 @@ website_request_compound_t* instantiate_website_request_compound(int include_opt
   if (include_optional) {
     website_request_compound = website_request_compound_create(
       1,
-      "https://www.domain.com"
+      "https://www.example.com"
     );
   } else {
     website_request_compound = website_request_compound_create(
       1,
-      "https://www.domain.com"
+      "https://www.example.com"
     );
   }
 

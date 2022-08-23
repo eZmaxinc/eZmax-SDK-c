@@ -27,12 +27,12 @@ ezsignbulksend_list_element_t* instantiate_ezsignbulksend_list_element(int inclu
       "Test eZsign Bulk Send",
       "Default",
       1,
-      1,
       56,
       56,
       56,
       56,
-      56
+      56,
+      true
     );
   } else {
     ezsignbulksend_list_element = ezsignbulksend_list_element_create(
@@ -41,12 +41,12 @@ ezsignbulksend_list_element_t* instantiate_ezsignbulksend_list_element(int inclu
       "Test eZsign Bulk Send",
       "Default",
       1,
-      1,
       56,
       56,
       56,
       56,
-      56
+      56,
+      true
     );
   }
 

@@ -27,6 +27,15 @@ ezsignfoldersignerassociation_request_compound_t* instantiate_ezsignfoldersigner
       70,
       33,
       1,
+      "Hi John,
+
+This is the document I need you to review.
+
+Could you sign it before Monday please.
+
+Best Regards.
+
+Mary",
        // false, not to have infinite recursion
       instantiate_ezsignsigner_request_compound(0)
     );
@@ -36,6 +45,15 @@ ezsignfoldersignerassociation_request_compound_t* instantiate_ezsignfoldersigner
       70,
       33,
       1,
+      "Hi John,
+
+This is the document I need you to review.
+
+Could you sign it before Monday please.
+
+Best Regards.
+
+Mary",
       NULL
     );
   }

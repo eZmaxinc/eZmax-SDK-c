@@ -25,14 +25,14 @@ ezsignfoldertype_list_element_t* instantiate_ezsignfoldertype_list_element(int i
       5,
       ezmax_api_definition__full_ezsignfoldertype_list_element__User,
       "Default",
-      1
+      true
     );
   } else {
     ezsignfoldertype_list_element = ezsignfoldertype_list_element_create(
       5,
       ezmax_api_definition__full_ezsignfoldertype_list_element__User,
       "Default",
-      1
+      true
     );
   }
 

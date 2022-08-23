@@ -17,7 +17,7 @@
 webhook_ezsign_folder_completed_t* instantiate_webhook_ezsign_folder_completed(int include_optional);
 
 #include "test_ezsignfolder_response.c"
-#include "test_webhook_response.c"
+#include "test_custom_webhook_response.c"
 
 
 webhook_ezsign_folder_completed_t* instantiate_webhook_ezsign_folder_completed(int include_optional) {
@@ -27,7 +27,7 @@ webhook_ezsign_folder_completed_t* instantiate_webhook_ezsign_folder_completed(i
        // false, not to have infinite recursion
       instantiate_ezsignfolder_response(0),
        // false, not to have infinite recursion
-      instantiate_webhook_response(0),
+      instantiate_custom_webhook_response(0),
       list_createList()
     );
   } else {

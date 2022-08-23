@@ -16,6 +16,7 @@
 #include "../model/notificationsubsection_response.h"
 notificationsubsection_response_t* instantiate_notificationsubsection_response(int include_optional);
 
+#include "test_multilingual_notificationsubsection_name.c"
 
 
 notificationsubsection_response_t* instantiate_notificationsubsection_response(int include_optional) {
@@ -24,12 +25,17 @@ notificationsubsection_response_t* instantiate_notificationsubsection_response(i
     notificationsubsection_response = notificationsubsection_response_create(
       3,
       1,
+       // false, not to have infinite recursion
+      instantiate_multilingual_notificationsubsection_name(0),
+      "Homepage",
       "Default"
     );
   } else {
     notificationsubsection_response = notificationsubsection_response_create(
       3,
       1,
+      NULL,
+      "Homepage",
       "Default"
     );
   }

@@ -66,13 +66,13 @@ end:
 // Functions for enum EORDERBY for ObjectEzsignbulksendAPI_ezsignbulksendGetListV1
 
 static char* ezsignbulksendGetListV1_EORDERBY_ToString(ezmax_api_definition__full_ezsignbulksendGetListV1_eOrderBy_e EORDERBY){
-    char *EORDERBYArray[] =  { "NULL", "pkiEzsignbulksendID_ASC", "pkiEzsignbulksendID_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "sEzsignbulksendDescription_ASC", "sEzsignbulksendDescription_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC", "eEzsignfoldertypePrivacylevel_ASC", "eEzsignfoldertypePrivacylevel_DESC", "bEzsignbulksendNeedvalidation_ASC", "bEzsignbulksendNeedvalidation_DESC", "bEzsignbulksendIsactive_ASC", "bEzsignbulksendIsactive_DESC", "iEzsignbulksendtransmission_ASC", "iEzsignbulksendtransmission_DESC", "iEzsignfolder_ASC", "iEzsignfolder_DESC", "iEzsigndocument_ASC", "iEzsigndocument_DESC", "iEzsignsignature_ASC", "iEzsignsignature_DESC", "iEzsignsignatureSigned_ASC", "iEzsignsignatureSigned_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiEzsignbulksendID_ASC", "pkiEzsignbulksendID_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "sEzsignbulksendDescription_ASC", "sEzsignbulksendDescription_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC", "eEzsignfoldertypePrivacylevel_ASC", "eEzsignfoldertypePrivacylevel_DESC", "bEzsignbulksendNeedvalidation_ASC", "bEzsignbulksendNeedvalidation_DESC", "iEzsignbulksendtransmission_ASC", "iEzsignbulksendtransmission_DESC", "iEzsignfolder_ASC", "iEzsignfolder_DESC", "iEzsigndocument_ASC", "iEzsigndocument_DESC", "iEzsignsignature_ASC", "iEzsignsignature_DESC", "iEzsignsignatureSigned_ASC", "iEzsignsignatureSigned_DESC", "bEzsignbulksendIsactive_ASC", "bEzsignbulksendIsactive_DESC" };
     return EORDERBYArray[EORDERBY];
 }
 
 static ezmax_api_definition__full_ezsignbulksendGetListV1_eOrderBy_e ezsignbulksendGetListV1_EORDERBY_FromString(char* EORDERBY){
     int stringToReturn = 0;
-    char *EORDERBYArray[] =  { "NULL", "pkiEzsignbulksendID_ASC", "pkiEzsignbulksendID_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "sEzsignbulksendDescription_ASC", "sEzsignbulksendDescription_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC", "eEzsignfoldertypePrivacylevel_ASC", "eEzsignfoldertypePrivacylevel_DESC", "bEzsignbulksendNeedvalidation_ASC", "bEzsignbulksendNeedvalidation_DESC", "bEzsignbulksendIsactive_ASC", "bEzsignbulksendIsactive_DESC", "iEzsignbulksendtransmission_ASC", "iEzsignbulksendtransmission_DESC", "iEzsignfolder_ASC", "iEzsignfolder_DESC", "iEzsigndocument_ASC", "iEzsigndocument_DESC", "iEzsignsignature_ASC", "iEzsignsignature_DESC", "iEzsignsignatureSigned_ASC", "iEzsignsignatureSigned_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiEzsignbulksendID_ASC", "pkiEzsignbulksendID_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "sEzsignbulksendDescription_ASC", "sEzsignbulksendDescription_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC", "eEzsignfoldertypePrivacylevel_ASC", "eEzsignfoldertypePrivacylevel_DESC", "bEzsignbulksendNeedvalidation_ASC", "bEzsignbulksendNeedvalidation_DESC", "iEzsignbulksendtransmission_ASC", "iEzsignbulksendtransmission_DESC", "iEzsignfolder_ASC", "iEzsignfolder_DESC", "iEzsigndocument_ASC", "iEzsigndocument_DESC", "iEzsignsignature_ASC", "iEzsignsignature_DESC", "iEzsignsignatureSigned_ASC", "iEzsignsignatureSigned_DESC", "bEzsignbulksendIsactive_ASC", "bEzsignbulksendIsactive_DESC" };
     size_t sizeofArray = sizeof(EORDERBYArray) / sizeof(EORDERBYArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(EORDERBY, EORDERBYArray[stringToReturn]) == 0) {
@@ -219,11 +219,11 @@ ObjectEzsignbulksendAPI_ezsignbulksendCreateEzsignbulksendtransmissionV1(apiClie
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The element you are trying to work on does not exist");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignbulksendAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
@@ -388,11 +388,11 @@ ObjectEzsignbulksendAPI_ezsignbulksendDeleteObjectV1(apiClient_t *apiClient, int
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The element you are trying to work on does not exist");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignbulksendAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
@@ -484,11 +484,11 @@ ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV1(apiClient_t *apiClient, int p
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The element you are trying to work on does not exist");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignbulksendAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
@@ -589,15 +589,15 @@ ObjectEzsignbulksendAPI_ezsignbulksendGetCsvTemplateV1(apiClient_t *apiClient, i
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The element you are trying to work on does not exist");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 406) {
-    //    printf("%s\n","One of the accept header is not defined or invalid.");
+    //    printf("%s\n","The URL is valid, but one of the Accept header is not defined or invalid. For example, you set the header \&quot;Accept: application/json\&quot; but the function can only return \&quot;Content-type: image/png\&quot;");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //primitive return type simple
     char* elementToReturn =  strdup((char*)apiClient->dataReceived);
@@ -681,7 +681,7 @@ ObjectEzsignbulksendAPI_ezsignbulksendGetEzsignbulksendtransmissionsV1(apiClient
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The element you are trying to work on does not exist");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignbulksendAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
@@ -764,15 +764,15 @@ ObjectEzsignbulksendAPI_ezsignbulksendGetFormsDataV1(apiClient_t *apiClient, int
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The element you are trying to work on does not exist");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 406) {
-    //    printf("%s\n","One of the accept header is not defined or invalid.");
+    //    printf("%s\n","The URL is valid, but one of the Accept header is not defined or invalid. For example, you set the header \&quot;Accept: application/json\&quot; but the function can only return \&quot;Content-type: image/png\&quot;");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignbulksendAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
@@ -904,7 +904,7 @@ ObjectEzsignbulksendAPI_ezsignbulksendGetListV1(apiClient_t *apiClient, ezmax_ap
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 406) {
-    //    printf("%s\n","One of the accept header is not defined or invalid.");
+    //    printf("%s\n","The URL is valid, but one of the Accept header is not defined or invalid. For example, you set the header \&quot;Accept: application/json\&quot; but the function can only return \&quot;Content-type: image/png\&quot;");
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignbulksendAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
@@ -1034,7 +1034,7 @@ ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV1(apiClient_t *apiClient, int pk
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The element you are trying to work on does not exist");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignbulksendAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
@@ -1124,11 +1124,11 @@ ObjectEzsignbulksendAPI_ezsignbulksendReorderV1(apiClient_t *apiClient, int pkiE
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The element you are trying to work on does not exist");
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The syntax of the request is valid but the request cannot be completed. Look for detail in body.");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignbulksendAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);

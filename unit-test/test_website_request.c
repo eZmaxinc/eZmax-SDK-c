@@ -23,12 +23,12 @@ website_request_t* instantiate_website_request(int include_optional) {
   if (include_optional) {
     website_request = website_request_create(
       1,
-      "https://www.domain.com"
+      "https://www.example.com"
     );
   } else {
     website_request = website_request_create(
       1,
-      "https://www.domain.com"
+      "https://www.example.com"
     );
   }
 

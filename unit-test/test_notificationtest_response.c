@@ -16,6 +16,7 @@
 #include "../model/notificationtest_response.h"
 notificationtest_response_t* instantiate_notificationtest_response(int include_optional);
 
+#include "test_multilingual_notificationtest_name.c"
 
 
 notificationtest_response_t* instantiate_notificationtest_response(int include_optional) {
@@ -23,6 +24,8 @@ notificationtest_response_t* instantiate_notificationtest_response(int include_o
   if (include_optional) {
     notificationtest_response = notificationtest_response_create(
       14,
+       // false, not to have infinite recursion
+      instantiate_multilingual_notificationtest_name(0),
       3,
       "Default",
       "Default"
@@ -30,6 +33,7 @@ notificationtest_response_t* instantiate_notificationtest_response(int include_o
   } else {
     notificationtest_response = notificationtest_response_create(
       14,
+      NULL,
       3,
       "Default",
       "Default"

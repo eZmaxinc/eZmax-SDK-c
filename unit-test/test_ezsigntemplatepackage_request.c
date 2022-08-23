@@ -27,7 +27,7 @@ ezsigntemplatepackage_request_t* instantiate_ezsigntemplatepackage_request(int i
       2,
       "Package for new clients",
       1,
-      1
+      true
     );
   } else {
     ezsigntemplatepackage_request = ezsigntemplatepackage_request_create(
@@ -36,7 +36,7 @@ ezsigntemplatepackage_request_t* instantiate_ezsigntemplatepackage_request(int i
       2,
       "Package for new clients",
       1,
-      1
+      true
     );
   }
 

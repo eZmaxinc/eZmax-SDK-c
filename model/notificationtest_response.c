@@ -7,6 +7,7 @@
 
 notificationtest_response_t *notificationtest_response_create(
     int pki_notificationtest_id,
+    multilingual_notificationtest_name_t *obj_notificationtest_name,
     int fki_notificationsubsection_id,
     char *s_notificationtest_function,
     char *s_notificationtest_name_x
@@ -16,6 +17,7 @@ notificationtest_response_t *notificationtest_response_create(
         return NULL;
     }
     notificationtest_response_local_var->pki_notificationtest_id = pki_notificationtest_id;
+    notificationtest_response_local_var->obj_notificationtest_name = obj_notificationtest_name;
     notificationtest_response_local_var->fki_notificationsubsection_id = fki_notificationsubsection_id;
     notificationtest_response_local_var->s_notificationtest_function = s_notificationtest_function;
     notificationtest_response_local_var->s_notificationtest_name_x = s_notificationtest_name_x;
@@ -29,6 +31,10 @@ void notificationtest_response_free(notificationtest_response_t *notificationtes
         return ;
     }
     listEntry_t *listEntry;
+    if (notificationtest_response->obj_notificationtest_name) {
+        multilingual_notificationtest_name_free(notificationtest_response->obj_notificationtest_name);
+        notificationtest_response->obj_notificationtest_name = NULL;
+    }
     if (notificationtest_response->s_notificationtest_function) {
         free(notificationtest_response->s_notificationtest_function);
         notificationtest_response->s_notificationtest_function = NULL;
@@ -49,6 +55,20 @@ cJSON *notificationtest_response_convertToJSON(notificationtest_response_t *noti
     }
     if(cJSON_AddNumberToObject(item, "pkiNotificationtestID", notificationtest_response->pki_notificationtest_id) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // notificationtest_response->obj_notificationtest_name
+    if (!notificationtest_response->obj_notificationtest_name) {
+        goto fail;
+    }
+    cJSON *obj_notificationtest_name_local_JSON = multilingual_notificationtest_name_convertToJSON(notificationtest_response->obj_notificationtest_name);
+    if(obj_notificationtest_name_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objNotificationtestName", obj_notificationtest_name_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
     }
 
 
@@ -90,6 +110,9 @@ notificationtest_response_t *notificationtest_response_parseFromJSON(cJSON *noti
 
     notificationtest_response_t *notificationtest_response_local_var = NULL;
 
+    // define the local variable for notificationtest_response->obj_notificationtest_name
+    multilingual_notificationtest_name_t *obj_notificationtest_name_local_nonprim = NULL;
+
     // notificationtest_response->pki_notificationtest_id
     cJSON *pki_notificationtest_id = cJSON_GetObjectItemCaseSensitive(notificationtest_responseJSON, "pkiNotificationtestID");
     if (!pki_notificationtest_id) {
@@ -101,6 +124,15 @@ notificationtest_response_t *notificationtest_response_parseFromJSON(cJSON *noti
     {
     goto end; //Numeric
     }
+
+    // notificationtest_response->obj_notificationtest_name
+    cJSON *obj_notificationtest_name = cJSON_GetObjectItemCaseSensitive(notificationtest_responseJSON, "objNotificationtestName");
+    if (!obj_notificationtest_name) {
+        goto end;
+    }
+
+    
+    obj_notificationtest_name_local_nonprim = multilingual_notificationtest_name_parseFromJSON(obj_notificationtest_name); //nonprimitive
 
     // notificationtest_response->fki_notificationsubsection_id
     cJSON *fki_notificationsubsection_id = cJSON_GetObjectItemCaseSensitive(notificationtest_responseJSON, "fkiNotificationsubsectionID");
@@ -141,6 +173,7 @@ notificationtest_response_t *notificationtest_response_parseFromJSON(cJSON *noti
 
     notificationtest_response_local_var = notificationtest_response_create (
         pki_notificationtest_id->valuedouble,
+        obj_notificationtest_name_local_nonprim,
         fki_notificationsubsection_id->valuedouble,
         strdup(s_notificationtest_function->valuestring),
         strdup(s_notificationtest_name_x->valuestring)
@@ -148,6 +181,10 @@ notificationtest_response_t *notificationtest_response_parseFromJSON(cJSON *noti
 
     return notificationtest_response_local_var;
 end:
+    if (obj_notificationtest_name_local_nonprim) {
+        multilingual_notificationtest_name_free(obj_notificationtest_name_local_nonprim);
+        obj_notificationtest_name_local_nonprim = NULL;
+    }
     return NULL;
 
 }

@@ -6,7 +6,7 @@
 
 
 common_webhook_t *common_webhook_create(
-    webhook_response_t *obj_webhook,
+    custom_webhook_response_t *obj_webhook,
     list_t *a_obj_attempt
     ) {
     common_webhook_t *common_webhook_local_var = malloc(sizeof(common_webhook_t));
@@ -26,7 +26,7 @@ void common_webhook_free(common_webhook_t *common_webhook) {
     }
     listEntry_t *listEntry;
     if (common_webhook->obj_webhook) {
-        webhook_response_free(common_webhook->obj_webhook);
+        custom_webhook_response_free(common_webhook->obj_webhook);
         common_webhook->obj_webhook = NULL;
     }
     if (common_webhook->a_obj_attempt) {
@@ -46,7 +46,7 @@ cJSON *common_webhook_convertToJSON(common_webhook_t *common_webhook) {
     if (!common_webhook->obj_webhook) {
         goto fail;
     }
-    cJSON *obj_webhook_local_JSON = webhook_response_convertToJSON(common_webhook->obj_webhook);
+    cJSON *obj_webhook_local_JSON = custom_webhook_response_convertToJSON(common_webhook->obj_webhook);
     if(obj_webhook_local_JSON == NULL) {
     goto fail; //model
     }
@@ -89,7 +89,7 @@ common_webhook_t *common_webhook_parseFromJSON(cJSON *common_webhookJSON){
     common_webhook_t *common_webhook_local_var = NULL;
 
     // define the local variable for common_webhook->obj_webhook
-    webhook_response_t *obj_webhook_local_nonprim = NULL;
+    custom_webhook_response_t *obj_webhook_local_nonprim = NULL;
 
     // define the local list for common_webhook->a_obj_attempt
     list_t *a_obj_attemptList = NULL;
@@ -101,7 +101,7 @@ common_webhook_t *common_webhook_parseFromJSON(cJSON *common_webhookJSON){
     }
 
     
-    obj_webhook_local_nonprim = webhook_response_parseFromJSON(obj_webhook); //nonprimitive
+    obj_webhook_local_nonprim = custom_webhook_response_parseFromJSON(obj_webhook); //nonprimitive
 
     // common_webhook->a_obj_attempt
     cJSON *a_obj_attempt = cJSON_GetObjectItemCaseSensitive(common_webhookJSON, "a_objAttempt");
@@ -136,7 +136,7 @@ common_webhook_t *common_webhook_parseFromJSON(cJSON *common_webhookJSON){
     return common_webhook_local_var;
 end:
     if (obj_webhook_local_nonprim) {
-        webhook_response_free(obj_webhook_local_nonprim);
+        custom_webhook_response_free(obj_webhook_local_nonprim);
         obj_webhook_local_nonprim = NULL;
     }
     if (a_obj_attemptList) {

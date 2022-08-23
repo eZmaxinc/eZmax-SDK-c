@@ -22,27 +22,31 @@ webhook_response_t* instantiate_webhook_response(int include_optional) {
   webhook_response_t* webhook_response = NULL;
   if (include_optional) {
     webhook_response = webhook_response_create(
-      "demo",
-      56,
-      ezmax_api_definition__full_webhook_response_EWEBHOOKMODULE_Ezsign,
-      ezmax_api_definition__full_webhook_response_EWEBHOOKEZSIGNEVENT_DocumentCompleted,
-      ezmax_api_definition__full_webhook_response_EWEBHOOKMANAGEMENTEVENT_UserCreated,
-      "0",
-      1,
-      1,
-      "0"
+      77,
+      "Import into our system",
+      5,
+      "Default",
+      ezmax_api_definition__full_webhook_response__"Ezsign",
+      ezmax_api_definition__full_webhook_response__"FolderCompleted",
+      ezmax_api_definition__full_webhook_response__"UserCreated",
+      "https://www.example.com",
+      "email@example.com",
+      true,
+      false
     );
   } else {
     webhook_response = webhook_response_create(
-      "demo",
-      56,
-      ezmax_api_definition__full_webhook_response_EWEBHOOKMODULE_Ezsign,
-      ezmax_api_definition__full_webhook_response_EWEBHOOKEZSIGNEVENT_DocumentCompleted,
-      ezmax_api_definition__full_webhook_response_EWEBHOOKMANAGEMENTEVENT_UserCreated,
-      "0",
-      1,
-      1,
-      "0"
+      77,
+      "Import into our system",
+      5,
+      "Default",
+      ezmax_api_definition__full_webhook_response__"Ezsign",
+      ezmax_api_definition__full_webhook_response__"FolderCompleted",
+      ezmax_api_definition__full_webhook_response__"UserCreated",
+      "https://www.example.com",
+      "email@example.com",
+      true,
+      false
     );
   }
 

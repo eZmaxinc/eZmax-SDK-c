@@ -31,7 +31,7 @@ ezsignbulksend_get_object_v1_response_m_payload_t* instantiate_ezsignbulksend_ge
       "Test eZsign Bulk Send",
       "This is a note",
       1,
-      1,
+      true,
        // false, not to have infinite recursion
       instantiate_common_audit(0),
       list_createList(),
@@ -47,7 +47,7 @@ ezsignbulksend_get_object_v1_response_m_payload_t* instantiate_ezsignbulksend_ge
       "Test eZsign Bulk Send",
       "This is a note",
       1,
-      1,
+      true,
       NULL,
       list_createList(),
       list_createList()

@@ -28,7 +28,7 @@ ezsignbulksend_request_compound_t* instantiate_ezsignbulksend_request_compound(i
       "Test eZsign Bulk Send",
       "This is a note",
       1,
-      1
+      true
     );
   } else {
     ezsignbulksend_request_compound = ezsignbulksend_request_compound_create(
@@ -38,7 +38,7 @@ ezsignbulksend_request_compound_t* instantiate_ezsignbulksend_request_compound(i
       "Test eZsign Bulk Send",
       "This is a note",
       1,
-      1
+      true
     );
   }
 

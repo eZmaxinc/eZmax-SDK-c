@@ -4,8 +4,75 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**ObjectBrandingAPI_brandingCreateObjectV1**](ObjectBrandingAPI.md#ObjectBrandingAPI_brandingCreateObjectV1) | **POST** /1/object/branding | Create a new Branding
+[**ObjectBrandingAPI_brandingEditObjectV1**](ObjectBrandingAPI.md#ObjectBrandingAPI_brandingEditObjectV1) | **PUT** /1/object/branding/{pkiBrandingID} | Edit an existing Branding
 [**ObjectBrandingAPI_brandingGetAutocompleteV1**](ObjectBrandingAPI.md#ObjectBrandingAPI_brandingGetAutocompleteV1) | **GET** /1/object/branding/getAutocomplete/{sSelector} | Retrieve Brandings and IDs
+[**ObjectBrandingAPI_brandingGetListV1**](ObjectBrandingAPI.md#ObjectBrandingAPI_brandingGetListV1) | **GET** /1/object/branding/getList | Retrieve Branding list
+[**ObjectBrandingAPI_brandingGetObjectV1**](ObjectBrandingAPI.md#ObjectBrandingAPI_brandingGetObjectV1) | **GET** /1/object/branding/{pkiBrandingID} | Retrieve an existing Branding
 
+
+# **ObjectBrandingAPI_brandingCreateObjectV1**
+```c
+// Create a new Branding
+//
+// The endpoint allows to create one or many elements at once.
+//
+branding_create_object_v1_response_t* ObjectBrandingAPI_brandingCreateObjectV1(apiClient_t *apiClient, branding_create_object_v1_request_t * branding_create_object_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**branding_create_object_v1_request** | **[branding_create_object_v1_request_t](branding_create_object_v1_request.md) \*** |  | 
+
+### Return type
+
+[branding_create_object_v1_response_t](branding_create_object_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectBrandingAPI_brandingEditObjectV1**
+```c
+// Edit an existing Branding
+//
+// 
+//
+branding_edit_object_v1_response_t* ObjectBrandingAPI_brandingEditObjectV1(apiClient_t *apiClient, int pkiBrandingID, branding_edit_object_v1_request_t * branding_edit_object_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiBrandingID** | **int** |  | 
+**branding_edit_object_v1_request** | **[branding_edit_object_v1_request_t](branding_edit_object_v1_request.md) \*** |  | 
+
+### Return type
+
+[branding_edit_object_v1_response_t](branding_edit_object_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ObjectBrandingAPI_brandingGetAutocompleteV1**
 ```c
@@ -13,7 +80,7 @@ Method | HTTP request | Description
 //
 // Get the list of Branding to be used in a dropdown or autocomplete control.
 //
-common_get_autocomplete_v1_response_t* ObjectBrandingAPI_brandingGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_brandingGetAutocompleteV1_sSelector_e sSelector, char * sQuery, header_accept_language_e Accept_Language);
+common_get_autocomplete_v1_response_t* ObjectBrandingAPI_brandingGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_brandingGetAutocompleteV1_sSelector_e sSelector, ezmax_api_definition__full_brandingGetAutocompleteV1_eFilterActive_e eFilterActive, char * sQuery, header_accept_language_e Accept_Language);
 ```
 
 ### Parameters
@@ -21,12 +88,79 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **sSelector** | **ezmax_api_definition__full_brandingGetAutocompleteV1_sSelector_e** | The type of Brandings to return | 
+**eFilterActive** | **ezmax_api_definition__full_brandingGetAutocompleteV1_eFilterActive_e** | Specify which results we want to display. | [optional] [default to &#39;Active&#39;]
 **sQuery** | **char \*** | Allow to filter the returned results | [optional] 
 **Accept_Language** | **header_accept_language_e** |  | [optional] 
 
 ### Return type
 
 [common_get_autocomplete_v1_response_t](common_get_autocomplete_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectBrandingAPI_brandingGetListV1**
+```c
+// Retrieve Branding list
+//
+// Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eBrandingLogo | Default<br>JPEG<br>PNG |
+//
+branding_get_list_v1_response_t* ObjectBrandingAPI_brandingGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_brandingGetListV1_eOrderBy_e eOrderBy, int iRowMax, int iRowOffset, header_accept_language_e Accept_Language, char * sFilter);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**eOrderBy** | **ezmax_api_definition__full_brandingGetListV1_eOrderBy_e** | Specify how you want the results to be sorted | [optional] 
+**iRowMax** | **int** |  | [optional] 
+**iRowOffset** | **int** |  | [optional] 
+**Accept_Language** | **header_accept_language_e** |  | [optional] 
+**sFilter** | **char \*** |  | [optional] 
+
+### Return type
+
+[branding_get_list_v1_response_t](branding_get_list_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectBrandingAPI_brandingGetObjectV1**
+```c
+// Retrieve an existing Branding
+//
+// 
+//
+branding_get_object_v1_response_t* ObjectBrandingAPI_brandingGetObjectV1(apiClient_t *apiClient, int pkiBrandingID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiBrandingID** | **int** |  | 
+
+### Return type
+
+[branding_get_object_v1_response_t](branding_get_object_v1_response.md) *
 
 
 ### Authorization

@@ -15,13 +15,14 @@
 
 typedef struct ezsignsignature_request_t ezsignsignature_request_t;
 
+#include "field_e_ezsignsignature_attachmentnamesource.h"
 #include "field_e_ezsignsignature_font.h"
 #include "field_e_ezsignsignature_tooltipposition.h"
 #include "field_e_ezsignsignature_type.h"
 
 // Enum  for ezsignsignature_request
 
-typedef enum  { ezmax_api_definition__full_ezsignsignature_request__NULL = 0, ezmax_api_definition__full_ezsignsignature_request__Acknowledgement, ezmax_api_definition__full_ezsignsignature_request__City, ezmax_api_definition__full_ezsignsignature_request__Handwritten, ezmax_api_definition__full_ezsignsignature_request__Initials, ezmax_api_definition__full_ezsignsignature_request__Name } ezmax_api_definition__full_ezsignsignature_request__e;
+typedef enum  { ezmax_api_definition__full_ezsignsignature_request__NULL = 0, ezmax_api_definition__full_ezsignsignature_request__Acknowledgement, ezmax_api_definition__full_ezsignsignature_request__City, ezmax_api_definition__full_ezsignsignature_request__Handwritten, ezmax_api_definition__full_ezsignsignature_request__Initials, ezmax_api_definition__full_ezsignsignature_request__Name, ezmax_api_definition__full_ezsignsignature_request__Attachments } ezmax_api_definition__full_ezsignsignature_request__e;
 
 char* ezsignsignature_request_e_ezsignsignature_type_ToString(ezmax_api_definition__full_ezsignsignature_request__e e_ezsignsignature_type);
 
@@ -43,6 +44,14 @@ char* ezsignsignature_request_e_ezsignsignature_font_ToString(ezmax_api_definiti
 
 ezmax_api_definition__full_ezsignsignature_request__e ezsignsignature_request_e_ezsignsignature_font_FromString(char* e_ezsignsignature_font);
 
+// Enum  for ezsignsignature_request
+
+typedef enum  { ezmax_api_definition__full_ezsignsignature_request__NULL = 0, ezmax_api_definition__full_ezsignsignature_request__Description, ezmax_api_definition__full_ezsignsignature_request__Customer, ezmax_api_definition__full_ezsignsignature_request__DescriptionCustomer } ezmax_api_definition__full_ezsignsignature_request__e;
+
+char* ezsignsignature_request_e_ezsignsignature_attachmentnamesource_ToString(ezmax_api_definition__full_ezsignsignature_request__e e_ezsignsignature_attachmentnamesource);
+
+ezmax_api_definition__full_ezsignsignature_request__e ezsignsignature_request_e_ezsignsignature_attachmentnamesource_FromString(char* e_ezsignsignature_attachmentnamesource);
+
 
 
 typedef struct ezsignsignature_request_t {
@@ -57,6 +66,11 @@ typedef struct ezsignsignature_request_t {
     char *t_ezsignsignature_tooltip; // string
     field_e_ezsignsignature_tooltipposition_t *e_ezsignsignature_tooltipposition; // custom
     field_e_ezsignsignature_font_t *e_ezsignsignature_font; // custom
+    int fki_user_id; //numeric
+    int b_ezsignsignature_required; //boolean
+    field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource; // custom
+    char *s_ezsignsignature_attachmentdescription; // string
+    int i_ezsignsignature_validationstep; //numeric
 
 } ezsignsignature_request_t;
 
@@ -71,7 +85,12 @@ ezsignsignature_request_t *ezsignsignature_request_create(
     int fki_ezsigndocument_id,
     char *t_ezsignsignature_tooltip,
     field_e_ezsignsignature_tooltipposition_t *e_ezsignsignature_tooltipposition,
-    field_e_ezsignsignature_font_t *e_ezsignsignature_font
+    field_e_ezsignsignature_font_t *e_ezsignsignature_font,
+    int fki_user_id,
+    int b_ezsignsignature_required,
+    field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource,
+    char *s_ezsignsignature_attachmentdescription,
+    int i_ezsignsignature_validationstep
 );
 
 void ezsignsignature_request_free(ezsignsignature_request_t *ezsignsignature_request);

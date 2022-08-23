@@ -78,6 +78,25 @@ set(SRCS
     model/apikey_response_compound.c
     model/attempt_response.c
     model/attempt_response_compound.c
+    model/branding_create_object_v1_request.c
+    model/branding_create_object_v1_response.c
+    model/branding_create_object_v1_response_all_of.c
+    model/branding_create_object_v1_response_m_payload.c
+    model/branding_edit_object_v1_request.c
+    model/branding_edit_object_v1_response.c
+    model/branding_get_list_v1_response.c
+    model/branding_get_list_v1_response_all_of.c
+    model/branding_get_list_v1_response_m_payload.c
+    model/branding_get_list_v1_response_m_payload_all_of.c
+    model/branding_get_object_v1_response.c
+    model/branding_get_object_v1_response_all_of.c
+    model/branding_get_object_v1_response_m_payload.c
+    model/branding_list_element.c
+    model/branding_request.c
+    model/branding_request_compound.c
+    model/branding_response.c
+    model/branding_response_compound.c
+    model/branding_response_compound_all_of.c
     model/common_audit.c
     model/common_auditdetail.c
     model/common_get_autocomplete_disabled_v1_response.c
@@ -112,6 +131,9 @@ set(SRCS
     model/custom_dropdown_element_request_compound.c
     model/custom_dropdown_element_response.c
     model/custom_dropdown_element_response_compound.c
+    model/custom_ezsignfoldersignerassociation_actionable_element_response.c
+    model/custom_ezsignfoldersignerassociation_actionable_element_response_all_of.c
+    model/custom_ezsignfoldersignerassociationmessage_request.c
     model/custom_ezsignfoldersignerassociationstatus_response.c
     model/custom_ezsignfoldertransmission_response.c
     model/custom_ezsignfoldertransmission_signer_response.c
@@ -127,8 +149,15 @@ set(SRCS
     model/custom_notificationtestgetnotificationtests_response.c
     model/custom_notificationtestgetnotificationtests_response_all_of.c
     model/custom_user_response.c
+    model/custom_webhook_response.c
+    model/custom_webhook_response_all_of.c
+    model/custom_webhooklog_response.c
+    model/custom_webhooklog_response_all_of.c
     model/custom_word_position_occurence_response.c
     model/custom_word_position_word_response.c
+    model/department_get_members_v1_response.c
+    model/department_get_members_v1_response_all_of.c
+    model/department_get_members_v1_response_m_payload.c
     model/email_request.c
     model/email_request_compound.c
     model/ezsign_suggest_signers_v1_response.c
@@ -298,6 +327,10 @@ set(SRCS
     model/ezsignfolder_get_object_v1_response.c
     model/ezsignfolder_get_object_v1_response_all_of.c
     model/ezsignfolder_get_object_v1_response_m_payload.c
+    model/ezsignfolder_import_ezsignfoldersignerassociations_v1_request.c
+    model/ezsignfolder_import_ezsignfoldersignerassociations_v1_response.c
+    model/ezsignfolder_import_ezsignfoldersignerassociations_v1_response_all_of.c
+    model/ezsignfolder_import_ezsignfoldersignerassociations_v1_response_m_payload.c
     model/ezsignfolder_import_ezsigntemplatepackage_v1_request.c
     model/ezsignfolder_import_ezsigntemplatepackage_v1_response.c
     model/ezsignfolder_import_ezsigntemplatepackage_v1_response_all_of.c
@@ -311,6 +344,8 @@ set(SRCS
     model/ezsignfolder_response_compound.c
     model/ezsignfolder_send_v1_request.c
     model/ezsignfolder_send_v1_response.c
+    model/ezsignfolder_send_v2_request.c
+    model/ezsignfolder_send_v2_response.c
     model/ezsignfolder_unsend_v1_response.c
     model/ezsignfoldersignerassociation_create_object_v1_request.c
     model/ezsignfoldersignerassociation_create_object_v1_response.c
@@ -336,11 +371,25 @@ set(SRCS
     model/ezsignfoldersignerassociation_response_compound.c
     model/ezsignfoldersignerassociation_response_compound_all_of.c
     model/ezsignfoldersignerassociation_response_compound_user.c
+    model/ezsignfoldertype_create_object_v1_request.c
+    model/ezsignfoldertype_create_object_v1_response.c
+    model/ezsignfoldertype_create_object_v1_response_all_of.c
+    model/ezsignfoldertype_create_object_v1_response_m_payload.c
+    model/ezsignfoldertype_edit_object_v1_request.c
+    model/ezsignfoldertype_edit_object_v1_response.c
     model/ezsignfoldertype_get_list_v1_response.c
     model/ezsignfoldertype_get_list_v1_response_all_of.c
     model/ezsignfoldertype_get_list_v1_response_m_payload.c
     model/ezsignfoldertype_get_list_v1_response_m_payload_all_of.c
+    model/ezsignfoldertype_get_object_v1_response.c
+    model/ezsignfoldertype_get_object_v1_response_all_of.c
+    model/ezsignfoldertype_get_object_v1_response_m_payload.c
     model/ezsignfoldertype_list_element.c
+    model/ezsignfoldertype_request.c
+    model/ezsignfoldertype_request_compound.c
+    model/ezsignfoldertype_request_compound_all_of.c
+    model/ezsignfoldertype_response.c
+    model/ezsignfoldertype_response_compound.c
     model/ezsignformfield_request.c
     model/ezsignformfield_request_compound.c
     model/ezsignformfield_response.c
@@ -588,14 +637,18 @@ set(SRCS
     model/ezsigntemplatesigner_response_compound.c
     model/field_e_activesession_usertype.c
     model/field_e_activesession_weekdaystart.c
+    model/field_e_branding_logo.c
     model/field_e_ezsigndocument_step.c
     model/field_e_ezsigndocumentlog_type.c
     model/field_e_ezsignfolder_sendreminderfrequency.c
     model/field_e_ezsignfolder_step.c
+    model/field_e_ezsignfoldertype_disposal.c
     model/field_e_ezsignfoldertype_privacylevel.c
+    model/field_e_ezsignfoldertype_sendreminderfrequency.c
     model/field_e_ezsignformfieldgroup_signerrequirement.c
     model/field_e_ezsignformfieldgroup_tooltipposition.c
     model/field_e_ezsignformfieldgroup_type.c
+    model/field_e_ezsignsignature_attachmentnamesource.c
     model/field_e_ezsignsignature_font.c
     model/field_e_ezsignsignature_tooltipposition.c
     model/field_e_ezsignsignature_type.c
@@ -609,6 +662,9 @@ set(SRCS
     model/field_e_phone_type.c
     model/field_e_user_ezsignsendreminderfrequency.c
     model/field_e_user_type.c
+    model/field_e_webhook_ezsignevent.c
+    model/field_e_webhook_managementevent.c
+    model/field_e_webhook_module.c
     model/franchisereferalincome_create_object_v1_request.c
     model/franchisereferalincome_create_object_v1_response.c
     model/franchisereferalincome_create_object_v1_response_all_of.c
@@ -623,6 +679,10 @@ set(SRCS
     model/global_customer_get_endpoint_v1_response.c
     model/header_accept_language.c
     model/multilingual_apikey_description.c
+    model/multilingual_branding_description.c
+    model/multilingual_ezsignfoldertype_name.c
+    model/multilingual_notificationsubsection_name.c
+    model/multilingual_notificationtest_name.c
     model/notificationsection_get_notificationtests_v1_response.c
     model/notificationsection_get_notificationtests_v1_response_all_of.c
     model/notificationsection_get_notificationtests_v1_response_m_payload.c
@@ -639,11 +699,34 @@ set(SRCS
     model/user_create_ezsignuser_v1_response_m_payload.c
     model/user_response.c
     model/user_response_compound.c
+    model/webhook_create_object_v1_request.c
+    model/webhook_create_object_v1_response.c
+    model/webhook_create_object_v1_response_all_of.c
+    model/webhook_create_object_v1_response_m_payload.c
+    model/webhook_delete_object_v1_response.c
+    model/webhook_edit_object_v1_request.c
+    model/webhook_edit_object_v1_response.c
     model/webhook_ezsign_document_completed.c
     model/webhook_ezsign_document_completed_all_of.c
     model/webhook_ezsign_folder_completed.c
     model/webhook_ezsign_folder_completed_all_of.c
+    model/webhook_get_history_v1_response.c
+    model/webhook_get_history_v1_response_all_of.c
+    model/webhook_get_history_v1_response_m_payload.c
+    model/webhook_get_history_v1_response_m_payload_all_of.c
+    model/webhook_get_list_v1_response.c
+    model/webhook_get_list_v1_response_all_of.c
+    model/webhook_get_list_v1_response_m_payload.c
+    model/webhook_get_list_v1_response_m_payload_all_of.c
+    model/webhook_get_object_v1_response.c
+    model/webhook_get_object_v1_response_all_of.c
+    model/webhook_get_object_v1_response_m_payload.c
+    model/webhook_list_element.c
+    model/webhook_request.c
+    model/webhook_request_compound.c
     model/webhook_response.c
+    model/webhook_response_compound.c
+    model/webhook_test_v1_response.c
     model/webhook_user_user_created.c
     model/webhook_user_user_created_all_of.c
     model/website_request.c
@@ -655,6 +738,7 @@ set(SRCS
     api/ObjectApikeyAPI.c
     api/ObjectBillingentityinternalAPI.c
     api/ObjectBrandingAPI.c
+    api/ObjectDepartmentAPI.c
     api/ObjectEzsignbulksendAPI.c
     api/ObjectEzsignbulksenddocumentmappingAPI.c
     api/ObjectEzsignbulksendsignermappingAPI.c
@@ -686,6 +770,7 @@ set(SRCS
     api/ObjectTimezoneAPI.c
     api/ObjectUserAPI.c
     api/ObjectUsergroupAPI.c
+    api/ObjectWebhookAPI.c
 
 )
 
@@ -720,6 +805,25 @@ set(HDRS
     model/apikey_response_compound.h
     model/attempt_response.h
     model/attempt_response_compound.h
+    model/branding_create_object_v1_request.h
+    model/branding_create_object_v1_response.h
+    model/branding_create_object_v1_response_all_of.h
+    model/branding_create_object_v1_response_m_payload.h
+    model/branding_edit_object_v1_request.h
+    model/branding_edit_object_v1_response.h
+    model/branding_get_list_v1_response.h
+    model/branding_get_list_v1_response_all_of.h
+    model/branding_get_list_v1_response_m_payload.h
+    model/branding_get_list_v1_response_m_payload_all_of.h
+    model/branding_get_object_v1_response.h
+    model/branding_get_object_v1_response_all_of.h
+    model/branding_get_object_v1_response_m_payload.h
+    model/branding_list_element.h
+    model/branding_request.h
+    model/branding_request_compound.h
+    model/branding_response.h
+    model/branding_response_compound.h
+    model/branding_response_compound_all_of.h
     model/common_audit.h
     model/common_auditdetail.h
     model/common_get_autocomplete_disabled_v1_response.h
@@ -754,6 +858,9 @@ set(HDRS
     model/custom_dropdown_element_request_compound.h
     model/custom_dropdown_element_response.h
     model/custom_dropdown_element_response_compound.h
+    model/custom_ezsignfoldersignerassociation_actionable_element_response.h
+    model/custom_ezsignfoldersignerassociation_actionable_element_response_all_of.h
+    model/custom_ezsignfoldersignerassociationmessage_request.h
     model/custom_ezsignfoldersignerassociationstatus_response.h
     model/custom_ezsignfoldertransmission_response.h
     model/custom_ezsignfoldertransmission_signer_response.h
@@ -769,8 +876,15 @@ set(HDRS
     model/custom_notificationtestgetnotificationtests_response.h
     model/custom_notificationtestgetnotificationtests_response_all_of.h
     model/custom_user_response.h
+    model/custom_webhook_response.h
+    model/custom_webhook_response_all_of.h
+    model/custom_webhooklog_response.h
+    model/custom_webhooklog_response_all_of.h
     model/custom_word_position_occurence_response.h
     model/custom_word_position_word_response.h
+    model/department_get_members_v1_response.h
+    model/department_get_members_v1_response_all_of.h
+    model/department_get_members_v1_response_m_payload.h
     model/email_request.h
     model/email_request_compound.h
     model/ezsign_suggest_signers_v1_response.h
@@ -940,6 +1054,10 @@ set(HDRS
     model/ezsignfolder_get_object_v1_response.h
     model/ezsignfolder_get_object_v1_response_all_of.h
     model/ezsignfolder_get_object_v1_response_m_payload.h
+    model/ezsignfolder_import_ezsignfoldersignerassociations_v1_request.h
+    model/ezsignfolder_import_ezsignfoldersignerassociations_v1_response.h
+    model/ezsignfolder_import_ezsignfoldersignerassociations_v1_response_all_of.h
+    model/ezsignfolder_import_ezsignfoldersignerassociations_v1_response_m_payload.h
     model/ezsignfolder_import_ezsigntemplatepackage_v1_request.h
     model/ezsignfolder_import_ezsigntemplatepackage_v1_response.h
     model/ezsignfolder_import_ezsigntemplatepackage_v1_response_all_of.h
@@ -953,6 +1071,8 @@ set(HDRS
     model/ezsignfolder_response_compound.h
     model/ezsignfolder_send_v1_request.h
     model/ezsignfolder_send_v1_response.h
+    model/ezsignfolder_send_v2_request.h
+    model/ezsignfolder_send_v2_response.h
     model/ezsignfolder_unsend_v1_response.h
     model/ezsignfoldersignerassociation_create_object_v1_request.h
     model/ezsignfoldersignerassociation_create_object_v1_response.h
@@ -978,11 +1098,25 @@ set(HDRS
     model/ezsignfoldersignerassociation_response_compound.h
     model/ezsignfoldersignerassociation_response_compound_all_of.h
     model/ezsignfoldersignerassociation_response_compound_user.h
+    model/ezsignfoldertype_create_object_v1_request.h
+    model/ezsignfoldertype_create_object_v1_response.h
+    model/ezsignfoldertype_create_object_v1_response_all_of.h
+    model/ezsignfoldertype_create_object_v1_response_m_payload.h
+    model/ezsignfoldertype_edit_object_v1_request.h
+    model/ezsignfoldertype_edit_object_v1_response.h
     model/ezsignfoldertype_get_list_v1_response.h
     model/ezsignfoldertype_get_list_v1_response_all_of.h
     model/ezsignfoldertype_get_list_v1_response_m_payload.h
     model/ezsignfoldertype_get_list_v1_response_m_payload_all_of.h
+    model/ezsignfoldertype_get_object_v1_response.h
+    model/ezsignfoldertype_get_object_v1_response_all_of.h
+    model/ezsignfoldertype_get_object_v1_response_m_payload.h
     model/ezsignfoldertype_list_element.h
+    model/ezsignfoldertype_request.h
+    model/ezsignfoldertype_request_compound.h
+    model/ezsignfoldertype_request_compound_all_of.h
+    model/ezsignfoldertype_response.h
+    model/ezsignfoldertype_response_compound.h
     model/ezsignformfield_request.h
     model/ezsignformfield_request_compound.h
     model/ezsignformfield_response.h
@@ -1230,14 +1364,18 @@ set(HDRS
     model/ezsigntemplatesigner_response_compound.h
     model/field_e_activesession_usertype.h
     model/field_e_activesession_weekdaystart.h
+    model/field_e_branding_logo.h
     model/field_e_ezsigndocument_step.h
     model/field_e_ezsigndocumentlog_type.h
     model/field_e_ezsignfolder_sendreminderfrequency.h
     model/field_e_ezsignfolder_step.h
+    model/field_e_ezsignfoldertype_disposal.h
     model/field_e_ezsignfoldertype_privacylevel.h
+    model/field_e_ezsignfoldertype_sendreminderfrequency.h
     model/field_e_ezsignformfieldgroup_signerrequirement.h
     model/field_e_ezsignformfieldgroup_tooltipposition.h
     model/field_e_ezsignformfieldgroup_type.h
+    model/field_e_ezsignsignature_attachmentnamesource.h
     model/field_e_ezsignsignature_font.h
     model/field_e_ezsignsignature_tooltipposition.h
     model/field_e_ezsignsignature_type.h
@@ -1251,6 +1389,9 @@ set(HDRS
     model/field_e_phone_type.h
     model/field_e_user_ezsignsendreminderfrequency.h
     model/field_e_user_type.h
+    model/field_e_webhook_ezsignevent.h
+    model/field_e_webhook_managementevent.h
+    model/field_e_webhook_module.h
     model/franchisereferalincome_create_object_v1_request.h
     model/franchisereferalincome_create_object_v1_response.h
     model/franchisereferalincome_create_object_v1_response_all_of.h
@@ -1265,6 +1406,10 @@ set(HDRS
     model/global_customer_get_endpoint_v1_response.h
     model/header_accept_language.h
     model/multilingual_apikey_description.h
+    model/multilingual_branding_description.h
+    model/multilingual_ezsignfoldertype_name.h
+    model/multilingual_notificationsubsection_name.h
+    model/multilingual_notificationtest_name.h
     model/notificationsection_get_notificationtests_v1_response.h
     model/notificationsection_get_notificationtests_v1_response_all_of.h
     model/notificationsection_get_notificationtests_v1_response_m_payload.h
@@ -1281,11 +1426,34 @@ set(HDRS
     model/user_create_ezsignuser_v1_response_m_payload.h
     model/user_response.h
     model/user_response_compound.h
+    model/webhook_create_object_v1_request.h
+    model/webhook_create_object_v1_response.h
+    model/webhook_create_object_v1_response_all_of.h
+    model/webhook_create_object_v1_response_m_payload.h
+    model/webhook_delete_object_v1_response.h
+    model/webhook_edit_object_v1_request.h
+    model/webhook_edit_object_v1_response.h
     model/webhook_ezsign_document_completed.h
     model/webhook_ezsign_document_completed_all_of.h
     model/webhook_ezsign_folder_completed.h
     model/webhook_ezsign_folder_completed_all_of.h
+    model/webhook_get_history_v1_response.h
+    model/webhook_get_history_v1_response_all_of.h
+    model/webhook_get_history_v1_response_m_payload.h
+    model/webhook_get_history_v1_response_m_payload_all_of.h
+    model/webhook_get_list_v1_response.h
+    model/webhook_get_list_v1_response_all_of.h
+    model/webhook_get_list_v1_response_m_payload.h
+    model/webhook_get_list_v1_response_m_payload_all_of.h
+    model/webhook_get_object_v1_response.h
+    model/webhook_get_object_v1_response_all_of.h
+    model/webhook_get_object_v1_response_m_payload.h
+    model/webhook_list_element.h
+    model/webhook_request.h
+    model/webhook_request_compound.h
     model/webhook_response.h
+    model/webhook_response_compound.h
+    model/webhook_test_v1_response.h
     model/webhook_user_user_created.h
     model/webhook_user_user_created_all_of.h
     model/website_request.h
@@ -1297,6 +1465,7 @@ set(HDRS
     api/ObjectApikeyAPI.h
     api/ObjectBillingentityinternalAPI.h
     api/ObjectBrandingAPI.h
+    api/ObjectDepartmentAPI.h
     api/ObjectEzsignbulksendAPI.h
     api/ObjectEzsignbulksenddocumentmappingAPI.h
     api/ObjectEzsignbulksendsignermappingAPI.h
@@ -1328,6 +1497,7 @@ set(HDRS
     api/ObjectTimezoneAPI.h
     api/ObjectUserAPI.h
     api/ObjectUsergroupAPI.h
+    api/ObjectWebhookAPI.h
 
 )
 
@@ -1416,6 +1586,7 @@ set(HDRS "")
 #    unit-tests/manual-ObjectApikeyAPI.c
 #    unit-tests/manual-ObjectBillingentityinternalAPI.c
 #    unit-tests/manual-ObjectBrandingAPI.c
+#    unit-tests/manual-ObjectDepartmentAPI.c
 #    unit-tests/manual-ObjectEzsignbulksendAPI.c
 #    unit-tests/manual-ObjectEzsignbulksenddocumentmappingAPI.c
 #    unit-tests/manual-ObjectEzsignbulksendsignermappingAPI.c
@@ -1447,6 +1618,7 @@ set(HDRS "")
 #    unit-tests/manual-ObjectTimezoneAPI.c
 #    unit-tests/manual-ObjectUserAPI.c
 #    unit-tests/manual-ObjectUsergroupAPI.c
+#    unit-tests/manual-ObjectWebhookAPI.c
 #)
 
 ##set header files

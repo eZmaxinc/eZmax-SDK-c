@@ -40,6 +40,15 @@ ezsignfolder_response_compound_t* instantiate_ezsignfolder_response_compound(int
       "2020-12-31",
       ezmax_api_definition__full_ezsignfolder_response_compound__"Completed",
       "2020-12-31 23:59:59",
+      "Hi everyone,
+
+This is the document I need you to review.
+
+Could you sign it before Monday please.
+
+Best Regards.
+
+Mary",
        // false, not to have infinite recursion
       instantiate_common_audit(0)
     );
@@ -62,6 +71,15 @@ ezsignfolder_response_compound_t* instantiate_ezsignfolder_response_compound(int
       "2020-12-31",
       ezmax_api_definition__full_ezsignfolder_response_compound__"Completed",
       "2020-12-31 23:59:59",
+      "Hi everyone,
+
+This is the document I need you to review.
+
+Could you sign it before Monday please.
+
+Best Regards.
+
+Mary",
       NULL
     );
   }

@@ -26,6 +26,7 @@ typedef struct ezsignfoldersignerassociation_response_compound_t {
     int pki_ezsignfoldersignerassociation_id; //numeric
     int fki_ezsignfolder_id; //numeric
     int b_ezsignfoldersignerassociation_receivecopy; //boolean
+    char *t_ezsignfoldersignerassociation_message; // string
     struct ezsignfoldersignerassociation_response_compound_user_t *obj_user; //model
     struct ezsignsigner_response_compound_t *obj_ezsignsigner; //model
 
@@ -35,6 +36,7 @@ ezsignfoldersignerassociation_response_compound_t *ezsignfoldersignerassociation
     int pki_ezsignfoldersignerassociation_id,
     int fki_ezsignfolder_id,
     int b_ezsignfoldersignerassociation_receivecopy,
+    char *t_ezsignfoldersignerassociation_message,
     ezsignfoldersignerassociation_response_compound_user_t *obj_user,
     ezsignsigner_response_compound_t *obj_ezsignsigner
 );

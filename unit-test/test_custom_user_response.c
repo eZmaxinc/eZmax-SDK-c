@@ -25,14 +25,14 @@ custom_user_response_t* instantiate_custom_user_response(int include_optional) {
       70,
       "Doe",
       "John",
-      "example@domain.com"
+      "email@example.com"
     );
   } else {
     custom_user_response = custom_user_response_create(
       70,
       "Doe",
       "John",
-      "example@domain.com"
+      "email@example.com"
     );
   }
 

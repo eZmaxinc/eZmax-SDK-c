@@ -63,6 +63,58 @@ end:
 }
 */
 
+// Functions for enum EFILTERACTIVE for ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV1
+
+static char* ezsignfoldertypeGetAutocompleteV1_EFILTERACTIVE_ToString(ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV1_eFilterActive_e EFILTERACTIVE){
+    char *EFILTERACTIVEArray[] =  { "NULL", "All", "Active", "Inactive" };
+    return EFILTERACTIVEArray[EFILTERACTIVE];
+}
+
+static ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV1_eFilterActive_e ezsignfoldertypeGetAutocompleteV1_EFILTERACTIVE_FromString(char* EFILTERACTIVE){
+    int stringToReturn = 0;
+    char *EFILTERACTIVEArray[] =  { "NULL", "All", "Active", "Inactive" };
+    size_t sizeofArray = sizeof(EFILTERACTIVEArray) / sizeof(EFILTERACTIVEArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(EFILTERACTIVE, EFILTERACTIVEArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
+
+/*
+// Function ezsignfoldertypeGetAutocompleteV1_EFILTERACTIVE_convertToJSON is not currently used,
+// since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
+//
+static cJSON *ezsignfoldertypeGetAutocompleteV1_EFILTERACTIVE_convertToJSON(ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV1_eFilterActive_e EFILTERACTIVE) {
+    cJSON *item = cJSON_CreateObject();
+    if(cJSON_AddStringToObject(item, "eFilterActive", ezsignfoldertypeGetAutocompleteV1_EFILTERACTIVE_ToString(EFILTERACTIVE)) == NULL) {
+        goto fail;
+    }
+    return item;
+    fail:
+    cJSON_Delete(item);
+    return NULL;
+}
+
+// Function ezsignfoldertypeGetAutocompleteV1_EFILTERACTIVE_parseFromJSON is not currently used,
+// since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
+//
+static ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV1_eFilterActive_e ezsignfoldertypeGetAutocompleteV1_EFILTERACTIVE_parseFromJSON(cJSON* EFILTERACTIVEJSON) {
+    ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV1_eFilterActive_e EFILTERACTIVEVariable = 0;
+    cJSON *EFILTERACTIVEVar = cJSON_GetObjectItemCaseSensitive(EFILTERACTIVEJSON, "eFilterActive");
+    if(!cJSON_IsString(EFILTERACTIVEVar) || (EFILTERACTIVEVar->valuestring == NULL))
+    {
+        goto end;
+    }
+    EFILTERACTIVEVariable = ezsignfoldertypeGetAutocompleteV1_EFILTERACTIVE_FromString(EFILTERACTIVEVar->valuestring);
+    return EFILTERACTIVEVariable;
+end:
+    return 0;
+}
+*/
+
 // Functions for enum  for ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV1
 
 static char* ezsignfoldertypeGetAutocompleteV1__ToString(ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV1_Accept-Language_e ){
@@ -202,12 +254,191 @@ end:
 */
 
 
+// Create a new Ezsignfoldertype
+//
+// The endpoint allows to create one or many elements at once.
+//
+ezsignfoldertype_create_object_v1_response_t*
+ObjectEzsignfoldertypeAPI_ezsignfoldertypeCreateObjectV1(apiClient_t *apiClient, ezsignfoldertype_create_object_v1_request_t * ezsignfoldertype_create_object_v1_request )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/ezsignfoldertype")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfoldertype");
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_ezsignfoldertype_create_object_v1_request = NULL;
+    if (ezsignfoldertype_create_object_v1_request != NULL)
+    {
+        //string
+        localVarSingleItemJSON_ezsignfoldertype_create_object_v1_request = ezsignfoldertype_create_object_v1_request_convertToJSON(ezsignfoldertype_create_object_v1_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignfoldertype_create_object_v1_request);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "POST");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 201) {
+    //    printf("%s\n","Successful response");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectEzsignfoldertypeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsignfoldertype_create_object_v1_response_t *elementToReturn = ezsignfoldertype_create_object_v1_response_parseFromJSON(ObjectEzsignfoldertypeAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsignfoldertypeAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    if (localVarSingleItemJSON_ezsignfoldertype_create_object_v1_request) {
+        cJSON_Delete(localVarSingleItemJSON_ezsignfoldertype_create_object_v1_request);
+        localVarSingleItemJSON_ezsignfoldertype_create_object_v1_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Edit an existing Ezsignfoldertype
+//
+// 
+//
+ezsignfoldertype_edit_object_v1_response_t*
+ObjectEzsignfoldertypeAPI_ezsignfoldertypeEditObjectV1(apiClient_t *apiClient, int pkiEzsignfoldertypeID , ezsignfoldertype_edit_object_v1_request_t * ezsignfoldertype_edit_object_v1_request )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/ezsignfoldertype/{pkiEzsignfoldertypeID}")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfoldertype/{pkiEzsignfoldertypeID}");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsignfoldertypeID =  + strlen("{ pkiEzsignfoldertypeID }");
+    if(pkiEzsignfoldertypeID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsignfoldertypeID = malloc(sizeOfPathParams_pkiEzsignfoldertypeID);
+    snprintf(localVarToReplace_pkiEzsignfoldertypeID, sizeOfPathParams_pkiEzsignfoldertypeID, "{%s}", "pkiEzsignfoldertypeID");
+
+    char localVarBuff_pkiEzsignfoldertypeID[256];
+    intToStr(localVarBuff_pkiEzsignfoldertypeID, pkiEzsignfoldertypeID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfoldertypeID, localVarBuff_pkiEzsignfoldertypeID);
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_ezsignfoldertype_edit_object_v1_request = NULL;
+    if (ezsignfoldertype_edit_object_v1_request != NULL)
+    {
+        //string
+        localVarSingleItemJSON_ezsignfoldertype_edit_object_v1_request = ezsignfoldertype_edit_object_v1_request_convertToJSON(ezsignfoldertype_edit_object_v1_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignfoldertype_edit_object_v1_request);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "PUT");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectEzsignfoldertypeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsignfoldertype_edit_object_v1_response_t *elementToReturn = ezsignfoldertype_edit_object_v1_response_parseFromJSON(ObjectEzsignfoldertypeAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsignfoldertypeAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsignfoldertypeID);
+    if (localVarSingleItemJSON_ezsignfoldertype_edit_object_v1_request) {
+        cJSON_Delete(localVarSingleItemJSON_ezsignfoldertype_edit_object_v1_request);
+        localVarSingleItemJSON_ezsignfoldertype_edit_object_v1_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Retrieve Ezsignfoldertypes and IDs
 //
 // Get the list of Ezsignfoldertypes to be used in a dropdown or autocomplete control.
 //
 common_get_autocomplete_v1_response_t*
-ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV1_sSelector_e sSelector , char * sQuery , header_accept_language_e Accept_Language )
+ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV1_sSelector_e sSelector , ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV1_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language )
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -245,6 +476,19 @@ ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV1(apiClient_t *apiClie
         list_addElement(localVarHeaderParameters,keyPairHeader_Accept_Language);
     }
 
+
+    // query parameters
+    char *keyQuery_eFilterActive = NULL;
+    ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV1_eFilterActive_e valueQuery_eFilterActive ;
+    keyValuePair_t *keyPairQuery_eFilterActive = 0;
+    if (eFilterActive)
+    {
+        keyQuery_eFilterActive = strdup("eFilterActive");
+        valueQuery_eFilterActive = (eFilterActive);
+        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(ezsignfoldertypeGetAutocompleteV1_EFILTERACTIVE_ToString(
+		valueQuery_eFilterActive)));
+        list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
+    }
 
     // query parameters
     char *keyQuery_sQuery = NULL;
@@ -298,6 +542,14 @@ ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV1(apiClient_t *apiClie
         keyHeader_Accept_Language = NULL;
     }
     free(keyPairHeader_Accept_Language);
+    if(keyQuery_eFilterActive){
+        free(keyQuery_eFilterActive);
+        keyQuery_eFilterActive = NULL;
+    }
+    if(keyPairQuery_eFilterActive){
+        keyValuePair_free(keyPairQuery_eFilterActive);
+        keyPairQuery_eFilterActive = NULL;
+    }
     if(keyQuery_sQuery){
         free(keyQuery_sQuery);
         keyQuery_sQuery = NULL;
@@ -419,7 +671,7 @@ ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1(apiClient_t *apiClient, ezma
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 406) {
-    //    printf("%s\n","One of the accept header is not defined or invalid.");
+    //    printf("%s\n","The URL is valid, but one of the Accept header is not defined or invalid. For example, you set the header \&quot;Accept: application/json\&quot; but the function can only return \&quot;Content-type: image/png\&quot;");
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignfoldertypeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
@@ -490,6 +742,88 @@ ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1(apiClient_t *apiClient, ezma
         keyValuePair_free(keyPairQuery_sFilter);
         keyPairQuery_sFilter = NULL;
     }
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve an existing Ezsignfoldertype
+//
+// 
+//
+ezsignfoldertype_get_object_v1_response_t*
+ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetObjectV1(apiClient_t *apiClient, int pkiEzsignfoldertypeID )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/ezsignfoldertype/{pkiEzsignfoldertypeID}")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfoldertype/{pkiEzsignfoldertypeID}");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsignfoldertypeID =  + strlen("{ pkiEzsignfoldertypeID }");
+    if(pkiEzsignfoldertypeID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsignfoldertypeID = malloc(sizeOfPathParams_pkiEzsignfoldertypeID);
+    snprintf(localVarToReplace_pkiEzsignfoldertypeID, sizeOfPathParams_pkiEzsignfoldertypeID, "{%s}", "pkiEzsignfoldertypeID");
+
+    char localVarBuff_pkiEzsignfoldertypeID[256];
+    intToStr(localVarBuff_pkiEzsignfoldertypeID, pkiEzsignfoldertypeID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfoldertypeID, localVarBuff_pkiEzsignfoldertypeID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectEzsignfoldertypeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsignfoldertype_get_object_v1_response_t *elementToReturn = ezsignfoldertype_get_object_v1_response_parseFromJSON(ObjectEzsignfoldertypeAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsignfoldertypeAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsignfoldertypeID);
     return elementToReturn;
 end:
     free(localVarPath);

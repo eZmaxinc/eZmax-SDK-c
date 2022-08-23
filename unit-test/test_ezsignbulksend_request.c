@@ -28,7 +28,7 @@ ezsignbulksend_request_t* instantiate_ezsignbulksend_request(int include_optiona
       "Test eZsign Bulk Send",
       "This is a note",
       1,
-      1
+      true
     );
   } else {
     ezsignbulksend_request = ezsignbulksend_request_create(
@@ -38,7 +38,7 @@ ezsignbulksend_request_t* instantiate_ezsignbulksend_request(int include_optiona
       "Test eZsign Bulk Send",
       "This is a note",
       1,
-      1
+      true
     );
   }
 

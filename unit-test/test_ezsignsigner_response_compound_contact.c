@@ -26,7 +26,7 @@ ezsignsigner_response_compound_contact_t* instantiate_ezsignsigner_response_comp
       "John",
       "Doe",
       2,
-      "example@domain.com",
+      "email@example.com",
       "+15149901516",
       "123",
       "+15149901516"
@@ -37,7 +37,7 @@ ezsignsigner_response_compound_contact_t* instantiate_ezsignsigner_response_comp
       "John",
       "Doe",
       2,
-      "example@domain.com",
+      "email@example.com",
       "+15149901516",
       "123",
       "+15149901516"

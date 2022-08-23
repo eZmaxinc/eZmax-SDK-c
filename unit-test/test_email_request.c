@@ -23,12 +23,12 @@ email_request_t* instantiate_email_request(int include_optional) {
   if (include_optional) {
     email_request = email_request_create(
       1,
-      "example@domain.com"
+      "email@example.com"
     );
   } else {
     email_request = email_request_create(
       1,
-      "example@domain.com"
+      "email@example.com"
     );
   }
 

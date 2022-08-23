@@ -56,6 +56,7 @@ typedef struct ezsignfolder_response_compound_t {
     char *dt_ezsignfolder_scheduleddispose; // string
     field_e_ezsignfolder_step_t *e_ezsignfolder_step; // custom
     char *dt_ezsignfolder_close; // string
+    char *t_ezsignfolder_message; // string
     struct common_audit_t *obj_audit; //model
 
 } ezsignfolder_response_compound_t;
@@ -78,6 +79,7 @@ ezsignfolder_response_compound_t *ezsignfolder_response_compound_create(
     char *dt_ezsignfolder_scheduleddispose,
     field_e_ezsignfolder_step_t *e_ezsignfolder_step,
     char *dt_ezsignfolder_close,
+    char *t_ezsignfolder_message,
     common_audit_t *obj_audit
 );
 

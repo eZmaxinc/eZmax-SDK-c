@@ -27,9 +27,9 @@ ezsigntemplatepackage_list_element_t* instantiate_ezsigntemplatepackage_list_ele
       2,
       "Package for new clients",
       1,
-      1,
       56,
-      "Default"
+      "Default",
+      true
     );
   } else {
     ezsigntemplatepackage_list_element = ezsigntemplatepackage_list_element_create(
@@ -38,9 +38,9 @@ ezsigntemplatepackage_list_element_t* instantiate_ezsigntemplatepackage_list_ele
       2,
       "Package for new clients",
       1,
-      1,
       56,
-      "Default"
+      "Default",
+      true
     );
   }
 

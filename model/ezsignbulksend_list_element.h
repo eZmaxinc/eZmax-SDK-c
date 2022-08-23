@@ -24,12 +24,12 @@ typedef struct ezsignbulksend_list_element_t {
     char *s_ezsignbulksend_description; // string
     char *s_ezsignfoldertype_name_x; // string
     int b_ezsignbulksend_needvalidation; //boolean
-    int b_ezsignbulksend_isactive; //boolean
     int i_ezsignbulksendtransmission; //numeric
     int i_ezsignfolder; //numeric
     int i_ezsigndocument; //numeric
     int i_ezsignsignature; //numeric
     int i_ezsignsignature_signed; //numeric
+    int b_ezsignbulksend_isactive; //boolean
 
 } ezsignbulksend_list_element_t;
 
@@ -39,12 +39,12 @@ ezsignbulksend_list_element_t *ezsignbulksend_list_element_create(
     char *s_ezsignbulksend_description,
     char *s_ezsignfoldertype_name_x,
     int b_ezsignbulksend_needvalidation,
-    int b_ezsignbulksend_isactive,
     int i_ezsignbulksendtransmission,
     int i_ezsignfolder,
     int i_ezsigndocument,
     int i_ezsignsignature,
-    int i_ezsignsignature_signed
+    int i_ezsignsignature_signed,
+    int b_ezsignbulksend_isactive
 );
 
 void ezsignbulksend_list_element_free(ezsignbulksend_list_element_t *ezsignbulksend_list_element);

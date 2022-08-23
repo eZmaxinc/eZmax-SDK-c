@@ -16,6 +16,7 @@
 #include "../model/custom_notificationsubsectiongetnotificationtests_response.h"
 custom_notificationsubsectiongetnotificationtests_response_t* instantiate_custom_notificationsubsectiongetnotificationtests_response(int include_optional);
 
+#include "test_multilingual_notificationsubsection_name.c"
 
 
 custom_notificationsubsectiongetnotificationtests_response_t* instantiate_custom_notificationsubsectiongetnotificationtests_response(int include_optional) {
@@ -24,6 +25,9 @@ custom_notificationsubsectiongetnotificationtests_response_t* instantiate_custom
     custom_notificationsubsectiongetnotificationtests_response = custom_notificationsubsectiongetnotificationtests_response_create(
       3,
       1,
+       // false, not to have infinite recursion
+      instantiate_multilingual_notificationsubsection_name(0),
+      "Homepage",
       "Default",
       list_createList()
     );
@@ -31,6 +35,8 @@ custom_notificationsubsectiongetnotificationtests_response_t* instantiate_custom
     custom_notificationsubsectiongetnotificationtests_response = custom_notificationsubsectiongetnotificationtests_response_create(
       3,
       1,
+      NULL,
+      "Homepage",
       "Default",
       list_createList()
     );

@@ -26,6 +26,7 @@ typedef struct ezsignfoldersignerassociation_request_compound_t {
     int fki_user_id; //numeric
     int fki_ezsignfolder_id; //numeric
     int b_ezsignfoldersignerassociation_receivecopy; //boolean
+    char *t_ezsignfoldersignerassociation_message; // string
     struct ezsignsigner_request_compound_t *obj_ezsignsigner; //model
 
 } ezsignfoldersignerassociation_request_compound_t;
@@ -35,6 +36,7 @@ ezsignfoldersignerassociation_request_compound_t *ezsignfoldersignerassociation_
     int fki_user_id,
     int fki_ezsignfolder_id,
     int b_ezsignfoldersignerassociation_receivecopy,
+    char *t_ezsignfoldersignerassociation_message,
     ezsignsigner_request_compound_t *obj_ezsignsigner
 );
 

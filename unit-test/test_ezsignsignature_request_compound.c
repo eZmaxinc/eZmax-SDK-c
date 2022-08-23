@@ -33,6 +33,11 @@ ezsignsignature_request_compound_t* instantiate_ezsignsignature_request_compound
       "Please sign here if you agree to the terms",
       ezmax_api_definition__full_ezsignsignature_request_compound__"TopLeft",
       ezmax_api_definition__full_ezsignsignature_request_compound__Normal,
+      70,
+      1,
+      ezmax_api_definition__full_ezsignsignature_request_compound__"Description",
+      "Attachment",
+      1,
       1,
       list_createList()
     );
@@ -49,6 +54,11 @@ ezsignsignature_request_compound_t* instantiate_ezsignsignature_request_compound
       "Please sign here if you agree to the terms",
       ezmax_api_definition__full_ezsignsignature_request_compound__"TopLeft",
       ezmax_api_definition__full_ezsignsignature_request_compound__Normal,
+      70,
+      1,
+      ezmax_api_definition__full_ezsignsignature_request_compound__"Description",
+      "Attachment",
+      1,
       1,
       list_createList()
     );

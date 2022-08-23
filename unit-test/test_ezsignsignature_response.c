@@ -32,7 +32,12 @@ ezsignsignature_response_t* instantiate_ezsignsignature_response(int include_opt
       ezmax_api_definition__full_ezsignsignature_response__"Name",
       "Please sign here if you agree to the terms",
       ezmax_api_definition__full_ezsignsignature_response__"TopLeft",
-      ezmax_api_definition__full_ezsignsignature_response__Normal
+      ezmax_api_definition__full_ezsignsignature_response__Normal,
+      1,
+      "Attachment",
+      ezmax_api_definition__full_ezsignsignature_response__"Description",
+      1,
+      70
     );
   } else {
     ezsignsignature_response = ezsignsignature_response_create(
@@ -46,7 +51,12 @@ ezsignsignature_response_t* instantiate_ezsignsignature_response(int include_opt
       ezmax_api_definition__full_ezsignsignature_response__"Name",
       "Please sign here if you agree to the terms",
       ezmax_api_definition__full_ezsignsignature_response__"TopLeft",
-      ezmax_api_definition__full_ezsignsignature_response__Normal
+      ezmax_api_definition__full_ezsignsignature_response__Normal,
+      1,
+      "Attachment",
+      ezmax_api_definition__full_ezsignsignature_response__"Description",
+      1,
+      70
     );
   }
 

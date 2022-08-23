@@ -33,6 +33,7 @@ ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__e ez
 typedef struct ezsigndocument_get_object_v1_response_m_payload_t {
     int fki_ezsignfolder_id; //numeric
     char *dt_ezsigndocument_duedate; // string
+    char *dt_ezsignform_completed; // string
     int fki_language_id; //numeric
     char *s_ezsigndocument_name; // string
     int pki_ezsigndocument_id; //numeric
@@ -58,6 +59,7 @@ typedef struct ezsigndocument_get_object_v1_response_m_payload_t {
 ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_response_m_payload_create(
     int fki_ezsignfolder_id,
     char *dt_ezsigndocument_duedate,
+    char *dt_ezsignform_completed,
     int fki_language_id,
     char *s_ezsigndocument_name,
     int pki_ezsigndocument_id,

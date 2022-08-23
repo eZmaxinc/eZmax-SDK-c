@@ -34,6 +34,7 @@ ezmax_api_definition__full_ezsigndocument_response_compound__e ezsigndocument_re
 typedef struct ezsigndocument_response_compound_t {
     int fki_ezsignfolder_id; //numeric
     char *dt_ezsigndocument_duedate; // string
+    char *dt_ezsignform_completed; // string
     int fki_language_id; //numeric
     char *s_ezsigndocument_name; // string
     int pki_ezsigndocument_id; //numeric
@@ -59,6 +60,7 @@ typedef struct ezsigndocument_response_compound_t {
 ezsigndocument_response_compound_t *ezsigndocument_response_compound_create(
     int fki_ezsignfolder_id,
     char *dt_ezsigndocument_duedate,
+    char *dt_ezsignform_completed,
     int fki_language_id,
     char *s_ezsigndocument_name,
     int pki_ezsigndocument_id,
