@@ -83,6 +83,8 @@ ezsignfoldertype_request_t *ezsignfoldertype_request_create(
     int b_ezsignfoldertype_sendsummarytofullgroup,
     int b_ezsignfoldertype_sendsummarytolimitedgroup,
     int b_ezsignfoldertype_sendsummarytocolleague,
+    int b_ezsignfoldertype_includeproofsigner,
+    int b_ezsignfoldertype_includeproofuser,
     int b_ezsignfoldertype_isactive
     ) {
     ezsignfoldertype_request_t *ezsignfoldertype_request_local_var = malloc(sizeof(ezsignfoldertype_request_t));
@@ -115,6 +117,8 @@ ezsignfoldertype_request_t *ezsignfoldertype_request_create(
     ezsignfoldertype_request_local_var->b_ezsignfoldertype_sendsummarytofullgroup = b_ezsignfoldertype_sendsummarytofullgroup;
     ezsignfoldertype_request_local_var->b_ezsignfoldertype_sendsummarytolimitedgroup = b_ezsignfoldertype_sendsummarytolimitedgroup;
     ezsignfoldertype_request_local_var->b_ezsignfoldertype_sendsummarytocolleague = b_ezsignfoldertype_sendsummarytocolleague;
+    ezsignfoldertype_request_local_var->b_ezsignfoldertype_includeproofsigner = b_ezsignfoldertype_includeproofsigner;
+    ezsignfoldertype_request_local_var->b_ezsignfoldertype_includeproofuser = b_ezsignfoldertype_includeproofuser;
     ezsignfoldertype_request_local_var->b_ezsignfoldertype_isactive = b_ezsignfoldertype_isactive;
 
     return ezsignfoldertype_request_local_var;
@@ -393,6 +397,24 @@ cJSON *ezsignfoldertype_request_convertToJSON(ezsignfoldertype_request_t *ezsign
         goto fail;
     }
     if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeSendsummarytocolleague", ezsignfoldertype_request->b_ezsignfoldertype_sendsummarytocolleague) == NULL) {
+    goto fail; //Bool
+    }
+
+
+    // ezsignfoldertype_request->b_ezsignfoldertype_includeproofsigner
+    if (!ezsignfoldertype_request->b_ezsignfoldertype_includeproofsigner) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeIncludeproofsigner", ezsignfoldertype_request->b_ezsignfoldertype_includeproofsigner) == NULL) {
+    goto fail; //Bool
+    }
+
+
+    // ezsignfoldertype_request->b_ezsignfoldertype_includeproofuser
+    if (!ezsignfoldertype_request->b_ezsignfoldertype_includeproofuser) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeIncludeproofuser", ezsignfoldertype_request->b_ezsignfoldertype_includeproofuser) == NULL) {
     goto fail; //Bool
     }
 
@@ -690,6 +712,30 @@ ezsignfoldertype_request_t *ezsignfoldertype_request_parseFromJSON(cJSON *ezsign
     goto end; //Bool
     }
 
+    // ezsignfoldertype_request->b_ezsignfoldertype_includeproofsigner
+    cJSON *b_ezsignfoldertype_includeproofsigner = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_requestJSON, "bEzsignfoldertypeIncludeproofsigner");
+    if (!b_ezsignfoldertype_includeproofsigner) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(b_ezsignfoldertype_includeproofsigner))
+    {
+    goto end; //Bool
+    }
+
+    // ezsignfoldertype_request->b_ezsignfoldertype_includeproofuser
+    cJSON *b_ezsignfoldertype_includeproofuser = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_requestJSON, "bEzsignfoldertypeIncludeproofuser");
+    if (!b_ezsignfoldertype_includeproofuser) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(b_ezsignfoldertype_includeproofuser))
+    {
+    goto end; //Bool
+    }
+
     // ezsignfoldertype_request->b_ezsignfoldertype_isactive
     cJSON *b_ezsignfoldertype_isactive = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_requestJSON, "bEzsignfoldertypeIsactive");
     if (!b_ezsignfoldertype_isactive) {
@@ -730,6 +776,8 @@ ezsignfoldertype_request_t *ezsignfoldertype_request_parseFromJSON(cJSON *ezsign
         b_ezsignfoldertype_sendsummarytofullgroup ? b_ezsignfoldertype_sendsummarytofullgroup->valueint : 0,
         b_ezsignfoldertype_sendsummarytolimitedgroup ? b_ezsignfoldertype_sendsummarytolimitedgroup->valueint : 0,
         b_ezsignfoldertype_sendsummarytocolleague->valueint,
+        b_ezsignfoldertype_includeproofsigner->valueint,
+        b_ezsignfoldertype_includeproofuser->valueint,
         b_ezsignfoldertype_isactive->valueint
         );
 

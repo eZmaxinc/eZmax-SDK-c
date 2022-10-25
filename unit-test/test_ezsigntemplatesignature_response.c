@@ -25,19 +25,6 @@ ezsigntemplatesignature_response_t* instantiate_ezsigntemplatesignature_response
       99,
       133,
       9,
-      1,
-      200,
-      300,
-      1,
-      ezmax_api_definition__full_ezsigntemplatesignature_response__"Name",
-      "Please sign here if you agree to the terms",
-      ezmax_api_definition__full_ezsigntemplatesignature_response__"TopLeft",
-      ezmax_api_definition__full_ezsigntemplatesignature_response__Normal
-    );
-  } else {
-    ezsigntemplatesignature_response = ezsigntemplatesignature_response_create(
-      99,
-      133,
       9,
       1,
       200,
@@ -46,7 +33,30 @@ ezsigntemplatesignature_response_t* instantiate_ezsigntemplatesignature_response
       ezmax_api_definition__full_ezsigntemplatesignature_response__"Name",
       "Please sign here if you agree to the terms",
       ezmax_api_definition__full_ezsigntemplatesignature_response__"TopLeft",
-      ezmax_api_definition__full_ezsigntemplatesignature_response__Normal
+      ezmax_api_definition__full_ezsigntemplatesignature_response__Normal,
+      1,
+      "Attachment",
+      ezmax_api_definition__full_ezsigntemplatesignature_response__"Description",
+      1
+    );
+  } else {
+    ezsigntemplatesignature_response = ezsigntemplatesignature_response_create(
+      99,
+      133,
+      9,
+      9,
+      1,
+      200,
+      300,
+      1,
+      ezmax_api_definition__full_ezsigntemplatesignature_response__"Name",
+      "Please sign here if you agree to the terms",
+      ezmax_api_definition__full_ezsigntemplatesignature_response__"TopLeft",
+      ezmax_api_definition__full_ezsigntemplatesignature_response__Normal,
+      1,
+      "Attachment",
+      ezmax_api_definition__full_ezsigntemplatesignature_response__"Description",
+      1
     );
   }
 

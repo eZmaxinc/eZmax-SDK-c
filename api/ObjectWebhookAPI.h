@@ -6,7 +6,9 @@
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
+#include "../model/common_response_error_too_many_requests.h"
 #include "../model/header_accept_language.h"
+#include "../model/object.h"
 #include "../model/webhook_create_object_v1_request.h"
 #include "../model/webhook_create_object_v1_response.h"
 #include "../model/webhook_delete_object_v1_response.h"
@@ -80,6 +82,6 @@ ObjectWebhookAPI_webhookGetObjectV1(apiClient_t *apiClient, int pkiWebhookID );
 // 
 //
 webhook_test_v1_response_t*
-ObjectWebhookAPI_webhookTestUrlV1(apiClient_t *apiClient, int pkiWebhookID );
+ObjectWebhookAPI_webhookTestV1(apiClient_t *apiClient, int pkiWebhookID , object_t * body );
 
 

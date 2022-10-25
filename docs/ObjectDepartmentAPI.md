@@ -5,6 +5,7 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectDepartmentAPI_departmentGetAutocompleteV1**](ObjectDepartmentAPI.md#ObjectDepartmentAPI_departmentGetAutocompleteV1) | **GET** /1/object/department/getAutocomplete/{sSelector} | Retrieve Departments and IDs
+[**ObjectDepartmentAPI_departmentGetAutocompleteV2**](ObjectDepartmentAPI.md#ObjectDepartmentAPI_departmentGetAutocompleteV2) | **GET** /2/object/department/getAutocomplete/{sSelector} | Retrieve Departments and IDs
 [**ObjectDepartmentAPI_departmentGetMembersV1**](ObjectDepartmentAPI.md#ObjectDepartmentAPI_departmentGetMembersV1) | **GET** /1/object/department/{pkiDepartmentID}/getMembers | Retrieve an existing Department&#39;s members
 
 
@@ -29,6 +30,40 @@ Name | Type | Description  | Notes
 ### Return type
 
 [common_get_autocomplete_v1_response_t](common_get_autocomplete_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectDepartmentAPI_departmentGetAutocompleteV2**
+```c
+// Retrieve Departments and IDs
+//
+// Get the list of Department to be used in a dropdown or autocomplete control.
+//
+department_get_autocomplete_v2_response_t* ObjectDepartmentAPI_departmentGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_departmentGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_departmentGetAutocompleteV2_eFilterActive_e eFilterActive, char * sQuery, header_accept_language_e Accept_Language);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**sSelector** | **ezmax_api_definition__full_departmentGetAutocompleteV2_sSelector_e** | The type of Departments to return | 
+**eFilterActive** | **ezmax_api_definition__full_departmentGetAutocompleteV2_eFilterActive_e** | Specify which results we want to display. | [optional] [default to &#39;Active&#39;]
+**sQuery** | **char \*** | Allow to filter the returned results | [optional] 
+**Accept_Language** | **header_accept_language_e** |  | [optional] 
+
+### Return type
+
+[department_get_autocomplete_v2_response_t](department_get_autocomplete_v2_response.md) *
 
 
 ### Authorization

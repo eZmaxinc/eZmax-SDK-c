@@ -12,7 +12,7 @@ ezsigntemplatedocumentpage_response_compound_t *ezsigntemplatedocumentpage_respo
     int i_ezsigntemplatedocumentpage_widthpdf,
     int i_ezsigntemplatedocumentpage_heightpdf,
     int i_ezsigntemplatedocumentpage_pagenumber,
-    char *s_image_url
+    char *s_computed_imageurl
     ) {
     ezsigntemplatedocumentpage_response_compound_t *ezsigntemplatedocumentpage_response_compound_local_var = malloc(sizeof(ezsigntemplatedocumentpage_response_compound_t));
     if (!ezsigntemplatedocumentpage_response_compound_local_var) {
@@ -24,7 +24,7 @@ ezsigntemplatedocumentpage_response_compound_t *ezsigntemplatedocumentpage_respo
     ezsigntemplatedocumentpage_response_compound_local_var->i_ezsigntemplatedocumentpage_widthpdf = i_ezsigntemplatedocumentpage_widthpdf;
     ezsigntemplatedocumentpage_response_compound_local_var->i_ezsigntemplatedocumentpage_heightpdf = i_ezsigntemplatedocumentpage_heightpdf;
     ezsigntemplatedocumentpage_response_compound_local_var->i_ezsigntemplatedocumentpage_pagenumber = i_ezsigntemplatedocumentpage_pagenumber;
-    ezsigntemplatedocumentpage_response_compound_local_var->s_image_url = s_image_url;
+    ezsigntemplatedocumentpage_response_compound_local_var->s_computed_imageurl = s_computed_imageurl;
 
     return ezsigntemplatedocumentpage_response_compound_local_var;
 }
@@ -35,9 +35,9 @@ void ezsigntemplatedocumentpage_response_compound_free(ezsigntemplatedocumentpag
         return ;
     }
     listEntry_t *listEntry;
-    if (ezsigntemplatedocumentpage_response_compound->s_image_url) {
-        free(ezsigntemplatedocumentpage_response_compound->s_image_url);
-        ezsigntemplatedocumentpage_response_compound->s_image_url = NULL;
+    if (ezsigntemplatedocumentpage_response_compound->s_computed_imageurl) {
+        free(ezsigntemplatedocumentpage_response_compound->s_computed_imageurl);
+        ezsigntemplatedocumentpage_response_compound->s_computed_imageurl = NULL;
     }
     free(ezsigntemplatedocumentpage_response_compound);
 }
@@ -99,11 +99,11 @@ cJSON *ezsigntemplatedocumentpage_response_compound_convertToJSON(ezsigntemplate
     }
 
 
-    // ezsigntemplatedocumentpage_response_compound->s_image_url
-    if (!ezsigntemplatedocumentpage_response_compound->s_image_url) {
+    // ezsigntemplatedocumentpage_response_compound->s_computed_imageurl
+    if (!ezsigntemplatedocumentpage_response_compound->s_computed_imageurl) {
         goto fail;
     }
-    if(cJSON_AddStringToObject(item, "sImageUrl", ezsigntemplatedocumentpage_response_compound->s_image_url) == NULL) {
+    if(cJSON_AddStringToObject(item, "sComputedImageurl", ezsigntemplatedocumentpage_response_compound->s_computed_imageurl) == NULL) {
     goto fail; //String
     }
 
@@ -191,14 +191,14 @@ ezsigntemplatedocumentpage_response_compound_t *ezsigntemplatedocumentpage_respo
     goto end; //Numeric
     }
 
-    // ezsigntemplatedocumentpage_response_compound->s_image_url
-    cJSON *s_image_url = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocumentpage_response_compoundJSON, "sImageUrl");
-    if (!s_image_url) {
+    // ezsigntemplatedocumentpage_response_compound->s_computed_imageurl
+    cJSON *s_computed_imageurl = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocumentpage_response_compoundJSON, "sComputedImageurl");
+    if (!s_computed_imageurl) {
         goto end;
     }
 
     
-    if(!cJSON_IsString(s_image_url))
+    if(!cJSON_IsString(s_computed_imageurl))
     {
     goto end; //String
     }
@@ -211,7 +211,7 @@ ezsigntemplatedocumentpage_response_compound_t *ezsigntemplatedocumentpage_respo
         i_ezsigntemplatedocumentpage_widthpdf->valuedouble,
         i_ezsigntemplatedocumentpage_heightpdf->valuedouble,
         i_ezsigntemplatedocumentpage_pagenumber->valuedouble,
-        strdup(s_image_url->valuestring)
+        strdup(s_computed_imageurl->valuestring)
         );
 
     return ezsigntemplatedocumentpage_response_compound_local_var;

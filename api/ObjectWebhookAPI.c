@@ -483,6 +483,10 @@ ObjectWebhookAPI_webhookGetHistoryV1(apiClient_t *apiClient, int pkiWebhookID , 
     //if (apiClient->response_code == 404) {
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 429) {
+    //    printf("%s\n","Too Many Requests");
+    //}
     //nonprimitive not container
     cJSON *ObjectWebhookAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     webhook_get_history_v1_response_t *elementToReturn = webhook_get_history_v1_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
@@ -786,13 +790,13 @@ end:
 // 
 //
 webhook_test_v1_response_t*
-ObjectWebhookAPI_webhookTestUrlV1(apiClient_t *apiClient, int pkiWebhookID )
+ObjectWebhookAPI_webhookTestV1(apiClient_t *apiClient, int pkiWebhookID , object_t * body )
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
     list_t *localVarHeaderType = list_createList();
-    list_t *localVarContentType = NULL;
+    list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
 
     // create the path
@@ -816,7 +820,17 @@ ObjectWebhookAPI_webhookTestUrlV1(apiClient_t *apiClient, int pkiWebhookID )
 
 
 
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_body = NULL;
+    if (body != NULL)
+    {
+        //string
+        localVarSingleItemJSON_body = object_convertToJSON(body);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_body);
+    }
     list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
     apiClient_invoke(apiClient,
                     localVarPath,
                     localVarQueryParameters,
@@ -853,9 +867,14 @@ ObjectWebhookAPI_webhookTestUrlV1(apiClient_t *apiClient, int pkiWebhookID )
     
     
     list_freeList(localVarHeaderType);
-    
+    list_freeList(localVarContentType);
     free(localVarPath);
     free(localVarToReplace_pkiWebhookID);
+    if (localVarSingleItemJSON_body) {
+        cJSON_Delete(localVarSingleItemJSON_body);
+        localVarSingleItemJSON_body = NULL;
+    }
+    free(localVarBodyParameters);
     return elementToReturn;
 end:
     free(localVarPath);

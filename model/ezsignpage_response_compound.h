@@ -26,7 +26,7 @@ typedef struct ezsignpage_response_compound_t {
     int i_ezsignpage_widthpdf; //numeric
     int i_ezsignpage_heightpdf; //numeric
     int i_ezsignpage_pagenumber; //numeric
-    char *s_image_url; // string
+    char *s_computed_imageurl; // string
 
 } ezsignpage_response_compound_t;
 
@@ -37,7 +37,7 @@ ezsignpage_response_compound_t *ezsignpage_response_compound_create(
     int i_ezsignpage_widthpdf,
     int i_ezsignpage_heightpdf,
     int i_ezsignpage_pagenumber,
-    char *s_image_url
+    char *s_computed_imageurl
 );
 
 void ezsignpage_response_compound_free(ezsignpage_response_compound_t *ezsignpage_response_compound);

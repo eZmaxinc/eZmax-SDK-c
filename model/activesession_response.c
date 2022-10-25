@@ -46,7 +46,8 @@ activesession_response_t *activesession_response_create(
     char *s_company_name_x,
     char *s_department_name_x,
     int b_activesession_debug,
-    char *pks_customer_code
+    char *pks_customer_code,
+    int fki_systemconfigurationtype_id
     ) {
     activesession_response_t *activesession_response_local_var = malloc(sizeof(activesession_response_t));
     if (!activesession_response_local_var) {
@@ -59,6 +60,7 @@ activesession_response_t *activesession_response_create(
     activesession_response_local_var->s_department_name_x = s_department_name_x;
     activesession_response_local_var->b_activesession_debug = b_activesession_debug;
     activesession_response_local_var->pks_customer_code = pks_customer_code;
+    activesession_response_local_var->fki_systemconfigurationtype_id = fki_systemconfigurationtype_id;
 
     return activesession_response_local_var;
 }
@@ -167,6 +169,14 @@ cJSON *activesession_response_convertToJSON(activesession_response_t *activesess
     goto fail; //String
     }
 
+
+    // activesession_response->fki_systemconfigurationtype_id
+    if(activesession_response->fki_systemconfigurationtype_id) {
+    if(cJSON_AddNumberToObject(item, "fkiSystemconfigurationtypeID", activesession_response->fki_systemconfigurationtype_id) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -263,6 +273,15 @@ activesession_response_t *activesession_response_parseFromJSON(cJSON *activesess
     goto end; //String
     }
 
+    // activesession_response->fki_systemconfigurationtype_id
+    cJSON *fki_systemconfigurationtype_id = cJSON_GetObjectItemCaseSensitive(activesession_responseJSON, "fkiSystemconfigurationtypeID");
+    if (fki_systemconfigurationtype_id) { 
+    if(!cJSON_IsNumber(fki_systemconfigurationtype_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
 
     activesession_response_local_var = activesession_response_create (
         e_activesession_usertype_local_nonprim,
@@ -271,7 +290,8 @@ activesession_response_t *activesession_response_parseFromJSON(cJSON *activesess
         strdup(s_company_name_x->valuestring),
         strdup(s_department_name_x->valuestring),
         b_activesession_debug->valueint,
-        strdup(pks_customer_code->valuestring)
+        strdup(pks_customer_code->valuestring),
+        fki_systemconfigurationtype_id ? fki_systemconfigurationtype_id->valuedouble : 0
         );
 
     return activesession_response_local_var;

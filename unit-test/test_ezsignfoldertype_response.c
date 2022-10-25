@@ -55,6 +55,8 @@ ezsignfoldertype_response_t* instantiate_ezsignfoldertype_response(int include_o
       false,
       false,
       false,
+      true,
+      true,
       true
     );
   } else {
@@ -90,6 +92,8 @@ ezsignfoldertype_response_t* instantiate_ezsignfoldertype_response(int include_o
       false,
       false,
       false,
+      true,
+      true,
       true
     );
   }

@@ -25,21 +25,6 @@ ezsigntemplatesignature_get_object_v1_response_m_payload_t* instantiate_ezsignte
       99,
       133,
       9,
-      1,
-      200,
-      300,
-      1,
-      ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__"Name",
-      "Please sign here if you agree to the terms",
-      ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__"TopLeft",
-      ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__Normal,
-      1,
-      list_createList()
-    );
-  } else {
-    ezsigntemplatesignature_get_object_v1_response_m_payload = ezsigntemplatesignature_get_object_v1_response_m_payload_create(
-      99,
-      133,
       9,
       1,
       200,
@@ -49,6 +34,31 @@ ezsigntemplatesignature_get_object_v1_response_m_payload_t* instantiate_ezsignte
       "Please sign here if you agree to the terms",
       ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__"TopLeft",
       ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__Normal,
+      1,
+      "Attachment",
+      ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__"Description",
+      1,
+      1,
+      list_createList()
+    );
+  } else {
+    ezsigntemplatesignature_get_object_v1_response_m_payload = ezsigntemplatesignature_get_object_v1_response_m_payload_create(
+      99,
+      133,
+      9,
+      9,
+      1,
+      200,
+      300,
+      1,
+      ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__"Name",
+      "Please sign here if you agree to the terms",
+      ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__"TopLeft",
+      ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__Normal,
+      1,
+      "Attachment",
+      ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__"Description",
+      1,
       1,
       list_createList()
     );

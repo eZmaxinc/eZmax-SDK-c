@@ -5,13 +5,13 @@
 
 
 char* field_e_ezsigntemplatesignature_type_field_e_ezsigntemplatesignature_type_ToString(ezmax_api_definition__full_field_e_ezsigntemplatesignature_type__e field_e_ezsigntemplatesignature_type) {
-    char *field_e_ezsigntemplatesignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name" };
+    char *field_e_ezsigntemplatesignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name", "Attachments" };
     return field_e_ezsigntemplatesignature_typeArray[field_e_ezsigntemplatesignature_type];
 }
 
 ezmax_api_definition__full_field_e_ezsigntemplatesignature_type__e field_e_ezsigntemplatesignature_type_field_e_ezsigntemplatesignature_type_FromString(char* field_e_ezsigntemplatesignature_type) {
     int stringToReturn = 0;
-    char *field_e_ezsigntemplatesignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name" };
+    char *field_e_ezsigntemplatesignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name", "Attachments" };
     size_t sizeofArray = sizeof(field_e_ezsigntemplatesignature_typeArray) / sizeof(field_e_ezsigntemplatesignature_typeArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(field_e_ezsigntemplatesignature_type, field_e_ezsigntemplatesignature_typeArray[stringToReturn]) == 0) {

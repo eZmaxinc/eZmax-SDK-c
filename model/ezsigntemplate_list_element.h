@@ -25,6 +25,7 @@ typedef struct ezsigntemplate_list_element_t {
     char *s_ezsigntemplate_description; // string
     int i_ezsigntemplatedocument_pagetotal; //numeric
     int i_ezsigntemplate_signaturetotal; //numeric
+    int i_ezsigntemplate_formfieldtotal; //numeric
     int b_ezsigntemplate_incomplete; //boolean
     char *s_ezsignfoldertype_name_x; // string
 
@@ -37,6 +38,7 @@ ezsigntemplate_list_element_t *ezsigntemplate_list_element_create(
     char *s_ezsigntemplate_description,
     int i_ezsigntemplatedocument_pagetotal,
     int i_ezsigntemplate_signaturetotal,
+    int i_ezsigntemplate_formfieldtotal,
     int b_ezsigntemplate_incomplete,
     char *s_ezsignfoldertype_name_x
 );

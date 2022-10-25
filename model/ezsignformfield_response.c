@@ -87,11 +87,10 @@ cJSON *ezsignformfield_response_convertToJSON(ezsignformfield_response_t *ezsign
 
 
     // ezsignformfield_response->s_ezsignformfield_value
-    if (!ezsignformfield_response->s_ezsignformfield_value) {
-        goto fail;
-    }
+    if(ezsignformfield_response->s_ezsignformfield_value) {
     if(cJSON_AddStringToObject(item, "sEzsignformfieldValue", ezsignformfield_response->s_ezsignformfield_value) == NULL) {
     goto fail; //String
+    }
     }
 
 
@@ -196,14 +195,11 @@ ezsignformfield_response_t *ezsignformfield_response_parseFromJSON(cJSON *ezsign
 
     // ezsignformfield_response->s_ezsignformfield_value
     cJSON *s_ezsignformfield_value = cJSON_GetObjectItemCaseSensitive(ezsignformfield_responseJSON, "sEzsignformfieldValue");
-    if (!s_ezsignformfield_value) {
-        goto end;
-    }
-
-    
+    if (s_ezsignformfield_value) { 
     if(!cJSON_IsString(s_ezsignformfield_value))
     {
     goto end; //String
+    }
     }
 
     // ezsignformfield_response->i_ezsignformfield_x
@@ -277,7 +273,7 @@ ezsignformfield_response_t *ezsignformfield_response_parseFromJSON(cJSON *ezsign
         pki_ezsignformfield_id->valuedouble,
         i_ezsignpage_pagenumber->valuedouble,
         strdup(s_ezsignformfield_label->valuestring),
-        strdup(s_ezsignformfield_value->valuestring),
+        s_ezsignformfield_value ? strdup(s_ezsignformfield_value->valuestring) : NULL,
         i_ezsignformfield_x->valuedouble,
         i_ezsignformfield_y->valuedouble,
         i_ezsignformfield_width->valuedouble,

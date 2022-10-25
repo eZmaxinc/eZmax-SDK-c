@@ -32,6 +32,7 @@ activesession_get_current_v1_response_m_payload_t* instantiate_activesession_get
       "Head Office",
       false,
       "demo",
+      28,
       list_createList(),
        // false, not to have infinite recursion
       instantiate_activesession_response_compound_user(0),
@@ -50,6 +51,7 @@ activesession_get_current_v1_response_m_payload_t* instantiate_activesession_get
       "Head Office",
       false,
       "demo",
+      28,
       list_createList(),
       NULL,
       NULL,

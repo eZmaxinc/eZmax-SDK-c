@@ -25,7 +25,7 @@ typedef struct ezsigntemplatedocumentpage_response_t {
     int i_ezsigntemplatedocumentpage_widthpdf; //numeric
     int i_ezsigntemplatedocumentpage_heightpdf; //numeric
     int i_ezsigntemplatedocumentpage_pagenumber; //numeric
-    char *s_image_url; // string
+    char *s_computed_imageurl; // string
 
 } ezsigntemplatedocumentpage_response_t;
 
@@ -36,7 +36,7 @@ ezsigntemplatedocumentpage_response_t *ezsigntemplatedocumentpage_response_creat
     int i_ezsigntemplatedocumentpage_widthpdf,
     int i_ezsigntemplatedocumentpage_heightpdf,
     int i_ezsigntemplatedocumentpage_pagenumber,
-    char *s_image_url
+    char *s_computed_imageurl
 );
 
 void ezsigntemplatedocumentpage_response_free(ezsigntemplatedocumentpage_response_t *ezsigntemplatedocumentpage_response);

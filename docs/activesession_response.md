@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **s_department_name_x** | **char \*** | The Name of the Department in the language of the requester | 
 **b_activesession_debug** | **int** | Whether the active session is in debug or not | 
 **pks_customer_code** | **char \*** | The customer code assigned to your account | 
+**fki_systemconfigurationtype_id** | **int** | The unique ID of the Systemconfigurationtype | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

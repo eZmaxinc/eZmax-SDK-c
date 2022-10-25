@@ -88,6 +88,8 @@ ezsignfoldertype_response_compound_t *ezsignfoldertype_response_compound_create(
     int b_ezsignfoldertype_sendsummarytofullgroup,
     int b_ezsignfoldertype_sendsummarytolimitedgroup,
     int b_ezsignfoldertype_sendsummarytocolleague,
+    int b_ezsignfoldertype_includeproofsigner,
+    int b_ezsignfoldertype_includeproofuser,
     int b_ezsignfoldertype_isactive,
     list_t *a_fki_user_id_signed,
     list_t *a_fki_user_id_summary
@@ -127,6 +129,8 @@ ezsignfoldertype_response_compound_t *ezsignfoldertype_response_compound_create(
     ezsignfoldertype_response_compound_local_var->b_ezsignfoldertype_sendsummarytofullgroup = b_ezsignfoldertype_sendsummarytofullgroup;
     ezsignfoldertype_response_compound_local_var->b_ezsignfoldertype_sendsummarytolimitedgroup = b_ezsignfoldertype_sendsummarytolimitedgroup;
     ezsignfoldertype_response_compound_local_var->b_ezsignfoldertype_sendsummarytocolleague = b_ezsignfoldertype_sendsummarytocolleague;
+    ezsignfoldertype_response_compound_local_var->b_ezsignfoldertype_includeproofsigner = b_ezsignfoldertype_includeproofsigner;
+    ezsignfoldertype_response_compound_local_var->b_ezsignfoldertype_includeproofuser = b_ezsignfoldertype_includeproofuser;
     ezsignfoldertype_response_compound_local_var->b_ezsignfoldertype_isactive = b_ezsignfoldertype_isactive;
     ezsignfoldertype_response_compound_local_var->a_fki_user_id_signed = a_fki_user_id_signed;
     ezsignfoldertype_response_compound_local_var->a_fki_user_id_summary = a_fki_user_id_summary;
@@ -483,6 +487,24 @@ cJSON *ezsignfoldertype_response_compound_convertToJSON(ezsignfoldertype_respons
         goto fail;
     }
     if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeSendsummarytocolleague", ezsignfoldertype_response_compound->b_ezsignfoldertype_sendsummarytocolleague) == NULL) {
+    goto fail; //Bool
+    }
+
+
+    // ezsignfoldertype_response_compound->b_ezsignfoldertype_includeproofsigner
+    if (!ezsignfoldertype_response_compound->b_ezsignfoldertype_includeproofsigner) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeIncludeproofsigner", ezsignfoldertype_response_compound->b_ezsignfoldertype_includeproofsigner) == NULL) {
+    goto fail; //Bool
+    }
+
+
+    // ezsignfoldertype_response_compound->b_ezsignfoldertype_includeproofuser
+    if (!ezsignfoldertype_response_compound->b_ezsignfoldertype_includeproofuser) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeIncludeproofuser", ezsignfoldertype_response_compound->b_ezsignfoldertype_includeproofuser) == NULL) {
     goto fail; //Bool
     }
 
@@ -871,6 +893,30 @@ ezsignfoldertype_response_compound_t *ezsignfoldertype_response_compound_parseFr
     goto end; //Bool
     }
 
+    // ezsignfoldertype_response_compound->b_ezsignfoldertype_includeproofsigner
+    cJSON *b_ezsignfoldertype_includeproofsigner = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_response_compoundJSON, "bEzsignfoldertypeIncludeproofsigner");
+    if (!b_ezsignfoldertype_includeproofsigner) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(b_ezsignfoldertype_includeproofsigner))
+    {
+    goto end; //Bool
+    }
+
+    // ezsignfoldertype_response_compound->b_ezsignfoldertype_includeproofuser
+    cJSON *b_ezsignfoldertype_includeproofuser = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_response_compoundJSON, "bEzsignfoldertypeIncludeproofuser");
+    if (!b_ezsignfoldertype_includeproofuser) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(b_ezsignfoldertype_includeproofuser))
+    {
+    goto end; //Bool
+    }
+
     // ezsignfoldertype_response_compound->b_ezsignfoldertype_isactive
     cJSON *b_ezsignfoldertype_isactive = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_response_compoundJSON, "bEzsignfoldertypeIsactive");
     if (!b_ezsignfoldertype_isactive) {
@@ -966,6 +1012,8 @@ ezsignfoldertype_response_compound_t *ezsignfoldertype_response_compound_parseFr
         b_ezsignfoldertype_sendsummarytofullgroup ? b_ezsignfoldertype_sendsummarytofullgroup->valueint : 0,
         b_ezsignfoldertype_sendsummarytolimitedgroup ? b_ezsignfoldertype_sendsummarytolimitedgroup->valueint : 0,
         b_ezsignfoldertype_sendsummarytocolleague->valueint,
+        b_ezsignfoldertype_includeproofsigner->valueint,
+        b_ezsignfoldertype_includeproofuser->valueint,
         b_ezsignfoldertype_isactive->valueint,
         a_fki_user_id_signed ? a_fki_user_id_signedList : NULL,
         a_fki_user_id_summary ? a_fki_user_id_summaryList : NULL

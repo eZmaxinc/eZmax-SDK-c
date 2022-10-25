@@ -228,11 +228,10 @@ cJSON *ezsigntemplateformfieldgroup_get_object_v1_response_m_payload_convertToJS
 
 
     // ezsigntemplateformfieldgroup_get_object_v1_response_m_payload->s_ezsigntemplateformfieldgroup_defaultvalue
-    if (!ezsigntemplateformfieldgroup_get_object_v1_response_m_payload->s_ezsigntemplateformfieldgroup_defaultvalue) {
-        goto fail;
-    }
+    if(ezsigntemplateformfieldgroup_get_object_v1_response_m_payload->s_ezsigntemplateformfieldgroup_defaultvalue) {
     if(cJSON_AddStringToObject(item, "sEzsigntemplateformfieldgroupDefaultvalue", ezsigntemplateformfieldgroup_get_object_v1_response_m_payload->s_ezsigntemplateformfieldgroup_defaultvalue) == NULL) {
     goto fail; //String
+    }
     }
 
 
@@ -467,14 +466,11 @@ ezsigntemplateformfieldgroup_get_object_v1_response_m_payload_t *ezsigntemplatef
 
     // ezsigntemplateformfieldgroup_get_object_v1_response_m_payload->s_ezsigntemplateformfieldgroup_defaultvalue
     cJSON *s_ezsigntemplateformfieldgroup_defaultvalue = cJSON_GetObjectItemCaseSensitive(ezsigntemplateformfieldgroup_get_object_v1_response_m_payloadJSON, "sEzsigntemplateformfieldgroupDefaultvalue");
-    if (!s_ezsigntemplateformfieldgroup_defaultvalue) {
-        goto end;
-    }
-
-    
+    if (s_ezsigntemplateformfieldgroup_defaultvalue) { 
     if(!cJSON_IsString(s_ezsigntemplateformfieldgroup_defaultvalue))
     {
     goto end; //String
+    }
     }
 
     // ezsigntemplateformfieldgroup_get_object_v1_response_m_payload->i_ezsigntemplateformfieldgroup_filledmin
@@ -632,7 +628,7 @@ ezsigntemplateformfieldgroup_get_object_v1_response_m_payload_t *ezsigntemplatef
         e_ezsigntemplateformfieldgroup_signerrequirement_local_nonprim,
         strdup(s_ezsigntemplateformfieldgroup_label->valuestring),
         i_ezsigntemplateformfieldgroup_step->valuedouble,
-        strdup(s_ezsigntemplateformfieldgroup_defaultvalue->valuestring),
+        s_ezsigntemplateformfieldgroup_defaultvalue ? strdup(s_ezsigntemplateformfieldgroup_defaultvalue->valuestring) : NULL,
         i_ezsigntemplateformfieldgroup_filledmin->valuedouble,
         i_ezsigntemplateformfieldgroup_filledmax->valuedouble,
         b_ezsigntemplateformfieldgroup_readonly->valueint,

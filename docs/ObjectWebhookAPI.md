@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**ObjectWebhookAPI_webhookGetHistoryV1**](ObjectWebhookAPI.md#ObjectWebhookAPI_webhookGetHistoryV1) | **GET** /1/object/webhook/{pkiWebhookID}/getHistory | Retrieve the logs for recent Webhook calls
 [**ObjectWebhookAPI_webhookGetListV1**](ObjectWebhookAPI.md#ObjectWebhookAPI_webhookGetListV1) | **GET** /1/object/webhook/getList | Retrieve Webhook list
 [**ObjectWebhookAPI_webhookGetObjectV1**](ObjectWebhookAPI.md#ObjectWebhookAPI_webhookGetObjectV1) | **GET** /1/object/webhook/{pkiWebhookID} | Retrieve an existing Webhook
-[**ObjectWebhookAPI_webhookTestUrlV1**](ObjectWebhookAPI.md#ObjectWebhookAPI_webhookTestUrlV1) | **POST** /1/object/webhook/{pkiWebhookID}/test | Test the Webhook by calling the Url
+[**ObjectWebhookAPI_webhookTestV1**](ObjectWebhookAPI.md#ObjectWebhookAPI_webhookTestV1) | **POST** /1/object/webhook/{pkiWebhookID}/test | Test the Webhook by calling the Url
 
 
 # **ObjectWebhookAPI_webhookCreateObjectV1**
@@ -205,13 +205,13 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **ObjectWebhookAPI_webhookTestUrlV1**
+# **ObjectWebhookAPI_webhookTestV1**
 ```c
 // Test the Webhook by calling the Url
 //
 // 
 //
-webhook_test_v1_response_t* ObjectWebhookAPI_webhookTestUrlV1(apiClient_t *apiClient, int pkiWebhookID);
+webhook_test_v1_response_t* ObjectWebhookAPI_webhookTestV1(apiClient_t *apiClient, int pkiWebhookID, object_t * body);
 ```
 
 ### Parameters
@@ -219,6 +219,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **pkiWebhookID** | **int** |  | 
+**body** | **[object_t](object.md) \*** |  | 
 
 ### Return type
 
@@ -231,7 +232,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

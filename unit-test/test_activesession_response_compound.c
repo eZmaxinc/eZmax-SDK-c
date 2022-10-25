@@ -32,6 +32,7 @@ activesession_response_compound_t* instantiate_activesession_response_compound(i
       "Head Office",
       false,
       "demo",
+      28,
       list_createList(),
        // false, not to have infinite recursion
       instantiate_activesession_response_compound_user(0),
@@ -50,6 +51,7 @@ activesession_response_compound_t* instantiate_activesession_response_compound(i
       "Head Office",
       false,
       "demo",
+      28,
       list_createList(),
       NULL,
       NULL,

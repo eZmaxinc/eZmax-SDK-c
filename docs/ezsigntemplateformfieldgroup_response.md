@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **e_ezsigntemplateformfieldgroup_signerrequirement** | **field_e_ezsigntemplateformfieldgroup_signerrequirement_t \*** |  | 
 **s_ezsigntemplateformfieldgroup_label** | **char \*** | The Label for the Ezsigntemplateformfieldgroup | 
 **i_ezsigntemplateformfieldgroup_step** | **int** | The step when the Ezsigntemplatesigner will be invited to fill the form fields | 
-**s_ezsigntemplateformfieldgroup_defaultvalue** | **char \*** | The default value for the Ezsigntemplateformfieldgroup | 
+**s_ezsigntemplateformfieldgroup_defaultvalue** | **char \*** | The default value for the Ezsigntemplateformfieldgroup | [optional] 
 **i_ezsigntemplateformfieldgroup_filledmin** | **int** | The minimum number of Ezsigntemplateformfield that must be filled in the Ezsigntemplateformfieldgroup | 
 **i_ezsigntemplateformfieldgroup_filledmax** | **int** | The maximum number of Ezsigntemplateformfield that must be filled in the Ezsigntemplateformfieldgroup | 
 **b_ezsigntemplateformfieldgroup_readonly** | **int** | Whether the Ezsigntemplateformfieldgroup is read only or not. | 

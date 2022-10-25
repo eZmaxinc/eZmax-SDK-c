@@ -48,6 +48,7 @@ typedef struct activesession_response_compound_t {
     char *s_department_name_x; // string
     int b_activesession_debug; //boolean
     char *pks_customer_code; // string
+    int fki_systemconfigurationtype_id; //numeric
     list_t *a_pki_permission_id; //primitive container
     struct activesession_response_compound_user_t *obj_user_real; //model
     struct activesession_response_compound_user_t *obj_user_cloned; //model
@@ -64,6 +65,7 @@ activesession_response_compound_t *activesession_response_compound_create(
     char *s_department_name_x,
     int b_activesession_debug,
     char *pks_customer_code,
+    int fki_systemconfigurationtype_id,
     list_t *a_pki_permission_id,
     activesession_response_compound_user_t *obj_user_real,
     activesession_response_compound_user_t *obj_user_cloned,

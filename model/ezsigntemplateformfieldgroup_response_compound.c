@@ -228,11 +228,10 @@ cJSON *ezsigntemplateformfieldgroup_response_compound_convertToJSON(ezsigntempla
 
 
     // ezsigntemplateformfieldgroup_response_compound->s_ezsigntemplateformfieldgroup_defaultvalue
-    if (!ezsigntemplateformfieldgroup_response_compound->s_ezsigntemplateformfieldgroup_defaultvalue) {
-        goto fail;
-    }
+    if(ezsigntemplateformfieldgroup_response_compound->s_ezsigntemplateformfieldgroup_defaultvalue) {
     if(cJSON_AddStringToObject(item, "sEzsigntemplateformfieldgroupDefaultvalue", ezsigntemplateformfieldgroup_response_compound->s_ezsigntemplateformfieldgroup_defaultvalue) == NULL) {
     goto fail; //String
+    }
     }
 
 
@@ -467,14 +466,11 @@ ezsigntemplateformfieldgroup_response_compound_t *ezsigntemplateformfieldgroup_r
 
     // ezsigntemplateformfieldgroup_response_compound->s_ezsigntemplateformfieldgroup_defaultvalue
     cJSON *s_ezsigntemplateformfieldgroup_defaultvalue = cJSON_GetObjectItemCaseSensitive(ezsigntemplateformfieldgroup_response_compoundJSON, "sEzsigntemplateformfieldgroupDefaultvalue");
-    if (!s_ezsigntemplateformfieldgroup_defaultvalue) {
-        goto end;
-    }
-
-    
+    if (s_ezsigntemplateformfieldgroup_defaultvalue) { 
     if(!cJSON_IsString(s_ezsigntemplateformfieldgroup_defaultvalue))
     {
     goto end; //String
+    }
     }
 
     // ezsigntemplateformfieldgroup_response_compound->i_ezsigntemplateformfieldgroup_filledmin
@@ -632,7 +628,7 @@ ezsigntemplateformfieldgroup_response_compound_t *ezsigntemplateformfieldgroup_r
         e_ezsigntemplateformfieldgroup_signerrequirement_local_nonprim,
         strdup(s_ezsigntemplateformfieldgroup_label->valuestring),
         i_ezsigntemplateformfieldgroup_step->valuedouble,
-        strdup(s_ezsigntemplateformfieldgroup_defaultvalue->valuestring),
+        s_ezsigntemplateformfieldgroup_defaultvalue ? strdup(s_ezsigntemplateformfieldgroup_defaultvalue->valuestring) : NULL,
         i_ezsigntemplateformfieldgroup_filledmin->valuedouble,
         i_ezsigntemplateformfieldgroup_filledmax->valuedouble,
         b_ezsigntemplateformfieldgroup_readonly->valueint,

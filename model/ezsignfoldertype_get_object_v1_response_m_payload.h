@@ -79,6 +79,8 @@ typedef struct ezsignfoldertype_get_object_v1_response_m_payload_t {
     int b_ezsignfoldertype_sendsummarytofullgroup; //boolean
     int b_ezsignfoldertype_sendsummarytolimitedgroup; //boolean
     int b_ezsignfoldertype_sendsummarytocolleague; //boolean
+    int b_ezsignfoldertype_includeproofsigner; //boolean
+    int b_ezsignfoldertype_includeproofuser; //boolean
     int b_ezsignfoldertype_isactive; //boolean
     list_t *a_fki_user_id_signed; //primitive container
     list_t *a_fki_user_id_summary; //primitive container
@@ -117,6 +119,8 @@ ezsignfoldertype_get_object_v1_response_m_payload_t *ezsignfoldertype_get_object
     int b_ezsignfoldertype_sendsummarytofullgroup,
     int b_ezsignfoldertype_sendsummarytolimitedgroup,
     int b_ezsignfoldertype_sendsummarytocolleague,
+    int b_ezsignfoldertype_includeproofsigner,
+    int b_ezsignfoldertype_includeproofuser,
     int b_ezsignfoldertype_isactive,
     list_t *a_fki_user_id_signed,
     list_t *a_fki_user_id_summary

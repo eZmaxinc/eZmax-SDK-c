@@ -78,6 +78,8 @@ typedef struct ezsignfoldertype_response_t {
     int b_ezsignfoldertype_sendsummarytofullgroup; //boolean
     int b_ezsignfoldertype_sendsummarytolimitedgroup; //boolean
     int b_ezsignfoldertype_sendsummarytocolleague; //boolean
+    int b_ezsignfoldertype_includeproofsigner; //boolean
+    int b_ezsignfoldertype_includeproofuser; //boolean
     int b_ezsignfoldertype_isactive; //boolean
 
 } ezsignfoldertype_response_t;
@@ -114,6 +116,8 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_create(
     int b_ezsignfoldertype_sendsummarytofullgroup,
     int b_ezsignfoldertype_sendsummarytolimitedgroup,
     int b_ezsignfoldertype_sendsummarytocolleague,
+    int b_ezsignfoldertype_includeproofsigner,
+    int b_ezsignfoldertype_includeproofuser,
     int b_ezsignfoldertype_isactive
 );
 

@@ -56,6 +56,8 @@ ezsignfoldertype_get_object_v1_response_m_payload_t* instantiate_ezsignfoldertyp
       false,
       false,
       true,
+      true,
+      true,
       list_createList(),
       list_createList()
     );
@@ -92,6 +94,8 @@ ezsignfoldertype_get_object_v1_response_m_payload_t* instantiate_ezsignfoldertyp
       false,
       false,
       false,
+      true,
+      true,
       true,
       list_createList(),
       list_createList()

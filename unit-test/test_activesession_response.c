@@ -28,7 +28,8 @@ activesession_response_t* instantiate_activesession_response(int include_optiona
       "Acme inc.",
       "Head Office",
       false,
-      "demo"
+      "demo",
+      28
     );
   } else {
     activesession_response = activesession_response_create(
@@ -38,7 +39,8 @@ activesession_response_t* instantiate_activesession_response(int include_optiona
       "Acme inc.",
       "Head Office",
       false,
-      "demo"
+      "demo",
+      28
     );
   }
 

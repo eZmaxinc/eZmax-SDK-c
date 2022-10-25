@@ -47,6 +47,7 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
     char *s_department_name_x,
     int b_activesession_debug,
     char *pks_customer_code,
+    int fki_systemconfigurationtype_id,
     list_t *a_pki_permission_id,
     activesession_response_compound_user_t *obj_user_real,
     activesession_response_compound_user_t *obj_user_cloned,
@@ -64,6 +65,7 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
     activesession_get_current_v1_response_m_payload_local_var->s_department_name_x = s_department_name_x;
     activesession_get_current_v1_response_m_payload_local_var->b_activesession_debug = b_activesession_debug;
     activesession_get_current_v1_response_m_payload_local_var->pks_customer_code = pks_customer_code;
+    activesession_get_current_v1_response_m_payload_local_var->fki_systemconfigurationtype_id = fki_systemconfigurationtype_id;
     activesession_get_current_v1_response_m_payload_local_var->a_pki_permission_id = a_pki_permission_id;
     activesession_get_current_v1_response_m_payload_local_var->obj_user_real = obj_user_real;
     activesession_get_current_v1_response_m_payload_local_var->obj_user_cloned = obj_user_cloned;
@@ -201,6 +203,14 @@ cJSON *activesession_get_current_v1_response_m_payload_convertToJSON(activesessi
     }
     if(cJSON_AddStringToObject(item, "pksCustomerCode", activesession_get_current_v1_response_m_payload->pks_customer_code) == NULL) {
     goto fail; //String
+    }
+
+
+    // activesession_get_current_v1_response_m_payload->fki_systemconfigurationtype_id
+    if(activesession_get_current_v1_response_m_payload->fki_systemconfigurationtype_id) {
+    if(cJSON_AddNumberToObject(item, "fkiSystemconfigurationtypeID", activesession_get_current_v1_response_m_payload->fki_systemconfigurationtype_id) == NULL) {
+    goto fail; //Numeric
+    }
     }
 
 
@@ -390,6 +400,15 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
     goto end; //String
     }
 
+    // activesession_get_current_v1_response_m_payload->fki_systemconfigurationtype_id
+    cJSON *fki_systemconfigurationtype_id = cJSON_GetObjectItemCaseSensitive(activesession_get_current_v1_response_m_payloadJSON, "fkiSystemconfigurationtypeID");
+    if (fki_systemconfigurationtype_id) { 
+    if(!cJSON_IsNumber(fki_systemconfigurationtype_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
     // activesession_get_current_v1_response_m_payload->a_pki_permission_id
     cJSON *a_pki_permission_id = cJSON_GetObjectItemCaseSensitive(activesession_get_current_v1_response_m_payloadJSON, "a_pkiPermissionID");
     if (!a_pki_permission_id) {
@@ -470,6 +489,7 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
         strdup(s_department_name_x->valuestring),
         b_activesession_debug->valueint,
         strdup(pks_customer_code->valuestring),
+        fki_systemconfigurationtype_id ? fki_systemconfigurationtype_id->valuedouble : 0,
         a_pki_permission_idList,
         obj_user_real_local_nonprim,
         obj_user_cloned ? obj_user_cloned_local_nonprim : NULL,

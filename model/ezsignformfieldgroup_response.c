@@ -201,11 +201,10 @@ cJSON *ezsignformfieldgroup_response_convertToJSON(ezsignformfieldgroup_response
 
 
     // ezsignformfieldgroup_response->s_ezsignformfieldgroup_defaultvalue
-    if (!ezsignformfieldgroup_response->s_ezsignformfieldgroup_defaultvalue) {
-        goto fail;
-    }
+    if(ezsignformfieldgroup_response->s_ezsignformfieldgroup_defaultvalue) {
     if(cJSON_AddStringToObject(item, "sEzsignformfieldgroupDefaultvalue", ezsignformfieldgroup_response->s_ezsignformfieldgroup_defaultvalue) == NULL) {
     goto fail; //String
+    }
     }
 
 
@@ -369,14 +368,11 @@ ezsignformfieldgroup_response_t *ezsignformfieldgroup_response_parseFromJSON(cJS
 
     // ezsignformfieldgroup_response->s_ezsignformfieldgroup_defaultvalue
     cJSON *s_ezsignformfieldgroup_defaultvalue = cJSON_GetObjectItemCaseSensitive(ezsignformfieldgroup_responseJSON, "sEzsignformfieldgroupDefaultvalue");
-    if (!s_ezsignformfieldgroup_defaultvalue) {
-        goto end;
-    }
-
-    
+    if (s_ezsignformfieldgroup_defaultvalue) { 
     if(!cJSON_IsString(s_ezsignformfieldgroup_defaultvalue))
     {
     goto end; //String
+    }
     }
 
     // ezsignformfieldgroup_response->i_ezsignformfieldgroup_filledmin
@@ -465,7 +461,7 @@ ezsignformfieldgroup_response_t *ezsignformfieldgroup_response_parseFromJSON(cJS
         e_ezsignformfieldgroup_signerrequirement_local_nonprim,
         strdup(s_ezsignformfieldgroup_label->valuestring),
         i_ezsignformfieldgroup_step->valuedouble,
-        strdup(s_ezsignformfieldgroup_defaultvalue->valuestring),
+        s_ezsignformfieldgroup_defaultvalue ? strdup(s_ezsignformfieldgroup_defaultvalue->valuestring) : NULL,
         i_ezsignformfieldgroup_filledmin->valuedouble,
         i_ezsignformfieldgroup_filledmax->valuedouble,
         b_ezsignformfieldgroup_readonly->valueint,

@@ -7,6 +7,7 @@
 #include "../include/binary.h"
 #include "../model/common_get_autocomplete_disabled_v1_response.h"
 #include "../model/common_response_error.h"
+#include "../model/ezsigntsarequirement_get_autocomplete_v2_response.h"
 #include "../model/header_accept_language.h"
 
 // Enum SSELECTOR for ObjectEzsigntsarequirementAPI_ezsigntsarequirementGetAutocompleteV1
@@ -18,6 +19,15 @@ typedef enum  { ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV1
 // Enum  for ObjectEzsigntsarequirementAPI_ezsigntsarequirementGetAutocompleteV1
 typedef enum  { ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV1__NULL = 0, ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV1__*, ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV1__en, ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV1__fr } ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV1_Accept-Language_e;
 
+// Enum SSELECTOR for ObjectEzsigntsarequirementAPI_ezsigntsarequirementGetAutocompleteV2
+typedef enum  { ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV2_SSELECTOR_NULL = 0, ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV2_SSELECTOR_User, ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV2_SSELECTOR_Usergroup } ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV2_sSelector_e;
+
+// Enum EFILTERACTIVE for ObjectEzsigntsarequirementAPI_ezsigntsarequirementGetAutocompleteV2
+typedef enum  { ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV2_EFILTERACTIVE_NULL = 0, ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV2_EFILTERACTIVE_All, ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV2_EFILTERACTIVE_Active, ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV2_EFILTERACTIVE_Inactive } ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV2_eFilterActive_e;
+
+// Enum  for ObjectEzsigntsarequirementAPI_ezsigntsarequirementGetAutocompleteV2
+typedef enum  { ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV2__NULL = 0, ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV2__*, ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV2__en, ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV2__fr } ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV2_Accept-Language_e;
+
 
 // Retrieve Ezsigntsarequirements and IDs
 //
@@ -25,5 +35,13 @@ typedef enum  { ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV1
 //
 common_get_autocomplete_disabled_v1_response_t*
 ObjectEzsigntsarequirementAPI_ezsigntsarequirementGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV1_sSelector_e sSelector , int fkiEzsignfoldertypeID , ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV1_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language );
+
+
+// Retrieve Ezsigntsarequirements and IDs
+//
+// Get the list of Ezsigntsarequirement to be used in a dropdown or autocomplete control.
+//
+ezsigntsarequirement_get_autocomplete_v2_response_t*
+ObjectEzsigntsarequirementAPI_ezsigntsarequirementGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV2_sSelector_e sSelector , int fkiEzsignfoldertypeID , ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV2_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language );
 
 

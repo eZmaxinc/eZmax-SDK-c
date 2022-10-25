@@ -4,12 +4,30 @@
 #include "ezsignbulksend_get_object_v1_response_m_payload.h"
 
 
+char* e_ezsignfoldertype_privacylevelezsignbulksend_get_object_v1_response_m_payload_ToString(ezmax_api_definition__full_ezsignbulksend_get_object_v1_response_m_payload__e e_ezsignfoldertype_privacylevel) {
+    char* e_ezsignfoldertype_privacylevelArray[] =  { "NULL", "User", "Usergroup" };
+	return e_ezsignfoldertype_privacylevelArray[e_ezsignfoldertype_privacylevel];
+}
+
+ezmax_api_definition__full_ezsignbulksend_get_object_v1_response_m_payload__e e_ezsignfoldertype_privacylevelezsignbulksend_get_object_v1_response_m_payload_FromString(char* e_ezsignfoldertype_privacylevel){
+    int stringToReturn = 0;
+    char *e_ezsignfoldertype_privacylevelArray[] =  { "NULL", "User", "Usergroup" };
+    size_t sizeofArray = sizeof(e_ezsignfoldertype_privacylevelArray) / sizeof(e_ezsignfoldertype_privacylevelArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(e_ezsignfoldertype_privacylevel, e_ezsignfoldertype_privacylevelArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
 
 ezsignbulksend_get_object_v1_response_m_payload_t *ezsignbulksend_get_object_v1_response_m_payload_create(
     int pki_ezsignbulksend_id,
     int fki_ezsignfoldertype_id,
     int fki_language_id,
     char *s_language_name_x,
+    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel,
     char *s_ezsignfoldertype_name_x,
     char *s_ezsignbulksend_description,
     char *t_ezsignbulksend_note,
@@ -27,6 +45,7 @@ ezsignbulksend_get_object_v1_response_m_payload_t *ezsignbulksend_get_object_v1_
     ezsignbulksend_get_object_v1_response_m_payload_local_var->fki_ezsignfoldertype_id = fki_ezsignfoldertype_id;
     ezsignbulksend_get_object_v1_response_m_payload_local_var->fki_language_id = fki_language_id;
     ezsignbulksend_get_object_v1_response_m_payload_local_var->s_language_name_x = s_language_name_x;
+    ezsignbulksend_get_object_v1_response_m_payload_local_var->e_ezsignfoldertype_privacylevel = e_ezsignfoldertype_privacylevel;
     ezsignbulksend_get_object_v1_response_m_payload_local_var->s_ezsignfoldertype_name_x = s_ezsignfoldertype_name_x;
     ezsignbulksend_get_object_v1_response_m_payload_local_var->s_ezsignbulksend_description = s_ezsignbulksend_description;
     ezsignbulksend_get_object_v1_response_m_payload_local_var->t_ezsignbulksend_note = t_ezsignbulksend_note;
@@ -48,6 +67,10 @@ void ezsignbulksend_get_object_v1_response_m_payload_free(ezsignbulksend_get_obj
     if (ezsignbulksend_get_object_v1_response_m_payload->s_language_name_x) {
         free(ezsignbulksend_get_object_v1_response_m_payload->s_language_name_x);
         ezsignbulksend_get_object_v1_response_m_payload->s_language_name_x = NULL;
+    }
+    if (ezsignbulksend_get_object_v1_response_m_payload->e_ezsignfoldertype_privacylevel) {
+        field_e_ezsignfoldertype_privacylevel_free(ezsignbulksend_get_object_v1_response_m_payload->e_ezsignfoldertype_privacylevel);
+        ezsignbulksend_get_object_v1_response_m_payload->e_ezsignfoldertype_privacylevel = NULL;
     }
     if (ezsignbulksend_get_object_v1_response_m_payload->s_ezsignfoldertype_name_x) {
         free(ezsignbulksend_get_object_v1_response_m_payload->s_ezsignfoldertype_name_x);
@@ -118,6 +141,20 @@ cJSON *ezsignbulksend_get_object_v1_response_m_payload_convertToJSON(ezsignbulks
     }
     if(cJSON_AddStringToObject(item, "sLanguageNameX", ezsignbulksend_get_object_v1_response_m_payload->s_language_name_x) == NULL) {
     goto fail; //String
+    }
+
+
+    // ezsignbulksend_get_object_v1_response_m_payload->e_ezsignfoldertype_privacylevel
+    if (ezmax_api_definition__full_ezsignbulksend_get_object_v1_response_m_payload__NULL == ezsignbulksend_get_object_v1_response_m_payload->e_ezsignfoldertype_privacylevel) {
+        goto fail;
+    }
+    cJSON *e_ezsignfoldertype_privacylevel_local_JSON = field_e_ezsignfoldertype_privacylevel_convertToJSON(ezsignbulksend_get_object_v1_response_m_payload->e_ezsignfoldertype_privacylevel);
+    if(e_ezsignfoldertype_privacylevel_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsignfoldertypePrivacylevel", e_ezsignfoldertype_privacylevel_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
     }
 
 
@@ -233,6 +270,9 @@ ezsignbulksend_get_object_v1_response_m_payload_t *ezsignbulksend_get_object_v1_
 
     ezsignbulksend_get_object_v1_response_m_payload_t *ezsignbulksend_get_object_v1_response_m_payload_local_var = NULL;
 
+    // define the local variable for ezsignbulksend_get_object_v1_response_m_payload->e_ezsignfoldertype_privacylevel
+    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel_local_nonprim = NULL;
+
     // define the local variable for ezsignbulksend_get_object_v1_response_m_payload->obj_audit
     common_audit_t *obj_audit_local_nonprim = NULL;
 
@@ -289,6 +329,15 @@ ezsignbulksend_get_object_v1_response_m_payload_t *ezsignbulksend_get_object_v1_
     {
     goto end; //String
     }
+
+    // ezsignbulksend_get_object_v1_response_m_payload->e_ezsignfoldertype_privacylevel
+    cJSON *e_ezsignfoldertype_privacylevel = cJSON_GetObjectItemCaseSensitive(ezsignbulksend_get_object_v1_response_m_payloadJSON, "eEzsignfoldertypePrivacylevel");
+    if (!e_ezsignfoldertype_privacylevel) {
+        goto end;
+    }
+
+    
+    e_ezsignfoldertype_privacylevel_local_nonprim = field_e_ezsignfoldertype_privacylevel_parseFromJSON(e_ezsignfoldertype_privacylevel); //custom
 
     // ezsignbulksend_get_object_v1_response_m_payload->s_ezsignfoldertype_name_x
     cJSON *s_ezsignfoldertype_name_x = cJSON_GetObjectItemCaseSensitive(ezsignbulksend_get_object_v1_response_m_payloadJSON, "sEzsignfoldertypeNameX");
@@ -413,6 +462,7 @@ ezsignbulksend_get_object_v1_response_m_payload_t *ezsignbulksend_get_object_v1_
         fki_ezsignfoldertype_id->valuedouble,
         fki_language_id->valuedouble,
         strdup(s_language_name_x->valuestring),
+        e_ezsignfoldertype_privacylevel_local_nonprim,
         strdup(s_ezsignfoldertype_name_x->valuestring),
         strdup(s_ezsignbulksend_description->valuestring),
         strdup(t_ezsignbulksend_note->valuestring),
@@ -425,6 +475,10 @@ ezsignbulksend_get_object_v1_response_m_payload_t *ezsignbulksend_get_object_v1_
 
     return ezsignbulksend_get_object_v1_response_m_payload_local_var;
 end:
+    if (e_ezsignfoldertype_privacylevel_local_nonprim) {
+        field_e_ezsignfoldertype_privacylevel_free(e_ezsignfoldertype_privacylevel_local_nonprim);
+        e_ezsignfoldertype_privacylevel_local_nonprim = NULL;
+    }
     if (obj_audit_local_nonprim) {
         common_audit_free(obj_audit_local_nonprim);
         obj_audit_local_nonprim = NULL;

@@ -81,11 +81,10 @@ cJSON *ezsigntemplateformfield_response_compound_convertToJSON(ezsigntemplatefor
 
 
     // ezsigntemplateformfield_response_compound->s_ezsigntemplateformfield_value
-    if (!ezsigntemplateformfield_response_compound->s_ezsigntemplateformfield_value) {
-        goto fail;
-    }
+    if(ezsigntemplateformfield_response_compound->s_ezsigntemplateformfield_value) {
     if(cJSON_AddStringToObject(item, "sEzsigntemplateformfieldValue", ezsigntemplateformfield_response_compound->s_ezsigntemplateformfield_value) == NULL) {
     goto fail; //String
+    }
     }
 
 
@@ -182,14 +181,11 @@ ezsigntemplateformfield_response_compound_t *ezsigntemplateformfield_response_co
 
     // ezsigntemplateformfield_response_compound->s_ezsigntemplateformfield_value
     cJSON *s_ezsigntemplateformfield_value = cJSON_GetObjectItemCaseSensitive(ezsigntemplateformfield_response_compoundJSON, "sEzsigntemplateformfieldValue");
-    if (!s_ezsigntemplateformfield_value) {
-        goto end;
-    }
-
-    
+    if (s_ezsigntemplateformfield_value) { 
     if(!cJSON_IsString(s_ezsigntemplateformfield_value))
     {
     goto end; //String
+    }
     }
 
     // ezsigntemplateformfield_response_compound->i_ezsigntemplateformfield_x
@@ -254,7 +250,7 @@ ezsigntemplateformfield_response_compound_t *ezsigntemplateformfield_response_co
         pki_ezsigntemplateformfield_id->valuedouble,
         i_ezsigntemplatedocumentpage_pagenumber->valuedouble,
         strdup(s_ezsigntemplateformfield_label->valuestring),
-        strdup(s_ezsigntemplateformfield_value->valuestring),
+        s_ezsigntemplateformfield_value ? strdup(s_ezsigntemplateformfield_value->valuestring) : NULL,
         i_ezsigntemplateformfield_x->valuedouble,
         i_ezsigntemplateformfield_y->valuedouble,
         i_ezsigntemplateformfield_width->valuedouble,

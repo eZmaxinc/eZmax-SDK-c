@@ -29,6 +29,8 @@ Name | Type | Description | Notes
 **b_ezsignfoldertype_sendsummarytofullgroup** | **int** | Whether we send the summary to the Usergroup that has acces to all Ezsignfolders | [optional] 
 **b_ezsignfoldertype_sendsummarytolimitedgroup** | **int** | Whether we send the summary to the Usergroup that has acces to only their own Ezsignfolders | [optional] 
 **b_ezsignfoldertype_sendsummarytocolleague** | **int** | Whether we send the summary to the colleagues | 
+**b_ezsignfoldertype_includeproofsigner** | **int** | Whether we include the proof with the signed Ezsigndocument for Ezsignsigners | 
+**b_ezsignfoldertype_includeproofuser** | **int** | Whether we include the proof with the signed Ezsigndocument for users | 
 **b_ezsignfoldertype_isactive** | **int** | Whether the Ezsignfoldertype is active or not | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,0 +1,32 @@
+/*
+ * field_e_ezmaxinvoicinguser_variationezsign.h
+ *
+ * The variation type for eZsign
+ */
+
+#ifndef _field_e_ezmaxinvoicinguser_variationezsign_H_
+#define _field_e_ezmaxinvoicinguser_variationezsign_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_ezmaxinvoicinguser_variationezsign_t field_e_ezmaxinvoicinguser_variationezsign_t;
+
+
+// Enum  for field_e_ezmaxinvoicinguser_variationezsign
+
+typedef enum { ezmax_api_definition__full_field_e_ezmaxinvoicinguser_variationezsign__NULL = 0, ezmax_api_definition__full_field_e_ezmaxinvoicinguser_variationezsign__Charge, ezmax_api_definition__full_field_e_ezmaxinvoicinguser_variationezsign__Refund, ezmax_api_definition__full_field_e_ezmaxinvoicinguser_variationezsign__Same } ezmax_api_definition__full_field_e_ezmaxinvoicinguser_variationezsign__e;
+
+char* field_e_ezmaxinvoicinguser_variationezsign_field_e_ezmaxinvoicinguser_variationezsign_ToString(ezmax_api_definition__full_field_e_ezmaxinvoicinguser_variationezsign__e field_e_ezmaxinvoicinguser_variationezsign);
+
+ezmax_api_definition__full_field_e_ezmaxinvoicinguser_variationezsign__e field_e_ezmaxinvoicinguser_variationezsign_field_e_ezmaxinvoicinguser_variationezsign_FromString(char* field_e_ezmaxinvoicinguser_variationezsign);
+
+//cJSON *field_e_ezmaxinvoicinguser_variationezsign_field_e_ezmaxinvoicinguser_variationezsign_convertToJSON(ezmax_api_definition__full_field_e_ezmaxinvoicinguser_variationezsign__e field_e_ezmaxinvoicinguser_variationezsign);
+
+//ezmax_api_definition__full_field_e_ezmaxinvoicinguser_variationezsign__e field_e_ezmaxinvoicinguser_variationezsign_field_e_ezmaxinvoicinguser_variationezsign_parseFromJSON(cJSON *field_e_ezmaxinvoicinguser_variationezsignJSON);
+
+#endif /* _field_e_ezmaxinvoicinguser_variationezsign_H_ */
+

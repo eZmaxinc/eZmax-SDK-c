@@ -81,11 +81,10 @@ cJSON *ezsigntemplateformfield_response_convertToJSON(ezsigntemplateformfield_re
 
 
     // ezsigntemplateformfield_response->s_ezsigntemplateformfield_value
-    if (!ezsigntemplateformfield_response->s_ezsigntemplateformfield_value) {
-        goto fail;
-    }
+    if(ezsigntemplateformfield_response->s_ezsigntemplateformfield_value) {
     if(cJSON_AddStringToObject(item, "sEzsigntemplateformfieldValue", ezsigntemplateformfield_response->s_ezsigntemplateformfield_value) == NULL) {
     goto fail; //String
+    }
     }
 
 
@@ -182,14 +181,11 @@ ezsigntemplateformfield_response_t *ezsigntemplateformfield_response_parseFromJS
 
     // ezsigntemplateformfield_response->s_ezsigntemplateformfield_value
     cJSON *s_ezsigntemplateformfield_value = cJSON_GetObjectItemCaseSensitive(ezsigntemplateformfield_responseJSON, "sEzsigntemplateformfieldValue");
-    if (!s_ezsigntemplateformfield_value) {
-        goto end;
-    }
-
-    
+    if (s_ezsigntemplateformfield_value) { 
     if(!cJSON_IsString(s_ezsigntemplateformfield_value))
     {
     goto end; //String
+    }
     }
 
     // ezsigntemplateformfield_response->i_ezsigntemplateformfield_x
@@ -254,7 +250,7 @@ ezsigntemplateformfield_response_t *ezsigntemplateformfield_response_parseFromJS
         pki_ezsigntemplateformfield_id->valuedouble,
         i_ezsigntemplatedocumentpage_pagenumber->valuedouble,
         strdup(s_ezsigntemplateformfield_label->valuestring),
-        strdup(s_ezsigntemplateformfield_value->valuestring),
+        s_ezsigntemplateformfield_value ? strdup(s_ezsigntemplateformfield_value->valuestring) : NULL,
         i_ezsigntemplateformfield_x->valuedouble,
         i_ezsigntemplateformfield_y->valuedouble,
         i_ezsigntemplateformfield_width->valuedouble,

@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**ObjectEzsignfoldertypeAPI_ezsignfoldertypeCreateObjectV1**](ObjectEzsignfoldertypeAPI.md#ObjectEzsignfoldertypeAPI_ezsignfoldertypeCreateObjectV1) | **POST** /1/object/ezsignfoldertype | Create a new Ezsignfoldertype
 [**ObjectEzsignfoldertypeAPI_ezsignfoldertypeEditObjectV1**](ObjectEzsignfoldertypeAPI.md#ObjectEzsignfoldertypeAPI_ezsignfoldertypeEditObjectV1) | **PUT** /1/object/ezsignfoldertype/{pkiEzsignfoldertypeID} | Edit an existing Ezsignfoldertype
 [**ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV1**](ObjectEzsignfoldertypeAPI.md#ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV1) | **GET** /1/object/ezsignfoldertype/getAutocomplete/{sSelector} | Retrieve Ezsignfoldertypes and IDs
+[**ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV2**](ObjectEzsignfoldertypeAPI.md#ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV2) | **GET** /2/object/ezsignfoldertype/getAutocomplete/{sSelector} | Retrieve Ezsignfoldertypes and IDs
 [**ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1**](ObjectEzsignfoldertypeAPI.md#ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1) | **GET** /1/object/ezsignfoldertype/getList | Retrieve Ezsignfoldertype list
 [**ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetObjectV1**](ObjectEzsignfoldertypeAPI.md#ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetObjectV1) | **GET** /1/object/ezsignfoldertype/{pkiEzsignfoldertypeID} | Retrieve an existing Ezsignfoldertype
 
@@ -95,6 +96,40 @@ Name | Type | Description  | Notes
 ### Return type
 
 [common_get_autocomplete_v1_response_t](common_get_autocomplete_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV2**
+```c
+// Retrieve Ezsignfoldertypes and IDs
+//
+// Get the list of Ezsignfoldertype to be used in a dropdown or autocomplete control.
+//
+ezsignfoldertype_get_autocomplete_v2_response_t* ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV2_eFilterActive_e eFilterActive, char * sQuery, header_accept_language_e Accept_Language);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**sSelector** | **ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV2_sSelector_e** | The type of Ezsignfoldertypes to return | 
+**eFilterActive** | **ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV2_eFilterActive_e** | Specify which results we want to display. | [optional] [default to &#39;Active&#39;]
+**sQuery** | **char \*** | Allow to filter the returned results | [optional] 
+**Accept_Language** | **header_accept_language_e** |  | [optional] 
+
+### Return type
+
+[ezsignfoldertype_get_autocomplete_v2_response_t](ezsignfoldertype_get_autocomplete_v2_response.md) *
 
 
 ### Authorization

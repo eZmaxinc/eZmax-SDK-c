@@ -17,13 +17,14 @@ typedef struct ezsigntemplatesignature_get_object_v1_response_m_payload_t ezsign
 
 #include "ezsigntemplatesignature_response_compound.h"
 #include "ezsigntemplatesignaturecustomdate_response_compound.h"
+#include "field_e_ezsigntemplatesignature_attachmentnamesource.h"
 #include "field_e_ezsigntemplatesignature_font.h"
 #include "field_e_ezsigntemplatesignature_tooltipposition.h"
 #include "field_e_ezsigntemplatesignature_type.h"
 
 // Enum  for ezsigntemplatesignature_get_object_v1_response_m_payload
 
-typedef enum  { ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__NULL = 0, ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__Acknowledgement, ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__City, ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__Handwritten, ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__Initials, ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__Name } ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__e;
+typedef enum  { ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__NULL = 0, ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__Acknowledgement, ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__City, ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__Handwritten, ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__Initials, ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__Name, ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__Attachments } ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__e;
 
 char* ezsigntemplatesignature_get_object_v1_response_m_payload_e_ezsigntemplatesignature_type_ToString(ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__e e_ezsigntemplatesignature_type);
 
@@ -45,12 +46,21 @@ char* ezsigntemplatesignature_get_object_v1_response_m_payload_e_ezsigntemplates
 
 ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__e ezsigntemplatesignature_get_object_v1_response_m_payload_e_ezsigntemplatesignature_font_FromString(char* e_ezsigntemplatesignature_font);
 
+// Enum  for ezsigntemplatesignature_get_object_v1_response_m_payload
+
+typedef enum  { ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__NULL = 0, ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__Description, ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__Customer, ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__DescriptionCustomer } ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__e;
+
+char* ezsigntemplatesignature_get_object_v1_response_m_payload_e_ezsigntemplatesignature_attachmentnamesource_ToString(ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__e e_ezsigntemplatesignature_attachmentnamesource);
+
+ezmax_api_definition__full_ezsigntemplatesignature_get_object_v1_response_m_payload__e ezsigntemplatesignature_get_object_v1_response_m_payload_e_ezsigntemplatesignature_attachmentnamesource_FromString(char* e_ezsigntemplatesignature_attachmentnamesource);
+
 
 
 typedef struct ezsigntemplatesignature_get_object_v1_response_m_payload_t {
     int pki_ezsigntemplatesignature_id; //numeric
     int fki_ezsigntemplatedocument_id; //numeric
     int fki_ezsigntemplatesigner_id; //numeric
+    int fki_ezsigntemplatesigner_id_validation; //numeric
     int i_ezsigntemplatedocumentpage_pagenumber; //numeric
     int i_ezsigntemplatesignature_x; //numeric
     int i_ezsigntemplatesignature_y; //numeric
@@ -59,6 +69,10 @@ typedef struct ezsigntemplatesignature_get_object_v1_response_m_payload_t {
     char *t_ezsigntemplatesignature_tooltip; // string
     field_e_ezsigntemplatesignature_tooltipposition_t *e_ezsigntemplatesignature_tooltipposition; // custom
     field_e_ezsigntemplatesignature_font_t *e_ezsigntemplatesignature_font; // custom
+    int i_ezsigntemplatesignature_validationstep; //numeric
+    char *s_ezsigntemplatesignature_attachmentdescription; // string
+    field_e_ezsigntemplatesignature_attachmentnamesource_t *e_ezsigntemplatesignature_attachmentnamesource; // custom
+    int b_ezsigntemplatesignature_required; //boolean
     int b_ezsigntemplatesignature_customdate; //boolean
     list_t *a_obj_ezsigntemplatesignaturecustomdate; //nonprimitive container
 
@@ -68,6 +82,7 @@ ezsigntemplatesignature_get_object_v1_response_m_payload_t *ezsigntemplatesignat
     int pki_ezsigntemplatesignature_id,
     int fki_ezsigntemplatedocument_id,
     int fki_ezsigntemplatesigner_id,
+    int fki_ezsigntemplatesigner_id_validation,
     int i_ezsigntemplatedocumentpage_pagenumber,
     int i_ezsigntemplatesignature_x,
     int i_ezsigntemplatesignature_y,
@@ -76,6 +91,10 @@ ezsigntemplatesignature_get_object_v1_response_m_payload_t *ezsigntemplatesignat
     char *t_ezsigntemplatesignature_tooltip,
     field_e_ezsigntemplatesignature_tooltipposition_t *e_ezsigntemplatesignature_tooltipposition,
     field_e_ezsigntemplatesignature_font_t *e_ezsigntemplatesignature_font,
+    int i_ezsigntemplatesignature_validationstep,
+    char *s_ezsigntemplatesignature_attachmentdescription,
+    field_e_ezsigntemplatesignature_attachmentnamesource_t *e_ezsigntemplatesignature_attachmentnamesource,
+    int b_ezsigntemplatesignature_required,
     int b_ezsigntemplatesignature_customdate,
     list_t *a_obj_ezsigntemplatesignaturecustomdate
 );

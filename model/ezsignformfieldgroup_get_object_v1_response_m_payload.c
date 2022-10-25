@@ -228,11 +228,10 @@ cJSON *ezsignformfieldgroup_get_object_v1_response_m_payload_convertToJSON(ezsig
 
 
     // ezsignformfieldgroup_get_object_v1_response_m_payload->s_ezsignformfieldgroup_defaultvalue
-    if (!ezsignformfieldgroup_get_object_v1_response_m_payload->s_ezsignformfieldgroup_defaultvalue) {
-        goto fail;
-    }
+    if(ezsignformfieldgroup_get_object_v1_response_m_payload->s_ezsignformfieldgroup_defaultvalue) {
     if(cJSON_AddStringToObject(item, "sEzsignformfieldgroupDefaultvalue", ezsignformfieldgroup_get_object_v1_response_m_payload->s_ezsignformfieldgroup_defaultvalue) == NULL) {
     goto fail; //String
+    }
     }
 
 
@@ -467,14 +466,11 @@ ezsignformfieldgroup_get_object_v1_response_m_payload_t *ezsignformfieldgroup_ge
 
     // ezsignformfieldgroup_get_object_v1_response_m_payload->s_ezsignformfieldgroup_defaultvalue
     cJSON *s_ezsignformfieldgroup_defaultvalue = cJSON_GetObjectItemCaseSensitive(ezsignformfieldgroup_get_object_v1_response_m_payloadJSON, "sEzsignformfieldgroupDefaultvalue");
-    if (!s_ezsignformfieldgroup_defaultvalue) {
-        goto end;
-    }
-
-    
+    if (s_ezsignformfieldgroup_defaultvalue) { 
     if(!cJSON_IsString(s_ezsignformfieldgroup_defaultvalue))
     {
     goto end; //String
+    }
     }
 
     // ezsignformfieldgroup_get_object_v1_response_m_payload->i_ezsignformfieldgroup_filledmin
@@ -632,7 +628,7 @@ ezsignformfieldgroup_get_object_v1_response_m_payload_t *ezsignformfieldgroup_ge
         e_ezsignformfieldgroup_signerrequirement_local_nonprim,
         strdup(s_ezsignformfieldgroup_label->valuestring),
         i_ezsignformfieldgroup_step->valuedouble,
-        strdup(s_ezsignformfieldgroup_defaultvalue->valuestring),
+        s_ezsignformfieldgroup_defaultvalue ? strdup(s_ezsignformfieldgroup_defaultvalue->valuestring) : NULL,
         i_ezsignformfieldgroup_filledmin->valuedouble,
         i_ezsignformfieldgroup_filledmax->valuedouble,
         b_ezsignformfieldgroup_readonly->valueint,

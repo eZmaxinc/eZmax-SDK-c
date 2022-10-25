@@ -12,6 +12,7 @@ ezsigntemplate_list_element_t *ezsigntemplate_list_element_create(
     char *s_ezsigntemplate_description,
     int i_ezsigntemplatedocument_pagetotal,
     int i_ezsigntemplate_signaturetotal,
+    int i_ezsigntemplate_formfieldtotal,
     int b_ezsigntemplate_incomplete,
     char *s_ezsignfoldertype_name_x
     ) {
@@ -25,6 +26,7 @@ ezsigntemplate_list_element_t *ezsigntemplate_list_element_create(
     ezsigntemplate_list_element_local_var->s_ezsigntemplate_description = s_ezsigntemplate_description;
     ezsigntemplate_list_element_local_var->i_ezsigntemplatedocument_pagetotal = i_ezsigntemplatedocument_pagetotal;
     ezsigntemplate_list_element_local_var->i_ezsigntemplate_signaturetotal = i_ezsigntemplate_signaturetotal;
+    ezsigntemplate_list_element_local_var->i_ezsigntemplate_formfieldtotal = i_ezsigntemplate_formfieldtotal;
     ezsigntemplate_list_element_local_var->b_ezsigntemplate_incomplete = b_ezsigntemplate_incomplete;
     ezsigntemplate_list_element_local_var->s_ezsignfoldertype_name_x = s_ezsignfoldertype_name_x;
 
@@ -88,20 +90,26 @@ cJSON *ezsigntemplate_list_element_convertToJSON(ezsigntemplate_list_element_t *
 
 
     // ezsigntemplate_list_element->i_ezsigntemplatedocument_pagetotal
-    if (!ezsigntemplate_list_element->i_ezsigntemplatedocument_pagetotal) {
-        goto fail;
-    }
+    if(ezsigntemplate_list_element->i_ezsigntemplatedocument_pagetotal) {
     if(cJSON_AddNumberToObject(item, "iEzsigntemplatedocumentPagetotal", ezsigntemplate_list_element->i_ezsigntemplatedocument_pagetotal) == NULL) {
     goto fail; //Numeric
+    }
     }
 
 
     // ezsigntemplate_list_element->i_ezsigntemplate_signaturetotal
-    if (!ezsigntemplate_list_element->i_ezsigntemplate_signaturetotal) {
-        goto fail;
-    }
+    if(ezsigntemplate_list_element->i_ezsigntemplate_signaturetotal) {
     if(cJSON_AddNumberToObject(item, "iEzsigntemplateSignaturetotal", ezsigntemplate_list_element->i_ezsigntemplate_signaturetotal) == NULL) {
     goto fail; //Numeric
+    }
+    }
+
+
+    // ezsigntemplate_list_element->i_ezsigntemplate_formfieldtotal
+    if(ezsigntemplate_list_element->i_ezsigntemplate_formfieldtotal) {
+    if(cJSON_AddNumberToObject(item, "iEzsigntemplateFormfieldtotal", ezsigntemplate_list_element->i_ezsigntemplate_formfieldtotal) == NULL) {
+    goto fail; //Numeric
+    }
     }
 
 
@@ -184,26 +192,29 @@ ezsigntemplate_list_element_t *ezsigntemplate_list_element_parseFromJSON(cJSON *
 
     // ezsigntemplate_list_element->i_ezsigntemplatedocument_pagetotal
     cJSON *i_ezsigntemplatedocument_pagetotal = cJSON_GetObjectItemCaseSensitive(ezsigntemplate_list_elementJSON, "iEzsigntemplatedocumentPagetotal");
-    if (!i_ezsigntemplatedocument_pagetotal) {
-        goto end;
-    }
-
-    
+    if (i_ezsigntemplatedocument_pagetotal) { 
     if(!cJSON_IsNumber(i_ezsigntemplatedocument_pagetotal))
     {
     goto end; //Numeric
     }
+    }
 
     // ezsigntemplate_list_element->i_ezsigntemplate_signaturetotal
     cJSON *i_ezsigntemplate_signaturetotal = cJSON_GetObjectItemCaseSensitive(ezsigntemplate_list_elementJSON, "iEzsigntemplateSignaturetotal");
-    if (!i_ezsigntemplate_signaturetotal) {
-        goto end;
-    }
-
-    
+    if (i_ezsigntemplate_signaturetotal) { 
     if(!cJSON_IsNumber(i_ezsigntemplate_signaturetotal))
     {
     goto end; //Numeric
+    }
+    }
+
+    // ezsigntemplate_list_element->i_ezsigntemplate_formfieldtotal
+    cJSON *i_ezsigntemplate_formfieldtotal = cJSON_GetObjectItemCaseSensitive(ezsigntemplate_list_elementJSON, "iEzsigntemplateFormfieldtotal");
+    if (i_ezsigntemplate_formfieldtotal) { 
+    if(!cJSON_IsNumber(i_ezsigntemplate_formfieldtotal))
+    {
+    goto end; //Numeric
+    }
     }
 
     // ezsigntemplate_list_element->b_ezsigntemplate_incomplete
@@ -236,8 +247,9 @@ ezsigntemplate_list_element_t *ezsigntemplate_list_element_parseFromJSON(cJSON *
         fki_ezsignfoldertype_id->valuedouble,
         fki_language_id->valuedouble,
         strdup(s_ezsigntemplate_description->valuestring),
-        i_ezsigntemplatedocument_pagetotal->valuedouble,
-        i_ezsigntemplate_signaturetotal->valuedouble,
+        i_ezsigntemplatedocument_pagetotal ? i_ezsigntemplatedocument_pagetotal->valuedouble : 0,
+        i_ezsigntemplate_signaturetotal ? i_ezsigntemplate_signaturetotal->valuedouble : 0,
+        i_ezsigntemplate_formfieldtotal ? i_ezsigntemplate_formfieldtotal->valuedouble : 0,
         b_ezsigntemplate_incomplete->valueint,
         strdup(s_ezsignfoldertype_name_x->valuestring)
         );

@@ -44,6 +44,7 @@ typedef struct activesession_response_t {
     char *s_department_name_x; // string
     int b_activesession_debug; //boolean
     char *pks_customer_code; // string
+    int fki_systemconfigurationtype_id; //numeric
 
 } activesession_response_t;
 
@@ -54,7 +55,8 @@ activesession_response_t *activesession_response_create(
     char *s_company_name_x,
     char *s_department_name_x,
     int b_activesession_debug,
-    char *pks_customer_code
+    char *pks_customer_code,
+    int fki_systemconfigurationtype_id
 );
 
 void activesession_response_free(activesession_response_t *activesession_response);

@@ -28,6 +28,7 @@ ezsigntemplate_list_element_t* instantiate_ezsigntemplate_list_element(int inclu
       "Standard Contract",
       5,
       8,
+      8,
       false,
       "Default"
     );
@@ -38,6 +39,7 @@ ezsigntemplate_list_element_t* instantiate_ezsigntemplate_list_element(int inclu
       2,
       "Standard Contract",
       5,
+      8,
       8,
       false,
       "Default"

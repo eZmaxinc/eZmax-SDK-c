@@ -25,21 +25,6 @@ ezsigntemplatesignature_response_compound_t* instantiate_ezsigntemplatesignature
       99,
       133,
       9,
-      1,
-      200,
-      300,
-      1,
-      ezmax_api_definition__full_ezsigntemplatesignature_response_compound__"Name",
-      "Please sign here if you agree to the terms",
-      ezmax_api_definition__full_ezsigntemplatesignature_response_compound__"TopLeft",
-      ezmax_api_definition__full_ezsigntemplatesignature_response_compound__Normal,
-      1,
-      list_createList()
-    );
-  } else {
-    ezsigntemplatesignature_response_compound = ezsigntemplatesignature_response_compound_create(
-      99,
-      133,
       9,
       1,
       200,
@@ -49,6 +34,31 @@ ezsigntemplatesignature_response_compound_t* instantiate_ezsigntemplatesignature
       "Please sign here if you agree to the terms",
       ezmax_api_definition__full_ezsigntemplatesignature_response_compound__"TopLeft",
       ezmax_api_definition__full_ezsigntemplatesignature_response_compound__Normal,
+      1,
+      "Attachment",
+      ezmax_api_definition__full_ezsigntemplatesignature_response_compound__"Description",
+      1,
+      1,
+      list_createList()
+    );
+  } else {
+    ezsigntemplatesignature_response_compound = ezsigntemplatesignature_response_compound_create(
+      99,
+      133,
+      9,
+      9,
+      1,
+      200,
+      300,
+      1,
+      ezmax_api_definition__full_ezsigntemplatesignature_response_compound__"Name",
+      "Please sign here if you agree to the terms",
+      ezmax_api_definition__full_ezsigntemplatesignature_response_compound__"TopLeft",
+      ezmax_api_definition__full_ezsigntemplatesignature_response_compound__Normal,
+      1,
+      "Attachment",
+      ezmax_api_definition__full_ezsigntemplatesignature_response_compound__"Description",
+      1,
       1,
       list_createList()
     );
