@@ -66,7 +66,7 @@ typedef struct ezsignsignature_request_t {
     char *t_ezsignsignature_tooltip; // string
     field_e_ezsignsignature_tooltipposition_t *e_ezsignsignature_tooltipposition; // custom
     field_e_ezsignsignature_font_t *e_ezsignsignature_font; // custom
-    int fki_user_id; //numeric
+    int fki_ezsignfoldersignerassociation_id_validation; //numeric
     int b_ezsignsignature_required; //boolean
     field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource; // custom
     char *s_ezsignsignature_attachmentdescription; // string
@@ -86,7 +86,7 @@ ezsignsignature_request_t *ezsignsignature_request_create(
     char *t_ezsignsignature_tooltip,
     field_e_ezsignsignature_tooltipposition_t *e_ezsignsignature_tooltipposition,
     field_e_ezsignsignature_font_t *e_ezsignsignature_font,
-    int fki_user_id,
+    int fki_ezsignfoldersignerassociation_id_validation,
     int b_ezsignsignature_required,
     field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource,
     char *s_ezsignsignature_attachmentdescription,
