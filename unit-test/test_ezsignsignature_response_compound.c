@@ -37,7 +37,7 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
       "Attachment",
       ezmax_api_definition__full_ezsignsignature_response_compound__"Description",
       1,
-      70,
+      20,
       1,
       list_createList()
     );
@@ -58,7 +58,7 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
       "Attachment",
       ezmax_api_definition__full_ezsignsignature_response_compound__"Description",
       1,
-      70,
+      20,
       1,
       list_createList()
     );

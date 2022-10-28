@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**ObjectEzsigntemplateAPI_ezsigntemplateGetAutocompleteV2**](ObjectEzsigntemplateAPI.md#ObjectEzsigntemplateAPI_ezsigntemplateGetAutocompleteV2) | **GET** /2/object/ezsigntemplate/getAutocomplete/{sSelector} | Retrieve Ezsigntemplates and IDs
 [**ObjectEzsigntemplateAPI_ezsigntemplateGetListV1**](ObjectEzsigntemplateAPI.md#ObjectEzsigntemplateAPI_ezsigntemplateGetListV1) | **GET** /1/object/ezsigntemplate/getList | Retrieve Ezsigntemplate list
 [**ObjectEzsigntemplateAPI_ezsigntemplateGetObjectV1**](ObjectEzsigntemplateAPI.md#ObjectEzsigntemplateAPI_ezsigntemplateGetObjectV1) | **GET** /1/object/ezsigntemplate/{pkiEzsigntemplateID} | Retrieve an existing Ezsigntemplate
+[**ObjectEzsigntemplateAPI_ezsigntemplateGetObjectV2**](ObjectEzsigntemplateAPI.md#ObjectEzsigntemplateAPI_ezsigntemplateGetObjectV2) | **GET** /2/object/ezsigntemplate/{pkiEzsigntemplateID} | Retrieve an existing Ezsigntemplate
 
 
 # **ObjectEzsigntemplateAPI_ezsigntemplateCreateObjectV1**
@@ -228,6 +229,37 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsigntemplate_get_object_v1_response_t](ezsigntemplate_get_object_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsigntemplateAPI_ezsigntemplateGetObjectV2**
+```c
+// Retrieve an existing Ezsigntemplate
+//
+// 
+//
+ezsigntemplate_get_object_v2_response_t* ObjectEzsigntemplateAPI_ezsigntemplateGetObjectV2(apiClient_t *apiClient, int pkiEzsigntemplateID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsigntemplateID** | **int** |  | 
+
+### Return type
+
+[ezsigntemplate_get_object_v2_response_t](ezsigntemplate_get_object_v2_response.md) *
 
 
 ### Authorization

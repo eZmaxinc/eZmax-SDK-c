@@ -10,6 +10,7 @@
 #include "../model/ezsignbulksendsignermapping_create_object_v1_response.h"
 #include "../model/ezsignbulksendsignermapping_delete_object_v1_response.h"
 #include "../model/ezsignbulksendsignermapping_get_object_v1_response.h"
+#include "../model/ezsignbulksendsignermapping_get_object_v2_response.h"
 
 
 // Create a new Ezsignbulksendsignermapping
@@ -34,5 +35,13 @@ ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingDeleteObjectV1(a
 //
 ezsignbulksendsignermapping_get_object_v1_response_t*
 ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingGetObjectV1(apiClient_t *apiClient, int pkiEzsignbulksendsignermappingID );
+
+
+// Retrieve an existing Ezsignbulksendsignermapping
+//
+// 
+//
+ezsignbulksendsignermapping_get_object_v2_response_t*
+ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingGetObjectV2(apiClient_t *apiClient, int pkiEzsignbulksendsignermappingID );
 
 

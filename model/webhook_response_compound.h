@@ -19,6 +19,7 @@ typedef struct webhook_response_compound_t webhook_response_compound_t;
 #include "field_e_webhook_managementevent.h"
 #include "field_e_webhook_module.h"
 #include "webhook_response.h"
+#include "webhook_response_compound_all_of.h"
 
 // Enum  for webhook_response_compound
 
@@ -47,7 +48,6 @@ ezmax_api_definition__full_webhook_response_compound__e webhook_response_compoun
 
 
 typedef struct webhook_response_compound_t {
-    char *s_webhook_event; // string
     int pki_webhook_id; //numeric
     char *s_webhook_description; // string
     int fki_ezsignfoldertype_id; //numeric
@@ -59,11 +59,11 @@ typedef struct webhook_response_compound_t {
     char *s_webhook_emailfailed; // string
     int b_webhook_isactive; //boolean
     int b_webhook_skipsslvalidation; //boolean
+    char *s_webhook_event; // string
 
 } webhook_response_compound_t;
 
 webhook_response_compound_t *webhook_response_compound_create(
-    char *s_webhook_event,
     int pki_webhook_id,
     char *s_webhook_description,
     int fki_ezsignfoldertype_id,
@@ -74,7 +74,8 @@ webhook_response_compound_t *webhook_response_compound_create(
     char *s_webhook_url,
     char *s_webhook_emailfailed,
     int b_webhook_isactive,
-    int b_webhook_skipsslvalidation
+    int b_webhook_skipsslvalidation,
+    char *s_webhook_event
 );
 
 void webhook_response_compound_free(webhook_response_compound_t *webhook_response_compound);

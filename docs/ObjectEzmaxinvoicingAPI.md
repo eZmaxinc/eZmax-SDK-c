@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetAutocompleteV1**](ObjectEzmaxinvoicingAPI.md#ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetAutocompleteV1) | **GET** /1/object/ezmaxinvoicing/getAutocomplete/{sSelector} | Retrieve Ezmaxinvoicings and IDs
 [**ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetAutocompleteV2**](ObjectEzmaxinvoicingAPI.md#ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetAutocompleteV2) | **GET** /2/object/ezmaxinvoicing/getAutocomplete/{sSelector} | Retrieve Ezmaxinvoicings and IDs
 [**ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetObjectV1**](ObjectEzmaxinvoicingAPI.md#ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetObjectV1) | **GET** /1/object/ezmaxinvoicing/{pkiEzmaxinvoicingID} | Retrieve an existing Ezmaxinvoicing
+[**ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetObjectV2**](ObjectEzmaxinvoicingAPI.md#ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetObjectV2) | **GET** /2/object/ezmaxinvoicing/{pkiEzmaxinvoicingID} | Retrieve an existing Ezmaxinvoicing
 [**ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetProvisionalV1**](ObjectEzmaxinvoicingAPI.md#ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetProvisionalV1) | **GET** /1/object/ezmaxinvoicing/getProvisional | Retrieve provisional Ezmaxinvoicing
 
 
@@ -96,6 +97,37 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezmaxinvoicing_get_object_v1_response_t](ezmaxinvoicing_get_object_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetObjectV2**
+```c
+// Retrieve an existing Ezmaxinvoicing
+//
+// 
+//
+ezmaxinvoicing_get_object_v2_response_t* ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetObjectV2(apiClient_t *apiClient, int pkiEzmaxinvoicingID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzmaxinvoicingID** | **int** |  | 
+
+### Return type
+
+[ezmaxinvoicing_get_object_v2_response_t](ezmaxinvoicing_get_object_v2_response.md) *
 
 
 ### Authorization

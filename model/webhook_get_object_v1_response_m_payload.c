@@ -67,7 +67,8 @@ webhook_get_object_v1_response_m_payload_t *webhook_get_object_v1_response_m_pay
     char *s_webhook_url,
     char *s_webhook_emailfailed,
     int b_webhook_isactive,
-    int b_webhook_skipsslvalidation
+    int b_webhook_skipsslvalidation,
+    char *s_webhook_event
     ) {
     webhook_get_object_v1_response_m_payload_t *webhook_get_object_v1_response_m_payload_local_var = malloc(sizeof(webhook_get_object_v1_response_m_payload_t));
     if (!webhook_get_object_v1_response_m_payload_local_var) {
@@ -84,6 +85,7 @@ webhook_get_object_v1_response_m_payload_t *webhook_get_object_v1_response_m_pay
     webhook_get_object_v1_response_m_payload_local_var->s_webhook_emailfailed = s_webhook_emailfailed;
     webhook_get_object_v1_response_m_payload_local_var->b_webhook_isactive = b_webhook_isactive;
     webhook_get_object_v1_response_m_payload_local_var->b_webhook_skipsslvalidation = b_webhook_skipsslvalidation;
+    webhook_get_object_v1_response_m_payload_local_var->s_webhook_event = s_webhook_event;
 
     return webhook_get_object_v1_response_m_payload_local_var;
 }
@@ -121,6 +123,10 @@ void webhook_get_object_v1_response_m_payload_free(webhook_get_object_v1_respons
     if (webhook_get_object_v1_response_m_payload->s_webhook_emailfailed) {
         free(webhook_get_object_v1_response_m_payload->s_webhook_emailfailed);
         webhook_get_object_v1_response_m_payload->s_webhook_emailfailed = NULL;
+    }
+    if (webhook_get_object_v1_response_m_payload->s_webhook_event) {
+        free(webhook_get_object_v1_response_m_payload->s_webhook_event);
+        webhook_get_object_v1_response_m_payload->s_webhook_event = NULL;
     }
     free(webhook_get_object_v1_response_m_payload);
 }
@@ -234,6 +240,15 @@ cJSON *webhook_get_object_v1_response_m_payload_convertToJSON(webhook_get_object
     }
     if(cJSON_AddBoolToObject(item, "bWebhookSkipsslvalidation", webhook_get_object_v1_response_m_payload->b_webhook_skipsslvalidation) == NULL) {
     goto fail; //Bool
+    }
+
+
+    // webhook_get_object_v1_response_m_payload->s_webhook_event
+    if (!webhook_get_object_v1_response_m_payload->s_webhook_event) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "sWebhookEvent", webhook_get_object_v1_response_m_payload->s_webhook_event) == NULL) {
+    goto fail; //String
     }
 
     return item;
@@ -365,6 +380,18 @@ webhook_get_object_v1_response_m_payload_t *webhook_get_object_v1_response_m_pay
     goto end; //Bool
     }
 
+    // webhook_get_object_v1_response_m_payload->s_webhook_event
+    cJSON *s_webhook_event = cJSON_GetObjectItemCaseSensitive(webhook_get_object_v1_response_m_payloadJSON, "sWebhookEvent");
+    if (!s_webhook_event) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_webhook_event))
+    {
+    goto end; //String
+    }
+
 
     webhook_get_object_v1_response_m_payload_local_var = webhook_get_object_v1_response_m_payload_create (
         pki_webhook_id->valuedouble,
@@ -377,7 +404,8 @@ webhook_get_object_v1_response_m_payload_t *webhook_get_object_v1_response_m_pay
         strdup(s_webhook_url->valuestring),
         strdup(s_webhook_emailfailed->valuestring),
         b_webhook_isactive ? b_webhook_isactive->valueint : 0,
-        b_webhook_skipsslvalidation->valueint
+        b_webhook_skipsslvalidation->valueint,
+        strdup(s_webhook_event->valuestring)
         );
 
     return webhook_get_object_v1_response_m_payload_local_var;

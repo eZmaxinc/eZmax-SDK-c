@@ -1114,3 +1114,85 @@ end:
 
 }
 
+// Retrieve an existing Ezsignfoldertype
+//
+// 
+//
+ezsignfoldertype_get_object_v2_response_t*
+ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetObjectV2(apiClient_t *apiClient, int pkiEzsignfoldertypeID )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/2/object/ezsignfoldertype/{pkiEzsignfoldertypeID}")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/2/object/ezsignfoldertype/{pkiEzsignfoldertypeID}");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsignfoldertypeID =  + strlen("{ pkiEzsignfoldertypeID }");
+    if(pkiEzsignfoldertypeID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsignfoldertypeID = malloc(sizeOfPathParams_pkiEzsignfoldertypeID);
+    snprintf(localVarToReplace_pkiEzsignfoldertypeID, sizeOfPathParams_pkiEzsignfoldertypeID, "{%s}", "pkiEzsignfoldertypeID");
+
+    char localVarBuff_pkiEzsignfoldertypeID[256];
+    intToStr(localVarBuff_pkiEzsignfoldertypeID, pkiEzsignfoldertypeID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfoldertypeID, localVarBuff_pkiEzsignfoldertypeID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectEzsignfoldertypeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsignfoldertype_get_object_v2_response_t *elementToReturn = ezsignfoldertype_get_object_v2_response_parseFromJSON(ObjectEzsignfoldertypeAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsignfoldertypeAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsignfoldertypeID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+

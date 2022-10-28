@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**ObjectBrandingAPI_brandingGetAutocompleteV2**](ObjectBrandingAPI.md#ObjectBrandingAPI_brandingGetAutocompleteV2) | **GET** /2/object/branding/getAutocomplete/{sSelector} | Retrieve Brandings and IDs
 [**ObjectBrandingAPI_brandingGetListV1**](ObjectBrandingAPI.md#ObjectBrandingAPI_brandingGetListV1) | **GET** /1/object/branding/getList | Retrieve Branding list
 [**ObjectBrandingAPI_brandingGetObjectV1**](ObjectBrandingAPI.md#ObjectBrandingAPI_brandingGetObjectV1) | **GET** /1/object/branding/{pkiBrandingID} | Retrieve an existing Branding
+[**ObjectBrandingAPI_brandingGetObjectV2**](ObjectBrandingAPI.md#ObjectBrandingAPI_brandingGetObjectV2) | **GET** /2/object/branding/{pkiBrandingID} | Retrieve an existing Branding
 
 
 # **ObjectBrandingAPI_brandingCreateObjectV1**
@@ -196,6 +197,37 @@ Name | Type | Description  | Notes
 ### Return type
 
 [branding_get_object_v1_response_t](branding_get_object_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectBrandingAPI_brandingGetObjectV2**
+```c
+// Retrieve an existing Branding
+//
+// 
+//
+branding_get_object_v2_response_t* ObjectBrandingAPI_brandingGetObjectV2(apiClient_t *apiClient, int pkiBrandingID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiBrandingID** | **int** |  | 
+
+### Return type
+
+[branding_get_object_v2_response_t](branding_get_object_v2_response.md) *
 
 
 ### Authorization

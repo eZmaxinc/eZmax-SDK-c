@@ -32,7 +32,8 @@ webhook_get_object_v1_response_m_payload_t* instantiate_webhook_get_object_v1_re
       "https://www.example.com",
       "email@example.com",
       true,
-      false
+      false,
+      "Ezsign-DocumentCompleted"
     );
   } else {
     webhook_get_object_v1_response_m_payload = webhook_get_object_v1_response_m_payload_create(
@@ -46,7 +47,8 @@ webhook_get_object_v1_response_m_payload_t* instantiate_webhook_get_object_v1_re
       "https://www.example.com",
       "email@example.com",
       true,
-      false
+      false,
+      "Ezsign-DocumentCompleted"
     );
   }
 

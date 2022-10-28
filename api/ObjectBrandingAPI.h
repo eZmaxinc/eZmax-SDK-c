@@ -12,6 +12,7 @@
 #include "../model/branding_get_autocomplete_v2_response.h"
 #include "../model/branding_get_list_v1_response.h"
 #include "../model/branding_get_object_v1_response.h"
+#include "../model/branding_get_object_v2_response.h"
 #include "../model/common_get_autocomplete_v1_response.h"
 #include "../model/common_response_error.h"
 #include "../model/header_accept_language.h"
@@ -87,5 +88,13 @@ ObjectBrandingAPI_brandingGetListV1(apiClient_t *apiClient, ezmax_api_definition
 //
 branding_get_object_v1_response_t*
 ObjectBrandingAPI_brandingGetObjectV1(apiClient_t *apiClient, int pkiBrandingID );
+
+
+// Retrieve an existing Branding
+//
+// 
+//
+branding_get_object_v2_response_t*
+ObjectBrandingAPI_brandingGetObjectV2(apiClient_t *apiClient, int pkiBrandingID );
 
 

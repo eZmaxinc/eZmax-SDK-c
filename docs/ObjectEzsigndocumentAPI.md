@@ -19,6 +19,7 @@ Method | HTTP request | Description
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignsignaturesV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignsignaturesV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getEzsignsignatures | Retrieve an existing Ezsigndocument&#39;s Ezsignsignatures
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getFormData | Retrieve an existing Ezsigndocument&#39;s Form Data
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID} | Retrieve an existing Ezsigndocument
+[**ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV2**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV2) | **GET** /2/object/ezsigndocument/{pkiEzsigndocumentID} | Retrieve an existing Ezsigndocument
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetTemporaryProofV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetTemporaryProofV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getTemporaryProof | Retrieve the temporary proof
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getWordsPositions | Retrieve positions X,Y of given words from a Ezsigndocument
 [**ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1) | **PATCH** /1/object/ezsigndocument/{pkiEzsigndocumentID} | Patch an existing Ezsigndocument
@@ -481,6 +482,37 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsigndocument_get_object_v1_response_t](ezsigndocument_get_object_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV2**
+```c
+// Retrieve an existing Ezsigndocument
+//
+// 
+//
+ezsigndocument_get_object_v2_response_t* ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV2(apiClient_t *apiClient, int pkiEzsigndocumentID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsigndocumentID** | **int** |  | 
+
+### Return type
+
+[ezsigndocument_get_object_v2_response_t](ezsigndocument_get_object_v2_response.md) *
 
 
 ### Authorization

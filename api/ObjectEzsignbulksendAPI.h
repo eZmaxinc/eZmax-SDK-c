@@ -17,6 +17,7 @@
 #include "../model/ezsignbulksend_get_forms_data_v1_response.h"
 #include "../model/ezsignbulksend_get_list_v1_response.h"
 #include "../model/ezsignbulksend_get_object_v1_response.h"
+#include "../model/ezsignbulksend_get_object_v2_response.h"
 #include "../model/ezsignbulksend_reorder_v1_request.h"
 #include "../model/ezsignbulksend_reorder_v1_response.h"
 #include "../model/header_accept_language.h"
@@ -99,6 +100,14 @@ ObjectEzsignbulksendAPI_ezsignbulksendGetListV1(apiClient_t *apiClient, ezmax_ap
 //
 ezsignbulksend_get_object_v1_response_t*
 ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV1(apiClient_t *apiClient, int pkiEzsignbulksendID );
+
+
+// Retrieve an existing Ezsignbulksend
+//
+// 
+//
+ezsignbulksend_get_object_v2_response_t*
+ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV2(apiClient_t *apiClient, int pkiEzsignbulksendID );
 
 
 // Reorder Ezsignbulksenddocumentmappings in the Ezsignbulksend

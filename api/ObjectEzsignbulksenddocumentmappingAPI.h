@@ -10,6 +10,7 @@
 #include "../model/ezsignbulksenddocumentmapping_create_object_v1_response.h"
 #include "../model/ezsignbulksenddocumentmapping_delete_object_v1_response.h"
 #include "../model/ezsignbulksenddocumentmapping_get_object_v1_response.h"
+#include "../model/ezsignbulksenddocumentmapping_get_object_v2_response.h"
 
 
 // Create a new Ezsignbulksenddocumentmapping
@@ -34,5 +35,13 @@ ObjectEzsignbulksenddocumentmappingAPI_ezsignbulksenddocumentmappingDeleteObject
 //
 ezsignbulksenddocumentmapping_get_object_v1_response_t*
 ObjectEzsignbulksenddocumentmappingAPI_ezsignbulksenddocumentmappingGetObjectV1(apiClient_t *apiClient, int pkiEzsignbulksenddocumentmappingID );
+
+
+// Retrieve an existing Ezsignbulksenddocumentmapping
+//
+// 
+//
+ezsignbulksenddocumentmapping_get_object_v2_response_t*
+ObjectEzsignbulksenddocumentmappingAPI_ezsignbulksenddocumentmappingGetObjectV2(apiClient_t *apiClient, int pkiEzsignbulksenddocumentmappingID );
 
 

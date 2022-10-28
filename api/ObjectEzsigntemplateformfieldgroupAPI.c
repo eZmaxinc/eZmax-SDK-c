@@ -355,3 +355,85 @@ end:
 
 }
 
+// Retrieve an existing Ezsigntemplateformfieldgroup
+//
+// 
+//
+ezsigntemplateformfieldgroup_get_object_v2_response_t*
+ObjectEzsigntemplateformfieldgroupAPI_ezsigntemplateformfieldgroupGetObjectV2(apiClient_t *apiClient, int pkiEzsigntemplateformfieldgroupID )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/2/object/ezsigntemplateformfieldgroup/{pkiEzsigntemplateformfieldgroupID}")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/2/object/ezsigntemplateformfieldgroup/{pkiEzsigntemplateformfieldgroupID}");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsigntemplateformfieldgroupID =  + strlen("{ pkiEzsigntemplateformfieldgroupID }");
+    if(pkiEzsigntemplateformfieldgroupID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsigntemplateformfieldgroupID = malloc(sizeOfPathParams_pkiEzsigntemplateformfieldgroupID);
+    snprintf(localVarToReplace_pkiEzsigntemplateformfieldgroupID, sizeOfPathParams_pkiEzsigntemplateformfieldgroupID, "{%s}", "pkiEzsigntemplateformfieldgroupID");
+
+    char localVarBuff_pkiEzsigntemplateformfieldgroupID[256];
+    intToStr(localVarBuff_pkiEzsigntemplateformfieldgroupID, pkiEzsigntemplateformfieldgroupID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplateformfieldgroupID, localVarBuff_pkiEzsigntemplateformfieldgroupID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectEzsigntemplateformfieldgroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsigntemplateformfieldgroup_get_object_v2_response_t *elementToReturn = ezsigntemplateformfieldgroup_get_object_v2_response_parseFromJSON(ObjectEzsigntemplateformfieldgroupAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsigntemplateformfieldgroupAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsigntemplateformfieldgroupID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+

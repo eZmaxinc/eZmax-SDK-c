@@ -1297,3 +1297,85 @@ end:
 
 }
 
+// Retrieve an existing Ezsigntemplatepackage
+//
+// 
+//
+ezsigntemplatepackage_get_object_v2_response_t*
+ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetObjectV2(apiClient_t *apiClient, int pkiEzsigntemplatepackageID )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/2/object/ezsigntemplatepackage/{pkiEzsigntemplatepackageID}")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/2/object/ezsigntemplatepackage/{pkiEzsigntemplatepackageID}");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsigntemplatepackageID =  + strlen("{ pkiEzsigntemplatepackageID }");
+    if(pkiEzsigntemplatepackageID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsigntemplatepackageID = malloc(sizeOfPathParams_pkiEzsigntemplatepackageID);
+    snprintf(localVarToReplace_pkiEzsigntemplatepackageID, sizeOfPathParams_pkiEzsigntemplatepackageID, "{%s}", "pkiEzsigntemplatepackageID");
+
+    char localVarBuff_pkiEzsigntemplatepackageID[256];
+    intToStr(localVarBuff_pkiEzsigntemplatepackageID, pkiEzsigntemplatepackageID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatepackageID, localVarBuff_pkiEzsigntemplatepackageID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectEzsigntemplatepackageAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsigntemplatepackage_get_object_v2_response_t *elementToReturn = ezsigntemplatepackage_get_object_v2_response_parseFromJSON(ObjectEzsigntemplatepackageAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsigntemplatepackageAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsigntemplatepackageID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+

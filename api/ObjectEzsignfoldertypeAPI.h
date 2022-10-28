@@ -14,6 +14,7 @@
 #include "../model/ezsignfoldertype_get_autocomplete_v2_response.h"
 #include "../model/ezsignfoldertype_get_list_v1_response.h"
 #include "../model/ezsignfoldertype_get_object_v1_response.h"
+#include "../model/ezsignfoldertype_get_object_v2_response.h"
 #include "../model/header_accept_language.h"
 
 // Enum SSELECTOR for ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV1
@@ -87,5 +88,13 @@ ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1(apiClient_t *apiClient, ezma
 //
 ezsignfoldertype_get_object_v1_response_t*
 ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetObjectV1(apiClient_t *apiClient, int pkiEzsignfoldertypeID );
+
+
+// Retrieve an existing Ezsignfoldertype
+//
+// 
+//
+ezsignfoldertype_get_object_v2_response_t*
+ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetObjectV2(apiClient_t *apiClient, int pkiEzsignfoldertypeID );
 
 

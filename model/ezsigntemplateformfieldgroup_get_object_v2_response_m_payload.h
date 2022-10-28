@@ -1,0 +1,38 @@
+/*
+ * ezsigntemplateformfieldgroup_get_object_v2_response_m_payload.h
+ *
+ * Payload for GET /2/object/ezsigntemplateformfieldgroup/{pkiEzsigntemplateformfieldgroupID}
+ */
+
+#ifndef _ezsigntemplateformfieldgroup_get_object_v2_response_m_payload_H_
+#define _ezsigntemplateformfieldgroup_get_object_v2_response_m_payload_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct ezsigntemplateformfieldgroup_get_object_v2_response_m_payload_t ezsigntemplateformfieldgroup_get_object_v2_response_m_payload_t;
+
+#include "ezsigntemplateformfieldgroup_response_compound.h"
+
+
+
+typedef struct ezsigntemplateformfieldgroup_get_object_v2_response_m_payload_t {
+    struct ezsigntemplateformfieldgroup_response_compound_t *obj_ezsigntemplateformfieldgroup; //model
+
+} ezsigntemplateformfieldgroup_get_object_v2_response_m_payload_t;
+
+ezsigntemplateformfieldgroup_get_object_v2_response_m_payload_t *ezsigntemplateformfieldgroup_get_object_v2_response_m_payload_create(
+    ezsigntemplateformfieldgroup_response_compound_t *obj_ezsigntemplateformfieldgroup
+);
+
+void ezsigntemplateformfieldgroup_get_object_v2_response_m_payload_free(ezsigntemplateformfieldgroup_get_object_v2_response_m_payload_t *ezsigntemplateformfieldgroup_get_object_v2_response_m_payload);
+
+ezsigntemplateformfieldgroup_get_object_v2_response_m_payload_t *ezsigntemplateformfieldgroup_get_object_v2_response_m_payload_parseFromJSON(cJSON *ezsigntemplateformfieldgroup_get_object_v2_response_m_payloadJSON);
+
+cJSON *ezsigntemplateformfieldgroup_get_object_v2_response_m_payload_convertToJSON(ezsigntemplateformfieldgroup_get_object_v2_response_m_payload_t *ezsigntemplateformfieldgroup_get_object_v2_response_m_payload);
+
+#endif /* _ezsigntemplateformfieldgroup_get_object_v2_response_m_payload_H_ */
+

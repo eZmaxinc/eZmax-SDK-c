@@ -89,7 +89,7 @@ ezsignsignature_get_object_v1_response_m_payload_t *ezsignsignature_get_object_v
     char *s_ezsignsignature_attachmentdescription,
     field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource,
     int b_ezsignsignature_required,
-    int fki_user_id,
+    int fki_ezsignfoldersignerassociation_id_validation,
     int b_ezsignsignature_customdate,
     list_t *a_obj_ezsignsignaturecustomdate
     ) {
@@ -112,7 +112,7 @@ ezsignsignature_get_object_v1_response_m_payload_t *ezsignsignature_get_object_v
     ezsignsignature_get_object_v1_response_m_payload_local_var->s_ezsignsignature_attachmentdescription = s_ezsignsignature_attachmentdescription;
     ezsignsignature_get_object_v1_response_m_payload_local_var->e_ezsignsignature_attachmentnamesource = e_ezsignsignature_attachmentnamesource;
     ezsignsignature_get_object_v1_response_m_payload_local_var->b_ezsignsignature_required = b_ezsignsignature_required;
-    ezsignsignature_get_object_v1_response_m_payload_local_var->fki_user_id = fki_user_id;
+    ezsignsignature_get_object_v1_response_m_payload_local_var->fki_ezsignfoldersignerassociation_id_validation = fki_ezsignfoldersignerassociation_id_validation;
     ezsignsignature_get_object_v1_response_m_payload_local_var->b_ezsignsignature_customdate = b_ezsignsignature_customdate;
     ezsignsignature_get_object_v1_response_m_payload_local_var->a_obj_ezsignsignaturecustomdate = a_obj_ezsignsignaturecustomdate;
 
@@ -310,9 +310,9 @@ cJSON *ezsignsignature_get_object_v1_response_m_payload_convertToJSON(ezsignsign
     }
 
 
-    // ezsignsignature_get_object_v1_response_m_payload->fki_user_id
-    if(ezsignsignature_get_object_v1_response_m_payload->fki_user_id) {
-    if(cJSON_AddNumberToObject(item, "fkiUserID", ezsignsignature_get_object_v1_response_m_payload->fki_user_id) == NULL) {
+    // ezsignsignature_get_object_v1_response_m_payload->fki_ezsignfoldersignerassociation_id_validation
+    if(ezsignsignature_get_object_v1_response_m_payload->fki_ezsignfoldersignerassociation_id_validation) {
+    if(cJSON_AddNumberToObject(item, "fkiEzsignfoldersignerassociationIDValidation", ezsignsignature_get_object_v1_response_m_payload->fki_ezsignfoldersignerassociation_id_validation) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -519,10 +519,10 @@ ezsignsignature_get_object_v1_response_m_payload_t *ezsignsignature_get_object_v
     }
     }
 
-    // ezsignsignature_get_object_v1_response_m_payload->fki_user_id
-    cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(ezsignsignature_get_object_v1_response_m_payloadJSON, "fkiUserID");
-    if (fki_user_id) { 
-    if(!cJSON_IsNumber(fki_user_id))
+    // ezsignsignature_get_object_v1_response_m_payload->fki_ezsignfoldersignerassociation_id_validation
+    cJSON *fki_ezsignfoldersignerassociation_id_validation = cJSON_GetObjectItemCaseSensitive(ezsignsignature_get_object_v1_response_m_payloadJSON, "fkiEzsignfoldersignerassociationIDValidation");
+    if (fki_ezsignfoldersignerassociation_id_validation) { 
+    if(!cJSON_IsNumber(fki_ezsignfoldersignerassociation_id_validation))
     {
     goto end; //Numeric
     }
@@ -575,7 +575,7 @@ ezsignsignature_get_object_v1_response_m_payload_t *ezsignsignature_get_object_v
         s_ezsignsignature_attachmentdescription ? strdup(s_ezsignsignature_attachmentdescription->valuestring) : NULL,
         e_ezsignsignature_attachmentnamesource ? e_ezsignsignature_attachmentnamesource_local_nonprim : NULL,
         b_ezsignsignature_required ? b_ezsignsignature_required->valueint : 0,
-        fki_user_id ? fki_user_id->valuedouble : 0,
+        fki_ezsignfoldersignerassociation_id_validation ? fki_ezsignfoldersignerassociation_id_validation->valuedouble : 0,
         b_ezsignsignature_customdate ? b_ezsignsignature_customdate->valueint : 0,
         a_obj_ezsignsignaturecustomdate ? a_obj_ezsignsignaturecustomdateList : NULL
         );

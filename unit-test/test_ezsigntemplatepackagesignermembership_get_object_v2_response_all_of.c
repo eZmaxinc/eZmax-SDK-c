@@ -1,0 +1,60 @@
+#ifndef ezsigntemplatepackagesignermembership_get_object_v2_response_all_of_TEST
+#define ezsigntemplatepackagesignermembership_get_object_v2_response_all_of_TEST
+
+// the following is to include only the main from the first c file
+#ifndef TEST_MAIN
+#define TEST_MAIN
+#define ezsigntemplatepackagesignermembership_get_object_v2_response_all_of_MAIN
+#endif // TEST_MAIN
+
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdbool.h>
+#include "../external/cJSON.h"
+
+#include "../model/ezsigntemplatepackagesignermembership_get_object_v2_response_all_of.h"
+ezsigntemplatepackagesignermembership_get_object_v2_response_all_of_t* instantiate_ezsigntemplatepackagesignermembership_get_object_v2_response_all_of(int include_optional);
+
+#include "test_ezsigntemplatepackagesignermembership_get_object_v2_response_m_payload.c"
+
+
+ezsigntemplatepackagesignermembership_get_object_v2_response_all_of_t* instantiate_ezsigntemplatepackagesignermembership_get_object_v2_response_all_of(int include_optional) {
+  ezsigntemplatepackagesignermembership_get_object_v2_response_all_of_t* ezsigntemplatepackagesignermembership_get_object_v2_response_all_of = NULL;
+  if (include_optional) {
+    ezsigntemplatepackagesignermembership_get_object_v2_response_all_of = ezsigntemplatepackagesignermembership_get_object_v2_response_all_of_create(
+       // false, not to have infinite recursion
+      instantiate_ezsigntemplatepackagesignermembership_get_object_v2_response_m_payload(0)
+    );
+  } else {
+    ezsigntemplatepackagesignermembership_get_object_v2_response_all_of = ezsigntemplatepackagesignermembership_get_object_v2_response_all_of_create(
+      NULL
+    );
+  }
+
+  return ezsigntemplatepackagesignermembership_get_object_v2_response_all_of;
+}
+
+
+#ifdef ezsigntemplatepackagesignermembership_get_object_v2_response_all_of_MAIN
+
+void test_ezsigntemplatepackagesignermembership_get_object_v2_response_all_of(int include_optional) {
+    ezsigntemplatepackagesignermembership_get_object_v2_response_all_of_t* ezsigntemplatepackagesignermembership_get_object_v2_response_all_of_1 = instantiate_ezsigntemplatepackagesignermembership_get_object_v2_response_all_of(include_optional);
+
+	cJSON* jsonezsigntemplatepackagesignermembership_get_object_v2_response_all_of_1 = ezsigntemplatepackagesignermembership_get_object_v2_response_all_of_convertToJSON(ezsigntemplatepackagesignermembership_get_object_v2_response_all_of_1);
+	printf("ezsigntemplatepackagesignermembership_get_object_v2_response_all_of :\n%s\n", cJSON_Print(jsonezsigntemplatepackagesignermembership_get_object_v2_response_all_of_1));
+	ezsigntemplatepackagesignermembership_get_object_v2_response_all_of_t* ezsigntemplatepackagesignermembership_get_object_v2_response_all_of_2 = ezsigntemplatepackagesignermembership_get_object_v2_response_all_of_parseFromJSON(jsonezsigntemplatepackagesignermembership_get_object_v2_response_all_of_1);
+	cJSON* jsonezsigntemplatepackagesignermembership_get_object_v2_response_all_of_2 = ezsigntemplatepackagesignermembership_get_object_v2_response_all_of_convertToJSON(ezsigntemplatepackagesignermembership_get_object_v2_response_all_of_2);
+	printf("repeating ezsigntemplatepackagesignermembership_get_object_v2_response_all_of:\n%s\n", cJSON_Print(jsonezsigntemplatepackagesignermembership_get_object_v2_response_all_of_2));
+}
+
+int main() {
+  test_ezsigntemplatepackagesignermembership_get_object_v2_response_all_of(1);
+  test_ezsigntemplatepackagesignermembership_get_object_v2_response_all_of(0);
+
+  printf("Hello world \n");
+  return 0;
+}
+
+#endif // ezsigntemplatepackagesignermembership_get_object_v2_response_all_of_MAIN
+#endif // ezsigntemplatepackagesignermembership_get_object_v2_response_all_of_TEST

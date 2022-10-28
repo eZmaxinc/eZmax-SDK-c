@@ -18,6 +18,7 @@ Method | HTTP request | Description
 [**ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getFormsData | Retrieve an existing Ezsignfolder&#39;s forms data
 [**ObjectEzsignfolderAPI_ezsignfolderGetListV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetListV1) | **GET** /1/object/ezsignfolder/getList | Retrieve Ezsignfolder list
 [**ObjectEzsignfolderAPI_ezsignfolderGetObjectV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetObjectV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID} | Retrieve an existing Ezsignfolder
+[**ObjectEzsignfolderAPI_ezsignfolderGetObjectV2**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetObjectV2) | **GET** /2/object/ezsignfolder/{pkiEzsignfolderID} | Retrieve an existing Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderImportEzsignfoldersignerassociationsV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderImportEzsignfoldersignerassociationsV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/importEzsignfoldersignerassociations | Import an existing Ezsignfoldersignerassociation into this Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/importEzsigntemplatepackage | Import an Ezsigntemplatepackage in the Ezsignfolder.
 [**ObjectEzsignfolderAPI_ezsignfolderReorderV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderReorderV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/reorder | Reorder Ezsigndocuments in the Ezsignfolder
@@ -450,6 +451,37 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsignfolder_get_object_v1_response_t](ezsignfolder_get_object_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsignfolderAPI_ezsignfolderGetObjectV2**
+```c
+// Retrieve an existing Ezsignfolder
+//
+// 
+//
+ezsignfolder_get_object_v2_response_t* ObjectEzsignfolderAPI_ezsignfolderGetObjectV2(apiClient_t *apiClient, int pkiEzsignfolderID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsignfolderID** | **int** |  | 
+
+### Return type
+
+[ezsignfolder_get_object_v2_response_t](ezsignfolder_get_object_v2_response.md) *
 
 
 ### Authorization

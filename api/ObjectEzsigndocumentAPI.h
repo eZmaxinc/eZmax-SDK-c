@@ -28,6 +28,7 @@
 #include "../model/ezsigndocument_get_ezsignsignatures_v1_response.h"
 #include "../model/ezsigndocument_get_form_data_v1_response.h"
 #include "../model/ezsigndocument_get_object_v1_response.h"
+#include "../model/ezsigndocument_get_object_v2_response.h"
 #include "../model/ezsigndocument_get_temporary_proof_v1_response.h"
 #include "../model/ezsigndocument_get_words_positions_v1_request.h"
 #include "../model/ezsigndocument_get_words_positions_v1_response.h"
@@ -156,6 +157,14 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1(apiClient_t *apiClient, int 
 //
 ezsigndocument_get_object_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV1(apiClient_t *apiClient, int pkiEzsigndocumentID );
+
+
+// Retrieve an existing Ezsigndocument
+//
+// 
+//
+ezsigndocument_get_object_v2_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV2(apiClient_t *apiClient, int pkiEzsigndocumentID );
 
 
 // Retrieve the temporary proof

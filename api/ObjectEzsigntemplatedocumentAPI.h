@@ -19,6 +19,7 @@
 #include "../model/ezsigntemplatedocument_get_ezsigntemplateformfieldgroups_v1_response.h"
 #include "../model/ezsigntemplatedocument_get_ezsigntemplatesignatures_v1_response.h"
 #include "../model/ezsigntemplatedocument_get_object_v1_response.h"
+#include "../model/ezsigntemplatedocument_get_object_v2_response.h"
 #include "../model/ezsigntemplatedocument_get_words_positions_v1_request.h"
 #include "../model/ezsigntemplatedocument_get_words_positions_v1_response.h"
 #include "../model/ezsigntemplatedocument_patch_object_v1_request.h"
@@ -87,6 +88,14 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatesignature
 //
 ezsigntemplatedocument_get_object_v1_response_t*
 ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID );
+
+
+// Retrieve an existing Ezsigntemplatedocument
+//
+// 
+//
+ezsigntemplatedocument_get_object_v2_response_t*
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetObjectV2(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID );
 
 
 // Retrieve positions X,Y of given words from a Ezsigntemplatedocument

@@ -12,6 +12,7 @@
 #include "../model/ezsigntemplatepackagesigner_edit_object_v1_request.h"
 #include "../model/ezsigntemplatepackagesigner_edit_object_v1_response.h"
 #include "../model/ezsigntemplatepackagesigner_get_object_v1_response.h"
+#include "../model/ezsigntemplatepackagesigner_get_object_v2_response.h"
 
 
 // Create a new Ezsigntemplatepackagesigner
@@ -44,5 +45,13 @@ ObjectEzsigntemplatepackagesignerAPI_ezsigntemplatepackagesignerEditObjectV1(api
 //
 ezsigntemplatepackagesigner_get_object_v1_response_t*
 ObjectEzsigntemplatepackagesignerAPI_ezsigntemplatepackagesignerGetObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatepackagesignerID );
+
+
+// Retrieve an existing Ezsigntemplatepackagesigner
+//
+// 
+//
+ezsigntemplatepackagesigner_get_object_v2_response_t*
+ObjectEzsigntemplatepackagesignerAPI_ezsigntemplatepackagesignerGetObjectV2(apiClient_t *apiClient, int pkiEzsigntemplatepackagesignerID );
 
 

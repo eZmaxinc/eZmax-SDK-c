@@ -58,6 +58,7 @@ typedef struct webhook_get_object_v1_response_m_payload_t {
     char *s_webhook_emailfailed; // string
     int b_webhook_isactive; //boolean
     int b_webhook_skipsslvalidation; //boolean
+    char *s_webhook_event; // string
 
 } webhook_get_object_v1_response_m_payload_t;
 
@@ -72,7 +73,8 @@ webhook_get_object_v1_response_m_payload_t *webhook_get_object_v1_response_m_pay
     char *s_webhook_url,
     char *s_webhook_emailfailed,
     int b_webhook_isactive,
-    int b_webhook_skipsslvalidation
+    int b_webhook_skipsslvalidation,
+    char *s_webhook_event
 );
 
 void webhook_get_object_v1_response_m_payload_free(webhook_get_object_v1_response_m_payload_t *webhook_get_object_v1_response_m_payload);

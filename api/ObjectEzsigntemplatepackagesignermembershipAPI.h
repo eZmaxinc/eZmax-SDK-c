@@ -10,6 +10,7 @@
 #include "../model/ezsigntemplatepackagesignermembership_create_object_v1_response.h"
 #include "../model/ezsigntemplatepackagesignermembership_delete_object_v1_response.h"
 #include "../model/ezsigntemplatepackagesignermembership_get_object_v1_response.h"
+#include "../model/ezsigntemplatepackagesignermembership_get_object_v2_response.h"
 
 
 // Create a new Ezsigntemplatepackagesignermembership
@@ -34,5 +35,13 @@ ObjectEzsigntemplatepackagesignermembershipAPI_ezsigntemplatepackagesignermember
 //
 ezsigntemplatepackagesignermembership_get_object_v1_response_t*
 ObjectEzsigntemplatepackagesignermembershipAPI_ezsigntemplatepackagesignermembershipGetObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatepackagesignermembershipID );
+
+
+// Retrieve an existing Ezsigntemplatepackagesignermembership
+//
+// 
+//
+ezsigntemplatepackagesignermembership_get_object_v2_response_t*
+ObjectEzsigntemplatepackagesignermembershipAPI_ezsigntemplatepackagesignermembershipGetObjectV2(apiClient_t *apiClient, int pkiEzsigntemplatepackagesignermembershipID );
 
 

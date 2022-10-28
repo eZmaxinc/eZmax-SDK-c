@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **s_ezsignsignature_attachmentdescription** | **char \*** | The description attached to the attachment name added in Ezsignsignature of eEzsignsignatureType Attachments | [optional] 
 **e_ezsignsignature_attachmentnamesource** | **field_e_ezsignsignature_attachmentnamesource_t \*** |  | [optional] 
 **b_ezsignsignature_required** | **int** | Whether the Ezsignsignature is required or not. This field is relevant only with Ezsignsignature with eEzsignsignatureType &#x3D; Attachments. | [optional] 
-**fki_user_id** | **int** | The unique ID of the User | [optional] 
+**fki_ezsignfoldersignerassociation_id_validation** | **int** | The unique ID of the Ezsignfoldersignerassociation | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -15,6 +15,7 @@
 #include "../model/ezsigntemplate_get_autocomplete_v2_response.h"
 #include "../model/ezsigntemplate_get_list_v1_response.h"
 #include "../model/ezsigntemplate_get_object_v1_response.h"
+#include "../model/ezsigntemplate_get_object_v2_response.h"
 #include "../model/header_accept_language.h"
 
 // Enum SSELECTOR for ObjectEzsigntemplateAPI_ezsigntemplateGetAutocompleteV1
@@ -96,5 +97,13 @@ ObjectEzsigntemplateAPI_ezsigntemplateGetListV1(apiClient_t *apiClient, ezmax_ap
 //
 ezsigntemplate_get_object_v1_response_t*
 ObjectEzsigntemplateAPI_ezsigntemplateGetObjectV1(apiClient_t *apiClient, int pkiEzsigntemplateID );
+
+
+// Retrieve an existing Ezsigntemplate
+//
+// 
+//
+ezsigntemplate_get_object_v2_response_t*
+ObjectEzsigntemplateAPI_ezsigntemplateGetObjectV2(apiClient_t *apiClient, int pkiEzsigntemplateID );
 
 

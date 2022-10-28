@@ -660,6 +660,88 @@ end:
 
 }
 
+// Retrieve an existing Ezmaxinvoicing
+//
+// 
+//
+ezmaxinvoicing_get_object_v2_response_t*
+ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetObjectV2(apiClient_t *apiClient, int pkiEzmaxinvoicingID )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/2/object/ezmaxinvoicing/{pkiEzmaxinvoicingID}")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/2/object/ezmaxinvoicing/{pkiEzmaxinvoicingID}");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzmaxinvoicingID =  + strlen("{ pkiEzmaxinvoicingID }");
+    if(pkiEzmaxinvoicingID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzmaxinvoicingID = malloc(sizeOfPathParams_pkiEzmaxinvoicingID);
+    snprintf(localVarToReplace_pkiEzmaxinvoicingID, sizeOfPathParams_pkiEzmaxinvoicingID, "{%s}", "pkiEzmaxinvoicingID");
+
+    char localVarBuff_pkiEzmaxinvoicingID[256];
+    intToStr(localVarBuff_pkiEzmaxinvoicingID, pkiEzmaxinvoicingID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzmaxinvoicingID, localVarBuff_pkiEzmaxinvoicingID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectEzmaxinvoicingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezmaxinvoicing_get_object_v2_response_t *elementToReturn = ezmaxinvoicing_get_object_v2_response_parseFromJSON(ObjectEzmaxinvoicingAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzmaxinvoicingAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEzmaxinvoicingID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Retrieve provisional Ezmaxinvoicing
 //
 // 

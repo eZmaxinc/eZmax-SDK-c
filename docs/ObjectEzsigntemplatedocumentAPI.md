@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplateformfieldgroupsV1**](ObjectEzsigntemplatedocumentAPI.md#ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplateformfieldgroupsV1) | **GET** /1/object/ezsigntemplatedocument/{pkiEzsigntemplatedocumentID}/getEzsigntemplateformfieldgroups | Retrieve an existing Ezsigntemplatedocument&#39;s Ezsigntemplateformfieldgroups
 [**ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatesignaturesV1**](ObjectEzsigntemplatedocumentAPI.md#ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatesignaturesV1) | **GET** /1/object/ezsigntemplatedocument/{pkiEzsigntemplatedocumentID}/getEzsigntemplatesignatures | Retrieve an existing Ezsigntemplatedocument&#39;s Ezsigntemplatesignatures
 [**ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetObjectV1**](ObjectEzsigntemplatedocumentAPI.md#ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetObjectV1) | **GET** /1/object/ezsigntemplatedocument/{pkiEzsigntemplatedocumentID} | Retrieve an existing Ezsigntemplatedocument
+[**ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetObjectV2**](ObjectEzsigntemplatedocumentAPI.md#ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetObjectV2) | **GET** /2/object/ezsigntemplatedocument/{pkiEzsigntemplatedocumentID} | Retrieve an existing Ezsigntemplatedocument
 [**ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetWordsPositionsV1**](ObjectEzsigntemplatedocumentAPI.md#ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetWordsPositionsV1) | **POST** /1/object/ezsigntemplatedocument/{pkiEzsigntemplatedocumentID}/getWordsPositions | Retrieve positions X,Y of given words from a Ezsigntemplatedocument
 [**ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentPatchObjectV1**](ObjectEzsigntemplatedocumentAPI.md#ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentPatchObjectV1) | **PATCH** /1/object/ezsigntemplatedocument/{pkiEzsigntemplatedocumentID} | Patch an existing Ezsigntemplatedocument
 
@@ -254,6 +255,37 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsigntemplatedocument_get_object_v1_response_t](ezsigntemplatedocument_get_object_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetObjectV2**
+```c
+// Retrieve an existing Ezsigntemplatedocument
+//
+// 
+//
+ezsigntemplatedocument_get_object_v2_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetObjectV2(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsigntemplatedocumentID** | **int** |  | 
+
+### Return type
+
+[ezsigntemplatedocument_get_object_v2_response_t](ezsigntemplatedocument_get_object_v2_response.md) *
 
 
 ### Authorization

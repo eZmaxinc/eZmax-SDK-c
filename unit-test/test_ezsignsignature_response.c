@@ -37,7 +37,7 @@ ezsignsignature_response_t* instantiate_ezsignsignature_response(int include_opt
       "Attachment",
       ezmax_api_definition__full_ezsignsignature_response__"Description",
       1,
-      70
+      20
     );
   } else {
     ezsignsignature_response = ezsignsignature_response_create(
@@ -56,7 +56,7 @@ ezsignsignature_response_t* instantiate_ezsignsignature_response(int include_opt
       "Attachment",
       ezmax_api_definition__full_ezsignsignature_response__"Description",
       1,
-      70
+      20
     );
   }
 

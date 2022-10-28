@@ -652,3 +652,85 @@ end:
 
 }
 
+// Retrieve an existing Ezsignfoldersignerassociation
+//
+// 
+//
+ezsignfoldersignerassociation_get_object_v2_response_t*
+ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV2(apiClient_t *apiClient, int pkiEzsignfoldersignerassociationID )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/2/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/2/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsignfoldersignerassociationID =  + strlen("{ pkiEzsignfoldersignerassociationID }");
+    if(pkiEzsignfoldersignerassociationID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsignfoldersignerassociationID = malloc(sizeOfPathParams_pkiEzsignfoldersignerassociationID);
+    snprintf(localVarToReplace_pkiEzsignfoldersignerassociationID, sizeOfPathParams_pkiEzsignfoldersignerassociationID, "{%s}", "pkiEzsignfoldersignerassociationID");
+
+    char localVarBuff_pkiEzsignfoldersignerassociationID[256];
+    intToStr(localVarBuff_pkiEzsignfoldersignerassociationID, pkiEzsignfoldersignerassociationID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfoldersignerassociationID, localVarBuff_pkiEzsignfoldersignerassociationID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsignfoldersignerassociation_get_object_v2_response_t *elementToReturn = ezsignfoldersignerassociation_get_object_v2_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsignfoldersignerassociationID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+

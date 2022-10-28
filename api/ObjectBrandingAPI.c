@@ -1110,3 +1110,85 @@ end:
 
 }
 
+// Retrieve an existing Branding
+//
+// 
+//
+branding_get_object_v2_response_t*
+ObjectBrandingAPI_brandingGetObjectV2(apiClient_t *apiClient, int pkiBrandingID )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/2/object/branding/{pkiBrandingID}")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/2/object/branding/{pkiBrandingID}");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiBrandingID =  + strlen("{ pkiBrandingID }");
+    if(pkiBrandingID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiBrandingID = malloc(sizeOfPathParams_pkiBrandingID);
+    snprintf(localVarToReplace_pkiBrandingID, sizeOfPathParams_pkiBrandingID, "{%s}", "pkiBrandingID");
+
+    char localVarBuff_pkiBrandingID[256];
+    intToStr(localVarBuff_pkiBrandingID, pkiBrandingID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiBrandingID, localVarBuff_pkiBrandingID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectBrandingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    branding_get_object_v2_response_t *elementToReturn = branding_get_object_v2_response_parseFromJSON(ObjectBrandingAPIlocalVarJSON);
+    cJSON_Delete(ObjectBrandingAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiBrandingID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+

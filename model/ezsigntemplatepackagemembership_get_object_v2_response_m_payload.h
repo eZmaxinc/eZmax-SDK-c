@@ -1,0 +1,38 @@
+/*
+ * ezsigntemplatepackagemembership_get_object_v2_response_m_payload.h
+ *
+ * Payload for GET /2/object/ezsigntemplatepackagemembership/{pkiEzsigntemplatepackagemembershipID}
+ */
+
+#ifndef _ezsigntemplatepackagemembership_get_object_v2_response_m_payload_H_
+#define _ezsigntemplatepackagemembership_get_object_v2_response_m_payload_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct ezsigntemplatepackagemembership_get_object_v2_response_m_payload_t ezsigntemplatepackagemembership_get_object_v2_response_m_payload_t;
+
+#include "ezsigntemplatepackagemembership_response_compound.h"
+
+
+
+typedef struct ezsigntemplatepackagemembership_get_object_v2_response_m_payload_t {
+    struct ezsigntemplatepackagemembership_response_compound_t *obj_ezsigntemplatepackagemembership; //model
+
+} ezsigntemplatepackagemembership_get_object_v2_response_m_payload_t;
+
+ezsigntemplatepackagemembership_get_object_v2_response_m_payload_t *ezsigntemplatepackagemembership_get_object_v2_response_m_payload_create(
+    ezsigntemplatepackagemembership_response_compound_t *obj_ezsigntemplatepackagemembership
+);
+
+void ezsigntemplatepackagemembership_get_object_v2_response_m_payload_free(ezsigntemplatepackagemembership_get_object_v2_response_m_payload_t *ezsigntemplatepackagemembership_get_object_v2_response_m_payload);
+
+ezsigntemplatepackagemembership_get_object_v2_response_m_payload_t *ezsigntemplatepackagemembership_get_object_v2_response_m_payload_parseFromJSON(cJSON *ezsigntemplatepackagemembership_get_object_v2_response_m_payloadJSON);
+
+cJSON *ezsigntemplatepackagemembership_get_object_v2_response_m_payload_convertToJSON(ezsigntemplatepackagemembership_get_object_v2_response_m_payload_t *ezsigntemplatepackagemembership_get_object_v2_response_m_payload);
+
+#endif /* _ezsigntemplatepackagemembership_get_object_v2_response_m_payload_H_ */
+

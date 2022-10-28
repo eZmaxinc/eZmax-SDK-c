@@ -70,7 +70,7 @@ typedef struct ezsignsignature_response_t {
     char *s_ezsignsignature_attachmentdescription; // string
     field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource; // custom
     int b_ezsignsignature_required; //boolean
-    int fki_user_id; //numeric
+    int fki_ezsignfoldersignerassociation_id_validation; //numeric
 
 } ezsignsignature_response_t;
 
@@ -90,7 +90,7 @@ ezsignsignature_response_t *ezsignsignature_response_create(
     char *s_ezsignsignature_attachmentdescription,
     field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource,
     int b_ezsignsignature_required,
-    int fki_user_id
+    int fki_ezsignfoldersignerassociation_id_validation
 );
 
 void ezsignsignature_response_free(ezsignsignature_response_t *ezsignsignature_response);

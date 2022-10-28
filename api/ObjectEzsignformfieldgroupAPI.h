@@ -12,6 +12,7 @@
 #include "../model/ezsignformfieldgroup_edit_object_v1_request.h"
 #include "../model/ezsignformfieldgroup_edit_object_v1_response.h"
 #include "../model/ezsignformfieldgroup_get_object_v1_response.h"
+#include "../model/ezsignformfieldgroup_get_object_v2_response.h"
 
 
 // Create a new Ezsignformfieldgroup
@@ -42,5 +43,13 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupEditObjectV1(apiClient_t *apiC
 //
 ezsignformfieldgroup_get_object_v1_response_t*
 ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupGetObjectV1(apiClient_t *apiClient, int pkiEzsignformfieldgroupID );
+
+
+// Retrieve an existing Ezsignformfieldgroup
+//
+// 
+//
+ezsignformfieldgroup_get_object_v2_response_t*
+ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupGetObjectV2(apiClient_t *apiClient, int pkiEzsignformfieldgroupID );
 
 

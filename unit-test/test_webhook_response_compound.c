@@ -22,7 +22,6 @@ webhook_response_compound_t* instantiate_webhook_response_compound(int include_o
   webhook_response_compound_t* webhook_response_compound = NULL;
   if (include_optional) {
     webhook_response_compound = webhook_response_compound_create(
-      "Ezsign-DocumentCompleted",
       77,
       "Import into our system",
       5,
@@ -33,11 +32,11 @@ webhook_response_compound_t* instantiate_webhook_response_compound(int include_o
       "https://www.example.com",
       "email@example.com",
       true,
-      false
+      false,
+      "Ezsign-DocumentCompleted"
     );
   } else {
     webhook_response_compound = webhook_response_compound_create(
-      "Ezsign-DocumentCompleted",
       77,
       "Import into our system",
       5,
@@ -48,7 +47,8 @@ webhook_response_compound_t* instantiate_webhook_response_compound(int include_o
       "https://www.example.com",
       "email@example.com",
       true,
-      false
+      false,
+      "Ezsign-DocumentCompleted"
     );
   }
 

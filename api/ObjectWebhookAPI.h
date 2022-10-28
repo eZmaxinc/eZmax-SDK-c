@@ -17,6 +17,7 @@
 #include "../model/webhook_get_history_v1_response.h"
 #include "../model/webhook_get_list_v1_response.h"
 #include "../model/webhook_get_object_v1_response.h"
+#include "../model/webhook_get_object_v2_response.h"
 #include "../model/webhook_test_v1_response.h"
 
 // Enum EWEBHOOKHISTORYINTERVAL for ObjectWebhookAPI_webhookGetHistoryV1
@@ -75,6 +76,14 @@ ObjectWebhookAPI_webhookGetListV1(apiClient_t *apiClient, ezmax_api_definition__
 //
 webhook_get_object_v1_response_t*
 ObjectWebhookAPI_webhookGetObjectV1(apiClient_t *apiClient, int pkiWebhookID );
+
+
+// Retrieve an existing Webhook
+//
+// 
+//
+webhook_get_object_v2_response_t*
+ObjectWebhookAPI_webhookGetObjectV2(apiClient_t *apiClient, int pkiWebhookID );
 
 
 // Test the Webhook by calling the Url

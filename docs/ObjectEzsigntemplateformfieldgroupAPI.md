@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**ObjectEzsigntemplateformfieldgroupAPI_ezsigntemplateformfieldgroupDeleteObjectV1**](ObjectEzsigntemplateformfieldgroupAPI.md#ObjectEzsigntemplateformfieldgroupAPI_ezsigntemplateformfieldgroupDeleteObjectV1) | **DELETE** /1/object/ezsigntemplateformfieldgroup/{pkiEzsigntemplateformfieldgroupID} | Delete an existing Ezsigntemplateformfieldgroup
 [**ObjectEzsigntemplateformfieldgroupAPI_ezsigntemplateformfieldgroupEditObjectV1**](ObjectEzsigntemplateformfieldgroupAPI.md#ObjectEzsigntemplateformfieldgroupAPI_ezsigntemplateformfieldgroupEditObjectV1) | **PUT** /1/object/ezsigntemplateformfieldgroup/{pkiEzsigntemplateformfieldgroupID} | Edit an existing Ezsigntemplateformfieldgroup
 [**ObjectEzsigntemplateformfieldgroupAPI_ezsigntemplateformfieldgroupGetObjectV1**](ObjectEzsigntemplateformfieldgroupAPI.md#ObjectEzsigntemplateformfieldgroupAPI_ezsigntemplateformfieldgroupGetObjectV1) | **GET** /1/object/ezsigntemplateformfieldgroup/{pkiEzsigntemplateformfieldgroupID} | Retrieve an existing Ezsigntemplateformfieldgroup
+[**ObjectEzsigntemplateformfieldgroupAPI_ezsigntemplateformfieldgroupGetObjectV2**](ObjectEzsigntemplateformfieldgroupAPI.md#ObjectEzsigntemplateformfieldgroupAPI_ezsigntemplateformfieldgroupGetObjectV2) | **GET** /2/object/ezsigntemplateformfieldgroup/{pkiEzsigntemplateformfieldgroupID} | Retrieve an existing Ezsigntemplateformfieldgroup
 
 
 # **ObjectEzsigntemplateformfieldgroupAPI_ezsigntemplateformfieldgroupCreateObjectV1**
@@ -122,6 +123,37 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsigntemplateformfieldgroup_get_object_v1_response_t](ezsigntemplateformfieldgroup_get_object_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsigntemplateformfieldgroupAPI_ezsigntemplateformfieldgroupGetObjectV2**
+```c
+// Retrieve an existing Ezsigntemplateformfieldgroup
+//
+// 
+//
+ezsigntemplateformfieldgroup_get_object_v2_response_t* ObjectEzsigntemplateformfieldgroupAPI_ezsigntemplateformfieldgroupGetObjectV2(apiClient_t *apiClient, int pkiEzsigntemplateformfieldgroupID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsigntemplateformfieldgroupID** | **int** |  | 
+
+### Return type
+
+[ezsigntemplateformfieldgroup_get_object_v2_response_t](ezsigntemplateformfieldgroup_get_object_v2_response.md) *
 
 
 ### Authorization

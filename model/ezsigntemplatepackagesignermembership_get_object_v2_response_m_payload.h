@@ -1,0 +1,38 @@
+/*
+ * ezsigntemplatepackagesignermembership_get_object_v2_response_m_payload.h
+ *
+ * Payload for GET /2/object/ezsigntemplatepackagesignermembership/{pkiEzsigntemplatepackagesignermembershipID}
+ */
+
+#ifndef _ezsigntemplatepackagesignermembership_get_object_v2_response_m_payload_H_
+#define _ezsigntemplatepackagesignermembership_get_object_v2_response_m_payload_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct ezsigntemplatepackagesignermembership_get_object_v2_response_m_payload_t ezsigntemplatepackagesignermembership_get_object_v2_response_m_payload_t;
+
+#include "ezsigntemplatepackagesignermembership_response_compound.h"
+
+
+
+typedef struct ezsigntemplatepackagesignermembership_get_object_v2_response_m_payload_t {
+    struct ezsigntemplatepackagesignermembership_response_compound_t *obj_ezsigntemplatepackagesignermembership; //model
+
+} ezsigntemplatepackagesignermembership_get_object_v2_response_m_payload_t;
+
+ezsigntemplatepackagesignermembership_get_object_v2_response_m_payload_t *ezsigntemplatepackagesignermembership_get_object_v2_response_m_payload_create(
+    ezsigntemplatepackagesignermembership_response_compound_t *obj_ezsigntemplatepackagesignermembership
+);
+
+void ezsigntemplatepackagesignermembership_get_object_v2_response_m_payload_free(ezsigntemplatepackagesignermembership_get_object_v2_response_m_payload_t *ezsigntemplatepackagesignermembership_get_object_v2_response_m_payload);
+
+ezsigntemplatepackagesignermembership_get_object_v2_response_m_payload_t *ezsigntemplatepackagesignermembership_get_object_v2_response_m_payload_parseFromJSON(cJSON *ezsigntemplatepackagesignermembership_get_object_v2_response_m_payloadJSON);
+
+cJSON *ezsigntemplatepackagesignermembership_get_object_v2_response_m_payload_convertToJSON(ezsigntemplatepackagesignermembership_get_object_v2_response_m_payload_t *ezsigntemplatepackagesignermembership_get_object_v2_response_m_payload);
+
+#endif /* _ezsigntemplatepackagesignermembership_get_object_v2_response_m_payload_H_ */
+

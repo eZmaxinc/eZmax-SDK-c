@@ -37,7 +37,7 @@ ezsignsignature_get_object_v1_response_m_payload_t* instantiate_ezsignsignature_
       "Attachment",
       ezmax_api_definition__full_ezsignsignature_get_object_v1_response_m_payload__"Description",
       1,
-      70,
+      20,
       1,
       list_createList()
     );
@@ -58,7 +58,7 @@ ezsignsignature_get_object_v1_response_m_payload_t* instantiate_ezsignsignature_
       "Attachment",
       ezmax_api_definition__full_ezsignsignature_get_object_v1_response_m_payload__"Description",
       1,
-      70,
+      20,
       1,
       list_createList()
     );

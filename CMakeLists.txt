@@ -99,6 +99,9 @@ set(SRCS
     model/branding_get_object_v1_response.c
     model/branding_get_object_v1_response_all_of.c
     model/branding_get_object_v1_response_m_payload.c
+    model/branding_get_object_v2_response.c
+    model/branding_get_object_v2_response_all_of.c
+    model/branding_get_object_v2_response_m_payload.c
     model/branding_list_element.c
     model/branding_request.c
     model/branding_request_compound.c
@@ -186,6 +189,9 @@ set(SRCS
     model/ezmaxinvoicing_get_object_v1_response.c
     model/ezmaxinvoicing_get_object_v1_response_all_of.c
     model/ezmaxinvoicing_get_object_v1_response_m_payload.c
+    model/ezmaxinvoicing_get_object_v2_response.c
+    model/ezmaxinvoicing_get_object_v2_response_all_of.c
+    model/ezmaxinvoicing_get_object_v2_response_m_payload.c
     model/ezmaxinvoicing_get_provisional_v1_response.c
     model/ezmaxinvoicing_get_provisional_v1_response_all_of.c
     model/ezmaxinvoicing_get_provisional_v1_response_m_payload.c
@@ -245,6 +251,9 @@ set(SRCS
     model/ezsignbulksend_get_object_v1_response.c
     model/ezsignbulksend_get_object_v1_response_all_of.c
     model/ezsignbulksend_get_object_v1_response_m_payload.c
+    model/ezsignbulksend_get_object_v2_response.c
+    model/ezsignbulksend_get_object_v2_response_all_of.c
+    model/ezsignbulksend_get_object_v2_response_m_payload.c
     model/ezsignbulksend_list_element.c
     model/ezsignbulksend_reorder_v1_request.c
     model/ezsignbulksend_reorder_v1_response.c
@@ -261,6 +270,9 @@ set(SRCS
     model/ezsignbulksenddocumentmapping_get_object_v1_response.c
     model/ezsignbulksenddocumentmapping_get_object_v1_response_all_of.c
     model/ezsignbulksenddocumentmapping_get_object_v1_response_m_payload.c
+    model/ezsignbulksenddocumentmapping_get_object_v2_response.c
+    model/ezsignbulksenddocumentmapping_get_object_v2_response_all_of.c
+    model/ezsignbulksenddocumentmapping_get_object_v2_response_m_payload.c
     model/ezsignbulksenddocumentmapping_request.c
     model/ezsignbulksenddocumentmapping_request_compound.c
     model/ezsignbulksenddocumentmapping_response.c
@@ -274,6 +286,9 @@ set(SRCS
     model/ezsignbulksendsignermapping_get_object_v1_response.c
     model/ezsignbulksendsignermapping_get_object_v1_response_all_of.c
     model/ezsignbulksendsignermapping_get_object_v1_response_m_payload.c
+    model/ezsignbulksendsignermapping_get_object_v2_response.c
+    model/ezsignbulksendsignermapping_get_object_v2_response_all_of.c
+    model/ezsignbulksendsignermapping_get_object_v2_response_m_payload.c
     model/ezsignbulksendsignermapping_request.c
     model/ezsignbulksendsignermapping_request_compound.c
     model/ezsignbulksendsignermapping_response.c
@@ -284,6 +299,9 @@ set(SRCS
     model/ezsignbulksendtransmission_get_object_v1_response.c
     model/ezsignbulksendtransmission_get_object_v1_response_all_of.c
     model/ezsignbulksendtransmission_get_object_v1_response_m_payload.c
+    model/ezsignbulksendtransmission_get_object_v2_response.c
+    model/ezsignbulksendtransmission_get_object_v2_response_all_of.c
+    model/ezsignbulksendtransmission_get_object_v2_response_m_payload.c
     model/ezsignbulksendtransmission_response.c
     model/ezsignbulksendtransmission_response_compound.c
     model/ezsignbulksendtransmission_response_compound_all_of.c
@@ -330,6 +348,9 @@ set(SRCS
     model/ezsigndocument_get_object_v1_response.c
     model/ezsigndocument_get_object_v1_response_all_of.c
     model/ezsigndocument_get_object_v1_response_m_payload.c
+    model/ezsigndocument_get_object_v2_response.c
+    model/ezsigndocument_get_object_v2_response_all_of.c
+    model/ezsigndocument_get_object_v2_response_m_payload.c
     model/ezsigndocument_get_temporary_proof_v1_response.c
     model/ezsigndocument_get_temporary_proof_v1_response_all_of.c
     model/ezsigndocument_get_temporary_proof_v1_response_m_payload.c
@@ -382,6 +403,9 @@ set(SRCS
     model/ezsignfolder_get_object_v1_response.c
     model/ezsignfolder_get_object_v1_response_all_of.c
     model/ezsignfolder_get_object_v1_response_m_payload.c
+    model/ezsignfolder_get_object_v2_response.c
+    model/ezsignfolder_get_object_v2_response_all_of.c
+    model/ezsignfolder_get_object_v2_response_m_payload.c
     model/ezsignfolder_import_ezsignfoldersignerassociations_v1_request.c
     model/ezsignfolder_import_ezsignfoldersignerassociations_v1_response.c
     model/ezsignfolder_import_ezsignfoldersignerassociations_v1_response_all_of.c
@@ -420,6 +444,9 @@ set(SRCS
     model/ezsignfoldersignerassociation_get_object_v1_response.c
     model/ezsignfoldersignerassociation_get_object_v1_response_all_of.c
     model/ezsignfoldersignerassociation_get_object_v1_response_m_payload.c
+    model/ezsignfoldersignerassociation_get_object_v2_response.c
+    model/ezsignfoldersignerassociation_get_object_v2_response_all_of.c
+    model/ezsignfoldersignerassociation_get_object_v2_response_m_payload.c
     model/ezsignfoldersignerassociation_request.c
     model/ezsignfoldersignerassociation_request_compound.c
     model/ezsignfoldersignerassociation_request_compound_all_of.c
@@ -444,6 +471,9 @@ set(SRCS
     model/ezsignfoldertype_get_object_v1_response.c
     model/ezsignfoldertype_get_object_v1_response_all_of.c
     model/ezsignfoldertype_get_object_v1_response_m_payload.c
+    model/ezsignfoldertype_get_object_v2_response.c
+    model/ezsignfoldertype_get_object_v2_response_all_of.c
+    model/ezsignfoldertype_get_object_v2_response_m_payload.c
     model/ezsignfoldertype_list_element.c
     model/ezsignfoldertype_request.c
     model/ezsignfoldertype_request_compound.c
@@ -464,6 +494,9 @@ set(SRCS
     model/ezsignformfieldgroup_get_object_v1_response.c
     model/ezsignformfieldgroup_get_object_v1_response_all_of.c
     model/ezsignformfieldgroup_get_object_v1_response_m_payload.c
+    model/ezsignformfieldgroup_get_object_v2_response.c
+    model/ezsignformfieldgroup_get_object_v2_response_all_of.c
+    model/ezsignformfieldgroup_get_object_v2_response_m_payload.c
     model/ezsignformfieldgroup_request.c
     model/ezsignformfieldgroup_request_compound.c
     model/ezsignformfieldgroup_request_compound_all_of.c
@@ -490,6 +523,9 @@ set(SRCS
     model/ezsignsignature_get_object_v1_response.c
     model/ezsignsignature_get_object_v1_response_all_of.c
     model/ezsignsignature_get_object_v1_response_m_payload.c
+    model/ezsignsignature_get_object_v2_response.c
+    model/ezsignsignature_get_object_v2_response_all_of.c
+    model/ezsignsignature_get_object_v2_response_m_payload.c
     model/ezsignsignature_request.c
     model/ezsignsignature_request_compound.c
     model/ezsignsignature_request_compound_all_of.c
@@ -529,6 +565,9 @@ set(SRCS
     model/ezsigntemplate_get_object_v1_response.c
     model/ezsigntemplate_get_object_v1_response_all_of.c
     model/ezsigntemplate_get_object_v1_response_m_payload.c
+    model/ezsigntemplate_get_object_v2_response.c
+    model/ezsigntemplate_get_object_v2_response_all_of.c
+    model/ezsigntemplate_get_object_v2_response_m_payload.c
     model/ezsigntemplate_list_element.c
     model/ezsigntemplate_request.c
     model/ezsigntemplate_request_compound.c
@@ -562,6 +601,9 @@ set(SRCS
     model/ezsigntemplatedocument_get_object_v1_response.c
     model/ezsigntemplatedocument_get_object_v1_response_all_of.c
     model/ezsigntemplatedocument_get_object_v1_response_m_payload.c
+    model/ezsigntemplatedocument_get_object_v2_response.c
+    model/ezsigntemplatedocument_get_object_v2_response_all_of.c
+    model/ezsigntemplatedocument_get_object_v2_response_m_payload.c
     model/ezsigntemplatedocument_get_words_positions_v1_request.c
     model/ezsigntemplatedocument_get_words_positions_v1_response.c
     model/ezsigntemplatedocument_get_words_positions_v1_response_all_of.c
@@ -588,6 +630,9 @@ set(SRCS
     model/ezsigntemplateformfieldgroup_get_object_v1_response.c
     model/ezsigntemplateformfieldgroup_get_object_v1_response_all_of.c
     model/ezsigntemplateformfieldgroup_get_object_v1_response_m_payload.c
+    model/ezsigntemplateformfieldgroup_get_object_v2_response.c
+    model/ezsigntemplateformfieldgroup_get_object_v2_response_all_of.c
+    model/ezsigntemplateformfieldgroup_get_object_v2_response_m_payload.c
     model/ezsigntemplateformfieldgroup_request.c
     model/ezsigntemplateformfieldgroup_request_compound.c
     model/ezsigntemplateformfieldgroup_request_compound_all_of.c
@@ -620,6 +665,9 @@ set(SRCS
     model/ezsigntemplatepackage_get_object_v1_response.c
     model/ezsigntemplatepackage_get_object_v1_response_all_of.c
     model/ezsigntemplatepackage_get_object_v1_response_m_payload.c
+    model/ezsigntemplatepackage_get_object_v2_response.c
+    model/ezsigntemplatepackage_get_object_v2_response_all_of.c
+    model/ezsigntemplatepackage_get_object_v2_response_m_payload.c
     model/ezsigntemplatepackage_list_element.c
     model/ezsigntemplatepackage_request.c
     model/ezsigntemplatepackage_request_compound.c
@@ -634,6 +682,9 @@ set(SRCS
     model/ezsigntemplatepackagemembership_get_object_v1_response.c
     model/ezsigntemplatepackagemembership_get_object_v1_response_all_of.c
     model/ezsigntemplatepackagemembership_get_object_v1_response_m_payload.c
+    model/ezsigntemplatepackagemembership_get_object_v2_response.c
+    model/ezsigntemplatepackagemembership_get_object_v2_response_all_of.c
+    model/ezsigntemplatepackagemembership_get_object_v2_response_m_payload.c
     model/ezsigntemplatepackagemembership_request.c
     model/ezsigntemplatepackagemembership_request_compound.c
     model/ezsigntemplatepackagemembership_response.c
@@ -651,6 +702,9 @@ set(SRCS
     model/ezsigntemplatepackagesigner_get_object_v1_response.c
     model/ezsigntemplatepackagesigner_get_object_v1_response_all_of.c
     model/ezsigntemplatepackagesigner_get_object_v1_response_m_payload.c
+    model/ezsigntemplatepackagesigner_get_object_v2_response.c
+    model/ezsigntemplatepackagesigner_get_object_v2_response_all_of.c
+    model/ezsigntemplatepackagesigner_get_object_v2_response_m_payload.c
     model/ezsigntemplatepackagesigner_request.c
     model/ezsigntemplatepackagesigner_request_compound.c
     model/ezsigntemplatepackagesigner_response.c
@@ -665,6 +719,9 @@ set(SRCS
     model/ezsigntemplatepackagesignermembership_get_object_v1_response.c
     model/ezsigntemplatepackagesignermembership_get_object_v1_response_all_of.c
     model/ezsigntemplatepackagesignermembership_get_object_v1_response_m_payload.c
+    model/ezsigntemplatepackagesignermembership_get_object_v2_response.c
+    model/ezsigntemplatepackagesignermembership_get_object_v2_response_all_of.c
+    model/ezsigntemplatepackagesignermembership_get_object_v2_response_m_payload.c
     model/ezsigntemplatepackagesignermembership_request.c
     model/ezsigntemplatepackagesignermembership_request_compound.c
     model/ezsigntemplatepackagesignermembership_response.c
@@ -679,6 +736,9 @@ set(SRCS
     model/ezsigntemplatesignature_get_object_v1_response.c
     model/ezsigntemplatesignature_get_object_v1_response_all_of.c
     model/ezsigntemplatesignature_get_object_v1_response_m_payload.c
+    model/ezsigntemplatesignature_get_object_v2_response.c
+    model/ezsigntemplatesignature_get_object_v2_response_all_of.c
+    model/ezsigntemplatesignature_get_object_v2_response_m_payload.c
     model/ezsigntemplatesignature_request.c
     model/ezsigntemplatesignature_request_compound.c
     model/ezsigntemplatesignature_request_compound_all_of.c
@@ -699,6 +759,9 @@ set(SRCS
     model/ezsigntemplatesigner_get_object_v1_response.c
     model/ezsigntemplatesigner_get_object_v1_response_all_of.c
     model/ezsigntemplatesigner_get_object_v1_response_m_payload.c
+    model/ezsigntemplatesigner_get_object_v2_response.c
+    model/ezsigntemplatesigner_get_object_v2_response_all_of.c
+    model/ezsigntemplatesigner_get_object_v2_response_m_payload.c
     model/ezsigntemplatesigner_request.c
     model/ezsigntemplatesigner_request_compound.c
     model/ezsigntemplatesigner_response.c
@@ -740,6 +803,8 @@ set(SRCS
     model/field_e_phone_type.c
     model/field_e_user_ezsignsendreminderfrequency.c
     model/field_e_user_type.c
+    model/field_e_versionhistory_type.c
+    model/field_e_versionhistory_usertype.c
     model/field_e_webhook_ezsignevent.c
     model/field_e_webhook_managementevent.c
     model/field_e_webhook_module.c
@@ -762,6 +827,7 @@ set(SRCS
     model/multilingual_ezsignfoldertype_name.c
     model/multilingual_notificationsubsection_name.c
     model/multilingual_notificationtest_name.c
+    model/multilingual_versionhistory_detail.c
     model/notificationsection_get_notificationtests_v1_response.c
     model/notificationsection_get_notificationtests_v1_response_all_of.c
     model/notificationsection_get_notificationtests_v1_response_m_payload.c
@@ -798,6 +864,11 @@ set(SRCS
     model/usergroup_get_autocomplete_v2_response.c
     model/usergroup_get_autocomplete_v2_response_all_of.c
     model/usergroup_get_autocomplete_v2_response_m_payload.c
+    model/versionhistory_get_object_v2_response.c
+    model/versionhistory_get_object_v2_response_all_of.c
+    model/versionhistory_get_object_v2_response_m_payload.c
+    model/versionhistory_response.c
+    model/versionhistory_response_compound.c
     model/webhook_create_object_v1_request.c
     model/webhook_create_object_v1_response.c
     model/webhook_create_object_v1_response_all_of.c
@@ -820,11 +891,15 @@ set(SRCS
     model/webhook_get_object_v1_response.c
     model/webhook_get_object_v1_response_all_of.c
     model/webhook_get_object_v1_response_m_payload.c
+    model/webhook_get_object_v2_response.c
+    model/webhook_get_object_v2_response_all_of.c
+    model/webhook_get_object_v2_response_m_payload.c
     model/webhook_list_element.c
     model/webhook_request.c
     model/webhook_request_compound.c
     model/webhook_response.c
     model/webhook_response_compound.c
+    model/webhook_response_compound_all_of.c
     model/webhook_test_v1_response.c
     model/webhook_user_user_created.c
     model/webhook_user_user_created_all_of.c
@@ -870,6 +945,7 @@ set(SRCS
     api/ObjectTimezoneAPI.c
     api/ObjectUserAPI.c
     api/ObjectUsergroupAPI.c
+    api/ObjectVersionhistoryAPI.c
     api/ObjectWebhookAPI.c
 
 )
@@ -926,6 +1002,9 @@ set(HDRS
     model/branding_get_object_v1_response.h
     model/branding_get_object_v1_response_all_of.h
     model/branding_get_object_v1_response_m_payload.h
+    model/branding_get_object_v2_response.h
+    model/branding_get_object_v2_response_all_of.h
+    model/branding_get_object_v2_response_m_payload.h
     model/branding_list_element.h
     model/branding_request.h
     model/branding_request_compound.h
@@ -1013,6 +1092,9 @@ set(HDRS
     model/ezmaxinvoicing_get_object_v1_response.h
     model/ezmaxinvoicing_get_object_v1_response_all_of.h
     model/ezmaxinvoicing_get_object_v1_response_m_payload.h
+    model/ezmaxinvoicing_get_object_v2_response.h
+    model/ezmaxinvoicing_get_object_v2_response_all_of.h
+    model/ezmaxinvoicing_get_object_v2_response_m_payload.h
     model/ezmaxinvoicing_get_provisional_v1_response.h
     model/ezmaxinvoicing_get_provisional_v1_response_all_of.h
     model/ezmaxinvoicing_get_provisional_v1_response_m_payload.h
@@ -1072,6 +1154,9 @@ set(HDRS
     model/ezsignbulksend_get_object_v1_response.h
     model/ezsignbulksend_get_object_v1_response_all_of.h
     model/ezsignbulksend_get_object_v1_response_m_payload.h
+    model/ezsignbulksend_get_object_v2_response.h
+    model/ezsignbulksend_get_object_v2_response_all_of.h
+    model/ezsignbulksend_get_object_v2_response_m_payload.h
     model/ezsignbulksend_list_element.h
     model/ezsignbulksend_reorder_v1_request.h
     model/ezsignbulksend_reorder_v1_response.h
@@ -1088,6 +1173,9 @@ set(HDRS
     model/ezsignbulksenddocumentmapping_get_object_v1_response.h
     model/ezsignbulksenddocumentmapping_get_object_v1_response_all_of.h
     model/ezsignbulksenddocumentmapping_get_object_v1_response_m_payload.h
+    model/ezsignbulksenddocumentmapping_get_object_v2_response.h
+    model/ezsignbulksenddocumentmapping_get_object_v2_response_all_of.h
+    model/ezsignbulksenddocumentmapping_get_object_v2_response_m_payload.h
     model/ezsignbulksenddocumentmapping_request.h
     model/ezsignbulksenddocumentmapping_request_compound.h
     model/ezsignbulksenddocumentmapping_response.h
@@ -1101,6 +1189,9 @@ set(HDRS
     model/ezsignbulksendsignermapping_get_object_v1_response.h
     model/ezsignbulksendsignermapping_get_object_v1_response_all_of.h
     model/ezsignbulksendsignermapping_get_object_v1_response_m_payload.h
+    model/ezsignbulksendsignermapping_get_object_v2_response.h
+    model/ezsignbulksendsignermapping_get_object_v2_response_all_of.h
+    model/ezsignbulksendsignermapping_get_object_v2_response_m_payload.h
     model/ezsignbulksendsignermapping_request.h
     model/ezsignbulksendsignermapping_request_compound.h
     model/ezsignbulksendsignermapping_response.h
@@ -1111,6 +1202,9 @@ set(HDRS
     model/ezsignbulksendtransmission_get_object_v1_response.h
     model/ezsignbulksendtransmission_get_object_v1_response_all_of.h
     model/ezsignbulksendtransmission_get_object_v1_response_m_payload.h
+    model/ezsignbulksendtransmission_get_object_v2_response.h
+    model/ezsignbulksendtransmission_get_object_v2_response_all_of.h
+    model/ezsignbulksendtransmission_get_object_v2_response_m_payload.h
     model/ezsignbulksendtransmission_response.h
     model/ezsignbulksendtransmission_response_compound.h
     model/ezsignbulksendtransmission_response_compound_all_of.h
@@ -1157,6 +1251,9 @@ set(HDRS
     model/ezsigndocument_get_object_v1_response.h
     model/ezsigndocument_get_object_v1_response_all_of.h
     model/ezsigndocument_get_object_v1_response_m_payload.h
+    model/ezsigndocument_get_object_v2_response.h
+    model/ezsigndocument_get_object_v2_response_all_of.h
+    model/ezsigndocument_get_object_v2_response_m_payload.h
     model/ezsigndocument_get_temporary_proof_v1_response.h
     model/ezsigndocument_get_temporary_proof_v1_response_all_of.h
     model/ezsigndocument_get_temporary_proof_v1_response_m_payload.h
@@ -1209,6 +1306,9 @@ set(HDRS
     model/ezsignfolder_get_object_v1_response.h
     model/ezsignfolder_get_object_v1_response_all_of.h
     model/ezsignfolder_get_object_v1_response_m_payload.h
+    model/ezsignfolder_get_object_v2_response.h
+    model/ezsignfolder_get_object_v2_response_all_of.h
+    model/ezsignfolder_get_object_v2_response_m_payload.h
     model/ezsignfolder_import_ezsignfoldersignerassociations_v1_request.h
     model/ezsignfolder_import_ezsignfoldersignerassociations_v1_response.h
     model/ezsignfolder_import_ezsignfoldersignerassociations_v1_response_all_of.h
@@ -1247,6 +1347,9 @@ set(HDRS
     model/ezsignfoldersignerassociation_get_object_v1_response.h
     model/ezsignfoldersignerassociation_get_object_v1_response_all_of.h
     model/ezsignfoldersignerassociation_get_object_v1_response_m_payload.h
+    model/ezsignfoldersignerassociation_get_object_v2_response.h
+    model/ezsignfoldersignerassociation_get_object_v2_response_all_of.h
+    model/ezsignfoldersignerassociation_get_object_v2_response_m_payload.h
     model/ezsignfoldersignerassociation_request.h
     model/ezsignfoldersignerassociation_request_compound.h
     model/ezsignfoldersignerassociation_request_compound_all_of.h
@@ -1271,6 +1374,9 @@ set(HDRS
     model/ezsignfoldertype_get_object_v1_response.h
     model/ezsignfoldertype_get_object_v1_response_all_of.h
     model/ezsignfoldertype_get_object_v1_response_m_payload.h
+    model/ezsignfoldertype_get_object_v2_response.h
+    model/ezsignfoldertype_get_object_v2_response_all_of.h
+    model/ezsignfoldertype_get_object_v2_response_m_payload.h
     model/ezsignfoldertype_list_element.h
     model/ezsignfoldertype_request.h
     model/ezsignfoldertype_request_compound.h
@@ -1291,6 +1397,9 @@ set(HDRS
     model/ezsignformfieldgroup_get_object_v1_response.h
     model/ezsignformfieldgroup_get_object_v1_response_all_of.h
     model/ezsignformfieldgroup_get_object_v1_response_m_payload.h
+    model/ezsignformfieldgroup_get_object_v2_response.h
+    model/ezsignformfieldgroup_get_object_v2_response_all_of.h
+    model/ezsignformfieldgroup_get_object_v2_response_m_payload.h
     model/ezsignformfieldgroup_request.h
     model/ezsignformfieldgroup_request_compound.h
     model/ezsignformfieldgroup_request_compound_all_of.h
@@ -1317,6 +1426,9 @@ set(HDRS
     model/ezsignsignature_get_object_v1_response.h
     model/ezsignsignature_get_object_v1_response_all_of.h
     model/ezsignsignature_get_object_v1_response_m_payload.h
+    model/ezsignsignature_get_object_v2_response.h
+    model/ezsignsignature_get_object_v2_response_all_of.h
+    model/ezsignsignature_get_object_v2_response_m_payload.h
     model/ezsignsignature_request.h
     model/ezsignsignature_request_compound.h
     model/ezsignsignature_request_compound_all_of.h
@@ -1356,6 +1468,9 @@ set(HDRS
     model/ezsigntemplate_get_object_v1_response.h
     model/ezsigntemplate_get_object_v1_response_all_of.h
     model/ezsigntemplate_get_object_v1_response_m_payload.h
+    model/ezsigntemplate_get_object_v2_response.h
+    model/ezsigntemplate_get_object_v2_response_all_of.h
+    model/ezsigntemplate_get_object_v2_response_m_payload.h
     model/ezsigntemplate_list_element.h
     model/ezsigntemplate_request.h
     model/ezsigntemplate_request_compound.h
@@ -1389,6 +1504,9 @@ set(HDRS
     model/ezsigntemplatedocument_get_object_v1_response.h
     model/ezsigntemplatedocument_get_object_v1_response_all_of.h
     model/ezsigntemplatedocument_get_object_v1_response_m_payload.h
+    model/ezsigntemplatedocument_get_object_v2_response.h
+    model/ezsigntemplatedocument_get_object_v2_response_all_of.h
+    model/ezsigntemplatedocument_get_object_v2_response_m_payload.h
     model/ezsigntemplatedocument_get_words_positions_v1_request.h
     model/ezsigntemplatedocument_get_words_positions_v1_response.h
     model/ezsigntemplatedocument_get_words_positions_v1_response_all_of.h
@@ -1415,6 +1533,9 @@ set(HDRS
     model/ezsigntemplateformfieldgroup_get_object_v1_response.h
     model/ezsigntemplateformfieldgroup_get_object_v1_response_all_of.h
     model/ezsigntemplateformfieldgroup_get_object_v1_response_m_payload.h
+    model/ezsigntemplateformfieldgroup_get_object_v2_response.h
+    model/ezsigntemplateformfieldgroup_get_object_v2_response_all_of.h
+    model/ezsigntemplateformfieldgroup_get_object_v2_response_m_payload.h
     model/ezsigntemplateformfieldgroup_request.h
     model/ezsigntemplateformfieldgroup_request_compound.h
     model/ezsigntemplateformfieldgroup_request_compound_all_of.h
@@ -1447,6 +1568,9 @@ set(HDRS
     model/ezsigntemplatepackage_get_object_v1_response.h
     model/ezsigntemplatepackage_get_object_v1_response_all_of.h
     model/ezsigntemplatepackage_get_object_v1_response_m_payload.h
+    model/ezsigntemplatepackage_get_object_v2_response.h
+    model/ezsigntemplatepackage_get_object_v2_response_all_of.h
+    model/ezsigntemplatepackage_get_object_v2_response_m_payload.h
     model/ezsigntemplatepackage_list_element.h
     model/ezsigntemplatepackage_request.h
     model/ezsigntemplatepackage_request_compound.h
@@ -1461,6 +1585,9 @@ set(HDRS
     model/ezsigntemplatepackagemembership_get_object_v1_response.h
     model/ezsigntemplatepackagemembership_get_object_v1_response_all_of.h
     model/ezsigntemplatepackagemembership_get_object_v1_response_m_payload.h
+    model/ezsigntemplatepackagemembership_get_object_v2_response.h
+    model/ezsigntemplatepackagemembership_get_object_v2_response_all_of.h
+    model/ezsigntemplatepackagemembership_get_object_v2_response_m_payload.h
     model/ezsigntemplatepackagemembership_request.h
     model/ezsigntemplatepackagemembership_request_compound.h
     model/ezsigntemplatepackagemembership_response.h
@@ -1478,6 +1605,9 @@ set(HDRS
     model/ezsigntemplatepackagesigner_get_object_v1_response.h
     model/ezsigntemplatepackagesigner_get_object_v1_response_all_of.h
     model/ezsigntemplatepackagesigner_get_object_v1_response_m_payload.h
+    model/ezsigntemplatepackagesigner_get_object_v2_response.h
+    model/ezsigntemplatepackagesigner_get_object_v2_response_all_of.h
+    model/ezsigntemplatepackagesigner_get_object_v2_response_m_payload.h
     model/ezsigntemplatepackagesigner_request.h
     model/ezsigntemplatepackagesigner_request_compound.h
     model/ezsigntemplatepackagesigner_response.h
@@ -1492,6 +1622,9 @@ set(HDRS
     model/ezsigntemplatepackagesignermembership_get_object_v1_response.h
     model/ezsigntemplatepackagesignermembership_get_object_v1_response_all_of.h
     model/ezsigntemplatepackagesignermembership_get_object_v1_response_m_payload.h
+    model/ezsigntemplatepackagesignermembership_get_object_v2_response.h
+    model/ezsigntemplatepackagesignermembership_get_object_v2_response_all_of.h
+    model/ezsigntemplatepackagesignermembership_get_object_v2_response_m_payload.h
     model/ezsigntemplatepackagesignermembership_request.h
     model/ezsigntemplatepackagesignermembership_request_compound.h
     model/ezsigntemplatepackagesignermembership_response.h
@@ -1506,6 +1639,9 @@ set(HDRS
     model/ezsigntemplatesignature_get_object_v1_response.h
     model/ezsigntemplatesignature_get_object_v1_response_all_of.h
     model/ezsigntemplatesignature_get_object_v1_response_m_payload.h
+    model/ezsigntemplatesignature_get_object_v2_response.h
+    model/ezsigntemplatesignature_get_object_v2_response_all_of.h
+    model/ezsigntemplatesignature_get_object_v2_response_m_payload.h
     model/ezsigntemplatesignature_request.h
     model/ezsigntemplatesignature_request_compound.h
     model/ezsigntemplatesignature_request_compound_all_of.h
@@ -1526,6 +1662,9 @@ set(HDRS
     model/ezsigntemplatesigner_get_object_v1_response.h
     model/ezsigntemplatesigner_get_object_v1_response_all_of.h
     model/ezsigntemplatesigner_get_object_v1_response_m_payload.h
+    model/ezsigntemplatesigner_get_object_v2_response.h
+    model/ezsigntemplatesigner_get_object_v2_response_all_of.h
+    model/ezsigntemplatesigner_get_object_v2_response_m_payload.h
     model/ezsigntemplatesigner_request.h
     model/ezsigntemplatesigner_request_compound.h
     model/ezsigntemplatesigner_response.h
@@ -1567,6 +1706,8 @@ set(HDRS
     model/field_e_phone_type.h
     model/field_e_user_ezsignsendreminderfrequency.h
     model/field_e_user_type.h
+    model/field_e_versionhistory_type.h
+    model/field_e_versionhistory_usertype.h
     model/field_e_webhook_ezsignevent.h
     model/field_e_webhook_managementevent.h
     model/field_e_webhook_module.h
@@ -1589,6 +1730,7 @@ set(HDRS
     model/multilingual_ezsignfoldertype_name.h
     model/multilingual_notificationsubsection_name.h
     model/multilingual_notificationtest_name.h
+    model/multilingual_versionhistory_detail.h
     model/notificationsection_get_notificationtests_v1_response.h
     model/notificationsection_get_notificationtests_v1_response_all_of.h
     model/notificationsection_get_notificationtests_v1_response_m_payload.h
@@ -1625,6 +1767,11 @@ set(HDRS
     model/usergroup_get_autocomplete_v2_response.h
     model/usergroup_get_autocomplete_v2_response_all_of.h
     model/usergroup_get_autocomplete_v2_response_m_payload.h
+    model/versionhistory_get_object_v2_response.h
+    model/versionhistory_get_object_v2_response_all_of.h
+    model/versionhistory_get_object_v2_response_m_payload.h
+    model/versionhistory_response.h
+    model/versionhistory_response_compound.h
     model/webhook_create_object_v1_request.h
     model/webhook_create_object_v1_response.h
     model/webhook_create_object_v1_response_all_of.h
@@ -1647,11 +1794,15 @@ set(HDRS
     model/webhook_get_object_v1_response.h
     model/webhook_get_object_v1_response_all_of.h
     model/webhook_get_object_v1_response_m_payload.h
+    model/webhook_get_object_v2_response.h
+    model/webhook_get_object_v2_response_all_of.h
+    model/webhook_get_object_v2_response_m_payload.h
     model/webhook_list_element.h
     model/webhook_request.h
     model/webhook_request_compound.h
     model/webhook_response.h
     model/webhook_response_compound.h
+    model/webhook_response_compound_all_of.h
     model/webhook_test_v1_response.h
     model/webhook_user_user_created.h
     model/webhook_user_user_created_all_of.h
@@ -1697,6 +1848,7 @@ set(HDRS
     api/ObjectTimezoneAPI.h
     api/ObjectUserAPI.h
     api/ObjectUsergroupAPI.h
+    api/ObjectVersionhistoryAPI.h
     api/ObjectWebhookAPI.h
 
 )
@@ -1819,6 +1971,7 @@ set(HDRS "")
 #    unit-tests/manual-ObjectTimezoneAPI.c
 #    unit-tests/manual-ObjectUserAPI.c
 #    unit-tests/manual-ObjectUsergroupAPI.c
+#    unit-tests/manual-ObjectVersionhistoryAPI.c
 #    unit-tests/manual-ObjectWebhookAPI.c
 #)
 

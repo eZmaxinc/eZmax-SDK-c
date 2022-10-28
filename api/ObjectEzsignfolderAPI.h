@@ -24,6 +24,7 @@
 #include "../model/ezsignfolder_get_forms_data_v1_response.h"
 #include "../model/ezsignfolder_get_list_v1_response.h"
 #include "../model/ezsignfolder_get_object_v1_response.h"
+#include "../model/ezsignfolder_get_object_v2_response.h"
 #include "../model/ezsignfolder_import_ezsignfoldersignerassociations_v1_request.h"
 #include "../model/ezsignfolder_import_ezsignfoldersignerassociations_v1_response.h"
 #include "../model/ezsignfolder_import_ezsigntemplatepackage_v1_request.h"
@@ -149,6 +150,14 @@ ObjectEzsignfolderAPI_ezsignfolderGetListV1(apiClient_t *apiClient, ezmax_api_de
 //
 ezsignfolder_get_object_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetObjectV1(apiClient_t *apiClient, int pkiEzsignfolderID );
+
+
+// Retrieve an existing Ezsignfolder
+//
+// 
+//
+ezsignfolder_get_object_v2_response_t*
+ObjectEzsignfolderAPI_ezsignfolderGetObjectV2(apiClient_t *apiClient, int pkiEzsignfolderID );
 
 
 // Import an existing Ezsignfoldersignerassociation into this Ezsignfolder
