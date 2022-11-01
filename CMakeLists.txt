@@ -534,7 +534,6 @@ set(SRCS
     model/ezsignsignature_response_compound_all_of.c
     model/ezsignsignature_sign_v1_request.c
     model/ezsignsignature_sign_v1_response.c
-    model/ezsignsignature_sign_v1_response_all_of.c
     model/ezsignsignaturecustomdate_request.c
     model/ezsignsignaturecustomdate_request_compound.c
     model/ezsignsignaturecustomdate_response.c
@@ -808,6 +807,14 @@ set(SRCS
     model/field_e_webhook_ezsignevent.c
     model/field_e_webhook_managementevent.c
     model/field_e_webhook_module.c
+    model/franchisebroker_autocomplete_element_response.c
+    model/franchisebroker_get_autocomplete_v2_response.c
+    model/franchisebroker_get_autocomplete_v2_response_all_of.c
+    model/franchisebroker_get_autocomplete_v2_response_m_payload.c
+    model/franchiseoffice_autocomplete_element_response.c
+    model/franchiseoffice_get_autocomplete_v2_response.c
+    model/franchiseoffice_get_autocomplete_v2_response_all_of.c
+    model/franchiseoffice_get_autocomplete_v2_response_m_payload.c
     model/franchisereferalincome_create_object_v1_request.c
     model/franchisereferalincome_create_object_v1_response.c
     model/franchisereferalincome_create_object_v1_response_all_of.c
@@ -836,6 +843,10 @@ set(SRCS
     model/notificationtest_get_elements_v1_response_all_of.c
     model/notificationtest_get_elements_v1_response_m_payload.c
     model/notificationtest_response.c
+    model/period_autocomplete_element_response.c
+    model/period_get_autocomplete_v2_response.c
+    model/period_get_autocomplete_v2_response_all_of.c
+    model/period_get_autocomplete_v2_response_m_payload.c
     model/phone_request.c
     model/phone_request_compound.c
     model/secretquestion_autocomplete_element_response.c
@@ -1437,7 +1448,6 @@ set(HDRS
     model/ezsignsignature_response_compound_all_of.h
     model/ezsignsignature_sign_v1_request.h
     model/ezsignsignature_sign_v1_response.h
-    model/ezsignsignature_sign_v1_response_all_of.h
     model/ezsignsignaturecustomdate_request.h
     model/ezsignsignaturecustomdate_request_compound.h
     model/ezsignsignaturecustomdate_response.h
@@ -1711,6 +1721,14 @@ set(HDRS
     model/field_e_webhook_ezsignevent.h
     model/field_e_webhook_managementevent.h
     model/field_e_webhook_module.h
+    model/franchisebroker_autocomplete_element_response.h
+    model/franchisebroker_get_autocomplete_v2_response.h
+    model/franchisebroker_get_autocomplete_v2_response_all_of.h
+    model/franchisebroker_get_autocomplete_v2_response_m_payload.h
+    model/franchiseoffice_autocomplete_element_response.h
+    model/franchiseoffice_get_autocomplete_v2_response.h
+    model/franchiseoffice_get_autocomplete_v2_response_all_of.h
+    model/franchiseoffice_get_autocomplete_v2_response_m_payload.h
     model/franchisereferalincome_create_object_v1_request.h
     model/franchisereferalincome_create_object_v1_response.h
     model/franchisereferalincome_create_object_v1_response_all_of.h
@@ -1739,6 +1757,10 @@ set(HDRS
     model/notificationtest_get_elements_v1_response_all_of.h
     model/notificationtest_get_elements_v1_response_m_payload.h
     model/notificationtest_response.h
+    model/period_autocomplete_element_response.h
+    model/period_get_autocomplete_v2_response.h
+    model/period_get_autocomplete_v2_response_all_of.h
+    model/period_get_autocomplete_v2_response_m_payload.h
     model/phone_request.h
     model/phone_request_compound.h
     model/secretquestion_autocomplete_element_response.h
