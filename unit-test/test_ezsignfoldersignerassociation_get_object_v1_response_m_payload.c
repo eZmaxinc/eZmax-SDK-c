@@ -27,6 +27,7 @@ ezsignfoldersignerassociation_get_object_v1_response_m_payload_t* instantiate_ez
       20,
       33,
       1,
+      1,
       "Hi John,
 
 This is the document I need you to review.
@@ -45,6 +46,7 @@ Mary",
     ezsignfoldersignerassociation_get_object_v1_response_m_payload = ezsignfoldersignerassociation_get_object_v1_response_m_payload_create(
       20,
       33,
+      1,
       1,
       "Hi John,
 

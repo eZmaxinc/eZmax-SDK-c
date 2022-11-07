@@ -27,6 +27,7 @@ custom_ezsignfoldersignerassociation_actionable_element_response_t* instantiate_
       20,
       33,
       1,
+      1,
       "Hi John,
 
 This is the document I need you to review.
@@ -47,6 +48,7 @@ Mary",
     custom_ezsignfoldersignerassociation_actionable_element_response = custom_ezsignfoldersignerassociation_actionable_element_response_create(
       20,
       33,
+      1,
       1,
       "Hi John,
 

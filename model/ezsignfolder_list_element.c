@@ -22,13 +22,13 @@ ezmax_api_definition__full_ezsignfolder_list_element__e e_ezsignfoldertype_priva
     return 0;
 }
 char* e_ezsignfolder_stepezsignfolder_list_element_ToString(ezmax_api_definition__full_ezsignfolder_list_element__e e_ezsignfolder_step) {
-    char* e_ezsignfolder_stepArray[] =  { "NULL", "Unsent", "Sent", "PartiallySigned", "Expired", "Completed", "Archived", "Disposed" };
+    char* e_ezsignfolder_stepArray[] =  { "NULL", "Unsent", "PendingSend", "Sent", "PartiallySigned", "Expired", "Completed", "Archived", "Disposed" };
 	return e_ezsignfolder_stepArray[e_ezsignfolder_step];
 }
 
 ezmax_api_definition__full_ezsignfolder_list_element__e e_ezsignfolder_stepezsignfolder_list_element_FromString(char* e_ezsignfolder_step){
     int stringToReturn = 0;
-    char *e_ezsignfolder_stepArray[] =  { "NULL", "Unsent", "Sent", "PartiallySigned", "Expired", "Completed", "Archived", "Disposed" };
+    char *e_ezsignfolder_stepArray[] =  { "NULL", "Unsent", "PendingSend", "Sent", "PartiallySigned", "Expired", "Completed", "Archived", "Disposed" };
     size_t sizeofArray = sizeof(e_ezsignfolder_stepArray) / sizeof(e_ezsignfolder_stepArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(e_ezsignfolder_step, e_ezsignfolder_stepArray[stringToReturn]) == 0) {

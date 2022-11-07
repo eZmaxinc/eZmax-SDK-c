@@ -24,6 +24,7 @@ typedef struct ezsignfoldersignerassociation_get_object_v1_response_m_payload_t 
 typedef struct ezsignfoldersignerassociation_get_object_v1_response_m_payload_t {
     int pki_ezsignfoldersignerassociation_id; //numeric
     int fki_ezsignfolder_id; //numeric
+    int b_ezsignfoldersignerassociation_delayedsend; //boolean
     int b_ezsignfoldersignerassociation_receivecopy; //boolean
     char *t_ezsignfoldersignerassociation_message; // string
     struct ezsignfoldersignerassociation_response_compound_user_t *obj_user; //model
@@ -34,6 +35,7 @@ typedef struct ezsignfoldersignerassociation_get_object_v1_response_m_payload_t 
 ezsignfoldersignerassociation_get_object_v1_response_m_payload_t *ezsignfoldersignerassociation_get_object_v1_response_m_payload_create(
     int pki_ezsignfoldersignerassociation_id,
     int fki_ezsignfolder_id,
+    int b_ezsignfoldersignerassociation_delayedsend,
     int b_ezsignfoldersignerassociation_receivecopy,
     char *t_ezsignfoldersignerassociation_message,
     ezsignfoldersignerassociation_response_compound_user_t *obj_user,

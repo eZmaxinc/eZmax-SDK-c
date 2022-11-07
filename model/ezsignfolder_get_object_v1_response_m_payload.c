@@ -22,13 +22,13 @@ ezmax_api_definition__full_ezsignfolder_get_object_v1_response_m_payload__e e_ez
     return 0;
 }
 char* e_ezsignfolder_stepezsignfolder_get_object_v1_response_m_payload_ToString(ezmax_api_definition__full_ezsignfolder_get_object_v1_response_m_payload__e e_ezsignfolder_step) {
-    char* e_ezsignfolder_stepArray[] =  { "NULL", "Unsent", "Sent", "PartiallySigned", "Expired", "Completed", "Archived", "Disposed" };
+    char* e_ezsignfolder_stepArray[] =  { "NULL", "Unsent", "PendingSend", "Sent", "PartiallySigned", "Expired", "Completed", "Archived", "Disposed" };
 	return e_ezsignfolder_stepArray[e_ezsignfolder_step];
 }
 
 ezmax_api_definition__full_ezsignfolder_get_object_v1_response_m_payload__e e_ezsignfolder_stepezsignfolder_get_object_v1_response_m_payload_FromString(char* e_ezsignfolder_step){
     int stringToReturn = 0;
-    char *e_ezsignfolder_stepArray[] =  { "NULL", "Unsent", "Sent", "PartiallySigned", "Expired", "Completed", "Archived", "Disposed" };
+    char *e_ezsignfolder_stepArray[] =  { "NULL", "Unsent", "PendingSend", "Sent", "PartiallySigned", "Expired", "Completed", "Archived", "Disposed" };
     size_t sizeofArray = sizeof(e_ezsignfolder_stepArray) / sizeof(e_ezsignfolder_stepArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(e_ezsignfolder_step, e_ezsignfolder_stepArray[stringToReturn]) == 0) {
@@ -51,6 +51,7 @@ ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_resp
     char *t_ezsignfolder_note,
     int b_ezsignfolder_isdisposable,
     field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency,
+    char *dt_ezsignfolder_delayedsenddate,
     char *dt_ezsignfolder_duedate,
     char *dt_ezsignfolder_sentdate,
     char *dt_ezsignfolder_scheduledarchive,
@@ -75,6 +76,7 @@ ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_resp
     ezsignfolder_get_object_v1_response_m_payload_local_var->t_ezsignfolder_note = t_ezsignfolder_note;
     ezsignfolder_get_object_v1_response_m_payload_local_var->b_ezsignfolder_isdisposable = b_ezsignfolder_isdisposable;
     ezsignfolder_get_object_v1_response_m_payload_local_var->e_ezsignfolder_sendreminderfrequency = e_ezsignfolder_sendreminderfrequency;
+    ezsignfolder_get_object_v1_response_m_payload_local_var->dt_ezsignfolder_delayedsenddate = dt_ezsignfolder_delayedsenddate;
     ezsignfolder_get_object_v1_response_m_payload_local_var->dt_ezsignfolder_duedate = dt_ezsignfolder_duedate;
     ezsignfolder_get_object_v1_response_m_payload_local_var->dt_ezsignfolder_sentdate = dt_ezsignfolder_sentdate;
     ezsignfolder_get_object_v1_response_m_payload_local_var->dt_ezsignfolder_scheduledarchive = dt_ezsignfolder_scheduledarchive;
@@ -116,6 +118,10 @@ void ezsignfolder_get_object_v1_response_m_payload_free(ezsignfolder_get_object_
     if (ezsignfolder_get_object_v1_response_m_payload->e_ezsignfolder_sendreminderfrequency) {
         field_e_ezsignfolder_sendreminderfrequency_free(ezsignfolder_get_object_v1_response_m_payload->e_ezsignfolder_sendreminderfrequency);
         ezsignfolder_get_object_v1_response_m_payload->e_ezsignfolder_sendreminderfrequency = NULL;
+    }
+    if (ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_delayedsenddate) {
+        free(ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_delayedsenddate);
+        ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_delayedsenddate = NULL;
     }
     if (ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_duedate) {
         free(ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_duedate);
@@ -256,6 +262,14 @@ cJSON *ezsignfolder_get_object_v1_response_m_payload_convertToJSON(ezsignfolder_
     cJSON_AddItemToObject(item, "eEzsignfolderSendreminderfrequency", e_ezsignfolder_sendreminderfrequency_local_JSON);
     if(item->child == NULL) {
         goto fail;
+    }
+
+
+    // ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_delayedsenddate
+    if(ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_delayedsenddate) {
+    if(cJSON_AddStringToObject(item, "dtEzsignfolderDelayedsenddate", ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_delayedsenddate) == NULL) {
+    goto fail; //String
+    }
     }
 
 
@@ -485,6 +499,15 @@ ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_resp
     
     e_ezsignfolder_sendreminderfrequency_local_nonprim = field_e_ezsignfolder_sendreminderfrequency_parseFromJSON(e_ezsignfolder_sendreminderfrequency); //custom
 
+    // ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_delayedsenddate
+    cJSON *dt_ezsignfolder_delayedsenddate = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_object_v1_response_m_payloadJSON, "dtEzsignfolderDelayedsenddate");
+    if (dt_ezsignfolder_delayedsenddate) { 
+    if(!cJSON_IsString(dt_ezsignfolder_delayedsenddate))
+    {
+    goto end; //String
+    }
+    }
+
     // ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_duedate
     cJSON *dt_ezsignfolder_duedate = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_object_v1_response_m_payloadJSON, "dtEzsignfolderDuedate");
     if (dt_ezsignfolder_duedate) { 
@@ -573,6 +596,7 @@ ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_resp
         strdup(t_ezsignfolder_note->valuestring),
         b_ezsignfolder_isdisposable->valueint,
         e_ezsignfolder_sendreminderfrequency_local_nonprim,
+        dt_ezsignfolder_delayedsenddate ? strdup(dt_ezsignfolder_delayedsenddate->valuestring) : NULL,
         dt_ezsignfolder_duedate ? strdup(dt_ezsignfolder_duedate->valuestring) : NULL,
         dt_ezsignfolder_sentdate ? strdup(dt_ezsignfolder_sentdate->valuestring) : NULL,
         dt_ezsignfolder_scheduledarchive ? strdup(dt_ezsignfolder_scheduledarchive->valuestring) : NULL,

@@ -35,6 +35,8 @@
 #include "../model/ezsignfolder_send_v1_response.h"
 #include "../model/ezsignfolder_send_v2_request.h"
 #include "../model/ezsignfolder_send_v2_response.h"
+#include "../model/ezsignfolder_send_v3_request.h"
+#include "../model/ezsignfolder_send_v3_response.h"
 #include "../model/ezsignfolder_unsend_v1_response.h"
 #include "../model/header_accept_language.h"
 #include "../model/object.h"
@@ -196,6 +198,14 @@ ObjectEzsignfolderAPI_ezsignfolderSendV1(apiClient_t *apiClient, int pkiEzsignfo
 //
 ezsignfolder_send_v2_response_t*
 ObjectEzsignfolderAPI_ezsignfolderSendV2(apiClient_t *apiClient, int pkiEzsignfolderID , ezsignfolder_send_v2_request_t * ezsignfolder_send_v2_request );
+
+
+// Send the Ezsignfolder to the signatories for signature
+//
+// 
+//
+ezsignfolder_send_v3_response_t*
+ObjectEzsignfolderAPI_ezsignfolderSendV3(apiClient_t *apiClient, int pkiEzsignfolderID , ezsignfolder_send_v3_request_t * ezsignfolder_send_v3_request );
 
 
 // Unsend the Ezsignfolder

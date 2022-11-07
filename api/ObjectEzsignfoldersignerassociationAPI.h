@@ -17,6 +17,8 @@
 #include "../model/ezsignfoldersignerassociation_get_in_person_login_url_v1_response.h"
 #include "../model/ezsignfoldersignerassociation_get_object_v1_response.h"
 #include "../model/ezsignfoldersignerassociation_get_object_v2_response.h"
+#include "../model/ezsignfoldersignerassociation_patch_object_v1_request.h"
+#include "../model/ezsignfoldersignerassociation_patch_object_v1_response.h"
 #include "../model/object.h"
 
 
@@ -82,5 +84,11 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV1(
 //
 ezsignfoldersignerassociation_get_object_v2_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV2(apiClient_t *apiClient, int pkiEzsignfoldersignerassociationID );
+
+
+// Patch an existing Ezsignfoldersignerassociation
+//
+ezsignfoldersignerassociation_patch_object_v1_response_t*
+ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationPatchObjectV1(apiClient_t *apiClient, int pkiEzsignfoldersignerassociationID , ezsignfoldersignerassociation_patch_object_v1_request_t * ezsignfoldersignerassociation_patch_object_v1_request );
 
 

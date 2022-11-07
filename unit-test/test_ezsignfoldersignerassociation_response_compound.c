@@ -27,6 +27,7 @@ ezsignfoldersignerassociation_response_compound_t* instantiate_ezsignfoldersigne
       20,
       33,
       1,
+      1,
       "Hi John,
 
 This is the document I need you to review.
@@ -45,6 +46,7 @@ Mary",
     ezsignfoldersignerassociation_response_compound = ezsignfoldersignerassociation_response_compound_create(
       20,
       33,
+      1,
       1,
       "Hi John,
 

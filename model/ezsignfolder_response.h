@@ -29,7 +29,7 @@ ezmax_api_definition__full_ezsignfolder_response__e ezsignfolder_response_e_ezsi
 
 // Enum  for ezsignfolder_response
 
-typedef enum  { ezmax_api_definition__full_ezsignfolder_response__NULL = 0, ezmax_api_definition__full_ezsignfolder_response__Unsent, ezmax_api_definition__full_ezsignfolder_response__Sent, ezmax_api_definition__full_ezsignfolder_response__PartiallySigned, ezmax_api_definition__full_ezsignfolder_response__Expired, ezmax_api_definition__full_ezsignfolder_response__Completed, ezmax_api_definition__full_ezsignfolder_response__Archived, ezmax_api_definition__full_ezsignfolder_response__Disposed } ezmax_api_definition__full_ezsignfolder_response__e;
+typedef enum  { ezmax_api_definition__full_ezsignfolder_response__NULL = 0, ezmax_api_definition__full_ezsignfolder_response__Unsent, ezmax_api_definition__full_ezsignfolder_response__PendingSend, ezmax_api_definition__full_ezsignfolder_response__Sent, ezmax_api_definition__full_ezsignfolder_response__PartiallySigned, ezmax_api_definition__full_ezsignfolder_response__Expired, ezmax_api_definition__full_ezsignfolder_response__Completed, ezmax_api_definition__full_ezsignfolder_response__Archived, ezmax_api_definition__full_ezsignfolder_response__Disposed } ezmax_api_definition__full_ezsignfolder_response__e;
 
 char* ezsignfolder_response_e_ezsignfolder_step_ToString(ezmax_api_definition__full_ezsignfolder_response__e e_ezsignfolder_step);
 
@@ -49,6 +49,7 @@ typedef struct ezsignfolder_response_t {
     char *t_ezsignfolder_note; // string
     int b_ezsignfolder_isdisposable; //boolean
     field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency; // custom
+    char *dt_ezsignfolder_delayedsenddate; // string
     char *dt_ezsignfolder_duedate; // string
     char *dt_ezsignfolder_sentdate; // string
     char *dt_ezsignfolder_scheduledarchive; // string
@@ -72,6 +73,7 @@ ezsignfolder_response_t *ezsignfolder_response_create(
     char *t_ezsignfolder_note,
     int b_ezsignfolder_isdisposable,
     field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency,
+    char *dt_ezsignfolder_delayedsenddate,
     char *dt_ezsignfolder_duedate,
     char *dt_ezsignfolder_sentdate,
     char *dt_ezsignfolder_scheduledarchive,

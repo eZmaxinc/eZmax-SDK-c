@@ -24,6 +24,7 @@ Method | HTTP request | Description
 [**ObjectEzsignfolderAPI_ezsignfolderReorderV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderReorderV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/reorder | Reorder Ezsigndocuments in the Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderSendV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderSendV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/send | Send the Ezsignfolder to the signatories for signature
 [**ObjectEzsignfolderAPI_ezsignfolderSendV2**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderSendV2) | **POST** /2/object/ezsignfolder/{pkiEzsignfolderID}/send | Send the Ezsignfolder to the signatories for signature
+[**ObjectEzsignfolderAPI_ezsignfolderSendV3**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderSendV3) | **POST** /3/object/ezsignfolder/{pkiEzsignfolderID}/send | Send the Ezsignfolder to the signatories for signature
 [**ObjectEzsignfolderAPI_ezsignfolderUnsendV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderUnsendV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/unsend | Unsend the Ezsignfolder
 
 
@@ -640,6 +641,38 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsignfolder_send_v2_response_t](ezsignfolder_send_v2_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsignfolderAPI_ezsignfolderSendV3**
+```c
+// Send the Ezsignfolder to the signatories for signature
+//
+// 
+//
+ezsignfolder_send_v3_response_t* ObjectEzsignfolderAPI_ezsignfolderSendV3(apiClient_t *apiClient, int pkiEzsignfolderID, ezsignfolder_send_v3_request_t * ezsignfolder_send_v3_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsignfolderID** | **int** |  | 
+**ezsignfolder_send_v3_request** | **[ezsignfolder_send_v3_request_t](ezsignfolder_send_v3_request.md) \*** |  | 
+
+### Return type
+
+[ezsignfolder_send_v3_response_t](ezsignfolder_send_v3_response.md) *
 
 
 ### Authorization

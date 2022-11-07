@@ -425,6 +425,8 @@ set(SRCS
     model/ezsignfolder_send_v1_response.c
     model/ezsignfolder_send_v2_request.c
     model/ezsignfolder_send_v2_response.c
+    model/ezsignfolder_send_v3_request.c
+    model/ezsignfolder_send_v3_response.c
     model/ezsignfolder_unsend_v1_response.c
     model/ezsignfoldersignerassociation_create_object_v1_request.c
     model/ezsignfoldersignerassociation_create_object_v1_response.c
@@ -447,9 +449,12 @@ set(SRCS
     model/ezsignfoldersignerassociation_get_object_v2_response.c
     model/ezsignfoldersignerassociation_get_object_v2_response_all_of.c
     model/ezsignfoldersignerassociation_get_object_v2_response_m_payload.c
+    model/ezsignfoldersignerassociation_patch_object_v1_request.c
+    model/ezsignfoldersignerassociation_patch_object_v1_response.c
     model/ezsignfoldersignerassociation_request.c
     model/ezsignfoldersignerassociation_request_compound.c
     model/ezsignfoldersignerassociation_request_compound_all_of.c
+    model/ezsignfoldersignerassociation_request_patch.c
     model/ezsignfoldersignerassociation_response.c
     model/ezsignfoldersignerassociation_response_compound.c
     model/ezsignfoldersignerassociation_response_compound_all_of.c
@@ -1339,6 +1344,8 @@ set(HDRS
     model/ezsignfolder_send_v1_response.h
     model/ezsignfolder_send_v2_request.h
     model/ezsignfolder_send_v2_response.h
+    model/ezsignfolder_send_v3_request.h
+    model/ezsignfolder_send_v3_response.h
     model/ezsignfolder_unsend_v1_response.h
     model/ezsignfoldersignerassociation_create_object_v1_request.h
     model/ezsignfoldersignerassociation_create_object_v1_response.h
@@ -1361,9 +1368,12 @@ set(HDRS
     model/ezsignfoldersignerassociation_get_object_v2_response.h
     model/ezsignfoldersignerassociation_get_object_v2_response_all_of.h
     model/ezsignfoldersignerassociation_get_object_v2_response_m_payload.h
+    model/ezsignfoldersignerassociation_patch_object_v1_request.h
+    model/ezsignfoldersignerassociation_patch_object_v1_response.h
     model/ezsignfoldersignerassociation_request.h
     model/ezsignfoldersignerassociation_request_compound.h
     model/ezsignfoldersignerassociation_request_compound_all_of.h
+    model/ezsignfoldersignerassociation_request_patch.h
     model/ezsignfoldersignerassociation_response.h
     model/ezsignfoldersignerassociation_response_compound.h
     model/ezsignfoldersignerassociation_response_compound_all_of.h
