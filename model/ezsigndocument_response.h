@@ -30,6 +30,7 @@ ezmax_api_definition__full_ezsigndocument_response__e ezsigndocument_response_e_
 
 typedef struct ezsigndocument_response_t {
     int fki_ezsignfolder_id; //numeric
+    int fki_ezsignfoldersignerassociation_id_declinedtosign; //numeric
     char *dt_ezsigndocument_duedate; // string
     char *dt_ezsignform_completed; // string
     int fki_language_id; //numeric
@@ -43,6 +44,7 @@ typedef struct ezsigndocument_response_t {
     int i_ezsigndocument_signaturesigned; //numeric
     int i_ezsigndocument_signaturetotal; //numeric
     char *s_ezsigndocument_md5initial; // string
+    char *t_ezsigndocument_declinedtosignreason; // string
     char *s_ezsigndocument_md5signed; // string
     int b_ezsigndocument_ezsignform; //boolean
     struct common_audit_t *obj_audit; //model
@@ -51,6 +53,7 @@ typedef struct ezsigndocument_response_t {
 
 ezsigndocument_response_t *ezsigndocument_response_create(
     int fki_ezsignfolder_id,
+    int fki_ezsignfoldersignerassociation_id_declinedtosign,
     char *dt_ezsigndocument_duedate,
     char *dt_ezsignform_completed,
     int fki_language_id,
@@ -64,6 +67,7 @@ ezsigndocument_response_t *ezsigndocument_response_create(
     int i_ezsigndocument_signaturesigned,
     int i_ezsigndocument_signaturetotal,
     char *s_ezsigndocument_md5initial,
+    char *t_ezsigndocument_declinedtosignreason,
     char *s_ezsigndocument_md5signed,
     int b_ezsigndocument_ezsignform,
     common_audit_t *obj_audit

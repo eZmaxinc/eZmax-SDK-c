@@ -24,6 +24,7 @@ ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__e e_
 
 ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_response_m_payload_create(
     int fki_ezsignfolder_id,
+    int fki_ezsignfoldersignerassociation_id_declinedtosign,
     char *dt_ezsigndocument_duedate,
     char *dt_ezsignform_completed,
     int fki_language_id,
@@ -37,6 +38,7 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
     int i_ezsigndocument_signaturesigned,
     int i_ezsigndocument_signaturetotal,
     char *s_ezsigndocument_md5initial,
+    char *t_ezsigndocument_declinedtosignreason,
     char *s_ezsigndocument_md5signed,
     int b_ezsigndocument_ezsignform,
     common_audit_t *obj_audit,
@@ -51,6 +53,7 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
         return NULL;
     }
     ezsigndocument_get_object_v1_response_m_payload_local_var->fki_ezsignfolder_id = fki_ezsignfolder_id;
+    ezsigndocument_get_object_v1_response_m_payload_local_var->fki_ezsignfoldersignerassociation_id_declinedtosign = fki_ezsignfoldersignerassociation_id_declinedtosign;
     ezsigndocument_get_object_v1_response_m_payload_local_var->dt_ezsigndocument_duedate = dt_ezsigndocument_duedate;
     ezsigndocument_get_object_v1_response_m_payload_local_var->dt_ezsignform_completed = dt_ezsignform_completed;
     ezsigndocument_get_object_v1_response_m_payload_local_var->fki_language_id = fki_language_id;
@@ -64,6 +67,7 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
     ezsigndocument_get_object_v1_response_m_payload_local_var->i_ezsigndocument_signaturesigned = i_ezsigndocument_signaturesigned;
     ezsigndocument_get_object_v1_response_m_payload_local_var->i_ezsigndocument_signaturetotal = i_ezsigndocument_signaturetotal;
     ezsigndocument_get_object_v1_response_m_payload_local_var->s_ezsigndocument_md5initial = s_ezsigndocument_md5initial;
+    ezsigndocument_get_object_v1_response_m_payload_local_var->t_ezsigndocument_declinedtosignreason = t_ezsigndocument_declinedtosignreason;
     ezsigndocument_get_object_v1_response_m_payload_local_var->s_ezsigndocument_md5signed = s_ezsigndocument_md5signed;
     ezsigndocument_get_object_v1_response_m_payload_local_var->b_ezsigndocument_ezsignform = b_ezsigndocument_ezsignform;
     ezsigndocument_get_object_v1_response_m_payload_local_var->obj_audit = obj_audit;
@@ -110,6 +114,10 @@ void ezsigndocument_get_object_v1_response_m_payload_free(ezsigndocument_get_obj
         free(ezsigndocument_get_object_v1_response_m_payload->s_ezsigndocument_md5initial);
         ezsigndocument_get_object_v1_response_m_payload->s_ezsigndocument_md5initial = NULL;
     }
+    if (ezsigndocument_get_object_v1_response_m_payload->t_ezsigndocument_declinedtosignreason) {
+        free(ezsigndocument_get_object_v1_response_m_payload->t_ezsigndocument_declinedtosignreason);
+        ezsigndocument_get_object_v1_response_m_payload->t_ezsigndocument_declinedtosignreason = NULL;
+    }
     if (ezsigndocument_get_object_v1_response_m_payload->s_ezsigndocument_md5signed) {
         free(ezsigndocument_get_object_v1_response_m_payload->s_ezsigndocument_md5signed);
         ezsigndocument_get_object_v1_response_m_payload->s_ezsigndocument_md5signed = NULL;
@@ -137,6 +145,14 @@ cJSON *ezsigndocument_get_object_v1_response_m_payload_convertToJSON(ezsigndocum
     }
     if(cJSON_AddNumberToObject(item, "fkiEzsignfolderID", ezsigndocument_get_object_v1_response_m_payload->fki_ezsignfolder_id) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // ezsigndocument_get_object_v1_response_m_payload->fki_ezsignfoldersignerassociation_id_declinedtosign
+    if(ezsigndocument_get_object_v1_response_m_payload->fki_ezsignfoldersignerassociation_id_declinedtosign) {
+    if(cJSON_AddNumberToObject(item, "fkiEzsignfoldersignerassociationIDDeclinedtosign", ezsigndocument_get_object_v1_response_m_payload->fki_ezsignfoldersignerassociation_id_declinedtosign) == NULL) {
+    goto fail; //Numeric
+    }
     }
 
 
@@ -259,6 +275,14 @@ cJSON *ezsigndocument_get_object_v1_response_m_payload_convertToJSON(ezsigndocum
     }
 
 
+    // ezsigndocument_get_object_v1_response_m_payload->t_ezsigndocument_declinedtosignreason
+    if(ezsigndocument_get_object_v1_response_m_payload->t_ezsigndocument_declinedtosignreason) {
+    if(cJSON_AddStringToObject(item, "tEzsigndocumentDeclinedtosignreason", ezsigndocument_get_object_v1_response_m_payload->t_ezsigndocument_declinedtosignreason) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
     // ezsigndocument_get_object_v1_response_m_payload->s_ezsigndocument_md5signed
     if (!ezsigndocument_get_object_v1_response_m_payload->s_ezsigndocument_md5signed) {
         goto fail;
@@ -378,6 +402,15 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
     if(!cJSON_IsNumber(fki_ezsignfolder_id))
     {
     goto end; //Numeric
+    }
+
+    // ezsigndocument_get_object_v1_response_m_payload->fki_ezsignfoldersignerassociation_id_declinedtosign
+    cJSON *fki_ezsignfoldersignerassociation_id_declinedtosign = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_object_v1_response_m_payloadJSON, "fkiEzsignfoldersignerassociationIDDeclinedtosign");
+    if (fki_ezsignfoldersignerassociation_id_declinedtosign) { 
+    if(!cJSON_IsNumber(fki_ezsignfoldersignerassociation_id_declinedtosign))
+    {
+    goto end; //Numeric
+    }
     }
 
     // ezsigndocument_get_object_v1_response_m_payload->dt_ezsigndocument_duedate
@@ -524,6 +557,15 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
     goto end; //String
     }
 
+    // ezsigndocument_get_object_v1_response_m_payload->t_ezsigndocument_declinedtosignreason
+    cJSON *t_ezsigndocument_declinedtosignreason = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_object_v1_response_m_payloadJSON, "tEzsigndocumentDeclinedtosignreason");
+    if (t_ezsigndocument_declinedtosignreason) { 
+    if(!cJSON_IsString(t_ezsigndocument_declinedtosignreason))
+    {
+    goto end; //String
+    }
+    }
+
     // ezsigndocument_get_object_v1_response_m_payload->s_ezsigndocument_md5signed
     cJSON *s_ezsigndocument_md5signed = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_object_v1_response_m_payloadJSON, "sEzsigndocumentMD5signed");
     if (!s_ezsigndocument_md5signed) {
@@ -632,6 +674,7 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
 
     ezsigndocument_get_object_v1_response_m_payload_local_var = ezsigndocument_get_object_v1_response_m_payload_create (
         fki_ezsignfolder_id->valuedouble,
+        fki_ezsignfoldersignerassociation_id_declinedtosign ? fki_ezsignfoldersignerassociation_id_declinedtosign->valuedouble : 0,
         strdup(dt_ezsigndocument_duedate->valuestring),
         dt_ezsignform_completed ? strdup(dt_ezsignform_completed->valuestring) : NULL,
         fki_language_id->valuedouble,
@@ -645,6 +688,7 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
         i_ezsigndocument_signaturesigned->valuedouble,
         i_ezsigndocument_signaturetotal->valuedouble,
         strdup(s_ezsigndocument_md5initial->valuestring),
+        t_ezsigndocument_declinedtosignreason ? strdup(t_ezsigndocument_declinedtosignreason->valuestring) : NULL,
         strdup(s_ezsigndocument_md5signed->valuestring),
         b_ezsigndocument_ezsignform->valueint,
         obj_audit_local_nonprim,

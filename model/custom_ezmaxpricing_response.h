@@ -20,6 +20,7 @@ typedef struct custom_ezmaxpricing_response_t custom_ezmaxpricing_response_t;
 
 typedef struct custom_ezmaxpricing_response_t {
     int pki_ezmaxpricing_id; //numeric
+    char *d_ezmaxpricing_rebateezsignallagents; // string
     char *dt_ezmaxpricing_start; // string
     char *dt_ezmaxpricing_end; // string
 
@@ -27,6 +28,7 @@ typedef struct custom_ezmaxpricing_response_t {
 
 custom_ezmaxpricing_response_t *custom_ezmaxpricing_response_create(
     int pki_ezmaxpricing_id,
+    char *d_ezmaxpricing_rebateezsignallagents,
     char *dt_ezmaxpricing_start,
     char *dt_ezmaxpricing_end
 );

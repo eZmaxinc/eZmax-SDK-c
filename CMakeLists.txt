@@ -552,6 +552,10 @@ set(SRCS
     model/ezsignsigner_response_compound_all_of.c
     model/ezsignsigner_response_compound_contact.c
     model/ezsigntemplate_autocomplete_element_response.c
+    model/ezsigntemplate_copy_v1_request.c
+    model/ezsigntemplate_copy_v1_response.c
+    model/ezsigntemplate_copy_v1_response_all_of.c
+    model/ezsigntemplate_copy_v1_response_m_payload.c
     model/ezsigntemplate_create_object_v1_request.c
     model/ezsigntemplate_create_object_v1_response.c
     model/ezsigntemplate_create_object_v1_response_all_of.c
@@ -1471,6 +1475,10 @@ set(HDRS
     model/ezsignsigner_response_compound_all_of.h
     model/ezsignsigner_response_compound_contact.h
     model/ezsigntemplate_autocomplete_element_response.h
+    model/ezsigntemplate_copy_v1_request.h
+    model/ezsigntemplate_copy_v1_response.h
+    model/ezsigntemplate_copy_v1_response_all_of.h
+    model/ezsigntemplate_copy_v1_response_m_payload.h
     model/ezsigntemplate_create_object_v1_request.h
     model/ezsigntemplate_create_object_v1_response.h
     model/ezsigntemplate_create_object_v1_response_all_of.h

@@ -23,12 +23,14 @@ custom_ezmaxpricing_response_t* instantiate_custom_ezmaxpricing_response(int inc
   if (include_optional) {
     custom_ezmaxpricing_response = custom_ezmaxpricing_response_create(
       28,
+      "90.00",
       "2020-12-31",
       "2020-12-31"
     );
   } else {
     custom_ezmaxpricing_response = custom_ezmaxpricing_response_create(
       28,
+      "90.00",
       "2020-12-31",
       "2020-12-31"
     );

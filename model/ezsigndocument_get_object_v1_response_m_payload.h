@@ -32,6 +32,7 @@ ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__e ez
 
 typedef struct ezsigndocument_get_object_v1_response_m_payload_t {
     int fki_ezsignfolder_id; //numeric
+    int fki_ezsignfoldersignerassociation_id_declinedtosign; //numeric
     char *dt_ezsigndocument_duedate; // string
     char *dt_ezsignform_completed; // string
     int fki_language_id; //numeric
@@ -45,6 +46,7 @@ typedef struct ezsigndocument_get_object_v1_response_m_payload_t {
     int i_ezsigndocument_signaturesigned; //numeric
     int i_ezsigndocument_signaturetotal; //numeric
     char *s_ezsigndocument_md5initial; // string
+    char *t_ezsigndocument_declinedtosignreason; // string
     char *s_ezsigndocument_md5signed; // string
     int b_ezsigndocument_ezsignform; //boolean
     struct common_audit_t *obj_audit; //model
@@ -58,6 +60,7 @@ typedef struct ezsigndocument_get_object_v1_response_m_payload_t {
 
 ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_response_m_payload_create(
     int fki_ezsignfolder_id,
+    int fki_ezsignfoldersignerassociation_id_declinedtosign,
     char *dt_ezsigndocument_duedate,
     char *dt_ezsignform_completed,
     int fki_language_id,
@@ -71,6 +74,7 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
     int i_ezsigndocument_signaturesigned,
     int i_ezsigndocument_signaturetotal,
     char *s_ezsigndocument_md5initial,
+    char *t_ezsigndocument_declinedtosignreason,
     char *s_ezsigndocument_md5signed,
     int b_ezsigndocument_ezsignform,
     common_audit_t *obj_audit,

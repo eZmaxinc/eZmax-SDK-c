@@ -7,6 +7,8 @@
 #include "../include/binary.h"
 #include "../model/common_get_autocomplete_v1_response.h"
 #include "../model/common_response_error.h"
+#include "../model/ezsigntemplate_copy_v1_request.h"
+#include "../model/ezsigntemplate_copy_v1_response.h"
 #include "../model/ezsigntemplate_create_object_v1_request.h"
 #include "../model/ezsigntemplate_create_object_v1_response.h"
 #include "../model/ezsigntemplate_delete_object_v1_response.h"
@@ -41,6 +43,14 @@ typedef enum  { ezmax_api_definition__full_ezsigntemplateGetListV1_EORDERBY_NULL
 
 // Enum  for ObjectEzsigntemplateAPI_ezsigntemplateGetListV1
 typedef enum  { ezmax_api_definition__full_ezsigntemplateGetListV1__NULL = 0, ezmax_api_definition__full_ezsigntemplateGetListV1__*, ezmax_api_definition__full_ezsigntemplateGetListV1__en, ezmax_api_definition__full_ezsigntemplateGetListV1__fr } ezmax_api_definition__full_ezsigntemplateGetListV1_Accept-Language_e;
+
+
+// Copy the Ezsigntemplate
+//
+// 
+//
+ezsigntemplate_copy_v1_response_t*
+ObjectEzsigntemplateAPI_ezsigntemplateCopyV1(apiClient_t *apiClient, int pkiEzsigntemplateID , ezsigntemplate_copy_v1_request_t * ezsigntemplate_copy_v1_request );
 
 
 // Create a new Ezsigntemplate

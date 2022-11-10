@@ -4,6 +4,7 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**ObjectEzsigntemplateAPI_ezsigntemplateCopyV1**](ObjectEzsigntemplateAPI.md#ObjectEzsigntemplateAPI_ezsigntemplateCopyV1) | **POST** /1/object/ezsigntemplate/{pkiEzsigntemplateID}/copy | Copy the Ezsigntemplate
 [**ObjectEzsigntemplateAPI_ezsigntemplateCreateObjectV1**](ObjectEzsigntemplateAPI.md#ObjectEzsigntemplateAPI_ezsigntemplateCreateObjectV1) | **POST** /1/object/ezsigntemplate | Create a new Ezsigntemplate
 [**ObjectEzsigntemplateAPI_ezsigntemplateDeleteObjectV1**](ObjectEzsigntemplateAPI.md#ObjectEzsigntemplateAPI_ezsigntemplateDeleteObjectV1) | **DELETE** /1/object/ezsigntemplate/{pkiEzsigntemplateID} | Delete an existing Ezsigntemplate
 [**ObjectEzsigntemplateAPI_ezsigntemplateEditObjectV1**](ObjectEzsigntemplateAPI.md#ObjectEzsigntemplateAPI_ezsigntemplateEditObjectV1) | **PUT** /1/object/ezsigntemplate/{pkiEzsigntemplateID} | Edit an existing Ezsigntemplate
@@ -13,6 +14,38 @@ Method | HTTP request | Description
 [**ObjectEzsigntemplateAPI_ezsigntemplateGetObjectV1**](ObjectEzsigntemplateAPI.md#ObjectEzsigntemplateAPI_ezsigntemplateGetObjectV1) | **GET** /1/object/ezsigntemplate/{pkiEzsigntemplateID} | Retrieve an existing Ezsigntemplate
 [**ObjectEzsigntemplateAPI_ezsigntemplateGetObjectV2**](ObjectEzsigntemplateAPI.md#ObjectEzsigntemplateAPI_ezsigntemplateGetObjectV2) | **GET** /2/object/ezsigntemplate/{pkiEzsigntemplateID} | Retrieve an existing Ezsigntemplate
 
+
+# **ObjectEzsigntemplateAPI_ezsigntemplateCopyV1**
+```c
+// Copy the Ezsigntemplate
+//
+// 
+//
+ezsigntemplate_copy_v1_response_t* ObjectEzsigntemplateAPI_ezsigntemplateCopyV1(apiClient_t *apiClient, int pkiEzsigntemplateID, ezsigntemplate_copy_v1_request_t * ezsigntemplate_copy_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsigntemplateID** | **int** |  | 
+**ezsigntemplate_copy_v1_request** | **[ezsigntemplate_copy_v1_request_t](ezsigntemplate_copy_v1_request.md) \*** |  | 
+
+### Return type
+
+[ezsigntemplate_copy_v1_response_t](ezsigntemplate_copy_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ObjectEzsigntemplateAPI_ezsigntemplateCreateObjectV1**
 ```c

@@ -24,6 +24,7 @@ ezsigndocument_get_object_v1_response_m_payload_t* instantiate_ezsigndocument_ge
   if (include_optional) {
     ezsigndocument_get_object_v1_response_m_payload = ezsigndocument_get_object_v1_response_m_payload_create(
       33,
+      20,
       "2020-12-31 23:59:59",
       "2020-12-31 23:59:59",
       2,
@@ -37,6 +38,7 @@ ezsigndocument_get_object_v1_response_m_payload_t* instantiate_ezsigndocument_ge
       3,
       4,
       "012345678901234567890123456789AB",
+      "The conditions in the contract are different than those discuted",
       "012345678901234567890123456789AB",
       true,
        // false, not to have infinite recursion
@@ -50,6 +52,7 @@ ezsigndocument_get_object_v1_response_m_payload_t* instantiate_ezsigndocument_ge
   } else {
     ezsigndocument_get_object_v1_response_m_payload = ezsigndocument_get_object_v1_response_m_payload_create(
       33,
+      20,
       "2020-12-31 23:59:59",
       "2020-12-31 23:59:59",
       2,
@@ -63,6 +66,7 @@ ezsigndocument_get_object_v1_response_m_payload_t* instantiate_ezsigndocument_ge
       3,
       4,
       "012345678901234567890123456789AB",
+      "The conditions in the contract are different than those discuted",
       "012345678901234567890123456789AB",
       true,
       NULL,

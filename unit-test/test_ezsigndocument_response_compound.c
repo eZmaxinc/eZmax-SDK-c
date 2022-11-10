@@ -24,6 +24,7 @@ ezsigndocument_response_compound_t* instantiate_ezsigndocument_response_compound
   if (include_optional) {
     ezsigndocument_response_compound = ezsigndocument_response_compound_create(
       33,
+      20,
       "2020-12-31 23:59:59",
       "2020-12-31 23:59:59",
       2,
@@ -37,6 +38,7 @@ ezsigndocument_response_compound_t* instantiate_ezsigndocument_response_compound
       3,
       4,
       "012345678901234567890123456789AB",
+      "The conditions in the contract are different than those discuted",
       "012345678901234567890123456789AB",
       true,
        // false, not to have infinite recursion
@@ -50,6 +52,7 @@ ezsigndocument_response_compound_t* instantiate_ezsigndocument_response_compound
   } else {
     ezsigndocument_response_compound = ezsigndocument_response_compound_create(
       33,
+      20,
       "2020-12-31 23:59:59",
       "2020-12-31 23:59:59",
       2,
@@ -63,6 +66,7 @@ ezsigndocument_response_compound_t* instantiate_ezsigndocument_response_compound
       3,
       4,
       "012345678901234567890123456789AB",
+      "The conditions in the contract are different than those discuted",
       "012345678901234567890123456789AB",
       true,
       NULL,
