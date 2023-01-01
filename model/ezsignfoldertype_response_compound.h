@@ -15,8 +15,6 @@
 
 typedef struct ezsignfoldertype_response_compound_t ezsignfoldertype_response_compound_t;
 
-#include "ezsignfoldertype_request_compound_all_of.h"
-#include "ezsignfoldertype_response.h"
 #include "field_e_ezsignfoldertype_disposal.h"
 #include "field_e_ezsignfoldertype_privacylevel.h"
 #include "field_e_ezsignfoldertype_sendreminderfrequency.h"

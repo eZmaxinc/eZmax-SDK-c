@@ -15,7 +15,6 @@
 
 typedef struct ezsigntemplatesignaturecustomdate_response_compound_t ezsigntemplatesignaturecustomdate_response_compound_t;
 
-#include "ezsigntemplatesignaturecustomdate_response.h"
 
 
 

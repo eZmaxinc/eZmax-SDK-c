@@ -15,7 +15,6 @@
 
 typedef struct ezsigntemplate_request_compound_t ezsigntemplate_request_compound_t;
 
-#include "ezsigntemplate_request.h"
 
 
 

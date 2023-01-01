@@ -15,9 +15,7 @@
 
 typedef struct branding_get_list_v1_response_m_payload_t branding_get_list_v1_response_m_payload_t;
 
-#include "branding_get_list_v1_response_m_payload_all_of.h"
 #include "branding_list_element.h"
-#include "common_get_list_v1_response_m_payload.h"
 
 
 

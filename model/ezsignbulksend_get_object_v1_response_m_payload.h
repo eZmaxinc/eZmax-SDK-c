@@ -16,7 +16,6 @@
 typedef struct ezsignbulksend_get_object_v1_response_m_payload_t ezsignbulksend_get_object_v1_response_m_payload_t;
 
 #include "common_audit.h"
-#include "ezsignbulksend_response_compound.h"
 #include "ezsignbulksenddocumentmapping_response_compound.h"
 #include "ezsignbulksendsignermapping_response.h"
 #include "field_e_ezsignfoldertype_privacylevel.h"

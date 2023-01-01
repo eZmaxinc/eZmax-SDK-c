@@ -15,7 +15,6 @@
 
 typedef struct apikey_request_compound_t apikey_request_compound_t;
 
-#include "apikey_request.h"
 #include "multilingual_apikey_description.h"
 
 

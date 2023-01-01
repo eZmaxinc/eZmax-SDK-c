@@ -15,8 +15,6 @@
 
 typedef struct ezsignfoldertype_get_list_v1_response_m_payload_t ezsignfoldertype_get_list_v1_response_m_payload_t;
 
-#include "common_get_list_v1_response_m_payload.h"
-#include "ezsignfoldertype_get_list_v1_response_m_payload_all_of.h"
 #include "ezsignfoldertype_list_element.h"
 
 

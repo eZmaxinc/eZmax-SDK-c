@@ -15,8 +15,6 @@
 
 typedef struct ezsigntemplatesignature_request_compound_t ezsigntemplatesignature_request_compound_t;
 
-#include "ezsigntemplatesignature_request.h"
-#include "ezsigntemplatesignature_request_compound_all_of.h"
 #include "ezsigntemplatesignaturecustomdate_request_compound.h"
 #include "field_e_ezsigntemplatesignature_attachmentnamesource.h"
 #include "field_e_ezsigntemplatesignature_font.h"

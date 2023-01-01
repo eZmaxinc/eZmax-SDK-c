@@ -28,6 +28,7 @@ activesession_response_t* instantiate_activesession_response(int include_optiona
       "Acme inc.",
       "Head Office",
       false,
+      false,
       "demo",
       28
     );
@@ -38,6 +39,7 @@ activesession_response_t* instantiate_activesession_response(int include_optiona
       2,
       "Acme inc.",
       "Head Office",
+      false,
       false,
       "demo",
       28

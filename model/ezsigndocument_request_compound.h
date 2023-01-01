@@ -15,7 +15,6 @@
 
 typedef struct ezsigndocument_request_compound_t ezsigndocument_request_compound_t;
 
-#include "ezsigndocument_request.h"
 
 // Enum EEZSIGNDOCUMENTSOURCE for ezsigndocument_request_compound
 

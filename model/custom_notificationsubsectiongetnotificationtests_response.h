@@ -15,10 +15,8 @@
 
 typedef struct custom_notificationsubsectiongetnotificationtests_response_t custom_notificationsubsectiongetnotificationtests_response_t;
 
-#include "custom_notificationsubsectiongetnotificationtests_response_all_of.h"
 #include "custom_notificationtestgetnotificationtests_response.h"
 #include "multilingual_notificationsubsection_name.h"
-#include "notificationsubsection_response.h"
 
 
 

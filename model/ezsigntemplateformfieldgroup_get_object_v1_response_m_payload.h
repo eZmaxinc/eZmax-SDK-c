@@ -17,7 +17,6 @@ typedef struct ezsigntemplateformfieldgroup_get_object_v1_response_m_payload_t e
 
 #include "custom_dropdown_element_response_compound.h"
 #include "ezsigntemplateformfield_response_compound.h"
-#include "ezsigntemplateformfieldgroup_response_compound.h"
 #include "ezsigntemplateformfieldgroupsigner_response_compound.h"
 #include "field_e_ezsigntemplateformfieldgroup_signerrequirement.h"
 #include "field_e_ezsigntemplateformfieldgroup_tooltipposition.h"

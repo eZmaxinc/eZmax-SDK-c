@@ -15,7 +15,6 @@
 
 typedef struct branding_request_compound_t branding_request_compound_t;
 
-#include "branding_request.h"
 #include "field_e_branding_logo.h"
 #include "multilingual_branding_description.h"
 

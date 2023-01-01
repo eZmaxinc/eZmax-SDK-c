@@ -1,0 +1,55 @@
+/*
+ * communicationexternalrecipient_response.h
+ *
+ * A Communicationexternalrecipient Object
+ */
+
+#ifndef _communicationexternalrecipient_response_H_
+#define _communicationexternalrecipient_response_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct communicationexternalrecipient_response_t communicationexternalrecipient_response_t;
+
+#include "field_e_communicationexternalrecipient_type.h"
+#include "phone_response_compound.h"
+
+// Enum  for communicationexternalrecipient_response
+
+typedef enum  { ezmax_api_definition__full_communicationexternalrecipient_response__NULL = 0, ezmax_api_definition__full_communicationexternalrecipient_response__To, ezmax_api_definition__full_communicationexternalrecipient_response__Cc, ezmax_api_definition__full_communicationexternalrecipient_response__Bcc } ezmax_api_definition__full_communicationexternalrecipient_response__e;
+
+char* communicationexternalrecipient_response_e_communicationexternalrecipient_type_ToString(ezmax_api_definition__full_communicationexternalrecipient_response__e e_communicationexternalrecipient_type);
+
+ezmax_api_definition__full_communicationexternalrecipient_response__e communicationexternalrecipient_response_e_communicationexternalrecipient_type_FromString(char* e_communicationexternalrecipient_type);
+
+
+
+typedef struct communicationexternalrecipient_response_t {
+    int pki_communicationexternalrecipient_id; //numeric
+    char *s_email_address; // string
+    struct phone_response_compound_t *obj_phone_sms; //model
+    field_e_communicationexternalrecipient_type_t *e_communicationexternalrecipient_type; // custom
+    char *s_communicationexternalrecipient_name; // string
+
+} communicationexternalrecipient_response_t;
+
+communicationexternalrecipient_response_t *communicationexternalrecipient_response_create(
+    int pki_communicationexternalrecipient_id,
+    char *s_email_address,
+    phone_response_compound_t *obj_phone_sms,
+    field_e_communicationexternalrecipient_type_t *e_communicationexternalrecipient_type,
+    char *s_communicationexternalrecipient_name
+);
+
+void communicationexternalrecipient_response_free(communicationexternalrecipient_response_t *communicationexternalrecipient_response);
+
+communicationexternalrecipient_response_t *communicationexternalrecipient_response_parseFromJSON(cJSON *communicationexternalrecipient_responseJSON);
+
+cJSON *communicationexternalrecipient_response_convertToJSON(communicationexternalrecipient_response_t *communicationexternalrecipient_response);
+
+#endif /* _communicationexternalrecipient_response_H_ */
+

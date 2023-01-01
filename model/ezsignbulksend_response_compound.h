@@ -16,8 +16,6 @@
 typedef struct ezsignbulksend_response_compound_t ezsignbulksend_response_compound_t;
 
 #include "common_audit.h"
-#include "ezsignbulksend_response.h"
-#include "ezsignbulksend_response_compound_all_of.h"
 #include "ezsignbulksenddocumentmapping_response_compound.h"
 #include "ezsignbulksendsignermapping_response.h"
 #include "field_e_ezsignfoldertype_privacylevel.h"

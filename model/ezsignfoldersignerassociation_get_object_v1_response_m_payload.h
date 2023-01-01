@@ -15,7 +15,6 @@
 
 typedef struct ezsignfoldersignerassociation_get_object_v1_response_m_payload_t ezsignfoldersignerassociation_get_object_v1_response_m_payload_t;
 
-#include "ezsignfoldersignerassociation_response_compound.h"
 #include "ezsignfoldersignerassociation_response_compound_user.h"
 #include "ezsignsigner_response_compound.h"
 

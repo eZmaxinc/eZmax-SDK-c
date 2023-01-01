@@ -130,6 +130,29 @@ set(SRCS
     model/common_response_redirect_s_secretquestion_text_x.c
     model/common_response_warning.c
     model/common_webhook.c
+    model/communication_get_count_v1_response.c
+    model/communication_get_count_v1_response_all_of.c
+    model/communication_get_count_v1_response_m_payload.c
+    model/communication_get_list_v1_response.c
+    model/communication_get_list_v1_response_all_of.c
+    model/communication_get_list_v1_response_m_payload.c
+    model/communication_get_object_v2_response.c
+    model/communication_get_object_v2_response_all_of.c
+    model/communication_get_object_v2_response_m_payload.c
+    model/communication_list_element.c
+    model/communication_response.c
+    model/communication_response_compound.c
+    model/communication_response_compound_all_of.c
+    model/communicationattachment_response.c
+    model/communicationattachment_response_compound.c
+    model/communicationexternalimage_response.c
+    model/communicationexternalimage_response_compound.c
+    model/communicationexternalrecipient_response.c
+    model/communicationexternalrecipient_response_compound.c
+    model/communicationimage_response.c
+    model/communicationimage_response_compound.c
+    model/communicationrecipient_response.c
+    model/communicationrecipient_response_compound.c
     model/contact_request.c
     model/contact_request_compound.c
     model/contact_request_compound_all_of.c
@@ -781,6 +804,10 @@ set(SRCS
     model/field_e_activesession_usertype.c
     model/field_e_activesession_weekdaystart.c
     model/field_e_branding_logo.c
+    model/field_e_communication_emailimportance.c
+    model/field_e_communication_type.c
+    model/field_e_communicationexternalrecipient_type.c
+    model/field_e_communicationrecipient_type.c
     model/field_e_ezmaxinvoicing_paymenttype.c
     model/field_e_ezmaxinvoicingagent_variationezmax.c
     model/field_e_ezmaxinvoicingagent_variationezsign.c
@@ -858,6 +885,8 @@ set(SRCS
     model/period_get_autocomplete_v2_response_m_payload.c
     model/phone_request.c
     model/phone_request_compound.c
+    model/phone_response.c
+    model/phone_response_compound.c
     model/secretquestion_autocomplete_element_response.c
     model/secretquestion_get_autocomplete_v2_response.c
     model/secretquestion_get_autocomplete_v2_response_all_of.c
@@ -926,12 +955,14 @@ set(SRCS
     model/website_request.c
     model/website_request_compound.c
     api/GlobalCustomerAPI.c
+    api/ModuleCommunicationAPI.c
     api/ModuleEzsignAPI.c
     api/ModuleUserAPI.c
     api/ObjectActivesessionAPI.c
     api/ObjectApikeyAPI.c
     api/ObjectBillingentityinternalAPI.c
     api/ObjectBrandingAPI.c
+    api/ObjectCommunicationAPI.c
     api/ObjectDepartmentAPI.c
     api/ObjectEzmaxinvoicingAPI.c
     api/ObjectEzsignbulksendAPI.c
@@ -1053,6 +1084,29 @@ set(HDRS
     model/common_response_redirect_s_secretquestion_text_x.h
     model/common_response_warning.h
     model/common_webhook.h
+    model/communication_get_count_v1_response.h
+    model/communication_get_count_v1_response_all_of.h
+    model/communication_get_count_v1_response_m_payload.h
+    model/communication_get_list_v1_response.h
+    model/communication_get_list_v1_response_all_of.h
+    model/communication_get_list_v1_response_m_payload.h
+    model/communication_get_object_v2_response.h
+    model/communication_get_object_v2_response_all_of.h
+    model/communication_get_object_v2_response_m_payload.h
+    model/communication_list_element.h
+    model/communication_response.h
+    model/communication_response_compound.h
+    model/communication_response_compound_all_of.h
+    model/communicationattachment_response.h
+    model/communicationattachment_response_compound.h
+    model/communicationexternalimage_response.h
+    model/communicationexternalimage_response_compound.h
+    model/communicationexternalrecipient_response.h
+    model/communicationexternalrecipient_response_compound.h
+    model/communicationimage_response.h
+    model/communicationimage_response_compound.h
+    model/communicationrecipient_response.h
+    model/communicationrecipient_response_compound.h
     model/contact_request.h
     model/contact_request_compound.h
     model/contact_request_compound_all_of.h
@@ -1704,6 +1758,10 @@ set(HDRS
     model/field_e_activesession_usertype.h
     model/field_e_activesession_weekdaystart.h
     model/field_e_branding_logo.h
+    model/field_e_communication_emailimportance.h
+    model/field_e_communication_type.h
+    model/field_e_communicationexternalrecipient_type.h
+    model/field_e_communicationrecipient_type.h
     model/field_e_ezmaxinvoicing_paymenttype.h
     model/field_e_ezmaxinvoicingagent_variationezmax.h
     model/field_e_ezmaxinvoicingagent_variationezsign.h
@@ -1781,6 +1839,8 @@ set(HDRS
     model/period_get_autocomplete_v2_response_m_payload.h
     model/phone_request.h
     model/phone_request_compound.h
+    model/phone_response.h
+    model/phone_response_compound.h
     model/secretquestion_autocomplete_element_response.h
     model/secretquestion_get_autocomplete_v2_response.h
     model/secretquestion_get_autocomplete_v2_response_all_of.h
@@ -1849,12 +1909,14 @@ set(HDRS
     model/website_request.h
     model/website_request_compound.h
     api/GlobalCustomerAPI.h
+    api/ModuleCommunicationAPI.h
     api/ModuleEzsignAPI.h
     api/ModuleUserAPI.h
     api/ObjectActivesessionAPI.h
     api/ObjectApikeyAPI.h
     api/ObjectBillingentityinternalAPI.h
     api/ObjectBrandingAPI.h
+    api/ObjectCommunicationAPI.h
     api/ObjectDepartmentAPI.h
     api/ObjectEzmaxinvoicingAPI.h
     api/ObjectEzsignbulksendAPI.h
@@ -1972,12 +2034,14 @@ set(HDRS "")
 ## set source files
 #set(SRCS
 #    unit-tests/manual-GlobalCustomerAPI.c
+#    unit-tests/manual-ModuleCommunicationAPI.c
 #    unit-tests/manual-ModuleEzsignAPI.c
 #    unit-tests/manual-ModuleUserAPI.c
 #    unit-tests/manual-ObjectActivesessionAPI.c
 #    unit-tests/manual-ObjectApikeyAPI.c
 #    unit-tests/manual-ObjectBillingentityinternalAPI.c
 #    unit-tests/manual-ObjectBrandingAPI.c
+#    unit-tests/manual-ObjectCommunicationAPI.c
 #    unit-tests/manual-ObjectDepartmentAPI.c
 #    unit-tests/manual-ObjectEzmaxinvoicingAPI.c
 #    unit-tests/manual-ObjectEzsignbulksendAPI.c

@@ -15,7 +15,6 @@
 
 typedef struct ezsignbulksenddocumentmapping_get_object_v1_response_m_payload_t ezsignbulksenddocumentmapping_get_object_v1_response_m_payload_t;
 
-#include "ezsignbulksenddocumentmapping_response_compound.h"
 #include "ezsigntemplate_response_compound.h"
 #include "ezsigntemplatepackage_response_compound.h"
 

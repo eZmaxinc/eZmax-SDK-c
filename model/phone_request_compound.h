@@ -16,7 +16,6 @@
 typedef struct phone_request_compound_t phone_request_compound_t;
 
 #include "field_e_phone_type.h"
-#include "phone_request.h"
 
 // Enum  for phone_request_compound
 

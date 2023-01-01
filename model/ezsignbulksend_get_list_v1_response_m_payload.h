@@ -15,8 +15,6 @@
 
 typedef struct ezsignbulksend_get_list_v1_response_m_payload_t ezsignbulksend_get_list_v1_response_m_payload_t;
 
-#include "common_get_list_v1_response_m_payload.h"
-#include "ezsignbulksend_get_list_v1_response_m_payload_all_of.h"
 #include "ezsignbulksend_list_element.h"
 
 

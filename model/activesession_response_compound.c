@@ -46,6 +46,7 @@ activesession_response_compound_t *activesession_response_compound_create(
     char *s_company_name_x,
     char *s_department_name_x,
     int b_activesession_debug,
+    int b_activesession_issuperadmin,
     char *pks_customer_code,
     int fki_systemconfigurationtype_id,
     list_t *a_pki_permission_id,
@@ -64,6 +65,7 @@ activesession_response_compound_t *activesession_response_compound_create(
     activesession_response_compound_local_var->s_company_name_x = s_company_name_x;
     activesession_response_compound_local_var->s_department_name_x = s_department_name_x;
     activesession_response_compound_local_var->b_activesession_debug = b_activesession_debug;
+    activesession_response_compound_local_var->b_activesession_issuperadmin = b_activesession_issuperadmin;
     activesession_response_compound_local_var->pks_customer_code = pks_customer_code;
     activesession_response_compound_local_var->fki_systemconfigurationtype_id = fki_systemconfigurationtype_id;
     activesession_response_compound_local_var->a_pki_permission_id = a_pki_permission_id;
@@ -193,6 +195,15 @@ cJSON *activesession_response_compound_convertToJSON(activesession_response_comp
         goto fail;
     }
     if(cJSON_AddBoolToObject(item, "bActivesessionDebug", activesession_response_compound->b_activesession_debug) == NULL) {
+    goto fail; //Bool
+    }
+
+
+    // activesession_response_compound->b_activesession_issuperadmin
+    if (!activesession_response_compound->b_activesession_issuperadmin) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "bActivesessionIssuperadmin", activesession_response_compound->b_activesession_issuperadmin) == NULL) {
     goto fail; //Bool
     }
 
@@ -388,6 +399,18 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
     goto end; //Bool
     }
 
+    // activesession_response_compound->b_activesession_issuperadmin
+    cJSON *b_activesession_issuperadmin = cJSON_GetObjectItemCaseSensitive(activesession_response_compoundJSON, "bActivesessionIssuperadmin");
+    if (!b_activesession_issuperadmin) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(b_activesession_issuperadmin))
+    {
+    goto end; //Bool
+    }
+
     // activesession_response_compound->pks_customer_code
     cJSON *pks_customer_code = cJSON_GetObjectItemCaseSensitive(activesession_response_compoundJSON, "pksCustomerCode");
     if (!pks_customer_code) {
@@ -488,6 +511,7 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
         strdup(s_company_name_x->valuestring),
         strdup(s_department_name_x->valuestring),
         b_activesession_debug->valueint,
+        b_activesession_issuperadmin->valueint,
         strdup(pks_customer_code->valuestring),
         fki_systemconfigurationtype_id ? fki_systemconfigurationtype_id->valuedouble : 0,
         a_pki_permission_idList,

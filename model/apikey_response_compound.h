@@ -15,7 +15,6 @@
 
 typedef struct apikey_response_compound_t apikey_response_compound_t;
 
-#include "apikey_response.h"
 #include "common_audit.h"
 #include "multilingual_apikey_description.h"
 

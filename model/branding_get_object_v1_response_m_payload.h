@@ -15,7 +15,6 @@
 
 typedef struct branding_get_object_v1_response_m_payload_t branding_get_object_v1_response_m_payload_t;
 
-#include "branding_response_compound.h"
 #include "field_e_branding_logo.h"
 #include "multilingual_branding_description.h"
 

@@ -15,8 +15,6 @@
 
 typedef struct ezsignfoldersignerassociation_response_compound_t ezsignfoldersignerassociation_response_compound_t;
 
-#include "ezsignfoldersignerassociation_response.h"
-#include "ezsignfoldersignerassociation_response_compound_all_of.h"
 #include "ezsignfoldersignerassociation_response_compound_user.h"
 #include "ezsignsigner_response_compound.h"
 

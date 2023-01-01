@@ -15,8 +15,6 @@
 
 typedef struct ezsignfoldertype_request_compound_t ezsignfoldertype_request_compound_t;
 
-#include "ezsignfoldertype_request.h"
-#include "ezsignfoldertype_request_compound_all_of.h"
 #include "field_e_ezsignfoldertype_disposal.h"
 #include "field_e_ezsignfoldertype_privacylevel.h"
 #include "field_e_ezsignfoldertype_sendreminderfrequency.h"

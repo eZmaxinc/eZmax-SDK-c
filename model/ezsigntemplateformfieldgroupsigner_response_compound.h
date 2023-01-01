@@ -15,7 +15,6 @@
 
 typedef struct ezsigntemplateformfieldgroupsigner_response_compound_t ezsigntemplateformfieldgroupsigner_response_compound_t;
 
-#include "ezsigntemplateformfieldgroupsigner_response.h"
 
 
 

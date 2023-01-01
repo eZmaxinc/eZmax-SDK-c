@@ -15,7 +15,6 @@
 
 typedef struct attempt_response_compound_t attempt_response_compound_t;
 
-#include "attempt_response.h"
 
 
 

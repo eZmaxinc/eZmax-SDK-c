@@ -15,8 +15,6 @@
 
 typedef struct custom_ezsignfoldersignerassociation_actionable_element_response_t custom_ezsignfoldersignerassociation_actionable_element_response_t;
 
-#include "custom_ezsignfoldersignerassociation_actionable_element_response_all_of.h"
-#include "ezsignfoldersignerassociation_response_compound.h"
 #include "ezsignfoldersignerassociation_response_compound_user.h"
 #include "ezsignsigner_response_compound.h"
 

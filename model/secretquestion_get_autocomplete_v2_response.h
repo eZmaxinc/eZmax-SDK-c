@@ -15,10 +15,8 @@
 
 typedef struct secretquestion_get_autocomplete_v2_response_t secretquestion_get_autocomplete_v2_response_t;
 
-#include "common_response.h"
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload.h"
-#include "secretquestion_get_autocomplete_v2_response_all_of.h"
 #include "secretquestion_get_autocomplete_v2_response_m_payload.h"
 
 

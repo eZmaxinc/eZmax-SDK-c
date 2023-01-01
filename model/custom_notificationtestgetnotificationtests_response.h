@@ -15,10 +15,8 @@
 
 typedef struct custom_notificationtestgetnotificationtests_response_t custom_notificationtestgetnotificationtests_response_t;
 
-#include "custom_notificationtestgetnotificationtests_response_all_of.h"
 #include "field_e_notificationpreference_status.h"
 #include "multilingual_notificationtest_name.h"
-#include "notificationtest_response.h"
 
 // Enum  for custom_notificationtestgetnotificationtests_response
 

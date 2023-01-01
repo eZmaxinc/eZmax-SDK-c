@@ -17,7 +17,6 @@ typedef struct user_response_compound_t user_response_compound_t;
 
 #include "common_audit.h"
 #include "field_e_user_type.h"
-#include "user_response.h"
 
 // Enum  for user_response_compound
 

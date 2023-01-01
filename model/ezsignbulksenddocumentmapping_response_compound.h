@@ -15,8 +15,6 @@
 
 typedef struct ezsignbulksenddocumentmapping_response_compound_t ezsignbulksenddocumentmapping_response_compound_t;
 
-#include "ezsignbulksenddocumentmapping_response.h"
-#include "ezsignbulksenddocumentmapping_response_compound_all_of.h"
 #include "ezsigntemplate_response_compound.h"
 #include "ezsigntemplatepackage_response_compound.h"
 

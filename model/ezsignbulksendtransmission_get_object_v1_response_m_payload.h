@@ -17,7 +17,6 @@ typedef struct ezsignbulksendtransmission_get_object_v1_response_m_payload_t ezs
 
 #include "common_audit.h"
 #include "custom_ezsignfoldertransmission_response.h"
-#include "ezsignbulksendtransmission_response_compound.h"
 
 
 

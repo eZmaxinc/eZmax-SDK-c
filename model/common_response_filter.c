@@ -108,20 +108,24 @@ common_response_filter_t *common_response_filter_parseFromJSON(cJSON *common_res
     cJSON *a_auto_type = cJSON_GetObjectItemCaseSensitive(common_response_filterJSON, "a_AutoType");
     if (a_auto_type) { 
     cJSON *a_auto_type_local_map = NULL;
-    if(!cJSON_IsObject(a_auto_type)) {
+    if(!cJSON_IsObject(a_auto_type) && !cJSON_IsNull(a_auto_type))
+    {
         goto end;//primitive map container
     }
-    a_auto_typeList = list_createList();
-    keyValuePair_t *localMapKeyPair;
-    cJSON_ArrayForEach(a_auto_type_local_map, a_auto_type)
+    if(cJSON_IsObject(a_auto_type))
     {
-		cJSON *localMapObject = a_auto_type_local_map;
-        if(!cJSON_IsString(localMapObject))
+        a_auto_typeList = list_createList();
+        keyValuePair_t *localMapKeyPair;
+        cJSON_ArrayForEach(a_auto_type_local_map, a_auto_type)
         {
-            goto end;
+            cJSON *localMapObject = a_auto_type_local_map;
+            if(!cJSON_IsString(localMapObject))
+            {
+                goto end;
+            }
+            localMapKeyPair = keyValuePair_create(strdup(localMapObject->string),strdup(localMapObject->valuestring));
+            list_addElement(a_auto_typeList , localMapKeyPair);
         }
-        localMapKeyPair = keyValuePair_create(strdup(localMapObject->string),strdup(localMapObject->valuestring));
-        list_addElement(a_auto_typeList , localMapKeyPair);
     }
     }
 
@@ -129,15 +133,19 @@ common_response_filter_t *common_response_filter_parseFromJSON(cJSON *common_res
     cJSON *a_enum = cJSON_GetObjectItemCaseSensitive(common_response_filterJSON, "a_Enum");
     if (a_enum) { 
     cJSON *a_enum_local_map = NULL;
-    if(!cJSON_IsObject(a_enum)) {
+    if(!cJSON_IsObject(a_enum) && !cJSON_IsNull(a_enum))
+    {
         goto end;//primitive map container
     }
-    a_enumList = list_createList();
-    keyValuePair_t *localMapKeyPair;
-    cJSON_ArrayForEach(a_enum_local_map, a_enum)
+    if(cJSON_IsObject(a_enum))
     {
-		cJSON *localMapObject = a_enum_local_map;
-        list_addElement(a_enumList , localMapKeyPair);
+        a_enumList = list_createList();
+        keyValuePair_t *localMapKeyPair;
+        cJSON_ArrayForEach(a_enum_local_map, a_enum)
+        {
+            cJSON *localMapObject = a_enum_local_map;
+            list_addElement(a_enumList , localMapKeyPair);
+        }
     }
     }
 

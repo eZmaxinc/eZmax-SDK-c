@@ -15,7 +15,6 @@
 
 typedef struct activesession_get_current_v1_response_m_payload_t activesession_get_current_v1_response_m_payload_t;
 
-#include "activesession_response_compound.h"
 #include "activesession_response_compound_apikey.h"
 #include "activesession_response_compound_user.h"
 #include "field_e_activesession_usertype.h"
@@ -46,6 +45,7 @@ typedef struct activesession_get_current_v1_response_m_payload_t {
     char *s_company_name_x; // string
     char *s_department_name_x; // string
     int b_activesession_debug; //boolean
+    int b_activesession_issuperadmin; //boolean
     char *pks_customer_code; // string
     int fki_systemconfigurationtype_id; //numeric
     list_t *a_pki_permission_id; //primitive container
@@ -63,6 +63,7 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
     char *s_company_name_x,
     char *s_department_name_x,
     int b_activesession_debug,
+    int b_activesession_issuperadmin,
     char *pks_customer_code,
     int fki_systemconfigurationtype_id,
     list_t *a_pki_permission_id,

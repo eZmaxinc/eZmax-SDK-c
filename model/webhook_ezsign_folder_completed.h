@@ -16,10 +16,8 @@
 typedef struct webhook_ezsign_folder_completed_t webhook_ezsign_folder_completed_t;
 
 #include "attempt_response_compound.h"
-#include "common_webhook.h"
 #include "custom_webhook_response.h"
 #include "ezsignfolder_response.h"
-#include "webhook_ezsign_folder_completed_all_of.h"
 
 
 

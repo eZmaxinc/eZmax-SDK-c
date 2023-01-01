@@ -16,8 +16,6 @@
 typedef struct common_response_obj_debug_payload_get_list_t common_response_obj_debug_payload_get_list_t;
 
 #include "common_response_filter.h"
-#include "common_response_obj_debug_payload.h"
-#include "common_response_obj_debug_payload_get_list_all_of.h"
 
 
 

@@ -114,20 +114,24 @@ common_response_obj_debug_payload_get_list_all_of_t *common_response_obj_debug_p
 
     
     cJSON *a_order_by_local_map = NULL;
-    if(!cJSON_IsObject(a_order_by)) {
+    if(!cJSON_IsObject(a_order_by) && !cJSON_IsNull(a_order_by))
+    {
         goto end;//primitive map container
     }
-    a_order_byList = list_createList();
-    keyValuePair_t *localMapKeyPair;
-    cJSON_ArrayForEach(a_order_by_local_map, a_order_by)
+    if(cJSON_IsObject(a_order_by))
     {
-		cJSON *localMapObject = a_order_by_local_map;
-        if(!cJSON_IsString(localMapObject))
+        a_order_byList = list_createList();
+        keyValuePair_t *localMapKeyPair;
+        cJSON_ArrayForEach(a_order_by_local_map, a_order_by)
         {
-            goto end;
+            cJSON *localMapObject = a_order_by_local_map;
+            if(!cJSON_IsString(localMapObject))
+            {
+                goto end;
+            }
+            localMapKeyPair = keyValuePair_create(strdup(localMapObject->string),strdup(localMapObject->valuestring));
+            list_addElement(a_order_byList , localMapKeyPair);
         }
-        localMapKeyPair = keyValuePair_create(strdup(localMapObject->string),strdup(localMapObject->valuestring));
-        list_addElement(a_order_byList , localMapKeyPair);
     }
 
 

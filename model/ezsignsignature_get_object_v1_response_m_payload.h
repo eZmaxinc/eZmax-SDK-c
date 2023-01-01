@@ -15,7 +15,6 @@
 
 typedef struct ezsignsignature_get_object_v1_response_m_payload_t ezsignsignature_get_object_v1_response_m_payload_t;
 
-#include "ezsignsignature_response_compound.h"
 #include "ezsignsignaturecustomdate_response_compound.h"
 #include "field_e_ezsignsignature_attachmentnamesource.h"
 #include "field_e_ezsignsignature_font.h"

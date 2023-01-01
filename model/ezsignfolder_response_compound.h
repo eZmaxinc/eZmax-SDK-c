@@ -16,7 +16,6 @@
 typedef struct ezsignfolder_response_compound_t ezsignfolder_response_compound_t;
 
 #include "common_audit.h"
-#include "ezsignfolder_response.h"
 #include "field_e_ezsignfolder_sendreminderfrequency.h"
 #include "field_e_ezsignfolder_step.h"
 

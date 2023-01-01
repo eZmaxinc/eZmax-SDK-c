@@ -16,7 +16,6 @@
 typedef struct ezsigntemplatepackagemembership_get_object_v1_response_m_payload_t ezsigntemplatepackagemembership_get_object_v1_response_m_payload_t;
 
 #include "ezsigntemplate_response_compound.h"
-#include "ezsigntemplatepackagemembership_response_compound.h"
 #include "ezsigntemplatepackagesignermembership_response_compound.h"
 
 

@@ -15,7 +15,6 @@
 
 typedef struct email_request_compound_t email_request_compound_t;
 
-#include "email_request.h"
 
 
 

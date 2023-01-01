@@ -15,7 +15,6 @@
 
 typedef struct ezsignfolder_request_compound_t ezsignfolder_request_compound_t;
 
-#include "ezsignfolder_request.h"
 #include "field_e_ezsignfolder_sendreminderfrequency.h"
 
 // Enum  for ezsignfolder_request_compound

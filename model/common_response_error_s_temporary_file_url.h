@@ -15,8 +15,6 @@
 
 typedef struct common_response_error_s_temporary_file_url_t common_response_error_s_temporary_file_url_t;
 
-#include "common_response_error.h"
-#include "common_response_error_s_temporary_file_url_all_of.h"
 
 
 

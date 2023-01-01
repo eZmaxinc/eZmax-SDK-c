@@ -15,7 +15,6 @@
 
 typedef struct ezsignfoldertype_get_object_v1_response_m_payload_t ezsignfoldertype_get_object_v1_response_m_payload_t;
 
-#include "ezsignfoldertype_response_compound.h"
 #include "field_e_ezsignfoldertype_disposal.h"
 #include "field_e_ezsignfoldertype_privacylevel.h"
 #include "field_e_ezsignfoldertype_sendreminderfrequency.h"

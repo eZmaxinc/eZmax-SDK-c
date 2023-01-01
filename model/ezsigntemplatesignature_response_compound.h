@@ -15,8 +15,6 @@
 
 typedef struct ezsigntemplatesignature_response_compound_t ezsigntemplatesignature_response_compound_t;
 
-#include "ezsigntemplatesignature_response.h"
-#include "ezsigntemplatesignature_response_compound_all_of.h"
 #include "ezsigntemplatesignaturecustomdate_response_compound.h"
 #include "field_e_ezsigntemplatesignature_attachmentnamesource.h"
 #include "field_e_ezsigntemplatesignature_font.h"
