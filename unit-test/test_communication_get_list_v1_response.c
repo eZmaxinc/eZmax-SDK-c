@@ -17,7 +17,7 @@
 communication_get_list_v1_response_t* instantiate_communication_get_list_v1_response(int include_optional);
 
 #include "test_communication_get_list_v1_response_m_payload.c"
-#include "test_common_response_obj_debug_payload.c"
+#include "test_common_response_obj_debug_payload_get_list.c"
 #include "test_common_response_obj_debug.c"
 
 
@@ -28,7 +28,7 @@ communication_get_list_v1_response_t* instantiate_communication_get_list_v1_resp
        // false, not to have infinite recursion
       instantiate_communication_get_list_v1_response_m_payload(0),
        // false, not to have infinite recursion
-      instantiate_common_response_obj_debug_payload(0),
+      instantiate_common_response_obj_debug_payload_get_list(0),
       {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objSQLQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]}
     );
   } else {

@@ -8,9 +8,7 @@
 communication_response_compound_all_of_t *communication_response_compound_all_of_create(
     list_t *a_obj_communicationattachment,
     list_t *a_obj_communicationrecipient,
-    list_t *a_obj_communicationexternalrecipient,
-    list_t *a_obj_communicationimage,
-    list_t *a_obj_communicationexternalimage
+    list_t *a_obj_communicationexternalrecipient
     ) {
     communication_response_compound_all_of_t *communication_response_compound_all_of_local_var = malloc(sizeof(communication_response_compound_all_of_t));
     if (!communication_response_compound_all_of_local_var) {
@@ -19,8 +17,6 @@ communication_response_compound_all_of_t *communication_response_compound_all_of
     communication_response_compound_all_of_local_var->a_obj_communicationattachment = a_obj_communicationattachment;
     communication_response_compound_all_of_local_var->a_obj_communicationrecipient = a_obj_communicationrecipient;
     communication_response_compound_all_of_local_var->a_obj_communicationexternalrecipient = a_obj_communicationexternalrecipient;
-    communication_response_compound_all_of_local_var->a_obj_communicationimage = a_obj_communicationimage;
-    communication_response_compound_all_of_local_var->a_obj_communicationexternalimage = a_obj_communicationexternalimage;
 
     return communication_response_compound_all_of_local_var;
 }
@@ -51,20 +47,6 @@ void communication_response_compound_all_of_free(communication_response_compound
         }
         list_freeList(communication_response_compound_all_of->a_obj_communicationexternalrecipient);
         communication_response_compound_all_of->a_obj_communicationexternalrecipient = NULL;
-    }
-    if (communication_response_compound_all_of->a_obj_communicationimage) {
-        list_ForEach(listEntry, communication_response_compound_all_of->a_obj_communicationimage) {
-            communicationimage_response_compound_free(listEntry->data);
-        }
-        list_freeList(communication_response_compound_all_of->a_obj_communicationimage);
-        communication_response_compound_all_of->a_obj_communicationimage = NULL;
-    }
-    if (communication_response_compound_all_of->a_obj_communicationexternalimage) {
-        list_ForEach(listEntry, communication_response_compound_all_of->a_obj_communicationexternalimage) {
-            communicationexternalimage_response_compound_free(listEntry->data);
-        }
-        list_freeList(communication_response_compound_all_of->a_obj_communicationexternalimage);
-        communication_response_compound_all_of->a_obj_communicationexternalimage = NULL;
     }
     free(communication_response_compound_all_of);
 }
@@ -134,48 +116,6 @@ cJSON *communication_response_compound_all_of_convertToJSON(communication_respon
     }
     }
 
-
-    // communication_response_compound_all_of->a_obj_communicationimage
-    if (!communication_response_compound_all_of->a_obj_communicationimage) {
-        goto fail;
-    }
-    cJSON *a_obj_communicationimage = cJSON_AddArrayToObject(item, "a_objCommunicationimage");
-    if(a_obj_communicationimage == NULL) {
-    goto fail; //nonprimitive container
-    }
-
-    listEntry_t *a_obj_communicationimageListEntry;
-    if (communication_response_compound_all_of->a_obj_communicationimage) {
-    list_ForEach(a_obj_communicationimageListEntry, communication_response_compound_all_of->a_obj_communicationimage) {
-    cJSON *itemLocal = communicationimage_response_compound_convertToJSON(a_obj_communicationimageListEntry->data);
-    if(itemLocal == NULL) {
-    goto fail;
-    }
-    cJSON_AddItemToArray(a_obj_communicationimage, itemLocal);
-    }
-    }
-
-
-    // communication_response_compound_all_of->a_obj_communicationexternalimage
-    if (!communication_response_compound_all_of->a_obj_communicationexternalimage) {
-        goto fail;
-    }
-    cJSON *a_obj_communicationexternalimage = cJSON_AddArrayToObject(item, "a_objCommunicationexternalimage");
-    if(a_obj_communicationexternalimage == NULL) {
-    goto fail; //nonprimitive container
-    }
-
-    listEntry_t *a_obj_communicationexternalimageListEntry;
-    if (communication_response_compound_all_of->a_obj_communicationexternalimage) {
-    list_ForEach(a_obj_communicationexternalimageListEntry, communication_response_compound_all_of->a_obj_communicationexternalimage) {
-    cJSON *itemLocal = communicationexternalimage_response_compound_convertToJSON(a_obj_communicationexternalimageListEntry->data);
-    if(itemLocal == NULL) {
-    goto fail;
-    }
-    cJSON_AddItemToArray(a_obj_communicationexternalimage, itemLocal);
-    }
-    }
-
     return item;
 fail:
     if (item) {
@@ -196,12 +136,6 @@ communication_response_compound_all_of_t *communication_response_compound_all_of
 
     // define the local list for communication_response_compound_all_of->a_obj_communicationexternalrecipient
     list_t *a_obj_communicationexternalrecipientList = NULL;
-
-    // define the local list for communication_response_compound_all_of->a_obj_communicationimage
-    list_t *a_obj_communicationimageList = NULL;
-
-    // define the local list for communication_response_compound_all_of->a_obj_communicationexternalimage
-    list_t *a_obj_communicationexternalimageList = NULL;
 
     // communication_response_compound_all_of->a_obj_communicationattachment
     cJSON *a_obj_communicationattachment = cJSON_GetObjectItemCaseSensitive(communication_response_compound_all_ofJSON, "a_objCommunicationattachment");
@@ -275,61 +209,11 @@ communication_response_compound_all_of_t *communication_response_compound_all_of
         list_addElement(a_obj_communicationexternalrecipientList, a_obj_communicationexternalrecipientItem);
     }
 
-    // communication_response_compound_all_of->a_obj_communicationimage
-    cJSON *a_obj_communicationimage = cJSON_GetObjectItemCaseSensitive(communication_response_compound_all_ofJSON, "a_objCommunicationimage");
-    if (!a_obj_communicationimage) {
-        goto end;
-    }
-
-    
-    cJSON *a_obj_communicationimage_local_nonprimitive = NULL;
-    if(!cJSON_IsArray(a_obj_communicationimage)){
-        goto end; //nonprimitive container
-    }
-
-    a_obj_communicationimageList = list_createList();
-
-    cJSON_ArrayForEach(a_obj_communicationimage_local_nonprimitive,a_obj_communicationimage )
-    {
-        if(!cJSON_IsObject(a_obj_communicationimage_local_nonprimitive)){
-            goto end;
-        }
-        communicationimage_response_compound_t *a_obj_communicationimageItem = communicationimage_response_compound_parseFromJSON(a_obj_communicationimage_local_nonprimitive);
-
-        list_addElement(a_obj_communicationimageList, a_obj_communicationimageItem);
-    }
-
-    // communication_response_compound_all_of->a_obj_communicationexternalimage
-    cJSON *a_obj_communicationexternalimage = cJSON_GetObjectItemCaseSensitive(communication_response_compound_all_ofJSON, "a_objCommunicationexternalimage");
-    if (!a_obj_communicationexternalimage) {
-        goto end;
-    }
-
-    
-    cJSON *a_obj_communicationexternalimage_local_nonprimitive = NULL;
-    if(!cJSON_IsArray(a_obj_communicationexternalimage)){
-        goto end; //nonprimitive container
-    }
-
-    a_obj_communicationexternalimageList = list_createList();
-
-    cJSON_ArrayForEach(a_obj_communicationexternalimage_local_nonprimitive,a_obj_communicationexternalimage )
-    {
-        if(!cJSON_IsObject(a_obj_communicationexternalimage_local_nonprimitive)){
-            goto end;
-        }
-        communicationexternalimage_response_compound_t *a_obj_communicationexternalimageItem = communicationexternalimage_response_compound_parseFromJSON(a_obj_communicationexternalimage_local_nonprimitive);
-
-        list_addElement(a_obj_communicationexternalimageList, a_obj_communicationexternalimageItem);
-    }
-
 
     communication_response_compound_all_of_local_var = communication_response_compound_all_of_create (
         a_obj_communicationattachmentList,
         a_obj_communicationrecipientList,
-        a_obj_communicationexternalrecipientList,
-        a_obj_communicationimageList,
-        a_obj_communicationexternalimageList
+        a_obj_communicationexternalrecipientList
         );
 
     return communication_response_compound_all_of_local_var;
@@ -360,24 +244,6 @@ end:
         }
         list_freeList(a_obj_communicationexternalrecipientList);
         a_obj_communicationexternalrecipientList = NULL;
-    }
-    if (a_obj_communicationimageList) {
-        listEntry_t *listEntry = NULL;
-        list_ForEach(listEntry, a_obj_communicationimageList) {
-            communicationimage_response_compound_free(listEntry->data);
-            listEntry->data = NULL;
-        }
-        list_freeList(a_obj_communicationimageList);
-        a_obj_communicationimageList = NULL;
-    }
-    if (a_obj_communicationexternalimageList) {
-        listEntry_t *listEntry = NULL;
-        list_ForEach(listEntry, a_obj_communicationexternalimageList) {
-            communicationexternalimage_response_compound_free(listEntry->data);
-            listEntry->data = NULL;
-        }
-        list_freeList(a_obj_communicationexternalimageList);
-        a_obj_communicationexternalimageList = NULL;
     }
     return NULL;
 

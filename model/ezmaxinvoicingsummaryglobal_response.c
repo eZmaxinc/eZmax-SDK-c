@@ -23,7 +23,8 @@ ezmaxinvoicingsummaryglobal_response_t *ezmaxinvoicingsummaryglobal_response_cre
     char *d_ezmaxinvoicingsummaryglobal_representative,
     char *d_ezmaxinvoicingsummaryglobal_partner,
     char *d_ezmaxinvoicingsummaryglobal_net,
-    int b_ezmaxinvoicingsummaryglobal_adjustment
+    int b_ezmaxinvoicingsummaryglobal_adjustment,
+    char *t_ezmaxproduct_help_x
     ) {
     ezmaxinvoicingsummaryglobal_response_t *ezmaxinvoicingsummaryglobal_response_local_var = malloc(sizeof(ezmaxinvoicingsummaryglobal_response_t));
     if (!ezmaxinvoicingsummaryglobal_response_local_var) {
@@ -47,6 +48,7 @@ ezmaxinvoicingsummaryglobal_response_t *ezmaxinvoicingsummaryglobal_response_cre
     ezmaxinvoicingsummaryglobal_response_local_var->d_ezmaxinvoicingsummaryglobal_partner = d_ezmaxinvoicingsummaryglobal_partner;
     ezmaxinvoicingsummaryglobal_response_local_var->d_ezmaxinvoicingsummaryglobal_net = d_ezmaxinvoicingsummaryglobal_net;
     ezmaxinvoicingsummaryglobal_response_local_var->b_ezmaxinvoicingsummaryglobal_adjustment = b_ezmaxinvoicingsummaryglobal_adjustment;
+    ezmaxinvoicingsummaryglobal_response_local_var->t_ezmaxproduct_help_x = t_ezmaxproduct_help_x;
 
     return ezmaxinvoicingsummaryglobal_response_local_var;
 }
@@ -108,6 +110,10 @@ void ezmaxinvoicingsummaryglobal_response_free(ezmaxinvoicingsummaryglobal_respo
     if (ezmaxinvoicingsummaryglobal_response->d_ezmaxinvoicingsummaryglobal_net) {
         free(ezmaxinvoicingsummaryglobal_response->d_ezmaxinvoicingsummaryglobal_net);
         ezmaxinvoicingsummaryglobal_response->d_ezmaxinvoicingsummaryglobal_net = NULL;
+    }
+    if (ezmaxinvoicingsummaryglobal_response->t_ezmaxproduct_help_x) {
+        free(ezmaxinvoicingsummaryglobal_response->t_ezmaxproduct_help_x);
+        ezmaxinvoicingsummaryglobal_response->t_ezmaxproduct_help_x = NULL;
     }
     free(ezmaxinvoicingsummaryglobal_response);
 }
@@ -269,6 +275,15 @@ cJSON *ezmaxinvoicingsummaryglobal_response_convertToJSON(ezmaxinvoicingsummaryg
     }
     if(cJSON_AddBoolToObject(item, "bEzmaxinvoicingsummaryglobalAdjustment", ezmaxinvoicingsummaryglobal_response->b_ezmaxinvoicingsummaryglobal_adjustment) == NULL) {
     goto fail; //Bool
+    }
+
+
+    // ezmaxinvoicingsummaryglobal_response->t_ezmaxproduct_help_x
+    if (!ezmaxinvoicingsummaryglobal_response->t_ezmaxproduct_help_x) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "tEzmaxproductHelpX", ezmaxinvoicingsummaryglobal_response->t_ezmaxproduct_help_x) == NULL) {
+    goto fail; //String
     }
 
     return item;
@@ -484,6 +499,18 @@ ezmaxinvoicingsummaryglobal_response_t *ezmaxinvoicingsummaryglobal_response_par
     goto end; //Bool
     }
 
+    // ezmaxinvoicingsummaryglobal_response->t_ezmaxproduct_help_x
+    cJSON *t_ezmaxproduct_help_x = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryglobal_responseJSON, "tEzmaxproductHelpX");
+    if (!t_ezmaxproduct_help_x) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(t_ezmaxproduct_help_x))
+    {
+    goto end; //String
+    }
+
 
     ezmaxinvoicingsummaryglobal_response_local_var = ezmaxinvoicingsummaryglobal_response_create (
         pki_ezmaxinvoicingsummaryglobal_id ? pki_ezmaxinvoicingsummaryglobal_id->valuedouble : 0,
@@ -503,7 +530,8 @@ ezmaxinvoicingsummaryglobal_response_t *ezmaxinvoicingsummaryglobal_response_par
         d_ezmaxinvoicingsummaryglobal_representative ? strdup(d_ezmaxinvoicingsummaryglobal_representative->valuestring) : NULL,
         d_ezmaxinvoicingsummaryglobal_partner ? strdup(d_ezmaxinvoicingsummaryglobal_partner->valuestring) : NULL,
         d_ezmaxinvoicingsummaryglobal_net ? strdup(d_ezmaxinvoicingsummaryglobal_net->valuestring) : NULL,
-        b_ezmaxinvoicingsummaryglobal_adjustment->valueint
+        b_ezmaxinvoicingsummaryglobal_adjustment->valueint,
+        strdup(t_ezmaxproduct_help_x->valuestring)
         );
 
     return ezmaxinvoicingsummaryglobal_response_local_var;

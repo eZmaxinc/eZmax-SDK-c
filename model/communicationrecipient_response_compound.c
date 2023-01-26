@@ -4,6 +4,23 @@
 #include "communicationrecipient_response_compound.h"
 
 
+char* e_communicationrecipient_objecttypecommunicationrecipient_response_compound_ToString(ezmax_api_definition__full_communicationrecipient_response_compound__e e_communicationrecipient_objecttype) {
+    char* e_communicationrecipient_objecttypeArray[] =  { "NULL", "Agent", "Agentincorporation", "Assistant", "Broker", "Contact", "Customer", "Employee", "Externalbroker", "Ezcomagent", "Ezcomcompany", "Ezsignsigner", "Franchiseoffice", "Notary", "Rewardmember", "Supplier", "User" };
+	return e_communicationrecipient_objecttypeArray[e_communicationrecipient_objecttype];
+}
+
+ezmax_api_definition__full_communicationrecipient_response_compound__e e_communicationrecipient_objecttypecommunicationrecipient_response_compound_FromString(char* e_communicationrecipient_objecttype){
+    int stringToReturn = 0;
+    char *e_communicationrecipient_objecttypeArray[] =  { "NULL", "Agent", "Agentincorporation", "Assistant", "Broker", "Contact", "Customer", "Employee", "Externalbroker", "Ezcomagent", "Ezcomcompany", "Ezsignsigner", "Franchiseoffice", "Notary", "Rewardmember", "Supplier", "User" };
+    size_t sizeofArray = sizeof(e_communicationrecipient_objecttypeArray) / sizeof(e_communicationrecipient_objecttypeArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(e_communicationrecipient_objecttype, e_communicationrecipient_objecttypeArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
 char* e_communicationrecipient_typecommunicationrecipient_response_compound_ToString(ezmax_api_definition__full_communicationrecipient_response_compound__e e_communicationrecipient_type) {
     char* e_communicationrecipient_typeArray[] =  { "NULL", "To", "Cc", "Bcc" };
 	return e_communicationrecipient_typeArray[e_communicationrecipient_type];
@@ -24,6 +41,7 @@ ezmax_api_definition__full_communicationrecipient_response_compound__e e_communi
 
 communicationrecipient_response_compound_t *communicationrecipient_response_compound_create(
     int pki_communicationrecipient_id,
+    field_e_communicationrecipient_objecttype_t *e_communicationrecipient_objecttype,
     int fki_agent_id,
     int fki_broker_id,
     int fki_contact_id,
@@ -32,8 +50,6 @@ communicationrecipient_response_compound_t *communicationrecipient_response_comp
     int fki_ezsignsigner_id,
     int fki_franchiseoffice_id,
     int fki_user_id,
-    char *s_email_address,
-    field_e_communicationrecipient_type_t *e_communicationrecipient_type,
     int fki_agentincorporation_id,
     int fki_assistant_id,
     int fki_externalbroker_id,
@@ -41,13 +57,17 @@ communicationrecipient_response_compound_t *communicationrecipient_response_comp
     int fki_notary_id,
     int fki_rewardmember_id,
     int fki_supplier_id,
-    phone_response_compound_t *obj_phone_sms
+    field_e_communicationrecipient_type_t *e_communicationrecipient_type,
+    descriptionstatic_response_compound_t *obj_descriptionstatic,
+    emailstatic_response_compound_t *obj_emailstatic,
+    phonestatic_response_compound_t *obj_phonestatic
     ) {
     communicationrecipient_response_compound_t *communicationrecipient_response_compound_local_var = malloc(sizeof(communicationrecipient_response_compound_t));
     if (!communicationrecipient_response_compound_local_var) {
         return NULL;
     }
     communicationrecipient_response_compound_local_var->pki_communicationrecipient_id = pki_communicationrecipient_id;
+    communicationrecipient_response_compound_local_var->e_communicationrecipient_objecttype = e_communicationrecipient_objecttype;
     communicationrecipient_response_compound_local_var->fki_agent_id = fki_agent_id;
     communicationrecipient_response_compound_local_var->fki_broker_id = fki_broker_id;
     communicationrecipient_response_compound_local_var->fki_contact_id = fki_contact_id;
@@ -56,8 +76,6 @@ communicationrecipient_response_compound_t *communicationrecipient_response_comp
     communicationrecipient_response_compound_local_var->fki_ezsignsigner_id = fki_ezsignsigner_id;
     communicationrecipient_response_compound_local_var->fki_franchiseoffice_id = fki_franchiseoffice_id;
     communicationrecipient_response_compound_local_var->fki_user_id = fki_user_id;
-    communicationrecipient_response_compound_local_var->s_email_address = s_email_address;
-    communicationrecipient_response_compound_local_var->e_communicationrecipient_type = e_communicationrecipient_type;
     communicationrecipient_response_compound_local_var->fki_agentincorporation_id = fki_agentincorporation_id;
     communicationrecipient_response_compound_local_var->fki_assistant_id = fki_assistant_id;
     communicationrecipient_response_compound_local_var->fki_externalbroker_id = fki_externalbroker_id;
@@ -65,7 +83,10 @@ communicationrecipient_response_compound_t *communicationrecipient_response_comp
     communicationrecipient_response_compound_local_var->fki_notary_id = fki_notary_id;
     communicationrecipient_response_compound_local_var->fki_rewardmember_id = fki_rewardmember_id;
     communicationrecipient_response_compound_local_var->fki_supplier_id = fki_supplier_id;
-    communicationrecipient_response_compound_local_var->obj_phone_sms = obj_phone_sms;
+    communicationrecipient_response_compound_local_var->e_communicationrecipient_type = e_communicationrecipient_type;
+    communicationrecipient_response_compound_local_var->obj_descriptionstatic = obj_descriptionstatic;
+    communicationrecipient_response_compound_local_var->obj_emailstatic = obj_emailstatic;
+    communicationrecipient_response_compound_local_var->obj_phonestatic = obj_phonestatic;
 
     return communicationrecipient_response_compound_local_var;
 }
@@ -76,17 +97,25 @@ void communicationrecipient_response_compound_free(communicationrecipient_respon
         return ;
     }
     listEntry_t *listEntry;
-    if (communicationrecipient_response_compound->s_email_address) {
-        free(communicationrecipient_response_compound->s_email_address);
-        communicationrecipient_response_compound->s_email_address = NULL;
+    if (communicationrecipient_response_compound->e_communicationrecipient_objecttype) {
+        field_e_communicationrecipient_objecttype_free(communicationrecipient_response_compound->e_communicationrecipient_objecttype);
+        communicationrecipient_response_compound->e_communicationrecipient_objecttype = NULL;
     }
     if (communicationrecipient_response_compound->e_communicationrecipient_type) {
         field_e_communicationrecipient_type_free(communicationrecipient_response_compound->e_communicationrecipient_type);
         communicationrecipient_response_compound->e_communicationrecipient_type = NULL;
     }
-    if (communicationrecipient_response_compound->obj_phone_sms) {
-        phone_response_compound_free(communicationrecipient_response_compound->obj_phone_sms);
-        communicationrecipient_response_compound->obj_phone_sms = NULL;
+    if (communicationrecipient_response_compound->obj_descriptionstatic) {
+        descriptionstatic_response_compound_free(communicationrecipient_response_compound->obj_descriptionstatic);
+        communicationrecipient_response_compound->obj_descriptionstatic = NULL;
+    }
+    if (communicationrecipient_response_compound->obj_emailstatic) {
+        emailstatic_response_compound_free(communicationrecipient_response_compound->obj_emailstatic);
+        communicationrecipient_response_compound->obj_emailstatic = NULL;
+    }
+    if (communicationrecipient_response_compound->obj_phonestatic) {
+        phonestatic_response_compound_free(communicationrecipient_response_compound->obj_phonestatic);
+        communicationrecipient_response_compound->obj_phonestatic = NULL;
     }
     free(communicationrecipient_response_compound);
 }
@@ -100,6 +129,19 @@ cJSON *communicationrecipient_response_compound_convertToJSON(communicationrecip
     }
     if(cJSON_AddNumberToObject(item, "pkiCommunicationrecipientID", communicationrecipient_response_compound->pki_communicationrecipient_id) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // communicationrecipient_response_compound->e_communicationrecipient_objecttype
+    if(communicationrecipient_response_compound->e_communicationrecipient_objecttype != ezmax_api_definition__full_communicationrecipient_response_compound__NULL) {
+    cJSON *e_communicationrecipient_objecttype_local_JSON = field_e_communicationrecipient_objecttype_convertToJSON(communicationrecipient_response_compound->e_communicationrecipient_objecttype);
+    if(e_communicationrecipient_objecttype_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eCommunicationrecipientObjecttype", e_communicationrecipient_objecttype_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
     }
 
 
@@ -167,27 +209,6 @@ cJSON *communicationrecipient_response_compound_convertToJSON(communicationrecip
     }
 
 
-    // communicationrecipient_response_compound->s_email_address
-    if(communicationrecipient_response_compound->s_email_address) {
-    if(cJSON_AddStringToObject(item, "sEmailAddress", communicationrecipient_response_compound->s_email_address) == NULL) {
-    goto fail; //String
-    }
-    }
-
-
-    // communicationrecipient_response_compound->e_communicationrecipient_type
-    if(communicationrecipient_response_compound->e_communicationrecipient_type != ezmax_api_definition__full_communicationrecipient_response_compound__NULL) {
-    cJSON *e_communicationrecipient_type_local_JSON = field_e_communicationrecipient_type_convertToJSON(communicationrecipient_response_compound->e_communicationrecipient_type);
-    if(e_communicationrecipient_type_local_JSON == NULL) {
-        goto fail; // custom
-    }
-    cJSON_AddItemToObject(item, "eCommunicationrecipientType", e_communicationrecipient_type_local_JSON);
-    if(item->child == NULL) {
-        goto fail;
-    }
-    }
-
-
     // communicationrecipient_response_compound->fki_agentincorporation_id
     if(communicationrecipient_response_compound->fki_agentincorporation_id) {
     if(cJSON_AddNumberToObject(item, "fkiAgentincorporationID", communicationrecipient_response_compound->fki_agentincorporation_id) == NULL) {
@@ -244,13 +265,54 @@ cJSON *communicationrecipient_response_compound_convertToJSON(communicationrecip
     }
 
 
-    // communicationrecipient_response_compound->obj_phone_sms
-    if(communicationrecipient_response_compound->obj_phone_sms) {
-    cJSON *obj_phone_sms_local_JSON = phone_response_compound_convertToJSON(communicationrecipient_response_compound->obj_phone_sms);
-    if(obj_phone_sms_local_JSON == NULL) {
+    // communicationrecipient_response_compound->e_communicationrecipient_type
+    if (ezmax_api_definition__full_communicationrecipient_response_compound__NULL == communicationrecipient_response_compound->e_communicationrecipient_type) {
+        goto fail;
+    }
+    cJSON *e_communicationrecipient_type_local_JSON = field_e_communicationrecipient_type_convertToJSON(communicationrecipient_response_compound->e_communicationrecipient_type);
+    if(e_communicationrecipient_type_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eCommunicationrecipientType", e_communicationrecipient_type_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
+
+
+    // communicationrecipient_response_compound->obj_descriptionstatic
+    if (!communicationrecipient_response_compound->obj_descriptionstatic) {
+        goto fail;
+    }
+    cJSON *obj_descriptionstatic_local_JSON = descriptionstatic_response_compound_convertToJSON(communicationrecipient_response_compound->obj_descriptionstatic);
+    if(obj_descriptionstatic_local_JSON == NULL) {
     goto fail; //model
     }
-    cJSON_AddItemToObject(item, "objPhoneSms", obj_phone_sms_local_JSON);
+    cJSON_AddItemToObject(item, "objDescriptionstatic", obj_descriptionstatic_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
+
+    // communicationrecipient_response_compound->obj_emailstatic
+    if(communicationrecipient_response_compound->obj_emailstatic) {
+    cJSON *obj_emailstatic_local_JSON = emailstatic_response_compound_convertToJSON(communicationrecipient_response_compound->obj_emailstatic);
+    if(obj_emailstatic_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objEmailstatic", obj_emailstatic_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+    }
+
+
+    // communicationrecipient_response_compound->obj_phonestatic
+    if(communicationrecipient_response_compound->obj_phonestatic) {
+    cJSON *obj_phonestatic_local_JSON = phonestatic_response_compound_convertToJSON(communicationrecipient_response_compound->obj_phonestatic);
+    if(obj_phonestatic_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objPhonestatic", obj_phonestatic_local_JSON);
     if(item->child == NULL) {
     goto fail;
     }
@@ -268,11 +330,20 @@ communicationrecipient_response_compound_t *communicationrecipient_response_comp
 
     communicationrecipient_response_compound_t *communicationrecipient_response_compound_local_var = NULL;
 
+    // define the local variable for communicationrecipient_response_compound->e_communicationrecipient_objecttype
+    field_e_communicationrecipient_objecttype_t *e_communicationrecipient_objecttype_local_nonprim = NULL;
+
     // define the local variable for communicationrecipient_response_compound->e_communicationrecipient_type
     field_e_communicationrecipient_type_t *e_communicationrecipient_type_local_nonprim = NULL;
 
-    // define the local variable for communicationrecipient_response_compound->obj_phone_sms
-    phone_response_compound_t *obj_phone_sms_local_nonprim = NULL;
+    // define the local variable for communicationrecipient_response_compound->obj_descriptionstatic
+    descriptionstatic_response_compound_t *obj_descriptionstatic_local_nonprim = NULL;
+
+    // define the local variable for communicationrecipient_response_compound->obj_emailstatic
+    emailstatic_response_compound_t *obj_emailstatic_local_nonprim = NULL;
+
+    // define the local variable for communicationrecipient_response_compound->obj_phonestatic
+    phonestatic_response_compound_t *obj_phonestatic_local_nonprim = NULL;
 
     // communicationrecipient_response_compound->pki_communicationrecipient_id
     cJSON *pki_communicationrecipient_id = cJSON_GetObjectItemCaseSensitive(communicationrecipient_response_compoundJSON, "pkiCommunicationrecipientID");
@@ -284,6 +355,12 @@ communicationrecipient_response_compound_t *communicationrecipient_response_comp
     if(!cJSON_IsNumber(pki_communicationrecipient_id))
     {
     goto end; //Numeric
+    }
+
+    // communicationrecipient_response_compound->e_communicationrecipient_objecttype
+    cJSON *e_communicationrecipient_objecttype = cJSON_GetObjectItemCaseSensitive(communicationrecipient_response_compoundJSON, "eCommunicationrecipientObjecttype");
+    if (e_communicationrecipient_objecttype) { 
+    e_communicationrecipient_objecttype_local_nonprim = field_e_communicationrecipient_objecttype_parseFromJSON(e_communicationrecipient_objecttype); //custom
     }
 
     // communicationrecipient_response_compound->fki_agent_id
@@ -358,21 +435,6 @@ communicationrecipient_response_compound_t *communicationrecipient_response_comp
     }
     }
 
-    // communicationrecipient_response_compound->s_email_address
-    cJSON *s_email_address = cJSON_GetObjectItemCaseSensitive(communicationrecipient_response_compoundJSON, "sEmailAddress");
-    if (s_email_address) { 
-    if(!cJSON_IsString(s_email_address))
-    {
-    goto end; //String
-    }
-    }
-
-    // communicationrecipient_response_compound->e_communicationrecipient_type
-    cJSON *e_communicationrecipient_type = cJSON_GetObjectItemCaseSensitive(communicationrecipient_response_compoundJSON, "eCommunicationrecipientType");
-    if (e_communicationrecipient_type) { 
-    e_communicationrecipient_type_local_nonprim = field_e_communicationrecipient_type_parseFromJSON(e_communicationrecipient_type); //custom
-    }
-
     // communicationrecipient_response_compound->fki_agentincorporation_id
     cJSON *fki_agentincorporation_id = cJSON_GetObjectItemCaseSensitive(communicationrecipient_response_compoundJSON, "fkiAgentincorporationID");
     if (fki_agentincorporation_id) { 
@@ -436,15 +498,40 @@ communicationrecipient_response_compound_t *communicationrecipient_response_comp
     }
     }
 
-    // communicationrecipient_response_compound->obj_phone_sms
-    cJSON *obj_phone_sms = cJSON_GetObjectItemCaseSensitive(communicationrecipient_response_compoundJSON, "objPhoneSms");
-    if (obj_phone_sms) { 
-    obj_phone_sms_local_nonprim = phone_response_compound_parseFromJSON(obj_phone_sms); //nonprimitive
+    // communicationrecipient_response_compound->e_communicationrecipient_type
+    cJSON *e_communicationrecipient_type = cJSON_GetObjectItemCaseSensitive(communicationrecipient_response_compoundJSON, "eCommunicationrecipientType");
+    if (!e_communicationrecipient_type) {
+        goto end;
+    }
+
+    
+    e_communicationrecipient_type_local_nonprim = field_e_communicationrecipient_type_parseFromJSON(e_communicationrecipient_type); //custom
+
+    // communicationrecipient_response_compound->obj_descriptionstatic
+    cJSON *obj_descriptionstatic = cJSON_GetObjectItemCaseSensitive(communicationrecipient_response_compoundJSON, "objDescriptionstatic");
+    if (!obj_descriptionstatic) {
+        goto end;
+    }
+
+    
+    obj_descriptionstatic_local_nonprim = descriptionstatic_response_compound_parseFromJSON(obj_descriptionstatic); //nonprimitive
+
+    // communicationrecipient_response_compound->obj_emailstatic
+    cJSON *obj_emailstatic = cJSON_GetObjectItemCaseSensitive(communicationrecipient_response_compoundJSON, "objEmailstatic");
+    if (obj_emailstatic) { 
+    obj_emailstatic_local_nonprim = emailstatic_response_compound_parseFromJSON(obj_emailstatic); //nonprimitive
+    }
+
+    // communicationrecipient_response_compound->obj_phonestatic
+    cJSON *obj_phonestatic = cJSON_GetObjectItemCaseSensitive(communicationrecipient_response_compoundJSON, "objPhonestatic");
+    if (obj_phonestatic) { 
+    obj_phonestatic_local_nonprim = phonestatic_response_compound_parseFromJSON(obj_phonestatic); //nonprimitive
     }
 
 
     communicationrecipient_response_compound_local_var = communicationrecipient_response_compound_create (
         pki_communicationrecipient_id->valuedouble,
+        e_communicationrecipient_objecttype ? e_communicationrecipient_objecttype_local_nonprim : NULL,
         fki_agent_id ? fki_agent_id->valuedouble : 0,
         fki_broker_id ? fki_broker_id->valuedouble : 0,
         fki_contact_id ? fki_contact_id->valuedouble : 0,
@@ -453,8 +540,6 @@ communicationrecipient_response_compound_t *communicationrecipient_response_comp
         fki_ezsignsigner_id ? fki_ezsignsigner_id->valuedouble : 0,
         fki_franchiseoffice_id ? fki_franchiseoffice_id->valuedouble : 0,
         fki_user_id ? fki_user_id->valuedouble : 0,
-        s_email_address ? strdup(s_email_address->valuestring) : NULL,
-        e_communicationrecipient_type ? e_communicationrecipient_type_local_nonprim : NULL,
         fki_agentincorporation_id ? fki_agentincorporation_id->valuedouble : 0,
         fki_assistant_id ? fki_assistant_id->valuedouble : 0,
         fki_externalbroker_id ? fki_externalbroker_id->valuedouble : 0,
@@ -462,18 +547,33 @@ communicationrecipient_response_compound_t *communicationrecipient_response_comp
         fki_notary_id ? fki_notary_id->valuedouble : 0,
         fki_rewardmember_id ? fki_rewardmember_id->valuedouble : 0,
         fki_supplier_id ? fki_supplier_id->valuedouble : 0,
-        obj_phone_sms ? obj_phone_sms_local_nonprim : NULL
+        e_communicationrecipient_type_local_nonprim,
+        obj_descriptionstatic_local_nonprim,
+        obj_emailstatic ? obj_emailstatic_local_nonprim : NULL,
+        obj_phonestatic ? obj_phonestatic_local_nonprim : NULL
         );
 
     return communicationrecipient_response_compound_local_var;
 end:
+    if (e_communicationrecipient_objecttype_local_nonprim) {
+        field_e_communicationrecipient_objecttype_free(e_communicationrecipient_objecttype_local_nonprim);
+        e_communicationrecipient_objecttype_local_nonprim = NULL;
+    }
     if (e_communicationrecipient_type_local_nonprim) {
         field_e_communicationrecipient_type_free(e_communicationrecipient_type_local_nonprim);
         e_communicationrecipient_type_local_nonprim = NULL;
     }
-    if (obj_phone_sms_local_nonprim) {
-        phone_response_compound_free(obj_phone_sms_local_nonprim);
-        obj_phone_sms_local_nonprim = NULL;
+    if (obj_descriptionstatic_local_nonprim) {
+        descriptionstatic_response_compound_free(obj_descriptionstatic_local_nonprim);
+        obj_descriptionstatic_local_nonprim = NULL;
+    }
+    if (obj_emailstatic_local_nonprim) {
+        emailstatic_response_compound_free(obj_emailstatic_local_nonprim);
+        obj_emailstatic_local_nonprim = NULL;
+    }
+    if (obj_phonestatic_local_nonprim) {
+        phonestatic_response_compound_free(obj_phonestatic_local_nonprim);
+        obj_phonestatic_local_nonprim = NULL;
     }
     return NULL;
 

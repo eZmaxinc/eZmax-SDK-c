@@ -22,11 +22,15 @@ communication_get_list_v1_response_m_payload_t* instantiate_communication_get_li
   communication_get_list_v1_response_m_payload_t* communication_get_list_v1_response_m_payload = NULL;
   if (include_optional) {
     communication_get_list_v1_response_m_payload = communication_get_list_v1_response_m_payload_create(
-      list_createList()
+      list_createList(),
+      100,
+      533
     );
   } else {
     communication_get_list_v1_response_m_payload = communication_get_list_v1_response_m_payload_create(
-      list_createList()
+      list_createList(),
+      100,
+      533
     );
   }
 

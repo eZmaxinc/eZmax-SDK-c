@@ -30,6 +30,7 @@ typedef struct ezmaxinvoicingsummaryinternaldetail_response_compound_t {
     char *d_ezmaxinvoicingsummaryinternaldetail_rebate; // string
     char *d_ezmaxinvoicingsummaryinternaldetail_total; // string
     int b_ezmaxinvoicingsummaryinternaldetail_adjustment; //boolean
+    char *t_ezmaxproduct_help_x; // string
 
 } ezmaxinvoicingsummaryinternaldetail_response_compound_t;
 
@@ -44,7 +45,8 @@ ezmaxinvoicingsummaryinternaldetail_response_compound_t *ezmaxinvoicingsummaryin
     char *d_ezmaxinvoicingsummaryinternaldetail_subtotal,
     char *d_ezmaxinvoicingsummaryinternaldetail_rebate,
     char *d_ezmaxinvoicingsummaryinternaldetail_total,
-    int b_ezmaxinvoicingsummaryinternaldetail_adjustment
+    int b_ezmaxinvoicingsummaryinternaldetail_adjustment,
+    char *t_ezmaxproduct_help_x
 );
 
 void ezmaxinvoicingsummaryinternaldetail_response_compound_free(ezmaxinvoicingsummaryinternaldetail_response_compound_t *ezmaxinvoicingsummaryinternaldetail_response_compound);

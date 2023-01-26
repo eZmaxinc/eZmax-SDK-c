@@ -16,7 +16,9 @@
 #include "../model/communicationexternalrecipient_response_compound.h"
 communicationexternalrecipient_response_compound_t* instantiate_communicationexternalrecipient_response_compound(int include_optional);
 
-#include "test_phone_response_compound.c"
+#include "test_descriptionstatic_response_compound.c"
+#include "test_emailstatic_response_compound.c"
+#include "test_phonestatic_response_compound.c"
 
 
 communicationexternalrecipient_response_compound_t* instantiate_communicationexternalrecipient_response_compound(int include_optional) {
@@ -24,19 +26,21 @@ communicationexternalrecipient_response_compound_t* instantiate_communicationext
   if (include_optional) {
     communicationexternalrecipient_response_compound = communicationexternalrecipient_response_compound_create(
       9,
-      "email@example.com",
-       // false, not to have infinite recursion
-      instantiate_phone_response_compound(0),
       ezmax_api_definition__full_communicationexternalrecipient_response_compound__"To",
-      "John Doe"
+       // false, not to have infinite recursion
+      instantiate_descriptionstatic_response_compound(0),
+       // false, not to have infinite recursion
+      instantiate_emailstatic_response_compound(0),
+       // false, not to have infinite recursion
+      instantiate_phonestatic_response_compound(0)
     );
   } else {
     communicationexternalrecipient_response_compound = communicationexternalrecipient_response_compound_create(
       9,
-      "email@example.com",
-      NULL,
       ezmax_api_definition__full_communicationexternalrecipient_response_compound__"To",
-      "John Doe"
+      NULL,
+      NULL,
+      NULL
     );
   }
 

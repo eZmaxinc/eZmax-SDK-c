@@ -136,6 +136,7 @@ set(SRCS
     model/communication_get_list_v1_response.c
     model/communication_get_list_v1_response_all_of.c
     model/communication_get_list_v1_response_m_payload.c
+    model/communication_get_list_v1_response_m_payload_all_of.c
     model/communication_get_object_v2_response.c
     model/communication_get_object_v2_response_all_of.c
     model/communication_get_object_v2_response_m_payload.c
@@ -145,14 +146,11 @@ set(SRCS
     model/communication_response_compound_all_of.c
     model/communicationattachment_response.c
     model/communicationattachment_response_compound.c
-    model/communicationexternalimage_response.c
-    model/communicationexternalimage_response_compound.c
     model/communicationexternalrecipient_response.c
     model/communicationexternalrecipient_response_compound.c
-    model/communicationimage_response.c
-    model/communicationimage_response_compound.c
     model/communicationrecipient_response.c
     model/communicationrecipient_response_compound.c
+    model/computed_e_communication_direction.c
     model/contact_request.c
     model/contact_request_compound.c
     model/contact_request_compound_all_of.c
@@ -203,8 +201,12 @@ set(SRCS
     model/department_get_members_v1_response.c
     model/department_get_members_v1_response_all_of.c
     model/department_get_members_v1_response_m_payload.c
+    model/descriptionstatic_response.c
+    model/descriptionstatic_response_compound.c
     model/email_request.c
     model/email_request_compound.c
+    model/emailstatic_response.c
+    model/emailstatic_response_compound.c
     model/ezmaxinvoicing_autocomplete_element_response.c
     model/ezmaxinvoicing_get_autocomplete_v2_response.c
     model/ezmaxinvoicing_get_autocomplete_v2_response_all_of.c
@@ -804,9 +806,10 @@ set(SRCS
     model/field_e_activesession_usertype.c
     model/field_e_activesession_weekdaystart.c
     model/field_e_branding_logo.c
-    model/field_e_communication_emailimportance.c
+    model/field_e_communication_importance.c
     model/field_e_communication_type.c
     model/field_e_communicationexternalrecipient_type.c
+    model/field_e_communicationrecipient_objecttype.c
     model/field_e_communicationrecipient_type.c
     model/field_e_ezmaxinvoicing_paymenttype.c
     model/field_e_ezmaxinvoicingagent_variationezmax.c
@@ -870,6 +873,7 @@ set(SRCS
     model/multilingual_ezsignfoldertype_name.c
     model/multilingual_notificationsubsection_name.c
     model/multilingual_notificationtest_name.c
+    model/multilingual_paymentterm_description.c
     model/multilingual_versionhistory_detail.c
     model/notificationsection_get_notificationtests_v1_response.c
     model/notificationsection_get_notificationtests_v1_response_all_of.c
@@ -879,14 +883,37 @@ set(SRCS
     model/notificationtest_get_elements_v1_response_all_of.c
     model/notificationtest_get_elements_v1_response_m_payload.c
     model/notificationtest_response.c
+    model/paymentterm_autocomplete_element_response.c
+    model/paymentterm_create_object_v1_request.c
+    model/paymentterm_create_object_v1_response.c
+    model/paymentterm_create_object_v1_response_all_of.c
+    model/paymentterm_create_object_v1_response_m_payload.c
+    model/paymentterm_delete_object_v1_response.c
+    model/paymentterm_edit_object_v1_request.c
+    model/paymentterm_edit_object_v1_response.c
+    model/paymentterm_get_autocomplete_v2_response.c
+    model/paymentterm_get_autocomplete_v2_response_all_of.c
+    model/paymentterm_get_autocomplete_v2_response_m_payload.c
+    model/paymentterm_get_list_v1_response.c
+    model/paymentterm_get_list_v1_response_all_of.c
+    model/paymentterm_get_list_v1_response_m_payload.c
+    model/paymentterm_get_list_v1_response_m_payload_all_of.c
+    model/paymentterm_get_object_v2_response.c
+    model/paymentterm_get_object_v2_response_all_of.c
+    model/paymentterm_get_object_v2_response_m_payload.c
+    model/paymentterm_list_element.c
+    model/paymentterm_request.c
+    model/paymentterm_request_compound.c
+    model/paymentterm_response.c
+    model/paymentterm_response_compound.c
     model/period_autocomplete_element_response.c
     model/period_get_autocomplete_v2_response.c
     model/period_get_autocomplete_v2_response_all_of.c
     model/period_get_autocomplete_v2_response_m_payload.c
     model/phone_request.c
     model/phone_request_compound.c
-    model/phone_response.c
-    model/phone_response_compound.c
+    model/phonestatic_response.c
+    model/phonestatic_response_compound.c
     model/secretquestion_autocomplete_element_response.c
     model/secretquestion_get_autocomplete_v2_response.c
     model/secretquestion_get_autocomplete_v2_response_all_of.c
@@ -990,6 +1017,7 @@ set(SRCS
     api/ObjectFranchisereferalincomeAPI.c
     api/ObjectNotificationsectionAPI.c
     api/ObjectNotificationtestAPI.c
+    api/ObjectPaymenttermAPI.c
     api/ObjectPeriodAPI.c
     api/ObjectSecretquestionAPI.c
     api/ObjectTaxassignmentAPI.c
@@ -1090,6 +1118,7 @@ set(HDRS
     model/communication_get_list_v1_response.h
     model/communication_get_list_v1_response_all_of.h
     model/communication_get_list_v1_response_m_payload.h
+    model/communication_get_list_v1_response_m_payload_all_of.h
     model/communication_get_object_v2_response.h
     model/communication_get_object_v2_response_all_of.h
     model/communication_get_object_v2_response_m_payload.h
@@ -1099,14 +1128,11 @@ set(HDRS
     model/communication_response_compound_all_of.h
     model/communicationattachment_response.h
     model/communicationattachment_response_compound.h
-    model/communicationexternalimage_response.h
-    model/communicationexternalimage_response_compound.h
     model/communicationexternalrecipient_response.h
     model/communicationexternalrecipient_response_compound.h
-    model/communicationimage_response.h
-    model/communicationimage_response_compound.h
     model/communicationrecipient_response.h
     model/communicationrecipient_response_compound.h
+    model/computed_e_communication_direction.h
     model/contact_request.h
     model/contact_request_compound.h
     model/contact_request_compound_all_of.h
@@ -1157,8 +1183,12 @@ set(HDRS
     model/department_get_members_v1_response.h
     model/department_get_members_v1_response_all_of.h
     model/department_get_members_v1_response_m_payload.h
+    model/descriptionstatic_response.h
+    model/descriptionstatic_response_compound.h
     model/email_request.h
     model/email_request_compound.h
+    model/emailstatic_response.h
+    model/emailstatic_response_compound.h
     model/ezmaxinvoicing_autocomplete_element_response.h
     model/ezmaxinvoicing_get_autocomplete_v2_response.h
     model/ezmaxinvoicing_get_autocomplete_v2_response_all_of.h
@@ -1758,9 +1788,10 @@ set(HDRS
     model/field_e_activesession_usertype.h
     model/field_e_activesession_weekdaystart.h
     model/field_e_branding_logo.h
-    model/field_e_communication_emailimportance.h
+    model/field_e_communication_importance.h
     model/field_e_communication_type.h
     model/field_e_communicationexternalrecipient_type.h
+    model/field_e_communicationrecipient_objecttype.h
     model/field_e_communicationrecipient_type.h
     model/field_e_ezmaxinvoicing_paymenttype.h
     model/field_e_ezmaxinvoicingagent_variationezmax.h
@@ -1824,6 +1855,7 @@ set(HDRS
     model/multilingual_ezsignfoldertype_name.h
     model/multilingual_notificationsubsection_name.h
     model/multilingual_notificationtest_name.h
+    model/multilingual_paymentterm_description.h
     model/multilingual_versionhistory_detail.h
     model/notificationsection_get_notificationtests_v1_response.h
     model/notificationsection_get_notificationtests_v1_response_all_of.h
@@ -1833,14 +1865,37 @@ set(HDRS
     model/notificationtest_get_elements_v1_response_all_of.h
     model/notificationtest_get_elements_v1_response_m_payload.h
     model/notificationtest_response.h
+    model/paymentterm_autocomplete_element_response.h
+    model/paymentterm_create_object_v1_request.h
+    model/paymentterm_create_object_v1_response.h
+    model/paymentterm_create_object_v1_response_all_of.h
+    model/paymentterm_create_object_v1_response_m_payload.h
+    model/paymentterm_delete_object_v1_response.h
+    model/paymentterm_edit_object_v1_request.h
+    model/paymentterm_edit_object_v1_response.h
+    model/paymentterm_get_autocomplete_v2_response.h
+    model/paymentterm_get_autocomplete_v2_response_all_of.h
+    model/paymentterm_get_autocomplete_v2_response_m_payload.h
+    model/paymentterm_get_list_v1_response.h
+    model/paymentterm_get_list_v1_response_all_of.h
+    model/paymentterm_get_list_v1_response_m_payload.h
+    model/paymentterm_get_list_v1_response_m_payload_all_of.h
+    model/paymentterm_get_object_v2_response.h
+    model/paymentterm_get_object_v2_response_all_of.h
+    model/paymentterm_get_object_v2_response_m_payload.h
+    model/paymentterm_list_element.h
+    model/paymentterm_request.h
+    model/paymentterm_request_compound.h
+    model/paymentterm_response.h
+    model/paymentterm_response_compound.h
     model/period_autocomplete_element_response.h
     model/period_get_autocomplete_v2_response.h
     model/period_get_autocomplete_v2_response_all_of.h
     model/period_get_autocomplete_v2_response_m_payload.h
     model/phone_request.h
     model/phone_request_compound.h
-    model/phone_response.h
-    model/phone_response_compound.h
+    model/phonestatic_response.h
+    model/phonestatic_response_compound.h
     model/secretquestion_autocomplete_element_response.h
     model/secretquestion_get_autocomplete_v2_response.h
     model/secretquestion_get_autocomplete_v2_response_all_of.h
@@ -1944,6 +1999,7 @@ set(HDRS
     api/ObjectFranchisereferalincomeAPI.h
     api/ObjectNotificationsectionAPI.h
     api/ObjectNotificationtestAPI.h
+    api/ObjectPaymenttermAPI.h
     api/ObjectPeriodAPI.h
     api/ObjectSecretquestionAPI.h
     api/ObjectTaxassignmentAPI.h
@@ -2069,6 +2125,7 @@ set(HDRS "")
 #    unit-tests/manual-ObjectFranchisereferalincomeAPI.c
 #    unit-tests/manual-ObjectNotificationsectionAPI.c
 #    unit-tests/manual-ObjectNotificationtestAPI.c
+#    unit-tests/manual-ObjectPaymenttermAPI.c
 #    unit-tests/manual-ObjectPeriodAPI.c
 #    unit-tests/manual-ObjectSecretquestionAPI.c
 #    unit-tests/manual-ObjectTaxassignmentAPI.c

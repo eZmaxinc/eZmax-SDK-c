@@ -16,7 +16,8 @@ ezmaxinvoicingsummaryinternaldetail_response_t *ezmaxinvoicingsummaryinternaldet
     char *d_ezmaxinvoicingsummaryinternaldetail_subtotal,
     char *d_ezmaxinvoicingsummaryinternaldetail_rebate,
     char *d_ezmaxinvoicingsummaryinternaldetail_total,
-    int b_ezmaxinvoicingsummaryinternaldetail_adjustment
+    int b_ezmaxinvoicingsummaryinternaldetail_adjustment,
+    char *t_ezmaxproduct_help_x
     ) {
     ezmaxinvoicingsummaryinternaldetail_response_t *ezmaxinvoicingsummaryinternaldetail_response_local_var = malloc(sizeof(ezmaxinvoicingsummaryinternaldetail_response_t));
     if (!ezmaxinvoicingsummaryinternaldetail_response_local_var) {
@@ -33,6 +34,7 @@ ezmaxinvoicingsummaryinternaldetail_response_t *ezmaxinvoicingsummaryinternaldet
     ezmaxinvoicingsummaryinternaldetail_response_local_var->d_ezmaxinvoicingsummaryinternaldetail_rebate = d_ezmaxinvoicingsummaryinternaldetail_rebate;
     ezmaxinvoicingsummaryinternaldetail_response_local_var->d_ezmaxinvoicingsummaryinternaldetail_total = d_ezmaxinvoicingsummaryinternaldetail_total;
     ezmaxinvoicingsummaryinternaldetail_response_local_var->b_ezmaxinvoicingsummaryinternaldetail_adjustment = b_ezmaxinvoicingsummaryinternaldetail_adjustment;
+    ezmaxinvoicingsummaryinternaldetail_response_local_var->t_ezmaxproduct_help_x = t_ezmaxproduct_help_x;
 
     return ezmaxinvoicingsummaryinternaldetail_response_local_var;
 }
@@ -66,6 +68,10 @@ void ezmaxinvoicingsummaryinternaldetail_response_free(ezmaxinvoicingsummaryinte
     if (ezmaxinvoicingsummaryinternaldetail_response->d_ezmaxinvoicingsummaryinternaldetail_total) {
         free(ezmaxinvoicingsummaryinternaldetail_response->d_ezmaxinvoicingsummaryinternaldetail_total);
         ezmaxinvoicingsummaryinternaldetail_response->d_ezmaxinvoicingsummaryinternaldetail_total = NULL;
+    }
+    if (ezmaxinvoicingsummaryinternaldetail_response->t_ezmaxproduct_help_x) {
+        free(ezmaxinvoicingsummaryinternaldetail_response->t_ezmaxproduct_help_x);
+        ezmaxinvoicingsummaryinternaldetail_response->t_ezmaxproduct_help_x = NULL;
     }
     free(ezmaxinvoicingsummaryinternaldetail_response);
 }
@@ -167,6 +173,15 @@ cJSON *ezmaxinvoicingsummaryinternaldetail_response_convertToJSON(ezmaxinvoicing
     }
     if(cJSON_AddBoolToObject(item, "bEzmaxinvoicingsummaryinternaldetailAdjustment", ezmaxinvoicingsummaryinternaldetail_response->b_ezmaxinvoicingsummaryinternaldetail_adjustment) == NULL) {
     goto fail; //Bool
+    }
+
+
+    // ezmaxinvoicingsummaryinternaldetail_response->t_ezmaxproduct_help_x
+    if (!ezmaxinvoicingsummaryinternaldetail_response->t_ezmaxproduct_help_x) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "tEzmaxproductHelpX", ezmaxinvoicingsummaryinternaldetail_response->t_ezmaxproduct_help_x) == NULL) {
+    goto fail; //String
     }
 
     return item;
@@ -307,6 +322,18 @@ ezmaxinvoicingsummaryinternaldetail_response_t *ezmaxinvoicingsummaryinternaldet
     goto end; //Bool
     }
 
+    // ezmaxinvoicingsummaryinternaldetail_response->t_ezmaxproduct_help_x
+    cJSON *t_ezmaxproduct_help_x = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryinternaldetail_responseJSON, "tEzmaxproductHelpX");
+    if (!t_ezmaxproduct_help_x) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(t_ezmaxproduct_help_x))
+    {
+    goto end; //String
+    }
+
 
     ezmaxinvoicingsummaryinternaldetail_response_local_var = ezmaxinvoicingsummaryinternaldetail_response_create (
         pki_ezmaxinvoicingsummaryinternaldetail_id ? pki_ezmaxinvoicingsummaryinternaldetail_id->valuedouble : 0,
@@ -319,7 +346,8 @@ ezmaxinvoicingsummaryinternaldetail_response_t *ezmaxinvoicingsummaryinternaldet
         strdup(d_ezmaxinvoicingsummaryinternaldetail_subtotal->valuestring),
         strdup(d_ezmaxinvoicingsummaryinternaldetail_rebate->valuestring),
         strdup(d_ezmaxinvoicingsummaryinternaldetail_total->valuestring),
-        b_ezmaxinvoicingsummaryinternaldetail_adjustment->valueint
+        b_ezmaxinvoicingsummaryinternaldetail_adjustment->valueint,
+        strdup(t_ezmaxproduct_help_x->valuestring)
         );
 
     return ezmaxinvoicingsummaryinternaldetail_response_local_var;

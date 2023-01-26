@@ -16,9 +16,7 @@
 typedef struct communication_response_compound_all_of_t communication_response_compound_all_of_t;
 
 #include "communicationattachment_response_compound.h"
-#include "communicationexternalimage_response_compound.h"
 #include "communicationexternalrecipient_response_compound.h"
-#include "communicationimage_response_compound.h"
 #include "communicationrecipient_response_compound.h"
 
 
@@ -27,17 +25,13 @@ typedef struct communication_response_compound_all_of_t {
     list_t *a_obj_communicationattachment; //nonprimitive container
     list_t *a_obj_communicationrecipient; //nonprimitive container
     list_t *a_obj_communicationexternalrecipient; //nonprimitive container
-    list_t *a_obj_communicationimage; //nonprimitive container
-    list_t *a_obj_communicationexternalimage; //nonprimitive container
 
 } communication_response_compound_all_of_t;
 
 communication_response_compound_all_of_t *communication_response_compound_all_of_create(
     list_t *a_obj_communicationattachment,
     list_t *a_obj_communicationrecipient,
-    list_t *a_obj_communicationexternalrecipient,
-    list_t *a_obj_communicationimage,
-    list_t *a_obj_communicationexternalimage
+    list_t *a_obj_communicationexternalrecipient
 );
 
 void communication_response_compound_all_of_free(communication_response_compound_all_of_t *communication_response_compound_all_of);

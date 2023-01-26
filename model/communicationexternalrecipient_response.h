@@ -15,8 +15,10 @@
 
 typedef struct communicationexternalrecipient_response_t communicationexternalrecipient_response_t;
 
+#include "descriptionstatic_response_compound.h"
+#include "emailstatic_response_compound.h"
 #include "field_e_communicationexternalrecipient_type.h"
-#include "phone_response_compound.h"
+#include "phonestatic_response_compound.h"
 
 // Enum  for communicationexternalrecipient_response
 
@@ -30,19 +32,19 @@ ezmax_api_definition__full_communicationexternalrecipient_response__e communicat
 
 typedef struct communicationexternalrecipient_response_t {
     int pki_communicationexternalrecipient_id; //numeric
-    char *s_email_address; // string
-    struct phone_response_compound_t *obj_phone_sms; //model
     field_e_communicationexternalrecipient_type_t *e_communicationexternalrecipient_type; // custom
-    char *s_communicationexternalrecipient_name; // string
+    struct descriptionstatic_response_compound_t *obj_descriptionstatic; //model
+    struct emailstatic_response_compound_t *obj_emailstatic; //model
+    struct phonestatic_response_compound_t *obj_phonestatic; //model
 
 } communicationexternalrecipient_response_t;
 
 communicationexternalrecipient_response_t *communicationexternalrecipient_response_create(
     int pki_communicationexternalrecipient_id,
-    char *s_email_address,
-    phone_response_compound_t *obj_phone_sms,
     field_e_communicationexternalrecipient_type_t *e_communicationexternalrecipient_type,
-    char *s_communicationexternalrecipient_name
+    descriptionstatic_response_compound_t *obj_descriptionstatic,
+    emailstatic_response_compound_t *obj_emailstatic,
+    phonestatic_response_compound_t *obj_phonestatic
 );
 
 void communicationexternalrecipient_response_free(communicationexternalrecipient_response_t *communicationexternalrecipient_response);

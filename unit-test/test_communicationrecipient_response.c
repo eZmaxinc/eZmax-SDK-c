@@ -16,7 +16,9 @@
 #include "../model/communicationrecipient_response.h"
 communicationrecipient_response_t* instantiate_communicationrecipient_response(int include_optional);
 
-#include "test_phone_response_compound.c"
+#include "test_descriptionstatic_response_compound.c"
+#include "test_emailstatic_response_compound.c"
+#include "test_phonestatic_response_compound.c"
 
 
 communicationrecipient_response_t* instantiate_communicationrecipient_response(int include_optional) {
@@ -24,6 +26,7 @@ communicationrecipient_response_t* instantiate_communicationrecipient_response(i
   if (include_optional) {
     communicationrecipient_response = communicationrecipient_response_create(
       1,
+      ezmax_api_definition__full_communicationrecipient_response__"User",
       1,
       26,
       21,
@@ -32,21 +35,25 @@ communicationrecipient_response_t* instantiate_communicationrecipient_response(i
       89,
       50,
       70,
-      "email@example.com",
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
       ezmax_api_definition__full_communicationrecipient_response__"To",
-      1,
-      1,
-      1,
-      1,
-      1,
-      1,
-      1,
        // false, not to have infinite recursion
-      instantiate_phone_response_compound(0)
+      instantiate_descriptionstatic_response_compound(0),
+       // false, not to have infinite recursion
+      instantiate_emailstatic_response_compound(0),
+       // false, not to have infinite recursion
+      instantiate_phonestatic_response_compound(0)
     );
   } else {
     communicationrecipient_response = communicationrecipient_response_create(
       1,
+      ezmax_api_definition__full_communicationrecipient_response__"User",
       1,
       26,
       21,
@@ -55,15 +62,16 @@ communicationrecipient_response_t* instantiate_communicationrecipient_response(i
       89,
       50,
       70,
-      "email@example.com",
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
       ezmax_api_definition__full_communicationrecipient_response__"To",
-      1,
-      1,
-      1,
-      1,
-      1,
-      1,
-      1,
+      NULL,
+      NULL,
       NULL
     );
   }

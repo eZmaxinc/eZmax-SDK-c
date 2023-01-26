@@ -40,6 +40,7 @@ ezmaxinvoicingsummaryglobal_response_compound_t* instantiate_ezmaxinvoicingsumma
       "266.49",
       "521.71",
       true,
+      "This is an exemple of help message",
       list_createList()
     );
   } else {
@@ -62,6 +63,7 @@ ezmaxinvoicingsummaryglobal_response_compound_t* instantiate_ezmaxinvoicingsumma
       "266.49",
       "521.71",
       true,
+      "This is an exemple of help message",
       list_createList()
     );
   }

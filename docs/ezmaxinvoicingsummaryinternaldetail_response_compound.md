@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **d_ezmaxinvoicingsummaryinternaldetail_rebate** | **char \*** | The rebate for the product | 
 **d_ezmaxinvoicingsummaryinternaldetail_total** | **char \*** | The total invoiced for the product | 
 **b_ezmaxinvoicingsummaryinternaldetail_adjustment** | **int** | Whether if it&#39;s an adjustment | 
+**t_ezmaxproduct_help_x** | **char \*** | The help message of the Ezmaxproduct in the language of the requester | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

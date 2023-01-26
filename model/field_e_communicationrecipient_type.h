@@ -1,7 +1,7 @@
 /*
  * field_e_communicationrecipient_type.h
  *
- * The Type for the Communicationrecipient
+ * The type for the Communicationrecipient
  */
 
 #ifndef _field_e_communicationrecipient_type_H_

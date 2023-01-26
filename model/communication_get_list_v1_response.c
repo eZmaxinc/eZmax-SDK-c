@@ -7,7 +7,7 @@
 
 communication_get_list_v1_response_t *communication_get_list_v1_response_create(
     communication_get_list_v1_response_m_payload_t *m_payload,
-    common_response_obj_debug_payload_t *obj_debug_payload,
+    common_response_obj_debug_payload_get_list_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
     communication_get_list_v1_response_t *communication_get_list_v1_response_local_var = malloc(sizeof(communication_get_list_v1_response_t));
@@ -32,7 +32,7 @@ void communication_get_list_v1_response_free(communication_get_list_v1_response_
         communication_get_list_v1_response->m_payload = NULL;
     }
     if (communication_get_list_v1_response->obj_debug_payload) {
-        common_response_obj_debug_payload_free(communication_get_list_v1_response->obj_debug_payload);
+        common_response_obj_debug_payload_get_list_free(communication_get_list_v1_response->obj_debug_payload);
         communication_get_list_v1_response->obj_debug_payload = NULL;
     }
     if (communication_get_list_v1_response->obj_debug) {
@@ -61,7 +61,7 @@ cJSON *communication_get_list_v1_response_convertToJSON(communication_get_list_v
 
     // communication_get_list_v1_response->obj_debug_payload
     if(communication_get_list_v1_response->obj_debug_payload) {
-    cJSON *obj_debug_payload_local_JSON = common_response_obj_debug_payload_convertToJSON(communication_get_list_v1_response->obj_debug_payload);
+    cJSON *obj_debug_payload_local_JSON = common_response_obj_debug_payload_get_list_convertToJSON(communication_get_list_v1_response->obj_debug_payload);
     if(obj_debug_payload_local_JSON == NULL) {
     goto fail; //model
     }
@@ -100,7 +100,7 @@ communication_get_list_v1_response_t *communication_get_list_v1_response_parseFr
     communication_get_list_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
 
     // define the local variable for communication_get_list_v1_response->obj_debug_payload
-    common_response_obj_debug_payload_t *obj_debug_payload_local_nonprim = NULL;
+    common_response_obj_debug_payload_get_list_t *obj_debug_payload_local_nonprim = NULL;
 
     // define the local variable for communication_get_list_v1_response->obj_debug
     common_response_obj_debug_t *obj_debug_local_nonprim = NULL;
@@ -117,7 +117,7 @@ communication_get_list_v1_response_t *communication_get_list_v1_response_parseFr
     // communication_get_list_v1_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(communication_get_list_v1_responseJSON, "objDebugPayload");
     if (obj_debug_payload) { 
-    obj_debug_payload_local_nonprim = common_response_obj_debug_payload_parseFromJSON(obj_debug_payload); //nonprimitive
+    obj_debug_payload_local_nonprim = common_response_obj_debug_payload_get_list_parseFromJSON(obj_debug_payload); //nonprimitive
     }
 
     // communication_get_list_v1_response->obj_debug
@@ -140,7 +140,7 @@ end:
         m_payload_local_nonprim = NULL;
     }
     if (obj_debug_payload_local_nonprim) {
-        common_response_obj_debug_payload_free(obj_debug_payload_local_nonprim);
+        common_response_obj_debug_payload_get_list_free(obj_debug_payload_local_nonprim);
         obj_debug_payload_local_nonprim = NULL;
     }
     if (obj_debug_local_nonprim) {

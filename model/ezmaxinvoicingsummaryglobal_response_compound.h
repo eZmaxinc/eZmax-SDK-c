@@ -38,6 +38,7 @@ typedef struct ezmaxinvoicingsummaryglobal_response_compound_t {
     char *d_ezmaxinvoicingsummaryglobal_partner; // string
     char *d_ezmaxinvoicingsummaryglobal_net; // string
     int b_ezmaxinvoicingsummaryglobal_adjustment; //boolean
+    char *t_ezmaxproduct_help_x; // string
     list_t *a_obj_ezmaxinvoicingcommission; //nonprimitive container
 
 } ezmaxinvoicingsummaryglobal_response_compound_t;
@@ -61,6 +62,7 @@ ezmaxinvoicingsummaryglobal_response_compound_t *ezmaxinvoicingsummaryglobal_res
     char *d_ezmaxinvoicingsummaryglobal_partner,
     char *d_ezmaxinvoicingsummaryglobal_net,
     int b_ezmaxinvoicingsummaryglobal_adjustment,
+    char *t_ezmaxproduct_help_x,
     list_t *a_obj_ezmaxinvoicingcommission
 );
 

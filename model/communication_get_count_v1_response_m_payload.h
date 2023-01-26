@@ -1,7 +1,7 @@
 /*
  * communication_get_count_v1_response_m_payload.h
  *
- * Payload for GET /1/module/communication/getCount
+ * Payload for GET /1/module/communication/getCommunicationCount
  */
 
 #ifndef _communication_get_count_v1_response_m_payload_H_

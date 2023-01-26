@@ -32,7 +32,8 @@ ezmaxinvoicingsummaryinternaldetail_response_compound_t* instantiate_ezmaxinvoic
       "625.41",
       "560.81",
       "510.77",
-      true
+      true,
+      "This is an exemple of help message"
     );
   } else {
     ezmaxinvoicingsummaryinternaldetail_response_compound = ezmaxinvoicingsummaryinternaldetail_response_compound_create(
@@ -46,7 +47,8 @@ ezmaxinvoicingsummaryinternaldetail_response_compound_t* instantiate_ezmaxinvoic
       "625.41",
       "560.81",
       "510.77",
-      true
+      true,
+      "This is an exemple of help message"
     );
   }
 

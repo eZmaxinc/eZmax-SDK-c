@@ -17,6 +17,7 @@
 communication_response_compound_t* instantiate_communication_response_compound(int include_optional);
 
 #include "test_custom_contact_name_response.c"
+#include "test_common_audit.c"
 
 
 communication_response_compound_t* instantiate_communication_response_compound(int include_optional) {
@@ -27,11 +28,12 @@ communication_response_compound_t* instantiate_communication_response_compound(i
       ezmax_api_definition__full_communication_response_compound__"Normal",
       ezmax_api_definition__full_communication_response_compound__"Email",
       "This is an example of subject",
-      "2020-12-31 23:59:59",
+      ezmax_api_definition__full_communication_response_compound__"Outbound",
+      8,
        // false, not to have infinite recursion
       instantiate_custom_contact_name_response(0),
-      list_createList(),
-      list_createList(),
+       // false, not to have infinite recursion
+      instantiate_common_audit(0),
       list_createList(),
       list_createList(),
       list_createList()
@@ -42,10 +44,10 @@ communication_response_compound_t* instantiate_communication_response_compound(i
       ezmax_api_definition__full_communication_response_compound__"Normal",
       ezmax_api_definition__full_communication_response_compound__"Email",
       "This is an example of subject",
-      "2020-12-31 23:59:59",
+      ezmax_api_definition__full_communication_response_compound__"Outbound",
+      8,
       NULL,
-      list_createList(),
-      list_createList(),
+      NULL,
       list_createList(),
       list_createList(),
       list_createList()

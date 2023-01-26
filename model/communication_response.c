@@ -4,17 +4,17 @@
 #include "communication_response.h"
 
 
-char* e_communication_emailimportancecommunication_response_ToString(ezmax_api_definition__full_communication_response__e e_communication_emailimportance) {
-    char* e_communication_emailimportanceArray[] =  { "NULL", "High", "Normal", "Low" };
-	return e_communication_emailimportanceArray[e_communication_emailimportance];
+char* e_communication_importancecommunication_response_ToString(ezmax_api_definition__full_communication_response__e e_communication_importance) {
+    char* e_communication_importanceArray[] =  { "NULL", "High", "Normal", "Low" };
+	return e_communication_importanceArray[e_communication_importance];
 }
 
-ezmax_api_definition__full_communication_response__e e_communication_emailimportancecommunication_response_FromString(char* e_communication_emailimportance){
+ezmax_api_definition__full_communication_response__e e_communication_importancecommunication_response_FromString(char* e_communication_importance){
     int stringToReturn = 0;
-    char *e_communication_emailimportanceArray[] =  { "NULL", "High", "Normal", "Low" };
-    size_t sizeofArray = sizeof(e_communication_emailimportanceArray) / sizeof(e_communication_emailimportanceArray[0]);
+    char *e_communication_importanceArray[] =  { "NULL", "High", "Normal", "Low" };
+    size_t sizeofArray = sizeof(e_communication_importanceArray) / sizeof(e_communication_importanceArray[0]);
     while(stringToReturn < sizeofArray) {
-        if(strcmp(e_communication_emailimportance, e_communication_emailimportanceArray[stringToReturn]) == 0) {
+        if(strcmp(e_communication_importance, e_communication_importanceArray[stringToReturn]) == 0) {
             return stringToReturn;
         }
         stringToReturn++;
@@ -38,25 +38,46 @@ ezmax_api_definition__full_communication_response__e e_communication_typecommuni
     }
     return 0;
 }
+char* e_communication_directioncommunication_response_ToString(ezmax_api_definition__full_communication_response__e e_communication_direction) {
+    char* e_communication_directionArray[] =  { "NULL", "Outbound", "Inbound" };
+	return e_communication_directionArray[e_communication_direction];
+}
+
+ezmax_api_definition__full_communication_response__e e_communication_directioncommunication_response_FromString(char* e_communication_direction){
+    int stringToReturn = 0;
+    char *e_communication_directionArray[] =  { "NULL", "Outbound", "Inbound" };
+    size_t sizeofArray = sizeof(e_communication_directionArray) / sizeof(e_communication_directionArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(e_communication_direction, e_communication_directionArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
 
 communication_response_t *communication_response_create(
     int pki_communication_id,
-    field_e_communication_emailimportance_t *e_communication_emailimportance,
+    field_e_communication_importance_t *e_communication_importance,
     field_e_communication_type_t *e_communication_type,
     char *s_communication_subject,
-    char *dt_communication_sentdate,
-    custom_contact_name_response_t *obj_contact_from
+    computed_e_communication_direction_t *e_communication_direction,
+    int i_communicationrecipient_count,
+    custom_contact_name_response_t *obj_contact_from,
+    common_audit_t *obj_audit
     ) {
     communication_response_t *communication_response_local_var = malloc(sizeof(communication_response_t));
     if (!communication_response_local_var) {
         return NULL;
     }
     communication_response_local_var->pki_communication_id = pki_communication_id;
-    communication_response_local_var->e_communication_emailimportance = e_communication_emailimportance;
+    communication_response_local_var->e_communication_importance = e_communication_importance;
     communication_response_local_var->e_communication_type = e_communication_type;
     communication_response_local_var->s_communication_subject = s_communication_subject;
-    communication_response_local_var->dt_communication_sentdate = dt_communication_sentdate;
+    communication_response_local_var->e_communication_direction = e_communication_direction;
+    communication_response_local_var->i_communicationrecipient_count = i_communicationrecipient_count;
     communication_response_local_var->obj_contact_from = obj_contact_from;
+    communication_response_local_var->obj_audit = obj_audit;
 
     return communication_response_local_var;
 }
@@ -67,9 +88,9 @@ void communication_response_free(communication_response_t *communication_respons
         return ;
     }
     listEntry_t *listEntry;
-    if (communication_response->e_communication_emailimportance) {
-        field_e_communication_emailimportance_free(communication_response->e_communication_emailimportance);
-        communication_response->e_communication_emailimportance = NULL;
+    if (communication_response->e_communication_importance) {
+        field_e_communication_importance_free(communication_response->e_communication_importance);
+        communication_response->e_communication_importance = NULL;
     }
     if (communication_response->e_communication_type) {
         field_e_communication_type_free(communication_response->e_communication_type);
@@ -79,13 +100,17 @@ void communication_response_free(communication_response_t *communication_respons
         free(communication_response->s_communication_subject);
         communication_response->s_communication_subject = NULL;
     }
-    if (communication_response->dt_communication_sentdate) {
-        free(communication_response->dt_communication_sentdate);
-        communication_response->dt_communication_sentdate = NULL;
+    if (communication_response->e_communication_direction) {
+        computed_e_communication_direction_free(communication_response->e_communication_direction);
+        communication_response->e_communication_direction = NULL;
     }
     if (communication_response->obj_contact_from) {
         custom_contact_name_response_free(communication_response->obj_contact_from);
         communication_response->obj_contact_from = NULL;
+    }
+    if (communication_response->obj_audit) {
+        common_audit_free(communication_response->obj_audit);
+        communication_response->obj_audit = NULL;
     }
     free(communication_response);
 }
@@ -102,16 +127,17 @@ cJSON *communication_response_convertToJSON(communication_response_t *communicat
     }
 
 
-    // communication_response->e_communication_emailimportance
-    if(communication_response->e_communication_emailimportance != ezmax_api_definition__full_communication_response__NULL) {
-    cJSON *e_communication_emailimportance_local_JSON = field_e_communication_emailimportance_convertToJSON(communication_response->e_communication_emailimportance);
-    if(e_communication_emailimportance_local_JSON == NULL) {
-        goto fail; // custom
-    }
-    cJSON_AddItemToObject(item, "eCommunicationEmailimportance", e_communication_emailimportance_local_JSON);
-    if(item->child == NULL) {
+    // communication_response->e_communication_importance
+    if (ezmax_api_definition__full_communication_response__NULL == communication_response->e_communication_importance) {
         goto fail;
     }
+    cJSON *e_communication_importance_local_JSON = field_e_communication_importance_convertToJSON(communication_response->e_communication_importance);
+    if(e_communication_importance_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eCommunicationImportance", e_communication_importance_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
     }
 
 
@@ -138,12 +164,26 @@ cJSON *communication_response_convertToJSON(communication_response_t *communicat
     }
 
 
-    // communication_response->dt_communication_sentdate
-    if (!communication_response->dt_communication_sentdate) {
+    // communication_response->e_communication_direction
+    if (ezmax_api_definition__full_communication_response__NULL == communication_response->e_communication_direction) {
         goto fail;
     }
-    if(cJSON_AddStringToObject(item, "dtCommunicationSentdate", communication_response->dt_communication_sentdate) == NULL) {
-    goto fail; //String
+    cJSON *e_communication_direction_local_JSON = computed_e_communication_direction_convertToJSON(communication_response->e_communication_direction);
+    if(e_communication_direction_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eCommunicationDirection", e_communication_direction_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
+
+
+    // communication_response->i_communicationrecipient_count
+    if (!communication_response->i_communicationrecipient_count) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iCommunicationrecipientCount", communication_response->i_communicationrecipient_count) == NULL) {
+    goto fail; //Numeric
     }
 
 
@@ -160,6 +200,20 @@ cJSON *communication_response_convertToJSON(communication_response_t *communicat
     goto fail;
     }
 
+
+    // communication_response->obj_audit
+    if (!communication_response->obj_audit) {
+        goto fail;
+    }
+    cJSON *obj_audit_local_JSON = common_audit_convertToJSON(communication_response->obj_audit);
+    if(obj_audit_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objAudit", obj_audit_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
     return item;
 fail:
     if (item) {
@@ -172,14 +226,20 @@ communication_response_t *communication_response_parseFromJSON(cJSON *communicat
 
     communication_response_t *communication_response_local_var = NULL;
 
-    // define the local variable for communication_response->e_communication_emailimportance
-    field_e_communication_emailimportance_t *e_communication_emailimportance_local_nonprim = NULL;
+    // define the local variable for communication_response->e_communication_importance
+    field_e_communication_importance_t *e_communication_importance_local_nonprim = NULL;
 
     // define the local variable for communication_response->e_communication_type
     field_e_communication_type_t *e_communication_type_local_nonprim = NULL;
 
+    // define the local variable for communication_response->e_communication_direction
+    computed_e_communication_direction_t *e_communication_direction_local_nonprim = NULL;
+
     // define the local variable for communication_response->obj_contact_from
     custom_contact_name_response_t *obj_contact_from_local_nonprim = NULL;
+
+    // define the local variable for communication_response->obj_audit
+    common_audit_t *obj_audit_local_nonprim = NULL;
 
     // communication_response->pki_communication_id
     cJSON *pki_communication_id = cJSON_GetObjectItemCaseSensitive(communication_responseJSON, "pkiCommunicationID");
@@ -193,11 +253,14 @@ communication_response_t *communication_response_parseFromJSON(cJSON *communicat
     goto end; //Numeric
     }
 
-    // communication_response->e_communication_emailimportance
-    cJSON *e_communication_emailimportance = cJSON_GetObjectItemCaseSensitive(communication_responseJSON, "eCommunicationEmailimportance");
-    if (e_communication_emailimportance) { 
-    e_communication_emailimportance_local_nonprim = field_e_communication_emailimportance_parseFromJSON(e_communication_emailimportance); //custom
+    // communication_response->e_communication_importance
+    cJSON *e_communication_importance = cJSON_GetObjectItemCaseSensitive(communication_responseJSON, "eCommunicationImportance");
+    if (!e_communication_importance) {
+        goto end;
     }
+
+    
+    e_communication_importance_local_nonprim = field_e_communication_importance_parseFromJSON(e_communication_importance); //custom
 
     // communication_response->e_communication_type
     cJSON *e_communication_type = cJSON_GetObjectItemCaseSensitive(communication_responseJSON, "eCommunicationType");
@@ -220,16 +283,25 @@ communication_response_t *communication_response_parseFromJSON(cJSON *communicat
     goto end; //String
     }
 
-    // communication_response->dt_communication_sentdate
-    cJSON *dt_communication_sentdate = cJSON_GetObjectItemCaseSensitive(communication_responseJSON, "dtCommunicationSentdate");
-    if (!dt_communication_sentdate) {
+    // communication_response->e_communication_direction
+    cJSON *e_communication_direction = cJSON_GetObjectItemCaseSensitive(communication_responseJSON, "eCommunicationDirection");
+    if (!e_communication_direction) {
         goto end;
     }
 
     
-    if(!cJSON_IsString(dt_communication_sentdate))
+    e_communication_direction_local_nonprim = computed_e_communication_direction_parseFromJSON(e_communication_direction); //custom
+
+    // communication_response->i_communicationrecipient_count
+    cJSON *i_communicationrecipient_count = cJSON_GetObjectItemCaseSensitive(communication_responseJSON, "iCommunicationrecipientCount");
+    if (!i_communicationrecipient_count) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_communicationrecipient_count))
     {
-    goto end; //String
+    goto end; //Numeric
     }
 
     // communication_response->obj_contact_from
@@ -241,29 +313,48 @@ communication_response_t *communication_response_parseFromJSON(cJSON *communicat
     
     obj_contact_from_local_nonprim = custom_contact_name_response_parseFromJSON(obj_contact_from); //nonprimitive
 
+    // communication_response->obj_audit
+    cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(communication_responseJSON, "objAudit");
+    if (!obj_audit) {
+        goto end;
+    }
+
+    
+    obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
+
 
     communication_response_local_var = communication_response_create (
         pki_communication_id->valuedouble,
-        e_communication_emailimportance ? e_communication_emailimportance_local_nonprim : NULL,
+        e_communication_importance_local_nonprim,
         e_communication_type_local_nonprim,
         strdup(s_communication_subject->valuestring),
-        strdup(dt_communication_sentdate->valuestring),
-        obj_contact_from_local_nonprim
+        e_communication_direction_local_nonprim,
+        i_communicationrecipient_count->valuedouble,
+        obj_contact_from_local_nonprim,
+        obj_audit_local_nonprim
         );
 
     return communication_response_local_var;
 end:
-    if (e_communication_emailimportance_local_nonprim) {
-        field_e_communication_emailimportance_free(e_communication_emailimportance_local_nonprim);
-        e_communication_emailimportance_local_nonprim = NULL;
+    if (e_communication_importance_local_nonprim) {
+        field_e_communication_importance_free(e_communication_importance_local_nonprim);
+        e_communication_importance_local_nonprim = NULL;
     }
     if (e_communication_type_local_nonprim) {
         field_e_communication_type_free(e_communication_type_local_nonprim);
         e_communication_type_local_nonprim = NULL;
     }
+    if (e_communication_direction_local_nonprim) {
+        computed_e_communication_direction_free(e_communication_direction_local_nonprim);
+        e_communication_direction_local_nonprim = NULL;
+    }
     if (obj_contact_from_local_nonprim) {
         custom_contact_name_response_free(obj_contact_from_local_nonprim);
         obj_contact_from_local_nonprim = NULL;
+    }
+    if (obj_audit_local_nonprim) {
+        common_audit_free(obj_audit_local_nonprim);
+        obj_audit_local_nonprim = NULL;
     }
     return NULL;
 

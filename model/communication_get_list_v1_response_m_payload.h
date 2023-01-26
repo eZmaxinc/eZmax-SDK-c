@@ -1,7 +1,7 @@
 /*
  * communication_get_list_v1_response_m_payload.h
  *
- * Payload for GET /1/module/communication/getList
+ * Payload for GET /1/object/communication/getList
  */
 
 #ifndef _communication_get_list_v1_response_m_payload_H_
@@ -21,11 +21,15 @@ typedef struct communication_get_list_v1_response_m_payload_t communication_get_
 
 typedef struct communication_get_list_v1_response_m_payload_t {
     list_t *a_obj_communication; //nonprimitive container
+    int i_row_returned; //numeric
+    int i_row_filtered; //numeric
 
 } communication_get_list_v1_response_m_payload_t;
 
 communication_get_list_v1_response_m_payload_t *communication_get_list_v1_response_m_payload_create(
-    list_t *a_obj_communication
+    list_t *a_obj_communication,
+    int i_row_returned,
+    int i_row_filtered
 );
 
 void communication_get_list_v1_response_m_payload_free(communication_get_list_v1_response_m_payload_t *communication_get_list_v1_response_m_payload);

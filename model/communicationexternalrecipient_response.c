@@ -24,20 +24,20 @@ ezmax_api_definition__full_communicationexternalrecipient_response__e e_communic
 
 communicationexternalrecipient_response_t *communicationexternalrecipient_response_create(
     int pki_communicationexternalrecipient_id,
-    char *s_email_address,
-    phone_response_compound_t *obj_phone_sms,
     field_e_communicationexternalrecipient_type_t *e_communicationexternalrecipient_type,
-    char *s_communicationexternalrecipient_name
+    descriptionstatic_response_compound_t *obj_descriptionstatic,
+    emailstatic_response_compound_t *obj_emailstatic,
+    phonestatic_response_compound_t *obj_phonestatic
     ) {
     communicationexternalrecipient_response_t *communicationexternalrecipient_response_local_var = malloc(sizeof(communicationexternalrecipient_response_t));
     if (!communicationexternalrecipient_response_local_var) {
         return NULL;
     }
     communicationexternalrecipient_response_local_var->pki_communicationexternalrecipient_id = pki_communicationexternalrecipient_id;
-    communicationexternalrecipient_response_local_var->s_email_address = s_email_address;
-    communicationexternalrecipient_response_local_var->obj_phone_sms = obj_phone_sms;
     communicationexternalrecipient_response_local_var->e_communicationexternalrecipient_type = e_communicationexternalrecipient_type;
-    communicationexternalrecipient_response_local_var->s_communicationexternalrecipient_name = s_communicationexternalrecipient_name;
+    communicationexternalrecipient_response_local_var->obj_descriptionstatic = obj_descriptionstatic;
+    communicationexternalrecipient_response_local_var->obj_emailstatic = obj_emailstatic;
+    communicationexternalrecipient_response_local_var->obj_phonestatic = obj_phonestatic;
 
     return communicationexternalrecipient_response_local_var;
 }
@@ -48,21 +48,21 @@ void communicationexternalrecipient_response_free(communicationexternalrecipient
         return ;
     }
     listEntry_t *listEntry;
-    if (communicationexternalrecipient_response->s_email_address) {
-        free(communicationexternalrecipient_response->s_email_address);
-        communicationexternalrecipient_response->s_email_address = NULL;
-    }
-    if (communicationexternalrecipient_response->obj_phone_sms) {
-        phone_response_compound_free(communicationexternalrecipient_response->obj_phone_sms);
-        communicationexternalrecipient_response->obj_phone_sms = NULL;
-    }
     if (communicationexternalrecipient_response->e_communicationexternalrecipient_type) {
         field_e_communicationexternalrecipient_type_free(communicationexternalrecipient_response->e_communicationexternalrecipient_type);
         communicationexternalrecipient_response->e_communicationexternalrecipient_type = NULL;
     }
-    if (communicationexternalrecipient_response->s_communicationexternalrecipient_name) {
-        free(communicationexternalrecipient_response->s_communicationexternalrecipient_name);
-        communicationexternalrecipient_response->s_communicationexternalrecipient_name = NULL;
+    if (communicationexternalrecipient_response->obj_descriptionstatic) {
+        descriptionstatic_response_compound_free(communicationexternalrecipient_response->obj_descriptionstatic);
+        communicationexternalrecipient_response->obj_descriptionstatic = NULL;
+    }
+    if (communicationexternalrecipient_response->obj_emailstatic) {
+        emailstatic_response_compound_free(communicationexternalrecipient_response->obj_emailstatic);
+        communicationexternalrecipient_response->obj_emailstatic = NULL;
+    }
+    if (communicationexternalrecipient_response->obj_phonestatic) {
+        phonestatic_response_compound_free(communicationexternalrecipient_response->obj_phonestatic);
+        communicationexternalrecipient_response->obj_phonestatic = NULL;
     }
     free(communicationexternalrecipient_response);
 }
@@ -76,27 +76,6 @@ cJSON *communicationexternalrecipient_response_convertToJSON(communicationextern
     }
     if(cJSON_AddNumberToObject(item, "pkiCommunicationexternalrecipientID", communicationexternalrecipient_response->pki_communicationexternalrecipient_id) == NULL) {
     goto fail; //Numeric
-    }
-
-
-    // communicationexternalrecipient_response->s_email_address
-    if(communicationexternalrecipient_response->s_email_address) {
-    if(cJSON_AddStringToObject(item, "sEmailAddress", communicationexternalrecipient_response->s_email_address) == NULL) {
-    goto fail; //String
-    }
-    }
-
-
-    // communicationexternalrecipient_response->obj_phone_sms
-    if(communicationexternalrecipient_response->obj_phone_sms) {
-    cJSON *obj_phone_sms_local_JSON = phone_response_compound_convertToJSON(communicationexternalrecipient_response->obj_phone_sms);
-    if(obj_phone_sms_local_JSON == NULL) {
-    goto fail; //model
-    }
-    cJSON_AddItemToObject(item, "objPhoneSms", obj_phone_sms_local_JSON);
-    if(item->child == NULL) {
-    goto fail;
-    }
     }
 
 
@@ -114,12 +93,43 @@ cJSON *communicationexternalrecipient_response_convertToJSON(communicationextern
     }
 
 
-    // communicationexternalrecipient_response->s_communicationexternalrecipient_name
-    if (!communicationexternalrecipient_response->s_communicationexternalrecipient_name) {
+    // communicationexternalrecipient_response->obj_descriptionstatic
+    if (!communicationexternalrecipient_response->obj_descriptionstatic) {
         goto fail;
     }
-    if(cJSON_AddStringToObject(item, "sCommunicationexternalrecipientName", communicationexternalrecipient_response->s_communicationexternalrecipient_name) == NULL) {
-    goto fail; //String
+    cJSON *obj_descriptionstatic_local_JSON = descriptionstatic_response_compound_convertToJSON(communicationexternalrecipient_response->obj_descriptionstatic);
+    if(obj_descriptionstatic_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objDescriptionstatic", obj_descriptionstatic_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
+
+    // communicationexternalrecipient_response->obj_emailstatic
+    if(communicationexternalrecipient_response->obj_emailstatic) {
+    cJSON *obj_emailstatic_local_JSON = emailstatic_response_compound_convertToJSON(communicationexternalrecipient_response->obj_emailstatic);
+    if(obj_emailstatic_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objEmailstatic", obj_emailstatic_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+    }
+
+
+    // communicationexternalrecipient_response->obj_phonestatic
+    if(communicationexternalrecipient_response->obj_phonestatic) {
+    cJSON *obj_phonestatic_local_JSON = phonestatic_response_compound_convertToJSON(communicationexternalrecipient_response->obj_phonestatic);
+    if(obj_phonestatic_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objPhonestatic", obj_phonestatic_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
     }
 
     return item;
@@ -134,11 +144,17 @@ communicationexternalrecipient_response_t *communicationexternalrecipient_respon
 
     communicationexternalrecipient_response_t *communicationexternalrecipient_response_local_var = NULL;
 
-    // define the local variable for communicationexternalrecipient_response->obj_phone_sms
-    phone_response_compound_t *obj_phone_sms_local_nonprim = NULL;
-
     // define the local variable for communicationexternalrecipient_response->e_communicationexternalrecipient_type
     field_e_communicationexternalrecipient_type_t *e_communicationexternalrecipient_type_local_nonprim = NULL;
+
+    // define the local variable for communicationexternalrecipient_response->obj_descriptionstatic
+    descriptionstatic_response_compound_t *obj_descriptionstatic_local_nonprim = NULL;
+
+    // define the local variable for communicationexternalrecipient_response->obj_emailstatic
+    emailstatic_response_compound_t *obj_emailstatic_local_nonprim = NULL;
+
+    // define the local variable for communicationexternalrecipient_response->obj_phonestatic
+    phonestatic_response_compound_t *obj_phonestatic_local_nonprim = NULL;
 
     // communicationexternalrecipient_response->pki_communicationexternalrecipient_id
     cJSON *pki_communicationexternalrecipient_id = cJSON_GetObjectItemCaseSensitive(communicationexternalrecipient_responseJSON, "pkiCommunicationexternalrecipientID");
@@ -152,21 +168,6 @@ communicationexternalrecipient_response_t *communicationexternalrecipient_respon
     goto end; //Numeric
     }
 
-    // communicationexternalrecipient_response->s_email_address
-    cJSON *s_email_address = cJSON_GetObjectItemCaseSensitive(communicationexternalrecipient_responseJSON, "sEmailAddress");
-    if (s_email_address) { 
-    if(!cJSON_IsString(s_email_address))
-    {
-    goto end; //String
-    }
-    }
-
-    // communicationexternalrecipient_response->obj_phone_sms
-    cJSON *obj_phone_sms = cJSON_GetObjectItemCaseSensitive(communicationexternalrecipient_responseJSON, "objPhoneSms");
-    if (obj_phone_sms) { 
-    obj_phone_sms_local_nonprim = phone_response_compound_parseFromJSON(obj_phone_sms); //nonprimitive
-    }
-
     // communicationexternalrecipient_response->e_communicationexternalrecipient_type
     cJSON *e_communicationexternalrecipient_type = cJSON_GetObjectItemCaseSensitive(communicationexternalrecipient_responseJSON, "eCommunicationexternalrecipientType");
     if (!e_communicationexternalrecipient_type) {
@@ -176,36 +177,53 @@ communicationexternalrecipient_response_t *communicationexternalrecipient_respon
     
     e_communicationexternalrecipient_type_local_nonprim = field_e_communicationexternalrecipient_type_parseFromJSON(e_communicationexternalrecipient_type); //custom
 
-    // communicationexternalrecipient_response->s_communicationexternalrecipient_name
-    cJSON *s_communicationexternalrecipient_name = cJSON_GetObjectItemCaseSensitive(communicationexternalrecipient_responseJSON, "sCommunicationexternalrecipientName");
-    if (!s_communicationexternalrecipient_name) {
+    // communicationexternalrecipient_response->obj_descriptionstatic
+    cJSON *obj_descriptionstatic = cJSON_GetObjectItemCaseSensitive(communicationexternalrecipient_responseJSON, "objDescriptionstatic");
+    if (!obj_descriptionstatic) {
         goto end;
     }
 
     
-    if(!cJSON_IsString(s_communicationexternalrecipient_name))
-    {
-    goto end; //String
+    obj_descriptionstatic_local_nonprim = descriptionstatic_response_compound_parseFromJSON(obj_descriptionstatic); //nonprimitive
+
+    // communicationexternalrecipient_response->obj_emailstatic
+    cJSON *obj_emailstatic = cJSON_GetObjectItemCaseSensitive(communicationexternalrecipient_responseJSON, "objEmailstatic");
+    if (obj_emailstatic) { 
+    obj_emailstatic_local_nonprim = emailstatic_response_compound_parseFromJSON(obj_emailstatic); //nonprimitive
+    }
+
+    // communicationexternalrecipient_response->obj_phonestatic
+    cJSON *obj_phonestatic = cJSON_GetObjectItemCaseSensitive(communicationexternalrecipient_responseJSON, "objPhonestatic");
+    if (obj_phonestatic) { 
+    obj_phonestatic_local_nonprim = phonestatic_response_compound_parseFromJSON(obj_phonestatic); //nonprimitive
     }
 
 
     communicationexternalrecipient_response_local_var = communicationexternalrecipient_response_create (
         pki_communicationexternalrecipient_id->valuedouble,
-        s_email_address ? strdup(s_email_address->valuestring) : NULL,
-        obj_phone_sms ? obj_phone_sms_local_nonprim : NULL,
         e_communicationexternalrecipient_type_local_nonprim,
-        strdup(s_communicationexternalrecipient_name->valuestring)
+        obj_descriptionstatic_local_nonprim,
+        obj_emailstatic ? obj_emailstatic_local_nonprim : NULL,
+        obj_phonestatic ? obj_phonestatic_local_nonprim : NULL
         );
 
     return communicationexternalrecipient_response_local_var;
 end:
-    if (obj_phone_sms_local_nonprim) {
-        phone_response_compound_free(obj_phone_sms_local_nonprim);
-        obj_phone_sms_local_nonprim = NULL;
-    }
     if (e_communicationexternalrecipient_type_local_nonprim) {
         field_e_communicationexternalrecipient_type_free(e_communicationexternalrecipient_type_local_nonprim);
         e_communicationexternalrecipient_type_local_nonprim = NULL;
+    }
+    if (obj_descriptionstatic_local_nonprim) {
+        descriptionstatic_response_compound_free(obj_descriptionstatic_local_nonprim);
+        obj_descriptionstatic_local_nonprim = NULL;
+    }
+    if (obj_emailstatic_local_nonprim) {
+        emailstatic_response_compound_free(obj_emailstatic_local_nonprim);
+        obj_emailstatic_local_nonprim = NULL;
+    }
+    if (obj_phonestatic_local_nonprim) {
+        phonestatic_response_compound_free(obj_phonestatic_local_nonprim);
+        obj_phonestatic_local_nonprim = NULL;
     }
     return NULL;
 

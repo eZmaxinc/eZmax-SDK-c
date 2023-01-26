@@ -24,6 +24,7 @@ ezmaxinvoicingsummaryglobal_response_compound_t *ezmaxinvoicingsummaryglobal_res
     char *d_ezmaxinvoicingsummaryglobal_partner,
     char *d_ezmaxinvoicingsummaryglobal_net,
     int b_ezmaxinvoicingsummaryglobal_adjustment,
+    char *t_ezmaxproduct_help_x,
     list_t *a_obj_ezmaxinvoicingcommission
     ) {
     ezmaxinvoicingsummaryglobal_response_compound_t *ezmaxinvoicingsummaryglobal_response_compound_local_var = malloc(sizeof(ezmaxinvoicingsummaryglobal_response_compound_t));
@@ -48,6 +49,7 @@ ezmaxinvoicingsummaryglobal_response_compound_t *ezmaxinvoicingsummaryglobal_res
     ezmaxinvoicingsummaryglobal_response_compound_local_var->d_ezmaxinvoicingsummaryglobal_partner = d_ezmaxinvoicingsummaryglobal_partner;
     ezmaxinvoicingsummaryglobal_response_compound_local_var->d_ezmaxinvoicingsummaryglobal_net = d_ezmaxinvoicingsummaryglobal_net;
     ezmaxinvoicingsummaryglobal_response_compound_local_var->b_ezmaxinvoicingsummaryglobal_adjustment = b_ezmaxinvoicingsummaryglobal_adjustment;
+    ezmaxinvoicingsummaryglobal_response_compound_local_var->t_ezmaxproduct_help_x = t_ezmaxproduct_help_x;
     ezmaxinvoicingsummaryglobal_response_compound_local_var->a_obj_ezmaxinvoicingcommission = a_obj_ezmaxinvoicingcommission;
 
     return ezmaxinvoicingsummaryglobal_response_compound_local_var;
@@ -110,6 +112,10 @@ void ezmaxinvoicingsummaryglobal_response_compound_free(ezmaxinvoicingsummaryglo
     if (ezmaxinvoicingsummaryglobal_response_compound->d_ezmaxinvoicingsummaryglobal_net) {
         free(ezmaxinvoicingsummaryglobal_response_compound->d_ezmaxinvoicingsummaryglobal_net);
         ezmaxinvoicingsummaryglobal_response_compound->d_ezmaxinvoicingsummaryglobal_net = NULL;
+    }
+    if (ezmaxinvoicingsummaryglobal_response_compound->t_ezmaxproduct_help_x) {
+        free(ezmaxinvoicingsummaryglobal_response_compound->t_ezmaxproduct_help_x);
+        ezmaxinvoicingsummaryglobal_response_compound->t_ezmaxproduct_help_x = NULL;
     }
     if (ezmaxinvoicingsummaryglobal_response_compound->a_obj_ezmaxinvoicingcommission) {
         list_ForEach(listEntry, ezmaxinvoicingsummaryglobal_response_compound->a_obj_ezmaxinvoicingcommission) {
@@ -278,6 +284,15 @@ cJSON *ezmaxinvoicingsummaryglobal_response_compound_convertToJSON(ezmaxinvoicin
     }
     if(cJSON_AddBoolToObject(item, "bEzmaxinvoicingsummaryglobalAdjustment", ezmaxinvoicingsummaryglobal_response_compound->b_ezmaxinvoicingsummaryglobal_adjustment) == NULL) {
     goto fail; //Bool
+    }
+
+
+    // ezmaxinvoicingsummaryglobal_response_compound->t_ezmaxproduct_help_x
+    if (!ezmaxinvoicingsummaryglobal_response_compound->t_ezmaxproduct_help_x) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "tEzmaxproductHelpX", ezmaxinvoicingsummaryglobal_response_compound->t_ezmaxproduct_help_x) == NULL) {
+    goto fail; //String
     }
 
 
@@ -516,6 +531,18 @@ ezmaxinvoicingsummaryglobal_response_compound_t *ezmaxinvoicingsummaryglobal_res
     goto end; //Bool
     }
 
+    // ezmaxinvoicingsummaryglobal_response_compound->t_ezmaxproduct_help_x
+    cJSON *t_ezmaxproduct_help_x = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryglobal_response_compoundJSON, "tEzmaxproductHelpX");
+    if (!t_ezmaxproduct_help_x) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(t_ezmaxproduct_help_x))
+    {
+    goto end; //String
+    }
+
     // ezmaxinvoicingsummaryglobal_response_compound->a_obj_ezmaxinvoicingcommission
     cJSON *a_obj_ezmaxinvoicingcommission = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryglobal_response_compoundJSON, "a_objEzmaxinvoicingcommission");
     if (a_obj_ezmaxinvoicingcommission) { 
@@ -557,6 +584,7 @@ ezmaxinvoicingsummaryglobal_response_compound_t *ezmaxinvoicingsummaryglobal_res
         d_ezmaxinvoicingsummaryglobal_partner ? strdup(d_ezmaxinvoicingsummaryglobal_partner->valuestring) : NULL,
         d_ezmaxinvoicingsummaryglobal_net ? strdup(d_ezmaxinvoicingsummaryglobal_net->valuestring) : NULL,
         b_ezmaxinvoicingsummaryglobal_adjustment->valueint,
+        strdup(t_ezmaxproduct_help_x->valuestring),
         a_obj_ezmaxinvoicingcommission ? a_obj_ezmaxinvoicingcommissionList : NULL
         );
 

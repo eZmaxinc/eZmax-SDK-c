@@ -24,14 +24,10 @@ communication_response_compound_all_of_t* instantiate_communication_response_com
     communication_response_compound_all_of = communication_response_compound_all_of_create(
       list_createList(),
       list_createList(),
-      list_createList(),
-      list_createList(),
       list_createList()
     );
   } else {
     communication_response_compound_all_of = communication_response_compound_all_of_create(
-      list_createList(),
-      list_createList(),
       list_createList(),
       list_createList(),
       list_createList()

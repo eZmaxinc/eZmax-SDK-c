@@ -66,8 +66,7 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 Category | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *GlobalCustomerAPI* | [**GlobalCustomerAPI_globalCustomerGetEndpointV1**](docs/GlobalCustomerAPI.md#GlobalCustomerAPI_globalCustomerGetEndpointV1) | **GET** /1/customer/{pksCustomerCode}/endpoint | Get customer endpoint
-*ModuleCommunicationAPI* | [**ModuleCommunicationAPI_communicationGetCommunicationCountV1**](docs/ModuleCommunicationAPI.md#ModuleCommunicationAPI_communicationGetCommunicationCountV1) | **GET** /1/module/communication/getCommunicationCount | Get the number of communication
-*ModuleCommunicationAPI* | [**ModuleCommunicationAPI_communicationGetCommunicationListV1**](docs/ModuleCommunicationAPI.md#ModuleCommunicationAPI_communicationGetCommunicationListV1) | **GET** /1/module/communication/getCommunicationList | Retrieve communication list
+*ModuleCommunicationAPI* | [**ModuleCommunicationAPI_communicationGetCommunicationCountV1**](docs/ModuleCommunicationAPI.md#ModuleCommunicationAPI_communicationGetCommunicationCountV1) | **GET** /1/module/communication/getCount | Retrieve Communication count
 *ModuleEzsignAPI* | [**ModuleEzsignAPI_ezsignSuggestSignersV1**](docs/ModuleEzsignAPI.md#ModuleEzsignAPI_ezsignSuggestSignersV1) | **GET** /1/module/ezsign/suggestSigners | Suggest signers
 *ModuleEzsignAPI* | [**ModuleEzsignAPI_ezsignSuggestTemplatesV1**](docs/ModuleEzsignAPI.md#ModuleEzsignAPI_ezsignSuggestTemplatesV1) | **GET** /1/module/ezsign/suggestTemplates | Suggest templates
 *ModuleUserAPI* | [**ModuleUserAPI_userCreateEzsignuserV1**](docs/ModuleUserAPI.md#ModuleUserAPI_userCreateEzsignuserV1) | **POST** /1/module/user/createezsignuser | Create a new User of type Ezsignuser
@@ -83,6 +82,7 @@ Category | Method | HTTP request | Description
 *ObjectBrandingAPI* | [**ObjectBrandingAPI_brandingGetListV1**](docs/ObjectBrandingAPI.md#ObjectBrandingAPI_brandingGetListV1) | **GET** /1/object/branding/getList | Retrieve Branding list
 *ObjectBrandingAPI* | [**ObjectBrandingAPI_brandingGetObjectV1**](docs/ObjectBrandingAPI.md#ObjectBrandingAPI_brandingGetObjectV1) | **GET** /1/object/branding/{pkiBrandingID} | Retrieve an existing Branding
 *ObjectBrandingAPI* | [**ObjectBrandingAPI_brandingGetObjectV2**](docs/ObjectBrandingAPI.md#ObjectBrandingAPI_brandingGetObjectV2) | **GET** /2/object/branding/{pkiBrandingID} | Retrieve an existing Branding
+*ObjectCommunicationAPI* | [**ObjectCommunicationAPI_communicationGetListV1**](docs/ObjectCommunicationAPI.md#ObjectCommunicationAPI_communicationGetListV1) | **GET** /1/object/communication/getList | Retrieve Communication list
 *ObjectCommunicationAPI* | [**ObjectCommunicationAPI_communicationGetObjectV2**](docs/ObjectCommunicationAPI.md#ObjectCommunicationAPI_communicationGetObjectV2) | **GET** /2/object/communication/{pkiCommunicationID} | Retrieve an existing Communication
 *ObjectDepartmentAPI* | [**ObjectDepartmentAPI_departmentGetAutocompleteV1**](docs/ObjectDepartmentAPI.md#ObjectDepartmentAPI_departmentGetAutocompleteV1) | **GET** /1/object/department/getAutocomplete/{sSelector} | Retrieve Departments and IDs
 *ObjectDepartmentAPI* | [**ObjectDepartmentAPI_departmentGetAutocompleteV2**](docs/ObjectDepartmentAPI.md#ObjectDepartmentAPI_departmentGetAutocompleteV2) | **GET** /2/object/department/getAutocomplete/{sSelector} | Retrieve Departments and IDs
@@ -252,6 +252,12 @@ Category | Method | HTTP request | Description
 *ObjectFranchisereferalincomeAPI* | [**ObjectFranchisereferalincomeAPI_franchisereferalincomeCreateObjectV2**](docs/ObjectFranchisereferalincomeAPI.md#ObjectFranchisereferalincomeAPI_franchisereferalincomeCreateObjectV2) | **POST** /2/object/franchisereferalincome | Create a new Franchisereferalincome
 *ObjectNotificationsectionAPI* | [**ObjectNotificationsectionAPI_notificationsectionGetNotificationtestsV1**](docs/ObjectNotificationsectionAPI.md#ObjectNotificationsectionAPI_notificationsectionGetNotificationtestsV1) | **GET** /1/object/notificationsection/{pkiNotificationsectionID}/getNotificationtests | Retrieve an existing Notificationsection's Notificationtests
 *ObjectNotificationtestAPI* | [**ObjectNotificationtestAPI_notificationtestGetElementsV1**](docs/ObjectNotificationtestAPI.md#ObjectNotificationtestAPI_notificationtestGetElementsV1) | **GET** /1/object/notificationtest/{pkiNotificationtestID}/getElements | Retrieve an existing Notificationtest's Elements
+*ObjectPaymenttermAPI* | [**ObjectPaymenttermAPI_paymenttermCreateObjectV1**](docs/ObjectPaymenttermAPI.md#ObjectPaymenttermAPI_paymenttermCreateObjectV1) | **POST** /1/object/paymentterm | Create a new Paymentterm
+*ObjectPaymenttermAPI* | [**ObjectPaymenttermAPI_paymenttermDeleteObjectV1**](docs/ObjectPaymenttermAPI.md#ObjectPaymenttermAPI_paymenttermDeleteObjectV1) | **DELETE** /1/object/paymentterm/{pkiPaymenttermID} | Delete an existing Paymentterm
+*ObjectPaymenttermAPI* | [**ObjectPaymenttermAPI_paymenttermEditObjectV1**](docs/ObjectPaymenttermAPI.md#ObjectPaymenttermAPI_paymenttermEditObjectV1) | **PUT** /1/object/paymentterm/{pkiPaymenttermID} | Edit an existing Paymentterm
+*ObjectPaymenttermAPI* | [**ObjectPaymenttermAPI_paymenttermGetAutocompleteV2**](docs/ObjectPaymenttermAPI.md#ObjectPaymenttermAPI_paymenttermGetAutocompleteV2) | **GET** /2/object/paymentterm/getAutocomplete/{sSelector} | Retrieve Paymentterms and IDs
+*ObjectPaymenttermAPI* | [**ObjectPaymenttermAPI_paymenttermGetListV1**](docs/ObjectPaymenttermAPI.md#ObjectPaymenttermAPI_paymenttermGetListV1) | **GET** /1/object/paymentterm/getList | Retrieve Paymentterm list
+*ObjectPaymenttermAPI* | [**ObjectPaymenttermAPI_paymenttermGetObjectV2**](docs/ObjectPaymenttermAPI.md#ObjectPaymenttermAPI_paymenttermGetObjectV2) | **GET** /2/object/paymentterm/{pkiPaymenttermID} | Retrieve an existing Paymentterm
 *ObjectPeriodAPI* | [**ObjectPeriodAPI_periodGetAutocompleteV1**](docs/ObjectPeriodAPI.md#ObjectPeriodAPI_periodGetAutocompleteV1) | **GET** /1/object/period/getAutocomplete/{sSelector} | Retrieve Periods and IDs
 *ObjectPeriodAPI* | [**ObjectPeriodAPI_periodGetAutocompleteV2**](docs/ObjectPeriodAPI.md#ObjectPeriodAPI_periodGetAutocompleteV2) | **GET** /2/object/period/getAutocomplete/{sSelector} | Retrieve Periods and IDs
 *ObjectSecretquestionAPI* | [**ObjectSecretquestionAPI_secretquestionGetAutocompleteV1**](docs/ObjectSecretquestionAPI.md#ObjectSecretquestionAPI_secretquestionGetAutocompleteV1) | **GET** /1/object/secretquestion/getAutocomplete/{sSelector} | Retrieve Secretquestions and IDs
@@ -359,6 +365,7 @@ Category | Method | HTTP request | Description
  - [communication_get_list_v1_response_t](docs/communication_get_list_v1_response.md)
  - [communication_get_list_v1_response_all_of_t](docs/communication_get_list_v1_response_all_of.md)
  - [communication_get_list_v1_response_m_payload_t](docs/communication_get_list_v1_response_m_payload.md)
+ - [communication_get_list_v1_response_m_payload_all_of_t](docs/communication_get_list_v1_response_m_payload_all_of.md)
  - [communication_get_object_v2_response_t](docs/communication_get_object_v2_response.md)
  - [communication_get_object_v2_response_all_of_t](docs/communication_get_object_v2_response_all_of.md)
  - [communication_get_object_v2_response_m_payload_t](docs/communication_get_object_v2_response_m_payload.md)
@@ -368,14 +375,11 @@ Category | Method | HTTP request | Description
  - [communication_response_compound_all_of_t](docs/communication_response_compound_all_of.md)
  - [communicationattachment_response_t](docs/communicationattachment_response.md)
  - [communicationattachment_response_compound_t](docs/communicationattachment_response_compound.md)
- - [communicationexternalimage_response_t](docs/communicationexternalimage_response.md)
- - [communicationexternalimage_response_compound_t](docs/communicationexternalimage_response_compound.md)
  - [communicationexternalrecipient_response_t](docs/communicationexternalrecipient_response.md)
  - [communicationexternalrecipient_response_compound_t](docs/communicationexternalrecipient_response_compound.md)
- - [communicationimage_response_t](docs/communicationimage_response.md)
- - [communicationimage_response_compound_t](docs/communicationimage_response_compound.md)
  - [communicationrecipient_response_t](docs/communicationrecipient_response.md)
  - [communicationrecipient_response_compound_t](docs/communicationrecipient_response_compound.md)
+ - [computed_e_communication_direction_t](docs/computed_e_communication_direction.md)
  - [contact_request_t](docs/contact_request.md)
  - [contact_request_compound_t](docs/contact_request_compound.md)
  - [contact_request_compound_all_of_t](docs/contact_request_compound_all_of.md)
@@ -426,8 +430,12 @@ Category | Method | HTTP request | Description
  - [department_get_members_v1_response_t](docs/department_get_members_v1_response.md)
  - [department_get_members_v1_response_all_of_t](docs/department_get_members_v1_response_all_of.md)
  - [department_get_members_v1_response_m_payload_t](docs/department_get_members_v1_response_m_payload.md)
+ - [descriptionstatic_response_t](docs/descriptionstatic_response.md)
+ - [descriptionstatic_response_compound_t](docs/descriptionstatic_response_compound.md)
  - [email_request_t](docs/email_request.md)
  - [email_request_compound_t](docs/email_request_compound.md)
+ - [emailstatic_response_t](docs/emailstatic_response.md)
+ - [emailstatic_response_compound_t](docs/emailstatic_response_compound.md)
  - [ezmaxinvoicing_autocomplete_element_response_t](docs/ezmaxinvoicing_autocomplete_element_response.md)
  - [ezmaxinvoicing_get_autocomplete_v2_response_t](docs/ezmaxinvoicing_get_autocomplete_v2_response.md)
  - [ezmaxinvoicing_get_autocomplete_v2_response_all_of_t](docs/ezmaxinvoicing_get_autocomplete_v2_response_all_of.md)
@@ -1027,9 +1035,10 @@ Category | Method | HTTP request | Description
  - [field_e_activesession_usertype_t](docs/field_e_activesession_usertype.md)
  - [field_e_activesession_weekdaystart_t](docs/field_e_activesession_weekdaystart.md)
  - [field_e_branding_logo_t](docs/field_e_branding_logo.md)
- - [field_e_communication_emailimportance_t](docs/field_e_communication_emailimportance.md)
+ - [field_e_communication_importance_t](docs/field_e_communication_importance.md)
  - [field_e_communication_type_t](docs/field_e_communication_type.md)
  - [field_e_communicationexternalrecipient_type_t](docs/field_e_communicationexternalrecipient_type.md)
+ - [field_e_communicationrecipient_objecttype_t](docs/field_e_communicationrecipient_objecttype.md)
  - [field_e_communicationrecipient_type_t](docs/field_e_communicationrecipient_type.md)
  - [field_e_ezmaxinvoicing_paymenttype_t](docs/field_e_ezmaxinvoicing_paymenttype.md)
  - [field_e_ezmaxinvoicingagent_variationezmax_t](docs/field_e_ezmaxinvoicingagent_variationezmax.md)
@@ -1093,6 +1102,7 @@ Category | Method | HTTP request | Description
  - [multilingual_ezsignfoldertype_name_t](docs/multilingual_ezsignfoldertype_name.md)
  - [multilingual_notificationsubsection_name_t](docs/multilingual_notificationsubsection_name.md)
  - [multilingual_notificationtest_name_t](docs/multilingual_notificationtest_name.md)
+ - [multilingual_paymentterm_description_t](docs/multilingual_paymentterm_description.md)
  - [multilingual_versionhistory_detail_t](docs/multilingual_versionhistory_detail.md)
  - [notificationsection_get_notificationtests_v1_response_t](docs/notificationsection_get_notificationtests_v1_response.md)
  - [notificationsection_get_notificationtests_v1_response_all_of_t](docs/notificationsection_get_notificationtests_v1_response_all_of.md)
@@ -1102,14 +1112,37 @@ Category | Method | HTTP request | Description
  - [notificationtest_get_elements_v1_response_all_of_t](docs/notificationtest_get_elements_v1_response_all_of.md)
  - [notificationtest_get_elements_v1_response_m_payload_t](docs/notificationtest_get_elements_v1_response_m_payload.md)
  - [notificationtest_response_t](docs/notificationtest_response.md)
+ - [paymentterm_autocomplete_element_response_t](docs/paymentterm_autocomplete_element_response.md)
+ - [paymentterm_create_object_v1_request_t](docs/paymentterm_create_object_v1_request.md)
+ - [paymentterm_create_object_v1_response_t](docs/paymentterm_create_object_v1_response.md)
+ - [paymentterm_create_object_v1_response_all_of_t](docs/paymentterm_create_object_v1_response_all_of.md)
+ - [paymentterm_create_object_v1_response_m_payload_t](docs/paymentterm_create_object_v1_response_m_payload.md)
+ - [paymentterm_delete_object_v1_response_t](docs/paymentterm_delete_object_v1_response.md)
+ - [paymentterm_edit_object_v1_request_t](docs/paymentterm_edit_object_v1_request.md)
+ - [paymentterm_edit_object_v1_response_t](docs/paymentterm_edit_object_v1_response.md)
+ - [paymentterm_get_autocomplete_v2_response_t](docs/paymentterm_get_autocomplete_v2_response.md)
+ - [paymentterm_get_autocomplete_v2_response_all_of_t](docs/paymentterm_get_autocomplete_v2_response_all_of.md)
+ - [paymentterm_get_autocomplete_v2_response_m_payload_t](docs/paymentterm_get_autocomplete_v2_response_m_payload.md)
+ - [paymentterm_get_list_v1_response_t](docs/paymentterm_get_list_v1_response.md)
+ - [paymentterm_get_list_v1_response_all_of_t](docs/paymentterm_get_list_v1_response_all_of.md)
+ - [paymentterm_get_list_v1_response_m_payload_t](docs/paymentterm_get_list_v1_response_m_payload.md)
+ - [paymentterm_get_list_v1_response_m_payload_all_of_t](docs/paymentterm_get_list_v1_response_m_payload_all_of.md)
+ - [paymentterm_get_object_v2_response_t](docs/paymentterm_get_object_v2_response.md)
+ - [paymentterm_get_object_v2_response_all_of_t](docs/paymentterm_get_object_v2_response_all_of.md)
+ - [paymentterm_get_object_v2_response_m_payload_t](docs/paymentterm_get_object_v2_response_m_payload.md)
+ - [paymentterm_list_element_t](docs/paymentterm_list_element.md)
+ - [paymentterm_request_t](docs/paymentterm_request.md)
+ - [paymentterm_request_compound_t](docs/paymentterm_request_compound.md)
+ - [paymentterm_response_t](docs/paymentterm_response.md)
+ - [paymentterm_response_compound_t](docs/paymentterm_response_compound.md)
  - [period_autocomplete_element_response_t](docs/period_autocomplete_element_response.md)
  - [period_get_autocomplete_v2_response_t](docs/period_get_autocomplete_v2_response.md)
  - [period_get_autocomplete_v2_response_all_of_t](docs/period_get_autocomplete_v2_response_all_of.md)
  - [period_get_autocomplete_v2_response_m_payload_t](docs/period_get_autocomplete_v2_response_m_payload.md)
  - [phone_request_t](docs/phone_request.md)
  - [phone_request_compound_t](docs/phone_request_compound.md)
- - [phone_response_t](docs/phone_response.md)
- - [phone_response_compound_t](docs/phone_response_compound.md)
+ - [phonestatic_response_t](docs/phonestatic_response.md)
+ - [phonestatic_response_compound_t](docs/phonestatic_response_compound.md)
  - [secretquestion_autocomplete_element_response_t](docs/secretquestion_autocomplete_element_response.md)
  - [secretquestion_get_autocomplete_v2_response_t](docs/secretquestion_get_autocomplete_v2_response.md)
  - [secretquestion_get_autocomplete_v2_response_all_of_t](docs/secretquestion_get_autocomplete_v2_response_all_of.md)

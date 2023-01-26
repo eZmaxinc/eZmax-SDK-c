@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **s_name** | **char \*** |  | 
 **s_ezsignfolder_description** | **char \*** | The description of the Ezsignfolder | 
 **s_ezsigndocument_name** | **char \*** | The name of the document that will be presented to Ezsignfoldersignerassociations | 
-**b_ezsignfolder_allowed** | **int** |  | 
+**b_ezsignfolder_allowed** | **int** | Whether you have access to the Ezsignfolder or not | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

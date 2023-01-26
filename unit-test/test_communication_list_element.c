@@ -16,7 +16,6 @@
 #include "../model/communication_list_element.h"
 communication_list_element_t* instantiate_communication_list_element(int include_optional);
 
-#include "test_custom_contact_name_response.c"
 
 
 communication_list_element_t* instantiate_communication_list_element(int include_optional) {
@@ -24,21 +23,32 @@ communication_list_element_t* instantiate_communication_list_element(int include
   if (include_optional) {
     communication_list_element = communication_list_element_create(
       1,
+      33,
+      17,
+      24,
+      "2020-12-31 23:59:59",
+      ezmax_api_definition__full_communication_list_element__"Outbound",
       ezmax_api_definition__full_communication_list_element__"Normal",
       ezmax_api_definition__full_communication_list_element__"Email",
+      8,
       "This is an example of subject",
-      "2020-12-31 23:59:59",
-       // false, not to have infinite recursion
-      instantiate_custom_contact_name_response(0)
+      "John Doe",
+      "Jane Doe"
     );
   } else {
     communication_list_element = communication_list_element_create(
       1,
+      33,
+      17,
+      24,
+      "2020-12-31 23:59:59",
+      ezmax_api_definition__full_communication_list_element__"Outbound",
       ezmax_api_definition__full_communication_list_element__"Normal",
       ezmax_api_definition__full_communication_list_element__"Email",
+      8,
       "This is an example of subject",
-      "2020-12-31 23:59:59",
-      NULL
+      "John Doe",
+      "Jane Doe"
     );
   }
 
