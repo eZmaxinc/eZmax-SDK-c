@@ -8,7 +8,6 @@
 #include "../model/common_get_autocomplete_v1_response.h"
 #include "../model/common_response_error.h"
 #include "../model/ezmaxinvoicing_get_autocomplete_v2_response.h"
-#include "../model/ezmaxinvoicing_get_object_v1_response.h"
 #include "../model/ezmaxinvoicing_get_object_v2_response.h"
 #include "../model/ezmaxinvoicing_get_provisional_v1_response.h"
 #include "../model/header_accept_language.h"
@@ -46,14 +45,6 @@ ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetAutocompleteV1(apiClient_t *apiClient, 
 //
 ezmaxinvoicing_get_autocomplete_v2_response_t*
 ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezmaxinvoicingGetAutocompleteV2_sSelector_e sSelector , ezmax_api_definition__full_ezmaxinvoicingGetAutocompleteV2_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language );
-
-
-// Retrieve an existing Ezmaxinvoicing
-//
-// 
-//
-ezmaxinvoicing_get_object_v1_response_t*
-ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetObjectV1(apiClient_t *apiClient, int pkiEzmaxinvoicingID );
 
 
 // Retrieve an existing Ezmaxinvoicing

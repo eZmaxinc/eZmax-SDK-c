@@ -16,7 +16,9 @@
 #include "../model/communication_response.h"
 communication_response_t* instantiate_communication_response(int include_optional);
 
-#include "test_custom_contact_name_response.c"
+#include "test_descriptionstatic_response.c"
+#include "test_emailstatic_response.c"
+#include "test_phonestatic_response.c"
 #include "test_common_audit.c"
 
 
@@ -28,10 +30,15 @@ communication_response_t* instantiate_communication_response(int include_optiona
       ezmax_api_definition__full_communication_response__"Normal",
       ezmax_api_definition__full_communication_response__"Email",
       "This is an example of subject",
+      "http://www.example.com/4526.html",
       ezmax_api_definition__full_communication_response__"Outbound",
       8,
        // false, not to have infinite recursion
-      instantiate_custom_contact_name_response(0),
+      instantiate_descriptionstatic_response(0),
+       // false, not to have infinite recursion
+      instantiate_emailstatic_response(0),
+       // false, not to have infinite recursion
+      instantiate_phonestatic_response(0),
        // false, not to have infinite recursion
       instantiate_common_audit(0)
     );
@@ -41,8 +48,11 @@ communication_response_t* instantiate_communication_response(int include_optiona
       ezmax_api_definition__full_communication_response__"Normal",
       ezmax_api_definition__full_communication_response__"Email",
       "This is an example of subject",
+      "http://www.example.com/4526.html",
       ezmax_api_definition__full_communication_response__"Outbound",
       8,
+      NULL,
+      NULL,
       NULL,
       NULL
     );

@@ -121,7 +121,7 @@ apikey_response_t *apikey_response_parseFromJSON(cJSON *apikey_responseJSON){
     // apikey_response->s_computed_token
     cJSON *s_computed_token = cJSON_GetObjectItemCaseSensitive(apikey_responseJSON, "sComputedToken");
     if (s_computed_token) { 
-    if(!cJSON_IsString(s_computed_token))
+    if(!cJSON_IsString(s_computed_token) && !cJSON_IsNull(s_computed_token))
     {
     goto end; //String
     }
@@ -151,7 +151,7 @@ apikey_response_t *apikey_response_parseFromJSON(cJSON *apikey_responseJSON){
 
     apikey_response_local_var = apikey_response_create (
         obj_apikey_description_local_nonprim,
-        s_computed_token ? strdup(s_computed_token->valuestring) : NULL,
+        s_computed_token && !cJSON_IsNull(s_computed_token) ? strdup(s_computed_token->valuestring) : NULL,
         pki_apikey_id->valuedouble,
         obj_audit_local_nonprim
         );

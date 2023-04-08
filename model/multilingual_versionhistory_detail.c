@@ -69,7 +69,7 @@ multilingual_versionhistory_detail_t *multilingual_versionhistory_detail_parseFr
     // multilingual_versionhistory_detail->t_versionhistory_detail1
     cJSON *t_versionhistory_detail1 = cJSON_GetObjectItemCaseSensitive(multilingual_versionhistory_detailJSON, "tVersionhistoryDetail1");
     if (t_versionhistory_detail1) { 
-    if(!cJSON_IsString(t_versionhistory_detail1))
+    if(!cJSON_IsString(t_versionhistory_detail1) && !cJSON_IsNull(t_versionhistory_detail1))
     {
     goto end; //String
     }
@@ -78,7 +78,7 @@ multilingual_versionhistory_detail_t *multilingual_versionhistory_detail_parseFr
     // multilingual_versionhistory_detail->t_versionhistory_detail2
     cJSON *t_versionhistory_detail2 = cJSON_GetObjectItemCaseSensitive(multilingual_versionhistory_detailJSON, "tVersionhistoryDetail2");
     if (t_versionhistory_detail2) { 
-    if(!cJSON_IsString(t_versionhistory_detail2))
+    if(!cJSON_IsString(t_versionhistory_detail2) && !cJSON_IsNull(t_versionhistory_detail2))
     {
     goto end; //String
     }
@@ -86,8 +86,8 @@ multilingual_versionhistory_detail_t *multilingual_versionhistory_detail_parseFr
 
 
     multilingual_versionhistory_detail_local_var = multilingual_versionhistory_detail_create (
-        t_versionhistory_detail1 ? strdup(t_versionhistory_detail1->valuestring) : NULL,
-        t_versionhistory_detail2 ? strdup(t_versionhistory_detail2->valuestring) : NULL
+        t_versionhistory_detail1 && !cJSON_IsNull(t_versionhistory_detail1) ? strdup(t_versionhistory_detail1->valuestring) : NULL,
+        t_versionhistory_detail2 && !cJSON_IsNull(t_versionhistory_detail2) ? strdup(t_versionhistory_detail2->valuestring) : NULL
         );
 
     return multilingual_versionhistory_detail_local_var;

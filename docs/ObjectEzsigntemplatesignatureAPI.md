@@ -7,7 +7,6 @@ Method | HTTP request | Description
 [**ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureCreateObjectV1**](ObjectEzsigntemplatesignatureAPI.md#ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureCreateObjectV1) | **POST** /1/object/ezsigntemplatesignature | Create a new Ezsigntemplatesignature
 [**ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureDeleteObjectV1**](ObjectEzsigntemplatesignatureAPI.md#ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureDeleteObjectV1) | **DELETE** /1/object/ezsigntemplatesignature/{pkiEzsigntemplatesignatureID} | Delete an existing Ezsigntemplatesignature
 [**ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureEditObjectV1**](ObjectEzsigntemplatesignatureAPI.md#ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureEditObjectV1) | **PUT** /1/object/ezsigntemplatesignature/{pkiEzsigntemplatesignatureID} | Edit an existing Ezsigntemplatesignature
-[**ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureGetObjectV1**](ObjectEzsigntemplatesignatureAPI.md#ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureGetObjectV1) | **GET** /1/object/ezsigntemplatesignature/{pkiEzsigntemplatesignatureID} | Retrieve an existing Ezsigntemplatesignature
 [**ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureGetObjectV2**](ObjectEzsigntemplatesignatureAPI.md#ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureGetObjectV2) | **GET** /2/object/ezsigntemplatesignature/{pkiEzsigntemplatesignatureID} | Retrieve an existing Ezsigntemplatesignature
 
 
@@ -101,37 +100,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureGetObjectV1**
-```c
-// Retrieve an existing Ezsigntemplatesignature
-//
-// 
-//
-ezsigntemplatesignature_get_object_v1_response_t* ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureGetObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatesignatureID);
-```
-
-### Parameters
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplatesignatureID** | **int** |  | 
-
-### Return type
-
-[ezsigntemplatesignature_get_object_v1_response_t](ezsigntemplatesignature_get_object_v1_response.md) *
-
-
-### Authorization
-
-[Authorization](../README.md#Authorization)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

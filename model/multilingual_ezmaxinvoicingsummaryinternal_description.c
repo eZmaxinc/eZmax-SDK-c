@@ -69,7 +69,7 @@ multilingual_ezmaxinvoicingsummaryinternal_description_t *multilingual_ezmaxinvo
     // multilingual_ezmaxinvoicingsummaryinternal_description->s_ezmaxinvoicingsummaryinternal_description1
     cJSON *s_ezmaxinvoicingsummaryinternal_description1 = cJSON_GetObjectItemCaseSensitive(multilingual_ezmaxinvoicingsummaryinternal_descriptionJSON, "sEzmaxinvoicingsummaryinternalDescription1");
     if (s_ezmaxinvoicingsummaryinternal_description1) { 
-    if(!cJSON_IsString(s_ezmaxinvoicingsummaryinternal_description1))
+    if(!cJSON_IsString(s_ezmaxinvoicingsummaryinternal_description1) && !cJSON_IsNull(s_ezmaxinvoicingsummaryinternal_description1))
     {
     goto end; //String
     }
@@ -78,7 +78,7 @@ multilingual_ezmaxinvoicingsummaryinternal_description_t *multilingual_ezmaxinvo
     // multilingual_ezmaxinvoicingsummaryinternal_description->s_ezmaxinvoicingsummaryinternal_description2
     cJSON *s_ezmaxinvoicingsummaryinternal_description2 = cJSON_GetObjectItemCaseSensitive(multilingual_ezmaxinvoicingsummaryinternal_descriptionJSON, "sEzmaxinvoicingsummaryinternalDescription2");
     if (s_ezmaxinvoicingsummaryinternal_description2) { 
-    if(!cJSON_IsString(s_ezmaxinvoicingsummaryinternal_description2))
+    if(!cJSON_IsString(s_ezmaxinvoicingsummaryinternal_description2) && !cJSON_IsNull(s_ezmaxinvoicingsummaryinternal_description2))
     {
     goto end; //String
     }
@@ -86,8 +86,8 @@ multilingual_ezmaxinvoicingsummaryinternal_description_t *multilingual_ezmaxinvo
 
 
     multilingual_ezmaxinvoicingsummaryinternal_description_local_var = multilingual_ezmaxinvoicingsummaryinternal_description_create (
-        s_ezmaxinvoicingsummaryinternal_description1 ? strdup(s_ezmaxinvoicingsummaryinternal_description1->valuestring) : NULL,
-        s_ezmaxinvoicingsummaryinternal_description2 ? strdup(s_ezmaxinvoicingsummaryinternal_description2->valuestring) : NULL
+        s_ezmaxinvoicingsummaryinternal_description1 && !cJSON_IsNull(s_ezmaxinvoicingsummaryinternal_description1) ? strdup(s_ezmaxinvoicingsummaryinternal_description1->valuestring) : NULL,
+        s_ezmaxinvoicingsummaryinternal_description2 && !cJSON_IsNull(s_ezmaxinvoicingsummaryinternal_description2) ? strdup(s_ezmaxinvoicingsummaryinternal_description2->valuestring) : NULL
         );
 
     return multilingual_ezmaxinvoicingsummaryinternal_description_local_var;

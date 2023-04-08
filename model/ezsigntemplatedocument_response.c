@@ -10,7 +10,8 @@ ezsigntemplatedocument_response_t *ezsigntemplatedocument_response_create(
     int fki_ezsigntemplate_id,
     char *s_ezsigntemplatedocument_name,
     int i_ezsigntemplatedocument_pagetotal,
-    int i_ezsigntemplatedocument_signaturetotal
+    int i_ezsigntemplatedocument_signaturetotal,
+    int b_ezsigntemplatedocument_hassignedsignatures
     ) {
     ezsigntemplatedocument_response_t *ezsigntemplatedocument_response_local_var = malloc(sizeof(ezsigntemplatedocument_response_t));
     if (!ezsigntemplatedocument_response_local_var) {
@@ -21,6 +22,7 @@ ezsigntemplatedocument_response_t *ezsigntemplatedocument_response_create(
     ezsigntemplatedocument_response_local_var->s_ezsigntemplatedocument_name = s_ezsigntemplatedocument_name;
     ezsigntemplatedocument_response_local_var->i_ezsigntemplatedocument_pagetotal = i_ezsigntemplatedocument_pagetotal;
     ezsigntemplatedocument_response_local_var->i_ezsigntemplatedocument_signaturetotal = i_ezsigntemplatedocument_signaturetotal;
+    ezsigntemplatedocument_response_local_var->b_ezsigntemplatedocument_hassignedsignatures = b_ezsigntemplatedocument_hassignedsignatures;
 
     return ezsigntemplatedocument_response_local_var;
 }
@@ -83,6 +85,15 @@ cJSON *ezsigntemplatedocument_response_convertToJSON(ezsigntemplatedocument_resp
     }
     if(cJSON_AddNumberToObject(item, "iEzsigntemplatedocumentSignaturetotal", ezsigntemplatedocument_response->i_ezsigntemplatedocument_signaturetotal) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // ezsigntemplatedocument_response->b_ezsigntemplatedocument_hassignedsignatures
+    if (!ezsigntemplatedocument_response->b_ezsigntemplatedocument_hassignedsignatures) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "bEzsigntemplatedocumentHassignedsignatures", ezsigntemplatedocument_response->b_ezsigntemplatedocument_hassignedsignatures) == NULL) {
+    goto fail; //Bool
     }
 
     return item;
@@ -157,13 +168,26 @@ ezsigntemplatedocument_response_t *ezsigntemplatedocument_response_parseFromJSON
     goto end; //Numeric
     }
 
+    // ezsigntemplatedocument_response->b_ezsigntemplatedocument_hassignedsignatures
+    cJSON *b_ezsigntemplatedocument_hassignedsignatures = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocument_responseJSON, "bEzsigntemplatedocumentHassignedsignatures");
+    if (!b_ezsigntemplatedocument_hassignedsignatures) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(b_ezsigntemplatedocument_hassignedsignatures))
+    {
+    goto end; //Bool
+    }
+
 
     ezsigntemplatedocument_response_local_var = ezsigntemplatedocument_response_create (
         pki_ezsigntemplatedocument_id->valuedouble,
         fki_ezsigntemplate_id->valuedouble,
         strdup(s_ezsigntemplatedocument_name->valuestring),
         i_ezsigntemplatedocument_pagetotal->valuedouble,
-        i_ezsigntemplatedocument_signaturetotal->valuedouble
+        i_ezsigntemplatedocument_signaturetotal->valuedouble,
+        b_ezsigntemplatedocument_hassignedsignatures->valueint
         );
 
     return ezsigntemplatedocument_response_local_var;

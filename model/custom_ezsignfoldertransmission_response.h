@@ -30,6 +30,7 @@ ezmax_api_definition__full_custom_ezsignfoldertransmission_response__e custom_ez
 
 typedef struct custom_ezsignfoldertransmission_response_t {
     int pki_ezsignfolder_id; //numeric
+    char *s_ezsignfolder_description; // string
     field_e_ezsignfolder_step_t *e_ezsignfolder_step; // custom
     int i_ezsignfolder_signaturetotal; //numeric
     int i_ezsignfolder_signaturesigned; //numeric
@@ -39,6 +40,7 @@ typedef struct custom_ezsignfoldertransmission_response_t {
 
 custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_response_create(
     int pki_ezsignfolder_id,
+    char *s_ezsignfolder_description,
     field_e_ezsignfolder_step_t *e_ezsignfolder_step,
     int i_ezsignfolder_signaturetotal,
     int i_ezsignfolder_signaturesigned,

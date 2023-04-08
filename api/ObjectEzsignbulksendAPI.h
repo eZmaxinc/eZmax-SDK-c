@@ -14,9 +14,9 @@
 #include "../model/ezsignbulksend_edit_object_v1_request.h"
 #include "../model/ezsignbulksend_edit_object_v1_response.h"
 #include "../model/ezsignbulksend_get_ezsignbulksendtransmissions_v1_response.h"
+#include "../model/ezsignbulksend_get_ezsignsignatures_automatic_v1_response.h"
 #include "../model/ezsignbulksend_get_forms_data_v1_response.h"
 #include "../model/ezsignbulksend_get_list_v1_response.h"
-#include "../model/ezsignbulksend_get_object_v1_response.h"
 #include "../model/ezsignbulksend_get_object_v2_response.h"
 #include "../model/ezsignbulksend_reorder_v1_request.h"
 #include "../model/ezsignbulksend_reorder_v1_response.h"
@@ -78,6 +78,14 @@ ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_t*
 ObjectEzsignbulksendAPI_ezsignbulksendGetEzsignbulksendtransmissionsV1(apiClient_t *apiClient, int pkiEzsignbulksendID );
 
 
+// Retrieve an existing Ezsignbulksend's automatic Ezsignsignatures
+//
+// Return the Ezsignsignatures that can be signed by the current user at the current step in the process
+//
+ezsignbulksend_get_ezsignsignatures_automatic_v1_response_t*
+ObjectEzsignbulksendAPI_ezsignbulksendGetEzsignsignaturesAutomaticV1(apiClient_t *apiClient, int pkiEzsignbulksendID );
+
+
 // Retrieve an existing Ezsignbulksend's forms data
 //
 // 
@@ -92,14 +100,6 @@ ObjectEzsignbulksendAPI_ezsignbulksendGetFormsDataV1(apiClient_t *apiClient, int
 //
 ezsignbulksend_get_list_v1_response_t*
 ObjectEzsignbulksendAPI_ezsignbulksendGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsignbulksendGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter );
-
-
-// Retrieve an existing Ezsignbulksend
-//
-// 
-//
-ezsignbulksend_get_object_v1_response_t*
-ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV1(apiClient_t *apiClient, int pkiEzsignbulksendID );
 
 
 // Retrieve an existing Ezsignbulksend

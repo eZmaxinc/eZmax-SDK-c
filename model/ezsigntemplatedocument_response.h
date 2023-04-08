@@ -24,6 +24,7 @@ typedef struct ezsigntemplatedocument_response_t {
     char *s_ezsigntemplatedocument_name; // string
     int i_ezsigntemplatedocument_pagetotal; //numeric
     int i_ezsigntemplatedocument_signaturetotal; //numeric
+    int b_ezsigntemplatedocument_hassignedsignatures; //boolean
 
 } ezsigntemplatedocument_response_t;
 
@@ -32,7 +33,8 @@ ezsigntemplatedocument_response_t *ezsigntemplatedocument_response_create(
     int fki_ezsigntemplate_id,
     char *s_ezsigntemplatedocument_name,
     int i_ezsigntemplatedocument_pagetotal,
-    int i_ezsigntemplatedocument_signaturetotal
+    int i_ezsigntemplatedocument_signaturetotal,
+    int b_ezsigntemplatedocument_hassignedsignatures
 );
 
 void ezsigntemplatedocument_response_free(ezsigntemplatedocument_response_t *ezsigntemplatedocument_response);

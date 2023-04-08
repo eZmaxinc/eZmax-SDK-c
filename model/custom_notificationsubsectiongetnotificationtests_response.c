@@ -177,7 +177,7 @@ custom_notificationsubsectiongetnotificationtests_response_t *custom_notificatio
     // custom_notificationsubsectiongetnotificationtests_response->s_notificationsection_name_x
     cJSON *s_notificationsection_name_x = cJSON_GetObjectItemCaseSensitive(custom_notificationsubsectiongetnotificationtests_responseJSON, "sNotificationsectionNameX");
     if (s_notificationsection_name_x) { 
-    if(!cJSON_IsString(s_notificationsection_name_x))
+    if(!cJSON_IsString(s_notificationsection_name_x) && !cJSON_IsNull(s_notificationsection_name_x))
     {
     goto end; //String
     }
@@ -224,7 +224,7 @@ custom_notificationsubsectiongetnotificationtests_response_t *custom_notificatio
         pki_notificationsubsection_id->valuedouble,
         fki_notificationsection_id->valuedouble,
         obj_notificationsubsection_name ? obj_notificationsubsection_name_local_nonprim : NULL,
-        s_notificationsection_name_x ? strdup(s_notificationsection_name_x->valuestring) : NULL,
+        s_notificationsection_name_x && !cJSON_IsNull(s_notificationsection_name_x) ? strdup(s_notificationsection_name_x->valuestring) : NULL,
         strdup(s_notificationsubsection_name_x->valuestring),
         a_obj_notificationtestList
         );

@@ -432,7 +432,7 @@ ezsignformfieldgroup_request_t *ezsignformfieldgroup_request_parseFromJSON(cJSON
     // ezsignformfieldgroup_request->s_ezsignformfieldgroup_regexp
     cJSON *s_ezsignformfieldgroup_regexp = cJSON_GetObjectItemCaseSensitive(ezsignformfieldgroup_requestJSON, "sEzsignformfieldgroupRegexp");
     if (s_ezsignformfieldgroup_regexp) { 
-    if(!cJSON_IsString(s_ezsignformfieldgroup_regexp))
+    if(!cJSON_IsString(s_ezsignformfieldgroup_regexp) && !cJSON_IsNull(s_ezsignformfieldgroup_regexp))
     {
     goto end; //String
     }
@@ -441,7 +441,7 @@ ezsignformfieldgroup_request_t *ezsignformfieldgroup_request_parseFromJSON(cJSON
     // ezsignformfieldgroup_request->t_ezsignformfieldgroup_tooltip
     cJSON *t_ezsignformfieldgroup_tooltip = cJSON_GetObjectItemCaseSensitive(ezsignformfieldgroup_requestJSON, "tEzsignformfieldgroupTooltip");
     if (t_ezsignformfieldgroup_tooltip) { 
-    if(!cJSON_IsString(t_ezsignformfieldgroup_tooltip))
+    if(!cJSON_IsString(t_ezsignformfieldgroup_tooltip) && !cJSON_IsNull(t_ezsignformfieldgroup_tooltip))
     {
     goto end; //String
     }
@@ -467,8 +467,8 @@ ezsignformfieldgroup_request_t *ezsignformfieldgroup_request_parseFromJSON(cJSON
         b_ezsignformfieldgroup_readonly->valueint,
         i_ezsignformfieldgroup_maxlength ? i_ezsignformfieldgroup_maxlength->valuedouble : 0,
         b_ezsignformfieldgroup_encrypted ? b_ezsignformfieldgroup_encrypted->valueint : 0,
-        s_ezsignformfieldgroup_regexp ? strdup(s_ezsignformfieldgroup_regexp->valuestring) : NULL,
-        t_ezsignformfieldgroup_tooltip ? strdup(t_ezsignformfieldgroup_tooltip->valuestring) : NULL,
+        s_ezsignformfieldgroup_regexp && !cJSON_IsNull(s_ezsignformfieldgroup_regexp) ? strdup(s_ezsignformfieldgroup_regexp->valuestring) : NULL,
+        t_ezsignformfieldgroup_tooltip && !cJSON_IsNull(t_ezsignformfieldgroup_tooltip) ? strdup(t_ezsignformfieldgroup_tooltip->valuestring) : NULL,
         e_ezsignformfieldgroup_tooltipposition ? e_ezsignformfieldgroup_tooltipposition_local_nonprim : NULL
         );
 

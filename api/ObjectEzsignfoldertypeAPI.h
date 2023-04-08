@@ -13,7 +13,6 @@
 #include "../model/ezsignfoldertype_edit_object_v1_response.h"
 #include "../model/ezsignfoldertype_get_autocomplete_v2_response.h"
 #include "../model/ezsignfoldertype_get_list_v1_response.h"
-#include "../model/ezsignfoldertype_get_object_v1_response.h"
 #include "../model/ezsignfoldertype_get_object_v2_response.h"
 #include "../model/header_accept_language.h"
 
@@ -80,14 +79,6 @@ ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV2(apiClient_t *apiClie
 //
 ezsignfoldertype_get_list_v1_response_t*
 ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsignfoldertypeGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter );
-
-
-// Retrieve an existing Ezsignfoldertype
-//
-// 
-//
-ezsignfoldertype_get_object_v1_response_t*
-ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetObjectV1(apiClient_t *apiClient, int pkiEzsignfoldertypeID );
 
 
 // Retrieve an existing Ezsignfoldertype

@@ -15,6 +15,7 @@
 
 typedef struct ezsigntemplate_response_t ezsigntemplate_response_t;
 
+#include "common_audit.h"
 
 
 
@@ -27,6 +28,7 @@ typedef struct ezsigntemplate_response_t {
     char *s_ezsigntemplate_description; // string
     int b_ezsigntemplate_adminonly; //boolean
     char *s_ezsignfoldertype_name_x; // string
+    struct common_audit_t *obj_audit; //model
 
 } ezsigntemplate_response_t;
 
@@ -38,7 +40,8 @@ ezsigntemplate_response_t *ezsigntemplate_response_create(
     char *s_language_name_x,
     char *s_ezsigntemplate_description,
     int b_ezsigntemplate_adminonly,
-    char *s_ezsignfoldertype_name_x
+    char *s_ezsignfoldertype_name_x,
+    common_audit_t *obj_audit
 );
 
 void ezsigntemplate_response_free(ezsigntemplate_response_t *ezsigntemplate_response);

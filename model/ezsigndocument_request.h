@@ -26,7 +26,7 @@ ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_e ezsign
 
 // Enum EEZSIGNDOCUMENTFORMAT for ezsigndocument_request
 
-typedef enum  { ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTFORMAT_NULL = 0, ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTFORMAT_Pdf } ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTFORMAT_e;
+typedef enum  { ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTFORMAT_NULL = 0, ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTFORMAT_Pdf, ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTFORMAT_Doc, ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTFORMAT_Docx, ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTFORMAT_Xls, ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTFORMAT_Xlsx, ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTFORMAT_Ppt, ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTFORMAT_Pptx } ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTFORMAT_e;
 
 char* ezsigndocument_request_e_ezsigndocument_format_ToString(ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTFORMAT_e e_ezsigndocument_format);
 
@@ -57,6 +57,7 @@ typedef struct ezsigndocument_request_t {
     ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTFORM_e e_ezsigndocument_form; //enum
     char *dt_ezsigndocument_duedate; // string
     char *s_ezsigndocument_name; // string
+    char *s_ezsigndocument_externalid; // string
 
 } ezsigndocument_request_t;
 
@@ -74,7 +75,8 @@ ezsigndocument_request_t *ezsigndocument_request_create(
     char *s_ezsigndocument_password,
     ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTFORM_e e_ezsigndocument_form,
     char *dt_ezsigndocument_duedate,
-    char *s_ezsigndocument_name
+    char *s_ezsigndocument_name,
+    char *s_ezsigndocument_externalid
 );
 
 void ezsigndocument_request_free(ezsigndocument_request_t *ezsigndocument_request);

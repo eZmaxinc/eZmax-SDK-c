@@ -22,13 +22,13 @@ ezmax_api_definition__full_ezsigntemplatedocument_request_EEZSIGNTEMPLATEDOCUMEN
     return 0;
 }
 char* e_ezsigntemplatedocument_formatezsigntemplatedocument_request_ToString(ezmax_api_definition__full_ezsigntemplatedocument_request_EEZSIGNTEMPLATEDOCUMENTFORMAT_e e_ezsigntemplatedocument_format) {
-    char* e_ezsigntemplatedocument_formatArray[] =  { "NULL", "Pdf" };
+    char* e_ezsigntemplatedocument_formatArray[] =  { "NULL", "Pdf", "Doc", "Docx", "Xls", "Xlsx", "Ppt", "Pptx" };
 	return e_ezsigntemplatedocument_formatArray[e_ezsigntemplatedocument_format];
 }
 
 ezmax_api_definition__full_ezsigntemplatedocument_request_EEZSIGNTEMPLATEDOCUMENTFORMAT_e e_ezsigntemplatedocument_formatezsigntemplatedocument_request_FromString(char* e_ezsigntemplatedocument_format){
     int stringToReturn = 0;
-    char *e_ezsigntemplatedocument_formatArray[] =  { "NULL", "Pdf" };
+    char *e_ezsigntemplatedocument_formatArray[] =  { "NULL", "Pdf", "Doc", "Docx", "Xls", "Xlsx", "Ppt", "Pptx" };
     size_t sizeofArray = sizeof(e_ezsigntemplatedocument_formatArray) / sizeof(e_ezsigntemplatedocument_formatArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(e_ezsigntemplatedocument_format, e_ezsigntemplatedocument_formatArray[stringToReturn]) == 0) {
@@ -319,7 +319,7 @@ ezsigntemplatedocument_request_t *ezsigntemplatedocument_request_parseFromJSON(c
     // ezsigntemplatedocument_request->s_ezsigntemplatedocument_url
     cJSON *s_ezsigntemplatedocument_url = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocument_requestJSON, "sEzsigntemplatedocumentUrl");
     if (s_ezsigntemplatedocument_url) { 
-    if(!cJSON_IsString(s_ezsigntemplatedocument_url))
+    if(!cJSON_IsString(s_ezsigntemplatedocument_url) && !cJSON_IsNull(s_ezsigntemplatedocument_url))
     {
     goto end; //String
     }
@@ -348,7 +348,7 @@ ezsigntemplatedocument_request_t *ezsigntemplatedocument_request_parseFromJSON(c
     // ezsigntemplatedocument_request->s_ezsigntemplatedocument_password
     cJSON *s_ezsigntemplatedocument_password = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocument_requestJSON, "sEzsigntemplatedocumentPassword");
     if (s_ezsigntemplatedocument_password) { 
-    if(!cJSON_IsString(s_ezsigntemplatedocument_password))
+    if(!cJSON_IsString(s_ezsigntemplatedocument_password) && !cJSON_IsNull(s_ezsigntemplatedocument_password))
     {
     goto end; //String
     }
@@ -364,10 +364,10 @@ ezsigntemplatedocument_request_t *ezsigntemplatedocument_request_parseFromJSON(c
         e_ezsigntemplatedocument_sourceVariable,
         e_ezsigntemplatedocument_format ? e_ezsigntemplatedocument_formatVariable : -1,
         s_ezsigntemplatedocument_base64 ? strdup(s_ezsigntemplatedocument_base64->valuestring) : NULL,
-        s_ezsigntemplatedocument_url ? strdup(s_ezsigntemplatedocument_url->valuestring) : NULL,
+        s_ezsigntemplatedocument_url && !cJSON_IsNull(s_ezsigntemplatedocument_url) ? strdup(s_ezsigntemplatedocument_url->valuestring) : NULL,
         b_ezsigntemplatedocument_forcerepair ? b_ezsigntemplatedocument_forcerepair->valueint : 0,
         e_ezsigntemplatedocument_form ? e_ezsigntemplatedocument_formVariable : -1,
-        s_ezsigntemplatedocument_password ? strdup(s_ezsigntemplatedocument_password->valuestring) : NULL
+        s_ezsigntemplatedocument_password && !cJSON_IsNull(s_ezsigntemplatedocument_password) ? strdup(s_ezsigntemplatedocument_password->valuestring) : NULL
         );
 
     return ezsigntemplatedocument_request_local_var;

@@ -26,6 +26,8 @@ paymentterm_response_t* instantiate_paymentterm_response(int include_optional) {
     paymentterm_response = paymentterm_response_create(
       46,
       "0030",
+      ezmax_api_definition__full_paymentterm_response__"Days",
+      5,
        // false, not to have infinite recursion
       instantiate_multilingual_paymentterm_description(0),
       true,
@@ -36,6 +38,8 @@ paymentterm_response_t* instantiate_paymentterm_response(int include_optional) {
     paymentterm_response = paymentterm_response_create(
       46,
       "0030",
+      ezmax_api_definition__full_paymentterm_response__"Days",
+      5,
       NULL,
       true,
       NULL

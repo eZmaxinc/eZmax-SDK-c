@@ -55,7 +55,7 @@ webhook_response_compound_all_of_t *webhook_response_compound_all_of_parseFromJS
     // webhook_response_compound_all_of->s_webhook_event
     cJSON *s_webhook_event = cJSON_GetObjectItemCaseSensitive(webhook_response_compound_all_ofJSON, "sWebhookEvent");
     if (s_webhook_event) { 
-    if(!cJSON_IsString(s_webhook_event))
+    if(!cJSON_IsString(s_webhook_event) && !cJSON_IsNull(s_webhook_event))
     {
     goto end; //String
     }
@@ -63,7 +63,7 @@ webhook_response_compound_all_of_t *webhook_response_compound_all_of_parseFromJS
 
 
     webhook_response_compound_all_of_local_var = webhook_response_compound_all_of_create (
-        s_webhook_event ? strdup(s_webhook_event->valuestring) : NULL
+        s_webhook_event && !cJSON_IsNull(s_webhook_event) ? strdup(s_webhook_event->valuestring) : NULL
         );
 
     return webhook_response_compound_all_of_local_var;

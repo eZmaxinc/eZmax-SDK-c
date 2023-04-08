@@ -147,7 +147,7 @@ custom_autocomplete_element_response_t *custom_autocomplete_element_response_par
     // custom_autocomplete_element_response->m_value
     cJSON *m_value = cJSON_GetObjectItemCaseSensitive(custom_autocomplete_element_responseJSON, "mValue");
     if (m_value) { 
-    if(!cJSON_IsString(m_value))
+    if(!cJSON_IsString(m_value) && !cJSON_IsNull(m_value))
     {
     goto end; //String
     }
@@ -170,7 +170,7 @@ custom_autocomplete_element_response_t *custom_autocomplete_element_response_par
         strdup(s_category->valuestring),
         strdup(s_label->valuestring),
         strdup(s_value->valuestring),
-        m_value ? strdup(m_value->valuestring) : NULL,
+        m_value && !cJSON_IsNull(m_value) ? strdup(m_value->valuestring) : NULL,
         b_active->valueint
         );
 

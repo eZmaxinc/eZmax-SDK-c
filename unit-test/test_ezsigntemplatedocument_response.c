@@ -26,7 +26,8 @@ ezsigntemplatedocument_response_t* instantiate_ezsigntemplatedocument_response(i
       36,
       "Standard Contract",
       5,
-      8
+      8,
+      true
     );
   } else {
     ezsigntemplatedocument_response = ezsigntemplatedocument_response_create(
@@ -34,7 +35,8 @@ ezsigntemplatedocument_response_t* instantiate_ezsigntemplatedocument_response(i
       36,
       "Standard Contract",
       5,
-      8
+      8,
+      true
     );
   }
 

@@ -48,7 +48,9 @@ typedef struct ezsigndocument_get_object_v1_response_m_payload_t {
     char *t_ezsigndocument_declinedtosignreason; // string
     char *s_ezsigndocument_md5signed; // string
     int b_ezsigndocument_ezsignform; //boolean
+    int b_ezsigndocument_hassignedsignatures; //boolean
     struct common_audit_t *obj_audit; //model
+    char *s_ezsigndocument_externalid; // string
     int i_ezsigndocument_stepformtotal; //numeric
     int i_ezsigndocument_stepformcurrent; //numeric
     int i_ezsigndocument_stepsignaturetotal; //numeric
@@ -76,7 +78,9 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
     char *t_ezsigndocument_declinedtosignreason,
     char *s_ezsigndocument_md5signed,
     int b_ezsigndocument_ezsignform,
+    int b_ezsigndocument_hassignedsignatures,
     common_audit_t *obj_audit,
+    char *s_ezsigndocument_externalid,
     int i_ezsigndocument_stepformtotal,
     int i_ezsigndocument_stepformcurrent,
     int i_ezsigndocument_stepsignaturetotal,

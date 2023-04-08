@@ -11,20 +11,9 @@
 #include "../model/branding_edit_object_v1_response.h"
 #include "../model/branding_get_autocomplete_v2_response.h"
 #include "../model/branding_get_list_v1_response.h"
-#include "../model/branding_get_object_v1_response.h"
 #include "../model/branding_get_object_v2_response.h"
-#include "../model/common_get_autocomplete_v1_response.h"
 #include "../model/common_response_error.h"
 #include "../model/header_accept_language.h"
-
-// Enum SSELECTOR for ObjectBrandingAPI_brandingGetAutocompleteV1
-typedef enum  { ezmax_api_definition__full_brandingGetAutocompleteV1_SSELECTOR_NULL = 0, ezmax_api_definition__full_brandingGetAutocompleteV1_SSELECTOR_All } ezmax_api_definition__full_brandingGetAutocompleteV1_sSelector_e;
-
-// Enum EFILTERACTIVE for ObjectBrandingAPI_brandingGetAutocompleteV1
-typedef enum  { ezmax_api_definition__full_brandingGetAutocompleteV1_EFILTERACTIVE_NULL = 0, ezmax_api_definition__full_brandingGetAutocompleteV1_EFILTERACTIVE_All, ezmax_api_definition__full_brandingGetAutocompleteV1_EFILTERACTIVE_Active, ezmax_api_definition__full_brandingGetAutocompleteV1_EFILTERACTIVE_Inactive } ezmax_api_definition__full_brandingGetAutocompleteV1_eFilterActive_e;
-
-// Enum  for ObjectBrandingAPI_brandingGetAutocompleteV1
-typedef enum  { ezmax_api_definition__full_brandingGetAutocompleteV1__NULL = 0, ezmax_api_definition__full_brandingGetAutocompleteV1__*, ezmax_api_definition__full_brandingGetAutocompleteV1__en, ezmax_api_definition__full_brandingGetAutocompleteV1__fr } ezmax_api_definition__full_brandingGetAutocompleteV1_Accept-Language_e;
 
 // Enum SSELECTOR for ObjectBrandingAPI_brandingGetAutocompleteV2
 typedef enum  { ezmax_api_definition__full_brandingGetAutocompleteV2_SSELECTOR_NULL = 0, ezmax_api_definition__full_brandingGetAutocompleteV2_SSELECTOR_All } ezmax_api_definition__full_brandingGetAutocompleteV2_sSelector_e;
@@ -62,14 +51,6 @@ ObjectBrandingAPI_brandingEditObjectV1(apiClient_t *apiClient, int pkiBrandingID
 //
 // Get the list of Branding to be used in a dropdown or autocomplete control.
 //
-common_get_autocomplete_v1_response_t*
-ObjectBrandingAPI_brandingGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_brandingGetAutocompleteV1_sSelector_e sSelector , ezmax_api_definition__full_brandingGetAutocompleteV1_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language );
-
-
-// Retrieve Brandings and IDs
-//
-// Get the list of Branding to be used in a dropdown or autocomplete control.
-//
 branding_get_autocomplete_v2_response_t*
 ObjectBrandingAPI_brandingGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_brandingGetAutocompleteV2_sSelector_e sSelector , ezmax_api_definition__full_brandingGetAutocompleteV2_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language );
 
@@ -80,14 +61,6 @@ ObjectBrandingAPI_brandingGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_de
 //
 branding_get_list_v1_response_t*
 ObjectBrandingAPI_brandingGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_brandingGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter );
-
-
-// Retrieve an existing Branding
-//
-// 
-//
-branding_get_object_v1_response_t*
-ObjectBrandingAPI_brandingGetObjectV1(apiClient_t *apiClient, int pkiBrandingID );
 
 
 // Retrieve an existing Branding

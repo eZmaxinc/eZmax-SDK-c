@@ -97,7 +97,7 @@ custom_import_ezsigntemplatepackage_relation_request_t *custom_import_ezsigntemp
     // custom_import_ezsigntemplatepackage_relation_request->s_ezsigntemplatepackagesigner_description
     cJSON *s_ezsigntemplatepackagesigner_description = cJSON_GetObjectItemCaseSensitive(custom_import_ezsigntemplatepackage_relation_requestJSON, "sEzsigntemplatepackagesignerDescription");
     if (s_ezsigntemplatepackagesigner_description) { 
-    if(!cJSON_IsString(s_ezsigntemplatepackagesigner_description))
+    if(!cJSON_IsString(s_ezsigntemplatepackagesigner_description) && !cJSON_IsNull(s_ezsigntemplatepackagesigner_description))
     {
     goto end; //String
     }
@@ -107,7 +107,7 @@ custom_import_ezsigntemplatepackage_relation_request_t *custom_import_ezsigntemp
     custom_import_ezsigntemplatepackage_relation_request_local_var = custom_import_ezsigntemplatepackage_relation_request_create (
         fki_ezsigntemplatepackagesigner_id ? fki_ezsigntemplatepackagesigner_id->valuedouble : 0,
         fki_ezsignfoldersignerassociation_id->valuedouble,
-        s_ezsigntemplatepackagesigner_description ? strdup(s_ezsigntemplatepackagesigner_description->valuestring) : NULL
+        s_ezsigntemplatepackagesigner_description && !cJSON_IsNull(s_ezsigntemplatepackagesigner_description) ? strdup(s_ezsigntemplatepackagesigner_description->valuestring) : NULL
         );
 
     return custom_import_ezsigntemplatepackage_relation_request_local_var;

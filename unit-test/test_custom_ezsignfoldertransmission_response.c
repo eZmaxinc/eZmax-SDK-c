@@ -23,6 +23,7 @@ custom_ezsignfoldertransmission_response_t* instantiate_custom_ezsignfoldertrans
   if (include_optional) {
     custom_ezsignfoldertransmission_response = custom_ezsignfoldertransmission_response_create(
       33,
+      "Test eZsign Folder",
       ezmax_api_definition__full_custom_ezsignfoldertransmission_response__"Completed",
       4,
       3,
@@ -31,6 +32,7 @@ custom_ezsignfoldertransmission_response_t* instantiate_custom_ezsignfoldertrans
   } else {
     custom_ezsignfoldertransmission_response = custom_ezsignfoldertransmission_response_create(
       33,
+      "Test eZsign Folder",
       ezmax_api_definition__full_custom_ezsignfoldertransmission_response__"Completed",
       4,
       3,

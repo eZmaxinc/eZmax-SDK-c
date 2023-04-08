@@ -467,7 +467,7 @@ ezsignformfieldgroup_response_compound_t *ezsignformfieldgroup_response_compound
     // ezsignformfieldgroup_response_compound->s_ezsignformfieldgroup_defaultvalue
     cJSON *s_ezsignformfieldgroup_defaultvalue = cJSON_GetObjectItemCaseSensitive(ezsignformfieldgroup_response_compoundJSON, "sEzsignformfieldgroupDefaultvalue");
     if (s_ezsignformfieldgroup_defaultvalue) { 
-    if(!cJSON_IsString(s_ezsignformfieldgroup_defaultvalue))
+    if(!cJSON_IsString(s_ezsignformfieldgroup_defaultvalue) && !cJSON_IsNull(s_ezsignformfieldgroup_defaultvalue))
     {
     goto end; //String
     }
@@ -530,7 +530,7 @@ ezsignformfieldgroup_response_compound_t *ezsignformfieldgroup_response_compound
     // ezsignformfieldgroup_response_compound->s_ezsignformfieldgroup_regexp
     cJSON *s_ezsignformfieldgroup_regexp = cJSON_GetObjectItemCaseSensitive(ezsignformfieldgroup_response_compoundJSON, "sEzsignformfieldgroupRegexp");
     if (s_ezsignformfieldgroup_regexp) { 
-    if(!cJSON_IsString(s_ezsignformfieldgroup_regexp))
+    if(!cJSON_IsString(s_ezsignformfieldgroup_regexp) && !cJSON_IsNull(s_ezsignformfieldgroup_regexp))
     {
     goto end; //String
     }
@@ -539,7 +539,7 @@ ezsignformfieldgroup_response_compound_t *ezsignformfieldgroup_response_compound
     // ezsignformfieldgroup_response_compound->t_ezsignformfieldgroup_tooltip
     cJSON *t_ezsignformfieldgroup_tooltip = cJSON_GetObjectItemCaseSensitive(ezsignformfieldgroup_response_compoundJSON, "tEzsignformfieldgroupTooltip");
     if (t_ezsignformfieldgroup_tooltip) { 
-    if(!cJSON_IsString(t_ezsignformfieldgroup_tooltip))
+    if(!cJSON_IsString(t_ezsignformfieldgroup_tooltip) && !cJSON_IsNull(t_ezsignformfieldgroup_tooltip))
     {
     goto end; //String
     }
@@ -628,14 +628,14 @@ ezsignformfieldgroup_response_compound_t *ezsignformfieldgroup_response_compound
         e_ezsignformfieldgroup_signerrequirement_local_nonprim,
         strdup(s_ezsignformfieldgroup_label->valuestring),
         i_ezsignformfieldgroup_step->valuedouble,
-        s_ezsignformfieldgroup_defaultvalue ? strdup(s_ezsignformfieldgroup_defaultvalue->valuestring) : NULL,
+        s_ezsignformfieldgroup_defaultvalue && !cJSON_IsNull(s_ezsignformfieldgroup_defaultvalue) ? strdup(s_ezsignformfieldgroup_defaultvalue->valuestring) : NULL,
         i_ezsignformfieldgroup_filledmin->valuedouble,
         i_ezsignformfieldgroup_filledmax->valuedouble,
         b_ezsignformfieldgroup_readonly->valueint,
         i_ezsignformfieldgroup_maxlength ? i_ezsignformfieldgroup_maxlength->valuedouble : 0,
         b_ezsignformfieldgroup_encrypted ? b_ezsignformfieldgroup_encrypted->valueint : 0,
-        s_ezsignformfieldgroup_regexp ? strdup(s_ezsignformfieldgroup_regexp->valuestring) : NULL,
-        t_ezsignformfieldgroup_tooltip ? strdup(t_ezsignformfieldgroup_tooltip->valuestring) : NULL,
+        s_ezsignformfieldgroup_regexp && !cJSON_IsNull(s_ezsignformfieldgroup_regexp) ? strdup(s_ezsignformfieldgroup_regexp->valuestring) : NULL,
+        t_ezsignformfieldgroup_tooltip && !cJSON_IsNull(t_ezsignformfieldgroup_tooltip) ? strdup(t_ezsignformfieldgroup_tooltip->valuestring) : NULL,
         e_ezsignformfieldgroup_tooltipposition ? e_ezsignformfieldgroup_tooltipposition_local_nonprim : NULL,
         a_obj_ezsignformfieldList,
         a_obj_dropdown_element ? a_obj_dropdown_elementList : NULL,

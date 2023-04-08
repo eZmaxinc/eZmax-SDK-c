@@ -11,7 +11,6 @@
 #include "../model/ezsigntemplatesignature_delete_object_v1_response.h"
 #include "../model/ezsigntemplatesignature_edit_object_v1_request.h"
 #include "../model/ezsigntemplatesignature_edit_object_v1_response.h"
-#include "../model/ezsigntemplatesignature_get_object_v1_response.h"
 #include "../model/ezsigntemplatesignature_get_object_v2_response.h"
 
 
@@ -37,14 +36,6 @@ ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureDeleteObjectV1(apiClient
 //
 ezsigntemplatesignature_edit_object_v1_response_t*
 ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureEditObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatesignatureID , ezsigntemplatesignature_edit_object_v1_request_t * ezsigntemplatesignature_edit_object_v1_request );
-
-
-// Retrieve an existing Ezsigntemplatesignature
-//
-// 
-//
-ezsigntemplatesignature_get_object_v1_response_t*
-ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureGetObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatesignatureID );
 
 
 // Retrieve an existing Ezsigntemplatesignature

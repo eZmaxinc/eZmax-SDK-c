@@ -21,10 +21,13 @@
 #include "../model/ezsigndocument_edit_ezsignsignatures_v1_request.h"
 #include "../model/ezsigndocument_edit_ezsignsignatures_v1_response.h"
 #include "../model/ezsigndocument_end_prematurely_v1_response.h"
+#include "../model/ezsigndocument_flatten_v1_response.h"
 #include "../model/ezsigndocument_get_actionable_elements_v1_response.h"
 #include "../model/ezsigndocument_get_download_url_v1_response.h"
+#include "../model/ezsigndocument_get_ezsignannotations_v1_response.h"
 #include "../model/ezsigndocument_get_ezsignformfieldgroups_v1_response.h"
 #include "../model/ezsigndocument_get_ezsignpages_v1_response.h"
+#include "../model/ezsigndocument_get_ezsignsignatures_automatic_v1_response.h"
 #include "../model/ezsigndocument_get_ezsignsignatures_v1_response.h"
 #include "../model/ezsigndocument_get_form_data_v1_response.h"
 #include "../model/ezsigndocument_get_object_v1_response.h"
@@ -105,6 +108,14 @@ ezsigndocument_end_prematurely_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1(apiClient_t *apiClient, int pkiEzsigndocumentID , object_t * body );
 
 
+// Flatten
+//
+// Flatten an Ezsigndocument signatures, forms and annotations. This process finalizes the PDF so that the forms and annotations become part of the document content and cannot be edited.
+//
+ezsigndocument_flatten_v1_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentFlattenV1(apiClient_t *apiClient, int pkiEzsigndocumentID , object_t * body );
+
+
 // Retrieve actionable elements for the Ezsigndocument
 //
 // Return the Ezsignsignatures that can be signed and Ezsignformfieldgroups that can be filled by the current user at the current step in the process
@@ -121,6 +132,14 @@ ezsigndocument_get_download_url_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1(apiClient_t *apiClient, int pkiEzsigndocumentID , ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_eDocumentType_e eDocumentType );
 
 
+// Retrieve an existing Ezsigndocument's Ezsignannotations
+//
+// 
+//
+ezsigndocument_get_ezsignannotations_v1_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignannotationsV1(apiClient_t *apiClient, int pkiEzsigndocumentID );
+
+
 // Retrieve an existing Ezsigndocument's Ezsignformfieldgroups
 //
 // 
@@ -135,6 +154,14 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignformfieldgroupsV1(apiClient_t *ap
 //
 ezsigndocument_get_ezsignpages_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignpagesV1(apiClient_t *apiClient, int pkiEzsigndocumentID );
+
+
+// Retrieve an existing Ezsigndocument's automatic Ezsignsignatures
+//
+// Return the Ezsignsignatures that can be signed by the current user at the current step in the process
+//
+ezsigndocument_get_ezsignsignatures_automatic_v1_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignsignaturesAutomaticV1(apiClient_t *apiClient, int pkiEzsigndocumentID );
 
 
 // Retrieve an existing Ezsigndocument's Ezsignsignatures

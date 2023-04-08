@@ -69,7 +69,7 @@ multilingual_notificationtest_name_t *multilingual_notificationtest_name_parseFr
     // multilingual_notificationtest_name->s_notificationtest_name1
     cJSON *s_notificationtest_name1 = cJSON_GetObjectItemCaseSensitive(multilingual_notificationtest_nameJSON, "sNotificationtestName1");
     if (s_notificationtest_name1) { 
-    if(!cJSON_IsString(s_notificationtest_name1))
+    if(!cJSON_IsString(s_notificationtest_name1) && !cJSON_IsNull(s_notificationtest_name1))
     {
     goto end; //String
     }
@@ -78,7 +78,7 @@ multilingual_notificationtest_name_t *multilingual_notificationtest_name_parseFr
     // multilingual_notificationtest_name->s_notificationtest_name2
     cJSON *s_notificationtest_name2 = cJSON_GetObjectItemCaseSensitive(multilingual_notificationtest_nameJSON, "sNotificationtestName2");
     if (s_notificationtest_name2) { 
-    if(!cJSON_IsString(s_notificationtest_name2))
+    if(!cJSON_IsString(s_notificationtest_name2) && !cJSON_IsNull(s_notificationtest_name2))
     {
     goto end; //String
     }
@@ -86,8 +86,8 @@ multilingual_notificationtest_name_t *multilingual_notificationtest_name_parseFr
 
 
     multilingual_notificationtest_name_local_var = multilingual_notificationtest_name_create (
-        s_notificationtest_name1 ? strdup(s_notificationtest_name1->valuestring) : NULL,
-        s_notificationtest_name2 ? strdup(s_notificationtest_name2->valuestring) : NULL
+        s_notificationtest_name1 && !cJSON_IsNull(s_notificationtest_name1) ? strdup(s_notificationtest_name1->valuestring) : NULL,
+        s_notificationtest_name2 && !cJSON_IsNull(s_notificationtest_name2) ? strdup(s_notificationtest_name2->valuestring) : NULL
         );
 
     return multilingual_notificationtest_name_local_var;

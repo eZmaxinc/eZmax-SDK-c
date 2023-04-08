@@ -272,7 +272,7 @@ versionhistory_response_t *versionhistory_response_parseFromJSON(cJSON *versionh
     // versionhistory_response->s_module_name_x
     cJSON *s_module_name_x = cJSON_GetObjectItemCaseSensitive(versionhistory_responseJSON, "sModuleNameX");
     if (s_module_name_x) { 
-    if(!cJSON_IsString(s_module_name_x))
+    if(!cJSON_IsString(s_module_name_x) && !cJSON_IsNull(s_module_name_x))
     {
     goto end; //String
     }
@@ -281,7 +281,7 @@ versionhistory_response_t *versionhistory_response_parseFromJSON(cJSON *versionh
     // versionhistory_response->s_modulesection_name_x
     cJSON *s_modulesection_name_x = cJSON_GetObjectItemCaseSensitive(versionhistory_responseJSON, "sModulesectionNameX");
     if (s_modulesection_name_x) { 
-    if(!cJSON_IsString(s_modulesection_name_x))
+    if(!cJSON_IsString(s_modulesection_name_x) && !cJSON_IsNull(s_modulesection_name_x))
     {
     goto end; //String
     }
@@ -317,7 +317,7 @@ versionhistory_response_t *versionhistory_response_parseFromJSON(cJSON *versionh
     // versionhistory_response->dt_versionhistory_dateend
     cJSON *dt_versionhistory_dateend = cJSON_GetObjectItemCaseSensitive(versionhistory_responseJSON, "dtVersionhistoryDateend");
     if (dt_versionhistory_dateend) { 
-    if(!cJSON_IsString(dt_versionhistory_dateend))
+    if(!cJSON_IsString(dt_versionhistory_dateend) && !cJSON_IsNull(dt_versionhistory_dateend))
     {
     goto end; //String
     }
@@ -349,12 +349,12 @@ versionhistory_response_t *versionhistory_response_parseFromJSON(cJSON *versionh
         pki_versionhistory_id->valuedouble,
         fki_module_id ? fki_module_id->valuedouble : 0,
         fki_modulesection_id ? fki_modulesection_id->valuedouble : 0,
-        s_module_name_x ? strdup(s_module_name_x->valuestring) : NULL,
-        s_modulesection_name_x ? strdup(s_modulesection_name_x->valuestring) : NULL,
+        s_module_name_x && !cJSON_IsNull(s_module_name_x) ? strdup(s_module_name_x->valuestring) : NULL,
+        s_modulesection_name_x && !cJSON_IsNull(s_modulesection_name_x) ? strdup(s_modulesection_name_x->valuestring) : NULL,
         e_versionhistory_usertype ? e_versionhistory_usertype_local_nonprim : NULL,
         obj_versionhistory_detail_local_nonprim,
         strdup(dt_versionhistory_date->valuestring),
-        dt_versionhistory_dateend ? strdup(dt_versionhistory_dateend->valuestring) : NULL,
+        dt_versionhistory_dateend && !cJSON_IsNull(dt_versionhistory_dateend) ? strdup(dt_versionhistory_dateend->valuestring) : NULL,
         e_versionhistory_type_local_nonprim,
         b_versionhistory_draft->valueint
         );

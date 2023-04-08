@@ -26,7 +26,7 @@ ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTSOURCE
 
 // Enum EEZSIGNDOCUMENTFORMAT for ezsigndocument_request_compound
 
-typedef enum  { ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_NULL = 0, ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_Pdf } ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_e;
+typedef enum  { ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_NULL = 0, ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_Pdf, ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_Doc, ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_Docx, ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_Xls, ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_Xlsx, ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_Ppt, ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_Pptx } ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_e;
 
 char* ezsigndocument_request_compound_e_ezsigndocument_format_ToString(ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_e e_ezsigndocument_format);
 
@@ -57,6 +57,7 @@ typedef struct ezsigndocument_request_compound_t {
     ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORM_e e_ezsigndocument_form; //enum
     char *dt_ezsigndocument_duedate; // string
     char *s_ezsigndocument_name; // string
+    char *s_ezsigndocument_externalid; // string
 
 } ezsigndocument_request_compound_t;
 
@@ -74,7 +75,8 @@ ezsigndocument_request_compound_t *ezsigndocument_request_compound_create(
     char *s_ezsigndocument_password,
     ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORM_e e_ezsigndocument_form,
     char *dt_ezsigndocument_duedate,
-    char *s_ezsigndocument_name
+    char *s_ezsigndocument_name,
+    char *s_ezsigndocument_externalid
 );
 
 void ezsigndocument_request_compound_free(ezsigndocument_request_compound_t *ezsigndocument_request_compound);

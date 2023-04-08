@@ -47,7 +47,9 @@ typedef struct ezsigndocument_response_t {
     char *t_ezsigndocument_declinedtosignreason; // string
     char *s_ezsigndocument_md5signed; // string
     int b_ezsigndocument_ezsignform; //boolean
+    int b_ezsigndocument_hassignedsignatures; //boolean
     struct common_audit_t *obj_audit; //model
+    char *s_ezsigndocument_externalid; // string
 
 } ezsigndocument_response_t;
 
@@ -70,7 +72,9 @@ ezsigndocument_response_t *ezsigndocument_response_create(
     char *t_ezsigndocument_declinedtosignreason,
     char *s_ezsigndocument_md5signed,
     int b_ezsigndocument_ezsignform,
-    common_audit_t *obj_audit
+    int b_ezsigndocument_hassignedsignatures,
+    common_audit_t *obj_audit,
+    char *s_ezsigndocument_externalid
 );
 
 void ezsigndocument_response_free(ezsigndocument_response_t *ezsigndocument_response);

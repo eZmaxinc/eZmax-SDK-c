@@ -92,7 +92,7 @@ phonestatic_response_t *phonestatic_response_parseFromJSON(cJSON *phonestatic_re
     // phonestatic_response->s_phonestatic_e164
     cJSON *s_phonestatic_e164 = cJSON_GetObjectItemCaseSensitive(phonestatic_responseJSON, "sPhonestaticE164");
     if (s_phonestatic_e164) { 
-    if(!cJSON_IsString(s_phonestatic_e164))
+    if(!cJSON_IsString(s_phonestatic_e164) && !cJSON_IsNull(s_phonestatic_e164))
     {
     goto end; //String
     }
@@ -101,7 +101,7 @@ phonestatic_response_t *phonestatic_response_parseFromJSON(cJSON *phonestatic_re
     // phonestatic_response->s_phonestatic_extension
     cJSON *s_phonestatic_extension = cJSON_GetObjectItemCaseSensitive(phonestatic_responseJSON, "sPhonestaticExtension");
     if (s_phonestatic_extension) { 
-    if(!cJSON_IsString(s_phonestatic_extension))
+    if(!cJSON_IsString(s_phonestatic_extension) && !cJSON_IsNull(s_phonestatic_extension))
     {
     goto end; //String
     }
@@ -110,8 +110,8 @@ phonestatic_response_t *phonestatic_response_parseFromJSON(cJSON *phonestatic_re
 
     phonestatic_response_local_var = phonestatic_response_create (
         pki_phonestatic_id->valuedouble,
-        s_phonestatic_e164 ? strdup(s_phonestatic_e164->valuestring) : NULL,
-        s_phonestatic_extension ? strdup(s_phonestatic_extension->valuestring) : NULL
+        s_phonestatic_e164 && !cJSON_IsNull(s_phonestatic_e164) ? strdup(s_phonestatic_e164->valuestring) : NULL,
+        s_phonestatic_extension && !cJSON_IsNull(s_phonestatic_extension) ? strdup(s_phonestatic_extension->valuestring) : NULL
         );
 
     return phonestatic_response_local_var;

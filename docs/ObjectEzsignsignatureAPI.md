@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV2**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV2) | **POST** /2/object/ezsignsignature | Create a new Ezsignsignature
 [**ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1) | **DELETE** /1/object/ezsignsignature/{pkiEzsignsignatureID} | Delete an existing Ezsignsignature
 [**ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV1**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV1) | **PUT** /1/object/ezsignsignature/{pkiEzsignsignatureID} | Edit an existing Ezsignsignature
-[**ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV1**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV1) | **GET** /1/object/ezsignsignature/{pkiEzsignsignatureID} | Retrieve an existing Ezsignsignature
+[**ObjectEzsignsignatureAPI_ezsignsignatureGetEzsignsignaturesAutomaticV1**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureGetEzsignsignaturesAutomaticV1) | **GET** /1/object/ezsignsignature/getEzsignsignaturesAutomatic | Retrieve all automatic Ezsignsignatures
 [**ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV2**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV2) | **GET** /2/object/ezsignsignature/{pkiEzsignsignatureID} | Retrieve an existing Ezsignsignature
 [**ObjectEzsignsignatureAPI_ezsignsignatureSignV1**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureSignV1) | **POST** /1/object/ezsignsignature/{pkiEzsignsignatureID}/sign | Sign the Ezsignsignature
 
@@ -138,24 +138,23 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV1**
+# **ObjectEzsignsignatureAPI_ezsignsignatureGetEzsignsignaturesAutomaticV1**
 ```c
-// Retrieve an existing Ezsignsignature
+// Retrieve all automatic Ezsignsignatures
 //
-// 
+// Return all the Ezsignsignatures that can be signed by the current user
 //
-ezsignsignature_get_object_v1_response_t* ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV1(apiClient_t *apiClient, int pkiEzsignsignatureID);
+ezsignsignature_get_ezsignsignatures_automatic_v1_response_t* ObjectEzsignsignatureAPI_ezsignsignatureGetEzsignsignaturesAutomaticV1(apiClient_t *apiClient);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignsignatureID** | **int** |  | 
 
 ### Return type
 
-[ezsignsignature_get_object_v1_response_t](ezsignsignature_get_object_v1_response.md) *
+[ezsignsignature_get_ezsignsignatures_automatic_v1_response_t](ezsignsignature_get_ezsignsignatures_automatic_v1_response.md) *
 
 
 ### Authorization

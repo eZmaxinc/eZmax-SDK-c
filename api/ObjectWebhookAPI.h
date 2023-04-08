@@ -16,7 +16,6 @@
 #include "../model/webhook_edit_object_v1_response.h"
 #include "../model/webhook_get_history_v1_response.h"
 #include "../model/webhook_get_list_v1_response.h"
-#include "../model/webhook_get_object_v1_response.h"
 #include "../model/webhook_get_object_v2_response.h"
 #include "../model/webhook_test_v1_response.h"
 
@@ -68,14 +67,6 @@ ObjectWebhookAPI_webhookGetHistoryV1(apiClient_t *apiClient, int pkiWebhookID , 
 //
 webhook_get_list_v1_response_t*
 ObjectWebhookAPI_webhookGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_webhookGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter );
-
-
-// Retrieve an existing Webhook
-//
-// 
-//
-webhook_get_object_v1_response_t*
-ObjectWebhookAPI_webhookGetObjectV1(apiClient_t *apiClient, int pkiWebhookID );
 
 
 // Retrieve an existing Webhook

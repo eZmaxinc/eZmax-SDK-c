@@ -55,7 +55,7 @@ branding_response_compound_all_of_t *branding_response_compound_all_of_parseFrom
     // branding_response_compound_all_of->s_branding_logourl
     cJSON *s_branding_logourl = cJSON_GetObjectItemCaseSensitive(branding_response_compound_all_ofJSON, "sBrandingLogourl");
     if (s_branding_logourl) { 
-    if(!cJSON_IsString(s_branding_logourl))
+    if(!cJSON_IsString(s_branding_logourl) && !cJSON_IsNull(s_branding_logourl))
     {
     goto end; //String
     }
@@ -63,7 +63,7 @@ branding_response_compound_all_of_t *branding_response_compound_all_of_parseFrom
 
 
     branding_response_compound_all_of_local_var = branding_response_compound_all_of_create (
-        s_branding_logourl ? strdup(s_branding_logourl->valuestring) : NULL
+        s_branding_logourl && !cJSON_IsNull(s_branding_logourl) ? strdup(s_branding_logourl->valuestring) : NULL
         );
 
     return branding_response_compound_all_of_local_var;

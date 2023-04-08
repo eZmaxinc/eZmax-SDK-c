@@ -193,7 +193,7 @@ common_auditdetail_t *common_auditdetail_parseFromJSON(cJSON *common_auditdetail
     // common_auditdetail->s_apikey_description_x
     cJSON *s_apikey_description_x = cJSON_GetObjectItemCaseSensitive(common_auditdetailJSON, "sApikeyDescriptionX");
     if (s_apikey_description_x) { 
-    if(!cJSON_IsString(s_apikey_description_x))
+    if(!cJSON_IsString(s_apikey_description_x) && !cJSON_IsNull(s_apikey_description_x))
     {
     goto end; //String
     }
@@ -218,7 +218,7 @@ common_auditdetail_t *common_auditdetail_parseFromJSON(cJSON *common_auditdetail
         strdup(s_user_loginname->valuestring),
         strdup(s_user_lastname->valuestring),
         strdup(s_user_firstname->valuestring),
-        s_apikey_description_x ? strdup(s_apikey_description_x->valuestring) : NULL,
+        s_apikey_description_x && !cJSON_IsNull(s_apikey_description_x) ? strdup(s_apikey_description_x->valuestring) : NULL,
         strdup(dt_auditdetail_date->valuestring)
         );
 

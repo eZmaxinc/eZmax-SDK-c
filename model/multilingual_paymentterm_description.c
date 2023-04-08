@@ -69,7 +69,7 @@ multilingual_paymentterm_description_t *multilingual_paymentterm_description_par
     // multilingual_paymentterm_description->s_paymentterm_description1
     cJSON *s_paymentterm_description1 = cJSON_GetObjectItemCaseSensitive(multilingual_paymentterm_descriptionJSON, "sPaymenttermDescription1");
     if (s_paymentterm_description1) { 
-    if(!cJSON_IsString(s_paymentterm_description1))
+    if(!cJSON_IsString(s_paymentterm_description1) && !cJSON_IsNull(s_paymentterm_description1))
     {
     goto end; //String
     }
@@ -78,7 +78,7 @@ multilingual_paymentterm_description_t *multilingual_paymentterm_description_par
     // multilingual_paymentterm_description->s_paymentterm_description2
     cJSON *s_paymentterm_description2 = cJSON_GetObjectItemCaseSensitive(multilingual_paymentterm_descriptionJSON, "sPaymenttermDescription2");
     if (s_paymentterm_description2) { 
-    if(!cJSON_IsString(s_paymentterm_description2))
+    if(!cJSON_IsString(s_paymentterm_description2) && !cJSON_IsNull(s_paymentterm_description2))
     {
     goto end; //String
     }
@@ -86,8 +86,8 @@ multilingual_paymentterm_description_t *multilingual_paymentterm_description_par
 
 
     multilingual_paymentterm_description_local_var = multilingual_paymentterm_description_create (
-        s_paymentterm_description1 ? strdup(s_paymentterm_description1->valuestring) : NULL,
-        s_paymentterm_description2 ? strdup(s_paymentterm_description2->valuestring) : NULL
+        s_paymentterm_description1 && !cJSON_IsNull(s_paymentterm_description1) ? strdup(s_paymentterm_description1->valuestring) : NULL,
+        s_paymentterm_description2 && !cJSON_IsNull(s_paymentterm_description2) ? strdup(s_paymentterm_description2->valuestring) : NULL
         );
 
     return multilingual_paymentterm_description_local_var;

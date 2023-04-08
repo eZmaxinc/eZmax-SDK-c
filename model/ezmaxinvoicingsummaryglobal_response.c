@@ -463,7 +463,7 @@ ezmaxinvoicingsummaryglobal_response_t *ezmaxinvoicingsummaryglobal_response_par
     // ezmaxinvoicingsummaryglobal_response->d_ezmaxinvoicingsummaryglobal_representative
     cJSON *d_ezmaxinvoicingsummaryglobal_representative = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryglobal_responseJSON, "dEzmaxinvoicingsummaryglobalRepresentative");
     if (d_ezmaxinvoicingsummaryglobal_representative) { 
-    if(!cJSON_IsString(d_ezmaxinvoicingsummaryglobal_representative))
+    if(!cJSON_IsString(d_ezmaxinvoicingsummaryglobal_representative) && !cJSON_IsNull(d_ezmaxinvoicingsummaryglobal_representative))
     {
     goto end; //String
     }
@@ -472,7 +472,7 @@ ezmaxinvoicingsummaryglobal_response_t *ezmaxinvoicingsummaryglobal_response_par
     // ezmaxinvoicingsummaryglobal_response->d_ezmaxinvoicingsummaryglobal_partner
     cJSON *d_ezmaxinvoicingsummaryglobal_partner = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryglobal_responseJSON, "dEzmaxinvoicingsummaryglobalPartner");
     if (d_ezmaxinvoicingsummaryglobal_partner) { 
-    if(!cJSON_IsString(d_ezmaxinvoicingsummaryglobal_partner))
+    if(!cJSON_IsString(d_ezmaxinvoicingsummaryglobal_partner) && !cJSON_IsNull(d_ezmaxinvoicingsummaryglobal_partner))
     {
     goto end; //String
     }
@@ -481,7 +481,7 @@ ezmaxinvoicingsummaryglobal_response_t *ezmaxinvoicingsummaryglobal_response_par
     // ezmaxinvoicingsummaryglobal_response->d_ezmaxinvoicingsummaryglobal_net
     cJSON *d_ezmaxinvoicingsummaryglobal_net = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryglobal_responseJSON, "dEzmaxinvoicingsummaryglobalNet");
     if (d_ezmaxinvoicingsummaryglobal_net) { 
-    if(!cJSON_IsString(d_ezmaxinvoicingsummaryglobal_net))
+    if(!cJSON_IsString(d_ezmaxinvoicingsummaryglobal_net) && !cJSON_IsNull(d_ezmaxinvoicingsummaryglobal_net))
     {
     goto end; //String
     }
@@ -527,9 +527,9 @@ ezmaxinvoicingsummaryglobal_response_t *ezmaxinvoicingsummaryglobal_response_par
         strdup(d_ezmaxinvoicingsummaryglobal_rebatepercent->valuestring),
         strdup(d_ezmaxinvoicingsummaryglobal_rebatetotal->valuestring),
         strdup(d_ezmaxinvoicingsummaryglobal_total->valuestring),
-        d_ezmaxinvoicingsummaryglobal_representative ? strdup(d_ezmaxinvoicingsummaryglobal_representative->valuestring) : NULL,
-        d_ezmaxinvoicingsummaryglobal_partner ? strdup(d_ezmaxinvoicingsummaryglobal_partner->valuestring) : NULL,
-        d_ezmaxinvoicingsummaryglobal_net ? strdup(d_ezmaxinvoicingsummaryglobal_net->valuestring) : NULL,
+        d_ezmaxinvoicingsummaryglobal_representative && !cJSON_IsNull(d_ezmaxinvoicingsummaryglobal_representative) ? strdup(d_ezmaxinvoicingsummaryglobal_representative->valuestring) : NULL,
+        d_ezmaxinvoicingsummaryglobal_partner && !cJSON_IsNull(d_ezmaxinvoicingsummaryglobal_partner) ? strdup(d_ezmaxinvoicingsummaryglobal_partner->valuestring) : NULL,
+        d_ezmaxinvoicingsummaryglobal_net && !cJSON_IsNull(d_ezmaxinvoicingsummaryglobal_net) ? strdup(d_ezmaxinvoicingsummaryglobal_net->valuestring) : NULL,
         b_ezmaxinvoicingsummaryglobal_adjustment->valueint,
         strdup(t_ezmaxproduct_help_x->valuestring)
         );

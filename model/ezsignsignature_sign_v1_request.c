@@ -66,7 +66,7 @@ ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_parseFromJSON
     // ezsignsignature_sign_v1_request->s_value
     cJSON *s_value = cJSON_GetObjectItemCaseSensitive(ezsignsignature_sign_v1_requestJSON, "sValue");
     if (s_value) { 
-    if(!cJSON_IsString(s_value))
+    if(!cJSON_IsString(s_value) && !cJSON_IsNull(s_value))
     {
     goto end; //String
     }
@@ -86,7 +86,7 @@ ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_parseFromJSON
 
 
     ezsignsignature_sign_v1_request_local_var = ezsignsignature_sign_v1_request_create (
-        s_value ? strdup(s_value->valuestring) : NULL,
+        s_value && !cJSON_IsNull(s_value) ? strdup(s_value->valuestring) : NULL,
         b_is_automatic->valueint
         );
 

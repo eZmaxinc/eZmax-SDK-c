@@ -51,7 +51,8 @@ Best Regards.
 
 Mary",
        // false, not to have infinite recursion
-      instantiate_common_audit(0)
+      instantiate_common_audit(0),
+      "{"ID": 1234, "TAGS": ["tag1", "tag2", "tag3"]}"
     );
   } else {
     ezsignfolder_get_object_v1_response_m_payload = ezsignfolder_get_object_v1_response_m_payload_create(
@@ -82,7 +83,8 @@ Could you sign it before Monday please.
 Best Regards.
 
 Mary",
-      NULL
+      NULL,
+      "{"ID": 1234, "TAGS": ["tag1", "tag2", "tag3"]}"
     );
   }
 

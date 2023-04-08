@@ -112,7 +112,7 @@ ezsignfolder_send_v3_request_t *ezsignfolder_send_v3_request_parseFromJSON(cJSON
     // ezsignfolder_send_v3_request->dt_ezsignfolder_delayedsenddate
     cJSON *dt_ezsignfolder_delayedsenddate = cJSON_GetObjectItemCaseSensitive(ezsignfolder_send_v3_requestJSON, "dtEzsignfolderDelayedsenddate");
     if (dt_ezsignfolder_delayedsenddate) { 
-    if(!cJSON_IsString(dt_ezsignfolder_delayedsenddate))
+    if(!cJSON_IsString(dt_ezsignfolder_delayedsenddate) && !cJSON_IsNull(dt_ezsignfolder_delayedsenddate))
     {
     goto end; //String
     }
@@ -149,7 +149,7 @@ ezsignfolder_send_v3_request_t *ezsignfolder_send_v3_request_parseFromJSON(cJSON
 
     ezsignfolder_send_v3_request_local_var = ezsignfolder_send_v3_request_create (
         strdup(t_ezsignfolder_message->valuestring),
-        dt_ezsignfolder_delayedsenddate ? strdup(dt_ezsignfolder_delayedsenddate->valuestring) : NULL,
+        dt_ezsignfolder_delayedsenddate && !cJSON_IsNull(dt_ezsignfolder_delayedsenddate) ? strdup(dt_ezsignfolder_delayedsenddate->valuestring) : NULL,
         a_fki_ezsignfoldersignerassociation_idList
         );
 

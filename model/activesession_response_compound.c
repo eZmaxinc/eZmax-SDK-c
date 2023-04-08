@@ -5,13 +5,13 @@
 
 
 char* e_activesession_usertypeactivesession_response_compound_ToString(ezmax_api_definition__full_activesession_response_compound__e e_activesession_usertype) {
-    char* e_activesession_usertypeArray[] =  { "NULL", "AgentBroker", "Assistant", "EzsignUser", "Normal" };
+    char* e_activesession_usertypeArray[] =  { "NULL", "AgentBroker", "Assistant", "EzsignSigner", "EzsignUser", "Normal" };
 	return e_activesession_usertypeArray[e_activesession_usertype];
 }
 
 ezmax_api_definition__full_activesession_response_compound__e e_activesession_usertypeactivesession_response_compound_FromString(char* e_activesession_usertype){
     int stringToReturn = 0;
-    char *e_activesession_usertypeArray[] =  { "NULL", "AgentBroker", "Assistant", "EzsignUser", "Normal" };
+    char *e_activesession_usertypeArray[] =  { "NULL", "AgentBroker", "Assistant", "EzsignSigner", "EzsignUser", "Normal" };
     size_t sizeofArray = sizeof(e_activesession_usertypeArray) / sizeof(e_activesession_usertypeArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(e_activesession_usertype, e_activesession_usertypeArray[stringToReturn]) == 0) {

@@ -343,7 +343,7 @@ custom_webhook_response_t *custom_webhook_response_parseFromJSON(cJSON *custom_w
     // custom_webhook_response->s_ezsignfoldertype_name_x
     cJSON *s_ezsignfoldertype_name_x = cJSON_GetObjectItemCaseSensitive(custom_webhook_responseJSON, "sEzsignfoldertypeNameX");
     if (s_ezsignfoldertype_name_x) { 
-    if(!cJSON_IsString(s_ezsignfoldertype_name_x))
+    if(!cJSON_IsString(s_ezsignfoldertype_name_x) && !cJSON_IsNull(s_ezsignfoldertype_name_x))
     {
     goto end; //String
     }
@@ -422,7 +422,7 @@ custom_webhook_response_t *custom_webhook_response_parseFromJSON(cJSON *custom_w
         pki_webhook_id->valuedouble,
         strdup(s_webhook_description->valuestring),
         fki_ezsignfoldertype_id ? fki_ezsignfoldertype_id->valuedouble : 0,
-        s_ezsignfoldertype_name_x ? strdup(s_ezsignfoldertype_name_x->valuestring) : NULL,
+        s_ezsignfoldertype_name_x && !cJSON_IsNull(s_ezsignfoldertype_name_x) ? strdup(s_ezsignfoldertype_name_x->valuestring) : NULL,
         e_webhook_module_local_nonprim,
         e_webhook_ezsignevent ? e_webhook_ezsignevent_local_nonprim : NULL,
         e_webhook_managementevent ? e_webhook_managementevent_local_nonprim : NULL,

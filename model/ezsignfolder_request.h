@@ -34,6 +34,7 @@ typedef struct ezsignfolder_request_t {
     char *s_ezsignfolder_description; // string
     char *t_ezsignfolder_note; // string
     field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency; // custom
+    char *s_ezsignfolder_externalid; // string
 
 } ezsignfolder_request_t;
 
@@ -43,7 +44,8 @@ ezsignfolder_request_t *ezsignfolder_request_create(
     int fki_ezsigntsarequirement_id,
     char *s_ezsignfolder_description,
     char *t_ezsignfolder_note,
-    field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency
+    field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency,
+    char *s_ezsignfolder_externalid
 );
 
 void ezsignfolder_request_free(ezsignfolder_request_t *ezsignfolder_request);

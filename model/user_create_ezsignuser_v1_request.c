@@ -240,7 +240,7 @@ user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_parseFrom
     // user_create_ezsignuser_v1_request->s_phone_extension
     cJSON *s_phone_extension = cJSON_GetObjectItemCaseSensitive(user_create_ezsignuser_v1_requestJSON, "sPhoneExtension");
     if (s_phone_extension) { 
-    if(!cJSON_IsString(s_phone_extension))
+    if(!cJSON_IsString(s_phone_extension) && !cJSON_IsNull(s_phone_extension))
     {
     goto end; //String
     }
@@ -255,7 +255,7 @@ user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_parseFrom
         strdup(s_phone_region->valuestring),
         strdup(s_phone_exchange->valuestring),
         strdup(s_phone_number->valuestring),
-        s_phone_extension ? strdup(s_phone_extension->valuestring) : NULL
+        s_phone_extension && !cJSON_IsNull(s_phone_extension) ? strdup(s_phone_extension->valuestring) : NULL
         );
 
     return user_create_ezsignuser_v1_request_local_var;

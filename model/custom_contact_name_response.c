@@ -83,7 +83,7 @@ custom_contact_name_response_t *custom_contact_name_response_parseFromJSON(cJSON
     // custom_contact_name_response->s_contact_firstname
     cJSON *s_contact_firstname = cJSON_GetObjectItemCaseSensitive(custom_contact_name_responseJSON, "sContactFirstname");
     if (s_contact_firstname) { 
-    if(!cJSON_IsString(s_contact_firstname))
+    if(!cJSON_IsString(s_contact_firstname) && !cJSON_IsNull(s_contact_firstname))
     {
     goto end; //String
     }
@@ -92,7 +92,7 @@ custom_contact_name_response_t *custom_contact_name_response_parseFromJSON(cJSON
     // custom_contact_name_response->s_contact_lastname
     cJSON *s_contact_lastname = cJSON_GetObjectItemCaseSensitive(custom_contact_name_responseJSON, "sContactLastname");
     if (s_contact_lastname) { 
-    if(!cJSON_IsString(s_contact_lastname))
+    if(!cJSON_IsString(s_contact_lastname) && !cJSON_IsNull(s_contact_lastname))
     {
     goto end; //String
     }
@@ -101,7 +101,7 @@ custom_contact_name_response_t *custom_contact_name_response_parseFromJSON(cJSON
     // custom_contact_name_response->s_contact_company
     cJSON *s_contact_company = cJSON_GetObjectItemCaseSensitive(custom_contact_name_responseJSON, "sContactCompany");
     if (s_contact_company) { 
-    if(!cJSON_IsString(s_contact_company))
+    if(!cJSON_IsString(s_contact_company) && !cJSON_IsNull(s_contact_company))
     {
     goto end; //String
     }
@@ -109,9 +109,9 @@ custom_contact_name_response_t *custom_contact_name_response_parseFromJSON(cJSON
 
 
     custom_contact_name_response_local_var = custom_contact_name_response_create (
-        s_contact_firstname ? strdup(s_contact_firstname->valuestring) : NULL,
-        s_contact_lastname ? strdup(s_contact_lastname->valuestring) : NULL,
-        s_contact_company ? strdup(s_contact_company->valuestring) : NULL
+        s_contact_firstname && !cJSON_IsNull(s_contact_firstname) ? strdup(s_contact_firstname->valuestring) : NULL,
+        s_contact_lastname && !cJSON_IsNull(s_contact_lastname) ? strdup(s_contact_lastname->valuestring) : NULL,
+        s_contact_company && !cJSON_IsNull(s_contact_company) ? strdup(s_contact_company->valuestring) : NULL
         );
 
     return custom_contact_name_response_local_var;

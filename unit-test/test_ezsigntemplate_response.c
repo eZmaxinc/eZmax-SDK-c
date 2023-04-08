@@ -16,6 +16,7 @@
 #include "../model/ezsigntemplate_response.h"
 ezsigntemplate_response_t* instantiate_ezsigntemplate_response(int include_optional);
 
+#include "test_common_audit.c"
 
 
 ezsigntemplate_response_t* instantiate_ezsigntemplate_response(int include_optional) {
@@ -29,7 +30,9 @@ ezsigntemplate_response_t* instantiate_ezsigntemplate_response(int include_optio
       "English",
       "Standard Contract",
       1,
-      "Default"
+      "Default",
+       // false, not to have infinite recursion
+      instantiate_common_audit(0)
     );
   } else {
     ezsigntemplate_response = ezsigntemplate_response_create(
@@ -40,7 +43,8 @@ ezsigntemplate_response_t* instantiate_ezsigntemplate_response(int include_optio
       "English",
       "Standard Contract",
       1,
-      "Default"
+      "Default",
+      NULL
     );
   }
 

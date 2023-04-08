@@ -14,6 +14,7 @@ ezsigntemplate_get_object_v1_response_m_payload_t *ezsigntemplate_get_object_v1_
     char *s_ezsigntemplate_description,
     int b_ezsigntemplate_adminonly,
     char *s_ezsignfoldertype_name_x,
+    common_audit_t *obj_audit,
     ezsigntemplatedocument_response_t *obj_ezsigntemplatedocument,
     list_t *a_obj_ezsigntemplatesigner
     ) {
@@ -29,6 +30,7 @@ ezsigntemplate_get_object_v1_response_m_payload_t *ezsigntemplate_get_object_v1_
     ezsigntemplate_get_object_v1_response_m_payload_local_var->s_ezsigntemplate_description = s_ezsigntemplate_description;
     ezsigntemplate_get_object_v1_response_m_payload_local_var->b_ezsigntemplate_adminonly = b_ezsigntemplate_adminonly;
     ezsigntemplate_get_object_v1_response_m_payload_local_var->s_ezsignfoldertype_name_x = s_ezsignfoldertype_name_x;
+    ezsigntemplate_get_object_v1_response_m_payload_local_var->obj_audit = obj_audit;
     ezsigntemplate_get_object_v1_response_m_payload_local_var->obj_ezsigntemplatedocument = obj_ezsigntemplatedocument;
     ezsigntemplate_get_object_v1_response_m_payload_local_var->a_obj_ezsigntemplatesigner = a_obj_ezsigntemplatesigner;
 
@@ -52,6 +54,10 @@ void ezsigntemplate_get_object_v1_response_m_payload_free(ezsigntemplate_get_obj
     if (ezsigntemplate_get_object_v1_response_m_payload->s_ezsignfoldertype_name_x) {
         free(ezsigntemplate_get_object_v1_response_m_payload->s_ezsignfoldertype_name_x);
         ezsigntemplate_get_object_v1_response_m_payload->s_ezsignfoldertype_name_x = NULL;
+    }
+    if (ezsigntemplate_get_object_v1_response_m_payload->obj_audit) {
+        common_audit_free(ezsigntemplate_get_object_v1_response_m_payload->obj_audit);
+        ezsigntemplate_get_object_v1_response_m_payload->obj_audit = NULL;
     }
     if (ezsigntemplate_get_object_v1_response_m_payload->obj_ezsigntemplatedocument) {
         ezsigntemplatedocument_response_free(ezsigntemplate_get_object_v1_response_m_payload->obj_ezsigntemplatedocument);
@@ -141,6 +147,20 @@ cJSON *ezsigntemplate_get_object_v1_response_m_payload_convertToJSON(ezsigntempl
     }
 
 
+    // ezsigntemplate_get_object_v1_response_m_payload->obj_audit
+    if (!ezsigntemplate_get_object_v1_response_m_payload->obj_audit) {
+        goto fail;
+    }
+    cJSON *obj_audit_local_JSON = common_audit_convertToJSON(ezsigntemplate_get_object_v1_response_m_payload->obj_audit);
+    if(obj_audit_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objAudit", obj_audit_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
+
     // ezsigntemplate_get_object_v1_response_m_payload->obj_ezsigntemplatedocument
     if(ezsigntemplate_get_object_v1_response_m_payload->obj_ezsigntemplatedocument) {
     cJSON *obj_ezsigntemplatedocument_local_JSON = ezsigntemplatedocument_response_convertToJSON(ezsigntemplate_get_object_v1_response_m_payload->obj_ezsigntemplatedocument);
@@ -185,6 +205,9 @@ fail:
 ezsigntemplate_get_object_v1_response_m_payload_t *ezsigntemplate_get_object_v1_response_m_payload_parseFromJSON(cJSON *ezsigntemplate_get_object_v1_response_m_payloadJSON){
 
     ezsigntemplate_get_object_v1_response_m_payload_t *ezsigntemplate_get_object_v1_response_m_payload_local_var = NULL;
+
+    // define the local variable for ezsigntemplate_get_object_v1_response_m_payload->obj_audit
+    common_audit_t *obj_audit_local_nonprim = NULL;
 
     // define the local variable for ezsigntemplate_get_object_v1_response_m_payload->obj_ezsigntemplatedocument
     ezsigntemplatedocument_response_t *obj_ezsigntemplatedocument_local_nonprim = NULL;
@@ -285,6 +308,15 @@ ezsigntemplate_get_object_v1_response_m_payload_t *ezsigntemplate_get_object_v1_
     goto end; //String
     }
 
+    // ezsigntemplate_get_object_v1_response_m_payload->obj_audit
+    cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(ezsigntemplate_get_object_v1_response_m_payloadJSON, "objAudit");
+    if (!obj_audit) {
+        goto end;
+    }
+
+    
+    obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
+
     // ezsigntemplate_get_object_v1_response_m_payload->obj_ezsigntemplatedocument
     cJSON *obj_ezsigntemplatedocument = cJSON_GetObjectItemCaseSensitive(ezsigntemplate_get_object_v1_response_m_payloadJSON, "objEzsigntemplatedocument");
     if (obj_ezsigntemplatedocument) { 
@@ -325,12 +357,17 @@ ezsigntemplate_get_object_v1_response_m_payload_t *ezsigntemplate_get_object_v1_
         strdup(s_ezsigntemplate_description->valuestring),
         b_ezsigntemplate_adminonly->valueint,
         strdup(s_ezsignfoldertype_name_x->valuestring),
+        obj_audit_local_nonprim,
         obj_ezsigntemplatedocument ? obj_ezsigntemplatedocument_local_nonprim : NULL,
         a_obj_ezsigntemplatesignerList
         );
 
     return ezsigntemplate_get_object_v1_response_m_payload_local_var;
 end:
+    if (obj_audit_local_nonprim) {
+        common_audit_free(obj_audit_local_nonprim);
+        obj_audit_local_nonprim = NULL;
+    }
     if (obj_ezsigntemplatedocument_local_nonprim) {
         ezsigntemplatedocument_response_free(obj_ezsigntemplatedocument_local_nonprim);
         obj_ezsigntemplatedocument_local_nonprim = NULL;

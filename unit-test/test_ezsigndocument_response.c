@@ -41,8 +41,10 @@ ezsigndocument_response_t* instantiate_ezsigndocument_response(int include_optio
       "The conditions in the contract are different than those discuted",
       "012345678901234567890123456789AB",
       true,
+      true,
        // false, not to have infinite recursion
-      instantiate_common_audit(0)
+      instantiate_common_audit(0),
+      "{"ID": 1234, "TAGS": ["tag1", "tag2", "tag3"]}"
     );
   } else {
     ezsigndocument_response = ezsigndocument_response_create(
@@ -64,7 +66,9 @@ ezsigndocument_response_t* instantiate_ezsigndocument_response(int include_optio
       "The conditions in the contract are different than those discuted",
       "012345678901234567890123456789AB",
       true,
-      NULL
+      true,
+      NULL,
+      "{"ID": 1234, "TAGS": ["tag1", "tag2", "tag3"]}"
     );
   }
 

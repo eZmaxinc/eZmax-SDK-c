@@ -22,13 +22,13 @@ ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTSOURCE
     return 0;
 }
 char* e_ezsigndocument_formatezsigndocument_request_compound_ToString(ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_e e_ezsigndocument_format) {
-    char* e_ezsigndocument_formatArray[] =  { "NULL", "Pdf" };
+    char* e_ezsigndocument_formatArray[] =  { "NULL", "Pdf", "Doc", "Docx", "Xls", "Xlsx", "Ppt", "Pptx" };
 	return e_ezsigndocument_formatArray[e_ezsigndocument_format];
 }
 
 ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_e e_ezsigndocument_formatezsigndocument_request_compound_FromString(char* e_ezsigndocument_format){
     int stringToReturn = 0;
-    char *e_ezsigndocument_formatArray[] =  { "NULL", "Pdf" };
+    char *e_ezsigndocument_formatArray[] =  { "NULL", "Pdf", "Doc", "Docx", "Xls", "Xlsx", "Ppt", "Pptx" };
     size_t sizeofArray = sizeof(e_ezsigndocument_formatArray) / sizeof(e_ezsigndocument_formatArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(e_ezsigndocument_format, e_ezsigndocument_formatArray[stringToReturn]) == 0) {
@@ -70,7 +70,8 @@ ezsigndocument_request_compound_t *ezsigndocument_request_compound_create(
     char *s_ezsigndocument_password,
     ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORM_e e_ezsigndocument_form,
     char *dt_ezsigndocument_duedate,
-    char *s_ezsigndocument_name
+    char *s_ezsigndocument_name,
+    char *s_ezsigndocument_externalid
     ) {
     ezsigndocument_request_compound_t *ezsigndocument_request_compound_local_var = malloc(sizeof(ezsigndocument_request_compound_t));
     if (!ezsigndocument_request_compound_local_var) {
@@ -90,6 +91,7 @@ ezsigndocument_request_compound_t *ezsigndocument_request_compound_create(
     ezsigndocument_request_compound_local_var->e_ezsigndocument_form = e_ezsigndocument_form;
     ezsigndocument_request_compound_local_var->dt_ezsigndocument_duedate = dt_ezsigndocument_duedate;
     ezsigndocument_request_compound_local_var->s_ezsigndocument_name = s_ezsigndocument_name;
+    ezsigndocument_request_compound_local_var->s_ezsigndocument_externalid = s_ezsigndocument_externalid;
 
     return ezsigndocument_request_compound_local_var;
 }
@@ -119,6 +121,10 @@ void ezsigndocument_request_compound_free(ezsigndocument_request_compound_t *ezs
     if (ezsigndocument_request_compound->s_ezsigndocument_name) {
         free(ezsigndocument_request_compound->s_ezsigndocument_name);
         ezsigndocument_request_compound->s_ezsigndocument_name = NULL;
+    }
+    if (ezsigndocument_request_compound->s_ezsigndocument_externalid) {
+        free(ezsigndocument_request_compound->s_ezsigndocument_externalid);
+        ezsigndocument_request_compound->s_ezsigndocument_externalid = NULL;
     }
     free(ezsigndocument_request_compound);
 }
@@ -245,6 +251,14 @@ cJSON *ezsigndocument_request_compound_convertToJSON(ezsigndocument_request_comp
     goto fail; //String
     }
 
+
+    // ezsigndocument_request_compound->s_ezsigndocument_externalid
+    if(ezsigndocument_request_compound->s_ezsigndocument_externalid) {
+    if(cJSON_AddStringToObject(item, "sEzsigndocumentExternalid", ezsigndocument_request_compound->s_ezsigndocument_externalid) == NULL) {
+    goto fail; //String
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -345,7 +359,7 @@ ezsigndocument_request_compound_t *ezsigndocument_request_compound_parseFromJSON
     // ezsigndocument_request_compound->s_ezsigndocument_url
     cJSON *s_ezsigndocument_url = cJSON_GetObjectItemCaseSensitive(ezsigndocument_request_compoundJSON, "sEzsigndocumentUrl");
     if (s_ezsigndocument_url) { 
-    if(!cJSON_IsString(s_ezsigndocument_url))
+    if(!cJSON_IsString(s_ezsigndocument_url) && !cJSON_IsNull(s_ezsigndocument_url))
     {
     goto end; //String
     }
@@ -363,7 +377,7 @@ ezsigndocument_request_compound_t *ezsigndocument_request_compound_parseFromJSON
     // ezsigndocument_request_compound->s_ezsigndocument_password
     cJSON *s_ezsigndocument_password = cJSON_GetObjectItemCaseSensitive(ezsigndocument_request_compoundJSON, "sEzsigndocumentPassword");
     if (s_ezsigndocument_password) { 
-    if(!cJSON_IsString(s_ezsigndocument_password))
+    if(!cJSON_IsString(s_ezsigndocument_password) && !cJSON_IsNull(s_ezsigndocument_password))
     {
     goto end; //String
     }
@@ -404,6 +418,15 @@ ezsigndocument_request_compound_t *ezsigndocument_request_compound_parseFromJSON
     goto end; //String
     }
 
+    // ezsigndocument_request_compound->s_ezsigndocument_externalid
+    cJSON *s_ezsigndocument_externalid = cJSON_GetObjectItemCaseSensitive(ezsigndocument_request_compoundJSON, "sEzsigndocumentExternalid");
+    if (s_ezsigndocument_externalid) { 
+    if(!cJSON_IsString(s_ezsigndocument_externalid) && !cJSON_IsNull(s_ezsigndocument_externalid))
+    {
+    goto end; //String
+    }
+    }
+
 
     ezsigndocument_request_compound_local_var = ezsigndocument_request_compound_create (
         pki_ezsigndocument_id ? pki_ezsigndocument_id->valuedouble : 0,
@@ -414,12 +437,13 @@ ezsigndocument_request_compound_t *ezsigndocument_request_compound_parseFromJSON
         e_ezsigndocument_sourceVariable,
         e_ezsigndocument_format ? e_ezsigndocument_formatVariable : -1,
         s_ezsigndocument_base64 ? strdup(s_ezsigndocument_base64->valuestring) : NULL,
-        s_ezsigndocument_url ? strdup(s_ezsigndocument_url->valuestring) : NULL,
+        s_ezsigndocument_url && !cJSON_IsNull(s_ezsigndocument_url) ? strdup(s_ezsigndocument_url->valuestring) : NULL,
         b_ezsigndocument_forcerepair ? b_ezsigndocument_forcerepair->valueint : 0,
-        s_ezsigndocument_password ? strdup(s_ezsigndocument_password->valuestring) : NULL,
+        s_ezsigndocument_password && !cJSON_IsNull(s_ezsigndocument_password) ? strdup(s_ezsigndocument_password->valuestring) : NULL,
         e_ezsigndocument_form ? e_ezsigndocument_formVariable : -1,
         strdup(dt_ezsigndocument_duedate->valuestring),
-        strdup(s_ezsigndocument_name->valuestring)
+        strdup(s_ezsigndocument_name->valuestring),
+        s_ezsigndocument_externalid && !cJSON_IsNull(s_ezsigndocument_externalid) ? strdup(s_ezsigndocument_externalid->valuestring) : NULL
         );
 
     return ezsigndocument_request_compound_local_var;

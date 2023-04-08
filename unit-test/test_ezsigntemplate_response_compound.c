@@ -16,6 +16,7 @@
 #include "../model/ezsigntemplate_response_compound.h"
 ezsigntemplate_response_compound_t* instantiate_ezsigntemplate_response_compound(int include_optional);
 
+#include "test_common_audit.c"
 #include "test_ezsigntemplatedocument_response.c"
 
 
@@ -32,6 +33,8 @@ ezsigntemplate_response_compound_t* instantiate_ezsigntemplate_response_compound
       1,
       "Default",
        // false, not to have infinite recursion
+      instantiate_common_audit(0),
+       // false, not to have infinite recursion
       instantiate_ezsigntemplatedocument_response(0),
       list_createList()
     );
@@ -45,6 +48,7 @@ ezsigntemplate_response_compound_t* instantiate_ezsigntemplate_response_compound
       "Standard Contract",
       1,
       "Default",
+      NULL,
       NULL,
       list_createList()
     );

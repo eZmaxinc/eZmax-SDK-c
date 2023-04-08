@@ -161,13 +161,13 @@ end:
 // Functions for enum EORDERBY for ObjectPaymenttermAPI_paymenttermGetListV1
 
 static char* paymenttermGetListV1_EORDERBY_ToString(ezmax_api_definition__full_paymenttermGetListV1_eOrderBy_e EORDERBY){
-    char *EORDERBYArray[] =  { "NULL", "pkiPaymenttermID_ASC", "pkiPaymenttermID_DESC", "sPaymenttermCode_ASC", "sPaymenttermCode_DESC", "sPaymenttermDescriptionX_ASC", "sPaymenttermDescriptionX_DESC", "bPaymenttermIsactive_ASC", "bPaymenttermIsactive_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiPaymenttermID_ASC", "pkiPaymenttermID_DESC", "sPaymenttermCode_ASC", "sPaymenttermCode_DESC", "ePaymenttermType_ASC", "ePaymenttermType_DESC", "iPaymenttermDay_ASC", "iPaymenttermDay_DESC", "sPaymenttermDescriptionX_ASC", "sPaymenttermDescriptionX_DESC", "bPaymenttermIsactive_ASC", "bPaymenttermIsactive_DESC" };
     return EORDERBYArray[EORDERBY];
 }
 
 static ezmax_api_definition__full_paymenttermGetListV1_eOrderBy_e paymenttermGetListV1_EORDERBY_FromString(char* EORDERBY){
     int stringToReturn = 0;
-    char *EORDERBYArray[] =  { "NULL", "pkiPaymenttermID_ASC", "pkiPaymenttermID_DESC", "sPaymenttermCode_ASC", "sPaymenttermCode_DESC", "sPaymenttermDescriptionX_ASC", "sPaymenttermDescriptionX_DESC", "bPaymenttermIsactive_ASC", "bPaymenttermIsactive_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiPaymenttermID_ASC", "pkiPaymenttermID_DESC", "sPaymenttermCode_ASC", "sPaymenttermCode_DESC", "ePaymenttermType_ASC", "ePaymenttermType_DESC", "iPaymenttermDay_ASC", "iPaymenttermDay_DESC", "sPaymenttermDescriptionX_ASC", "sPaymenttermDescriptionX_DESC", "bPaymenttermIsactive_ASC", "bPaymenttermIsactive_DESC" };
     size_t sizeofArray = sizeof(EORDERBYArray) / sizeof(EORDERBYArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(EORDERBY, EORDERBYArray[stringToReturn]) == 0) {
@@ -708,7 +708,7 @@ ObjectPaymenttermAPI_paymenttermGetListV1(apiClient_t *apiClient, ezmax_api_defi
     char *keyQuery_iRowMax = NULL;
     char * valueQuery_iRowMax = NULL;
     keyValuePair_t *keyPairQuery_iRowMax = 0;
-    if (iRowMax)
+    if (1) // Always send integer parameters to the API server
     {
         keyQuery_iRowMax = strdup("iRowMax");
         valueQuery_iRowMax = calloc(1,MAX_NUMBER_LENGTH);
@@ -721,7 +721,7 @@ ObjectPaymenttermAPI_paymenttermGetListV1(apiClient_t *apiClient, ezmax_api_defi
     char *keyQuery_iRowOffset = NULL;
     char * valueQuery_iRowOffset = NULL;
     keyValuePair_t *keyPairQuery_iRowOffset = 0;
-    if (iRowOffset)
+    if (1) // Always send integer parameters to the API server
     {
         keyQuery_iRowOffset = strdup("iRowOffset");
         valueQuery_iRowOffset = calloc(1,MAX_NUMBER_LENGTH);

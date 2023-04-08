@@ -182,7 +182,7 @@ contact_request_t *contact_request_parseFromJSON(cJSON *contact_requestJSON){
     // contact_request->dt_contact_birthdate
     cJSON *dt_contact_birthdate = cJSON_GetObjectItemCaseSensitive(contact_requestJSON, "dtContactBirthdate");
     if (dt_contact_birthdate) { 
-    if(!cJSON_IsString(dt_contact_birthdate))
+    if(!cJSON_IsString(dt_contact_birthdate) && !cJSON_IsNull(dt_contact_birthdate))
     {
     goto end; //String
     }
@@ -195,7 +195,7 @@ contact_request_t *contact_request_parseFromJSON(cJSON *contact_requestJSON){
         strdup(s_contact_firstname->valuestring),
         strdup(s_contact_lastname->valuestring),
         strdup(s_contact_company->valuestring),
-        dt_contact_birthdate ? strdup(dt_contact_birthdate->valuestring) : NULL
+        dt_contact_birthdate && !cJSON_IsNull(dt_contact_birthdate) ? strdup(dt_contact_birthdate->valuestring) : NULL
         );
 
     return contact_request_local_var;

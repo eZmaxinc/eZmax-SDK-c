@@ -55,7 +55,7 @@ ezsignfoldersignerassociation_request_patch_t *ezsignfoldersignerassociation_req
     // ezsignfoldersignerassociation_request_patch->t_ezsignfoldersignerassociation_message
     cJSON *t_ezsignfoldersignerassociation_message = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_request_patchJSON, "tEzsignfoldersignerassociationMessage");
     if (t_ezsignfoldersignerassociation_message) { 
-    if(!cJSON_IsString(t_ezsignfoldersignerassociation_message))
+    if(!cJSON_IsString(t_ezsignfoldersignerassociation_message) && !cJSON_IsNull(t_ezsignfoldersignerassociation_message))
     {
     goto end; //String
     }
@@ -63,7 +63,7 @@ ezsignfoldersignerassociation_request_patch_t *ezsignfoldersignerassociation_req
 
 
     ezsignfoldersignerassociation_request_patch_local_var = ezsignfoldersignerassociation_request_patch_create (
-        t_ezsignfoldersignerassociation_message ? strdup(t_ezsignfoldersignerassociation_message->valuestring) : NULL
+        t_ezsignfoldersignerassociation_message && !cJSON_IsNull(t_ezsignfoldersignerassociation_message) ? strdup(t_ezsignfoldersignerassociation_message->valuestring) : NULL
         );
 
     return ezsignfoldersignerassociation_request_patch_local_var;

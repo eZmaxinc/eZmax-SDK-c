@@ -347,7 +347,7 @@ branding_response_compound_t *branding_response_compound_parseFromJSON(cJSON *br
     // branding_response_compound->s_branding_logourl
     cJSON *s_branding_logourl = cJSON_GetObjectItemCaseSensitive(branding_response_compoundJSON, "sBrandingLogourl");
     if (s_branding_logourl) { 
-    if(!cJSON_IsString(s_branding_logourl))
+    if(!cJSON_IsString(s_branding_logourl) && !cJSON_IsNull(s_branding_logourl))
     {
     goto end; //String
     }
@@ -366,7 +366,7 @@ branding_response_compound_t *branding_response_compound_parseFromJSON(cJSON *br
         i_branding_colorbackgroundbutton->valuedouble,
         i_branding_colorbackgroundsmallbox->valuedouble,
         b_branding_isactive->valueint,
-        s_branding_logourl ? strdup(s_branding_logourl->valuestring) : NULL
+        s_branding_logourl && !cJSON_IsNull(s_branding_logourl) ? strdup(s_branding_logourl->valuestring) : NULL
         );
 
     return branding_response_compound_local_var;

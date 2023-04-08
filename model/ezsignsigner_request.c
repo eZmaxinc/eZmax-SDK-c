@@ -155,7 +155,7 @@ ezsignsigner_request_t *ezsignsigner_request_parseFromJSON(cJSON *ezsignsigner_r
     // ezsignsigner_request->s_ezsignsigner_secretanswer
     cJSON *s_ezsignsigner_secretanswer = cJSON_GetObjectItemCaseSensitive(ezsignsigner_requestJSON, "sEzsignsignerSecretanswer");
     if (s_ezsignsigner_secretanswer) { 
-    if(!cJSON_IsString(s_ezsignsigner_secretanswer))
+    if(!cJSON_IsString(s_ezsignsigner_secretanswer) && !cJSON_IsNull(s_ezsignsigner_secretanswer))
     {
     goto end; //String
     }
@@ -167,7 +167,7 @@ ezsignsigner_request_t *ezsignsigner_request_parseFromJSON(cJSON *ezsignsigner_r
         fki_taxassignment_id->valuedouble,
         fki_secretquestion_id ? fki_secretquestion_id->valuedouble : 0,
         e_ezsignsigner_logintype ? e_ezsignsigner_logintypeVariable : -1,
-        s_ezsignsigner_secretanswer ? strdup(s_ezsignsigner_secretanswer->valuestring) : NULL
+        s_ezsignsigner_secretanswer && !cJSON_IsNull(s_ezsignsigner_secretanswer) ? strdup(s_ezsignsigner_secretanswer->valuestring) : NULL
         );
 
     return ezsignsigner_request_local_var;

@@ -467,7 +467,7 @@ ezsigntemplateformfieldgroup_response_compound_t *ezsigntemplateformfieldgroup_r
     // ezsigntemplateformfieldgroup_response_compound->s_ezsigntemplateformfieldgroup_defaultvalue
     cJSON *s_ezsigntemplateformfieldgroup_defaultvalue = cJSON_GetObjectItemCaseSensitive(ezsigntemplateformfieldgroup_response_compoundJSON, "sEzsigntemplateformfieldgroupDefaultvalue");
     if (s_ezsigntemplateformfieldgroup_defaultvalue) { 
-    if(!cJSON_IsString(s_ezsigntemplateformfieldgroup_defaultvalue))
+    if(!cJSON_IsString(s_ezsigntemplateformfieldgroup_defaultvalue) && !cJSON_IsNull(s_ezsigntemplateformfieldgroup_defaultvalue))
     {
     goto end; //String
     }
@@ -530,7 +530,7 @@ ezsigntemplateformfieldgroup_response_compound_t *ezsigntemplateformfieldgroup_r
     // ezsigntemplateformfieldgroup_response_compound->s_ezsigntemplateformfieldgroup_regexp
     cJSON *s_ezsigntemplateformfieldgroup_regexp = cJSON_GetObjectItemCaseSensitive(ezsigntemplateformfieldgroup_response_compoundJSON, "sEzsigntemplateformfieldgroupRegexp");
     if (s_ezsigntemplateformfieldgroup_regexp) { 
-    if(!cJSON_IsString(s_ezsigntemplateformfieldgroup_regexp))
+    if(!cJSON_IsString(s_ezsigntemplateformfieldgroup_regexp) && !cJSON_IsNull(s_ezsigntemplateformfieldgroup_regexp))
     {
     goto end; //String
     }
@@ -539,7 +539,7 @@ ezsigntemplateformfieldgroup_response_compound_t *ezsigntemplateformfieldgroup_r
     // ezsigntemplateformfieldgroup_response_compound->t_ezsigntemplateformfieldgroup_tooltip
     cJSON *t_ezsigntemplateformfieldgroup_tooltip = cJSON_GetObjectItemCaseSensitive(ezsigntemplateformfieldgroup_response_compoundJSON, "tEzsigntemplateformfieldgroupTooltip");
     if (t_ezsigntemplateformfieldgroup_tooltip) { 
-    if(!cJSON_IsString(t_ezsigntemplateformfieldgroup_tooltip))
+    if(!cJSON_IsString(t_ezsigntemplateformfieldgroup_tooltip) && !cJSON_IsNull(t_ezsigntemplateformfieldgroup_tooltip))
     {
     goto end; //String
     }
@@ -628,14 +628,14 @@ ezsigntemplateformfieldgroup_response_compound_t *ezsigntemplateformfieldgroup_r
         e_ezsigntemplateformfieldgroup_signerrequirement_local_nonprim,
         strdup(s_ezsigntemplateformfieldgroup_label->valuestring),
         i_ezsigntemplateformfieldgroup_step->valuedouble,
-        s_ezsigntemplateformfieldgroup_defaultvalue ? strdup(s_ezsigntemplateformfieldgroup_defaultvalue->valuestring) : NULL,
+        s_ezsigntemplateformfieldgroup_defaultvalue && !cJSON_IsNull(s_ezsigntemplateformfieldgroup_defaultvalue) ? strdup(s_ezsigntemplateformfieldgroup_defaultvalue->valuestring) : NULL,
         i_ezsigntemplateformfieldgroup_filledmin->valuedouble,
         i_ezsigntemplateformfieldgroup_filledmax->valuedouble,
         b_ezsigntemplateformfieldgroup_readonly->valueint,
         i_ezsigntemplateformfieldgroup_maxlength ? i_ezsigntemplateformfieldgroup_maxlength->valuedouble : 0,
         b_ezsigntemplateformfieldgroup_encrypted ? b_ezsigntemplateformfieldgroup_encrypted->valueint : 0,
-        s_ezsigntemplateformfieldgroup_regexp ? strdup(s_ezsigntemplateformfieldgroup_regexp->valuestring) : NULL,
-        t_ezsigntemplateformfieldgroup_tooltip ? strdup(t_ezsigntemplateformfieldgroup_tooltip->valuestring) : NULL,
+        s_ezsigntemplateformfieldgroup_regexp && !cJSON_IsNull(s_ezsigntemplateformfieldgroup_regexp) ? strdup(s_ezsigntemplateformfieldgroup_regexp->valuestring) : NULL,
+        t_ezsigntemplateformfieldgroup_tooltip && !cJSON_IsNull(t_ezsigntemplateformfieldgroup_tooltip) ? strdup(t_ezsigntemplateformfieldgroup_tooltip->valuestring) : NULL,
         e_ezsigntemplateformfieldgroup_tooltipposition ? e_ezsigntemplateformfieldgroup_tooltipposition_local_nonprim : NULL,
         a_obj_ezsigntemplateformfieldgroupsignerList,
         a_obj_dropdown_element ? a_obj_dropdown_elementList : NULL,

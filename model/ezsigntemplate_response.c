@@ -13,7 +13,8 @@ ezsigntemplate_response_t *ezsigntemplate_response_create(
     char *s_language_name_x,
     char *s_ezsigntemplate_description,
     int b_ezsigntemplate_adminonly,
-    char *s_ezsignfoldertype_name_x
+    char *s_ezsignfoldertype_name_x,
+    common_audit_t *obj_audit
     ) {
     ezsigntemplate_response_t *ezsigntemplate_response_local_var = malloc(sizeof(ezsigntemplate_response_t));
     if (!ezsigntemplate_response_local_var) {
@@ -27,6 +28,7 @@ ezsigntemplate_response_t *ezsigntemplate_response_create(
     ezsigntemplate_response_local_var->s_ezsigntemplate_description = s_ezsigntemplate_description;
     ezsigntemplate_response_local_var->b_ezsigntemplate_adminonly = b_ezsigntemplate_adminonly;
     ezsigntemplate_response_local_var->s_ezsignfoldertype_name_x = s_ezsignfoldertype_name_x;
+    ezsigntemplate_response_local_var->obj_audit = obj_audit;
 
     return ezsigntemplate_response_local_var;
 }
@@ -48,6 +50,10 @@ void ezsigntemplate_response_free(ezsigntemplate_response_t *ezsigntemplate_resp
     if (ezsigntemplate_response->s_ezsignfoldertype_name_x) {
         free(ezsigntemplate_response->s_ezsignfoldertype_name_x);
         ezsigntemplate_response->s_ezsignfoldertype_name_x = NULL;
+    }
+    if (ezsigntemplate_response->obj_audit) {
+        common_audit_free(ezsigntemplate_response->obj_audit);
+        ezsigntemplate_response->obj_audit = NULL;
     }
     free(ezsigntemplate_response);
 }
@@ -125,6 +131,20 @@ cJSON *ezsigntemplate_response_convertToJSON(ezsigntemplate_response_t *ezsignte
     goto fail; //String
     }
 
+
+    // ezsigntemplate_response->obj_audit
+    if (!ezsigntemplate_response->obj_audit) {
+        goto fail;
+    }
+    cJSON *obj_audit_local_JSON = common_audit_convertToJSON(ezsigntemplate_response->obj_audit);
+    if(obj_audit_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objAudit", obj_audit_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
     return item;
 fail:
     if (item) {
@@ -136,6 +156,9 @@ fail:
 ezsigntemplate_response_t *ezsigntemplate_response_parseFromJSON(cJSON *ezsigntemplate_responseJSON){
 
     ezsigntemplate_response_t *ezsigntemplate_response_local_var = NULL;
+
+    // define the local variable for ezsigntemplate_response->obj_audit
+    common_audit_t *obj_audit_local_nonprim = NULL;
 
     // ezsigntemplate_response->pki_ezsigntemplate_id
     cJSON *pki_ezsigntemplate_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplate_responseJSON, "pkiEzsigntemplateID");
@@ -230,6 +253,15 @@ ezsigntemplate_response_t *ezsigntemplate_response_parseFromJSON(cJSON *ezsignte
     goto end; //String
     }
 
+    // ezsigntemplate_response->obj_audit
+    cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(ezsigntemplate_responseJSON, "objAudit");
+    if (!obj_audit) {
+        goto end;
+    }
+
+    
+    obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
+
 
     ezsigntemplate_response_local_var = ezsigntemplate_response_create (
         pki_ezsigntemplate_id->valuedouble,
@@ -239,11 +271,16 @@ ezsigntemplate_response_t *ezsigntemplate_response_parseFromJSON(cJSON *ezsignte
         strdup(s_language_name_x->valuestring),
         strdup(s_ezsigntemplate_description->valuestring),
         b_ezsigntemplate_adminonly->valueint,
-        strdup(s_ezsignfoldertype_name_x->valuestring)
+        strdup(s_ezsignfoldertype_name_x->valuestring),
+        obj_audit_local_nonprim
         );
 
     return ezsigntemplate_response_local_var;
 end:
+    if (obj_audit_local_nonprim) {
+        common_audit_free(obj_audit_local_nonprim);
+        obj_audit_local_nonprim = NULL;
+    }
     return NULL;
 
 }

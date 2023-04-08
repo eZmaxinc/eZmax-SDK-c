@@ -11,7 +11,6 @@
 #include "../model/ezsigntemplateformfieldgroup_delete_object_v1_response.h"
 #include "../model/ezsigntemplateformfieldgroup_edit_object_v1_request.h"
 #include "../model/ezsigntemplateformfieldgroup_edit_object_v1_response.h"
-#include "../model/ezsigntemplateformfieldgroup_get_object_v1_response.h"
 #include "../model/ezsigntemplateformfieldgroup_get_object_v2_response.h"
 
 
@@ -37,14 +36,6 @@ ObjectEzsigntemplateformfieldgroupAPI_ezsigntemplateformfieldgroupDeleteObjectV1
 //
 ezsigntemplateformfieldgroup_edit_object_v1_response_t*
 ObjectEzsigntemplateformfieldgroupAPI_ezsigntemplateformfieldgroupEditObjectV1(apiClient_t *apiClient, int pkiEzsigntemplateformfieldgroupID , ezsigntemplateformfieldgroup_edit_object_v1_request_t * ezsigntemplateformfieldgroup_edit_object_v1_request );
-
-
-// Retrieve an existing Ezsigntemplateformfieldgroup
-//
-// 
-//
-ezsigntemplateformfieldgroup_get_object_v1_response_t*
-ObjectEzsigntemplateformfieldgroupAPI_ezsigntemplateformfieldgroupGetObjectV1(apiClient_t *apiClient, int pkiEzsigntemplateformfieldgroupID );
 
 
 // Retrieve an existing Ezsigntemplateformfieldgroup

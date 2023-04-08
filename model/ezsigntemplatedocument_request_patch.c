@@ -55,7 +55,7 @@ ezsigntemplatedocument_request_patch_t *ezsigntemplatedocument_request_patch_par
     // ezsigntemplatedocument_request_patch->s_ezsigntemplatedocument_name
     cJSON *s_ezsigntemplatedocument_name = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocument_request_patchJSON, "sEzsigntemplatedocumentName");
     if (s_ezsigntemplatedocument_name) { 
-    if(!cJSON_IsString(s_ezsigntemplatedocument_name))
+    if(!cJSON_IsString(s_ezsigntemplatedocument_name) && !cJSON_IsNull(s_ezsigntemplatedocument_name))
     {
     goto end; //String
     }
@@ -63,7 +63,7 @@ ezsigntemplatedocument_request_patch_t *ezsigntemplatedocument_request_patch_par
 
 
     ezsigntemplatedocument_request_patch_local_var = ezsigntemplatedocument_request_patch_create (
-        s_ezsigntemplatedocument_name ? strdup(s_ezsigntemplatedocument_name->valuestring) : NULL
+        s_ezsigntemplatedocument_name && !cJSON_IsNull(s_ezsigntemplatedocument_name) ? strdup(s_ezsigntemplatedocument_name->valuestring) : NULL
         );
 
     return ezsigntemplatedocument_request_patch_local_var;

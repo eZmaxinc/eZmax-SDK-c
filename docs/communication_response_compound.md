@@ -7,9 +7,12 @@ Name | Type | Description | Notes
 **e_communication_importance** | **field_e_communication_importance_t \*** |  | 
 **e_communication_type** | **field_e_communication_type_t \*** |  | 
 **s_communication_subject** | **char \*** | The subject of the Communication | 
+**s_communication_bodyurl** | **char \*** | The url of the body used as body in the Communication | [optional] 
 **e_communication_direction** | **computed_e_communication_direction_t \*** |  | 
 **i_communicationrecipient_count** | **int** | The count of Communicationrecipient | 
-**obj_contact_from** | [**custom_contact_name_response_t**](custom_contact_name_response.md) \* |  | 
+**obj_descriptionstatic_sender** | [**descriptionstatic_response_t**](descriptionstatic_response.md) \* |  | [optional] 
+**obj_emailstatic_sender** | [**emailstatic_response_t**](emailstatic_response.md) \* |  | [optional] 
+**obj_phonestatic_sender** | [**phonestatic_response_t**](phonestatic_response.md) \* |  | [optional] 
 **obj_audit** | [**common_audit_t**](common_audit.md) \* |  | 
 **a_obj_communicationattachment** | [**list_t**](communicationattachment_response_compound.md) \* |  | 
 **a_obj_communicationrecipient** | [**list_t**](communicationrecipient_response_compound.md) \* |  | 

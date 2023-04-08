@@ -192,7 +192,7 @@ ezsignformfield_request_compound_t *ezsignformfield_request_compound_parseFromJS
     // ezsignformfield_request_compound->s_ezsignformfield_value
     cJSON *s_ezsignformfield_value = cJSON_GetObjectItemCaseSensitive(ezsignformfield_request_compoundJSON, "sEzsignformfieldValue");
     if (s_ezsignformfield_value) { 
-    if(!cJSON_IsString(s_ezsignformfield_value))
+    if(!cJSON_IsString(s_ezsignformfield_value) && !cJSON_IsNull(s_ezsignformfield_value))
     {
     goto end; //String
     }
@@ -258,7 +258,7 @@ ezsignformfield_request_compound_t *ezsignformfield_request_compound_parseFromJS
     // ezsignformfield_request_compound->s_ezsignformfield_enteredvalue
     cJSON *s_ezsignformfield_enteredvalue = cJSON_GetObjectItemCaseSensitive(ezsignformfield_request_compoundJSON, "sEzsignformfieldEnteredvalue");
     if (s_ezsignformfield_enteredvalue) { 
-    if(!cJSON_IsString(s_ezsignformfield_enteredvalue))
+    if(!cJSON_IsString(s_ezsignformfield_enteredvalue) && !cJSON_IsNull(s_ezsignformfield_enteredvalue))
     {
     goto end; //String
     }
@@ -269,13 +269,13 @@ ezsignformfield_request_compound_t *ezsignformfield_request_compound_parseFromJS
         pki_ezsignformfield_id ? pki_ezsignformfield_id->valuedouble : 0,
         i_ezsignpage_pagenumber->valuedouble,
         strdup(s_ezsignformfield_label->valuestring),
-        s_ezsignformfield_value ? strdup(s_ezsignformfield_value->valuestring) : NULL,
+        s_ezsignformfield_value && !cJSON_IsNull(s_ezsignformfield_value) ? strdup(s_ezsignformfield_value->valuestring) : NULL,
         i_ezsignformfield_x->valuedouble,
         i_ezsignformfield_y->valuedouble,
         i_ezsignformfield_width->valuedouble,
         i_ezsignformfield_height->valuedouble,
         b_ezsignformfield_selected ? b_ezsignformfield_selected->valueint : 0,
-        s_ezsignformfield_enteredvalue ? strdup(s_ezsignformfield_enteredvalue->valuestring) : NULL
+        s_ezsignformfield_enteredvalue && !cJSON_IsNull(s_ezsignformfield_enteredvalue) ? strdup(s_ezsignformfield_enteredvalue->valuestring) : NULL
         );
 
     return ezsignformfield_request_compound_local_var;

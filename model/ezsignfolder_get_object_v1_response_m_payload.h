@@ -58,6 +58,7 @@ typedef struct ezsignfolder_get_object_v1_response_m_payload_t {
     char *dt_ezsignfolder_close; // string
     char *t_ezsignfolder_message; // string
     struct common_audit_t *obj_audit; //model
+    char *s_ezsignfolder_externalid; // string
 
 } ezsignfolder_get_object_v1_response_m_payload_t;
 
@@ -81,7 +82,8 @@ ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_resp
     field_e_ezsignfolder_step_t *e_ezsignfolder_step,
     char *dt_ezsignfolder_close,
     char *t_ezsignfolder_message,
-    common_audit_t *obj_audit
+    common_audit_t *obj_audit,
+    char *s_ezsignfolder_externalid
 );
 
 void ezsignfolder_get_object_v1_response_m_payload_free(ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_response_m_payload);

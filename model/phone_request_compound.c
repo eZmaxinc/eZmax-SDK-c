@@ -183,7 +183,7 @@ phone_request_compound_t *phone_request_compound_parseFromJSON(cJSON *phone_requ
     // phone_request_compound->s_phone_region
     cJSON *s_phone_region = cJSON_GetObjectItemCaseSensitive(phone_request_compoundJSON, "sPhoneRegion");
     if (s_phone_region) { 
-    if(!cJSON_IsString(s_phone_region))
+    if(!cJSON_IsString(s_phone_region) && !cJSON_IsNull(s_phone_region))
     {
     goto end; //String
     }
@@ -192,7 +192,7 @@ phone_request_compound_t *phone_request_compound_parseFromJSON(cJSON *phone_requ
     // phone_request_compound->s_phone_exchange
     cJSON *s_phone_exchange = cJSON_GetObjectItemCaseSensitive(phone_request_compoundJSON, "sPhoneExchange");
     if (s_phone_exchange) { 
-    if(!cJSON_IsString(s_phone_exchange))
+    if(!cJSON_IsString(s_phone_exchange) && !cJSON_IsNull(s_phone_exchange))
     {
     goto end; //String
     }
@@ -201,7 +201,7 @@ phone_request_compound_t *phone_request_compound_parseFromJSON(cJSON *phone_requ
     // phone_request_compound->s_phone_number
     cJSON *s_phone_number = cJSON_GetObjectItemCaseSensitive(phone_request_compoundJSON, "sPhoneNumber");
     if (s_phone_number) { 
-    if(!cJSON_IsString(s_phone_number))
+    if(!cJSON_IsString(s_phone_number) && !cJSON_IsNull(s_phone_number))
     {
     goto end; //String
     }
@@ -210,7 +210,7 @@ phone_request_compound_t *phone_request_compound_parseFromJSON(cJSON *phone_requ
     // phone_request_compound->s_phone_international
     cJSON *s_phone_international = cJSON_GetObjectItemCaseSensitive(phone_request_compoundJSON, "sPhoneInternational");
     if (s_phone_international) { 
-    if(!cJSON_IsString(s_phone_international))
+    if(!cJSON_IsString(s_phone_international) && !cJSON_IsNull(s_phone_international))
     {
     goto end; //String
     }
@@ -219,7 +219,7 @@ phone_request_compound_t *phone_request_compound_parseFromJSON(cJSON *phone_requ
     // phone_request_compound->s_phone_extension
     cJSON *s_phone_extension = cJSON_GetObjectItemCaseSensitive(phone_request_compoundJSON, "sPhoneExtension");
     if (s_phone_extension) { 
-    if(!cJSON_IsString(s_phone_extension))
+    if(!cJSON_IsString(s_phone_extension) && !cJSON_IsNull(s_phone_extension))
     {
     goto end; //String
     }
@@ -229,11 +229,11 @@ phone_request_compound_t *phone_request_compound_parseFromJSON(cJSON *phone_requ
     phone_request_compound_local_var = phone_request_compound_create (
         fki_phonetype_id->valuedouble,
         e_phone_type_local_nonprim,
-        s_phone_region ? strdup(s_phone_region->valuestring) : NULL,
-        s_phone_exchange ? strdup(s_phone_exchange->valuestring) : NULL,
-        s_phone_number ? strdup(s_phone_number->valuestring) : NULL,
-        s_phone_international ? strdup(s_phone_international->valuestring) : NULL,
-        s_phone_extension ? strdup(s_phone_extension->valuestring) : NULL
+        s_phone_region && !cJSON_IsNull(s_phone_region) ? strdup(s_phone_region->valuestring) : NULL,
+        s_phone_exchange && !cJSON_IsNull(s_phone_exchange) ? strdup(s_phone_exchange->valuestring) : NULL,
+        s_phone_number && !cJSON_IsNull(s_phone_number) ? strdup(s_phone_number->valuestring) : NULL,
+        s_phone_international && !cJSON_IsNull(s_phone_international) ? strdup(s_phone_international->valuestring) : NULL,
+        s_phone_extension && !cJSON_IsNull(s_phone_extension) ? strdup(s_phone_extension->valuestring) : NULL
         );
 
     return phone_request_compound_local_var;

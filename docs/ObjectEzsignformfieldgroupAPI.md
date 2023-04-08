@@ -7,7 +7,6 @@ Method | HTTP request | Description
 [**ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupCreateObjectV1**](ObjectEzsignformfieldgroupAPI.md#ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupCreateObjectV1) | **POST** /1/object/ezsignformfieldgroup | Create a new Ezsignformfieldgroup
 [**ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupDeleteObjectV1**](ObjectEzsignformfieldgroupAPI.md#ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupDeleteObjectV1) | **DELETE** /1/object/ezsignformfieldgroup/{pkiEzsignformfieldgroupID} | Delete an existing Ezsignformfieldgroup
 [**ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupEditObjectV1**](ObjectEzsignformfieldgroupAPI.md#ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupEditObjectV1) | **PUT** /1/object/ezsignformfieldgroup/{pkiEzsignformfieldgroupID} | Edit an existing Ezsignformfieldgroup
-[**ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupGetObjectV1**](ObjectEzsignformfieldgroupAPI.md#ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupGetObjectV1) | **GET** /1/object/ezsignformfieldgroup/{pkiEzsignformfieldgroupID} | Retrieve an existing Ezsignformfieldgroup
 [**ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupGetObjectV2**](ObjectEzsignformfieldgroupAPI.md#ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupGetObjectV2) | **GET** /2/object/ezsignformfieldgroup/{pkiEzsignformfieldgroupID} | Retrieve an existing Ezsignformfieldgroup
 
 
@@ -101,35 +100,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupGetObjectV1**
-```c
-// Retrieve an existing Ezsignformfieldgroup
-//
-ezsignformfieldgroup_get_object_v1_response_t* ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupGetObjectV1(apiClient_t *apiClient, int pkiEzsignformfieldgroupID);
-```
-
-### Parameters
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignformfieldgroupID** | **int** |  | 
-
-### Return type
-
-[ezsignformfieldgroup_get_object_v1_response_t](ezsignformfieldgroup_get_object_v1_response.md) *
-
-
-### Authorization
-
-[Authorization](../README.md#Authorization)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

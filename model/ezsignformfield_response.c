@@ -196,7 +196,7 @@ ezsignformfield_response_t *ezsignformfield_response_parseFromJSON(cJSON *ezsign
     // ezsignformfield_response->s_ezsignformfield_value
     cJSON *s_ezsignformfield_value = cJSON_GetObjectItemCaseSensitive(ezsignformfield_responseJSON, "sEzsignformfieldValue");
     if (s_ezsignformfield_value) { 
-    if(!cJSON_IsString(s_ezsignformfield_value))
+    if(!cJSON_IsString(s_ezsignformfield_value) && !cJSON_IsNull(s_ezsignformfield_value))
     {
     goto end; //String
     }
@@ -262,7 +262,7 @@ ezsignformfield_response_t *ezsignformfield_response_parseFromJSON(cJSON *ezsign
     // ezsignformfield_response->s_ezsignformfield_enteredvalue
     cJSON *s_ezsignformfield_enteredvalue = cJSON_GetObjectItemCaseSensitive(ezsignformfield_responseJSON, "sEzsignformfieldEnteredvalue");
     if (s_ezsignformfield_enteredvalue) { 
-    if(!cJSON_IsString(s_ezsignformfield_enteredvalue))
+    if(!cJSON_IsString(s_ezsignformfield_enteredvalue) && !cJSON_IsNull(s_ezsignformfield_enteredvalue))
     {
     goto end; //String
     }
@@ -273,13 +273,13 @@ ezsignformfield_response_t *ezsignformfield_response_parseFromJSON(cJSON *ezsign
         pki_ezsignformfield_id->valuedouble,
         i_ezsignpage_pagenumber->valuedouble,
         strdup(s_ezsignformfield_label->valuestring),
-        s_ezsignformfield_value ? strdup(s_ezsignformfield_value->valuestring) : NULL,
+        s_ezsignformfield_value && !cJSON_IsNull(s_ezsignformfield_value) ? strdup(s_ezsignformfield_value->valuestring) : NULL,
         i_ezsignformfield_x->valuedouble,
         i_ezsignformfield_y->valuedouble,
         i_ezsignformfield_width->valuedouble,
         i_ezsignformfield_height->valuedouble,
         b_ezsignformfield_selected ? b_ezsignformfield_selected->valueint : 0,
-        s_ezsignformfield_enteredvalue ? strdup(s_ezsignformfield_enteredvalue->valuestring) : NULL
+        s_ezsignformfield_enteredvalue && !cJSON_IsNull(s_ezsignformfield_enteredvalue) ? strdup(s_ezsignformfield_enteredvalue->valuestring) : NULL
         );
 
     return ezsignformfield_response_local_var;

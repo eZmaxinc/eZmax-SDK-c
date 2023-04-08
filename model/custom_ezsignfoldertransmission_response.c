@@ -24,6 +24,7 @@ ezmax_api_definition__full_custom_ezsignfoldertransmission_response__e e_ezsignf
 
 custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_response_create(
     int pki_ezsignfolder_id,
+    char *s_ezsignfolder_description,
     field_e_ezsignfolder_step_t *e_ezsignfolder_step,
     int i_ezsignfolder_signaturetotal,
     int i_ezsignfolder_signaturesigned,
@@ -34,6 +35,7 @@ custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_resp
         return NULL;
     }
     custom_ezsignfoldertransmission_response_local_var->pki_ezsignfolder_id = pki_ezsignfolder_id;
+    custom_ezsignfoldertransmission_response_local_var->s_ezsignfolder_description = s_ezsignfolder_description;
     custom_ezsignfoldertransmission_response_local_var->e_ezsignfolder_step = e_ezsignfolder_step;
     custom_ezsignfoldertransmission_response_local_var->i_ezsignfolder_signaturetotal = i_ezsignfolder_signaturetotal;
     custom_ezsignfoldertransmission_response_local_var->i_ezsignfolder_signaturesigned = i_ezsignfolder_signaturesigned;
@@ -48,6 +50,10 @@ void custom_ezsignfoldertransmission_response_free(custom_ezsignfoldertransmissi
         return ;
     }
     listEntry_t *listEntry;
+    if (custom_ezsignfoldertransmission_response->s_ezsignfolder_description) {
+        free(custom_ezsignfoldertransmission_response->s_ezsignfolder_description);
+        custom_ezsignfoldertransmission_response->s_ezsignfolder_description = NULL;
+    }
     if (custom_ezsignfoldertransmission_response->e_ezsignfolder_step) {
         field_e_ezsignfolder_step_free(custom_ezsignfoldertransmission_response->e_ezsignfolder_step);
         custom_ezsignfoldertransmission_response->e_ezsignfolder_step = NULL;
@@ -71,6 +77,15 @@ cJSON *custom_ezsignfoldertransmission_response_convertToJSON(custom_ezsignfolde
     }
     if(cJSON_AddNumberToObject(item, "pkiEzsignfolderID", custom_ezsignfoldertransmission_response->pki_ezsignfolder_id) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // custom_ezsignfoldertransmission_response->s_ezsignfolder_description
+    if (!custom_ezsignfoldertransmission_response->s_ezsignfolder_description) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "sEzsignfolderDescription", custom_ezsignfoldertransmission_response->s_ezsignfolder_description) == NULL) {
+    goto fail; //String
     }
 
 
@@ -156,6 +171,18 @@ custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_resp
     goto end; //Numeric
     }
 
+    // custom_ezsignfoldertransmission_response->s_ezsignfolder_description
+    cJSON *s_ezsignfolder_description = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldertransmission_responseJSON, "sEzsignfolderDescription");
+    if (!s_ezsignfolder_description) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_ezsignfolder_description))
+    {
+    goto end; //String
+    }
+
     // custom_ezsignfoldertransmission_response->e_ezsignfolder_step
     cJSON *e_ezsignfolder_step = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldertransmission_responseJSON, "eEzsignfolderStep");
     if (!e_ezsignfolder_step) {
@@ -216,6 +243,7 @@ custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_resp
 
     custom_ezsignfoldertransmission_response_local_var = custom_ezsignfoldertransmission_response_create (
         pki_ezsignfolder_id->valuedouble,
+        strdup(s_ezsignfolder_description->valuestring),
         e_ezsignfolder_step_local_nonprim,
         i_ezsignfolder_signaturetotal->valuedouble,
         i_ezsignfolder_signaturesigned->valuedouble,

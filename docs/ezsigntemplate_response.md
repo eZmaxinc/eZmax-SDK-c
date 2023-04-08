@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **s_ezsigntemplate_description** | **char \*** | The description of the Ezsigntemplate | 
 **b_ezsigntemplate_adminonly** | **int** | Whether the Ezsigntemplate can be accessed by admin users only (eUserType&#x3D;Normal) | 
 **s_ezsignfoldertype_name_x** | **char \*** | The name of the Ezsignfoldertype in the language of the requester | 
+**obj_audit** | [**common_audit_t**](common_audit.md) \* |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

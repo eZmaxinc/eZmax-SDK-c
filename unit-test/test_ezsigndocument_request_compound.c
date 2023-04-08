@@ -29,13 +29,14 @@ ezsigndocument_request_compound_t* instantiate_ezsigndocument_request_compound(i
       2,
       ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTSOURCE_Base64,
       ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_Pdf,
-      "[B@56a4479a",
+      "[B@1b065145",
       "http://www.example.com/document.pdf",
       1,
       "SecretPassword123",
       ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORM_Keep,
       "2020-12-31 23:59:59",
-      "Contract #123"
+      "Contract #123",
+      "{"ID": 1234, "TAGS": ["tag1", "tag2", "tag3"]}"
     );
   } else {
     ezsigndocument_request_compound = ezsigndocument_request_compound_create(
@@ -46,13 +47,14 @@ ezsigndocument_request_compound_t* instantiate_ezsigndocument_request_compound(i
       2,
       ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTSOURCE_Base64,
       ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_Pdf,
-      "[B@56a4479a",
+      "[B@1b065145",
       "http://www.example.com/document.pdf",
       1,
       "SecretPassword123",
       ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORM_Keep,
       "2020-12-31 23:59:59",
-      "Contract #123"
+      "Contract #123",
+      "{"ID": 1234, "TAGS": ["tag1", "tag2", "tag3"]}"
     );
   }
 

@@ -27,7 +27,8 @@ ezsignfolder_request_t* instantiate_ezsignfolder_request(int include_optional) {
       1,
       "Test eZsign Folder",
       "This is a note",
-      ezmax_api_definition__full_ezsignfolder_request__"None"
+      ezmax_api_definition__full_ezsignfolder_request__"None",
+      "{"ID": 1234, "TAGS": ["tag1", "tag2", "tag3"]}"
     );
   } else {
     ezsignfolder_request = ezsignfolder_request_create(
@@ -36,7 +37,8 @@ ezsignfolder_request_t* instantiate_ezsignfolder_request(int include_optional) {
       1,
       "Test eZsign Folder",
       "This is a note",
-      ezmax_api_definition__full_ezsignfolder_request__"None"
+      ezmax_api_definition__full_ezsignfolder_request__"None",
+      "{"ID": 1234, "TAGS": ["tag1", "tag2", "tag3"]}"
     );
   }
 

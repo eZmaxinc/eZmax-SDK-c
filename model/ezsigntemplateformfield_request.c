@@ -178,7 +178,7 @@ ezsigntemplateformfield_request_t *ezsigntemplateformfield_request_parseFromJSON
     // ezsigntemplateformfield_request->s_ezsigntemplateformfield_value
     cJSON *s_ezsigntemplateformfield_value = cJSON_GetObjectItemCaseSensitive(ezsigntemplateformfield_requestJSON, "sEzsigntemplateformfieldValue");
     if (s_ezsigntemplateformfield_value) { 
-    if(!cJSON_IsString(s_ezsigntemplateformfield_value))
+    if(!cJSON_IsString(s_ezsigntemplateformfield_value) && !cJSON_IsNull(s_ezsigntemplateformfield_value))
     {
     goto end; //String
     }
@@ -246,7 +246,7 @@ ezsigntemplateformfield_request_t *ezsigntemplateformfield_request_parseFromJSON
         pki_ezsigntemplateformfield_id ? pki_ezsigntemplateformfield_id->valuedouble : 0,
         i_ezsigntemplatedocumentpage_pagenumber->valuedouble,
         strdup(s_ezsigntemplateformfield_label->valuestring),
-        s_ezsigntemplateformfield_value ? strdup(s_ezsigntemplateformfield_value->valuestring) : NULL,
+        s_ezsigntemplateformfield_value && !cJSON_IsNull(s_ezsigntemplateformfield_value) ? strdup(s_ezsigntemplateformfield_value->valuestring) : NULL,
         i_ezsigntemplateformfield_x->valuedouble,
         i_ezsigntemplateformfield_y->valuedouble,
         i_ezsigntemplateformfield_width->valuedouble,

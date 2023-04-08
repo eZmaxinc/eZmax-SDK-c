@@ -432,7 +432,7 @@ ezsigntemplateformfieldgroup_request_t *ezsigntemplateformfieldgroup_request_par
     // ezsigntemplateformfieldgroup_request->s_ezsigntemplateformfieldgroup_regexp
     cJSON *s_ezsigntemplateformfieldgroup_regexp = cJSON_GetObjectItemCaseSensitive(ezsigntemplateformfieldgroup_requestJSON, "sEzsigntemplateformfieldgroupRegexp");
     if (s_ezsigntemplateformfieldgroup_regexp) { 
-    if(!cJSON_IsString(s_ezsigntemplateformfieldgroup_regexp))
+    if(!cJSON_IsString(s_ezsigntemplateformfieldgroup_regexp) && !cJSON_IsNull(s_ezsigntemplateformfieldgroup_regexp))
     {
     goto end; //String
     }
@@ -441,7 +441,7 @@ ezsigntemplateformfieldgroup_request_t *ezsigntemplateformfieldgroup_request_par
     // ezsigntemplateformfieldgroup_request->t_ezsigntemplateformfieldgroup_tooltip
     cJSON *t_ezsigntemplateformfieldgroup_tooltip = cJSON_GetObjectItemCaseSensitive(ezsigntemplateformfieldgroup_requestJSON, "tEzsigntemplateformfieldgroupTooltip");
     if (t_ezsigntemplateformfieldgroup_tooltip) { 
-    if(!cJSON_IsString(t_ezsigntemplateformfieldgroup_tooltip))
+    if(!cJSON_IsString(t_ezsigntemplateformfieldgroup_tooltip) && !cJSON_IsNull(t_ezsigntemplateformfieldgroup_tooltip))
     {
     goto end; //String
     }
@@ -467,8 +467,8 @@ ezsigntemplateformfieldgroup_request_t *ezsigntemplateformfieldgroup_request_par
         b_ezsigntemplateformfieldgroup_readonly->valueint,
         i_ezsigntemplateformfieldgroup_maxlength ? i_ezsigntemplateformfieldgroup_maxlength->valuedouble : 0,
         b_ezsigntemplateformfieldgroup_encrypted ? b_ezsigntemplateformfieldgroup_encrypted->valueint : 0,
-        s_ezsigntemplateformfieldgroup_regexp ? strdup(s_ezsigntemplateformfieldgroup_regexp->valuestring) : NULL,
-        t_ezsigntemplateformfieldgroup_tooltip ? strdup(t_ezsigntemplateformfieldgroup_tooltip->valuestring) : NULL,
+        s_ezsigntemplateformfieldgroup_regexp && !cJSON_IsNull(s_ezsigntemplateformfieldgroup_regexp) ? strdup(s_ezsigntemplateformfieldgroup_regexp->valuestring) : NULL,
+        t_ezsigntemplateformfieldgroup_tooltip && !cJSON_IsNull(t_ezsigntemplateformfieldgroup_tooltip) ? strdup(t_ezsigntemplateformfieldgroup_tooltip->valuestring) : NULL,
         e_ezsigntemplateformfieldgroup_tooltipposition ? e_ezsigntemplateformfieldgroup_tooltipposition_local_nonprim : NULL
         );
 

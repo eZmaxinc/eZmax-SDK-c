@@ -132,7 +132,7 @@ custom_ezmaxpricing_response_t *custom_ezmaxpricing_response_parseFromJSON(cJSON
     // custom_ezmaxpricing_response->dt_ezmaxpricing_end
     cJSON *dt_ezmaxpricing_end = cJSON_GetObjectItemCaseSensitive(custom_ezmaxpricing_responseJSON, "dtEzmaxpricingEnd");
     if (dt_ezmaxpricing_end) { 
-    if(!cJSON_IsString(dt_ezmaxpricing_end))
+    if(!cJSON_IsString(dt_ezmaxpricing_end) && !cJSON_IsNull(dt_ezmaxpricing_end))
     {
     goto end; //String
     }
@@ -143,7 +143,7 @@ custom_ezmaxpricing_response_t *custom_ezmaxpricing_response_parseFromJSON(cJSON
         pki_ezmaxpricing_id->valuedouble,
         strdup(d_ezmaxpricing_rebateezsignallagents->valuestring),
         strdup(dt_ezmaxpricing_start->valuestring),
-        dt_ezmaxpricing_end ? strdup(dt_ezmaxpricing_end->valuestring) : NULL
+        dt_ezmaxpricing_end && !cJSON_IsNull(dt_ezmaxpricing_end) ? strdup(dt_ezmaxpricing_end->valuestring) : NULL
         );
 
     return custom_ezmaxpricing_response_local_var;

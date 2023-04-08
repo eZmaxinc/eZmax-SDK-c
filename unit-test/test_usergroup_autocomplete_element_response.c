@@ -23,13 +23,13 @@ usergroup_autocomplete_element_response_t* instantiate_usergroup_autocomplete_el
   if (include_optional) {
     usergroup_autocomplete_element_response = usergroup_autocomplete_element_response_create(
       "Administration",
-      89,
+      2,
       true
     );
   } else {
     usergroup_autocomplete_element_response = usergroup_autocomplete_element_response_create(
       "Administration",
-      89,
+      2,
       true
     );
   }

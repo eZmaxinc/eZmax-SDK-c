@@ -5,7 +5,6 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/common_get_autocomplete_disabled_v1_response.h"
 #include "../model/common_response_error.h"
 #include "../model/ezsigntemplatepackage_create_object_v1_request.h"
 #include "../model/ezsigntemplatepackage_create_object_v1_response.h"
@@ -16,18 +15,8 @@
 #include "../model/ezsigntemplatepackage_edit_object_v1_response.h"
 #include "../model/ezsigntemplatepackage_get_autocomplete_v2_response.h"
 #include "../model/ezsigntemplatepackage_get_list_v1_response.h"
-#include "../model/ezsigntemplatepackage_get_object_v1_response.h"
 #include "../model/ezsigntemplatepackage_get_object_v2_response.h"
 #include "../model/header_accept_language.h"
-
-// Enum SSELECTOR for ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV1
-typedef enum  { ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_SSELECTOR_NULL = 0, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_SSELECTOR_All, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_SSELECTOR_AllMultipleCopiesDisabled } ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_sSelector_e;
-
-// Enum EFILTERACTIVE for ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV1
-typedef enum  { ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_EFILTERACTIVE_NULL = 0, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_EFILTERACTIVE_All, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_EFILTERACTIVE_Active, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_EFILTERACTIVE_Inactive } ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_eFilterActive_e;
-
-// Enum  for ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV1
-typedef enum  { ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1__NULL = 0, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1__*, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1__en, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1__fr } ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_Accept-Language_e;
 
 // Enum SSELECTOR for ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV2
 typedef enum  { ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_SSELECTOR_NULL = 0, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_SSELECTOR_All, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_SSELECTOR_AllMultipleCopiesDisabled } ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_sSelector_e;
@@ -81,14 +70,6 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditObjectV1(apiClient_t *ap
 //
 // Get the list of Ezsigntemplatepackage to be used in a dropdown or autocomplete control.
 //
-common_get_autocomplete_disabled_v1_response_t*
-ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_sSelector_e sSelector , ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV1_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language );
-
-
-// Retrieve Ezsigntemplatepackages and IDs
-//
-// Get the list of Ezsigntemplatepackage to be used in a dropdown or autocomplete control.
-//
 ezsigntemplatepackage_get_autocomplete_v2_response_t*
 ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_sSelector_e sSelector , ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language );
 
@@ -99,14 +80,6 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV2(apiClient_
 //
 ezsigntemplatepackage_get_list_v1_response_t*
 ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplatepackageGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter );
-
-
-// Retrieve an existing Ezsigntemplatepackage
-//
-// 
-//
-ezsigntemplatepackage_get_object_v1_response_t*
-ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatepackageID );
 
 
 // Retrieve an existing Ezsigntemplatepackage

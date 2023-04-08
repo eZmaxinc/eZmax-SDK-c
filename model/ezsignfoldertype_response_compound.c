@@ -665,7 +665,7 @@ ezsignfoldertype_response_compound_t *ezsignfoldertype_response_compound_parseFr
     // ezsignfoldertype_response_compound->s_billingentityinternal_description_x
     cJSON *s_billingentityinternal_description_x = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_response_compoundJSON, "sBillingentityinternalDescriptionX");
     if (s_billingentityinternal_description_x) { 
-    if(!cJSON_IsString(s_billingentityinternal_description_x))
+    if(!cJSON_IsString(s_billingentityinternal_description_x) && !cJSON_IsNull(s_billingentityinternal_description_x))
     {
     goto end; //String
     }
@@ -674,7 +674,7 @@ ezsignfoldertype_response_compound_t *ezsignfoldertype_response_compound_parseFr
     // ezsignfoldertype_response_compound->s_ezsigntsarequirement_description_x
     cJSON *s_ezsigntsarequirement_description_x = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_response_compoundJSON, "sEzsigntsarequirementDescriptionX");
     if (s_ezsigntsarequirement_description_x) { 
-    if(!cJSON_IsString(s_ezsigntsarequirement_description_x))
+    if(!cJSON_IsString(s_ezsigntsarequirement_description_x) && !cJSON_IsNull(s_ezsigntsarequirement_description_x))
     {
     goto end; //String
     }
@@ -683,7 +683,7 @@ ezsignfoldertype_response_compound_t *ezsignfoldertype_response_compound_parseFr
     // ezsignfoldertype_response_compound->s_email_address_signed
     cJSON *s_email_address_signed = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_response_compoundJSON, "sEmailAddressSigned");
     if (s_email_address_signed) { 
-    if(!cJSON_IsString(s_email_address_signed))
+    if(!cJSON_IsString(s_email_address_signed) && !cJSON_IsNull(s_email_address_signed))
     {
     goto end; //String
     }
@@ -692,7 +692,7 @@ ezsignfoldertype_response_compound_t *ezsignfoldertype_response_compound_parseFr
     // ezsignfoldertype_response_compound->s_email_address_summary
     cJSON *s_email_address_summary = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_response_compoundJSON, "sEmailAddressSummary");
     if (s_email_address_summary) { 
-    if(!cJSON_IsString(s_email_address_summary))
+    if(!cJSON_IsString(s_email_address_summary) && !cJSON_IsNull(s_email_address_summary))
     {
     goto end; //String
     }
@@ -701,7 +701,7 @@ ezsignfoldertype_response_compound_t *ezsignfoldertype_response_compound_parseFr
     // ezsignfoldertype_response_compound->s_usergroup_name_x
     cJSON *s_usergroup_name_x = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_response_compoundJSON, "sUsergroupNameX");
     if (s_usergroup_name_x) { 
-    if(!cJSON_IsString(s_usergroup_name_x))
+    if(!cJSON_IsString(s_usergroup_name_x) && !cJSON_IsNull(s_usergroup_name_x))
     {
     goto end; //String
     }
@@ -710,7 +710,7 @@ ezsignfoldertype_response_compound_t *ezsignfoldertype_response_compound_parseFr
     // ezsignfoldertype_response_compound->s_usergroup_name_x_restricted
     cJSON *s_usergroup_name_x_restricted = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_response_compoundJSON, "sUsergroupNameXRestricted");
     if (s_usergroup_name_x_restricted) { 
-    if(!cJSON_IsString(s_usergroup_name_x_restricted))
+    if(!cJSON_IsString(s_usergroup_name_x_restricted) && !cJSON_IsNull(s_usergroup_name_x_restricted))
     {
     goto end; //String
     }
@@ -989,12 +989,12 @@ ezsignfoldertype_response_compound_t *ezsignfoldertype_response_compound_parseFr
         fki_usergroup_id_restricted ? fki_usergroup_id_restricted->valuedouble : 0,
         fki_ezsigntsarequirement_id ? fki_ezsigntsarequirement_id->valuedouble : 0,
         strdup(s_branding_description_x->valuestring),
-        s_billingentityinternal_description_x ? strdup(s_billingentityinternal_description_x->valuestring) : NULL,
-        s_ezsigntsarequirement_description_x ? strdup(s_ezsigntsarequirement_description_x->valuestring) : NULL,
-        s_email_address_signed ? strdup(s_email_address_signed->valuestring) : NULL,
-        s_email_address_summary ? strdup(s_email_address_summary->valuestring) : NULL,
-        s_usergroup_name_x ? strdup(s_usergroup_name_x->valuestring) : NULL,
-        s_usergroup_name_x_restricted ? strdup(s_usergroup_name_x_restricted->valuestring) : NULL,
+        s_billingentityinternal_description_x && !cJSON_IsNull(s_billingentityinternal_description_x) ? strdup(s_billingentityinternal_description_x->valuestring) : NULL,
+        s_ezsigntsarequirement_description_x && !cJSON_IsNull(s_ezsigntsarequirement_description_x) ? strdup(s_ezsigntsarequirement_description_x->valuestring) : NULL,
+        s_email_address_signed && !cJSON_IsNull(s_email_address_signed) ? strdup(s_email_address_signed->valuestring) : NULL,
+        s_email_address_summary && !cJSON_IsNull(s_email_address_summary) ? strdup(s_email_address_summary->valuestring) : NULL,
+        s_usergroup_name_x && !cJSON_IsNull(s_usergroup_name_x) ? strdup(s_usergroup_name_x->valuestring) : NULL,
+        s_usergroup_name_x_restricted && !cJSON_IsNull(s_usergroup_name_x_restricted) ? strdup(s_usergroup_name_x_restricted->valuestring) : NULL,
         e_ezsignfoldertype_privacylevel_local_nonprim,
         e_ezsignfoldertype_sendreminderfrequency ? e_ezsignfoldertype_sendreminderfrequency_local_nonprim : NULL,
         i_ezsignfoldertype_archivaldays->valuedouble,

@@ -202,7 +202,7 @@ ezsignsigner_request_compound_contact_t *ezsignsigner_request_compound_contact_p
     // ezsignsigner_request_compound_contact->s_email_address
     cJSON *s_email_address = cJSON_GetObjectItemCaseSensitive(ezsignsigner_request_compound_contactJSON, "sEmailAddress");
     if (s_email_address) { 
-    if(!cJSON_IsString(s_email_address))
+    if(!cJSON_IsString(s_email_address) && !cJSON_IsNull(s_email_address))
     {
     goto end; //String
     }
@@ -211,7 +211,7 @@ ezsignsigner_request_compound_contact_t *ezsignsigner_request_compound_contact_p
     // ezsignsigner_request_compound_contact->s_phone_e164
     cJSON *s_phone_e164 = cJSON_GetObjectItemCaseSensitive(ezsignsigner_request_compound_contactJSON, "sPhoneE164");
     if (s_phone_e164) { 
-    if(!cJSON_IsString(s_phone_e164))
+    if(!cJSON_IsString(s_phone_e164) && !cJSON_IsNull(s_phone_e164))
     {
     goto end; //String
     }
@@ -220,7 +220,7 @@ ezsignsigner_request_compound_contact_t *ezsignsigner_request_compound_contact_p
     // ezsignsigner_request_compound_contact->s_phone_extension
     cJSON *s_phone_extension = cJSON_GetObjectItemCaseSensitive(ezsignsigner_request_compound_contactJSON, "sPhoneExtension");
     if (s_phone_extension) { 
-    if(!cJSON_IsString(s_phone_extension))
+    if(!cJSON_IsString(s_phone_extension) && !cJSON_IsNull(s_phone_extension))
     {
     goto end; //String
     }
@@ -229,7 +229,7 @@ ezsignsigner_request_compound_contact_t *ezsignsigner_request_compound_contact_p
     // ezsignsigner_request_compound_contact->s_phone_e164_cell
     cJSON *s_phone_e164_cell = cJSON_GetObjectItemCaseSensitive(ezsignsigner_request_compound_contactJSON, "sPhoneE164Cell");
     if (s_phone_e164_cell) { 
-    if(!cJSON_IsString(s_phone_e164_cell))
+    if(!cJSON_IsString(s_phone_e164_cell) && !cJSON_IsNull(s_phone_e164_cell))
     {
     goto end; //String
     }
@@ -238,7 +238,7 @@ ezsignsigner_request_compound_contact_t *ezsignsigner_request_compound_contact_p
     // ezsignsigner_request_compound_contact->s_phone_number
     cJSON *s_phone_number = cJSON_GetObjectItemCaseSensitive(ezsignsigner_request_compound_contactJSON, "sPhoneNumber");
     if (s_phone_number) { 
-    if(!cJSON_IsString(s_phone_number))
+    if(!cJSON_IsString(s_phone_number) && !cJSON_IsNull(s_phone_number))
     {
     goto end; //String
     }
@@ -247,7 +247,7 @@ ezsignsigner_request_compound_contact_t *ezsignsigner_request_compound_contact_p
     // ezsignsigner_request_compound_contact->s_phone_number_cell
     cJSON *s_phone_number_cell = cJSON_GetObjectItemCaseSensitive(ezsignsigner_request_compound_contactJSON, "sPhoneNumberCell");
     if (s_phone_number_cell) { 
-    if(!cJSON_IsString(s_phone_number_cell))
+    if(!cJSON_IsString(s_phone_number_cell) && !cJSON_IsNull(s_phone_number_cell))
     {
     goto end; //String
     }
@@ -258,12 +258,12 @@ ezsignsigner_request_compound_contact_t *ezsignsigner_request_compound_contact_p
         strdup(s_contact_firstname->valuestring),
         strdup(s_contact_lastname->valuestring),
         fki_language_id->valuedouble,
-        s_email_address ? strdup(s_email_address->valuestring) : NULL,
-        s_phone_e164 ? strdup(s_phone_e164->valuestring) : NULL,
-        s_phone_extension ? strdup(s_phone_extension->valuestring) : NULL,
-        s_phone_e164_cell ? strdup(s_phone_e164_cell->valuestring) : NULL,
-        s_phone_number ? strdup(s_phone_number->valuestring) : NULL,
-        s_phone_number_cell ? strdup(s_phone_number_cell->valuestring) : NULL
+        s_email_address && !cJSON_IsNull(s_email_address) ? strdup(s_email_address->valuestring) : NULL,
+        s_phone_e164 && !cJSON_IsNull(s_phone_e164) ? strdup(s_phone_e164->valuestring) : NULL,
+        s_phone_extension && !cJSON_IsNull(s_phone_extension) ? strdup(s_phone_extension->valuestring) : NULL,
+        s_phone_e164_cell && !cJSON_IsNull(s_phone_e164_cell) ? strdup(s_phone_e164_cell->valuestring) : NULL,
+        s_phone_number && !cJSON_IsNull(s_phone_number) ? strdup(s_phone_number->valuestring) : NULL,
+        s_phone_number_cell && !cJSON_IsNull(s_phone_number_cell) ? strdup(s_phone_number_cell->valuestring) : NULL
         );
 
     return ezsignsigner_request_compound_contact_local_var;

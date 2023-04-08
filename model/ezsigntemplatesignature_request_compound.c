@@ -473,7 +473,7 @@ ezsigntemplatesignature_request_compound_t *ezsigntemplatesignature_request_comp
     // ezsigntemplatesignature_request_compound->t_ezsigntemplatesignature_tooltip
     cJSON *t_ezsigntemplatesignature_tooltip = cJSON_GetObjectItemCaseSensitive(ezsigntemplatesignature_request_compoundJSON, "tEzsigntemplatesignatureTooltip");
     if (t_ezsigntemplatesignature_tooltip) { 
-    if(!cJSON_IsString(t_ezsigntemplatesignature_tooltip))
+    if(!cJSON_IsString(t_ezsigntemplatesignature_tooltip) && !cJSON_IsNull(t_ezsigntemplatesignature_tooltip))
     {
     goto end; //String
     }
@@ -509,7 +509,7 @@ ezsigntemplatesignature_request_compound_t *ezsigntemplatesignature_request_comp
     // ezsigntemplatesignature_request_compound->s_ezsigntemplatesignature_attachmentdescription
     cJSON *s_ezsigntemplatesignature_attachmentdescription = cJSON_GetObjectItemCaseSensitive(ezsigntemplatesignature_request_compoundJSON, "sEzsigntemplatesignatureAttachmentdescription");
     if (s_ezsigntemplatesignature_attachmentdescription) { 
-    if(!cJSON_IsString(s_ezsigntemplatesignature_attachmentdescription))
+    if(!cJSON_IsString(s_ezsigntemplatesignature_attachmentdescription) && !cJSON_IsNull(s_ezsigntemplatesignature_attachmentdescription))
     {
     goto end; //String
     }
@@ -565,12 +565,12 @@ ezsigntemplatesignature_request_compound_t *ezsigntemplatesignature_request_comp
         i_ezsigntemplatesignature_y->valuedouble,
         i_ezsigntemplatesignature_step->valuedouble,
         e_ezsigntemplatesignature_type_local_nonprim,
-        t_ezsigntemplatesignature_tooltip ? strdup(t_ezsigntemplatesignature_tooltip->valuestring) : NULL,
+        t_ezsigntemplatesignature_tooltip && !cJSON_IsNull(t_ezsigntemplatesignature_tooltip) ? strdup(t_ezsigntemplatesignature_tooltip->valuestring) : NULL,
         e_ezsigntemplatesignature_tooltipposition ? e_ezsigntemplatesignature_tooltipposition_local_nonprim : NULL,
         e_ezsigntemplatesignature_font ? e_ezsigntemplatesignature_font_local_nonprim : NULL,
         b_ezsigntemplatesignature_required ? b_ezsigntemplatesignature_required->valueint : 0,
         e_ezsigntemplatesignature_attachmentnamesource ? e_ezsigntemplatesignature_attachmentnamesource_local_nonprim : NULL,
-        s_ezsigntemplatesignature_attachmentdescription ? strdup(s_ezsigntemplatesignature_attachmentdescription->valuestring) : NULL,
+        s_ezsigntemplatesignature_attachmentdescription && !cJSON_IsNull(s_ezsigntemplatesignature_attachmentdescription) ? strdup(s_ezsigntemplatesignature_attachmentdescription->valuestring) : NULL,
         i_ezsigntemplatesignature_validationstep ? i_ezsigntemplatesignature_validationstep->valuedouble : 0,
         b_ezsigntemplatesignature_customdate ? b_ezsigntemplatesignature_customdate->valueint : 0,
         a_obj_ezsigntemplatesignaturecustomdate ? a_obj_ezsigntemplatesignaturecustomdateList : NULL

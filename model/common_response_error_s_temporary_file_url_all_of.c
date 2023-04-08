@@ -55,7 +55,7 @@ common_response_error_s_temporary_file_url_all_of_t *common_response_error_s_tem
     // common_response_error_s_temporary_file_url_all_of->s_temporary_file_url
     cJSON *s_temporary_file_url = cJSON_GetObjectItemCaseSensitive(common_response_error_s_temporary_file_url_all_ofJSON, "sTemporaryFileUrl");
     if (s_temporary_file_url) { 
-    if(!cJSON_IsString(s_temporary_file_url))
+    if(!cJSON_IsString(s_temporary_file_url) && !cJSON_IsNull(s_temporary_file_url))
     {
     goto end; //String
     }
@@ -63,7 +63,7 @@ common_response_error_s_temporary_file_url_all_of_t *common_response_error_s_tem
 
 
     common_response_error_s_temporary_file_url_all_of_local_var = common_response_error_s_temporary_file_url_all_of_create (
-        s_temporary_file_url ? strdup(s_temporary_file_url->valuestring) : NULL
+        s_temporary_file_url && !cJSON_IsNull(s_temporary_file_url) ? strdup(s_temporary_file_url->valuestring) : NULL
         );
 
     return common_response_error_s_temporary_file_url_all_of_local_var;

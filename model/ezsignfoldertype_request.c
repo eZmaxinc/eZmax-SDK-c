@@ -520,7 +520,7 @@ ezsignfoldertype_request_t *ezsignfoldertype_request_parseFromJSON(cJSON *ezsign
     // ezsignfoldertype_request->s_email_address_signed
     cJSON *s_email_address_signed = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_requestJSON, "sEmailAddressSigned");
     if (s_email_address_signed) { 
-    if(!cJSON_IsString(s_email_address_signed))
+    if(!cJSON_IsString(s_email_address_signed) && !cJSON_IsNull(s_email_address_signed))
     {
     goto end; //String
     }
@@ -529,7 +529,7 @@ ezsignfoldertype_request_t *ezsignfoldertype_request_parseFromJSON(cJSON *ezsign
     // ezsignfoldertype_request->s_email_address_summary
     cJSON *s_email_address_summary = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_requestJSON, "sEmailAddressSummary");
     if (s_email_address_summary) { 
-    if(!cJSON_IsString(s_email_address_summary))
+    if(!cJSON_IsString(s_email_address_summary) && !cJSON_IsNull(s_email_address_summary))
     {
     goto end; //String
     }
@@ -757,8 +757,8 @@ ezsignfoldertype_request_t *ezsignfoldertype_request_parseFromJSON(cJSON *ezsign
         fki_usergroup_id ? fki_usergroup_id->valuedouble : 0,
         fki_usergroup_id_restricted ? fki_usergroup_id_restricted->valuedouble : 0,
         fki_ezsigntsarequirement_id ? fki_ezsigntsarequirement_id->valuedouble : 0,
-        s_email_address_signed ? strdup(s_email_address_signed->valuestring) : NULL,
-        s_email_address_summary ? strdup(s_email_address_summary->valuestring) : NULL,
+        s_email_address_signed && !cJSON_IsNull(s_email_address_signed) ? strdup(s_email_address_signed->valuestring) : NULL,
+        s_email_address_summary && !cJSON_IsNull(s_email_address_summary) ? strdup(s_email_address_summary->valuestring) : NULL,
         e_ezsignfoldertype_privacylevel_local_nonprim,
         e_ezsignfoldertype_sendreminderfrequency ? e_ezsignfoldertype_sendreminderfrequency_local_nonprim : NULL,
         i_ezsignfoldertype_archivaldays->valuedouble,

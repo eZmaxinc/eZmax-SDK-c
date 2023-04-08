@@ -17,9 +17,11 @@ typedef struct communication_response_t communication_response_t;
 
 #include "common_audit.h"
 #include "computed_e_communication_direction.h"
-#include "custom_contact_name_response.h"
+#include "descriptionstatic_response.h"
+#include "emailstatic_response.h"
 #include "field_e_communication_importance.h"
 #include "field_e_communication_type.h"
+#include "phonestatic_response.h"
 
 // Enum  for communication_response
 
@@ -52,9 +54,12 @@ typedef struct communication_response_t {
     field_e_communication_importance_t *e_communication_importance; // custom
     field_e_communication_type_t *e_communication_type; // custom
     char *s_communication_subject; // string
+    char *s_communication_bodyurl; // string
     computed_e_communication_direction_t *e_communication_direction; // custom
     int i_communicationrecipient_count; //numeric
-    struct custom_contact_name_response_t *obj_contact_from; //model
+    struct descriptionstatic_response_t *obj_descriptionstatic_sender; //model
+    struct emailstatic_response_t *obj_emailstatic_sender; //model
+    struct phonestatic_response_t *obj_phonestatic_sender; //model
     struct common_audit_t *obj_audit; //model
 
 } communication_response_t;
@@ -64,9 +69,12 @@ communication_response_t *communication_response_create(
     field_e_communication_importance_t *e_communication_importance,
     field_e_communication_type_t *e_communication_type,
     char *s_communication_subject,
+    char *s_communication_bodyurl,
     computed_e_communication_direction_t *e_communication_direction,
     int i_communicationrecipient_count,
-    custom_contact_name_response_t *obj_contact_from,
+    descriptionstatic_response_t *obj_descriptionstatic_sender,
+    emailstatic_response_t *obj_emailstatic_sender,
+    phonestatic_response_t *obj_phonestatic_sender,
     common_audit_t *obj_audit
 );
 

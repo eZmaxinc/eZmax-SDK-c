@@ -19,8 +19,11 @@
 #include "../model/ezsignfolder_edit_object_v1_request.h"
 #include "../model/ezsignfolder_edit_object_v1_response.h"
 #include "../model/ezsignfolder_get_actionable_elements_v1_response.h"
+#include "../model/ezsignfolder_get_communication_count_v1_response.h"
+#include "../model/ezsignfolder_get_communication_list_v1_response.h"
 #include "../model/ezsignfolder_get_ezsigndocuments_v1_response.h"
 #include "../model/ezsignfolder_get_ezsignfoldersignerassociations_v1_response.h"
+#include "../model/ezsignfolder_get_ezsignsignatures_automatic_v1_response.h"
 #include "../model/ezsignfolder_get_forms_data_v1_response.h"
 #include "../model/ezsignfolder_get_list_v1_response.h"
 #include "../model/ezsignfolder_get_object_v1_response.h"
@@ -116,6 +119,22 @@ ezsignfolder_get_actionable_elements_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV1(apiClient_t *apiClient, int pkiEzsignfolderID );
 
 
+// Retrieve Communication count
+//
+// 
+//
+ezsignfolder_get_communication_count_v1_response_t*
+ObjectEzsignfolderAPI_ezsignfolderGetCommunicationCountV1(apiClient_t *apiClient, int pkiEzsignfolderID );
+
+
+// Retrieve Communication list
+//
+// 
+//
+ezsignfolder_get_communication_list_v1_response_t*
+ObjectEzsignfolderAPI_ezsignfolderGetCommunicationListV1(apiClient_t *apiClient, int pkiEzsignfolderID );
+
+
 // Retrieve an existing Ezsignfolder's Ezsigndocuments
 //
 // 
@@ -130,6 +149,14 @@ ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1(apiClient_t *apiClient, i
 //
 ezsignfolder_get_ezsignfoldersignerassociations_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1(apiClient_t *apiClient, int pkiEzsignfolderID );
+
+
+// Retrieve an existing Ezsignfolder's automatic Ezsignsignatures
+//
+// Return the Ezsignsignatures that can be signed by the current user at the current step in the process
+//
+ezsignfolder_get_ezsignsignatures_automatic_v1_response_t*
+ObjectEzsignfolderAPI_ezsignfolderGetEzsignsignaturesAutomaticV1(apiClient_t *apiClient, int pkiEzsignfolderID );
 
 
 // Retrieve an existing Ezsignfolder's forms data

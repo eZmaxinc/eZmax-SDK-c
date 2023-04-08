@@ -52,7 +52,7 @@ ObjectNotificationsectionAPI_notificationsectionGetNotificationtestsV1(apiClient
     char *keyQuery_bShowHidden = NULL;
     char * valueQuery_bShowHidden = NULL;
     keyValuePair_t *keyPairQuery_bShowHidden = 0;
-    if (bShowHidden)
+    if (1) // Always send boolean parameters to the API server
     {
         keyQuery_bShowHidden = strdup("bShowHidden");
         valueQuery_bShowHidden = calloc(1,MAX_NUMBER_LENGTH);

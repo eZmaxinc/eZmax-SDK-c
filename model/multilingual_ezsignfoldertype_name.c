@@ -69,7 +69,7 @@ multilingual_ezsignfoldertype_name_t *multilingual_ezsignfoldertype_name_parseFr
     // multilingual_ezsignfoldertype_name->s_ezsignfoldertype_name1
     cJSON *s_ezsignfoldertype_name1 = cJSON_GetObjectItemCaseSensitive(multilingual_ezsignfoldertype_nameJSON, "sEzsignfoldertypeName1");
     if (s_ezsignfoldertype_name1) { 
-    if(!cJSON_IsString(s_ezsignfoldertype_name1))
+    if(!cJSON_IsString(s_ezsignfoldertype_name1) && !cJSON_IsNull(s_ezsignfoldertype_name1))
     {
     goto end; //String
     }
@@ -78,7 +78,7 @@ multilingual_ezsignfoldertype_name_t *multilingual_ezsignfoldertype_name_parseFr
     // multilingual_ezsignfoldertype_name->s_ezsignfoldertype_name2
     cJSON *s_ezsignfoldertype_name2 = cJSON_GetObjectItemCaseSensitive(multilingual_ezsignfoldertype_nameJSON, "sEzsignfoldertypeName2");
     if (s_ezsignfoldertype_name2) { 
-    if(!cJSON_IsString(s_ezsignfoldertype_name2))
+    if(!cJSON_IsString(s_ezsignfoldertype_name2) && !cJSON_IsNull(s_ezsignfoldertype_name2))
     {
     goto end; //String
     }
@@ -86,8 +86,8 @@ multilingual_ezsignfoldertype_name_t *multilingual_ezsignfoldertype_name_parseFr
 
 
     multilingual_ezsignfoldertype_name_local_var = multilingual_ezsignfoldertype_name_create (
-        s_ezsignfoldertype_name1 ? strdup(s_ezsignfoldertype_name1->valuestring) : NULL,
-        s_ezsignfoldertype_name2 ? strdup(s_ezsignfoldertype_name2->valuestring) : NULL
+        s_ezsignfoldertype_name1 && !cJSON_IsNull(s_ezsignfoldertype_name1) ? strdup(s_ezsignfoldertype_name1->valuestring) : NULL,
+        s_ezsignfoldertype_name2 && !cJSON_IsNull(s_ezsignfoldertype_name2) ? strdup(s_ezsignfoldertype_name2->valuestring) : NULL
         );
 
     return multilingual_ezsignfoldertype_name_local_var;

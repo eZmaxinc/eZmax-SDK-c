@@ -144,7 +144,7 @@ notificationsubsection_response_t *notificationsubsection_response_parseFromJSON
     // notificationsubsection_response->s_notificationsection_name_x
     cJSON *s_notificationsection_name_x = cJSON_GetObjectItemCaseSensitive(notificationsubsection_responseJSON, "sNotificationsectionNameX");
     if (s_notificationsection_name_x) { 
-    if(!cJSON_IsString(s_notificationsection_name_x))
+    if(!cJSON_IsString(s_notificationsection_name_x) && !cJSON_IsNull(s_notificationsection_name_x))
     {
     goto end; //String
     }
@@ -167,7 +167,7 @@ notificationsubsection_response_t *notificationsubsection_response_parseFromJSON
         pki_notificationsubsection_id->valuedouble,
         fki_notificationsection_id->valuedouble,
         obj_notificationsubsection_name ? obj_notificationsubsection_name_local_nonprim : NULL,
-        s_notificationsection_name_x ? strdup(s_notificationsection_name_x->valuestring) : NULL,
+        s_notificationsection_name_x && !cJSON_IsNull(s_notificationsection_name_x) ? strdup(s_notificationsection_name_x->valuestring) : NULL,
         strdup(s_notificationsubsection_name_x->valuestring)
         );
 

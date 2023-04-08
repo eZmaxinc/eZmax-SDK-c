@@ -69,7 +69,7 @@ multilingual_notificationsubsection_name_t *multilingual_notificationsubsection_
     // multilingual_notificationsubsection_name->s_notificationsubsection_name1
     cJSON *s_notificationsubsection_name1 = cJSON_GetObjectItemCaseSensitive(multilingual_notificationsubsection_nameJSON, "sNotificationsubsectionName1");
     if (s_notificationsubsection_name1) { 
-    if(!cJSON_IsString(s_notificationsubsection_name1))
+    if(!cJSON_IsString(s_notificationsubsection_name1) && !cJSON_IsNull(s_notificationsubsection_name1))
     {
     goto end; //String
     }
@@ -78,7 +78,7 @@ multilingual_notificationsubsection_name_t *multilingual_notificationsubsection_
     // multilingual_notificationsubsection_name->s_notificationsubsection_name2
     cJSON *s_notificationsubsection_name2 = cJSON_GetObjectItemCaseSensitive(multilingual_notificationsubsection_nameJSON, "sNotificationsubsectionName2");
     if (s_notificationsubsection_name2) { 
-    if(!cJSON_IsString(s_notificationsubsection_name2))
+    if(!cJSON_IsString(s_notificationsubsection_name2) && !cJSON_IsNull(s_notificationsubsection_name2))
     {
     goto end; //String
     }
@@ -86,8 +86,8 @@ multilingual_notificationsubsection_name_t *multilingual_notificationsubsection_
 
 
     multilingual_notificationsubsection_name_local_var = multilingual_notificationsubsection_name_create (
-        s_notificationsubsection_name1 ? strdup(s_notificationsubsection_name1->valuestring) : NULL,
-        s_notificationsubsection_name2 ? strdup(s_notificationsubsection_name2->valuestring) : NULL
+        s_notificationsubsection_name1 && !cJSON_IsNull(s_notificationsubsection_name1) ? strdup(s_notificationsubsection_name1->valuestring) : NULL,
+        s_notificationsubsection_name2 && !cJSON_IsNull(s_notificationsubsection_name2) ? strdup(s_notificationsubsection_name2->valuestring) : NULL
         );
 
     return multilingual_notificationsubsection_name_local_var;

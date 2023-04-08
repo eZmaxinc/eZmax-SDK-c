@@ -468,7 +468,7 @@ ezsignsignature_response_compound_t *ezsignsignature_response_compound_parseFrom
     // ezsignsignature_response_compound->t_ezsignsignature_tooltip
     cJSON *t_ezsignsignature_tooltip = cJSON_GetObjectItemCaseSensitive(ezsignsignature_response_compoundJSON, "tEzsignsignatureTooltip");
     if (t_ezsignsignature_tooltip) { 
-    if(!cJSON_IsString(t_ezsignsignature_tooltip))
+    if(!cJSON_IsString(t_ezsignsignature_tooltip) && !cJSON_IsNull(t_ezsignsignature_tooltip))
     {
     goto end; //String
     }
@@ -498,7 +498,7 @@ ezsignsignature_response_compound_t *ezsignsignature_response_compound_parseFrom
     // ezsignsignature_response_compound->s_ezsignsignature_attachmentdescription
     cJSON *s_ezsignsignature_attachmentdescription = cJSON_GetObjectItemCaseSensitive(ezsignsignature_response_compoundJSON, "sEzsignsignatureAttachmentdescription");
     if (s_ezsignsignature_attachmentdescription) { 
-    if(!cJSON_IsString(s_ezsignsignature_attachmentdescription))
+    if(!cJSON_IsString(s_ezsignsignature_attachmentdescription) && !cJSON_IsNull(s_ezsignsignature_attachmentdescription))
     {
     goto end; //String
     }
@@ -568,11 +568,11 @@ ezsignsignature_response_compound_t *ezsignsignature_response_compound_parseFrom
         i_ezsignsignature_y->valuedouble,
         i_ezsignsignature_step->valuedouble,
         e_ezsignsignature_type_local_nonprim,
-        t_ezsignsignature_tooltip ? strdup(t_ezsignsignature_tooltip->valuestring) : NULL,
+        t_ezsignsignature_tooltip && !cJSON_IsNull(t_ezsignsignature_tooltip) ? strdup(t_ezsignsignature_tooltip->valuestring) : NULL,
         e_ezsignsignature_tooltipposition ? e_ezsignsignature_tooltipposition_local_nonprim : NULL,
         e_ezsignsignature_font ? e_ezsignsignature_font_local_nonprim : NULL,
         i_ezsignsignature_validationstep ? i_ezsignsignature_validationstep->valuedouble : 0,
-        s_ezsignsignature_attachmentdescription ? strdup(s_ezsignsignature_attachmentdescription->valuestring) : NULL,
+        s_ezsignsignature_attachmentdescription && !cJSON_IsNull(s_ezsignsignature_attachmentdescription) ? strdup(s_ezsignsignature_attachmentdescription->valuestring) : NULL,
         e_ezsignsignature_attachmentnamesource ? e_ezsignsignature_attachmentnamesource_local_nonprim : NULL,
         b_ezsignsignature_required ? b_ezsignsignature_required->valueint : 0,
         fki_ezsignfoldersignerassociation_id_validation ? fki_ezsignfoldersignerassociation_id_validation->valuedouble : 0,

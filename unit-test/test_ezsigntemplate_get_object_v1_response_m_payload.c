@@ -16,6 +16,7 @@
 #include "../model/ezsigntemplate_get_object_v1_response_m_payload.h"
 ezsigntemplate_get_object_v1_response_m_payload_t* instantiate_ezsigntemplate_get_object_v1_response_m_payload(int include_optional);
 
+#include "test_common_audit.c"
 #include "test_ezsigntemplatedocument_response.c"
 
 
@@ -32,6 +33,8 @@ ezsigntemplate_get_object_v1_response_m_payload_t* instantiate_ezsigntemplate_ge
       1,
       "Default",
        // false, not to have infinite recursion
+      instantiate_common_audit(0),
+       // false, not to have infinite recursion
       instantiate_ezsigntemplatedocument_response(0),
       list_createList()
     );
@@ -45,6 +48,7 @@ ezsigntemplate_get_object_v1_response_m_payload_t* instantiate_ezsigntemplate_ge
       "Standard Contract",
       1,
       "Default",
+      NULL,
       NULL,
       list_createList()
     );

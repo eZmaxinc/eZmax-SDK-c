@@ -15,15 +15,16 @@
 #include "../model/ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response.h"
 #include "../model/ezsigntemplatedocument_edit_object_v1_request.h"
 #include "../model/ezsigntemplatedocument_edit_object_v1_response.h"
+#include "../model/ezsigntemplatedocument_flatten_v1_response.h"
 #include "../model/ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response.h"
 #include "../model/ezsigntemplatedocument_get_ezsigntemplateformfieldgroups_v1_response.h"
 #include "../model/ezsigntemplatedocument_get_ezsigntemplatesignatures_v1_response.h"
-#include "../model/ezsigntemplatedocument_get_object_v1_response.h"
 #include "../model/ezsigntemplatedocument_get_object_v2_response.h"
 #include "../model/ezsigntemplatedocument_get_words_positions_v1_request.h"
 #include "../model/ezsigntemplatedocument_get_words_positions_v1_response.h"
 #include "../model/ezsigntemplatedocument_patch_object_v1_request.h"
 #include "../model/ezsigntemplatedocument_patch_object_v1_response.h"
+#include "../model/object.h"
 
 
 // Create a new Ezsigntemplatedocument
@@ -58,6 +59,14 @@ ezsigntemplatedocument_edit_object_v1_response_t*
 ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID , ezsigntemplatedocument_edit_object_v1_request_t * ezsigntemplatedocument_edit_object_v1_request );
 
 
+// Flatten
+//
+// Flatten an Ezsigntemplatedocument signatures, forms and annotations. This process finalizes the PDF so that the forms and annotations become part of the document content and cannot be edited.
+//
+ezsigntemplatedocument_flatten_v1_response_t*
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentFlattenV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID , object_t * body );
+
+
 // Retrieve an existing Ezsigntemplatedocument's Ezsigntemplatedocumentpages
 //
 // 
@@ -80,14 +89,6 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplateformfield
 //
 ezsigntemplatedocument_get_ezsigntemplatesignatures_v1_response_t*
 ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatesignaturesV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID );
-
-
-// Retrieve an existing Ezsigntemplatedocument
-//
-// 
-//
-ezsigntemplatedocument_get_object_v1_response_t*
-ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID );
 
 
 // Retrieve an existing Ezsigntemplatedocument

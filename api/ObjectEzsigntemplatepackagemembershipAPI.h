@@ -9,7 +9,6 @@
 #include "../model/ezsigntemplatepackagemembership_create_object_v1_request.h"
 #include "../model/ezsigntemplatepackagemembership_create_object_v1_response.h"
 #include "../model/ezsigntemplatepackagemembership_delete_object_v1_response.h"
-#include "../model/ezsigntemplatepackagemembership_get_object_v1_response.h"
 #include "../model/ezsigntemplatepackagemembership_get_object_v2_response.h"
 
 
@@ -27,14 +26,6 @@ ObjectEzsigntemplatepackagemembershipAPI_ezsigntemplatepackagemembershipCreateOb
 //
 ezsigntemplatepackagemembership_delete_object_v1_response_t*
 ObjectEzsigntemplatepackagemembershipAPI_ezsigntemplatepackagemembershipDeleteObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatepackagemembershipID );
-
-
-// Retrieve an existing Ezsigntemplatepackagemembership
-//
-// 
-//
-ezsigntemplatepackagemembership_get_object_v1_response_t*
-ObjectEzsigntemplatepackagemembershipAPI_ezsigntemplatepackagemembershipGetObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatepackagemembershipID );
 
 
 // Retrieve an existing Ezsigntemplatepackagemembership

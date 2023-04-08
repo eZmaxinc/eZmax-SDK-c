@@ -69,7 +69,7 @@ multilingual_branding_description_t *multilingual_branding_description_parseFrom
     // multilingual_branding_description->s_branding_description1
     cJSON *s_branding_description1 = cJSON_GetObjectItemCaseSensitive(multilingual_branding_descriptionJSON, "sBrandingDescription1");
     if (s_branding_description1) { 
-    if(!cJSON_IsString(s_branding_description1))
+    if(!cJSON_IsString(s_branding_description1) && !cJSON_IsNull(s_branding_description1))
     {
     goto end; //String
     }
@@ -78,7 +78,7 @@ multilingual_branding_description_t *multilingual_branding_description_parseFrom
     // multilingual_branding_description->s_branding_description2
     cJSON *s_branding_description2 = cJSON_GetObjectItemCaseSensitive(multilingual_branding_descriptionJSON, "sBrandingDescription2");
     if (s_branding_description2) { 
-    if(!cJSON_IsString(s_branding_description2))
+    if(!cJSON_IsString(s_branding_description2) && !cJSON_IsNull(s_branding_description2))
     {
     goto end; //String
     }
@@ -86,8 +86,8 @@ multilingual_branding_description_t *multilingual_branding_description_parseFrom
 
 
     multilingual_branding_description_local_var = multilingual_branding_description_create (
-        s_branding_description1 ? strdup(s_branding_description1->valuestring) : NULL,
-        s_branding_description2 ? strdup(s_branding_description2->valuestring) : NULL
+        s_branding_description1 && !cJSON_IsNull(s_branding_description1) ? strdup(s_branding_description1->valuestring) : NULL,
+        s_branding_description2 && !cJSON_IsNull(s_branding_description2) ? strdup(s_branding_description2->valuestring) : NULL
         );
 
     return multilingual_branding_description_local_var;

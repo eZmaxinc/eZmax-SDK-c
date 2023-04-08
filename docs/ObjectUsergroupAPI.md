@@ -4,31 +4,64 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ObjectUsergroupAPI_usergroupGetAutocompleteV1**](ObjectUsergroupAPI.md#ObjectUsergroupAPI_usergroupGetAutocompleteV1) | **GET** /1/object/usergroup/getAutocomplete/{sSelector} | Retrieve Usergroups and IDs
+[**ObjectUsergroupAPI_usergroupCreateObjectV1**](ObjectUsergroupAPI.md#ObjectUsergroupAPI_usergroupCreateObjectV1) | **POST** /1/object/usergroup | Create a new Usergroup
+[**ObjectUsergroupAPI_usergroupDeleteObjectV1**](ObjectUsergroupAPI.md#ObjectUsergroupAPI_usergroupDeleteObjectV1) | **DELETE** /1/object/usergroup/{pkiUsergroupID} | Delete an existing Usergroup
+[**ObjectUsergroupAPI_usergroupEditObjectV1**](ObjectUsergroupAPI.md#ObjectUsergroupAPI_usergroupEditObjectV1) | **PUT** /1/object/usergroup/{pkiUsergroupID} | Edit an existing Usergroup
 [**ObjectUsergroupAPI_usergroupGetAutocompleteV2**](ObjectUsergroupAPI.md#ObjectUsergroupAPI_usergroupGetAutocompleteV2) | **GET** /2/object/usergroup/getAutocomplete/{sSelector} | Retrieve Usergroups and IDs
+[**ObjectUsergroupAPI_usergroupGetListV1**](ObjectUsergroupAPI.md#ObjectUsergroupAPI_usergroupGetListV1) | **GET** /1/object/usergroup/getList | Retrieve Usergroup list
+[**ObjectUsergroupAPI_usergroupGetMembersV1**](ObjectUsergroupAPI.md#ObjectUsergroupAPI_usergroupGetMembersV1) | **GET** /1/object/usergroup/{pkiUsergroupID}/getMembers | Retrieve an existing Usergroup&#39;s members
+[**ObjectUsergroupAPI_usergroupGetObjectV2**](ObjectUsergroupAPI.md#ObjectUsergroupAPI_usergroupGetObjectV2) | **GET** /2/object/usergroup/{pkiUsergroupID} | Retrieve an existing Usergroup
 
 
-# **ObjectUsergroupAPI_usergroupGetAutocompleteV1**
+# **ObjectUsergroupAPI_usergroupCreateObjectV1**
 ```c
-// Retrieve Usergroups and IDs
+// Create a new Usergroup
 //
-// Get the list of Usergroup to be used in a dropdown or autocomplete control.
+// The endpoint allows to create one or many elements at once.
 //
-common_get_autocomplete_v1_response_t* ObjectUsergroupAPI_usergroupGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_usergroupGetAutocompleteV1_sSelector_e sSelector, ezmax_api_definition__full_usergroupGetAutocompleteV1_eFilterActive_e eFilterActive, char * sQuery, header_accept_language_e Accept_Language);
+usergroup_create_object_v1_response_t* ObjectUsergroupAPI_usergroupCreateObjectV1(apiClient_t *apiClient, usergroup_create_object_v1_request_t * usergroup_create_object_v1_request);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**sSelector** | **ezmax_api_definition__full_usergroupGetAutocompleteV1_sSelector_e** | The type of Usergroups to return | 
-**eFilterActive** | **ezmax_api_definition__full_usergroupGetAutocompleteV1_eFilterActive_e** | Specify which results we want to display. | [optional] [default to &#39;Active&#39;]
-**sQuery** | **char \*** | Allow to filter the returned results | [optional] 
-**Accept_Language** | **header_accept_language_e** |  | [optional] 
+**usergroup_create_object_v1_request** | **[usergroup_create_object_v1_request_t](usergroup_create_object_v1_request.md) \*** |  | 
 
 ### Return type
 
-[common_get_autocomplete_v1_response_t](common_get_autocomplete_v1_response.md) *
+[usergroup_create_object_v1_response_t](usergroup_create_object_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectUsergroupAPI_usergroupDeleteObjectV1**
+```c
+// Delete an existing Usergroup
+//
+// 
+//
+usergroup_delete_object_v1_response_t* ObjectUsergroupAPI_usergroupDeleteObjectV1(apiClient_t *apiClient, int pkiUsergroupID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiUsergroupID** | **int** | The unique ID of the Usergroup | 
+
+### Return type
+
+[usergroup_delete_object_v1_response_t](usergroup_delete_object_v1_response.md) *
 
 
 ### Authorization
@@ -38,6 +71,38 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectUsergroupAPI_usergroupEditObjectV1**
+```c
+// Edit an existing Usergroup
+//
+// 
+//
+usergroup_edit_object_v1_response_t* ObjectUsergroupAPI_usergroupEditObjectV1(apiClient_t *apiClient, int pkiUsergroupID, usergroup_edit_object_v1_request_t * usergroup_edit_object_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiUsergroupID** | **int** | The unique ID of the Usergroup | 
+**usergroup_edit_object_v1_request** | **[usergroup_edit_object_v1_request_t](usergroup_edit_object_v1_request.md) \*** |  | 
+
+### Return type
+
+[usergroup_edit_object_v1_response_t](usergroup_edit_object_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -63,6 +128,101 @@ Name | Type | Description  | Notes
 ### Return type
 
 [usergroup_get_autocomplete_v2_response_t](usergroup_get_autocomplete_v2_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectUsergroupAPI_usergroupGetListV1**
+```c
+// Retrieve Usergroup list
+//
+// 
+//
+usergroup_get_list_v1_response_t* ObjectUsergroupAPI_usergroupGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_usergroupGetListV1_eOrderBy_e eOrderBy, int iRowMax, int iRowOffset, header_accept_language_e Accept_Language, char * sFilter);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**eOrderBy** | **ezmax_api_definition__full_usergroupGetListV1_eOrderBy_e** | Specify how you want the results to be sorted | [optional] 
+**iRowMax** | **int** |  | [optional] 
+**iRowOffset** | **int** |  | [optional] 
+**Accept_Language** | **header_accept_language_e** |  | [optional] 
+**sFilter** | **char \*** |  | [optional] 
+
+### Return type
+
+[usergroup_get_list_v1_response_t](usergroup_get_list_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectUsergroupAPI_usergroupGetMembersV1**
+```c
+// Retrieve an existing Usergroup's members
+//
+usergroup_get_members_v1_response_t* ObjectUsergroupAPI_usergroupGetMembersV1(apiClient_t *apiClient, int pkiUsergroupID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiUsergroupID** | **int** | The unique ID of the Usergroup | 
+
+### Return type
+
+[usergroup_get_members_v1_response_t](usergroup_get_members_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectUsergroupAPI_usergroupGetObjectV2**
+```c
+// Retrieve an existing Usergroup
+//
+// 
+//
+usergroup_get_object_v2_response_t* ObjectUsergroupAPI_usergroupGetObjectV2(apiClient_t *apiClient, int pkiUsergroupID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiUsergroupID** | **int** | The unique ID of the Usergroup | 
+
+### Return type
+
+[usergroup_get_object_v2_response_t](usergroup_get_object_v2_response.md) *
 
 
 ### Authorization

@@ -25,6 +25,8 @@ paymentterm_request_compound_t* instantiate_paymentterm_request_compound(int inc
     paymentterm_request_compound = paymentterm_request_compound_create(
       46,
       "0030",
+      ezmax_api_definition__full_paymentterm_request_compound__"Days",
+      5,
        // false, not to have infinite recursion
       instantiate_multilingual_paymentterm_description(0),
       true
@@ -33,6 +35,8 @@ paymentterm_request_compound_t* instantiate_paymentterm_request_compound(int inc
     paymentterm_request_compound = paymentterm_request_compound_create(
       46,
       "0030",
+      ezmax_api_definition__full_paymentterm_request_compound__"Days",
+      5,
       NULL,
       true
     );

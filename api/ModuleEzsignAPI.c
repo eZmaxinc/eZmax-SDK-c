@@ -101,7 +101,7 @@ ModuleEzsignAPI_ezsignSuggestTemplatesV1(apiClient_t *apiClient, int fkiEzsignfo
     char *keyQuery_fkiEzsignfoldertypeID = NULL;
     char * valueQuery_fkiEzsignfoldertypeID = NULL;
     keyValuePair_t *keyPairQuery_fkiEzsignfoldertypeID = 0;
-    if (fkiEzsignfoldertypeID)
+    if (1) // Always send integer parameters to the API server
     {
         keyQuery_fkiEzsignfoldertypeID = strdup("fkiEzsignfoldertypeID");
         valueQuery_fkiEzsignfoldertypeID = calloc(1,MAX_NUMBER_LENGTH);

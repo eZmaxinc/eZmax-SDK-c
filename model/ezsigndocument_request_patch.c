@@ -69,7 +69,7 @@ ezsigndocument_request_patch_t *ezsigndocument_request_patch_parseFromJSON(cJSON
     // ezsigndocument_request_patch->dt_ezsigndocument_duedate
     cJSON *dt_ezsigndocument_duedate = cJSON_GetObjectItemCaseSensitive(ezsigndocument_request_patchJSON, "dtEzsigndocumentDuedate");
     if (dt_ezsigndocument_duedate) { 
-    if(!cJSON_IsString(dt_ezsigndocument_duedate))
+    if(!cJSON_IsString(dt_ezsigndocument_duedate) && !cJSON_IsNull(dt_ezsigndocument_duedate))
     {
     goto end; //String
     }
@@ -78,7 +78,7 @@ ezsigndocument_request_patch_t *ezsigndocument_request_patch_parseFromJSON(cJSON
     // ezsigndocument_request_patch->s_ezsigndocument_name
     cJSON *s_ezsigndocument_name = cJSON_GetObjectItemCaseSensitive(ezsigndocument_request_patchJSON, "sEzsigndocumentName");
     if (s_ezsigndocument_name) { 
-    if(!cJSON_IsString(s_ezsigndocument_name))
+    if(!cJSON_IsString(s_ezsigndocument_name) && !cJSON_IsNull(s_ezsigndocument_name))
     {
     goto end; //String
     }
@@ -86,8 +86,8 @@ ezsigndocument_request_patch_t *ezsigndocument_request_patch_parseFromJSON(cJSON
 
 
     ezsigndocument_request_patch_local_var = ezsigndocument_request_patch_create (
-        dt_ezsigndocument_duedate ? strdup(dt_ezsigndocument_duedate->valuestring) : NULL,
-        s_ezsigndocument_name ? strdup(s_ezsigndocument_name->valuestring) : NULL
+        dt_ezsigndocument_duedate && !cJSON_IsNull(dt_ezsigndocument_duedate) ? strdup(dt_ezsigndocument_duedate->valuestring) : NULL,
+        s_ezsigndocument_name && !cJSON_IsNull(s_ezsigndocument_name) ? strdup(s_ezsigndocument_name->valuestring) : NULL
         );
 
     return ezsigndocument_request_patch_local_var;

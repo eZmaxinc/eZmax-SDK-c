@@ -69,7 +69,7 @@ multilingual_apikey_description_t *multilingual_apikey_description_parseFromJSON
     // multilingual_apikey_description->s_apikey_description1
     cJSON *s_apikey_description1 = cJSON_GetObjectItemCaseSensitive(multilingual_apikey_descriptionJSON, "sApikeyDescription1");
     if (s_apikey_description1) { 
-    if(!cJSON_IsString(s_apikey_description1))
+    if(!cJSON_IsString(s_apikey_description1) && !cJSON_IsNull(s_apikey_description1))
     {
     goto end; //String
     }
@@ -78,7 +78,7 @@ multilingual_apikey_description_t *multilingual_apikey_description_parseFromJSON
     // multilingual_apikey_description->s_apikey_description2
     cJSON *s_apikey_description2 = cJSON_GetObjectItemCaseSensitive(multilingual_apikey_descriptionJSON, "sApikeyDescription2");
     if (s_apikey_description2) { 
-    if(!cJSON_IsString(s_apikey_description2))
+    if(!cJSON_IsString(s_apikey_description2) && !cJSON_IsNull(s_apikey_description2))
     {
     goto end; //String
     }
@@ -86,8 +86,8 @@ multilingual_apikey_description_t *multilingual_apikey_description_parseFromJSON
 
 
     multilingual_apikey_description_local_var = multilingual_apikey_description_create (
-        s_apikey_description1 ? strdup(s_apikey_description1->valuestring) : NULL,
-        s_apikey_description2 ? strdup(s_apikey_description2->valuestring) : NULL
+        s_apikey_description1 && !cJSON_IsNull(s_apikey_description1) ? strdup(s_apikey_description1->valuestring) : NULL,
+        s_apikey_description2 && !cJSON_IsNull(s_apikey_description2) ? strdup(s_apikey_description2->valuestring) : NULL
         );
 
     return multilingual_apikey_description_local_var;
