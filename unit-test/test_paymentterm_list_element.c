@@ -25,7 +25,7 @@ paymentterm_list_element_t* instantiate_paymentterm_list_element(int include_opt
       46,
       "0030",
       ezmax_api_definition__full_paymentterm_list_element__"Days",
-      5,
+      30,
       "Net 30 days",
       true
     );
@@ -34,7 +34,7 @@ paymentterm_list_element_t* instantiate_paymentterm_list_element(int include_opt
       46,
       "0030",
       ezmax_api_definition__full_paymentterm_list_element__"Days",
-      5,
+      30,
       "Net 30 days",
       true
     );
