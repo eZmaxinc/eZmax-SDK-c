@@ -5,7 +5,6 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectPaymenttermAPI_paymenttermCreateObjectV1**](ObjectPaymenttermAPI.md#ObjectPaymenttermAPI_paymenttermCreateObjectV1) | **POST** /1/object/paymentterm | Create a new Paymentterm
-[**ObjectPaymenttermAPI_paymenttermDeleteObjectV1**](ObjectPaymenttermAPI.md#ObjectPaymenttermAPI_paymenttermDeleteObjectV1) | **DELETE** /1/object/paymentterm/{pkiPaymenttermID} | Delete an existing Paymentterm
 [**ObjectPaymenttermAPI_paymenttermEditObjectV1**](ObjectPaymenttermAPI.md#ObjectPaymenttermAPI_paymenttermEditObjectV1) | **PUT** /1/object/paymentterm/{pkiPaymenttermID} | Edit an existing Paymentterm
 [**ObjectPaymenttermAPI_paymenttermGetAutocompleteV2**](ObjectPaymenttermAPI.md#ObjectPaymenttermAPI_paymenttermGetAutocompleteV2) | **GET** /2/object/paymentterm/getAutocomplete/{sSelector} | Retrieve Paymentterms and IDs
 [**ObjectPaymenttermAPI_paymenttermGetListV1**](ObjectPaymenttermAPI.md#ObjectPaymenttermAPI_paymenttermGetListV1) | **GET** /1/object/paymentterm/getList | Retrieve Paymentterm list
@@ -39,37 +38,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **ObjectPaymenttermAPI_paymenttermDeleteObjectV1**
-```c
-// Delete an existing Paymentterm
-//
-// 
-//
-paymentterm_delete_object_v1_response_t* ObjectPaymenttermAPI_paymenttermDeleteObjectV1(apiClient_t *apiClient, int pkiPaymenttermID);
-```
-
-### Parameters
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiPaymenttermID** | **int** |  | 
-
-### Return type
-
-[paymentterm_delete_object_v1_response_t](paymentterm_delete_object_v1_response.md) *
-
-
-### Authorization
-
-[Authorization](../README.md#Authorization)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

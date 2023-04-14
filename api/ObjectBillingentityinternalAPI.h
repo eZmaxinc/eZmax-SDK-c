@@ -7,7 +7,6 @@
 #include "../include/binary.h"
 #include "../model/billingentityinternal_create_object_v1_request.h"
 #include "../model/billingentityinternal_create_object_v1_response.h"
-#include "../model/billingentityinternal_delete_object_v1_response.h"
 #include "../model/billingentityinternal_edit_object_v1_request.h"
 #include "../model/billingentityinternal_edit_object_v1_response.h"
 #include "../model/billingentityinternal_get_autocomplete_v2_response.h"
@@ -38,14 +37,6 @@ typedef enum  { ezmax_api_definition__full_billingentityinternalGetListV1__NULL 
 //
 billingentityinternal_create_object_v1_response_t*
 ObjectBillingentityinternalAPI_billingentityinternalCreateObjectV1(apiClient_t *apiClient, billingentityinternal_create_object_v1_request_t * billingentityinternal_create_object_v1_request );
-
-
-// Delete an existing Billingentityinternal
-//
-// 
-//
-billingentityinternal_delete_object_v1_response_t*
-ObjectBillingentityinternalAPI_billingentityinternalDeleteObjectV1(apiClient_t *apiClient, int pkiBillingentityinternalID );
 
 
 // Edit an existing Billingentityinternal

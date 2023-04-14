@@ -9,12 +9,10 @@
 #include "../model/header_accept_language.h"
 #include "../model/usergroup_create_object_v1_request.h"
 #include "../model/usergroup_create_object_v1_response.h"
-#include "../model/usergroup_delete_object_v1_response.h"
 #include "../model/usergroup_edit_object_v1_request.h"
 #include "../model/usergroup_edit_object_v1_response.h"
 #include "../model/usergroup_get_autocomplete_v2_response.h"
 #include "../model/usergroup_get_list_v1_response.h"
-#include "../model/usergroup_get_members_v1_response.h"
 #include "../model/usergroup_get_object_v2_response.h"
 
 // Enum SSELECTOR for ObjectUsergroupAPI_usergroupGetAutocompleteV2
@@ -41,14 +39,6 @@ usergroup_create_object_v1_response_t*
 ObjectUsergroupAPI_usergroupCreateObjectV1(apiClient_t *apiClient, usergroup_create_object_v1_request_t * usergroup_create_object_v1_request );
 
 
-// Delete an existing Usergroup
-//
-// 
-//
-usergroup_delete_object_v1_response_t*
-ObjectUsergroupAPI_usergroupDeleteObjectV1(apiClient_t *apiClient, int pkiUsergroupID );
-
-
 // Edit an existing Usergroup
 //
 // 
@@ -71,12 +61,6 @@ ObjectUsergroupAPI_usergroupGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_
 //
 usergroup_get_list_v1_response_t*
 ObjectUsergroupAPI_usergroupGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_usergroupGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter );
-
-
-// Retrieve an existing Usergroup's members
-//
-usergroup_get_members_v1_response_t*
-ObjectUsergroupAPI_usergroupGetMembersV1(apiClient_t *apiClient, int pkiUsergroupID );
 
 
 // Retrieve an existing Usergroup

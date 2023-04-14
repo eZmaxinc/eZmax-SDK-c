@@ -5,7 +5,6 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectVariableexpenseAPI_variableexpenseCreateObjectV1**](ObjectVariableexpenseAPI.md#ObjectVariableexpenseAPI_variableexpenseCreateObjectV1) | **POST** /1/object/variableexpense | Create a new Variableexpense
-[**ObjectVariableexpenseAPI_variableexpenseDeleteObjectV1**](ObjectVariableexpenseAPI.md#ObjectVariableexpenseAPI_variableexpenseDeleteObjectV1) | **DELETE** /1/object/variableexpense/{pkiVariableexpenseID} | Delete an existing Variableexpense
 [**ObjectVariableexpenseAPI_variableexpenseEditObjectV1**](ObjectVariableexpenseAPI.md#ObjectVariableexpenseAPI_variableexpenseEditObjectV1) | **PUT** /1/object/variableexpense/{pkiVariableexpenseID} | Edit an existing Variableexpense
 [**ObjectVariableexpenseAPI_variableexpenseGetAutocompleteV2**](ObjectVariableexpenseAPI.md#ObjectVariableexpenseAPI_variableexpenseGetAutocompleteV2) | **GET** /2/object/variableexpense/getAutocomplete/{sSelector} | Retrieve Variableexpenses and IDs
 [**ObjectVariableexpenseAPI_variableexpenseGetListV1**](ObjectVariableexpenseAPI.md#ObjectVariableexpenseAPI_variableexpenseGetListV1) | **GET** /1/object/variableexpense/getList | Retrieve Variableexpense list
@@ -39,37 +38,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **ObjectVariableexpenseAPI_variableexpenseDeleteObjectV1**
-```c
-// Delete an existing Variableexpense
-//
-// 
-//
-variableexpense_delete_object_v1_response_t* ObjectVariableexpenseAPI_variableexpenseDeleteObjectV1(apiClient_t *apiClient, int pkiVariableexpenseID);
-```
-
-### Parameters
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiVariableexpenseID** | **int** | The unique ID of the Variableexpense | 
-
-### Return type
-
-[variableexpense_delete_object_v1_response_t](variableexpense_delete_object_v1_response.md) *
-
-
-### Authorization
-
-[Authorization](../README.md#Authorization)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

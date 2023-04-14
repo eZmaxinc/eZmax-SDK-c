@@ -9,7 +9,6 @@
 #include "../model/header_accept_language.h"
 #include "../model/variableexpense_create_object_v1_request.h"
 #include "../model/variableexpense_create_object_v1_response.h"
-#include "../model/variableexpense_delete_object_v1_response.h"
 #include "../model/variableexpense_edit_object_v1_request.h"
 #include "../model/variableexpense_edit_object_v1_response.h"
 #include "../model/variableexpense_get_autocomplete_v2_response.h"
@@ -38,14 +37,6 @@ typedef enum  { ezmax_api_definition__full_variableexpenseGetListV1__NULL = 0, e
 //
 variableexpense_create_object_v1_response_t*
 ObjectVariableexpenseAPI_variableexpenseCreateObjectV1(apiClient_t *apiClient, variableexpense_create_object_v1_request_t * variableexpense_create_object_v1_request );
-
-
-// Delete an existing Variableexpense
-//
-// 
-//
-variableexpense_delete_object_v1_response_t*
-ObjectVariableexpenseAPI_variableexpenseDeleteObjectV1(apiClient_t *apiClient, int pkiVariableexpenseID );
 
 
 // Edit an existing Variableexpense

@@ -5,7 +5,6 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectDepartmentAPI_departmentGetAutocompleteV2**](ObjectDepartmentAPI.md#ObjectDepartmentAPI_departmentGetAutocompleteV2) | **GET** /2/object/department/getAutocomplete/{sSelector} | Retrieve Departments and IDs
-[**ObjectDepartmentAPI_departmentGetMembersV1**](ObjectDepartmentAPI.md#ObjectDepartmentAPI_departmentGetMembersV1) | **GET** /1/object/department/{pkiDepartmentID}/getMembers | Retrieve an existing Department&#39;s members
 
 
 # **ObjectDepartmentAPI_departmentGetAutocompleteV2**
@@ -29,37 +28,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [department_get_autocomplete_v2_response_t](department_get_autocomplete_v2_response.md) *
-
-
-### Authorization
-
-[Authorization](../README.md#Authorization)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **ObjectDepartmentAPI_departmentGetMembersV1**
-```c
-// Retrieve an existing Department's members
-//
-// 
-//
-department_get_members_v1_response_t* ObjectDepartmentAPI_departmentGetMembersV1(apiClient_t *apiClient, int pkiDepartmentID);
-```
-
-### Parameters
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiDepartmentID** | **int** |  | 
-
-### Return type
-
-[department_get_members_v1_response_t](department_get_members_v1_response.md) *
 
 
 ### Authorization

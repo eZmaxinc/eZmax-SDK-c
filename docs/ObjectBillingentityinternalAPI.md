@@ -5,7 +5,6 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectBillingentityinternalAPI_billingentityinternalCreateObjectV1**](ObjectBillingentityinternalAPI.md#ObjectBillingentityinternalAPI_billingentityinternalCreateObjectV1) | **POST** /1/object/billingentityinternal | Create a new Billingentityinternal
-[**ObjectBillingentityinternalAPI_billingentityinternalDeleteObjectV1**](ObjectBillingentityinternalAPI.md#ObjectBillingentityinternalAPI_billingentityinternalDeleteObjectV1) | **DELETE** /1/object/billingentityinternal/{pkiBillingentityinternalID} | Delete an existing Billingentityinternal
 [**ObjectBillingentityinternalAPI_billingentityinternalEditObjectV1**](ObjectBillingentityinternalAPI.md#ObjectBillingentityinternalAPI_billingentityinternalEditObjectV1) | **PUT** /1/object/billingentityinternal/{pkiBillingentityinternalID} | Edit an existing Billingentityinternal
 [**ObjectBillingentityinternalAPI_billingentityinternalGetAutocompleteV2**](ObjectBillingentityinternalAPI.md#ObjectBillingentityinternalAPI_billingentityinternalGetAutocompleteV2) | **GET** /2/object/billingentityinternal/getAutocomplete/{sSelector} | Retrieve Billingentityinternals and IDs
 [**ObjectBillingentityinternalAPI_billingentityinternalGetListV1**](ObjectBillingentityinternalAPI.md#ObjectBillingentityinternalAPI_billingentityinternalGetListV1) | **GET** /1/object/billingentityinternal/getList | Retrieve Billingentityinternal list
@@ -39,37 +38,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **ObjectBillingentityinternalAPI_billingentityinternalDeleteObjectV1**
-```c
-// Delete an existing Billingentityinternal
-//
-// 
-//
-billingentityinternal_delete_object_v1_response_t* ObjectBillingentityinternalAPI_billingentityinternalDeleteObjectV1(apiClient_t *apiClient, int pkiBillingentityinternalID);
-```
-
-### Parameters
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiBillingentityinternalID** | **int** | The unique ID of the Billingentityinternal | 
-
-### Return type
-
-[billingentityinternal_delete_object_v1_response_t](billingentityinternal_delete_object_v1_response.md) *
-
-
-### Authorization
-
-[Authorization](../README.md#Authorization)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -88,7 +88,6 @@ set(SRCS
     model/billingentityinternal_create_object_v1_response.c
     model/billingentityinternal_create_object_v1_response_all_of.c
     model/billingentityinternal_create_object_v1_response_m_payload.c
-    model/billingentityinternal_delete_object_v1_response.c
     model/billingentityinternal_edit_object_v1_request.c
     model/billingentityinternal_edit_object_v1_response.c
     model/billingentityinternal_get_autocomplete_v2_response.c
@@ -211,9 +210,6 @@ set(SRCS
     model/department_get_autocomplete_v2_response.c
     model/department_get_autocomplete_v2_response_all_of.c
     model/department_get_autocomplete_v2_response_m_payload.c
-    model/department_get_members_v1_response.c
-    model/department_get_members_v1_response_all_of.c
-    model/department_get_members_v1_response_m_payload.c
     model/descriptionstatic_response.c
     model/descriptionstatic_response_compound.c
     model/email_request.c
@@ -901,7 +897,6 @@ set(SRCS
     model/paymentterm_create_object_v1_response.c
     model/paymentterm_create_object_v1_response_all_of.c
     model/paymentterm_create_object_v1_response_m_payload.c
-    model/paymentterm_delete_object_v1_response.c
     model/paymentterm_edit_object_v1_request.c
     model/paymentterm_edit_object_v1_response.c
     model/paymentterm_get_autocomplete_v2_response.c
@@ -956,7 +951,6 @@ set(SRCS
     model/usergroup_create_object_v1_response.c
     model/usergroup_create_object_v1_response_all_of.c
     model/usergroup_create_object_v1_response_m_payload.c
-    model/usergroup_delete_object_v1_response.c
     model/usergroup_edit_object_v1_request.c
     model/usergroup_edit_object_v1_response.c
     model/usergroup_get_autocomplete_v2_response.c
@@ -966,9 +960,6 @@ set(SRCS
     model/usergroup_get_list_v1_response_all_of.c
     model/usergroup_get_list_v1_response_m_payload.c
     model/usergroup_get_list_v1_response_m_payload_all_of.c
-    model/usergroup_get_members_v1_response.c
-    model/usergroup_get_members_v1_response_all_of.c
-    model/usergroup_get_members_v1_response_m_payload.c
     model/usergroup_get_object_v2_response.c
     model/usergroup_get_object_v2_response_all_of.c
     model/usergroup_get_object_v2_response_m_payload.c
@@ -982,7 +973,6 @@ set(SRCS
     model/variableexpense_create_object_v1_response.c
     model/variableexpense_create_object_v1_response_all_of.c
     model/variableexpense_create_object_v1_response_m_payload.c
-    model/variableexpense_delete_object_v1_response.c
     model/variableexpense_edit_object_v1_request.c
     model/variableexpense_edit_object_v1_response.c
     model/variableexpense_get_autocomplete_v2_response.c
@@ -1131,7 +1121,6 @@ set(HDRS
     model/billingentityinternal_create_object_v1_response.h
     model/billingentityinternal_create_object_v1_response_all_of.h
     model/billingentityinternal_create_object_v1_response_m_payload.h
-    model/billingentityinternal_delete_object_v1_response.h
     model/billingentityinternal_edit_object_v1_request.h
     model/billingentityinternal_edit_object_v1_response.h
     model/billingentityinternal_get_autocomplete_v2_response.h
@@ -1254,9 +1243,6 @@ set(HDRS
     model/department_get_autocomplete_v2_response.h
     model/department_get_autocomplete_v2_response_all_of.h
     model/department_get_autocomplete_v2_response_m_payload.h
-    model/department_get_members_v1_response.h
-    model/department_get_members_v1_response_all_of.h
-    model/department_get_members_v1_response_m_payload.h
     model/descriptionstatic_response.h
     model/descriptionstatic_response_compound.h
     model/email_request.h
@@ -1944,7 +1930,6 @@ set(HDRS
     model/paymentterm_create_object_v1_response.h
     model/paymentterm_create_object_v1_response_all_of.h
     model/paymentterm_create_object_v1_response_m_payload.h
-    model/paymentterm_delete_object_v1_response.h
     model/paymentterm_edit_object_v1_request.h
     model/paymentterm_edit_object_v1_response.h
     model/paymentterm_get_autocomplete_v2_response.h
@@ -1999,7 +1984,6 @@ set(HDRS
     model/usergroup_create_object_v1_response.h
     model/usergroup_create_object_v1_response_all_of.h
     model/usergroup_create_object_v1_response_m_payload.h
-    model/usergroup_delete_object_v1_response.h
     model/usergroup_edit_object_v1_request.h
     model/usergroup_edit_object_v1_response.h
     model/usergroup_get_autocomplete_v2_response.h
@@ -2009,9 +1993,6 @@ set(HDRS
     model/usergroup_get_list_v1_response_all_of.h
     model/usergroup_get_list_v1_response_m_payload.h
     model/usergroup_get_list_v1_response_m_payload_all_of.h
-    model/usergroup_get_members_v1_response.h
-    model/usergroup_get_members_v1_response_all_of.h
-    model/usergroup_get_members_v1_response_m_payload.h
     model/usergroup_get_object_v2_response.h
     model/usergroup_get_object_v2_response_all_of.h
     model/usergroup_get_object_v2_response_m_payload.h
@@ -2025,7 +2006,6 @@ set(HDRS
     model/variableexpense_create_object_v1_response.h
     model/variableexpense_create_object_v1_response_all_of.h
     model/variableexpense_create_object_v1_response_m_payload.h
-    model/variableexpense_delete_object_v1_response.h
     model/variableexpense_edit_object_v1_request.h
     model/variableexpense_edit_object_v1_response.h
     model/variableexpense_get_autocomplete_v2_response.h

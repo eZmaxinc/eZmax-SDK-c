@@ -9,7 +9,6 @@
 #include "../model/header_accept_language.h"
 #include "../model/paymentterm_create_object_v1_request.h"
 #include "../model/paymentterm_create_object_v1_response.h"
-#include "../model/paymentterm_delete_object_v1_response.h"
 #include "../model/paymentterm_edit_object_v1_request.h"
 #include "../model/paymentterm_edit_object_v1_response.h"
 #include "../model/paymentterm_get_autocomplete_v2_response.h"
@@ -38,14 +37,6 @@ typedef enum  { ezmax_api_definition__full_paymenttermGetListV1__NULL = 0, ezmax
 //
 paymentterm_create_object_v1_response_t*
 ObjectPaymenttermAPI_paymenttermCreateObjectV1(apiClient_t *apiClient, paymentterm_create_object_v1_request_t * paymentterm_create_object_v1_request );
-
-
-// Delete an existing Paymentterm
-//
-// 
-//
-paymentterm_delete_object_v1_response_t*
-ObjectPaymenttermAPI_paymenttermDeleteObjectV1(apiClient_t *apiClient, int pkiPaymenttermID );
 
 
 // Edit an existing Paymentterm
