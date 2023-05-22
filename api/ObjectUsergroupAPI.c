@@ -161,13 +161,13 @@ end:
 // Functions for enum EORDERBY for ObjectUsergroupAPI_usergroupGetListV1
 
 static char* usergroupGetListV1_EORDERBY_ToString(ezmax_api_definition__full_usergroupGetListV1_eOrderBy_e EORDERBY){
-    char *EORDERBYArray[] =  { "NULL", "pkiUsergroupID_ASC", "pkiUsergroupID_DESC", "sUsergroupNameX_ASC", "sUsergroupNameX_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiUsergroupID_ASC", "pkiUsergroupID_DESC", "sUsergroupNameX_ASC", "sUsergroupNameX_DESC", "iCountUser_ASC", "iCountUser_DESC" };
     return EORDERBYArray[EORDERBY];
 }
 
 static ezmax_api_definition__full_usergroupGetListV1_eOrderBy_e usergroupGetListV1_EORDERBY_FromString(char* EORDERBY){
     int stringToReturn = 0;
-    char *EORDERBYArray[] =  { "NULL", "pkiUsergroupID_ASC", "pkiUsergroupID_DESC", "sUsergroupNameX_ASC", "sUsergroupNameX_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiUsergroupID_ASC", "pkiUsergroupID_DESC", "sUsergroupNameX_ASC", "sUsergroupNameX_DESC", "iCountUser_ASC", "iCountUser_DESC" };
     size_t sizeofArray = sizeof(EORDERBYArray) / sizeof(EORDERBYArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(EORDERBY, EORDERBYArray[stringToReturn]) == 0) {

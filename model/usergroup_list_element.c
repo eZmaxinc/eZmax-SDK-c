@@ -7,7 +7,8 @@
 
 usergroup_list_element_t *usergroup_list_element_create(
     int pki_usergroup_id,
-    char *s_usergroup_name_x
+    char *s_usergroup_name_x,
+    int i_count_user
     ) {
     usergroup_list_element_t *usergroup_list_element_local_var = malloc(sizeof(usergroup_list_element_t));
     if (!usergroup_list_element_local_var) {
@@ -15,6 +16,7 @@ usergroup_list_element_t *usergroup_list_element_create(
     }
     usergroup_list_element_local_var->pki_usergroup_id = pki_usergroup_id;
     usergroup_list_element_local_var->s_usergroup_name_x = s_usergroup_name_x;
+    usergroup_list_element_local_var->i_count_user = i_count_user;
 
     return usergroup_list_element_local_var;
 }
@@ -50,6 +52,15 @@ cJSON *usergroup_list_element_convertToJSON(usergroup_list_element_t *usergroup_
     }
     if(cJSON_AddStringToObject(item, "sUsergroupNameX", usergroup_list_element->s_usergroup_name_x) == NULL) {
     goto fail; //String
+    }
+
+
+    // usergroup_list_element->i_count_user
+    if (!usergroup_list_element->i_count_user) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iCountUser", usergroup_list_element->i_count_user) == NULL) {
+    goto fail; //Numeric
     }
 
     return item;
@@ -88,10 +99,23 @@ usergroup_list_element_t *usergroup_list_element_parseFromJSON(cJSON *usergroup_
     goto end; //String
     }
 
+    // usergroup_list_element->i_count_user
+    cJSON *i_count_user = cJSON_GetObjectItemCaseSensitive(usergroup_list_elementJSON, "iCountUser");
+    if (!i_count_user) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_count_user))
+    {
+    goto end; //Numeric
+    }
+
 
     usergroup_list_element_local_var = usergroup_list_element_create (
         pki_usergroup_id->valuedouble,
-        strdup(s_usergroup_name_x->valuestring)
+        strdup(s_usergroup_name_x->valuestring),
+        i_count_user->valuedouble
         );
 
     return usergroup_list_element_local_var;

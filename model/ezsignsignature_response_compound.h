@@ -15,6 +15,8 @@
 
 typedef struct ezsignsignature_response_compound_t ezsignsignature_response_compound_t;
 
+#include "custom_contact_name_response.h"
+#include "custom_creditcardtransaction_response.h"
 #include "ezsignsignaturecustomdate_response_compound.h"
 #include "field_e_ezsignsignature_attachmentnamesource.h"
 #include "field_e_ezsignsignature_font.h"
@@ -72,8 +74,11 @@ typedef struct ezsignsignature_response_compound_t {
     field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource; // custom
     int b_ezsignsignature_required; //boolean
     int fki_ezsignfoldersignerassociation_id_validation; //numeric
+    char *dt_ezsignsignature_date; // string
+    struct custom_contact_name_response_t *obj_contact_name; //model
     int b_ezsignsignature_customdate; //boolean
     list_t *a_obj_ezsignsignaturecustomdate; //nonprimitive container
+    struct custom_creditcardtransaction_response_t *obj_creditcardtransaction; //model
 
 } ezsignsignature_response_compound_t;
 
@@ -94,8 +99,11 @@ ezsignsignature_response_compound_t *ezsignsignature_response_compound_create(
     field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource,
     int b_ezsignsignature_required,
     int fki_ezsignfoldersignerassociation_id_validation,
+    char *dt_ezsignsignature_date,
+    custom_contact_name_response_t *obj_contact_name,
     int b_ezsignsignature_customdate,
-    list_t *a_obj_ezsignsignaturecustomdate
+    list_t *a_obj_ezsignsignaturecustomdate,
+    custom_creditcardtransaction_response_t *obj_creditcardtransaction
 );
 
 void ezsignsignature_response_compound_free(ezsignsignature_response_compound_t *ezsignsignature_response_compound);

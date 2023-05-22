@@ -21,12 +21,14 @@ typedef struct usergroup_list_element_t usergroup_list_element_t;
 typedef struct usergroup_list_element_t {
     int pki_usergroup_id; //numeric
     char *s_usergroup_name_x; // string
+    int i_count_user; //numeric
 
 } usergroup_list_element_t;
 
 usergroup_list_element_t *usergroup_list_element_create(
     int pki_usergroup_id,
-    char *s_usergroup_name_x
+    char *s_usergroup_name_x,
+    int i_count_user
 );
 
 void usergroup_list_element_free(usergroup_list_element_t *usergroup_list_element);

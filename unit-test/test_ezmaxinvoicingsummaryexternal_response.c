@@ -25,7 +25,7 @@ ezmaxinvoicingsummaryexternal_response_t* instantiate_ezmaxinvoicingsummaryexter
       177,
       28,
       83,
-      "Default",
+      "ACME Inc",
       "Company Demo"
     );
   } else {
@@ -33,7 +33,7 @@ ezmaxinvoicingsummaryexternal_response_t* instantiate_ezmaxinvoicingsummaryexter
       177,
       28,
       83,
-      "Default",
+      "ACME Inc",
       "Company Demo"
     );
   }

@@ -23,12 +23,14 @@ usergroup_list_element_t* instantiate_usergroup_list_element(int include_optiona
   if (include_optional) {
     usergroup_list_element = usergroup_list_element_create(
       2,
-      "Administration"
+      "Administration",
+      15
     );
   } else {
     usergroup_list_element = usergroup_list_element_create(
       2,
-      "Administration"
+      "Administration",
+      15
     );
   }
 

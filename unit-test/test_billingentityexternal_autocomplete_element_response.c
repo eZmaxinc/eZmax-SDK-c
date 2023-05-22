@@ -23,13 +23,13 @@ billingentityexternal_autocomplete_element_response_t* instantiate_billingentity
   if (include_optional) {
     billingentityexternal_autocomplete_element_response = billingentityexternal_autocomplete_element_response_create(
       83,
-      "Default",
+      "ACME Inc",
       true
     );
   } else {
     billingentityexternal_autocomplete_element_response = billingentityexternal_autocomplete_element_response_create(
       83,
-      "Default",
+      "ACME Inc",
       true
     );
   }

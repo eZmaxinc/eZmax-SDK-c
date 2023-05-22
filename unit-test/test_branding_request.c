@@ -27,7 +27,7 @@ branding_request_t* instantiate_branding_request(int include_optional) {
        // false, not to have infinite recursion
       instantiate_multilingual_branding_description(0),
       ezmax_api_definition__full_branding_request__"Default",
-      "[B@4721d212",
+      "[B@1b065145",
       3752795,
       0,
       16777215,
@@ -41,7 +41,7 @@ branding_request_t* instantiate_branding_request(int include_optional) {
       78,
       NULL,
       ezmax_api_definition__full_branding_request__"Default",
-      "[B@4721d212",
+      "[B@1b065145",
       3752795,
       0,
       16777215,

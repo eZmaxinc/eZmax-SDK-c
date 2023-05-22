@@ -23,6 +23,7 @@
 #include "../model/ezsigndocument_end_prematurely_v1_response.h"
 #include "../model/ezsigndocument_flatten_v1_response.h"
 #include "../model/ezsigndocument_get_actionable_elements_v1_response.h"
+#include "../model/ezsigndocument_get_completed_elements_v1_response.h"
 #include "../model/ezsigndocument_get_download_url_v1_response.h"
 #include "../model/ezsigndocument_get_ezsignannotations_v1_response.h"
 #include "../model/ezsigndocument_get_ezsignformfieldgroups_v1_response.h"
@@ -122,6 +123,14 @@ ObjectEzsigndocumentAPI_ezsigndocumentFlattenV1(apiClient_t *apiClient, int pkiE
 //
 ezsigndocument_get_actionable_elements_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsV1(apiClient_t *apiClient, int pkiEzsigndocumentID );
+
+
+// Retrieve completed elements for the Ezsigndocument
+//
+// Return the completed Ezsignsignatures, Ezsignformfieldgroups and Ezsignannotations at the current step in the process
+//
+ezsigndocument_get_completed_elements_v1_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentGetCompletedElementsV1(apiClient_t *apiClient, int pkiEzsigndocumentID );
 
 
 // Retrieve a URL to download documents.

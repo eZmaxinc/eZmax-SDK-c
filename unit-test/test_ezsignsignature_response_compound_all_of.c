@@ -16,6 +16,7 @@
 #include "../model/ezsignsignature_response_compound_all_of.h"
 ezsignsignature_response_compound_all_of_t* instantiate_ezsignsignature_response_compound_all_of(int include_optional);
 
+#include "test_custom_creditcardtransaction_response.c"
 
 
 ezsignsignature_response_compound_all_of_t* instantiate_ezsignsignature_response_compound_all_of(int include_optional) {
@@ -23,12 +24,15 @@ ezsignsignature_response_compound_all_of_t* instantiate_ezsignsignature_response
   if (include_optional) {
     ezsignsignature_response_compound_all_of = ezsignsignature_response_compound_all_of_create(
       1,
-      list_createList()
+      list_createList(),
+       // false, not to have infinite recursion
+      instantiate_custom_creditcardtransaction_response(0)
     );
   } else {
     ezsignsignature_response_compound_all_of = ezsignsignature_response_compound_all_of_create(
       1,
-      list_createList()
+      list_createList(),
+      NULL
     );
   }
 

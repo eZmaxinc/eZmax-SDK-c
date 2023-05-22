@@ -89,7 +89,9 @@ ezsignsignature_response_t *ezsignsignature_response_create(
     char *s_ezsignsignature_attachmentdescription,
     field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource,
     int b_ezsignsignature_required,
-    int fki_ezsignfoldersignerassociation_id_validation
+    int fki_ezsignfoldersignerassociation_id_validation,
+    char *dt_ezsignsignature_date,
+    custom_contact_name_response_t *obj_contact_name
     ) {
     ezsignsignature_response_t *ezsignsignature_response_local_var = malloc(sizeof(ezsignsignature_response_t));
     if (!ezsignsignature_response_local_var) {
@@ -111,6 +113,8 @@ ezsignsignature_response_t *ezsignsignature_response_create(
     ezsignsignature_response_local_var->e_ezsignsignature_attachmentnamesource = e_ezsignsignature_attachmentnamesource;
     ezsignsignature_response_local_var->b_ezsignsignature_required = b_ezsignsignature_required;
     ezsignsignature_response_local_var->fki_ezsignfoldersignerassociation_id_validation = fki_ezsignfoldersignerassociation_id_validation;
+    ezsignsignature_response_local_var->dt_ezsignsignature_date = dt_ezsignsignature_date;
+    ezsignsignature_response_local_var->obj_contact_name = obj_contact_name;
 
     return ezsignsignature_response_local_var;
 }
@@ -144,6 +148,14 @@ void ezsignsignature_response_free(ezsignsignature_response_t *ezsignsignature_r
     if (ezsignsignature_response->e_ezsignsignature_attachmentnamesource) {
         field_e_ezsignsignature_attachmentnamesource_free(ezsignsignature_response->e_ezsignsignature_attachmentnamesource);
         ezsignsignature_response->e_ezsignsignature_attachmentnamesource = NULL;
+    }
+    if (ezsignsignature_response->dt_ezsignsignature_date) {
+        free(ezsignsignature_response->dt_ezsignsignature_date);
+        ezsignsignature_response->dt_ezsignsignature_date = NULL;
+    }
+    if (ezsignsignature_response->obj_contact_name) {
+        custom_contact_name_response_free(ezsignsignature_response->obj_contact_name);
+        ezsignsignature_response->obj_contact_name = NULL;
     }
     free(ezsignsignature_response);
 }
@@ -306,6 +318,28 @@ cJSON *ezsignsignature_response_convertToJSON(ezsignsignature_response_t *ezsign
     }
     }
 
+
+    // ezsignsignature_response->dt_ezsignsignature_date
+    if(ezsignsignature_response->dt_ezsignsignature_date) {
+    if(cJSON_AddStringToObject(item, "dtEzsignsignatureDate", ezsignsignature_response->dt_ezsignsignature_date) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // ezsignsignature_response->obj_contact_name
+    if (!ezsignsignature_response->obj_contact_name) {
+        goto fail;
+    }
+    cJSON *obj_contact_name_local_JSON = custom_contact_name_response_convertToJSON(ezsignsignature_response->obj_contact_name);
+    if(obj_contact_name_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objContactName", obj_contact_name_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
     return item;
 fail:
     if (item) {
@@ -329,6 +363,9 @@ ezsignsignature_response_t *ezsignsignature_response_parseFromJSON(cJSON *ezsign
 
     // define the local variable for ezsignsignature_response->e_ezsignsignature_attachmentnamesource
     field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource_local_nonprim = NULL;
+
+    // define the local variable for ezsignsignature_response->obj_contact_name
+    custom_contact_name_response_t *obj_contact_name_local_nonprim = NULL;
 
     // ezsignsignature_response->pki_ezsignsignature_id
     cJSON *pki_ezsignsignature_id = cJSON_GetObjectItemCaseSensitive(ezsignsignature_responseJSON, "pkiEzsignsignatureID");
@@ -486,6 +523,24 @@ ezsignsignature_response_t *ezsignsignature_response_parseFromJSON(cJSON *ezsign
     }
     }
 
+    // ezsignsignature_response->dt_ezsignsignature_date
+    cJSON *dt_ezsignsignature_date = cJSON_GetObjectItemCaseSensitive(ezsignsignature_responseJSON, "dtEzsignsignatureDate");
+    if (dt_ezsignsignature_date) { 
+    if(!cJSON_IsString(dt_ezsignsignature_date) && !cJSON_IsNull(dt_ezsignsignature_date))
+    {
+    goto end; //String
+    }
+    }
+
+    // ezsignsignature_response->obj_contact_name
+    cJSON *obj_contact_name = cJSON_GetObjectItemCaseSensitive(ezsignsignature_responseJSON, "objContactName");
+    if (!obj_contact_name) {
+        goto end;
+    }
+
+    
+    obj_contact_name_local_nonprim = custom_contact_name_response_parseFromJSON(obj_contact_name); //nonprimitive
+
 
     ezsignsignature_response_local_var = ezsignsignature_response_create (
         pki_ezsignsignature_id->valuedouble,
@@ -503,7 +558,9 @@ ezsignsignature_response_t *ezsignsignature_response_parseFromJSON(cJSON *ezsign
         s_ezsignsignature_attachmentdescription && !cJSON_IsNull(s_ezsignsignature_attachmentdescription) ? strdup(s_ezsignsignature_attachmentdescription->valuestring) : NULL,
         e_ezsignsignature_attachmentnamesource ? e_ezsignsignature_attachmentnamesource_local_nonprim : NULL,
         b_ezsignsignature_required ? b_ezsignsignature_required->valueint : 0,
-        fki_ezsignfoldersignerassociation_id_validation ? fki_ezsignfoldersignerassociation_id_validation->valuedouble : 0
+        fki_ezsignfoldersignerassociation_id_validation ? fki_ezsignfoldersignerassociation_id_validation->valuedouble : 0,
+        dt_ezsignsignature_date && !cJSON_IsNull(dt_ezsignsignature_date) ? strdup(dt_ezsignsignature_date->valuestring) : NULL,
+        obj_contact_name_local_nonprim
         );
 
     return ezsignsignature_response_local_var;
@@ -523,6 +580,10 @@ end:
     if (e_ezsignsignature_attachmentnamesource_local_nonprim) {
         field_e_ezsignsignature_attachmentnamesource_free(e_ezsignsignature_attachmentnamesource_local_nonprim);
         e_ezsignsignature_attachmentnamesource_local_nonprim = NULL;
+    }
+    if (obj_contact_name_local_nonprim) {
+        custom_contact_name_response_free(obj_contact_name_local_nonprim);
+        obj_contact_name_local_nonprim = NULL;
     }
     return NULL;
 

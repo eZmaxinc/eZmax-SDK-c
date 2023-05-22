@@ -16,6 +16,7 @@
 #include "../model/ezsignsignature_response.h"
 ezsignsignature_response_t* instantiate_ezsignsignature_response(int include_optional);
 
+#include "test_custom_contact_name_response.c"
 
 
 ezsignsignature_response_t* instantiate_ezsignsignature_response(int include_optional) {
@@ -37,7 +38,10 @@ ezsignsignature_response_t* instantiate_ezsignsignature_response(int include_opt
       "Attachment",
       ezmax_api_definition__full_ezsignsignature_response__"Description",
       1,
-      20
+      20,
+      "2020-12-31 23:59:59",
+       // false, not to have infinite recursion
+      instantiate_custom_contact_name_response(0)
     );
   } else {
     ezsignsignature_response = ezsignsignature_response_create(
@@ -56,7 +60,9 @@ ezsignsignature_response_t* instantiate_ezsignsignature_response(int include_opt
       "Attachment",
       ezmax_api_definition__full_ezsignsignature_response__"Description",
       1,
-      20
+      20,
+      "2020-12-31 23:59:59",
+      NULL
     );
   }
 

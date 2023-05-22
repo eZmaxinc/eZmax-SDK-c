@@ -26,6 +26,7 @@ activesession_response_compound_t* instantiate_activesession_response_compound(i
   if (include_optional) {
     activesession_response_compound = activesession_response_compound_create(
       ezmax_api_definition__full_activesession_response_compound__"Normal",
+      ezmax_api_definition__full_activesession_response_compound__"BuiltIn",
       ezmax_api_definition__full_activesession_response_compound__"Sunday",
       2,
       "Acme inc.",
@@ -46,6 +47,7 @@ activesession_response_compound_t* instantiate_activesession_response_compound(i
   } else {
     activesession_response_compound = activesession_response_compound_create(
       ezmax_api_definition__full_activesession_response_compound__"Normal",
+      ezmax_api_definition__full_activesession_response_compound__"BuiltIn",
       ezmax_api_definition__full_activesession_response_compound__"Sunday",
       2,
       "Acme inc.",

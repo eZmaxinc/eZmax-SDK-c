@@ -25,7 +25,7 @@ ezmaxinvoicingsummaryexternal_response_compound_t* instantiate_ezmaxinvoicingsum
       177,
       28,
       83,
-      "Default",
+      "ACME Inc",
       "Company Demo",
       list_createList()
     );
@@ -34,7 +34,7 @@ ezmaxinvoicingsummaryexternal_response_compound_t* instantiate_ezmaxinvoicingsum
       177,
       28,
       83,
-      "Default",
+      "ACME Inc",
       "Company Demo",
       list_createList()
     );

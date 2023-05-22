@@ -15,6 +15,7 @@
 
 typedef struct activesession_response_t activesession_response_t;
 
+#include "field_e_activesession_origin.h"
 #include "field_e_activesession_usertype.h"
 #include "field_e_activesession_weekdaystart.h"
 
@@ -28,6 +29,14 @@ ezmax_api_definition__full_activesession_response__e activesession_response_e_ac
 
 // Enum  for activesession_response
 
+typedef enum  { ezmax_api_definition__full_activesession_response__NULL = 0, ezmax_api_definition__full_activesession_response__BuiltIn, ezmax_api_definition__full_activesession_response__External } ezmax_api_definition__full_activesession_response__e;
+
+char* activesession_response_e_activesession_origin_ToString(ezmax_api_definition__full_activesession_response__e e_activesession_origin);
+
+ezmax_api_definition__full_activesession_response__e activesession_response_e_activesession_origin_FromString(char* e_activesession_origin);
+
+// Enum  for activesession_response
+
 typedef enum  { ezmax_api_definition__full_activesession_response__NULL = 0, ezmax_api_definition__full_activesession_response__Sunday, ezmax_api_definition__full_activesession_response__Monday, ezmax_api_definition__full_activesession_response__Tuesday, ezmax_api_definition__full_activesession_response__Wednesday, ezmax_api_definition__full_activesession_response__Thursday, ezmax_api_definition__full_activesession_response__Friday, ezmax_api_definition__full_activesession_response__Saturday } ezmax_api_definition__full_activesession_response__e;
 
 char* activesession_response_e_activesession_weekdaystart_ToString(ezmax_api_definition__full_activesession_response__e e_activesession_weekdaystart);
@@ -38,6 +47,7 @@ ezmax_api_definition__full_activesession_response__e activesession_response_e_ac
 
 typedef struct activesession_response_t {
     field_e_activesession_usertype_t *e_activesession_usertype; // custom
+    field_e_activesession_origin_t *e_activesession_origin; // custom
     field_e_activesession_weekdaystart_t *e_activesession_weekdaystart; // custom
     int fki_language_id; //numeric
     char *s_company_name_x; // string
@@ -51,6 +61,7 @@ typedef struct activesession_response_t {
 
 activesession_response_t *activesession_response_create(
     field_e_activesession_usertype_t *e_activesession_usertype,
+    field_e_activesession_origin_t *e_activesession_origin,
     field_e_activesession_weekdaystart_t *e_activesession_weekdaystart,
     int fki_language_id,
     char *s_company_name_x,

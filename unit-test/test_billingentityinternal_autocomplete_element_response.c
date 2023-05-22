@@ -22,14 +22,14 @@ billingentityinternal_autocomplete_element_response_t* instantiate_billingentity
   billingentityinternal_autocomplete_element_response_t* billingentityinternal_autocomplete_element_response = NULL;
   if (include_optional) {
     billingentityinternal_autocomplete_element_response = billingentityinternal_autocomplete_element_response_create(
-      "Default",
       1,
+      "Default",
       true
     );
   } else {
     billingentityinternal_autocomplete_element_response = billingentityinternal_autocomplete_element_response_create(
-      "Default",
       1,
+      "Default",
       true
     );
   }

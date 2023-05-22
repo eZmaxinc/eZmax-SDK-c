@@ -23,6 +23,7 @@ activesession_response_t* instantiate_activesession_response(int include_optiona
   if (include_optional) {
     activesession_response = activesession_response_create(
       ezmax_api_definition__full_activesession_response__"Normal",
+      ezmax_api_definition__full_activesession_response__"BuiltIn",
       ezmax_api_definition__full_activesession_response__"Sunday",
       2,
       "Acme inc.",
@@ -35,6 +36,7 @@ activesession_response_t* instantiate_activesession_response(int include_optiona
   } else {
     activesession_response = activesession_response_create(
       ezmax_api_definition__full_activesession_response__"Normal",
+      ezmax_api_definition__full_activesession_response__"BuiltIn",
       ezmax_api_definition__full_activesession_response__"Sunday",
       2,
       "Acme inc.",

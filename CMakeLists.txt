@@ -128,6 +128,11 @@ set(SRCS
     model/branding_response.c
     model/branding_response_compound.c
     model/branding_response_compound_all_of.c
+    model/clonehistory_get_list_v1_response.c
+    model/clonehistory_get_list_v1_response_all_of.c
+    model/clonehistory_get_list_v1_response_m_payload.c
+    model/clonehistory_get_list_v1_response_m_payload_all_of.c
+    model/clonehistory_list_element.c
     model/common_audit.c
     model/common_auditdetail.c
     model/common_get_autocomplete_v1_response.c
@@ -170,6 +175,7 @@ set(SRCS
     model/custom_autocomplete_element_response.c
     model/custom_communication_list_element_response.c
     model/custom_contact_name_response.c
+    model/custom_creditcardtransaction_response.c
     model/custom_dropdown_element_request.c
     model/custom_dropdown_element_request_compound.c
     model/custom_dropdown_element_response.c
@@ -365,6 +371,9 @@ set(SRCS
     model/ezsigndocument_get_actionable_elements_v1_response.c
     model/ezsigndocument_get_actionable_elements_v1_response_all_of.c
     model/ezsigndocument_get_actionable_elements_v1_response_m_payload.c
+    model/ezsigndocument_get_completed_elements_v1_response.c
+    model/ezsigndocument_get_completed_elements_v1_response_all_of.c
+    model/ezsigndocument_get_completed_elements_v1_response_m_payload.c
     model/ezsigndocument_get_download_url_v1_response.c
     model/ezsigndocument_get_download_url_v1_response_all_of.c
     model/ezsigndocument_get_download_url_v1_response_m_payload.c
@@ -800,6 +809,7 @@ set(SRCS
     model/ezsigntsarequirement_get_autocomplete_v2_response.c
     model/ezsigntsarequirement_get_autocomplete_v2_response_all_of.c
     model/ezsigntsarequirement_get_autocomplete_v2_response_m_payload.c
+    model/field_e_activesession_origin.c
     model/field_e_activesession_usertype.c
     model/field_e_activesession_weekdaystart.c
     model/field_e_branding_logo.c
@@ -838,6 +848,7 @@ set(SRCS
     model/field_e_notificationpreference_status.c
     model/field_e_paymentterm_type.c
     model/field_e_phone_type.c
+    model/field_e_sessionhistory_endby.c
     model/field_e_user_ezsignsendreminderfrequency.c
     model/field_e_user_type.c
     model/field_e_variableexpense_taxable.c
@@ -872,6 +883,7 @@ set(SRCS
     model/franchisereferalincome_request_compound_all_of.c
     model/global_customer_get_endpoint_v1_response.c
     model/global_ezmaxclient_version_v1_response.c
+    model/global_ezmaxcustomer_get_configuration_v1_response.c
     model/header_accept_language.c
     model/multilingual_apikey_description.c
     model/multilingual_billingentityinternal_description.c
@@ -926,6 +938,11 @@ set(SRCS
     model/secretquestion_get_autocomplete_v2_response.c
     model/secretquestion_get_autocomplete_v2_response_all_of.c
     model/secretquestion_get_autocomplete_v2_response_m_payload.c
+    model/sessionhistory_get_list_v1_response.c
+    model/sessionhistory_get_list_v1_response_all_of.c
+    model/sessionhistory_get_list_v1_response_m_payload.c
+    model/sessionhistory_get_list_v1_response_m_payload_all_of.c
+    model/sessionhistory_list_element.c
     model/taxassignment_autocomplete_element_response.c
     model/taxassignment_get_autocomplete_v2_response.c
     model/taxassignment_get_autocomplete_v2_response_all_of.c
@@ -968,6 +985,19 @@ set(SRCS
     model/usergroup_request_compound.c
     model/usergroup_response.c
     model/usergroup_response_compound.c
+    model/userstaged_delete_object_v1_response.c
+    model/userstaged_get_list_v1_response.c
+    model/userstaged_get_list_v1_response_all_of.c
+    model/userstaged_get_list_v1_response_m_payload.c
+    model/userstaged_get_list_v1_response_m_payload_all_of.c
+    model/userstaged_get_object_v2_response.c
+    model/userstaged_get_object_v2_response_all_of.c
+    model/userstaged_get_object_v2_response_m_payload.c
+    model/userstaged_list_element.c
+    model/userstaged_map_v1_request.c
+    model/userstaged_map_v1_response.c
+    model/userstaged_response.c
+    model/userstaged_response_compound.c
     model/variableexpense_autocomplete_element_response.c
     model/variableexpense_create_object_v1_request.c
     model/variableexpense_create_object_v1_response.c
@@ -1004,6 +1034,9 @@ set(SRCS
     model/webhook_edit_object_v1_response.c
     model/webhook_ezsign_document_completed.c
     model/webhook_ezsign_document_completed_all_of.c
+    model/webhook_ezsign_ezsignsigner_acceptclause.c
+    model/webhook_ezsign_ezsignsigner_acceptclause_all_of.c
+    model/webhook_ezsign_ezsignsigner_connect.c
     model/webhook_ezsign_folder_completed.c
     model/webhook_ezsign_folder_completed_all_of.c
     model/webhook_get_history_v1_response.c
@@ -1030,6 +1063,7 @@ set(SRCS
     model/website_request_compound.c
     api/GlobalCustomerAPI.c
     api/GlobalEzmaxclientAPI.c
+    api/GlobalEzmaxcustomerAPI.c
     api/ModuleEzsignAPI.c
     api/ModuleUserAPI.c
     api/ObjectActivesessionAPI.c
@@ -1037,6 +1071,7 @@ set(SRCS
     api/ObjectBillingentityexternalAPI.c
     api/ObjectBillingentityinternalAPI.c
     api/ObjectBrandingAPI.c
+    api/ObjectClonehistoryAPI.c
     api/ObjectCommunicationAPI.c
     api/ObjectDepartmentAPI.c
     api/ObjectEzmaxinvoicingAPI.c
@@ -1070,10 +1105,12 @@ set(SRCS
     api/ObjectPaymenttermAPI.c
     api/ObjectPeriodAPI.c
     api/ObjectSecretquestionAPI.c
+    api/ObjectSessionhistoryAPI.c
     api/ObjectTaxassignmentAPI.c
     api/ObjectTimezoneAPI.c
     api/ObjectUserAPI.c
     api/ObjectUsergroupAPI.c
+    api/ObjectUserstagedAPI.c
     api/ObjectVariableexpenseAPI.c
     api/ObjectVersionhistoryAPI.c
     api/ObjectWebhookAPI.c
@@ -1161,6 +1198,11 @@ set(HDRS
     model/branding_response.h
     model/branding_response_compound.h
     model/branding_response_compound_all_of.h
+    model/clonehistory_get_list_v1_response.h
+    model/clonehistory_get_list_v1_response_all_of.h
+    model/clonehistory_get_list_v1_response_m_payload.h
+    model/clonehistory_get_list_v1_response_m_payload_all_of.h
+    model/clonehistory_list_element.h
     model/common_audit.h
     model/common_auditdetail.h
     model/common_get_autocomplete_v1_response.h
@@ -1203,6 +1245,7 @@ set(HDRS
     model/custom_autocomplete_element_response.h
     model/custom_communication_list_element_response.h
     model/custom_contact_name_response.h
+    model/custom_creditcardtransaction_response.h
     model/custom_dropdown_element_request.h
     model/custom_dropdown_element_request_compound.h
     model/custom_dropdown_element_response.h
@@ -1398,6 +1441,9 @@ set(HDRS
     model/ezsigndocument_get_actionable_elements_v1_response.h
     model/ezsigndocument_get_actionable_elements_v1_response_all_of.h
     model/ezsigndocument_get_actionable_elements_v1_response_m_payload.h
+    model/ezsigndocument_get_completed_elements_v1_response.h
+    model/ezsigndocument_get_completed_elements_v1_response_all_of.h
+    model/ezsigndocument_get_completed_elements_v1_response_m_payload.h
     model/ezsigndocument_get_download_url_v1_response.h
     model/ezsigndocument_get_download_url_v1_response_all_of.h
     model/ezsigndocument_get_download_url_v1_response_m_payload.h
@@ -1833,6 +1879,7 @@ set(HDRS
     model/ezsigntsarequirement_get_autocomplete_v2_response.h
     model/ezsigntsarequirement_get_autocomplete_v2_response_all_of.h
     model/ezsigntsarequirement_get_autocomplete_v2_response_m_payload.h
+    model/field_e_activesession_origin.h
     model/field_e_activesession_usertype.h
     model/field_e_activesession_weekdaystart.h
     model/field_e_branding_logo.h
@@ -1871,6 +1918,7 @@ set(HDRS
     model/field_e_notificationpreference_status.h
     model/field_e_paymentterm_type.h
     model/field_e_phone_type.h
+    model/field_e_sessionhistory_endby.h
     model/field_e_user_ezsignsendreminderfrequency.h
     model/field_e_user_type.h
     model/field_e_variableexpense_taxable.h
@@ -1905,6 +1953,7 @@ set(HDRS
     model/franchisereferalincome_request_compound_all_of.h
     model/global_customer_get_endpoint_v1_response.h
     model/global_ezmaxclient_version_v1_response.h
+    model/global_ezmaxcustomer_get_configuration_v1_response.h
     model/header_accept_language.h
     model/multilingual_apikey_description.h
     model/multilingual_billingentityinternal_description.h
@@ -1959,6 +2008,11 @@ set(HDRS
     model/secretquestion_get_autocomplete_v2_response.h
     model/secretquestion_get_autocomplete_v2_response_all_of.h
     model/secretquestion_get_autocomplete_v2_response_m_payload.h
+    model/sessionhistory_get_list_v1_response.h
+    model/sessionhistory_get_list_v1_response_all_of.h
+    model/sessionhistory_get_list_v1_response_m_payload.h
+    model/sessionhistory_get_list_v1_response_m_payload_all_of.h
+    model/sessionhistory_list_element.h
     model/taxassignment_autocomplete_element_response.h
     model/taxassignment_get_autocomplete_v2_response.h
     model/taxassignment_get_autocomplete_v2_response_all_of.h
@@ -2001,6 +2055,19 @@ set(HDRS
     model/usergroup_request_compound.h
     model/usergroup_response.h
     model/usergroup_response_compound.h
+    model/userstaged_delete_object_v1_response.h
+    model/userstaged_get_list_v1_response.h
+    model/userstaged_get_list_v1_response_all_of.h
+    model/userstaged_get_list_v1_response_m_payload.h
+    model/userstaged_get_list_v1_response_m_payload_all_of.h
+    model/userstaged_get_object_v2_response.h
+    model/userstaged_get_object_v2_response_all_of.h
+    model/userstaged_get_object_v2_response_m_payload.h
+    model/userstaged_list_element.h
+    model/userstaged_map_v1_request.h
+    model/userstaged_map_v1_response.h
+    model/userstaged_response.h
+    model/userstaged_response_compound.h
     model/variableexpense_autocomplete_element_response.h
     model/variableexpense_create_object_v1_request.h
     model/variableexpense_create_object_v1_response.h
@@ -2037,6 +2104,9 @@ set(HDRS
     model/webhook_edit_object_v1_response.h
     model/webhook_ezsign_document_completed.h
     model/webhook_ezsign_document_completed_all_of.h
+    model/webhook_ezsign_ezsignsigner_acceptclause.h
+    model/webhook_ezsign_ezsignsigner_acceptclause_all_of.h
+    model/webhook_ezsign_ezsignsigner_connect.h
     model/webhook_ezsign_folder_completed.h
     model/webhook_ezsign_folder_completed_all_of.h
     model/webhook_get_history_v1_response.h
@@ -2063,6 +2133,7 @@ set(HDRS
     model/website_request_compound.h
     api/GlobalCustomerAPI.h
     api/GlobalEzmaxclientAPI.h
+    api/GlobalEzmaxcustomerAPI.h
     api/ModuleEzsignAPI.h
     api/ModuleUserAPI.h
     api/ObjectActivesessionAPI.h
@@ -2070,6 +2141,7 @@ set(HDRS
     api/ObjectBillingentityexternalAPI.h
     api/ObjectBillingentityinternalAPI.h
     api/ObjectBrandingAPI.h
+    api/ObjectClonehistoryAPI.h
     api/ObjectCommunicationAPI.h
     api/ObjectDepartmentAPI.h
     api/ObjectEzmaxinvoicingAPI.h
@@ -2103,10 +2175,12 @@ set(HDRS
     api/ObjectPaymenttermAPI.h
     api/ObjectPeriodAPI.h
     api/ObjectSecretquestionAPI.h
+    api/ObjectSessionhistoryAPI.h
     api/ObjectTaxassignmentAPI.h
     api/ObjectTimezoneAPI.h
     api/ObjectUserAPI.h
     api/ObjectUsergroupAPI.h
+    api/ObjectUserstagedAPI.h
     api/ObjectVariableexpenseAPI.h
     api/ObjectVersionhistoryAPI.h
     api/ObjectWebhookAPI.h
@@ -2193,6 +2267,7 @@ set(HDRS "")
 #set(SRCS
 #    unit-tests/manual-GlobalCustomerAPI.c
 #    unit-tests/manual-GlobalEzmaxclientAPI.c
+#    unit-tests/manual-GlobalEzmaxcustomerAPI.c
 #    unit-tests/manual-ModuleEzsignAPI.c
 #    unit-tests/manual-ModuleUserAPI.c
 #    unit-tests/manual-ObjectActivesessionAPI.c
@@ -2200,6 +2275,7 @@ set(HDRS "")
 #    unit-tests/manual-ObjectBillingentityexternalAPI.c
 #    unit-tests/manual-ObjectBillingentityinternalAPI.c
 #    unit-tests/manual-ObjectBrandingAPI.c
+#    unit-tests/manual-ObjectClonehistoryAPI.c
 #    unit-tests/manual-ObjectCommunicationAPI.c
 #    unit-tests/manual-ObjectDepartmentAPI.c
 #    unit-tests/manual-ObjectEzmaxinvoicingAPI.c
@@ -2233,10 +2309,12 @@ set(HDRS "")
 #    unit-tests/manual-ObjectPaymenttermAPI.c
 #    unit-tests/manual-ObjectPeriodAPI.c
 #    unit-tests/manual-ObjectSecretquestionAPI.c
+#    unit-tests/manual-ObjectSessionhistoryAPI.c
 #    unit-tests/manual-ObjectTaxassignmentAPI.c
 #    unit-tests/manual-ObjectTimezoneAPI.c
 #    unit-tests/manual-ObjectUserAPI.c
 #    unit-tests/manual-ObjectUsergroupAPI.c
+#    unit-tests/manual-ObjectUserstagedAPI.c
 #    unit-tests/manual-ObjectVariableexpenseAPI.c
 #    unit-tests/manual-ObjectVersionhistoryAPI.c
 #    unit-tests/manual-ObjectWebhookAPI.c

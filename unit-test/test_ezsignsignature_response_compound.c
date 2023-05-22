@@ -16,6 +16,8 @@
 #include "../model/ezsignsignature_response_compound.h"
 ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compound(int include_optional);
 
+#include "test_custom_contact_name_response.c"
+#include "test_custom_creditcardtransaction_response.c"
 
 
 ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compound(int include_optional) {
@@ -38,8 +40,13 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
       ezmax_api_definition__full_ezsignsignature_response_compound__"Description",
       1,
       20,
+      "2020-12-31 23:59:59",
+       // false, not to have infinite recursion
+      instantiate_custom_contact_name_response(0),
       1,
-      list_createList()
+      list_createList(),
+       // false, not to have infinite recursion
+      instantiate_custom_creditcardtransaction_response(0)
     );
   } else {
     ezsignsignature_response_compound = ezsignsignature_response_compound_create(
@@ -59,8 +66,11 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
       ezmax_api_definition__full_ezsignsignature_response_compound__"Description",
       1,
       20,
+      "2020-12-31 23:59:59",
+      NULL,
       1,
-      list_createList()
+      list_createList(),
+      NULL
     );
   }
 

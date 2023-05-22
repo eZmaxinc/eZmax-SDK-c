@@ -1,0 +1,32 @@
+/*
+ * field_e_sessionhistory_endby.h
+ *
+ * The Type of the Sessionhistory
+ */
+
+#ifndef _field_e_sessionhistory_endby_H_
+#define _field_e_sessionhistory_endby_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_sessionhistory_endby_t field_e_sessionhistory_endby_t;
+
+
+// Enum  for field_e_sessionhistory_endby
+
+typedef enum { ezmax_api_definition__full_field_e_sessionhistory_endby__NULL = 0, ezmax_api_definition__full_field_e_sessionhistory_endby__Decryption, ezmax_api_definition__full_field_e_sessionhistory_endby__Hack, ezmax_api_definition__full_field_e_sessionhistory_endby__Expired, ezmax_api_definition__full_field_e_sessionhistory_endby__Hijack, ezmax_api_definition__full_field_e_sessionhistory_endby__DoubleLogon, ezmax_api_definition__full_field_e_sessionhistory_endby__Garbage, ezmax_api_definition__full_field_e_sessionhistory_endby__Logoff, ezmax_api_definition__full_field_e_sessionhistory_endby__BadAuth, ezmax_api_definition__full_field_e_sessionhistory_endby__Locked, ezmax_api_definition__full_field_e_sessionhistory_endby__Inactive, ezmax_api_definition__full_field_e_sessionhistory_endby__InvalidUser, ezmax_api_definition__full_field_e_sessionhistory_endby__BadUserType, ezmax_api_definition__full_field_e_sessionhistory_endby__BadIP } ezmax_api_definition__full_field_e_sessionhistory_endby__e;
+
+char* field_e_sessionhistory_endby_field_e_sessionhistory_endby_ToString(ezmax_api_definition__full_field_e_sessionhistory_endby__e field_e_sessionhistory_endby);
+
+ezmax_api_definition__full_field_e_sessionhistory_endby__e field_e_sessionhistory_endby_field_e_sessionhistory_endby_FromString(char* field_e_sessionhistory_endby);
+
+//cJSON *field_e_sessionhistory_endby_field_e_sessionhistory_endby_convertToJSON(ezmax_api_definition__full_field_e_sessionhistory_endby__e field_e_sessionhistory_endby);
+
+//ezmax_api_definition__full_field_e_sessionhistory_endby__e field_e_sessionhistory_endby_field_e_sessionhistory_endby_parseFromJSON(cJSON *field_e_sessionhistory_endbyJSON);
+
+#endif /* _field_e_sessionhistory_endby_H_ */
+

@@ -5,13 +5,13 @@
 
 
 char* field_e_webhook_ezsignevent_field_e_webhook_ezsignevent_ToString(ezmax_api_definition__full_field_e_webhook_ezsignevent__e field_e_webhook_ezsignevent) {
-    char *field_e_webhook_ezsigneventArray[] =  { "NULL", "DocumentCompleted", "FolderCompleted" };
+    char *field_e_webhook_ezsigneventArray[] =  { "NULL", "DocumentCompleted", "EzsignsignerAcceptclause", "EzsignsignerConnect", "FolderCompleted" };
     return field_e_webhook_ezsigneventArray[field_e_webhook_ezsignevent];
 }
 
 ezmax_api_definition__full_field_e_webhook_ezsignevent__e field_e_webhook_ezsignevent_field_e_webhook_ezsignevent_FromString(char* field_e_webhook_ezsignevent) {
     int stringToReturn = 0;
-    char *field_e_webhook_ezsigneventArray[] =  { "NULL", "DocumentCompleted", "FolderCompleted" };
+    char *field_e_webhook_ezsigneventArray[] =  { "NULL", "DocumentCompleted", "EzsignsignerAcceptclause", "EzsignsignerConnect", "FolderCompleted" };
     size_t sizeofArray = sizeof(field_e_webhook_ezsigneventArray) / sizeof(field_e_webhook_ezsigneventArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(field_e_webhook_ezsignevent, field_e_webhook_ezsigneventArray[stringToReturn]) == 0) {

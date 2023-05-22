@@ -15,6 +15,7 @@
 
 typedef struct ezsignsignature_response_compound_all_of_t ezsignsignature_response_compound_all_of_t;
 
+#include "custom_creditcardtransaction_response.h"
 #include "ezsignsignaturecustomdate_response_compound.h"
 
 
@@ -22,12 +23,14 @@ typedef struct ezsignsignature_response_compound_all_of_t ezsignsignature_respon
 typedef struct ezsignsignature_response_compound_all_of_t {
     int b_ezsignsignature_customdate; //boolean
     list_t *a_obj_ezsignsignaturecustomdate; //nonprimitive container
+    struct custom_creditcardtransaction_response_t *obj_creditcardtransaction; //model
 
 } ezsignsignature_response_compound_all_of_t;
 
 ezsignsignature_response_compound_all_of_t *ezsignsignature_response_compound_all_of_create(
     int b_ezsignsignature_customdate,
-    list_t *a_obj_ezsignsignaturecustomdate
+    list_t *a_obj_ezsignsignaturecustomdate,
+    custom_creditcardtransaction_response_t *obj_creditcardtransaction
 );
 
 void ezsignsignature_response_compound_all_of_free(ezsignsignature_response_compound_all_of_t *ezsignsignature_response_compound_all_of);

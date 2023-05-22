@@ -15,6 +15,7 @@
 
 typedef struct ezsignsignature_response_t ezsignsignature_response_t;
 
+#include "custom_contact_name_response.h"
 #include "field_e_ezsignsignature_attachmentnamesource.h"
 #include "field_e_ezsignsignature_font.h"
 #include "field_e_ezsignsignature_tooltipposition.h"
@@ -71,6 +72,8 @@ typedef struct ezsignsignature_response_t {
     field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource; // custom
     int b_ezsignsignature_required; //boolean
     int fki_ezsignfoldersignerassociation_id_validation; //numeric
+    char *dt_ezsignsignature_date; // string
+    struct custom_contact_name_response_t *obj_contact_name; //model
 
 } ezsignsignature_response_t;
 
@@ -90,7 +93,9 @@ ezsignsignature_response_t *ezsignsignature_response_create(
     char *s_ezsignsignature_attachmentdescription,
     field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource,
     int b_ezsignsignature_required,
-    int fki_ezsignfoldersignerassociation_id_validation
+    int fki_ezsignfoldersignerassociation_id_validation,
+    char *dt_ezsignsignature_date,
+    custom_contact_name_response_t *obj_contact_name
 );
 
 void ezsignsignature_response_free(ezsignsignature_response_t *ezsignsignature_response);

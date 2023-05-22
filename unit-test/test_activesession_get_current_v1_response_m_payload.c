@@ -26,6 +26,7 @@ activesession_get_current_v1_response_m_payload_t* instantiate_activesession_get
   if (include_optional) {
     activesession_get_current_v1_response_m_payload = activesession_get_current_v1_response_m_payload_create(
       ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__"Normal",
+      ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__"BuiltIn",
       ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__"Sunday",
       2,
       "Acme inc.",
@@ -46,6 +47,7 @@ activesession_get_current_v1_response_m_payload_t* instantiate_activesession_get
   } else {
     activesession_get_current_v1_response_m_payload = activesession_get_current_v1_response_m_payload_create(
       ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__"Normal",
+      ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__"BuiltIn",
       ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__"Sunday",
       2,
       "Acme inc.",

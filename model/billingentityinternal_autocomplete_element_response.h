@@ -19,15 +19,15 @@ typedef struct billingentityinternal_autocomplete_element_response_t billingenti
 
 
 typedef struct billingentityinternal_autocomplete_element_response_t {
-    char *s_billingentityinternal_description_x; // string
     int pki_billingentityinternal_id; //numeric
+    char *s_billingentityinternal_description_x; // string
     int b_billingentityinternal_isactive; //boolean
 
 } billingentityinternal_autocomplete_element_response_t;
 
 billingentityinternal_autocomplete_element_response_t *billingentityinternal_autocomplete_element_response_create(
-    char *s_billingentityinternal_description_x,
     int pki_billingentityinternal_id,
+    char *s_billingentityinternal_description_x,
     int b_billingentityinternal_isactive
 );
 

@@ -17,6 +17,7 @@ typedef struct activesession_response_compound_t activesession_response_compound
 
 #include "activesession_response_compound_apikey.h"
 #include "activesession_response_compound_user.h"
+#include "field_e_activesession_origin.h"
 #include "field_e_activesession_usertype.h"
 #include "field_e_activesession_weekdaystart.h"
 
@@ -30,6 +31,14 @@ ezmax_api_definition__full_activesession_response_compound__e activesession_resp
 
 // Enum  for activesession_response_compound
 
+typedef enum  { ezmax_api_definition__full_activesession_response_compound__NULL = 0, ezmax_api_definition__full_activesession_response_compound__BuiltIn, ezmax_api_definition__full_activesession_response_compound__External } ezmax_api_definition__full_activesession_response_compound__e;
+
+char* activesession_response_compound_e_activesession_origin_ToString(ezmax_api_definition__full_activesession_response_compound__e e_activesession_origin);
+
+ezmax_api_definition__full_activesession_response_compound__e activesession_response_compound_e_activesession_origin_FromString(char* e_activesession_origin);
+
+// Enum  for activesession_response_compound
+
 typedef enum  { ezmax_api_definition__full_activesession_response_compound__NULL = 0, ezmax_api_definition__full_activesession_response_compound__Sunday, ezmax_api_definition__full_activesession_response_compound__Monday, ezmax_api_definition__full_activesession_response_compound__Tuesday, ezmax_api_definition__full_activesession_response_compound__Wednesday, ezmax_api_definition__full_activesession_response_compound__Thursday, ezmax_api_definition__full_activesession_response_compound__Friday, ezmax_api_definition__full_activesession_response_compound__Saturday } ezmax_api_definition__full_activesession_response_compound__e;
 
 char* activesession_response_compound_e_activesession_weekdaystart_ToString(ezmax_api_definition__full_activesession_response_compound__e e_activesession_weekdaystart);
@@ -40,6 +49,7 @@ ezmax_api_definition__full_activesession_response_compound__e activesession_resp
 
 typedef struct activesession_response_compound_t {
     field_e_activesession_usertype_t *e_activesession_usertype; // custom
+    field_e_activesession_origin_t *e_activesession_origin; // custom
     field_e_activesession_weekdaystart_t *e_activesession_weekdaystart; // custom
     int fki_language_id; //numeric
     char *s_company_name_x; // string
@@ -58,6 +68,7 @@ typedef struct activesession_response_compound_t {
 
 activesession_response_compound_t *activesession_response_compound_create(
     field_e_activesession_usertype_t *e_activesession_usertype,
+    field_e_activesession_origin_t *e_activesession_origin,
     field_e_activesession_weekdaystart_t *e_activesession_weekdaystart,
     int fki_language_id,
     char *s_company_name_x,
