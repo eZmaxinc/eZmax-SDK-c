@@ -30,13 +30,13 @@ ezmax_api_definition__full_ezsigndocument_response_compound__e ezsigndocument_re
 
 
 typedef struct ezsigndocument_response_compound_t {
+    int pki_ezsigndocument_id; //numeric
     int fki_ezsignfolder_id; //numeric
     int fki_ezsignfoldersignerassociation_id_declinedtosign; //numeric
     char *dt_ezsigndocument_duedate; // string
     char *dt_ezsignform_completed; // string
     int fki_language_id; //numeric
     char *s_ezsigndocument_name; // string
-    int pki_ezsigndocument_id; //numeric
     field_e_ezsigndocument_step_t *e_ezsigndocument_step; // custom
     char *dt_ezsigndocument_firstsend; // string
     char *dt_ezsigndocument_lastsend; // string
@@ -60,13 +60,13 @@ typedef struct ezsigndocument_response_compound_t {
 } ezsigndocument_response_compound_t;
 
 ezsigndocument_response_compound_t *ezsigndocument_response_compound_create(
+    int pki_ezsigndocument_id,
     int fki_ezsignfolder_id,
     int fki_ezsignfoldersignerassociation_id_declinedtosign,
     char *dt_ezsigndocument_duedate,
     char *dt_ezsignform_completed,
     int fki_language_id,
     char *s_ezsigndocument_name,
-    int pki_ezsigndocument_id,
     field_e_ezsigndocument_step_t *e_ezsigndocument_step,
     char *dt_ezsigndocument_firstsend,
     char *dt_ezsigndocument_lastsend,

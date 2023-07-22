@@ -107,6 +107,103 @@ end:
 */
 
 
+// Create a User from a Userstaged and then map it
+//
+// Default values will be used while creating the User. If you need to change those values, you should use the route to edit a User.
+//
+userstaged_create_user_v1_response_t*
+ObjectUserstagedAPI_userstagedCreateUserV1(apiClient_t *apiClient, int pkiUserstagedID , object_t * body )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/userstaged/{pkiUserstagedID}/createUser")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/userstaged/{pkiUserstagedID}/createUser");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiUserstagedID =  + strlen("{ pkiUserstagedID }");
+    if(pkiUserstagedID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiUserstagedID = malloc(sizeOfPathParams_pkiUserstagedID);
+    snprintf(localVarToReplace_pkiUserstagedID, sizeOfPathParams_pkiUserstagedID, "{%s}", "pkiUserstagedID");
+
+    char localVarBuff_pkiUserstagedID[256];
+    intToStr(localVarBuff_pkiUserstagedID, pkiUserstagedID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiUserstagedID, localVarBuff_pkiUserstagedID);
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_body = NULL;
+    if (body != NULL)
+    {
+        //string
+        localVarSingleItemJSON_body = object_convertToJSON(body);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_body);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "POST");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectUserstagedAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    userstaged_create_user_v1_response_t *elementToReturn = userstaged_create_user_v1_response_parseFromJSON(ObjectUserstagedAPIlocalVarJSON);
+    cJSON_Delete(ObjectUserstagedAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_pkiUserstagedID);
+    if (localVarSingleItemJSON_body) {
+        cJSON_Delete(localVarSingleItemJSON_body);
+        localVarSingleItemJSON_body = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Delete an existing Userstaged
 //
 // 

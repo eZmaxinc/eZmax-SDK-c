@@ -5,13 +5,13 @@
 
 
 char* field_e_webhook_managementevent_field_e_webhook_managementevent_ToString(ezmax_api_definition__full_field_e_webhook_managementevent__e field_e_webhook_managementevent) {
-    char *field_e_webhook_managementeventArray[] =  { "NULL", "UserCreated" };
+    char *field_e_webhook_managementeventArray[] =  { "NULL", "UserCreated", "UserstagedCreated" };
     return field_e_webhook_managementeventArray[field_e_webhook_managementevent];
 }
 
 ezmax_api_definition__full_field_e_webhook_managementevent__e field_e_webhook_managementevent_field_e_webhook_managementevent_FromString(char* field_e_webhook_managementevent) {
     int stringToReturn = 0;
-    char *field_e_webhook_managementeventArray[] =  { "NULL", "UserCreated" };
+    char *field_e_webhook_managementeventArray[] =  { "NULL", "UserCreated", "UserstagedCreated" };
     size_t sizeofArray = sizeof(field_e_webhook_managementeventArray) / sizeof(field_e_webhook_managementeventArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(field_e_webhook_managementevent, field_e_webhook_managementeventArray[stringToReturn]) == 0) {

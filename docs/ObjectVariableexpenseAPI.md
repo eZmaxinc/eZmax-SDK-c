@@ -55,7 +55,7 @@ variableexpense_edit_object_v1_response_t* ObjectVariableexpenseAPI_variableexpe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiVariableexpenseID** | **int** | The unique ID of the Variableexpense | 
+**pkiVariableexpenseID** | **int** |  | 
 **variableexpense_edit_object_v1_request** | **[variableexpense_edit_object_v1_request_t](variableexpense_edit_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -156,7 +156,7 @@ variableexpense_get_object_v2_response_t* ObjectVariableexpenseAPI_variableexpen
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiVariableexpenseID** | **int** | The unique ID of the Variableexpense | 
+**pkiVariableexpenseID** | **int** |  | 
 
 ### Return type
 

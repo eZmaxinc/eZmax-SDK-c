@@ -39,13 +39,13 @@ ezmax_api_definition__full_webhook_request_compound__e e_webhook_ezsigneventwebh
     return 0;
 }
 char* e_webhook_managementeventwebhook_request_compound_ToString(ezmax_api_definition__full_webhook_request_compound__e e_webhook_managementevent) {
-    char* e_webhook_managementeventArray[] =  { "NULL", "UserCreated" };
+    char* e_webhook_managementeventArray[] =  { "NULL", "UserCreated", "UserstagedCreated" };
 	return e_webhook_managementeventArray[e_webhook_managementevent];
 }
 
 ezmax_api_definition__full_webhook_request_compound__e e_webhook_managementeventwebhook_request_compound_FromString(char* e_webhook_managementevent){
     int stringToReturn = 0;
-    char *e_webhook_managementeventArray[] =  { "NULL", "UserCreated" };
+    char *e_webhook_managementeventArray[] =  { "NULL", "UserCreated", "UserstagedCreated" };
     size_t sizeofArray = sizeof(e_webhook_managementeventArray) / sizeof(e_webhook_managementeventArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(e_webhook_managementevent, e_webhook_managementeventArray[stringToReturn]) == 0) {

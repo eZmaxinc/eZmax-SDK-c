@@ -8,6 +8,7 @@
 userstaged_response_compound_t *userstaged_response_compound_create(
     int pki_userstaged_id,
     int fki_email_id,
+    char *s_email_address,
     char *s_userstaged_firstname,
     char *s_userstaged_lastname,
     char *s_userstaged_externalid
@@ -18,6 +19,7 @@ userstaged_response_compound_t *userstaged_response_compound_create(
     }
     userstaged_response_compound_local_var->pki_userstaged_id = pki_userstaged_id;
     userstaged_response_compound_local_var->fki_email_id = fki_email_id;
+    userstaged_response_compound_local_var->s_email_address = s_email_address;
     userstaged_response_compound_local_var->s_userstaged_firstname = s_userstaged_firstname;
     userstaged_response_compound_local_var->s_userstaged_lastname = s_userstaged_lastname;
     userstaged_response_compound_local_var->s_userstaged_externalid = s_userstaged_externalid;
@@ -31,6 +33,10 @@ void userstaged_response_compound_free(userstaged_response_compound_t *userstage
         return ;
     }
     listEntry_t *listEntry;
+    if (userstaged_response_compound->s_email_address) {
+        free(userstaged_response_compound->s_email_address);
+        userstaged_response_compound->s_email_address = NULL;
+    }
     if (userstaged_response_compound->s_userstaged_firstname) {
         free(userstaged_response_compound->s_userstaged_firstname);
         userstaged_response_compound->s_userstaged_firstname = NULL;
@@ -64,6 +70,15 @@ cJSON *userstaged_response_compound_convertToJSON(userstaged_response_compound_t
     }
     if(cJSON_AddNumberToObject(item, "fkiEmailID", userstaged_response_compound->fki_email_id) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // userstaged_response_compound->s_email_address
+    if (!userstaged_response_compound->s_email_address) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "sEmailAddress", userstaged_response_compound->s_email_address) == NULL) {
+    goto fail; //String
     }
 
 
@@ -129,6 +144,18 @@ userstaged_response_compound_t *userstaged_response_compound_parseFromJSON(cJSON
     goto end; //Numeric
     }
 
+    // userstaged_response_compound->s_email_address
+    cJSON *s_email_address = cJSON_GetObjectItemCaseSensitive(userstaged_response_compoundJSON, "sEmailAddress");
+    if (!s_email_address) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_email_address))
+    {
+    goto end; //String
+    }
+
     // userstaged_response_compound->s_userstaged_firstname
     cJSON *s_userstaged_firstname = cJSON_GetObjectItemCaseSensitive(userstaged_response_compoundJSON, "sUserstagedFirstname");
     if (!s_userstaged_firstname) {
@@ -169,6 +196,7 @@ userstaged_response_compound_t *userstaged_response_compound_parseFromJSON(cJSON
     userstaged_response_compound_local_var = userstaged_response_compound_create (
         pki_userstaged_id->valuedouble,
         fki_email_id->valuedouble,
+        strdup(s_email_address->valuestring),
         strdup(s_userstaged_firstname->valuestring),
         strdup(s_userstaged_lastname->valuestring),
         strdup(s_userstaged_externalid->valuestring)

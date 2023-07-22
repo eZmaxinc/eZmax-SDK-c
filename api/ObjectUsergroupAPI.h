@@ -11,9 +11,15 @@
 #include "../model/usergroup_create_object_v1_response.h"
 #include "../model/usergroup_edit_object_v1_request.h"
 #include "../model/usergroup_edit_object_v1_response.h"
+#include "../model/usergroup_edit_permissions_v1_request.h"
+#include "../model/usergroup_edit_permissions_v1_response.h"
+#include "../model/usergroup_edit_usergroupmemberships_v1_request.h"
+#include "../model/usergroup_edit_usergroupmemberships_v1_response.h"
 #include "../model/usergroup_get_autocomplete_v2_response.h"
 #include "../model/usergroup_get_list_v1_response.h"
 #include "../model/usergroup_get_object_v2_response.h"
+#include "../model/usergroup_get_permissions_v1_response.h"
+#include "../model/usergroup_get_usergroupmemberships_v1_response.h"
 
 // Enum SSELECTOR for ObjectUsergroupAPI_usergroupGetAutocompleteV2
 typedef enum  { ezmax_api_definition__full_usergroupGetAutocompleteV2_SSELECTOR_NULL = 0, ezmax_api_definition__full_usergroupGetAutocompleteV2_SSELECTOR_All } ezmax_api_definition__full_usergroupGetAutocompleteV2_sSelector_e;
@@ -47,6 +53,22 @@ usergroup_edit_object_v1_response_t*
 ObjectUsergroupAPI_usergroupEditObjectV1(apiClient_t *apiClient, int pkiUsergroupID , usergroup_edit_object_v1_request_t * usergroup_edit_object_v1_request );
 
 
+// Edit multiple Permissions
+//
+// Using this endpoint, you can edit multiple Permissions at the same time.
+//
+usergroup_edit_permissions_v1_response_t*
+ObjectUsergroupAPI_usergroupEditPermissionsV1(apiClient_t *apiClient, int pkiUsergroupID , usergroup_edit_permissions_v1_request_t * usergroup_edit_permissions_v1_request );
+
+
+// Edit multiple Usergroupmemberships
+//
+// Using this endpoint, you can edit multiple Usergroupmemberships at the same time.
+//
+usergroup_edit_usergroupmemberships_v1_response_t*
+ObjectUsergroupAPI_usergroupEditUsergroupmembershipsV1(apiClient_t *apiClient, int pkiUsergroupID , usergroup_edit_usergroupmemberships_v1_request_t * usergroup_edit_usergroupmemberships_v1_request );
+
+
 // Retrieve Usergroups and IDs
 //
 // Get the list of Usergroup to be used in a dropdown or autocomplete control.
@@ -69,5 +91,17 @@ ObjectUsergroupAPI_usergroupGetListV1(apiClient_t *apiClient, ezmax_api_definiti
 //
 usergroup_get_object_v2_response_t*
 ObjectUsergroupAPI_usergroupGetObjectV2(apiClient_t *apiClient, int pkiUsergroupID );
+
+
+// Retrieve an existing Usergroup's Permissions
+//
+usergroup_get_permissions_v1_response_t*
+ObjectUsergroupAPI_usergroupGetPermissionsV1(apiClient_t *apiClient, int pkiUsergroupID );
+
+
+// Retrieve an existing Usergroup's Usergroupmemberships
+//
+usergroup_get_usergroupmemberships_v1_response_t*
+ObjectUsergroupAPI_usergroupGetUsergroupmembershipsV1(apiClient_t *apiClient, int pkiUsergroupID );
 
 

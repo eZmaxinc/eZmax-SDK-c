@@ -24,6 +24,7 @@ userstaged_response_compound_t* instantiate_userstaged_response_compound(int inc
     userstaged_response_compound = userstaged_response_compound_create(
       90,
       22,
+      "email@example.com",
       "Jane",
       "Doe",
       "azuread_6b303ca8-9e34-4c21-9a53-0856342dec5e"
@@ -32,6 +33,7 @@ userstaged_response_compound_t* instantiate_userstaged_response_compound(int inc
     userstaged_response_compound = userstaged_response_compound_create(
       90,
       22,
+      "email@example.com",
       "Jane",
       "Doe",
       "azuread_6b303ca8-9e34-4c21-9a53-0856342dec5e"

@@ -5,6 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pki_userstaged_id** | **int** | The unique ID of the Userstaged | 
 **fki_email_id** | **int** | The unique ID of the Email | 
+**s_email_address** | **char \*** | The email address. | 
 **s_userstaged_firstname** | **char \*** | The firstname of the Userstaged | 
 **s_userstaged_lastname** | **char \*** | The lastname of the Userstaged | 
 **s_userstaged_externalid** | **char \*** | The externalid of the Userstaged | 

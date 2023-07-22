@@ -19,12 +19,14 @@ typedef struct email_request_t email_request_t;
 
 
 typedef struct email_request_t {
+    int pki_email_id; //numeric
     int fki_emailtype_id; //numeric
     char *s_email_address; // string
 
 } email_request_t;
 
 email_request_t *email_request_create(
+    int pki_email_id,
     int fki_emailtype_id,
     char *s_email_address
 );

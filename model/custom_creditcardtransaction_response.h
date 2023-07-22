@@ -15,11 +15,20 @@
 
 typedef struct custom_creditcardtransaction_response_t custom_creditcardtransaction_response_t;
 
+#include "field_e_creditcardtype_codename.h"
+
+// Enum  for custom_creditcardtransaction_response
+
+typedef enum  { ezmax_api_definition__full_custom_creditcardtransaction_response__NULL = 0, ezmax_api_definition__full_custom_creditcardtransaction_response__Amex, ezmax_api_definition__full_custom_creditcardtransaction_response__Mastercard, ezmax_api_definition__full_custom_creditcardtransaction_response__Visa } ezmax_api_definition__full_custom_creditcardtransaction_response__e;
+
+char* custom_creditcardtransaction_response_e_creditcardtype_codename_ToString(ezmax_api_definition__full_custom_creditcardtransaction_response__e e_creditcardtype_codename);
+
+ezmax_api_definition__full_custom_creditcardtransaction_response__e custom_creditcardtransaction_response_e_creditcardtype_codename_FromString(char* e_creditcardtype_codename);
 
 
 
 typedef struct custom_creditcardtransaction_response_t {
-    char *s_creditcardtype_codename; // string
+    field_e_creditcardtype_codename_t *e_creditcardtype_codename; // custom
     char *d_creditcardtransaction_amount; // string
     char *s_creditcardtransaction_partiallydecryptednumber; // string
     char *s_creditcardtransaction_referencenumber; // string
@@ -27,7 +36,7 @@ typedef struct custom_creditcardtransaction_response_t {
 } custom_creditcardtransaction_response_t;
 
 custom_creditcardtransaction_response_t *custom_creditcardtransaction_response_create(
-    char *s_creditcardtype_codename,
+    field_e_creditcardtype_codename_t *e_creditcardtype_codename,
     char *d_creditcardtransaction_amount,
     char *s_creditcardtransaction_partiallydecryptednumber,
     char *s_creditcardtransaction_referencenumber

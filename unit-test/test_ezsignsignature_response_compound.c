@@ -17,6 +17,7 @@
 ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compound(int include_optional);
 
 #include "test_custom_contact_name_response.c"
+#include "test_signature_response_compound.c"
 #include "test_custom_creditcardtransaction_response.c"
 
 
@@ -30,19 +31,27 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
       1,
       200,
       300,
+      200,
+      200,
       1,
       ezmax_api_definition__full_ezsignsignature_response_compound__"Name",
       "Please sign here if you agree to the terms",
       ezmax_api_definition__full_ezsignsignature_response_compound__"TopLeft",
-      ezmax_api_definition__full_ezsignsignature_response_compound__Normal,
+      ezmax_api_definition__full_ezsignsignature_response_compound__"Normal",
       1,
       "Attachment",
       ezmax_api_definition__full_ezsignsignature_response_compound__"Description",
       1,
       20,
       "2020-12-31 23:59:59",
+      7,
+      "Montreal",
+      ezmax_api_definition__full_ezsignsignature_response_compound__"None",
+      "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
        // false, not to have infinite recursion
       instantiate_custom_contact_name_response(0),
+       // false, not to have infinite recursion
+      instantiate_signature_response_compound(0),
       1,
       list_createList(),
        // false, not to have infinite recursion
@@ -56,17 +65,24 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
       1,
       200,
       300,
+      200,
+      200,
       1,
       ezmax_api_definition__full_ezsignsignature_response_compound__"Name",
       "Please sign here if you agree to the terms",
       ezmax_api_definition__full_ezsignsignature_response_compound__"TopLeft",
-      ezmax_api_definition__full_ezsignsignature_response_compound__Normal,
+      ezmax_api_definition__full_ezsignsignature_response_compound__"Normal",
       1,
       "Attachment",
       ezmax_api_definition__full_ezsignsignature_response_compound__"Description",
       1,
       20,
       "2020-12-31 23:59:59",
+      7,
+      "Montreal",
+      ezmax_api_definition__full_ezsignsignature_response_compound__"None",
+      "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
+      NULL,
       NULL,
       1,
       list_createList(),

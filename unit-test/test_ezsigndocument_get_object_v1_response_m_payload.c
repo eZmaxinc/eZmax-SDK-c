@@ -23,13 +23,13 @@ ezsigndocument_get_object_v1_response_m_payload_t* instantiate_ezsigndocument_ge
   ezsigndocument_get_object_v1_response_m_payload_t* ezsigndocument_get_object_v1_response_m_payload = NULL;
   if (include_optional) {
     ezsigndocument_get_object_v1_response_m_payload = ezsigndocument_get_object_v1_response_m_payload_create(
+      97,
       33,
       20,
       "2020-12-31 23:59:59",
       "2020-12-31 23:59:59",
       2,
       "Contract #123",
-      97,
       ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__"Completed",
       "2020-12-31 23:59:59",
       "2020-12-31 23:59:59",
@@ -53,13 +53,13 @@ ezsigndocument_get_object_v1_response_m_payload_t* instantiate_ezsigndocument_ge
     );
   } else {
     ezsigndocument_get_object_v1_response_m_payload = ezsigndocument_get_object_v1_response_m_payload_create(
+      97,
       33,
       20,
       "2020-12-31 23:59:59",
       "2020-12-31 23:59:59",
       2,
       "Contract #123",
-      97,
       ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__"Completed",
       "2020-12-31 23:59:59",
       "2020-12-31 23:59:59",

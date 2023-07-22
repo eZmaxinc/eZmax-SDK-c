@@ -26,13 +26,15 @@ apikey_request_t* instantiate_apikey_request(int include_optional) {
       99,
       70,
        // false, not to have infinite recursion
-      instantiate_multilingual_apikey_description(0)
+      instantiate_multilingual_apikey_description(0),
+      true
     );
   } else {
     apikey_request = apikey_request_create(
       99,
       70,
-      NULL
+      NULL,
+      true
     );
   }
 

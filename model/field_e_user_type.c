@@ -5,13 +5,13 @@
 
 
 char* field_e_user_type_field_e_user_type_ToString(ezmax_api_definition__full_field_e_user_type__e field_e_user_type) {
-    char *field_e_user_typeArray[] =  { "NULL", "AgentBroker", "Assistant", "Attendance", "Customer", "Employee", "Ezcom", "EzsignSigner", "EzsignUser", "FranchiseCustomerServer", "Normal", "RewardAdministration", "RewardMember", "RewardRepresentative", "RewardCustomer", "RewardDistributorServer", "Supplier", "VetrxCustomer", "Vetrxcustomergroup", "VetrxCustomerServer", "VetrxManufacturer", "VetrxVendor" };
+    char *field_e_user_typeArray[] =  { "NULL", "AgentBroker", "Assistant", "Employee", "EzsignUser", "Normal" };
     return field_e_user_typeArray[field_e_user_type];
 }
 
 ezmax_api_definition__full_field_e_user_type__e field_e_user_type_field_e_user_type_FromString(char* field_e_user_type) {
     int stringToReturn = 0;
-    char *field_e_user_typeArray[] =  { "NULL", "AgentBroker", "Assistant", "Attendance", "Customer", "Employee", "Ezcom", "EzsignSigner", "EzsignUser", "FranchiseCustomerServer", "Normal", "RewardAdministration", "RewardMember", "RewardRepresentative", "RewardCustomer", "RewardDistributorServer", "Supplier", "VetrxCustomer", "Vetrxcustomergroup", "VetrxCustomerServer", "VetrxManufacturer", "VetrxVendor" };
+    char *field_e_user_typeArray[] =  { "NULL", "AgentBroker", "Assistant", "Employee", "EzsignUser", "Normal" };
     size_t sizeofArray = sizeof(field_e_user_typeArray) / sizeof(field_e_user_typeArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(field_e_user_type, field_e_user_typeArray[stringToReturn]) == 0) {

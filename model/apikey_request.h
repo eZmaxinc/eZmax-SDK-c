@@ -23,13 +23,15 @@ typedef struct apikey_request_t {
     int pki_apikey_id; //numeric
     int fki_user_id; //numeric
     struct multilingual_apikey_description_t *obj_apikey_description; //model
+    int b_apikey_isactive; //boolean
 
 } apikey_request_t;
 
 apikey_request_t *apikey_request_create(
     int pki_apikey_id,
     int fki_user_id,
-    multilingual_apikey_description_t *obj_apikey_description
+    multilingual_apikey_description_t *obj_apikey_description,
+    int b_apikey_isactive
 );
 
 void apikey_request_free(apikey_request_t *apikey_request);

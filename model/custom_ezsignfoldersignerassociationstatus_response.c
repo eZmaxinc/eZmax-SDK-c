@@ -60,20 +60,18 @@ cJSON *custom_ezsignfoldersignerassociationstatus_response_convertToJSON(custom_
 
 
     // custom_ezsignfoldersignerassociationstatus_response->s_ezsignfoldersignerassociationstatus_lastname
-    if (!custom_ezsignfoldersignerassociationstatus_response->s_ezsignfoldersignerassociationstatus_lastname) {
-        goto fail;
-    }
+    if(custom_ezsignfoldersignerassociationstatus_response->s_ezsignfoldersignerassociationstatus_lastname) {
     if(cJSON_AddStringToObject(item, "sEzsignfoldersignerassociationstatusLastname", custom_ezsignfoldersignerassociationstatus_response->s_ezsignfoldersignerassociationstatus_lastname) == NULL) {
     goto fail; //String
+    }
     }
 
 
     // custom_ezsignfoldersignerassociationstatus_response->s_ezsignfoldersignerassociationstatus_firstname
-    if (!custom_ezsignfoldersignerassociationstatus_response->s_ezsignfoldersignerassociationstatus_firstname) {
-        goto fail;
-    }
+    if(custom_ezsignfoldersignerassociationstatus_response->s_ezsignfoldersignerassociationstatus_firstname) {
     if(cJSON_AddStringToObject(item, "sEzsignfoldersignerassociationstatusFirstname", custom_ezsignfoldersignerassociationstatus_response->s_ezsignfoldersignerassociationstatus_firstname) == NULL) {
     goto fail; //String
+    }
     }
 
 
@@ -126,26 +124,20 @@ custom_ezsignfoldersignerassociationstatus_response_t *custom_ezsignfoldersigner
 
     // custom_ezsignfoldersignerassociationstatus_response->s_ezsignfoldersignerassociationstatus_lastname
     cJSON *s_ezsignfoldersignerassociationstatus_lastname = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldersignerassociationstatus_responseJSON, "sEzsignfoldersignerassociationstatusLastname");
-    if (!s_ezsignfoldersignerassociationstatus_lastname) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(s_ezsignfoldersignerassociationstatus_lastname))
+    if (s_ezsignfoldersignerassociationstatus_lastname) { 
+    if(!cJSON_IsString(s_ezsignfoldersignerassociationstatus_lastname) && !cJSON_IsNull(s_ezsignfoldersignerassociationstatus_lastname))
     {
     goto end; //String
+    }
     }
 
     // custom_ezsignfoldersignerassociationstatus_response->s_ezsignfoldersignerassociationstatus_firstname
     cJSON *s_ezsignfoldersignerassociationstatus_firstname = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldersignerassociationstatus_responseJSON, "sEzsignfoldersignerassociationstatusFirstname");
-    if (!s_ezsignfoldersignerassociationstatus_firstname) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(s_ezsignfoldersignerassociationstatus_firstname))
+    if (s_ezsignfoldersignerassociationstatus_firstname) { 
+    if(!cJSON_IsString(s_ezsignfoldersignerassociationstatus_firstname) && !cJSON_IsNull(s_ezsignfoldersignerassociationstatus_firstname))
     {
     goto end; //String
+    }
     }
 
     // custom_ezsignfoldersignerassociationstatus_response->a_obj_ezsignsignaturestatus
@@ -175,8 +167,8 @@ custom_ezsignfoldersignerassociationstatus_response_t *custom_ezsignfoldersigner
 
     custom_ezsignfoldersignerassociationstatus_response_local_var = custom_ezsignfoldersignerassociationstatus_response_create (
         fki_ezsignfoldersignerassociation_id->valuedouble,
-        strdup(s_ezsignfoldersignerassociationstatus_lastname->valuestring),
-        strdup(s_ezsignfoldersignerassociationstatus_firstname->valuestring),
+        s_ezsignfoldersignerassociationstatus_lastname && !cJSON_IsNull(s_ezsignfoldersignerassociationstatus_lastname) ? strdup(s_ezsignfoldersignerassociationstatus_lastname->valuestring) : NULL,
+        s_ezsignfoldersignerassociationstatus_firstname && !cJSON_IsNull(s_ezsignfoldersignerassociationstatus_firstname) ? strdup(s_ezsignfoldersignerassociationstatus_firstname->valuestring) : NULL,
         a_obj_ezsignsignaturestatusList
         );
 

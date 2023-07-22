@@ -5,9 +5,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **fki_user_id** | **int** | The unique ID of the User | 
 **fki_apikey_id** | **int** | The unique ID of the Apikey | [optional] 
-**s_user_loginname** | **char \*** | The Login name of the User. | 
-**s_user_lastname** | **char \*** | The Last name of the user | 
-**s_user_firstname** | **char \*** | The First name of the user | 
+**s_user_loginname** | **char \*** | The login name of the User. | 
+**s_user_lastname** | **char \*** | The last name of the user | 
+**s_user_firstname** | **char \*** | The first name of the user | 
 **s_apikey_description_x** | **char \*** | The description of the Apikey in the language of the requester | [optional] 
 **dt_auditdetail_date** | **char \*** | Represent a Date Time. The timezone is the one configured in the User&#39;s profile. | 
 

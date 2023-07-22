@@ -1,7 +1,7 @@
 /*
  * enum_horizontalalignment.h
  *
- * The Horizontalalignment of the Ezsignannotation.  This can only be set if eEzsignannotationType is **Text**
+ * The Horizontal alignment
  */
 
 #ifndef _enum_horizontalalignment_H_

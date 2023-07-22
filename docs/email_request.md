@@ -3,6 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**pki_email_id** | **int** | The unique ID of the Email | [optional] 
 **fki_emailtype_id** | **int** | The unique ID of the Emailtype.  Valid values:  |Value|Description| |-|-| |1|Office| |2|Home| | 
 **s_email_address** | **char \*** | The email address. | 
 

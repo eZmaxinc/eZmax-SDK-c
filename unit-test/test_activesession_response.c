@@ -31,7 +31,8 @@ activesession_response_t* instantiate_activesession_response(int include_optiona
       false,
       false,
       "demo",
-      28
+      28,
+      12
     );
   } else {
     activesession_response = activesession_response_create(
@@ -44,7 +45,8 @@ activesession_response_t* instantiate_activesession_response(int include_optiona
       false,
       false,
       "demo",
-      28
+      28,
+      12
     );
   }
 

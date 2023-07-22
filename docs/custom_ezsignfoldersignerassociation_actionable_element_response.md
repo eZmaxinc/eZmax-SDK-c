@@ -8,7 +8,9 @@ Name | Type | Description | Notes
 **b_ezsignfoldersignerassociation_delayedsend** | **int** | If this flag is true the signatory is part of a delayed send. | 
 **b_ezsignfoldersignerassociation_receivecopy** | **int** | If this flag is true. The signatory will receive a copy of every signed Ezsigndocument even if it ain&#39;t required to sign the document. | 
 **t_ezsignfoldersignerassociation_message** | **char \*** | A custom text message that will be added to the email sent. | 
+**obj_ezsignsignergroup** | [**ezsignsignergroup_response_compound_t**](ezsignsignergroup_response_compound.md) \* |  | [optional] 
 **obj_user** | [**ezsignfoldersignerassociation_response_compound_user_t**](ezsignfoldersignerassociation_response_compound_user.md) \* |  | [optional] 
+**obj_usergroup** | [**usergroup_response_compound_t**](usergroup_response_compound.md) \* |  | [optional] 
 **obj_ezsignsigner** | [**ezsignsigner_response_compound_t**](ezsignsigner_response_compound.md) \* |  | [optional] 
 **b_ezsignfoldersignerassociation_hasactionableelements_current** | **int** | Indicates if the Ezsignfoldersignerassociation has actionable elements in the current step | 
 **b_ezsignfoldersignerassociation_hasactionableelements_future** | **int** | Indicates if the Ezsignfoldersignerassociation has actionable elements in a future step | [optional] 

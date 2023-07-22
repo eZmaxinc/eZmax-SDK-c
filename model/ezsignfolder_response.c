@@ -177,56 +177,50 @@ cJSON *ezsignfolder_response_convertToJSON(ezsignfolder_response_t *ezsignfolder
 
 
     // ezsignfolder_response->fki_ezsignfoldertype_id
-    if (!ezsignfolder_response->fki_ezsignfoldertype_id) {
-        goto fail;
-    }
+    if(ezsignfolder_response->fki_ezsignfoldertype_id) {
     if(cJSON_AddNumberToObject(item, "fkiEzsignfoldertypeID", ezsignfolder_response->fki_ezsignfoldertype_id) == NULL) {
     goto fail; //Numeric
+    }
     }
 
 
     // ezsignfolder_response->s_ezsignfoldertype_name_x
-    if (!ezsignfolder_response->s_ezsignfoldertype_name_x) {
-        goto fail;
-    }
+    if(ezsignfolder_response->s_ezsignfoldertype_name_x) {
     if(cJSON_AddStringToObject(item, "sEzsignfoldertypeNameX", ezsignfolder_response->s_ezsignfoldertype_name_x) == NULL) {
     goto fail; //String
+    }
     }
 
 
     // ezsignfolder_response->fki_billingentityinternal_id
-    if (!ezsignfolder_response->fki_billingentityinternal_id) {
-        goto fail;
-    }
+    if(ezsignfolder_response->fki_billingentityinternal_id) {
     if(cJSON_AddNumberToObject(item, "fkiBillingentityinternalID", ezsignfolder_response->fki_billingentityinternal_id) == NULL) {
     goto fail; //Numeric
+    }
     }
 
 
     // ezsignfolder_response->s_billingentityinternal_description_x
-    if (!ezsignfolder_response->s_billingentityinternal_description_x) {
-        goto fail;
-    }
+    if(ezsignfolder_response->s_billingentityinternal_description_x) {
     if(cJSON_AddStringToObject(item, "sBillingentityinternalDescriptionX", ezsignfolder_response->s_billingentityinternal_description_x) == NULL) {
     goto fail; //String
+    }
     }
 
 
     // ezsignfolder_response->fki_ezsigntsarequirement_id
-    if (!ezsignfolder_response->fki_ezsigntsarequirement_id) {
-        goto fail;
-    }
+    if(ezsignfolder_response->fki_ezsigntsarequirement_id) {
     if(cJSON_AddNumberToObject(item, "fkiEzsigntsarequirementID", ezsignfolder_response->fki_ezsigntsarequirement_id) == NULL) {
     goto fail; //Numeric
+    }
     }
 
 
     // ezsignfolder_response->s_ezsigntsarequirement_description_x
-    if (!ezsignfolder_response->s_ezsigntsarequirement_description_x) {
-        goto fail;
-    }
+    if(ezsignfolder_response->s_ezsigntsarequirement_description_x) {
     if(cJSON_AddStringToObject(item, "sEzsigntsarequirementDescriptionX", ezsignfolder_response->s_ezsigntsarequirement_description_x) == NULL) {
     goto fail; //String
+    }
     }
 
 
@@ -240,27 +234,23 @@ cJSON *ezsignfolder_response_convertToJSON(ezsignfolder_response_t *ezsignfolder
 
 
     // ezsignfolder_response->t_ezsignfolder_note
-    if (!ezsignfolder_response->t_ezsignfolder_note) {
-        goto fail;
-    }
+    if(ezsignfolder_response->t_ezsignfolder_note) {
     if(cJSON_AddStringToObject(item, "tEzsignfolderNote", ezsignfolder_response->t_ezsignfolder_note) == NULL) {
     goto fail; //String
+    }
     }
 
 
     // ezsignfolder_response->b_ezsignfolder_isdisposable
-    if (!ezsignfolder_response->b_ezsignfolder_isdisposable) {
-        goto fail;
-    }
+    if(ezsignfolder_response->b_ezsignfolder_isdisposable) {
     if(cJSON_AddBoolToObject(item, "bEzsignfolderIsdisposable", ezsignfolder_response->b_ezsignfolder_isdisposable) == NULL) {
     goto fail; //Bool
+    }
     }
 
 
     // ezsignfolder_response->e_ezsignfolder_sendreminderfrequency
-    if (ezmax_api_definition__full_ezsignfolder_response__NULL == ezsignfolder_response->e_ezsignfolder_sendreminderfrequency) {
-        goto fail;
-    }
+    if(ezsignfolder_response->e_ezsignfolder_sendreminderfrequency != ezmax_api_definition__full_ezsignfolder_response__NULL) {
     cJSON *e_ezsignfolder_sendreminderfrequency_local_JSON = field_e_ezsignfolder_sendreminderfrequency_convertToJSON(ezsignfolder_response->e_ezsignfolder_sendreminderfrequency);
     if(e_ezsignfolder_sendreminderfrequency_local_JSON == NULL) {
         goto fail; // custom
@@ -268,6 +258,7 @@ cJSON *ezsignfolder_response_convertToJSON(ezsignfolder_response_t *ezsignfolder
     cJSON_AddItemToObject(item, "eEzsignfolderSendreminderfrequency", e_ezsignfolder_sendreminderfrequency_local_JSON);
     if(item->child == NULL) {
         goto fail;
+    }
     }
 
 
@@ -312,9 +303,7 @@ cJSON *ezsignfolder_response_convertToJSON(ezsignfolder_response_t *ezsignfolder
 
 
     // ezsignfolder_response->e_ezsignfolder_step
-    if (ezmax_api_definition__full_ezsignfolder_response__NULL == ezsignfolder_response->e_ezsignfolder_step) {
-        goto fail;
-    }
+    if(ezsignfolder_response->e_ezsignfolder_step != ezmax_api_definition__full_ezsignfolder_response__NULL) {
     cJSON *e_ezsignfolder_step_local_JSON = field_e_ezsignfolder_step_convertToJSON(ezsignfolder_response->e_ezsignfolder_step);
     if(e_ezsignfolder_step_local_JSON == NULL) {
         goto fail; // custom
@@ -322,6 +311,7 @@ cJSON *ezsignfolder_response_convertToJSON(ezsignfolder_response_t *ezsignfolder
     cJSON_AddItemToObject(item, "eEzsignfolderStep", e_ezsignfolder_step_local_JSON);
     if(item->child == NULL) {
         goto fail;
+    }
     }
 
 
@@ -334,18 +324,15 @@ cJSON *ezsignfolder_response_convertToJSON(ezsignfolder_response_t *ezsignfolder
 
 
     // ezsignfolder_response->t_ezsignfolder_message
-    if (!ezsignfolder_response->t_ezsignfolder_message) {
-        goto fail;
-    }
+    if(ezsignfolder_response->t_ezsignfolder_message) {
     if(cJSON_AddStringToObject(item, "tEzsignfolderMessage", ezsignfolder_response->t_ezsignfolder_message) == NULL) {
     goto fail; //String
+    }
     }
 
 
     // ezsignfolder_response->obj_audit
-    if (!ezsignfolder_response->obj_audit) {
-        goto fail;
-    }
+    if(ezsignfolder_response->obj_audit) {
     cJSON *obj_audit_local_JSON = common_audit_convertToJSON(ezsignfolder_response->obj_audit);
     if(obj_audit_local_JSON == NULL) {
     goto fail; //model
@@ -354,14 +341,14 @@ cJSON *ezsignfolder_response_convertToJSON(ezsignfolder_response_t *ezsignfolder
     if(item->child == NULL) {
     goto fail;
     }
+    }
 
 
     // ezsignfolder_response->s_ezsignfolder_externalid
-    if (!ezsignfolder_response->s_ezsignfolder_externalid) {
-        goto fail;
-    }
+    if(ezsignfolder_response->s_ezsignfolder_externalid) {
     if(cJSON_AddStringToObject(item, "sEzsignfolderExternalid", ezsignfolder_response->s_ezsignfolder_externalid) == NULL) {
     goto fail; //String
+    }
     }
 
     return item;
@@ -399,74 +386,56 @@ ezsignfolder_response_t *ezsignfolder_response_parseFromJSON(cJSON *ezsignfolder
 
     // ezsignfolder_response->fki_ezsignfoldertype_id
     cJSON *fki_ezsignfoldertype_id = cJSON_GetObjectItemCaseSensitive(ezsignfolder_responseJSON, "fkiEzsignfoldertypeID");
-    if (!fki_ezsignfoldertype_id) {
-        goto end;
-    }
-
-    
+    if (fki_ezsignfoldertype_id) { 
     if(!cJSON_IsNumber(fki_ezsignfoldertype_id))
     {
     goto end; //Numeric
     }
+    }
 
     // ezsignfolder_response->s_ezsignfoldertype_name_x
     cJSON *s_ezsignfoldertype_name_x = cJSON_GetObjectItemCaseSensitive(ezsignfolder_responseJSON, "sEzsignfoldertypeNameX");
-    if (!s_ezsignfoldertype_name_x) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(s_ezsignfoldertype_name_x))
+    if (s_ezsignfoldertype_name_x) { 
+    if(!cJSON_IsString(s_ezsignfoldertype_name_x) && !cJSON_IsNull(s_ezsignfoldertype_name_x))
     {
     goto end; //String
+    }
     }
 
     // ezsignfolder_response->fki_billingentityinternal_id
     cJSON *fki_billingentityinternal_id = cJSON_GetObjectItemCaseSensitive(ezsignfolder_responseJSON, "fkiBillingentityinternalID");
-    if (!fki_billingentityinternal_id) {
-        goto end;
-    }
-
-    
+    if (fki_billingentityinternal_id) { 
     if(!cJSON_IsNumber(fki_billingentityinternal_id))
     {
     goto end; //Numeric
     }
+    }
 
     // ezsignfolder_response->s_billingentityinternal_description_x
     cJSON *s_billingentityinternal_description_x = cJSON_GetObjectItemCaseSensitive(ezsignfolder_responseJSON, "sBillingentityinternalDescriptionX");
-    if (!s_billingentityinternal_description_x) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(s_billingentityinternal_description_x))
+    if (s_billingentityinternal_description_x) { 
+    if(!cJSON_IsString(s_billingentityinternal_description_x) && !cJSON_IsNull(s_billingentityinternal_description_x))
     {
     goto end; //String
+    }
     }
 
     // ezsignfolder_response->fki_ezsigntsarequirement_id
     cJSON *fki_ezsigntsarequirement_id = cJSON_GetObjectItemCaseSensitive(ezsignfolder_responseJSON, "fkiEzsigntsarequirementID");
-    if (!fki_ezsigntsarequirement_id) {
-        goto end;
-    }
-
-    
+    if (fki_ezsigntsarequirement_id) { 
     if(!cJSON_IsNumber(fki_ezsigntsarequirement_id))
     {
     goto end; //Numeric
     }
+    }
 
     // ezsignfolder_response->s_ezsigntsarequirement_description_x
     cJSON *s_ezsigntsarequirement_description_x = cJSON_GetObjectItemCaseSensitive(ezsignfolder_responseJSON, "sEzsigntsarequirementDescriptionX");
-    if (!s_ezsigntsarequirement_description_x) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(s_ezsigntsarequirement_description_x))
+    if (s_ezsigntsarequirement_description_x) { 
+    if(!cJSON_IsString(s_ezsigntsarequirement_description_x) && !cJSON_IsNull(s_ezsigntsarequirement_description_x))
     {
     goto end; //String
+    }
     }
 
     // ezsignfolder_response->s_ezsignfolder_description
@@ -483,36 +452,27 @@ ezsignfolder_response_t *ezsignfolder_response_parseFromJSON(cJSON *ezsignfolder
 
     // ezsignfolder_response->t_ezsignfolder_note
     cJSON *t_ezsignfolder_note = cJSON_GetObjectItemCaseSensitive(ezsignfolder_responseJSON, "tEzsignfolderNote");
-    if (!t_ezsignfolder_note) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(t_ezsignfolder_note))
+    if (t_ezsignfolder_note) { 
+    if(!cJSON_IsString(t_ezsignfolder_note) && !cJSON_IsNull(t_ezsignfolder_note))
     {
     goto end; //String
+    }
     }
 
     // ezsignfolder_response->b_ezsignfolder_isdisposable
     cJSON *b_ezsignfolder_isdisposable = cJSON_GetObjectItemCaseSensitive(ezsignfolder_responseJSON, "bEzsignfolderIsdisposable");
-    if (!b_ezsignfolder_isdisposable) {
-        goto end;
-    }
-
-    
+    if (b_ezsignfolder_isdisposable) { 
     if(!cJSON_IsBool(b_ezsignfolder_isdisposable))
     {
     goto end; //Bool
     }
+    }
 
     // ezsignfolder_response->e_ezsignfolder_sendreminderfrequency
     cJSON *e_ezsignfolder_sendreminderfrequency = cJSON_GetObjectItemCaseSensitive(ezsignfolder_responseJSON, "eEzsignfolderSendreminderfrequency");
-    if (!e_ezsignfolder_sendreminderfrequency) {
-        goto end;
-    }
-
-    
+    if (e_ezsignfolder_sendreminderfrequency) { 
     e_ezsignfolder_sendreminderfrequency_local_nonprim = field_e_ezsignfolder_sendreminderfrequency_parseFromJSON(e_ezsignfolder_sendreminderfrequency); //custom
+    }
 
     // ezsignfolder_response->dt_ezsignfolder_delayedsenddate
     cJSON *dt_ezsignfolder_delayedsenddate = cJSON_GetObjectItemCaseSensitive(ezsignfolder_responseJSON, "dtEzsignfolderDelayedsenddate");
@@ -561,12 +521,9 @@ ezsignfolder_response_t *ezsignfolder_response_parseFromJSON(cJSON *ezsignfolder
 
     // ezsignfolder_response->e_ezsignfolder_step
     cJSON *e_ezsignfolder_step = cJSON_GetObjectItemCaseSensitive(ezsignfolder_responseJSON, "eEzsignfolderStep");
-    if (!e_ezsignfolder_step) {
-        goto end;
-    }
-
-    
+    if (e_ezsignfolder_step) { 
     e_ezsignfolder_step_local_nonprim = field_e_ezsignfolder_step_parseFromJSON(e_ezsignfolder_step); //custom
+    }
 
     // ezsignfolder_response->dt_ezsignfolder_close
     cJSON *dt_ezsignfolder_close = cJSON_GetObjectItemCaseSensitive(ezsignfolder_responseJSON, "dtEzsignfolderClose");
@@ -579,60 +536,51 @@ ezsignfolder_response_t *ezsignfolder_response_parseFromJSON(cJSON *ezsignfolder
 
     // ezsignfolder_response->t_ezsignfolder_message
     cJSON *t_ezsignfolder_message = cJSON_GetObjectItemCaseSensitive(ezsignfolder_responseJSON, "tEzsignfolderMessage");
-    if (!t_ezsignfolder_message) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(t_ezsignfolder_message))
+    if (t_ezsignfolder_message) { 
+    if(!cJSON_IsString(t_ezsignfolder_message) && !cJSON_IsNull(t_ezsignfolder_message))
     {
     goto end; //String
+    }
     }
 
     // ezsignfolder_response->obj_audit
     cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(ezsignfolder_responseJSON, "objAudit");
-    if (!obj_audit) {
-        goto end;
-    }
-
-    
+    if (obj_audit) { 
     obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
+    }
 
     // ezsignfolder_response->s_ezsignfolder_externalid
     cJSON *s_ezsignfolder_externalid = cJSON_GetObjectItemCaseSensitive(ezsignfolder_responseJSON, "sEzsignfolderExternalid");
-    if (!s_ezsignfolder_externalid) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(s_ezsignfolder_externalid))
+    if (s_ezsignfolder_externalid) { 
+    if(!cJSON_IsString(s_ezsignfolder_externalid) && !cJSON_IsNull(s_ezsignfolder_externalid))
     {
     goto end; //String
+    }
     }
 
 
     ezsignfolder_response_local_var = ezsignfolder_response_create (
         pki_ezsignfolder_id->valuedouble,
-        fki_ezsignfoldertype_id->valuedouble,
-        strdup(s_ezsignfoldertype_name_x->valuestring),
-        fki_billingentityinternal_id->valuedouble,
-        strdup(s_billingentityinternal_description_x->valuestring),
-        fki_ezsigntsarequirement_id->valuedouble,
-        strdup(s_ezsigntsarequirement_description_x->valuestring),
+        fki_ezsignfoldertype_id ? fki_ezsignfoldertype_id->valuedouble : 0,
+        s_ezsignfoldertype_name_x && !cJSON_IsNull(s_ezsignfoldertype_name_x) ? strdup(s_ezsignfoldertype_name_x->valuestring) : NULL,
+        fki_billingentityinternal_id ? fki_billingentityinternal_id->valuedouble : 0,
+        s_billingentityinternal_description_x && !cJSON_IsNull(s_billingentityinternal_description_x) ? strdup(s_billingentityinternal_description_x->valuestring) : NULL,
+        fki_ezsigntsarequirement_id ? fki_ezsigntsarequirement_id->valuedouble : 0,
+        s_ezsigntsarequirement_description_x && !cJSON_IsNull(s_ezsigntsarequirement_description_x) ? strdup(s_ezsigntsarequirement_description_x->valuestring) : NULL,
         strdup(s_ezsignfolder_description->valuestring),
-        strdup(t_ezsignfolder_note->valuestring),
-        b_ezsignfolder_isdisposable->valueint,
-        e_ezsignfolder_sendreminderfrequency_local_nonprim,
+        t_ezsignfolder_note && !cJSON_IsNull(t_ezsignfolder_note) ? strdup(t_ezsignfolder_note->valuestring) : NULL,
+        b_ezsignfolder_isdisposable ? b_ezsignfolder_isdisposable->valueint : 0,
+        e_ezsignfolder_sendreminderfrequency ? e_ezsignfolder_sendreminderfrequency_local_nonprim : NULL,
         dt_ezsignfolder_delayedsenddate && !cJSON_IsNull(dt_ezsignfolder_delayedsenddate) ? strdup(dt_ezsignfolder_delayedsenddate->valuestring) : NULL,
         dt_ezsignfolder_duedate && !cJSON_IsNull(dt_ezsignfolder_duedate) ? strdup(dt_ezsignfolder_duedate->valuestring) : NULL,
         dt_ezsignfolder_sentdate && !cJSON_IsNull(dt_ezsignfolder_sentdate) ? strdup(dt_ezsignfolder_sentdate->valuestring) : NULL,
         dt_ezsignfolder_scheduledarchive && !cJSON_IsNull(dt_ezsignfolder_scheduledarchive) ? strdup(dt_ezsignfolder_scheduledarchive->valuestring) : NULL,
         dt_ezsignfolder_scheduleddispose && !cJSON_IsNull(dt_ezsignfolder_scheduleddispose) ? strdup(dt_ezsignfolder_scheduleddispose->valuestring) : NULL,
-        e_ezsignfolder_step_local_nonprim,
+        e_ezsignfolder_step ? e_ezsignfolder_step_local_nonprim : NULL,
         dt_ezsignfolder_close && !cJSON_IsNull(dt_ezsignfolder_close) ? strdup(dt_ezsignfolder_close->valuestring) : NULL,
-        strdup(t_ezsignfolder_message->valuestring),
-        obj_audit_local_nonprim,
-        strdup(s_ezsignfolder_externalid->valuestring)
+        t_ezsignfolder_message && !cJSON_IsNull(t_ezsignfolder_message) ? strdup(t_ezsignfolder_message->valuestring) : NULL,
+        obj_audit ? obj_audit_local_nonprim : NULL,
+        s_ezsignfolder_externalid && !cJSON_IsNull(s_ezsignfolder_externalid) ? strdup(s_ezsignfolder_externalid->valuestring) : NULL
         );
 
     return ezsignfolder_response_local_var;

@@ -16,7 +16,9 @@
 #include "../model/ezsignfoldersignerassociation_response_compound_all_of.h"
 ezsignfoldersignerassociation_response_compound_all_of_t* instantiate_ezsignfoldersignerassociation_response_compound_all_of(int include_optional);
 
+#include "test_ezsignsignergroup_response_compound.c"
 #include "test_ezsignfoldersignerassociation_response_compound_user.c"
+#include "test_usergroup_response_compound.c"
 #include "test_ezsignsigner_response_compound.c"
 
 
@@ -25,12 +27,18 @@ ezsignfoldersignerassociation_response_compound_all_of_t* instantiate_ezsignfold
   if (include_optional) {
     ezsignfoldersignerassociation_response_compound_all_of = ezsignfoldersignerassociation_response_compound_all_of_create(
        // false, not to have infinite recursion
+      instantiate_ezsignsignergroup_response_compound(0),
+       // false, not to have infinite recursion
       instantiate_ezsignfoldersignerassociation_response_compound_user(0),
+       // false, not to have infinite recursion
+      instantiate_usergroup_response_compound(0),
        // false, not to have infinite recursion
       instantiate_ezsignsigner_response_compound(0)
     );
   } else {
     ezsignfoldersignerassociation_response_compound_all_of = ezsignfoldersignerassociation_response_compound_all_of_create(
+      NULL,
+      NULL,
       NULL,
       NULL
     );

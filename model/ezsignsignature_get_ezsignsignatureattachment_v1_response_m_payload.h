@@ -1,0 +1,38 @@
+/*
+ * ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload.h
+ *
+ * Response for GET /1/object/ezsignsignature/{pkiEzsignsignatureID}/getEzsignsignatureattachment
+ */
+
+#ifndef _ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_H_
+#define _ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_t ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_t;
+
+#include "ezsignsignatureattachment_response.h"
+
+
+
+typedef struct ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_t {
+    list_t *a_obj_ezsignsignatureattachment; //nonprimitive container
+
+} ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_t;
+
+ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_t *ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_create(
+    list_t *a_obj_ezsignsignatureattachment
+);
+
+void ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_free(ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_t *ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload);
+
+ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_t *ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_parseFromJSON(cJSON *ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payloadJSON);
+
+cJSON *ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_convertToJSON(ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_t *ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload);
+
+#endif /* _ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_H_ */
+

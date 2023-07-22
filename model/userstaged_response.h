@@ -21,6 +21,7 @@ typedef struct userstaged_response_t userstaged_response_t;
 typedef struct userstaged_response_t {
     int pki_userstaged_id; //numeric
     int fki_email_id; //numeric
+    char *s_email_address; // string
     char *s_userstaged_firstname; // string
     char *s_userstaged_lastname; // string
     char *s_userstaged_externalid; // string
@@ -30,6 +31,7 @@ typedef struct userstaged_response_t {
 userstaged_response_t *userstaged_response_create(
     int pki_userstaged_id,
     int fki_email_id,
+    char *s_email_address,
     char *s_userstaged_firstname,
     char *s_userstaged_lastname,
     char *s_userstaged_externalid

@@ -37,6 +37,7 @@ ezsignformfieldgroup_request_compound_t* instantiate_ezsignformfieldgroup_reques
       "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
       "Please enter a valid email address",
       ezmax_api_definition__full_ezsignformfieldgroup_request_compound__"TopLeft",
+      ezmax_api_definition__full_ezsignformfieldgroup_request_compound__"None",
       list_createList(),
       list_createList(),
       list_createList()
@@ -58,6 +59,7 @@ ezsignformfieldgroup_request_compound_t* instantiate_ezsignformfieldgroup_reques
       "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
       "Please enter a valid email address",
       ezmax_api_definition__full_ezsignformfieldgroup_request_compound__"TopLeft",
+      ezmax_api_definition__full_ezsignformfieldgroup_request_compound__"None",
       list_createList(),
       list_createList(),
       list_createList()

@@ -23,14 +23,14 @@ common_response_error_s_temporary_file_url_t* instantiate_common_response_error_
   if (include_optional) {
     common_response_error_s_temporary_file_url = common_response_error_s_temporary_file_url_create(
       "http://www.example.com/document.pdf",
-      "0",
-      "0"
+      "Invalid Signature Headers",
+      ezmax_api_definition__full_common_response_error_s_temporary_file_url__"BADREQUEST"
     );
   } else {
     common_response_error_s_temporary_file_url = common_response_error_s_temporary_file_url_create(
       "http://www.example.com/document.pdf",
-      "0",
-      "0"
+      "Invalid Signature Headers",
+      ezmax_api_definition__full_common_response_error_s_temporary_file_url__"BADREQUEST"
     );
   }
 

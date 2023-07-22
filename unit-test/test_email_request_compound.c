@@ -22,11 +22,13 @@ email_request_compound_t* instantiate_email_request_compound(int include_optiona
   email_request_compound_t* email_request_compound = NULL;
   if (include_optional) {
     email_request_compound = email_request_compound_create(
+      22,
       1,
       "email@example.com"
     );
   } else {
     email_request_compound = email_request_compound_create(
+      22,
       1,
       "email@example.com"
     );

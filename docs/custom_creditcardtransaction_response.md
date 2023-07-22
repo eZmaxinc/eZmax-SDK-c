@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**s_creditcardtype_codename** | **char \*** | The codename of the Creditcardtype | 
+**e_creditcardtype_codename** | **field_e_creditcardtype_codename_t \*** |  | [optional] 
 **d_creditcardtransaction_amount** | **char \*** | The amount of the Creditcardtransaction | 
 **s_creditcardtransaction_partiallydecryptednumber** | **char \*** | The partially decrypted credit card number used in the Creditcardtransaction | 
 **s_creditcardtransaction_referencenumber** | **char \*** | The reference number on the creditcard service for the Creditcardtransaction | 

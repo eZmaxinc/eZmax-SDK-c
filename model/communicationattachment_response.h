@@ -24,6 +24,7 @@ typedef struct communicationattachment_response_t {
     int fki_invoice_id; //numeric
     int fki_salarypreparation_id; //numeric
     char *s_communicationattachment_name; // string
+    char *s_download_url; // string
 
 } communicationattachment_response_t;
 
@@ -32,7 +33,8 @@ communicationattachment_response_t *communicationattachment_response_create(
     int fki_attachment_id,
     int fki_invoice_id,
     int fki_salarypreparation_id,
-    char *s_communicationattachment_name
+    char *s_communicationattachment_name,
+    char *s_download_url
 );
 
 void communicationattachment_response_free(communicationattachment_response_t *communicationattachment_response);

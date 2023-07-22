@@ -56,6 +56,7 @@ typedef struct activesession_response_t {
     int b_activesession_issuperadmin; //boolean
     char *pks_customer_code; // string
     int fki_systemconfigurationtype_id; //numeric
+    int fki_signature_id; //numeric
 
 } activesession_response_t;
 
@@ -69,7 +70,8 @@ activesession_response_t *activesession_response_create(
     int b_activesession_debug,
     int b_activesession_issuperadmin,
     char *pks_customer_code,
-    int fki_systemconfigurationtype_id
+    int fki_systemconfigurationtype_id,
+    int fki_signature_id
 );
 
 void activesession_response_free(activesession_response_t *activesession_response);

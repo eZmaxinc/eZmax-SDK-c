@@ -39,6 +39,8 @@ typedef struct branding_request_compound_t {
     int i_branding_colorbackground; //numeric
     int i_branding_colorbackgroundbutton; //numeric
     int i_branding_colorbackgroundsmallbox; //numeric
+    char *s_branding_name; // string
+    char *s_email_address; // string
     int b_branding_isactive; //boolean
 
 } branding_request_compound_t;
@@ -54,6 +56,8 @@ branding_request_compound_t *branding_request_compound_create(
     int i_branding_colorbackground,
     int i_branding_colorbackgroundbutton,
     int i_branding_colorbackgroundsmallbox,
+    char *s_branding_name,
+    char *s_email_address,
     int b_branding_isactive
 );
 

@@ -22,14 +22,14 @@ custom_creditcardtransaction_response_t* instantiate_custom_creditcardtransactio
   custom_creditcardtransaction_response_t* custom_creditcardtransaction_response = NULL;
   if (include_optional) {
     custom_creditcardtransaction_response = custom_creditcardtransaction_response_create(
-      "visa",
+      ezmax_api_definition__full_custom_creditcardtransaction_response__"visa",
       "167.58",
       "XXXX XXXX XXXX 1234",
       "651447854715478415"
     );
   } else {
     custom_creditcardtransaction_response = custom_creditcardtransaction_response_create(
-      "visa",
+      ezmax_api_definition__full_custom_creditcardtransaction_response__"visa",
       "167.58",
       "XXXX XXXX XXXX 1234",
       "651447854715478415"

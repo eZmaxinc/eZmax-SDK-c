@@ -25,6 +25,8 @@ ezsignfoldersignerassociation_request_compound_t* instantiate_ezsignfoldersigner
     ezsignfoldersignerassociation_request_compound = ezsignfoldersignerassociation_request_compound_create(
       20,
       70,
+      2,
+      27,
       33,
       1,
       "Hi John,
@@ -43,6 +45,8 @@ Mary",
     ezsignfoldersignerassociation_request_compound = ezsignfoldersignerassociation_request_compound_create(
       20,
       70,
+      2,
+      27,
       33,
       1,
       "Hi John,

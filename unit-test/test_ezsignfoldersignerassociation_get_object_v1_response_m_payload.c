@@ -16,7 +16,9 @@
 #include "../model/ezsignfoldersignerassociation_get_object_v1_response_m_payload.h"
 ezsignfoldersignerassociation_get_object_v1_response_m_payload_t* instantiate_ezsignfoldersignerassociation_get_object_v1_response_m_payload(int include_optional);
 
+#include "test_ezsignsignergroup_response_compound.c"
 #include "test_ezsignfoldersignerassociation_response_compound_user.c"
+#include "test_usergroup_response_compound.c"
 #include "test_ezsignsigner_response_compound.c"
 
 
@@ -38,7 +40,11 @@ Best Regards.
 
 Mary",
        // false, not to have infinite recursion
+      instantiate_ezsignsignergroup_response_compound(0),
+       // false, not to have infinite recursion
       instantiate_ezsignfoldersignerassociation_response_compound_user(0),
+       // false, not to have infinite recursion
+      instantiate_usergroup_response_compound(0),
        // false, not to have infinite recursion
       instantiate_ezsignsigner_response_compound(0)
     );
@@ -57,6 +63,8 @@ Could you sign it before Monday please.
 Best Regards.
 
 Mary",
+      NULL,
+      NULL,
       NULL,
       NULL
     );

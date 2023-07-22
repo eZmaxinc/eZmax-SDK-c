@@ -24,9 +24,12 @@ branding_response_t* instantiate_branding_response(int include_optional) {
   if (include_optional) {
     branding_response = branding_response_create(
       78,
+      22,
        // false, not to have infinite recursion
       instantiate_multilingual_branding_description(0),
       "Company X",
+      "eZmax (Corp)",
+      "email@example.com",
       ezmax_api_definition__full_branding_response__"Default",
       3752795,
       0,
@@ -39,8 +42,11 @@ branding_response_t* instantiate_branding_response(int include_optional) {
   } else {
     branding_response = branding_response_create(
       78,
+      22,
       NULL,
       "Company X",
+      "eZmax (Corp)",
+      "email@example.com",
       ezmax_api_definition__full_branding_response__"Default",
       3752795,
       0,

@@ -383,6 +383,90 @@ end:
 
 }
 
+// Retrieve an existing Ezsignsignature's Ezsignsignatureattachments
+//
+ezsignsignature_get_ezsignsignatureattachment_v1_response_t*
+ObjectEzsignsignatureAPI_ezsignsignatureGetEzsignsignatureattachmentV1(apiClient_t *apiClient, int pkiEzsignsignatureID )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/ezsignsignature/{pkiEzsignsignatureID}/getEzsignsignatureattachment")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignsignature/{pkiEzsignsignatureID}/getEzsignsignatureattachment");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsignsignatureID =  + strlen("{ pkiEzsignsignatureID }");
+    if(pkiEzsignsignatureID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsignsignatureID = malloc(sizeOfPathParams_pkiEzsignsignatureID);
+    snprintf(localVarToReplace_pkiEzsignsignatureID, sizeOfPathParams_pkiEzsignsignatureID, "{%s}", "pkiEzsignsignatureID");
+
+    char localVarBuff_pkiEzsignsignatureID[256];
+    intToStr(localVarBuff_pkiEzsignsignatureID, pkiEzsignsignatureID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignsignatureID, localVarBuff_pkiEzsignsignatureID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectEzsignsignatureAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsignsignature_get_ezsignsignatureattachment_v1_response_t *elementToReturn = ezsignsignature_get_ezsignsignatureattachment_v1_response_parseFromJSON(ObjectEzsignsignatureAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsignsignatureAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsignsignatureID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Retrieve all automatic Ezsignsignatures
 //
 // Return all the Ezsignsignatures that can be signed by the current user

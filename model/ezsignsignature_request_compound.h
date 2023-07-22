@@ -15,6 +15,7 @@
 
 typedef struct ezsignsignature_request_compound_t ezsignsignature_request_compound_t;
 
+#include "enum_textvalidation.h"
 #include "ezsignsignaturecustomdate_request_compound.h"
 #include "field_e_ezsignsignature_attachmentnamesource.h"
 #include "field_e_ezsignsignature_font.h"
@@ -23,7 +24,7 @@ typedef struct ezsignsignature_request_compound_t ezsignsignature_request_compou
 
 // Enum  for ezsignsignature_request_compound
 
-typedef enum  { ezmax_api_definition__full_ezsignsignature_request_compound__NULL = 0, ezmax_api_definition__full_ezsignsignature_request_compound__Acknowledgement, ezmax_api_definition__full_ezsignsignature_request_compound__City, ezmax_api_definition__full_ezsignsignature_request_compound__Handwritten, ezmax_api_definition__full_ezsignsignature_request_compound__Initials, ezmax_api_definition__full_ezsignsignature_request_compound__Name, ezmax_api_definition__full_ezsignsignature_request_compound__Attachments } ezmax_api_definition__full_ezsignsignature_request_compound__e;
+typedef enum  { ezmax_api_definition__full_ezsignsignature_request_compound__NULL = 0, ezmax_api_definition__full_ezsignsignature_request_compound__Acknowledgement, ezmax_api_definition__full_ezsignsignature_request_compound__City, ezmax_api_definition__full_ezsignsignature_request_compound__Handwritten, ezmax_api_definition__full_ezsignsignature_request_compound__Initials, ezmax_api_definition__full_ezsignsignature_request_compound__Name, ezmax_api_definition__full_ezsignsignature_request_compound__Attachments, ezmax_api_definition__full_ezsignsignature_request_compound__AttachmentsConfirmation, ezmax_api_definition__full_ezsignsignature_request_compound__FieldText, ezmax_api_definition__full_ezsignsignature_request_compound__FieldTextarea } ezmax_api_definition__full_ezsignsignature_request_compound__e;
 
 char* ezsignsignature_request_compound_e_ezsignsignature_type_ToString(ezmax_api_definition__full_ezsignsignature_request_compound__e e_ezsignsignature_type);
 
@@ -53,6 +54,14 @@ char* ezsignsignature_request_compound_e_ezsignsignature_attachmentnamesource_To
 
 ezmax_api_definition__full_ezsignsignature_request_compound__e ezsignsignature_request_compound_e_ezsignsignature_attachmentnamesource_FromString(char* e_ezsignsignature_attachmentnamesource);
 
+// Enum  for ezsignsignature_request_compound
+
+typedef enum  { ezmax_api_definition__full_ezsignsignature_request_compound__NULL = 0, ezmax_api_definition__full_ezsignsignature_request_compound__None, ezmax_api_definition__full_ezsignsignature_request_compound__Date (YYYY_MM_DD), ezmax_api_definition__full_ezsignsignature_request_compound__Date (MM/DD/YYYY), ezmax_api_definition__full_ezsignsignature_request_compound__Date (MM/DD/YY), ezmax_api_definition__full_ezsignsignature_request_compound__Date (DD/MM/YYYY), ezmax_api_definition__full_ezsignsignature_request_compound__Date (DD/MM/YY), ezmax_api_definition__full_ezsignsignature_request_compound__Email, ezmax_api_definition__full_ezsignsignature_request_compound__Letters, ezmax_api_definition__full_ezsignsignature_request_compound__Numbers, ezmax_api_definition__full_ezsignsignature_request_compound__Zip, ezmax_api_definition__full_ezsignsignature_request_compound__Zip+4, ezmax_api_definition__full_ezsignsignature_request_compound__PostalCode, ezmax_api_definition__full_ezsignsignature_request_compound__Custom } ezmax_api_definition__full_ezsignsignature_request_compound__e;
+
+char* ezsignsignature_request_compound_e_ezsignsignature_textvalidation_ToString(ezmax_api_definition__full_ezsignsignature_request_compound__e e_ezsignsignature_textvalidation);
+
+ezmax_api_definition__full_ezsignsignature_request_compound__e ezsignsignature_request_compound_e_ezsignsignature_textvalidation_FromString(char* e_ezsignsignature_textvalidation);
+
 
 
 typedef struct ezsignsignature_request_compound_t {
@@ -61,6 +70,8 @@ typedef struct ezsignsignature_request_compound_t {
     int i_ezsignpage_pagenumber; //numeric
     int i_ezsignsignature_x; //numeric
     int i_ezsignsignature_y; //numeric
+    int i_ezsignsignature_width; //numeric
+    int i_ezsignsignature_height; //numeric
     int i_ezsignsignature_step; //numeric
     field_e_ezsignsignature_type_t *e_ezsignsignature_type; // custom
     int fki_ezsigndocument_id; //numeric
@@ -72,6 +83,8 @@ typedef struct ezsignsignature_request_compound_t {
     field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource; // custom
     char *s_ezsignsignature_attachmentdescription; // string
     int i_ezsignsignature_validationstep; //numeric
+    enum_textvalidation_t *e_ezsignsignature_textvalidation; // custom
+    char *s_ezsignsignature_regexp; // string
     int b_ezsignsignature_customdate; //boolean
     list_t *a_obj_ezsignsignaturecustomdate; //nonprimitive container
 
@@ -83,6 +96,8 @@ ezsignsignature_request_compound_t *ezsignsignature_request_compound_create(
     int i_ezsignpage_pagenumber,
     int i_ezsignsignature_x,
     int i_ezsignsignature_y,
+    int i_ezsignsignature_width,
+    int i_ezsignsignature_height,
     int i_ezsignsignature_step,
     field_e_ezsignsignature_type_t *e_ezsignsignature_type,
     int fki_ezsigndocument_id,
@@ -94,6 +109,8 @@ ezsignsignature_request_compound_t *ezsignsignature_request_compound_create(
     field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource,
     char *s_ezsignsignature_attachmentdescription,
     int i_ezsignsignature_validationstep,
+    enum_textvalidation_t *e_ezsignsignature_textvalidation,
+    char *s_ezsignsignature_regexp,
     int b_ezsignsignature_customdate,
     list_t *a_obj_ezsignsignaturecustomdate
 );

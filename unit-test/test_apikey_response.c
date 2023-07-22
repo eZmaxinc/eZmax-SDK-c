@@ -24,18 +24,22 @@ apikey_response_t* instantiate_apikey_response(int include_optional) {
   apikey_response_t* apikey_response = NULL;
   if (include_optional) {
     apikey_response = apikey_response_create(
+      99,
+      70,
        // false, not to have infinite recursion
       instantiate_multilingual_apikey_description(0),
       "0",
-      99,
+      true,
        // false, not to have infinite recursion
       instantiate_common_audit(0)
     );
   } else {
     apikey_response = apikey_response_create(
+      99,
+      70,
       NULL,
       "0",
-      99,
+      true,
       NULL
     );
   }

@@ -23,13 +23,13 @@ ezmax_api_definition__full_ezsigndocument_response__e e_ezsigndocument_stepezsig
 }
 
 ezsigndocument_response_t *ezsigndocument_response_create(
+    int pki_ezsigndocument_id,
     int fki_ezsignfolder_id,
     int fki_ezsignfoldersignerassociation_id_declinedtosign,
     char *dt_ezsigndocument_duedate,
     char *dt_ezsignform_completed,
     int fki_language_id,
     char *s_ezsigndocument_name,
-    int pki_ezsigndocument_id,
     field_e_ezsigndocument_step_t *e_ezsigndocument_step,
     char *dt_ezsigndocument_firstsend,
     char *dt_ezsigndocument_lastsend,
@@ -49,13 +49,13 @@ ezsigndocument_response_t *ezsigndocument_response_create(
     if (!ezsigndocument_response_local_var) {
         return NULL;
     }
+    ezsigndocument_response_local_var->pki_ezsigndocument_id = pki_ezsigndocument_id;
     ezsigndocument_response_local_var->fki_ezsignfolder_id = fki_ezsignfolder_id;
     ezsigndocument_response_local_var->fki_ezsignfoldersignerassociation_id_declinedtosign = fki_ezsignfoldersignerassociation_id_declinedtosign;
     ezsigndocument_response_local_var->dt_ezsigndocument_duedate = dt_ezsigndocument_duedate;
     ezsigndocument_response_local_var->dt_ezsignform_completed = dt_ezsignform_completed;
     ezsigndocument_response_local_var->fki_language_id = fki_language_id;
     ezsigndocument_response_local_var->s_ezsigndocument_name = s_ezsigndocument_name;
-    ezsigndocument_response_local_var->pki_ezsigndocument_id = pki_ezsigndocument_id;
     ezsigndocument_response_local_var->e_ezsigndocument_step = e_ezsigndocument_step;
     ezsigndocument_response_local_var->dt_ezsigndocument_firstsend = dt_ezsigndocument_firstsend;
     ezsigndocument_response_local_var->dt_ezsigndocument_lastsend = dt_ezsigndocument_lastsend;
@@ -130,6 +130,15 @@ void ezsigndocument_response_free(ezsigndocument_response_t *ezsigndocument_resp
 cJSON *ezsigndocument_response_convertToJSON(ezsigndocument_response_t *ezsigndocument_response) {
     cJSON *item = cJSON_CreateObject();
 
+    // ezsigndocument_response->pki_ezsigndocument_id
+    if (!ezsigndocument_response->pki_ezsigndocument_id) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "pkiEzsigndocumentID", ezsigndocument_response->pki_ezsigndocument_id) == NULL) {
+    goto fail; //Numeric
+    }
+
+
     // ezsigndocument_response->fki_ezsignfolder_id
     if (!ezsigndocument_response->fki_ezsignfolder_id) {
         goto fail;
@@ -165,11 +174,10 @@ cJSON *ezsigndocument_response_convertToJSON(ezsigndocument_response_t *ezsigndo
 
 
     // ezsigndocument_response->fki_language_id
-    if (!ezsigndocument_response->fki_language_id) {
-        goto fail;
-    }
+    if(ezsigndocument_response->fki_language_id) {
     if(cJSON_AddNumberToObject(item, "fkiLanguageID", ezsigndocument_response->fki_language_id) == NULL) {
     goto fail; //Numeric
+    }
     }
 
 
@@ -179,15 +187,6 @@ cJSON *ezsigndocument_response_convertToJSON(ezsigndocument_response_t *ezsigndo
     }
     if(cJSON_AddStringToObject(item, "sEzsigndocumentName", ezsigndocument_response->s_ezsigndocument_name) == NULL) {
     goto fail; //String
-    }
-
-
-    // ezsigndocument_response->pki_ezsigndocument_id
-    if (!ezsigndocument_response->pki_ezsigndocument_id) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "pkiEzsigndocumentID", ezsigndocument_response->pki_ezsigndocument_id) == NULL) {
-    goto fail; //Numeric
     }
 
 
@@ -258,11 +257,10 @@ cJSON *ezsigndocument_response_convertToJSON(ezsigndocument_response_t *ezsigndo
 
 
     // ezsigndocument_response->s_ezsigndocument_md5initial
-    if (!ezsigndocument_response->s_ezsigndocument_md5initial) {
-        goto fail;
-    }
+    if(ezsigndocument_response->s_ezsigndocument_md5initial) {
     if(cJSON_AddStringToObject(item, "sEzsigndocumentMD5initial", ezsigndocument_response->s_ezsigndocument_md5initial) == NULL) {
     goto fail; //String
+    }
     }
 
 
@@ -275,36 +273,31 @@ cJSON *ezsigndocument_response_convertToJSON(ezsigndocument_response_t *ezsigndo
 
 
     // ezsigndocument_response->s_ezsigndocument_md5signed
-    if (!ezsigndocument_response->s_ezsigndocument_md5signed) {
-        goto fail;
-    }
+    if(ezsigndocument_response->s_ezsigndocument_md5signed) {
     if(cJSON_AddStringToObject(item, "sEzsigndocumentMD5signed", ezsigndocument_response->s_ezsigndocument_md5signed) == NULL) {
     goto fail; //String
+    }
     }
 
 
     // ezsigndocument_response->b_ezsigndocument_ezsignform
-    if (!ezsigndocument_response->b_ezsigndocument_ezsignform) {
-        goto fail;
-    }
+    if(ezsigndocument_response->b_ezsigndocument_ezsignform) {
     if(cJSON_AddBoolToObject(item, "bEzsigndocumentEzsignform", ezsigndocument_response->b_ezsigndocument_ezsignform) == NULL) {
     goto fail; //Bool
+    }
     }
 
 
     // ezsigndocument_response->b_ezsigndocument_hassignedsignatures
-    if (!ezsigndocument_response->b_ezsigndocument_hassignedsignatures) {
-        goto fail;
-    }
+    if(ezsigndocument_response->b_ezsigndocument_hassignedsignatures) {
     if(cJSON_AddBoolToObject(item, "bEzsigndocumentHassignedsignatures", ezsigndocument_response->b_ezsigndocument_hassignedsignatures) == NULL) {
     goto fail; //Bool
+    }
     }
 
 
     // ezsigndocument_response->obj_audit
-    if (!ezsigndocument_response->obj_audit) {
-        goto fail;
-    }
+    if(ezsigndocument_response->obj_audit) {
     cJSON *obj_audit_local_JSON = common_audit_convertToJSON(ezsigndocument_response->obj_audit);
     if(obj_audit_local_JSON == NULL) {
     goto fail; //model
@@ -313,14 +306,14 @@ cJSON *ezsigndocument_response_convertToJSON(ezsigndocument_response_t *ezsigndo
     if(item->child == NULL) {
     goto fail;
     }
+    }
 
 
     // ezsigndocument_response->s_ezsigndocument_externalid
-    if (!ezsigndocument_response->s_ezsigndocument_externalid) {
-        goto fail;
-    }
+    if(ezsigndocument_response->s_ezsigndocument_externalid) {
     if(cJSON_AddStringToObject(item, "sEzsigndocumentExternalid", ezsigndocument_response->s_ezsigndocument_externalid) == NULL) {
     goto fail; //String
+    }
     }
 
     return item;
@@ -340,6 +333,18 @@ ezsigndocument_response_t *ezsigndocument_response_parseFromJSON(cJSON *ezsigndo
 
     // define the local variable for ezsigndocument_response->obj_audit
     common_audit_t *obj_audit_local_nonprim = NULL;
+
+    // ezsigndocument_response->pki_ezsigndocument_id
+    cJSON *pki_ezsigndocument_id = cJSON_GetObjectItemCaseSensitive(ezsigndocument_responseJSON, "pkiEzsigndocumentID");
+    if (!pki_ezsigndocument_id) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(pki_ezsigndocument_id))
+    {
+    goto end; //Numeric
+    }
 
     // ezsigndocument_response->fki_ezsignfolder_id
     cJSON *fki_ezsignfolder_id = cJSON_GetObjectItemCaseSensitive(ezsigndocument_responseJSON, "fkiEzsignfolderID");
@@ -385,14 +390,11 @@ ezsigndocument_response_t *ezsigndocument_response_parseFromJSON(cJSON *ezsigndo
 
     // ezsigndocument_response->fki_language_id
     cJSON *fki_language_id = cJSON_GetObjectItemCaseSensitive(ezsigndocument_responseJSON, "fkiLanguageID");
-    if (!fki_language_id) {
-        goto end;
-    }
-
-    
+    if (fki_language_id) { 
     if(!cJSON_IsNumber(fki_language_id))
     {
     goto end; //Numeric
+    }
     }
 
     // ezsigndocument_response->s_ezsigndocument_name
@@ -405,18 +407,6 @@ ezsigndocument_response_t *ezsigndocument_response_parseFromJSON(cJSON *ezsigndo
     if(!cJSON_IsString(s_ezsigndocument_name))
     {
     goto end; //String
-    }
-
-    // ezsigndocument_response->pki_ezsigndocument_id
-    cJSON *pki_ezsigndocument_id = cJSON_GetObjectItemCaseSensitive(ezsigndocument_responseJSON, "pkiEzsigndocumentID");
-    if (!pki_ezsigndocument_id) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsNumber(pki_ezsigndocument_id))
-    {
-    goto end; //Numeric
     }
 
     // ezsigndocument_response->e_ezsigndocument_step
@@ -496,14 +486,11 @@ ezsigndocument_response_t *ezsigndocument_response_parseFromJSON(cJSON *ezsigndo
 
     // ezsigndocument_response->s_ezsigndocument_md5initial
     cJSON *s_ezsigndocument_md5initial = cJSON_GetObjectItemCaseSensitive(ezsigndocument_responseJSON, "sEzsigndocumentMD5initial");
-    if (!s_ezsigndocument_md5initial) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(s_ezsigndocument_md5initial))
+    if (s_ezsigndocument_md5initial) { 
+    if(!cJSON_IsString(s_ezsigndocument_md5initial) && !cJSON_IsNull(s_ezsigndocument_md5initial))
     {
     goto end; //String
+    }
     }
 
     // ezsigndocument_response->t_ezsigndocument_declinedtosignreason
@@ -517,70 +504,55 @@ ezsigndocument_response_t *ezsigndocument_response_parseFromJSON(cJSON *ezsigndo
 
     // ezsigndocument_response->s_ezsigndocument_md5signed
     cJSON *s_ezsigndocument_md5signed = cJSON_GetObjectItemCaseSensitive(ezsigndocument_responseJSON, "sEzsigndocumentMD5signed");
-    if (!s_ezsigndocument_md5signed) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(s_ezsigndocument_md5signed))
+    if (s_ezsigndocument_md5signed) { 
+    if(!cJSON_IsString(s_ezsigndocument_md5signed) && !cJSON_IsNull(s_ezsigndocument_md5signed))
     {
     goto end; //String
+    }
     }
 
     // ezsigndocument_response->b_ezsigndocument_ezsignform
     cJSON *b_ezsigndocument_ezsignform = cJSON_GetObjectItemCaseSensitive(ezsigndocument_responseJSON, "bEzsigndocumentEzsignform");
-    if (!b_ezsigndocument_ezsignform) {
-        goto end;
-    }
-
-    
+    if (b_ezsigndocument_ezsignform) { 
     if(!cJSON_IsBool(b_ezsigndocument_ezsignform))
     {
     goto end; //Bool
     }
+    }
 
     // ezsigndocument_response->b_ezsigndocument_hassignedsignatures
     cJSON *b_ezsigndocument_hassignedsignatures = cJSON_GetObjectItemCaseSensitive(ezsigndocument_responseJSON, "bEzsigndocumentHassignedsignatures");
-    if (!b_ezsigndocument_hassignedsignatures) {
-        goto end;
-    }
-
-    
+    if (b_ezsigndocument_hassignedsignatures) { 
     if(!cJSON_IsBool(b_ezsigndocument_hassignedsignatures))
     {
     goto end; //Bool
     }
+    }
 
     // ezsigndocument_response->obj_audit
     cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(ezsigndocument_responseJSON, "objAudit");
-    if (!obj_audit) {
-        goto end;
-    }
-
-    
+    if (obj_audit) { 
     obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
+    }
 
     // ezsigndocument_response->s_ezsigndocument_externalid
     cJSON *s_ezsigndocument_externalid = cJSON_GetObjectItemCaseSensitive(ezsigndocument_responseJSON, "sEzsigndocumentExternalid");
-    if (!s_ezsigndocument_externalid) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(s_ezsigndocument_externalid))
+    if (s_ezsigndocument_externalid) { 
+    if(!cJSON_IsString(s_ezsigndocument_externalid) && !cJSON_IsNull(s_ezsigndocument_externalid))
     {
     goto end; //String
+    }
     }
 
 
     ezsigndocument_response_local_var = ezsigndocument_response_create (
+        pki_ezsigndocument_id->valuedouble,
         fki_ezsignfolder_id->valuedouble,
         fki_ezsignfoldersignerassociation_id_declinedtosign ? fki_ezsignfoldersignerassociation_id_declinedtosign->valuedouble : 0,
         strdup(dt_ezsigndocument_duedate->valuestring),
         dt_ezsignform_completed && !cJSON_IsNull(dt_ezsignform_completed) ? strdup(dt_ezsignform_completed->valuestring) : NULL,
-        fki_language_id->valuedouble,
+        fki_language_id ? fki_language_id->valuedouble : 0,
         strdup(s_ezsigndocument_name->valuestring),
-        pki_ezsigndocument_id->valuedouble,
         e_ezsigndocument_step_local_nonprim,
         dt_ezsigndocument_firstsend && !cJSON_IsNull(dt_ezsigndocument_firstsend) ? strdup(dt_ezsigndocument_firstsend->valuestring) : NULL,
         dt_ezsigndocument_lastsend && !cJSON_IsNull(dt_ezsigndocument_lastsend) ? strdup(dt_ezsigndocument_lastsend->valuestring) : NULL,
@@ -588,13 +560,13 @@ ezsigndocument_response_t *ezsigndocument_response_parseFromJSON(cJSON *ezsigndo
         i_ezsigndocument_pagetotal->valuedouble,
         i_ezsigndocument_signaturesigned->valuedouble,
         i_ezsigndocument_signaturetotal->valuedouble,
-        strdup(s_ezsigndocument_md5initial->valuestring),
+        s_ezsigndocument_md5initial && !cJSON_IsNull(s_ezsigndocument_md5initial) ? strdup(s_ezsigndocument_md5initial->valuestring) : NULL,
         t_ezsigndocument_declinedtosignreason && !cJSON_IsNull(t_ezsigndocument_declinedtosignreason) ? strdup(t_ezsigndocument_declinedtosignreason->valuestring) : NULL,
-        strdup(s_ezsigndocument_md5signed->valuestring),
-        b_ezsigndocument_ezsignform->valueint,
-        b_ezsigndocument_hassignedsignatures->valueint,
-        obj_audit_local_nonprim,
-        strdup(s_ezsigndocument_externalid->valuestring)
+        s_ezsigndocument_md5signed && !cJSON_IsNull(s_ezsigndocument_md5signed) ? strdup(s_ezsigndocument_md5signed->valuestring) : NULL,
+        b_ezsigndocument_ezsignform ? b_ezsigndocument_ezsignform->valueint : 0,
+        b_ezsigndocument_hassignedsignatures ? b_ezsigndocument_hassignedsignatures->valueint : 0,
+        obj_audit ? obj_audit_local_nonprim : NULL,
+        s_ezsigndocument_externalid && !cJSON_IsNull(s_ezsigndocument_externalid) ? strdup(s_ezsigndocument_externalid->valuestring) : NULL
         );
 
     return ezsigndocument_response_local_var;

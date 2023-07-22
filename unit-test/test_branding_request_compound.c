@@ -27,13 +27,15 @@ branding_request_compound_t* instantiate_branding_request_compound(int include_o
        // false, not to have infinite recursion
       instantiate_multilingual_branding_description(0),
       ezmax_api_definition__full_branding_request_compound__"Default",
-      "[B@4721d212",
+      "[B@636e8cc",
       3752795,
       0,
       16777215,
       15658734,
       13577007,
       16777215,
+      "eZmax (Corp)",
+      "email@example.com",
       true
     );
   } else {
@@ -41,13 +43,15 @@ branding_request_compound_t* instantiate_branding_request_compound(int include_o
       78,
       NULL,
       ezmax_api_definition__full_branding_request_compound__"Default",
-      "[B@4721d212",
+      "[B@636e8cc",
       3752795,
       0,
       16777215,
       15658734,
       13577007,
       16777215,
+      "eZmax (Corp)",
+      "email@example.com",
       true
     );
   }

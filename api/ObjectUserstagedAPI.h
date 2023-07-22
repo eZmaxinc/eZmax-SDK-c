@@ -7,6 +7,8 @@
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
 #include "../model/header_accept_language.h"
+#include "../model/object.h"
+#include "../model/userstaged_create_user_v1_response.h"
 #include "../model/userstaged_delete_object_v1_response.h"
 #include "../model/userstaged_get_list_v1_response.h"
 #include "../model/userstaged_get_object_v2_response.h"
@@ -18,6 +20,14 @@ typedef enum  { ezmax_api_definition__full_userstagedGetListV1_EORDERBY_NULL = 0
 
 // Enum  for ObjectUserstagedAPI_userstagedGetListV1
 typedef enum  { ezmax_api_definition__full_userstagedGetListV1__NULL = 0, ezmax_api_definition__full_userstagedGetListV1__*, ezmax_api_definition__full_userstagedGetListV1__en, ezmax_api_definition__full_userstagedGetListV1__fr } ezmax_api_definition__full_userstagedGetListV1_Accept-Language_e;
+
+
+// Create a User from a Userstaged and then map it
+//
+// Default values will be used while creating the User. If you need to change those values, you should use the route to edit a User.
+//
+userstaged_create_user_v1_response_t*
+ObjectUserstagedAPI_userstagedCreateUserV1(apiClient_t *apiClient, int pkiUserstagedID , object_t * body );
 
 
 // Delete an existing Userstaged

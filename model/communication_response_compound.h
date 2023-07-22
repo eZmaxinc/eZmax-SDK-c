@@ -60,6 +60,7 @@ typedef struct communication_response_compound_t {
     char *s_communication_bodyurl; // string
     computed_e_communication_direction_t *e_communication_direction; // custom
     int i_communicationrecipient_count; //numeric
+    int b_communication_private; //boolean
     struct descriptionstatic_response_t *obj_descriptionstatic_sender; //model
     struct emailstatic_response_t *obj_emailstatic_sender; //model
     struct phonestatic_response_t *obj_phonestatic_sender; //model
@@ -78,6 +79,7 @@ communication_response_compound_t *communication_response_compound_create(
     char *s_communication_bodyurl,
     computed_e_communication_direction_t *e_communication_direction,
     int i_communicationrecipient_count,
+    int b_communication_private,
     descriptionstatic_response_t *obj_descriptionstatic_sender,
     emailstatic_response_t *obj_emailstatic_sender,
     phonestatic_response_t *obj_phonestatic_sender,

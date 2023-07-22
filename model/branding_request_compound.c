@@ -33,6 +33,8 @@ branding_request_compound_t *branding_request_compound_create(
     int i_branding_colorbackground,
     int i_branding_colorbackgroundbutton,
     int i_branding_colorbackgroundsmallbox,
+    char *s_branding_name,
+    char *s_email_address,
     int b_branding_isactive
     ) {
     branding_request_compound_t *branding_request_compound_local_var = malloc(sizeof(branding_request_compound_t));
@@ -49,6 +51,8 @@ branding_request_compound_t *branding_request_compound_create(
     branding_request_compound_local_var->i_branding_colorbackground = i_branding_colorbackground;
     branding_request_compound_local_var->i_branding_colorbackgroundbutton = i_branding_colorbackgroundbutton;
     branding_request_compound_local_var->i_branding_colorbackgroundsmallbox = i_branding_colorbackgroundsmallbox;
+    branding_request_compound_local_var->s_branding_name = s_branding_name;
+    branding_request_compound_local_var->s_email_address = s_email_address;
     branding_request_compound_local_var->b_branding_isactive = b_branding_isactive;
 
     return branding_request_compound_local_var;
@@ -71,6 +75,14 @@ void branding_request_compound_free(branding_request_compound_t *branding_reques
     if (branding_request_compound->s_branding_base64) {
         free(branding_request_compound->s_branding_base64);
         branding_request_compound->s_branding_base64 = NULL;
+    }
+    if (branding_request_compound->s_branding_name) {
+        free(branding_request_compound->s_branding_name);
+        branding_request_compound->s_branding_name = NULL;
+    }
+    if (branding_request_compound->s_email_address) {
+        free(branding_request_compound->s_email_address);
+        branding_request_compound->s_email_address = NULL;
     }
     free(branding_request_compound);
 }
@@ -173,6 +185,22 @@ cJSON *branding_request_compound_convertToJSON(branding_request_compound_t *bran
     }
     if(cJSON_AddNumberToObject(item, "iBrandingColorbackgroundsmallbox", branding_request_compound->i_branding_colorbackgroundsmallbox) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // branding_request_compound->s_branding_name
+    if(branding_request_compound->s_branding_name) {
+    if(cJSON_AddStringToObject(item, "sBrandingName", branding_request_compound->s_branding_name) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // branding_request_compound->s_email_address
+    if(branding_request_compound->s_email_address) {
+    if(cJSON_AddStringToObject(item, "sEmailAddress", branding_request_compound->s_email_address) == NULL) {
+    goto fail; //String
+    }
     }
 
 
@@ -310,6 +338,24 @@ branding_request_compound_t *branding_request_compound_parseFromJSON(cJSON *bran
     goto end; //Numeric
     }
 
+    // branding_request_compound->s_branding_name
+    cJSON *s_branding_name = cJSON_GetObjectItemCaseSensitive(branding_request_compoundJSON, "sBrandingName");
+    if (s_branding_name) { 
+    if(!cJSON_IsString(s_branding_name) && !cJSON_IsNull(s_branding_name))
+    {
+    goto end; //String
+    }
+    }
+
+    // branding_request_compound->s_email_address
+    cJSON *s_email_address = cJSON_GetObjectItemCaseSensitive(branding_request_compoundJSON, "sEmailAddress");
+    if (s_email_address) { 
+    if(!cJSON_IsString(s_email_address) && !cJSON_IsNull(s_email_address))
+    {
+    goto end; //String
+    }
+    }
+
     // branding_request_compound->b_branding_isactive
     cJSON *b_branding_isactive = cJSON_GetObjectItemCaseSensitive(branding_request_compoundJSON, "bBrandingIsactive");
     if (!b_branding_isactive) {
@@ -334,6 +380,8 @@ branding_request_compound_t *branding_request_compound_parseFromJSON(cJSON *bran
         i_branding_colorbackground->valuedouble,
         i_branding_colorbackgroundbutton->valuedouble,
         i_branding_colorbackgroundsmallbox->valuedouble,
+        s_branding_name && !cJSON_IsNull(s_branding_name) ? strdup(s_branding_name->valuestring) : NULL,
+        s_email_address && !cJSON_IsNull(s_email_address) ? strdup(s_email_address->valuestring) : NULL,
         b_branding_isactive->valueint
         );
 

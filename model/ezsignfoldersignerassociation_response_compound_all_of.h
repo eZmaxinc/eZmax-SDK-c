@@ -17,17 +17,23 @@ typedef struct ezsignfoldersignerassociation_response_compound_all_of_t ezsignfo
 
 #include "ezsignfoldersignerassociation_response_compound_user.h"
 #include "ezsignsigner_response_compound.h"
+#include "ezsignsignergroup_response_compound.h"
+#include "usergroup_response_compound.h"
 
 
 
 typedef struct ezsignfoldersignerassociation_response_compound_all_of_t {
+    struct ezsignsignergroup_response_compound_t *obj_ezsignsignergroup; //model
     struct ezsignfoldersignerassociation_response_compound_user_t *obj_user; //model
+    struct usergroup_response_compound_t *obj_usergroup; //model
     struct ezsignsigner_response_compound_t *obj_ezsignsigner; //model
 
 } ezsignfoldersignerassociation_response_compound_all_of_t;
 
 ezsignfoldersignerassociation_response_compound_all_of_t *ezsignfoldersignerassociation_response_compound_all_of_create(
+    ezsignsignergroup_response_compound_t *obj_ezsignsignergroup,
     ezsignfoldersignerassociation_response_compound_user_t *obj_user,
+    usergroup_response_compound_t *obj_usergroup,
     ezsignsigner_response_compound_t *obj_ezsignsigner
 );
 

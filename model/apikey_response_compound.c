@@ -6,18 +6,22 @@
 
 
 apikey_response_compound_t *apikey_response_compound_create(
+    int pki_apikey_id,
+    int fki_user_id,
     multilingual_apikey_description_t *obj_apikey_description,
     char *s_computed_token,
-    int pki_apikey_id,
+    int b_apikey_isactive,
     common_audit_t *obj_audit
     ) {
     apikey_response_compound_t *apikey_response_compound_local_var = malloc(sizeof(apikey_response_compound_t));
     if (!apikey_response_compound_local_var) {
         return NULL;
     }
+    apikey_response_compound_local_var->pki_apikey_id = pki_apikey_id;
+    apikey_response_compound_local_var->fki_user_id = fki_user_id;
     apikey_response_compound_local_var->obj_apikey_description = obj_apikey_description;
     apikey_response_compound_local_var->s_computed_token = s_computed_token;
-    apikey_response_compound_local_var->pki_apikey_id = pki_apikey_id;
+    apikey_response_compound_local_var->b_apikey_isactive = b_apikey_isactive;
     apikey_response_compound_local_var->obj_audit = obj_audit;
 
     return apikey_response_compound_local_var;
@@ -47,6 +51,24 @@ void apikey_response_compound_free(apikey_response_compound_t *apikey_response_c
 cJSON *apikey_response_compound_convertToJSON(apikey_response_compound_t *apikey_response_compound) {
     cJSON *item = cJSON_CreateObject();
 
+    // apikey_response_compound->pki_apikey_id
+    if (!apikey_response_compound->pki_apikey_id) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "pkiApikeyID", apikey_response_compound->pki_apikey_id) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // apikey_response_compound->fki_user_id
+    if (!apikey_response_compound->fki_user_id) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "fkiUserID", apikey_response_compound->fki_user_id) == NULL) {
+    goto fail; //Numeric
+    }
+
+
     // apikey_response_compound->obj_apikey_description
     if (!apikey_response_compound->obj_apikey_description) {
         goto fail;
@@ -69,12 +91,12 @@ cJSON *apikey_response_compound_convertToJSON(apikey_response_compound_t *apikey
     }
 
 
-    // apikey_response_compound->pki_apikey_id
-    if (!apikey_response_compound->pki_apikey_id) {
+    // apikey_response_compound->b_apikey_isactive
+    if (!apikey_response_compound->b_apikey_isactive) {
         goto fail;
     }
-    if(cJSON_AddNumberToObject(item, "pkiApikeyID", apikey_response_compound->pki_apikey_id) == NULL) {
-    goto fail; //Numeric
+    if(cJSON_AddBoolToObject(item, "bApikeyIsactive", apikey_response_compound->b_apikey_isactive) == NULL) {
+    goto fail; //Bool
     }
 
 
@@ -109,6 +131,30 @@ apikey_response_compound_t *apikey_response_compound_parseFromJSON(cJSON *apikey
     // define the local variable for apikey_response_compound->obj_audit
     common_audit_t *obj_audit_local_nonprim = NULL;
 
+    // apikey_response_compound->pki_apikey_id
+    cJSON *pki_apikey_id = cJSON_GetObjectItemCaseSensitive(apikey_response_compoundJSON, "pkiApikeyID");
+    if (!pki_apikey_id) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(pki_apikey_id))
+    {
+    goto end; //Numeric
+    }
+
+    // apikey_response_compound->fki_user_id
+    cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(apikey_response_compoundJSON, "fkiUserID");
+    if (!fki_user_id) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(fki_user_id))
+    {
+    goto end; //Numeric
+    }
+
     // apikey_response_compound->obj_apikey_description
     cJSON *obj_apikey_description = cJSON_GetObjectItemCaseSensitive(apikey_response_compoundJSON, "objApikeyDescription");
     if (!obj_apikey_description) {
@@ -127,16 +173,16 @@ apikey_response_compound_t *apikey_response_compound_parseFromJSON(cJSON *apikey
     }
     }
 
-    // apikey_response_compound->pki_apikey_id
-    cJSON *pki_apikey_id = cJSON_GetObjectItemCaseSensitive(apikey_response_compoundJSON, "pkiApikeyID");
-    if (!pki_apikey_id) {
+    // apikey_response_compound->b_apikey_isactive
+    cJSON *b_apikey_isactive = cJSON_GetObjectItemCaseSensitive(apikey_response_compoundJSON, "bApikeyIsactive");
+    if (!b_apikey_isactive) {
         goto end;
     }
 
     
-    if(!cJSON_IsNumber(pki_apikey_id))
+    if(!cJSON_IsBool(b_apikey_isactive))
     {
-    goto end; //Numeric
+    goto end; //Bool
     }
 
     // apikey_response_compound->obj_audit
@@ -150,9 +196,11 @@ apikey_response_compound_t *apikey_response_compound_parseFromJSON(cJSON *apikey
 
 
     apikey_response_compound_local_var = apikey_response_compound_create (
+        pki_apikey_id->valuedouble,
+        fki_user_id->valuedouble,
         obj_apikey_description_local_nonprim,
         s_computed_token && !cJSON_IsNull(s_computed_token) ? strdup(s_computed_token->valuestring) : NULL,
-        pki_apikey_id->valuedouble,
+        b_apikey_isactive->valueint,
         obj_audit_local_nonprim
         );
 

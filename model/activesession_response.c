@@ -66,7 +66,8 @@ activesession_response_t *activesession_response_create(
     int b_activesession_debug,
     int b_activesession_issuperadmin,
     char *pks_customer_code,
-    int fki_systemconfigurationtype_id
+    int fki_systemconfigurationtype_id,
+    int fki_signature_id
     ) {
     activesession_response_t *activesession_response_local_var = malloc(sizeof(activesession_response_t));
     if (!activesession_response_local_var) {
@@ -82,6 +83,7 @@ activesession_response_t *activesession_response_create(
     activesession_response_local_var->b_activesession_issuperadmin = b_activesession_issuperadmin;
     activesession_response_local_var->pks_customer_code = pks_customer_code;
     activesession_response_local_var->fki_systemconfigurationtype_id = fki_systemconfigurationtype_id;
+    activesession_response_local_var->fki_signature_id = fki_signature_id;
 
     return activesession_response_local_var;
 }
@@ -225,6 +227,14 @@ cJSON *activesession_response_convertToJSON(activesession_response_t *activesess
     }
     }
 
+
+    // activesession_response->fki_signature_id
+    if(activesession_response->fki_signature_id) {
+    if(cJSON_AddNumberToObject(item, "fkiSignatureID", activesession_response->fki_signature_id) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -354,6 +364,15 @@ activesession_response_t *activesession_response_parseFromJSON(cJSON *activesess
     }
     }
 
+    // activesession_response->fki_signature_id
+    cJSON *fki_signature_id = cJSON_GetObjectItemCaseSensitive(activesession_responseJSON, "fkiSignatureID");
+    if (fki_signature_id) { 
+    if(!cJSON_IsNumber(fki_signature_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
 
     activesession_response_local_var = activesession_response_create (
         e_activesession_usertype_local_nonprim,
@@ -365,7 +384,8 @@ activesession_response_t *activesession_response_parseFromJSON(cJSON *activesess
         b_activesession_debug->valueint,
         b_activesession_issuperadmin->valueint,
         strdup(pks_customer_code->valuestring),
-        fki_systemconfigurationtype_id ? fki_systemconfigurationtype_id->valuedouble : 0
+        fki_systemconfigurationtype_id ? fki_systemconfigurationtype_id->valuedouble : 0,
+        fki_signature_id ? fki_signature_id->valuedouble : 0
         );
 
     return activesession_response_local_var;

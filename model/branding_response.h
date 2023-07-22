@@ -30,8 +30,11 @@ ezmax_api_definition__full_branding_response__e branding_response_e_branding_log
 
 typedef struct branding_response_t {
     int pki_branding_id; //numeric
+    int fki_email_id; //numeric
     struct multilingual_branding_description_t *obj_branding_description; //model
     char *s_branding_description_x; // string
+    char *s_branding_name; // string
+    char *s_email_address; // string
     field_e_branding_logo_t *e_branding_logo; // custom
     int i_branding_colortext; //numeric
     int i_branding_colortextlinkbox; //numeric
@@ -45,8 +48,11 @@ typedef struct branding_response_t {
 
 branding_response_t *branding_response_create(
     int pki_branding_id,
+    int fki_email_id,
     multilingual_branding_description_t *obj_branding_description,
     char *s_branding_description_x,
+    char *s_branding_name,
+    char *s_email_address,
     field_e_branding_logo_t *e_branding_logo,
     int i_branding_colortext,
     int i_branding_colortextlinkbox,

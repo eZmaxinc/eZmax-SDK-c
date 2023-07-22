@@ -8,7 +8,8 @@
 apikey_request_t *apikey_request_create(
     int pki_apikey_id,
     int fki_user_id,
-    multilingual_apikey_description_t *obj_apikey_description
+    multilingual_apikey_description_t *obj_apikey_description,
+    int b_apikey_isactive
     ) {
     apikey_request_t *apikey_request_local_var = malloc(sizeof(apikey_request_t));
     if (!apikey_request_local_var) {
@@ -17,6 +18,7 @@ apikey_request_t *apikey_request_create(
     apikey_request_local_var->pki_apikey_id = pki_apikey_id;
     apikey_request_local_var->fki_user_id = fki_user_id;
     apikey_request_local_var->obj_apikey_description = obj_apikey_description;
+    apikey_request_local_var->b_apikey_isactive = b_apikey_isactive;
 
     return apikey_request_local_var;
 }
@@ -67,6 +69,14 @@ cJSON *apikey_request_convertToJSON(apikey_request_t *apikey_request) {
     goto fail;
     }
 
+
+    // apikey_request->b_apikey_isactive
+    if(apikey_request->b_apikey_isactive) {
+    if(cJSON_AddBoolToObject(item, "bApikeyIsactive", apikey_request->b_apikey_isactive) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -112,11 +122,21 @@ apikey_request_t *apikey_request_parseFromJSON(cJSON *apikey_requestJSON){
     
     obj_apikey_description_local_nonprim = multilingual_apikey_description_parseFromJSON(obj_apikey_description); //nonprimitive
 
+    // apikey_request->b_apikey_isactive
+    cJSON *b_apikey_isactive = cJSON_GetObjectItemCaseSensitive(apikey_requestJSON, "bApikeyIsactive");
+    if (b_apikey_isactive) { 
+    if(!cJSON_IsBool(b_apikey_isactive))
+    {
+    goto end; //Bool
+    }
+    }
+
 
     apikey_request_local_var = apikey_request_create (
         pki_apikey_id ? pki_apikey_id->valuedouble : 0,
         fki_user_id->valuedouble,
-        obj_apikey_description_local_nonprim
+        obj_apikey_description_local_nonprim,
+        b_apikey_isactive ? b_apikey_isactive->valueint : 0
         );
 
     return apikey_request_local_var;

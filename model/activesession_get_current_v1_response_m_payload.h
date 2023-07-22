@@ -58,6 +58,7 @@ typedef struct activesession_get_current_v1_response_m_payload_t {
     int b_activesession_issuperadmin; //boolean
     char *pks_customer_code; // string
     int fki_systemconfigurationtype_id; //numeric
+    int fki_signature_id; //numeric
     list_t *a_pki_permission_id; //primitive container
     struct activesession_response_compound_user_t *obj_user_real; //model
     struct activesession_response_compound_user_t *obj_user_cloned; //model
@@ -77,6 +78,7 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
     int b_activesession_issuperadmin,
     char *pks_customer_code,
     int fki_systemconfigurationtype_id,
+    int fki_signature_id,
     list_t *a_pki_permission_id,
     activesession_response_compound_user_t *obj_user_real,
     activesession_response_compound_user_t *obj_user_cloned,

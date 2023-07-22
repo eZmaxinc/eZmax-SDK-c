@@ -23,11 +23,19 @@ ezsignsignature_sign_v1_request_t* instantiate_ezsignsignature_sign_v1_request(i
   if (include_optional) {
     ezsignsignature_sign_v1_request = ezsignsignature_sign_v1_request_create(
       "0",
+      ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_Accepted,
+      "0",
+      "{"$ref":"#/components/examples/Svg/value"}",
+      list_createList(),
       1
     );
   } else {
     ezsignsignature_sign_v1_request = ezsignsignature_sign_v1_request_create(
       "0",
+      ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_Accepted,
+      "0",
+      "{"$ref":"#/components/examples/Svg/value"}",
+      list_createList(),
       1
     );
   }

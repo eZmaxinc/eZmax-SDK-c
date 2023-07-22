@@ -23,13 +23,13 @@ ezsigndocument_response_t* instantiate_ezsigndocument_response(int include_optio
   ezsigndocument_response_t* ezsigndocument_response = NULL;
   if (include_optional) {
     ezsigndocument_response = ezsigndocument_response_create(
+      97,
       33,
       20,
       "2020-12-31 23:59:59",
       "2020-12-31 23:59:59",
       2,
       "Contract #123",
-      97,
       ezmax_api_definition__full_ezsigndocument_response__"Completed",
       "2020-12-31 23:59:59",
       "2020-12-31 23:59:59",
@@ -48,13 +48,13 @@ ezsigndocument_response_t* instantiate_ezsigndocument_response(int include_optio
     );
   } else {
     ezsigndocument_response = ezsigndocument_response_create(
+      97,
       33,
       20,
       "2020-12-31 23:59:59",
       "2020-12-31 23:59:59",
       2,
       "Contract #123",
-      97,
       ezmax_api_definition__full_ezsigndocument_response__"Completed",
       "2020-12-31 23:59:59",
       "2020-12-31 23:59:59",

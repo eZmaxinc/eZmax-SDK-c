@@ -15,6 +15,7 @@
 
 typedef struct ezsignformfieldgroup_request_t ezsignformfieldgroup_request_t;
 
+#include "enum_textvalidation.h"
 #include "field_e_ezsignformfieldgroup_signerrequirement.h"
 #include "field_e_ezsignformfieldgroup_tooltipposition.h"
 #include "field_e_ezsignformfieldgroup_type.h"
@@ -43,6 +44,14 @@ char* ezsignformfieldgroup_request_e_ezsignformfieldgroup_tooltipposition_ToStri
 
 ezmax_api_definition__full_ezsignformfieldgroup_request__e ezsignformfieldgroup_request_e_ezsignformfieldgroup_tooltipposition_FromString(char* e_ezsignformfieldgroup_tooltipposition);
 
+// Enum  for ezsignformfieldgroup_request
+
+typedef enum  { ezmax_api_definition__full_ezsignformfieldgroup_request__NULL = 0, ezmax_api_definition__full_ezsignformfieldgroup_request__None, ezmax_api_definition__full_ezsignformfieldgroup_request__Date (YYYY_MM_DD), ezmax_api_definition__full_ezsignformfieldgroup_request__Date (MM/DD/YYYY), ezmax_api_definition__full_ezsignformfieldgroup_request__Date (MM/DD/YY), ezmax_api_definition__full_ezsignformfieldgroup_request__Date (DD/MM/YYYY), ezmax_api_definition__full_ezsignformfieldgroup_request__Date (DD/MM/YY), ezmax_api_definition__full_ezsignformfieldgroup_request__Email, ezmax_api_definition__full_ezsignformfieldgroup_request__Letters, ezmax_api_definition__full_ezsignformfieldgroup_request__Numbers, ezmax_api_definition__full_ezsignformfieldgroup_request__Zip, ezmax_api_definition__full_ezsignformfieldgroup_request__Zip+4, ezmax_api_definition__full_ezsignformfieldgroup_request__PostalCode, ezmax_api_definition__full_ezsignformfieldgroup_request__Custom } ezmax_api_definition__full_ezsignformfieldgroup_request__e;
+
+char* ezsignformfieldgroup_request_e_ezsignformfieldgroup_textvalidation_ToString(ezmax_api_definition__full_ezsignformfieldgroup_request__e e_ezsignformfieldgroup_textvalidation);
+
+ezmax_api_definition__full_ezsignformfieldgroup_request__e ezsignformfieldgroup_request_e_ezsignformfieldgroup_textvalidation_FromString(char* e_ezsignformfieldgroup_textvalidation);
+
 
 
 typedef struct ezsignformfieldgroup_request_t {
@@ -61,6 +70,7 @@ typedef struct ezsignformfieldgroup_request_t {
     char *s_ezsignformfieldgroup_regexp; // string
     char *t_ezsignformfieldgroup_tooltip; // string
     field_e_ezsignformfieldgroup_tooltipposition_t *e_ezsignformfieldgroup_tooltipposition; // custom
+    enum_textvalidation_t *e_ezsignformfieldgroup_textvalidation; // custom
 
 } ezsignformfieldgroup_request_t;
 
@@ -79,7 +89,8 @@ ezsignformfieldgroup_request_t *ezsignformfieldgroup_request_create(
     int b_ezsignformfieldgroup_encrypted,
     char *s_ezsignformfieldgroup_regexp,
     char *t_ezsignformfieldgroup_tooltip,
-    field_e_ezsignformfieldgroup_tooltipposition_t *e_ezsignformfieldgroup_tooltipposition
+    field_e_ezsignformfieldgroup_tooltipposition_t *e_ezsignformfieldgroup_tooltipposition,
+    enum_textvalidation_t *e_ezsignformfieldgroup_textvalidation
 );
 
 void ezsignformfieldgroup_request_free(ezsignformfieldgroup_request_t *ezsignformfieldgroup_request);

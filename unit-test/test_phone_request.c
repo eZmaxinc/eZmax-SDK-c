@@ -23,22 +23,26 @@ phone_request_t* instantiate_phone_request(int include_optional) {
   if (include_optional) {
     phone_request = phone_request_create(
       1,
-      ezmax_api_definition__full_phone_request__"Local",
-      "514",
-      "990",
-      "1516",
-      "+15149901516",
-      "123"
-    );
-  } else {
-    phone_request = phone_request_create(
       1,
       ezmax_api_definition__full_phone_request__"Local",
       "514",
       "990",
       "1516",
-      "+15149901516",
-      "123"
+      "15149901516",
+      "123",
+      "+15149901516"
+    );
+  } else {
+    phone_request = phone_request_create(
+      1,
+      1,
+      ezmax_api_definition__full_phone_request__"Local",
+      "514",
+      "990",
+      "1516",
+      "15149901516",
+      "123",
+      "+15149901516"
     );
   }
 

@@ -16,6 +16,9 @@
 #include "../model/user_response.h"
 user_response_t* instantiate_user_response(int include_optional);
 
+#include "test_email_response_compound.c"
+#include "test_phone_response_compound.c"
+#include "test_phone_response_compound.c"
 #include "test_common_audit.c"
 
 
@@ -24,22 +27,85 @@ user_response_t* instantiate_user_response(int include_optional) {
   if (include_optional) {
     user_response = user_response_create(
       70,
+      1,
+      26,
+      1,
+      31,
+      1,
+      "Acme inc.",
+      21,
+      "Head Office",
+      247,
+      "Default",
       2,
-      ezmax_api_definition__full_user_response__"RewardDistributorServer",
+      "English",
+       // false, not to have infinite recursion
+      instantiate_email_response_compound(0),
+      1,
+      "Default",
+       // false, not to have infinite recursion
+      instantiate_phone_response_compound(0),
+       // false, not to have infinite recursion
+      instantiate_phone_response_compound(0),
+      7,
+      40,
+      "Purchase",
+      ezmax_api_definition__full_user_response__"BuiltIn",
+      ezmax_api_definition__full_user_response__"EzsignUser",
+      ezmax_api_definition__full_user_response__"Password",
       "John",
       "Doe",
       "JohnDoe",
+      ezmax_api_definition__full_user_response__"PaidByOffice",
+      "2020-12-31 23:59:59",
+      "2020-12-31 23:59:59",
+      "2020-12-31",
+      true,
+      false,
+      false,
+      true,
+      true,
        // false, not to have infinite recursion
       instantiate_common_audit(0)
     );
   } else {
     user_response = user_response_create(
       70,
+      1,
+      26,
+      1,
+      31,
+      1,
+      "Acme inc.",
+      21,
+      "Head Office",
+      247,
+      "Default",
       2,
-      ezmax_api_definition__full_user_response__"RewardDistributorServer",
+      "English",
+      NULL,
+      1,
+      "Default",
+      NULL,
+      NULL,
+      7,
+      40,
+      "Purchase",
+      ezmax_api_definition__full_user_response__"BuiltIn",
+      ezmax_api_definition__full_user_response__"EzsignUser",
+      ezmax_api_definition__full_user_response__"Password",
       "John",
       "Doe",
       "JohnDoe",
+      ezmax_api_definition__full_user_response__"PaidByOffice",
+      "2020-12-31 23:59:59",
+      "2020-12-31 23:59:59",
+      "2020-12-31",
+      true,
+      false,
+      false,
+      true,
+      true,
       NULL
     );
   }

@@ -33,6 +33,7 @@ communication_response_compound_t* instantiate_communication_response_compound(i
       "http://www.example.com/4526.html",
       ezmax_api_definition__full_communication_response_compound__"Outbound",
       8,
+      false,
        // false, not to have infinite recursion
       instantiate_descriptionstatic_response(0),
        // false, not to have infinite recursion
@@ -54,6 +55,7 @@ communication_response_compound_t* instantiate_communication_response_compound(i
       "http://www.example.com/4526.html",
       ezmax_api_definition__full_communication_response_compound__"Outbound",
       8,
+      false,
       NULL,
       NULL,
       NULL,

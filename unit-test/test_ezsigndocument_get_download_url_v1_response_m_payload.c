@@ -22,11 +22,11 @@ ezsigndocument_get_download_url_v1_response_m_payload_t* instantiate_ezsigndocum
   ezsigndocument_get_download_url_v1_response_m_payload_t* ezsigndocument_get_download_url_v1_response_m_payload = NULL;
   if (include_optional) {
     ezsigndocument_get_download_url_v1_response_m_payload = ezsigndocument_get_download_url_v1_response_m_payload_create(
-      "0"
+      "http://www.example.com/document.pdf"
     );
   } else {
     ezsigndocument_get_download_url_v1_response_m_payload = ezsigndocument_get_download_url_v1_response_m_payload_create(
-      "0"
+      "http://www.example.com/document.pdf"
     );
   }
 

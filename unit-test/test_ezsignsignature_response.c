@@ -17,6 +17,7 @@
 ezsignsignature_response_t* instantiate_ezsignsignature_response(int include_optional);
 
 #include "test_custom_contact_name_response.c"
+#include "test_signature_response_compound.c"
 
 
 ezsignsignature_response_t* instantiate_ezsignsignature_response(int include_optional) {
@@ -29,19 +30,27 @@ ezsignsignature_response_t* instantiate_ezsignsignature_response(int include_opt
       1,
       200,
       300,
+      200,
+      200,
       1,
       ezmax_api_definition__full_ezsignsignature_response__"Name",
       "Please sign here if you agree to the terms",
       ezmax_api_definition__full_ezsignsignature_response__"TopLeft",
-      ezmax_api_definition__full_ezsignsignature_response__Normal,
+      ezmax_api_definition__full_ezsignsignature_response__"Normal",
       1,
       "Attachment",
       ezmax_api_definition__full_ezsignsignature_response__"Description",
       1,
       20,
       "2020-12-31 23:59:59",
+      7,
+      "Montreal",
+      ezmax_api_definition__full_ezsignsignature_response__"None",
+      "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
        // false, not to have infinite recursion
-      instantiate_custom_contact_name_response(0)
+      instantiate_custom_contact_name_response(0),
+       // false, not to have infinite recursion
+      instantiate_signature_response_compound(0)
     );
   } else {
     ezsignsignature_response = ezsignsignature_response_create(
@@ -51,17 +60,24 @@ ezsignsignature_response_t* instantiate_ezsignsignature_response(int include_opt
       1,
       200,
       300,
+      200,
+      200,
       1,
       ezmax_api_definition__full_ezsignsignature_response__"Name",
       "Please sign here if you agree to the terms",
       ezmax_api_definition__full_ezsignsignature_response__"TopLeft",
-      ezmax_api_definition__full_ezsignsignature_response__Normal,
+      ezmax_api_definition__full_ezsignsignature_response__"Normal",
       1,
       "Attachment",
       ezmax_api_definition__full_ezsignsignature_response__"Description",
       1,
       20,
       "2020-12-31 23:59:59",
+      7,
+      "Montreal",
+      ezmax_api_definition__full_ezsignsignature_response__"None",
+      "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
+      NULL,
       NULL
     );
   }

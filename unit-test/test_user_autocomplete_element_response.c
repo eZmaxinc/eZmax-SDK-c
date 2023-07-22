@@ -22,14 +22,14 @@ user_autocomplete_element_response_t* instantiate_user_autocomplete_element_resp
   user_autocomplete_element_response_t* user_autocomplete_element_response = NULL;
   if (include_optional) {
     user_autocomplete_element_response = user_autocomplete_element_response_create(
-      ezmax_api_definition__full_user_autocomplete_element_response__"RewardDistributorServer",
+      ezmax_api_definition__full_user_autocomplete_element_response__"EzsignUser",
       "Default",
       70,
       true
     );
   } else {
     user_autocomplete_element_response = user_autocomplete_element_response_create(
-      ezmax_api_definition__full_user_autocomplete_element_response__"RewardDistributorServer",
+      ezmax_api_definition__full_user_autocomplete_element_response__"EzsignUser",
       "Default",
       70,
       true

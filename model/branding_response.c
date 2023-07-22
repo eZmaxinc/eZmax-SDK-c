@@ -24,8 +24,11 @@ ezmax_api_definition__full_branding_response__e e_branding_logobranding_response
 
 branding_response_t *branding_response_create(
     int pki_branding_id,
+    int fki_email_id,
     multilingual_branding_description_t *obj_branding_description,
     char *s_branding_description_x,
+    char *s_branding_name,
+    char *s_email_address,
     field_e_branding_logo_t *e_branding_logo,
     int i_branding_colortext,
     int i_branding_colortextlinkbox,
@@ -40,8 +43,11 @@ branding_response_t *branding_response_create(
         return NULL;
     }
     branding_response_local_var->pki_branding_id = pki_branding_id;
+    branding_response_local_var->fki_email_id = fki_email_id;
     branding_response_local_var->obj_branding_description = obj_branding_description;
     branding_response_local_var->s_branding_description_x = s_branding_description_x;
+    branding_response_local_var->s_branding_name = s_branding_name;
+    branding_response_local_var->s_email_address = s_email_address;
     branding_response_local_var->e_branding_logo = e_branding_logo;
     branding_response_local_var->i_branding_colortext = i_branding_colortext;
     branding_response_local_var->i_branding_colortextlinkbox = i_branding_colortextlinkbox;
@@ -68,6 +74,14 @@ void branding_response_free(branding_response_t *branding_response) {
         free(branding_response->s_branding_description_x);
         branding_response->s_branding_description_x = NULL;
     }
+    if (branding_response->s_branding_name) {
+        free(branding_response->s_branding_name);
+        branding_response->s_branding_name = NULL;
+    }
+    if (branding_response->s_email_address) {
+        free(branding_response->s_email_address);
+        branding_response->s_email_address = NULL;
+    }
     if (branding_response->e_branding_logo) {
         field_e_branding_logo_free(branding_response->e_branding_logo);
         branding_response->e_branding_logo = NULL;
@@ -84,6 +98,14 @@ cJSON *branding_response_convertToJSON(branding_response_t *branding_response) {
     }
     if(cJSON_AddNumberToObject(item, "pkiBrandingID", branding_response->pki_branding_id) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // branding_response->fki_email_id
+    if(branding_response->fki_email_id) {
+    if(cJSON_AddNumberToObject(item, "fkiEmailID", branding_response->fki_email_id) == NULL) {
+    goto fail; //Numeric
+    }
     }
 
 
@@ -107,6 +129,22 @@ cJSON *branding_response_convertToJSON(branding_response_t *branding_response) {
     }
     if(cJSON_AddStringToObject(item, "sBrandingDescriptionX", branding_response->s_branding_description_x) == NULL) {
     goto fail; //String
+    }
+
+
+    // branding_response->s_branding_name
+    if(branding_response->s_branding_name) {
+    if(cJSON_AddStringToObject(item, "sBrandingName", branding_response->s_branding_name) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // branding_response->s_email_address
+    if(branding_response->s_email_address) {
+    if(cJSON_AddStringToObject(item, "sEmailAddress", branding_response->s_email_address) == NULL) {
+    goto fail; //String
+    }
     }
 
 
@@ -216,6 +254,15 @@ branding_response_t *branding_response_parseFromJSON(cJSON *branding_responseJSO
     goto end; //Numeric
     }
 
+    // branding_response->fki_email_id
+    cJSON *fki_email_id = cJSON_GetObjectItemCaseSensitive(branding_responseJSON, "fkiEmailID");
+    if (fki_email_id) { 
+    if(!cJSON_IsNumber(fki_email_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
     // branding_response->obj_branding_description
     cJSON *obj_branding_description = cJSON_GetObjectItemCaseSensitive(branding_responseJSON, "objBrandingDescription");
     if (!obj_branding_description) {
@@ -235,6 +282,24 @@ branding_response_t *branding_response_parseFromJSON(cJSON *branding_responseJSO
     if(!cJSON_IsString(s_branding_description_x))
     {
     goto end; //String
+    }
+
+    // branding_response->s_branding_name
+    cJSON *s_branding_name = cJSON_GetObjectItemCaseSensitive(branding_responseJSON, "sBrandingName");
+    if (s_branding_name) { 
+    if(!cJSON_IsString(s_branding_name) && !cJSON_IsNull(s_branding_name))
+    {
+    goto end; //String
+    }
+    }
+
+    // branding_response->s_email_address
+    cJSON *s_email_address = cJSON_GetObjectItemCaseSensitive(branding_responseJSON, "sEmailAddress");
+    if (s_email_address) { 
+    if(!cJSON_IsString(s_email_address) && !cJSON_IsNull(s_email_address))
+    {
+    goto end; //String
+    }
     }
 
     // branding_response->e_branding_logo
@@ -333,8 +398,11 @@ branding_response_t *branding_response_parseFromJSON(cJSON *branding_responseJSO
 
     branding_response_local_var = branding_response_create (
         pki_branding_id->valuedouble,
+        fki_email_id ? fki_email_id->valuedouble : 0,
         obj_branding_description_local_nonprim,
         strdup(s_branding_description_x->valuestring),
+        s_branding_name && !cJSON_IsNull(s_branding_name) ? strdup(s_branding_name->valuestring) : NULL,
+        s_email_address && !cJSON_IsNull(s_email_address) ? strdup(s_email_address->valuestring) : NULL,
         e_branding_logo_local_nonprim,
         i_branding_colortext->valuedouble,
         i_branding_colortextlinkbox->valuedouble,

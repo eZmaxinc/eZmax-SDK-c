@@ -6,9 +6,13 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectUsergroupAPI_usergroupCreateObjectV1**](ObjectUsergroupAPI.md#ObjectUsergroupAPI_usergroupCreateObjectV1) | **POST** /1/object/usergroup | Create a new Usergroup
 [**ObjectUsergroupAPI_usergroupEditObjectV1**](ObjectUsergroupAPI.md#ObjectUsergroupAPI_usergroupEditObjectV1) | **PUT** /1/object/usergroup/{pkiUsergroupID} | Edit an existing Usergroup
+[**ObjectUsergroupAPI_usergroupEditPermissionsV1**](ObjectUsergroupAPI.md#ObjectUsergroupAPI_usergroupEditPermissionsV1) | **PUT** /1/object/usergroup/{pkiUsergroupID}/editPermissions | Edit multiple Permissions
+[**ObjectUsergroupAPI_usergroupEditUsergroupmembershipsV1**](ObjectUsergroupAPI.md#ObjectUsergroupAPI_usergroupEditUsergroupmembershipsV1) | **PUT** /1/object/usergroup/{pkiUsergroupID}/editUsergroupmemberships | Edit multiple Usergroupmemberships
 [**ObjectUsergroupAPI_usergroupGetAutocompleteV2**](ObjectUsergroupAPI.md#ObjectUsergroupAPI_usergroupGetAutocompleteV2) | **GET** /2/object/usergroup/getAutocomplete/{sSelector} | Retrieve Usergroups and IDs
 [**ObjectUsergroupAPI_usergroupGetListV1**](ObjectUsergroupAPI.md#ObjectUsergroupAPI_usergroupGetListV1) | **GET** /1/object/usergroup/getList | Retrieve Usergroup list
 [**ObjectUsergroupAPI_usergroupGetObjectV2**](ObjectUsergroupAPI.md#ObjectUsergroupAPI_usergroupGetObjectV2) | **GET** /2/object/usergroup/{pkiUsergroupID} | Retrieve an existing Usergroup
+[**ObjectUsergroupAPI_usergroupGetPermissionsV1**](ObjectUsergroupAPI.md#ObjectUsergroupAPI_usergroupGetPermissionsV1) | **GET** /1/object/usergroup/{pkiUsergroupID}/getPermissions | Retrieve an existing Usergroup&#39;s Permissions
+[**ObjectUsergroupAPI_usergroupGetUsergroupmembershipsV1**](ObjectUsergroupAPI.md#ObjectUsergroupAPI_usergroupGetUsergroupmembershipsV1) | **GET** /1/object/usergroup/{pkiUsergroupID}/getUsergroupmemberships | Retrieve an existing Usergroup&#39;s Usergroupmemberships
 
 
 # **ObjectUsergroupAPI_usergroupCreateObjectV1**
@@ -55,12 +59,76 @@ usergroup_edit_object_v1_response_t* ObjectUsergroupAPI_usergroupEditObjectV1(ap
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUsergroupID** | **int** | The unique ID of the Usergroup | 
+**pkiUsergroupID** | **int** |  | 
 **usergroup_edit_object_v1_request** | **[usergroup_edit_object_v1_request_t](usergroup_edit_object_v1_request.md) \*** |  | 
 
 ### Return type
 
 [usergroup_edit_object_v1_response_t](usergroup_edit_object_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectUsergroupAPI_usergroupEditPermissionsV1**
+```c
+// Edit multiple Permissions
+//
+// Using this endpoint, you can edit multiple Permissions at the same time.
+//
+usergroup_edit_permissions_v1_response_t* ObjectUsergroupAPI_usergroupEditPermissionsV1(apiClient_t *apiClient, int pkiUsergroupID, usergroup_edit_permissions_v1_request_t * usergroup_edit_permissions_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiUsergroupID** | **int** |  | 
+**usergroup_edit_permissions_v1_request** | **[usergroup_edit_permissions_v1_request_t](usergroup_edit_permissions_v1_request.md) \*** |  | 
+
+### Return type
+
+[usergroup_edit_permissions_v1_response_t](usergroup_edit_permissions_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectUsergroupAPI_usergroupEditUsergroupmembershipsV1**
+```c
+// Edit multiple Usergroupmemberships
+//
+// Using this endpoint, you can edit multiple Usergroupmemberships at the same time.
+//
+usergroup_edit_usergroupmemberships_v1_response_t* ObjectUsergroupAPI_usergroupEditUsergroupmembershipsV1(apiClient_t *apiClient, int pkiUsergroupID, usergroup_edit_usergroupmemberships_v1_request_t * usergroup_edit_usergroupmemberships_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiUsergroupID** | **int** |  | 
+**usergroup_edit_usergroupmemberships_v1_request** | **[usergroup_edit_usergroupmemberships_v1_request_t](usergroup_edit_usergroupmemberships_v1_request.md) \*** |  | 
+
+### Return type
+
+[usergroup_edit_usergroupmemberships_v1_response_t](usergroup_edit_usergroupmemberships_v1_response.md) *
 
 
 ### Authorization
@@ -156,11 +224,69 @@ usergroup_get_object_v2_response_t* ObjectUsergroupAPI_usergroupGetObjectV2(apiC
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUsergroupID** | **int** | The unique ID of the Usergroup | 
+**pkiUsergroupID** | **int** |  | 
 
 ### Return type
 
 [usergroup_get_object_v2_response_t](usergroup_get_object_v2_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectUsergroupAPI_usergroupGetPermissionsV1**
+```c
+// Retrieve an existing Usergroup's Permissions
+//
+usergroup_get_permissions_v1_response_t* ObjectUsergroupAPI_usergroupGetPermissionsV1(apiClient_t *apiClient, int pkiUsergroupID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiUsergroupID** | **int** |  | 
+
+### Return type
+
+[usergroup_get_permissions_v1_response_t](usergroup_get_permissions_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectUsergroupAPI_usergroupGetUsergroupmembershipsV1**
+```c
+// Retrieve an existing Usergroup's Usergroupmemberships
+//
+usergroup_get_usergroupmemberships_v1_response_t* ObjectUsergroupAPI_usergroupGetUsergroupmembershipsV1(apiClient_t *apiClient, int pkiUsergroupID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiUsergroupID** | **int** |  | 
+
+### Return type
+
+[usergroup_get_usergroupmemberships_v1_response_t](usergroup_get_usergroupmemberships_v1_response.md) *
 
 
 ### Authorization

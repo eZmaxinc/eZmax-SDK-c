@@ -10,7 +10,8 @@ communicationattachment_response_compound_t *communicationattachment_response_co
     int fki_attachment_id,
     int fki_invoice_id,
     int fki_salarypreparation_id,
-    char *s_communicationattachment_name
+    char *s_communicationattachment_name,
+    char *s_download_url
     ) {
     communicationattachment_response_compound_t *communicationattachment_response_compound_local_var = malloc(sizeof(communicationattachment_response_compound_t));
     if (!communicationattachment_response_compound_local_var) {
@@ -21,6 +22,7 @@ communicationattachment_response_compound_t *communicationattachment_response_co
     communicationattachment_response_compound_local_var->fki_invoice_id = fki_invoice_id;
     communicationattachment_response_compound_local_var->fki_salarypreparation_id = fki_salarypreparation_id;
     communicationattachment_response_compound_local_var->s_communicationattachment_name = s_communicationattachment_name;
+    communicationattachment_response_compound_local_var->s_download_url = s_download_url;
 
     return communicationattachment_response_compound_local_var;
 }
@@ -34,6 +36,10 @@ void communicationattachment_response_compound_free(communicationattachment_resp
     if (communicationattachment_response_compound->s_communicationattachment_name) {
         free(communicationattachment_response_compound->s_communicationattachment_name);
         communicationattachment_response_compound->s_communicationattachment_name = NULL;
+    }
+    if (communicationattachment_response_compound->s_download_url) {
+        free(communicationattachment_response_compound->s_download_url);
+        communicationattachment_response_compound->s_download_url = NULL;
     }
     free(communicationattachment_response_compound);
 }
@@ -80,6 +86,14 @@ cJSON *communicationattachment_response_compound_convertToJSON(communicationatta
     }
     if(cJSON_AddStringToObject(item, "sCommunicationattachmentName", communicationattachment_response_compound->s_communicationattachment_name) == NULL) {
     goto fail; //String
+    }
+
+
+    // communicationattachment_response_compound->s_download_url
+    if(communicationattachment_response_compound->s_download_url) {
+    if(cJSON_AddStringToObject(item, "sDownloadUrl", communicationattachment_response_compound->s_download_url) == NULL) {
+    goto fail; //String
+    }
     }
 
     return item;
@@ -145,13 +159,23 @@ communicationattachment_response_compound_t *communicationattachment_response_co
     goto end; //String
     }
 
+    // communicationattachment_response_compound->s_download_url
+    cJSON *s_download_url = cJSON_GetObjectItemCaseSensitive(communicationattachment_response_compoundJSON, "sDownloadUrl");
+    if (s_download_url) { 
+    if(!cJSON_IsString(s_download_url) && !cJSON_IsNull(s_download_url))
+    {
+    goto end; //String
+    }
+    }
+
 
     communicationattachment_response_compound_local_var = communicationattachment_response_compound_create (
         pki_communicationattachment_id->valuedouble,
         fki_attachment_id ? fki_attachment_id->valuedouble : 0,
         fki_invoice_id ? fki_invoice_id->valuedouble : 0,
         fki_salarypreparation_id ? fki_salarypreparation_id->valuedouble : 0,
-        strdup(s_communicationattachment_name->valuestring)
+        strdup(s_communicationattachment_name->valuestring),
+        s_download_url && !cJSON_IsNull(s_download_url) ? strdup(s_download_url->valuestring) : NULL
         );
 
     return communicationattachment_response_compound_local_var;

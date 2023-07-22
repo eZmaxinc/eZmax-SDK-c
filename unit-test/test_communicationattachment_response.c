@@ -26,7 +26,8 @@ communicationattachment_response_t* instantiate_communicationattachment_response
       1,
       1,
       1,
-      "File.pdf"
+      "File.pdf",
+      "0"
     );
   } else {
     communicationattachment_response = communicationattachment_response_create(
@@ -34,7 +35,8 @@ communicationattachment_response_t* instantiate_communicationattachment_response
       1,
       1,
       1,
-      "File.pdf"
+      "File.pdf",
+      "0"
     );
   }
 

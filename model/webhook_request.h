@@ -37,7 +37,7 @@ ezmax_api_definition__full_webhook_request__e webhook_request_e_webhook_ezsignev
 
 // Enum  for webhook_request
 
-typedef enum  { ezmax_api_definition__full_webhook_request__NULL = 0, ezmax_api_definition__full_webhook_request__UserCreated } ezmax_api_definition__full_webhook_request__e;
+typedef enum  { ezmax_api_definition__full_webhook_request__NULL = 0, ezmax_api_definition__full_webhook_request__UserCreated, ezmax_api_definition__full_webhook_request__UserstagedCreated } ezmax_api_definition__full_webhook_request__e;
 
 char* webhook_request_e_webhook_managementevent_ToString(ezmax_api_definition__full_webhook_request__e e_webhook_managementevent);
 

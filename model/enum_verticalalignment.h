@@ -1,7 +1,7 @@
 /*
  * enum_verticalalignment.h
  *
- * The Verticalalignment of the Ezsignannotation.  This can only be set if eEzsignannotationType is **Text**
+ * The Vertical alignment
  */
 
 #ifndef _enum_verticalalignment_H_

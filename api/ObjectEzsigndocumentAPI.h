@@ -6,6 +6,7 @@
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
+#include "../model/common_response_error_ezsignform_validation.h"
 #include "../model/common_response_error_s_temporary_file_url.h"
 #include "../model/ezsigndocument_apply_ezsigntemplate_v1_request.h"
 #include "../model/ezsigndocument_apply_ezsigntemplate_v1_response.h"
@@ -15,6 +16,8 @@
 #include "../model/ezsigndocument_create_object_v1_response.h"
 #include "../model/ezsigndocument_create_object_v2_request.h"
 #include "../model/ezsigndocument_create_object_v2_response.h"
+#include "../model/ezsigndocument_decline_to_sign_v1_request.h"
+#include "../model/ezsigndocument_decline_to_sign_v1_response.h"
 #include "../model/ezsigndocument_delete_object_v1_response.h"
 #include "../model/ezsigndocument_edit_ezsignformfieldgroups_v1_request.h"
 #include "../model/ezsigndocument_edit_ezsignformfieldgroups_v1_response.h"
@@ -38,6 +41,8 @@
 #include "../model/ezsigndocument_get_words_positions_v1_response.h"
 #include "../model/ezsigndocument_patch_object_v1_request.h"
 #include "../model/ezsigndocument_patch_object_v1_response.h"
+#include "../model/ezsigndocument_submit_ezsignform_v1_request.h"
+#include "../model/ezsigndocument_submit_ezsignform_v1_response.h"
 #include "../model/ezsigndocument_unsend_v1_response.h"
 #include "../model/object.h"
 
@@ -75,6 +80,14 @@ ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV1(apiClient_t *apiClient, lis
 //
 ezsigndocument_create_object_v2_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV2(apiClient_t *apiClient, ezsigndocument_create_object_v2_request_t * ezsigndocument_create_object_v2_request );
+
+
+// Decline to sign
+//
+// Decline to sign
+//
+ezsigndocument_decline_to_sign_v1_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentDeclineToSignV1(apiClient_t *apiClient, int pkiEzsigndocumentID , ezsigndocument_decline_to_sign_v1_request_t * ezsigndocument_decline_to_sign_v1_request );
 
 
 // Delete an existing Ezsigndocument
@@ -225,6 +238,14 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1(apiClient_t *apiClient
 //
 ezsigndocument_patch_object_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1(apiClient_t *apiClient, int pkiEzsigndocumentID , ezsigndocument_patch_object_v1_request_t * ezsigndocument_patch_object_v1_request );
+
+
+// Submit the Ezsignform
+//
+// 
+//
+ezsigndocument_submit_ezsignform_v1_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentSubmitEzsignformV1(apiClient_t *apiClient, int pkiEzsigndocumentID , ezsigndocument_submit_ezsignform_v1_request_t * ezsigndocument_submit_ezsignform_v1_request );
 
 
 // Unsend the Ezsigndocument

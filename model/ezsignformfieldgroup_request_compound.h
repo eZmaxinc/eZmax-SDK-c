@@ -16,6 +16,7 @@
 typedef struct ezsignformfieldgroup_request_compound_t ezsignformfieldgroup_request_compound_t;
 
 #include "custom_dropdown_element_request_compound.h"
+#include "enum_textvalidation.h"
 #include "ezsignformfield_request_compound.h"
 #include "ezsignformfieldgroupsigner_request_compound.h"
 #include "field_e_ezsignformfieldgroup_signerrequirement.h"
@@ -46,6 +47,14 @@ char* ezsignformfieldgroup_request_compound_e_ezsignformfieldgroup_tooltippositi
 
 ezmax_api_definition__full_ezsignformfieldgroup_request_compound__e ezsignformfieldgroup_request_compound_e_ezsignformfieldgroup_tooltipposition_FromString(char* e_ezsignformfieldgroup_tooltipposition);
 
+// Enum  for ezsignformfieldgroup_request_compound
+
+typedef enum  { ezmax_api_definition__full_ezsignformfieldgroup_request_compound__NULL = 0, ezmax_api_definition__full_ezsignformfieldgroup_request_compound__None, ezmax_api_definition__full_ezsignformfieldgroup_request_compound__Date (YYYY_MM_DD), ezmax_api_definition__full_ezsignformfieldgroup_request_compound__Date (MM/DD/YYYY), ezmax_api_definition__full_ezsignformfieldgroup_request_compound__Date (MM/DD/YY), ezmax_api_definition__full_ezsignformfieldgroup_request_compound__Date (DD/MM/YYYY), ezmax_api_definition__full_ezsignformfieldgroup_request_compound__Date (DD/MM/YY), ezmax_api_definition__full_ezsignformfieldgroup_request_compound__Email, ezmax_api_definition__full_ezsignformfieldgroup_request_compound__Letters, ezmax_api_definition__full_ezsignformfieldgroup_request_compound__Numbers, ezmax_api_definition__full_ezsignformfieldgroup_request_compound__Zip, ezmax_api_definition__full_ezsignformfieldgroup_request_compound__Zip+4, ezmax_api_definition__full_ezsignformfieldgroup_request_compound__PostalCode, ezmax_api_definition__full_ezsignformfieldgroup_request_compound__Custom } ezmax_api_definition__full_ezsignformfieldgroup_request_compound__e;
+
+char* ezsignformfieldgroup_request_compound_e_ezsignformfieldgroup_textvalidation_ToString(ezmax_api_definition__full_ezsignformfieldgroup_request_compound__e e_ezsignformfieldgroup_textvalidation);
+
+ezmax_api_definition__full_ezsignformfieldgroup_request_compound__e ezsignformfieldgroup_request_compound_e_ezsignformfieldgroup_textvalidation_FromString(char* e_ezsignformfieldgroup_textvalidation);
+
 
 
 typedef struct ezsignformfieldgroup_request_compound_t {
@@ -64,6 +73,7 @@ typedef struct ezsignformfieldgroup_request_compound_t {
     char *s_ezsignformfieldgroup_regexp; // string
     char *t_ezsignformfieldgroup_tooltip; // string
     field_e_ezsignformfieldgroup_tooltipposition_t *e_ezsignformfieldgroup_tooltipposition; // custom
+    enum_textvalidation_t *e_ezsignformfieldgroup_textvalidation; // custom
     list_t *a_obj_ezsignformfieldgroupsigner; //nonprimitive container
     list_t *a_obj_dropdown_element; //nonprimitive container
     list_t *a_obj_ezsignformfield; //nonprimitive container
@@ -86,6 +96,7 @@ ezsignformfieldgroup_request_compound_t *ezsignformfieldgroup_request_compound_c
     char *s_ezsignformfieldgroup_regexp,
     char *t_ezsignformfieldgroup_tooltip,
     field_e_ezsignformfieldgroup_tooltipposition_t *e_ezsignformfieldgroup_tooltipposition,
+    enum_textvalidation_t *e_ezsignformfieldgroup_textvalidation,
     list_t *a_obj_ezsignformfieldgroupsigner,
     list_t *a_obj_dropdown_element,
     list_t *a_obj_ezsignformfield

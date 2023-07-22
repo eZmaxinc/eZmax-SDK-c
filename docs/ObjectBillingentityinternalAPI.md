@@ -55,7 +55,7 @@ billingentityinternal_edit_object_v1_response_t* ObjectBillingentityinternalAPI_
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiBillingentityinternalID** | **int** | The unique ID of the Billingentityinternal | 
+**pkiBillingentityinternalID** | **int** |  | 
 **billingentityinternal_edit_object_v1_request** | **[billingentityinternal_edit_object_v1_request_t](billingentityinternal_edit_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -156,7 +156,7 @@ billingentityinternal_get_object_v2_response_t* ObjectBillingentityinternalAPI_b
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiBillingentityinternalID** | **int** | The unique ID of the Billingentityinternal | 
+**pkiBillingentityinternalID** | **int** |  | 
 
 ### Return type
 

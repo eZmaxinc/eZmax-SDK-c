@@ -15,17 +15,34 @@
 
 typedef struct ezsignsignature_sign_v1_request_t ezsignsignature_sign_v1_request_t;
 
+#include "common_file.h"
+
+// Enum EATTACHMENTSCONFIRMATIONDECISION for ezsignsignature_sign_v1_request
+
+typedef enum  { ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_NULL = 0, ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_Accepted, ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_Refused } ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_e;
+
+char* ezsignsignature_sign_v1_request_e_attachments_confirmation_decision_ToString(ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_e e_attachments_confirmation_decision);
+
+ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_e ezsignsignature_sign_v1_request_e_attachments_confirmation_decision_FromString(char* e_attachments_confirmation_decision);
 
 
 
 typedef struct ezsignsignature_sign_v1_request_t {
     char *s_value; // string
+    ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_e e_attachments_confirmation_decision; //enum
+    char *s_attachments_refusal_reason; // string
+    char *s_svg; // string
+    list_t *a_obj_file; //nonprimitive container
     int b_is_automatic; //boolean
 
 } ezsignsignature_sign_v1_request_t;
 
 ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_create(
     char *s_value,
+    ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_e e_attachments_confirmation_decision,
+    char *s_attachments_refusal_reason,
+    char *s_svg,
+    list_t *a_obj_file,
     int b_is_automatic
 );
 

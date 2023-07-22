@@ -24,6 +24,8 @@ ezsignfoldersignerassociation_request_t* instantiate_ezsignfoldersignerassociati
     ezsignfoldersignerassociation_request = ezsignfoldersignerassociation_request_create(
       20,
       70,
+      2,
+      27,
       33,
       1,
       "Hi John,
@@ -40,6 +42,8 @@ Mary"
     ezsignfoldersignerassociation_request = ezsignfoldersignerassociation_request_create(
       20,
       70,
+      2,
+      27,
       33,
       1,
       "Hi John,

@@ -25,12 +25,14 @@ billingentityinternal_request_compound_t* instantiate_billingentityinternal_requ
     billingentityinternal_request_compound = billingentityinternal_request_compound_create(
       1,
        // false, not to have infinite recursion
-      instantiate_multilingual_billingentityinternal_description(0)
+      instantiate_multilingual_billingentityinternal_description(0),
+      list_createList()
     );
   } else {
     billingentityinternal_request_compound = billingentityinternal_request_compound_create(
       1,
-      NULL
+      NULL,
+      list_createList()
     );
   }
 

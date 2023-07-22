@@ -64,6 +64,7 @@ communication_response_t *communication_response_create(
     char *s_communication_bodyurl,
     computed_e_communication_direction_t *e_communication_direction,
     int i_communicationrecipient_count,
+    int b_communication_private,
     descriptionstatic_response_t *obj_descriptionstatic_sender,
     emailstatic_response_t *obj_emailstatic_sender,
     phonestatic_response_t *obj_phonestatic_sender,
@@ -80,6 +81,7 @@ communication_response_t *communication_response_create(
     communication_response_local_var->s_communication_bodyurl = s_communication_bodyurl;
     communication_response_local_var->e_communication_direction = e_communication_direction;
     communication_response_local_var->i_communicationrecipient_count = i_communicationrecipient_count;
+    communication_response_local_var->b_communication_private = b_communication_private;
     communication_response_local_var->obj_descriptionstatic_sender = obj_descriptionstatic_sender;
     communication_response_local_var->obj_emailstatic_sender = obj_emailstatic_sender;
     communication_response_local_var->obj_phonestatic_sender = obj_phonestatic_sender;
@@ -210,6 +212,15 @@ cJSON *communication_response_convertToJSON(communication_response_t *communicat
     }
     if(cJSON_AddNumberToObject(item, "iCommunicationrecipientCount", communication_response->i_communicationrecipient_count) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // communication_response->b_communication_private
+    if (!communication_response->b_communication_private) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "bCommunicationPrivate", communication_response->b_communication_private) == NULL) {
+    goto fail; //Bool
     }
 
 
@@ -370,6 +381,18 @@ communication_response_t *communication_response_parseFromJSON(cJSON *communicat
     goto end; //Numeric
     }
 
+    // communication_response->b_communication_private
+    cJSON *b_communication_private = cJSON_GetObjectItemCaseSensitive(communication_responseJSON, "bCommunicationPrivate");
+    if (!b_communication_private) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(b_communication_private))
+    {
+    goto end; //Bool
+    }
+
     // communication_response->obj_descriptionstatic_sender
     cJSON *obj_descriptionstatic_sender = cJSON_GetObjectItemCaseSensitive(communication_responseJSON, "objDescriptionstaticSender");
     if (obj_descriptionstatic_sender) { 
@@ -406,6 +429,7 @@ communication_response_t *communication_response_parseFromJSON(cJSON *communicat
         s_communication_bodyurl && !cJSON_IsNull(s_communication_bodyurl) ? strdup(s_communication_bodyurl->valuestring) : NULL,
         e_communication_direction_local_nonprim,
         i_communicationrecipient_count->valuedouble,
+        b_communication_private->valueint,
         obj_descriptionstatic_sender ? obj_descriptionstatic_sender_local_nonprim : NULL,
         obj_emailstatic_sender ? obj_emailstatic_sender_local_nonprim : NULL,
         obj_phonestatic_sender ? obj_phonestatic_sender_local_nonprim : NULL,

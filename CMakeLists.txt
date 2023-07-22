@@ -73,6 +73,21 @@ set(SRCS
     model/apikey_create_object_v2_response.c
     model/apikey_create_object_v2_response_all_of.c
     model/apikey_create_object_v2_response_m_payload.c
+    model/apikey_edit_object_v1_request.c
+    model/apikey_edit_object_v1_response.c
+    model/apikey_edit_permissions_v1_request.c
+    model/apikey_edit_permissions_v1_response.c
+    model/apikey_edit_permissions_v1_response_all_of.c
+    model/apikey_edit_permissions_v1_response_m_payload.c
+    model/apikey_get_object_v2_response.c
+    model/apikey_get_object_v2_response_all_of.c
+    model/apikey_get_object_v2_response_m_payload.c
+    model/apikey_get_permissions_v1_response.c
+    model/apikey_get_permissions_v1_response_all_of.c
+    model/apikey_get_permissions_v1_response_m_payload.c
+    model/apikey_get_subnets_v1_response.c
+    model/apikey_get_subnets_v1_response_all_of.c
+    model/apikey_get_subnets_v1_response_m_payload.c
     model/apikey_request.c
     model/apikey_request_compound.c
     model/apikey_response.c
@@ -103,8 +118,14 @@ set(SRCS
     model/billingentityinternal_list_element.c
     model/billingentityinternal_request.c
     model/billingentityinternal_request_compound.c
+    model/billingentityinternal_request_compound_all_of.c
     model/billingentityinternal_response.c
     model/billingentityinternal_response_compound.c
+    model/billingentityinternal_response_compound_all_of.c
+    model/billingentityinternalproduct_request.c
+    model/billingentityinternalproduct_request_compound.c
+    model/billingentityinternalproduct_response.c
+    model/billingentityinternalproduct_response_compound.c
     model/branding_autocomplete_element_response.c
     model/branding_create_object_v1_request.c
     model/branding_create_object_v1_response.c
@@ -135,11 +156,25 @@ set(SRCS
     model/clonehistory_list_element.c
     model/common_audit.c
     model/common_auditdetail.c
+    model/common_file.c
     model/common_get_autocomplete_v1_response.c
     model/common_get_autocomplete_v1_response_all_of.c
     model/common_get_list_v1_response_m_payload.c
+    model/common_get_report_v1_response.c
+    model/common_get_report_v1_response_all_of.c
+    model/common_get_report_v1_response_m_payload.c
+    model/common_report.c
+    model/common_reportcell.c
+    model/common_reportcellstyle.c
+    model/common_reportcolumn.c
+    model/common_reportgroup.c
+    model/common_reportrow.c
+    model/common_reportsection.c
+    model/common_reportsubsection.c
+    model/common_reportsubsectionpart.c
     model/common_response.c
     model/common_response_error.c
+    model/common_response_error_ezsignform_validation.c
     model/common_response_error_s_temporary_file_url.c
     model/common_response_error_s_temporary_file_url_all_of.c
     model/common_response_error_too_many_requests.c
@@ -165,6 +200,10 @@ set(SRCS
     model/communicationexternalrecipient_response_compound.c
     model/communicationrecipient_response.c
     model/communicationrecipient_response_compound.c
+    model/company_autocomplete_element_response.c
+    model/company_get_autocomplete_v2_response.c
+    model/company_get_autocomplete_v2_response_all_of.c
+    model/company_get_autocomplete_v2_response_m_payload.c
     model/computed_e_communication_direction.c
     model/contact_request.c
     model/contact_request_compound.c
@@ -193,6 +232,14 @@ set(SRCS
     model/custom_ezsignfoldersignerassociationstatus_response.c
     model/custom_ezsignfoldertransmission_response.c
     model/custom_ezsignfoldertransmission_signer_response.c
+    model/custom_ezsignformfield_request.c
+    model/custom_ezsignformfield_request_all_of.c
+    model/custom_ezsignformfielderror_response.c
+    model/custom_ezsignformfielderror_response_all_of.c
+    model/custom_ezsignformfielderrortest_response.c
+    model/custom_ezsignformfielderrortest_response_all_of.c
+    model/custom_ezsignformfieldgroup_request.c
+    model/custom_ezsignformfieldgroup_request_all_of.c
     model/custom_ezsignsignature_ezsignsignatures_automatic_response.c
     model/custom_ezsignsignaturestatus_response.c
     model/custom_form_data_document_response.c
@@ -220,9 +267,14 @@ set(SRCS
     model/descriptionstatic_response_compound.c
     model/email_request.c
     model/email_request_compound.c
+    model/email_response.c
+    model/email_response_compound.c
     model/emailstatic_response.c
     model/emailstatic_response_compound.c
+    model/enum_fontunderline.c
+    model/enum_fontweight.c
     model/enum_horizontalalignment.c
+    model/enum_textvalidation.c
     model/enum_verticalalignment.c
     model/ezmaxinvoicing_autocomplete_element_response.c
     model/ezmaxinvoicing_get_autocomplete_v2_response.c
@@ -357,6 +409,8 @@ set(SRCS
     model/ezsigndocument_create_object_v2_response.c
     model/ezsigndocument_create_object_v2_response_all_of.c
     model/ezsigndocument_create_object_v2_response_m_payload.c
+    model/ezsigndocument_decline_to_sign_v1_request.c
+    model/ezsigndocument_decline_to_sign_v1_response.c
     model/ezsigndocument_delete_object_v1_response.c
     model/ezsigndocument_edit_ezsignformfieldgroups_v1_request.c
     model/ezsigndocument_edit_ezsignformfieldgroups_v1_response.c
@@ -415,6 +469,8 @@ set(SRCS
     model/ezsigndocument_response.c
     model/ezsigndocument_response_compound.c
     model/ezsigndocument_response_compound_all_of.c
+    model/ezsigndocument_submit_ezsignform_v1_request.c
+    model/ezsigndocument_submit_ezsignform_v1_response.c
     model/ezsigndocument_unsend_v1_response.c
     model/ezsigndocumentlog_response.c
     model/ezsigndocumentlog_response_compound.c
@@ -566,6 +622,7 @@ set(SRCS
     model/ezsignformfieldgroupsigner_request_compound.c
     model/ezsignformfieldgroupsigner_response.c
     model/ezsignformfieldgroupsigner_response_compound.c
+    model/ezsignpage_consult_v1_response.c
     model/ezsignpage_response.c
     model/ezsignpage_response_compound.c
     model/ezsignsignature_create_object_v1_request.c
@@ -579,6 +636,9 @@ set(SRCS
     model/ezsignsignature_delete_object_v1_response.c
     model/ezsignsignature_edit_object_v1_request.c
     model/ezsignsignature_edit_object_v1_response.c
+    model/ezsignsignature_get_ezsignsignatureattachment_v1_response.c
+    model/ezsignsignature_get_ezsignsignatureattachment_v1_response_all_of.c
+    model/ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload.c
     model/ezsignsignature_get_ezsignsignatures_automatic_v1_response.c
     model/ezsignsignature_get_ezsignsignatures_automatic_v1_response_all_of.c
     model/ezsignsignature_get_ezsignsignatures_automatic_v1_response_m_payload.c
@@ -593,6 +653,7 @@ set(SRCS
     model/ezsignsignature_response_compound_all_of.c
     model/ezsignsignature_sign_v1_request.c
     model/ezsignsignature_sign_v1_response.c
+    model/ezsignsignatureattachment_response.c
     model/ezsignsignaturecustomdate_request.c
     model/ezsignsignaturecustomdate_request_compound.c
     model/ezsignsignaturecustomdate_response.c
@@ -605,6 +666,8 @@ set(SRCS
     model/ezsignsigner_response_compound.c
     model/ezsignsigner_response_compound_all_of.c
     model/ezsignsigner_response_compound_contact.c
+    model/ezsignsignergroup_response.c
+    model/ezsignsignergroup_response_compound.c
     model/ezsigntemplate_autocomplete_element_response.c
     model/ezsigntemplate_copy_v1_request.c
     model/ezsigntemplate_copy_v1_response.c
@@ -818,6 +881,8 @@ set(SRCS
     model/field_e_communicationexternalrecipient_type.c
     model/field_e_communicationrecipient_objecttype.c
     model/field_e_communicationrecipient_type.c
+    model/field_e_creditcardtype_codename.c
+    model/field_e_error_code.c
     model/field_e_ezmaxinvoicing_paymenttype.c
     model/field_e_ezmaxinvoicingagent_variationezmax.c
     model/field_e_ezmaxinvoicingagent_variationezsign.c
@@ -849,7 +914,14 @@ set(SRCS
     model/field_e_paymentterm_type.c
     model/field_e_phone_type.c
     model/field_e_sessionhistory_endby.c
+    model/field_e_systemconfiguration_ezsign.c
+    model/field_e_systemconfiguration_language1.c
+    model/field_e_systemconfiguration_language2.c
+    model/field_e_systemconfiguration_newexternaluseraction.c
+    model/field_e_user_ezsignaccess.c
     model/field_e_user_ezsignsendreminderfrequency.c
+    model/field_e_user_logintype.c
+    model/field_e_user_origin.c
     model/field_e_user_type.c
     model/field_e_variableexpense_taxable.c
     model/field_e_versionhistory_type.c
@@ -885,6 +957,18 @@ set(SRCS
     model/global_ezmaxclient_version_v1_response.c
     model/global_ezmaxcustomer_get_configuration_v1_response.c
     model/header_accept_language.c
+    model/module_response.c
+    model/module_response_compound.c
+    model/module_response_compound_all_of.c
+    model/modulegroup_get_all_v1_response.c
+    model/modulegroup_get_all_v1_response_all_of.c
+    model/modulegroup_get_all_v1_response_m_payload.c
+    model/modulegroup_response.c
+    model/modulegroup_response_compound.c
+    model/modulegroup_response_compound_all_of.c
+    model/modulesection_response.c
+    model/modulesection_response_compound.c
+    model/modulesection_response_compound_all_of.c
     model/multilingual_apikey_description.c
     model/multilingual_billingentityinternal_description.c
     model/multilingual_branding_description.c
@@ -893,6 +977,7 @@ set(SRCS
     model/multilingual_notificationsubsection_name.c
     model/multilingual_notificationtest_name.c
     model/multilingual_paymentterm_description.c
+    model/multilingual_subnet_description.c
     model/multilingual_usergroup_name.c
     model/multilingual_variableexpense_description.c
     model/multilingual_versionhistory_detail.c
@@ -930,10 +1015,39 @@ set(SRCS
     model/period_get_autocomplete_v2_response.c
     model/period_get_autocomplete_v2_response_all_of.c
     model/period_get_autocomplete_v2_response_m_payload.c
+    model/permission_create_object_v1_request.c
+    model/permission_create_object_v1_response.c
+    model/permission_create_object_v1_response_all_of.c
+    model/permission_create_object_v1_response_m_payload.c
+    model/permission_delete_object_v1_response.c
+    model/permission_edit_object_v1_request.c
+    model/permission_edit_object_v1_response.c
+    model/permission_get_object_v2_response.c
+    model/permission_get_object_v2_response_all_of.c
+    model/permission_get_object_v2_response_m_payload.c
+    model/permission_request.c
+    model/permission_request_compound.c
+    model/permission_response.c
+    model/permission_response_compound.c
     model/phone_request.c
     model/phone_request_compound.c
+    model/phone_response.c
+    model/phone_response_compound.c
     model/phonestatic_response.c
     model/phonestatic_response_compound.c
+    model/scim_authentication_scheme.c
+    model/scim_email.c
+    model/scim_group.c
+    model/scim_group_member.c
+    model/scim_service_provider_config.c
+    model/scim_service_provider_config_bulk.c
+    model/scim_service_provider_config_change_password.c
+    model/scim_service_provider_config_etag.c
+    model/scim_service_provider_config_filter.c
+    model/scim_service_provider_config_patch.c
+    model/scim_service_provider_config_sort.c
+    model/scim_user.c
+    model/scim_user_list.c
     model/secretquestion_autocomplete_element_response.c
     model/secretquestion_get_autocomplete_v2_response.c
     model/secretquestion_get_autocomplete_v2_response_all_of.c
@@ -943,6 +1057,43 @@ set(SRCS
     model/sessionhistory_get_list_v1_response_m_payload.c
     model/sessionhistory_get_list_v1_response_m_payload_all_of.c
     model/sessionhistory_list_element.c
+    model/signature_create_object_v1_request.c
+    model/signature_create_object_v1_response.c
+    model/signature_create_object_v1_response_all_of.c
+    model/signature_create_object_v1_response_m_payload.c
+    model/signature_delete_object_v1_response.c
+    model/signature_edit_object_v1_request.c
+    model/signature_edit_object_v1_response.c
+    model/signature_get_object_v2_response.c
+    model/signature_get_object_v2_response_all_of.c
+    model/signature_get_object_v2_response_m_payload.c
+    model/signature_request.c
+    model/signature_request_compound.c
+    model/signature_response.c
+    model/signature_response_compound.c
+    model/subnet_create_object_v1_request.c
+    model/subnet_create_object_v1_response.c
+    model/subnet_create_object_v1_response_all_of.c
+    model/subnet_create_object_v1_response_m_payload.c
+    model/subnet_delete_object_v1_response.c
+    model/subnet_edit_object_v1_request.c
+    model/subnet_edit_object_v1_response.c
+    model/subnet_get_object_v2_response.c
+    model/subnet_get_object_v2_response_all_of.c
+    model/subnet_get_object_v2_response_m_payload.c
+    model/subnet_request.c
+    model/subnet_request_compound.c
+    model/subnet_response.c
+    model/subnet_response_compound.c
+    model/systemconfiguration_edit_object_v1_request.c
+    model/systemconfiguration_edit_object_v1_response.c
+    model/systemconfiguration_get_object_v2_response.c
+    model/systemconfiguration_get_object_v2_response_all_of.c
+    model/systemconfiguration_get_object_v2_response_m_payload.c
+    model/systemconfiguration_request.c
+    model/systemconfiguration_request_compound.c
+    model/systemconfiguration_response.c
+    model/systemconfiguration_response_compound.c
     model/taxassignment_autocomplete_element_response.c
     model/taxassignment_get_autocomplete_v2_response.c
     model/taxassignment_get_autocomplete_v2_response_all_of.c
@@ -958,9 +1109,38 @@ set(SRCS
     model/user_create_ezsignuser_v1_response.c
     model/user_create_ezsignuser_v1_response_all_of.c
     model/user_create_ezsignuser_v1_response_m_payload.c
+    model/user_create_object_v1_request.c
+    model/user_create_object_v1_response.c
+    model/user_create_object_v1_response_all_of.c
+    model/user_create_object_v1_response_m_payload.c
+    model/user_edit_object_v1_request.c
+    model/user_edit_object_v1_response.c
+    model/user_edit_permissions_v1_request.c
+    model/user_edit_permissions_v1_response.c
+    model/user_edit_permissions_v1_response_all_of.c
+    model/user_edit_permissions_v1_response_m_payload.c
     model/user_get_autocomplete_v2_response.c
     model/user_get_autocomplete_v2_response_all_of.c
     model/user_get_autocomplete_v2_response_m_payload.c
+    model/user_get_effective_permissions_v1_response.c
+    model/user_get_effective_permissions_v1_response_all_of.c
+    model/user_get_effective_permissions_v1_response_m_payload.c
+    model/user_get_list_v1_response.c
+    model/user_get_list_v1_response_all_of.c
+    model/user_get_list_v1_response_m_payload.c
+    model/user_get_list_v1_response_m_payload_all_of.c
+    model/user_get_object_v2_response.c
+    model/user_get_object_v2_response_all_of.c
+    model/user_get_object_v2_response_m_payload.c
+    model/user_get_permissions_v1_response.c
+    model/user_get_permissions_v1_response_all_of.c
+    model/user_get_permissions_v1_response_m_payload.c
+    model/user_get_subnets_v1_response.c
+    model/user_get_subnets_v1_response_all_of.c
+    model/user_get_subnets_v1_response_m_payload.c
+    model/user_list_element.c
+    model/user_request.c
+    model/user_request_compound.c
     model/user_response.c
     model/user_response_compound.c
     model/usergroup_autocomplete_element_response.c
@@ -970,6 +1150,14 @@ set(SRCS
     model/usergroup_create_object_v1_response_m_payload.c
     model/usergroup_edit_object_v1_request.c
     model/usergroup_edit_object_v1_response.c
+    model/usergroup_edit_permissions_v1_request.c
+    model/usergroup_edit_permissions_v1_response.c
+    model/usergroup_edit_permissions_v1_response_all_of.c
+    model/usergroup_edit_permissions_v1_response_m_payload.c
+    model/usergroup_edit_usergroupmemberships_v1_request.c
+    model/usergroup_edit_usergroupmemberships_v1_response.c
+    model/usergroup_edit_usergroupmemberships_v1_response_all_of.c
+    model/usergroup_edit_usergroupmemberships_v1_response_m_payload.c
     model/usergroup_get_autocomplete_v2_response.c
     model/usergroup_get_autocomplete_v2_response_all_of.c
     model/usergroup_get_autocomplete_v2_response_m_payload.c
@@ -980,11 +1168,34 @@ set(SRCS
     model/usergroup_get_object_v2_response.c
     model/usergroup_get_object_v2_response_all_of.c
     model/usergroup_get_object_v2_response_m_payload.c
+    model/usergroup_get_permissions_v1_response.c
+    model/usergroup_get_permissions_v1_response_all_of.c
+    model/usergroup_get_permissions_v1_response_m_payload.c
+    model/usergroup_get_usergroupmemberships_v1_response.c
+    model/usergroup_get_usergroupmemberships_v1_response_all_of.c
+    model/usergroup_get_usergroupmemberships_v1_response_m_payload.c
     model/usergroup_list_element.c
     model/usergroup_request.c
     model/usergroup_request_compound.c
     model/usergroup_response.c
     model/usergroup_response_compound.c
+    model/usergroupmembership_create_object_v1_request.c
+    model/usergroupmembership_create_object_v1_response.c
+    model/usergroupmembership_create_object_v1_response_all_of.c
+    model/usergroupmembership_create_object_v1_response_m_payload.c
+    model/usergroupmembership_delete_object_v1_response.c
+    model/usergroupmembership_edit_object_v1_request.c
+    model/usergroupmembership_edit_object_v1_response.c
+    model/usergroupmembership_get_object_v2_response.c
+    model/usergroupmembership_get_object_v2_response_all_of.c
+    model/usergroupmembership_get_object_v2_response_m_payload.c
+    model/usergroupmembership_request.c
+    model/usergroupmembership_request_compound.c
+    model/usergroupmembership_response.c
+    model/usergroupmembership_response_compound.c
+    model/userstaged_create_user_v1_response.c
+    model/userstaged_create_user_v1_response_all_of.c
+    model/userstaged_create_user_v1_response_m_payload.c
     model/userstaged_delete_object_v1_response.c
     model/userstaged_get_list_v1_response.c
     model/userstaged_get_list_v1_response_all_of.c
@@ -1059,12 +1270,22 @@ set(SRCS
     model/webhook_test_v1_response.c
     model/webhook_user_user_created.c
     model/webhook_user_user_created_all_of.c
+    model/webhook_userstaged_userstaged_created.c
+    model/webhook_userstaged_userstaged_created_all_of.c
     model/website_request.c
     model/website_request_compound.c
+    model/websocket_request_server_get_websocket_id_v1.c
+    model/websocket_response_error_v1.c
+    model/websocket_response_error_v1_m_payload.c
+    model/websocket_response_get_websocket_id_v1.c
+    model/websocket_response_get_websocket_id_v1_m_payload.c
+    model/websocket_response_information_v1.c
+    model/websocket_response_information_v1_m_payload.c
     api/GlobalCustomerAPI.c
     api/GlobalEzmaxclientAPI.c
     api/GlobalEzmaxcustomerAPI.c
     api/ModuleEzsignAPI.c
+    api/ModuleReportAPI.c
     api/ModuleUserAPI.c
     api/ObjectActivesessionAPI.c
     api/ObjectApikeyAPI.c
@@ -1073,6 +1294,7 @@ set(SRCS
     api/ObjectBrandingAPI.c
     api/ObjectClonehistoryAPI.c
     api/ObjectCommunicationAPI.c
+    api/ObjectCompanyAPI.c
     api/ObjectDepartmentAPI.c
     api/ObjectEzmaxinvoicingAPI.c
     api/ObjectEzmaxproductAPI.c
@@ -1085,6 +1307,7 @@ set(SRCS
     api/ObjectEzsignfoldersignerassociationAPI.c
     api/ObjectEzsignfoldertypeAPI.c
     api/ObjectEzsignformfieldgroupAPI.c
+    api/ObjectEzsignpageAPI.c
     api/ObjectEzsignsignatureAPI.c
     api/ObjectEzsigntemplateAPI.c
     api/ObjectEzsigntemplatedocumentAPI.c
@@ -1100,20 +1323,29 @@ set(SRCS
     api/ObjectFranchisebrokerAPI.c
     api/ObjectFranchiseofficeAPI.c
     api/ObjectFranchisereferalincomeAPI.c
+    api/ObjectModulegroupAPI.c
     api/ObjectNotificationsectionAPI.c
     api/ObjectNotificationtestAPI.c
     api/ObjectPaymenttermAPI.c
     api/ObjectPeriodAPI.c
+    api/ObjectPermissionAPI.c
     api/ObjectSecretquestionAPI.c
     api/ObjectSessionhistoryAPI.c
+    api/ObjectSignatureAPI.c
+    api/ObjectSubnetAPI.c
+    api/ObjectSystemconfigurationAPI.c
     api/ObjectTaxassignmentAPI.c
     api/ObjectTimezoneAPI.c
     api/ObjectUserAPI.c
     api/ObjectUsergroupAPI.c
+    api/ObjectUsergroupmembershipAPI.c
     api/ObjectUserstagedAPI.c
     api/ObjectVariableexpenseAPI.c
     api/ObjectVersionhistoryAPI.c
     api/ObjectWebhookAPI.c
+    api/ScimGroupsAPI.c
+    api/ScimServiceProviderConfigAPI.c
+    api/ScimUsersAPI.c
 
 )
 
@@ -1143,6 +1375,21 @@ set(HDRS
     model/apikey_create_object_v2_response.h
     model/apikey_create_object_v2_response_all_of.h
     model/apikey_create_object_v2_response_m_payload.h
+    model/apikey_edit_object_v1_request.h
+    model/apikey_edit_object_v1_response.h
+    model/apikey_edit_permissions_v1_request.h
+    model/apikey_edit_permissions_v1_response.h
+    model/apikey_edit_permissions_v1_response_all_of.h
+    model/apikey_edit_permissions_v1_response_m_payload.h
+    model/apikey_get_object_v2_response.h
+    model/apikey_get_object_v2_response_all_of.h
+    model/apikey_get_object_v2_response_m_payload.h
+    model/apikey_get_permissions_v1_response.h
+    model/apikey_get_permissions_v1_response_all_of.h
+    model/apikey_get_permissions_v1_response_m_payload.h
+    model/apikey_get_subnets_v1_response.h
+    model/apikey_get_subnets_v1_response_all_of.h
+    model/apikey_get_subnets_v1_response_m_payload.h
     model/apikey_request.h
     model/apikey_request_compound.h
     model/apikey_response.h
@@ -1173,8 +1420,14 @@ set(HDRS
     model/billingentityinternal_list_element.h
     model/billingentityinternal_request.h
     model/billingentityinternal_request_compound.h
+    model/billingentityinternal_request_compound_all_of.h
     model/billingentityinternal_response.h
     model/billingentityinternal_response_compound.h
+    model/billingentityinternal_response_compound_all_of.h
+    model/billingentityinternalproduct_request.h
+    model/billingentityinternalproduct_request_compound.h
+    model/billingentityinternalproduct_response.h
+    model/billingentityinternalproduct_response_compound.h
     model/branding_autocomplete_element_response.h
     model/branding_create_object_v1_request.h
     model/branding_create_object_v1_response.h
@@ -1205,11 +1458,25 @@ set(HDRS
     model/clonehistory_list_element.h
     model/common_audit.h
     model/common_auditdetail.h
+    model/common_file.h
     model/common_get_autocomplete_v1_response.h
     model/common_get_autocomplete_v1_response_all_of.h
     model/common_get_list_v1_response_m_payload.h
+    model/common_get_report_v1_response.h
+    model/common_get_report_v1_response_all_of.h
+    model/common_get_report_v1_response_m_payload.h
+    model/common_report.h
+    model/common_reportcell.h
+    model/common_reportcellstyle.h
+    model/common_reportcolumn.h
+    model/common_reportgroup.h
+    model/common_reportrow.h
+    model/common_reportsection.h
+    model/common_reportsubsection.h
+    model/common_reportsubsectionpart.h
     model/common_response.h
     model/common_response_error.h
+    model/common_response_error_ezsignform_validation.h
     model/common_response_error_s_temporary_file_url.h
     model/common_response_error_s_temporary_file_url_all_of.h
     model/common_response_error_too_many_requests.h
@@ -1235,6 +1502,10 @@ set(HDRS
     model/communicationexternalrecipient_response_compound.h
     model/communicationrecipient_response.h
     model/communicationrecipient_response_compound.h
+    model/company_autocomplete_element_response.h
+    model/company_get_autocomplete_v2_response.h
+    model/company_get_autocomplete_v2_response_all_of.h
+    model/company_get_autocomplete_v2_response_m_payload.h
     model/computed_e_communication_direction.h
     model/contact_request.h
     model/contact_request_compound.h
@@ -1263,6 +1534,14 @@ set(HDRS
     model/custom_ezsignfoldersignerassociationstatus_response.h
     model/custom_ezsignfoldertransmission_response.h
     model/custom_ezsignfoldertransmission_signer_response.h
+    model/custom_ezsignformfield_request.h
+    model/custom_ezsignformfield_request_all_of.h
+    model/custom_ezsignformfielderror_response.h
+    model/custom_ezsignformfielderror_response_all_of.h
+    model/custom_ezsignformfielderrortest_response.h
+    model/custom_ezsignformfielderrortest_response_all_of.h
+    model/custom_ezsignformfieldgroup_request.h
+    model/custom_ezsignformfieldgroup_request_all_of.h
     model/custom_ezsignsignature_ezsignsignatures_automatic_response.h
     model/custom_ezsignsignaturestatus_response.h
     model/custom_form_data_document_response.h
@@ -1290,9 +1569,14 @@ set(HDRS
     model/descriptionstatic_response_compound.h
     model/email_request.h
     model/email_request_compound.h
+    model/email_response.h
+    model/email_response_compound.h
     model/emailstatic_response.h
     model/emailstatic_response_compound.h
+    model/enum_fontunderline.h
+    model/enum_fontweight.h
     model/enum_horizontalalignment.h
+    model/enum_textvalidation.h
     model/enum_verticalalignment.h
     model/ezmaxinvoicing_autocomplete_element_response.h
     model/ezmaxinvoicing_get_autocomplete_v2_response.h
@@ -1427,6 +1711,8 @@ set(HDRS
     model/ezsigndocument_create_object_v2_response.h
     model/ezsigndocument_create_object_v2_response_all_of.h
     model/ezsigndocument_create_object_v2_response_m_payload.h
+    model/ezsigndocument_decline_to_sign_v1_request.h
+    model/ezsigndocument_decline_to_sign_v1_response.h
     model/ezsigndocument_delete_object_v1_response.h
     model/ezsigndocument_edit_ezsignformfieldgroups_v1_request.h
     model/ezsigndocument_edit_ezsignformfieldgroups_v1_response.h
@@ -1485,6 +1771,8 @@ set(HDRS
     model/ezsigndocument_response.h
     model/ezsigndocument_response_compound.h
     model/ezsigndocument_response_compound_all_of.h
+    model/ezsigndocument_submit_ezsignform_v1_request.h
+    model/ezsigndocument_submit_ezsignform_v1_response.h
     model/ezsigndocument_unsend_v1_response.h
     model/ezsigndocumentlog_response.h
     model/ezsigndocumentlog_response_compound.h
@@ -1636,6 +1924,7 @@ set(HDRS
     model/ezsignformfieldgroupsigner_request_compound.h
     model/ezsignformfieldgroupsigner_response.h
     model/ezsignformfieldgroupsigner_response_compound.h
+    model/ezsignpage_consult_v1_response.h
     model/ezsignpage_response.h
     model/ezsignpage_response_compound.h
     model/ezsignsignature_create_object_v1_request.h
@@ -1649,6 +1938,9 @@ set(HDRS
     model/ezsignsignature_delete_object_v1_response.h
     model/ezsignsignature_edit_object_v1_request.h
     model/ezsignsignature_edit_object_v1_response.h
+    model/ezsignsignature_get_ezsignsignatureattachment_v1_response.h
+    model/ezsignsignature_get_ezsignsignatureattachment_v1_response_all_of.h
+    model/ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload.h
     model/ezsignsignature_get_ezsignsignatures_automatic_v1_response.h
     model/ezsignsignature_get_ezsignsignatures_automatic_v1_response_all_of.h
     model/ezsignsignature_get_ezsignsignatures_automatic_v1_response_m_payload.h
@@ -1663,6 +1955,7 @@ set(HDRS
     model/ezsignsignature_response_compound_all_of.h
     model/ezsignsignature_sign_v1_request.h
     model/ezsignsignature_sign_v1_response.h
+    model/ezsignsignatureattachment_response.h
     model/ezsignsignaturecustomdate_request.h
     model/ezsignsignaturecustomdate_request_compound.h
     model/ezsignsignaturecustomdate_response.h
@@ -1675,6 +1968,8 @@ set(HDRS
     model/ezsignsigner_response_compound.h
     model/ezsignsigner_response_compound_all_of.h
     model/ezsignsigner_response_compound_contact.h
+    model/ezsignsignergroup_response.h
+    model/ezsignsignergroup_response_compound.h
     model/ezsigntemplate_autocomplete_element_response.h
     model/ezsigntemplate_copy_v1_request.h
     model/ezsigntemplate_copy_v1_response.h
@@ -1888,6 +2183,8 @@ set(HDRS
     model/field_e_communicationexternalrecipient_type.h
     model/field_e_communicationrecipient_objecttype.h
     model/field_e_communicationrecipient_type.h
+    model/field_e_creditcardtype_codename.h
+    model/field_e_error_code.h
     model/field_e_ezmaxinvoicing_paymenttype.h
     model/field_e_ezmaxinvoicingagent_variationezmax.h
     model/field_e_ezmaxinvoicingagent_variationezsign.h
@@ -1919,7 +2216,14 @@ set(HDRS
     model/field_e_paymentterm_type.h
     model/field_e_phone_type.h
     model/field_e_sessionhistory_endby.h
+    model/field_e_systemconfiguration_ezsign.h
+    model/field_e_systemconfiguration_language1.h
+    model/field_e_systemconfiguration_language2.h
+    model/field_e_systemconfiguration_newexternaluseraction.h
+    model/field_e_user_ezsignaccess.h
     model/field_e_user_ezsignsendreminderfrequency.h
+    model/field_e_user_logintype.h
+    model/field_e_user_origin.h
     model/field_e_user_type.h
     model/field_e_variableexpense_taxable.h
     model/field_e_versionhistory_type.h
@@ -1955,6 +2259,18 @@ set(HDRS
     model/global_ezmaxclient_version_v1_response.h
     model/global_ezmaxcustomer_get_configuration_v1_response.h
     model/header_accept_language.h
+    model/module_response.h
+    model/module_response_compound.h
+    model/module_response_compound_all_of.h
+    model/modulegroup_get_all_v1_response.h
+    model/modulegroup_get_all_v1_response_all_of.h
+    model/modulegroup_get_all_v1_response_m_payload.h
+    model/modulegroup_response.h
+    model/modulegroup_response_compound.h
+    model/modulegroup_response_compound_all_of.h
+    model/modulesection_response.h
+    model/modulesection_response_compound.h
+    model/modulesection_response_compound_all_of.h
     model/multilingual_apikey_description.h
     model/multilingual_billingentityinternal_description.h
     model/multilingual_branding_description.h
@@ -1963,6 +2279,7 @@ set(HDRS
     model/multilingual_notificationsubsection_name.h
     model/multilingual_notificationtest_name.h
     model/multilingual_paymentterm_description.h
+    model/multilingual_subnet_description.h
     model/multilingual_usergroup_name.h
     model/multilingual_variableexpense_description.h
     model/multilingual_versionhistory_detail.h
@@ -2000,10 +2317,39 @@ set(HDRS
     model/period_get_autocomplete_v2_response.h
     model/period_get_autocomplete_v2_response_all_of.h
     model/period_get_autocomplete_v2_response_m_payload.h
+    model/permission_create_object_v1_request.h
+    model/permission_create_object_v1_response.h
+    model/permission_create_object_v1_response_all_of.h
+    model/permission_create_object_v1_response_m_payload.h
+    model/permission_delete_object_v1_response.h
+    model/permission_edit_object_v1_request.h
+    model/permission_edit_object_v1_response.h
+    model/permission_get_object_v2_response.h
+    model/permission_get_object_v2_response_all_of.h
+    model/permission_get_object_v2_response_m_payload.h
+    model/permission_request.h
+    model/permission_request_compound.h
+    model/permission_response.h
+    model/permission_response_compound.h
     model/phone_request.h
     model/phone_request_compound.h
+    model/phone_response.h
+    model/phone_response_compound.h
     model/phonestatic_response.h
     model/phonestatic_response_compound.h
+    model/scim_authentication_scheme.h
+    model/scim_email.h
+    model/scim_group.h
+    model/scim_group_member.h
+    model/scim_service_provider_config.h
+    model/scim_service_provider_config_bulk.h
+    model/scim_service_provider_config_change_password.h
+    model/scim_service_provider_config_etag.h
+    model/scim_service_provider_config_filter.h
+    model/scim_service_provider_config_patch.h
+    model/scim_service_provider_config_sort.h
+    model/scim_user.h
+    model/scim_user_list.h
     model/secretquestion_autocomplete_element_response.h
     model/secretquestion_get_autocomplete_v2_response.h
     model/secretquestion_get_autocomplete_v2_response_all_of.h
@@ -2013,6 +2359,43 @@ set(HDRS
     model/sessionhistory_get_list_v1_response_m_payload.h
     model/sessionhistory_get_list_v1_response_m_payload_all_of.h
     model/sessionhistory_list_element.h
+    model/signature_create_object_v1_request.h
+    model/signature_create_object_v1_response.h
+    model/signature_create_object_v1_response_all_of.h
+    model/signature_create_object_v1_response_m_payload.h
+    model/signature_delete_object_v1_response.h
+    model/signature_edit_object_v1_request.h
+    model/signature_edit_object_v1_response.h
+    model/signature_get_object_v2_response.h
+    model/signature_get_object_v2_response_all_of.h
+    model/signature_get_object_v2_response_m_payload.h
+    model/signature_request.h
+    model/signature_request_compound.h
+    model/signature_response.h
+    model/signature_response_compound.h
+    model/subnet_create_object_v1_request.h
+    model/subnet_create_object_v1_response.h
+    model/subnet_create_object_v1_response_all_of.h
+    model/subnet_create_object_v1_response_m_payload.h
+    model/subnet_delete_object_v1_response.h
+    model/subnet_edit_object_v1_request.h
+    model/subnet_edit_object_v1_response.h
+    model/subnet_get_object_v2_response.h
+    model/subnet_get_object_v2_response_all_of.h
+    model/subnet_get_object_v2_response_m_payload.h
+    model/subnet_request.h
+    model/subnet_request_compound.h
+    model/subnet_response.h
+    model/subnet_response_compound.h
+    model/systemconfiguration_edit_object_v1_request.h
+    model/systemconfiguration_edit_object_v1_response.h
+    model/systemconfiguration_get_object_v2_response.h
+    model/systemconfiguration_get_object_v2_response_all_of.h
+    model/systemconfiguration_get_object_v2_response_m_payload.h
+    model/systemconfiguration_request.h
+    model/systemconfiguration_request_compound.h
+    model/systemconfiguration_response.h
+    model/systemconfiguration_response_compound.h
     model/taxassignment_autocomplete_element_response.h
     model/taxassignment_get_autocomplete_v2_response.h
     model/taxassignment_get_autocomplete_v2_response_all_of.h
@@ -2028,9 +2411,38 @@ set(HDRS
     model/user_create_ezsignuser_v1_response.h
     model/user_create_ezsignuser_v1_response_all_of.h
     model/user_create_ezsignuser_v1_response_m_payload.h
+    model/user_create_object_v1_request.h
+    model/user_create_object_v1_response.h
+    model/user_create_object_v1_response_all_of.h
+    model/user_create_object_v1_response_m_payload.h
+    model/user_edit_object_v1_request.h
+    model/user_edit_object_v1_response.h
+    model/user_edit_permissions_v1_request.h
+    model/user_edit_permissions_v1_response.h
+    model/user_edit_permissions_v1_response_all_of.h
+    model/user_edit_permissions_v1_response_m_payload.h
     model/user_get_autocomplete_v2_response.h
     model/user_get_autocomplete_v2_response_all_of.h
     model/user_get_autocomplete_v2_response_m_payload.h
+    model/user_get_effective_permissions_v1_response.h
+    model/user_get_effective_permissions_v1_response_all_of.h
+    model/user_get_effective_permissions_v1_response_m_payload.h
+    model/user_get_list_v1_response.h
+    model/user_get_list_v1_response_all_of.h
+    model/user_get_list_v1_response_m_payload.h
+    model/user_get_list_v1_response_m_payload_all_of.h
+    model/user_get_object_v2_response.h
+    model/user_get_object_v2_response_all_of.h
+    model/user_get_object_v2_response_m_payload.h
+    model/user_get_permissions_v1_response.h
+    model/user_get_permissions_v1_response_all_of.h
+    model/user_get_permissions_v1_response_m_payload.h
+    model/user_get_subnets_v1_response.h
+    model/user_get_subnets_v1_response_all_of.h
+    model/user_get_subnets_v1_response_m_payload.h
+    model/user_list_element.h
+    model/user_request.h
+    model/user_request_compound.h
     model/user_response.h
     model/user_response_compound.h
     model/usergroup_autocomplete_element_response.h
@@ -2040,6 +2452,14 @@ set(HDRS
     model/usergroup_create_object_v1_response_m_payload.h
     model/usergroup_edit_object_v1_request.h
     model/usergroup_edit_object_v1_response.h
+    model/usergroup_edit_permissions_v1_request.h
+    model/usergroup_edit_permissions_v1_response.h
+    model/usergroup_edit_permissions_v1_response_all_of.h
+    model/usergroup_edit_permissions_v1_response_m_payload.h
+    model/usergroup_edit_usergroupmemberships_v1_request.h
+    model/usergroup_edit_usergroupmemberships_v1_response.h
+    model/usergroup_edit_usergroupmemberships_v1_response_all_of.h
+    model/usergroup_edit_usergroupmemberships_v1_response_m_payload.h
     model/usergroup_get_autocomplete_v2_response.h
     model/usergroup_get_autocomplete_v2_response_all_of.h
     model/usergroup_get_autocomplete_v2_response_m_payload.h
@@ -2050,11 +2470,34 @@ set(HDRS
     model/usergroup_get_object_v2_response.h
     model/usergroup_get_object_v2_response_all_of.h
     model/usergroup_get_object_v2_response_m_payload.h
+    model/usergroup_get_permissions_v1_response.h
+    model/usergroup_get_permissions_v1_response_all_of.h
+    model/usergroup_get_permissions_v1_response_m_payload.h
+    model/usergroup_get_usergroupmemberships_v1_response.h
+    model/usergroup_get_usergroupmemberships_v1_response_all_of.h
+    model/usergroup_get_usergroupmemberships_v1_response_m_payload.h
     model/usergroup_list_element.h
     model/usergroup_request.h
     model/usergroup_request_compound.h
     model/usergroup_response.h
     model/usergroup_response_compound.h
+    model/usergroupmembership_create_object_v1_request.h
+    model/usergroupmembership_create_object_v1_response.h
+    model/usergroupmembership_create_object_v1_response_all_of.h
+    model/usergroupmembership_create_object_v1_response_m_payload.h
+    model/usergroupmembership_delete_object_v1_response.h
+    model/usergroupmembership_edit_object_v1_request.h
+    model/usergroupmembership_edit_object_v1_response.h
+    model/usergroupmembership_get_object_v2_response.h
+    model/usergroupmembership_get_object_v2_response_all_of.h
+    model/usergroupmembership_get_object_v2_response_m_payload.h
+    model/usergroupmembership_request.h
+    model/usergroupmembership_request_compound.h
+    model/usergroupmembership_response.h
+    model/usergroupmembership_response_compound.h
+    model/userstaged_create_user_v1_response.h
+    model/userstaged_create_user_v1_response_all_of.h
+    model/userstaged_create_user_v1_response_m_payload.h
     model/userstaged_delete_object_v1_response.h
     model/userstaged_get_list_v1_response.h
     model/userstaged_get_list_v1_response_all_of.h
@@ -2129,12 +2572,22 @@ set(HDRS
     model/webhook_test_v1_response.h
     model/webhook_user_user_created.h
     model/webhook_user_user_created_all_of.h
+    model/webhook_userstaged_userstaged_created.h
+    model/webhook_userstaged_userstaged_created_all_of.h
     model/website_request.h
     model/website_request_compound.h
+    model/websocket_request_server_get_websocket_id_v1.h
+    model/websocket_response_error_v1.h
+    model/websocket_response_error_v1_m_payload.h
+    model/websocket_response_get_websocket_id_v1.h
+    model/websocket_response_get_websocket_id_v1_m_payload.h
+    model/websocket_response_information_v1.h
+    model/websocket_response_information_v1_m_payload.h
     api/GlobalCustomerAPI.h
     api/GlobalEzmaxclientAPI.h
     api/GlobalEzmaxcustomerAPI.h
     api/ModuleEzsignAPI.h
+    api/ModuleReportAPI.h
     api/ModuleUserAPI.h
     api/ObjectActivesessionAPI.h
     api/ObjectApikeyAPI.h
@@ -2143,6 +2596,7 @@ set(HDRS
     api/ObjectBrandingAPI.h
     api/ObjectClonehistoryAPI.h
     api/ObjectCommunicationAPI.h
+    api/ObjectCompanyAPI.h
     api/ObjectDepartmentAPI.h
     api/ObjectEzmaxinvoicingAPI.h
     api/ObjectEzmaxproductAPI.h
@@ -2155,6 +2609,7 @@ set(HDRS
     api/ObjectEzsignfoldersignerassociationAPI.h
     api/ObjectEzsignfoldertypeAPI.h
     api/ObjectEzsignformfieldgroupAPI.h
+    api/ObjectEzsignpageAPI.h
     api/ObjectEzsignsignatureAPI.h
     api/ObjectEzsigntemplateAPI.h
     api/ObjectEzsigntemplatedocumentAPI.h
@@ -2170,20 +2625,29 @@ set(HDRS
     api/ObjectFranchisebrokerAPI.h
     api/ObjectFranchiseofficeAPI.h
     api/ObjectFranchisereferalincomeAPI.h
+    api/ObjectModulegroupAPI.h
     api/ObjectNotificationsectionAPI.h
     api/ObjectNotificationtestAPI.h
     api/ObjectPaymenttermAPI.h
     api/ObjectPeriodAPI.h
+    api/ObjectPermissionAPI.h
     api/ObjectSecretquestionAPI.h
     api/ObjectSessionhistoryAPI.h
+    api/ObjectSignatureAPI.h
+    api/ObjectSubnetAPI.h
+    api/ObjectSystemconfigurationAPI.h
     api/ObjectTaxassignmentAPI.h
     api/ObjectTimezoneAPI.h
     api/ObjectUserAPI.h
     api/ObjectUsergroupAPI.h
+    api/ObjectUsergroupmembershipAPI.h
     api/ObjectUserstagedAPI.h
     api/ObjectVariableexpenseAPI.h
     api/ObjectVersionhistoryAPI.h
     api/ObjectWebhookAPI.h
+    api/ScimGroupsAPI.h
+    api/ScimServiceProviderConfigAPI.h
+    api/ScimUsersAPI.h
 
 )
 
@@ -2269,6 +2733,7 @@ set(HDRS "")
 #    unit-tests/manual-GlobalEzmaxclientAPI.c
 #    unit-tests/manual-GlobalEzmaxcustomerAPI.c
 #    unit-tests/manual-ModuleEzsignAPI.c
+#    unit-tests/manual-ModuleReportAPI.c
 #    unit-tests/manual-ModuleUserAPI.c
 #    unit-tests/manual-ObjectActivesessionAPI.c
 #    unit-tests/manual-ObjectApikeyAPI.c
@@ -2277,6 +2742,7 @@ set(HDRS "")
 #    unit-tests/manual-ObjectBrandingAPI.c
 #    unit-tests/manual-ObjectClonehistoryAPI.c
 #    unit-tests/manual-ObjectCommunicationAPI.c
+#    unit-tests/manual-ObjectCompanyAPI.c
 #    unit-tests/manual-ObjectDepartmentAPI.c
 #    unit-tests/manual-ObjectEzmaxinvoicingAPI.c
 #    unit-tests/manual-ObjectEzmaxproductAPI.c
@@ -2289,6 +2755,7 @@ set(HDRS "")
 #    unit-tests/manual-ObjectEzsignfoldersignerassociationAPI.c
 #    unit-tests/manual-ObjectEzsignfoldertypeAPI.c
 #    unit-tests/manual-ObjectEzsignformfieldgroupAPI.c
+#    unit-tests/manual-ObjectEzsignpageAPI.c
 #    unit-tests/manual-ObjectEzsignsignatureAPI.c
 #    unit-tests/manual-ObjectEzsigntemplateAPI.c
 #    unit-tests/manual-ObjectEzsigntemplatedocumentAPI.c
@@ -2304,20 +2771,29 @@ set(HDRS "")
 #    unit-tests/manual-ObjectFranchisebrokerAPI.c
 #    unit-tests/manual-ObjectFranchiseofficeAPI.c
 #    unit-tests/manual-ObjectFranchisereferalincomeAPI.c
+#    unit-tests/manual-ObjectModulegroupAPI.c
 #    unit-tests/manual-ObjectNotificationsectionAPI.c
 #    unit-tests/manual-ObjectNotificationtestAPI.c
 #    unit-tests/manual-ObjectPaymenttermAPI.c
 #    unit-tests/manual-ObjectPeriodAPI.c
+#    unit-tests/manual-ObjectPermissionAPI.c
 #    unit-tests/manual-ObjectSecretquestionAPI.c
 #    unit-tests/manual-ObjectSessionhistoryAPI.c
+#    unit-tests/manual-ObjectSignatureAPI.c
+#    unit-tests/manual-ObjectSubnetAPI.c
+#    unit-tests/manual-ObjectSystemconfigurationAPI.c
 #    unit-tests/manual-ObjectTaxassignmentAPI.c
 #    unit-tests/manual-ObjectTimezoneAPI.c
 #    unit-tests/manual-ObjectUserAPI.c
 #    unit-tests/manual-ObjectUsergroupAPI.c
+#    unit-tests/manual-ObjectUsergroupmembershipAPI.c
 #    unit-tests/manual-ObjectUserstagedAPI.c
 #    unit-tests/manual-ObjectVariableexpenseAPI.c
 #    unit-tests/manual-ObjectVersionhistoryAPI.c
 #    unit-tests/manual-ObjectWebhookAPI.c
+#    unit-tests/manual-ScimGroupsAPI.c
+#    unit-tests/manual-ScimServiceProviderConfigAPI.c
+#    unit-tests/manual-ScimUsersAPI.c
 #)
 
 ##set header files

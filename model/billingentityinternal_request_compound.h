@@ -15,6 +15,7 @@
 
 typedef struct billingentityinternal_request_compound_t billingentityinternal_request_compound_t;
 
+#include "billingentityinternalproduct_request_compound.h"
 #include "multilingual_billingentityinternal_description.h"
 
 
@@ -22,12 +23,14 @@ typedef struct billingentityinternal_request_compound_t billingentityinternal_re
 typedef struct billingentityinternal_request_compound_t {
     int pki_billingentityinternal_id; //numeric
     struct multilingual_billingentityinternal_description_t *obj_billingentityinternal_description; //model
+    list_t *a_obj_billingentityinternalproduct; //nonprimitive container
 
 } billingentityinternal_request_compound_t;
 
 billingentityinternal_request_compound_t *billingentityinternal_request_compound_create(
     int pki_billingentityinternal_id,
-    multilingual_billingentityinternal_description_t *obj_billingentityinternal_description
+    multilingual_billingentityinternal_description_t *obj_billingentityinternal_description,
+    list_t *a_obj_billingentityinternalproduct
 );
 
 void billingentityinternal_request_compound_free(billingentityinternal_request_compound_t *billingentityinternal_request_compound);

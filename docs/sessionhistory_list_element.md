@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **s_computer_description** | **char \*** | The description of the Computer | [optional] 
 **s_sessionhistory_duration** | **char \*** | The duration of the session | 
 **s_sessionhistory_ip** | **char \*** | Represent an IP address. | 
-**s_user_loginname** | **char \*** | The Login name of the User. | [optional] 
+**s_user_loginname** | **char \*** | The login name of the User. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

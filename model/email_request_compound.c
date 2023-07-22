@@ -6,6 +6,7 @@
 
 
 email_request_compound_t *email_request_compound_create(
+    int pki_email_id,
     int fki_emailtype_id,
     char *s_email_address
     ) {
@@ -13,6 +14,7 @@ email_request_compound_t *email_request_compound_create(
     if (!email_request_compound_local_var) {
         return NULL;
     }
+    email_request_compound_local_var->pki_email_id = pki_email_id;
     email_request_compound_local_var->fki_emailtype_id = fki_emailtype_id;
     email_request_compound_local_var->s_email_address = s_email_address;
 
@@ -34,6 +36,14 @@ void email_request_compound_free(email_request_compound_t *email_request_compoun
 
 cJSON *email_request_compound_convertToJSON(email_request_compound_t *email_request_compound) {
     cJSON *item = cJSON_CreateObject();
+
+    // email_request_compound->pki_email_id
+    if(email_request_compound->pki_email_id) {
+    if(cJSON_AddNumberToObject(item, "pkiEmailID", email_request_compound->pki_email_id) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
 
     // email_request_compound->fki_emailtype_id
     if (!email_request_compound->fki_emailtype_id) {
@@ -64,6 +74,15 @@ email_request_compound_t *email_request_compound_parseFromJSON(cJSON *email_requ
 
     email_request_compound_t *email_request_compound_local_var = NULL;
 
+    // email_request_compound->pki_email_id
+    cJSON *pki_email_id = cJSON_GetObjectItemCaseSensitive(email_request_compoundJSON, "pkiEmailID");
+    if (pki_email_id) { 
+    if(!cJSON_IsNumber(pki_email_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
     // email_request_compound->fki_emailtype_id
     cJSON *fki_emailtype_id = cJSON_GetObjectItemCaseSensitive(email_request_compoundJSON, "fkiEmailtypeID");
     if (!fki_emailtype_id) {
@@ -90,6 +109,7 @@ email_request_compound_t *email_request_compound_parseFromJSON(cJSON *email_requ
 
 
     email_request_compound_local_var = email_request_compound_create (
+        pki_email_id ? pki_email_id->valuedouble : 0,
         fki_emailtype_id->valuedouble,
         strdup(s_email_address->valuestring)
         );
