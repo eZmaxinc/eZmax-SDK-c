@@ -10,8 +10,8 @@ subnet_response_t *subnet_response_create(
     int fki_user_id,
     int fki_apikey_id,
     multilingual_subnet_description_t *obj_subnet_description,
-    int i_subnet_network,
-    int i_subnet_mask
+    long i_subnet_network,
+    long i_subnet_mask
     ) {
     subnet_response_t *subnet_response_local_var = malloc(sizeof(subnet_response_t));
     if (!subnet_response_local_var) {

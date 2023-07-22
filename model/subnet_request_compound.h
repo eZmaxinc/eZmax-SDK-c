@@ -24,8 +24,8 @@ typedef struct subnet_request_compound_t {
     int fki_user_id; //numeric
     int fki_apikey_id; //numeric
     struct multilingual_subnet_description_t *obj_subnet_description; //model
-    int i_subnet_network; //numeric
-    int i_subnet_mask; //numeric
+    long i_subnet_network; //numeric
+    long i_subnet_mask; //numeric
 
 } subnet_request_compound_t;
 
@@ -34,8 +34,8 @@ subnet_request_compound_t *subnet_request_compound_create(
     int fki_user_id,
     int fki_apikey_id,
     multilingual_subnet_description_t *obj_subnet_description,
-    int i_subnet_network,
-    int i_subnet_mask
+    long i_subnet_network,
+    long i_subnet_mask
 );
 
 void subnet_request_compound_free(subnet_request_compound_t *subnet_request_compound);
