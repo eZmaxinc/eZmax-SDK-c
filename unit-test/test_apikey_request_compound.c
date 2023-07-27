@@ -27,6 +27,7 @@ apikey_request_compound_t* instantiate_apikey_request_compound(int include_optio
       70,
        // false, not to have infinite recursion
       instantiate_multilingual_apikey_description(0),
+      true,
       true
     );
   } else {
@@ -34,6 +35,7 @@ apikey_request_compound_t* instantiate_apikey_request_compound(int include_optio
       99,
       70,
       NULL,
+      true,
       true
     );
   }

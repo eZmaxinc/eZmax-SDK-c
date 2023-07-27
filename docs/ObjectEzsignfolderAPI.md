@@ -17,6 +17,7 @@ Method | HTTP request | Description
 [**ObjectEzsignfolderAPI_ezsignfolderGetCommunicationListV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetCommunicationListV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getCommunicationList | Retrieve Communication list
 [**ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsigndocuments | Retrieve an existing Ezsignfolder&#39;s Ezsigndocuments
 [**ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsignfoldersignerassociations | Retrieve an existing Ezsignfolder&#39;s Ezsignfoldersignerassociations
+[**ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsmineV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsmineV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsignfoldersignerassociationsmine | Retrieve your own Ezsignfoldersignerassociations from an existing Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderGetEzsignsignaturesAutomaticV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetEzsignsignaturesAutomaticV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsignsignaturesAutomatic | Retrieve an existing Ezsignfolder&#39;s automatic Ezsignsignatures
 [**ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getFormsData | Retrieve an existing Ezsignfolder&#39;s forms data
 [**ObjectEzsignfolderAPI_ezsignfolderGetListV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetListV1) | **GET** /1/object/ezsignfolder/getList | Retrieve Ezsignfolder list
@@ -422,6 +423,37 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsignfolder_get_ezsignfoldersignerassociations_v1_response_t](ezsignfolder_get_ezsignfoldersignerassociations_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsmineV1**
+```c
+// Retrieve your own Ezsignfoldersignerassociations from an existing Ezsignfolder
+//
+// 
+//
+ezsignfolder_get_ezsignfoldersignerassociationsmine_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsmineV1(apiClient_t *apiClient, int pkiEzsignfolderID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsignfolderID** | **int** |  | 
+
+### Return type
+
+[ezsignfolder_get_ezsignfoldersignerassociationsmine_v1_response_t](ezsignfolder_get_ezsignfoldersignerassociationsmine_v1_response.md) *
 
 
 ### Authorization

@@ -18,7 +18,6 @@ custom_ezsignfoldersignerassociation_actionable_element_response_t* instantiate_
 
 #include "test_ezsignsignergroup_response_compound.c"
 #include "test_ezsignfoldersignerassociation_response_compound_user.c"
-#include "test_usergroup_response_compound.c"
 #include "test_ezsignsigner_response_compound.c"
 
 
@@ -44,8 +43,6 @@ Mary",
        // false, not to have infinite recursion
       instantiate_ezsignfoldersignerassociation_response_compound_user(0),
        // false, not to have infinite recursion
-      instantiate_usergroup_response_compound(0),
-       // false, not to have infinite recursion
       instantiate_ezsignsigner_response_compound(0),
       1,
       1
@@ -65,7 +62,6 @@ Could you sign it before Monday please.
 Best Regards.
 
 Mary",
-      NULL,
       NULL,
       NULL,
       NULL,

@@ -9,7 +9,8 @@ apikey_request_compound_t *apikey_request_compound_create(
     int pki_apikey_id,
     int fki_user_id,
     multilingual_apikey_description_t *obj_apikey_description,
-    int b_apikey_isactive
+    int b_apikey_isactive,
+    int b_apikey_issigned
     ) {
     apikey_request_compound_t *apikey_request_compound_local_var = malloc(sizeof(apikey_request_compound_t));
     if (!apikey_request_compound_local_var) {
@@ -19,6 +20,7 @@ apikey_request_compound_t *apikey_request_compound_create(
     apikey_request_compound_local_var->fki_user_id = fki_user_id;
     apikey_request_compound_local_var->obj_apikey_description = obj_apikey_description;
     apikey_request_compound_local_var->b_apikey_isactive = b_apikey_isactive;
+    apikey_request_compound_local_var->b_apikey_issigned = b_apikey_issigned;
 
     return apikey_request_compound_local_var;
 }
@@ -77,6 +79,14 @@ cJSON *apikey_request_compound_convertToJSON(apikey_request_compound_t *apikey_r
     }
     }
 
+
+    // apikey_request_compound->b_apikey_issigned
+    if(apikey_request_compound->b_apikey_issigned) {
+    if(cJSON_AddBoolToObject(item, "bApikeyIssigned", apikey_request_compound->b_apikey_issigned) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -131,12 +141,22 @@ apikey_request_compound_t *apikey_request_compound_parseFromJSON(cJSON *apikey_r
     }
     }
 
+    // apikey_request_compound->b_apikey_issigned
+    cJSON *b_apikey_issigned = cJSON_GetObjectItemCaseSensitive(apikey_request_compoundJSON, "bApikeyIssigned");
+    if (b_apikey_issigned) { 
+    if(!cJSON_IsBool(b_apikey_issigned))
+    {
+    goto end; //Bool
+    }
+    }
+
 
     apikey_request_compound_local_var = apikey_request_compound_create (
         pki_apikey_id ? pki_apikey_id->valuedouble : 0,
         fki_user_id->valuedouble,
         obj_apikey_description_local_nonprim,
-        b_apikey_isactive ? b_apikey_isactive->valueint : 0
+        b_apikey_isactive ? b_apikey_isactive->valueint : 0,
+        b_apikey_issigned ? b_apikey_issigned->valueint : 0
         );
 
     return apikey_request_compound_local_var;

@@ -17,6 +17,7 @@
 apikey_response_t* instantiate_apikey_response(int include_optional);
 
 #include "test_multilingual_apikey_description.c"
+#include "test_custom_contact_name_response.c"
 #include "test_common_audit.c"
 
 
@@ -28,7 +29,11 @@ apikey_response_t* instantiate_apikey_response(int include_optional) {
       70,
        // false, not to have infinite recursion
       instantiate_multilingual_apikey_description(0),
+       // false, not to have infinite recursion
+      instantiate_custom_contact_name_response(0),
       "0",
+      "0",
+      true,
       true,
        // false, not to have infinite recursion
       instantiate_common_audit(0)
@@ -38,7 +43,10 @@ apikey_response_t* instantiate_apikey_response(int include_optional) {
       99,
       70,
       NULL,
+      NULL,
       "0",
+      "0",
+      true,
       true,
       NULL
     );

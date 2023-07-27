@@ -1,0 +1,42 @@
+/*
+ * apikey_get_list_v1_response_m_payload.h
+ *
+ * Payload for GET /1/object/apikey/getList
+ */
+
+#ifndef _apikey_get_list_v1_response_m_payload_H_
+#define _apikey_get_list_v1_response_m_payload_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct apikey_get_list_v1_response_m_payload_t apikey_get_list_v1_response_m_payload_t;
+
+#include "apikey_list_element.h"
+
+
+
+typedef struct apikey_get_list_v1_response_m_payload_t {
+    list_t *a_obj_apikey; //nonprimitive container
+    int i_row_returned; //numeric
+    int i_row_filtered; //numeric
+
+} apikey_get_list_v1_response_m_payload_t;
+
+apikey_get_list_v1_response_m_payload_t *apikey_get_list_v1_response_m_payload_create(
+    list_t *a_obj_apikey,
+    int i_row_returned,
+    int i_row_filtered
+);
+
+void apikey_get_list_v1_response_m_payload_free(apikey_get_list_v1_response_m_payload_t *apikey_get_list_v1_response_m_payload);
+
+apikey_get_list_v1_response_m_payload_t *apikey_get_list_v1_response_m_payload_parseFromJSON(cJSON *apikey_get_list_v1_response_m_payloadJSON);
+
+cJSON *apikey_get_list_v1_response_m_payload_convertToJSON(apikey_get_list_v1_response_m_payload_t *apikey_get_list_v1_response_m_payload);
+
+#endif /* _apikey_get_list_v1_response_m_payload_H_ */
+

@@ -23,6 +23,7 @@
 #include "../model/ezsignfolder_get_communication_list_v1_response.h"
 #include "../model/ezsignfolder_get_ezsigndocuments_v1_response.h"
 #include "../model/ezsignfolder_get_ezsignfoldersignerassociations_v1_response.h"
+#include "../model/ezsignfolder_get_ezsignfoldersignerassociationsmine_v1_response.h"
 #include "../model/ezsignfolder_get_ezsignsignatures_automatic_v1_response.h"
 #include "../model/ezsignfolder_get_forms_data_v1_response.h"
 #include "../model/ezsignfolder_get_list_v1_response.h"
@@ -149,6 +150,14 @@ ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1(apiClient_t *apiClient, i
 //
 ezsignfolder_get_ezsignfoldersignerassociations_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1(apiClient_t *apiClient, int pkiEzsignfolderID );
+
+
+// Retrieve your own Ezsignfoldersignerassociations from an existing Ezsignfolder
+//
+// 
+//
+ezsignfolder_get_ezsignfoldersignerassociationsmine_v1_response_t*
+ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsmineV1(apiClient_t *apiClient, int pkiEzsignfolderID );
 
 
 // Retrieve an existing Ezsignfolder's automatic Ezsignsignatures

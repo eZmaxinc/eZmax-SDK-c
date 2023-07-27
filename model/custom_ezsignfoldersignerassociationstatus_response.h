@@ -23,6 +23,7 @@ typedef struct custom_ezsignfoldersignerassociationstatus_response_t {
     int fki_ezsignfoldersignerassociation_id; //numeric
     char *s_ezsignfoldersignerassociationstatus_lastname; // string
     char *s_ezsignfoldersignerassociationstatus_firstname; // string
+    char *s_ezsignfoldersignerassociationstatus_description_x; // string
     list_t *a_obj_ezsignsignaturestatus; //nonprimitive container
 
 } custom_ezsignfoldersignerassociationstatus_response_t;
@@ -31,6 +32,7 @@ custom_ezsignfoldersignerassociationstatus_response_t *custom_ezsignfoldersigner
     int fki_ezsignfoldersignerassociation_id,
     char *s_ezsignfoldersignerassociationstatus_lastname,
     char *s_ezsignfoldersignerassociationstatus_firstname,
+    char *s_ezsignfoldersignerassociationstatus_description_x,
     list_t *a_obj_ezsignsignaturestatus
 );
 

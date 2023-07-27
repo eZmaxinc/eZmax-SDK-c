@@ -10,7 +10,6 @@ Name | Type | Description | Notes
 **t_ezsignfoldersignerassociation_message** | **char \*** | A custom text message that will be added to the email sent. | 
 **obj_ezsignsignergroup** | [**ezsignsignergroup_response_compound_t**](ezsignsignergroup_response_compound.md) \* |  | [optional] 
 **obj_user** | [**ezsignfoldersignerassociation_response_compound_user_t**](ezsignfoldersignerassociation_response_compound_user.md) \* |  | [optional] 
-**obj_usergroup** | [**usergroup_response_compound_t**](usergroup_response_compound.md) \* |  | [optional] 
 **obj_ezsignsigner** | [**ezsignsigner_response_compound_t**](ezsignsigner_response_compound.md) \* |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

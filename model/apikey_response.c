@@ -9,8 +9,11 @@ apikey_response_t *apikey_response_create(
     int pki_apikey_id,
     int fki_user_id,
     multilingual_apikey_description_t *obj_apikey_description,
-    char *s_computed_token,
+    custom_contact_name_response_t *obj_contact_name,
+    char *s_apikey_apikey,
+    char *s_apikey_secret,
     int b_apikey_isactive,
+    int b_apikey_issigned,
     common_audit_t *obj_audit
     ) {
     apikey_response_t *apikey_response_local_var = malloc(sizeof(apikey_response_t));
@@ -20,8 +23,11 @@ apikey_response_t *apikey_response_create(
     apikey_response_local_var->pki_apikey_id = pki_apikey_id;
     apikey_response_local_var->fki_user_id = fki_user_id;
     apikey_response_local_var->obj_apikey_description = obj_apikey_description;
-    apikey_response_local_var->s_computed_token = s_computed_token;
+    apikey_response_local_var->obj_contact_name = obj_contact_name;
+    apikey_response_local_var->s_apikey_apikey = s_apikey_apikey;
+    apikey_response_local_var->s_apikey_secret = s_apikey_secret;
     apikey_response_local_var->b_apikey_isactive = b_apikey_isactive;
+    apikey_response_local_var->b_apikey_issigned = b_apikey_issigned;
     apikey_response_local_var->obj_audit = obj_audit;
 
     return apikey_response_local_var;
@@ -37,9 +43,17 @@ void apikey_response_free(apikey_response_t *apikey_response) {
         multilingual_apikey_description_free(apikey_response->obj_apikey_description);
         apikey_response->obj_apikey_description = NULL;
     }
-    if (apikey_response->s_computed_token) {
-        free(apikey_response->s_computed_token);
-        apikey_response->s_computed_token = NULL;
+    if (apikey_response->obj_contact_name) {
+        custom_contact_name_response_free(apikey_response->obj_contact_name);
+        apikey_response->obj_contact_name = NULL;
+    }
+    if (apikey_response->s_apikey_apikey) {
+        free(apikey_response->s_apikey_apikey);
+        apikey_response->s_apikey_apikey = NULL;
+    }
+    if (apikey_response->s_apikey_secret) {
+        free(apikey_response->s_apikey_secret);
+        apikey_response->s_apikey_secret = NULL;
     }
     if (apikey_response->obj_audit) {
         common_audit_free(apikey_response->obj_audit);
@@ -83,9 +97,31 @@ cJSON *apikey_response_convertToJSON(apikey_response_t *apikey_response) {
     }
 
 
-    // apikey_response->s_computed_token
-    if(apikey_response->s_computed_token) {
-    if(cJSON_AddStringToObject(item, "sComputedToken", apikey_response->s_computed_token) == NULL) {
+    // apikey_response->obj_contact_name
+    if (!apikey_response->obj_contact_name) {
+        goto fail;
+    }
+    cJSON *obj_contact_name_local_JSON = custom_contact_name_response_convertToJSON(apikey_response->obj_contact_name);
+    if(obj_contact_name_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objContactName", obj_contact_name_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
+
+    // apikey_response->s_apikey_apikey
+    if(apikey_response->s_apikey_apikey) {
+    if(cJSON_AddStringToObject(item, "sApikeyApikey", apikey_response->s_apikey_apikey) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // apikey_response->s_apikey_secret
+    if(apikey_response->s_apikey_secret) {
+    if(cJSON_AddStringToObject(item, "sApikeySecret", apikey_response->s_apikey_secret) == NULL) {
     goto fail; //String
     }
     }
@@ -97,6 +133,14 @@ cJSON *apikey_response_convertToJSON(apikey_response_t *apikey_response) {
     }
     if(cJSON_AddBoolToObject(item, "bApikeyIsactive", apikey_response->b_apikey_isactive) == NULL) {
     goto fail; //Bool
+    }
+
+
+    // apikey_response->b_apikey_issigned
+    if(apikey_response->b_apikey_issigned) {
+    if(cJSON_AddBoolToObject(item, "bApikeyIssigned", apikey_response->b_apikey_issigned) == NULL) {
+    goto fail; //Bool
+    }
     }
 
 
@@ -127,6 +171,9 @@ apikey_response_t *apikey_response_parseFromJSON(cJSON *apikey_responseJSON){
 
     // define the local variable for apikey_response->obj_apikey_description
     multilingual_apikey_description_t *obj_apikey_description_local_nonprim = NULL;
+
+    // define the local variable for apikey_response->obj_contact_name
+    custom_contact_name_response_t *obj_contact_name_local_nonprim = NULL;
 
     // define the local variable for apikey_response->obj_audit
     common_audit_t *obj_audit_local_nonprim = NULL;
@@ -164,10 +211,28 @@ apikey_response_t *apikey_response_parseFromJSON(cJSON *apikey_responseJSON){
     
     obj_apikey_description_local_nonprim = multilingual_apikey_description_parseFromJSON(obj_apikey_description); //nonprimitive
 
-    // apikey_response->s_computed_token
-    cJSON *s_computed_token = cJSON_GetObjectItemCaseSensitive(apikey_responseJSON, "sComputedToken");
-    if (s_computed_token) { 
-    if(!cJSON_IsString(s_computed_token) && !cJSON_IsNull(s_computed_token))
+    // apikey_response->obj_contact_name
+    cJSON *obj_contact_name = cJSON_GetObjectItemCaseSensitive(apikey_responseJSON, "objContactName");
+    if (!obj_contact_name) {
+        goto end;
+    }
+
+    
+    obj_contact_name_local_nonprim = custom_contact_name_response_parseFromJSON(obj_contact_name); //nonprimitive
+
+    // apikey_response->s_apikey_apikey
+    cJSON *s_apikey_apikey = cJSON_GetObjectItemCaseSensitive(apikey_responseJSON, "sApikeyApikey");
+    if (s_apikey_apikey) { 
+    if(!cJSON_IsString(s_apikey_apikey) && !cJSON_IsNull(s_apikey_apikey))
+    {
+    goto end; //String
+    }
+    }
+
+    // apikey_response->s_apikey_secret
+    cJSON *s_apikey_secret = cJSON_GetObjectItemCaseSensitive(apikey_responseJSON, "sApikeySecret");
+    if (s_apikey_secret) { 
+    if(!cJSON_IsString(s_apikey_secret) && !cJSON_IsNull(s_apikey_secret))
     {
     goto end; //String
     }
@@ -185,6 +250,15 @@ apikey_response_t *apikey_response_parseFromJSON(cJSON *apikey_responseJSON){
     goto end; //Bool
     }
 
+    // apikey_response->b_apikey_issigned
+    cJSON *b_apikey_issigned = cJSON_GetObjectItemCaseSensitive(apikey_responseJSON, "bApikeyIssigned");
+    if (b_apikey_issigned) { 
+    if(!cJSON_IsBool(b_apikey_issigned))
+    {
+    goto end; //Bool
+    }
+    }
+
     // apikey_response->obj_audit
     cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(apikey_responseJSON, "objAudit");
     if (!obj_audit) {
@@ -199,8 +273,11 @@ apikey_response_t *apikey_response_parseFromJSON(cJSON *apikey_responseJSON){
         pki_apikey_id->valuedouble,
         fki_user_id->valuedouble,
         obj_apikey_description_local_nonprim,
-        s_computed_token && !cJSON_IsNull(s_computed_token) ? strdup(s_computed_token->valuestring) : NULL,
+        obj_contact_name_local_nonprim,
+        s_apikey_apikey && !cJSON_IsNull(s_apikey_apikey) ? strdup(s_apikey_apikey->valuestring) : NULL,
+        s_apikey_secret && !cJSON_IsNull(s_apikey_secret) ? strdup(s_apikey_secret->valuestring) : NULL,
         b_apikey_isactive->valueint,
+        b_apikey_issigned ? b_apikey_issigned->valueint : 0,
         obj_audit_local_nonprim
         );
 
@@ -209,6 +286,10 @@ end:
     if (obj_apikey_description_local_nonprim) {
         multilingual_apikey_description_free(obj_apikey_description_local_nonprim);
         obj_apikey_description_local_nonprim = NULL;
+    }
+    if (obj_contact_name_local_nonprim) {
+        custom_contact_name_response_free(obj_contact_name_local_nonprim);
+        obj_contact_name_local_nonprim = NULL;
     }
     if (obj_audit_local_nonprim) {
         common_audit_free(obj_audit_local_nonprim);

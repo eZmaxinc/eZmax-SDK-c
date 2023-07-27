@@ -13,7 +13,6 @@ custom_ezsignfoldersignerassociation_actionable_element_response_t *custom_ezsig
     char *t_ezsignfoldersignerassociation_message,
     ezsignsignergroup_response_compound_t *obj_ezsignsignergroup,
     ezsignfoldersignerassociation_response_compound_user_t *obj_user,
-    usergroup_response_compound_t *obj_usergroup,
     ezsignsigner_response_compound_t *obj_ezsignsigner,
     int b_ezsignfoldersignerassociation_hasactionableelements_current,
     int b_ezsignfoldersignerassociation_hasactionableelements_future
@@ -29,7 +28,6 @@ custom_ezsignfoldersignerassociation_actionable_element_response_t *custom_ezsig
     custom_ezsignfoldersignerassociation_actionable_element_response_local_var->t_ezsignfoldersignerassociation_message = t_ezsignfoldersignerassociation_message;
     custom_ezsignfoldersignerassociation_actionable_element_response_local_var->obj_ezsignsignergroup = obj_ezsignsignergroup;
     custom_ezsignfoldersignerassociation_actionable_element_response_local_var->obj_user = obj_user;
-    custom_ezsignfoldersignerassociation_actionable_element_response_local_var->obj_usergroup = obj_usergroup;
     custom_ezsignfoldersignerassociation_actionable_element_response_local_var->obj_ezsignsigner = obj_ezsignsigner;
     custom_ezsignfoldersignerassociation_actionable_element_response_local_var->b_ezsignfoldersignerassociation_hasactionableelements_current = b_ezsignfoldersignerassociation_hasactionableelements_current;
     custom_ezsignfoldersignerassociation_actionable_element_response_local_var->b_ezsignfoldersignerassociation_hasactionableelements_future = b_ezsignfoldersignerassociation_hasactionableelements_future;
@@ -54,10 +52,6 @@ void custom_ezsignfoldersignerassociation_actionable_element_response_free(custo
     if (custom_ezsignfoldersignerassociation_actionable_element_response->obj_user) {
         ezsignfoldersignerassociation_response_compound_user_free(custom_ezsignfoldersignerassociation_actionable_element_response->obj_user);
         custom_ezsignfoldersignerassociation_actionable_element_response->obj_user = NULL;
-    }
-    if (custom_ezsignfoldersignerassociation_actionable_element_response->obj_usergroup) {
-        usergroup_response_compound_free(custom_ezsignfoldersignerassociation_actionable_element_response->obj_usergroup);
-        custom_ezsignfoldersignerassociation_actionable_element_response->obj_usergroup = NULL;
     }
     if (custom_ezsignfoldersignerassociation_actionable_element_response->obj_ezsignsigner) {
         ezsignsigner_response_compound_free(custom_ezsignfoldersignerassociation_actionable_element_response->obj_ezsignsigner);
@@ -140,19 +134,6 @@ cJSON *custom_ezsignfoldersignerassociation_actionable_element_response_convertT
     }
 
 
-    // custom_ezsignfoldersignerassociation_actionable_element_response->obj_usergroup
-    if(custom_ezsignfoldersignerassociation_actionable_element_response->obj_usergroup) {
-    cJSON *obj_usergroup_local_JSON = usergroup_response_compound_convertToJSON(custom_ezsignfoldersignerassociation_actionable_element_response->obj_usergroup);
-    if(obj_usergroup_local_JSON == NULL) {
-    goto fail; //model
-    }
-    cJSON_AddItemToObject(item, "objUsergroup", obj_usergroup_local_JSON);
-    if(item->child == NULL) {
-    goto fail;
-    }
-    }
-
-
     // custom_ezsignfoldersignerassociation_actionable_element_response->obj_ezsignsigner
     if(custom_ezsignfoldersignerassociation_actionable_element_response->obj_ezsignsigner) {
     cJSON *obj_ezsignsigner_local_JSON = ezsignsigner_response_compound_convertToJSON(custom_ezsignfoldersignerassociation_actionable_element_response->obj_ezsignsigner);
@@ -199,9 +180,6 @@ custom_ezsignfoldersignerassociation_actionable_element_response_t *custom_ezsig
 
     // define the local variable for custom_ezsignfoldersignerassociation_actionable_element_response->obj_user
     ezsignfoldersignerassociation_response_compound_user_t *obj_user_local_nonprim = NULL;
-
-    // define the local variable for custom_ezsignfoldersignerassociation_actionable_element_response->obj_usergroup
-    usergroup_response_compound_t *obj_usergroup_local_nonprim = NULL;
 
     // define the local variable for custom_ezsignfoldersignerassociation_actionable_element_response->obj_ezsignsigner
     ezsignsigner_response_compound_t *obj_ezsignsigner_local_nonprim = NULL;
@@ -278,12 +256,6 @@ custom_ezsignfoldersignerassociation_actionable_element_response_t *custom_ezsig
     obj_user_local_nonprim = ezsignfoldersignerassociation_response_compound_user_parseFromJSON(obj_user); //nonprimitive
     }
 
-    // custom_ezsignfoldersignerassociation_actionable_element_response->obj_usergroup
-    cJSON *obj_usergroup = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldersignerassociation_actionable_element_responseJSON, "objUsergroup");
-    if (obj_usergroup) { 
-    obj_usergroup_local_nonprim = usergroup_response_compound_parseFromJSON(obj_usergroup); //nonprimitive
-    }
-
     // custom_ezsignfoldersignerassociation_actionable_element_response->obj_ezsignsigner
     cJSON *obj_ezsignsigner = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldersignerassociation_actionable_element_responseJSON, "objEzsignsigner");
     if (obj_ezsignsigner) { 
@@ -320,7 +292,6 @@ custom_ezsignfoldersignerassociation_actionable_element_response_t *custom_ezsig
         strdup(t_ezsignfoldersignerassociation_message->valuestring),
         obj_ezsignsignergroup ? obj_ezsignsignergroup_local_nonprim : NULL,
         obj_user ? obj_user_local_nonprim : NULL,
-        obj_usergroup ? obj_usergroup_local_nonprim : NULL,
         obj_ezsignsigner ? obj_ezsignsigner_local_nonprim : NULL,
         b_ezsignfoldersignerassociation_hasactionableelements_current->valueint,
         b_ezsignfoldersignerassociation_hasactionableelements_future ? b_ezsignfoldersignerassociation_hasactionableelements_future->valueint : 0
@@ -335,10 +306,6 @@ end:
     if (obj_user_local_nonprim) {
         ezsignfoldersignerassociation_response_compound_user_free(obj_user_local_nonprim);
         obj_user_local_nonprim = NULL;
-    }
-    if (obj_usergroup_local_nonprim) {
-        usergroup_response_compound_free(obj_usergroup_local_nonprim);
-        obj_usergroup_local_nonprim = NULL;
     }
     if (obj_ezsignsigner_local_nonprim) {
         ezsignsigner_response_compound_free(obj_ezsignsigner_local_nonprim);

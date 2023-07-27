@@ -25,6 +25,7 @@ custom_ezsignfoldersignerassociationstatus_response_t* instantiate_custom_ezsign
       20,
       "Doe",
       "John",
+      "John Doe",
       list_createList()
     );
   } else {
@@ -32,6 +33,7 @@ custom_ezsignfoldersignerassociationstatus_response_t* instantiate_custom_ezsign
       20,
       "Doe",
       "John",
+      "John Doe",
       list_createList()
     );
   }

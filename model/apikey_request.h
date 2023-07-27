@@ -24,6 +24,7 @@ typedef struct apikey_request_t {
     int fki_user_id; //numeric
     struct multilingual_apikey_description_t *obj_apikey_description; //model
     int b_apikey_isactive; //boolean
+    int b_apikey_issigned; //boolean
 
 } apikey_request_t;
 
@@ -31,7 +32,8 @@ apikey_request_t *apikey_request_create(
     int pki_apikey_id,
     int fki_user_id,
     multilingual_apikey_description_t *obj_apikey_description,
-    int b_apikey_isactive
+    int b_apikey_isactive,
+    int b_apikey_issigned
 );
 
 void apikey_request_free(apikey_request_t *apikey_request);

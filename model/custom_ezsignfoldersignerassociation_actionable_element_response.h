@@ -18,7 +18,6 @@ typedef struct custom_ezsignfoldersignerassociation_actionable_element_response_
 #include "ezsignfoldersignerassociation_response_compound_user.h"
 #include "ezsignsigner_response_compound.h"
 #include "ezsignsignergroup_response_compound.h"
-#include "usergroup_response_compound.h"
 
 
 
@@ -30,7 +29,6 @@ typedef struct custom_ezsignfoldersignerassociation_actionable_element_response_
     char *t_ezsignfoldersignerassociation_message; // string
     struct ezsignsignergroup_response_compound_t *obj_ezsignsignergroup; //model
     struct ezsignfoldersignerassociation_response_compound_user_t *obj_user; //model
-    struct usergroup_response_compound_t *obj_usergroup; //model
     struct ezsignsigner_response_compound_t *obj_ezsignsigner; //model
     int b_ezsignfoldersignerassociation_hasactionableelements_current; //boolean
     int b_ezsignfoldersignerassociation_hasactionableelements_future; //boolean
@@ -45,7 +43,6 @@ custom_ezsignfoldersignerassociation_actionable_element_response_t *custom_ezsig
     char *t_ezsignfoldersignerassociation_message,
     ezsignsignergroup_response_compound_t *obj_ezsignsignergroup,
     ezsignfoldersignerassociation_response_compound_user_t *obj_user,
-    usergroup_response_compound_t *obj_usergroup,
     ezsignsigner_response_compound_t *obj_ezsignsigner,
     int b_ezsignfoldersignerassociation_hasactionableelements_current,
     int b_ezsignfoldersignerassociation_hasactionableelements_future

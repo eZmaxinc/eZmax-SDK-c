@@ -16,17 +16,23 @@
 #include "../model/ezsignsignergroup_response.h"
 ezsignsignergroup_response_t* instantiate_ezsignsignergroup_response(int include_optional);
 
+#include "test_multilingual_ezsignsignergroup_description.c"
 
 
 ezsignsignergroup_response_t* instantiate_ezsignsignergroup_response(int include_optional) {
   ezsignsignergroup_response_t* ezsignsignergroup_response = NULL;
   if (include_optional) {
     ezsignsignergroup_response = ezsignsignergroup_response_create(
-      27
+      27,
+       // false, not to have infinite recursion
+      instantiate_multilingual_ezsignsignergroup_description(0),
+      "HR"
     );
   } else {
     ezsignsignergroup_response = ezsignsignergroup_response_create(
-      27
+      27,
+      NULL,
+      "HR"
     );
   }
 
