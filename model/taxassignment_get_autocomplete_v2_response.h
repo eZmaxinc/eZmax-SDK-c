@@ -22,16 +22,16 @@ typedef struct taxassignment_get_autocomplete_v2_response_t taxassignment_get_au
 
 
 typedef struct taxassignment_get_autocomplete_v2_response_t {
-    struct taxassignment_get_autocomplete_v2_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct taxassignment_get_autocomplete_v2_response_m_payload_t *m_payload; //model
 
 } taxassignment_get_autocomplete_v2_response_t;
 
 taxassignment_get_autocomplete_v2_response_t *taxassignment_get_autocomplete_v2_response_create(
-    taxassignment_get_autocomplete_v2_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    taxassignment_get_autocomplete_v2_response_m_payload_t *m_payload
 );
 
 void taxassignment_get_autocomplete_v2_response_free(taxassignment_get_autocomplete_v2_response_t *taxassignment_get_autocomplete_v2_response);

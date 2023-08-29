@@ -22,16 +22,16 @@ typedef struct ezsigntemplateformfieldgroup_get_object_v2_response_t ezsigntempl
 
 
 typedef struct ezsigntemplateformfieldgroup_get_object_v2_response_t {
-    struct ezsigntemplateformfieldgroup_get_object_v2_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct ezsigntemplateformfieldgroup_get_object_v2_response_m_payload_t *m_payload; //model
 
 } ezsigntemplateformfieldgroup_get_object_v2_response_t;
 
 ezsigntemplateformfieldgroup_get_object_v2_response_t *ezsigntemplateformfieldgroup_get_object_v2_response_create(
-    ezsigntemplateformfieldgroup_get_object_v2_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    ezsigntemplateformfieldgroup_get_object_v2_response_m_payload_t *m_payload
 );
 
 void ezsigntemplateformfieldgroup_get_object_v2_response_free(ezsigntemplateformfieldgroup_get_object_v2_response_t *ezsigntemplateformfieldgroup_get_object_v2_response);

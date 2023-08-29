@@ -22,16 +22,16 @@ typedef struct common_get_report_v1_response_t common_get_report_v1_response_t;
 
 
 typedef struct common_get_report_v1_response_t {
-    struct common_get_report_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct common_get_report_v1_response_m_payload_t *m_payload; //model
 
 } common_get_report_v1_response_t;
 
 common_get_report_v1_response_t *common_get_report_v1_response_create(
-    common_get_report_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    common_get_report_v1_response_m_payload_t *m_payload
 );
 
 void common_get_report_v1_response_free(common_get_report_v1_response_t *common_get_report_v1_response);

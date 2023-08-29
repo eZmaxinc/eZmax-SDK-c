@@ -22,16 +22,16 @@ typedef struct ezsign_suggest_signers_v1_response_t ezsign_suggest_signers_v1_re
 
 
 typedef struct ezsign_suggest_signers_v1_response_t {
-    struct ezsign_suggest_signers_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct ezsign_suggest_signers_v1_response_m_payload_t *m_payload; //model
 
 } ezsign_suggest_signers_v1_response_t;
 
 ezsign_suggest_signers_v1_response_t *ezsign_suggest_signers_v1_response_create(
-    ezsign_suggest_signers_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    ezsign_suggest_signers_v1_response_m_payload_t *m_payload
 );
 
 void ezsign_suggest_signers_v1_response_free(ezsign_suggest_signers_v1_response_t *ezsign_suggest_signers_v1_response);

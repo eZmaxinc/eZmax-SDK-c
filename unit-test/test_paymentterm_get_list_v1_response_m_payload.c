@@ -22,15 +22,15 @@ paymentterm_get_list_v1_response_m_payload_t* instantiate_paymentterm_get_list_v
   paymentterm_get_list_v1_response_m_payload_t* paymentterm_get_list_v1_response_m_payload = NULL;
   if (include_optional) {
     paymentterm_get_list_v1_response_m_payload = paymentterm_get_list_v1_response_m_payload_create(
-      list_createList(),
       100,
-      533
+      533,
+      list_createList()
     );
   } else {
     paymentterm_get_list_v1_response_m_payload = paymentterm_get_list_v1_response_m_payload_create(
-      list_createList(),
       100,
-      533
+      533,
+      list_createList()
     );
   }
 

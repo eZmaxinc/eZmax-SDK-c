@@ -40,7 +40,9 @@ cJSON *ezsigndocument_submit_ezsignform_v1_response_convertToJSON(ezsigndocument
     cJSON *item = cJSON_CreateObject();
 
     // ezsigndocument_submit_ezsignform_v1_response->obj_debug_payload
-    if(ezsigndocument_submit_ezsignform_v1_response->obj_debug_payload) {
+    if (!ezsigndocument_submit_ezsignform_v1_response->obj_debug_payload) {
+        goto fail;
+    }
     cJSON *obj_debug_payload_local_JSON = common_response_obj_debug_payload_convertToJSON(ezsigndocument_submit_ezsignform_v1_response->obj_debug_payload);
     if(obj_debug_payload_local_JSON == NULL) {
     goto fail; //model
@@ -48,7 +50,6 @@ cJSON *ezsigndocument_submit_ezsignform_v1_response_convertToJSON(ezsigndocument
     cJSON_AddItemToObject(item, "objDebugPayload", obj_debug_payload_local_JSON);
     if(item->child == NULL) {
     goto fail;
-    }
     }
 
 
@@ -84,9 +85,12 @@ ezsigndocument_submit_ezsignform_v1_response_t *ezsigndocument_submit_ezsignform
 
     // ezsigndocument_submit_ezsignform_v1_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(ezsigndocument_submit_ezsignform_v1_responseJSON, "objDebugPayload");
-    if (obj_debug_payload) { 
-    obj_debug_payload_local_nonprim = common_response_obj_debug_payload_parseFromJSON(obj_debug_payload); //nonprimitive
+    if (!obj_debug_payload) {
+        goto end;
     }
+
+    
+    obj_debug_payload_local_nonprim = common_response_obj_debug_payload_parseFromJSON(obj_debug_payload); //nonprimitive
 
     // ezsigndocument_submit_ezsignform_v1_response->obj_debug
     cJSON *obj_debug = cJSON_GetObjectItemCaseSensitive(ezsigndocument_submit_ezsignform_v1_responseJSON, "objDebug");
@@ -96,7 +100,7 @@ ezsigndocument_submit_ezsignform_v1_response_t *ezsigndocument_submit_ezsignform
 
 
     ezsigndocument_submit_ezsignform_v1_response_local_var = ezsigndocument_submit_ezsignform_v1_response_create (
-        obj_debug_payload ? obj_debug_payload_local_nonprim : NULL,
+        obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
 

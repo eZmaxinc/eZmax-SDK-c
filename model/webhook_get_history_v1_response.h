@@ -22,16 +22,16 @@ typedef struct webhook_get_history_v1_response_t webhook_get_history_v1_response
 
 
 typedef struct webhook_get_history_v1_response_t {
-    struct webhook_get_history_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct webhook_get_history_v1_response_m_payload_t *m_payload; //model
 
 } webhook_get_history_v1_response_t;
 
 webhook_get_history_v1_response_t *webhook_get_history_v1_response_create(
-    webhook_get_history_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    webhook_get_history_v1_response_m_payload_t *m_payload
 );
 
 void webhook_get_history_v1_response_free(webhook_get_history_v1_response_t *webhook_get_history_v1_response);

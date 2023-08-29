@@ -20,16 +20,16 @@ typedef struct billingentityinternal_get_list_v1_response_m_payload_t billingent
 
 
 typedef struct billingentityinternal_get_list_v1_response_m_payload_t {
-    list_t *a_obj_billingentityinternal; //nonprimitive container
     int i_row_returned; //numeric
     int i_row_filtered; //numeric
+    list_t *a_obj_billingentityinternal; //nonprimitive container
 
 } billingentityinternal_get_list_v1_response_m_payload_t;
 
 billingentityinternal_get_list_v1_response_m_payload_t *billingentityinternal_get_list_v1_response_m_payload_create(
-    list_t *a_obj_billingentityinternal,
     int i_row_returned,
-    int i_row_filtered
+    int i_row_filtered,
+    list_t *a_obj_billingentityinternal
 );
 
 void billingentityinternal_get_list_v1_response_m_payload_free(billingentityinternal_get_list_v1_response_m_payload_t *billingentityinternal_get_list_v1_response_m_payload);

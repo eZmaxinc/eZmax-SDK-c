@@ -22,16 +22,16 @@ typedef struct permission_get_object_v2_response_t permission_get_object_v2_resp
 
 
 typedef struct permission_get_object_v2_response_t {
-    struct permission_get_object_v2_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct permission_get_object_v2_response_m_payload_t *m_payload; //model
 
 } permission_get_object_v2_response_t;
 
 permission_get_object_v2_response_t *permission_get_object_v2_response_create(
-    permission_get_object_v2_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    permission_get_object_v2_response_m_payload_t *m_payload
 );
 
 void permission_get_object_v2_response_free(permission_get_object_v2_response_t *permission_get_object_v2_response);

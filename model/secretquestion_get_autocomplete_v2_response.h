@@ -22,16 +22,16 @@ typedef struct secretquestion_get_autocomplete_v2_response_t secretquestion_get_
 
 
 typedef struct secretquestion_get_autocomplete_v2_response_t {
-    struct secretquestion_get_autocomplete_v2_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct secretquestion_get_autocomplete_v2_response_m_payload_t *m_payload; //model
 
 } secretquestion_get_autocomplete_v2_response_t;
 
 secretquestion_get_autocomplete_v2_response_t *secretquestion_get_autocomplete_v2_response_create(
-    secretquestion_get_autocomplete_v2_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    secretquestion_get_autocomplete_v2_response_m_payload_t *m_payload
 );
 
 void secretquestion_get_autocomplete_v2_response_free(secretquestion_get_autocomplete_v2_response_t *secretquestion_get_autocomplete_v2_response);

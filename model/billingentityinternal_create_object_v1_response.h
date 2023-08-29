@@ -22,16 +22,16 @@ typedef struct billingentityinternal_create_object_v1_response_t billingentityin
 
 
 typedef struct billingentityinternal_create_object_v1_response_t {
-    struct billingentityinternal_create_object_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct billingentityinternal_create_object_v1_response_m_payload_t *m_payload; //model
 
 } billingentityinternal_create_object_v1_response_t;
 
 billingentityinternal_create_object_v1_response_t *billingentityinternal_create_object_v1_response_create(
-    billingentityinternal_create_object_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    billingentityinternal_create_object_v1_response_m_payload_t *m_payload
 );
 
 void billingentityinternal_create_object_v1_response_free(billingentityinternal_create_object_v1_response_t *billingentityinternal_create_object_v1_response);

@@ -6,17 +6,17 @@
 
 
 taxassignment_get_autocomplete_v2_response_t *taxassignment_get_autocomplete_v2_response_create(
-    taxassignment_get_autocomplete_v2_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    taxassignment_get_autocomplete_v2_response_m_payload_t *m_payload
     ) {
     taxassignment_get_autocomplete_v2_response_t *taxassignment_get_autocomplete_v2_response_local_var = malloc(sizeof(taxassignment_get_autocomplete_v2_response_t));
     if (!taxassignment_get_autocomplete_v2_response_local_var) {
         return NULL;
     }
-    taxassignment_get_autocomplete_v2_response_local_var->m_payload = m_payload;
     taxassignment_get_autocomplete_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     taxassignment_get_autocomplete_v2_response_local_var->obj_debug = obj_debug;
+    taxassignment_get_autocomplete_v2_response_local_var->m_payload = m_payload;
 
     return taxassignment_get_autocomplete_v2_response_local_var;
 }
@@ -27,10 +27,6 @@ void taxassignment_get_autocomplete_v2_response_free(taxassignment_get_autocompl
         return ;
     }
     listEntry_t *listEntry;
-    if (taxassignment_get_autocomplete_v2_response->m_payload) {
-        taxassignment_get_autocomplete_v2_response_m_payload_free(taxassignment_get_autocomplete_v2_response->m_payload);
-        taxassignment_get_autocomplete_v2_response->m_payload = NULL;
-    }
     if (taxassignment_get_autocomplete_v2_response->obj_debug_payload) {
         common_response_obj_debug_payload_free(taxassignment_get_autocomplete_v2_response->obj_debug_payload);
         taxassignment_get_autocomplete_v2_response->obj_debug_payload = NULL;
@@ -39,28 +35,20 @@ void taxassignment_get_autocomplete_v2_response_free(taxassignment_get_autocompl
         common_response_obj_debug_free(taxassignment_get_autocomplete_v2_response->obj_debug);
         taxassignment_get_autocomplete_v2_response->obj_debug = NULL;
     }
+    if (taxassignment_get_autocomplete_v2_response->m_payload) {
+        taxassignment_get_autocomplete_v2_response_m_payload_free(taxassignment_get_autocomplete_v2_response->m_payload);
+        taxassignment_get_autocomplete_v2_response->m_payload = NULL;
+    }
     free(taxassignment_get_autocomplete_v2_response);
 }
 
 cJSON *taxassignment_get_autocomplete_v2_response_convertToJSON(taxassignment_get_autocomplete_v2_response_t *taxassignment_get_autocomplete_v2_response) {
     cJSON *item = cJSON_CreateObject();
 
-    // taxassignment_get_autocomplete_v2_response->m_payload
-    if (!taxassignment_get_autocomplete_v2_response->m_payload) {
+    // taxassignment_get_autocomplete_v2_response->obj_debug_payload
+    if (!taxassignment_get_autocomplete_v2_response->obj_debug_payload) {
         goto fail;
     }
-    cJSON *m_payload_local_JSON = taxassignment_get_autocomplete_v2_response_m_payload_convertToJSON(taxassignment_get_autocomplete_v2_response->m_payload);
-    if(m_payload_local_JSON == NULL) {
-    goto fail; //model
-    }
-    cJSON_AddItemToObject(item, "mPayload", m_payload_local_JSON);
-    if(item->child == NULL) {
-    goto fail;
-    }
-
-
-    // taxassignment_get_autocomplete_v2_response->obj_debug_payload
-    if(taxassignment_get_autocomplete_v2_response->obj_debug_payload) {
     cJSON *obj_debug_payload_local_JSON = common_response_obj_debug_payload_convertToJSON(taxassignment_get_autocomplete_v2_response->obj_debug_payload);
     if(obj_debug_payload_local_JSON == NULL) {
     goto fail; //model
@@ -68,7 +56,6 @@ cJSON *taxassignment_get_autocomplete_v2_response_convertToJSON(taxassignment_ge
     cJSON_AddItemToObject(item, "objDebugPayload", obj_debug_payload_local_JSON);
     if(item->child == NULL) {
     goto fail;
-    }
     }
 
 
@@ -84,6 +71,20 @@ cJSON *taxassignment_get_autocomplete_v2_response_convertToJSON(taxassignment_ge
     }
     }
 
+
+    // taxassignment_get_autocomplete_v2_response->m_payload
+    if (!taxassignment_get_autocomplete_v2_response->m_payload) {
+        goto fail;
+    }
+    cJSON *m_payload_local_JSON = taxassignment_get_autocomplete_v2_response_m_payload_convertToJSON(taxassignment_get_autocomplete_v2_response->m_payload);
+    if(m_payload_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "mPayload", m_payload_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
     return item;
 fail:
     if (item) {
@@ -96,14 +97,29 @@ taxassignment_get_autocomplete_v2_response_t *taxassignment_get_autocomplete_v2_
 
     taxassignment_get_autocomplete_v2_response_t *taxassignment_get_autocomplete_v2_response_local_var = NULL;
 
-    // define the local variable for taxassignment_get_autocomplete_v2_response->m_payload
-    taxassignment_get_autocomplete_v2_response_m_payload_t *m_payload_local_nonprim = NULL;
-
     // define the local variable for taxassignment_get_autocomplete_v2_response->obj_debug_payload
     common_response_obj_debug_payload_t *obj_debug_payload_local_nonprim = NULL;
 
     // define the local variable for taxassignment_get_autocomplete_v2_response->obj_debug
     common_response_obj_debug_t *obj_debug_local_nonprim = NULL;
+
+    // define the local variable for taxassignment_get_autocomplete_v2_response->m_payload
+    taxassignment_get_autocomplete_v2_response_m_payload_t *m_payload_local_nonprim = NULL;
+
+    // taxassignment_get_autocomplete_v2_response->obj_debug_payload
+    cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(taxassignment_get_autocomplete_v2_responseJSON, "objDebugPayload");
+    if (!obj_debug_payload) {
+        goto end;
+    }
+
+    
+    obj_debug_payload_local_nonprim = common_response_obj_debug_payload_parseFromJSON(obj_debug_payload); //nonprimitive
+
+    // taxassignment_get_autocomplete_v2_response->obj_debug
+    cJSON *obj_debug = cJSON_GetObjectItemCaseSensitive(taxassignment_get_autocomplete_v2_responseJSON, "objDebug");
+    if (obj_debug) { 
+    obj_debug_local_nonprim = common_response_obj_debug_parseFromJSON(obj_debug); //nonprimitive
+    }
 
     // taxassignment_get_autocomplete_v2_response->m_payload
     cJSON *m_payload = cJSON_GetObjectItemCaseSensitive(taxassignment_get_autocomplete_v2_responseJSON, "mPayload");
@@ -114,31 +130,15 @@ taxassignment_get_autocomplete_v2_response_t *taxassignment_get_autocomplete_v2_
     
     m_payload_local_nonprim = taxassignment_get_autocomplete_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
-    // taxassignment_get_autocomplete_v2_response->obj_debug_payload
-    cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(taxassignment_get_autocomplete_v2_responseJSON, "objDebugPayload");
-    if (obj_debug_payload) { 
-    obj_debug_payload_local_nonprim = common_response_obj_debug_payload_parseFromJSON(obj_debug_payload); //nonprimitive
-    }
-
-    // taxassignment_get_autocomplete_v2_response->obj_debug
-    cJSON *obj_debug = cJSON_GetObjectItemCaseSensitive(taxassignment_get_autocomplete_v2_responseJSON, "objDebug");
-    if (obj_debug) { 
-    obj_debug_local_nonprim = common_response_obj_debug_parseFromJSON(obj_debug); //nonprimitive
-    }
-
 
     taxassignment_get_autocomplete_v2_response_local_var = taxassignment_get_autocomplete_v2_response_create (
-        m_payload_local_nonprim,
-        obj_debug_payload ? obj_debug_payload_local_nonprim : NULL,
-        obj_debug ? obj_debug_local_nonprim : NULL
+        obj_debug_payload_local_nonprim,
+        obj_debug ? obj_debug_local_nonprim : NULL,
+        m_payload_local_nonprim
         );
 
     return taxassignment_get_autocomplete_v2_response_local_var;
 end:
-    if (m_payload_local_nonprim) {
-        taxassignment_get_autocomplete_v2_response_m_payload_free(m_payload_local_nonprim);
-        m_payload_local_nonprim = NULL;
-    }
     if (obj_debug_payload_local_nonprim) {
         common_response_obj_debug_payload_free(obj_debug_payload_local_nonprim);
         obj_debug_payload_local_nonprim = NULL;
@@ -146,6 +146,10 @@ end:
     if (obj_debug_local_nonprim) {
         common_response_obj_debug_free(obj_debug_local_nonprim);
         obj_debug_local_nonprim = NULL;
+    }
+    if (m_payload_local_nonprim) {
+        taxassignment_get_autocomplete_v2_response_m_payload_free(m_payload_local_nonprim);
+        m_payload_local_nonprim = NULL;
     }
     return NULL;
 

@@ -22,16 +22,16 @@ typedef struct versionhistory_get_object_v2_response_t versionhistory_get_object
 
 
 typedef struct versionhistory_get_object_v2_response_t {
-    struct versionhistory_get_object_v2_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct versionhistory_get_object_v2_response_m_payload_t *m_payload; //model
 
 } versionhistory_get_object_v2_response_t;
 
 versionhistory_get_object_v2_response_t *versionhistory_get_object_v2_response_create(
-    versionhistory_get_object_v2_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    versionhistory_get_object_v2_response_m_payload_t *m_payload
 );
 
 void versionhistory_get_object_v2_response_free(versionhistory_get_object_v2_response_t *versionhistory_get_object_v2_response);

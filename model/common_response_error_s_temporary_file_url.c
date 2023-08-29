@@ -23,17 +23,17 @@ ezmax_api_definition__full_common_response_error_s_temporary_file_url__e e_error
 }
 
 common_response_error_s_temporary_file_url_t *common_response_error_s_temporary_file_url_create(
-    char *s_temporary_file_url,
     char *s_error_message,
-    field_e_error_code_t *e_error_code
+    field_e_error_code_t *e_error_code,
+    char *s_temporary_file_url
     ) {
     common_response_error_s_temporary_file_url_t *common_response_error_s_temporary_file_url_local_var = malloc(sizeof(common_response_error_s_temporary_file_url_t));
     if (!common_response_error_s_temporary_file_url_local_var) {
         return NULL;
     }
-    common_response_error_s_temporary_file_url_local_var->s_temporary_file_url = s_temporary_file_url;
     common_response_error_s_temporary_file_url_local_var->s_error_message = s_error_message;
     common_response_error_s_temporary_file_url_local_var->e_error_code = e_error_code;
+    common_response_error_s_temporary_file_url_local_var->s_temporary_file_url = s_temporary_file_url;
 
     return common_response_error_s_temporary_file_url_local_var;
 }
@@ -44,10 +44,6 @@ void common_response_error_s_temporary_file_url_free(common_response_error_s_tem
         return ;
     }
     listEntry_t *listEntry;
-    if (common_response_error_s_temporary_file_url->s_temporary_file_url) {
-        free(common_response_error_s_temporary_file_url->s_temporary_file_url);
-        common_response_error_s_temporary_file_url->s_temporary_file_url = NULL;
-    }
     if (common_response_error_s_temporary_file_url->s_error_message) {
         free(common_response_error_s_temporary_file_url->s_error_message);
         common_response_error_s_temporary_file_url->s_error_message = NULL;
@@ -56,19 +52,15 @@ void common_response_error_s_temporary_file_url_free(common_response_error_s_tem
         field_e_error_code_free(common_response_error_s_temporary_file_url->e_error_code);
         common_response_error_s_temporary_file_url->e_error_code = NULL;
     }
+    if (common_response_error_s_temporary_file_url->s_temporary_file_url) {
+        free(common_response_error_s_temporary_file_url->s_temporary_file_url);
+        common_response_error_s_temporary_file_url->s_temporary_file_url = NULL;
+    }
     free(common_response_error_s_temporary_file_url);
 }
 
 cJSON *common_response_error_s_temporary_file_url_convertToJSON(common_response_error_s_temporary_file_url_t *common_response_error_s_temporary_file_url) {
     cJSON *item = cJSON_CreateObject();
-
-    // common_response_error_s_temporary_file_url->s_temporary_file_url
-    if(common_response_error_s_temporary_file_url->s_temporary_file_url) {
-    if(cJSON_AddStringToObject(item, "sTemporaryFileUrl", common_response_error_s_temporary_file_url->s_temporary_file_url) == NULL) {
-    goto fail; //String
-    }
-    }
-
 
     // common_response_error_s_temporary_file_url->s_error_message
     if (!common_response_error_s_temporary_file_url->s_error_message) {
@@ -92,6 +84,14 @@ cJSON *common_response_error_s_temporary_file_url_convertToJSON(common_response_
         goto fail;
     }
 
+
+    // common_response_error_s_temporary_file_url->s_temporary_file_url
+    if(common_response_error_s_temporary_file_url->s_temporary_file_url) {
+    if(cJSON_AddStringToObject(item, "sTemporaryFileUrl", common_response_error_s_temporary_file_url->s_temporary_file_url) == NULL) {
+    goto fail; //String
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -106,15 +106,6 @@ common_response_error_s_temporary_file_url_t *common_response_error_s_temporary_
 
     // define the local variable for common_response_error_s_temporary_file_url->e_error_code
     field_e_error_code_t *e_error_code_local_nonprim = NULL;
-
-    // common_response_error_s_temporary_file_url->s_temporary_file_url
-    cJSON *s_temporary_file_url = cJSON_GetObjectItemCaseSensitive(common_response_error_s_temporary_file_urlJSON, "sTemporaryFileUrl");
-    if (s_temporary_file_url) { 
-    if(!cJSON_IsString(s_temporary_file_url) && !cJSON_IsNull(s_temporary_file_url))
-    {
-    goto end; //String
-    }
-    }
 
     // common_response_error_s_temporary_file_url->s_error_message
     cJSON *s_error_message = cJSON_GetObjectItemCaseSensitive(common_response_error_s_temporary_file_urlJSON, "sErrorMessage");
@@ -137,11 +128,20 @@ common_response_error_s_temporary_file_url_t *common_response_error_s_temporary_
     
     e_error_code_local_nonprim = field_e_error_code_parseFromJSON(e_error_code); //custom
 
+    // common_response_error_s_temporary_file_url->s_temporary_file_url
+    cJSON *s_temporary_file_url = cJSON_GetObjectItemCaseSensitive(common_response_error_s_temporary_file_urlJSON, "sTemporaryFileUrl");
+    if (s_temporary_file_url) { 
+    if(!cJSON_IsString(s_temporary_file_url) && !cJSON_IsNull(s_temporary_file_url))
+    {
+    goto end; //String
+    }
+    }
+
 
     common_response_error_s_temporary_file_url_local_var = common_response_error_s_temporary_file_url_create (
-        s_temporary_file_url && !cJSON_IsNull(s_temporary_file_url) ? strdup(s_temporary_file_url->valuestring) : NULL,
         strdup(s_error_message->valuestring),
-        e_error_code_local_nonprim
+        e_error_code_local_nonprim,
+        s_temporary_file_url && !cJSON_IsNull(s_temporary_file_url) ? strdup(s_temporary_file_url->valuestring) : NULL
         );
 
     return common_response_error_s_temporary_file_url_local_var;

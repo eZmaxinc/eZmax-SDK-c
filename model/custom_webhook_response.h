@@ -46,8 +46,6 @@ ezmax_api_definition__full_custom_webhook_response__e custom_webhook_response_e_
 
 
 typedef struct custom_webhook_response_t {
-    char *pks_customer_code; // string
-    int b_webhook_test; //boolean
     int pki_webhook_id; //numeric
     char *s_webhook_description; // string
     int fki_ezsignfoldertype_id; //numeric
@@ -59,12 +57,12 @@ typedef struct custom_webhook_response_t {
     char *s_webhook_emailfailed; // string
     int b_webhook_isactive; //boolean
     int b_webhook_skipsslvalidation; //boolean
+    char *pks_customer_code; // string
+    int b_webhook_test; //boolean
 
 } custom_webhook_response_t;
 
 custom_webhook_response_t *custom_webhook_response_create(
-    char *pks_customer_code,
-    int b_webhook_test,
     int pki_webhook_id,
     char *s_webhook_description,
     int fki_ezsignfoldertype_id,
@@ -75,7 +73,9 @@ custom_webhook_response_t *custom_webhook_response_create(
     char *s_webhook_url,
     char *s_webhook_emailfailed,
     int b_webhook_isactive,
-    int b_webhook_skipsslvalidation
+    int b_webhook_skipsslvalidation,
+    char *pks_customer_code,
+    int b_webhook_test
 );
 
 void custom_webhook_response_free(custom_webhook_response_t *custom_webhook_response);

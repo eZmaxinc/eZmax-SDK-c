@@ -22,16 +22,16 @@ typedef struct communication_get_object_v2_response_t communication_get_object_v
 
 
 typedef struct communication_get_object_v2_response_t {
-    struct communication_get_object_v2_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct communication_get_object_v2_response_m_payload_t *m_payload; //model
 
 } communication_get_object_v2_response_t;
 
 communication_get_object_v2_response_t *communication_get_object_v2_response_create(
-    communication_get_object_v2_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    communication_get_object_v2_response_m_payload_t *m_payload
 );
 
 void communication_get_object_v2_response_free(communication_get_object_v2_response_t *communication_get_object_v2_response);

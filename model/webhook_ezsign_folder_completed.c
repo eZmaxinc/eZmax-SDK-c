@@ -6,17 +6,17 @@
 
 
 webhook_ezsign_folder_completed_t *webhook_ezsign_folder_completed_create(
-    ezsignfolder_response_t *obj_ezsignfolder,
     custom_webhook_response_t *obj_webhook,
-    list_t *a_obj_attempt
+    list_t *a_obj_attempt,
+    ezsignfolder_response_t *obj_ezsignfolder
     ) {
     webhook_ezsign_folder_completed_t *webhook_ezsign_folder_completed_local_var = malloc(sizeof(webhook_ezsign_folder_completed_t));
     if (!webhook_ezsign_folder_completed_local_var) {
         return NULL;
     }
-    webhook_ezsign_folder_completed_local_var->obj_ezsignfolder = obj_ezsignfolder;
     webhook_ezsign_folder_completed_local_var->obj_webhook = obj_webhook;
     webhook_ezsign_folder_completed_local_var->a_obj_attempt = a_obj_attempt;
+    webhook_ezsign_folder_completed_local_var->obj_ezsignfolder = obj_ezsignfolder;
 
     return webhook_ezsign_folder_completed_local_var;
 }
@@ -27,10 +27,6 @@ void webhook_ezsign_folder_completed_free(webhook_ezsign_folder_completed_t *web
         return ;
     }
     listEntry_t *listEntry;
-    if (webhook_ezsign_folder_completed->obj_ezsignfolder) {
-        ezsignfolder_response_free(webhook_ezsign_folder_completed->obj_ezsignfolder);
-        webhook_ezsign_folder_completed->obj_ezsignfolder = NULL;
-    }
     if (webhook_ezsign_folder_completed->obj_webhook) {
         custom_webhook_response_free(webhook_ezsign_folder_completed->obj_webhook);
         webhook_ezsign_folder_completed->obj_webhook = NULL;
@@ -42,25 +38,15 @@ void webhook_ezsign_folder_completed_free(webhook_ezsign_folder_completed_t *web
         list_freeList(webhook_ezsign_folder_completed->a_obj_attempt);
         webhook_ezsign_folder_completed->a_obj_attempt = NULL;
     }
+    if (webhook_ezsign_folder_completed->obj_ezsignfolder) {
+        ezsignfolder_response_free(webhook_ezsign_folder_completed->obj_ezsignfolder);
+        webhook_ezsign_folder_completed->obj_ezsignfolder = NULL;
+    }
     free(webhook_ezsign_folder_completed);
 }
 
 cJSON *webhook_ezsign_folder_completed_convertToJSON(webhook_ezsign_folder_completed_t *webhook_ezsign_folder_completed) {
     cJSON *item = cJSON_CreateObject();
-
-    // webhook_ezsign_folder_completed->obj_ezsignfolder
-    if (!webhook_ezsign_folder_completed->obj_ezsignfolder) {
-        goto fail;
-    }
-    cJSON *obj_ezsignfolder_local_JSON = ezsignfolder_response_convertToJSON(webhook_ezsign_folder_completed->obj_ezsignfolder);
-    if(obj_ezsignfolder_local_JSON == NULL) {
-    goto fail; //model
-    }
-    cJSON_AddItemToObject(item, "objEzsignfolder", obj_ezsignfolder_local_JSON);
-    if(item->child == NULL) {
-    goto fail;
-    }
-
 
     // webhook_ezsign_folder_completed->obj_webhook
     if (!webhook_ezsign_folder_completed->obj_webhook) {
@@ -96,6 +82,20 @@ cJSON *webhook_ezsign_folder_completed_convertToJSON(webhook_ezsign_folder_compl
     }
     }
 
+
+    // webhook_ezsign_folder_completed->obj_ezsignfolder
+    if (!webhook_ezsign_folder_completed->obj_ezsignfolder) {
+        goto fail;
+    }
+    cJSON *obj_ezsignfolder_local_JSON = ezsignfolder_response_convertToJSON(webhook_ezsign_folder_completed->obj_ezsignfolder);
+    if(obj_ezsignfolder_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objEzsignfolder", obj_ezsignfolder_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
     return item;
 fail:
     if (item) {
@@ -108,23 +108,14 @@ webhook_ezsign_folder_completed_t *webhook_ezsign_folder_completed_parseFromJSON
 
     webhook_ezsign_folder_completed_t *webhook_ezsign_folder_completed_local_var = NULL;
 
-    // define the local variable for webhook_ezsign_folder_completed->obj_ezsignfolder
-    ezsignfolder_response_t *obj_ezsignfolder_local_nonprim = NULL;
-
     // define the local variable for webhook_ezsign_folder_completed->obj_webhook
     custom_webhook_response_t *obj_webhook_local_nonprim = NULL;
 
     // define the local list for webhook_ezsign_folder_completed->a_obj_attempt
     list_t *a_obj_attemptList = NULL;
 
-    // webhook_ezsign_folder_completed->obj_ezsignfolder
-    cJSON *obj_ezsignfolder = cJSON_GetObjectItemCaseSensitive(webhook_ezsign_folder_completedJSON, "objEzsignfolder");
-    if (!obj_ezsignfolder) {
-        goto end;
-    }
-
-    
-    obj_ezsignfolder_local_nonprim = ezsignfolder_response_parseFromJSON(obj_ezsignfolder); //nonprimitive
+    // define the local variable for webhook_ezsign_folder_completed->obj_ezsignfolder
+    ezsignfolder_response_t *obj_ezsignfolder_local_nonprim = NULL;
 
     // webhook_ezsign_folder_completed->obj_webhook
     cJSON *obj_webhook = cJSON_GetObjectItemCaseSensitive(webhook_ezsign_folder_completedJSON, "objWebhook");
@@ -159,19 +150,24 @@ webhook_ezsign_folder_completed_t *webhook_ezsign_folder_completed_parseFromJSON
         list_addElement(a_obj_attemptList, a_obj_attemptItem);
     }
 
+    // webhook_ezsign_folder_completed->obj_ezsignfolder
+    cJSON *obj_ezsignfolder = cJSON_GetObjectItemCaseSensitive(webhook_ezsign_folder_completedJSON, "objEzsignfolder");
+    if (!obj_ezsignfolder) {
+        goto end;
+    }
+
+    
+    obj_ezsignfolder_local_nonprim = ezsignfolder_response_parseFromJSON(obj_ezsignfolder); //nonprimitive
+
 
     webhook_ezsign_folder_completed_local_var = webhook_ezsign_folder_completed_create (
-        obj_ezsignfolder_local_nonprim,
         obj_webhook_local_nonprim,
-        a_obj_attemptList
+        a_obj_attemptList,
+        obj_ezsignfolder_local_nonprim
         );
 
     return webhook_ezsign_folder_completed_local_var;
 end:
-    if (obj_ezsignfolder_local_nonprim) {
-        ezsignfolder_response_free(obj_ezsignfolder_local_nonprim);
-        obj_ezsignfolder_local_nonprim = NULL;
-    }
     if (obj_webhook_local_nonprim) {
         custom_webhook_response_free(obj_webhook_local_nonprim);
         obj_webhook_local_nonprim = NULL;
@@ -184,6 +180,10 @@ end:
         }
         list_freeList(a_obj_attemptList);
         a_obj_attemptList = NULL;
+    }
+    if (obj_ezsignfolder_local_nonprim) {
+        ezsignfolder_response_free(obj_ezsignfolder_local_nonprim);
+        obj_ezsignfolder_local_nonprim = NULL;
     }
     return NULL;
 

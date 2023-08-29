@@ -16,9 +16,9 @@
 #include "../model/webhook_ezsign_ezsignsigner_acceptclause.h"
 webhook_ezsign_ezsignsigner_acceptclause_t* instantiate_webhook_ezsign_ezsignsigner_acceptclause(int include_optional);
 
+#include "test_custom_webhook_response.c"
 #include "test_ezsignfolder_response.c"
 #include "test_ezsignfoldersignerassociation_response_compound.c"
-#include "test_custom_webhook_response.c"
 
 
 webhook_ezsign_ezsignsigner_acceptclause_t* instantiate_webhook_ezsign_ezsignsigner_acceptclause(int include_optional) {
@@ -26,19 +26,19 @@ webhook_ezsign_ezsignsigner_acceptclause_t* instantiate_webhook_ezsign_ezsignsig
   if (include_optional) {
     webhook_ezsign_ezsignsigner_acceptclause = webhook_ezsign_ezsignsigner_acceptclause_create(
        // false, not to have infinite recursion
+      instantiate_custom_webhook_response(0),
+      list_createList(),
+       // false, not to have infinite recursion
       instantiate_ezsignfolder_response(0),
        // false, not to have infinite recursion
-      instantiate_ezsignfoldersignerassociation_response_compound(0),
-       // false, not to have infinite recursion
-      instantiate_custom_webhook_response(0),
-      list_createList()
+      instantiate_ezsignfoldersignerassociation_response_compound(0)
     );
   } else {
     webhook_ezsign_ezsignsigner_acceptclause = webhook_ezsign_ezsignsigner_acceptclause_create(
       NULL,
+      list_createList(),
       NULL,
-      NULL,
-      list_createList()
+      NULL
     );
   }
 

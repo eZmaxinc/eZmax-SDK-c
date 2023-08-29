@@ -20,16 +20,16 @@ typedef struct activesession_get_list_v1_response_m_payload_t activesession_get_
 
 
 typedef struct activesession_get_list_v1_response_m_payload_t {
-    list_t *a_obj_activesession; //nonprimitive container
     int i_row_returned; //numeric
     int i_row_filtered; //numeric
+    list_t *a_obj_activesession; //nonprimitive container
 
 } activesession_get_list_v1_response_m_payload_t;
 
 activesession_get_list_v1_response_m_payload_t *activesession_get_list_v1_response_m_payload_create(
-    list_t *a_obj_activesession,
     int i_row_returned,
-    int i_row_filtered
+    int i_row_filtered,
+    list_t *a_obj_activesession
 );
 
 void activesession_get_list_v1_response_m_payload_free(activesession_get_list_v1_response_m_payload_t *activesession_get_list_v1_response_m_payload);

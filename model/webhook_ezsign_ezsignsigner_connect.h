@@ -23,18 +23,18 @@ typedef struct webhook_ezsign_ezsignsigner_connect_t webhook_ezsign_ezsignsigner
 
 
 typedef struct webhook_ezsign_ezsignsigner_connect_t {
-    struct ezsignfolder_response_t *obj_ezsignfolder; //model
-    struct ezsignfoldersignerassociation_response_compound_t *obj_ezsignfoldersignerassociation; //model
     struct custom_webhook_response_t *obj_webhook; //model
     list_t *a_obj_attempt; //nonprimitive container
+    struct ezsignfolder_response_t *obj_ezsignfolder; //model
+    struct ezsignfoldersignerassociation_response_compound_t *obj_ezsignfoldersignerassociation; //model
 
 } webhook_ezsign_ezsignsigner_connect_t;
 
 webhook_ezsign_ezsignsigner_connect_t *webhook_ezsign_ezsignsigner_connect_create(
-    ezsignfolder_response_t *obj_ezsignfolder,
-    ezsignfoldersignerassociation_response_compound_t *obj_ezsignfoldersignerassociation,
     custom_webhook_response_t *obj_webhook,
-    list_t *a_obj_attempt
+    list_t *a_obj_attempt,
+    ezsignfolder_response_t *obj_ezsignfolder,
+    ezsignfoldersignerassociation_response_compound_t *obj_ezsignfoldersignerassociation
 );
 
 void webhook_ezsign_ezsignsigner_connect_free(webhook_ezsign_ezsignsigner_connect_t *webhook_ezsign_ezsignsigner_connect);

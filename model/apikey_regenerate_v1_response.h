@@ -22,16 +22,16 @@ typedef struct apikey_regenerate_v1_response_t apikey_regenerate_v1_response_t;
 
 
 typedef struct apikey_regenerate_v1_response_t {
-    struct apikey_regenerate_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct apikey_regenerate_v1_response_m_payload_t *m_payload; //model
 
 } apikey_regenerate_v1_response_t;
 
 apikey_regenerate_v1_response_t *apikey_regenerate_v1_response_create(
-    apikey_regenerate_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    apikey_regenerate_v1_response_m_payload_t *m_payload
 );
 
 void apikey_regenerate_v1_response_free(apikey_regenerate_v1_response_t *apikey_regenerate_v1_response);

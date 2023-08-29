@@ -22,16 +22,16 @@ typedef struct ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_t
 
 
 typedef struct ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_t {
-    struct ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload_t *m_payload; //model
 
 } ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_t;
 
 ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_t *ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_create(
-    ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload_t *m_payload
 );
 
 void ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_free(ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_t *ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response);

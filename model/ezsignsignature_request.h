@@ -82,6 +82,7 @@ typedef struct ezsignsignature_request_t {
     field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource; // custom
     char *s_ezsignsignature_attachmentdescription; // string
     int i_ezsignsignature_validationstep; //numeric
+    int i_ezsignsignature_maxlength; //numeric
     enum_textvalidation_t *e_ezsignsignature_textvalidation; // custom
     char *s_ezsignsignature_regexp; // string
 
@@ -106,6 +107,7 @@ ezsignsignature_request_t *ezsignsignature_request_create(
     field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource,
     char *s_ezsignsignature_attachmentdescription,
     int i_ezsignsignature_validationstep,
+    int i_ezsignsignature_maxlength,
     enum_textvalidation_t *e_ezsignsignature_textvalidation,
     char *s_ezsignsignature_regexp
 );

@@ -6,17 +6,17 @@
 
 
 ezsignbulksend_get_list_v1_response_m_payload_t *ezsignbulksend_get_list_v1_response_m_payload_create(
-    list_t *a_obj_ezsignbulksend,
     int i_row_returned,
-    int i_row_filtered
+    int i_row_filtered,
+    list_t *a_obj_ezsignbulksend
     ) {
     ezsignbulksend_get_list_v1_response_m_payload_t *ezsignbulksend_get_list_v1_response_m_payload_local_var = malloc(sizeof(ezsignbulksend_get_list_v1_response_m_payload_t));
     if (!ezsignbulksend_get_list_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsignbulksend_get_list_v1_response_m_payload_local_var->a_obj_ezsignbulksend = a_obj_ezsignbulksend;
     ezsignbulksend_get_list_v1_response_m_payload_local_var->i_row_returned = i_row_returned;
     ezsignbulksend_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
+    ezsignbulksend_get_list_v1_response_m_payload_local_var->a_obj_ezsignbulksend = a_obj_ezsignbulksend;
 
     return ezsignbulksend_get_list_v1_response_m_payload_local_var;
 }
@@ -40,6 +40,24 @@ void ezsignbulksend_get_list_v1_response_m_payload_free(ezsignbulksend_get_list_
 cJSON *ezsignbulksend_get_list_v1_response_m_payload_convertToJSON(ezsignbulksend_get_list_v1_response_m_payload_t *ezsignbulksend_get_list_v1_response_m_payload) {
     cJSON *item = cJSON_CreateObject();
 
+    // ezsignbulksend_get_list_v1_response_m_payload->i_row_returned
+    if (!ezsignbulksend_get_list_v1_response_m_payload->i_row_returned) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iRowReturned", ezsignbulksend_get_list_v1_response_m_payload->i_row_returned) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // ezsignbulksend_get_list_v1_response_m_payload->i_row_filtered
+    if (!ezsignbulksend_get_list_v1_response_m_payload->i_row_filtered) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iRowFiltered", ezsignbulksend_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
+    goto fail; //Numeric
+    }
+
+
     // ezsignbulksend_get_list_v1_response_m_payload->a_obj_ezsignbulksend
     if (!ezsignbulksend_get_list_v1_response_m_payload->a_obj_ezsignbulksend) {
         goto fail;
@@ -60,24 +78,6 @@ cJSON *ezsignbulksend_get_list_v1_response_m_payload_convertToJSON(ezsignbulksen
     }
     }
 
-
-    // ezsignbulksend_get_list_v1_response_m_payload->i_row_returned
-    if (!ezsignbulksend_get_list_v1_response_m_payload->i_row_returned) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "iRowReturned", ezsignbulksend_get_list_v1_response_m_payload->i_row_returned) == NULL) {
-    goto fail; //Numeric
-    }
-
-
-    // ezsignbulksend_get_list_v1_response_m_payload->i_row_filtered
-    if (!ezsignbulksend_get_list_v1_response_m_payload->i_row_filtered) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "iRowFiltered", ezsignbulksend_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
-    goto fail; //Numeric
-    }
-
     return item;
 fail:
     if (item) {
@@ -92,30 +92,6 @@ ezsignbulksend_get_list_v1_response_m_payload_t *ezsignbulksend_get_list_v1_resp
 
     // define the local list for ezsignbulksend_get_list_v1_response_m_payload->a_obj_ezsignbulksend
     list_t *a_obj_ezsignbulksendList = NULL;
-
-    // ezsignbulksend_get_list_v1_response_m_payload->a_obj_ezsignbulksend
-    cJSON *a_obj_ezsignbulksend = cJSON_GetObjectItemCaseSensitive(ezsignbulksend_get_list_v1_response_m_payloadJSON, "a_objEzsignbulksend");
-    if (!a_obj_ezsignbulksend) {
-        goto end;
-    }
-
-    
-    cJSON *a_obj_ezsignbulksend_local_nonprimitive = NULL;
-    if(!cJSON_IsArray(a_obj_ezsignbulksend)){
-        goto end; //nonprimitive container
-    }
-
-    a_obj_ezsignbulksendList = list_createList();
-
-    cJSON_ArrayForEach(a_obj_ezsignbulksend_local_nonprimitive,a_obj_ezsignbulksend )
-    {
-        if(!cJSON_IsObject(a_obj_ezsignbulksend_local_nonprimitive)){
-            goto end;
-        }
-        ezsignbulksend_list_element_t *a_obj_ezsignbulksendItem = ezsignbulksend_list_element_parseFromJSON(a_obj_ezsignbulksend_local_nonprimitive);
-
-        list_addElement(a_obj_ezsignbulksendList, a_obj_ezsignbulksendItem);
-    }
 
     // ezsignbulksend_get_list_v1_response_m_payload->i_row_returned
     cJSON *i_row_returned = cJSON_GetObjectItemCaseSensitive(ezsignbulksend_get_list_v1_response_m_payloadJSON, "iRowReturned");
@@ -141,11 +117,35 @@ ezsignbulksend_get_list_v1_response_m_payload_t *ezsignbulksend_get_list_v1_resp
     goto end; //Numeric
     }
 
+    // ezsignbulksend_get_list_v1_response_m_payload->a_obj_ezsignbulksend
+    cJSON *a_obj_ezsignbulksend = cJSON_GetObjectItemCaseSensitive(ezsignbulksend_get_list_v1_response_m_payloadJSON, "a_objEzsignbulksend");
+    if (!a_obj_ezsignbulksend) {
+        goto end;
+    }
+
+    
+    cJSON *a_obj_ezsignbulksend_local_nonprimitive = NULL;
+    if(!cJSON_IsArray(a_obj_ezsignbulksend)){
+        goto end; //nonprimitive container
+    }
+
+    a_obj_ezsignbulksendList = list_createList();
+
+    cJSON_ArrayForEach(a_obj_ezsignbulksend_local_nonprimitive,a_obj_ezsignbulksend )
+    {
+        if(!cJSON_IsObject(a_obj_ezsignbulksend_local_nonprimitive)){
+            goto end;
+        }
+        ezsignbulksend_list_element_t *a_obj_ezsignbulksendItem = ezsignbulksend_list_element_parseFromJSON(a_obj_ezsignbulksend_local_nonprimitive);
+
+        list_addElement(a_obj_ezsignbulksendList, a_obj_ezsignbulksendItem);
+    }
+
 
     ezsignbulksend_get_list_v1_response_m_payload_local_var = ezsignbulksend_get_list_v1_response_m_payload_create (
-        a_obj_ezsignbulksendList,
         i_row_returned->valuedouble,
-        i_row_filtered->valuedouble
+        i_row_filtered->valuedouble,
+        a_obj_ezsignbulksendList
         );
 
     return ezsignbulksend_get_list_v1_response_m_payload_local_var;

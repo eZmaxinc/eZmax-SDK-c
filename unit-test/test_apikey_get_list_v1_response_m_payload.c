@@ -22,15 +22,15 @@ apikey_get_list_v1_response_m_payload_t* instantiate_apikey_get_list_v1_response
   apikey_get_list_v1_response_m_payload_t* apikey_get_list_v1_response_m_payload = NULL;
   if (include_optional) {
     apikey_get_list_v1_response_m_payload = apikey_get_list_v1_response_m_payload_create(
-      list_createList(),
       100,
-      533
+      533,
+      list_createList()
     );
   } else {
     apikey_get_list_v1_response_m_payload = apikey_get_list_v1_response_m_payload_create(
-      list_createList(),
       100,
-      533
+      533,
+      list_createList()
     );
   }
 

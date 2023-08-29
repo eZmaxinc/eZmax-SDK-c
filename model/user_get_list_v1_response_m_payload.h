@@ -20,16 +20,16 @@ typedef struct user_get_list_v1_response_m_payload_t user_get_list_v1_response_m
 
 
 typedef struct user_get_list_v1_response_m_payload_t {
-    list_t *a_obj_user; //nonprimitive container
     int i_row_returned; //numeric
     int i_row_filtered; //numeric
+    list_t *a_obj_user; //nonprimitive container
 
 } user_get_list_v1_response_m_payload_t;
 
 user_get_list_v1_response_m_payload_t *user_get_list_v1_response_m_payload_create(
-    list_t *a_obj_user,
     int i_row_returned,
-    int i_row_filtered
+    int i_row_filtered,
+    list_t *a_obj_user
 );
 
 void user_get_list_v1_response_m_payload_free(user_get_list_v1_response_m_payload_t *user_get_list_v1_response_m_payload);

@@ -22,16 +22,16 @@ typedef struct billingentityexternal_get_autocomplete_v2_response_t billingentit
 
 
 typedef struct billingentityexternal_get_autocomplete_v2_response_t {
-    struct billingentityexternal_get_autocomplete_v2_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct billingentityexternal_get_autocomplete_v2_response_m_payload_t *m_payload; //model
 
 } billingentityexternal_get_autocomplete_v2_response_t;
 
 billingentityexternal_get_autocomplete_v2_response_t *billingentityexternal_get_autocomplete_v2_response_create(
-    billingentityexternal_get_autocomplete_v2_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    billingentityexternal_get_autocomplete_v2_response_m_payload_t *m_payload
 );
 
 void billingentityexternal_get_autocomplete_v2_response_free(billingentityexternal_get_autocomplete_v2_response_t *billingentityexternal_get_autocomplete_v2_response);

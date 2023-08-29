@@ -6,17 +6,17 @@
 
 
 clonehistory_get_list_v1_response_m_payload_t *clonehistory_get_list_v1_response_m_payload_create(
-    list_t *a_obj_clonehistory,
     int i_row_returned,
-    int i_row_filtered
+    int i_row_filtered,
+    list_t *a_obj_clonehistory
     ) {
     clonehistory_get_list_v1_response_m_payload_t *clonehistory_get_list_v1_response_m_payload_local_var = malloc(sizeof(clonehistory_get_list_v1_response_m_payload_t));
     if (!clonehistory_get_list_v1_response_m_payload_local_var) {
         return NULL;
     }
-    clonehistory_get_list_v1_response_m_payload_local_var->a_obj_clonehistory = a_obj_clonehistory;
     clonehistory_get_list_v1_response_m_payload_local_var->i_row_returned = i_row_returned;
     clonehistory_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
+    clonehistory_get_list_v1_response_m_payload_local_var->a_obj_clonehistory = a_obj_clonehistory;
 
     return clonehistory_get_list_v1_response_m_payload_local_var;
 }
@@ -40,6 +40,24 @@ void clonehistory_get_list_v1_response_m_payload_free(clonehistory_get_list_v1_r
 cJSON *clonehistory_get_list_v1_response_m_payload_convertToJSON(clonehistory_get_list_v1_response_m_payload_t *clonehistory_get_list_v1_response_m_payload) {
     cJSON *item = cJSON_CreateObject();
 
+    // clonehistory_get_list_v1_response_m_payload->i_row_returned
+    if (!clonehistory_get_list_v1_response_m_payload->i_row_returned) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iRowReturned", clonehistory_get_list_v1_response_m_payload->i_row_returned) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // clonehistory_get_list_v1_response_m_payload->i_row_filtered
+    if (!clonehistory_get_list_v1_response_m_payload->i_row_filtered) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iRowFiltered", clonehistory_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
+    goto fail; //Numeric
+    }
+
+
     // clonehistory_get_list_v1_response_m_payload->a_obj_clonehistory
     if (!clonehistory_get_list_v1_response_m_payload->a_obj_clonehistory) {
         goto fail;
@@ -60,24 +78,6 @@ cJSON *clonehistory_get_list_v1_response_m_payload_convertToJSON(clonehistory_ge
     }
     }
 
-
-    // clonehistory_get_list_v1_response_m_payload->i_row_returned
-    if (!clonehistory_get_list_v1_response_m_payload->i_row_returned) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "iRowReturned", clonehistory_get_list_v1_response_m_payload->i_row_returned) == NULL) {
-    goto fail; //Numeric
-    }
-
-
-    // clonehistory_get_list_v1_response_m_payload->i_row_filtered
-    if (!clonehistory_get_list_v1_response_m_payload->i_row_filtered) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "iRowFiltered", clonehistory_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
-    goto fail; //Numeric
-    }
-
     return item;
 fail:
     if (item) {
@@ -92,30 +92,6 @@ clonehistory_get_list_v1_response_m_payload_t *clonehistory_get_list_v1_response
 
     // define the local list for clonehistory_get_list_v1_response_m_payload->a_obj_clonehistory
     list_t *a_obj_clonehistoryList = NULL;
-
-    // clonehistory_get_list_v1_response_m_payload->a_obj_clonehistory
-    cJSON *a_obj_clonehistory = cJSON_GetObjectItemCaseSensitive(clonehistory_get_list_v1_response_m_payloadJSON, "a_objClonehistory");
-    if (!a_obj_clonehistory) {
-        goto end;
-    }
-
-    
-    cJSON *a_obj_clonehistory_local_nonprimitive = NULL;
-    if(!cJSON_IsArray(a_obj_clonehistory)){
-        goto end; //nonprimitive container
-    }
-
-    a_obj_clonehistoryList = list_createList();
-
-    cJSON_ArrayForEach(a_obj_clonehistory_local_nonprimitive,a_obj_clonehistory )
-    {
-        if(!cJSON_IsObject(a_obj_clonehistory_local_nonprimitive)){
-            goto end;
-        }
-        clonehistory_list_element_t *a_obj_clonehistoryItem = clonehistory_list_element_parseFromJSON(a_obj_clonehistory_local_nonprimitive);
-
-        list_addElement(a_obj_clonehistoryList, a_obj_clonehistoryItem);
-    }
 
     // clonehistory_get_list_v1_response_m_payload->i_row_returned
     cJSON *i_row_returned = cJSON_GetObjectItemCaseSensitive(clonehistory_get_list_v1_response_m_payloadJSON, "iRowReturned");
@@ -141,11 +117,35 @@ clonehistory_get_list_v1_response_m_payload_t *clonehistory_get_list_v1_response
     goto end; //Numeric
     }
 
+    // clonehistory_get_list_v1_response_m_payload->a_obj_clonehistory
+    cJSON *a_obj_clonehistory = cJSON_GetObjectItemCaseSensitive(clonehistory_get_list_v1_response_m_payloadJSON, "a_objClonehistory");
+    if (!a_obj_clonehistory) {
+        goto end;
+    }
+
+    
+    cJSON *a_obj_clonehistory_local_nonprimitive = NULL;
+    if(!cJSON_IsArray(a_obj_clonehistory)){
+        goto end; //nonprimitive container
+    }
+
+    a_obj_clonehistoryList = list_createList();
+
+    cJSON_ArrayForEach(a_obj_clonehistory_local_nonprimitive,a_obj_clonehistory )
+    {
+        if(!cJSON_IsObject(a_obj_clonehistory_local_nonprimitive)){
+            goto end;
+        }
+        clonehistory_list_element_t *a_obj_clonehistoryItem = clonehistory_list_element_parseFromJSON(a_obj_clonehistory_local_nonprimitive);
+
+        list_addElement(a_obj_clonehistoryList, a_obj_clonehistoryItem);
+    }
+
 
     clonehistory_get_list_v1_response_m_payload_local_var = clonehistory_get_list_v1_response_m_payload_create (
-        a_obj_clonehistoryList,
         i_row_returned->valuedouble,
-        i_row_filtered->valuedouble
+        i_row_filtered->valuedouble,
+        a_obj_clonehistoryList
         );
 
     return clonehistory_get_list_v1_response_m_payload_local_var;

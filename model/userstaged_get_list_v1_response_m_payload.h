@@ -20,16 +20,16 @@ typedef struct userstaged_get_list_v1_response_m_payload_t userstaged_get_list_v
 
 
 typedef struct userstaged_get_list_v1_response_m_payload_t {
-    list_t *a_obj_userstaged; //nonprimitive container
     int i_row_returned; //numeric
     int i_row_filtered; //numeric
+    list_t *a_obj_userstaged; //nonprimitive container
 
 } userstaged_get_list_v1_response_m_payload_t;
 
 userstaged_get_list_v1_response_m_payload_t *userstaged_get_list_v1_response_m_payload_create(
-    list_t *a_obj_userstaged,
     int i_row_returned,
-    int i_row_filtered
+    int i_row_filtered,
+    list_t *a_obj_userstaged
 );
 
 void userstaged_get_list_v1_response_m_payload_free(userstaged_get_list_v1_response_m_payload_t *userstaged_get_list_v1_response_m_payload);

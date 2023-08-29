@@ -89,6 +89,7 @@ typedef struct ezsignsignature_response_compound_t {
     char *dt_ezsignsignature_date; // string
     int i_ezsignsignatureattachment_count; //numeric
     char *s_ezsignsignature_description; // string
+    int i_ezsignsignature_maxlength; //numeric
     enum_textvalidation_t *e_ezsignsignature_textvalidation; // custom
     char *s_ezsignsignature_regexp; // string
     struct custom_contact_name_response_t *obj_contact_name; //model
@@ -121,6 +122,7 @@ ezsignsignature_response_compound_t *ezsignsignature_response_compound_create(
     char *dt_ezsignsignature_date,
     int i_ezsignsignatureattachment_count,
     char *s_ezsignsignature_description,
+    int i_ezsignsignature_maxlength,
     enum_textvalidation_t *e_ezsignsignature_textvalidation,
     char *s_ezsignsignature_regexp,
     custom_contact_name_response_t *obj_contact_name,

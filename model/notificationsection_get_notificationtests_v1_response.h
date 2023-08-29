@@ -22,16 +22,16 @@ typedef struct notificationsection_get_notificationtests_v1_response_t notificat
 
 
 typedef struct notificationsection_get_notificationtests_v1_response_t {
-    struct notificationsection_get_notificationtests_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct notificationsection_get_notificationtests_v1_response_m_payload_t *m_payload; //model
 
 } notificationsection_get_notificationtests_v1_response_t;
 
 notificationsection_get_notificationtests_v1_response_t *notificationsection_get_notificationtests_v1_response_create(
-    notificationsection_get_notificationtests_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    notificationsection_get_notificationtests_v1_response_m_payload_t *m_payload
 );
 
 void notificationsection_get_notificationtests_v1_response_free(notificationsection_get_notificationtests_v1_response_t *notificationsection_get_notificationtests_v1_response);

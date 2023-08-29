@@ -13,12 +13,15 @@
 #include "../model/usergroup_edit_object_v1_response.h"
 #include "../model/usergroup_edit_permissions_v1_request.h"
 #include "../model/usergroup_edit_permissions_v1_response.h"
+#include "../model/usergroup_edit_usergroupdelegations_v1_request.h"
+#include "../model/usergroup_edit_usergroupdelegations_v1_response.h"
 #include "../model/usergroup_edit_usergroupmemberships_v1_request.h"
 #include "../model/usergroup_edit_usergroupmemberships_v1_response.h"
 #include "../model/usergroup_get_autocomplete_v2_response.h"
 #include "../model/usergroup_get_list_v1_response.h"
 #include "../model/usergroup_get_object_v2_response.h"
 #include "../model/usergroup_get_permissions_v1_response.h"
+#include "../model/usergroup_get_usergroupdelegations_v1_response.h"
 #include "../model/usergroup_get_usergroupmemberships_v1_response.h"
 
 // Enum SSELECTOR for ObjectUsergroupAPI_usergroupGetAutocompleteV2
@@ -61,6 +64,14 @@ usergroup_edit_permissions_v1_response_t*
 ObjectUsergroupAPI_usergroupEditPermissionsV1(apiClient_t *apiClient, int pkiUsergroupID , usergroup_edit_permissions_v1_request_t * usergroup_edit_permissions_v1_request );
 
 
+// Edit multiple Usergroupdelegations
+//
+// Edit multiple Usergroupdelegations
+//
+usergroup_edit_usergroupdelegations_v1_response_t*
+ObjectUsergroupAPI_usergroupEditUsergroupdelegationsV1(apiClient_t *apiClient, int pkiUsergroupID , usergroup_edit_usergroupdelegations_v1_request_t * usergroup_edit_usergroupdelegations_v1_request );
+
+
 // Edit multiple Usergroupmemberships
 //
 // Using this endpoint, you can edit multiple Usergroupmemberships at the same time.
@@ -97,6 +108,12 @@ ObjectUsergroupAPI_usergroupGetObjectV2(apiClient_t *apiClient, int pkiUsergroup
 //
 usergroup_get_permissions_v1_response_t*
 ObjectUsergroupAPI_usergroupGetPermissionsV1(apiClient_t *apiClient, int pkiUsergroupID );
+
+
+// Retrieve an existing Usergroup's Usergroupdelegations
+//
+usergroup_get_usergroupdelegations_v1_response_t*
+ObjectUsergroupAPI_usergroupGetUsergroupdelegationsV1(apiClient_t *apiClient, int pkiUsergroupID );
 
 
 // Retrieve an existing Usergroup's Usergroupmemberships

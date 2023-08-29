@@ -22,16 +22,16 @@ typedef struct ezsigntsarequirement_get_autocomplete_v2_response_t ezsigntsarequ
 
 
 typedef struct ezsigntsarequirement_get_autocomplete_v2_response_t {
-    struct ezsigntsarequirement_get_autocomplete_v2_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct ezsigntsarequirement_get_autocomplete_v2_response_m_payload_t *m_payload; //model
 
 } ezsigntsarequirement_get_autocomplete_v2_response_t;
 
 ezsigntsarequirement_get_autocomplete_v2_response_t *ezsigntsarequirement_get_autocomplete_v2_response_create(
-    ezsigntsarequirement_get_autocomplete_v2_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    ezsigntsarequirement_get_autocomplete_v2_response_m_payload_t *m_payload
 );
 
 void ezsigntsarequirement_get_autocomplete_v2_response_free(ezsigntsarequirement_get_autocomplete_v2_response_t *ezsigntsarequirement_get_autocomplete_v2_response);

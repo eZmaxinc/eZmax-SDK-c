@@ -22,16 +22,16 @@ typedef struct notificationtest_get_elements_v1_response_t notificationtest_get_
 
 
 typedef struct notificationtest_get_elements_v1_response_t {
-    struct notificationtest_get_elements_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct notificationtest_get_elements_v1_response_m_payload_t *m_payload; //model
 
 } notificationtest_get_elements_v1_response_t;
 
 notificationtest_get_elements_v1_response_t *notificationtest_get_elements_v1_response_create(
-    notificationtest_get_elements_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    notificationtest_get_elements_v1_response_m_payload_t *m_payload
 );
 
 void notificationtest_get_elements_v1_response_free(notificationtest_get_elements_v1_response_t *notificationtest_get_elements_v1_response);

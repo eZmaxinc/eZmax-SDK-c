@@ -22,16 +22,16 @@ typedef struct ezsigntemplate_copy_v1_response_t ezsigntemplate_copy_v1_response
 
 
 typedef struct ezsigntemplate_copy_v1_response_t {
-    struct ezsigntemplate_copy_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct ezsigntemplate_copy_v1_response_m_payload_t *m_payload; //model
 
 } ezsigntemplate_copy_v1_response_t;
 
 ezsigntemplate_copy_v1_response_t *ezsigntemplate_copy_v1_response_create(
-    ezsigntemplate_copy_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    ezsigntemplate_copy_v1_response_m_payload_t *m_payload
 );
 
 void ezsigntemplate_copy_v1_response_free(ezsigntemplate_copy_v1_response_t *ezsigntemplate_copy_v1_response);

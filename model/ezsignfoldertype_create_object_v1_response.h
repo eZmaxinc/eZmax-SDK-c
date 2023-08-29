@@ -22,16 +22,16 @@ typedef struct ezsignfoldertype_create_object_v1_response_t ezsignfoldertype_cre
 
 
 typedef struct ezsignfoldertype_create_object_v1_response_t {
-    struct ezsignfoldertype_create_object_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct ezsignfoldertype_create_object_v1_response_m_payload_t *m_payload; //model
 
 } ezsignfoldertype_create_object_v1_response_t;
 
 ezsignfoldertype_create_object_v1_response_t *ezsignfoldertype_create_object_v1_response_create(
-    ezsignfoldertype_create_object_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    ezsignfoldertype_create_object_v1_response_m_payload_t *m_payload
 );
 
 void ezsignfoldertype_create_object_v1_response_free(ezsignfoldertype_create_object_v1_response_t *ezsignfoldertype_create_object_v1_response);

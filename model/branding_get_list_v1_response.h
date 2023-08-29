@@ -22,16 +22,16 @@ typedef struct branding_get_list_v1_response_t branding_get_list_v1_response_t;
 
 
 typedef struct branding_get_list_v1_response_t {
-    struct branding_get_list_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_get_list_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct branding_get_list_v1_response_m_payload_t *m_payload; //model
 
 } branding_get_list_v1_response_t;
 
 branding_get_list_v1_response_t *branding_get_list_v1_response_create(
-    branding_get_list_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_get_list_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    branding_get_list_v1_response_m_payload_t *m_payload
 );
 
 void branding_get_list_v1_response_free(branding_get_list_v1_response_t *branding_get_list_v1_response);

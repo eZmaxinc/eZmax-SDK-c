@@ -7,21 +7,24 @@
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
 #include "../model/header_accept_language.h"
+#include "../model/object.h"
 #include "../model/user_create_object_v1_request.h"
 #include "../model/user_create_object_v1_response.h"
 #include "../model/user_edit_object_v1_request.h"
 #include "../model/user_edit_object_v1_response.h"
 #include "../model/user_edit_permissions_v1_request.h"
 #include "../model/user_edit_permissions_v1_response.h"
+#include "../model/user_get_apikeys_v1_response.h"
 #include "../model/user_get_autocomplete_v2_response.h"
 #include "../model/user_get_effective_permissions_v1_response.h"
 #include "../model/user_get_list_v1_response.h"
 #include "../model/user_get_object_v2_response.h"
 #include "../model/user_get_permissions_v1_response.h"
 #include "../model/user_get_subnets_v1_response.h"
+#include "../model/user_send_password_reset_v1_response.h"
 
 // Enum SSELECTOR for ObjectUserAPI_userGetAutocompleteV2
-typedef enum  { ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_NULL = 0, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_All, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_AgentBrokerEmployeeEzsignUserNormal, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_AgentBrokerEmployeeNormalBuiltIn, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_ClonableUsers, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_EzsignuserBuiltIn, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_Normal, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_NormalEzsignSigner } ezmax_api_definition__full_userGetAutocompleteV2_sSelector_e;
+typedef enum  { ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_NULL = 0, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_All, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_AgentBrokerEmployeeEzsignUserNormal, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_AgentBrokerEmployeeNormalBuiltIn, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_AgentBrokerEzsignuserNormal, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_ClonableUsers, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_EzsignuserBuiltIn, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_Normal, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_NormalEzsignSigner, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_UsergroupDelegated } ezmax_api_definition__full_userGetAutocompleteV2_sSelector_e;
 
 // Enum EFILTERACTIVE for ObjectUserAPI_userGetAutocompleteV2
 typedef enum  { ezmax_api_definition__full_userGetAutocompleteV2_EFILTERACTIVE_NULL = 0, ezmax_api_definition__full_userGetAutocompleteV2_EFILTERACTIVE_All, ezmax_api_definition__full_userGetAutocompleteV2_EFILTERACTIVE_Active, ezmax_api_definition__full_userGetAutocompleteV2_EFILTERACTIVE_Inactive } ezmax_api_definition__full_userGetAutocompleteV2_eFilterActive_e;
@@ -58,6 +61,12 @@ ObjectUserAPI_userEditObjectV1(apiClient_t *apiClient, int pkiUserID , user_edit
 //
 user_edit_permissions_v1_response_t*
 ObjectUserAPI_userEditPermissionsV1(apiClient_t *apiClient, int pkiUserID , user_edit_permissions_v1_request_t * user_edit_permissions_v1_request );
+
+
+// Retrieve an existing User's Apikeys
+//
+user_get_apikeys_v1_response_t*
+ObjectUserAPI_userGetApikeysV1(apiClient_t *apiClient, int pkiUserID );
 
 
 // Retrieve Users and IDs
@@ -102,5 +111,13 @@ ObjectUserAPI_userGetPermissionsV1(apiClient_t *apiClient, int pkiUserID );
 //
 user_get_subnets_v1_response_t*
 ObjectUserAPI_userGetSubnetsV1(apiClient_t *apiClient, int pkiUserID );
+
+
+// Send password reset
+//
+// Send the password reset email
+//
+user_send_password_reset_v1_response_t*
+ObjectUserAPI_userSendPasswordResetV1(apiClient_t *apiClient, int pkiUserID , object_t * body );
 
 

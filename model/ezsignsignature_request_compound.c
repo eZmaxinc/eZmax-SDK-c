@@ -109,6 +109,7 @@ ezsignsignature_request_compound_t *ezsignsignature_request_compound_create(
     field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource,
     char *s_ezsignsignature_attachmentdescription,
     int i_ezsignsignature_validationstep,
+    int i_ezsignsignature_maxlength,
     enum_textvalidation_t *e_ezsignsignature_textvalidation,
     char *s_ezsignsignature_regexp,
     int b_ezsignsignature_customdate,
@@ -136,6 +137,7 @@ ezsignsignature_request_compound_t *ezsignsignature_request_compound_create(
     ezsignsignature_request_compound_local_var->e_ezsignsignature_attachmentnamesource = e_ezsignsignature_attachmentnamesource;
     ezsignsignature_request_compound_local_var->s_ezsignsignature_attachmentdescription = s_ezsignsignature_attachmentdescription;
     ezsignsignature_request_compound_local_var->i_ezsignsignature_validationstep = i_ezsignsignature_validationstep;
+    ezsignsignature_request_compound_local_var->i_ezsignsignature_maxlength = i_ezsignsignature_maxlength;
     ezsignsignature_request_compound_local_var->e_ezsignsignature_textvalidation = e_ezsignsignature_textvalidation;
     ezsignsignature_request_compound_local_var->s_ezsignsignature_regexp = s_ezsignsignature_regexp;
     ezsignsignature_request_compound_local_var->b_ezsignsignature_customdate = b_ezsignsignature_customdate;
@@ -361,6 +363,14 @@ cJSON *ezsignsignature_request_compound_convertToJSON(ezsignsignature_request_co
     // ezsignsignature_request_compound->i_ezsignsignature_validationstep
     if(ezsignsignature_request_compound->i_ezsignsignature_validationstep) {
     if(cJSON_AddNumberToObject(item, "iEzsignsignatureValidationstep", ezsignsignature_request_compound->i_ezsignsignature_validationstep) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // ezsignsignature_request_compound->i_ezsignsignature_maxlength
+    if(ezsignsignature_request_compound->i_ezsignsignature_maxlength) {
+    if(cJSON_AddNumberToObject(item, "iEzsignsignatureMaxlength", ezsignsignature_request_compound->i_ezsignsignature_maxlength) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -615,6 +625,15 @@ ezsignsignature_request_compound_t *ezsignsignature_request_compound_parseFromJS
     }
     }
 
+    // ezsignsignature_request_compound->i_ezsignsignature_maxlength
+    cJSON *i_ezsignsignature_maxlength = cJSON_GetObjectItemCaseSensitive(ezsignsignature_request_compoundJSON, "iEzsignsignatureMaxlength");
+    if (i_ezsignsignature_maxlength) { 
+    if(!cJSON_IsNumber(i_ezsignsignature_maxlength))
+    {
+    goto end; //Numeric
+    }
+    }
+
     // ezsignsignature_request_compound->e_ezsignsignature_textvalidation
     cJSON *e_ezsignsignature_textvalidation = cJSON_GetObjectItemCaseSensitive(ezsignsignature_request_compoundJSON, "eEzsignsignatureTextvalidation");
     if (e_ezsignsignature_textvalidation) { 
@@ -680,6 +699,7 @@ ezsignsignature_request_compound_t *ezsignsignature_request_compound_parseFromJS
         e_ezsignsignature_attachmentnamesource ? e_ezsignsignature_attachmentnamesource_local_nonprim : NULL,
         s_ezsignsignature_attachmentdescription && !cJSON_IsNull(s_ezsignsignature_attachmentdescription) ? strdup(s_ezsignsignature_attachmentdescription->valuestring) : NULL,
         i_ezsignsignature_validationstep ? i_ezsignsignature_validationstep->valuedouble : 0,
+        i_ezsignsignature_maxlength ? i_ezsignsignature_maxlength->valuedouble : 0,
         e_ezsignsignature_textvalidation ? e_ezsignsignature_textvalidation_local_nonprim : NULL,
         s_ezsignsignature_regexp && !cJSON_IsNull(s_ezsignsignature_regexp) ? strdup(s_ezsignsignature_regexp->valuestring) : NULL,
         b_ezsignsignature_customdate ? b_ezsignsignature_customdate->valueint : 0,

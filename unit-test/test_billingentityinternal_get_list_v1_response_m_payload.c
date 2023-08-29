@@ -22,15 +22,15 @@ billingentityinternal_get_list_v1_response_m_payload_t* instantiate_billingentit
   billingentityinternal_get_list_v1_response_m_payload_t* billingentityinternal_get_list_v1_response_m_payload = NULL;
   if (include_optional) {
     billingentityinternal_get_list_v1_response_m_payload = billingentityinternal_get_list_v1_response_m_payload_create(
-      list_createList(),
       100,
-      533
+      533,
+      list_createList()
     );
   } else {
     billingentityinternal_get_list_v1_response_m_payload = billingentityinternal_get_list_v1_response_m_payload_create(
-      list_createList(),
       100,
-      533
+      533,
+      list_createList()
     );
   }
 

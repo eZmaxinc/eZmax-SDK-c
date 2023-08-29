@@ -22,16 +22,16 @@ typedef struct ezsignfolder_get_communication_count_v1_response_t ezsignfolder_g
 
 
 typedef struct ezsignfolder_get_communication_count_v1_response_t {
-    struct ezsignfolder_get_communication_count_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct ezsignfolder_get_communication_count_v1_response_m_payload_t *m_payload; //model
 
 } ezsignfolder_get_communication_count_v1_response_t;
 
 ezsignfolder_get_communication_count_v1_response_t *ezsignfolder_get_communication_count_v1_response_create(
-    ezsignfolder_get_communication_count_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    ezsignfolder_get_communication_count_v1_response_m_payload_t *m_payload
 );
 
 void ezsignfolder_get_communication_count_v1_response_free(ezsignfolder_get_communication_count_v1_response_t *ezsignfolder_get_communication_count_v1_response);

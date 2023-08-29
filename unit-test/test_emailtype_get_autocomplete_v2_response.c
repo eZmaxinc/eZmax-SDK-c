@@ -16,9 +16,9 @@
 #include "../model/emailtype_get_autocomplete_v2_response.h"
 emailtype_get_autocomplete_v2_response_t* instantiate_emailtype_get_autocomplete_v2_response(int include_optional);
 
-#include "test_emailtype_get_autocomplete_v2_response_m_payload.c"
 #include "test_common_response_obj_debug_payload.c"
 #include "test_common_response_obj_debug.c"
+#include "test_emailtype_get_autocomplete_v2_response_m_payload.c"
 
 
 emailtype_get_autocomplete_v2_response_t* instantiate_emailtype_get_autocomplete_v2_response(int include_optional) {
@@ -26,16 +26,16 @@ emailtype_get_autocomplete_v2_response_t* instantiate_emailtype_get_autocomplete
   if (include_optional) {
     emailtype_get_autocomplete_v2_response = emailtype_get_autocomplete_v2_response_create(
        // false, not to have infinite recursion
-      instantiate_emailtype_get_autocomplete_v2_response_m_payload(0),
-       // false, not to have infinite recursion
       instantiate_common_response_obj_debug_payload(0),
-      {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objSQLQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]}
+      {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objSQLQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]},
+       // false, not to have infinite recursion
+      instantiate_emailtype_get_autocomplete_v2_response_m_payload(0)
     );
   } else {
     emailtype_get_autocomplete_v2_response = emailtype_get_autocomplete_v2_response_create(
       NULL,
-      NULL,
-      {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objSQLQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]}
+      {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objSQLQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]},
+      NULL
     );
   }
 

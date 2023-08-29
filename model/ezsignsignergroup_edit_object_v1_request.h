@@ -20,12 +20,12 @@ typedef struct ezsignsignergroup_edit_object_v1_request_t ezsignsignergroup_edit
 
 
 typedef struct ezsignsignergroup_edit_object_v1_request_t {
-    struct ezsignsignergroup_request_compound_t *obj_branding; //model
+    struct ezsignsignergroup_request_compound_t *obj_ezsignsignergroup; //model
 
 } ezsignsignergroup_edit_object_v1_request_t;
 
 ezsignsignergroup_edit_object_v1_request_t *ezsignsignergroup_edit_object_v1_request_create(
-    ezsignsignergroup_request_compound_t *obj_branding
+    ezsignsignergroup_request_compound_t *obj_ezsignsignergroup
 );
 
 void ezsignsignergroup_edit_object_v1_request_free(ezsignsignergroup_edit_object_v1_request_t *ezsignsignergroup_edit_object_v1_request);

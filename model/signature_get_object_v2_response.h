@@ -22,16 +22,16 @@ typedef struct signature_get_object_v2_response_t signature_get_object_v2_respon
 
 
 typedef struct signature_get_object_v2_response_t {
-    struct signature_get_object_v2_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct signature_get_object_v2_response_m_payload_t *m_payload; //model
 
 } signature_get_object_v2_response_t;
 
 signature_get_object_v2_response_t *signature_get_object_v2_response_create(
-    signature_get_object_v2_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    signature_get_object_v2_response_m_payload_t *m_payload
 );
 
 void signature_get_object_v2_response_free(signature_get_object_v2_response_t *signature_get_object_v2_response);

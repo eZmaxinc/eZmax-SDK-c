@@ -22,16 +22,16 @@ typedef struct ezsignfoldersignerassociation_get_in_person_login_url_v1_response
 
 
 typedef struct ezsignfoldersignerassociation_get_in_person_login_url_v1_response_t {
-    struct ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_t *m_payload; //model
 
 } ezsignfoldersignerassociation_get_in_person_login_url_v1_response_t;
 
 ezsignfoldersignerassociation_get_in_person_login_url_v1_response_t *ezsignfoldersignerassociation_get_in_person_login_url_v1_response_create(
-    ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_t *m_payload
 );
 
 void ezsignfoldersignerassociation_get_in_person_login_url_v1_response_free(ezsignfoldersignerassociation_get_in_person_login_url_v1_response_t *ezsignfoldersignerassociation_get_in_person_login_url_v1_response);

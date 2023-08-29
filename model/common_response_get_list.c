@@ -40,7 +40,9 @@ cJSON *common_response_get_list_convertToJSON(common_response_get_list_t *common
     cJSON *item = cJSON_CreateObject();
 
     // common_response_get_list->obj_debug_payload
-    if(common_response_get_list->obj_debug_payload) {
+    if (!common_response_get_list->obj_debug_payload) {
+        goto fail;
+    }
     cJSON *obj_debug_payload_local_JSON = common_response_obj_debug_payload_get_list_convertToJSON(common_response_get_list->obj_debug_payload);
     if(obj_debug_payload_local_JSON == NULL) {
     goto fail; //model
@@ -48,7 +50,6 @@ cJSON *common_response_get_list_convertToJSON(common_response_get_list_t *common
     cJSON_AddItemToObject(item, "objDebugPayload", obj_debug_payload_local_JSON);
     if(item->child == NULL) {
     goto fail;
-    }
     }
 
 
@@ -84,9 +85,12 @@ common_response_get_list_t *common_response_get_list_parseFromJSON(cJSON *common
 
     // common_response_get_list->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(common_response_get_listJSON, "objDebugPayload");
-    if (obj_debug_payload) { 
-    obj_debug_payload_local_nonprim = common_response_obj_debug_payload_get_list_parseFromJSON(obj_debug_payload); //nonprimitive
+    if (!obj_debug_payload) {
+        goto end;
     }
+
+    
+    obj_debug_payload_local_nonprim = common_response_obj_debug_payload_get_list_parseFromJSON(obj_debug_payload); //nonprimitive
 
     // common_response_get_list->obj_debug
     cJSON *obj_debug = cJSON_GetObjectItemCaseSensitive(common_response_get_listJSON, "objDebug");
@@ -96,7 +100,7 @@ common_response_get_list_t *common_response_get_list_parseFromJSON(cJSON *common
 
 
     common_response_get_list_local_var = common_response_get_list_create (
-        obj_debug_payload ? obj_debug_payload_local_nonprim : NULL,
+        obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
 

@@ -40,7 +40,9 @@ cJSON *permission_delete_object_v1_response_convertToJSON(permission_delete_obje
     cJSON *item = cJSON_CreateObject();
 
     // permission_delete_object_v1_response->obj_debug_payload
-    if(permission_delete_object_v1_response->obj_debug_payload) {
+    if (!permission_delete_object_v1_response->obj_debug_payload) {
+        goto fail;
+    }
     cJSON *obj_debug_payload_local_JSON = common_response_obj_debug_payload_convertToJSON(permission_delete_object_v1_response->obj_debug_payload);
     if(obj_debug_payload_local_JSON == NULL) {
     goto fail; //model
@@ -48,7 +50,6 @@ cJSON *permission_delete_object_v1_response_convertToJSON(permission_delete_obje
     cJSON_AddItemToObject(item, "objDebugPayload", obj_debug_payload_local_JSON);
     if(item->child == NULL) {
     goto fail;
-    }
     }
 
 
@@ -84,9 +85,12 @@ permission_delete_object_v1_response_t *permission_delete_object_v1_response_par
 
     // permission_delete_object_v1_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(permission_delete_object_v1_responseJSON, "objDebugPayload");
-    if (obj_debug_payload) { 
-    obj_debug_payload_local_nonprim = common_response_obj_debug_payload_parseFromJSON(obj_debug_payload); //nonprimitive
+    if (!obj_debug_payload) {
+        goto end;
     }
+
+    
+    obj_debug_payload_local_nonprim = common_response_obj_debug_payload_parseFromJSON(obj_debug_payload); //nonprimitive
 
     // permission_delete_object_v1_response->obj_debug
     cJSON *obj_debug = cJSON_GetObjectItemCaseSensitive(permission_delete_object_v1_responseJSON, "objDebug");
@@ -96,7 +100,7 @@ permission_delete_object_v1_response_t *permission_delete_object_v1_response_par
 
 
     permission_delete_object_v1_response_local_var = permission_delete_object_v1_response_create (
-        obj_debug_payload ? obj_debug_payload_local_nonprim : NULL,
+        obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
 

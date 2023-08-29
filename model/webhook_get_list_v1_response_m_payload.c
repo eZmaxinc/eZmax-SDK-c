@@ -6,17 +6,17 @@
 
 
 webhook_get_list_v1_response_m_payload_t *webhook_get_list_v1_response_m_payload_create(
-    list_t *a_obj_webhook,
     int i_row_returned,
-    int i_row_filtered
+    int i_row_filtered,
+    list_t *a_obj_webhook
     ) {
     webhook_get_list_v1_response_m_payload_t *webhook_get_list_v1_response_m_payload_local_var = malloc(sizeof(webhook_get_list_v1_response_m_payload_t));
     if (!webhook_get_list_v1_response_m_payload_local_var) {
         return NULL;
     }
-    webhook_get_list_v1_response_m_payload_local_var->a_obj_webhook = a_obj_webhook;
     webhook_get_list_v1_response_m_payload_local_var->i_row_returned = i_row_returned;
     webhook_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
+    webhook_get_list_v1_response_m_payload_local_var->a_obj_webhook = a_obj_webhook;
 
     return webhook_get_list_v1_response_m_payload_local_var;
 }
@@ -40,6 +40,24 @@ void webhook_get_list_v1_response_m_payload_free(webhook_get_list_v1_response_m_
 cJSON *webhook_get_list_v1_response_m_payload_convertToJSON(webhook_get_list_v1_response_m_payload_t *webhook_get_list_v1_response_m_payload) {
     cJSON *item = cJSON_CreateObject();
 
+    // webhook_get_list_v1_response_m_payload->i_row_returned
+    if (!webhook_get_list_v1_response_m_payload->i_row_returned) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iRowReturned", webhook_get_list_v1_response_m_payload->i_row_returned) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // webhook_get_list_v1_response_m_payload->i_row_filtered
+    if (!webhook_get_list_v1_response_m_payload->i_row_filtered) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iRowFiltered", webhook_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
+    goto fail; //Numeric
+    }
+
+
     // webhook_get_list_v1_response_m_payload->a_obj_webhook
     if (!webhook_get_list_v1_response_m_payload->a_obj_webhook) {
         goto fail;
@@ -60,24 +78,6 @@ cJSON *webhook_get_list_v1_response_m_payload_convertToJSON(webhook_get_list_v1_
     }
     }
 
-
-    // webhook_get_list_v1_response_m_payload->i_row_returned
-    if (!webhook_get_list_v1_response_m_payload->i_row_returned) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "iRowReturned", webhook_get_list_v1_response_m_payload->i_row_returned) == NULL) {
-    goto fail; //Numeric
-    }
-
-
-    // webhook_get_list_v1_response_m_payload->i_row_filtered
-    if (!webhook_get_list_v1_response_m_payload->i_row_filtered) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "iRowFiltered", webhook_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
-    goto fail; //Numeric
-    }
-
     return item;
 fail:
     if (item) {
@@ -92,30 +92,6 @@ webhook_get_list_v1_response_m_payload_t *webhook_get_list_v1_response_m_payload
 
     // define the local list for webhook_get_list_v1_response_m_payload->a_obj_webhook
     list_t *a_obj_webhookList = NULL;
-
-    // webhook_get_list_v1_response_m_payload->a_obj_webhook
-    cJSON *a_obj_webhook = cJSON_GetObjectItemCaseSensitive(webhook_get_list_v1_response_m_payloadJSON, "a_objWebhook");
-    if (!a_obj_webhook) {
-        goto end;
-    }
-
-    
-    cJSON *a_obj_webhook_local_nonprimitive = NULL;
-    if(!cJSON_IsArray(a_obj_webhook)){
-        goto end; //nonprimitive container
-    }
-
-    a_obj_webhookList = list_createList();
-
-    cJSON_ArrayForEach(a_obj_webhook_local_nonprimitive,a_obj_webhook )
-    {
-        if(!cJSON_IsObject(a_obj_webhook_local_nonprimitive)){
-            goto end;
-        }
-        webhook_list_element_t *a_obj_webhookItem = webhook_list_element_parseFromJSON(a_obj_webhook_local_nonprimitive);
-
-        list_addElement(a_obj_webhookList, a_obj_webhookItem);
-    }
 
     // webhook_get_list_v1_response_m_payload->i_row_returned
     cJSON *i_row_returned = cJSON_GetObjectItemCaseSensitive(webhook_get_list_v1_response_m_payloadJSON, "iRowReturned");
@@ -141,11 +117,35 @@ webhook_get_list_v1_response_m_payload_t *webhook_get_list_v1_response_m_payload
     goto end; //Numeric
     }
 
+    // webhook_get_list_v1_response_m_payload->a_obj_webhook
+    cJSON *a_obj_webhook = cJSON_GetObjectItemCaseSensitive(webhook_get_list_v1_response_m_payloadJSON, "a_objWebhook");
+    if (!a_obj_webhook) {
+        goto end;
+    }
+
+    
+    cJSON *a_obj_webhook_local_nonprimitive = NULL;
+    if(!cJSON_IsArray(a_obj_webhook)){
+        goto end; //nonprimitive container
+    }
+
+    a_obj_webhookList = list_createList();
+
+    cJSON_ArrayForEach(a_obj_webhook_local_nonprimitive,a_obj_webhook )
+    {
+        if(!cJSON_IsObject(a_obj_webhook_local_nonprimitive)){
+            goto end;
+        }
+        webhook_list_element_t *a_obj_webhookItem = webhook_list_element_parseFromJSON(a_obj_webhook_local_nonprimitive);
+
+        list_addElement(a_obj_webhookList, a_obj_webhookItem);
+    }
+
 
     webhook_get_list_v1_response_m_payload_local_var = webhook_get_list_v1_response_m_payload_create (
-        a_obj_webhookList,
         i_row_returned->valuedouble,
-        i_row_filtered->valuedouble
+        i_row_filtered->valuedouble,
+        a_obj_webhookList
         );
 
     return webhook_get_list_v1_response_m_payload_local_var;

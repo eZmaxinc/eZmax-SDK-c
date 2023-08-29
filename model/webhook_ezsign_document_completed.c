@@ -6,17 +6,17 @@
 
 
 webhook_ezsign_document_completed_t *webhook_ezsign_document_completed_create(
-    ezsigndocument_response_t *obj_ezsigndocument,
     custom_webhook_response_t *obj_webhook,
-    list_t *a_obj_attempt
+    list_t *a_obj_attempt,
+    ezsigndocument_response_t *obj_ezsigndocument
     ) {
     webhook_ezsign_document_completed_t *webhook_ezsign_document_completed_local_var = malloc(sizeof(webhook_ezsign_document_completed_t));
     if (!webhook_ezsign_document_completed_local_var) {
         return NULL;
     }
-    webhook_ezsign_document_completed_local_var->obj_ezsigndocument = obj_ezsigndocument;
     webhook_ezsign_document_completed_local_var->obj_webhook = obj_webhook;
     webhook_ezsign_document_completed_local_var->a_obj_attempt = a_obj_attempt;
+    webhook_ezsign_document_completed_local_var->obj_ezsigndocument = obj_ezsigndocument;
 
     return webhook_ezsign_document_completed_local_var;
 }
@@ -27,10 +27,6 @@ void webhook_ezsign_document_completed_free(webhook_ezsign_document_completed_t 
         return ;
     }
     listEntry_t *listEntry;
-    if (webhook_ezsign_document_completed->obj_ezsigndocument) {
-        ezsigndocument_response_free(webhook_ezsign_document_completed->obj_ezsigndocument);
-        webhook_ezsign_document_completed->obj_ezsigndocument = NULL;
-    }
     if (webhook_ezsign_document_completed->obj_webhook) {
         custom_webhook_response_free(webhook_ezsign_document_completed->obj_webhook);
         webhook_ezsign_document_completed->obj_webhook = NULL;
@@ -42,25 +38,15 @@ void webhook_ezsign_document_completed_free(webhook_ezsign_document_completed_t 
         list_freeList(webhook_ezsign_document_completed->a_obj_attempt);
         webhook_ezsign_document_completed->a_obj_attempt = NULL;
     }
+    if (webhook_ezsign_document_completed->obj_ezsigndocument) {
+        ezsigndocument_response_free(webhook_ezsign_document_completed->obj_ezsigndocument);
+        webhook_ezsign_document_completed->obj_ezsigndocument = NULL;
+    }
     free(webhook_ezsign_document_completed);
 }
 
 cJSON *webhook_ezsign_document_completed_convertToJSON(webhook_ezsign_document_completed_t *webhook_ezsign_document_completed) {
     cJSON *item = cJSON_CreateObject();
-
-    // webhook_ezsign_document_completed->obj_ezsigndocument
-    if (!webhook_ezsign_document_completed->obj_ezsigndocument) {
-        goto fail;
-    }
-    cJSON *obj_ezsigndocument_local_JSON = ezsigndocument_response_convertToJSON(webhook_ezsign_document_completed->obj_ezsigndocument);
-    if(obj_ezsigndocument_local_JSON == NULL) {
-    goto fail; //model
-    }
-    cJSON_AddItemToObject(item, "objEzsigndocument", obj_ezsigndocument_local_JSON);
-    if(item->child == NULL) {
-    goto fail;
-    }
-
 
     // webhook_ezsign_document_completed->obj_webhook
     if (!webhook_ezsign_document_completed->obj_webhook) {
@@ -96,6 +82,20 @@ cJSON *webhook_ezsign_document_completed_convertToJSON(webhook_ezsign_document_c
     }
     }
 
+
+    // webhook_ezsign_document_completed->obj_ezsigndocument
+    if (!webhook_ezsign_document_completed->obj_ezsigndocument) {
+        goto fail;
+    }
+    cJSON *obj_ezsigndocument_local_JSON = ezsigndocument_response_convertToJSON(webhook_ezsign_document_completed->obj_ezsigndocument);
+    if(obj_ezsigndocument_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objEzsigndocument", obj_ezsigndocument_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
     return item;
 fail:
     if (item) {
@@ -108,23 +108,14 @@ webhook_ezsign_document_completed_t *webhook_ezsign_document_completed_parseFrom
 
     webhook_ezsign_document_completed_t *webhook_ezsign_document_completed_local_var = NULL;
 
-    // define the local variable for webhook_ezsign_document_completed->obj_ezsigndocument
-    ezsigndocument_response_t *obj_ezsigndocument_local_nonprim = NULL;
-
     // define the local variable for webhook_ezsign_document_completed->obj_webhook
     custom_webhook_response_t *obj_webhook_local_nonprim = NULL;
 
     // define the local list for webhook_ezsign_document_completed->a_obj_attempt
     list_t *a_obj_attemptList = NULL;
 
-    // webhook_ezsign_document_completed->obj_ezsigndocument
-    cJSON *obj_ezsigndocument = cJSON_GetObjectItemCaseSensitive(webhook_ezsign_document_completedJSON, "objEzsigndocument");
-    if (!obj_ezsigndocument) {
-        goto end;
-    }
-
-    
-    obj_ezsigndocument_local_nonprim = ezsigndocument_response_parseFromJSON(obj_ezsigndocument); //nonprimitive
+    // define the local variable for webhook_ezsign_document_completed->obj_ezsigndocument
+    ezsigndocument_response_t *obj_ezsigndocument_local_nonprim = NULL;
 
     // webhook_ezsign_document_completed->obj_webhook
     cJSON *obj_webhook = cJSON_GetObjectItemCaseSensitive(webhook_ezsign_document_completedJSON, "objWebhook");
@@ -159,19 +150,24 @@ webhook_ezsign_document_completed_t *webhook_ezsign_document_completed_parseFrom
         list_addElement(a_obj_attemptList, a_obj_attemptItem);
     }
 
+    // webhook_ezsign_document_completed->obj_ezsigndocument
+    cJSON *obj_ezsigndocument = cJSON_GetObjectItemCaseSensitive(webhook_ezsign_document_completedJSON, "objEzsigndocument");
+    if (!obj_ezsigndocument) {
+        goto end;
+    }
+
+    
+    obj_ezsigndocument_local_nonprim = ezsigndocument_response_parseFromJSON(obj_ezsigndocument); //nonprimitive
+
 
     webhook_ezsign_document_completed_local_var = webhook_ezsign_document_completed_create (
-        obj_ezsigndocument_local_nonprim,
         obj_webhook_local_nonprim,
-        a_obj_attemptList
+        a_obj_attemptList,
+        obj_ezsigndocument_local_nonprim
         );
 
     return webhook_ezsign_document_completed_local_var;
 end:
-    if (obj_ezsigndocument_local_nonprim) {
-        ezsigndocument_response_free(obj_ezsigndocument_local_nonprim);
-        obj_ezsigndocument_local_nonprim = NULL;
-    }
     if (obj_webhook_local_nonprim) {
         custom_webhook_response_free(obj_webhook_local_nonprim);
         obj_webhook_local_nonprim = NULL;
@@ -184,6 +180,10 @@ end:
         }
         list_freeList(a_obj_attemptList);
         a_obj_attemptList = NULL;
+    }
+    if (obj_ezsigndocument_local_nonprim) {
+        ezsigndocument_response_free(obj_ezsigndocument_local_nonprim);
+        obj_ezsigndocument_local_nonprim = NULL;
     }
     return NULL;
 

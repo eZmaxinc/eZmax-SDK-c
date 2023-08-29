@@ -14,13 +14,13 @@
 // Functions for enum SSELECTOR for ObjectEzmaxproductAPI_ezmaxproductGetAutocompleteV2
 
 static char* ezmaxproductGetAutocompleteV2_SSELECTOR_ToString(ezmax_api_definition__full_ezmaxproductGetAutocompleteV2_sSelector_e SSELECTOR){
-    char *SSELECTORArray[] =  { "NULL", "All" };
+    char *SSELECTORArray[] =  { "NULL", "All", "Entitydefault", "Entityother" };
     return SSELECTORArray[SSELECTOR];
 }
 
 static ezmax_api_definition__full_ezmaxproductGetAutocompleteV2_sSelector_e ezmaxproductGetAutocompleteV2_SSELECTOR_FromString(char* SSELECTOR){
     int stringToReturn = 0;
-    char *SSELECTORArray[] =  { "NULL", "All" };
+    char *SSELECTORArray[] =  { "NULL", "All", "Entitydefault", "Entityother" };
     size_t sizeofArray = sizeof(SSELECTORArray) / sizeof(SSELECTORArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(SSELECTOR, SSELECTORArray[stringToReturn]) == 0) {

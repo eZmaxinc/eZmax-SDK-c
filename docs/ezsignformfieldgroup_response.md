@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **b_ezsignformfieldgroup_readonly** | **int** | Whether the Ezsignformfieldgroup is read only or not. | 
 **i_ezsignformfieldgroup_maxlength** | **int** | The maximum length for the value in the Ezsignformfieldgroup  This can only be set if eEzsignformfieldgroupType is **Text** or **Textarea** | [optional] 
 **b_ezsignformfieldgroup_encrypted** | **int** | Whether the Ezsignformfieldgroup is encrypted in the database or not. Encrypted values are not displayed on the Ezsigndocument. This can only be set if eEzsignformfieldgroupType is **Text** or **Textarea** | [optional] 
+**e_ezsignformfieldgroup_textvalidation** | **enum_textvalidation_t \*** |  | [optional] 
 **s_ezsignformfieldgroup_regexp** | **char \*** | A regular expression to indicate what values are acceptable for the Ezsignformfieldgroup.  This can only be set if eEzsignformfieldgroupType is **Text** or **Textarea** | [optional] 
 **t_ezsignformfieldgroup_tooltip** | **char \*** | A tooltip that will be presented to Ezsignsigner about the Ezsignformfieldgroup | [optional] 
 **e_ezsignformfieldgroup_tooltipposition** | **field_e_ezsignformfieldgroup_tooltipposition_t \*** |  | [optional] 

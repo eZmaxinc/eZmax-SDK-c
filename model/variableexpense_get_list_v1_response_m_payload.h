@@ -20,16 +20,16 @@ typedef struct variableexpense_get_list_v1_response_m_payload_t variableexpense_
 
 
 typedef struct variableexpense_get_list_v1_response_m_payload_t {
-    list_t *a_obj_variableexpense; //nonprimitive container
     int i_row_returned; //numeric
     int i_row_filtered; //numeric
+    list_t *a_obj_variableexpense; //nonprimitive container
 
 } variableexpense_get_list_v1_response_m_payload_t;
 
 variableexpense_get_list_v1_response_m_payload_t *variableexpense_get_list_v1_response_m_payload_create(
-    list_t *a_obj_variableexpense,
     int i_row_returned,
-    int i_row_filtered
+    int i_row_filtered,
+    list_t *a_obj_variableexpense
 );
 
 void variableexpense_get_list_v1_response_m_payload_free(variableexpense_get_list_v1_response_m_payload_t *variableexpense_get_list_v1_response_m_payload);

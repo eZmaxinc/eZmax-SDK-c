@@ -40,7 +40,9 @@ cJSON *common_response_convertToJSON(common_response_t *common_response) {
     cJSON *item = cJSON_CreateObject();
 
     // common_response->obj_debug_payload
-    if(common_response->obj_debug_payload) {
+    if (!common_response->obj_debug_payload) {
+        goto fail;
+    }
     cJSON *obj_debug_payload_local_JSON = common_response_obj_debug_payload_convertToJSON(common_response->obj_debug_payload);
     if(obj_debug_payload_local_JSON == NULL) {
     goto fail; //model
@@ -48,7 +50,6 @@ cJSON *common_response_convertToJSON(common_response_t *common_response) {
     cJSON_AddItemToObject(item, "objDebugPayload", obj_debug_payload_local_JSON);
     if(item->child == NULL) {
     goto fail;
-    }
     }
 
 
@@ -84,9 +85,12 @@ common_response_t *common_response_parseFromJSON(cJSON *common_responseJSON){
 
     // common_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(common_responseJSON, "objDebugPayload");
-    if (obj_debug_payload) { 
-    obj_debug_payload_local_nonprim = common_response_obj_debug_payload_parseFromJSON(obj_debug_payload); //nonprimitive
+    if (!obj_debug_payload) {
+        goto end;
     }
+
+    
+    obj_debug_payload_local_nonprim = common_response_obj_debug_payload_parseFromJSON(obj_debug_payload); //nonprimitive
 
     // common_response->obj_debug
     cJSON *obj_debug = cJSON_GetObjectItemCaseSensitive(common_responseJSON, "objDebug");
@@ -96,7 +100,7 @@ common_response_t *common_response_parseFromJSON(cJSON *common_responseJSON){
 
 
     common_response_local_var = common_response_create (
-        obj_debug_payload ? obj_debug_payload_local_nonprim : NULL,
+        obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );
 

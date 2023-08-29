@@ -22,16 +22,16 @@ typedef struct webhook_userstaged_userstaged_created_t webhook_userstaged_userst
 
 
 typedef struct webhook_userstaged_userstaged_created_t {
-    struct userstaged_response_compound_t *obj_userstaged; //model
     struct custom_webhook_response_t *obj_webhook; //model
     list_t *a_obj_attempt; //nonprimitive container
+    struct userstaged_response_compound_t *obj_userstaged; //model
 
 } webhook_userstaged_userstaged_created_t;
 
 webhook_userstaged_userstaged_created_t *webhook_userstaged_userstaged_created_create(
-    userstaged_response_compound_t *obj_userstaged,
     custom_webhook_response_t *obj_webhook,
-    list_t *a_obj_attempt
+    list_t *a_obj_attempt,
+    userstaged_response_compound_t *obj_userstaged
 );
 
 void webhook_userstaged_userstaged_created_free(webhook_userstaged_userstaged_created_t *webhook_userstaged_userstaged_created);

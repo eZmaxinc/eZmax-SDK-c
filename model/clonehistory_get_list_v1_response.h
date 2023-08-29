@@ -22,16 +22,16 @@ typedef struct clonehistory_get_list_v1_response_t clonehistory_get_list_v1_resp
 
 
 typedef struct clonehistory_get_list_v1_response_t {
-    struct clonehistory_get_list_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_get_list_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct clonehistory_get_list_v1_response_m_payload_t *m_payload; //model
 
 } clonehistory_get_list_v1_response_t;
 
 clonehistory_get_list_v1_response_t *clonehistory_get_list_v1_response_create(
-    clonehistory_get_list_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_get_list_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    clonehistory_get_list_v1_response_m_payload_t *m_payload
 );
 
 void clonehistory_get_list_v1_response_free(clonehistory_get_list_v1_response_t *clonehistory_get_list_v1_response);

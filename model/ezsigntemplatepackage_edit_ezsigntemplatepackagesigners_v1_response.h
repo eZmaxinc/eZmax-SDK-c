@@ -22,16 +22,16 @@ typedef struct ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_respon
 
 
 typedef struct ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_t {
-    struct ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_m_payload_t *m_payload; //model
 
 } ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_t;
 
 ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_t *ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_create(
-    ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_m_payload_t *m_payload
 );
 
 void ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_free(ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_t *ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response);

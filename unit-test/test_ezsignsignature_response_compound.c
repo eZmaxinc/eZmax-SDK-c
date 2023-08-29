@@ -46,6 +46,7 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
       "2020-12-31 23:59:59",
       7,
       "Montreal",
+      75,
       ezmax_api_definition__full_ezsignsignature_response_compound__"None",
       "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
        // false, not to have infinite recursion
@@ -80,6 +81,7 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
       "2020-12-31 23:59:59",
       7,
       "Montreal",
+      75,
       ezmax_api_definition__full_ezsignsignature_response_compound__"None",
       "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
       NULL,

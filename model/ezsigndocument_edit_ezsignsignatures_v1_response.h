@@ -22,16 +22,16 @@ typedef struct ezsigndocument_edit_ezsignsignatures_v1_response_t ezsigndocument
 
 
 typedef struct ezsigndocument_edit_ezsignsignatures_v1_response_t {
-    struct ezsigndocument_edit_ezsignsignatures_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct ezsigndocument_edit_ezsignsignatures_v1_response_m_payload_t *m_payload; //model
 
 } ezsigndocument_edit_ezsignsignatures_v1_response_t;
 
 ezsigndocument_edit_ezsignsignatures_v1_response_t *ezsigndocument_edit_ezsignsignatures_v1_response_create(
-    ezsigndocument_edit_ezsignsignatures_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    ezsigndocument_edit_ezsignsignatures_v1_response_m_payload_t *m_payload
 );
 
 void ezsigndocument_edit_ezsignsignatures_v1_response_free(ezsigndocument_edit_ezsignsignatures_v1_response_t *ezsigndocument_edit_ezsignsignatures_v1_response);

@@ -22,16 +22,16 @@ typedef struct phonetype_get_autocomplete_v2_response_t phonetype_get_autocomple
 
 
 typedef struct phonetype_get_autocomplete_v2_response_t {
-    struct phonetype_get_autocomplete_v2_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct phonetype_get_autocomplete_v2_response_m_payload_t *m_payload; //model
 
 } phonetype_get_autocomplete_v2_response_t;
 
 phonetype_get_autocomplete_v2_response_t *phonetype_get_autocomplete_v2_response_create(
-    phonetype_get_autocomplete_v2_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    phonetype_get_autocomplete_v2_response_m_payload_t *m_payload
 );
 
 void phonetype_get_autocomplete_v2_response_free(phonetype_get_autocomplete_v2_response_t *phonetype_get_autocomplete_v2_response);

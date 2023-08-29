@@ -22,16 +22,16 @@ typedef struct franchisereferalincome_create_object_v2_response_t franchiserefer
 
 
 typedef struct franchisereferalincome_create_object_v2_response_t {
-    struct franchisereferalincome_create_object_v2_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct franchisereferalincome_create_object_v2_response_m_payload_t *m_payload; //model
 
 } franchisereferalincome_create_object_v2_response_t;
 
 franchisereferalincome_create_object_v2_response_t *franchisereferalincome_create_object_v2_response_create(
-    franchisereferalincome_create_object_v2_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    franchisereferalincome_create_object_v2_response_m_payload_t *m_payload
 );
 
 void franchisereferalincome_create_object_v2_response_free(franchisereferalincome_create_object_v2_response_t *franchisereferalincome_create_object_v2_response);

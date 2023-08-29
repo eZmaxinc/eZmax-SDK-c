@@ -6,17 +6,17 @@
 
 
 ezsigntemplatepackage_get_list_v1_response_m_payload_t *ezsigntemplatepackage_get_list_v1_response_m_payload_create(
-    list_t *a_obj_ezsigntemplatepackage,
     int i_row_returned,
-    int i_row_filtered
+    int i_row_filtered,
+    list_t *a_obj_ezsigntemplatepackage
     ) {
     ezsigntemplatepackage_get_list_v1_response_m_payload_t *ezsigntemplatepackage_get_list_v1_response_m_payload_local_var = malloc(sizeof(ezsigntemplatepackage_get_list_v1_response_m_payload_t));
     if (!ezsigntemplatepackage_get_list_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsigntemplatepackage_get_list_v1_response_m_payload_local_var->a_obj_ezsigntemplatepackage = a_obj_ezsigntemplatepackage;
     ezsigntemplatepackage_get_list_v1_response_m_payload_local_var->i_row_returned = i_row_returned;
     ezsigntemplatepackage_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
+    ezsigntemplatepackage_get_list_v1_response_m_payload_local_var->a_obj_ezsigntemplatepackage = a_obj_ezsigntemplatepackage;
 
     return ezsigntemplatepackage_get_list_v1_response_m_payload_local_var;
 }
@@ -40,6 +40,24 @@ void ezsigntemplatepackage_get_list_v1_response_m_payload_free(ezsigntemplatepac
 cJSON *ezsigntemplatepackage_get_list_v1_response_m_payload_convertToJSON(ezsigntemplatepackage_get_list_v1_response_m_payload_t *ezsigntemplatepackage_get_list_v1_response_m_payload) {
     cJSON *item = cJSON_CreateObject();
 
+    // ezsigntemplatepackage_get_list_v1_response_m_payload->i_row_returned
+    if (!ezsigntemplatepackage_get_list_v1_response_m_payload->i_row_returned) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iRowReturned", ezsigntemplatepackage_get_list_v1_response_m_payload->i_row_returned) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // ezsigntemplatepackage_get_list_v1_response_m_payload->i_row_filtered
+    if (!ezsigntemplatepackage_get_list_v1_response_m_payload->i_row_filtered) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iRowFiltered", ezsigntemplatepackage_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
+    goto fail; //Numeric
+    }
+
+
     // ezsigntemplatepackage_get_list_v1_response_m_payload->a_obj_ezsigntemplatepackage
     if (!ezsigntemplatepackage_get_list_v1_response_m_payload->a_obj_ezsigntemplatepackage) {
         goto fail;
@@ -60,24 +78,6 @@ cJSON *ezsigntemplatepackage_get_list_v1_response_m_payload_convertToJSON(ezsign
     }
     }
 
-
-    // ezsigntemplatepackage_get_list_v1_response_m_payload->i_row_returned
-    if (!ezsigntemplatepackage_get_list_v1_response_m_payload->i_row_returned) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "iRowReturned", ezsigntemplatepackage_get_list_v1_response_m_payload->i_row_returned) == NULL) {
-    goto fail; //Numeric
-    }
-
-
-    // ezsigntemplatepackage_get_list_v1_response_m_payload->i_row_filtered
-    if (!ezsigntemplatepackage_get_list_v1_response_m_payload->i_row_filtered) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "iRowFiltered", ezsigntemplatepackage_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
-    goto fail; //Numeric
-    }
-
     return item;
 fail:
     if (item) {
@@ -92,30 +92,6 @@ ezsigntemplatepackage_get_list_v1_response_m_payload_t *ezsigntemplatepackage_ge
 
     // define the local list for ezsigntemplatepackage_get_list_v1_response_m_payload->a_obj_ezsigntemplatepackage
     list_t *a_obj_ezsigntemplatepackageList = NULL;
-
-    // ezsigntemplatepackage_get_list_v1_response_m_payload->a_obj_ezsigntemplatepackage
-    cJSON *a_obj_ezsigntemplatepackage = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackage_get_list_v1_response_m_payloadJSON, "a_objEzsigntemplatepackage");
-    if (!a_obj_ezsigntemplatepackage) {
-        goto end;
-    }
-
-    
-    cJSON *a_obj_ezsigntemplatepackage_local_nonprimitive = NULL;
-    if(!cJSON_IsArray(a_obj_ezsigntemplatepackage)){
-        goto end; //nonprimitive container
-    }
-
-    a_obj_ezsigntemplatepackageList = list_createList();
-
-    cJSON_ArrayForEach(a_obj_ezsigntemplatepackage_local_nonprimitive,a_obj_ezsigntemplatepackage )
-    {
-        if(!cJSON_IsObject(a_obj_ezsigntemplatepackage_local_nonprimitive)){
-            goto end;
-        }
-        ezsigntemplatepackage_list_element_t *a_obj_ezsigntemplatepackageItem = ezsigntemplatepackage_list_element_parseFromJSON(a_obj_ezsigntemplatepackage_local_nonprimitive);
-
-        list_addElement(a_obj_ezsigntemplatepackageList, a_obj_ezsigntemplatepackageItem);
-    }
 
     // ezsigntemplatepackage_get_list_v1_response_m_payload->i_row_returned
     cJSON *i_row_returned = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackage_get_list_v1_response_m_payloadJSON, "iRowReturned");
@@ -141,11 +117,35 @@ ezsigntemplatepackage_get_list_v1_response_m_payload_t *ezsigntemplatepackage_ge
     goto end; //Numeric
     }
 
+    // ezsigntemplatepackage_get_list_v1_response_m_payload->a_obj_ezsigntemplatepackage
+    cJSON *a_obj_ezsigntemplatepackage = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackage_get_list_v1_response_m_payloadJSON, "a_objEzsigntemplatepackage");
+    if (!a_obj_ezsigntemplatepackage) {
+        goto end;
+    }
+
+    
+    cJSON *a_obj_ezsigntemplatepackage_local_nonprimitive = NULL;
+    if(!cJSON_IsArray(a_obj_ezsigntemplatepackage)){
+        goto end; //nonprimitive container
+    }
+
+    a_obj_ezsigntemplatepackageList = list_createList();
+
+    cJSON_ArrayForEach(a_obj_ezsigntemplatepackage_local_nonprimitive,a_obj_ezsigntemplatepackage )
+    {
+        if(!cJSON_IsObject(a_obj_ezsigntemplatepackage_local_nonprimitive)){
+            goto end;
+        }
+        ezsigntemplatepackage_list_element_t *a_obj_ezsigntemplatepackageItem = ezsigntemplatepackage_list_element_parseFromJSON(a_obj_ezsigntemplatepackage_local_nonprimitive);
+
+        list_addElement(a_obj_ezsigntemplatepackageList, a_obj_ezsigntemplatepackageItem);
+    }
+
 
     ezsigntemplatepackage_get_list_v1_response_m_payload_local_var = ezsigntemplatepackage_get_list_v1_response_m_payload_create (
-        a_obj_ezsigntemplatepackageList,
         i_row_returned->valuedouble,
-        i_row_filtered->valuedouble
+        i_row_filtered->valuedouble,
+        a_obj_ezsigntemplatepackageList
         );
 
     return ezsigntemplatepackage_get_list_v1_response_m_payload_local_var;

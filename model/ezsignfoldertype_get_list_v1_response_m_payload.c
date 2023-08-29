@@ -6,17 +6,17 @@
 
 
 ezsignfoldertype_get_list_v1_response_m_payload_t *ezsignfoldertype_get_list_v1_response_m_payload_create(
-    list_t *a_obj_ezsignfoldertype,
     int i_row_returned,
-    int i_row_filtered
+    int i_row_filtered,
+    list_t *a_obj_ezsignfoldertype
     ) {
     ezsignfoldertype_get_list_v1_response_m_payload_t *ezsignfoldertype_get_list_v1_response_m_payload_local_var = malloc(sizeof(ezsignfoldertype_get_list_v1_response_m_payload_t));
     if (!ezsignfoldertype_get_list_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsignfoldertype_get_list_v1_response_m_payload_local_var->a_obj_ezsignfoldertype = a_obj_ezsignfoldertype;
     ezsignfoldertype_get_list_v1_response_m_payload_local_var->i_row_returned = i_row_returned;
     ezsignfoldertype_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
+    ezsignfoldertype_get_list_v1_response_m_payload_local_var->a_obj_ezsignfoldertype = a_obj_ezsignfoldertype;
 
     return ezsignfoldertype_get_list_v1_response_m_payload_local_var;
 }
@@ -40,6 +40,24 @@ void ezsignfoldertype_get_list_v1_response_m_payload_free(ezsignfoldertype_get_l
 cJSON *ezsignfoldertype_get_list_v1_response_m_payload_convertToJSON(ezsignfoldertype_get_list_v1_response_m_payload_t *ezsignfoldertype_get_list_v1_response_m_payload) {
     cJSON *item = cJSON_CreateObject();
 
+    // ezsignfoldertype_get_list_v1_response_m_payload->i_row_returned
+    if (!ezsignfoldertype_get_list_v1_response_m_payload->i_row_returned) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iRowReturned", ezsignfoldertype_get_list_v1_response_m_payload->i_row_returned) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // ezsignfoldertype_get_list_v1_response_m_payload->i_row_filtered
+    if (!ezsignfoldertype_get_list_v1_response_m_payload->i_row_filtered) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iRowFiltered", ezsignfoldertype_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
+    goto fail; //Numeric
+    }
+
+
     // ezsignfoldertype_get_list_v1_response_m_payload->a_obj_ezsignfoldertype
     if (!ezsignfoldertype_get_list_v1_response_m_payload->a_obj_ezsignfoldertype) {
         goto fail;
@@ -60,24 +78,6 @@ cJSON *ezsignfoldertype_get_list_v1_response_m_payload_convertToJSON(ezsignfolde
     }
     }
 
-
-    // ezsignfoldertype_get_list_v1_response_m_payload->i_row_returned
-    if (!ezsignfoldertype_get_list_v1_response_m_payload->i_row_returned) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "iRowReturned", ezsignfoldertype_get_list_v1_response_m_payload->i_row_returned) == NULL) {
-    goto fail; //Numeric
-    }
-
-
-    // ezsignfoldertype_get_list_v1_response_m_payload->i_row_filtered
-    if (!ezsignfoldertype_get_list_v1_response_m_payload->i_row_filtered) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "iRowFiltered", ezsignfoldertype_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
-    goto fail; //Numeric
-    }
-
     return item;
 fail:
     if (item) {
@@ -92,30 +92,6 @@ ezsignfoldertype_get_list_v1_response_m_payload_t *ezsignfoldertype_get_list_v1_
 
     // define the local list for ezsignfoldertype_get_list_v1_response_m_payload->a_obj_ezsignfoldertype
     list_t *a_obj_ezsignfoldertypeList = NULL;
-
-    // ezsignfoldertype_get_list_v1_response_m_payload->a_obj_ezsignfoldertype
-    cJSON *a_obj_ezsignfoldertype = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_get_list_v1_response_m_payloadJSON, "a_objEzsignfoldertype");
-    if (!a_obj_ezsignfoldertype) {
-        goto end;
-    }
-
-    
-    cJSON *a_obj_ezsignfoldertype_local_nonprimitive = NULL;
-    if(!cJSON_IsArray(a_obj_ezsignfoldertype)){
-        goto end; //nonprimitive container
-    }
-
-    a_obj_ezsignfoldertypeList = list_createList();
-
-    cJSON_ArrayForEach(a_obj_ezsignfoldertype_local_nonprimitive,a_obj_ezsignfoldertype )
-    {
-        if(!cJSON_IsObject(a_obj_ezsignfoldertype_local_nonprimitive)){
-            goto end;
-        }
-        ezsignfoldertype_list_element_t *a_obj_ezsignfoldertypeItem = ezsignfoldertype_list_element_parseFromJSON(a_obj_ezsignfoldertype_local_nonprimitive);
-
-        list_addElement(a_obj_ezsignfoldertypeList, a_obj_ezsignfoldertypeItem);
-    }
 
     // ezsignfoldertype_get_list_v1_response_m_payload->i_row_returned
     cJSON *i_row_returned = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_get_list_v1_response_m_payloadJSON, "iRowReturned");
@@ -141,11 +117,35 @@ ezsignfoldertype_get_list_v1_response_m_payload_t *ezsignfoldertype_get_list_v1_
     goto end; //Numeric
     }
 
+    // ezsignfoldertype_get_list_v1_response_m_payload->a_obj_ezsignfoldertype
+    cJSON *a_obj_ezsignfoldertype = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_get_list_v1_response_m_payloadJSON, "a_objEzsignfoldertype");
+    if (!a_obj_ezsignfoldertype) {
+        goto end;
+    }
+
+    
+    cJSON *a_obj_ezsignfoldertype_local_nonprimitive = NULL;
+    if(!cJSON_IsArray(a_obj_ezsignfoldertype)){
+        goto end; //nonprimitive container
+    }
+
+    a_obj_ezsignfoldertypeList = list_createList();
+
+    cJSON_ArrayForEach(a_obj_ezsignfoldertype_local_nonprimitive,a_obj_ezsignfoldertype )
+    {
+        if(!cJSON_IsObject(a_obj_ezsignfoldertype_local_nonprimitive)){
+            goto end;
+        }
+        ezsignfoldertype_list_element_t *a_obj_ezsignfoldertypeItem = ezsignfoldertype_list_element_parseFromJSON(a_obj_ezsignfoldertype_local_nonprimitive);
+
+        list_addElement(a_obj_ezsignfoldertypeList, a_obj_ezsignfoldertypeItem);
+    }
+
 
     ezsignfoldertype_get_list_v1_response_m_payload_local_var = ezsignfoldertype_get_list_v1_response_m_payload_create (
-        a_obj_ezsignfoldertypeList,
         i_row_returned->valuedouble,
-        i_row_filtered->valuedouble
+        i_row_filtered->valuedouble,
+        a_obj_ezsignfoldertypeList
         );
 
     return ezsignfoldertype_get_list_v1_response_m_payload_local_var;

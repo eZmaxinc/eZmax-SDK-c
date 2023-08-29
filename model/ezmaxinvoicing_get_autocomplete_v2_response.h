@@ -22,16 +22,16 @@ typedef struct ezmaxinvoicing_get_autocomplete_v2_response_t ezmaxinvoicing_get_
 
 
 typedef struct ezmaxinvoicing_get_autocomplete_v2_response_t {
-    struct ezmaxinvoicing_get_autocomplete_v2_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct ezmaxinvoicing_get_autocomplete_v2_response_m_payload_t *m_payload; //model
 
 } ezmaxinvoicing_get_autocomplete_v2_response_t;
 
 ezmaxinvoicing_get_autocomplete_v2_response_t *ezmaxinvoicing_get_autocomplete_v2_response_create(
-    ezmaxinvoicing_get_autocomplete_v2_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    ezmaxinvoicing_get_autocomplete_v2_response_m_payload_t *m_payload
 );
 
 void ezmaxinvoicing_get_autocomplete_v2_response_free(ezmaxinvoicing_get_autocomplete_v2_response_t *ezmaxinvoicing_get_autocomplete_v2_response);

@@ -22,16 +22,16 @@ typedef struct emailtype_get_autocomplete_v2_response_t emailtype_get_autocomple
 
 
 typedef struct emailtype_get_autocomplete_v2_response_t {
-    struct emailtype_get_autocomplete_v2_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct emailtype_get_autocomplete_v2_response_m_payload_t *m_payload; //model
 
 } emailtype_get_autocomplete_v2_response_t;
 
 emailtype_get_autocomplete_v2_response_t *emailtype_get_autocomplete_v2_response_create(
-    emailtype_get_autocomplete_v2_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    emailtype_get_autocomplete_v2_response_m_payload_t *m_payload
 );
 
 void emailtype_get_autocomplete_v2_response_free(emailtype_get_autocomplete_v2_response_t *emailtype_get_autocomplete_v2_response);

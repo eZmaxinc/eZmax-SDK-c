@@ -22,16 +22,16 @@ typedef struct systemconfiguration_get_object_v2_response_t systemconfiguration_
 
 
 typedef struct systemconfiguration_get_object_v2_response_t {
-    struct systemconfiguration_get_object_v2_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct systemconfiguration_get_object_v2_response_m_payload_t *m_payload; //model
 
 } systemconfiguration_get_object_v2_response_t;
 
 systemconfiguration_get_object_v2_response_t *systemconfiguration_get_object_v2_response_create(
-    systemconfiguration_get_object_v2_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    systemconfiguration_get_object_v2_response_m_payload_t *m_payload
 );
 
 void systemconfiguration_get_object_v2_response_free(systemconfiguration_get_object_v2_response_t *systemconfiguration_get_object_v2_response);

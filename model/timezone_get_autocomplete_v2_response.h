@@ -22,16 +22,16 @@ typedef struct timezone_get_autocomplete_v2_response_t timezone_get_autocomplete
 
 
 typedef struct timezone_get_autocomplete_v2_response_t {
-    struct timezone_get_autocomplete_v2_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct timezone_get_autocomplete_v2_response_m_payload_t *m_payload; //model
 
 } timezone_get_autocomplete_v2_response_t;
 
 timezone_get_autocomplete_v2_response_t *timezone_get_autocomplete_v2_response_create(
-    timezone_get_autocomplete_v2_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    timezone_get_autocomplete_v2_response_m_payload_t *m_payload
 );
 
 void timezone_get_autocomplete_v2_response_free(timezone_get_autocomplete_v2_response_t *timezone_get_autocomplete_v2_response);

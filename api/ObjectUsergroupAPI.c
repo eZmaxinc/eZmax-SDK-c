@@ -534,6 +534,107 @@ end:
 
 }
 
+// Edit multiple Usergroupdelegations
+//
+// Edit multiple Usergroupdelegations
+//
+usergroup_edit_usergroupdelegations_v1_response_t*
+ObjectUsergroupAPI_usergroupEditUsergroupdelegationsV1(apiClient_t *apiClient, int pkiUsergroupID , usergroup_edit_usergroupdelegations_v1_request_t * usergroup_edit_usergroupdelegations_v1_request )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/usergroup/{pkiUsergroupID}/editUsergroupdelegations")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/usergroup/{pkiUsergroupID}/editUsergroupdelegations");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiUsergroupID =  + strlen("{ pkiUsergroupID }");
+    if(pkiUsergroupID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiUsergroupID = malloc(sizeOfPathParams_pkiUsergroupID);
+    snprintf(localVarToReplace_pkiUsergroupID, sizeOfPathParams_pkiUsergroupID, "{%s}", "pkiUsergroupID");
+
+    char localVarBuff_pkiUsergroupID[256];
+    intToStr(localVarBuff_pkiUsergroupID, pkiUsergroupID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiUsergroupID, localVarBuff_pkiUsergroupID);
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_usergroup_edit_usergroupdelegations_v1_request = NULL;
+    if (usergroup_edit_usergroupdelegations_v1_request != NULL)
+    {
+        //string
+        localVarSingleItemJSON_usergroup_edit_usergroupdelegations_v1_request = usergroup_edit_usergroupdelegations_v1_request_convertToJSON(usergroup_edit_usergroupdelegations_v1_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_usergroup_edit_usergroupdelegations_v1_request);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "PUT");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectUsergroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    usergroup_edit_usergroupdelegations_v1_response_t *elementToReturn = usergroup_edit_usergroupdelegations_v1_response_parseFromJSON(ObjectUsergroupAPIlocalVarJSON);
+    cJSON_Delete(ObjectUsergroupAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_pkiUsergroupID);
+    if (localVarSingleItemJSON_usergroup_edit_usergroupdelegations_v1_request) {
+        cJSON_Delete(localVarSingleItemJSON_usergroup_edit_usergroupdelegations_v1_request);
+        localVarSingleItemJSON_usergroup_edit_usergroupdelegations_v1_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Edit multiple Usergroupmemberships
 //
 // Using this endpoint, you can edit multiple Usergroupmemberships at the same time.
@@ -1088,6 +1189,86 @@ ObjectUsergroupAPI_usergroupGetPermissionsV1(apiClient_t *apiClient, int pkiUser
     //nonprimitive not container
     cJSON *ObjectUsergroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     usergroup_get_permissions_v1_response_t *elementToReturn = usergroup_get_permissions_v1_response_parseFromJSON(ObjectUsergroupAPIlocalVarJSON);
+    cJSON_Delete(ObjectUsergroupAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiUsergroupID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve an existing Usergroup's Usergroupdelegations
+//
+usergroup_get_usergroupdelegations_v1_response_t*
+ObjectUsergroupAPI_usergroupGetUsergroupdelegationsV1(apiClient_t *apiClient, int pkiUsergroupID )
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/usergroup/{pkiUsergroupID}/getUsergroupdelegations")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/usergroup/{pkiUsergroupID}/getUsergroupdelegations");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiUsergroupID =  + strlen("{ pkiUsergroupID }");
+    if(pkiUsergroupID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiUsergroupID = malloc(sizeOfPathParams_pkiUsergroupID);
+    snprintf(localVarToReplace_pkiUsergroupID, sizeOfPathParams_pkiUsergroupID, "{%s}", "pkiUsergroupID");
+
+    char localVarBuff_pkiUsergroupID[256];
+    intToStr(localVarBuff_pkiUsergroupID, pkiUsergroupID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiUsergroupID, localVarBuff_pkiUsergroupID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectUsergroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    usergroup_get_usergroupdelegations_v1_response_t *elementToReturn = usergroup_get_usergroupdelegations_v1_response_parseFromJSON(ObjectUsergroupAPIlocalVarJSON);
     cJSON_Delete(ObjectUsergroupAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

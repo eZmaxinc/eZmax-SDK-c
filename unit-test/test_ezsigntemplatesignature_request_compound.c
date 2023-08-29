@@ -29,6 +29,8 @@ ezsigntemplatesignature_request_compound_t* instantiate_ezsigntemplatesignature_
       1,
       200,
       300,
+      200,
+      200,
       1,
       ezmax_api_definition__full_ezsigntemplatesignature_request_compound__"Name",
       "Please sign here if you agree to the terms",
@@ -38,6 +40,9 @@ ezsigntemplatesignature_request_compound_t* instantiate_ezsigntemplatesignature_
       ezmax_api_definition__full_ezsigntemplatesignature_request_compound__"Description",
       "Attachment",
       1,
+      75,
+      "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
+      ezmax_api_definition__full_ezsigntemplatesignature_request_compound__"None",
       1,
       list_createList()
     );
@@ -50,6 +55,8 @@ ezsigntemplatesignature_request_compound_t* instantiate_ezsigntemplatesignature_
       1,
       200,
       300,
+      200,
+      200,
       1,
       ezmax_api_definition__full_ezsigntemplatesignature_request_compound__"Name",
       "Please sign here if you agree to the terms",
@@ -59,6 +66,9 @@ ezsigntemplatesignature_request_compound_t* instantiate_ezsigntemplatesignature_
       ezmax_api_definition__full_ezsigntemplatesignature_request_compound__"Description",
       "Attachment",
       1,
+      75,
+      "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
+      ezmax_api_definition__full_ezsigntemplatesignature_request_compound__"None",
       1,
       list_createList()
     );

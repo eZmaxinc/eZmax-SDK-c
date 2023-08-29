@@ -55,29 +55,26 @@ cJSON *ezsignsignergroupmembership_request_convertToJSON(ezsignsignergroupmember
 
 
     // ezsignsignergroupmembership_request->fki_ezsignsigner_id
-    if (!ezsignsignergroupmembership_request->fki_ezsignsigner_id) {
-        goto fail;
-    }
+    if(ezsignsignergroupmembership_request->fki_ezsignsigner_id) {
     if(cJSON_AddNumberToObject(item, "fkiEzsignsignerID", ezsignsignergroupmembership_request->fki_ezsignsigner_id) == NULL) {
     goto fail; //Numeric
+    }
     }
 
 
     // ezsignsignergroupmembership_request->fki_user_id
-    if (!ezsignsignergroupmembership_request->fki_user_id) {
-        goto fail;
-    }
+    if(ezsignsignergroupmembership_request->fki_user_id) {
     if(cJSON_AddNumberToObject(item, "fkiUserID", ezsignsignergroupmembership_request->fki_user_id) == NULL) {
     goto fail; //Numeric
+    }
     }
 
 
     // ezsignsignergroupmembership_request->fki_usergroup_id
-    if (!ezsignsignergroupmembership_request->fki_usergroup_id) {
-        goto fail;
-    }
+    if(ezsignsignergroupmembership_request->fki_usergroup_id) {
     if(cJSON_AddNumberToObject(item, "fkiUsergroupID", ezsignsignergroupmembership_request->fki_usergroup_id) == NULL) {
     goto fail; //Numeric
+    }
     }
 
     return item;
@@ -115,47 +112,38 @@ ezsignsignergroupmembership_request_t *ezsignsignergroupmembership_request_parse
 
     // ezsignsignergroupmembership_request->fki_ezsignsigner_id
     cJSON *fki_ezsignsigner_id = cJSON_GetObjectItemCaseSensitive(ezsignsignergroupmembership_requestJSON, "fkiEzsignsignerID");
-    if (!fki_ezsignsigner_id) {
-        goto end;
-    }
-
-    
+    if (fki_ezsignsigner_id) { 
     if(!cJSON_IsNumber(fki_ezsignsigner_id))
     {
     goto end; //Numeric
     }
+    }
 
     // ezsignsignergroupmembership_request->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(ezsignsignergroupmembership_requestJSON, "fkiUserID");
-    if (!fki_user_id) {
-        goto end;
-    }
-
-    
+    if (fki_user_id) { 
     if(!cJSON_IsNumber(fki_user_id))
     {
     goto end; //Numeric
     }
+    }
 
     // ezsignsignergroupmembership_request->fki_usergroup_id
     cJSON *fki_usergroup_id = cJSON_GetObjectItemCaseSensitive(ezsignsignergroupmembership_requestJSON, "fkiUsergroupID");
-    if (!fki_usergroup_id) {
-        goto end;
-    }
-
-    
+    if (fki_usergroup_id) { 
     if(!cJSON_IsNumber(fki_usergroup_id))
     {
     goto end; //Numeric
+    }
     }
 
 
     ezsignsignergroupmembership_request_local_var = ezsignsignergroupmembership_request_create (
         pki_ezsignsignergroupmembership_id ? pki_ezsignsignergroupmembership_id->valuedouble : 0,
         fki_ezsignsignergroup_id->valuedouble,
-        fki_ezsignsigner_id->valuedouble,
-        fki_user_id->valuedouble,
-        fki_usergroup_id->valuedouble
+        fki_ezsignsigner_id ? fki_ezsignsigner_id->valuedouble : 0,
+        fki_user_id ? fki_user_id->valuedouble : 0,
+        fki_usergroup_id ? fki_usergroup_id->valuedouble : 0
         );
 
     return ezsignsignergroupmembership_request_local_var;

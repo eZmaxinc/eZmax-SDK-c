@@ -22,16 +22,16 @@ typedef struct ezsignbulksendtransmission_get_object_v2_response_t ezsignbulksen
 
 
 typedef struct ezsignbulksendtransmission_get_object_v2_response_t {
-    struct ezsignbulksendtransmission_get_object_v2_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct ezsignbulksendtransmission_get_object_v2_response_m_payload_t *m_payload; //model
 
 } ezsignbulksendtransmission_get_object_v2_response_t;
 
 ezsignbulksendtransmission_get_object_v2_response_t *ezsignbulksendtransmission_get_object_v2_response_create(
-    ezsignbulksendtransmission_get_object_v2_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    ezsignbulksendtransmission_get_object_v2_response_m_payload_t *m_payload
 );
 
 void ezsignbulksendtransmission_get_object_v2_response_free(ezsignbulksendtransmission_get_object_v2_response_t *ezsignbulksendtransmission_get_object_v2_response);

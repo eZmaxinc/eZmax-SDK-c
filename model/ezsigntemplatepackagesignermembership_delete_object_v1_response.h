@@ -22,16 +22,16 @@ typedef struct ezsigntemplatepackagesignermembership_delete_object_v1_response_t
 
 
 typedef struct ezsigntemplatepackagesignermembership_delete_object_v1_response_t {
-    struct ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_t *m_payload; //model
 
 } ezsigntemplatepackagesignermembership_delete_object_v1_response_t;
 
 ezsigntemplatepackagesignermembership_delete_object_v1_response_t *ezsigntemplatepackagesignermembership_delete_object_v1_response_create(
-    ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_t *m_payload
 );
 
 void ezsigntemplatepackagesignermembership_delete_object_v1_response_free(ezsigntemplatepackagesignermembership_delete_object_v1_response_t *ezsigntemplatepackagesignermembership_delete_object_v1_response);

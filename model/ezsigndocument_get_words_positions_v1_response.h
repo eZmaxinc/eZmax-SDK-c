@@ -22,16 +22,16 @@ typedef struct ezsigndocument_get_words_positions_v1_response_t ezsigndocument_g
 
 
 typedef struct ezsigndocument_get_words_positions_v1_response_t {
-    list_t *m_payload; //nonprimitive container
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    list_t *m_payload; //nonprimitive container
 
 } ezsigndocument_get_words_positions_v1_response_t;
 
 ezsigndocument_get_words_positions_v1_response_t *ezsigndocument_get_words_positions_v1_response_create(
-    list_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    list_t *m_payload
 );
 
 void ezsigndocument_get_words_positions_v1_response_free(ezsigndocument_get_words_positions_v1_response_t *ezsigndocument_get_words_positions_v1_response);

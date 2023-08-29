@@ -112,6 +112,7 @@ ezsignsignature_response_t *ezsignsignature_response_create(
     char *dt_ezsignsignature_date,
     int i_ezsignsignatureattachment_count,
     char *s_ezsignsignature_description,
+    int i_ezsignsignature_maxlength,
     enum_textvalidation_t *e_ezsignsignature_textvalidation,
     char *s_ezsignsignature_regexp,
     custom_contact_name_response_t *obj_contact_name,
@@ -142,6 +143,7 @@ ezsignsignature_response_t *ezsignsignature_response_create(
     ezsignsignature_response_local_var->dt_ezsignsignature_date = dt_ezsignsignature_date;
     ezsignsignature_response_local_var->i_ezsignsignatureattachment_count = i_ezsignsignatureattachment_count;
     ezsignsignature_response_local_var->s_ezsignsignature_description = s_ezsignsignature_description;
+    ezsignsignature_response_local_var->i_ezsignsignature_maxlength = i_ezsignsignature_maxlength;
     ezsignsignature_response_local_var->e_ezsignsignature_textvalidation = e_ezsignsignature_textvalidation;
     ezsignsignature_response_local_var->s_ezsignsignature_regexp = s_ezsignsignature_regexp;
     ezsignsignature_response_local_var->obj_contact_name = obj_contact_name;
@@ -402,6 +404,14 @@ cJSON *ezsignsignature_response_convertToJSON(ezsignsignature_response_t *ezsign
     if(ezsignsignature_response->s_ezsignsignature_description) {
     if(cJSON_AddStringToObject(item, "sEzsignsignatureDescription", ezsignsignature_response->s_ezsignsignature_description) == NULL) {
     goto fail; //String
+    }
+    }
+
+
+    // ezsignsignature_response->i_ezsignsignature_maxlength
+    if(ezsignsignature_response->i_ezsignsignature_maxlength) {
+    if(cJSON_AddNumberToObject(item, "iEzsignsignatureMaxlength", ezsignsignature_response->i_ezsignsignature_maxlength) == NULL) {
+    goto fail; //Numeric
     }
     }
 
@@ -687,6 +697,15 @@ ezsignsignature_response_t *ezsignsignature_response_parseFromJSON(cJSON *ezsign
     }
     }
 
+    // ezsignsignature_response->i_ezsignsignature_maxlength
+    cJSON *i_ezsignsignature_maxlength = cJSON_GetObjectItemCaseSensitive(ezsignsignature_responseJSON, "iEzsignsignatureMaxlength");
+    if (i_ezsignsignature_maxlength) { 
+    if(!cJSON_IsNumber(i_ezsignsignature_maxlength))
+    {
+    goto end; //Numeric
+    }
+    }
+
     // ezsignsignature_response->e_ezsignsignature_textvalidation
     cJSON *e_ezsignsignature_textvalidation = cJSON_GetObjectItemCaseSensitive(ezsignsignature_responseJSON, "eEzsignsignatureTextvalidation");
     if (e_ezsignsignature_textvalidation) { 
@@ -740,6 +759,7 @@ ezsignsignature_response_t *ezsignsignature_response_parseFromJSON(cJSON *ezsign
         dt_ezsignsignature_date && !cJSON_IsNull(dt_ezsignsignature_date) ? strdup(dt_ezsignsignature_date->valuestring) : NULL,
         i_ezsignsignatureattachment_count ? i_ezsignsignatureattachment_count->valuedouble : 0,
         s_ezsignsignature_description && !cJSON_IsNull(s_ezsignsignature_description) ? strdup(s_ezsignsignature_description->valuestring) : NULL,
+        i_ezsignsignature_maxlength ? i_ezsignsignature_maxlength->valuedouble : 0,
         e_ezsignsignature_textvalidation ? e_ezsignsignature_textvalidation_local_nonprim : NULL,
         s_ezsignsignature_regexp && !cJSON_IsNull(s_ezsignsignature_regexp) ? strdup(s_ezsignsignature_regexp->valuestring) : NULL,
         obj_contact_name_local_nonprim,

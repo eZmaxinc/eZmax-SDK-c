@@ -29,8 +29,6 @@ typedef struct apiClient_t {
     void *progress_data;
     long response_code;
     list_t *apiKeys_Authorization;
-    char *username;
-    char *password;
     list_t *apiKeys_Presigned;
 } apiClient_t;
 

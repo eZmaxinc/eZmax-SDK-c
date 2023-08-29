@@ -22,16 +22,16 @@ typedef struct ezsignbulksend_get_forms_data_v1_response_t ezsignbulksend_get_fo
 
 
 typedef struct ezsignbulksend_get_forms_data_v1_response_t {
-    struct ezsignbulksend_get_forms_data_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct ezsignbulksend_get_forms_data_v1_response_m_payload_t *m_payload; //model
 
 } ezsignbulksend_get_forms_data_v1_response_t;
 
 ezsignbulksend_get_forms_data_v1_response_t *ezsignbulksend_get_forms_data_v1_response_create(
-    ezsignbulksend_get_forms_data_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    ezsignbulksend_get_forms_data_v1_response_m_payload_t *m_payload
 );
 
 void ezsignbulksend_get_forms_data_v1_response_free(ezsignbulksend_get_forms_data_v1_response_t *ezsignbulksend_get_forms_data_v1_response);

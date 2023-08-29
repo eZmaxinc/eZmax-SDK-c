@@ -16,25 +16,25 @@
 #include "../model/user_create_ezsignuser_v1_response.h"
 user_create_ezsignuser_v1_response_t* instantiate_user_create_ezsignuser_v1_response(int include_optional);
 
-#include "test_user_create_ezsignuser_v1_response_m_payload.c"
 #include "test_common_response_obj_debug_payload.c"
 #include "test_common_response_obj_debug.c"
+#include "test_user_create_ezsignuser_v1_response_m_payload.c"
 
 
 user_create_ezsignuser_v1_response_t* instantiate_user_create_ezsignuser_v1_response(int include_optional) {
   user_create_ezsignuser_v1_response_t* user_create_ezsignuser_v1_response = NULL;
   if (include_optional) {
     user_create_ezsignuser_v1_response = user_create_ezsignuser_v1_response_create(
-      {"a_sEmailAddressSuccess":["someone@example.com","someone2@example.com"],"a_sEmailAddressFailure":["UserAlreadyExists@example.com"]},
        // false, not to have infinite recursion
       instantiate_common_response_obj_debug_payload(0),
-      {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objSQLQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]}
+      {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objSQLQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]},
+      {"a_sEmailAddressSuccess":["someone@example.com","someone2@example.com"],"a_sEmailAddressFailure":["UserAlreadyExists@example.com"]}
     );
   } else {
     user_create_ezsignuser_v1_response = user_create_ezsignuser_v1_response_create(
-      {"a_sEmailAddressSuccess":["someone@example.com","someone2@example.com"],"a_sEmailAddressFailure":["UserAlreadyExists@example.com"]},
       NULL,
-      {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objSQLQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]}
+      {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objSQLQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]},
+      {"a_sEmailAddressSuccess":["someone@example.com","someone2@example.com"],"a_sEmailAddressFailure":["UserAlreadyExists@example.com"]}
     );
   }
 

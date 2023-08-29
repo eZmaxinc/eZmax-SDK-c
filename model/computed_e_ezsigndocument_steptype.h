@@ -1,0 +1,32 @@
+/*
+ * computed_e_ezsigndocument_steptype.h
+ *
+ * Indicates whether the current step is a form or signatures.
+ */
+
+#ifndef _computed_e_ezsigndocument_steptype_H_
+#define _computed_e_ezsigndocument_steptype_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct computed_e_ezsigndocument_steptype_t computed_e_ezsigndocument_steptype_t;
+
+
+// Enum  for computed_e_ezsigndocument_steptype
+
+typedef enum { ezmax_api_definition__full_computed_e_ezsigndocument_steptype__NULL = 0, ezmax_api_definition__full_computed_e_ezsigndocument_steptype__Form, ezmax_api_definition__full_computed_e_ezsigndocument_steptype__Sign, ezmax_api_definition__full_computed_e_ezsigndocument_steptype__None } ezmax_api_definition__full_computed_e_ezsigndocument_steptype__e;
+
+char* computed_e_ezsigndocument_steptype_computed_e_ezsigndocument_steptype_ToString(ezmax_api_definition__full_computed_e_ezsigndocument_steptype__e computed_e_ezsigndocument_steptype);
+
+ezmax_api_definition__full_computed_e_ezsigndocument_steptype__e computed_e_ezsigndocument_steptype_computed_e_ezsigndocument_steptype_FromString(char* computed_e_ezsigndocument_steptype);
+
+//cJSON *computed_e_ezsigndocument_steptype_computed_e_ezsigndocument_steptype_convertToJSON(ezmax_api_definition__full_computed_e_ezsigndocument_steptype__e computed_e_ezsigndocument_steptype);
+
+//ezmax_api_definition__full_computed_e_ezsigndocument_steptype__e computed_e_ezsigndocument_steptype_computed_e_ezsigndocument_steptype_parseFromJSON(cJSON *computed_e_ezsigndocument_steptypeJSON);
+
+#endif /* _computed_e_ezsigndocument_steptype_H_ */
+

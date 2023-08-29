@@ -22,16 +22,16 @@ typedef struct cors_get_object_v2_response_t cors_get_object_v2_response_t;
 
 
 typedef struct cors_get_object_v2_response_t {
-    struct cors_get_object_v2_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct cors_get_object_v2_response_m_payload_t *m_payload; //model
 
 } cors_get_object_v2_response_t;
 
 cors_get_object_v2_response_t *cors_get_object_v2_response_create(
-    cors_get_object_v2_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    cors_get_object_v2_response_m_payload_t *m_payload
 );
 
 void cors_get_object_v2_response_free(cors_get_object_v2_response_t *cors_get_object_v2_response);

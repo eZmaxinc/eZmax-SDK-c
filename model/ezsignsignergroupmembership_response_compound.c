@@ -56,29 +56,26 @@ cJSON *ezsignsignergroupmembership_response_compound_convertToJSON(ezsignsignerg
 
 
     // ezsignsignergroupmembership_response_compound->fki_ezsignsigner_id
-    if (!ezsignsignergroupmembership_response_compound->fki_ezsignsigner_id) {
-        goto fail;
-    }
+    if(ezsignsignergroupmembership_response_compound->fki_ezsignsigner_id) {
     if(cJSON_AddNumberToObject(item, "fkiEzsignsignerID", ezsignsignergroupmembership_response_compound->fki_ezsignsigner_id) == NULL) {
     goto fail; //Numeric
+    }
     }
 
 
     // ezsignsignergroupmembership_response_compound->fki_user_id
-    if (!ezsignsignergroupmembership_response_compound->fki_user_id) {
-        goto fail;
-    }
+    if(ezsignsignergroupmembership_response_compound->fki_user_id) {
     if(cJSON_AddNumberToObject(item, "fkiUserID", ezsignsignergroupmembership_response_compound->fki_user_id) == NULL) {
     goto fail; //Numeric
+    }
     }
 
 
     // ezsignsignergroupmembership_response_compound->fki_usergroup_id
-    if (!ezsignsignergroupmembership_response_compound->fki_usergroup_id) {
-        goto fail;
-    }
+    if(ezsignsignergroupmembership_response_compound->fki_usergroup_id) {
     if(cJSON_AddNumberToObject(item, "fkiUsergroupID", ezsignsignergroupmembership_response_compound->fki_usergroup_id) == NULL) {
     goto fail; //Numeric
+    }
     }
 
     return item;
@@ -119,47 +116,38 @@ ezsignsignergroupmembership_response_compound_t *ezsignsignergroupmembership_res
 
     // ezsignsignergroupmembership_response_compound->fki_ezsignsigner_id
     cJSON *fki_ezsignsigner_id = cJSON_GetObjectItemCaseSensitive(ezsignsignergroupmembership_response_compoundJSON, "fkiEzsignsignerID");
-    if (!fki_ezsignsigner_id) {
-        goto end;
-    }
-
-    
+    if (fki_ezsignsigner_id) { 
     if(!cJSON_IsNumber(fki_ezsignsigner_id))
     {
     goto end; //Numeric
     }
+    }
 
     // ezsignsignergroupmembership_response_compound->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(ezsignsignergroupmembership_response_compoundJSON, "fkiUserID");
-    if (!fki_user_id) {
-        goto end;
-    }
-
-    
+    if (fki_user_id) { 
     if(!cJSON_IsNumber(fki_user_id))
     {
     goto end; //Numeric
     }
+    }
 
     // ezsignsignergroupmembership_response_compound->fki_usergroup_id
     cJSON *fki_usergroup_id = cJSON_GetObjectItemCaseSensitive(ezsignsignergroupmembership_response_compoundJSON, "fkiUsergroupID");
-    if (!fki_usergroup_id) {
-        goto end;
-    }
-
-    
+    if (fki_usergroup_id) { 
     if(!cJSON_IsNumber(fki_usergroup_id))
     {
     goto end; //Numeric
+    }
     }
 
 
     ezsignsignergroupmembership_response_compound_local_var = ezsignsignergroupmembership_response_compound_create (
         pki_ezsignsignergroupmembership_id->valuedouble,
         fki_ezsignsignergroup_id->valuedouble,
-        fki_ezsignsigner_id->valuedouble,
-        fki_user_id->valuedouble,
-        fki_usergroup_id->valuedouble
+        fki_ezsignsigner_id ? fki_ezsignsigner_id->valuedouble : 0,
+        fki_user_id ? fki_user_id->valuedouble : 0,
+        fki_usergroup_id ? fki_usergroup_id->valuedouble : 0
         );
 
     return ezsignsignergroupmembership_response_compound_local_var;

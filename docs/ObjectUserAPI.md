@@ -7,12 +7,14 @@ Method | HTTP request | Description
 [**ObjectUserAPI_userCreateObjectV1**](ObjectUserAPI.md#ObjectUserAPI_userCreateObjectV1) | **POST** /1/object/user | Create a new User
 [**ObjectUserAPI_userEditObjectV1**](ObjectUserAPI.md#ObjectUserAPI_userEditObjectV1) | **PUT** /1/object/user/{pkiUserID} | Edit an existing User
 [**ObjectUserAPI_userEditPermissionsV1**](ObjectUserAPI.md#ObjectUserAPI_userEditPermissionsV1) | **PUT** /1/object/user/{pkiUserID}/editPermissions | Edit multiple Permissions
+[**ObjectUserAPI_userGetApikeysV1**](ObjectUserAPI.md#ObjectUserAPI_userGetApikeysV1) | **GET** /1/object/user/{pkiUserID}/getApikeys | Retrieve an existing User&#39;s Apikeys
 [**ObjectUserAPI_userGetAutocompleteV2**](ObjectUserAPI.md#ObjectUserAPI_userGetAutocompleteV2) | **GET** /2/object/user/getAutocomplete/{sSelector} | Retrieve Users and IDs
 [**ObjectUserAPI_userGetEffectivePermissionsV1**](ObjectUserAPI.md#ObjectUserAPI_userGetEffectivePermissionsV1) | **GET** /1/object/user/{pkiUserID}/getEffectivePermissions | Retrieve an existing User&#39;s Effective Permissions
 [**ObjectUserAPI_userGetListV1**](ObjectUserAPI.md#ObjectUserAPI_userGetListV1) | **GET** /1/object/user/getList | Retrieve User list
 [**ObjectUserAPI_userGetObjectV2**](ObjectUserAPI.md#ObjectUserAPI_userGetObjectV2) | **GET** /2/object/user/{pkiUserID} | Retrieve an existing User
 [**ObjectUserAPI_userGetPermissionsV1**](ObjectUserAPI.md#ObjectUserAPI_userGetPermissionsV1) | **GET** /1/object/user/{pkiUserID}/getPermissions | Retrieve an existing User&#39;s Permissions
 [**ObjectUserAPI_userGetSubnetsV1**](ObjectUserAPI.md#ObjectUserAPI_userGetSubnetsV1) | **GET** /1/object/user/{pkiUserID}/getSubnets | Retrieve an existing User&#39;s Subnets
+[**ObjectUserAPI_userSendPasswordResetV1**](ObjectUserAPI.md#ObjectUserAPI_userSendPasswordResetV1) | **POST** /1/object/user/{pkiUserID}/sendPasswordReset | Send password reset
 
 
 # **ObjectUserAPI_userCreateObjectV1**
@@ -106,6 +108,35 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectUserAPI_userGetApikeysV1**
+```c
+// Retrieve an existing User's Apikeys
+//
+user_get_apikeys_v1_response_t* ObjectUserAPI_userGetApikeysV1(apiClient_t *apiClient, int pkiUserID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiUserID** | **int** |  | 
+
+### Return type
+
+[user_get_apikeys_v1_response_t](user_get_apikeys_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -295,6 +326,38 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectUserAPI_userSendPasswordResetV1**
+```c
+// Send password reset
+//
+// Send the password reset email
+//
+user_send_password_reset_v1_response_t* ObjectUserAPI_userSendPasswordResetV1(apiClient_t *apiClient, int pkiUserID, object_t * body);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiUserID** | **int** |  | 
+**body** | **[object_t](object.md) \*** |  | 
+
+### Return type
+
+[user_send_password_reset_v1_response_t](user_send_password_reset_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

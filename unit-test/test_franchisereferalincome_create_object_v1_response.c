@@ -16,9 +16,9 @@
 #include "../model/franchisereferalincome_create_object_v1_response.h"
 franchisereferalincome_create_object_v1_response_t* instantiate_franchisereferalincome_create_object_v1_response(int include_optional);
 
-#include "test_franchisereferalincome_create_object_v1_response_m_payload.c"
 #include "test_common_response_obj_debug_payload.c"
 #include "test_common_response_obj_debug.c"
+#include "test_franchisereferalincome_create_object_v1_response_m_payload.c"
 
 
 franchisereferalincome_create_object_v1_response_t* instantiate_franchisereferalincome_create_object_v1_response(int include_optional) {
@@ -26,16 +26,16 @@ franchisereferalincome_create_object_v1_response_t* instantiate_franchisereferal
   if (include_optional) {
     franchisereferalincome_create_object_v1_response = franchisereferalincome_create_object_v1_response_create(
        // false, not to have infinite recursion
-      instantiate_franchisereferalincome_create_object_v1_response_m_payload(0),
-       // false, not to have infinite recursion
       instantiate_common_response_obj_debug_payload(0),
-      {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objSQLQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]}
+      {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objSQLQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]},
+       // false, not to have infinite recursion
+      instantiate_franchisereferalincome_create_object_v1_response_m_payload(0)
     );
   } else {
     franchisereferalincome_create_object_v1_response = franchisereferalincome_create_object_v1_response_create(
       NULL,
-      NULL,
-      {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objSQLQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]}
+      {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objSQLQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]},
+      NULL
     );
   }
 

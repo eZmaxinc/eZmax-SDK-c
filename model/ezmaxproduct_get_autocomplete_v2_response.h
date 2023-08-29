@@ -22,16 +22,16 @@ typedef struct ezmaxproduct_get_autocomplete_v2_response_t ezmaxproduct_get_auto
 
 
 typedef struct ezmaxproduct_get_autocomplete_v2_response_t {
-    struct ezmaxproduct_get_autocomplete_v2_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct ezmaxproduct_get_autocomplete_v2_response_m_payload_t *m_payload; //model
 
 } ezmaxproduct_get_autocomplete_v2_response_t;
 
 ezmaxproduct_get_autocomplete_v2_response_t *ezmaxproduct_get_autocomplete_v2_response_create(
-    ezmaxproduct_get_autocomplete_v2_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    ezmaxproduct_get_autocomplete_v2_response_m_payload_t *m_payload
 );
 
 void ezmaxproduct_get_autocomplete_v2_response_free(ezmaxproduct_get_autocomplete_v2_response_t *ezmaxproduct_get_autocomplete_v2_response);

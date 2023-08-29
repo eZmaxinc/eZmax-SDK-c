@@ -22,16 +22,16 @@ typedef struct ezsigntemplatepackagemembership_create_object_v1_response_t ezsig
 
 
 typedef struct ezsigntemplatepackagemembership_create_object_v1_response_t {
-    struct ezsigntemplatepackagemembership_create_object_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct ezsigntemplatepackagemembership_create_object_v1_response_m_payload_t *m_payload; //model
 
 } ezsigntemplatepackagemembership_create_object_v1_response_t;
 
 ezsigntemplatepackagemembership_create_object_v1_response_t *ezsigntemplatepackagemembership_create_object_v1_response_create(
-    ezsigntemplatepackagemembership_create_object_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    ezsigntemplatepackagemembership_create_object_v1_response_m_payload_t *m_payload
 );
 
 void ezsigntemplatepackagemembership_create_object_v1_response_free(ezsigntemplatepackagemembership_create_object_v1_response_t *ezsigntemplatepackagemembership_create_object_v1_response);

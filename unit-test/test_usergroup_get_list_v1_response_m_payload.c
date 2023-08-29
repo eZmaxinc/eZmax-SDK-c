@@ -22,15 +22,15 @@ usergroup_get_list_v1_response_m_payload_t* instantiate_usergroup_get_list_v1_re
   usergroup_get_list_v1_response_m_payload_t* usergroup_get_list_v1_response_m_payload = NULL;
   if (include_optional) {
     usergroup_get_list_v1_response_m_payload = usergroup_get_list_v1_response_m_payload_create(
-      list_createList(),
       100,
-      533
+      533,
+      list_createList()
     );
   } else {
     usergroup_get_list_v1_response_m_payload = usergroup_get_list_v1_response_m_payload_create(
-      list_createList(),
       100,
-      533
+      533,
+      list_createList()
     );
   }
 

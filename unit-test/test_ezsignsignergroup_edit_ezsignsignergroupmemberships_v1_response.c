@@ -16,9 +16,9 @@
 #include "../model/ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response.h"
 ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_t* instantiate_ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response(int include_optional);
 
-#include "test_ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload.c"
 #include "test_common_response_obj_debug_payload.c"
 #include "test_common_response_obj_debug.c"
+#include "test_ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload.c"
 
 
 ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_t* instantiate_ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response(int include_optional) {
@@ -26,16 +26,16 @@ ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_t* instantiate_e
   if (include_optional) {
     ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response = ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_create(
        // false, not to have infinite recursion
-      instantiate_ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload(0),
-       // false, not to have infinite recursion
       instantiate_common_response_obj_debug_payload(0),
-      {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objSQLQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]}
+      {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objSQLQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]},
+       // false, not to have infinite recursion
+      instantiate_ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_m_payload(0)
     );
   } else {
     ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response = ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_create(
       NULL,
-      NULL,
-      {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objSQLQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]}
+      {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objSQLQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]},
+      NULL
     );
   }
 

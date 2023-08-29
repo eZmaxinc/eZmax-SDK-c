@@ -22,15 +22,15 @@ clonehistory_get_list_v1_response_m_payload_t* instantiate_clonehistory_get_list
   clonehistory_get_list_v1_response_m_payload_t* clonehistory_get_list_v1_response_m_payload = NULL;
   if (include_optional) {
     clonehistory_get_list_v1_response_m_payload = clonehistory_get_list_v1_response_m_payload_create(
-      list_createList(),
       100,
-      533
+      533,
+      list_createList()
     );
   } else {
     clonehistory_get_list_v1_response_m_payload = clonehistory_get_list_v1_response_m_payload_create(
-      list_createList(),
       100,
-      533
+      533,
+      list_createList()
     );
   }
 

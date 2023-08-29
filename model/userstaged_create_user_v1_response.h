@@ -22,16 +22,16 @@ typedef struct userstaged_create_user_v1_response_t userstaged_create_user_v1_re
 
 
 typedef struct userstaged_create_user_v1_response_t {
-    struct userstaged_create_user_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct userstaged_create_user_v1_response_m_payload_t *m_payload; //model
 
 } userstaged_create_user_v1_response_t;
 
 userstaged_create_user_v1_response_t *userstaged_create_user_v1_response_create(
-    userstaged_create_user_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    userstaged_create_user_v1_response_m_payload_t *m_payload
 );
 
 void userstaged_create_user_v1_response_free(userstaged_create_user_v1_response_t *userstaged_create_user_v1_response);

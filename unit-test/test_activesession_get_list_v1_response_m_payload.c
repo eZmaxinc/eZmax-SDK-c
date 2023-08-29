@@ -22,15 +22,15 @@ activesession_get_list_v1_response_m_payload_t* instantiate_activesession_get_li
   activesession_get_list_v1_response_m_payload_t* activesession_get_list_v1_response_m_payload = NULL;
   if (include_optional) {
     activesession_get_list_v1_response_m_payload = activesession_get_list_v1_response_m_payload_create(
-      list_createList(),
       100,
-      533
+      533,
+      list_createList()
     );
   } else {
     activesession_get_list_v1_response_m_payload = activesession_get_list_v1_response_m_payload_create(
-      list_createList(),
       100,
-      533
+      533,
+      list_createList()
     );
   }
 

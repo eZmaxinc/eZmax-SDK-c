@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **b_ezsigndocument_hassignedsignatures** | **int** | If the Ezsigndocument contains signed signatures (From internal or external sources) | [optional] 
 **obj_audit** | [**common_audit_t**](common_audit.md) \* |  | [optional] 
 **s_ezsigndocument_externalid** | **char \*** | This field can be used to store an External ID from the client&#39;s system.  Anything can be stored in this field, it will never be evaluated by the eZmax system and will be returned AS-IS.  To store multiple values, consider using a JSON formatted structure, a URL encoded string, a CSV or any other custom format.  | [optional] 
+**e_ezsigndocument_steptype** | **computed_e_ezsigndocument_steptype_t \*** |  | 
 **i_ezsigndocument_stepformtotal** | **int** | The total number of steps in the form filling phase | 
 **i_ezsigndocument_stepformcurrent** | **int** | The current step in the form filling phase | 
 **i_ezsigndocument_stepsignaturetotal** | **int** | The total number of steps in the signature filling phase | 

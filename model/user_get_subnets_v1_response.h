@@ -22,16 +22,16 @@ typedef struct user_get_subnets_v1_response_t user_get_subnets_v1_response_t;
 
 
 typedef struct user_get_subnets_v1_response_t {
-    struct user_get_subnets_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct user_get_subnets_v1_response_m_payload_t *m_payload; //model
 
 } user_get_subnets_v1_response_t;
 
 user_get_subnets_v1_response_t *user_get_subnets_v1_response_create(
-    user_get_subnets_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    user_get_subnets_v1_response_m_payload_t *m_payload
 );
 
 void user_get_subnets_v1_response_free(user_get_subnets_v1_response_t *user_get_subnets_v1_response);

@@ -6,17 +6,17 @@
 
 
 billingentityinternal_get_list_v1_response_m_payload_t *billingentityinternal_get_list_v1_response_m_payload_create(
-    list_t *a_obj_billingentityinternal,
     int i_row_returned,
-    int i_row_filtered
+    int i_row_filtered,
+    list_t *a_obj_billingentityinternal
     ) {
     billingentityinternal_get_list_v1_response_m_payload_t *billingentityinternal_get_list_v1_response_m_payload_local_var = malloc(sizeof(billingentityinternal_get_list_v1_response_m_payload_t));
     if (!billingentityinternal_get_list_v1_response_m_payload_local_var) {
         return NULL;
     }
-    billingentityinternal_get_list_v1_response_m_payload_local_var->a_obj_billingentityinternal = a_obj_billingentityinternal;
     billingentityinternal_get_list_v1_response_m_payload_local_var->i_row_returned = i_row_returned;
     billingentityinternal_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
+    billingentityinternal_get_list_v1_response_m_payload_local_var->a_obj_billingentityinternal = a_obj_billingentityinternal;
 
     return billingentityinternal_get_list_v1_response_m_payload_local_var;
 }
@@ -40,6 +40,24 @@ void billingentityinternal_get_list_v1_response_m_payload_free(billingentityinte
 cJSON *billingentityinternal_get_list_v1_response_m_payload_convertToJSON(billingentityinternal_get_list_v1_response_m_payload_t *billingentityinternal_get_list_v1_response_m_payload) {
     cJSON *item = cJSON_CreateObject();
 
+    // billingentityinternal_get_list_v1_response_m_payload->i_row_returned
+    if (!billingentityinternal_get_list_v1_response_m_payload->i_row_returned) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iRowReturned", billingentityinternal_get_list_v1_response_m_payload->i_row_returned) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // billingentityinternal_get_list_v1_response_m_payload->i_row_filtered
+    if (!billingentityinternal_get_list_v1_response_m_payload->i_row_filtered) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iRowFiltered", billingentityinternal_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
+    goto fail; //Numeric
+    }
+
+
     // billingentityinternal_get_list_v1_response_m_payload->a_obj_billingentityinternal
     if (!billingentityinternal_get_list_v1_response_m_payload->a_obj_billingentityinternal) {
         goto fail;
@@ -60,24 +78,6 @@ cJSON *billingentityinternal_get_list_v1_response_m_payload_convertToJSON(billin
     }
     }
 
-
-    // billingentityinternal_get_list_v1_response_m_payload->i_row_returned
-    if (!billingentityinternal_get_list_v1_response_m_payload->i_row_returned) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "iRowReturned", billingentityinternal_get_list_v1_response_m_payload->i_row_returned) == NULL) {
-    goto fail; //Numeric
-    }
-
-
-    // billingentityinternal_get_list_v1_response_m_payload->i_row_filtered
-    if (!billingentityinternal_get_list_v1_response_m_payload->i_row_filtered) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "iRowFiltered", billingentityinternal_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
-    goto fail; //Numeric
-    }
-
     return item;
 fail:
     if (item) {
@@ -92,30 +92,6 @@ billingentityinternal_get_list_v1_response_m_payload_t *billingentityinternal_ge
 
     // define the local list for billingentityinternal_get_list_v1_response_m_payload->a_obj_billingentityinternal
     list_t *a_obj_billingentityinternalList = NULL;
-
-    // billingentityinternal_get_list_v1_response_m_payload->a_obj_billingentityinternal
-    cJSON *a_obj_billingentityinternal = cJSON_GetObjectItemCaseSensitive(billingentityinternal_get_list_v1_response_m_payloadJSON, "a_objBillingentityinternal");
-    if (!a_obj_billingentityinternal) {
-        goto end;
-    }
-
-    
-    cJSON *a_obj_billingentityinternal_local_nonprimitive = NULL;
-    if(!cJSON_IsArray(a_obj_billingentityinternal)){
-        goto end; //nonprimitive container
-    }
-
-    a_obj_billingentityinternalList = list_createList();
-
-    cJSON_ArrayForEach(a_obj_billingentityinternal_local_nonprimitive,a_obj_billingentityinternal )
-    {
-        if(!cJSON_IsObject(a_obj_billingentityinternal_local_nonprimitive)){
-            goto end;
-        }
-        billingentityinternal_list_element_t *a_obj_billingentityinternalItem = billingentityinternal_list_element_parseFromJSON(a_obj_billingentityinternal_local_nonprimitive);
-
-        list_addElement(a_obj_billingentityinternalList, a_obj_billingentityinternalItem);
-    }
 
     // billingentityinternal_get_list_v1_response_m_payload->i_row_returned
     cJSON *i_row_returned = cJSON_GetObjectItemCaseSensitive(billingentityinternal_get_list_v1_response_m_payloadJSON, "iRowReturned");
@@ -141,11 +117,35 @@ billingentityinternal_get_list_v1_response_m_payload_t *billingentityinternal_ge
     goto end; //Numeric
     }
 
+    // billingentityinternal_get_list_v1_response_m_payload->a_obj_billingentityinternal
+    cJSON *a_obj_billingentityinternal = cJSON_GetObjectItemCaseSensitive(billingentityinternal_get_list_v1_response_m_payloadJSON, "a_objBillingentityinternal");
+    if (!a_obj_billingentityinternal) {
+        goto end;
+    }
+
+    
+    cJSON *a_obj_billingentityinternal_local_nonprimitive = NULL;
+    if(!cJSON_IsArray(a_obj_billingentityinternal)){
+        goto end; //nonprimitive container
+    }
+
+    a_obj_billingentityinternalList = list_createList();
+
+    cJSON_ArrayForEach(a_obj_billingentityinternal_local_nonprimitive,a_obj_billingentityinternal )
+    {
+        if(!cJSON_IsObject(a_obj_billingentityinternal_local_nonprimitive)){
+            goto end;
+        }
+        billingentityinternal_list_element_t *a_obj_billingentityinternalItem = billingentityinternal_list_element_parseFromJSON(a_obj_billingentityinternal_local_nonprimitive);
+
+        list_addElement(a_obj_billingentityinternalList, a_obj_billingentityinternalItem);
+    }
+
 
     billingentityinternal_get_list_v1_response_m_payload_local_var = billingentityinternal_get_list_v1_response_m_payload_create (
-        a_obj_billingentityinternalList,
         i_row_returned->valuedouble,
-        i_row_filtered->valuedouble
+        i_row_filtered->valuedouble,
+        a_obj_billingentityinternalList
         );
 
     return billingentityinternal_get_list_v1_response_m_payload_local_var;

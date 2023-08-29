@@ -6,17 +6,17 @@
 
 
 apikey_get_list_v1_response_m_payload_t *apikey_get_list_v1_response_m_payload_create(
-    list_t *a_obj_apikey,
     int i_row_returned,
-    int i_row_filtered
+    int i_row_filtered,
+    list_t *a_obj_apikey
     ) {
     apikey_get_list_v1_response_m_payload_t *apikey_get_list_v1_response_m_payload_local_var = malloc(sizeof(apikey_get_list_v1_response_m_payload_t));
     if (!apikey_get_list_v1_response_m_payload_local_var) {
         return NULL;
     }
-    apikey_get_list_v1_response_m_payload_local_var->a_obj_apikey = a_obj_apikey;
     apikey_get_list_v1_response_m_payload_local_var->i_row_returned = i_row_returned;
     apikey_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
+    apikey_get_list_v1_response_m_payload_local_var->a_obj_apikey = a_obj_apikey;
 
     return apikey_get_list_v1_response_m_payload_local_var;
 }
@@ -40,6 +40,24 @@ void apikey_get_list_v1_response_m_payload_free(apikey_get_list_v1_response_m_pa
 cJSON *apikey_get_list_v1_response_m_payload_convertToJSON(apikey_get_list_v1_response_m_payload_t *apikey_get_list_v1_response_m_payload) {
     cJSON *item = cJSON_CreateObject();
 
+    // apikey_get_list_v1_response_m_payload->i_row_returned
+    if (!apikey_get_list_v1_response_m_payload->i_row_returned) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iRowReturned", apikey_get_list_v1_response_m_payload->i_row_returned) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // apikey_get_list_v1_response_m_payload->i_row_filtered
+    if (!apikey_get_list_v1_response_m_payload->i_row_filtered) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iRowFiltered", apikey_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
+    goto fail; //Numeric
+    }
+
+
     // apikey_get_list_v1_response_m_payload->a_obj_apikey
     if (!apikey_get_list_v1_response_m_payload->a_obj_apikey) {
         goto fail;
@@ -60,24 +78,6 @@ cJSON *apikey_get_list_v1_response_m_payload_convertToJSON(apikey_get_list_v1_re
     }
     }
 
-
-    // apikey_get_list_v1_response_m_payload->i_row_returned
-    if (!apikey_get_list_v1_response_m_payload->i_row_returned) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "iRowReturned", apikey_get_list_v1_response_m_payload->i_row_returned) == NULL) {
-    goto fail; //Numeric
-    }
-
-
-    // apikey_get_list_v1_response_m_payload->i_row_filtered
-    if (!apikey_get_list_v1_response_m_payload->i_row_filtered) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "iRowFiltered", apikey_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
-    goto fail; //Numeric
-    }
-
     return item;
 fail:
     if (item) {
@@ -92,30 +92,6 @@ apikey_get_list_v1_response_m_payload_t *apikey_get_list_v1_response_m_payload_p
 
     // define the local list for apikey_get_list_v1_response_m_payload->a_obj_apikey
     list_t *a_obj_apikeyList = NULL;
-
-    // apikey_get_list_v1_response_m_payload->a_obj_apikey
-    cJSON *a_obj_apikey = cJSON_GetObjectItemCaseSensitive(apikey_get_list_v1_response_m_payloadJSON, "a_objApikey");
-    if (!a_obj_apikey) {
-        goto end;
-    }
-
-    
-    cJSON *a_obj_apikey_local_nonprimitive = NULL;
-    if(!cJSON_IsArray(a_obj_apikey)){
-        goto end; //nonprimitive container
-    }
-
-    a_obj_apikeyList = list_createList();
-
-    cJSON_ArrayForEach(a_obj_apikey_local_nonprimitive,a_obj_apikey )
-    {
-        if(!cJSON_IsObject(a_obj_apikey_local_nonprimitive)){
-            goto end;
-        }
-        apikey_list_element_t *a_obj_apikeyItem = apikey_list_element_parseFromJSON(a_obj_apikey_local_nonprimitive);
-
-        list_addElement(a_obj_apikeyList, a_obj_apikeyItem);
-    }
 
     // apikey_get_list_v1_response_m_payload->i_row_returned
     cJSON *i_row_returned = cJSON_GetObjectItemCaseSensitive(apikey_get_list_v1_response_m_payloadJSON, "iRowReturned");
@@ -141,11 +117,35 @@ apikey_get_list_v1_response_m_payload_t *apikey_get_list_v1_response_m_payload_p
     goto end; //Numeric
     }
 
+    // apikey_get_list_v1_response_m_payload->a_obj_apikey
+    cJSON *a_obj_apikey = cJSON_GetObjectItemCaseSensitive(apikey_get_list_v1_response_m_payloadJSON, "a_objApikey");
+    if (!a_obj_apikey) {
+        goto end;
+    }
+
+    
+    cJSON *a_obj_apikey_local_nonprimitive = NULL;
+    if(!cJSON_IsArray(a_obj_apikey)){
+        goto end; //nonprimitive container
+    }
+
+    a_obj_apikeyList = list_createList();
+
+    cJSON_ArrayForEach(a_obj_apikey_local_nonprimitive,a_obj_apikey )
+    {
+        if(!cJSON_IsObject(a_obj_apikey_local_nonprimitive)){
+            goto end;
+        }
+        apikey_list_element_t *a_obj_apikeyItem = apikey_list_element_parseFromJSON(a_obj_apikey_local_nonprimitive);
+
+        list_addElement(a_obj_apikeyList, a_obj_apikeyItem);
+    }
+
 
     apikey_get_list_v1_response_m_payload_local_var = apikey_get_list_v1_response_m_payload_create (
-        a_obj_apikeyList,
         i_row_returned->valuedouble,
-        i_row_filtered->valuedouble
+        i_row_filtered->valuedouble,
+        a_obj_apikeyList
         );
 
     return apikey_get_list_v1_response_m_payload_local_var;

@@ -22,16 +22,16 @@ typedef struct modulegroup_get_all_v1_response_t modulegroup_get_all_v1_response
 
 
 typedef struct modulegroup_get_all_v1_response_t {
-    struct modulegroup_get_all_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct modulegroup_get_all_v1_response_m_payload_t *m_payload; //model
 
 } modulegroup_get_all_v1_response_t;
 
 modulegroup_get_all_v1_response_t *modulegroup_get_all_v1_response_create(
-    modulegroup_get_all_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    modulegroup_get_all_v1_response_m_payload_t *m_payload
 );
 
 void modulegroup_get_all_v1_response_free(modulegroup_get_all_v1_response_t *modulegroup_get_all_v1_response);

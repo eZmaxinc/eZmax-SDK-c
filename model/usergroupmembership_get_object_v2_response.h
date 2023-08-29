@@ -22,16 +22,16 @@ typedef struct usergroupmembership_get_object_v2_response_t usergroupmembership_
 
 
 typedef struct usergroupmembership_get_object_v2_response_t {
-    struct usergroupmembership_get_object_v2_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct usergroupmembership_get_object_v2_response_m_payload_t *m_payload; //model
 
 } usergroupmembership_get_object_v2_response_t;
 
 usergroupmembership_get_object_v2_response_t *usergroupmembership_get_object_v2_response_create(
-    usergroupmembership_get_object_v2_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    usergroupmembership_get_object_v2_response_m_payload_t *m_payload
 );
 
 void usergroupmembership_get_object_v2_response_free(usergroupmembership_get_object_v2_response_t *usergroupmembership_get_object_v2_response);

@@ -6,17 +6,17 @@
 
 
 sessionhistory_get_list_v1_response_m_payload_t *sessionhistory_get_list_v1_response_m_payload_create(
-    list_t *a_obj_sessionhistory,
     int i_row_returned,
-    int i_row_filtered
+    int i_row_filtered,
+    list_t *a_obj_sessionhistory
     ) {
     sessionhistory_get_list_v1_response_m_payload_t *sessionhistory_get_list_v1_response_m_payload_local_var = malloc(sizeof(sessionhistory_get_list_v1_response_m_payload_t));
     if (!sessionhistory_get_list_v1_response_m_payload_local_var) {
         return NULL;
     }
-    sessionhistory_get_list_v1_response_m_payload_local_var->a_obj_sessionhistory = a_obj_sessionhistory;
     sessionhistory_get_list_v1_response_m_payload_local_var->i_row_returned = i_row_returned;
     sessionhistory_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
+    sessionhistory_get_list_v1_response_m_payload_local_var->a_obj_sessionhistory = a_obj_sessionhistory;
 
     return sessionhistory_get_list_v1_response_m_payload_local_var;
 }
@@ -40,6 +40,24 @@ void sessionhistory_get_list_v1_response_m_payload_free(sessionhistory_get_list_
 cJSON *sessionhistory_get_list_v1_response_m_payload_convertToJSON(sessionhistory_get_list_v1_response_m_payload_t *sessionhistory_get_list_v1_response_m_payload) {
     cJSON *item = cJSON_CreateObject();
 
+    // sessionhistory_get_list_v1_response_m_payload->i_row_returned
+    if (!sessionhistory_get_list_v1_response_m_payload->i_row_returned) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iRowReturned", sessionhistory_get_list_v1_response_m_payload->i_row_returned) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // sessionhistory_get_list_v1_response_m_payload->i_row_filtered
+    if (!sessionhistory_get_list_v1_response_m_payload->i_row_filtered) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iRowFiltered", sessionhistory_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
+    goto fail; //Numeric
+    }
+
+
     // sessionhistory_get_list_v1_response_m_payload->a_obj_sessionhistory
     if (!sessionhistory_get_list_v1_response_m_payload->a_obj_sessionhistory) {
         goto fail;
@@ -60,24 +78,6 @@ cJSON *sessionhistory_get_list_v1_response_m_payload_convertToJSON(sessionhistor
     }
     }
 
-
-    // sessionhistory_get_list_v1_response_m_payload->i_row_returned
-    if (!sessionhistory_get_list_v1_response_m_payload->i_row_returned) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "iRowReturned", sessionhistory_get_list_v1_response_m_payload->i_row_returned) == NULL) {
-    goto fail; //Numeric
-    }
-
-
-    // sessionhistory_get_list_v1_response_m_payload->i_row_filtered
-    if (!sessionhistory_get_list_v1_response_m_payload->i_row_filtered) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "iRowFiltered", sessionhistory_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
-    goto fail; //Numeric
-    }
-
     return item;
 fail:
     if (item) {
@@ -92,30 +92,6 @@ sessionhistory_get_list_v1_response_m_payload_t *sessionhistory_get_list_v1_resp
 
     // define the local list for sessionhistory_get_list_v1_response_m_payload->a_obj_sessionhistory
     list_t *a_obj_sessionhistoryList = NULL;
-
-    // sessionhistory_get_list_v1_response_m_payload->a_obj_sessionhistory
-    cJSON *a_obj_sessionhistory = cJSON_GetObjectItemCaseSensitive(sessionhistory_get_list_v1_response_m_payloadJSON, "a_objSessionhistory");
-    if (!a_obj_sessionhistory) {
-        goto end;
-    }
-
-    
-    cJSON *a_obj_sessionhistory_local_nonprimitive = NULL;
-    if(!cJSON_IsArray(a_obj_sessionhistory)){
-        goto end; //nonprimitive container
-    }
-
-    a_obj_sessionhistoryList = list_createList();
-
-    cJSON_ArrayForEach(a_obj_sessionhistory_local_nonprimitive,a_obj_sessionhistory )
-    {
-        if(!cJSON_IsObject(a_obj_sessionhistory_local_nonprimitive)){
-            goto end;
-        }
-        sessionhistory_list_element_t *a_obj_sessionhistoryItem = sessionhistory_list_element_parseFromJSON(a_obj_sessionhistory_local_nonprimitive);
-
-        list_addElement(a_obj_sessionhistoryList, a_obj_sessionhistoryItem);
-    }
 
     // sessionhistory_get_list_v1_response_m_payload->i_row_returned
     cJSON *i_row_returned = cJSON_GetObjectItemCaseSensitive(sessionhistory_get_list_v1_response_m_payloadJSON, "iRowReturned");
@@ -141,11 +117,35 @@ sessionhistory_get_list_v1_response_m_payload_t *sessionhistory_get_list_v1_resp
     goto end; //Numeric
     }
 
+    // sessionhistory_get_list_v1_response_m_payload->a_obj_sessionhistory
+    cJSON *a_obj_sessionhistory = cJSON_GetObjectItemCaseSensitive(sessionhistory_get_list_v1_response_m_payloadJSON, "a_objSessionhistory");
+    if (!a_obj_sessionhistory) {
+        goto end;
+    }
+
+    
+    cJSON *a_obj_sessionhistory_local_nonprimitive = NULL;
+    if(!cJSON_IsArray(a_obj_sessionhistory)){
+        goto end; //nonprimitive container
+    }
+
+    a_obj_sessionhistoryList = list_createList();
+
+    cJSON_ArrayForEach(a_obj_sessionhistory_local_nonprimitive,a_obj_sessionhistory )
+    {
+        if(!cJSON_IsObject(a_obj_sessionhistory_local_nonprimitive)){
+            goto end;
+        }
+        sessionhistory_list_element_t *a_obj_sessionhistoryItem = sessionhistory_list_element_parseFromJSON(a_obj_sessionhistory_local_nonprimitive);
+
+        list_addElement(a_obj_sessionhistoryList, a_obj_sessionhistoryItem);
+    }
+
 
     sessionhistory_get_list_v1_response_m_payload_local_var = sessionhistory_get_list_v1_response_m_payload_create (
-        a_obj_sessionhistoryList,
         i_row_returned->valuedouble,
-        i_row_filtered->valuedouble
+        i_row_filtered->valuedouble,
+        a_obj_sessionhistoryList
         );
 
     return sessionhistory_get_list_v1_response_m_payload_local_var;

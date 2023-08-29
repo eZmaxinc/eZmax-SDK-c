@@ -22,16 +22,16 @@ typedef struct ezsignbulksenddocumentmapping_create_object_v1_response_t ezsignb
 
 
 typedef struct ezsignbulksenddocumentmapping_create_object_v1_response_t {
-    struct ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_t *m_payload; //model
 
 } ezsignbulksenddocumentmapping_create_object_v1_response_t;
 
 ezsignbulksenddocumentmapping_create_object_v1_response_t *ezsignbulksenddocumentmapping_create_object_v1_response_create(
-    ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_t *m_payload
 );
 
 void ezsignbulksenddocumentmapping_create_object_v1_response_free(ezsignbulksenddocumentmapping_create_object_v1_response_t *ezsignbulksenddocumentmapping_create_object_v1_response);

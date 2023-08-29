@@ -16,8 +16,8 @@
 #include "../model/webhook_userstaged_userstaged_created.h"
 webhook_userstaged_userstaged_created_t* instantiate_webhook_userstaged_userstaged_created(int include_optional);
 
-#include "test_userstaged_response_compound.c"
 #include "test_custom_webhook_response.c"
+#include "test_userstaged_response_compound.c"
 
 
 webhook_userstaged_userstaged_created_t* instantiate_webhook_userstaged_userstaged_created(int include_optional) {
@@ -25,16 +25,16 @@ webhook_userstaged_userstaged_created_t* instantiate_webhook_userstaged_userstag
   if (include_optional) {
     webhook_userstaged_userstaged_created = webhook_userstaged_userstaged_created_create(
        // false, not to have infinite recursion
-      instantiate_userstaged_response_compound(0),
-       // false, not to have infinite recursion
       instantiate_custom_webhook_response(0),
-      list_createList()
+      list_createList(),
+       // false, not to have infinite recursion
+      instantiate_userstaged_response_compound(0)
     );
   } else {
     webhook_userstaged_userstaged_created = webhook_userstaged_userstaged_created_create(
       NULL,
-      NULL,
-      list_createList()
+      list_createList(),
+      NULL
     );
   }
 

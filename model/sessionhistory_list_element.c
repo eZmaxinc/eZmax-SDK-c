@@ -5,13 +5,13 @@
 
 
 char* e_sessionhistory_endbysessionhistory_list_element_ToString(ezmax_api_definition__full_sessionhistory_list_element__e e_sessionhistory_endby) {
-    char* e_sessionhistory_endbyArray[] =  { "NULL", "Decryption", "Hack", "Expired", "Hijack", "DoubleLogon", "Garbage", "Logoff", "BadAuth", "Locked", "Inactive", "InvalidUser", "BadUserType", "BadIP" };
+    char* e_sessionhistory_endbyArray[] =  { "NULL", "Decryption", "Hack", "Expired", "Hijack", "DoubleLogon", "Garbage", "Logoff", "BadAuth", "Locked", "Inactive", "InvalidUser", "BadUserType", "BadIP", "ForcedLogoff" };
 	return e_sessionhistory_endbyArray[e_sessionhistory_endby];
 }
 
 ezmax_api_definition__full_sessionhistory_list_element__e e_sessionhistory_endbysessionhistory_list_element_FromString(char* e_sessionhistory_endby){
     int stringToReturn = 0;
-    char *e_sessionhistory_endbyArray[] =  { "NULL", "Decryption", "Hack", "Expired", "Hijack", "DoubleLogon", "Garbage", "Logoff", "BadAuth", "Locked", "Inactive", "InvalidUser", "BadUserType", "BadIP" };
+    char *e_sessionhistory_endbyArray[] =  { "NULL", "Decryption", "Hack", "Expired", "Hijack", "DoubleLogon", "Garbage", "Logoff", "BadAuth", "Locked", "Inactive", "InvalidUser", "BadUserType", "BadIP", "ForcedLogoff" };
     size_t sizeofArray = sizeof(e_sessionhistory_endbyArray) / sizeof(e_sessionhistory_endbyArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(e_sessionhistory_endby, e_sessionhistory_endbyArray[stringToReturn]) == 0) {

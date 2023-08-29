@@ -20,16 +20,16 @@ typedef struct ezsigntemplatepackage_get_list_v1_response_m_payload_t ezsigntemp
 
 
 typedef struct ezsigntemplatepackage_get_list_v1_response_m_payload_t {
-    list_t *a_obj_ezsigntemplatepackage; //nonprimitive container
     int i_row_returned; //numeric
     int i_row_filtered; //numeric
+    list_t *a_obj_ezsigntemplatepackage; //nonprimitive container
 
 } ezsigntemplatepackage_get_list_v1_response_m_payload_t;
 
 ezsigntemplatepackage_get_list_v1_response_m_payload_t *ezsigntemplatepackage_get_list_v1_response_m_payload_create(
-    list_t *a_obj_ezsigntemplatepackage,
     int i_row_returned,
-    int i_row_filtered
+    int i_row_filtered,
+    list_t *a_obj_ezsigntemplatepackage
 );
 
 void ezsigntemplatepackage_get_list_v1_response_m_payload_free(ezsigntemplatepackage_get_list_v1_response_m_payload_t *ezsigntemplatepackage_get_list_v1_response_m_payload);

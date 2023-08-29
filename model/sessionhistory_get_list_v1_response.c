@@ -6,17 +6,17 @@
 
 
 sessionhistory_get_list_v1_response_t *sessionhistory_get_list_v1_response_create(
-    sessionhistory_get_list_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_get_list_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    sessionhistory_get_list_v1_response_m_payload_t *m_payload
     ) {
     sessionhistory_get_list_v1_response_t *sessionhistory_get_list_v1_response_local_var = malloc(sizeof(sessionhistory_get_list_v1_response_t));
     if (!sessionhistory_get_list_v1_response_local_var) {
         return NULL;
     }
-    sessionhistory_get_list_v1_response_local_var->m_payload = m_payload;
     sessionhistory_get_list_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     sessionhistory_get_list_v1_response_local_var->obj_debug = obj_debug;
+    sessionhistory_get_list_v1_response_local_var->m_payload = m_payload;
 
     return sessionhistory_get_list_v1_response_local_var;
 }
@@ -27,10 +27,6 @@ void sessionhistory_get_list_v1_response_free(sessionhistory_get_list_v1_respons
         return ;
     }
     listEntry_t *listEntry;
-    if (sessionhistory_get_list_v1_response->m_payload) {
-        sessionhistory_get_list_v1_response_m_payload_free(sessionhistory_get_list_v1_response->m_payload);
-        sessionhistory_get_list_v1_response->m_payload = NULL;
-    }
     if (sessionhistory_get_list_v1_response->obj_debug_payload) {
         common_response_obj_debug_payload_get_list_free(sessionhistory_get_list_v1_response->obj_debug_payload);
         sessionhistory_get_list_v1_response->obj_debug_payload = NULL;
@@ -39,28 +35,20 @@ void sessionhistory_get_list_v1_response_free(sessionhistory_get_list_v1_respons
         common_response_obj_debug_free(sessionhistory_get_list_v1_response->obj_debug);
         sessionhistory_get_list_v1_response->obj_debug = NULL;
     }
+    if (sessionhistory_get_list_v1_response->m_payload) {
+        sessionhistory_get_list_v1_response_m_payload_free(sessionhistory_get_list_v1_response->m_payload);
+        sessionhistory_get_list_v1_response->m_payload = NULL;
+    }
     free(sessionhistory_get_list_v1_response);
 }
 
 cJSON *sessionhistory_get_list_v1_response_convertToJSON(sessionhistory_get_list_v1_response_t *sessionhistory_get_list_v1_response) {
     cJSON *item = cJSON_CreateObject();
 
-    // sessionhistory_get_list_v1_response->m_payload
-    if (!sessionhistory_get_list_v1_response->m_payload) {
+    // sessionhistory_get_list_v1_response->obj_debug_payload
+    if (!sessionhistory_get_list_v1_response->obj_debug_payload) {
         goto fail;
     }
-    cJSON *m_payload_local_JSON = sessionhistory_get_list_v1_response_m_payload_convertToJSON(sessionhistory_get_list_v1_response->m_payload);
-    if(m_payload_local_JSON == NULL) {
-    goto fail; //model
-    }
-    cJSON_AddItemToObject(item, "mPayload", m_payload_local_JSON);
-    if(item->child == NULL) {
-    goto fail;
-    }
-
-
-    // sessionhistory_get_list_v1_response->obj_debug_payload
-    if(sessionhistory_get_list_v1_response->obj_debug_payload) {
     cJSON *obj_debug_payload_local_JSON = common_response_obj_debug_payload_get_list_convertToJSON(sessionhistory_get_list_v1_response->obj_debug_payload);
     if(obj_debug_payload_local_JSON == NULL) {
     goto fail; //model
@@ -68,7 +56,6 @@ cJSON *sessionhistory_get_list_v1_response_convertToJSON(sessionhistory_get_list
     cJSON_AddItemToObject(item, "objDebugPayload", obj_debug_payload_local_JSON);
     if(item->child == NULL) {
     goto fail;
-    }
     }
 
 
@@ -84,6 +71,20 @@ cJSON *sessionhistory_get_list_v1_response_convertToJSON(sessionhistory_get_list
     }
     }
 
+
+    // sessionhistory_get_list_v1_response->m_payload
+    if (!sessionhistory_get_list_v1_response->m_payload) {
+        goto fail;
+    }
+    cJSON *m_payload_local_JSON = sessionhistory_get_list_v1_response_m_payload_convertToJSON(sessionhistory_get_list_v1_response->m_payload);
+    if(m_payload_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "mPayload", m_payload_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
     return item;
 fail:
     if (item) {
@@ -96,14 +97,29 @@ sessionhistory_get_list_v1_response_t *sessionhistory_get_list_v1_response_parse
 
     sessionhistory_get_list_v1_response_t *sessionhistory_get_list_v1_response_local_var = NULL;
 
-    // define the local variable for sessionhistory_get_list_v1_response->m_payload
-    sessionhistory_get_list_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
-
     // define the local variable for sessionhistory_get_list_v1_response->obj_debug_payload
     common_response_obj_debug_payload_get_list_t *obj_debug_payload_local_nonprim = NULL;
 
     // define the local variable for sessionhistory_get_list_v1_response->obj_debug
     common_response_obj_debug_t *obj_debug_local_nonprim = NULL;
+
+    // define the local variable for sessionhistory_get_list_v1_response->m_payload
+    sessionhistory_get_list_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
+
+    // sessionhistory_get_list_v1_response->obj_debug_payload
+    cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(sessionhistory_get_list_v1_responseJSON, "objDebugPayload");
+    if (!obj_debug_payload) {
+        goto end;
+    }
+
+    
+    obj_debug_payload_local_nonprim = common_response_obj_debug_payload_get_list_parseFromJSON(obj_debug_payload); //nonprimitive
+
+    // sessionhistory_get_list_v1_response->obj_debug
+    cJSON *obj_debug = cJSON_GetObjectItemCaseSensitive(sessionhistory_get_list_v1_responseJSON, "objDebug");
+    if (obj_debug) { 
+    obj_debug_local_nonprim = common_response_obj_debug_parseFromJSON(obj_debug); //nonprimitive
+    }
 
     // sessionhistory_get_list_v1_response->m_payload
     cJSON *m_payload = cJSON_GetObjectItemCaseSensitive(sessionhistory_get_list_v1_responseJSON, "mPayload");
@@ -114,31 +130,15 @@ sessionhistory_get_list_v1_response_t *sessionhistory_get_list_v1_response_parse
     
     m_payload_local_nonprim = sessionhistory_get_list_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
-    // sessionhistory_get_list_v1_response->obj_debug_payload
-    cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(sessionhistory_get_list_v1_responseJSON, "objDebugPayload");
-    if (obj_debug_payload) { 
-    obj_debug_payload_local_nonprim = common_response_obj_debug_payload_get_list_parseFromJSON(obj_debug_payload); //nonprimitive
-    }
-
-    // sessionhistory_get_list_v1_response->obj_debug
-    cJSON *obj_debug = cJSON_GetObjectItemCaseSensitive(sessionhistory_get_list_v1_responseJSON, "objDebug");
-    if (obj_debug) { 
-    obj_debug_local_nonprim = common_response_obj_debug_parseFromJSON(obj_debug); //nonprimitive
-    }
-
 
     sessionhistory_get_list_v1_response_local_var = sessionhistory_get_list_v1_response_create (
-        m_payload_local_nonprim,
-        obj_debug_payload ? obj_debug_payload_local_nonprim : NULL,
-        obj_debug ? obj_debug_local_nonprim : NULL
+        obj_debug_payload_local_nonprim,
+        obj_debug ? obj_debug_local_nonprim : NULL,
+        m_payload_local_nonprim
         );
 
     return sessionhistory_get_list_v1_response_local_var;
 end:
-    if (m_payload_local_nonprim) {
-        sessionhistory_get_list_v1_response_m_payload_free(m_payload_local_nonprim);
-        m_payload_local_nonprim = NULL;
-    }
     if (obj_debug_payload_local_nonprim) {
         common_response_obj_debug_payload_get_list_free(obj_debug_payload_local_nonprim);
         obj_debug_payload_local_nonprim = NULL;
@@ -146,6 +146,10 @@ end:
     if (obj_debug_local_nonprim) {
         common_response_obj_debug_free(obj_debug_local_nonprim);
         obj_debug_local_nonprim = NULL;
+    }
+    if (m_payload_local_nonprim) {
+        sessionhistory_get_list_v1_response_m_payload_free(m_payload_local_nonprim);
+        m_payload_local_nonprim = NULL;
     }
     return NULL;
 

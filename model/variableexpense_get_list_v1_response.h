@@ -22,16 +22,16 @@ typedef struct variableexpense_get_list_v1_response_t variableexpense_get_list_v
 
 
 typedef struct variableexpense_get_list_v1_response_t {
-    struct variableexpense_get_list_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_get_list_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct variableexpense_get_list_v1_response_m_payload_t *m_payload; //model
 
 } variableexpense_get_list_v1_response_t;
 
 variableexpense_get_list_v1_response_t *variableexpense_get_list_v1_response_create(
-    variableexpense_get_list_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_get_list_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    variableexpense_get_list_v1_response_m_payload_t *m_payload
 );
 
 void variableexpense_get_list_v1_response_free(variableexpense_get_list_v1_response_t *variableexpense_get_list_v1_response);

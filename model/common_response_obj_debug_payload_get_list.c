@@ -9,6 +9,7 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
     int i_version_min,
     int i_version_max,
     list_t *a_required_permission,
+    int b_version_deprecated,
     common_response_filter_t *a_filter,
     list_t* a_order_by
     ) {
@@ -19,6 +20,7 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
     common_response_obj_debug_payload_get_list_local_var->i_version_min = i_version_min;
     common_response_obj_debug_payload_get_list_local_var->i_version_max = i_version_max;
     common_response_obj_debug_payload_get_list_local_var->a_required_permission = a_required_permission;
+    common_response_obj_debug_payload_get_list_local_var->b_version_deprecated = b_version_deprecated;
     common_response_obj_debug_payload_get_list_local_var->a_filter = a_filter;
     common_response_obj_debug_payload_get_list_local_var->a_order_by = a_order_by;
 
@@ -91,6 +93,15 @@ cJSON *common_response_obj_debug_payload_get_list_convertToJSON(common_response_
     {
         goto fail;
     }
+    }
+
+
+    // common_response_obj_debug_payload_get_list->b_version_deprecated
+    if (!common_response_obj_debug_payload_get_list->b_version_deprecated) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "bVersionDeprecated", common_response_obj_debug_payload_get_list->b_version_deprecated) == NULL) {
+    goto fail; //Bool
     }
 
 
@@ -201,6 +212,18 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
         list_addElement(a_required_permissionList , a_required_permission_local_value);
     }
 
+    // common_response_obj_debug_payload_get_list->b_version_deprecated
+    cJSON *b_version_deprecated = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payload_get_listJSON, "bVersionDeprecated");
+    if (!b_version_deprecated) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(b_version_deprecated))
+    {
+    goto end; //Bool
+    }
+
     // common_response_obj_debug_payload_get_list->a_filter
     cJSON *a_filter = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payload_get_listJSON, "a_Filter");
     if (!a_filter) {
@@ -243,6 +266,7 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
         i_version_min->valuedouble,
         i_version_max->valuedouble,
         a_required_permissionList,
+        b_version_deprecated->valueint,
         a_filter_local_nonprim,
         a_order_byList
         );

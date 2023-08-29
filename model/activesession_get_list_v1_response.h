@@ -22,16 +22,16 @@ typedef struct activesession_get_list_v1_response_t activesession_get_list_v1_re
 
 
 typedef struct activesession_get_list_v1_response_t {
-    struct activesession_get_list_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_get_list_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct activesession_get_list_v1_response_m_payload_t *m_payload; //model
 
 } activesession_get_list_v1_response_t;
 
 activesession_get_list_v1_response_t *activesession_get_list_v1_response_create(
-    activesession_get_list_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_get_list_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    activesession_get_list_v1_response_m_payload_t *m_payload
 );
 
 void activesession_get_list_v1_response_free(activesession_get_list_v1_response_t *activesession_get_list_v1_response);

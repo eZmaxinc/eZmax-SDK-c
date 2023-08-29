@@ -22,16 +22,16 @@ typedef struct subnet_create_object_v1_response_t subnet_create_object_v1_respon
 
 
 typedef struct subnet_create_object_v1_response_t {
-    struct subnet_create_object_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct subnet_create_object_v1_response_m_payload_t *m_payload; //model
 
 } subnet_create_object_v1_response_t;
 
 subnet_create_object_v1_response_t *subnet_create_object_v1_response_create(
-    subnet_create_object_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    subnet_create_object_v1_response_m_payload_t *m_payload
 );
 
 void subnet_create_object_v1_response_free(subnet_create_object_v1_response_t *subnet_create_object_v1_response);

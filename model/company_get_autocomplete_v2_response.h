@@ -22,16 +22,16 @@ typedef struct company_get_autocomplete_v2_response_t company_get_autocomplete_v
 
 
 typedef struct company_get_autocomplete_v2_response_t {
-    struct company_get_autocomplete_v2_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct company_get_autocomplete_v2_response_m_payload_t *m_payload; //model
 
 } company_get_autocomplete_v2_response_t;
 
 company_get_autocomplete_v2_response_t *company_get_autocomplete_v2_response_create(
-    company_get_autocomplete_v2_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    company_get_autocomplete_v2_response_m_payload_t *m_payload
 );
 
 void company_get_autocomplete_v2_response_free(company_get_autocomplete_v2_response_t *company_get_autocomplete_v2_response);

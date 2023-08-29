@@ -20,16 +20,16 @@ typedef struct branding_get_list_v1_response_m_payload_t branding_get_list_v1_re
 
 
 typedef struct branding_get_list_v1_response_m_payload_t {
-    list_t *a_obj_branding; //nonprimitive container
     int i_row_returned; //numeric
     int i_row_filtered; //numeric
+    list_t *a_obj_branding; //nonprimitive container
 
 } branding_get_list_v1_response_m_payload_t;
 
 branding_get_list_v1_response_m_payload_t *branding_get_list_v1_response_m_payload_create(
-    list_t *a_obj_branding,
     int i_row_returned,
-    int i_row_filtered
+    int i_row_filtered,
+    list_t *a_obj_branding
 );
 
 void branding_get_list_v1_response_m_payload_free(branding_get_list_v1_response_m_payload_t *branding_get_list_v1_response_m_payload);

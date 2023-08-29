@@ -15,6 +15,7 @@
 
 typedef struct ezsignformfieldgroup_response_t ezsignformfieldgroup_response_t;
 
+#include "enum_textvalidation.h"
 #include "field_e_ezsignformfieldgroup_signerrequirement.h"
 #include "field_e_ezsignformfieldgroup_tooltipposition.h"
 #include "field_e_ezsignformfieldgroup_type.h"
@@ -34,6 +35,14 @@ typedef enum  { ezmax_api_definition__full_ezsignformfieldgroup_response__NULL =
 char* ezsignformfieldgroup_response_e_ezsignformfieldgroup_signerrequirement_ToString(ezmax_api_definition__full_ezsignformfieldgroup_response__e e_ezsignformfieldgroup_signerrequirement);
 
 ezmax_api_definition__full_ezsignformfieldgroup_response__e ezsignformfieldgroup_response_e_ezsignformfieldgroup_signerrequirement_FromString(char* e_ezsignformfieldgroup_signerrequirement);
+
+// Enum  for ezsignformfieldgroup_response
+
+typedef enum  { ezmax_api_definition__full_ezsignformfieldgroup_response__NULL = 0, ezmax_api_definition__full_ezsignformfieldgroup_response__None, ezmax_api_definition__full_ezsignformfieldgroup_response__Date (YYYY_MM_DD), ezmax_api_definition__full_ezsignformfieldgroup_response__Date (MM/DD/YYYY), ezmax_api_definition__full_ezsignformfieldgroup_response__Date (MM/DD/YY), ezmax_api_definition__full_ezsignformfieldgroup_response__Date (DD/MM/YYYY), ezmax_api_definition__full_ezsignformfieldgroup_response__Date (DD/MM/YY), ezmax_api_definition__full_ezsignformfieldgroup_response__Email, ezmax_api_definition__full_ezsignformfieldgroup_response__Letters, ezmax_api_definition__full_ezsignformfieldgroup_response__Numbers, ezmax_api_definition__full_ezsignformfieldgroup_response__Zip, ezmax_api_definition__full_ezsignformfieldgroup_response__Zip+4, ezmax_api_definition__full_ezsignformfieldgroup_response__PostalCode, ezmax_api_definition__full_ezsignformfieldgroup_response__Custom } ezmax_api_definition__full_ezsignformfieldgroup_response__e;
+
+char* ezsignformfieldgroup_response_e_ezsignformfieldgroup_textvalidation_ToString(ezmax_api_definition__full_ezsignformfieldgroup_response__e e_ezsignformfieldgroup_textvalidation);
+
+ezmax_api_definition__full_ezsignformfieldgroup_response__e ezsignformfieldgroup_response_e_ezsignformfieldgroup_textvalidation_FromString(char* e_ezsignformfieldgroup_textvalidation);
 
 // Enum  for ezsignformfieldgroup_response
 
@@ -58,6 +67,7 @@ typedef struct ezsignformfieldgroup_response_t {
     int b_ezsignformfieldgroup_readonly; //boolean
     int i_ezsignformfieldgroup_maxlength; //numeric
     int b_ezsignformfieldgroup_encrypted; //boolean
+    enum_textvalidation_t *e_ezsignformfieldgroup_textvalidation; // custom
     char *s_ezsignformfieldgroup_regexp; // string
     char *t_ezsignformfieldgroup_tooltip; // string
     field_e_ezsignformfieldgroup_tooltipposition_t *e_ezsignformfieldgroup_tooltipposition; // custom
@@ -77,6 +87,7 @@ ezsignformfieldgroup_response_t *ezsignformfieldgroup_response_create(
     int b_ezsignformfieldgroup_readonly,
     int i_ezsignformfieldgroup_maxlength,
     int b_ezsignformfieldgroup_encrypted,
+    enum_textvalidation_t *e_ezsignformfieldgroup_textvalidation,
     char *s_ezsignformfieldgroup_regexp,
     char *t_ezsignformfieldgroup_tooltip,
     field_e_ezsignformfieldgroup_tooltipposition_t *e_ezsignformfieldgroup_tooltipposition

@@ -16,8 +16,8 @@
 #include "../model/webhook_ezsign_document_completed.h"
 webhook_ezsign_document_completed_t* instantiate_webhook_ezsign_document_completed(int include_optional);
 
-#include "test_ezsigndocument_response.c"
 #include "test_custom_webhook_response.c"
+#include "test_ezsigndocument_response.c"
 
 
 webhook_ezsign_document_completed_t* instantiate_webhook_ezsign_document_completed(int include_optional) {
@@ -25,16 +25,16 @@ webhook_ezsign_document_completed_t* instantiate_webhook_ezsign_document_complet
   if (include_optional) {
     webhook_ezsign_document_completed = webhook_ezsign_document_completed_create(
        // false, not to have infinite recursion
-      instantiate_ezsigndocument_response(0),
-       // false, not to have infinite recursion
       instantiate_custom_webhook_response(0),
-      list_createList()
+      list_createList(),
+       // false, not to have infinite recursion
+      instantiate_ezsigndocument_response(0)
     );
   } else {
     webhook_ezsign_document_completed = webhook_ezsign_document_completed_create(
       NULL,
-      NULL,
-      list_createList()
+      list_createList(),
+      NULL
     );
   }
 

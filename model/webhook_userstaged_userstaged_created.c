@@ -6,17 +6,17 @@
 
 
 webhook_userstaged_userstaged_created_t *webhook_userstaged_userstaged_created_create(
-    userstaged_response_compound_t *obj_userstaged,
     custom_webhook_response_t *obj_webhook,
-    list_t *a_obj_attempt
+    list_t *a_obj_attempt,
+    userstaged_response_compound_t *obj_userstaged
     ) {
     webhook_userstaged_userstaged_created_t *webhook_userstaged_userstaged_created_local_var = malloc(sizeof(webhook_userstaged_userstaged_created_t));
     if (!webhook_userstaged_userstaged_created_local_var) {
         return NULL;
     }
-    webhook_userstaged_userstaged_created_local_var->obj_userstaged = obj_userstaged;
     webhook_userstaged_userstaged_created_local_var->obj_webhook = obj_webhook;
     webhook_userstaged_userstaged_created_local_var->a_obj_attempt = a_obj_attempt;
+    webhook_userstaged_userstaged_created_local_var->obj_userstaged = obj_userstaged;
 
     return webhook_userstaged_userstaged_created_local_var;
 }
@@ -27,10 +27,6 @@ void webhook_userstaged_userstaged_created_free(webhook_userstaged_userstaged_cr
         return ;
     }
     listEntry_t *listEntry;
-    if (webhook_userstaged_userstaged_created->obj_userstaged) {
-        userstaged_response_compound_free(webhook_userstaged_userstaged_created->obj_userstaged);
-        webhook_userstaged_userstaged_created->obj_userstaged = NULL;
-    }
     if (webhook_userstaged_userstaged_created->obj_webhook) {
         custom_webhook_response_free(webhook_userstaged_userstaged_created->obj_webhook);
         webhook_userstaged_userstaged_created->obj_webhook = NULL;
@@ -42,25 +38,15 @@ void webhook_userstaged_userstaged_created_free(webhook_userstaged_userstaged_cr
         list_freeList(webhook_userstaged_userstaged_created->a_obj_attempt);
         webhook_userstaged_userstaged_created->a_obj_attempt = NULL;
     }
+    if (webhook_userstaged_userstaged_created->obj_userstaged) {
+        userstaged_response_compound_free(webhook_userstaged_userstaged_created->obj_userstaged);
+        webhook_userstaged_userstaged_created->obj_userstaged = NULL;
+    }
     free(webhook_userstaged_userstaged_created);
 }
 
 cJSON *webhook_userstaged_userstaged_created_convertToJSON(webhook_userstaged_userstaged_created_t *webhook_userstaged_userstaged_created) {
     cJSON *item = cJSON_CreateObject();
-
-    // webhook_userstaged_userstaged_created->obj_userstaged
-    if (!webhook_userstaged_userstaged_created->obj_userstaged) {
-        goto fail;
-    }
-    cJSON *obj_userstaged_local_JSON = userstaged_response_compound_convertToJSON(webhook_userstaged_userstaged_created->obj_userstaged);
-    if(obj_userstaged_local_JSON == NULL) {
-    goto fail; //model
-    }
-    cJSON_AddItemToObject(item, "objUserstaged", obj_userstaged_local_JSON);
-    if(item->child == NULL) {
-    goto fail;
-    }
-
 
     // webhook_userstaged_userstaged_created->obj_webhook
     if (!webhook_userstaged_userstaged_created->obj_webhook) {
@@ -96,6 +82,20 @@ cJSON *webhook_userstaged_userstaged_created_convertToJSON(webhook_userstaged_us
     }
     }
 
+
+    // webhook_userstaged_userstaged_created->obj_userstaged
+    if (!webhook_userstaged_userstaged_created->obj_userstaged) {
+        goto fail;
+    }
+    cJSON *obj_userstaged_local_JSON = userstaged_response_compound_convertToJSON(webhook_userstaged_userstaged_created->obj_userstaged);
+    if(obj_userstaged_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objUserstaged", obj_userstaged_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
     return item;
 fail:
     if (item) {
@@ -108,23 +108,14 @@ webhook_userstaged_userstaged_created_t *webhook_userstaged_userstaged_created_p
 
     webhook_userstaged_userstaged_created_t *webhook_userstaged_userstaged_created_local_var = NULL;
 
-    // define the local variable for webhook_userstaged_userstaged_created->obj_userstaged
-    userstaged_response_compound_t *obj_userstaged_local_nonprim = NULL;
-
     // define the local variable for webhook_userstaged_userstaged_created->obj_webhook
     custom_webhook_response_t *obj_webhook_local_nonprim = NULL;
 
     // define the local list for webhook_userstaged_userstaged_created->a_obj_attempt
     list_t *a_obj_attemptList = NULL;
 
-    // webhook_userstaged_userstaged_created->obj_userstaged
-    cJSON *obj_userstaged = cJSON_GetObjectItemCaseSensitive(webhook_userstaged_userstaged_createdJSON, "objUserstaged");
-    if (!obj_userstaged) {
-        goto end;
-    }
-
-    
-    obj_userstaged_local_nonprim = userstaged_response_compound_parseFromJSON(obj_userstaged); //nonprimitive
+    // define the local variable for webhook_userstaged_userstaged_created->obj_userstaged
+    userstaged_response_compound_t *obj_userstaged_local_nonprim = NULL;
 
     // webhook_userstaged_userstaged_created->obj_webhook
     cJSON *obj_webhook = cJSON_GetObjectItemCaseSensitive(webhook_userstaged_userstaged_createdJSON, "objWebhook");
@@ -159,19 +150,24 @@ webhook_userstaged_userstaged_created_t *webhook_userstaged_userstaged_created_p
         list_addElement(a_obj_attemptList, a_obj_attemptItem);
     }
 
+    // webhook_userstaged_userstaged_created->obj_userstaged
+    cJSON *obj_userstaged = cJSON_GetObjectItemCaseSensitive(webhook_userstaged_userstaged_createdJSON, "objUserstaged");
+    if (!obj_userstaged) {
+        goto end;
+    }
+
+    
+    obj_userstaged_local_nonprim = userstaged_response_compound_parseFromJSON(obj_userstaged); //nonprimitive
+
 
     webhook_userstaged_userstaged_created_local_var = webhook_userstaged_userstaged_created_create (
-        obj_userstaged_local_nonprim,
         obj_webhook_local_nonprim,
-        a_obj_attemptList
+        a_obj_attemptList,
+        obj_userstaged_local_nonprim
         );
 
     return webhook_userstaged_userstaged_created_local_var;
 end:
-    if (obj_userstaged_local_nonprim) {
-        userstaged_response_compound_free(obj_userstaged_local_nonprim);
-        obj_userstaged_local_nonprim = NULL;
-    }
     if (obj_webhook_local_nonprim) {
         custom_webhook_response_free(obj_webhook_local_nonprim);
         obj_webhook_local_nonprim = NULL;
@@ -184,6 +180,10 @@ end:
         }
         list_freeList(a_obj_attemptList);
         a_obj_attemptList = NULL;
+    }
+    if (obj_userstaged_local_nonprim) {
+        userstaged_response_compound_free(obj_userstaged_local_nonprim);
+        obj_userstaged_local_nonprim = NULL;
     }
     return NULL;
 

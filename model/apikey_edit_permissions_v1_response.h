@@ -22,16 +22,16 @@ typedef struct apikey_edit_permissions_v1_response_t apikey_edit_permissions_v1_
 
 
 typedef struct apikey_edit_permissions_v1_response_t {
-    struct apikey_edit_permissions_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct apikey_edit_permissions_v1_response_m_payload_t *m_payload; //model
 
 } apikey_edit_permissions_v1_response_t;
 
 apikey_edit_permissions_v1_response_t *apikey_edit_permissions_v1_response_create(
-    apikey_edit_permissions_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    apikey_edit_permissions_v1_response_m_payload_t *m_payload
 );
 
 void apikey_edit_permissions_v1_response_free(apikey_edit_permissions_v1_response_t *apikey_edit_permissions_v1_response);

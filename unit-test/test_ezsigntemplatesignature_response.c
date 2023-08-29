@@ -29,6 +29,8 @@ ezsigntemplatesignature_response_t* instantiate_ezsigntemplatesignature_response
       1,
       200,
       300,
+      200,
+      200,
       1,
       ezmax_api_definition__full_ezsigntemplatesignature_response__"Name",
       "Please sign here if you agree to the terms",
@@ -37,7 +39,10 @@ ezsigntemplatesignature_response_t* instantiate_ezsigntemplatesignature_response
       1,
       "Attachment",
       ezmax_api_definition__full_ezsigntemplatesignature_response__"Description",
-      1
+      1,
+      75,
+      "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
+      ezmax_api_definition__full_ezsigntemplatesignature_response__"None"
     );
   } else {
     ezsigntemplatesignature_response = ezsigntemplatesignature_response_create(
@@ -48,6 +53,8 @@ ezsigntemplatesignature_response_t* instantiate_ezsigntemplatesignature_response
       1,
       200,
       300,
+      200,
+      200,
       1,
       ezmax_api_definition__full_ezsigntemplatesignature_response__"Name",
       "Please sign here if you agree to the terms",
@@ -56,7 +63,10 @@ ezsigntemplatesignature_response_t* instantiate_ezsigntemplatesignature_response
       1,
       "Attachment",
       ezmax_api_definition__full_ezsigntemplatesignature_response__"Description",
-      1
+      1,
+      75,
+      "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
+      ezmax_api_definition__full_ezsigntemplatesignature_response__"None"
     );
   }
 

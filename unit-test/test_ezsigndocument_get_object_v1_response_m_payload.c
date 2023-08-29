@@ -45,6 +45,7 @@ ezsigndocument_get_object_v1_response_m_payload_t* instantiate_ezsigndocument_ge
        // false, not to have infinite recursion
       instantiate_common_audit(0),
       "{"ID": 1234, "TAGS": ["tag1", "tag2", "tag3"]}",
+      ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__"Sign",
       2,
       1,
       2,
@@ -74,6 +75,7 @@ ezsigndocument_get_object_v1_response_m_payload_t* instantiate_ezsigndocument_ge
       true,
       NULL,
       "{"ID": 1234, "TAGS": ["tag1", "tag2", "tag3"]}",
+      ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__"Sign",
       2,
       1,
       2,

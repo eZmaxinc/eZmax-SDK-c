@@ -22,16 +22,16 @@ typedef struct ezsigntemplatesignature_get_object_v2_response_t ezsigntemplatesi
 
 
 typedef struct ezsigntemplatesignature_get_object_v2_response_t {
-    struct ezsigntemplatesignature_get_object_v2_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct ezsigntemplatesignature_get_object_v2_response_m_payload_t *m_payload; //model
 
 } ezsigntemplatesignature_get_object_v2_response_t;
 
 ezsigntemplatesignature_get_object_v2_response_t *ezsigntemplatesignature_get_object_v2_response_create(
-    ezsigntemplatesignature_get_object_v2_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    ezsigntemplatesignature_get_object_v2_response_m_payload_t *m_payload
 );
 
 void ezsigntemplatesignature_get_object_v2_response_free(ezsigntemplatesignature_get_object_v2_response_t *ezsigntemplatesignature_get_object_v2_response);

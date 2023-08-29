@@ -22,16 +22,16 @@ typedef struct apikey_create_object_v2_response_t apikey_create_object_v2_respon
 
 
 typedef struct apikey_create_object_v2_response_t {
-    struct apikey_create_object_v2_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct apikey_create_object_v2_response_m_payload_t *m_payload; //model
 
 } apikey_create_object_v2_response_t;
 
 apikey_create_object_v2_response_t *apikey_create_object_v2_response_create(
-    apikey_create_object_v2_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    apikey_create_object_v2_response_m_payload_t *m_payload
 );
 
 void apikey_create_object_v2_response_free(apikey_create_object_v2_response_t *apikey_create_object_v2_response);

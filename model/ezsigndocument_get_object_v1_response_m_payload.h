@@ -16,6 +16,7 @@
 typedef struct ezsigndocument_get_object_v1_response_m_payload_t ezsigndocument_get_object_v1_response_m_payload_t;
 
 #include "common_audit.h"
+#include "computed_e_ezsigndocument_steptype.h"
 #include "custom_ezsignfoldersignerassociationstatus_response.h"
 #include "field_e_ezsigndocument_step.h"
 
@@ -26,6 +27,14 @@ typedef enum  { ezmax_api_definition__full_ezsigndocument_get_object_v1_response
 char* ezsigndocument_get_object_v1_response_m_payload_e_ezsigndocument_step_ToString(ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__e e_ezsigndocument_step);
 
 ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__e ezsigndocument_get_object_v1_response_m_payload_e_ezsigndocument_step_FromString(char* e_ezsigndocument_step);
+
+// Enum  for ezsigndocument_get_object_v1_response_m_payload
+
+typedef enum  { ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__NULL = 0, ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__Form, ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__Sign, ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__None } ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__e;
+
+char* ezsigndocument_get_object_v1_response_m_payload_e_ezsigndocument_steptype_ToString(ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__e e_ezsigndocument_steptype);
+
+ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__e ezsigndocument_get_object_v1_response_m_payload_e_ezsigndocument_steptype_FromString(char* e_ezsigndocument_steptype);
 
 
 
@@ -51,6 +60,7 @@ typedef struct ezsigndocument_get_object_v1_response_m_payload_t {
     int b_ezsigndocument_hassignedsignatures; //boolean
     struct common_audit_t *obj_audit; //model
     char *s_ezsigndocument_externalid; // string
+    computed_e_ezsigndocument_steptype_t *e_ezsigndocument_steptype; // custom
     int i_ezsigndocument_stepformtotal; //numeric
     int i_ezsigndocument_stepformcurrent; //numeric
     int i_ezsigndocument_stepsignaturetotal; //numeric
@@ -81,6 +91,7 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
     int b_ezsigndocument_hassignedsignatures,
     common_audit_t *obj_audit,
     char *s_ezsigndocument_externalid,
+    computed_e_ezsigndocument_steptype_t *e_ezsigndocument_steptype,
     int i_ezsigndocument_stepformtotal,
     int i_ezsigndocument_stepformcurrent,
     int i_ezsigndocument_stepsignaturetotal,

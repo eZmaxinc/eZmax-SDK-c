@@ -6,17 +6,17 @@
 
 
 ezsignfolder_get_list_v1_response_m_payload_t *ezsignfolder_get_list_v1_response_m_payload_create(
-    list_t *a_obj_ezsignfolder,
     int i_row_returned,
-    int i_row_filtered
+    int i_row_filtered,
+    list_t *a_obj_ezsignfolder
     ) {
     ezsignfolder_get_list_v1_response_m_payload_t *ezsignfolder_get_list_v1_response_m_payload_local_var = malloc(sizeof(ezsignfolder_get_list_v1_response_m_payload_t));
     if (!ezsignfolder_get_list_v1_response_m_payload_local_var) {
         return NULL;
     }
-    ezsignfolder_get_list_v1_response_m_payload_local_var->a_obj_ezsignfolder = a_obj_ezsignfolder;
     ezsignfolder_get_list_v1_response_m_payload_local_var->i_row_returned = i_row_returned;
     ezsignfolder_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
+    ezsignfolder_get_list_v1_response_m_payload_local_var->a_obj_ezsignfolder = a_obj_ezsignfolder;
 
     return ezsignfolder_get_list_v1_response_m_payload_local_var;
 }
@@ -40,6 +40,24 @@ void ezsignfolder_get_list_v1_response_m_payload_free(ezsignfolder_get_list_v1_r
 cJSON *ezsignfolder_get_list_v1_response_m_payload_convertToJSON(ezsignfolder_get_list_v1_response_m_payload_t *ezsignfolder_get_list_v1_response_m_payload) {
     cJSON *item = cJSON_CreateObject();
 
+    // ezsignfolder_get_list_v1_response_m_payload->i_row_returned
+    if (!ezsignfolder_get_list_v1_response_m_payload->i_row_returned) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iRowReturned", ezsignfolder_get_list_v1_response_m_payload->i_row_returned) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // ezsignfolder_get_list_v1_response_m_payload->i_row_filtered
+    if (!ezsignfolder_get_list_v1_response_m_payload->i_row_filtered) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iRowFiltered", ezsignfolder_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
+    goto fail; //Numeric
+    }
+
+
     // ezsignfolder_get_list_v1_response_m_payload->a_obj_ezsignfolder
     if (!ezsignfolder_get_list_v1_response_m_payload->a_obj_ezsignfolder) {
         goto fail;
@@ -60,24 +78,6 @@ cJSON *ezsignfolder_get_list_v1_response_m_payload_convertToJSON(ezsignfolder_ge
     }
     }
 
-
-    // ezsignfolder_get_list_v1_response_m_payload->i_row_returned
-    if (!ezsignfolder_get_list_v1_response_m_payload->i_row_returned) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "iRowReturned", ezsignfolder_get_list_v1_response_m_payload->i_row_returned) == NULL) {
-    goto fail; //Numeric
-    }
-
-
-    // ezsignfolder_get_list_v1_response_m_payload->i_row_filtered
-    if (!ezsignfolder_get_list_v1_response_m_payload->i_row_filtered) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "iRowFiltered", ezsignfolder_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
-    goto fail; //Numeric
-    }
-
     return item;
 fail:
     if (item) {
@@ -92,30 +92,6 @@ ezsignfolder_get_list_v1_response_m_payload_t *ezsignfolder_get_list_v1_response
 
     // define the local list for ezsignfolder_get_list_v1_response_m_payload->a_obj_ezsignfolder
     list_t *a_obj_ezsignfolderList = NULL;
-
-    // ezsignfolder_get_list_v1_response_m_payload->a_obj_ezsignfolder
-    cJSON *a_obj_ezsignfolder = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_list_v1_response_m_payloadJSON, "a_objEzsignfolder");
-    if (!a_obj_ezsignfolder) {
-        goto end;
-    }
-
-    
-    cJSON *a_obj_ezsignfolder_local_nonprimitive = NULL;
-    if(!cJSON_IsArray(a_obj_ezsignfolder)){
-        goto end; //nonprimitive container
-    }
-
-    a_obj_ezsignfolderList = list_createList();
-
-    cJSON_ArrayForEach(a_obj_ezsignfolder_local_nonprimitive,a_obj_ezsignfolder )
-    {
-        if(!cJSON_IsObject(a_obj_ezsignfolder_local_nonprimitive)){
-            goto end;
-        }
-        ezsignfolder_list_element_t *a_obj_ezsignfolderItem = ezsignfolder_list_element_parseFromJSON(a_obj_ezsignfolder_local_nonprimitive);
-
-        list_addElement(a_obj_ezsignfolderList, a_obj_ezsignfolderItem);
-    }
 
     // ezsignfolder_get_list_v1_response_m_payload->i_row_returned
     cJSON *i_row_returned = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_list_v1_response_m_payloadJSON, "iRowReturned");
@@ -141,11 +117,35 @@ ezsignfolder_get_list_v1_response_m_payload_t *ezsignfolder_get_list_v1_response
     goto end; //Numeric
     }
 
+    // ezsignfolder_get_list_v1_response_m_payload->a_obj_ezsignfolder
+    cJSON *a_obj_ezsignfolder = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_list_v1_response_m_payloadJSON, "a_objEzsignfolder");
+    if (!a_obj_ezsignfolder) {
+        goto end;
+    }
+
+    
+    cJSON *a_obj_ezsignfolder_local_nonprimitive = NULL;
+    if(!cJSON_IsArray(a_obj_ezsignfolder)){
+        goto end; //nonprimitive container
+    }
+
+    a_obj_ezsignfolderList = list_createList();
+
+    cJSON_ArrayForEach(a_obj_ezsignfolder_local_nonprimitive,a_obj_ezsignfolder )
+    {
+        if(!cJSON_IsObject(a_obj_ezsignfolder_local_nonprimitive)){
+            goto end;
+        }
+        ezsignfolder_list_element_t *a_obj_ezsignfolderItem = ezsignfolder_list_element_parseFromJSON(a_obj_ezsignfolder_local_nonprimitive);
+
+        list_addElement(a_obj_ezsignfolderList, a_obj_ezsignfolderItem);
+    }
+
 
     ezsignfolder_get_list_v1_response_m_payload_local_var = ezsignfolder_get_list_v1_response_m_payload_create (
-        a_obj_ezsignfolderList,
         i_row_returned->valuedouble,
-        i_row_filtered->valuedouble
+        i_row_filtered->valuedouble,
+        a_obj_ezsignfolderList
         );
 
     return ezsignfolder_get_list_v1_response_m_payload_local_var;

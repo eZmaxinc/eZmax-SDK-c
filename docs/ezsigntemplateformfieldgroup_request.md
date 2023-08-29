@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **i_ezsigntemplateformfieldgroup_maxlength** | **int** | The maximum length for the value in the Ezsigntemplateformfieldgroup  This can only be set if eEzsigntemplateformfieldgroupType is **Text** or **Textarea** | [optional] 
 **b_ezsigntemplateformfieldgroup_encrypted** | **int** | Whether the Ezsigntemplateformfieldgroup is encrypted in the database or not. Encrypted values are not displayed on the Ezsigndocument. This can only be set if eEzsigntemplateformfieldgroupType is **Text** or **Textarea** | [optional] 
 **s_ezsigntemplateformfieldgroup_regexp** | **char \*** | A regular expression to indicate what values are acceptable for the Ezsigntemplateformfieldgroup.  This can only be set if eEzsigntemplateformfieldgroupType is **Text** or **Textarea** | [optional] 
+**e_ezsigntemplateformfieldgroup_textvalidation** | **enum_textvalidation_t \*** |  | [optional] 
 **t_ezsigntemplateformfieldgroup_tooltip** | **char \*** | A tooltip that will be presented to Ezsigntemplatesigner about the Ezsigntemplateformfieldgroup | [optional] 
 **e_ezsigntemplateformfieldgroup_tooltipposition** | **field_e_ezsigntemplateformfieldgroup_tooltipposition_t \*** |  | [optional] 
 

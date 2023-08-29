@@ -22,16 +22,16 @@ typedef struct common_get_autocomplete_v1_response_t common_get_autocomplete_v1_
 
 
 typedef struct common_get_autocomplete_v1_response_t {
-    list_t *m_payload; //nonprimitive container
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    list_t *m_payload; //nonprimitive container
 
 } common_get_autocomplete_v1_response_t;
 
 common_get_autocomplete_v1_response_t *common_get_autocomplete_v1_response_create(
-    list_t *m_payload,
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    list_t *m_payload
 );
 
 void common_get_autocomplete_v1_response_free(common_get_autocomplete_v1_response_t *common_get_autocomplete_v1_response);

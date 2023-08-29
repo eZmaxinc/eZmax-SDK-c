@@ -22,16 +22,16 @@ typedef struct paymentterm_get_list_v1_response_t paymentterm_get_list_v1_respon
 
 
 typedef struct paymentterm_get_list_v1_response_t {
-    struct paymentterm_get_list_v1_response_m_payload_t *m_payload; //model
     struct common_response_obj_debug_payload_get_list_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct paymentterm_get_list_v1_response_m_payload_t *m_payload; //model
 
 } paymentterm_get_list_v1_response_t;
 
 paymentterm_get_list_v1_response_t *paymentterm_get_list_v1_response_create(
-    paymentterm_get_list_v1_response_m_payload_t *m_payload,
     common_response_obj_debug_payload_get_list_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    paymentterm_get_list_v1_response_m_payload_t *m_payload
 );
 
 void paymentterm_get_list_v1_response_free(paymentterm_get_list_v1_response_t *paymentterm_get_list_v1_response);

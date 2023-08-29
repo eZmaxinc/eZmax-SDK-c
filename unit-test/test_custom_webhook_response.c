@@ -22,8 +22,6 @@ custom_webhook_response_t* instantiate_custom_webhook_response(int include_optio
   custom_webhook_response_t* custom_webhook_response = NULL;
   if (include_optional) {
     custom_webhook_response = custom_webhook_response_create(
-      "demo",
-      1,
       77,
       "Import into our system",
       5,
@@ -34,12 +32,12 @@ custom_webhook_response_t* instantiate_custom_webhook_response(int include_optio
       "https://www.example.com",
       "email@example.com",
       true,
-      false
+      false,
+      "demo",
+      1
     );
   } else {
     custom_webhook_response = custom_webhook_response_create(
-      "demo",
-      1,
       77,
       "Import into our system",
       5,
@@ -50,7 +48,9 @@ custom_webhook_response_t* instantiate_custom_webhook_response(int include_optio
       "https://www.example.com",
       "email@example.com",
       true,
-      false
+      false,
+      "demo",
+      1
     );
   }
 

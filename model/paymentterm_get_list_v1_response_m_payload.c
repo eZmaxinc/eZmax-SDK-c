@@ -6,17 +6,17 @@
 
 
 paymentterm_get_list_v1_response_m_payload_t *paymentterm_get_list_v1_response_m_payload_create(
-    list_t *a_obj_paymentterm,
     int i_row_returned,
-    int i_row_filtered
+    int i_row_filtered,
+    list_t *a_obj_paymentterm
     ) {
     paymentterm_get_list_v1_response_m_payload_t *paymentterm_get_list_v1_response_m_payload_local_var = malloc(sizeof(paymentterm_get_list_v1_response_m_payload_t));
     if (!paymentterm_get_list_v1_response_m_payload_local_var) {
         return NULL;
     }
-    paymentterm_get_list_v1_response_m_payload_local_var->a_obj_paymentterm = a_obj_paymentterm;
     paymentterm_get_list_v1_response_m_payload_local_var->i_row_returned = i_row_returned;
     paymentterm_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
+    paymentterm_get_list_v1_response_m_payload_local_var->a_obj_paymentterm = a_obj_paymentterm;
 
     return paymentterm_get_list_v1_response_m_payload_local_var;
 }
@@ -40,6 +40,24 @@ void paymentterm_get_list_v1_response_m_payload_free(paymentterm_get_list_v1_res
 cJSON *paymentterm_get_list_v1_response_m_payload_convertToJSON(paymentterm_get_list_v1_response_m_payload_t *paymentterm_get_list_v1_response_m_payload) {
     cJSON *item = cJSON_CreateObject();
 
+    // paymentterm_get_list_v1_response_m_payload->i_row_returned
+    if (!paymentterm_get_list_v1_response_m_payload->i_row_returned) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iRowReturned", paymentterm_get_list_v1_response_m_payload->i_row_returned) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // paymentterm_get_list_v1_response_m_payload->i_row_filtered
+    if (!paymentterm_get_list_v1_response_m_payload->i_row_filtered) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iRowFiltered", paymentterm_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
+    goto fail; //Numeric
+    }
+
+
     // paymentterm_get_list_v1_response_m_payload->a_obj_paymentterm
     if (!paymentterm_get_list_v1_response_m_payload->a_obj_paymentterm) {
         goto fail;
@@ -60,24 +78,6 @@ cJSON *paymentterm_get_list_v1_response_m_payload_convertToJSON(paymentterm_get_
     }
     }
 
-
-    // paymentterm_get_list_v1_response_m_payload->i_row_returned
-    if (!paymentterm_get_list_v1_response_m_payload->i_row_returned) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "iRowReturned", paymentterm_get_list_v1_response_m_payload->i_row_returned) == NULL) {
-    goto fail; //Numeric
-    }
-
-
-    // paymentterm_get_list_v1_response_m_payload->i_row_filtered
-    if (!paymentterm_get_list_v1_response_m_payload->i_row_filtered) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "iRowFiltered", paymentterm_get_list_v1_response_m_payload->i_row_filtered) == NULL) {
-    goto fail; //Numeric
-    }
-
     return item;
 fail:
     if (item) {
@@ -92,30 +92,6 @@ paymentterm_get_list_v1_response_m_payload_t *paymentterm_get_list_v1_response_m
 
     // define the local list for paymentterm_get_list_v1_response_m_payload->a_obj_paymentterm
     list_t *a_obj_paymenttermList = NULL;
-
-    // paymentterm_get_list_v1_response_m_payload->a_obj_paymentterm
-    cJSON *a_obj_paymentterm = cJSON_GetObjectItemCaseSensitive(paymentterm_get_list_v1_response_m_payloadJSON, "a_objPaymentterm");
-    if (!a_obj_paymentterm) {
-        goto end;
-    }
-
-    
-    cJSON *a_obj_paymentterm_local_nonprimitive = NULL;
-    if(!cJSON_IsArray(a_obj_paymentterm)){
-        goto end; //nonprimitive container
-    }
-
-    a_obj_paymenttermList = list_createList();
-
-    cJSON_ArrayForEach(a_obj_paymentterm_local_nonprimitive,a_obj_paymentterm )
-    {
-        if(!cJSON_IsObject(a_obj_paymentterm_local_nonprimitive)){
-            goto end;
-        }
-        paymentterm_list_element_t *a_obj_paymenttermItem = paymentterm_list_element_parseFromJSON(a_obj_paymentterm_local_nonprimitive);
-
-        list_addElement(a_obj_paymenttermList, a_obj_paymenttermItem);
-    }
 
     // paymentterm_get_list_v1_response_m_payload->i_row_returned
     cJSON *i_row_returned = cJSON_GetObjectItemCaseSensitive(paymentterm_get_list_v1_response_m_payloadJSON, "iRowReturned");
@@ -141,11 +117,35 @@ paymentterm_get_list_v1_response_m_payload_t *paymentterm_get_list_v1_response_m
     goto end; //Numeric
     }
 
+    // paymentterm_get_list_v1_response_m_payload->a_obj_paymentterm
+    cJSON *a_obj_paymentterm = cJSON_GetObjectItemCaseSensitive(paymentterm_get_list_v1_response_m_payloadJSON, "a_objPaymentterm");
+    if (!a_obj_paymentterm) {
+        goto end;
+    }
+
+    
+    cJSON *a_obj_paymentterm_local_nonprimitive = NULL;
+    if(!cJSON_IsArray(a_obj_paymentterm)){
+        goto end; //nonprimitive container
+    }
+
+    a_obj_paymenttermList = list_createList();
+
+    cJSON_ArrayForEach(a_obj_paymentterm_local_nonprimitive,a_obj_paymentterm )
+    {
+        if(!cJSON_IsObject(a_obj_paymentterm_local_nonprimitive)){
+            goto end;
+        }
+        paymentterm_list_element_t *a_obj_paymenttermItem = paymentterm_list_element_parseFromJSON(a_obj_paymentterm_local_nonprimitive);
+
+        list_addElement(a_obj_paymenttermList, a_obj_paymenttermItem);
+    }
+
 
     paymentterm_get_list_v1_response_m_payload_local_var = paymentterm_get_list_v1_response_m_payload_create (
-        a_obj_paymenttermList,
         i_row_returned->valuedouble,
-        i_row_filtered->valuedouble
+        i_row_filtered->valuedouble,
+        a_obj_paymenttermList
         );
 
     return paymentterm_get_list_v1_response_m_payload_local_var;
