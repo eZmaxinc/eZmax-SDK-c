@@ -11,7 +11,9 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
     list_t *a_required_permission,
     int b_version_deprecated,
     common_response_filter_t *a_filter,
-    list_t* a_order_by
+    list_t* a_order_by,
+    int i_row_max,
+    int i_row_offset
     ) {
     common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_get_list_local_var = malloc(sizeof(common_response_obj_debug_payload_get_list_t));
     if (!common_response_obj_debug_payload_get_list_local_var) {
@@ -23,6 +25,8 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
     common_response_obj_debug_payload_get_list_local_var->b_version_deprecated = b_version_deprecated;
     common_response_obj_debug_payload_get_list_local_var->a_filter = a_filter;
     common_response_obj_debug_payload_get_list_local_var->a_order_by = a_order_by;
+    common_response_obj_debug_payload_get_list_local_var->i_row_max = i_row_max;
+    common_response_obj_debug_payload_get_list_local_var->i_row_offset = i_row_offset;
 
     return common_response_obj_debug_payload_get_list_local_var;
 }
@@ -137,6 +141,24 @@ cJSON *common_response_obj_debug_payload_get_list_convertToJSON(common_response_
             goto fail;
         }
     }
+    }
+
+
+    // common_response_obj_debug_payload_get_list->i_row_max
+    if (!common_response_obj_debug_payload_get_list->i_row_max) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iRowMax", common_response_obj_debug_payload_get_list->i_row_max) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // common_response_obj_debug_payload_get_list->i_row_offset
+    if (!common_response_obj_debug_payload_get_list->i_row_offset) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iRowOffset", common_response_obj_debug_payload_get_list->i_row_offset) == NULL) {
+    goto fail; //Numeric
     }
 
     return item;
@@ -261,6 +283,30 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
         }
     }
 
+    // common_response_obj_debug_payload_get_list->i_row_max
+    cJSON *i_row_max = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payload_get_listJSON, "iRowMax");
+    if (!i_row_max) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_row_max))
+    {
+    goto end; //Numeric
+    }
+
+    // common_response_obj_debug_payload_get_list->i_row_offset
+    cJSON *i_row_offset = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payload_get_listJSON, "iRowOffset");
+    if (!i_row_offset) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_row_offset))
+    {
+    goto end; //Numeric
+    }
+
 
     common_response_obj_debug_payload_get_list_local_var = common_response_obj_debug_payload_get_list_create (
         i_version_min->valuedouble,
@@ -268,7 +314,9 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
         a_required_permissionList,
         b_version_deprecated->valueint,
         a_filter_local_nonprim,
-        a_order_byList
+        a_order_byList,
+        i_row_max->valuedouble,
+        i_row_offset->valuedouble
         );
 
     return common_response_obj_debug_payload_get_list_local_var;

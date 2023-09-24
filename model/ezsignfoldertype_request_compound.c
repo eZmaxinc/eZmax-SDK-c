@@ -72,6 +72,8 @@ ezsignfoldertype_request_compound_t *ezsignfoldertype_request_compound_create(
     field_e_ezsignfoldertype_disposal_t *e_ezsignfoldertype_disposal,
     int i_ezsignfoldertype_disposaldays,
     int i_ezsignfoldertype_deadlinedays,
+    int b_ezsignfoldertype_delegate,
+    int b_ezsignfoldertype_reassign,
     int b_ezsignfoldertype_sendattatchmentsigner,
     int b_ezsignfoldertype_sendsignedtodocumentowner,
     int b_ezsignfoldertype_sendsignedtofolderowner,
@@ -108,6 +110,8 @@ ezsignfoldertype_request_compound_t *ezsignfoldertype_request_compound_create(
     ezsignfoldertype_request_compound_local_var->e_ezsignfoldertype_disposal = e_ezsignfoldertype_disposal;
     ezsignfoldertype_request_compound_local_var->i_ezsignfoldertype_disposaldays = i_ezsignfoldertype_disposaldays;
     ezsignfoldertype_request_compound_local_var->i_ezsignfoldertype_deadlinedays = i_ezsignfoldertype_deadlinedays;
+    ezsignfoldertype_request_compound_local_var->b_ezsignfoldertype_delegate = b_ezsignfoldertype_delegate;
+    ezsignfoldertype_request_compound_local_var->b_ezsignfoldertype_reassign = b_ezsignfoldertype_reassign;
     ezsignfoldertype_request_compound_local_var->b_ezsignfoldertype_sendattatchmentsigner = b_ezsignfoldertype_sendattatchmentsigner;
     ezsignfoldertype_request_compound_local_var->b_ezsignfoldertype_sendsignedtodocumentowner = b_ezsignfoldertype_sendsignedtodocumentowner;
     ezsignfoldertype_request_compound_local_var->b_ezsignfoldertype_sendsignedtofolderowner = b_ezsignfoldertype_sendsignedtofolderowner;
@@ -321,6 +325,22 @@ cJSON *ezsignfoldertype_request_compound_convertToJSON(ezsignfoldertype_request_
     }
     if(cJSON_AddNumberToObject(item, "iEzsignfoldertypeDeadlinedays", ezsignfoldertype_request_compound->i_ezsignfoldertype_deadlinedays) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // ezsignfoldertype_request_compound->b_ezsignfoldertype_delegate
+    if(ezsignfoldertype_request_compound->b_ezsignfoldertype_delegate) {
+    if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeDelegate", ezsignfoldertype_request_compound->b_ezsignfoldertype_delegate) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
+    // ezsignfoldertype_request_compound->b_ezsignfoldertype_reassign
+    if(ezsignfoldertype_request_compound->b_ezsignfoldertype_reassign) {
+    if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeReassign", ezsignfoldertype_request_compound->b_ezsignfoldertype_reassign) == NULL) {
+    goto fail; //Bool
+    }
     }
 
 
@@ -650,6 +670,24 @@ ezsignfoldertype_request_compound_t *ezsignfoldertype_request_compound_parseFrom
     goto end; //Numeric
     }
 
+    // ezsignfoldertype_request_compound->b_ezsignfoldertype_delegate
+    cJSON *b_ezsignfoldertype_delegate = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_request_compoundJSON, "bEzsignfoldertypeDelegate");
+    if (b_ezsignfoldertype_delegate) { 
+    if(!cJSON_IsBool(b_ezsignfoldertype_delegate))
+    {
+    goto end; //Bool
+    }
+    }
+
+    // ezsignfoldertype_request_compound->b_ezsignfoldertype_reassign
+    cJSON *b_ezsignfoldertype_reassign = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_request_compoundJSON, "bEzsignfoldertypeReassign");
+    if (b_ezsignfoldertype_reassign) { 
+    if(!cJSON_IsBool(b_ezsignfoldertype_reassign))
+    {
+    goto end; //Bool
+    }
+    }
+
     // ezsignfoldertype_request_compound->b_ezsignfoldertype_sendattatchmentsigner
     cJSON *b_ezsignfoldertype_sendattatchmentsigner = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_request_compoundJSON, "bEzsignfoldertypeSendattatchmentsigner");
     if (!b_ezsignfoldertype_sendattatchmentsigner) {
@@ -873,6 +911,8 @@ ezsignfoldertype_request_compound_t *ezsignfoldertype_request_compound_parseFrom
         e_ezsignfoldertype_disposal_local_nonprim,
         i_ezsignfoldertype_disposaldays ? i_ezsignfoldertype_disposaldays->valuedouble : 0,
         i_ezsignfoldertype_deadlinedays->valuedouble,
+        b_ezsignfoldertype_delegate ? b_ezsignfoldertype_delegate->valueint : 0,
+        b_ezsignfoldertype_reassign ? b_ezsignfoldertype_reassign->valueint : 0,
         b_ezsignfoldertype_sendattatchmentsigner->valueint,
         b_ezsignfoldertype_sendsignedtodocumentowner->valueint,
         b_ezsignfoldertype_sendsignedtofolderowner->valueint,

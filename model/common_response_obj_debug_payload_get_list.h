@@ -26,6 +26,8 @@ typedef struct common_response_obj_debug_payload_get_list_t {
     int b_version_deprecated; //boolean
     struct common_response_filter_t *a_filter; //model
     list_t* a_order_by; //map
+    int i_row_max; //numeric
+    int i_row_offset; //numeric
 
 } common_response_obj_debug_payload_get_list_t;
 
@@ -35,7 +37,9 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
     list_t *a_required_permission,
     int b_version_deprecated,
     common_response_filter_t *a_filter,
-    list_t* a_order_by
+    list_t* a_order_by,
+    int i_row_max,
+    int i_row_offset
 );
 
 void common_response_obj_debug_payload_get_list_free(common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_get_list);

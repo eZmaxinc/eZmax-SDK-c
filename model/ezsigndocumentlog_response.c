@@ -5,13 +5,13 @@
 
 
 char* e_ezsigndocumentlog_typeezsigndocumentlog_response_ToString(ezmax_api_definition__full_ezsigndocumentlog_response__e e_ezsigndocumentlog_type) {
-    char* e_ezsigndocumentlog_typeArray[] =  { "NULL", "Clone", "Login", "Sendcode", "Badcode", "Goodcode", "Authentication", "Createpage", "Download", "Send", "Sign", "Upload", "View", "Completion", "Changelimitdate", "Unsign", "ImportFromInstanet", "SendEmail", "FormCompletion", "SignatureAttachmentAdd", "SignatureAttachmentValidation", "SignatureAttachmentRefused", "SignatureAttachmentDeleted", "DeclinedToSign", "DelayedSendEmail" };
+    char* e_ezsigndocumentlog_typeArray[] =  { "NULL", "Clone", "Login", "Sendcode", "Badcode", "Goodcode", "Authentication", "Createpage", "Download", "Send", "Sign", "Upload", "View", "Completion", "Changelimitdate", "Unsign", "ImportFromInstanet", "SendEmail", "FormCompletion", "SignatureAttachmentAdd", "SignatureAttachmentValidation", "SignatureAttachmentRefused", "SignatureAttachmentDeleted", "DeclinedToSign", "DelayedSendEmail", "RegeneratePage", "RegeneratePageForm" };
 	return e_ezsigndocumentlog_typeArray[e_ezsigndocumentlog_type];
 }
 
 ezmax_api_definition__full_ezsigndocumentlog_response__e e_ezsigndocumentlog_typeezsigndocumentlog_response_FromString(char* e_ezsigndocumentlog_type){
     int stringToReturn = 0;
-    char *e_ezsigndocumentlog_typeArray[] =  { "NULL", "Clone", "Login", "Sendcode", "Badcode", "Goodcode", "Authentication", "Createpage", "Download", "Send", "Sign", "Upload", "View", "Completion", "Changelimitdate", "Unsign", "ImportFromInstanet", "SendEmail", "FormCompletion", "SignatureAttachmentAdd", "SignatureAttachmentValidation", "SignatureAttachmentRefused", "SignatureAttachmentDeleted", "DeclinedToSign", "DelayedSendEmail" };
+    char *e_ezsigndocumentlog_typeArray[] =  { "NULL", "Clone", "Login", "Sendcode", "Badcode", "Goodcode", "Authentication", "Createpage", "Download", "Send", "Sign", "Upload", "View", "Completion", "Changelimitdate", "Unsign", "ImportFromInstanet", "SendEmail", "FormCompletion", "SignatureAttachmentAdd", "SignatureAttachmentValidation", "SignatureAttachmentRefused", "SignatureAttachmentDeleted", "DeclinedToSign", "DelayedSendEmail", "RegeneratePage", "RegeneratePageForm" };
     size_t sizeofArray = sizeof(e_ezsigndocumentlog_typeArray) / sizeof(e_ezsigndocumentlog_typeArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(e_ezsigndocumentlog_type, e_ezsigndocumentlog_typeArray[stringToReturn]) == 0) {

@@ -17,6 +17,7 @@
 ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compound(int include_optional);
 
 #include "test_custom_contact_name_response.c"
+#include "test_custom_contact_name_response.c"
 #include "test_signature_response_compound.c"
 #include "test_custom_creditcardtransaction_response.c"
 
@@ -52,6 +53,8 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
        // false, not to have infinite recursion
       instantiate_custom_contact_name_response(0),
        // false, not to have infinite recursion
+      instantiate_custom_contact_name_response(0),
+       // false, not to have infinite recursion
       instantiate_signature_response_compound(0),
       1,
       list_createList(),
@@ -84,6 +87,7 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
       75,
       ezmax_api_definition__full_ezsignsignature_response_compound__"None",
       "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
+      NULL,
       NULL,
       NULL,
       1,

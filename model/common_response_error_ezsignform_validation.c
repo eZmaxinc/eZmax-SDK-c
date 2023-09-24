@@ -23,17 +23,17 @@ ezmax_api_definition__full_common_response_error_ezsignform_validation__e e_erro
 }
 
 common_response_error_ezsignform_validation_t *common_response_error_ezsignform_validation_create(
-    list_t *a_obj_ezsignformfielderror,
     char *s_error_message,
-    field_e_error_code_t *e_error_code
+    field_e_error_code_t *e_error_code,
+    list_t *a_obj_ezsignformfielderror
     ) {
     common_response_error_ezsignform_validation_t *common_response_error_ezsignform_validation_local_var = malloc(sizeof(common_response_error_ezsignform_validation_t));
     if (!common_response_error_ezsignform_validation_local_var) {
         return NULL;
     }
-    common_response_error_ezsignform_validation_local_var->a_obj_ezsignformfielderror = a_obj_ezsignformfielderror;
     common_response_error_ezsignform_validation_local_var->s_error_message = s_error_message;
     common_response_error_ezsignform_validation_local_var->e_error_code = e_error_code;
+    common_response_error_ezsignform_validation_local_var->a_obj_ezsignformfielderror = a_obj_ezsignformfielderror;
 
     return common_response_error_ezsignform_validation_local_var;
 }
@@ -44,13 +44,6 @@ void common_response_error_ezsignform_validation_free(common_response_error_ezsi
         return ;
     }
     listEntry_t *listEntry;
-    if (common_response_error_ezsignform_validation->a_obj_ezsignformfielderror) {
-        list_ForEach(listEntry, common_response_error_ezsignform_validation->a_obj_ezsignformfielderror) {
-            custom_ezsignformfielderror_response_free(listEntry->data);
-        }
-        list_freeList(common_response_error_ezsignform_validation->a_obj_ezsignformfielderror);
-        common_response_error_ezsignform_validation->a_obj_ezsignformfielderror = NULL;
-    }
     if (common_response_error_ezsignform_validation->s_error_message) {
         free(common_response_error_ezsignform_validation->s_error_message);
         common_response_error_ezsignform_validation->s_error_message = NULL;
@@ -59,32 +52,18 @@ void common_response_error_ezsignform_validation_free(common_response_error_ezsi
         field_e_error_code_free(common_response_error_ezsignform_validation->e_error_code);
         common_response_error_ezsignform_validation->e_error_code = NULL;
     }
+    if (common_response_error_ezsignform_validation->a_obj_ezsignformfielderror) {
+        list_ForEach(listEntry, common_response_error_ezsignform_validation->a_obj_ezsignformfielderror) {
+            custom_ezsignformfielderror_response_free(listEntry->data);
+        }
+        list_freeList(common_response_error_ezsignform_validation->a_obj_ezsignformfielderror);
+        common_response_error_ezsignform_validation->a_obj_ezsignformfielderror = NULL;
+    }
     free(common_response_error_ezsignform_validation);
 }
 
 cJSON *common_response_error_ezsignform_validation_convertToJSON(common_response_error_ezsignform_validation_t *common_response_error_ezsignform_validation) {
     cJSON *item = cJSON_CreateObject();
-
-    // common_response_error_ezsignform_validation->a_obj_ezsignformfielderror
-    if (!common_response_error_ezsignform_validation->a_obj_ezsignformfielderror) {
-        goto fail;
-    }
-    cJSON *a_obj_ezsignformfielderror = cJSON_AddArrayToObject(item, "a_objEzsignformfielderror");
-    if(a_obj_ezsignformfielderror == NULL) {
-    goto fail; //nonprimitive container
-    }
-
-    listEntry_t *a_obj_ezsignformfielderrorListEntry;
-    if (common_response_error_ezsignform_validation->a_obj_ezsignformfielderror) {
-    list_ForEach(a_obj_ezsignformfielderrorListEntry, common_response_error_ezsignform_validation->a_obj_ezsignformfielderror) {
-    cJSON *itemLocal = custom_ezsignformfielderror_response_convertToJSON(a_obj_ezsignformfielderrorListEntry->data);
-    if(itemLocal == NULL) {
-    goto fail;
-    }
-    cJSON_AddItemToArray(a_obj_ezsignformfielderror, itemLocal);
-    }
-    }
-
 
     // common_response_error_ezsignform_validation->s_error_message
     if (!common_response_error_ezsignform_validation->s_error_message) {
@@ -108,6 +87,27 @@ cJSON *common_response_error_ezsignform_validation_convertToJSON(common_response
         goto fail;
     }
 
+
+    // common_response_error_ezsignform_validation->a_obj_ezsignformfielderror
+    if (!common_response_error_ezsignform_validation->a_obj_ezsignformfielderror) {
+        goto fail;
+    }
+    cJSON *a_obj_ezsignformfielderror = cJSON_AddArrayToObject(item, "a_objEzsignformfielderror");
+    if(a_obj_ezsignformfielderror == NULL) {
+    goto fail; //nonprimitive container
+    }
+
+    listEntry_t *a_obj_ezsignformfielderrorListEntry;
+    if (common_response_error_ezsignform_validation->a_obj_ezsignformfielderror) {
+    list_ForEach(a_obj_ezsignformfielderrorListEntry, common_response_error_ezsignform_validation->a_obj_ezsignformfielderror) {
+    cJSON *itemLocal = custom_ezsignformfielderror_response_convertToJSON(a_obj_ezsignformfielderrorListEntry->data);
+    if(itemLocal == NULL) {
+    goto fail;
+    }
+    cJSON_AddItemToArray(a_obj_ezsignformfielderror, itemLocal);
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -120,11 +120,32 @@ common_response_error_ezsignform_validation_t *common_response_error_ezsignform_
 
     common_response_error_ezsignform_validation_t *common_response_error_ezsignform_validation_local_var = NULL;
 
+    // define the local variable for common_response_error_ezsignform_validation->e_error_code
+    field_e_error_code_t *e_error_code_local_nonprim = NULL;
+
     // define the local list for common_response_error_ezsignform_validation->a_obj_ezsignformfielderror
     list_t *a_obj_ezsignformfielderrorList = NULL;
 
-    // define the local variable for common_response_error_ezsignform_validation->e_error_code
-    field_e_error_code_t *e_error_code_local_nonprim = NULL;
+    // common_response_error_ezsignform_validation->s_error_message
+    cJSON *s_error_message = cJSON_GetObjectItemCaseSensitive(common_response_error_ezsignform_validationJSON, "sErrorMessage");
+    if (!s_error_message) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_error_message))
+    {
+    goto end; //String
+    }
+
+    // common_response_error_ezsignform_validation->e_error_code
+    cJSON *e_error_code = cJSON_GetObjectItemCaseSensitive(common_response_error_ezsignform_validationJSON, "eErrorCode");
+    if (!e_error_code) {
+        goto end;
+    }
+
+    
+    e_error_code_local_nonprim = field_e_error_code_parseFromJSON(e_error_code); //custom
 
     // common_response_error_ezsignform_validation->a_obj_ezsignformfielderror
     cJSON *a_obj_ezsignformfielderror = cJSON_GetObjectItemCaseSensitive(common_response_error_ezsignform_validationJSON, "a_objEzsignformfielderror");
@@ -150,36 +171,19 @@ common_response_error_ezsignform_validation_t *common_response_error_ezsignform_
         list_addElement(a_obj_ezsignformfielderrorList, a_obj_ezsignformfielderrorItem);
     }
 
-    // common_response_error_ezsignform_validation->s_error_message
-    cJSON *s_error_message = cJSON_GetObjectItemCaseSensitive(common_response_error_ezsignform_validationJSON, "sErrorMessage");
-    if (!s_error_message) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(s_error_message))
-    {
-    goto end; //String
-    }
-
-    // common_response_error_ezsignform_validation->e_error_code
-    cJSON *e_error_code = cJSON_GetObjectItemCaseSensitive(common_response_error_ezsignform_validationJSON, "eErrorCode");
-    if (!e_error_code) {
-        goto end;
-    }
-
-    
-    e_error_code_local_nonprim = field_e_error_code_parseFromJSON(e_error_code); //custom
-
 
     common_response_error_ezsignform_validation_local_var = common_response_error_ezsignform_validation_create (
-        a_obj_ezsignformfielderrorList,
         strdup(s_error_message->valuestring),
-        e_error_code_local_nonprim
+        e_error_code_local_nonprim,
+        a_obj_ezsignformfielderrorList
         );
 
     return common_response_error_ezsignform_validation_local_var;
 end:
+    if (e_error_code_local_nonprim) {
+        field_e_error_code_free(e_error_code_local_nonprim);
+        e_error_code_local_nonprim = NULL;
+    }
     if (a_obj_ezsignformfielderrorList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsignformfielderrorList) {
@@ -188,10 +192,6 @@ end:
         }
         list_freeList(a_obj_ezsignformfielderrorList);
         a_obj_ezsignformfielderrorList = NULL;
-    }
-    if (e_error_code_local_nonprim) {
-        field_e_error_code_free(e_error_code_local_nonprim);
-        e_error_code_local_nonprim = NULL;
     }
     return NULL;
 

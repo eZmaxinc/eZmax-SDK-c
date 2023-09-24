@@ -14,13 +14,13 @@
 // Functions for enum SSELECTOR for ObjectUsergroupAPI_usergroupGetAutocompleteV2
 
 static char* usergroupGetAutocompleteV2_SSELECTOR_ToString(ezmax_api_definition__full_usergroupGetAutocompleteV2_sSelector_e SSELECTOR){
-    char *SSELECTORArray[] =  { "NULL", "All" };
+    char *SSELECTORArray[] =  { "NULL", "All", "AllButEveryone" };
     return SSELECTORArray[SSELECTOR];
 }
 
 static ezmax_api_definition__full_usergroupGetAutocompleteV2_sSelector_e usergroupGetAutocompleteV2_SSELECTOR_FromString(char* SSELECTOR){
     int stringToReturn = 0;
-    char *SSELECTORArray[] =  { "NULL", "All" };
+    char *SSELECTORArray[] =  { "NULL", "All", "AllButEveryone" };
     size_t sizeofArray = sizeof(SSELECTORArray) / sizeof(SSELECTORArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(SSELECTOR, SSELECTORArray[stringToReturn]) == 0) {

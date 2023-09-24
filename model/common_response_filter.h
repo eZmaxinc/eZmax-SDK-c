@@ -20,12 +20,14 @@ typedef struct common_response_filter_t common_response_filter_t;
 
 typedef struct common_response_filter_t {
     list_t* a_auto_type; //map
+    list_t* a_auto_type_having; //map
     list_t* a_enum; //map
 
 } common_response_filter_t;
 
 common_response_filter_t *common_response_filter_create(
     list_t* a_auto_type,
+    list_t* a_auto_type_having,
     list_t* a_enum
 );
 

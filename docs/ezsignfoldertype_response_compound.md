@@ -23,6 +23,8 @@ Name | Type | Description | Notes
 **e_ezsignfoldertype_disposal** | **field_e_ezsignfoldertype_disposal_t \*** |  | 
 **i_ezsignfoldertype_disposaldays** | **int** | The number of days after the archival before the disposal of the Ezsignfolder | [optional] 
 **i_ezsignfoldertype_deadlinedays** | **int** | The number of days to get all Ezsignsignatures | 
+**b_ezsignfoldertype_delegate** | **int** | Wheter if delegation of signature is allowed to another user or not | [optional] 
+**b_ezsignfoldertype_reassign** | **int** | Wheter if Reassignment of signature is allowed to another signatory or not | [optional] 
 **b_ezsignfoldertype_sendattatchmentsigner** | **int** | Whether we send the Ezsigndocument and the proof as attachment in the email | 
 **b_ezsignfoldertype_sendsignedtodocumentowner** | **int** | Whether we send the signed Ezsigndocument to the Ezsigndocument&#39;s owner | 
 **b_ezsignfoldertype_sendsignedtofolderowner** | **int** | Whether we send the signed Ezsigndocument to the Ezsignfolder&#39;s owner | 

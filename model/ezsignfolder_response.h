@@ -16,6 +16,7 @@
 typedef struct ezsignfolder_response_t ezsignfolder_response_t;
 
 #include "common_audit.h"
+#include "custom_ezsignfoldertype_response.h"
 #include "field_e_ezsignfolder_sendreminderfrequency.h"
 #include "field_e_ezsignfolder_step.h"
 
@@ -40,6 +41,7 @@ ezmax_api_definition__full_ezsignfolder_response__e ezsignfolder_response_e_ezsi
 typedef struct ezsignfolder_response_t {
     int pki_ezsignfolder_id; //numeric
     int fki_ezsignfoldertype_id; //numeric
+    struct custom_ezsignfoldertype_response_t *obj_ezsignfoldertype; //model
     char *s_ezsignfoldertype_name_x; // string
     int fki_billingentityinternal_id; //numeric
     char *s_billingentityinternal_description_x; // string
@@ -65,6 +67,7 @@ typedef struct ezsignfolder_response_t {
 ezsignfolder_response_t *ezsignfolder_response_create(
     int pki_ezsignfolder_id,
     int fki_ezsignfoldertype_id,
+    custom_ezsignfoldertype_response_t *obj_ezsignfoldertype,
     char *s_ezsignfoldertype_name_x,
     int fki_billingentityinternal_id,
     char *s_billingentityinternal_description_x,

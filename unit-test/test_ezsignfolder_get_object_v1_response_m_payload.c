@@ -16,6 +16,7 @@
 #include "../model/ezsignfolder_get_object_v1_response_m_payload.h"
 ezsignfolder_get_object_v1_response_m_payload_t* instantiate_ezsignfolder_get_object_v1_response_m_payload(int include_optional);
 
+#include "test_custom_ezsignfoldertype_response.c"
 #include "test_common_audit.c"
 
 
@@ -25,7 +26,9 @@ ezsignfolder_get_object_v1_response_m_payload_t* instantiate_ezsignfolder_get_ob
     ezsignfolder_get_object_v1_response_m_payload = ezsignfolder_get_object_v1_response_m_payload_create(
       33,
       5,
-      "Default",
+       // false, not to have infinite recursion
+      instantiate_custom_ezsignfoldertype_response(0),
+      "0",
       1,
       "Default",
       1,
@@ -58,7 +61,8 @@ Mary",
     ezsignfolder_get_object_v1_response_m_payload = ezsignfolder_get_object_v1_response_m_payload_create(
       33,
       5,
-      "Default",
+      NULL,
+      "0",
       1,
       "Default",
       1,

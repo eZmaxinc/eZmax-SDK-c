@@ -217,6 +217,7 @@ set(SRCS
     model/custom_ezsignfoldersignerassociationstatus_response.c
     model/custom_ezsignfoldertransmission_response.c
     model/custom_ezsignfoldertransmission_signer_response.c
+    model/custom_ezsignfoldertype_response.c
     model/custom_ezsignformfield_request.c
     model/custom_ezsignformfielderror_response.c
     model/custom_ezsignformfielderrortest_response.c
@@ -1347,6 +1348,7 @@ set(HDRS
     model/custom_ezsignfoldersignerassociationstatus_response.h
     model/custom_ezsignfoldertransmission_response.h
     model/custom_ezsignfoldertransmission_signer_response.h
+    model/custom_ezsignfoldertype_response.h
     model/custom_ezsignformfield_request.h
     model/custom_ezsignformfielderror_response.h
     model/custom_ezsignformfielderrortest_response.h

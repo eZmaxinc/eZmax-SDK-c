@@ -91,6 +91,7 @@ typedef struct ezsignsignature_response_t {
     enum_textvalidation_t *e_ezsignsignature_textvalidation; // custom
     char *s_ezsignsignature_regexp; // string
     struct custom_contact_name_response_t *obj_contact_name; //model
+    struct custom_contact_name_response_t *obj_contact_name_delegation; //model
     struct signature_response_compound_t *obj_signature; //model
 
 } ezsignsignature_response_t;
@@ -121,6 +122,7 @@ ezsignsignature_response_t *ezsignsignature_response_create(
     enum_textvalidation_t *e_ezsignsignature_textvalidation,
     char *s_ezsignsignature_regexp,
     custom_contact_name_response_t *obj_contact_name,
+    custom_contact_name_response_t *obj_contact_name_delegation,
     signature_response_compound_t *obj_signature
 );
 

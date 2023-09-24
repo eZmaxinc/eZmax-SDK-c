@@ -116,6 +116,7 @@ ezsignsignature_response_t *ezsignsignature_response_create(
     enum_textvalidation_t *e_ezsignsignature_textvalidation,
     char *s_ezsignsignature_regexp,
     custom_contact_name_response_t *obj_contact_name,
+    custom_contact_name_response_t *obj_contact_name_delegation,
     signature_response_compound_t *obj_signature
     ) {
     ezsignsignature_response_t *ezsignsignature_response_local_var = malloc(sizeof(ezsignsignature_response_t));
@@ -147,6 +148,7 @@ ezsignsignature_response_t *ezsignsignature_response_create(
     ezsignsignature_response_local_var->e_ezsignsignature_textvalidation = e_ezsignsignature_textvalidation;
     ezsignsignature_response_local_var->s_ezsignsignature_regexp = s_ezsignsignature_regexp;
     ezsignsignature_response_local_var->obj_contact_name = obj_contact_name;
+    ezsignsignature_response_local_var->obj_contact_name_delegation = obj_contact_name_delegation;
     ezsignsignature_response_local_var->obj_signature = obj_signature;
 
     return ezsignsignature_response_local_var;
@@ -201,6 +203,10 @@ void ezsignsignature_response_free(ezsignsignature_response_t *ezsignsignature_r
     if (ezsignsignature_response->obj_contact_name) {
         custom_contact_name_response_free(ezsignsignature_response->obj_contact_name);
         ezsignsignature_response->obj_contact_name = NULL;
+    }
+    if (ezsignsignature_response->obj_contact_name_delegation) {
+        custom_contact_name_response_free(ezsignsignature_response->obj_contact_name_delegation);
+        ezsignsignature_response->obj_contact_name_delegation = NULL;
     }
     if (ezsignsignature_response->obj_signature) {
         signature_response_compound_free(ezsignsignature_response->obj_signature);
@@ -451,6 +457,19 @@ cJSON *ezsignsignature_response_convertToJSON(ezsignsignature_response_t *ezsign
     }
 
 
+    // ezsignsignature_response->obj_contact_name_delegation
+    if(ezsignsignature_response->obj_contact_name_delegation) {
+    cJSON *obj_contact_name_delegation_local_JSON = custom_contact_name_response_convertToJSON(ezsignsignature_response->obj_contact_name_delegation);
+    if(obj_contact_name_delegation_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objContactNameDelegation", obj_contact_name_delegation_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+    }
+
+
     // ezsignsignature_response->obj_signature
     if(ezsignsignature_response->obj_signature) {
     cJSON *obj_signature_local_JSON = signature_response_compound_convertToJSON(ezsignsignature_response->obj_signature);
@@ -492,6 +511,9 @@ ezsignsignature_response_t *ezsignsignature_response_parseFromJSON(cJSON *ezsign
 
     // define the local variable for ezsignsignature_response->obj_contact_name
     custom_contact_name_response_t *obj_contact_name_local_nonprim = NULL;
+
+    // define the local variable for ezsignsignature_response->obj_contact_name_delegation
+    custom_contact_name_response_t *obj_contact_name_delegation_local_nonprim = NULL;
 
     // define the local variable for ezsignsignature_response->obj_signature
     signature_response_compound_t *obj_signature_local_nonprim = NULL;
@@ -730,6 +752,12 @@ ezsignsignature_response_t *ezsignsignature_response_parseFromJSON(cJSON *ezsign
     
     obj_contact_name_local_nonprim = custom_contact_name_response_parseFromJSON(obj_contact_name); //nonprimitive
 
+    // ezsignsignature_response->obj_contact_name_delegation
+    cJSON *obj_contact_name_delegation = cJSON_GetObjectItemCaseSensitive(ezsignsignature_responseJSON, "objContactNameDelegation");
+    if (obj_contact_name_delegation) { 
+    obj_contact_name_delegation_local_nonprim = custom_contact_name_response_parseFromJSON(obj_contact_name_delegation); //nonprimitive
+    }
+
     // ezsignsignature_response->obj_signature
     cJSON *obj_signature = cJSON_GetObjectItemCaseSensitive(ezsignsignature_responseJSON, "objSignature");
     if (obj_signature) { 
@@ -763,6 +791,7 @@ ezsignsignature_response_t *ezsignsignature_response_parseFromJSON(cJSON *ezsign
         e_ezsignsignature_textvalidation ? e_ezsignsignature_textvalidation_local_nonprim : NULL,
         s_ezsignsignature_regexp && !cJSON_IsNull(s_ezsignsignature_regexp) ? strdup(s_ezsignsignature_regexp->valuestring) : NULL,
         obj_contact_name_local_nonprim,
+        obj_contact_name_delegation ? obj_contact_name_delegation_local_nonprim : NULL,
         obj_signature ? obj_signature_local_nonprim : NULL
         );
 
@@ -791,6 +820,10 @@ end:
     if (obj_contact_name_local_nonprim) {
         custom_contact_name_response_free(obj_contact_name_local_nonprim);
         obj_contact_name_local_nonprim = NULL;
+    }
+    if (obj_contact_name_delegation_local_nonprim) {
+        custom_contact_name_response_free(obj_contact_name_delegation_local_nonprim);
+        obj_contact_name_delegation_local_nonprim = NULL;
     }
     if (obj_signature_local_nonprim) {
         signature_response_compound_free(obj_signature_local_nonprim);

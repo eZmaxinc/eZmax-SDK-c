@@ -22,15 +22,15 @@ common_response_error_ezsignform_validation_t* instantiate_common_response_error
   common_response_error_ezsignform_validation_t* common_response_error_ezsignform_validation = NULL;
   if (include_optional) {
     common_response_error_ezsignform_validation = common_response_error_ezsignform_validation_create(
-      list_createList(),
       "Invalid Signature Headers",
-      ezmax_api_definition__full_common_response_error_ezsignform_validation__"BADREQUEST"
+      ezmax_api_definition__full_common_response_error_ezsignform_validation__"BADREQUEST",
+      list_createList()
     );
   } else {
     common_response_error_ezsignform_validation = common_response_error_ezsignform_validation_create(
-      list_createList(),
       "Invalid Signature Headers",
-      ezmax_api_definition__full_common_response_error_ezsignform_validation__"BADREQUEST"
+      ezmax_api_definition__full_common_response_error_ezsignform_validation__"BADREQUEST",
+      list_createList()
     );
   }
 

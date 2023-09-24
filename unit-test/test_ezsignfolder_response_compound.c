@@ -16,6 +16,7 @@
 #include "../model/ezsignfolder_response_compound.h"
 ezsignfolder_response_compound_t* instantiate_ezsignfolder_response_compound(int include_optional);
 
+#include "test_custom_ezsignfoldertype_response.c"
 #include "test_common_audit.c"
 
 
@@ -25,7 +26,9 @@ ezsignfolder_response_compound_t* instantiate_ezsignfolder_response_compound(int
     ezsignfolder_response_compound = ezsignfolder_response_compound_create(
       33,
       5,
-      "Default",
+       // false, not to have infinite recursion
+      instantiate_custom_ezsignfoldertype_response(0),
+      "0",
       1,
       "Default",
       1,
@@ -58,7 +61,8 @@ Mary",
     ezsignfolder_response_compound = ezsignfolder_response_compound_create(
       33,
       5,
-      "Default",
+      NULL,
+      "0",
       1,
       "Default",
       1,

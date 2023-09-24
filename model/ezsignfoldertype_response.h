@@ -67,6 +67,8 @@ typedef struct ezsignfoldertype_response_t {
     field_e_ezsignfoldertype_disposal_t *e_ezsignfoldertype_disposal; // custom
     int i_ezsignfoldertype_disposaldays; //numeric
     int i_ezsignfoldertype_deadlinedays; //numeric
+    int b_ezsignfoldertype_delegate; //boolean
+    int b_ezsignfoldertype_reassign; //boolean
     int b_ezsignfoldertype_sendattatchmentsigner; //boolean
     int b_ezsignfoldertype_sendsignedtodocumentowner; //boolean
     int b_ezsignfoldertype_sendsignedtofolderowner; //boolean
@@ -105,6 +107,8 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_create(
     field_e_ezsignfoldertype_disposal_t *e_ezsignfoldertype_disposal,
     int i_ezsignfoldertype_disposaldays,
     int i_ezsignfoldertype_deadlinedays,
+    int b_ezsignfoldertype_delegate,
+    int b_ezsignfoldertype_reassign,
     int b_ezsignfoldertype_sendattatchmentsigner,
     int b_ezsignfoldertype_sendsignedtodocumentowner,
     int b_ezsignfoldertype_sendsignedtofolderowner,

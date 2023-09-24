@@ -7,6 +7,7 @@
 
 common_response_filter_t *common_response_filter_create(
     list_t* a_auto_type,
+    list_t* a_auto_type_having,
     list_t* a_enum
     ) {
     common_response_filter_t *common_response_filter_local_var = malloc(sizeof(common_response_filter_t));
@@ -14,6 +15,7 @@ common_response_filter_t *common_response_filter_create(
         return NULL;
     }
     common_response_filter_local_var->a_auto_type = a_auto_type;
+    common_response_filter_local_var->a_auto_type_having = a_auto_type_having;
     common_response_filter_local_var->a_enum = a_enum;
 
     return common_response_filter_local_var;
@@ -34,6 +36,16 @@ void common_response_filter_free(common_response_filter_t *common_response_filte
         }
         list_freeList(common_response_filter->a_auto_type);
         common_response_filter->a_auto_type = NULL;
+    }
+    if (common_response_filter->a_auto_type_having) {
+        list_ForEach(listEntry, common_response_filter->a_auto_type_having) {
+            keyValuePair_t *localKeyValue = (keyValuePair_t*) listEntry->data;
+            free (localKeyValue->key);
+            free (localKeyValue->value);
+            keyValuePair_free(localKeyValue);
+        }
+        list_freeList(common_response_filter->a_auto_type_having);
+        common_response_filter->a_auto_type_having = NULL;
     }
     if (common_response_filter->a_enum) {
         list_ForEach(listEntry, common_response_filter->a_enum) {
@@ -62,6 +74,26 @@ cJSON *common_response_filter_convertToJSON(common_response_filter_t *common_res
     if (common_response_filter->a_auto_type) {
     list_ForEach(a_auto_typeListEntry, common_response_filter->a_auto_type) {
         keyValuePair_t *localKeyValue = (keyValuePair_t*)a_auto_typeListEntry->data;
+        if(cJSON_AddStringToObject(localMapObject, localKeyValue->key, (char*)localKeyValue->value) == NULL)
+        {
+            goto fail;
+        }
+    }
+    }
+    }
+
+
+    // common_response_filter->a_auto_type_having
+    if(common_response_filter->a_auto_type_having) {
+    cJSON *a_auto_type_having = cJSON_AddObjectToObject(item, "a_AutoTypeHaving");
+    if(a_auto_type_having == NULL) {
+        goto fail; //primitive map container
+    }
+    cJSON *localMapObject = a_auto_type_having;
+    listEntry_t *a_auto_type_havingListEntry;
+    if (common_response_filter->a_auto_type_having) {
+    list_ForEach(a_auto_type_havingListEntry, common_response_filter->a_auto_type_having) {
+        keyValuePair_t *localKeyValue = (keyValuePair_t*)a_auto_type_havingListEntry->data;
         if(cJSON_AddStringToObject(localMapObject, localKeyValue->key, (char*)localKeyValue->value) == NULL)
         {
             goto fail;
@@ -101,6 +133,9 @@ common_response_filter_t *common_response_filter_parseFromJSON(cJSON *common_res
     // define the local map for common_response_filter->a_auto_type
     list_t *a_auto_typeList = NULL;
 
+    // define the local map for common_response_filter->a_auto_type_having
+    list_t *a_auto_type_havingList = NULL;
+
     // define the local map for common_response_filter->a_enum
     list_t *a_enumList = NULL;
 
@@ -129,6 +164,31 @@ common_response_filter_t *common_response_filter_parseFromJSON(cJSON *common_res
     }
     }
 
+    // common_response_filter->a_auto_type_having
+    cJSON *a_auto_type_having = cJSON_GetObjectItemCaseSensitive(common_response_filterJSON, "a_AutoTypeHaving");
+    if (a_auto_type_having) { 
+    cJSON *a_auto_type_having_local_map = NULL;
+    if(!cJSON_IsObject(a_auto_type_having) && !cJSON_IsNull(a_auto_type_having))
+    {
+        goto end;//primitive map container
+    }
+    if(cJSON_IsObject(a_auto_type_having))
+    {
+        a_auto_type_havingList = list_createList();
+        keyValuePair_t *localMapKeyPair;
+        cJSON_ArrayForEach(a_auto_type_having_local_map, a_auto_type_having)
+        {
+            cJSON *localMapObject = a_auto_type_having_local_map;
+            if(!cJSON_IsString(localMapObject))
+            {
+                goto end;
+            }
+            localMapKeyPair = keyValuePair_create(strdup(localMapObject->string),strdup(localMapObject->valuestring));
+            list_addElement(a_auto_type_havingList , localMapKeyPair);
+        }
+    }
+    }
+
     // common_response_filter->a_enum
     cJSON *a_enum = cJSON_GetObjectItemCaseSensitive(common_response_filterJSON, "a_Enum");
     if (a_enum) { 
@@ -152,6 +212,7 @@ common_response_filter_t *common_response_filter_parseFromJSON(cJSON *common_res
 
     common_response_filter_local_var = common_response_filter_create (
         a_auto_type ? a_auto_typeList : NULL,
+        a_auto_type_having ? a_auto_type_havingList : NULL,
         a_enum ? a_enumList : NULL
         );
 
@@ -170,6 +231,20 @@ end:
         }
         list_freeList(a_auto_typeList);
         a_auto_typeList = NULL;
+    }
+    if (a_auto_type_havingList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_auto_type_havingList) {
+            keyValuePair_t *localKeyValue = (keyValuePair_t*) listEntry->data;
+            free(localKeyValue->key);
+            localKeyValue->key = NULL;
+            free(localKeyValue->value);
+            localKeyValue->value = NULL;
+            keyValuePair_free(localKeyValue);
+            localKeyValue = NULL;
+        }
+        list_freeList(a_auto_type_havingList);
+        a_auto_type_havingList = NULL;
     }
     if (a_enumList) {
         listEntry_t *listEntry = NULL;
