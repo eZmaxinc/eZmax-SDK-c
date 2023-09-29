@@ -30,6 +30,7 @@ ezsigntemplateformfield_response_compound_t* instantiate_ezsigntemplateformfield
       300,
       102,
       22,
+      1,
       1
     );
   } else {
@@ -42,6 +43,7 @@ ezsigntemplateformfield_response_compound_t* instantiate_ezsigntemplateformfield
       300,
       102,
       22,
+      1,
       1
     );
   }

@@ -31,6 +31,7 @@ ezsignformfield_response_compound_t* instantiate_ezsignformfield_response_compou
       102,
       22,
       1,
+      1,
       "Montreal"
     );
   } else {
@@ -43,6 +44,7 @@ ezsignformfield_response_compound_t* instantiate_ezsignformfield_response_compou
       300,
       102,
       22,
+      1,
       1,
       "Montreal"
     );

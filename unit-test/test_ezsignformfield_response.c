@@ -31,6 +31,7 @@ ezsignformfield_response_t* instantiate_ezsignformfield_response(int include_opt
       102,
       22,
       1,
+      1,
       "Montreal"
     );
   } else {
@@ -43,6 +44,7 @@ ezsignformfield_response_t* instantiate_ezsignformfield_response(int include_opt
       300,
       102,
       22,
+      1,
       1,
       "Montreal"
     );

@@ -213,7 +213,6 @@ set(SRCS
     model/custom_ezsignfolder_ezsignsignatures_automatic_response.c
     model/custom_ezsignfoldersignerassociation_actionable_element_response.c
     model/custom_ezsignfoldersignerassociationmessage_request.c
-    model/custom_ezsignfoldersignerassociationmine_response.c
     model/custom_ezsignfoldersignerassociationstatus_response.c
     model/custom_ezsignfoldertransmission_response.c
     model/custom_ezsignfoldertransmission_signer_response.c
@@ -429,8 +428,6 @@ set(SRCS
     model/ezsignfolder_get_ezsigndocuments_v1_response_m_payload.c
     model/ezsignfolder_get_ezsignfoldersignerassociations_v1_response.c
     model/ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload.c
-    model/ezsignfolder_get_ezsignfoldersignerassociationsmine_v1_response.c
-    model/ezsignfolder_get_ezsignfoldersignerassociationsmine_v1_response_m_payload.c
     model/ezsignfolder_get_ezsignsignatures_automatic_v1_response.c
     model/ezsignfolder_get_ezsignsignatures_automatic_v1_response_m_payload.c
     model/ezsignfolder_get_forms_data_v1_response.c
@@ -1344,7 +1341,6 @@ set(HDRS
     model/custom_ezsignfolder_ezsignsignatures_automatic_response.h
     model/custom_ezsignfoldersignerassociation_actionable_element_response.h
     model/custom_ezsignfoldersignerassociationmessage_request.h
-    model/custom_ezsignfoldersignerassociationmine_response.h
     model/custom_ezsignfoldersignerassociationstatus_response.h
     model/custom_ezsignfoldertransmission_response.h
     model/custom_ezsignfoldertransmission_signer_response.h
@@ -1560,8 +1556,6 @@ set(HDRS
     model/ezsignfolder_get_ezsigndocuments_v1_response_m_payload.h
     model/ezsignfolder_get_ezsignfoldersignerassociations_v1_response.h
     model/ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload.h
-    model/ezsignfolder_get_ezsignfoldersignerassociationsmine_v1_response.h
-    model/ezsignfolder_get_ezsignfoldersignerassociationsmine_v1_response_m_payload.h
     model/ezsignfolder_get_ezsignsignatures_automatic_v1_response.h
     model/ezsignfolder_get_ezsignsignatures_automatic_v1_response_m_payload.h
     model/ezsignfolder_get_forms_data_v1_response.h

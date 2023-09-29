@@ -27,6 +27,7 @@ typedef struct ezsignformfield_response_t {
     int i_ezsignformfield_y; //numeric
     int i_ezsignformfield_width; //numeric
     int i_ezsignformfield_height; //numeric
+    int b_ezsignformfield_autocomplete; //boolean
     int b_ezsignformfield_selected; //boolean
     char *s_ezsignformfield_enteredvalue; // string
 
@@ -41,6 +42,7 @@ ezsignformfield_response_t *ezsignformfield_response_create(
     int i_ezsignformfield_y,
     int i_ezsignformfield_width,
     int i_ezsignformfield_height,
+    int b_ezsignformfield_autocomplete,
     int b_ezsignformfield_selected,
     char *s_ezsignformfield_enteredvalue
 );

@@ -250,11 +250,10 @@ cJSON *ezsignformfieldgroup_request_compound_convertToJSON(ezsignformfieldgroup_
 
 
     // ezsignformfieldgroup_request_compound->s_ezsignformfieldgroup_defaultvalue
-    if (!ezsignformfieldgroup_request_compound->s_ezsignformfieldgroup_defaultvalue) {
-        goto fail;
-    }
+    if(ezsignformfieldgroup_request_compound->s_ezsignformfieldgroup_defaultvalue) {
     if(cJSON_AddStringToObject(item, "sEzsignformfieldgroupDefaultvalue", ezsignformfieldgroup_request_compound->s_ezsignformfieldgroup_defaultvalue) == NULL) {
     goto fail; //String
+    }
     }
 
 
@@ -502,14 +501,11 @@ ezsignformfieldgroup_request_compound_t *ezsignformfieldgroup_request_compound_p
 
     // ezsignformfieldgroup_request_compound->s_ezsignformfieldgroup_defaultvalue
     cJSON *s_ezsignformfieldgroup_defaultvalue = cJSON_GetObjectItemCaseSensitive(ezsignformfieldgroup_request_compoundJSON, "sEzsignformfieldgroupDefaultvalue");
-    if (!s_ezsignformfieldgroup_defaultvalue) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(s_ezsignformfieldgroup_defaultvalue))
+    if (s_ezsignformfieldgroup_defaultvalue) { 
+    if(!cJSON_IsString(s_ezsignformfieldgroup_defaultvalue) && !cJSON_IsNull(s_ezsignformfieldgroup_defaultvalue))
     {
     goto end; //String
+    }
     }
 
     // ezsignformfieldgroup_request_compound->i_ezsignformfieldgroup_filledmin
@@ -673,7 +669,7 @@ ezsignformfieldgroup_request_compound_t *ezsignformfieldgroup_request_compound_p
         e_ezsignformfieldgroup_signerrequirement_local_nonprim,
         strdup(s_ezsignformfieldgroup_label->valuestring),
         i_ezsignformfieldgroup_step->valuedouble,
-        strdup(s_ezsignformfieldgroup_defaultvalue->valuestring),
+        s_ezsignformfieldgroup_defaultvalue && !cJSON_IsNull(s_ezsignformfieldgroup_defaultvalue) ? strdup(s_ezsignformfieldgroup_defaultvalue->valuestring) : NULL,
         i_ezsignformfieldgroup_filledmin->valuedouble,
         i_ezsignformfieldgroup_filledmax->valuedouble,
         b_ezsignformfieldgroup_readonly->valueint,

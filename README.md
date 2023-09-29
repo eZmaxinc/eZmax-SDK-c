@@ -168,7 +168,6 @@ Category | Method | HTTP request | Description
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderGetCommunicationListV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetCommunicationListV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getCommunicationList | Retrieve Communication list
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsigndocuments | Retrieve an existing Ezsignfolder's Ezsigndocuments
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsignfoldersignerassociations | Retrieve an existing Ezsignfolder's Ezsignfoldersignerassociations
-*ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsmineV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsmineV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsignfoldersignerassociationsmine | Retrieve your own Ezsignfoldersignerassociations from an existing Ezsignfolder
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderGetEzsignsignaturesAutomaticV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetEzsignsignaturesAutomaticV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsignsignaturesAutomatic | Retrieve an existing Ezsignfolder's automatic Ezsignsignatures
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getFormsData | Retrieve an existing Ezsignfolder's forms data
 *ObjectEzsignfolderAPI* | [**ObjectEzsignfolderAPI_ezsignfolderGetListV1**](docs/ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetListV1) | **GET** /1/object/ezsignfolder/getList | Retrieve Ezsignfolder list
@@ -524,7 +523,6 @@ Category | Method | HTTP request | Description
  - [custom_ezsignfolder_ezsignsignatures_automatic_response_t](docs/custom_ezsignfolder_ezsignsignatures_automatic_response.md)
  - [custom_ezsignfoldersignerassociation_actionable_element_response_t](docs/custom_ezsignfoldersignerassociation_actionable_element_response.md)
  - [custom_ezsignfoldersignerassociationmessage_request_t](docs/custom_ezsignfoldersignerassociationmessage_request.md)
- - [custom_ezsignfoldersignerassociationmine_response_t](docs/custom_ezsignfoldersignerassociationmine_response.md)
  - [custom_ezsignfoldersignerassociationstatus_response_t](docs/custom_ezsignfoldersignerassociationstatus_response.md)
  - [custom_ezsignfoldertransmission_response_t](docs/custom_ezsignfoldertransmission_response.md)
  - [custom_ezsignfoldertransmission_signer_response_t](docs/custom_ezsignfoldertransmission_signer_response.md)
@@ -740,8 +738,6 @@ Category | Method | HTTP request | Description
  - [ezsignfolder_get_ezsigndocuments_v1_response_m_payload_t](docs/ezsignfolder_get_ezsigndocuments_v1_response_m_payload.md)
  - [ezsignfolder_get_ezsignfoldersignerassociations_v1_response_t](docs/ezsignfolder_get_ezsignfoldersignerassociations_v1_response.md)
  - [ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload_t](docs/ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload.md)
- - [ezsignfolder_get_ezsignfoldersignerassociationsmine_v1_response_t](docs/ezsignfolder_get_ezsignfoldersignerassociationsmine_v1_response.md)
- - [ezsignfolder_get_ezsignfoldersignerassociationsmine_v1_response_m_payload_t](docs/ezsignfolder_get_ezsignfoldersignerassociationsmine_v1_response_m_payload.md)
  - [ezsignfolder_get_ezsignsignatures_automatic_v1_response_t](docs/ezsignfolder_get_ezsignsignatures_automatic_v1_response.md)
  - [ezsignfolder_get_ezsignsignatures_automatic_v1_response_m_payload_t](docs/ezsignfolder_get_ezsignsignatures_automatic_v1_response_m_payload.md)
  - [ezsignfolder_get_forms_data_v1_response_t](docs/ezsignfolder_get_forms_data_v1_response.md)

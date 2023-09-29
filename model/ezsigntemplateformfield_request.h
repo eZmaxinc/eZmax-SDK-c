@@ -27,6 +27,7 @@ typedef struct ezsigntemplateformfield_request_t {
     int i_ezsigntemplateformfield_y; //numeric
     int i_ezsigntemplateformfield_width; //numeric
     int i_ezsigntemplateformfield_height; //numeric
+    int b_ezsigntemplateformfield_autocomplete; //boolean
     int b_ezsigntemplateformfield_selected; //boolean
 
 } ezsigntemplateformfield_request_t;
@@ -40,6 +41,7 @@ ezsigntemplateformfield_request_t *ezsigntemplateformfield_request_create(
     int i_ezsigntemplateformfield_y,
     int i_ezsigntemplateformfield_width,
     int i_ezsigntemplateformfield_height,
+    int b_ezsigntemplateformfield_autocomplete,
     int b_ezsigntemplateformfield_selected
 );
 

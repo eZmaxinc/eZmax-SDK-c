@@ -14,6 +14,7 @@ ezsigntemplateformfield_response_t *ezsigntemplateformfield_response_create(
     int i_ezsigntemplateformfield_y,
     int i_ezsigntemplateformfield_width,
     int i_ezsigntemplateformfield_height,
+    int b_ezsigntemplateformfield_autocomplete,
     int b_ezsigntemplateformfield_selected
     ) {
     ezsigntemplateformfield_response_t *ezsigntemplateformfield_response_local_var = malloc(sizeof(ezsigntemplateformfield_response_t));
@@ -28,6 +29,7 @@ ezsigntemplateformfield_response_t *ezsigntemplateformfield_response_create(
     ezsigntemplateformfield_response_local_var->i_ezsigntemplateformfield_y = i_ezsigntemplateformfield_y;
     ezsigntemplateformfield_response_local_var->i_ezsigntemplateformfield_width = i_ezsigntemplateformfield_width;
     ezsigntemplateformfield_response_local_var->i_ezsigntemplateformfield_height = i_ezsigntemplateformfield_height;
+    ezsigntemplateformfield_response_local_var->b_ezsigntemplateformfield_autocomplete = b_ezsigntemplateformfield_autocomplete;
     ezsigntemplateformfield_response_local_var->b_ezsigntemplateformfield_selected = b_ezsigntemplateformfield_selected;
 
     return ezsigntemplateformfield_response_local_var;
@@ -121,6 +123,14 @@ cJSON *ezsigntemplateformfield_response_convertToJSON(ezsigntemplateformfield_re
     }
     if(cJSON_AddNumberToObject(item, "iEzsigntemplateformfieldHeight", ezsigntemplateformfield_response->i_ezsigntemplateformfield_height) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // ezsigntemplateformfield_response->b_ezsigntemplateformfield_autocomplete
+    if(ezsigntemplateformfield_response->b_ezsigntemplateformfield_autocomplete) {
+    if(cJSON_AddBoolToObject(item, "bEzsigntemplateformfieldAutocomplete", ezsigntemplateformfield_response->b_ezsigntemplateformfield_autocomplete) == NULL) {
+    goto fail; //Bool
+    }
     }
 
 
@@ -236,6 +246,15 @@ ezsigntemplateformfield_response_t *ezsigntemplateformfield_response_parseFromJS
     goto end; //Numeric
     }
 
+    // ezsigntemplateformfield_response->b_ezsigntemplateformfield_autocomplete
+    cJSON *b_ezsigntemplateformfield_autocomplete = cJSON_GetObjectItemCaseSensitive(ezsigntemplateformfield_responseJSON, "bEzsigntemplateformfieldAutocomplete");
+    if (b_ezsigntemplateformfield_autocomplete) { 
+    if(!cJSON_IsBool(b_ezsigntemplateformfield_autocomplete))
+    {
+    goto end; //Bool
+    }
+    }
+
     // ezsigntemplateformfield_response->b_ezsigntemplateformfield_selected
     cJSON *b_ezsigntemplateformfield_selected = cJSON_GetObjectItemCaseSensitive(ezsigntemplateformfield_responseJSON, "bEzsigntemplateformfieldSelected");
     if (b_ezsigntemplateformfield_selected) { 
@@ -255,6 +274,7 @@ ezsigntemplateformfield_response_t *ezsigntemplateformfield_response_parseFromJS
         i_ezsigntemplateformfield_y->valuedouble,
         i_ezsigntemplateformfield_width->valuedouble,
         i_ezsigntemplateformfield_height->valuedouble,
+        b_ezsigntemplateformfield_autocomplete ? b_ezsigntemplateformfield_autocomplete->valueint : 0,
         b_ezsigntemplateformfield_selected ? b_ezsigntemplateformfield_selected->valueint : 0
         );
 

@@ -53,29 +53,26 @@ cJSON *custom_ezsignfoldertype_response_convertToJSON(custom_ezsignfoldertype_re
 
 
     // custom_ezsignfoldertype_response->s_ezsignfoldertype_name_x
-    if (!custom_ezsignfoldertype_response->s_ezsignfoldertype_name_x) {
-        goto fail;
-    }
+    if(custom_ezsignfoldertype_response->s_ezsignfoldertype_name_x) {
     if(cJSON_AddStringToObject(item, "sEzsignfoldertypeNameX", custom_ezsignfoldertype_response->s_ezsignfoldertype_name_x) == NULL) {
     goto fail; //String
+    }
     }
 
 
     // custom_ezsignfoldertype_response->b_ezsignfoldertype_includeproofsigner
-    if (!custom_ezsignfoldertype_response->b_ezsignfoldertype_includeproofsigner) {
-        goto fail;
-    }
+    if(custom_ezsignfoldertype_response->b_ezsignfoldertype_includeproofsigner) {
     if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeIncludeproofsigner", custom_ezsignfoldertype_response->b_ezsignfoldertype_includeproofsigner) == NULL) {
     goto fail; //Bool
+    }
     }
 
 
     // custom_ezsignfoldertype_response->b_ezsignfoldertype_includeproofuser
-    if (!custom_ezsignfoldertype_response->b_ezsignfoldertype_includeproofuser) {
-        goto fail;
-    }
+    if(custom_ezsignfoldertype_response->b_ezsignfoldertype_includeproofuser) {
     if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeIncludeproofuser", custom_ezsignfoldertype_response->b_ezsignfoldertype_includeproofuser) == NULL) {
     goto fail; //Bool
+    }
     }
 
 
@@ -120,38 +117,29 @@ custom_ezsignfoldertype_response_t *custom_ezsignfoldertype_response_parseFromJS
 
     // custom_ezsignfoldertype_response->s_ezsignfoldertype_name_x
     cJSON *s_ezsignfoldertype_name_x = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldertype_responseJSON, "sEzsignfoldertypeNameX");
-    if (!s_ezsignfoldertype_name_x) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(s_ezsignfoldertype_name_x))
+    if (s_ezsignfoldertype_name_x) { 
+    if(!cJSON_IsString(s_ezsignfoldertype_name_x) && !cJSON_IsNull(s_ezsignfoldertype_name_x))
     {
     goto end; //String
+    }
     }
 
     // custom_ezsignfoldertype_response->b_ezsignfoldertype_includeproofsigner
     cJSON *b_ezsignfoldertype_includeproofsigner = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldertype_responseJSON, "bEzsignfoldertypeIncludeproofsigner");
-    if (!b_ezsignfoldertype_includeproofsigner) {
-        goto end;
-    }
-
-    
+    if (b_ezsignfoldertype_includeproofsigner) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_includeproofsigner))
     {
     goto end; //Bool
     }
+    }
 
     // custom_ezsignfoldertype_response->b_ezsignfoldertype_includeproofuser
     cJSON *b_ezsignfoldertype_includeproofuser = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldertype_responseJSON, "bEzsignfoldertypeIncludeproofuser");
-    if (!b_ezsignfoldertype_includeproofuser) {
-        goto end;
-    }
-
-    
+    if (b_ezsignfoldertype_includeproofuser) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_includeproofuser))
     {
     goto end; //Bool
+    }
     }
 
     // custom_ezsignfoldertype_response->b_ezsignfoldertype_delegate
@@ -175,9 +163,9 @@ custom_ezsignfoldertype_response_t *custom_ezsignfoldertype_response_parseFromJS
 
     custom_ezsignfoldertype_response_local_var = custom_ezsignfoldertype_response_create (
         pki_ezsignfoldertype_id->valuedouble,
-        strdup(s_ezsignfoldertype_name_x->valuestring),
-        b_ezsignfoldertype_includeproofsigner->valueint,
-        b_ezsignfoldertype_includeproofuser->valueint,
+        s_ezsignfoldertype_name_x && !cJSON_IsNull(s_ezsignfoldertype_name_x) ? strdup(s_ezsignfoldertype_name_x->valuestring) : NULL,
+        b_ezsignfoldertype_includeproofsigner ? b_ezsignfoldertype_includeproofsigner->valueint : 0,
+        b_ezsignfoldertype_includeproofuser ? b_ezsignfoldertype_includeproofuser->valueint : 0,
         b_ezsignfoldertype_delegate ? b_ezsignfoldertype_delegate->valueint : 0,
         b_ezsignfoldertype_reassign ? b_ezsignfoldertype_reassign->valueint : 0
         );

@@ -14,6 +14,7 @@ ezsigntemplateformfield_request_compound_t *ezsigntemplateformfield_request_comp
     int i_ezsigntemplateformfield_y,
     int i_ezsigntemplateformfield_width,
     int i_ezsigntemplateformfield_height,
+    int b_ezsigntemplateformfield_autocomplete,
     int b_ezsigntemplateformfield_selected
     ) {
     ezsigntemplateformfield_request_compound_t *ezsigntemplateformfield_request_compound_local_var = malloc(sizeof(ezsigntemplateformfield_request_compound_t));
@@ -28,6 +29,7 @@ ezsigntemplateformfield_request_compound_t *ezsigntemplateformfield_request_comp
     ezsigntemplateformfield_request_compound_local_var->i_ezsigntemplateformfield_y = i_ezsigntemplateformfield_y;
     ezsigntemplateformfield_request_compound_local_var->i_ezsigntemplateformfield_width = i_ezsigntemplateformfield_width;
     ezsigntemplateformfield_request_compound_local_var->i_ezsigntemplateformfield_height = i_ezsigntemplateformfield_height;
+    ezsigntemplateformfield_request_compound_local_var->b_ezsigntemplateformfield_autocomplete = b_ezsigntemplateformfield_autocomplete;
     ezsigntemplateformfield_request_compound_local_var->b_ezsigntemplateformfield_selected = b_ezsigntemplateformfield_selected;
 
     return ezsigntemplateformfield_request_compound_local_var;
@@ -120,6 +122,14 @@ cJSON *ezsigntemplateformfield_request_compound_convertToJSON(ezsigntemplateform
     }
     if(cJSON_AddNumberToObject(item, "iEzsigntemplateformfieldHeight", ezsigntemplateformfield_request_compound->i_ezsigntemplateformfield_height) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // ezsigntemplateformfield_request_compound->b_ezsigntemplateformfield_autocomplete
+    if(ezsigntemplateformfield_request_compound->b_ezsigntemplateformfield_autocomplete) {
+    if(cJSON_AddBoolToObject(item, "bEzsigntemplateformfieldAutocomplete", ezsigntemplateformfield_request_compound->b_ezsigntemplateformfield_autocomplete) == NULL) {
+    goto fail; //Bool
+    }
     }
 
 
@@ -232,6 +242,15 @@ ezsigntemplateformfield_request_compound_t *ezsigntemplateformfield_request_comp
     goto end; //Numeric
     }
 
+    // ezsigntemplateformfield_request_compound->b_ezsigntemplateformfield_autocomplete
+    cJSON *b_ezsigntemplateformfield_autocomplete = cJSON_GetObjectItemCaseSensitive(ezsigntemplateformfield_request_compoundJSON, "bEzsigntemplateformfieldAutocomplete");
+    if (b_ezsigntemplateformfield_autocomplete) { 
+    if(!cJSON_IsBool(b_ezsigntemplateformfield_autocomplete))
+    {
+    goto end; //Bool
+    }
+    }
+
     // ezsigntemplateformfield_request_compound->b_ezsigntemplateformfield_selected
     cJSON *b_ezsigntemplateformfield_selected = cJSON_GetObjectItemCaseSensitive(ezsigntemplateformfield_request_compoundJSON, "bEzsigntemplateformfieldSelected");
     if (b_ezsigntemplateformfield_selected) { 
@@ -251,6 +270,7 @@ ezsigntemplateformfield_request_compound_t *ezsigntemplateformfield_request_comp
         i_ezsigntemplateformfield_y->valuedouble,
         i_ezsigntemplateformfield_width->valuedouble,
         i_ezsigntemplateformfield_height->valuedouble,
+        b_ezsigntemplateformfield_autocomplete ? b_ezsigntemplateformfield_autocomplete->valueint : 0,
         b_ezsigntemplateformfield_selected ? b_ezsigntemplateformfield_selected->valueint : 0
         );
 

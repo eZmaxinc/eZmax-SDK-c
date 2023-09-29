@@ -14,6 +14,7 @@ ezsignformfield_request_compound_t *ezsignformfield_request_compound_create(
     int i_ezsignformfield_y,
     int i_ezsignformfield_width,
     int i_ezsignformfield_height,
+    int b_ezsignformfield_autocomplete,
     int b_ezsignformfield_selected,
     char *s_ezsignformfield_enteredvalue
     ) {
@@ -29,6 +30,7 @@ ezsignformfield_request_compound_t *ezsignformfield_request_compound_create(
     ezsignformfield_request_compound_local_var->i_ezsignformfield_y = i_ezsignformfield_y;
     ezsignformfield_request_compound_local_var->i_ezsignformfield_width = i_ezsignformfield_width;
     ezsignformfield_request_compound_local_var->i_ezsignformfield_height = i_ezsignformfield_height;
+    ezsignformfield_request_compound_local_var->b_ezsignformfield_autocomplete = b_ezsignformfield_autocomplete;
     ezsignformfield_request_compound_local_var->b_ezsignformfield_selected = b_ezsignformfield_selected;
     ezsignformfield_request_compound_local_var->s_ezsignformfield_enteredvalue = s_ezsignformfield_enteredvalue;
 
@@ -126,6 +128,14 @@ cJSON *ezsignformfield_request_compound_convertToJSON(ezsignformfield_request_co
     }
     if(cJSON_AddNumberToObject(item, "iEzsignformfieldHeight", ezsignformfield_request_compound->i_ezsignformfield_height) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // ezsignformfield_request_compound->b_ezsignformfield_autocomplete
+    if(ezsignformfield_request_compound->b_ezsignformfield_autocomplete) {
+    if(cJSON_AddBoolToObject(item, "bEzsignformfieldAutocomplete", ezsignformfield_request_compound->b_ezsignformfield_autocomplete) == NULL) {
+    goto fail; //Bool
+    }
     }
 
 
@@ -246,6 +256,15 @@ ezsignformfield_request_compound_t *ezsignformfield_request_compound_parseFromJS
     goto end; //Numeric
     }
 
+    // ezsignformfield_request_compound->b_ezsignformfield_autocomplete
+    cJSON *b_ezsignformfield_autocomplete = cJSON_GetObjectItemCaseSensitive(ezsignformfield_request_compoundJSON, "bEzsignformfieldAutocomplete");
+    if (b_ezsignformfield_autocomplete) { 
+    if(!cJSON_IsBool(b_ezsignformfield_autocomplete))
+    {
+    goto end; //Bool
+    }
+    }
+
     // ezsignformfield_request_compound->b_ezsignformfield_selected
     cJSON *b_ezsignformfield_selected = cJSON_GetObjectItemCaseSensitive(ezsignformfield_request_compoundJSON, "bEzsignformfieldSelected");
     if (b_ezsignformfield_selected) { 
@@ -274,6 +293,7 @@ ezsignformfield_request_compound_t *ezsignformfield_request_compound_parseFromJS
         i_ezsignformfield_y->valuedouble,
         i_ezsignformfield_width->valuedouble,
         i_ezsignformfield_height->valuedouble,
+        b_ezsignformfield_autocomplete ? b_ezsignformfield_autocomplete->valueint : 0,
         b_ezsignformfield_selected ? b_ezsignformfield_selected->valueint : 0,
         s_ezsignformfield_enteredvalue && !cJSON_IsNull(s_ezsignformfield_enteredvalue) ? strdup(s_ezsignformfield_enteredvalue->valuestring) : NULL
         );

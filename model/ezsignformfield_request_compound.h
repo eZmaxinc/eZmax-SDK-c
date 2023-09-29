@@ -27,6 +27,7 @@ typedef struct ezsignformfield_request_compound_t {
     int i_ezsignformfield_y; //numeric
     int i_ezsignformfield_width; //numeric
     int i_ezsignformfield_height; //numeric
+    int b_ezsignformfield_autocomplete; //boolean
     int b_ezsignformfield_selected; //boolean
     char *s_ezsignformfield_enteredvalue; // string
 
@@ -41,6 +42,7 @@ ezsignformfield_request_compound_t *ezsignformfield_request_compound_create(
     int i_ezsignformfield_y,
     int i_ezsignformfield_width,
     int i_ezsignformfield_height,
+    int b_ezsignformfield_autocomplete,
     int b_ezsignformfield_selected,
     char *s_ezsignformfield_enteredvalue
 );
