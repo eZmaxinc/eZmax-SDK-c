@@ -244,11 +244,10 @@ cJSON *webhook_response_compound_convertToJSON(webhook_response_compound_t *webh
 
 
     // webhook_response_compound->s_webhook_event
-    if (!webhook_response_compound->s_webhook_event) {
-        goto fail;
-    }
+    if(webhook_response_compound->s_webhook_event) {
     if(cJSON_AddStringToObject(item, "sWebhookEvent", webhook_response_compound->s_webhook_event) == NULL) {
     goto fail; //String
+    }
     }
 
     return item;
@@ -382,14 +381,11 @@ webhook_response_compound_t *webhook_response_compound_parseFromJSON(cJSON *webh
 
     // webhook_response_compound->s_webhook_event
     cJSON *s_webhook_event = cJSON_GetObjectItemCaseSensitive(webhook_response_compoundJSON, "sWebhookEvent");
-    if (!s_webhook_event) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(s_webhook_event))
+    if (s_webhook_event) { 
+    if(!cJSON_IsString(s_webhook_event) && !cJSON_IsNull(s_webhook_event))
     {
     goto end; //String
+    }
     }
 
 
@@ -405,7 +401,7 @@ webhook_response_compound_t *webhook_response_compound_parseFromJSON(cJSON *webh
         strdup(s_webhook_emailfailed->valuestring),
         b_webhook_isactive ? b_webhook_isactive->valueint : 0,
         b_webhook_skipsslvalidation->valueint,
-        strdup(s_webhook_event->valuestring)
+        s_webhook_event && !cJSON_IsNull(s_webhook_event) ? strdup(s_webhook_event->valuestring) : NULL
         );
 
     return webhook_response_compound_local_var;

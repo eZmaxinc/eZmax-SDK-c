@@ -157,10 +157,11 @@ cJSON *custom_ezsignfoldersignerassociation_actionable_element_response_convertT
 
 
     // custom_ezsignfoldersignerassociation_actionable_element_response->b_ezsignfoldersignerassociation_hasactionableelements_future
-    if(custom_ezsignfoldersignerassociation_actionable_element_response->b_ezsignfoldersignerassociation_hasactionableelements_future) {
+    if (!custom_ezsignfoldersignerassociation_actionable_element_response->b_ezsignfoldersignerassociation_hasactionableelements_future) {
+        goto fail;
+    }
     if(cJSON_AddBoolToObject(item, "bEzsignfoldersignerassociationHasactionableelementsFuture", custom_ezsignfoldersignerassociation_actionable_element_response->b_ezsignfoldersignerassociation_hasactionableelements_future) == NULL) {
     goto fail; //Bool
-    }
     }
 
     return item;
@@ -276,11 +277,14 @@ custom_ezsignfoldersignerassociation_actionable_element_response_t *custom_ezsig
 
     // custom_ezsignfoldersignerassociation_actionable_element_response->b_ezsignfoldersignerassociation_hasactionableelements_future
     cJSON *b_ezsignfoldersignerassociation_hasactionableelements_future = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldersignerassociation_actionable_element_responseJSON, "bEzsignfoldersignerassociationHasactionableelementsFuture");
-    if (b_ezsignfoldersignerassociation_hasactionableelements_future) { 
+    if (!b_ezsignfoldersignerassociation_hasactionableelements_future) {
+        goto end;
+    }
+
+    
     if(!cJSON_IsBool(b_ezsignfoldersignerassociation_hasactionableelements_future))
     {
     goto end; //Bool
-    }
     }
 
 
@@ -294,7 +298,7 @@ custom_ezsignfoldersignerassociation_actionable_element_response_t *custom_ezsig
         obj_user ? obj_user_local_nonprim : NULL,
         obj_ezsignsigner ? obj_ezsignsigner_local_nonprim : NULL,
         b_ezsignfoldersignerassociation_hasactionableelements_current->valueint,
-        b_ezsignfoldersignerassociation_hasactionableelements_future ? b_ezsignfoldersignerassociation_hasactionableelements_future->valueint : 0
+        b_ezsignfoldersignerassociation_hasactionableelements_future->valueint
         );
 
     return custom_ezsignfoldersignerassociation_actionable_element_response_local_var;

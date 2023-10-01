@@ -37,7 +37,9 @@ cJSON *period_get_autocomplete_v2_response_m_payload_convertToJSON(period_get_au
     cJSON *item = cJSON_CreateObject();
 
     // period_get_autocomplete_v2_response_m_payload->a_obj_period
-    if(period_get_autocomplete_v2_response_m_payload->a_obj_period) {
+    if (!period_get_autocomplete_v2_response_m_payload->a_obj_period) {
+        goto fail;
+    }
     cJSON *a_obj_period = cJSON_AddArrayToObject(item, "a_objPeriod");
     if(a_obj_period == NULL) {
     goto fail; //nonprimitive container
@@ -51,7 +53,6 @@ cJSON *period_get_autocomplete_v2_response_m_payload_convertToJSON(period_get_au
     goto fail;
     }
     cJSON_AddItemToArray(a_obj_period, itemLocal);
-    }
     }
     }
 
@@ -72,7 +73,11 @@ period_get_autocomplete_v2_response_m_payload_t *period_get_autocomplete_v2_resp
 
     // period_get_autocomplete_v2_response_m_payload->a_obj_period
     cJSON *a_obj_period = cJSON_GetObjectItemCaseSensitive(period_get_autocomplete_v2_response_m_payloadJSON, "a_objPeriod");
-    if (a_obj_period) { 
+    if (!a_obj_period) {
+        goto end;
+    }
+
+    
     cJSON *a_obj_period_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_period)){
         goto end; //nonprimitive container
@@ -89,11 +94,10 @@ period_get_autocomplete_v2_response_m_payload_t *period_get_autocomplete_v2_resp
 
         list_addElement(a_obj_periodList, a_obj_periodItem);
     }
-    }
 
 
     period_get_autocomplete_v2_response_m_payload_local_var = period_get_autocomplete_v2_response_m_payload_create (
-        a_obj_period ? a_obj_periodList : NULL
+        a_obj_periodList
         );
 
     return period_get_autocomplete_v2_response_m_payload_local_var;

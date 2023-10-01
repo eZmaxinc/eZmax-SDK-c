@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **t_franchisereferalincome_comment** | **char \*** | Comment about the transaction | 
 **fki_franchiseoffice_id** | **int** | The unique ID of the Franchisereoffice | 
 **s_franchisereferalincome_remoteid** | **char \*** |  | 
-**obj_address** | [**address_request_t**](address_request.md) \* |  | 
+**obj_address** | [**address_request_t**](address_request.md) \* |  | [optional] 
 **a_obj_contact** | [**list_t**](contact_request_compound.md) \* |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

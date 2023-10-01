@@ -37,7 +37,9 @@ cJSON *ezmaxproduct_get_autocomplete_v2_response_m_payload_convertToJSON(ezmaxpr
     cJSON *item = cJSON_CreateObject();
 
     // ezmaxproduct_get_autocomplete_v2_response_m_payload->a_obj_ezmaxproduct
-    if(ezmaxproduct_get_autocomplete_v2_response_m_payload->a_obj_ezmaxproduct) {
+    if (!ezmaxproduct_get_autocomplete_v2_response_m_payload->a_obj_ezmaxproduct) {
+        goto fail;
+    }
     cJSON *a_obj_ezmaxproduct = cJSON_AddArrayToObject(item, "a_objEzmaxproduct");
     if(a_obj_ezmaxproduct == NULL) {
     goto fail; //nonprimitive container
@@ -51,7 +53,6 @@ cJSON *ezmaxproduct_get_autocomplete_v2_response_m_payload_convertToJSON(ezmaxpr
     goto fail;
     }
     cJSON_AddItemToArray(a_obj_ezmaxproduct, itemLocal);
-    }
     }
     }
 
@@ -72,7 +73,11 @@ ezmaxproduct_get_autocomplete_v2_response_m_payload_t *ezmaxproduct_get_autocomp
 
     // ezmaxproduct_get_autocomplete_v2_response_m_payload->a_obj_ezmaxproduct
     cJSON *a_obj_ezmaxproduct = cJSON_GetObjectItemCaseSensitive(ezmaxproduct_get_autocomplete_v2_response_m_payloadJSON, "a_objEzmaxproduct");
-    if (a_obj_ezmaxproduct) { 
+    if (!a_obj_ezmaxproduct) {
+        goto end;
+    }
+
+    
     cJSON *a_obj_ezmaxproduct_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_ezmaxproduct)){
         goto end; //nonprimitive container
@@ -89,11 +94,10 @@ ezmaxproduct_get_autocomplete_v2_response_m_payload_t *ezmaxproduct_get_autocomp
 
         list_addElement(a_obj_ezmaxproductList, a_obj_ezmaxproductItem);
     }
-    }
 
 
     ezmaxproduct_get_autocomplete_v2_response_m_payload_local_var = ezmaxproduct_get_autocomplete_v2_response_m_payload_create (
-        a_obj_ezmaxproduct ? a_obj_ezmaxproductList : NULL
+        a_obj_ezmaxproductList
         );
 
     return ezmaxproduct_get_autocomplete_v2_response_m_payload_local_var;

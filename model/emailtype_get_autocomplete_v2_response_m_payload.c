@@ -37,7 +37,9 @@ cJSON *emailtype_get_autocomplete_v2_response_m_payload_convertToJSON(emailtype_
     cJSON *item = cJSON_CreateObject();
 
     // emailtype_get_autocomplete_v2_response_m_payload->a_obj_emailtype
-    if(emailtype_get_autocomplete_v2_response_m_payload->a_obj_emailtype) {
+    if (!emailtype_get_autocomplete_v2_response_m_payload->a_obj_emailtype) {
+        goto fail;
+    }
     cJSON *a_obj_emailtype = cJSON_AddArrayToObject(item, "a_objEmailtype");
     if(a_obj_emailtype == NULL) {
     goto fail; //nonprimitive container
@@ -51,7 +53,6 @@ cJSON *emailtype_get_autocomplete_v2_response_m_payload_convertToJSON(emailtype_
     goto fail;
     }
     cJSON_AddItemToArray(a_obj_emailtype, itemLocal);
-    }
     }
     }
 
@@ -72,7 +73,11 @@ emailtype_get_autocomplete_v2_response_m_payload_t *emailtype_get_autocomplete_v
 
     // emailtype_get_autocomplete_v2_response_m_payload->a_obj_emailtype
     cJSON *a_obj_emailtype = cJSON_GetObjectItemCaseSensitive(emailtype_get_autocomplete_v2_response_m_payloadJSON, "a_objEmailtype");
-    if (a_obj_emailtype) { 
+    if (!a_obj_emailtype) {
+        goto end;
+    }
+
+    
     cJSON *a_obj_emailtype_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_emailtype)){
         goto end; //nonprimitive container
@@ -89,11 +94,10 @@ emailtype_get_autocomplete_v2_response_m_payload_t *emailtype_get_autocomplete_v
 
         list_addElement(a_obj_emailtypeList, a_obj_emailtypeItem);
     }
-    }
 
 
     emailtype_get_autocomplete_v2_response_m_payload_local_var = emailtype_get_autocomplete_v2_response_m_payload_create (
-        a_obj_emailtype ? a_obj_emailtypeList : NULL
+        a_obj_emailtypeList
         );
 
     return emailtype_get_autocomplete_v2_response_m_payload_local_var;

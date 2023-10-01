@@ -37,7 +37,9 @@ cJSON *paymentterm_get_autocomplete_v2_response_m_payload_convertToJSON(paymentt
     cJSON *item = cJSON_CreateObject();
 
     // paymentterm_get_autocomplete_v2_response_m_payload->a_obj_paymentterm
-    if(paymentterm_get_autocomplete_v2_response_m_payload->a_obj_paymentterm) {
+    if (!paymentterm_get_autocomplete_v2_response_m_payload->a_obj_paymentterm) {
+        goto fail;
+    }
     cJSON *a_obj_paymentterm = cJSON_AddArrayToObject(item, "a_objPaymentterm");
     if(a_obj_paymentterm == NULL) {
     goto fail; //nonprimitive container
@@ -51,7 +53,6 @@ cJSON *paymentterm_get_autocomplete_v2_response_m_payload_convertToJSON(paymentt
     goto fail;
     }
     cJSON_AddItemToArray(a_obj_paymentterm, itemLocal);
-    }
     }
     }
 
@@ -72,7 +73,11 @@ paymentterm_get_autocomplete_v2_response_m_payload_t *paymentterm_get_autocomple
 
     // paymentterm_get_autocomplete_v2_response_m_payload->a_obj_paymentterm
     cJSON *a_obj_paymentterm = cJSON_GetObjectItemCaseSensitive(paymentterm_get_autocomplete_v2_response_m_payloadJSON, "a_objPaymentterm");
-    if (a_obj_paymentterm) { 
+    if (!a_obj_paymentterm) {
+        goto end;
+    }
+
+    
     cJSON *a_obj_paymentterm_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_paymentterm)){
         goto end; //nonprimitive container
@@ -89,11 +94,10 @@ paymentterm_get_autocomplete_v2_response_m_payload_t *paymentterm_get_autocomple
 
         list_addElement(a_obj_paymenttermList, a_obj_paymenttermItem);
     }
-    }
 
 
     paymentterm_get_autocomplete_v2_response_m_payload_local_var = paymentterm_get_autocomplete_v2_response_m_payload_create (
-        a_obj_paymentterm ? a_obj_paymenttermList : NULL
+        a_obj_paymenttermList
         );
 
     return paymentterm_get_autocomplete_v2_response_m_payload_local_var;

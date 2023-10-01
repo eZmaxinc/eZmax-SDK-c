@@ -37,7 +37,9 @@ cJSON *company_get_autocomplete_v2_response_m_payload_convertToJSON(company_get_
     cJSON *item = cJSON_CreateObject();
 
     // company_get_autocomplete_v2_response_m_payload->a_obj_company
-    if(company_get_autocomplete_v2_response_m_payload->a_obj_company) {
+    if (!company_get_autocomplete_v2_response_m_payload->a_obj_company) {
+        goto fail;
+    }
     cJSON *a_obj_company = cJSON_AddArrayToObject(item, "a_objCompany");
     if(a_obj_company == NULL) {
     goto fail; //nonprimitive container
@@ -51,7 +53,6 @@ cJSON *company_get_autocomplete_v2_response_m_payload_convertToJSON(company_get_
     goto fail;
     }
     cJSON_AddItemToArray(a_obj_company, itemLocal);
-    }
     }
     }
 
@@ -72,7 +73,11 @@ company_get_autocomplete_v2_response_m_payload_t *company_get_autocomplete_v2_re
 
     // company_get_autocomplete_v2_response_m_payload->a_obj_company
     cJSON *a_obj_company = cJSON_GetObjectItemCaseSensitive(company_get_autocomplete_v2_response_m_payloadJSON, "a_objCompany");
-    if (a_obj_company) { 
+    if (!a_obj_company) {
+        goto end;
+    }
+
+    
     cJSON *a_obj_company_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_company)){
         goto end; //nonprimitive container
@@ -89,11 +94,10 @@ company_get_autocomplete_v2_response_m_payload_t *company_get_autocomplete_v2_re
 
         list_addElement(a_obj_companyList, a_obj_companyItem);
     }
-    }
 
 
     company_get_autocomplete_v2_response_m_payload_local_var = company_get_autocomplete_v2_response_m_payload_create (
-        a_obj_company ? a_obj_companyList : NULL
+        a_obj_companyList
         );
 
     return company_get_autocomplete_v2_response_m_payload_local_var;

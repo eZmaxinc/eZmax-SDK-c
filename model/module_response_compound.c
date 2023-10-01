@@ -111,9 +111,7 @@ cJSON *module_response_compound_convertToJSON(module_response_compound_t *module
 
 
     // module_response_compound->a_obj_modulesection
-    if (!module_response_compound->a_obj_modulesection) {
-        goto fail;
-    }
+    if(module_response_compound->a_obj_modulesection) {
     cJSON *a_obj_modulesection = cJSON_AddArrayToObject(item, "a_objModulesection");
     if(a_obj_modulesection == NULL) {
     goto fail; //nonprimitive container
@@ -127,6 +125,7 @@ cJSON *module_response_compound_convertToJSON(module_response_compound_t *module
     goto fail;
     }
     cJSON_AddItemToArray(a_obj_modulesection, itemLocal);
+    }
     }
     }
 
@@ -219,11 +218,7 @@ module_response_compound_t *module_response_compound_parseFromJSON(cJSON *module
 
     // module_response_compound->a_obj_modulesection
     cJSON *a_obj_modulesection = cJSON_GetObjectItemCaseSensitive(module_response_compoundJSON, "a_objModulesection");
-    if (!a_obj_modulesection) {
-        goto end;
-    }
-
-    
+    if (a_obj_modulesection) { 
     cJSON *a_obj_modulesection_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_modulesection)){
         goto end; //nonprimitive container
@@ -240,6 +235,7 @@ module_response_compound_t *module_response_compound_parseFromJSON(cJSON *module
 
         list_addElement(a_obj_modulesectionList, a_obj_modulesectionItem);
     }
+    }
 
 
     module_response_compound_local_var = module_response_compound_create (
@@ -249,7 +245,7 @@ module_response_compound_t *module_response_compound_parseFromJSON(cJSON *module
         strdup(s_module_name_x->valuestring),
         b_module_registered->valueint,
         b_module_registeredapi->valueint,
-        a_obj_modulesectionList
+        a_obj_modulesection ? a_obj_modulesectionList : NULL
         );
 
     return module_response_compound_local_var;

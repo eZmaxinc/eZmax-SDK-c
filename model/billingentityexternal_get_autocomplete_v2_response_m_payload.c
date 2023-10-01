@@ -37,7 +37,9 @@ cJSON *billingentityexternal_get_autocomplete_v2_response_m_payload_convertToJSO
     cJSON *item = cJSON_CreateObject();
 
     // billingentityexternal_get_autocomplete_v2_response_m_payload->a_obj_billingentityexternal
-    if(billingentityexternal_get_autocomplete_v2_response_m_payload->a_obj_billingentityexternal) {
+    if (!billingentityexternal_get_autocomplete_v2_response_m_payload->a_obj_billingentityexternal) {
+        goto fail;
+    }
     cJSON *a_obj_billingentityexternal = cJSON_AddArrayToObject(item, "a_objBillingentityexternal");
     if(a_obj_billingentityexternal == NULL) {
     goto fail; //nonprimitive container
@@ -51,7 +53,6 @@ cJSON *billingentityexternal_get_autocomplete_v2_response_m_payload_convertToJSO
     goto fail;
     }
     cJSON_AddItemToArray(a_obj_billingentityexternal, itemLocal);
-    }
     }
     }
 
@@ -72,7 +73,11 @@ billingentityexternal_get_autocomplete_v2_response_m_payload_t *billingentityext
 
     // billingentityexternal_get_autocomplete_v2_response_m_payload->a_obj_billingentityexternal
     cJSON *a_obj_billingentityexternal = cJSON_GetObjectItemCaseSensitive(billingentityexternal_get_autocomplete_v2_response_m_payloadJSON, "a_objBillingentityexternal");
-    if (a_obj_billingentityexternal) { 
+    if (!a_obj_billingentityexternal) {
+        goto end;
+    }
+
+    
     cJSON *a_obj_billingentityexternal_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_billingentityexternal)){
         goto end; //nonprimitive container
@@ -89,11 +94,10 @@ billingentityexternal_get_autocomplete_v2_response_m_payload_t *billingentityext
 
         list_addElement(a_obj_billingentityexternalList, a_obj_billingentityexternalItem);
     }
-    }
 
 
     billingentityexternal_get_autocomplete_v2_response_m_payload_local_var = billingentityexternal_get_autocomplete_v2_response_m_payload_create (
-        a_obj_billingentityexternal ? a_obj_billingentityexternalList : NULL
+        a_obj_billingentityexternalList
         );
 
     return billingentityexternal_get_autocomplete_v2_response_m_payload_local_var;

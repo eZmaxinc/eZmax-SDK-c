@@ -37,7 +37,9 @@ cJSON *font_get_autocomplete_v2_response_m_payload_convertToJSON(font_get_autoco
     cJSON *item = cJSON_CreateObject();
 
     // font_get_autocomplete_v2_response_m_payload->a_obj_font
-    if(font_get_autocomplete_v2_response_m_payload->a_obj_font) {
+    if (!font_get_autocomplete_v2_response_m_payload->a_obj_font) {
+        goto fail;
+    }
     cJSON *a_obj_font = cJSON_AddArrayToObject(item, "a_objFont");
     if(a_obj_font == NULL) {
     goto fail; //nonprimitive container
@@ -51,7 +53,6 @@ cJSON *font_get_autocomplete_v2_response_m_payload_convertToJSON(font_get_autoco
     goto fail;
     }
     cJSON_AddItemToArray(a_obj_font, itemLocal);
-    }
     }
     }
 
@@ -72,7 +73,11 @@ font_get_autocomplete_v2_response_m_payload_t *font_get_autocomplete_v2_response
 
     // font_get_autocomplete_v2_response_m_payload->a_obj_font
     cJSON *a_obj_font = cJSON_GetObjectItemCaseSensitive(font_get_autocomplete_v2_response_m_payloadJSON, "a_objFont");
-    if (a_obj_font) { 
+    if (!a_obj_font) {
+        goto end;
+    }
+
+    
     cJSON *a_obj_font_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_font)){
         goto end; //nonprimitive container
@@ -89,11 +94,10 @@ font_get_autocomplete_v2_response_m_payload_t *font_get_autocomplete_v2_response
 
         list_addElement(a_obj_fontList, a_obj_fontItem);
     }
-    }
 
 
     font_get_autocomplete_v2_response_m_payload_local_var = font_get_autocomplete_v2_response_m_payload_create (
-        a_obj_font ? a_obj_fontList : NULL
+        a_obj_fontList
         );
 
     return font_get_autocomplete_v2_response_m_payload_local_var;

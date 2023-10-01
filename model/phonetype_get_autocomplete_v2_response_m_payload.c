@@ -37,7 +37,9 @@ cJSON *phonetype_get_autocomplete_v2_response_m_payload_convertToJSON(phonetype_
     cJSON *item = cJSON_CreateObject();
 
     // phonetype_get_autocomplete_v2_response_m_payload->a_obj_phonetype
-    if(phonetype_get_autocomplete_v2_response_m_payload->a_obj_phonetype) {
+    if (!phonetype_get_autocomplete_v2_response_m_payload->a_obj_phonetype) {
+        goto fail;
+    }
     cJSON *a_obj_phonetype = cJSON_AddArrayToObject(item, "a_objPhonetype");
     if(a_obj_phonetype == NULL) {
     goto fail; //nonprimitive container
@@ -51,7 +53,6 @@ cJSON *phonetype_get_autocomplete_v2_response_m_payload_convertToJSON(phonetype_
     goto fail;
     }
     cJSON_AddItemToArray(a_obj_phonetype, itemLocal);
-    }
     }
     }
 
@@ -72,7 +73,11 @@ phonetype_get_autocomplete_v2_response_m_payload_t *phonetype_get_autocomplete_v
 
     // phonetype_get_autocomplete_v2_response_m_payload->a_obj_phonetype
     cJSON *a_obj_phonetype = cJSON_GetObjectItemCaseSensitive(phonetype_get_autocomplete_v2_response_m_payloadJSON, "a_objPhonetype");
-    if (a_obj_phonetype) { 
+    if (!a_obj_phonetype) {
+        goto end;
+    }
+
+    
     cJSON *a_obj_phonetype_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_phonetype)){
         goto end; //nonprimitive container
@@ -89,11 +94,10 @@ phonetype_get_autocomplete_v2_response_m_payload_t *phonetype_get_autocomplete_v
 
         list_addElement(a_obj_phonetypeList, a_obj_phonetypeItem);
     }
-    }
 
 
     phonetype_get_autocomplete_v2_response_m_payload_local_var = phonetype_get_autocomplete_v2_response_m_payload_create (
-        a_obj_phonetype ? a_obj_phonetypeList : NULL
+        a_obj_phonetypeList
         );
 
     return phonetype_get_autocomplete_v2_response_m_payload_local_var;

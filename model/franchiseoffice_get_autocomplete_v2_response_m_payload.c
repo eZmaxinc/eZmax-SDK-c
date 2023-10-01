@@ -37,7 +37,9 @@ cJSON *franchiseoffice_get_autocomplete_v2_response_m_payload_convertToJSON(fran
     cJSON *item = cJSON_CreateObject();
 
     // franchiseoffice_get_autocomplete_v2_response_m_payload->a_obj_franchiseoffice
-    if(franchiseoffice_get_autocomplete_v2_response_m_payload->a_obj_franchiseoffice) {
+    if (!franchiseoffice_get_autocomplete_v2_response_m_payload->a_obj_franchiseoffice) {
+        goto fail;
+    }
     cJSON *a_obj_franchiseoffice = cJSON_AddArrayToObject(item, "a_objFranchiseoffice");
     if(a_obj_franchiseoffice == NULL) {
     goto fail; //nonprimitive container
@@ -51,7 +53,6 @@ cJSON *franchiseoffice_get_autocomplete_v2_response_m_payload_convertToJSON(fran
     goto fail;
     }
     cJSON_AddItemToArray(a_obj_franchiseoffice, itemLocal);
-    }
     }
     }
 
@@ -72,7 +73,11 @@ franchiseoffice_get_autocomplete_v2_response_m_payload_t *franchiseoffice_get_au
 
     // franchiseoffice_get_autocomplete_v2_response_m_payload->a_obj_franchiseoffice
     cJSON *a_obj_franchiseoffice = cJSON_GetObjectItemCaseSensitive(franchiseoffice_get_autocomplete_v2_response_m_payloadJSON, "a_objFranchiseoffice");
-    if (a_obj_franchiseoffice) { 
+    if (!a_obj_franchiseoffice) {
+        goto end;
+    }
+
+    
     cJSON *a_obj_franchiseoffice_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_franchiseoffice)){
         goto end; //nonprimitive container
@@ -89,11 +94,10 @@ franchiseoffice_get_autocomplete_v2_response_m_payload_t *franchiseoffice_get_au
 
         list_addElement(a_obj_franchiseofficeList, a_obj_franchiseofficeItem);
     }
-    }
 
 
     franchiseoffice_get_autocomplete_v2_response_m_payload_local_var = franchiseoffice_get_autocomplete_v2_response_m_payload_create (
-        a_obj_franchiseoffice ? a_obj_franchiseofficeList : NULL
+        a_obj_franchiseofficeList
         );
 
     return franchiseoffice_get_autocomplete_v2_response_m_payload_local_var;

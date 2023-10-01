@@ -202,9 +202,7 @@ cJSON *franchisereferalincome_request_compound_convertToJSON(franchisereferalinc
 
 
     // franchisereferalincome_request_compound->obj_address
-    if (!franchisereferalincome_request_compound->obj_address) {
-        goto fail;
-    }
+    if(franchisereferalincome_request_compound->obj_address) {
     cJSON *obj_address_local_JSON = address_request_convertToJSON(franchisereferalincome_request_compound->obj_address);
     if(obj_address_local_JSON == NULL) {
     goto fail; //model
@@ -212,6 +210,7 @@ cJSON *franchisereferalincome_request_compound_convertToJSON(franchisereferalinc
     cJSON_AddItemToObject(item, "objAddress", obj_address_local_JSON);
     if(item->child == NULL) {
     goto fail;
+    }
     }
 
 
@@ -396,12 +395,9 @@ franchisereferalincome_request_compound_t *franchisereferalincome_request_compou
 
     // franchisereferalincome_request_compound->obj_address
     cJSON *obj_address = cJSON_GetObjectItemCaseSensitive(franchisereferalincome_request_compoundJSON, "objAddress");
-    if (!obj_address) {
-        goto end;
-    }
-
-    
+    if (obj_address) { 
     obj_address_local_nonprim = address_request_parseFromJSON(obj_address); //nonprimitive
+    }
 
     // franchisereferalincome_request_compound->a_obj_contact
     cJSON *a_obj_contact = cJSON_GetObjectItemCaseSensitive(franchisereferalincome_request_compoundJSON, "a_objContact");
@@ -441,7 +437,7 @@ franchisereferalincome_request_compound_t *franchisereferalincome_request_compou
         strdup(t_franchisereferalincome_comment->valuestring),
         fki_franchiseoffice_id->valuedouble,
         strdup(s_franchisereferalincome_remoteid->valuestring),
-        obj_address_local_nonprim,
+        obj_address ? obj_address_local_nonprim : NULL,
         a_obj_contactList
         );
 

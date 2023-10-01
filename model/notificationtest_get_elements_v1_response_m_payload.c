@@ -72,7 +72,9 @@ cJSON *notificationtest_get_elements_v1_response_m_payload_convertToJSON(notific
 
 
     // notificationtest_get_elements_v1_response_m_payload->a_s_variableobject_property
-    if(notificationtest_get_elements_v1_response_m_payload->a_s_variableobject_property) {
+    if (!notificationtest_get_elements_v1_response_m_payload->a_s_variableobject_property) {
+        goto fail;
+    }
     cJSON *a_s_variableobject_property = cJSON_AddArrayToObject(item, "a_sVariableobjectProperty");
     if(a_s_variableobject_property == NULL) {
         goto fail; //primitive container
@@ -83,7 +85,6 @@ cJSON *notificationtest_get_elements_v1_response_m_payload_convertToJSON(notific
     if(cJSON_AddStringToObject(a_s_variableobject_property, "", (char*)a_s_variableobject_propertyListEntry->data) == NULL)
     {
         goto fail;
-    }
     }
     }
 
@@ -145,7 +146,11 @@ notificationtest_get_elements_v1_response_m_payload_t *notificationtest_get_elem
 
     // notificationtest_get_elements_v1_response_m_payload->a_s_variableobject_property
     cJSON *a_s_variableobject_property = cJSON_GetObjectItemCaseSensitive(notificationtest_get_elements_v1_response_m_payloadJSON, "a_sVariableobjectProperty");
-    if (a_s_variableobject_property) { 
+    if (!a_s_variableobject_property) {
+        goto end;
+    }
+
+    
     cJSON *a_s_variableobject_property_local = NULL;
     if(!cJSON_IsArray(a_s_variableobject_property)) {
         goto end;//primitive container
@@ -159,7 +164,6 @@ notificationtest_get_elements_v1_response_m_payload_t *notificationtest_get_elem
             goto end;
         }
         list_addElement(a_s_variableobject_propertyList , strdup(a_s_variableobject_property_local->valuestring));
-    }
     }
 
     // notificationtest_get_elements_v1_response_m_payload->a_obj_variableobject
@@ -183,7 +187,7 @@ notificationtest_get_elements_v1_response_m_payload_t *notificationtest_get_elem
     notificationtest_get_elements_v1_response_m_payload_local_var = notificationtest_get_elements_v1_response_m_payload_create (
         pki_notificationtest_id->valuedouble,
         strdup(s_notificationtest_function->valuestring),
-        a_s_variableobject_property ? a_s_variableobject_propertyList : NULL,
+        a_s_variableobject_propertyList,
         a_obj_variableobjectList
         );
 

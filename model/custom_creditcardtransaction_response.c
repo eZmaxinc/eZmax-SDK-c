@@ -69,7 +69,9 @@ cJSON *custom_creditcardtransaction_response_convertToJSON(custom_creditcardtran
     cJSON *item = cJSON_CreateObject();
 
     // custom_creditcardtransaction_response->e_creditcardtype_codename
-    if(custom_creditcardtransaction_response->e_creditcardtype_codename != ezmax_api_definition__full_custom_creditcardtransaction_response__NULL) {
+    if (ezmax_api_definition__full_custom_creditcardtransaction_response__NULL == custom_creditcardtransaction_response->e_creditcardtype_codename) {
+        goto fail;
+    }
     cJSON *e_creditcardtype_codename_local_JSON = field_e_creditcardtype_codename_convertToJSON(custom_creditcardtransaction_response->e_creditcardtype_codename);
     if(e_creditcardtype_codename_local_JSON == NULL) {
         goto fail; // custom
@@ -77,7 +79,6 @@ cJSON *custom_creditcardtransaction_response_convertToJSON(custom_creditcardtran
     cJSON_AddItemToObject(item, "eCreditcardtypeCodename", e_creditcardtype_codename_local_JSON);
     if(item->child == NULL) {
         goto fail;
-    }
     }
 
 
@@ -124,9 +125,12 @@ custom_creditcardtransaction_response_t *custom_creditcardtransaction_response_p
 
     // custom_creditcardtransaction_response->e_creditcardtype_codename
     cJSON *e_creditcardtype_codename = cJSON_GetObjectItemCaseSensitive(custom_creditcardtransaction_responseJSON, "eCreditcardtypeCodename");
-    if (e_creditcardtype_codename) { 
-    e_creditcardtype_codename_local_nonprim = field_e_creditcardtype_codename_parseFromJSON(e_creditcardtype_codename); //custom
+    if (!e_creditcardtype_codename) {
+        goto end;
     }
+
+    
+    e_creditcardtype_codename_local_nonprim = field_e_creditcardtype_codename_parseFromJSON(e_creditcardtype_codename); //custom
 
     // custom_creditcardtransaction_response->d_creditcardtransaction_amount
     cJSON *d_creditcardtransaction_amount = cJSON_GetObjectItemCaseSensitive(custom_creditcardtransaction_responseJSON, "dCreditcardtransactionAmount");
@@ -166,7 +170,7 @@ custom_creditcardtransaction_response_t *custom_creditcardtransaction_response_p
 
 
     custom_creditcardtransaction_response_local_var = custom_creditcardtransaction_response_create (
-        e_creditcardtype_codename ? e_creditcardtype_codename_local_nonprim : NULL,
+        e_creditcardtype_codename_local_nonprim,
         strdup(d_creditcardtransaction_amount->valuestring),
         strdup(s_creditcardtransaction_partiallydecryptednumber->valuestring),
         strdup(s_creditcardtransaction_referencenumber->valuestring)

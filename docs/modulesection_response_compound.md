@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **fki_module_id** | **int** | The unique ID of the Module | 
 **s_modulesection_internalname** | **char \*** | The Internal name of the Module section. | 
 **s_modulesection_name_x** | **char \*** | The Name of the Modulesection in the language of the requester | 
-**a_obj_permission** | [**list_t**](permission_response_compound.md) \* |  | 
+**a_obj_permission** | [**list_t**](permission_response_compound.md) \* |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

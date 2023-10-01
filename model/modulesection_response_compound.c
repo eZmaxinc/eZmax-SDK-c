@@ -89,9 +89,7 @@ cJSON *modulesection_response_compound_convertToJSON(modulesection_response_comp
 
 
     // modulesection_response_compound->a_obj_permission
-    if (!modulesection_response_compound->a_obj_permission) {
-        goto fail;
-    }
+    if(modulesection_response_compound->a_obj_permission) {
     cJSON *a_obj_permission = cJSON_AddArrayToObject(item, "a_objPermission");
     if(a_obj_permission == NULL) {
     goto fail; //nonprimitive container
@@ -105,6 +103,7 @@ cJSON *modulesection_response_compound_convertToJSON(modulesection_response_comp
     goto fail;
     }
     cJSON_AddItemToArray(a_obj_permission, itemLocal);
+    }
     }
     }
 
@@ -173,11 +172,7 @@ modulesection_response_compound_t *modulesection_response_compound_parseFromJSON
 
     // modulesection_response_compound->a_obj_permission
     cJSON *a_obj_permission = cJSON_GetObjectItemCaseSensitive(modulesection_response_compoundJSON, "a_objPermission");
-    if (!a_obj_permission) {
-        goto end;
-    }
-
-    
+    if (a_obj_permission) { 
     cJSON *a_obj_permission_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_permission)){
         goto end; //nonprimitive container
@@ -194,6 +189,7 @@ modulesection_response_compound_t *modulesection_response_compound_parseFromJSON
 
         list_addElement(a_obj_permissionList, a_obj_permissionItem);
     }
+    }
 
 
     modulesection_response_compound_local_var = modulesection_response_compound_create (
@@ -201,7 +197,7 @@ modulesection_response_compound_t *modulesection_response_compound_parseFromJSON
         fki_module_id->valuedouble,
         strdup(s_modulesection_internalname->valuestring),
         strdup(s_modulesection_name_x->valuestring),
-        a_obj_permissionList
+        a_obj_permission ? a_obj_permissionList : NULL
         );
 
     return modulesection_response_compound_local_var;

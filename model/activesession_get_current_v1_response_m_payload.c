@@ -257,10 +257,11 @@ cJSON *activesession_get_current_v1_response_m_payload_convertToJSON(activesessi
 
 
     // activesession_get_current_v1_response_m_payload->fki_systemconfigurationtype_id
-    if(activesession_get_current_v1_response_m_payload->fki_systemconfigurationtype_id) {
+    if (!activesession_get_current_v1_response_m_payload->fki_systemconfigurationtype_id) {
+        goto fail;
+    }
     if(cJSON_AddNumberToObject(item, "fkiSystemconfigurationtypeID", activesession_get_current_v1_response_m_payload->fki_systemconfigurationtype_id) == NULL) {
     goto fail; //Numeric
-    }
     }
 
 
@@ -484,11 +485,14 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
 
     // activesession_get_current_v1_response_m_payload->fki_systemconfigurationtype_id
     cJSON *fki_systemconfigurationtype_id = cJSON_GetObjectItemCaseSensitive(activesession_get_current_v1_response_m_payloadJSON, "fkiSystemconfigurationtypeID");
-    if (fki_systemconfigurationtype_id) { 
+    if (!fki_systemconfigurationtype_id) {
+        goto end;
+    }
+
+    
     if(!cJSON_IsNumber(fki_systemconfigurationtype_id))
     {
     goto end; //Numeric
-    }
     }
 
     // activesession_get_current_v1_response_m_payload->fki_signature_id
@@ -582,7 +586,7 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
         b_activesession_debug->valueint,
         b_activesession_issuperadmin->valueint,
         strdup(pks_customer_code->valuestring),
-        fki_systemconfigurationtype_id ? fki_systemconfigurationtype_id->valuedouble : 0,
+        fki_systemconfigurationtype_id->valuedouble,
         fki_signature_id ? fki_signature_id->valuedouble : 0,
         a_pki_permission_idList,
         obj_user_real_local_nonprim,

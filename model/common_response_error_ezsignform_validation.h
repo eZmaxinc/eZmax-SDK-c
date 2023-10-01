@@ -1,7 +1,7 @@
 /*
  * common_response_error_ezsignform_validation.h
  *
- * 
+ * Generic Error Message
  */
 
 #ifndef _common_response_error_ezsignform_validation_H_

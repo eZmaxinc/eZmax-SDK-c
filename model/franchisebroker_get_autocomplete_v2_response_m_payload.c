@@ -37,7 +37,9 @@ cJSON *franchisebroker_get_autocomplete_v2_response_m_payload_convertToJSON(fran
     cJSON *item = cJSON_CreateObject();
 
     // franchisebroker_get_autocomplete_v2_response_m_payload->a_obj_franchisebroker
-    if(franchisebroker_get_autocomplete_v2_response_m_payload->a_obj_franchisebroker) {
+    if (!franchisebroker_get_autocomplete_v2_response_m_payload->a_obj_franchisebroker) {
+        goto fail;
+    }
     cJSON *a_obj_franchisebroker = cJSON_AddArrayToObject(item, "a_objFranchisebroker");
     if(a_obj_franchisebroker == NULL) {
     goto fail; //nonprimitive container
@@ -51,7 +53,6 @@ cJSON *franchisebroker_get_autocomplete_v2_response_m_payload_convertToJSON(fran
     goto fail;
     }
     cJSON_AddItemToArray(a_obj_franchisebroker, itemLocal);
-    }
     }
     }
 
@@ -72,7 +73,11 @@ franchisebroker_get_autocomplete_v2_response_m_payload_t *franchisebroker_get_au
 
     // franchisebroker_get_autocomplete_v2_response_m_payload->a_obj_franchisebroker
     cJSON *a_obj_franchisebroker = cJSON_GetObjectItemCaseSensitive(franchisebroker_get_autocomplete_v2_response_m_payloadJSON, "a_objFranchisebroker");
-    if (a_obj_franchisebroker) { 
+    if (!a_obj_franchisebroker) {
+        goto end;
+    }
+
+    
     cJSON *a_obj_franchisebroker_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_franchisebroker)){
         goto end; //nonprimitive container
@@ -89,11 +94,10 @@ franchisebroker_get_autocomplete_v2_response_m_payload_t *franchisebroker_get_au
 
         list_addElement(a_obj_franchisebrokerList, a_obj_franchisebrokerItem);
     }
-    }
 
 
     franchisebroker_get_autocomplete_v2_response_m_payload_local_var = franchisebroker_get_autocomplete_v2_response_m_payload_create (
-        a_obj_franchisebroker ? a_obj_franchisebrokerList : NULL
+        a_obj_franchisebrokerList
         );
 
     return franchisebroker_get_autocomplete_v2_response_m_payload_local_var;

@@ -130,9 +130,7 @@ cJSON *ezmaxinvoicingcommission_response_compound_convertToJSON(ezmaxinvoicingco
 
 
     // ezmaxinvoicingcommission_response_compound->obj_contact_name
-    if (!ezmaxinvoicingcommission_response_compound->obj_contact_name) {
-        goto fail;
-    }
+    if(ezmaxinvoicingcommission_response_compound->obj_contact_name) {
     cJSON *obj_contact_name_local_JSON = custom_contact_name_response_convertToJSON(ezmaxinvoicingcommission_response_compound->obj_contact_name);
     if(obj_contact_name_local_JSON == NULL) {
     goto fail; //model
@@ -140,6 +138,7 @@ cJSON *ezmaxinvoicingcommission_response_compound_convertToJSON(ezmaxinvoicingco
     cJSON_AddItemToObject(item, "objContactName", obj_contact_name_local_JSON);
     if(item->child == NULL) {
     goto fail;
+    }
     }
 
     return item;
@@ -243,12 +242,9 @@ ezmaxinvoicingcommission_response_compound_t *ezmaxinvoicingcommission_response_
 
     // ezmaxinvoicingcommission_response_compound->obj_contact_name
     cJSON *obj_contact_name = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingcommission_response_compoundJSON, "objContactName");
-    if (!obj_contact_name) {
-        goto end;
-    }
-
-    
+    if (obj_contact_name) { 
     obj_contact_name_local_nonprim = custom_contact_name_response_parseFromJSON(obj_contact_name); //nonprimitive
+    }
 
 
     ezmaxinvoicingcommission_response_compound_local_var = ezmaxinvoicingcommission_response_compound_create (
@@ -260,7 +256,7 @@ ezmaxinvoicingcommission_response_compound_t *ezmaxinvoicingcommission_response_
         strdup(dt_ezmaxinvoicingcommission_end->valuestring),
         i_ezmaxinvoicingcommission_days->valuedouble,
         strdup(d_ezmaxinvoicingcommission_amount->valuestring),
-        obj_contact_name_local_nonprim
+        obj_contact_name ? obj_contact_name_local_nonprim : NULL
         );
 
     return ezmaxinvoicingcommission_response_compound_local_var;

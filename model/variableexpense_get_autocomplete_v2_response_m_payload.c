@@ -37,7 +37,9 @@ cJSON *variableexpense_get_autocomplete_v2_response_m_payload_convertToJSON(vari
     cJSON *item = cJSON_CreateObject();
 
     // variableexpense_get_autocomplete_v2_response_m_payload->a_obj_variableexpense
-    if(variableexpense_get_autocomplete_v2_response_m_payload->a_obj_variableexpense) {
+    if (!variableexpense_get_autocomplete_v2_response_m_payload->a_obj_variableexpense) {
+        goto fail;
+    }
     cJSON *a_obj_variableexpense = cJSON_AddArrayToObject(item, "a_objVariableexpense");
     if(a_obj_variableexpense == NULL) {
     goto fail; //nonprimitive container
@@ -51,7 +53,6 @@ cJSON *variableexpense_get_autocomplete_v2_response_m_payload_convertToJSON(vari
     goto fail;
     }
     cJSON_AddItemToArray(a_obj_variableexpense, itemLocal);
-    }
     }
     }
 
@@ -72,7 +73,11 @@ variableexpense_get_autocomplete_v2_response_m_payload_t *variableexpense_get_au
 
     // variableexpense_get_autocomplete_v2_response_m_payload->a_obj_variableexpense
     cJSON *a_obj_variableexpense = cJSON_GetObjectItemCaseSensitive(variableexpense_get_autocomplete_v2_response_m_payloadJSON, "a_objVariableexpense");
-    if (a_obj_variableexpense) { 
+    if (!a_obj_variableexpense) {
+        goto end;
+    }
+
+    
     cJSON *a_obj_variableexpense_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_variableexpense)){
         goto end; //nonprimitive container
@@ -89,11 +94,10 @@ variableexpense_get_autocomplete_v2_response_m_payload_t *variableexpense_get_au
 
         list_addElement(a_obj_variableexpenseList, a_obj_variableexpenseItem);
     }
-    }
 
 
     variableexpense_get_autocomplete_v2_response_m_payload_local_var = variableexpense_get_autocomplete_v2_response_m_payload_create (
-        a_obj_variableexpense ? a_obj_variableexpenseList : NULL
+        a_obj_variableexpenseList
         );
 
     return variableexpense_get_autocomplete_v2_response_m_payload_local_var;
