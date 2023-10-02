@@ -22,14 +22,14 @@ ezsigntsarequirement_autocomplete_element_response_t* instantiate_ezsigntsarequi
   ezsigntsarequirement_autocomplete_element_response_t* ezsigntsarequirement_autocomplete_element_response = NULL;
   if (include_optional) {
     ezsigntsarequirement_autocomplete_element_response = ezsigntsarequirement_autocomplete_element_response_create(
-      "Default",
+      "No",
       1,
       true,
       1
     );
   } else {
     ezsigntsarequirement_autocomplete_element_response = ezsigntsarequirement_autocomplete_element_response_create(
-      "Default",
+      "No",
       1,
       true,
       1
