@@ -109,11 +109,10 @@ cJSON *ezsignfolder_request_convertToJSON(ezsignfolder_request_t *ezsignfolder_r
 
 
     // ezsignfolder_request->t_ezsignfolder_note
-    if (!ezsignfolder_request->t_ezsignfolder_note) {
-        goto fail;
-    }
+    if(ezsignfolder_request->t_ezsignfolder_note) {
     if(cJSON_AddStringToObject(item, "tEzsignfolderNote", ezsignfolder_request->t_ezsignfolder_note) == NULL) {
     goto fail; //String
+    }
     }
 
 
@@ -197,14 +196,11 @@ ezsignfolder_request_t *ezsignfolder_request_parseFromJSON(cJSON *ezsignfolder_r
 
     // ezsignfolder_request->t_ezsignfolder_note
     cJSON *t_ezsignfolder_note = cJSON_GetObjectItemCaseSensitive(ezsignfolder_requestJSON, "tEzsignfolderNote");
-    if (!t_ezsignfolder_note) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(t_ezsignfolder_note))
+    if (t_ezsignfolder_note) { 
+    if(!cJSON_IsString(t_ezsignfolder_note) && !cJSON_IsNull(t_ezsignfolder_note))
     {
     goto end; //String
+    }
     }
 
     // ezsignfolder_request->e_ezsignfolder_sendreminderfrequency
@@ -231,7 +227,7 @@ ezsignfolder_request_t *ezsignfolder_request_parseFromJSON(cJSON *ezsignfolder_r
         fki_ezsignfoldertype_id->valuedouble,
         fki_ezsigntsarequirement_id ? fki_ezsigntsarequirement_id->valuedouble : 0,
         strdup(s_ezsignfolder_description->valuestring),
-        strdup(t_ezsignfolder_note->valuestring),
+        t_ezsignfolder_note && !cJSON_IsNull(t_ezsignfolder_note) ? strdup(t_ezsignfolder_note->valuestring) : NULL,
         e_ezsignfolder_sendreminderfrequency_local_nonprim,
         s_ezsignfolder_externalid && !cJSON_IsNull(s_ezsignfolder_externalid) ? strdup(s_ezsignfolder_externalid->valuestring) : NULL
         );

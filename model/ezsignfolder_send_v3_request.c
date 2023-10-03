@@ -49,11 +49,10 @@ cJSON *ezsignfolder_send_v3_request_convertToJSON(ezsignfolder_send_v3_request_t
     cJSON *item = cJSON_CreateObject();
 
     // ezsignfolder_send_v3_request->t_ezsignfolder_message
-    if (!ezsignfolder_send_v3_request->t_ezsignfolder_message) {
-        goto fail;
-    }
+    if(ezsignfolder_send_v3_request->t_ezsignfolder_message) {
     if(cJSON_AddStringToObject(item, "tEzsignfolderMessage", ezsignfolder_send_v3_request->t_ezsignfolder_message) == NULL) {
     goto fail; //String
+    }
     }
 
 
@@ -99,14 +98,11 @@ ezsignfolder_send_v3_request_t *ezsignfolder_send_v3_request_parseFromJSON(cJSON
 
     // ezsignfolder_send_v3_request->t_ezsignfolder_message
     cJSON *t_ezsignfolder_message = cJSON_GetObjectItemCaseSensitive(ezsignfolder_send_v3_requestJSON, "tEzsignfolderMessage");
-    if (!t_ezsignfolder_message) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(t_ezsignfolder_message))
+    if (t_ezsignfolder_message) { 
+    if(!cJSON_IsString(t_ezsignfolder_message) && !cJSON_IsNull(t_ezsignfolder_message))
     {
     goto end; //String
+    }
     }
 
     // ezsignfolder_send_v3_request->dt_ezsignfolder_delayedsenddate
@@ -148,7 +144,7 @@ ezsignfolder_send_v3_request_t *ezsignfolder_send_v3_request_parseFromJSON(cJSON
 
 
     ezsignfolder_send_v3_request_local_var = ezsignfolder_send_v3_request_create (
-        strdup(t_ezsignfolder_message->valuestring),
+        t_ezsignfolder_message && !cJSON_IsNull(t_ezsignfolder_message) ? strdup(t_ezsignfolder_message->valuestring) : NULL,
         dt_ezsignfolder_delayedsenddate && !cJSON_IsNull(dt_ezsignfolder_delayedsenddate) ? strdup(dt_ezsignfolder_delayedsenddate->valuestring) : NULL,
         a_fki_ezsignfoldersignerassociation_idList
         );
