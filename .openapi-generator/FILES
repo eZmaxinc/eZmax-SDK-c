@@ -94,6 +94,8 @@ api/ObjectFranchiseofficeAPI.c
 api/ObjectFranchiseofficeAPI.h
 api/ObjectFranchisereferalincomeAPI.c
 api/ObjectFranchisereferalincomeAPI.h
+api/ObjectLanguageAPI.c
+api/ObjectLanguageAPI.h
 api/ObjectModulegroupAPI.c
 api/ObjectModulegroupAPI.h
 api/ObjectNotificationsectionAPI.c
@@ -190,6 +192,7 @@ docs/ObjectFontAPI.md
 docs/ObjectFranchisebrokerAPI.md
 docs/ObjectFranchiseofficeAPI.md
 docs/ObjectFranchisereferalincomeAPI.md
+docs/ObjectLanguageAPI.md
 docs/ObjectModulegroupAPI.md
 docs/ObjectNotificationsectionAPI.md
 docs/ObjectNotificationtestAPI.md
@@ -997,6 +1000,9 @@ docs/global_customer_get_endpoint_v1_response.md
 docs/global_ezmaxclient_version_v1_response.md
 docs/global_ezmaxcustomer_get_configuration_v1_response.md
 docs/header_accept_language.md
+docs/language_autocomplete_element_response.md
+docs/language_get_autocomplete_v2_response.md
+docs/language_get_autocomplete_v2_response_m_payload.md
 docs/module_response.md
 docs/module_response_compound.md
 docs/modulegroup_get_all_v1_response.md
@@ -2850,6 +2856,12 @@ model/global_ezmaxcustomer_get_configuration_v1_response.c
 model/global_ezmaxcustomer_get_configuration_v1_response.h
 model/header_accept_language.c
 model/header_accept_language.h
+model/language_autocomplete_element_response.c
+model/language_autocomplete_element_response.h
+model/language_get_autocomplete_v2_response.c
+model/language_get_autocomplete_v2_response.h
+model/language_get_autocomplete_v2_response_m_payload.c
+model/language_get_autocomplete_v2_response_m_payload.h
 model/module_response.c
 model/module_response.h
 model/module_response_compound.c
@@ -4201,6 +4213,9 @@ unit-test/test_global_customer_get_endpoint_v1_response.c
 unit-test/test_global_ezmaxclient_version_v1_response.c
 unit-test/test_global_ezmaxcustomer_get_configuration_v1_response.c
 unit-test/test_header_accept_language.c
+unit-test/test_language_autocomplete_element_response.c
+unit-test/test_language_get_autocomplete_v2_response.c
+unit-test/test_language_get_autocomplete_v2_response_m_payload.c
 unit-test/test_module_response.c
 unit-test/test_module_response_compound.c
 unit-test/test_modulegroup_get_all_v1_response.c

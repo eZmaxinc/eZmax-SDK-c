@@ -836,6 +836,9 @@ set(SRCS
     model/global_ezmaxclient_version_v1_response.c
     model/global_ezmaxcustomer_get_configuration_v1_response.c
     model/header_accept_language.c
+    model/language_autocomplete_element_response.c
+    model/language_get_autocomplete_v2_response.c
+    model/language_get_autocomplete_v2_response_m_payload.c
     model/module_response.c
     model/module_response_compound.c
     model/modulegroup_get_all_v1_response.c
@@ -1163,6 +1166,7 @@ set(SRCS
     api/ObjectFranchisebrokerAPI.c
     api/ObjectFranchiseofficeAPI.c
     api/ObjectFranchisereferalincomeAPI.c
+    api/ObjectLanguageAPI.c
     api/ObjectModulegroupAPI.c
     api/ObjectNotificationsectionAPI.c
     api/ObjectNotificationtestAPI.c
@@ -1980,6 +1984,9 @@ set(HDRS
     model/global_ezmaxclient_version_v1_response.h
     model/global_ezmaxcustomer_get_configuration_v1_response.h
     model/header_accept_language.h
+    model/language_autocomplete_element_response.h
+    model/language_get_autocomplete_v2_response.h
+    model/language_get_autocomplete_v2_response_m_payload.h
     model/module_response.h
     model/module_response_compound.h
     model/modulegroup_get_all_v1_response.h
@@ -2307,6 +2314,7 @@ set(HDRS
     api/ObjectFranchisebrokerAPI.h
     api/ObjectFranchiseofficeAPI.h
     api/ObjectFranchisereferalincomeAPI.h
+    api/ObjectLanguageAPI.h
     api/ObjectModulegroupAPI.h
     api/ObjectNotificationsectionAPI.h
     api/ObjectNotificationtestAPI.h
@@ -2459,6 +2467,7 @@ set(HDRS "")
 #    unit-tests/manual-ObjectFranchisebrokerAPI.c
 #    unit-tests/manual-ObjectFranchiseofficeAPI.c
 #    unit-tests/manual-ObjectFranchisereferalincomeAPI.c
+#    unit-tests/manual-ObjectLanguageAPI.c
 #    unit-tests/manual-ObjectModulegroupAPI.c
 #    unit-tests/manual-ObjectNotificationsectionAPI.c
 #    unit-tests/manual-ObjectNotificationtestAPI.c

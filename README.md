@@ -272,6 +272,7 @@ Category | Method | HTTP request | Description
 *ObjectFranchiseofficeAPI* | [**ObjectFranchiseofficeAPI_franchiseofficeGetAutocompleteV2**](docs/ObjectFranchiseofficeAPI.md#ObjectFranchiseofficeAPI_franchiseofficeGetAutocompleteV2) | **GET** /2/object/franchiseoffice/getAutocomplete/{sSelector} | Retrieve Franchiseoffices and IDs
 *ObjectFranchisereferalincomeAPI* | [**ObjectFranchisereferalincomeAPI_franchisereferalincomeCreateObjectV1**](docs/ObjectFranchisereferalincomeAPI.md#ObjectFranchisereferalincomeAPI_franchisereferalincomeCreateObjectV1) | **POST** /1/object/franchisereferalincome | Create a new Franchisereferalincome
 *ObjectFranchisereferalincomeAPI* | [**ObjectFranchisereferalincomeAPI_franchisereferalincomeCreateObjectV2**](docs/ObjectFranchisereferalincomeAPI.md#ObjectFranchisereferalincomeAPI_franchisereferalincomeCreateObjectV2) | **POST** /2/object/franchisereferalincome | Create a new Franchisereferalincome
+*ObjectLanguageAPI* | [**ObjectLanguageAPI_languageGetAutocompleteV2**](docs/ObjectLanguageAPI.md#ObjectLanguageAPI_languageGetAutocompleteV2) | **GET** /2/object/language/getAutocomplete/{sSelector} | Retrieve Languages and IDs
 *ObjectModulegroupAPI* | [**ObjectModulegroupAPI_modulegroupGetAllV1**](docs/ObjectModulegroupAPI.md#ObjectModulegroupAPI_modulegroupGetAllV1) | **GET** /1/object/modulegroup/getAll/{eContext} | Retrieve all Modulegroups
 *ObjectNotificationsectionAPI* | [**ObjectNotificationsectionAPI_notificationsectionGetNotificationtestsV1**](docs/ObjectNotificationsectionAPI.md#ObjectNotificationsectionAPI_notificationsectionGetNotificationtestsV1) | **GET** /1/object/notificationsection/{pkiNotificationsectionID}/getNotificationtests | Retrieve an existing Notificationsection's Notificationtests
 *ObjectNotificationtestAPI* | [**ObjectNotificationtestAPI_notificationtestGetElementsV1**](docs/ObjectNotificationtestAPI.md#ObjectNotificationtestAPI_notificationtestGetElementsV1) | **GET** /1/object/notificationtest/{pkiNotificationtestID}/getElements | Retrieve an existing Notificationtest's Elements
@@ -1146,6 +1147,9 @@ Category | Method | HTTP request | Description
  - [global_ezmaxclient_version_v1_response_t](docs/global_ezmaxclient_version_v1_response.md)
  - [global_ezmaxcustomer_get_configuration_v1_response_t](docs/global_ezmaxcustomer_get_configuration_v1_response.md)
  - [header_accept_language_t](docs/header_accept_language.md)
+ - [language_autocomplete_element_response_t](docs/language_autocomplete_element_response.md)
+ - [language_get_autocomplete_v2_response_t](docs/language_get_autocomplete_v2_response.md)
+ - [language_get_autocomplete_v2_response_m_payload_t](docs/language_get_autocomplete_v2_response_m_payload.md)
  - [module_response_t](docs/module_response.md)
  - [module_response_compound_t](docs/module_response_compound.md)
  - [modulegroup_get_all_v1_response_t](docs/modulegroup_get_all_v1_response.md)
