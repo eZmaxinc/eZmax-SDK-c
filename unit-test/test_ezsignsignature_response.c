@@ -48,6 +48,7 @@ ezsignsignature_response_t* instantiate_ezsignsignature_response(int include_opt
       "Montreal",
       75,
       ezmax_api_definition__full_ezsignsignature_response__"None",
+      ezmax_api_definition__full_ezsignsignature_response__"AllOf",
       "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
        // false, not to have infinite recursion
       instantiate_custom_contact_name_response(0),
@@ -81,6 +82,7 @@ ezsignsignature_response_t* instantiate_ezsignsignature_response(int include_opt
       "Montreal",
       75,
       ezmax_api_definition__full_ezsignsignature_response__"None",
+      ezmax_api_definition__full_ezsignsignature_response__"AllOf",
       "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
       NULL,
       NULL,

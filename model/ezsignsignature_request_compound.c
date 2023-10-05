@@ -89,6 +89,23 @@ ezmax_api_definition__full_ezsignsignature_request_compound__e e_ezsignsignature
     }
     return 0;
 }
+char* e_ezsignsignature_dependencyrequirementezsignsignature_request_compound_ToString(ezmax_api_definition__full_ezsignsignature_request_compound__e e_ezsignsignature_dependencyrequirement) {
+    char* e_ezsignsignature_dependencyrequirementArray[] =  { "NULL", "AllOf", "AnyOf" };
+	return e_ezsignsignature_dependencyrequirementArray[e_ezsignsignature_dependencyrequirement];
+}
+
+ezmax_api_definition__full_ezsignsignature_request_compound__e e_ezsignsignature_dependencyrequirementezsignsignature_request_compound_FromString(char* e_ezsignsignature_dependencyrequirement){
+    int stringToReturn = 0;
+    char *e_ezsignsignature_dependencyrequirementArray[] =  { "NULL", "AllOf", "AnyOf" };
+    size_t sizeofArray = sizeof(e_ezsignsignature_dependencyrequirementArray) / sizeof(e_ezsignsignature_dependencyrequirementArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(e_ezsignsignature_dependencyrequirement, e_ezsignsignature_dependencyrequirementArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
 
 ezsignsignature_request_compound_t *ezsignsignature_request_compound_create(
     int pki_ezsignsignature_id,
@@ -112,8 +129,10 @@ ezsignsignature_request_compound_t *ezsignsignature_request_compound_create(
     int i_ezsignsignature_maxlength,
     enum_textvalidation_t *e_ezsignsignature_textvalidation,
     char *s_ezsignsignature_regexp,
+    field_e_ezsignsignature_dependencyrequirement_t *e_ezsignsignature_dependencyrequirement,
     int b_ezsignsignature_customdate,
-    list_t *a_obj_ezsignsignaturecustomdate
+    list_t *a_obj_ezsignsignaturecustomdate,
+    list_t *a_obj_ezsignelementdependency
     ) {
     ezsignsignature_request_compound_t *ezsignsignature_request_compound_local_var = malloc(sizeof(ezsignsignature_request_compound_t));
     if (!ezsignsignature_request_compound_local_var) {
@@ -140,8 +159,10 @@ ezsignsignature_request_compound_t *ezsignsignature_request_compound_create(
     ezsignsignature_request_compound_local_var->i_ezsignsignature_maxlength = i_ezsignsignature_maxlength;
     ezsignsignature_request_compound_local_var->e_ezsignsignature_textvalidation = e_ezsignsignature_textvalidation;
     ezsignsignature_request_compound_local_var->s_ezsignsignature_regexp = s_ezsignsignature_regexp;
+    ezsignsignature_request_compound_local_var->e_ezsignsignature_dependencyrequirement = e_ezsignsignature_dependencyrequirement;
     ezsignsignature_request_compound_local_var->b_ezsignsignature_customdate = b_ezsignsignature_customdate;
     ezsignsignature_request_compound_local_var->a_obj_ezsignsignaturecustomdate = a_obj_ezsignsignaturecustomdate;
+    ezsignsignature_request_compound_local_var->a_obj_ezsignelementdependency = a_obj_ezsignelementdependency;
 
     return ezsignsignature_request_compound_local_var;
 }
@@ -184,12 +205,23 @@ void ezsignsignature_request_compound_free(ezsignsignature_request_compound_t *e
         free(ezsignsignature_request_compound->s_ezsignsignature_regexp);
         ezsignsignature_request_compound->s_ezsignsignature_regexp = NULL;
     }
+    if (ezsignsignature_request_compound->e_ezsignsignature_dependencyrequirement) {
+        field_e_ezsignsignature_dependencyrequirement_free(ezsignsignature_request_compound->e_ezsignsignature_dependencyrequirement);
+        ezsignsignature_request_compound->e_ezsignsignature_dependencyrequirement = NULL;
+    }
     if (ezsignsignature_request_compound->a_obj_ezsignsignaturecustomdate) {
         list_ForEach(listEntry, ezsignsignature_request_compound->a_obj_ezsignsignaturecustomdate) {
             ezsignsignaturecustomdate_request_compound_free(listEntry->data);
         }
         list_freeList(ezsignsignature_request_compound->a_obj_ezsignsignaturecustomdate);
         ezsignsignature_request_compound->a_obj_ezsignsignaturecustomdate = NULL;
+    }
+    if (ezsignsignature_request_compound->a_obj_ezsignelementdependency) {
+        list_ForEach(listEntry, ezsignsignature_request_compound->a_obj_ezsignelementdependency) {
+            ezsignelementdependency_request_compound_free(listEntry->data);
+        }
+        list_freeList(ezsignsignature_request_compound->a_obj_ezsignelementdependency);
+        ezsignsignature_request_compound->a_obj_ezsignelementdependency = NULL;
     }
     free(ezsignsignature_request_compound);
 }
@@ -397,6 +429,19 @@ cJSON *ezsignsignature_request_compound_convertToJSON(ezsignsignature_request_co
     }
 
 
+    // ezsignsignature_request_compound->e_ezsignsignature_dependencyrequirement
+    if(ezsignsignature_request_compound->e_ezsignsignature_dependencyrequirement != ezmax_api_definition__full_ezsignsignature_request_compound__NULL) {
+    cJSON *e_ezsignsignature_dependencyrequirement_local_JSON = field_e_ezsignsignature_dependencyrequirement_convertToJSON(ezsignsignature_request_compound->e_ezsignsignature_dependencyrequirement);
+    if(e_ezsignsignature_dependencyrequirement_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsignsignatureDependencyrequirement", e_ezsignsignature_dependencyrequirement_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
+    }
+
+
     // ezsignsignature_request_compound->b_ezsignsignature_customdate
     if(ezsignsignature_request_compound->b_ezsignsignature_customdate) {
     if(cJSON_AddBoolToObject(item, "bEzsignsignatureCustomdate", ezsignsignature_request_compound->b_ezsignsignature_customdate) == NULL) {
@@ -420,6 +465,26 @@ cJSON *ezsignsignature_request_compound_convertToJSON(ezsignsignature_request_co
     goto fail;
     }
     cJSON_AddItemToArray(a_obj_ezsignsignaturecustomdate, itemLocal);
+    }
+    }
+    }
+
+
+    // ezsignsignature_request_compound->a_obj_ezsignelementdependency
+    if(ezsignsignature_request_compound->a_obj_ezsignelementdependency) {
+    cJSON *a_obj_ezsignelementdependency = cJSON_AddArrayToObject(item, "a_objEzsignelementdependency");
+    if(a_obj_ezsignelementdependency == NULL) {
+    goto fail; //nonprimitive container
+    }
+
+    listEntry_t *a_obj_ezsignelementdependencyListEntry;
+    if (ezsignsignature_request_compound->a_obj_ezsignelementdependency) {
+    list_ForEach(a_obj_ezsignelementdependencyListEntry, ezsignsignature_request_compound->a_obj_ezsignelementdependency) {
+    cJSON *itemLocal = ezsignelementdependency_request_compound_convertToJSON(a_obj_ezsignelementdependencyListEntry->data);
+    if(itemLocal == NULL) {
+    goto fail;
+    }
+    cJSON_AddItemToArray(a_obj_ezsignelementdependency, itemLocal);
     }
     }
     }
@@ -451,8 +516,14 @@ ezsignsignature_request_compound_t *ezsignsignature_request_compound_parseFromJS
     // define the local variable for ezsignsignature_request_compound->e_ezsignsignature_textvalidation
     enum_textvalidation_t *e_ezsignsignature_textvalidation_local_nonprim = NULL;
 
+    // define the local variable for ezsignsignature_request_compound->e_ezsignsignature_dependencyrequirement
+    field_e_ezsignsignature_dependencyrequirement_t *e_ezsignsignature_dependencyrequirement_local_nonprim = NULL;
+
     // define the local list for ezsignsignature_request_compound->a_obj_ezsignsignaturecustomdate
     list_t *a_obj_ezsignsignaturecustomdateList = NULL;
+
+    // define the local list for ezsignsignature_request_compound->a_obj_ezsignelementdependency
+    list_t *a_obj_ezsignelementdependencyList = NULL;
 
     // ezsignsignature_request_compound->pki_ezsignsignature_id
     cJSON *pki_ezsignsignature_id = cJSON_GetObjectItemCaseSensitive(ezsignsignature_request_compoundJSON, "pkiEzsignsignatureID");
@@ -649,6 +720,12 @@ ezsignsignature_request_compound_t *ezsignsignature_request_compound_parseFromJS
     }
     }
 
+    // ezsignsignature_request_compound->e_ezsignsignature_dependencyrequirement
+    cJSON *e_ezsignsignature_dependencyrequirement = cJSON_GetObjectItemCaseSensitive(ezsignsignature_request_compoundJSON, "eEzsignsignatureDependencyrequirement");
+    if (e_ezsignsignature_dependencyrequirement) { 
+    e_ezsignsignature_dependencyrequirement_local_nonprim = field_e_ezsignsignature_dependencyrequirement_parseFromJSON(e_ezsignsignature_dependencyrequirement); //custom
+    }
+
     // ezsignsignature_request_compound->b_ezsignsignature_customdate
     cJSON *b_ezsignsignature_customdate = cJSON_GetObjectItemCaseSensitive(ezsignsignature_request_compoundJSON, "bEzsignsignatureCustomdate");
     if (b_ezsignsignature_customdate) { 
@@ -679,6 +756,27 @@ ezsignsignature_request_compound_t *ezsignsignature_request_compound_parseFromJS
     }
     }
 
+    // ezsignsignature_request_compound->a_obj_ezsignelementdependency
+    cJSON *a_obj_ezsignelementdependency = cJSON_GetObjectItemCaseSensitive(ezsignsignature_request_compoundJSON, "a_objEzsignelementdependency");
+    if (a_obj_ezsignelementdependency) { 
+    cJSON *a_obj_ezsignelementdependency_local_nonprimitive = NULL;
+    if(!cJSON_IsArray(a_obj_ezsignelementdependency)){
+        goto end; //nonprimitive container
+    }
+
+    a_obj_ezsignelementdependencyList = list_createList();
+
+    cJSON_ArrayForEach(a_obj_ezsignelementdependency_local_nonprimitive,a_obj_ezsignelementdependency )
+    {
+        if(!cJSON_IsObject(a_obj_ezsignelementdependency_local_nonprimitive)){
+            goto end;
+        }
+        ezsignelementdependency_request_compound_t *a_obj_ezsignelementdependencyItem = ezsignelementdependency_request_compound_parseFromJSON(a_obj_ezsignelementdependency_local_nonprimitive);
+
+        list_addElement(a_obj_ezsignelementdependencyList, a_obj_ezsignelementdependencyItem);
+    }
+    }
+
 
     ezsignsignature_request_compound_local_var = ezsignsignature_request_compound_create (
         pki_ezsignsignature_id ? pki_ezsignsignature_id->valuedouble : 0,
@@ -702,8 +800,10 @@ ezsignsignature_request_compound_t *ezsignsignature_request_compound_parseFromJS
         i_ezsignsignature_maxlength ? i_ezsignsignature_maxlength->valuedouble : 0,
         e_ezsignsignature_textvalidation ? e_ezsignsignature_textvalidation_local_nonprim : NULL,
         s_ezsignsignature_regexp && !cJSON_IsNull(s_ezsignsignature_regexp) ? strdup(s_ezsignsignature_regexp->valuestring) : NULL,
+        e_ezsignsignature_dependencyrequirement ? e_ezsignsignature_dependencyrequirement_local_nonprim : NULL,
         b_ezsignsignature_customdate ? b_ezsignsignature_customdate->valueint : 0,
-        a_obj_ezsignsignaturecustomdate ? a_obj_ezsignsignaturecustomdateList : NULL
+        a_obj_ezsignsignaturecustomdate ? a_obj_ezsignsignaturecustomdateList : NULL,
+        a_obj_ezsignelementdependency ? a_obj_ezsignelementdependencyList : NULL
         );
 
     return ezsignsignature_request_compound_local_var;
@@ -728,6 +828,10 @@ end:
         enum_textvalidation_free(e_ezsignsignature_textvalidation_local_nonprim);
         e_ezsignsignature_textvalidation_local_nonprim = NULL;
     }
+    if (e_ezsignsignature_dependencyrequirement_local_nonprim) {
+        field_e_ezsignsignature_dependencyrequirement_free(e_ezsignsignature_dependencyrequirement_local_nonprim);
+        e_ezsignsignature_dependencyrequirement_local_nonprim = NULL;
+    }
     if (a_obj_ezsignsignaturecustomdateList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsignsignaturecustomdateList) {
@@ -736,6 +840,15 @@ end:
         }
         list_freeList(a_obj_ezsignsignaturecustomdateList);
         a_obj_ezsignsignaturecustomdateList = NULL;
+    }
+    if (a_obj_ezsignelementdependencyList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_ezsignelementdependencyList) {
+            ezsignelementdependency_request_compound_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_ezsignelementdependencyList);
+        a_obj_ezsignelementdependencyList = NULL;
     }
     return NULL;
 

@@ -89,6 +89,23 @@ ezmax_api_definition__full_ezsignsignature_request__e e_ezsignsignature_textvali
     }
     return 0;
 }
+char* e_ezsignsignature_dependencyrequirementezsignsignature_request_ToString(ezmax_api_definition__full_ezsignsignature_request__e e_ezsignsignature_dependencyrequirement) {
+    char* e_ezsignsignature_dependencyrequirementArray[] =  { "NULL", "AllOf", "AnyOf" };
+	return e_ezsignsignature_dependencyrequirementArray[e_ezsignsignature_dependencyrequirement];
+}
+
+ezmax_api_definition__full_ezsignsignature_request__e e_ezsignsignature_dependencyrequirementezsignsignature_request_FromString(char* e_ezsignsignature_dependencyrequirement){
+    int stringToReturn = 0;
+    char *e_ezsignsignature_dependencyrequirementArray[] =  { "NULL", "AllOf", "AnyOf" };
+    size_t sizeofArray = sizeof(e_ezsignsignature_dependencyrequirementArray) / sizeof(e_ezsignsignature_dependencyrequirementArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(e_ezsignsignature_dependencyrequirement, e_ezsignsignature_dependencyrequirementArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
 
 ezsignsignature_request_t *ezsignsignature_request_create(
     int pki_ezsignsignature_id,
@@ -111,7 +128,8 @@ ezsignsignature_request_t *ezsignsignature_request_create(
     int i_ezsignsignature_validationstep,
     int i_ezsignsignature_maxlength,
     enum_textvalidation_t *e_ezsignsignature_textvalidation,
-    char *s_ezsignsignature_regexp
+    char *s_ezsignsignature_regexp,
+    field_e_ezsignsignature_dependencyrequirement_t *e_ezsignsignature_dependencyrequirement
     ) {
     ezsignsignature_request_t *ezsignsignature_request_local_var = malloc(sizeof(ezsignsignature_request_t));
     if (!ezsignsignature_request_local_var) {
@@ -138,6 +156,7 @@ ezsignsignature_request_t *ezsignsignature_request_create(
     ezsignsignature_request_local_var->i_ezsignsignature_maxlength = i_ezsignsignature_maxlength;
     ezsignsignature_request_local_var->e_ezsignsignature_textvalidation = e_ezsignsignature_textvalidation;
     ezsignsignature_request_local_var->s_ezsignsignature_regexp = s_ezsignsignature_regexp;
+    ezsignsignature_request_local_var->e_ezsignsignature_dependencyrequirement = e_ezsignsignature_dependencyrequirement;
 
     return ezsignsignature_request_local_var;
 }
@@ -179,6 +198,10 @@ void ezsignsignature_request_free(ezsignsignature_request_t *ezsignsignature_req
     if (ezsignsignature_request->s_ezsignsignature_regexp) {
         free(ezsignsignature_request->s_ezsignsignature_regexp);
         ezsignsignature_request->s_ezsignsignature_regexp = NULL;
+    }
+    if (ezsignsignature_request->e_ezsignsignature_dependencyrequirement) {
+        field_e_ezsignsignature_dependencyrequirement_free(ezsignsignature_request->e_ezsignsignature_dependencyrequirement);
+        ezsignsignature_request->e_ezsignsignature_dependencyrequirement = NULL;
     }
     free(ezsignsignature_request);
 }
@@ -385,6 +408,19 @@ cJSON *ezsignsignature_request_convertToJSON(ezsignsignature_request_t *ezsignsi
     }
     }
 
+
+    // ezsignsignature_request->e_ezsignsignature_dependencyrequirement
+    if(ezsignsignature_request->e_ezsignsignature_dependencyrequirement != ezmax_api_definition__full_ezsignsignature_request__NULL) {
+    cJSON *e_ezsignsignature_dependencyrequirement_local_JSON = field_e_ezsignsignature_dependencyrequirement_convertToJSON(ezsignsignature_request->e_ezsignsignature_dependencyrequirement);
+    if(e_ezsignsignature_dependencyrequirement_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsignsignatureDependencyrequirement", e_ezsignsignature_dependencyrequirement_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -411,6 +447,9 @@ ezsignsignature_request_t *ezsignsignature_request_parseFromJSON(cJSON *ezsignsi
 
     // define the local variable for ezsignsignature_request->e_ezsignsignature_textvalidation
     enum_textvalidation_t *e_ezsignsignature_textvalidation_local_nonprim = NULL;
+
+    // define the local variable for ezsignsignature_request->e_ezsignsignature_dependencyrequirement
+    field_e_ezsignsignature_dependencyrequirement_t *e_ezsignsignature_dependencyrequirement_local_nonprim = NULL;
 
     // ezsignsignature_request->pki_ezsignsignature_id
     cJSON *pki_ezsignsignature_id = cJSON_GetObjectItemCaseSensitive(ezsignsignature_requestJSON, "pkiEzsignsignatureID");
@@ -607,6 +646,12 @@ ezsignsignature_request_t *ezsignsignature_request_parseFromJSON(cJSON *ezsignsi
     }
     }
 
+    // ezsignsignature_request->e_ezsignsignature_dependencyrequirement
+    cJSON *e_ezsignsignature_dependencyrequirement = cJSON_GetObjectItemCaseSensitive(ezsignsignature_requestJSON, "eEzsignsignatureDependencyrequirement");
+    if (e_ezsignsignature_dependencyrequirement) { 
+    e_ezsignsignature_dependencyrequirement_local_nonprim = field_e_ezsignsignature_dependencyrequirement_parseFromJSON(e_ezsignsignature_dependencyrequirement); //custom
+    }
+
 
     ezsignsignature_request_local_var = ezsignsignature_request_create (
         pki_ezsignsignature_id ? pki_ezsignsignature_id->valuedouble : 0,
@@ -629,7 +674,8 @@ ezsignsignature_request_t *ezsignsignature_request_parseFromJSON(cJSON *ezsignsi
         i_ezsignsignature_validationstep ? i_ezsignsignature_validationstep->valuedouble : 0,
         i_ezsignsignature_maxlength ? i_ezsignsignature_maxlength->valuedouble : 0,
         e_ezsignsignature_textvalidation ? e_ezsignsignature_textvalidation_local_nonprim : NULL,
-        s_ezsignsignature_regexp && !cJSON_IsNull(s_ezsignsignature_regexp) ? strdup(s_ezsignsignature_regexp->valuestring) : NULL
+        s_ezsignsignature_regexp && !cJSON_IsNull(s_ezsignsignature_regexp) ? strdup(s_ezsignsignature_regexp->valuestring) : NULL,
+        e_ezsignsignature_dependencyrequirement ? e_ezsignsignature_dependencyrequirement_local_nonprim : NULL
         );
 
     return ezsignsignature_request_local_var;
@@ -653,6 +699,10 @@ end:
     if (e_ezsignsignature_textvalidation_local_nonprim) {
         enum_textvalidation_free(e_ezsignsignature_textvalidation_local_nonprim);
         e_ezsignsignature_textvalidation_local_nonprim = NULL;
+    }
+    if (e_ezsignsignature_dependencyrequirement_local_nonprim) {
+        field_e_ezsignsignature_dependencyrequirement_free(e_ezsignsignature_dependencyrequirement_local_nonprim);
+        e_ezsignsignature_dependencyrequirement_local_nonprim = NULL;
     }
     return NULL;
 

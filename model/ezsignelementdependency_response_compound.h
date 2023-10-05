@@ -1,0 +1,71 @@
+/*
+ * ezsignelementdependency_response_compound.h
+ *
+ * An Ezsignelementdependency Object and children to create a complete structure
+ */
+
+#ifndef _ezsignelementdependency_response_compound_H_
+#define _ezsignelementdependency_response_compound_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct ezsignelementdependency_response_compound_t ezsignelementdependency_response_compound_t;
+
+#include "field_e_ezsignelementdependency_operator.h"
+#include "field_e_ezsignelementdependency_validation.h"
+
+// Enum  for ezsignelementdependency_response_compound
+
+typedef enum  { ezmax_api_definition__full_ezsignelementdependency_response_compound__NULL = 0, ezmax_api_definition__full_ezsignelementdependency_response_compound__Value, ezmax_api_definition__full_ezsignelementdependency_response_compound__Selected, ezmax_api_definition__full_ezsignelementdependency_response_compound__Filled } ezmax_api_definition__full_ezsignelementdependency_response_compound__e;
+
+char* ezsignelementdependency_response_compound_e_ezsignelementdependency_validation_ToString(ezmax_api_definition__full_ezsignelementdependency_response_compound__e e_ezsignelementdependency_validation);
+
+ezmax_api_definition__full_ezsignelementdependency_response_compound__e ezsignelementdependency_response_compound_e_ezsignelementdependency_validation_FromString(char* e_ezsignelementdependency_validation);
+
+// Enum  for ezsignelementdependency_response_compound
+
+typedef enum  { ezmax_api_definition__full_ezsignelementdependency_response_compound__NULL = 0, ezmax_api_definition__full_ezsignelementdependency_response_compound__eq, ezmax_api_definition__full_ezsignelementdependency_response_compound__neq, ezmax_api_definition__full_ezsignelementdependency_response_compound__gt, ezmax_api_definition__full_ezsignelementdependency_response_compound__gte, ezmax_api_definition__full_ezsignelementdependency_response_compound__lt, ezmax_api_definition__full_ezsignelementdependency_response_compound__lte, ezmax_api_definition__full_ezsignelementdependency_response_compound__in, ezmax_api_definition__full_ezsignelementdependency_response_compound__nin, ezmax_api_definition__full_ezsignelementdependency_response_compound__rg, ezmax_api_definition__full_ezsignelementdependency_response_compound__like, ezmax_api_definition__full_ezsignelementdependency_response_compound__between } ezmax_api_definition__full_ezsignelementdependency_response_compound__e;
+
+char* ezsignelementdependency_response_compound_e_ezsignelementdependency_operator_ToString(ezmax_api_definition__full_ezsignelementdependency_response_compound__e e_ezsignelementdependency_operator);
+
+ezmax_api_definition__full_ezsignelementdependency_response_compound__e ezsignelementdependency_response_compound_e_ezsignelementdependency_operator_FromString(char* e_ezsignelementdependency_operator);
+
+
+
+typedef struct ezsignelementdependency_response_compound_t {
+    int pki_ezsignelementdependency_id; //numeric
+    int fki_ezsignformfield_id; //numeric
+    int fki_ezsignsignature_id; //numeric
+    int fki_ezsignformfield_id_validation; //numeric
+    int fki_ezsignformfieldgroup_id_validation; //numeric
+    field_e_ezsignelementdependency_validation_t *e_ezsignelementdependency_validation; // custom
+    int b_ezsignelementdependency_selected; //boolean
+    field_e_ezsignelementdependency_operator_t *e_ezsignelementdependency_operator; // custom
+    char *s_ezsignelementdependency_value; // string
+
+} ezsignelementdependency_response_compound_t;
+
+ezsignelementdependency_response_compound_t *ezsignelementdependency_response_compound_create(
+    int pki_ezsignelementdependency_id,
+    int fki_ezsignformfield_id,
+    int fki_ezsignsignature_id,
+    int fki_ezsignformfield_id_validation,
+    int fki_ezsignformfieldgroup_id_validation,
+    field_e_ezsignelementdependency_validation_t *e_ezsignelementdependency_validation,
+    int b_ezsignelementdependency_selected,
+    field_e_ezsignelementdependency_operator_t *e_ezsignelementdependency_operator,
+    char *s_ezsignelementdependency_value
+);
+
+void ezsignelementdependency_response_compound_free(ezsignelementdependency_response_compound_t *ezsignelementdependency_response_compound);
+
+ezsignelementdependency_response_compound_t *ezsignelementdependency_response_compound_parseFromJSON(cJSON *ezsignelementdependency_response_compoundJSON);
+
+cJSON *ezsignelementdependency_response_compound_convertToJSON(ezsignelementdependency_response_compound_t *ezsignelementdependency_response_compound);
+
+#endif /* _ezsignelementdependency_response_compound_H_ */
+

@@ -404,6 +404,10 @@ set(SRCS
     model/ezsigndocument_unsend_v1_response.c
     model/ezsigndocumentlog_response.c
     model/ezsigndocumentlog_response_compound.c
+    model/ezsignelementdependency_request.c
+    model/ezsignelementdependency_request_compound.c
+    model/ezsignelementdependency_response.c
+    model/ezsignelementdependency_response_compound.c
     model/ezsignfolder_archive_v1_response.c
     model/ezsignfolder_batch_download_v1_request.c
     model/ezsignfolder_create_object_v1_request.c
@@ -635,6 +639,10 @@ set(SRCS
     model/ezsigntemplatedocument_response_compound.c
     model/ezsigntemplatedocumentpage_response.c
     model/ezsigntemplatedocumentpage_response_compound.c
+    model/ezsigntemplateelementdependency_request.c
+    model/ezsigntemplateelementdependency_request_compound.c
+    model/ezsigntemplateelementdependency_response.c
+    model/ezsigntemplateelementdependency_response_compound.c
     model/ezsigntemplateformfield_request.c
     model/ezsigntemplateformfield_request_compound.c
     model/ezsigntemplateformfield_response.c
@@ -760,22 +768,30 @@ set(SRCS
     model/field_e_ezsignannotation_type.c
     model/field_e_ezsigndocument_step.c
     model/field_e_ezsigndocumentlog_type.c
+    model/field_e_ezsignelementdependency_operator.c
+    model/field_e_ezsignelementdependency_validation.c
     model/field_e_ezsignfolder_sendreminderfrequency.c
     model/field_e_ezsignfolder_step.c
     model/field_e_ezsignfoldertype_disposal.c
     model/field_e_ezsignfoldertype_privacylevel.c
     model/field_e_ezsignfoldertype_sendreminderfrequency.c
+    model/field_e_ezsignformfield_dependencyrequirement.c
     model/field_e_ezsignformfieldgroup_signerrequirement.c
     model/field_e_ezsignformfieldgroup_tooltipposition.c
     model/field_e_ezsignformfieldgroup_type.c
     model/field_e_ezsignsignature_attachmentnamesource.c
+    model/field_e_ezsignsignature_dependencyrequirement.c
     model/field_e_ezsignsignature_font.c
     model/field_e_ezsignsignature_tooltipposition.c
     model/field_e_ezsignsignature_type.c
+    model/field_e_ezsigntemplateelementdependency_operator.c
+    model/field_e_ezsigntemplateelementdependency_validation.c
+    model/field_e_ezsigntemplateformfield_dependencyrequirement.c
     model/field_e_ezsigntemplateformfieldgroup_signerrequirement.c
     model/field_e_ezsigntemplateformfieldgroup_tooltipposition.c
     model/field_e_ezsigntemplateformfieldgroup_type.c
     model/field_e_ezsigntemplatesignature_attachmentnamesource.c
+    model/field_e_ezsigntemplatesignature_dependencyrequirement.c
     model/field_e_ezsigntemplatesignature_font.c
     model/field_e_ezsigntemplatesignature_tooltipposition.c
     model/field_e_ezsigntemplatesignature_type.c
@@ -1532,6 +1548,10 @@ set(HDRS
     model/ezsigndocument_unsend_v1_response.h
     model/ezsigndocumentlog_response.h
     model/ezsigndocumentlog_response_compound.h
+    model/ezsignelementdependency_request.h
+    model/ezsignelementdependency_request_compound.h
+    model/ezsignelementdependency_response.h
+    model/ezsignelementdependency_response_compound.h
     model/ezsignfolder_archive_v1_response.h
     model/ezsignfolder_batch_download_v1_request.h
     model/ezsignfolder_create_object_v1_request.h
@@ -1763,6 +1783,10 @@ set(HDRS
     model/ezsigntemplatedocument_response_compound.h
     model/ezsigntemplatedocumentpage_response.h
     model/ezsigntemplatedocumentpage_response_compound.h
+    model/ezsigntemplateelementdependency_request.h
+    model/ezsigntemplateelementdependency_request_compound.h
+    model/ezsigntemplateelementdependency_response.h
+    model/ezsigntemplateelementdependency_response_compound.h
     model/ezsigntemplateformfield_request.h
     model/ezsigntemplateformfield_request_compound.h
     model/ezsigntemplateformfield_response.h
@@ -1888,22 +1912,30 @@ set(HDRS
     model/field_e_ezsignannotation_type.h
     model/field_e_ezsigndocument_step.h
     model/field_e_ezsigndocumentlog_type.h
+    model/field_e_ezsignelementdependency_operator.h
+    model/field_e_ezsignelementdependency_validation.h
     model/field_e_ezsignfolder_sendreminderfrequency.h
     model/field_e_ezsignfolder_step.h
     model/field_e_ezsignfoldertype_disposal.h
     model/field_e_ezsignfoldertype_privacylevel.h
     model/field_e_ezsignfoldertype_sendreminderfrequency.h
+    model/field_e_ezsignformfield_dependencyrequirement.h
     model/field_e_ezsignformfieldgroup_signerrequirement.h
     model/field_e_ezsignformfieldgroup_tooltipposition.h
     model/field_e_ezsignformfieldgroup_type.h
     model/field_e_ezsignsignature_attachmentnamesource.h
+    model/field_e_ezsignsignature_dependencyrequirement.h
     model/field_e_ezsignsignature_font.h
     model/field_e_ezsignsignature_tooltipposition.h
     model/field_e_ezsignsignature_type.h
+    model/field_e_ezsigntemplateelementdependency_operator.h
+    model/field_e_ezsigntemplateelementdependency_validation.h
+    model/field_e_ezsigntemplateformfield_dependencyrequirement.h
     model/field_e_ezsigntemplateformfieldgroup_signerrequirement.h
     model/field_e_ezsigntemplateformfieldgroup_tooltipposition.h
     model/field_e_ezsigntemplateformfieldgroup_type.h
     model/field_e_ezsigntemplatesignature_attachmentnamesource.h
+    model/field_e_ezsigntemplatesignature_dependencyrequirement.h
     model/field_e_ezsigntemplatesignature_font.h
     model/field_e_ezsigntemplatesignature_tooltipposition.h
     model/field_e_ezsigntemplatesignature_type.h

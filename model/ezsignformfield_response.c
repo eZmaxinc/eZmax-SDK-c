@@ -4,6 +4,23 @@
 #include "ezsignformfield_response.h"
 
 
+char* e_ezsignformfield_dependencyrequirementezsignformfield_response_ToString(ezmax_api_definition__full_ezsignformfield_response__e e_ezsignformfield_dependencyrequirement) {
+    char* e_ezsignformfield_dependencyrequirementArray[] =  { "NULL", "AllOf", "AnyOf" };
+	return e_ezsignformfield_dependencyrequirementArray[e_ezsignformfield_dependencyrequirement];
+}
+
+ezmax_api_definition__full_ezsignformfield_response__e e_ezsignformfield_dependencyrequirementezsignformfield_response_FromString(char* e_ezsignformfield_dependencyrequirement){
+    int stringToReturn = 0;
+    char *e_ezsignformfield_dependencyrequirementArray[] =  { "NULL", "AllOf", "AnyOf" };
+    size_t sizeofArray = sizeof(e_ezsignformfield_dependencyrequirementArray) / sizeof(e_ezsignformfield_dependencyrequirementArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(e_ezsignformfield_dependencyrequirement, e_ezsignformfield_dependencyrequirementArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
 
 ezsignformfield_response_t *ezsignformfield_response_create(
     int pki_ezsignformfield_id,
@@ -16,7 +33,8 @@ ezsignformfield_response_t *ezsignformfield_response_create(
     int i_ezsignformfield_height,
     int b_ezsignformfield_autocomplete,
     int b_ezsignformfield_selected,
-    char *s_ezsignformfield_enteredvalue
+    char *s_ezsignformfield_enteredvalue,
+    field_e_ezsignformfield_dependencyrequirement_t *e_ezsignformfield_dependencyrequirement
     ) {
     ezsignformfield_response_t *ezsignformfield_response_local_var = malloc(sizeof(ezsignformfield_response_t));
     if (!ezsignformfield_response_local_var) {
@@ -33,6 +51,7 @@ ezsignformfield_response_t *ezsignformfield_response_create(
     ezsignformfield_response_local_var->b_ezsignformfield_autocomplete = b_ezsignformfield_autocomplete;
     ezsignformfield_response_local_var->b_ezsignformfield_selected = b_ezsignformfield_selected;
     ezsignformfield_response_local_var->s_ezsignformfield_enteredvalue = s_ezsignformfield_enteredvalue;
+    ezsignformfield_response_local_var->e_ezsignformfield_dependencyrequirement = e_ezsignformfield_dependencyrequirement;
 
     return ezsignformfield_response_local_var;
 }
@@ -54,6 +73,10 @@ void ezsignformfield_response_free(ezsignformfield_response_t *ezsignformfield_r
     if (ezsignformfield_response->s_ezsignformfield_enteredvalue) {
         free(ezsignformfield_response->s_ezsignformfield_enteredvalue);
         ezsignformfield_response->s_ezsignformfield_enteredvalue = NULL;
+    }
+    if (ezsignformfield_response->e_ezsignformfield_dependencyrequirement) {
+        field_e_ezsignformfield_dependencyrequirement_free(ezsignformfield_response->e_ezsignformfield_dependencyrequirement);
+        ezsignformfield_response->e_ezsignformfield_dependencyrequirement = NULL;
     }
     free(ezsignformfield_response);
 }
@@ -155,6 +178,19 @@ cJSON *ezsignformfield_response_convertToJSON(ezsignformfield_response_t *ezsign
     }
     }
 
+
+    // ezsignformfield_response->e_ezsignformfield_dependencyrequirement
+    if(ezsignformfield_response->e_ezsignformfield_dependencyrequirement != ezmax_api_definition__full_ezsignformfield_response__NULL) {
+    cJSON *e_ezsignformfield_dependencyrequirement_local_JSON = field_e_ezsignformfield_dependencyrequirement_convertToJSON(ezsignformfield_response->e_ezsignformfield_dependencyrequirement);
+    if(e_ezsignformfield_dependencyrequirement_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsignformfieldDependencyrequirement", e_ezsignformfield_dependencyrequirement_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -166,6 +202,9 @@ fail:
 ezsignformfield_response_t *ezsignformfield_response_parseFromJSON(cJSON *ezsignformfield_responseJSON){
 
     ezsignformfield_response_t *ezsignformfield_response_local_var = NULL;
+
+    // define the local variable for ezsignformfield_response->e_ezsignformfield_dependencyrequirement
+    field_e_ezsignformfield_dependencyrequirement_t *e_ezsignformfield_dependencyrequirement_local_nonprim = NULL;
 
     // ezsignformfield_response->pki_ezsignformfield_id
     cJSON *pki_ezsignformfield_id = cJSON_GetObjectItemCaseSensitive(ezsignformfield_responseJSON, "pkiEzsignformfieldID");
@@ -287,6 +326,12 @@ ezsignformfield_response_t *ezsignformfield_response_parseFromJSON(cJSON *ezsign
     }
     }
 
+    // ezsignformfield_response->e_ezsignformfield_dependencyrequirement
+    cJSON *e_ezsignformfield_dependencyrequirement = cJSON_GetObjectItemCaseSensitive(ezsignformfield_responseJSON, "eEzsignformfieldDependencyrequirement");
+    if (e_ezsignformfield_dependencyrequirement) { 
+    e_ezsignformfield_dependencyrequirement_local_nonprim = field_e_ezsignformfield_dependencyrequirement_parseFromJSON(e_ezsignformfield_dependencyrequirement); //custom
+    }
+
 
     ezsignformfield_response_local_var = ezsignformfield_response_create (
         pki_ezsignformfield_id->valuedouble,
@@ -299,11 +344,16 @@ ezsignformfield_response_t *ezsignformfield_response_parseFromJSON(cJSON *ezsign
         i_ezsignformfield_height->valuedouble,
         b_ezsignformfield_autocomplete ? b_ezsignformfield_autocomplete->valueint : 0,
         b_ezsignformfield_selected ? b_ezsignformfield_selected->valueint : 0,
-        s_ezsignformfield_enteredvalue && !cJSON_IsNull(s_ezsignformfield_enteredvalue) ? strdup(s_ezsignformfield_enteredvalue->valuestring) : NULL
+        s_ezsignformfield_enteredvalue && !cJSON_IsNull(s_ezsignformfield_enteredvalue) ? strdup(s_ezsignformfield_enteredvalue->valuestring) : NULL,
+        e_ezsignformfield_dependencyrequirement ? e_ezsignformfield_dependencyrequirement_local_nonprim : NULL
         );
 
     return ezsignformfield_response_local_var;
 end:
+    if (e_ezsignformfield_dependencyrequirement_local_nonprim) {
+        field_e_ezsignformfield_dependencyrequirement_free(e_ezsignformfield_dependencyrequirement_local_nonprim);
+        e_ezsignformfield_dependencyrequirement_local_nonprim = NULL;
+    }
     return NULL;
 
 }

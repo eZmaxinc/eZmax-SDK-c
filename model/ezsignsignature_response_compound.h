@@ -18,8 +18,10 @@ typedef struct ezsignsignature_response_compound_t ezsignsignature_response_comp
 #include "custom_contact_name_response.h"
 #include "custom_creditcardtransaction_response.h"
 #include "enum_textvalidation.h"
+#include "ezsignelementdependency_response_compound.h"
 #include "ezsignsignaturecustomdate_response_compound.h"
 #include "field_e_ezsignsignature_attachmentnamesource.h"
+#include "field_e_ezsignsignature_dependencyrequirement.h"
 #include "field_e_ezsignsignature_font.h"
 #include "field_e_ezsignsignature_tooltipposition.h"
 #include "field_e_ezsignsignature_type.h"
@@ -65,6 +67,14 @@ char* ezsignsignature_response_compound_e_ezsignsignature_textvalidation_ToStrin
 
 ezmax_api_definition__full_ezsignsignature_response_compound__e ezsignsignature_response_compound_e_ezsignsignature_textvalidation_FromString(char* e_ezsignsignature_textvalidation);
 
+// Enum  for ezsignsignature_response_compound
+
+typedef enum  { ezmax_api_definition__full_ezsignsignature_response_compound__NULL = 0, ezmax_api_definition__full_ezsignsignature_response_compound__AllOf, ezmax_api_definition__full_ezsignsignature_response_compound__AnyOf } ezmax_api_definition__full_ezsignsignature_response_compound__e;
+
+char* ezsignsignature_response_compound_e_ezsignsignature_dependencyrequirement_ToString(ezmax_api_definition__full_ezsignsignature_response_compound__e e_ezsignsignature_dependencyrequirement);
+
+ezmax_api_definition__full_ezsignsignature_response_compound__e ezsignsignature_response_compound_e_ezsignsignature_dependencyrequirement_FromString(char* e_ezsignsignature_dependencyrequirement);
+
 
 
 typedef struct ezsignsignature_response_compound_t {
@@ -91,6 +101,7 @@ typedef struct ezsignsignature_response_compound_t {
     char *s_ezsignsignature_description; // string
     int i_ezsignsignature_maxlength; //numeric
     enum_textvalidation_t *e_ezsignsignature_textvalidation; // custom
+    field_e_ezsignsignature_dependencyrequirement_t *e_ezsignsignature_dependencyrequirement; // custom
     char *s_ezsignsignature_regexp; // string
     struct custom_contact_name_response_t *obj_contact_name; //model
     struct custom_contact_name_response_t *obj_contact_name_delegation; //model
@@ -98,6 +109,7 @@ typedef struct ezsignsignature_response_compound_t {
     int b_ezsignsignature_customdate; //boolean
     list_t *a_obj_ezsignsignaturecustomdate; //nonprimitive container
     struct custom_creditcardtransaction_response_t *obj_creditcardtransaction; //model
+    list_t *a_obj_ezsignelementdependency; //nonprimitive container
 
 } ezsignsignature_response_compound_t;
 
@@ -125,13 +137,15 @@ ezsignsignature_response_compound_t *ezsignsignature_response_compound_create(
     char *s_ezsignsignature_description,
     int i_ezsignsignature_maxlength,
     enum_textvalidation_t *e_ezsignsignature_textvalidation,
+    field_e_ezsignsignature_dependencyrequirement_t *e_ezsignsignature_dependencyrequirement,
     char *s_ezsignsignature_regexp,
     custom_contact_name_response_t *obj_contact_name,
     custom_contact_name_response_t *obj_contact_name_delegation,
     signature_response_compound_t *obj_signature,
     int b_ezsignsignature_customdate,
     list_t *a_obj_ezsignsignaturecustomdate,
-    custom_creditcardtransaction_response_t *obj_creditcardtransaction
+    custom_creditcardtransaction_response_t *obj_creditcardtransaction,
+    list_t *a_obj_ezsignelementdependency
 );
 
 void ezsignsignature_response_compound_free(ezsignsignature_response_compound_t *ezsignsignature_response_compound);

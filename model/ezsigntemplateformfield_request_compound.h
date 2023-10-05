@@ -15,6 +15,16 @@
 
 typedef struct ezsigntemplateformfield_request_compound_t ezsigntemplateformfield_request_compound_t;
 
+#include "ezsigntemplateelementdependency_request_compound.h"
+#include "field_e_ezsigntemplateformfield_dependencyrequirement.h"
+
+// Enum  for ezsigntemplateformfield_request_compound
+
+typedef enum  { ezmax_api_definition__full_ezsigntemplateformfield_request_compound__NULL = 0, ezmax_api_definition__full_ezsigntemplateformfield_request_compound__AllOf, ezmax_api_definition__full_ezsigntemplateformfield_request_compound__AnyOf } ezmax_api_definition__full_ezsigntemplateformfield_request_compound__e;
+
+char* ezsigntemplateformfield_request_compound_e_ezsigntemplateformfield_dependencyrequirement_ToString(ezmax_api_definition__full_ezsigntemplateformfield_request_compound__e e_ezsigntemplateformfield_dependencyrequirement);
+
+ezmax_api_definition__full_ezsigntemplateformfield_request_compound__e ezsigntemplateformfield_request_compound_e_ezsigntemplateformfield_dependencyrequirement_FromString(char* e_ezsigntemplateformfield_dependencyrequirement);
 
 
 
@@ -29,6 +39,8 @@ typedef struct ezsigntemplateformfield_request_compound_t {
     int i_ezsigntemplateformfield_height; //numeric
     int b_ezsigntemplateformfield_autocomplete; //boolean
     int b_ezsigntemplateformfield_selected; //boolean
+    field_e_ezsigntemplateformfield_dependencyrequirement_t *e_ezsigntemplateformfield_dependencyrequirement; // custom
+    list_t *a_obj_ezsigntemplateelementdependency; //nonprimitive container
 
 } ezsigntemplateformfield_request_compound_t;
 
@@ -42,7 +54,9 @@ ezsigntemplateformfield_request_compound_t *ezsigntemplateformfield_request_comp
     int i_ezsigntemplateformfield_width,
     int i_ezsigntemplateformfield_height,
     int b_ezsigntemplateformfield_autocomplete,
-    int b_ezsigntemplateformfield_selected
+    int b_ezsigntemplateformfield_selected,
+    field_e_ezsigntemplateformfield_dependencyrequirement_t *e_ezsigntemplateformfield_dependencyrequirement,
+    list_t *a_obj_ezsigntemplateelementdependency
 );
 
 void ezsigntemplateformfield_request_compound_free(ezsigntemplateformfield_request_compound_t *ezsigntemplateformfield_request_compound);

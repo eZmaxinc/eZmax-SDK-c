@@ -15,6 +15,15 @@
 
 typedef struct ezsigntemplateformfield_response_t ezsigntemplateformfield_response_t;
 
+#include "field_e_ezsigntemplateformfield_dependencyrequirement.h"
+
+// Enum  for ezsigntemplateformfield_response
+
+typedef enum  { ezmax_api_definition__full_ezsigntemplateformfield_response__NULL = 0, ezmax_api_definition__full_ezsigntemplateformfield_response__AllOf, ezmax_api_definition__full_ezsigntemplateformfield_response__AnyOf } ezmax_api_definition__full_ezsigntemplateformfield_response__e;
+
+char* ezsigntemplateformfield_response_e_ezsigntemplateformfield_dependencyrequirement_ToString(ezmax_api_definition__full_ezsigntemplateformfield_response__e e_ezsigntemplateformfield_dependencyrequirement);
+
+ezmax_api_definition__full_ezsigntemplateformfield_response__e ezsigntemplateformfield_response_e_ezsigntemplateformfield_dependencyrequirement_FromString(char* e_ezsigntemplateformfield_dependencyrequirement);
 
 
 
@@ -29,6 +38,7 @@ typedef struct ezsigntemplateformfield_response_t {
     int i_ezsigntemplateformfield_height; //numeric
     int b_ezsigntemplateformfield_autocomplete; //boolean
     int b_ezsigntemplateformfield_selected; //boolean
+    field_e_ezsigntemplateformfield_dependencyrequirement_t *e_ezsigntemplateformfield_dependencyrequirement; // custom
 
 } ezsigntemplateformfield_response_t;
 
@@ -42,7 +52,8 @@ ezsigntemplateformfield_response_t *ezsigntemplateformfield_response_create(
     int i_ezsigntemplateformfield_width,
     int i_ezsigntemplateformfield_height,
     int b_ezsigntemplateformfield_autocomplete,
-    int b_ezsigntemplateformfield_selected
+    int b_ezsigntemplateformfield_selected,
+    field_e_ezsigntemplateformfield_dependencyrequirement_t *e_ezsigntemplateformfield_dependencyrequirement
 );
 
 void ezsigntemplateformfield_response_free(ezsigntemplateformfield_response_t *ezsigntemplateformfield_response);

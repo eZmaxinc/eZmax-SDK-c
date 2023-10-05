@@ -32,7 +32,9 @@ ezsignformfield_request_compound_t* instantiate_ezsignformfield_request_compound
       22,
       1,
       1,
-      "Montreal"
+      "Montreal",
+      ezmax_api_definition__full_ezsignformfield_request_compound__"AllOf",
+      list_createList()
     );
   } else {
     ezsignformfield_request_compound = ezsignformfield_request_compound_create(
@@ -46,7 +48,9 @@ ezsignformfield_request_compound_t* instantiate_ezsignformfield_request_compound
       22,
       1,
       1,
-      "Montreal"
+      "Montreal",
+      ezmax_api_definition__full_ezsignformfield_request_compound__"AllOf",
+      list_createList()
     );
   }
 

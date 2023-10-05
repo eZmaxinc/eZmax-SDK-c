@@ -16,8 +16,10 @@
 typedef struct ezsigntemplatesignature_response_compound_t ezsigntemplatesignature_response_compound_t;
 
 #include "enum_textvalidation.h"
+#include "ezsigntemplateelementdependency_response_compound.h"
 #include "ezsigntemplatesignaturecustomdate_response_compound.h"
 #include "field_e_ezsigntemplatesignature_attachmentnamesource.h"
+#include "field_e_ezsigntemplatesignature_dependencyrequirement.h"
 #include "field_e_ezsigntemplatesignature_font.h"
 #include "field_e_ezsigntemplatesignature_tooltipposition.h"
 #include "field_e_ezsigntemplatesignature_type.h"
@@ -62,6 +64,14 @@ char* ezsigntemplatesignature_response_compound_e_ezsigntemplatesignature_textva
 
 ezmax_api_definition__full_ezsigntemplatesignature_response_compound__e ezsigntemplatesignature_response_compound_e_ezsigntemplatesignature_textvalidation_FromString(char* e_ezsigntemplatesignature_textvalidation);
 
+// Enum  for ezsigntemplatesignature_response_compound
+
+typedef enum  { ezmax_api_definition__full_ezsigntemplatesignature_response_compound__NULL = 0, ezmax_api_definition__full_ezsigntemplatesignature_response_compound__AllOf, ezmax_api_definition__full_ezsigntemplatesignature_response_compound__AnyOf } ezmax_api_definition__full_ezsigntemplatesignature_response_compound__e;
+
+char* ezsigntemplatesignature_response_compound_e_ezsigntemplatesignature_dependencyrequirement_ToString(ezmax_api_definition__full_ezsigntemplatesignature_response_compound__e e_ezsigntemplatesignature_dependencyrequirement);
+
+ezmax_api_definition__full_ezsigntemplatesignature_response_compound__e ezsigntemplatesignature_response_compound_e_ezsigntemplatesignature_dependencyrequirement_FromString(char* e_ezsigntemplatesignature_dependencyrequirement);
+
 
 
 typedef struct ezsigntemplatesignature_response_compound_t {
@@ -86,8 +96,10 @@ typedef struct ezsigntemplatesignature_response_compound_t {
     int i_ezsigntemplatesignature_maxlength; //numeric
     char *s_ezsigntemplatesignature_regexp; // string
     enum_textvalidation_t *e_ezsigntemplatesignature_textvalidation; // custom
+    field_e_ezsigntemplatesignature_dependencyrequirement_t *e_ezsigntemplatesignature_dependencyrequirement; // custom
     int b_ezsigntemplatesignature_customdate; //boolean
     list_t *a_obj_ezsigntemplatesignaturecustomdate; //nonprimitive container
+    list_t *a_obj_ezsigntemplateelementdependency; //nonprimitive container
 
 } ezsigntemplatesignature_response_compound_t;
 
@@ -113,8 +125,10 @@ ezsigntemplatesignature_response_compound_t *ezsigntemplatesignature_response_co
     int i_ezsigntemplatesignature_maxlength,
     char *s_ezsigntemplatesignature_regexp,
     enum_textvalidation_t *e_ezsigntemplatesignature_textvalidation,
+    field_e_ezsigntemplatesignature_dependencyrequirement_t *e_ezsigntemplatesignature_dependencyrequirement,
     int b_ezsigntemplatesignature_customdate,
-    list_t *a_obj_ezsigntemplatesignaturecustomdate
+    list_t *a_obj_ezsigntemplatesignaturecustomdate,
+    list_t *a_obj_ezsigntemplateelementdependency
 );
 
 void ezsigntemplatesignature_response_compound_free(ezsigntemplatesignature_response_compound_t *ezsigntemplatesignature_response_compound);

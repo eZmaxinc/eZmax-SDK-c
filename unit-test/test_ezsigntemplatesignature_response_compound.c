@@ -43,7 +43,9 @@ ezsigntemplatesignature_response_compound_t* instantiate_ezsigntemplatesignature
       75,
       "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
       ezmax_api_definition__full_ezsigntemplatesignature_response_compound__"None",
+      ezmax_api_definition__full_ezsigntemplatesignature_response_compound__"AllOf",
       1,
+      list_createList(),
       list_createList()
     );
   } else {
@@ -69,7 +71,9 @@ ezsigntemplatesignature_response_compound_t* instantiate_ezsigntemplatesignature
       75,
       "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
       ezmax_api_definition__full_ezsigntemplatesignature_response_compound__"None",
+      ezmax_api_definition__full_ezsigntemplatesignature_response_compound__"AllOf",
       1,
+      list_createList(),
       list_createList()
     );
   }

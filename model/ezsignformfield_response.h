@@ -15,6 +15,15 @@
 
 typedef struct ezsignformfield_response_t ezsignformfield_response_t;
 
+#include "field_e_ezsignformfield_dependencyrequirement.h"
+
+// Enum  for ezsignformfield_response
+
+typedef enum  { ezmax_api_definition__full_ezsignformfield_response__NULL = 0, ezmax_api_definition__full_ezsignformfield_response__AllOf, ezmax_api_definition__full_ezsignformfield_response__AnyOf } ezmax_api_definition__full_ezsignformfield_response__e;
+
+char* ezsignformfield_response_e_ezsignformfield_dependencyrequirement_ToString(ezmax_api_definition__full_ezsignformfield_response__e e_ezsignformfield_dependencyrequirement);
+
+ezmax_api_definition__full_ezsignformfield_response__e ezsignformfield_response_e_ezsignformfield_dependencyrequirement_FromString(char* e_ezsignformfield_dependencyrequirement);
 
 
 
@@ -30,6 +39,7 @@ typedef struct ezsignformfield_response_t {
     int b_ezsignformfield_autocomplete; //boolean
     int b_ezsignformfield_selected; //boolean
     char *s_ezsignformfield_enteredvalue; // string
+    field_e_ezsignformfield_dependencyrequirement_t *e_ezsignformfield_dependencyrequirement; // custom
 
 } ezsignformfield_response_t;
 
@@ -44,7 +54,8 @@ ezsignformfield_response_t *ezsignformfield_response_create(
     int i_ezsignformfield_height,
     int b_ezsignformfield_autocomplete,
     int b_ezsignformfield_selected,
-    char *s_ezsignformfield_enteredvalue
+    char *s_ezsignformfield_enteredvalue,
+    field_e_ezsignformfield_dependencyrequirement_t *e_ezsignformfield_dependencyrequirement
 );
 
 void ezsignformfield_response_free(ezsignformfield_response_t *ezsignformfield_response);

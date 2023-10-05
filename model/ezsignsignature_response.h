@@ -18,6 +18,7 @@ typedef struct ezsignsignature_response_t ezsignsignature_response_t;
 #include "custom_contact_name_response.h"
 #include "enum_textvalidation.h"
 #include "field_e_ezsignsignature_attachmentnamesource.h"
+#include "field_e_ezsignsignature_dependencyrequirement.h"
 #include "field_e_ezsignsignature_font.h"
 #include "field_e_ezsignsignature_tooltipposition.h"
 #include "field_e_ezsignsignature_type.h"
@@ -63,6 +64,14 @@ char* ezsignsignature_response_e_ezsignsignature_textvalidation_ToString(ezmax_a
 
 ezmax_api_definition__full_ezsignsignature_response__e ezsignsignature_response_e_ezsignsignature_textvalidation_FromString(char* e_ezsignsignature_textvalidation);
 
+// Enum  for ezsignsignature_response
+
+typedef enum  { ezmax_api_definition__full_ezsignsignature_response__NULL = 0, ezmax_api_definition__full_ezsignsignature_response__AllOf, ezmax_api_definition__full_ezsignsignature_response__AnyOf } ezmax_api_definition__full_ezsignsignature_response__e;
+
+char* ezsignsignature_response_e_ezsignsignature_dependencyrequirement_ToString(ezmax_api_definition__full_ezsignsignature_response__e e_ezsignsignature_dependencyrequirement);
+
+ezmax_api_definition__full_ezsignsignature_response__e ezsignsignature_response_e_ezsignsignature_dependencyrequirement_FromString(char* e_ezsignsignature_dependencyrequirement);
+
 
 
 typedef struct ezsignsignature_response_t {
@@ -89,6 +98,7 @@ typedef struct ezsignsignature_response_t {
     char *s_ezsignsignature_description; // string
     int i_ezsignsignature_maxlength; //numeric
     enum_textvalidation_t *e_ezsignsignature_textvalidation; // custom
+    field_e_ezsignsignature_dependencyrequirement_t *e_ezsignsignature_dependencyrequirement; // custom
     char *s_ezsignsignature_regexp; // string
     struct custom_contact_name_response_t *obj_contact_name; //model
     struct custom_contact_name_response_t *obj_contact_name_delegation; //model
@@ -120,6 +130,7 @@ ezsignsignature_response_t *ezsignsignature_response_create(
     char *s_ezsignsignature_description,
     int i_ezsignsignature_maxlength,
     enum_textvalidation_t *e_ezsignsignature_textvalidation,
+    field_e_ezsignsignature_dependencyrequirement_t *e_ezsignsignature_dependencyrequirement,
     char *s_ezsignsignature_regexp,
     custom_contact_name_response_t *obj_contact_name,
     custom_contact_name_response_t *obj_contact_name_delegation,

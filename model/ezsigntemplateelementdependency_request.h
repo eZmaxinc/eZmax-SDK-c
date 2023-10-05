@@ -1,0 +1,71 @@
+/*
+ * ezsigntemplateelementdependency_request.h
+ *
+ * An Ezsigntemplateelementdependency Object
+ */
+
+#ifndef _ezsigntemplateelementdependency_request_H_
+#define _ezsigntemplateelementdependency_request_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct ezsigntemplateelementdependency_request_t ezsigntemplateelementdependency_request_t;
+
+#include "field_e_ezsigntemplateelementdependency_operator.h"
+#include "field_e_ezsigntemplateelementdependency_validation.h"
+
+// Enum  for ezsigntemplateelementdependency_request
+
+typedef enum  { ezmax_api_definition__full_ezsigntemplateelementdependency_request__NULL = 0, ezmax_api_definition__full_ezsigntemplateelementdependency_request__Value, ezmax_api_definition__full_ezsigntemplateelementdependency_request__Selected, ezmax_api_definition__full_ezsigntemplateelementdependency_request__Filled } ezmax_api_definition__full_ezsigntemplateelementdependency_request__e;
+
+char* ezsigntemplateelementdependency_request_e_ezsigntemplateelementdependency_validation_ToString(ezmax_api_definition__full_ezsigntemplateelementdependency_request__e e_ezsigntemplateelementdependency_validation);
+
+ezmax_api_definition__full_ezsigntemplateelementdependency_request__e ezsigntemplateelementdependency_request_e_ezsigntemplateelementdependency_validation_FromString(char* e_ezsigntemplateelementdependency_validation);
+
+// Enum  for ezsigntemplateelementdependency_request
+
+typedef enum  { ezmax_api_definition__full_ezsigntemplateelementdependency_request__NULL = 0, ezmax_api_definition__full_ezsigntemplateelementdependency_request__eq, ezmax_api_definition__full_ezsigntemplateelementdependency_request__neq, ezmax_api_definition__full_ezsigntemplateelementdependency_request__gt, ezmax_api_definition__full_ezsigntemplateelementdependency_request__gte, ezmax_api_definition__full_ezsigntemplateelementdependency_request__lt, ezmax_api_definition__full_ezsigntemplateelementdependency_request__lte, ezmax_api_definition__full_ezsigntemplateelementdependency_request__in, ezmax_api_definition__full_ezsigntemplateelementdependency_request__nin, ezmax_api_definition__full_ezsigntemplateelementdependency_request__rg, ezmax_api_definition__full_ezsigntemplateelementdependency_request__like, ezmax_api_definition__full_ezsigntemplateelementdependency_request__between } ezmax_api_definition__full_ezsigntemplateelementdependency_request__e;
+
+char* ezsigntemplateelementdependency_request_e_ezsigntemplateelementdependency_operator_ToString(ezmax_api_definition__full_ezsigntemplateelementdependency_request__e e_ezsigntemplateelementdependency_operator);
+
+ezmax_api_definition__full_ezsigntemplateelementdependency_request__e ezsigntemplateelementdependency_request_e_ezsigntemplateelementdependency_operator_FromString(char* e_ezsigntemplateelementdependency_operator);
+
+
+
+typedef struct ezsigntemplateelementdependency_request_t {
+    int pki_ezsigntemplateelementdependency_id; //numeric
+    int fki_ezsigntemplateformfield_id_validation; //numeric
+    int fki_ezsigntemplateformfieldgroup_id_validation; //numeric
+    char *s_ezsigntemplateelementdependency_ezsigntemplateformfieldgrouplabel; // string
+    char *s_ezsigntemplateelementdependency_ezsigntemplateformfieldlabel; // string
+    field_e_ezsigntemplateelementdependency_validation_t *e_ezsigntemplateelementdependency_validation; // custom
+    int b_ezsigntemplateelementdependency_selected; //boolean
+    field_e_ezsigntemplateelementdependency_operator_t *e_ezsigntemplateelementdependency_operator; // custom
+    char *s_ezsigntemplateelementdependency_value; // string
+
+} ezsigntemplateelementdependency_request_t;
+
+ezsigntemplateelementdependency_request_t *ezsigntemplateelementdependency_request_create(
+    int pki_ezsigntemplateelementdependency_id,
+    int fki_ezsigntemplateformfield_id_validation,
+    int fki_ezsigntemplateformfieldgroup_id_validation,
+    char *s_ezsigntemplateelementdependency_ezsigntemplateformfieldgrouplabel,
+    char *s_ezsigntemplateelementdependency_ezsigntemplateformfieldlabel,
+    field_e_ezsigntemplateelementdependency_validation_t *e_ezsigntemplateelementdependency_validation,
+    int b_ezsigntemplateelementdependency_selected,
+    field_e_ezsigntemplateelementdependency_operator_t *e_ezsigntemplateelementdependency_operator,
+    char *s_ezsigntemplateelementdependency_value
+);
+
+void ezsigntemplateelementdependency_request_free(ezsigntemplateelementdependency_request_t *ezsigntemplateelementdependency_request);
+
+ezsigntemplateelementdependency_request_t *ezsigntemplateelementdependency_request_parseFromJSON(cJSON *ezsigntemplateelementdependency_requestJSON);
+
+cJSON *ezsigntemplateelementdependency_request_convertToJSON(ezsigntemplateelementdependency_request_t *ezsigntemplateelementdependency_request);
+
+#endif /* _ezsigntemplateelementdependency_request_H_ */
+

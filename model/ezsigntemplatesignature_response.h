@@ -17,6 +17,7 @@ typedef struct ezsigntemplatesignature_response_t ezsigntemplatesignature_respon
 
 #include "enum_textvalidation.h"
 #include "field_e_ezsigntemplatesignature_attachmentnamesource.h"
+#include "field_e_ezsigntemplatesignature_dependencyrequirement.h"
 #include "field_e_ezsigntemplatesignature_font.h"
 #include "field_e_ezsigntemplatesignature_tooltipposition.h"
 #include "field_e_ezsigntemplatesignature_type.h"
@@ -61,6 +62,14 @@ char* ezsigntemplatesignature_response_e_ezsigntemplatesignature_textvalidation_
 
 ezmax_api_definition__full_ezsigntemplatesignature_response__e ezsigntemplatesignature_response_e_ezsigntemplatesignature_textvalidation_FromString(char* e_ezsigntemplatesignature_textvalidation);
 
+// Enum  for ezsigntemplatesignature_response
+
+typedef enum  { ezmax_api_definition__full_ezsigntemplatesignature_response__NULL = 0, ezmax_api_definition__full_ezsigntemplatesignature_response__AllOf, ezmax_api_definition__full_ezsigntemplatesignature_response__AnyOf } ezmax_api_definition__full_ezsigntemplatesignature_response__e;
+
+char* ezsigntemplatesignature_response_e_ezsigntemplatesignature_dependencyrequirement_ToString(ezmax_api_definition__full_ezsigntemplatesignature_response__e e_ezsigntemplatesignature_dependencyrequirement);
+
+ezmax_api_definition__full_ezsigntemplatesignature_response__e ezsigntemplatesignature_response_e_ezsigntemplatesignature_dependencyrequirement_FromString(char* e_ezsigntemplatesignature_dependencyrequirement);
+
 
 
 typedef struct ezsigntemplatesignature_response_t {
@@ -85,6 +94,7 @@ typedef struct ezsigntemplatesignature_response_t {
     int i_ezsigntemplatesignature_maxlength; //numeric
     char *s_ezsigntemplatesignature_regexp; // string
     enum_textvalidation_t *e_ezsigntemplatesignature_textvalidation; // custom
+    field_e_ezsigntemplatesignature_dependencyrequirement_t *e_ezsigntemplatesignature_dependencyrequirement; // custom
 
 } ezsigntemplatesignature_response_t;
 
@@ -109,7 +119,8 @@ ezsigntemplatesignature_response_t *ezsigntemplatesignature_response_create(
     int b_ezsigntemplatesignature_required,
     int i_ezsigntemplatesignature_maxlength,
     char *s_ezsigntemplatesignature_regexp,
-    enum_textvalidation_t *e_ezsigntemplatesignature_textvalidation
+    enum_textvalidation_t *e_ezsigntemplatesignature_textvalidation,
+    field_e_ezsigntemplatesignature_dependencyrequirement_t *e_ezsigntemplatesignature_dependencyrequirement
 );
 
 void ezsigntemplatesignature_response_free(ezsigntemplatesignature_response_t *ezsigntemplatesignature_response);

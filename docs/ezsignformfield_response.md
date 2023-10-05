@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **b_ezsignformfield_autocomplete** | **int** | Whether the Ezsignformfield allows the use of the autocomplete of the browser.  This can only be set if eEzsignformfieldgroupType is **Text** | [optional] 
 **b_ezsignformfield_selected** | **int** | Whether the Ezsignformfield is selected or not by default.  This can only be set if eEzsignformfieldgroupType is **Checkbox** or **Radio** | [optional] 
 **s_ezsignformfield_enteredvalue** | **char \*** | This is the value enterred for the Ezsignformfield  This can only be set if eEzsignformfieldgroupType is **Dropdown**, **Text** or **Textarea** | [optional] 
+**e_ezsignformfield_dependencyrequirement** | **field_e_ezsignformfield_dependencyrequirement_t \*** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

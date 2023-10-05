@@ -32,7 +32,8 @@ ezsignformfield_response_t* instantiate_ezsignformfield_response(int include_opt
       22,
       1,
       1,
-      "Montreal"
+      "Montreal",
+      ezmax_api_definition__full_ezsignformfield_response__"AllOf"
     );
   } else {
     ezsignformfield_response = ezsignformfield_response_create(
@@ -46,7 +47,8 @@ ezsignformfield_response_t* instantiate_ezsignformfield_response(int include_opt
       22,
       1,
       1,
-      "Montreal"
+      "Montreal",
+      ezmax_api_definition__full_ezsignformfield_response__"AllOf"
     );
   }
 

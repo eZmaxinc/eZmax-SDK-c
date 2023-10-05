@@ -43,7 +43,9 @@ ezsignsignature_request_compound_t* instantiate_ezsignsignature_request_compound
       75,
       ezmax_api_definition__full_ezsignsignature_request_compound__"None",
       "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
+      ezmax_api_definition__full_ezsignsignature_request_compound__"AllOf",
       1,
+      list_createList(),
       list_createList()
     );
   } else {
@@ -69,7 +71,9 @@ ezsignsignature_request_compound_t* instantiate_ezsignsignature_request_compound
       75,
       ezmax_api_definition__full_ezsignsignature_request_compound__"None",
       "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
+      ezmax_api_definition__full_ezsignsignature_request_compound__"AllOf",
       1,
+      list_createList(),
       list_createList()
     );
   }

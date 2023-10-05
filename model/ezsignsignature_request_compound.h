@@ -16,8 +16,10 @@
 typedef struct ezsignsignature_request_compound_t ezsignsignature_request_compound_t;
 
 #include "enum_textvalidation.h"
+#include "ezsignelementdependency_request_compound.h"
 #include "ezsignsignaturecustomdate_request_compound.h"
 #include "field_e_ezsignsignature_attachmentnamesource.h"
+#include "field_e_ezsignsignature_dependencyrequirement.h"
 #include "field_e_ezsignsignature_font.h"
 #include "field_e_ezsignsignature_tooltipposition.h"
 #include "field_e_ezsignsignature_type.h"
@@ -62,6 +64,14 @@ char* ezsignsignature_request_compound_e_ezsignsignature_textvalidation_ToString
 
 ezmax_api_definition__full_ezsignsignature_request_compound__e ezsignsignature_request_compound_e_ezsignsignature_textvalidation_FromString(char* e_ezsignsignature_textvalidation);
 
+// Enum  for ezsignsignature_request_compound
+
+typedef enum  { ezmax_api_definition__full_ezsignsignature_request_compound__NULL = 0, ezmax_api_definition__full_ezsignsignature_request_compound__AllOf, ezmax_api_definition__full_ezsignsignature_request_compound__AnyOf } ezmax_api_definition__full_ezsignsignature_request_compound__e;
+
+char* ezsignsignature_request_compound_e_ezsignsignature_dependencyrequirement_ToString(ezmax_api_definition__full_ezsignsignature_request_compound__e e_ezsignsignature_dependencyrequirement);
+
+ezmax_api_definition__full_ezsignsignature_request_compound__e ezsignsignature_request_compound_e_ezsignsignature_dependencyrequirement_FromString(char* e_ezsignsignature_dependencyrequirement);
+
 
 
 typedef struct ezsignsignature_request_compound_t {
@@ -86,8 +96,10 @@ typedef struct ezsignsignature_request_compound_t {
     int i_ezsignsignature_maxlength; //numeric
     enum_textvalidation_t *e_ezsignsignature_textvalidation; // custom
     char *s_ezsignsignature_regexp; // string
+    field_e_ezsignsignature_dependencyrequirement_t *e_ezsignsignature_dependencyrequirement; // custom
     int b_ezsignsignature_customdate; //boolean
     list_t *a_obj_ezsignsignaturecustomdate; //nonprimitive container
+    list_t *a_obj_ezsignelementdependency; //nonprimitive container
 
 } ezsignsignature_request_compound_t;
 
@@ -113,8 +125,10 @@ ezsignsignature_request_compound_t *ezsignsignature_request_compound_create(
     int i_ezsignsignature_maxlength,
     enum_textvalidation_t *e_ezsignsignature_textvalidation,
     char *s_ezsignsignature_regexp,
+    field_e_ezsignsignature_dependencyrequirement_t *e_ezsignsignature_dependencyrequirement,
     int b_ezsignsignature_customdate,
-    list_t *a_obj_ezsignsignaturecustomdate
+    list_t *a_obj_ezsignsignaturecustomdate,
+    list_t *a_obj_ezsignelementdependency
 );
 
 void ezsignsignature_request_compound_free(ezsignsignature_request_compound_t *ezsignsignature_request_compound);

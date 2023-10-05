@@ -17,6 +17,7 @@ typedef struct ezsignsignature_request_t ezsignsignature_request_t;
 
 #include "enum_textvalidation.h"
 #include "field_e_ezsignsignature_attachmentnamesource.h"
+#include "field_e_ezsignsignature_dependencyrequirement.h"
 #include "field_e_ezsignsignature_font.h"
 #include "field_e_ezsignsignature_tooltipposition.h"
 #include "field_e_ezsignsignature_type.h"
@@ -61,6 +62,14 @@ char* ezsignsignature_request_e_ezsignsignature_textvalidation_ToString(ezmax_ap
 
 ezmax_api_definition__full_ezsignsignature_request__e ezsignsignature_request_e_ezsignsignature_textvalidation_FromString(char* e_ezsignsignature_textvalidation);
 
+// Enum  for ezsignsignature_request
+
+typedef enum  { ezmax_api_definition__full_ezsignsignature_request__NULL = 0, ezmax_api_definition__full_ezsignsignature_request__AllOf, ezmax_api_definition__full_ezsignsignature_request__AnyOf } ezmax_api_definition__full_ezsignsignature_request__e;
+
+char* ezsignsignature_request_e_ezsignsignature_dependencyrequirement_ToString(ezmax_api_definition__full_ezsignsignature_request__e e_ezsignsignature_dependencyrequirement);
+
+ezmax_api_definition__full_ezsignsignature_request__e ezsignsignature_request_e_ezsignsignature_dependencyrequirement_FromString(char* e_ezsignsignature_dependencyrequirement);
+
 
 
 typedef struct ezsignsignature_request_t {
@@ -85,6 +94,7 @@ typedef struct ezsignsignature_request_t {
     int i_ezsignsignature_maxlength; //numeric
     enum_textvalidation_t *e_ezsignsignature_textvalidation; // custom
     char *s_ezsignsignature_regexp; // string
+    field_e_ezsignsignature_dependencyrequirement_t *e_ezsignsignature_dependencyrequirement; // custom
 
 } ezsignsignature_request_t;
 
@@ -109,7 +119,8 @@ ezsignsignature_request_t *ezsignsignature_request_create(
     int i_ezsignsignature_validationstep,
     int i_ezsignsignature_maxlength,
     enum_textvalidation_t *e_ezsignsignature_textvalidation,
-    char *s_ezsignsignature_regexp
+    char *s_ezsignsignature_regexp,
+    field_e_ezsignsignature_dependencyrequirement_t *e_ezsignsignature_dependencyrequirement
 );
 
 void ezsignsignature_request_free(ezsignsignature_request_t *ezsignsignature_request);

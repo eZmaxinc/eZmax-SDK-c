@@ -4,6 +4,23 @@
 #include "ezsigntemplateformfield_response.h"
 
 
+char* e_ezsigntemplateformfield_dependencyrequirementezsigntemplateformfield_response_ToString(ezmax_api_definition__full_ezsigntemplateformfield_response__e e_ezsigntemplateformfield_dependencyrequirement) {
+    char* e_ezsigntemplateformfield_dependencyrequirementArray[] =  { "NULL", "AllOf", "AnyOf" };
+	return e_ezsigntemplateformfield_dependencyrequirementArray[e_ezsigntemplateformfield_dependencyrequirement];
+}
+
+ezmax_api_definition__full_ezsigntemplateformfield_response__e e_ezsigntemplateformfield_dependencyrequirementezsigntemplateformfield_response_FromString(char* e_ezsigntemplateformfield_dependencyrequirement){
+    int stringToReturn = 0;
+    char *e_ezsigntemplateformfield_dependencyrequirementArray[] =  { "NULL", "AllOf", "AnyOf" };
+    size_t sizeofArray = sizeof(e_ezsigntemplateformfield_dependencyrequirementArray) / sizeof(e_ezsigntemplateformfield_dependencyrequirementArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(e_ezsigntemplateformfield_dependencyrequirement, e_ezsigntemplateformfield_dependencyrequirementArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
 
 ezsigntemplateformfield_response_t *ezsigntemplateformfield_response_create(
     int pki_ezsigntemplateformfield_id,
@@ -15,7 +32,8 @@ ezsigntemplateformfield_response_t *ezsigntemplateformfield_response_create(
     int i_ezsigntemplateformfield_width,
     int i_ezsigntemplateformfield_height,
     int b_ezsigntemplateformfield_autocomplete,
-    int b_ezsigntemplateformfield_selected
+    int b_ezsigntemplateformfield_selected,
+    field_e_ezsigntemplateformfield_dependencyrequirement_t *e_ezsigntemplateformfield_dependencyrequirement
     ) {
     ezsigntemplateformfield_response_t *ezsigntemplateformfield_response_local_var = malloc(sizeof(ezsigntemplateformfield_response_t));
     if (!ezsigntemplateformfield_response_local_var) {
@@ -31,6 +49,7 @@ ezsigntemplateformfield_response_t *ezsigntemplateformfield_response_create(
     ezsigntemplateformfield_response_local_var->i_ezsigntemplateformfield_height = i_ezsigntemplateformfield_height;
     ezsigntemplateformfield_response_local_var->b_ezsigntemplateformfield_autocomplete = b_ezsigntemplateformfield_autocomplete;
     ezsigntemplateformfield_response_local_var->b_ezsigntemplateformfield_selected = b_ezsigntemplateformfield_selected;
+    ezsigntemplateformfield_response_local_var->e_ezsigntemplateformfield_dependencyrequirement = e_ezsigntemplateformfield_dependencyrequirement;
 
     return ezsigntemplateformfield_response_local_var;
 }
@@ -48,6 +67,10 @@ void ezsigntemplateformfield_response_free(ezsigntemplateformfield_response_t *e
     if (ezsigntemplateformfield_response->s_ezsigntemplateformfield_value) {
         free(ezsigntemplateformfield_response->s_ezsigntemplateformfield_value);
         ezsigntemplateformfield_response->s_ezsigntemplateformfield_value = NULL;
+    }
+    if (ezsigntemplateformfield_response->e_ezsigntemplateformfield_dependencyrequirement) {
+        field_e_ezsigntemplateformfield_dependencyrequirement_free(ezsigntemplateformfield_response->e_ezsigntemplateformfield_dependencyrequirement);
+        ezsigntemplateformfield_response->e_ezsigntemplateformfield_dependencyrequirement = NULL;
     }
     free(ezsigntemplateformfield_response);
 }
@@ -141,6 +164,19 @@ cJSON *ezsigntemplateformfield_response_convertToJSON(ezsigntemplateformfield_re
     }
     }
 
+
+    // ezsigntemplateformfield_response->e_ezsigntemplateformfield_dependencyrequirement
+    if(ezsigntemplateformfield_response->e_ezsigntemplateformfield_dependencyrequirement != ezmax_api_definition__full_ezsigntemplateformfield_response__NULL) {
+    cJSON *e_ezsigntemplateformfield_dependencyrequirement_local_JSON = field_e_ezsigntemplateformfield_dependencyrequirement_convertToJSON(ezsigntemplateformfield_response->e_ezsigntemplateformfield_dependencyrequirement);
+    if(e_ezsigntemplateformfield_dependencyrequirement_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsigntemplateformfieldDependencyrequirement", e_ezsigntemplateformfield_dependencyrequirement_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -152,6 +188,9 @@ fail:
 ezsigntemplateformfield_response_t *ezsigntemplateformfield_response_parseFromJSON(cJSON *ezsigntemplateformfield_responseJSON){
 
     ezsigntemplateformfield_response_t *ezsigntemplateformfield_response_local_var = NULL;
+
+    // define the local variable for ezsigntemplateformfield_response->e_ezsigntemplateformfield_dependencyrequirement
+    field_e_ezsigntemplateformfield_dependencyrequirement_t *e_ezsigntemplateformfield_dependencyrequirement_local_nonprim = NULL;
 
     // ezsigntemplateformfield_response->pki_ezsigntemplateformfield_id
     cJSON *pki_ezsigntemplateformfield_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplateformfield_responseJSON, "pkiEzsigntemplateformfieldID");
@@ -264,6 +303,12 @@ ezsigntemplateformfield_response_t *ezsigntemplateformfield_response_parseFromJS
     }
     }
 
+    // ezsigntemplateformfield_response->e_ezsigntemplateformfield_dependencyrequirement
+    cJSON *e_ezsigntemplateformfield_dependencyrequirement = cJSON_GetObjectItemCaseSensitive(ezsigntemplateformfield_responseJSON, "eEzsigntemplateformfieldDependencyrequirement");
+    if (e_ezsigntemplateformfield_dependencyrequirement) { 
+    e_ezsigntemplateformfield_dependencyrequirement_local_nonprim = field_e_ezsigntemplateformfield_dependencyrequirement_parseFromJSON(e_ezsigntemplateformfield_dependencyrequirement); //custom
+    }
+
 
     ezsigntemplateformfield_response_local_var = ezsigntemplateformfield_response_create (
         pki_ezsigntemplateformfield_id->valuedouble,
@@ -275,11 +320,16 @@ ezsigntemplateformfield_response_t *ezsigntemplateformfield_response_parseFromJS
         i_ezsigntemplateformfield_width->valuedouble,
         i_ezsigntemplateformfield_height->valuedouble,
         b_ezsigntemplateformfield_autocomplete ? b_ezsigntemplateformfield_autocomplete->valueint : 0,
-        b_ezsigntemplateformfield_selected ? b_ezsigntemplateformfield_selected->valueint : 0
+        b_ezsigntemplateformfield_selected ? b_ezsigntemplateformfield_selected->valueint : 0,
+        e_ezsigntemplateformfield_dependencyrequirement ? e_ezsigntemplateformfield_dependencyrequirement_local_nonprim : NULL
         );
 
     return ezsigntemplateformfield_response_local_var;
 end:
+    if (e_ezsigntemplateformfield_dependencyrequirement_local_nonprim) {
+        field_e_ezsigntemplateformfield_dependencyrequirement_free(e_ezsigntemplateformfield_dependencyrequirement_local_nonprim);
+        e_ezsigntemplateformfield_dependencyrequirement_local_nonprim = NULL;
+    }
     return NULL;
 
 }

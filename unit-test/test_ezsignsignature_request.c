@@ -42,7 +42,8 @@ ezsignsignature_request_t* instantiate_ezsignsignature_request(int include_optio
       1,
       75,
       ezmax_api_definition__full_ezsignsignature_request__"None",
-      "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/"
+      "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
+      ezmax_api_definition__full_ezsignsignature_request__"AllOf"
     );
   } else {
     ezsignsignature_request = ezsignsignature_request_create(
@@ -66,7 +67,8 @@ ezsignsignature_request_t* instantiate_ezsignsignature_request(int include_optio
       1,
       75,
       ezmax_api_definition__full_ezsignsignature_request__"None",
-      "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/"
+      "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
+      ezmax_api_definition__full_ezsignsignature_request__"AllOf"
     );
   }
 

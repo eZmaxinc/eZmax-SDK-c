@@ -31,7 +31,9 @@ ezsigntemplateformfield_response_compound_t* instantiate_ezsigntemplateformfield
       102,
       22,
       1,
-      1
+      1,
+      ezmax_api_definition__full_ezsigntemplateformfield_response_compound__"AllOf",
+      list_createList()
     );
   } else {
     ezsigntemplateformfield_response_compound = ezsigntemplateformfield_response_compound_create(
@@ -44,7 +46,9 @@ ezsigntemplateformfield_response_compound_t* instantiate_ezsigntemplateformfield
       102,
       22,
       1,
-      1
+      1,
+      ezmax_api_definition__full_ezsigntemplateformfield_response_compound__"AllOf",
+      list_createList()
     );
   }
 

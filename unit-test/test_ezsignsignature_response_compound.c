@@ -49,6 +49,7 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
       "Montreal",
       75,
       ezmax_api_definition__full_ezsignsignature_response_compound__"None",
+      ezmax_api_definition__full_ezsignsignature_response_compound__"AllOf",
       "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
        // false, not to have infinite recursion
       instantiate_custom_contact_name_response(0),
@@ -59,7 +60,8 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
       1,
       list_createList(),
        // false, not to have infinite recursion
-      instantiate_custom_creditcardtransaction_response(0)
+      instantiate_custom_creditcardtransaction_response(0),
+      list_createList()
     );
   } else {
     ezsignsignature_response_compound = ezsignsignature_response_compound_create(
@@ -86,13 +88,15 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
       "Montreal",
       75,
       ezmax_api_definition__full_ezsignsignature_response_compound__"None",
+      ezmax_api_definition__full_ezsignsignature_response_compound__"AllOf",
       "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
       NULL,
       NULL,
       NULL,
       1,
       list_createList(),
-      NULL
+      NULL,
+      list_createList()
     );
   }
 
