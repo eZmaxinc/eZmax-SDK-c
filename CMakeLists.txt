@@ -1054,6 +1054,9 @@ set(SRCS
     model/usergroupmembership_request_compound.c
     model/usergroupmembership_response.c
     model/usergroupmembership_response_compound.c
+    model/userlogintype_autocomplete_element_response.c
+    model/userlogintype_get_autocomplete_v2_response.c
+    model/userlogintype_get_autocomplete_v2_response_m_payload.c
     model/userstaged_create_user_v1_response.c
     model/userstaged_create_user_v1_response_m_payload.c
     model/userstaged_delete_object_v1_response.c
@@ -1185,6 +1188,7 @@ set(SRCS
     api/ObjectUsergroupAPI.c
     api/ObjectUsergroupdelegationAPI.c
     api/ObjectUsergroupmembershipAPI.c
+    api/ObjectUserlogintypeAPI.c
     api/ObjectUserstagedAPI.c
     api/ObjectVariableexpenseAPI.c
     api/ObjectVersionhistoryAPI.c
@@ -2202,6 +2206,9 @@ set(HDRS
     model/usergroupmembership_request_compound.h
     model/usergroupmembership_response.h
     model/usergroupmembership_response_compound.h
+    model/userlogintype_autocomplete_element_response.h
+    model/userlogintype_get_autocomplete_v2_response.h
+    model/userlogintype_get_autocomplete_v2_response_m_payload.h
     model/userstaged_create_user_v1_response.h
     model/userstaged_create_user_v1_response_m_payload.h
     model/userstaged_delete_object_v1_response.h
@@ -2333,6 +2340,7 @@ set(HDRS
     api/ObjectUsergroupAPI.h
     api/ObjectUsergroupdelegationAPI.h
     api/ObjectUsergroupmembershipAPI.h
+    api/ObjectUserlogintypeAPI.h
     api/ObjectUserstagedAPI.h
     api/ObjectVariableexpenseAPI.h
     api/ObjectVersionhistoryAPI.h
@@ -2486,6 +2494,7 @@ set(HDRS "")
 #    unit-tests/manual-ObjectUsergroupAPI.c
 #    unit-tests/manual-ObjectUsergroupdelegationAPI.c
 #    unit-tests/manual-ObjectUsergroupmembershipAPI.c
+#    unit-tests/manual-ObjectUserlogintypeAPI.c
 #    unit-tests/manual-ObjectUserstagedAPI.c
 #    unit-tests/manual-ObjectVariableexpenseAPI.c
 #    unit-tests/manual-ObjectVersionhistoryAPI.c

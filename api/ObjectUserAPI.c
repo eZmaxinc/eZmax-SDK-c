@@ -14,13 +14,13 @@
 // Functions for enum SSELECTOR for ObjectUserAPI_userGetAutocompleteV2
 
 static char* userGetAutocompleteV2_SSELECTOR_ToString(ezmax_api_definition__full_userGetAutocompleteV2_sSelector_e SSELECTOR){
-    char *SSELECTORArray[] =  { "NULL", "All", "AgentBrokerEmployeeEzsignUserNormal", "AgentBrokerEmployeeNormalBuiltIn", "AgentBrokerEzsignuserNormal", "ClonableUsers", "EzsignuserBuiltIn", "Normal", "NormalEzsignSigner", "UsergroupDelegated" };
+    char *SSELECTORArray[] =  { "NULL", "AgentBrokerEmployeeEzsignUserNormal", "AgentBrokerEmployeeNormalBuiltIn", "AgentBrokerEzsignuserNormal", "ClonableUsers", "EzsignuserBuiltIn", "Normal", "UsergroupDelegated" };
     return SSELECTORArray[SSELECTOR];
 }
 
 static ezmax_api_definition__full_userGetAutocompleteV2_sSelector_e userGetAutocompleteV2_SSELECTOR_FromString(char* SSELECTOR){
     int stringToReturn = 0;
-    char *SSELECTORArray[] =  { "NULL", "All", "AgentBrokerEmployeeEzsignUserNormal", "AgentBrokerEmployeeNormalBuiltIn", "AgentBrokerEzsignuserNormal", "ClonableUsers", "EzsignuserBuiltIn", "Normal", "NormalEzsignSigner", "UsergroupDelegated" };
+    char *SSELECTORArray[] =  { "NULL", "AgentBrokerEmployeeEzsignUserNormal", "AgentBrokerEmployeeNormalBuiltIn", "AgentBrokerEzsignuserNormal", "ClonableUsers", "EzsignuserBuiltIn", "Normal", "UsergroupDelegated" };
     size_t sizeofArray = sizeof(SSELECTORArray) / sizeof(SSELECTORArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(SSELECTOR, SSELECTORArray[stringToReturn]) == 0) {

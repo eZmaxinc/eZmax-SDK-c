@@ -132,6 +132,8 @@ api/ObjectUsergroupdelegationAPI.c
 api/ObjectUsergroupdelegationAPI.h
 api/ObjectUsergroupmembershipAPI.c
 api/ObjectUsergroupmembershipAPI.h
+api/ObjectUserlogintypeAPI.c
+api/ObjectUserlogintypeAPI.h
 api/ObjectUserstagedAPI.c
 api/ObjectUserstagedAPI.h
 api/ObjectVariableexpenseAPI.c
@@ -211,6 +213,7 @@ docs/ObjectUserAPI.md
 docs/ObjectUsergroupAPI.md
 docs/ObjectUsergroupdelegationAPI.md
 docs/ObjectUsergroupmembershipAPI.md
+docs/ObjectUserlogintypeAPI.md
 docs/ObjectUserstagedAPI.md
 docs/ObjectVariableexpenseAPI.md
 docs/ObjectVersionhistoryAPI.md
@@ -1218,6 +1221,9 @@ docs/usergroupmembership_request.md
 docs/usergroupmembership_request_compound.md
 docs/usergroupmembership_response.md
 docs/usergroupmembership_response_compound.md
+docs/userlogintype_autocomplete_element_response.md
+docs/userlogintype_get_autocomplete_v2_response.md
+docs/userlogintype_get_autocomplete_v2_response_m_payload.md
 docs/userstaged_create_user_v1_response.md
 docs/userstaged_create_user_v1_response_m_payload.md
 docs/userstaged_delete_object_v1_response.md
@@ -3294,6 +3300,12 @@ model/usergroupmembership_response.c
 model/usergroupmembership_response.h
 model/usergroupmembership_response_compound.c
 model/usergroupmembership_response_compound.h
+model/userlogintype_autocomplete_element_response.c
+model/userlogintype_autocomplete_element_response.h
+model/userlogintype_get_autocomplete_v2_response.c
+model/userlogintype_get_autocomplete_v2_response.h
+model/userlogintype_get_autocomplete_v2_response_m_payload.c
+model/userlogintype_get_autocomplete_v2_response_m_payload.h
 model/userstaged_create_user_v1_response.c
 model/userstaged_create_user_v1_response.h
 model/userstaged_create_user_v1_response_m_payload.c
@@ -4431,6 +4443,9 @@ unit-test/test_usergroupmembership_request.c
 unit-test/test_usergroupmembership_request_compound.c
 unit-test/test_usergroupmembership_response.c
 unit-test/test_usergroupmembership_response_compound.c
+unit-test/test_userlogintype_autocomplete_element_response.c
+unit-test/test_userlogintype_get_autocomplete_v2_response.c
+unit-test/test_userlogintype_get_autocomplete_v2_response_m_payload.c
 unit-test/test_userstaged_create_user_v1_response.c
 unit-test/test_userstaged_create_user_v1_response_m_payload.c
 unit-test/test_userstaged_delete_object_v1_response.c

@@ -332,6 +332,7 @@ Category | Method | HTTP request | Description
 *ObjectUsergroupmembershipAPI* | [**ObjectUsergroupmembershipAPI_usergroupmembershipDeleteObjectV1**](docs/ObjectUsergroupmembershipAPI.md#ObjectUsergroupmembershipAPI_usergroupmembershipDeleteObjectV1) | **DELETE** /1/object/usergroupmembership/{pkiUsergroupmembershipID} | Delete an existing Usergroupmembership
 *ObjectUsergroupmembershipAPI* | [**ObjectUsergroupmembershipAPI_usergroupmembershipEditObjectV1**](docs/ObjectUsergroupmembershipAPI.md#ObjectUsergroupmembershipAPI_usergroupmembershipEditObjectV1) | **PUT** /1/object/usergroupmembership/{pkiUsergroupmembershipID} | Edit an existing Usergroupmembership
 *ObjectUsergroupmembershipAPI* | [**ObjectUsergroupmembershipAPI_usergroupmembershipGetObjectV2**](docs/ObjectUsergroupmembershipAPI.md#ObjectUsergroupmembershipAPI_usergroupmembershipGetObjectV2) | **GET** /2/object/usergroupmembership/{pkiUsergroupmembershipID} | Retrieve an existing Usergroupmembership
+*ObjectUserlogintypeAPI* | [**ObjectUserlogintypeAPI_userlogintypeGetAutocompleteV2**](docs/ObjectUserlogintypeAPI.md#ObjectUserlogintypeAPI_userlogintypeGetAutocompleteV2) | **GET** /2/object/userlogintype/getAutocomplete/{sSelector} | Retrieve Userlogintypes and IDs
 *ObjectUserstagedAPI* | [**ObjectUserstagedAPI_userstagedCreateUserV1**](docs/ObjectUserstagedAPI.md#ObjectUserstagedAPI_userstagedCreateUserV1) | **POST** /1/object/userstaged/{pkiUserstagedID}/createUser | Create a User from a Userstaged and then map it
 *ObjectUserstagedAPI* | [**ObjectUserstagedAPI_userstagedDeleteObjectV1**](docs/ObjectUserstagedAPI.md#ObjectUserstagedAPI_userstagedDeleteObjectV1) | **DELETE** /1/object/userstaged/{pkiUserstagedID} | Delete an existing Userstaged
 *ObjectUserstagedAPI* | [**ObjectUserstagedAPI_userstagedGetListV1**](docs/ObjectUserstagedAPI.md#ObjectUserstagedAPI_userstagedGetListV1) | **GET** /1/object/userstaged/getList | Retrieve Userstaged list
@@ -1365,6 +1366,9 @@ Category | Method | HTTP request | Description
  - [usergroupmembership_request_compound_t](docs/usergroupmembership_request_compound.md)
  - [usergroupmembership_response_t](docs/usergroupmembership_response.md)
  - [usergroupmembership_response_compound_t](docs/usergroupmembership_response_compound.md)
+ - [userlogintype_autocomplete_element_response_t](docs/userlogintype_autocomplete_element_response.md)
+ - [userlogintype_get_autocomplete_v2_response_t](docs/userlogintype_get_autocomplete_v2_response.md)
+ - [userlogintype_get_autocomplete_v2_response_m_payload_t](docs/userlogintype_get_autocomplete_v2_response_m_payload.md)
  - [userstaged_create_user_v1_response_t](docs/userstaged_create_user_v1_response.md)
  - [userstaged_create_user_v1_response_m_payload_t](docs/userstaged_create_user_v1_response_m_payload.md)
  - [userstaged_delete_object_v1_response_t](docs/userstaged_delete_object_v1_response.md)
