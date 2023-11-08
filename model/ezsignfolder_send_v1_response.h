@@ -1,7 +1,7 @@
 /*
  * ezsignfolder_send_v1_response.h
  *
- * Response for POST /1/object/ezsignfolder/{pkiEzsignfolderID}/send
+ * Response for GET /1/object/attachment/{pkiAttachmentID}/download
  */
 
 #ifndef _ezsignfolder_send_v1_response_H_

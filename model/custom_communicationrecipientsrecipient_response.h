@@ -1,0 +1,86 @@
+/*
+ * custom_communicationrecipientsrecipient_response.h
+ *
+ * Generic AutocompleteElement Response
+ */
+
+#ifndef _custom_communicationrecipientsrecipient_response_H_
+#define _custom_communicationrecipientsrecipient_response_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct custom_communicationrecipientsrecipient_response_t custom_communicationrecipientsrecipient_response_t;
+
+#include "custom_contact_name_response.h"
+#include "email_response_compound.h"
+#include "phone_response_compound.h"
+
+// Enum ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE for custom_communicationrecipientsrecipient_response
+
+typedef enum  { ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_NULL = 0, ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_Agent, ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_Agentincorporation, ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_Assistant, ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_Broker, ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_Contact, ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_Customer, ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_Employee, ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_Externalbroker, ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_Ezcomagent, ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_Ezcomcompany, ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_Ezsignsigner, ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_Franchiseoffice, ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_Notary, ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_Rewardmember, ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_Supplier, ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_User } ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_e;
+
+char* custom_communicationrecipientsrecipient_response_e_communicationrecipientsrecipient_objecttype_ToString(ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_e e_communicationrecipientsrecipient_objecttype);
+
+ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_e custom_communicationrecipientsrecipient_response_e_communicationrecipientsrecipient_objecttype_FromString(char* e_communicationrecipientsrecipient_objecttype);
+
+
+
+typedef struct custom_communicationrecipientsrecipient_response_t {
+    int fki_agent_id; //numeric
+    int fki_broker_id; //numeric
+    int fki_contact_id; //numeric
+    int fki_customer_id; //numeric
+    int fki_employee_id; //numeric
+    int fki_ezsignsigner_id; //numeric
+    int fki_franchiseoffice_id; //numeric
+    int fki_user_id; //numeric
+    int fki_agentincorporation_id; //numeric
+    int fki_assistant_id; //numeric
+    int fki_externalbroker_id; //numeric
+    int fki_ezcomagent_id; //numeric
+    int fki_notary_id; //numeric
+    int fki_rewardmember_id; //numeric
+    int fki_supplier_id; //numeric
+    ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_e e_communicationrecipientsrecipient_objecttype; //enum
+    struct custom_contact_name_response_t *obj_contact_name; //model
+    struct email_response_compound_t *obj_email; //model
+    struct phone_response_compound_t *obj_phone_fax; //model
+    struct phone_response_compound_t *obj_phone_sms; //model
+
+} custom_communicationrecipientsrecipient_response_t;
+
+custom_communicationrecipientsrecipient_response_t *custom_communicationrecipientsrecipient_response_create(
+    int fki_agent_id,
+    int fki_broker_id,
+    int fki_contact_id,
+    int fki_customer_id,
+    int fki_employee_id,
+    int fki_ezsignsigner_id,
+    int fki_franchiseoffice_id,
+    int fki_user_id,
+    int fki_agentincorporation_id,
+    int fki_assistant_id,
+    int fki_externalbroker_id,
+    int fki_ezcomagent_id,
+    int fki_notary_id,
+    int fki_rewardmember_id,
+    int fki_supplier_id,
+    ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_e e_communicationrecipientsrecipient_objecttype,
+    custom_contact_name_response_t *obj_contact_name,
+    email_response_compound_t *obj_email,
+    phone_response_compound_t *obj_phone_fax,
+    phone_response_compound_t *obj_phone_sms
+);
+
+void custom_communicationrecipientsrecipient_response_free(custom_communicationrecipientsrecipient_response_t *custom_communicationrecipientsrecipient_response);
+
+custom_communicationrecipientsrecipient_response_t *custom_communicationrecipientsrecipient_response_parseFromJSON(cJSON *custom_communicationrecipientsrecipient_responseJSON);
+
+cJSON *custom_communicationrecipientsrecipient_response_convertToJSON(custom_communicationrecipientsrecipient_response_t *custom_communicationrecipientsrecipient_response);
+
+#endif /* _custom_communicationrecipientsrecipient_response_H_ */
+

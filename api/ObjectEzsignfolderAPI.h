@@ -21,6 +21,8 @@
 #include "../model/ezsignfolder_get_actionable_elements_v1_response.h"
 #include "../model/ezsignfolder_get_communication_count_v1_response.h"
 #include "../model/ezsignfolder_get_communication_list_v1_response.h"
+#include "../model/ezsignfolder_get_communicationrecipients_v1_response.h"
+#include "../model/ezsignfolder_get_communicationsenders_v1_response.h"
 #include "../model/ezsignfolder_get_ezsigndocuments_v1_response.h"
 #include "../model/ezsignfolder_get_ezsignfoldersignerassociations_v1_response.h"
 #include "../model/ezsignfolder_get_ezsignsignatures_automatic_v1_response.h"
@@ -135,6 +137,22 @@ ezsignfolder_get_communication_list_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetCommunicationListV1(apiClient_t *apiClient, int pkiEzsignfolderID );
 
 
+// Retrieve Ezsignfolder's Communicationrecipient
+//
+// 
+//
+ezsignfolder_get_communicationrecipients_v1_response_t*
+ObjectEzsignfolderAPI_ezsignfolderGetCommunicationrecipientsV1(apiClient_t *apiClient, int pkiEzsignfolderID );
+
+
+// Retrieve Ezsignfolder's Communicationsender
+//
+// 
+//
+ezsignfolder_get_communicationsenders_v1_response_t*
+ObjectEzsignfolderAPI_ezsignfolderGetCommunicationsendersV1(apiClient_t *apiClient, int pkiEzsignfolderID );
+
+
 // Retrieve an existing Ezsignfolder's Ezsigndocuments
 //
 // 
@@ -169,7 +187,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1(apiClient_t *apiClient, int pki
 
 // Retrieve Ezsignfolder list
 //
-// Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eEzsignfolderStep | Unsent<br>Sent<br>PartiallySigned<br>Expired<br>Completed<br>Archived<br>Disposed| | eEzsignfoldertypePrivacylevel | User<br>Usergroup |  Advanced filters that can be used in query parameter *sFilter*:  | Variable | |---| | sContactFirstname | | sContactLastname | | sEzsigndocumentName |
+// Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eEzsignfolderStep | Unsent<br>Sent<br>PartiallySigned<br>Expired<br>Completed<br>Archived<br>Disposed| | eEzsignfoldertypePrivacylevel | User<br>Usergroup |  Advanced filters that can be used in query parameter *sFilter*:  | Variable | |---| | fkiUserID | | sContactFirstname | | sContactLastname | | sEzsigndocumentName |
 //
 ezsignfolder_get_list_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsignfolderGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter );

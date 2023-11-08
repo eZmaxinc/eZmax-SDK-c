@@ -1,7 +1,7 @@
 /*
  * field_e_communicationrecipient_type.h
  *
- * The type for the Communicationrecipient
+ * The type for the Communicationrecipient.  Only used when eCommunicationType is **Email**
  */
 
 #ifndef _field_e_communicationrecipient_type_H_

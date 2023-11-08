@@ -229,10 +229,11 @@ cJSON *custom_webhook_response_convertToJSON(custom_webhook_response_t *custom_w
 
 
     // custom_webhook_response->b_webhook_isactive
-    if(custom_webhook_response->b_webhook_isactive) {
+    if (!custom_webhook_response->b_webhook_isactive) {
+        goto fail;
+    }
     if(cJSON_AddBoolToObject(item, "bWebhookIsactive", custom_webhook_response->b_webhook_isactive) == NULL) {
     goto fail; //Bool
-    }
     }
 
 
@@ -372,11 +373,14 @@ custom_webhook_response_t *custom_webhook_response_parseFromJSON(cJSON *custom_w
 
     // custom_webhook_response->b_webhook_isactive
     cJSON *b_webhook_isactive = cJSON_GetObjectItemCaseSensitive(custom_webhook_responseJSON, "bWebhookIsactive");
-    if (b_webhook_isactive) { 
+    if (!b_webhook_isactive) {
+        goto end;
+    }
+
+    
     if(!cJSON_IsBool(b_webhook_isactive))
     {
     goto end; //Bool
-    }
     }
 
     // custom_webhook_response->b_webhook_skipsslvalidation
@@ -426,7 +430,7 @@ custom_webhook_response_t *custom_webhook_response_parseFromJSON(cJSON *custom_w
         e_webhook_managementevent ? e_webhook_managementevent_local_nonprim : NULL,
         strdup(s_webhook_url->valuestring),
         strdup(s_webhook_emailfailed->valuestring),
-        b_webhook_isactive ? b_webhook_isactive->valueint : 0,
+        b_webhook_isactive->valueint,
         b_webhook_skipsslvalidation->valueint,
         strdup(pks_customer_code->valuestring),
         b_webhook_test->valueint

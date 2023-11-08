@@ -5,15 +5,15 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/common_response_error.h"
-#include "../model/communication_get_object_v2_response.h"
+#include "../model/communication_send_v1_request.h"
+#include "../model/communication_send_v1_response.h"
 
 
-// Retrieve an existing Communication
+// Send a new Communication
 //
-// 
+// The endpoint allows to send one or many elements at once.
 //
-communication_get_object_v2_response_t*
-ObjectCommunicationAPI_communicationGetObjectV2(apiClient_t *apiClient, int pkiCommunicationID );
+communication_send_v1_response_t*
+ObjectCommunicationAPI_communicationSendV1(apiClient_t *apiClient, communication_send_v1_request_t * communication_send_v1_request );
 
 

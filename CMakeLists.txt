@@ -91,6 +91,7 @@ set(SRCS
     model/apikey_request_compound.c
     model/apikey_response.c
     model/apikey_response_compound.c
+    model/attachment_download_v1_response.c
     model/attempt_response.c
     model/attempt_response_compound.c
     model/billingentityexternal_autocomplete_element_response.c
@@ -134,6 +135,8 @@ set(SRCS
     model/branding_request_compound.c
     model/branding_response.c
     model/branding_response_compound.c
+    model/buyercontract_get_communication_list_v1_response.c
+    model/buyercontract_get_communication_list_v1_response_m_payload.c
     model/clonehistory_get_list_v1_response.c
     model/clonehistory_get_list_v1_response_m_payload.c
     model/clonehistory_list_element.c
@@ -167,16 +170,19 @@ set(SRCS
     model/common_response_redirect_s_secretquestion_text_x.c
     model/common_response_warning.c
     model/common_webhook.c
-    model/communication_get_object_v2_response.c
-    model/communication_get_object_v2_response_m_payload.c
-    model/communication_response.c
-    model/communication_response_compound.c
-    model/communicationattachment_response.c
-    model/communicationattachment_response_compound.c
-    model/communicationexternalrecipient_response.c
-    model/communicationexternalrecipient_response_compound.c
-    model/communicationrecipient_response.c
-    model/communicationrecipient_response_compound.c
+    model/communication_create_object_v1_response_m_payload.c
+    model/communication_request.c
+    model/communication_request_compound.c
+    model/communication_send_v1_request.c
+    model/communication_send_v1_response.c
+    model/communicationattachment_request.c
+    model/communicationattachment_request_compound.c
+    model/communicationexternalrecipient_request.c
+    model/communicationexternalrecipient_request_compound.c
+    model/communicationrecipient_request.c
+    model/communicationrecipient_request_compound.c
+    model/communicationreference_request.c
+    model/communicationreference_request_compound.c
     model/company_autocomplete_element_response.c
     model/company_get_autocomplete_v2_response.c
     model/company_get_autocomplete_v2_response_m_payload.c
@@ -200,6 +206,11 @@ set(SRCS
     model/cors_response_compound.c
     model/custom_autocomplete_element_response.c
     model/custom_communication_list_element_response.c
+    model/custom_communicationattachment_request.c
+    model/custom_communicationrecipientsgroup_response.c
+    model/custom_communicationrecipientsrecipient_response.c
+    model/custom_communicationsender_request.c
+    model/custom_communicationsender_response.c
     model/custom_contact_name_response.c
     model/custom_creditcardtransaction_response.c
     model/custom_dropdown_element_request.c
@@ -239,14 +250,12 @@ set(SRCS
     model/department_autocomplete_element_response.c
     model/department_get_autocomplete_v2_response.c
     model/department_get_autocomplete_v2_response_m_payload.c
-    model/descriptionstatic_response.c
-    model/descriptionstatic_response_compound.c
+    model/electronicfundstransfer_get_communication_list_v1_response.c
+    model/electronicfundstransfer_get_communication_list_v1_response_m_payload.c
     model/email_request.c
     model/email_request_compound.c
     model/email_response.c
     model/email_response_compound.c
-    model/emailstatic_response.c
-    model/emailstatic_response_compound.c
     model/emailtype_autocomplete_element_response.c
     model/emailtype_get_autocomplete_v2_response.c
     model/emailtype_get_autocomplete_v2_response_m_payload.c
@@ -428,6 +437,10 @@ set(SRCS
     model/ezsignfolder_get_communication_count_v1_response_m_payload.c
     model/ezsignfolder_get_communication_list_v1_response.c
     model/ezsignfolder_get_communication_list_v1_response_m_payload.c
+    model/ezsignfolder_get_communicationrecipients_v1_response.c
+    model/ezsignfolder_get_communicationrecipients_v1_response_m_payload.c
+    model/ezsignfolder_get_communicationsenders_v1_response.c
+    model/ezsignfolder_get_communicationsenders_v1_response_m_payload.c
     model/ezsignfolder_get_ezsigndocuments_v1_response.c
     model/ezsignfolder_get_ezsigndocuments_v1_response_m_payload.c
     model/ezsignfolder_get_ezsignfoldersignerassociations_v1_response.c
@@ -756,7 +769,6 @@ set(SRCS
     model/field_e_communication_importance.c
     model/field_e_communication_type.c
     model/field_e_communicationexternalrecipient_type.c
-    model/field_e_communicationrecipient_objecttype.c
     model/field_e_communicationrecipient_type.c
     model/field_e_creditcardtype_codename.c
     model/field_e_error_code.c
@@ -836,6 +848,14 @@ set(SRCS
     model/global_ezmaxclient_version_v1_response.c
     model/global_ezmaxcustomer_get_configuration_v1_response.c
     model/header_accept_language.c
+    model/inscription_get_communication_list_v1_response.c
+    model/inscription_get_communication_list_v1_response_m_payload.c
+    model/inscriptionnotauthenticated_get_communication_list_v1_response.c
+    model/inscriptionnotauthenticated_get_communication_list_v1_response_m_payload.c
+    model/inscriptiontemp_get_communication_list_v1_response.c
+    model/inscriptiontemp_get_communication_list_v1_response_m_payload.c
+    model/invoice_get_communication_list_v1_response.c
+    model/invoice_get_communication_list_v1_response_m_payload.c
     model/language_autocomplete_element_response.c
     model/language_get_autocomplete_v2_response.c
     model/language_get_autocomplete_v2_response_m_payload.c
@@ -866,6 +886,8 @@ set(SRCS
     model/notificationtest_get_elements_v1_response.c
     model/notificationtest_get_elements_v1_response_m_payload.c
     model/notificationtest_response.c
+    model/otherincome_get_communication_list_v1_response.c
+    model/otherincome_get_communication_list_v1_response_m_payload.c
     model/paymentterm_autocomplete_element_response.c
     model/paymentterm_create_object_v1_request.c
     model/paymentterm_create_object_v1_response.c
@@ -902,11 +924,11 @@ set(SRCS
     model/phone_request_compound.c
     model/phone_response.c
     model/phone_response_compound.c
-    model/phonestatic_response.c
-    model/phonestatic_response_compound.c
     model/phonetype_autocomplete_element_response.c
     model/phonetype_get_autocomplete_v2_response.c
     model/phonetype_get_autocomplete_v2_response_m_payload.c
+    model/rejectedoffertopurchase_get_communication_list_v1_response.c
+    model/rejectedoffertopurchase_get_communication_list_v1_response_m_payload.c
     model/scim_authentication_scheme.c
     model/scim_email.c
     model/scim_group.c
@@ -1131,14 +1153,17 @@ set(SRCS
     api/ModuleUserAPI.c
     api/ObjectActivesessionAPI.c
     api/ObjectApikeyAPI.c
+    api/ObjectAttachmentAPI.c
     api/ObjectBillingentityexternalAPI.c
     api/ObjectBillingentityinternalAPI.c
     api/ObjectBrandingAPI.c
+    api/ObjectBuyercontractAPI.c
     api/ObjectClonehistoryAPI.c
     api/ObjectCommunicationAPI.c
     api/ObjectCompanyAPI.c
     api/ObjectCorsAPI.c
     api/ObjectDepartmentAPI.c
+    api/ObjectElectronicfundstransferAPI.c
     api/ObjectEmailtypeAPI.c
     api/ObjectEzmaxinvoicingAPI.c
     api/ObjectEzmaxproductAPI.c
@@ -1169,14 +1194,20 @@ set(SRCS
     api/ObjectFranchisebrokerAPI.c
     api/ObjectFranchiseofficeAPI.c
     api/ObjectFranchisereferalincomeAPI.c
+    api/ObjectInscriptionAPI.c
+    api/ObjectInscriptionnotauthenticatedAPI.c
+    api/ObjectInscriptiontempAPI.c
+    api/ObjectInvoiceAPI.c
     api/ObjectLanguageAPI.c
     api/ObjectModulegroupAPI.c
     api/ObjectNotificationsectionAPI.c
     api/ObjectNotificationtestAPI.c
+    api/ObjectOtherincomeAPI.c
     api/ObjectPaymenttermAPI.c
     api/ObjectPeriodAPI.c
     api/ObjectPermissionAPI.c
     api/ObjectPhonetypeAPI.c
+    api/ObjectRejectedoffertopurchaseAPI.c
     api/ObjectSecretquestionAPI.c
     api/ObjectSessionhistoryAPI.c
     api/ObjectSignatureAPI.c
@@ -1243,6 +1274,7 @@ set(HDRS
     model/apikey_request_compound.h
     model/apikey_response.h
     model/apikey_response_compound.h
+    model/attachment_download_v1_response.h
     model/attempt_response.h
     model/attempt_response_compound.h
     model/billingentityexternal_autocomplete_element_response.h
@@ -1286,6 +1318,8 @@ set(HDRS
     model/branding_request_compound.h
     model/branding_response.h
     model/branding_response_compound.h
+    model/buyercontract_get_communication_list_v1_response.h
+    model/buyercontract_get_communication_list_v1_response_m_payload.h
     model/clonehistory_get_list_v1_response.h
     model/clonehistory_get_list_v1_response_m_payload.h
     model/clonehistory_list_element.h
@@ -1319,16 +1353,19 @@ set(HDRS
     model/common_response_redirect_s_secretquestion_text_x.h
     model/common_response_warning.h
     model/common_webhook.h
-    model/communication_get_object_v2_response.h
-    model/communication_get_object_v2_response_m_payload.h
-    model/communication_response.h
-    model/communication_response_compound.h
-    model/communicationattachment_response.h
-    model/communicationattachment_response_compound.h
-    model/communicationexternalrecipient_response.h
-    model/communicationexternalrecipient_response_compound.h
-    model/communicationrecipient_response.h
-    model/communicationrecipient_response_compound.h
+    model/communication_create_object_v1_response_m_payload.h
+    model/communication_request.h
+    model/communication_request_compound.h
+    model/communication_send_v1_request.h
+    model/communication_send_v1_response.h
+    model/communicationattachment_request.h
+    model/communicationattachment_request_compound.h
+    model/communicationexternalrecipient_request.h
+    model/communicationexternalrecipient_request_compound.h
+    model/communicationrecipient_request.h
+    model/communicationrecipient_request_compound.h
+    model/communicationreference_request.h
+    model/communicationreference_request_compound.h
     model/company_autocomplete_element_response.h
     model/company_get_autocomplete_v2_response.h
     model/company_get_autocomplete_v2_response_m_payload.h
@@ -1352,6 +1389,11 @@ set(HDRS
     model/cors_response_compound.h
     model/custom_autocomplete_element_response.h
     model/custom_communication_list_element_response.h
+    model/custom_communicationattachment_request.h
+    model/custom_communicationrecipientsgroup_response.h
+    model/custom_communicationrecipientsrecipient_response.h
+    model/custom_communicationsender_request.h
+    model/custom_communicationsender_response.h
     model/custom_contact_name_response.h
     model/custom_creditcardtransaction_response.h
     model/custom_dropdown_element_request.h
@@ -1391,14 +1433,12 @@ set(HDRS
     model/department_autocomplete_element_response.h
     model/department_get_autocomplete_v2_response.h
     model/department_get_autocomplete_v2_response_m_payload.h
-    model/descriptionstatic_response.h
-    model/descriptionstatic_response_compound.h
+    model/electronicfundstransfer_get_communication_list_v1_response.h
+    model/electronicfundstransfer_get_communication_list_v1_response_m_payload.h
     model/email_request.h
     model/email_request_compound.h
     model/email_response.h
     model/email_response_compound.h
-    model/emailstatic_response.h
-    model/emailstatic_response_compound.h
     model/emailtype_autocomplete_element_response.h
     model/emailtype_get_autocomplete_v2_response.h
     model/emailtype_get_autocomplete_v2_response_m_payload.h
@@ -1580,6 +1620,10 @@ set(HDRS
     model/ezsignfolder_get_communication_count_v1_response_m_payload.h
     model/ezsignfolder_get_communication_list_v1_response.h
     model/ezsignfolder_get_communication_list_v1_response_m_payload.h
+    model/ezsignfolder_get_communicationrecipients_v1_response.h
+    model/ezsignfolder_get_communicationrecipients_v1_response_m_payload.h
+    model/ezsignfolder_get_communicationsenders_v1_response.h
+    model/ezsignfolder_get_communicationsenders_v1_response_m_payload.h
     model/ezsignfolder_get_ezsigndocuments_v1_response.h
     model/ezsignfolder_get_ezsigndocuments_v1_response_m_payload.h
     model/ezsignfolder_get_ezsignfoldersignerassociations_v1_response.h
@@ -1908,7 +1952,6 @@ set(HDRS
     model/field_e_communication_importance.h
     model/field_e_communication_type.h
     model/field_e_communicationexternalrecipient_type.h
-    model/field_e_communicationrecipient_objecttype.h
     model/field_e_communicationrecipient_type.h
     model/field_e_creditcardtype_codename.h
     model/field_e_error_code.h
@@ -1988,6 +2031,14 @@ set(HDRS
     model/global_ezmaxclient_version_v1_response.h
     model/global_ezmaxcustomer_get_configuration_v1_response.h
     model/header_accept_language.h
+    model/inscription_get_communication_list_v1_response.h
+    model/inscription_get_communication_list_v1_response_m_payload.h
+    model/inscriptionnotauthenticated_get_communication_list_v1_response.h
+    model/inscriptionnotauthenticated_get_communication_list_v1_response_m_payload.h
+    model/inscriptiontemp_get_communication_list_v1_response.h
+    model/inscriptiontemp_get_communication_list_v1_response_m_payload.h
+    model/invoice_get_communication_list_v1_response.h
+    model/invoice_get_communication_list_v1_response_m_payload.h
     model/language_autocomplete_element_response.h
     model/language_get_autocomplete_v2_response.h
     model/language_get_autocomplete_v2_response_m_payload.h
@@ -2018,6 +2069,8 @@ set(HDRS
     model/notificationtest_get_elements_v1_response.h
     model/notificationtest_get_elements_v1_response_m_payload.h
     model/notificationtest_response.h
+    model/otherincome_get_communication_list_v1_response.h
+    model/otherincome_get_communication_list_v1_response_m_payload.h
     model/paymentterm_autocomplete_element_response.h
     model/paymentterm_create_object_v1_request.h
     model/paymentterm_create_object_v1_response.h
@@ -2054,11 +2107,11 @@ set(HDRS
     model/phone_request_compound.h
     model/phone_response.h
     model/phone_response_compound.h
-    model/phonestatic_response.h
-    model/phonestatic_response_compound.h
     model/phonetype_autocomplete_element_response.h
     model/phonetype_get_autocomplete_v2_response.h
     model/phonetype_get_autocomplete_v2_response_m_payload.h
+    model/rejectedoffertopurchase_get_communication_list_v1_response.h
+    model/rejectedoffertopurchase_get_communication_list_v1_response_m_payload.h
     model/scim_authentication_scheme.h
     model/scim_email.h
     model/scim_group.h
@@ -2283,14 +2336,17 @@ set(HDRS
     api/ModuleUserAPI.h
     api/ObjectActivesessionAPI.h
     api/ObjectApikeyAPI.h
+    api/ObjectAttachmentAPI.h
     api/ObjectBillingentityexternalAPI.h
     api/ObjectBillingentityinternalAPI.h
     api/ObjectBrandingAPI.h
+    api/ObjectBuyercontractAPI.h
     api/ObjectClonehistoryAPI.h
     api/ObjectCommunicationAPI.h
     api/ObjectCompanyAPI.h
     api/ObjectCorsAPI.h
     api/ObjectDepartmentAPI.h
+    api/ObjectElectronicfundstransferAPI.h
     api/ObjectEmailtypeAPI.h
     api/ObjectEzmaxinvoicingAPI.h
     api/ObjectEzmaxproductAPI.h
@@ -2321,14 +2377,20 @@ set(HDRS
     api/ObjectFranchisebrokerAPI.h
     api/ObjectFranchiseofficeAPI.h
     api/ObjectFranchisereferalincomeAPI.h
+    api/ObjectInscriptionAPI.h
+    api/ObjectInscriptionnotauthenticatedAPI.h
+    api/ObjectInscriptiontempAPI.h
+    api/ObjectInvoiceAPI.h
     api/ObjectLanguageAPI.h
     api/ObjectModulegroupAPI.h
     api/ObjectNotificationsectionAPI.h
     api/ObjectNotificationtestAPI.h
+    api/ObjectOtherincomeAPI.h
     api/ObjectPaymenttermAPI.h
     api/ObjectPeriodAPI.h
     api/ObjectPermissionAPI.h
     api/ObjectPhonetypeAPI.h
+    api/ObjectRejectedoffertopurchaseAPI.h
     api/ObjectSecretquestionAPI.h
     api/ObjectSessionhistoryAPI.h
     api/ObjectSignatureAPI.h
@@ -2437,14 +2499,17 @@ set(HDRS "")
 #    unit-tests/manual-ModuleUserAPI.c
 #    unit-tests/manual-ObjectActivesessionAPI.c
 #    unit-tests/manual-ObjectApikeyAPI.c
+#    unit-tests/manual-ObjectAttachmentAPI.c
 #    unit-tests/manual-ObjectBillingentityexternalAPI.c
 #    unit-tests/manual-ObjectBillingentityinternalAPI.c
 #    unit-tests/manual-ObjectBrandingAPI.c
+#    unit-tests/manual-ObjectBuyercontractAPI.c
 #    unit-tests/manual-ObjectClonehistoryAPI.c
 #    unit-tests/manual-ObjectCommunicationAPI.c
 #    unit-tests/manual-ObjectCompanyAPI.c
 #    unit-tests/manual-ObjectCorsAPI.c
 #    unit-tests/manual-ObjectDepartmentAPI.c
+#    unit-tests/manual-ObjectElectronicfundstransferAPI.c
 #    unit-tests/manual-ObjectEmailtypeAPI.c
 #    unit-tests/manual-ObjectEzmaxinvoicingAPI.c
 #    unit-tests/manual-ObjectEzmaxproductAPI.c
@@ -2475,14 +2540,20 @@ set(HDRS "")
 #    unit-tests/manual-ObjectFranchisebrokerAPI.c
 #    unit-tests/manual-ObjectFranchiseofficeAPI.c
 #    unit-tests/manual-ObjectFranchisereferalincomeAPI.c
+#    unit-tests/manual-ObjectInscriptionAPI.c
+#    unit-tests/manual-ObjectInscriptionnotauthenticatedAPI.c
+#    unit-tests/manual-ObjectInscriptiontempAPI.c
+#    unit-tests/manual-ObjectInvoiceAPI.c
 #    unit-tests/manual-ObjectLanguageAPI.c
 #    unit-tests/manual-ObjectModulegroupAPI.c
 #    unit-tests/manual-ObjectNotificationsectionAPI.c
 #    unit-tests/manual-ObjectNotificationtestAPI.c
+#    unit-tests/manual-ObjectOtherincomeAPI.c
 #    unit-tests/manual-ObjectPaymenttermAPI.c
 #    unit-tests/manual-ObjectPeriodAPI.c
 #    unit-tests/manual-ObjectPermissionAPI.c
 #    unit-tests/manual-ObjectPhonetypeAPI.c
+#    unit-tests/manual-ObjectRejectedoffertopurchaseAPI.c
 #    unit-tests/manual-ObjectSecretquestionAPI.c
 #    unit-tests/manual-ObjectSessionhistoryAPI.c
 #    unit-tests/manual-ObjectSignatureAPI.c
