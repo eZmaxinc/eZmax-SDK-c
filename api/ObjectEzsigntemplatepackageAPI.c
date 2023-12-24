@@ -259,7 +259,7 @@ end:
 // The endpoint allows to create one or many elements at once.
 //
 ezsigntemplatepackage_create_object_v1_response_t*
-ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageCreateObjectV1(apiClient_t *apiClient, ezsigntemplatepackage_create_object_v1_request_t * ezsigntemplatepackage_create_object_v1_request )
+ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageCreateObjectV1(apiClient_t *apiClient, ezsigntemplatepackage_create_object_v1_request_t *ezsigntemplatepackage_create_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -337,7 +337,7 @@ end:
 // 
 //
 ezsigntemplatepackage_delete_object_v1_response_t*
-ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageDeleteObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatepackageID )
+ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatepackageID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -361,7 +361,7 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageDeleteObjectV1(apiClient_t *
     snprintf(localVarToReplace_pkiEzsigntemplatepackageID, sizeOfPathParams_pkiEzsigntemplatepackageID, "{%s}", "pkiEzsigntemplatepackageID");
 
     char localVarBuff_pkiEzsigntemplatepackageID[256];
-    intToStr(localVarBuff_pkiEzsigntemplatepackageID, pkiEzsigntemplatepackageID);
+    intToStr(localVarBuff_pkiEzsigntemplatepackageID, *pkiEzsigntemplatepackageID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatepackageID, localVarBuff_pkiEzsigntemplatepackageID);
 
@@ -419,7 +419,7 @@ end:
 // Using this endpoint, you can edit multiple Ezsigntemplatepackagesigners at the same time.
 //
 ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_t*
-ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditEzsigntemplatepackagesignersV1(apiClient_t *apiClient, int pkiEzsigntemplatepackageID , ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_request_t * ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_request )
+ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditEzsigntemplatepackagesignersV1(apiClient_t *apiClient, int *pkiEzsigntemplatepackageID, ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_request_t *ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -443,7 +443,7 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditEzsigntemplatepackagesig
     snprintf(localVarToReplace_pkiEzsigntemplatepackageID, sizeOfPathParams_pkiEzsigntemplatepackageID, "{%s}", "pkiEzsigntemplatepackageID");
 
     char localVarBuff_pkiEzsigntemplatepackageID[256];
-    intToStr(localVarBuff_pkiEzsigntemplatepackageID, pkiEzsigntemplatepackageID);
+    intToStr(localVarBuff_pkiEzsigntemplatepackageID, *pkiEzsigntemplatepackageID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatepackageID, localVarBuff_pkiEzsigntemplatepackageID);
 
@@ -520,7 +520,7 @@ end:
 // 
 //
 ezsigntemplatepackage_edit_object_v1_response_t*
-ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatepackageID , ezsigntemplatepackage_edit_object_v1_request_t * ezsigntemplatepackage_edit_object_v1_request )
+ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatepackageID, ezsigntemplatepackage_edit_object_v1_request_t *ezsigntemplatepackage_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -544,7 +544,7 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditObjectV1(apiClient_t *ap
     snprintf(localVarToReplace_pkiEzsigntemplatepackageID, sizeOfPathParams_pkiEzsigntemplatepackageID, "{%s}", "pkiEzsigntemplatepackageID");
 
     char localVarBuff_pkiEzsigntemplatepackageID[256];
-    intToStr(localVarBuff_pkiEzsigntemplatepackageID, pkiEzsigntemplatepackageID);
+    intToStr(localVarBuff_pkiEzsigntemplatepackageID, *pkiEzsigntemplatepackageID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatepackageID, localVarBuff_pkiEzsigntemplatepackageID);
 
@@ -621,7 +621,7 @@ end:
 // Get the list of Ezsigntemplatepackage to be used in a dropdown or autocomplete control.
 //
 ezsigntemplatepackage_get_autocomplete_v2_response_t*
-ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_sSelector_e sSelector , ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language )
+ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -669,7 +669,7 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV2(apiClient_
         keyQuery_eFilterActive = strdup("eFilterActive");
         valueQuery_eFilterActive = (eFilterActive);
         keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(ezsigntemplatepackageGetAutocompleteV2_EFILTERACTIVE_ToString(
-		valueQuery_eFilterActive)));
+        valueQuery_eFilterActive)));
         list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
     }
 
@@ -757,7 +757,7 @@ end:
 // Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eEzsigntemplatepackageType | Company<br>Team<br>User<br>Usergroup |
 //
 ezsigntemplatepackage_get_list_v1_response_t*
-ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplatepackageGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter )
+ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplatepackageGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -795,7 +795,7 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetListV1(apiClient_t *apiCl
         keyQuery_eOrderBy = strdup("eOrderBy");
         valueQuery_eOrderBy = (eOrderBy);
         keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, (void *)strdup(ezsigntemplatepackageGetListV1_EORDERBY_ToString(
-		valueQuery_eOrderBy)));
+        valueQuery_eOrderBy)));
         list_addElement(localVarQueryParameters,keyPairQuery_eOrderBy);
     }
 
@@ -803,11 +803,11 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetListV1(apiClient_t *apiCl
     char *keyQuery_iRowMax = NULL;
     char * valueQuery_iRowMax = NULL;
     keyValuePair_t *keyPairQuery_iRowMax = 0;
-    if (1) // Always send integer parameters to the API server
+    if (iRowMax)
     {
         keyQuery_iRowMax = strdup("iRowMax");
         valueQuery_iRowMax = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_iRowMax, MAX_NUMBER_LENGTH, "%d", iRowMax);
+        snprintf(valueQuery_iRowMax, MAX_NUMBER_LENGTH, "%d", *iRowMax);
         keyPairQuery_iRowMax = keyValuePair_create(keyQuery_iRowMax, valueQuery_iRowMax);
         list_addElement(localVarQueryParameters,keyPairQuery_iRowMax);
     }
@@ -816,11 +816,11 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetListV1(apiClient_t *apiCl
     char *keyQuery_iRowOffset = NULL;
     char * valueQuery_iRowOffset = NULL;
     keyValuePair_t *keyPairQuery_iRowOffset = 0;
-    if (1) // Always send integer parameters to the API server
+    if (iRowOffset)
     {
         keyQuery_iRowOffset = strdup("iRowOffset");
         valueQuery_iRowOffset = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_iRowOffset, MAX_NUMBER_LENGTH, "%d", iRowOffset);
+        snprintf(valueQuery_iRowOffset, MAX_NUMBER_LENGTH, "%d", *iRowOffset);
         keyPairQuery_iRowOffset = keyValuePair_create(keyQuery_iRowOffset, valueQuery_iRowOffset);
         list_addElement(localVarQueryParameters,keyPairQuery_iRowOffset);
     }
@@ -937,7 +937,7 @@ end:
 // 
 //
 ezsigntemplatepackage_get_object_v2_response_t*
-ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetObjectV2(apiClient_t *apiClient, int pkiEzsigntemplatepackageID )
+ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplatepackageID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -961,7 +961,7 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetObjectV2(apiClient_t *api
     snprintf(localVarToReplace_pkiEzsigntemplatepackageID, sizeOfPathParams_pkiEzsigntemplatepackageID, "{%s}", "pkiEzsigntemplatepackageID");
 
     char localVarBuff_pkiEzsigntemplatepackageID[256];
-    intToStr(localVarBuff_pkiEzsigntemplatepackageID, pkiEzsigntemplatepackageID);
+    intToStr(localVarBuff_pkiEzsigntemplatepackageID, *pkiEzsigntemplatepackageID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatepackageID, localVarBuff_pkiEzsigntemplatepackageID);
 

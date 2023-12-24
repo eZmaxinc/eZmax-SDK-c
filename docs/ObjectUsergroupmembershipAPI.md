@@ -54,7 +54,7 @@ usergroupmembership_delete_object_v1_response_t* ObjectUsergroupmembershipAPI_us
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUsergroupmembershipID** | **int** |  | 
+**pkiUsergroupmembershipID** | **int \*** |  | 
 
 ### Return type
 
@@ -85,7 +85,7 @@ usergroupmembership_edit_object_v1_response_t* ObjectUsergroupmembershipAPI_user
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUsergroupmembershipID** | **int** |  | 
+**pkiUsergroupmembershipID** | **int \*** |  | 
 **usergroupmembership_edit_object_v1_request** | **[usergroupmembership_edit_object_v1_request_t](usergroupmembership_edit_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -117,7 +117,7 @@ usergroupmembership_get_object_v2_response_t* ObjectUsergroupmembershipAPI_userg
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUsergroupmembershipID** | **int** |  | 
+**pkiUsergroupmembershipID** | **int \*** |  | 
 
 ### Return type
 

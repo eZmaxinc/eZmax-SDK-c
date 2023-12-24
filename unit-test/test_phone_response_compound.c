@@ -26,7 +26,8 @@ phone_response_compound_t* instantiate_phone_response_compound(int include_optio
       1,
       ezmax_api_definition__full_phone_response_compound__"Local",
       "+15149901516",
-      "123"
+      "123",
+      true
     );
   } else {
     phone_response_compound = phone_response_compound_create(
@@ -34,7 +35,8 @@ phone_response_compound_t* instantiate_phone_response_compound(int include_optio
       1,
       ezmax_api_definition__full_phone_response_compound__"Local",
       "+15149901516",
-      "123"
+      "123",
+      true
     );
   }
 

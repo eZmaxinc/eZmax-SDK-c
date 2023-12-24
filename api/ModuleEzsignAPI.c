@@ -80,7 +80,7 @@ end:
 // Retrieve Ezsigntemplates and Ezsigntemplatepackages that can be imported in a Ezsignfolder
 //
 ezsign_suggest_templates_v1_response_t*
-ModuleEzsignAPI_ezsignSuggestTemplatesV1(apiClient_t *apiClient, int fkiEzsignfoldertypeID )
+ModuleEzsignAPI_ezsignSuggestTemplatesV1(apiClient_t *apiClient, int *fkiEzsignfoldertypeID)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
@@ -101,11 +101,11 @@ ModuleEzsignAPI_ezsignSuggestTemplatesV1(apiClient_t *apiClient, int fkiEzsignfo
     char *keyQuery_fkiEzsignfoldertypeID = NULL;
     char * valueQuery_fkiEzsignfoldertypeID = NULL;
     keyValuePair_t *keyPairQuery_fkiEzsignfoldertypeID = 0;
-    if (1) // Always send integer parameters to the API server
+    if (fkiEzsignfoldertypeID)
     {
         keyQuery_fkiEzsignfoldertypeID = strdup("fkiEzsignfoldertypeID");
         valueQuery_fkiEzsignfoldertypeID = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_fkiEzsignfoldertypeID, MAX_NUMBER_LENGTH, "%d", fkiEzsignfoldertypeID);
+        snprintf(valueQuery_fkiEzsignfoldertypeID, MAX_NUMBER_LENGTH, "%d", *fkiEzsignfoldertypeID);
         keyPairQuery_fkiEzsignfoldertypeID = keyValuePair_create(keyQuery_fkiEzsignfoldertypeID, valueQuery_fkiEzsignfoldertypeID);
         list_addElement(localVarQueryParameters,keyPairQuery_fkiEzsignfoldertypeID);
     }

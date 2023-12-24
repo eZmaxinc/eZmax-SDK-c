@@ -29,7 +29,7 @@ typedef struct ezsignsignature_response_compound_t ezsignsignature_response_comp
 
 // Enum  for ezsignsignature_response_compound
 
-typedef enum  { ezmax_api_definition__full_ezsignsignature_response_compound__NULL = 0, ezmax_api_definition__full_ezsignsignature_response_compound__Acknowledgement, ezmax_api_definition__full_ezsignsignature_response_compound__City, ezmax_api_definition__full_ezsignsignature_response_compound__Handwritten, ezmax_api_definition__full_ezsignsignature_response_compound__Initials, ezmax_api_definition__full_ezsignsignature_response_compound__Name, ezmax_api_definition__full_ezsignsignature_response_compound__Attachments, ezmax_api_definition__full_ezsignsignature_response_compound__AttachmentsConfirmation, ezmax_api_definition__full_ezsignsignature_response_compound__FieldText, ezmax_api_definition__full_ezsignsignature_response_compound__FieldTextarea } ezmax_api_definition__full_ezsignsignature_response_compound__e;
+typedef enum  { ezmax_api_definition__full_ezsignsignature_response_compound__NULL = 0, ezmax_api_definition__full_ezsignsignature_response_compound__Acknowledgement, ezmax_api_definition__full_ezsignsignature_response_compound__City, ezmax_api_definition__full_ezsignsignature_response_compound__Handwritten, ezmax_api_definition__full_ezsignsignature_response_compound__Initials, ezmax_api_definition__full_ezsignsignature_response_compound__Name, ezmax_api_definition__full_ezsignsignature_response_compound__NameReason, ezmax_api_definition__full_ezsignsignature_response_compound__Attachments, ezmax_api_definition__full_ezsignsignature_response_compound__AttachmentsConfirmation, ezmax_api_definition__full_ezsignsignature_response_compound__FieldText, ezmax_api_definition__full_ezsignsignature_response_compound__FieldTextarea } ezmax_api_definition__full_ezsignsignature_response_compound__e;
 
 char* ezsignsignature_response_compound_e_ezsignsignature_type_ToString(ezmax_api_definition__full_ezsignsignature_response_compound__e e_ezsignsignature_type);
 
@@ -81,6 +81,8 @@ typedef struct ezsignsignature_response_compound_t {
     int pki_ezsignsignature_id; //numeric
     int fki_ezsigndocument_id; //numeric
     int fki_ezsignfoldersignerassociation_id; //numeric
+    int fki_ezsignsigningreason_id; //numeric
+    char *s_ezsignsigningreason_description_x; // string
     int i_ezsignpage_pagenumber; //numeric
     int i_ezsignsignature_x; //numeric
     int i_ezsignsignature_y; //numeric
@@ -117,6 +119,8 @@ ezsignsignature_response_compound_t *ezsignsignature_response_compound_create(
     int pki_ezsignsignature_id,
     int fki_ezsigndocument_id,
     int fki_ezsignfoldersignerassociation_id,
+    int fki_ezsignsigningreason_id,
+    char *s_ezsignsigningreason_description_x,
     int i_ezsignpage_pagenumber,
     int i_ezsignsignature_x,
     int i_ezsignsignature_y,

@@ -17,7 +17,7 @@
 // The endpoint allows to create one or many elements at once.  The array can contain simple (Just the object) or compound (The object and its child) objects.  Creating compound elements allows to reduce the multiple requests to create all child objects.
 //
 ezsignsignature_create_object_v1_response_t*
-ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV1(apiClient_t *apiClient, list_t * ezsignsignature_create_object_v1_request )
+ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV1(apiClient_t *apiClient, list_t *ezsignsignature_create_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -123,7 +123,7 @@ end:
 // The endpoint allows to create one or many elements at once.
 //
 ezsignsignature_create_object_v2_response_t*
-ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV2(apiClient_t *apiClient, ezsignsignature_create_object_v2_request_t * ezsignsignature_create_object_v2_request )
+ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV2(apiClient_t *apiClient, ezsignsignature_create_object_v2_request_t *ezsignsignature_create_object_v2_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -201,7 +201,7 @@ end:
 // 
 //
 ezsignsignature_delete_object_v1_response_t*
-ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1(apiClient_t *apiClient, int pkiEzsignsignatureID )
+ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignsignatureID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -225,7 +225,7 @@ ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1(apiClient_t *apiClient, i
     snprintf(localVarToReplace_pkiEzsignsignatureID, sizeOfPathParams_pkiEzsignsignatureID, "{%s}", "pkiEzsignsignatureID");
 
     char localVarBuff_pkiEzsignsignatureID[256];
-    intToStr(localVarBuff_pkiEzsignsignatureID, pkiEzsignsignatureID);
+    intToStr(localVarBuff_pkiEzsignsignatureID, *pkiEzsignsignatureID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignsignatureID, localVarBuff_pkiEzsignsignatureID);
 
@@ -287,7 +287,7 @@ end:
 // 
 //
 ezsignsignature_edit_object_v1_response_t*
-ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV1(apiClient_t *apiClient, int pkiEzsignsignatureID , ezsignsignature_edit_object_v1_request_t * ezsignsignature_edit_object_v1_request )
+ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV1(apiClient_t *apiClient, int *pkiEzsignsignatureID, ezsignsignature_edit_object_v1_request_t *ezsignsignature_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -311,7 +311,7 @@ ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV1(apiClient_t *apiClient, int
     snprintf(localVarToReplace_pkiEzsignsignatureID, sizeOfPathParams_pkiEzsignsignatureID, "{%s}", "pkiEzsignsignatureID");
 
     char localVarBuff_pkiEzsignsignatureID[256];
-    intToStr(localVarBuff_pkiEzsignsignatureID, pkiEzsignsignatureID);
+    intToStr(localVarBuff_pkiEzsignsignatureID, *pkiEzsignsignatureID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignsignatureID, localVarBuff_pkiEzsignsignatureID);
 
@@ -386,7 +386,7 @@ end:
 // Retrieve an existing Ezsignsignature's Ezsignsignatureattachments
 //
 ezsignsignature_get_ezsignsignatureattachment_v1_response_t*
-ObjectEzsignsignatureAPI_ezsignsignatureGetEzsignsignatureattachmentV1(apiClient_t *apiClient, int pkiEzsignsignatureID )
+ObjectEzsignsignatureAPI_ezsignsignatureGetEzsignsignatureattachmentV1(apiClient_t *apiClient, int *pkiEzsignsignatureID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -410,7 +410,7 @@ ObjectEzsignsignatureAPI_ezsignsignatureGetEzsignsignatureattachmentV1(apiClient
     snprintf(localVarToReplace_pkiEzsignsignatureID, sizeOfPathParams_pkiEzsignsignatureID, "{%s}", "pkiEzsignsignatureID");
 
     char localVarBuff_pkiEzsignsignatureID[256];
-    intToStr(localVarBuff_pkiEzsignsignatureID, pkiEzsignsignatureID);
+    intToStr(localVarBuff_pkiEzsignsignatureID, *pkiEzsignsignatureID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignsignatureID, localVarBuff_pkiEzsignsignatureID);
 
@@ -535,7 +535,7 @@ end:
 // 
 //
 ezsignsignature_get_object_v2_response_t*
-ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV2(apiClient_t *apiClient, int pkiEzsignsignatureID )
+ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV2(apiClient_t *apiClient, int *pkiEzsignsignatureID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -559,7 +559,7 @@ ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV2(apiClient_t *apiClient, int 
     snprintf(localVarToReplace_pkiEzsignsignatureID, sizeOfPathParams_pkiEzsignsignatureID, "{%s}", "pkiEzsignsignatureID");
 
     char localVarBuff_pkiEzsignsignatureID[256];
-    intToStr(localVarBuff_pkiEzsignsignatureID, pkiEzsignsignatureID);
+    intToStr(localVarBuff_pkiEzsignsignatureID, *pkiEzsignsignatureID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignsignatureID, localVarBuff_pkiEzsignsignatureID);
 
@@ -617,7 +617,7 @@ end:
 // 
 //
 ezsignsignature_sign_v1_response_t*
-ObjectEzsignsignatureAPI_ezsignsignatureSignV1(apiClient_t *apiClient, int pkiEzsignsignatureID , ezsignsignature_sign_v1_request_t * ezsignsignature_sign_v1_request )
+ObjectEzsignsignatureAPI_ezsignsignatureSignV1(apiClient_t *apiClient, int *pkiEzsignsignatureID, ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -641,7 +641,7 @@ ObjectEzsignsignatureAPI_ezsignsignatureSignV1(apiClient_t *apiClient, int pkiEz
     snprintf(localVarToReplace_pkiEzsignsignatureID, sizeOfPathParams_pkiEzsignsignatureID, "{%s}", "pkiEzsignsignatureID");
 
     char localVarBuff_pkiEzsignsignatureID[256];
-    intToStr(localVarBuff_pkiEzsignsignatureID, pkiEzsignsignatureID);
+    intToStr(localVarBuff_pkiEzsignsignatureID, *pkiEzsignsignatureID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignsignatureID, localVarBuff_pkiEzsignsignatureID);
 

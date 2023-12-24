@@ -6,7 +6,7 @@
 
 char* e_communicationrecipient_typecommunicationrecipient_request_compound_ToString(ezmax_api_definition__full_communicationrecipient_request_compound__e e_communicationrecipient_type) {
     char* e_communicationrecipient_typeArray[] =  { "NULL", "To", "Cc", "Bcc" };
-	return e_communicationrecipient_typeArray[e_communicationrecipient_type];
+    return e_communicationrecipient_typeArray[e_communicationrecipient_type];
 }
 
 ezmax_api_definition__full_communicationrecipient_request_compound__e e_communicationrecipient_typecommunicationrecipient_request_compound_FromString(char* e_communicationrecipient_type){
@@ -25,8 +25,8 @@ ezmax_api_definition__full_communicationrecipient_request_compound__e e_communic
 communicationrecipient_request_compound_t *communicationrecipient_request_compound_create(
     int pki_communicationrecipient_id,
     int fki_agent_id,
-    int fki_agentincorporation_id,
     int fki_broker_id,
+    int fki_contact_id,
     int fki_customer_id,
     int fki_employee_id,
     int fki_assistant_id,
@@ -35,6 +35,8 @@ communicationrecipient_request_compound_t *communicationrecipient_request_compou
     int fki_notary_id,
     int fki_supplier_id,
     int fki_user_id,
+    int fki_mailboxshared_id,
+    int fki_phonelineshared_id,
     field_e_communicationrecipient_type_t *e_communicationrecipient_type
     ) {
     communicationrecipient_request_compound_t *communicationrecipient_request_compound_local_var = malloc(sizeof(communicationrecipient_request_compound_t));
@@ -43,8 +45,8 @@ communicationrecipient_request_compound_t *communicationrecipient_request_compou
     }
     communicationrecipient_request_compound_local_var->pki_communicationrecipient_id = pki_communicationrecipient_id;
     communicationrecipient_request_compound_local_var->fki_agent_id = fki_agent_id;
-    communicationrecipient_request_compound_local_var->fki_agentincorporation_id = fki_agentincorporation_id;
     communicationrecipient_request_compound_local_var->fki_broker_id = fki_broker_id;
+    communicationrecipient_request_compound_local_var->fki_contact_id = fki_contact_id;
     communicationrecipient_request_compound_local_var->fki_customer_id = fki_customer_id;
     communicationrecipient_request_compound_local_var->fki_employee_id = fki_employee_id;
     communicationrecipient_request_compound_local_var->fki_assistant_id = fki_assistant_id;
@@ -53,6 +55,8 @@ communicationrecipient_request_compound_t *communicationrecipient_request_compou
     communicationrecipient_request_compound_local_var->fki_notary_id = fki_notary_id;
     communicationrecipient_request_compound_local_var->fki_supplier_id = fki_supplier_id;
     communicationrecipient_request_compound_local_var->fki_user_id = fki_user_id;
+    communicationrecipient_request_compound_local_var->fki_mailboxshared_id = fki_mailboxshared_id;
+    communicationrecipient_request_compound_local_var->fki_phonelineshared_id = fki_phonelineshared_id;
     communicationrecipient_request_compound_local_var->e_communicationrecipient_type = e_communicationrecipient_type;
 
     return communicationrecipient_request_compound_local_var;
@@ -90,17 +94,17 @@ cJSON *communicationrecipient_request_compound_convertToJSON(communicationrecipi
     }
 
 
-    // communicationrecipient_request_compound->fki_agentincorporation_id
-    if(communicationrecipient_request_compound->fki_agentincorporation_id) {
-    if(cJSON_AddNumberToObject(item, "fkiAgentincorporationID", communicationrecipient_request_compound->fki_agentincorporation_id) == NULL) {
+    // communicationrecipient_request_compound->fki_broker_id
+    if(communicationrecipient_request_compound->fki_broker_id) {
+    if(cJSON_AddNumberToObject(item, "fkiBrokerID", communicationrecipient_request_compound->fki_broker_id) == NULL) {
     goto fail; //Numeric
     }
     }
 
 
-    // communicationrecipient_request_compound->fki_broker_id
-    if(communicationrecipient_request_compound->fki_broker_id) {
-    if(cJSON_AddNumberToObject(item, "fkiBrokerID", communicationrecipient_request_compound->fki_broker_id) == NULL) {
+    // communicationrecipient_request_compound->fki_contact_id
+    if(communicationrecipient_request_compound->fki_contact_id) {
+    if(cJSON_AddNumberToObject(item, "fkiContactID", communicationrecipient_request_compound->fki_contact_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -170,6 +174,22 @@ cJSON *communicationrecipient_request_compound_convertToJSON(communicationrecipi
     }
 
 
+    // communicationrecipient_request_compound->fki_mailboxshared_id
+    if(communicationrecipient_request_compound->fki_mailboxshared_id) {
+    if(cJSON_AddNumberToObject(item, "fkiMailboxsharedID", communicationrecipient_request_compound->fki_mailboxshared_id) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // communicationrecipient_request_compound->fki_phonelineshared_id
+    if(communicationrecipient_request_compound->fki_phonelineshared_id) {
+    if(cJSON_AddNumberToObject(item, "fkiPhonelinesharedID", communicationrecipient_request_compound->fki_phonelineshared_id) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
     // communicationrecipient_request_compound->e_communicationrecipient_type
     if(communicationrecipient_request_compound->e_communicationrecipient_type != ezmax_api_definition__full_communicationrecipient_request_compound__NULL) {
     cJSON *e_communicationrecipient_type_local_JSON = field_e_communicationrecipient_type_convertToJSON(communicationrecipient_request_compound->e_communicationrecipient_type);
@@ -215,19 +235,19 @@ communicationrecipient_request_compound_t *communicationrecipient_request_compou
     }
     }
 
-    // communicationrecipient_request_compound->fki_agentincorporation_id
-    cJSON *fki_agentincorporation_id = cJSON_GetObjectItemCaseSensitive(communicationrecipient_request_compoundJSON, "fkiAgentincorporationID");
-    if (fki_agentincorporation_id) { 
-    if(!cJSON_IsNumber(fki_agentincorporation_id))
+    // communicationrecipient_request_compound->fki_broker_id
+    cJSON *fki_broker_id = cJSON_GetObjectItemCaseSensitive(communicationrecipient_request_compoundJSON, "fkiBrokerID");
+    if (fki_broker_id) { 
+    if(!cJSON_IsNumber(fki_broker_id))
     {
     goto end; //Numeric
     }
     }
 
-    // communicationrecipient_request_compound->fki_broker_id
-    cJSON *fki_broker_id = cJSON_GetObjectItemCaseSensitive(communicationrecipient_request_compoundJSON, "fkiBrokerID");
-    if (fki_broker_id) { 
-    if(!cJSON_IsNumber(fki_broker_id))
+    // communicationrecipient_request_compound->fki_contact_id
+    cJSON *fki_contact_id = cJSON_GetObjectItemCaseSensitive(communicationrecipient_request_compoundJSON, "fkiContactID");
+    if (fki_contact_id) { 
+    if(!cJSON_IsNumber(fki_contact_id))
     {
     goto end; //Numeric
     }
@@ -305,6 +325,24 @@ communicationrecipient_request_compound_t *communicationrecipient_request_compou
     }
     }
 
+    // communicationrecipient_request_compound->fki_mailboxshared_id
+    cJSON *fki_mailboxshared_id = cJSON_GetObjectItemCaseSensitive(communicationrecipient_request_compoundJSON, "fkiMailboxsharedID");
+    if (fki_mailboxshared_id) { 
+    if(!cJSON_IsNumber(fki_mailboxshared_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
+    // communicationrecipient_request_compound->fki_phonelineshared_id
+    cJSON *fki_phonelineshared_id = cJSON_GetObjectItemCaseSensitive(communicationrecipient_request_compoundJSON, "fkiPhonelinesharedID");
+    if (fki_phonelineshared_id) { 
+    if(!cJSON_IsNumber(fki_phonelineshared_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
     // communicationrecipient_request_compound->e_communicationrecipient_type
     cJSON *e_communicationrecipient_type = cJSON_GetObjectItemCaseSensitive(communicationrecipient_request_compoundJSON, "eCommunicationrecipientType");
     if (e_communicationrecipient_type) { 
@@ -315,8 +353,8 @@ communicationrecipient_request_compound_t *communicationrecipient_request_compou
     communicationrecipient_request_compound_local_var = communicationrecipient_request_compound_create (
         pki_communicationrecipient_id ? pki_communicationrecipient_id->valuedouble : 0,
         fki_agent_id ? fki_agent_id->valuedouble : 0,
-        fki_agentincorporation_id ? fki_agentincorporation_id->valuedouble : 0,
         fki_broker_id ? fki_broker_id->valuedouble : 0,
+        fki_contact_id ? fki_contact_id->valuedouble : 0,
         fki_customer_id ? fki_customer_id->valuedouble : 0,
         fki_employee_id ? fki_employee_id->valuedouble : 0,
         fki_assistant_id ? fki_assistant_id->valuedouble : 0,
@@ -325,6 +363,8 @@ communicationrecipient_request_compound_t *communicationrecipient_request_compou
         fki_notary_id ? fki_notary_id->valuedouble : 0,
         fki_supplier_id ? fki_supplier_id->valuedouble : 0,
         fki_user_id ? fki_user_id->valuedouble : 0,
+        fki_mailboxshared_id ? fki_mailboxshared_id->valuedouble : 0,
+        fki_phonelineshared_id ? fki_phonelineshared_id->valuedouble : 0,
         e_communicationrecipient_type ? e_communicationrecipient_type_local_nonprim : NULL
         );
 

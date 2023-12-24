@@ -28,7 +28,7 @@ ezsignbulksend_create_ezsignbulksendtransmission_v1_response_t* ObjectEzsignbulk
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignbulksendID** | **int** |  | 
+**pkiEzsignbulksendID** | **int \*** |  | 
 **ezsignbulksend_create_ezsignbulksendtransmission_v1_request** | **[ezsignbulksend_create_ezsignbulksendtransmission_v1_request_t](ezsignbulksend_create_ezsignbulksendtransmission_v1_request.md) \*** |  | 
 
 ### Return type
@@ -91,7 +91,7 @@ ezsignbulksend_delete_object_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulkse
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignbulksendID** | **int** |  | 
+**pkiEzsignbulksendID** | **int \*** |  | 
 
 ### Return type
 
@@ -122,7 +122,7 @@ ezsignbulksend_edit_object_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulksend
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignbulksendID** | **int** |  | 
+**pkiEzsignbulksendID** | **int \*** |  | 
 **ezsignbulksend_edit_object_v1_request** | **[ezsignbulksend_edit_object_v1_request_t](ezsignbulksend_edit_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -154,7 +154,7 @@ char* ObjectEzsignbulksendAPI_ezsignbulksendGetCsvTemplateV1(apiClient_t *apiCli
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignbulksendID** | **int** |  | 
+**pkiEzsignbulksendID** | **int \*** |  | 
 **eCsvSeparator** | **ezmax_api_definition__full_ezsignbulksendGetCsvTemplateV1_eCsvSeparator_e** | Separator that will be used to separate fields | 
 
 ### Return type
@@ -187,7 +187,7 @@ ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_t* ObjectEzsignbulkse
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignbulksendID** | **int** |  | 
+**pkiEzsignbulksendID** | **int \*** |  | 
 
 ### Return type
 
@@ -218,7 +218,7 @@ ezsignbulksend_get_ezsignsignatures_automatic_v1_response_t* ObjectEzsignbulksen
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignbulksendID** | **int** |  | 
+**pkiEzsignbulksendID** | **int \*** |  | 
 
 ### Return type
 
@@ -249,7 +249,7 @@ ezsignbulksend_get_forms_data_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulks
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignbulksendID** | **int** |  | 
+**pkiEzsignbulksendID** | **int \*** |  | 
 
 ### Return type
 
@@ -281,8 +281,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **eOrderBy** | **ezmax_api_definition__full_ezsignbulksendGetListV1_eOrderBy_e** | Specify how you want the results to be sorted | [optional] 
-**iRowMax** | **int** |  | [optional] 
-**iRowOffset** | **int** |  | [optional] [default to 0]
+**iRowMax** | **int \*** |  | [optional] 
+**iRowOffset** | **int \*** |  | [optional] [default to 0]
 **Accept_Language** | **header_accept_language_e** |  | [optional] 
 **sFilter** | **char \*** |  | [optional] 
 
@@ -315,7 +315,7 @@ ezsignbulksend_get_object_v2_response_t* ObjectEzsignbulksendAPI_ezsignbulksendG
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignbulksendID** | **int** |  | 
+**pkiEzsignbulksendID** | **int \*** |  | 
 
 ### Return type
 
@@ -344,7 +344,7 @@ ezsignbulksend_reorder_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulksendReor
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignbulksendID** | **int** |  | 
+**pkiEzsignbulksendID** | **int \*** |  | 
 **ezsignbulksend_reorder_v1_request** | **[ezsignbulksend_reorder_v1_request_t](ezsignbulksend_reorder_v1_request.md) \*** |  | 
 
 ### Return type

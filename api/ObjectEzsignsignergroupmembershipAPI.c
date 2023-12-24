@@ -17,7 +17,7 @@
 // The endpoint allows to create one or many elements at once.
 //
 ezsignsignergroupmembership_create_object_v1_response_t*
-ObjectEzsignsignergroupmembershipAPI_ezsignsignergroupmembershipCreateObjectV1(apiClient_t *apiClient, ezsignsignergroupmembership_create_object_v1_request_t * ezsignsignergroupmembership_create_object_v1_request )
+ObjectEzsignsignergroupmembershipAPI_ezsignsignergroupmembershipCreateObjectV1(apiClient_t *apiClient, ezsignsignergroupmembership_create_object_v1_request_t *ezsignsignergroupmembership_create_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -95,7 +95,7 @@ end:
 // 
 //
 ezsignsignergroupmembership_delete_object_v1_response_t*
-ObjectEzsignsignergroupmembershipAPI_ezsignsignergroupmembershipDeleteObjectV1(apiClient_t *apiClient, int pkiEzsignsignergroupmembershipID )
+ObjectEzsignsignergroupmembershipAPI_ezsignsignergroupmembershipDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignsignergroupmembershipID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -119,7 +119,7 @@ ObjectEzsignsignergroupmembershipAPI_ezsignsignergroupmembershipDeleteObjectV1(a
     snprintf(localVarToReplace_pkiEzsignsignergroupmembershipID, sizeOfPathParams_pkiEzsignsignergroupmembershipID, "{%s}", "pkiEzsignsignergroupmembershipID");
 
     char localVarBuff_pkiEzsignsignergroupmembershipID[256];
-    intToStr(localVarBuff_pkiEzsignsignergroupmembershipID, pkiEzsignsignergroupmembershipID);
+    intToStr(localVarBuff_pkiEzsignsignergroupmembershipID, *pkiEzsignsignergroupmembershipID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignsignergroupmembershipID, localVarBuff_pkiEzsignsignergroupmembershipID);
 
@@ -177,7 +177,7 @@ end:
 // 
 //
 ezsignsignergroupmembership_get_object_v2_response_t*
-ObjectEzsignsignergroupmembershipAPI_ezsignsignergroupmembershipGetObjectV2(apiClient_t *apiClient, int pkiEzsignsignergroupmembershipID )
+ObjectEzsignsignergroupmembershipAPI_ezsignsignergroupmembershipGetObjectV2(apiClient_t *apiClient, int *pkiEzsignsignergroupmembershipID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -201,7 +201,7 @@ ObjectEzsignsignergroupmembershipAPI_ezsignsignergroupmembershipGetObjectV2(apiC
     snprintf(localVarToReplace_pkiEzsignsignergroupmembershipID, sizeOfPathParams_pkiEzsignsignergroupmembershipID, "{%s}", "pkiEzsignsignergroupmembershipID");
 
     char localVarBuff_pkiEzsignsignergroupmembershipID[256];
-    intToStr(localVarBuff_pkiEzsignsignergroupmembershipID, pkiEzsignsignergroupmembershipID);
+    intToStr(localVarBuff_pkiEzsignsignergroupmembershipID, *pkiEzsignsignergroupmembershipID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignsignergroupmembershipID, localVarBuff_pkiEzsignsignergroupmembershipID);
 

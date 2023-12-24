@@ -20,7 +20,7 @@ rejectedoffertopurchase_get_communication_list_v1_response_t* ObjectRejectedoffe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiRejectedoffertopurchaseID** | **int** |  | 
+**pkiRejectedoffertopurchaseID** | **int \*** |  | 
 
 ### Return type
 

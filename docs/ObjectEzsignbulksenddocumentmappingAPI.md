@@ -53,7 +53,7 @@ ezsignbulksenddocumentmapping_delete_object_v1_response_t* ObjectEzsignbulksendd
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignbulksenddocumentmappingID** | **int** |  | 
+**pkiEzsignbulksenddocumentmappingID** | **int \*** |  | 
 
 ### Return type
 
@@ -84,7 +84,7 @@ ezsignbulksenddocumentmapping_get_object_v2_response_t* ObjectEzsignbulksenddocu
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignbulksenddocumentmappingID** | **int** |  | 
+**pkiEzsignbulksenddocumentmappingID** | **int \*** |  | 
 
 ### Return type
 

@@ -33,6 +33,7 @@ typedef struct phone_response_compound_t {
     field_e_phone_type_t *e_phone_type; // custom
     char *s_phone_e164; // string
     char *s_phone_extension; // string
+    int b_phone_international; //boolean
 
 } phone_response_compound_t;
 
@@ -41,7 +42,8 @@ phone_response_compound_t *phone_response_compound_create(
     int fki_phonetype_id,
     field_e_phone_type_t *e_phone_type,
     char *s_phone_e164,
-    char *s_phone_extension
+    char *s_phone_extension,
+    int b_phone_international
 );
 
 void phone_response_compound_free(phone_response_compound_t *phone_response_compound);

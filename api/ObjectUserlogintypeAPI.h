@@ -23,6 +23,6 @@ typedef enum  { ezmax_api_definition__full_userlogintypeGetAutocompleteV2__NULL 
 // Get the list of Userlogintype to be used in a dropdown or autocomplete control.
 //
 userlogintype_get_autocomplete_v2_response_t*
-ObjectUserlogintypeAPI_userlogintypeGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_userlogintypeGetAutocompleteV2_sSelector_e sSelector , ezmax_api_definition__full_userlogintypeGetAutocompleteV2_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language );
+ObjectUserlogintypeAPI_userlogintypeGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_userlogintypeGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_userlogintypeGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
 
 

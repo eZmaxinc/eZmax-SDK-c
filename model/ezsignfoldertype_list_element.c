@@ -6,7 +6,7 @@
 
 char* e_ezsignfoldertype_privacylevelezsignfoldertype_list_element_ToString(ezmax_api_definition__full_ezsignfoldertype_list_element__e e_ezsignfoldertype_privacylevel) {
     char* e_ezsignfoldertype_privacylevelArray[] =  { "NULL", "User", "Usergroup" };
-	return e_ezsignfoldertype_privacylevelArray[e_ezsignfoldertype_privacylevel];
+    return e_ezsignfoldertype_privacylevelArray[e_ezsignfoldertype_privacylevel];
 }
 
 ezmax_api_definition__full_ezsignfoldertype_list_element__e e_ezsignfoldertype_privacylevelezsignfoldertype_list_element_FromString(char* e_ezsignfoldertype_privacylevel){

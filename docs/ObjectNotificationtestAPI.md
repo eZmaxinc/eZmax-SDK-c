@@ -20,7 +20,7 @@ notificationtest_get_elements_v1_response_t* ObjectNotificationtestAPI_notificat
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiNotificationtestID** | **int** |  | 
+**pkiNotificationtestID** | **int \*** |  | 
 
 ### Return type
 

@@ -6,7 +6,7 @@
 
 char* e_ezmaxinvoicingagent_variationezmaxezmaxinvoicingagent_response_compound_ToString(ezmax_api_definition__full_ezmaxinvoicingagent_response_compound__e e_ezmaxinvoicingagent_variationezmax) {
     char* e_ezmaxinvoicingagent_variationezmaxArray[] =  { "NULL", "Charge", "Refund", "Same" };
-	return e_ezmaxinvoicingagent_variationezmaxArray[e_ezmaxinvoicingagent_variationezmax];
+    return e_ezmaxinvoicingagent_variationezmaxArray[e_ezmaxinvoicingagent_variationezmax];
 }
 
 ezmax_api_definition__full_ezmaxinvoicingagent_response_compound__e e_ezmaxinvoicingagent_variationezmaxezmaxinvoicingagent_response_compound_FromString(char* e_ezmaxinvoicingagent_variationezmax){
@@ -23,7 +23,7 @@ ezmax_api_definition__full_ezmaxinvoicingagent_response_compound__e e_ezmaxinvoi
 }
 char* e_ezmaxinvoicingagent_variationezsignezmaxinvoicingagent_response_compound_ToString(ezmax_api_definition__full_ezmaxinvoicingagent_response_compound__e e_ezmaxinvoicingagent_variationezsign) {
     char* e_ezmaxinvoicingagent_variationezsignArray[] =  { "NULL", "Charge", "Refund", "Same" };
-	return e_ezmaxinvoicingagent_variationezsignArray[e_ezmaxinvoicingagent_variationezsign];
+    return e_ezmaxinvoicingagent_variationezsignArray[e_ezmaxinvoicingagent_variationezsign];
 }
 
 ezmax_api_definition__full_ezmaxinvoicingagent_response_compound__e e_ezmaxinvoicingagent_variationezsignezmaxinvoicingagent_response_compound_FromString(char* e_ezmaxinvoicingagent_variationezsign){

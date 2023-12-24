@@ -6,7 +6,7 @@
 
 char* e_webhook_modulewebhook_request_compound_ToString(ezmax_api_definition__full_webhook_request_compound__e e_webhook_module) {
     char* e_webhook_moduleArray[] =  { "NULL", "Ezsign", "Management" };
-	return e_webhook_moduleArray[e_webhook_module];
+    return e_webhook_moduleArray[e_webhook_module];
 }
 
 ezmax_api_definition__full_webhook_request_compound__e e_webhook_modulewebhook_request_compound_FromString(char* e_webhook_module){
@@ -23,7 +23,7 @@ ezmax_api_definition__full_webhook_request_compound__e e_webhook_modulewebhook_r
 }
 char* e_webhook_ezsigneventwebhook_request_compound_ToString(ezmax_api_definition__full_webhook_request_compound__e e_webhook_ezsignevent) {
     char* e_webhook_ezsigneventArray[] =  { "NULL", "DocumentCompleted", "EzsignsignerAcceptclause", "EzsignsignerConnect", "FolderCompleted" };
-	return e_webhook_ezsigneventArray[e_webhook_ezsignevent];
+    return e_webhook_ezsigneventArray[e_webhook_ezsignevent];
 }
 
 ezmax_api_definition__full_webhook_request_compound__e e_webhook_ezsigneventwebhook_request_compound_FromString(char* e_webhook_ezsignevent){
@@ -40,7 +40,7 @@ ezmax_api_definition__full_webhook_request_compound__e e_webhook_ezsigneventwebh
 }
 char* e_webhook_managementeventwebhook_request_compound_ToString(ezmax_api_definition__full_webhook_request_compound__e e_webhook_managementevent) {
     char* e_webhook_managementeventArray[] =  { "NULL", "UserCreated", "UserstagedCreated" };
-	return e_webhook_managementeventArray[e_webhook_managementevent];
+    return e_webhook_managementeventArray[e_webhook_managementevent];
 }
 
 ezmax_api_definition__full_webhook_request_compound__e e_webhook_managementeventwebhook_request_compound_FromString(char* e_webhook_managementevent){
@@ -66,6 +66,7 @@ webhook_request_compound_t *webhook_request_compound_create(
     char *s_webhook_url,
     char *s_webhook_emailfailed,
     int b_webhook_isactive,
+    int b_webhook_issigned,
     int b_webhook_skipsslvalidation
     ) {
     webhook_request_compound_t *webhook_request_compound_local_var = malloc(sizeof(webhook_request_compound_t));
@@ -81,6 +82,7 @@ webhook_request_compound_t *webhook_request_compound_create(
     webhook_request_compound_local_var->s_webhook_url = s_webhook_url;
     webhook_request_compound_local_var->s_webhook_emailfailed = s_webhook_emailfailed;
     webhook_request_compound_local_var->b_webhook_isactive = b_webhook_isactive;
+    webhook_request_compound_local_var->b_webhook_issigned = b_webhook_issigned;
     webhook_request_compound_local_var->b_webhook_skipsslvalidation = b_webhook_skipsslvalidation;
 
     return webhook_request_compound_local_var;
@@ -214,6 +216,14 @@ cJSON *webhook_request_compound_convertToJSON(webhook_request_compound_t *webhoo
     }
 
 
+    // webhook_request_compound->b_webhook_issigned
+    if(webhook_request_compound->b_webhook_issigned) {
+    if(cJSON_AddBoolToObject(item, "bWebhookIssigned", webhook_request_compound->b_webhook_issigned) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
     // webhook_request_compound->b_webhook_skipsslvalidation
     if (!webhook_request_compound->b_webhook_skipsslvalidation) {
         goto fail;
@@ -330,6 +340,15 @@ webhook_request_compound_t *webhook_request_compound_parseFromJSON(cJSON *webhoo
     goto end; //Bool
     }
 
+    // webhook_request_compound->b_webhook_issigned
+    cJSON *b_webhook_issigned = cJSON_GetObjectItemCaseSensitive(webhook_request_compoundJSON, "bWebhookIssigned");
+    if (b_webhook_issigned) { 
+    if(!cJSON_IsBool(b_webhook_issigned))
+    {
+    goto end; //Bool
+    }
+    }
+
     // webhook_request_compound->b_webhook_skipsslvalidation
     cJSON *b_webhook_skipsslvalidation = cJSON_GetObjectItemCaseSensitive(webhook_request_compoundJSON, "bWebhookSkipsslvalidation");
     if (!b_webhook_skipsslvalidation) {
@@ -353,6 +372,7 @@ webhook_request_compound_t *webhook_request_compound_parseFromJSON(cJSON *webhoo
         strdup(s_webhook_url->valuestring),
         strdup(s_webhook_emailfailed->valuestring),
         b_webhook_isactive->valueint,
+        b_webhook_issigned ? b_webhook_issigned->valueint : 0,
         b_webhook_skipsslvalidation->valueint
         );
 

@@ -89,7 +89,7 @@ ezsignsignature_delete_object_v1_response_t* ObjectEzsignsignatureAPI_ezsignsign
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignsignatureID** | **int** |  | 
+**pkiEzsignsignatureID** | **int \*** |  | 
 
 ### Return type
 
@@ -120,7 +120,7 @@ ezsignsignature_edit_object_v1_response_t* ObjectEzsignsignatureAPI_ezsignsignat
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignsignatureID** | **int** |  | 
+**pkiEzsignsignatureID** | **int \*** |  | 
 **ezsignsignature_edit_object_v1_request** | **[ezsignsignature_edit_object_v1_request_t](ezsignsignature_edit_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -150,7 +150,7 @@ ezsignsignature_get_ezsignsignatureattachment_v1_response_t* ObjectEzsignsignatu
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignsignatureID** | **int** |  | 
+**pkiEzsignsignatureID** | **int \*** |  | 
 
 ### Return type
 
@@ -211,7 +211,7 @@ ezsignsignature_get_object_v2_response_t* ObjectEzsignsignatureAPI_ezsignsignatu
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignsignatureID** | **int** |  | 
+**pkiEzsignsignatureID** | **int \*** |  | 
 
 ### Return type
 
@@ -242,7 +242,7 @@ ezsignsignature_sign_v1_response_t* ObjectEzsignsignatureAPI_ezsignsignatureSign
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignsignatureID** | **int** |  | 
+**pkiEzsignsignatureID** | **int \*** |  | 
 **ezsignsignature_sign_v1_request** | **[ezsignsignature_sign_v1_request_t](ezsignsignature_sign_v1_request.md) \*** |  | 
 
 ### Return type

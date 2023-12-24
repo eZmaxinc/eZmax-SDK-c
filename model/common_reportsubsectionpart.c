@@ -6,7 +6,7 @@
 
 char* e_reportsubsectionpart_typecommon_reportsubsectionpart_ToString(ezmax_api_definition__full_common_reportsubsectionpart_EREPORTSUBSECTIONPARTTYPE_e e_reportsubsectionpart_type) {
     char* e_reportsubsectionpart_typeArray[] =  { "NULL", "Header", "Body", "Footer" };
-	return e_reportsubsectionpart_typeArray[e_reportsubsectionpart_type];
+    return e_reportsubsectionpart_typeArray[e_reportsubsectionpart_type];
 }
 
 ezmax_api_definition__full_common_reportsubsectionpart_EREPORTSUBSECTIONPARTTYPE_e e_reportsubsectionpart_typecommon_reportsubsectionpart_FromString(char* e_reportsubsectionpart_type){

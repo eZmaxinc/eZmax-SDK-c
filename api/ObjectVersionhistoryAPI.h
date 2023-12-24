@@ -14,6 +14,6 @@
 // 
 //
 versionhistory_get_object_v2_response_t*
-ObjectVersionhistoryAPI_versionhistoryGetObjectV2(apiClient_t *apiClient, int pkiVersionhistoryID );
+ObjectVersionhistoryAPI_versionhistoryGetObjectV2(apiClient_t *apiClient, int *pkiVersionhistoryID);
 
 

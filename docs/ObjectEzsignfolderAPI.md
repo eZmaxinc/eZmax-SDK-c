@@ -13,6 +13,8 @@ Method | HTTP request | Description
 [**ObjectEzsignfolderAPI_ezsignfolderDisposeV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderDisposeV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/dispose | Dispose the Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderEditObjectV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderEditObjectV1) | **PUT** /1/object/ezsignfolder/{pkiEzsignfolderID} | Edit an existing Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getActionableElements | Retrieve actionable elements for the Ezsignfolder
+[**ObjectEzsignfolderAPI_ezsignfolderGetAttachmentCountV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetAttachmentCountV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getAttachmentCount | Retrieve Attachment count
+[**ObjectEzsignfolderAPI_ezsignfolderGetAttachmentsV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetAttachmentsV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getAttachments | Retrieve Ezsignfolder&#39;s Attachments
 [**ObjectEzsignfolderAPI_ezsignfolderGetCommunicationCountV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetCommunicationCountV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getCommunicationCount | Retrieve Communication count
 [**ObjectEzsignfolderAPI_ezsignfolderGetCommunicationListV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetCommunicationListV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getCommunicationList | Retrieve Communication list
 [**ObjectEzsignfolderAPI_ezsignfolderGetCommunicationrecipientsV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetCommunicationrecipientsV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getCommunicationrecipients | Retrieve Ezsignfolder&#39;s Communicationrecipient
@@ -46,7 +48,7 @@ ezsignfolder_archive_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderArchiveV1(
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** |  | 
+**pkiEzsignfolderID** | **int \*** |  | 
 **body** | **[object_t](object.md) \*** |  | 
 
 ### Return type
@@ -76,7 +78,7 @@ binary_t** ObjectEzsignfolderAPI_ezsignfolderBatchDownloadV1(apiClient_t *apiCli
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** |  | 
+**pkiEzsignfolderID** | **int \*** |  | 
 **ezsignfolder_batch_download_v1_request** | **[ezsignfolder_batch_download_v1_request_t](ezsignfolder_batch_download_v1_request.md) \*** |  | 
 
 ### Return type
@@ -169,7 +171,7 @@ ezsignfolder_delete_object_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderDele
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** |  | 
+**pkiEzsignfolderID** | **int \*** |  | 
 
 ### Return type
 
@@ -231,7 +233,7 @@ ezsignfolder_dispose_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderDisposeV1(
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** |  | 
+**pkiEzsignfolderID** | **int \*** |  | 
 **body** | **[object_t](object.md) \*** |  | 
 
 ### Return type
@@ -263,7 +265,7 @@ ezsignfolder_edit_object_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderEditOb
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** |  | 
+**pkiEzsignfolderID** | **int \*** |  | 
 **ezsignfolder_edit_object_v1_request** | **[ezsignfolder_edit_object_v1_request_t](ezsignfolder_edit_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -295,11 +297,73 @@ ezsignfolder_get_actionable_elements_v1_response_t* ObjectEzsignfolderAPI_ezsign
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** |  | 
+**pkiEzsignfolderID** | **int \*** |  | 
 
 ### Return type
 
 [ezsignfolder_get_actionable_elements_v1_response_t](ezsignfolder_get_actionable_elements_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsignfolderAPI_ezsignfolderGetAttachmentCountV1**
+```c
+// Retrieve Attachment count
+//
+// 
+//
+ezsignfolder_get_attachment_count_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetAttachmentCountV1(apiClient_t *apiClient, int pkiEzsignfolderID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsignfolderID** | **int \*** |  | 
+
+### Return type
+
+[ezsignfolder_get_attachment_count_v1_response_t](ezsignfolder_get_attachment_count_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsignfolderAPI_ezsignfolderGetAttachmentsV1**
+```c
+// Retrieve Ezsignfolder's Attachments
+//
+// 
+//
+ezsignfolder_get_attachments_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetAttachmentsV1(apiClient_t *apiClient, int pkiEzsignfolderID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsignfolderID** | **int \*** |  | 
+
+### Return type
+
+[ezsignfolder_get_attachments_v1_response_t](ezsignfolder_get_attachments_v1_response.md) *
 
 
 ### Authorization
@@ -326,7 +390,7 @@ ezsignfolder_get_communication_count_v1_response_t* ObjectEzsignfolderAPI_ezsign
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** |  | 
+**pkiEzsignfolderID** | **int \*** |  | 
 
 ### Return type
 
@@ -357,7 +421,7 @@ ezsignfolder_get_communication_list_v1_response_t* ObjectEzsignfolderAPI_ezsignf
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** |  | 
+**pkiEzsignfolderID** | **int \*** |  | 
 
 ### Return type
 
@@ -388,7 +452,7 @@ ezsignfolder_get_communicationrecipients_v1_response_t* ObjectEzsignfolderAPI_ez
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** |  | 
+**pkiEzsignfolderID** | **int \*** |  | 
 
 ### Return type
 
@@ -419,7 +483,7 @@ ezsignfolder_get_communicationsenders_v1_response_t* ObjectEzsignfolderAPI_ezsig
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** |  | 
+**pkiEzsignfolderID** | **int \*** |  | 
 
 ### Return type
 
@@ -450,7 +514,7 @@ ezsignfolder_get_ezsigndocuments_v1_response_t* ObjectEzsignfolderAPI_ezsignfold
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** |  | 
+**pkiEzsignfolderID** | **int \*** |  | 
 
 ### Return type
 
@@ -481,7 +545,7 @@ ezsignfolder_get_ezsignfoldersignerassociations_v1_response_t* ObjectEzsignfolde
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** |  | 
+**pkiEzsignfolderID** | **int \*** |  | 
 
 ### Return type
 
@@ -512,7 +576,7 @@ ezsignfolder_get_ezsignsignatures_automatic_v1_response_t* ObjectEzsignfolderAPI
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** |  | 
+**pkiEzsignfolderID** | **int \*** |  | 
 
 ### Return type
 
@@ -543,7 +607,7 @@ ezsignfolder_get_forms_data_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGet
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** |  | 
+**pkiEzsignfolderID** | **int \*** |  | 
 
 ### Return type
 
@@ -575,8 +639,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **eOrderBy** | **ezmax_api_definition__full_ezsignfolderGetListV1_eOrderBy_e** | Specify how you want the results to be sorted | [optional] 
-**iRowMax** | **int** |  | [optional] 
-**iRowOffset** | **int** |  | [optional] [default to 0]
+**iRowMax** | **int \*** |  | [optional] 
+**iRowOffset** | **int \*** |  | [optional] [default to 0]
 **Accept_Language** | **header_accept_language_e** |  | [optional] 
 **sFilter** | **char \*** |  | [optional] 
 
@@ -607,7 +671,7 @@ ezsignfolder_get_object_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetObje
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** |  | 
+**pkiEzsignfolderID** | **int \*** |  | 
 
 ### Return type
 
@@ -638,7 +702,7 @@ ezsignfolder_get_object_v2_response_t* ObjectEzsignfolderAPI_ezsignfolderGetObje
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** |  | 
+**pkiEzsignfolderID** | **int \*** |  | 
 
 ### Return type
 
@@ -669,7 +733,7 @@ ezsignfolder_import_ezsignfoldersignerassociations_v1_response_t* ObjectEzsignfo
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** |  | 
+**pkiEzsignfolderID** | **int \*** |  | 
 **ezsignfolder_import_ezsignfoldersignerassociations_v1_request** | **[ezsignfolder_import_ezsignfoldersignerassociations_v1_request_t](ezsignfolder_import_ezsignfoldersignerassociations_v1_request.md) \*** |  | 
 
 ### Return type
@@ -701,7 +765,7 @@ ezsignfolder_import_ezsigntemplatepackage_v1_response_t* ObjectEzsignfolderAPI_e
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** |  | 
+**pkiEzsignfolderID** | **int \*** |  | 
 **ezsignfolder_import_ezsigntemplatepackage_v1_request** | **[ezsignfolder_import_ezsigntemplatepackage_v1_request_t](ezsignfolder_import_ezsigntemplatepackage_v1_request.md) \*** |  | 
 
 ### Return type
@@ -731,7 +795,7 @@ ezsignfolder_reorder_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderReorderV1(
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** |  | 
+**pkiEzsignfolderID** | **int \*** |  | 
 **ezsignfolder_reorder_v1_request** | **[ezsignfolder_reorder_v1_request_t](ezsignfolder_reorder_v1_request.md) \*** |  | 
 
 ### Return type
@@ -763,7 +827,7 @@ ezsignfolder_send_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderSendV1(apiCli
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** |  | 
+**pkiEzsignfolderID** | **int \*** |  | 
 **ezsignfolder_send_v1_request** | **[ezsignfolder_send_v1_request_t](ezsignfolder_send_v1_request.md) \*** |  | 
 
 ### Return type
@@ -795,7 +859,7 @@ ezsignfolder_send_v2_response_t* ObjectEzsignfolderAPI_ezsignfolderSendV2(apiCli
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** |  | 
+**pkiEzsignfolderID** | **int \*** |  | 
 **ezsignfolder_send_v2_request** | **[ezsignfolder_send_v2_request_t](ezsignfolder_send_v2_request.md) \*** |  | 
 
 ### Return type
@@ -827,7 +891,7 @@ ezsignfolder_send_v3_response_t* ObjectEzsignfolderAPI_ezsignfolderSendV3(apiCli
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** |  | 
+**pkiEzsignfolderID** | **int \*** |  | 
 **ezsignfolder_send_v3_request** | **[ezsignfolder_send_v3_request_t](ezsignfolder_send_v3_request.md) \*** |  | 
 
 ### Return type
@@ -859,7 +923,7 @@ ezsignfolder_unsend_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderUnsendV1(ap
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int** |  | 
+**pkiEzsignfolderID** | **int \*** |  | 
 **body** | **[object_t](object.md) \*** |  | 
 
 ### Return type

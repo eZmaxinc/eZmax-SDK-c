@@ -22,6 +22,7 @@ typedef struct custom_communicationsender_request_t {
     int fki_agent_id; //numeric
     int fki_broker_id; //numeric
     int fki_mailboxshared_id; //numeric
+    int fki_phonelineshared_id; //numeric
     int fki_user_id; //numeric
 
 } custom_communicationsender_request_t;
@@ -30,6 +31,7 @@ custom_communicationsender_request_t *custom_communicationsender_request_create(
     int fki_agent_id,
     int fki_broker_id,
     int fki_mailboxshared_id,
+    int fki_phonelineshared_id,
     int fki_user_id
 );
 

@@ -66,13 +66,13 @@ end:
 // Functions for enum EORDERBY for ObjectWebhookAPI_webhookGetListV1
 
 static char* webhookGetListV1_EORDERBY_ToString(ezmax_api_definition__full_webhookGetListV1_eOrderBy_e EORDERBY){
-    char *EORDERBYArray[] =  { "NULL", "pkiWebhookID_ASC", "pkiWebhookID_DESC", "sWebhookDescription_ASC", "sWebhookDescription_DESC", "eWebhookEzsignevent_ASC", "eWebhookEzsignevent_DESC", "eWebhookManagementevent_ASC", "eWebhookManagementevent_DESC", "eWebhookModule_ASC", "eWebhookModule_DESC", "sWebhookEmailfailed_ASC", "sWebhookEmailfailed_DESC", "sWebhookEvent_ASC", "sWebhookEvent_DESC", "sWebhookUrl_ASC", "sWebhookUrl_DESC", "bWebhookIsactive_ASC", "bWebhookIsactive_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiWebhookID_ASC", "pkiWebhookID_DESC", "sWebhookDescription_ASC", "sWebhookDescription_DESC", "eWebhookEzsignevent_ASC", "eWebhookEzsignevent_DESC", "eWebhookManagementevent_ASC", "eWebhookManagementevent_DESC", "eWebhookModule_ASC", "eWebhookModule_DESC", "sWebhookEmailfailed_ASC", "sWebhookEmailfailed_DESC", "sWebhookEvent_ASC", "sWebhookEvent_DESC", "sWebhookUrl_ASC", "sWebhookUrl_DESC", "bWebhookIsactive_ASC", "bWebhookIsactive_DESC", "bWebhookIssigned_ASC", "bWebhookIssigned_DESC" };
     return EORDERBYArray[EORDERBY];
 }
 
 static ezmax_api_definition__full_webhookGetListV1_eOrderBy_e webhookGetListV1_EORDERBY_FromString(char* EORDERBY){
     int stringToReturn = 0;
-    char *EORDERBYArray[] =  { "NULL", "pkiWebhookID_ASC", "pkiWebhookID_DESC", "sWebhookDescription_ASC", "sWebhookDescription_DESC", "eWebhookEzsignevent_ASC", "eWebhookEzsignevent_DESC", "eWebhookManagementevent_ASC", "eWebhookManagementevent_DESC", "eWebhookModule_ASC", "eWebhookModule_DESC", "sWebhookEmailfailed_ASC", "sWebhookEmailfailed_DESC", "sWebhookEvent_ASC", "sWebhookEvent_DESC", "sWebhookUrl_ASC", "sWebhookUrl_DESC", "bWebhookIsactive_ASC", "bWebhookIsactive_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiWebhookID_ASC", "pkiWebhookID_DESC", "sWebhookDescription_ASC", "sWebhookDescription_DESC", "eWebhookEzsignevent_ASC", "eWebhookEzsignevent_DESC", "eWebhookManagementevent_ASC", "eWebhookManagementevent_DESC", "eWebhookModule_ASC", "eWebhookModule_DESC", "sWebhookEmailfailed_ASC", "sWebhookEmailfailed_DESC", "sWebhookEvent_ASC", "sWebhookEvent_DESC", "sWebhookUrl_ASC", "sWebhookUrl_DESC", "bWebhookIsactive_ASC", "bWebhookIsactive_DESC", "bWebhookIssigned_ASC", "bWebhookIssigned_DESC" };
     size_t sizeofArray = sizeof(EORDERBYArray) / sizeof(EORDERBYArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(EORDERBY, EORDERBYArray[stringToReturn]) == 0) {
@@ -164,7 +164,7 @@ end:
 // The endpoint allows to create one or many elements at once.
 //
 webhook_create_object_v1_response_t*
-ObjectWebhookAPI_webhookCreateObjectV1(apiClient_t *apiClient, webhook_create_object_v1_request_t * webhook_create_object_v1_request )
+ObjectWebhookAPI_webhookCreateObjectV1(apiClient_t *apiClient, webhook_create_object_v1_request_t *webhook_create_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -237,12 +237,90 @@ end:
 
 }
 
+// Create a new Webhook
+//
+// The endpoint allows to create one or many elements at once.
+//
+webhook_create_object_v2_response_t*
+ObjectWebhookAPI_webhookCreateObjectV2(apiClient_t *apiClient, webhook_create_object_v2_request_t *webhook_create_object_v2_request)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/2/object/webhook")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/2/object/webhook");
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_webhook_create_object_v2_request = NULL;
+    if (webhook_create_object_v2_request != NULL)
+    {
+        //string
+        localVarSingleItemJSON_webhook_create_object_v2_request = webhook_create_object_v2_request_convertToJSON(webhook_create_object_v2_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_webhook_create_object_v2_request);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "POST");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 201) {
+    //    printf("%s\n","Successful response");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectWebhookAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    webhook_create_object_v2_response_t *elementToReturn = webhook_create_object_v2_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
+    cJSON_Delete(ObjectWebhookAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    if (localVarSingleItemJSON_webhook_create_object_v2_request) {
+        cJSON_Delete(localVarSingleItemJSON_webhook_create_object_v2_request);
+        localVarSingleItemJSON_webhook_create_object_v2_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Delete an existing Webhook
 //
 // 
 //
 webhook_delete_object_v1_response_t*
-ObjectWebhookAPI_webhookDeleteObjectV1(apiClient_t *apiClient, int pkiWebhookID )
+ObjectWebhookAPI_webhookDeleteObjectV1(apiClient_t *apiClient, int *pkiWebhookID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -266,7 +344,7 @@ ObjectWebhookAPI_webhookDeleteObjectV1(apiClient_t *apiClient, int pkiWebhookID 
     snprintf(localVarToReplace_pkiWebhookID, sizeOfPathParams_pkiWebhookID, "{%s}", "pkiWebhookID");
 
     char localVarBuff_pkiWebhookID[256];
-    intToStr(localVarBuff_pkiWebhookID, pkiWebhookID);
+    intToStr(localVarBuff_pkiWebhookID, *pkiWebhookID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiWebhookID, localVarBuff_pkiWebhookID);
 
@@ -324,7 +402,7 @@ end:
 // 
 //
 webhook_edit_object_v1_response_t*
-ObjectWebhookAPI_webhookEditObjectV1(apiClient_t *apiClient, int pkiWebhookID , webhook_edit_object_v1_request_t * webhook_edit_object_v1_request )
+ObjectWebhookAPI_webhookEditObjectV1(apiClient_t *apiClient, int *pkiWebhookID, webhook_edit_object_v1_request_t *webhook_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -348,7 +426,7 @@ ObjectWebhookAPI_webhookEditObjectV1(apiClient_t *apiClient, int pkiWebhookID , 
     snprintf(localVarToReplace_pkiWebhookID, sizeOfPathParams_pkiWebhookID, "{%s}", "pkiWebhookID");
 
     char localVarBuff_pkiWebhookID[256];
-    intToStr(localVarBuff_pkiWebhookID, pkiWebhookID);
+    intToStr(localVarBuff_pkiWebhookID, *pkiWebhookID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiWebhookID, localVarBuff_pkiWebhookID);
 
@@ -421,7 +499,7 @@ end:
 // 
 //
 webhook_get_history_v1_response_t*
-ObjectWebhookAPI_webhookGetHistoryV1(apiClient_t *apiClient, int pkiWebhookID , ezmax_api_definition__full_webhookGetHistoryV1_eWebhookHistoryinterval_e eWebhookHistoryinterval )
+ObjectWebhookAPI_webhookGetHistoryV1(apiClient_t *apiClient, int *pkiWebhookID, ezmax_api_definition__full_webhookGetHistoryV1_eWebhookHistoryinterval_e eWebhookHistoryinterval)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
@@ -445,7 +523,7 @@ ObjectWebhookAPI_webhookGetHistoryV1(apiClient_t *apiClient, int pkiWebhookID , 
     snprintf(localVarToReplace_pkiWebhookID, sizeOfPathParams_pkiWebhookID, "{%s}", "pkiWebhookID");
 
     char localVarBuff_pkiWebhookID[256];
-    intToStr(localVarBuff_pkiWebhookID, pkiWebhookID);
+    intToStr(localVarBuff_pkiWebhookID, *pkiWebhookID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiWebhookID, localVarBuff_pkiWebhookID);
 
@@ -461,7 +539,7 @@ ObjectWebhookAPI_webhookGetHistoryV1(apiClient_t *apiClient, int pkiWebhookID , 
         keyQuery_eWebhookHistoryinterval = strdup("eWebhookHistoryinterval");
         valueQuery_eWebhookHistoryinterval = (eWebhookHistoryinterval);
         keyPairQuery_eWebhookHistoryinterval = keyValuePair_create(keyQuery_eWebhookHistoryinterval, (void *)strdup(webhookGetHistoryV1_EWEBHOOKHISTORYINTERVAL_ToString(
-		valueQuery_eWebhookHistoryinterval)));
+        valueQuery_eWebhookHistoryinterval)));
         list_addElement(localVarQueryParameters,keyPairQuery_eWebhookHistoryinterval);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
@@ -528,7 +606,7 @@ end:
 // Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eWebhookModule | Ezsign<br>Management | | eWebhookEzsignevent | DocumentCompleted<br>FolderCompleted | | eWebhookManagementevent | UserCreated |
 //
 webhook_get_list_v1_response_t*
-ObjectWebhookAPI_webhookGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_webhookGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter )
+ObjectWebhookAPI_webhookGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_webhookGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -566,7 +644,7 @@ ObjectWebhookAPI_webhookGetListV1(apiClient_t *apiClient, ezmax_api_definition__
         keyQuery_eOrderBy = strdup("eOrderBy");
         valueQuery_eOrderBy = (eOrderBy);
         keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, (void *)strdup(webhookGetListV1_EORDERBY_ToString(
-		valueQuery_eOrderBy)));
+        valueQuery_eOrderBy)));
         list_addElement(localVarQueryParameters,keyPairQuery_eOrderBy);
     }
 
@@ -574,11 +652,11 @@ ObjectWebhookAPI_webhookGetListV1(apiClient_t *apiClient, ezmax_api_definition__
     char *keyQuery_iRowMax = NULL;
     char * valueQuery_iRowMax = NULL;
     keyValuePair_t *keyPairQuery_iRowMax = 0;
-    if (1) // Always send integer parameters to the API server
+    if (iRowMax)
     {
         keyQuery_iRowMax = strdup("iRowMax");
         valueQuery_iRowMax = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_iRowMax, MAX_NUMBER_LENGTH, "%d", iRowMax);
+        snprintf(valueQuery_iRowMax, MAX_NUMBER_LENGTH, "%d", *iRowMax);
         keyPairQuery_iRowMax = keyValuePair_create(keyQuery_iRowMax, valueQuery_iRowMax);
         list_addElement(localVarQueryParameters,keyPairQuery_iRowMax);
     }
@@ -587,11 +665,11 @@ ObjectWebhookAPI_webhookGetListV1(apiClient_t *apiClient, ezmax_api_definition__
     char *keyQuery_iRowOffset = NULL;
     char * valueQuery_iRowOffset = NULL;
     keyValuePair_t *keyPairQuery_iRowOffset = 0;
-    if (1) // Always send integer parameters to the API server
+    if (iRowOffset)
     {
         keyQuery_iRowOffset = strdup("iRowOffset");
         valueQuery_iRowOffset = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_iRowOffset, MAX_NUMBER_LENGTH, "%d", iRowOffset);
+        snprintf(valueQuery_iRowOffset, MAX_NUMBER_LENGTH, "%d", *iRowOffset);
         keyPairQuery_iRowOffset = keyValuePair_create(keyQuery_iRowOffset, valueQuery_iRowOffset);
         list_addElement(localVarQueryParameters,keyPairQuery_iRowOffset);
     }
@@ -708,7 +786,7 @@ end:
 // 
 //
 webhook_get_object_v2_response_t*
-ObjectWebhookAPI_webhookGetObjectV2(apiClient_t *apiClient, int pkiWebhookID )
+ObjectWebhookAPI_webhookGetObjectV2(apiClient_t *apiClient, int *pkiWebhookID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -732,7 +810,7 @@ ObjectWebhookAPI_webhookGetObjectV2(apiClient_t *apiClient, int pkiWebhookID )
     snprintf(localVarToReplace_pkiWebhookID, sizeOfPathParams_pkiWebhookID, "{%s}", "pkiWebhookID");
 
     char localVarBuff_pkiWebhookID[256];
-    intToStr(localVarBuff_pkiWebhookID, pkiWebhookID);
+    intToStr(localVarBuff_pkiWebhookID, *pkiWebhookID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiWebhookID, localVarBuff_pkiWebhookID);
 
@@ -785,12 +863,109 @@ end:
 
 }
 
+// Regenerate the Apikey
+//
+// 
+//
+webhook_regenerate_apikey_v1_response_t*
+ObjectWebhookAPI_webhookRegenerateApikeyV1(apiClient_t *apiClient, int *pkiWebhookID, webhook_regenerate_apikey_v1_request_t *webhook_regenerate_apikey_v1_request)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/webhook/{pkiWebhookID}/regenerateApikey")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/webhook/{pkiWebhookID}/regenerateApikey");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiWebhookID =  + strlen("{ pkiWebhookID }");
+    if(pkiWebhookID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiWebhookID = malloc(sizeOfPathParams_pkiWebhookID);
+    snprintf(localVarToReplace_pkiWebhookID, sizeOfPathParams_pkiWebhookID, "{%s}", "pkiWebhookID");
+
+    char localVarBuff_pkiWebhookID[256];
+    intToStr(localVarBuff_pkiWebhookID, *pkiWebhookID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiWebhookID, localVarBuff_pkiWebhookID);
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_webhook_regenerate_apikey_v1_request = NULL;
+    if (webhook_regenerate_apikey_v1_request != NULL)
+    {
+        //string
+        localVarSingleItemJSON_webhook_regenerate_apikey_v1_request = webhook_regenerate_apikey_v1_request_convertToJSON(webhook_regenerate_apikey_v1_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_webhook_regenerate_apikey_v1_request);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "POST");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectWebhookAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    webhook_regenerate_apikey_v1_response_t *elementToReturn = webhook_regenerate_apikey_v1_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
+    cJSON_Delete(ObjectWebhookAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_pkiWebhookID);
+    if (localVarSingleItemJSON_webhook_regenerate_apikey_v1_request) {
+        cJSON_Delete(localVarSingleItemJSON_webhook_regenerate_apikey_v1_request);
+        localVarSingleItemJSON_webhook_regenerate_apikey_v1_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Test the Webhook by calling the Url
 //
 // 
 //
 webhook_test_v1_response_t*
-ObjectWebhookAPI_webhookTestV1(apiClient_t *apiClient, int pkiWebhookID , object_t * body )
+ObjectWebhookAPI_webhookTestV1(apiClient_t *apiClient, int *pkiWebhookID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -814,7 +989,7 @@ ObjectWebhookAPI_webhookTestV1(apiClient_t *apiClient, int pkiWebhookID , object
     snprintf(localVarToReplace_pkiWebhookID, sizeOfPathParams_pkiWebhookID, "{%s}", "pkiWebhookID");
 
     char localVarBuff_pkiWebhookID[256];
-    intToStr(localVarBuff_pkiWebhookID, pkiWebhookID);
+    intToStr(localVarBuff_pkiWebhookID, *pkiWebhookID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiWebhookID, localVarBuff_pkiWebhookID);
 

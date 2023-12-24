@@ -6,7 +6,7 @@
 
 char* e_reportsection_horizontalalignmentcommon_reportsection_ToString(ezmax_api_definition__full_common_reportsection__e e_reportsection_horizontalalignment) {
     char* e_reportsection_horizontalalignmentArray[] =  { "NULL", "Center", "Left", "Right" };
-	return e_reportsection_horizontalalignmentArray[e_reportsection_horizontalalignment];
+    return e_reportsection_horizontalalignmentArray[e_reportsection_horizontalalignment];
 }
 
 ezmax_api_definition__full_common_reportsection__e e_reportsection_horizontalalignmentcommon_reportsection_FromString(char* e_reportsection_horizontalalignment){

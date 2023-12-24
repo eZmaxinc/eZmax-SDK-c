@@ -6,7 +6,7 @@
 
 char* e_creditcardtype_codenamecustom_creditcardtransaction_response_ToString(ezmax_api_definition__full_custom_creditcardtransaction_response__e e_creditcardtype_codename) {
     char* e_creditcardtype_codenameArray[] =  { "NULL", "Amex", "Mastercard", "Visa" };
-	return e_creditcardtype_codenameArray[e_creditcardtype_codename];
+    return e_creditcardtype_codenameArray[e_creditcardtype_codename];
 }
 
 ezmax_api_definition__full_custom_creditcardtransaction_response__e e_creditcardtype_codenamecustom_creditcardtransaction_response_FromString(char* e_creditcardtype_codename){

@@ -259,7 +259,7 @@ end:
 // The endpoint allows to create one or many elements at once.
 //
 usergroup_create_object_v1_response_t*
-ObjectUsergroupAPI_usergroupCreateObjectV1(apiClient_t *apiClient, usergroup_create_object_v1_request_t * usergroup_create_object_v1_request )
+ObjectUsergroupAPI_usergroupCreateObjectV1(apiClient_t *apiClient, usergroup_create_object_v1_request_t *usergroup_create_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -337,7 +337,7 @@ end:
 // 
 //
 usergroup_edit_object_v1_response_t*
-ObjectUsergroupAPI_usergroupEditObjectV1(apiClient_t *apiClient, int pkiUsergroupID , usergroup_edit_object_v1_request_t * usergroup_edit_object_v1_request )
+ObjectUsergroupAPI_usergroupEditObjectV1(apiClient_t *apiClient, int *pkiUsergroupID, usergroup_edit_object_v1_request_t *usergroup_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -361,7 +361,7 @@ ObjectUsergroupAPI_usergroupEditObjectV1(apiClient_t *apiClient, int pkiUsergrou
     snprintf(localVarToReplace_pkiUsergroupID, sizeOfPathParams_pkiUsergroupID, "{%s}", "pkiUsergroupID");
 
     char localVarBuff_pkiUsergroupID[256];
-    intToStr(localVarBuff_pkiUsergroupID, pkiUsergroupID);
+    intToStr(localVarBuff_pkiUsergroupID, *pkiUsergroupID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUsergroupID, localVarBuff_pkiUsergroupID);
 
@@ -438,7 +438,7 @@ end:
 // Using this endpoint, you can edit multiple Permissions at the same time.
 //
 usergroup_edit_permissions_v1_response_t*
-ObjectUsergroupAPI_usergroupEditPermissionsV1(apiClient_t *apiClient, int pkiUsergroupID , usergroup_edit_permissions_v1_request_t * usergroup_edit_permissions_v1_request )
+ObjectUsergroupAPI_usergroupEditPermissionsV1(apiClient_t *apiClient, int *pkiUsergroupID, usergroup_edit_permissions_v1_request_t *usergroup_edit_permissions_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -462,7 +462,7 @@ ObjectUsergroupAPI_usergroupEditPermissionsV1(apiClient_t *apiClient, int pkiUse
     snprintf(localVarToReplace_pkiUsergroupID, sizeOfPathParams_pkiUsergroupID, "{%s}", "pkiUsergroupID");
 
     char localVarBuff_pkiUsergroupID[256];
-    intToStr(localVarBuff_pkiUsergroupID, pkiUsergroupID);
+    intToStr(localVarBuff_pkiUsergroupID, *pkiUsergroupID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUsergroupID, localVarBuff_pkiUsergroupID);
 
@@ -539,7 +539,7 @@ end:
 // Edit multiple Usergroupdelegations
 //
 usergroup_edit_usergroupdelegations_v1_response_t*
-ObjectUsergroupAPI_usergroupEditUsergroupdelegationsV1(apiClient_t *apiClient, int pkiUsergroupID , usergroup_edit_usergroupdelegations_v1_request_t * usergroup_edit_usergroupdelegations_v1_request )
+ObjectUsergroupAPI_usergroupEditUsergroupdelegationsV1(apiClient_t *apiClient, int *pkiUsergroupID, usergroup_edit_usergroupdelegations_v1_request_t *usergroup_edit_usergroupdelegations_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -563,7 +563,7 @@ ObjectUsergroupAPI_usergroupEditUsergroupdelegationsV1(apiClient_t *apiClient, i
     snprintf(localVarToReplace_pkiUsergroupID, sizeOfPathParams_pkiUsergroupID, "{%s}", "pkiUsergroupID");
 
     char localVarBuff_pkiUsergroupID[256];
-    intToStr(localVarBuff_pkiUsergroupID, pkiUsergroupID);
+    intToStr(localVarBuff_pkiUsergroupID, *pkiUsergroupID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUsergroupID, localVarBuff_pkiUsergroupID);
 
@@ -640,7 +640,7 @@ end:
 // Using this endpoint, you can edit multiple Usergroupmemberships at the same time.
 //
 usergroup_edit_usergroupmemberships_v1_response_t*
-ObjectUsergroupAPI_usergroupEditUsergroupmembershipsV1(apiClient_t *apiClient, int pkiUsergroupID , usergroup_edit_usergroupmemberships_v1_request_t * usergroup_edit_usergroupmemberships_v1_request )
+ObjectUsergroupAPI_usergroupEditUsergroupmembershipsV1(apiClient_t *apiClient, int *pkiUsergroupID, usergroup_edit_usergroupmemberships_v1_request_t *usergroup_edit_usergroupmemberships_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -664,7 +664,7 @@ ObjectUsergroupAPI_usergroupEditUsergroupmembershipsV1(apiClient_t *apiClient, i
     snprintf(localVarToReplace_pkiUsergroupID, sizeOfPathParams_pkiUsergroupID, "{%s}", "pkiUsergroupID");
 
     char localVarBuff_pkiUsergroupID[256];
-    intToStr(localVarBuff_pkiUsergroupID, pkiUsergroupID);
+    intToStr(localVarBuff_pkiUsergroupID, *pkiUsergroupID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUsergroupID, localVarBuff_pkiUsergroupID);
 
@@ -741,7 +741,7 @@ end:
 // Get the list of Usergroup to be used in a dropdown or autocomplete control.
 //
 usergroup_get_autocomplete_v2_response_t*
-ObjectUsergroupAPI_usergroupGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_usergroupGetAutocompleteV2_sSelector_e sSelector , ezmax_api_definition__full_usergroupGetAutocompleteV2_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language )
+ObjectUsergroupAPI_usergroupGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_usergroupGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_usergroupGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -789,7 +789,7 @@ ObjectUsergroupAPI_usergroupGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_
         keyQuery_eFilterActive = strdup("eFilterActive");
         valueQuery_eFilterActive = (eFilterActive);
         keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(usergroupGetAutocompleteV2_EFILTERACTIVE_ToString(
-		valueQuery_eFilterActive)));
+        valueQuery_eFilterActive)));
         list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
     }
 
@@ -877,7 +877,7 @@ end:
 // 
 //
 usergroup_get_list_v1_response_t*
-ObjectUsergroupAPI_usergroupGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_usergroupGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter )
+ObjectUsergroupAPI_usergroupGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_usergroupGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -915,7 +915,7 @@ ObjectUsergroupAPI_usergroupGetListV1(apiClient_t *apiClient, ezmax_api_definiti
         keyQuery_eOrderBy = strdup("eOrderBy");
         valueQuery_eOrderBy = (eOrderBy);
         keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, (void *)strdup(usergroupGetListV1_EORDERBY_ToString(
-		valueQuery_eOrderBy)));
+        valueQuery_eOrderBy)));
         list_addElement(localVarQueryParameters,keyPairQuery_eOrderBy);
     }
 
@@ -923,11 +923,11 @@ ObjectUsergroupAPI_usergroupGetListV1(apiClient_t *apiClient, ezmax_api_definiti
     char *keyQuery_iRowMax = NULL;
     char * valueQuery_iRowMax = NULL;
     keyValuePair_t *keyPairQuery_iRowMax = 0;
-    if (1) // Always send integer parameters to the API server
+    if (iRowMax)
     {
         keyQuery_iRowMax = strdup("iRowMax");
         valueQuery_iRowMax = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_iRowMax, MAX_NUMBER_LENGTH, "%d", iRowMax);
+        snprintf(valueQuery_iRowMax, MAX_NUMBER_LENGTH, "%d", *iRowMax);
         keyPairQuery_iRowMax = keyValuePair_create(keyQuery_iRowMax, valueQuery_iRowMax);
         list_addElement(localVarQueryParameters,keyPairQuery_iRowMax);
     }
@@ -936,11 +936,11 @@ ObjectUsergroupAPI_usergroupGetListV1(apiClient_t *apiClient, ezmax_api_definiti
     char *keyQuery_iRowOffset = NULL;
     char * valueQuery_iRowOffset = NULL;
     keyValuePair_t *keyPairQuery_iRowOffset = 0;
-    if (1) // Always send integer parameters to the API server
+    if (iRowOffset)
     {
         keyQuery_iRowOffset = strdup("iRowOffset");
         valueQuery_iRowOffset = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_iRowOffset, MAX_NUMBER_LENGTH, "%d", iRowOffset);
+        snprintf(valueQuery_iRowOffset, MAX_NUMBER_LENGTH, "%d", *iRowOffset);
         keyPairQuery_iRowOffset = keyValuePair_create(keyQuery_iRowOffset, valueQuery_iRowOffset);
         list_addElement(localVarQueryParameters,keyPairQuery_iRowOffset);
     }
@@ -1057,7 +1057,7 @@ end:
 // 
 //
 usergroup_get_object_v2_response_t*
-ObjectUsergroupAPI_usergroupGetObjectV2(apiClient_t *apiClient, int pkiUsergroupID )
+ObjectUsergroupAPI_usergroupGetObjectV2(apiClient_t *apiClient, int *pkiUsergroupID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1081,7 +1081,7 @@ ObjectUsergroupAPI_usergroupGetObjectV2(apiClient_t *apiClient, int pkiUsergroup
     snprintf(localVarToReplace_pkiUsergroupID, sizeOfPathParams_pkiUsergroupID, "{%s}", "pkiUsergroupID");
 
     char localVarBuff_pkiUsergroupID[256];
-    intToStr(localVarBuff_pkiUsergroupID, pkiUsergroupID);
+    intToStr(localVarBuff_pkiUsergroupID, *pkiUsergroupID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUsergroupID, localVarBuff_pkiUsergroupID);
 
@@ -1137,7 +1137,7 @@ end:
 // Retrieve an existing Usergroup's Permissions
 //
 usergroup_get_permissions_v1_response_t*
-ObjectUsergroupAPI_usergroupGetPermissionsV1(apiClient_t *apiClient, int pkiUsergroupID )
+ObjectUsergroupAPI_usergroupGetPermissionsV1(apiClient_t *apiClient, int *pkiUsergroupID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1161,7 +1161,7 @@ ObjectUsergroupAPI_usergroupGetPermissionsV1(apiClient_t *apiClient, int pkiUser
     snprintf(localVarToReplace_pkiUsergroupID, sizeOfPathParams_pkiUsergroupID, "{%s}", "pkiUsergroupID");
 
     char localVarBuff_pkiUsergroupID[256];
-    intToStr(localVarBuff_pkiUsergroupID, pkiUsergroupID);
+    intToStr(localVarBuff_pkiUsergroupID, *pkiUsergroupID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUsergroupID, localVarBuff_pkiUsergroupID);
 
@@ -1217,7 +1217,7 @@ end:
 // Retrieve an existing Usergroup's Usergroupdelegations
 //
 usergroup_get_usergroupdelegations_v1_response_t*
-ObjectUsergroupAPI_usergroupGetUsergroupdelegationsV1(apiClient_t *apiClient, int pkiUsergroupID )
+ObjectUsergroupAPI_usergroupGetUsergroupdelegationsV1(apiClient_t *apiClient, int *pkiUsergroupID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1241,7 +1241,7 @@ ObjectUsergroupAPI_usergroupGetUsergroupdelegationsV1(apiClient_t *apiClient, in
     snprintf(localVarToReplace_pkiUsergroupID, sizeOfPathParams_pkiUsergroupID, "{%s}", "pkiUsergroupID");
 
     char localVarBuff_pkiUsergroupID[256];
-    intToStr(localVarBuff_pkiUsergroupID, pkiUsergroupID);
+    intToStr(localVarBuff_pkiUsergroupID, *pkiUsergroupID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUsergroupID, localVarBuff_pkiUsergroupID);
 
@@ -1297,7 +1297,7 @@ end:
 // Retrieve an existing Usergroup's Usergroupmemberships
 //
 usergroup_get_usergroupmemberships_v1_response_t*
-ObjectUsergroupAPI_usergroupGetUsergroupmembershipsV1(apiClient_t *apiClient, int pkiUsergroupID )
+ObjectUsergroupAPI_usergroupGetUsergroupmembershipsV1(apiClient_t *apiClient, int *pkiUsergroupID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1321,7 +1321,7 @@ ObjectUsergroupAPI_usergroupGetUsergroupmembershipsV1(apiClient_t *apiClient, in
     snprintf(localVarToReplace_pkiUsergroupID, sizeOfPathParams_pkiUsergroupID, "{%s}", "pkiUsergroupID");
 
     char localVarBuff_pkiUsergroupID[256];
-    intToStr(localVarBuff_pkiUsergroupID, pkiUsergroupID);
+    intToStr(localVarBuff_pkiUsergroupID, *pkiUsergroupID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUsergroupID, localVarBuff_pkiUsergroupID);
 

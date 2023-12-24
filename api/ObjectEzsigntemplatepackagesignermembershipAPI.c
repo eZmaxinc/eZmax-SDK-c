@@ -17,7 +17,7 @@
 // The endpoint allows to create one or many elements at once.
 //
 ezsigntemplatepackagesignermembership_create_object_v1_response_t*
-ObjectEzsigntemplatepackagesignermembershipAPI_ezsigntemplatepackagesignermembershipCreateObjectV1(apiClient_t *apiClient, ezsigntemplatepackagesignermembership_create_object_v1_request_t * ezsigntemplatepackagesignermembership_create_object_v1_request )
+ObjectEzsigntemplatepackagesignermembershipAPI_ezsigntemplatepackagesignermembershipCreateObjectV1(apiClient_t *apiClient, ezsigntemplatepackagesignermembership_create_object_v1_request_t *ezsigntemplatepackagesignermembership_create_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -99,7 +99,7 @@ end:
 // 
 //
 ezsigntemplatepackagesignermembership_delete_object_v1_response_t*
-ObjectEzsigntemplatepackagesignermembershipAPI_ezsigntemplatepackagesignermembershipDeleteObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatepackagesignermembershipID )
+ObjectEzsigntemplatepackagesignermembershipAPI_ezsigntemplatepackagesignermembershipDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatepackagesignermembershipID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -123,7 +123,7 @@ ObjectEzsigntemplatepackagesignermembershipAPI_ezsigntemplatepackagesignermember
     snprintf(localVarToReplace_pkiEzsigntemplatepackagesignermembershipID, sizeOfPathParams_pkiEzsigntemplatepackagesignermembershipID, "{%s}", "pkiEzsigntemplatepackagesignermembershipID");
 
     char localVarBuff_pkiEzsigntemplatepackagesignermembershipID[256];
-    intToStr(localVarBuff_pkiEzsigntemplatepackagesignermembershipID, pkiEzsigntemplatepackagesignermembershipID);
+    intToStr(localVarBuff_pkiEzsigntemplatepackagesignermembershipID, *pkiEzsigntemplatepackagesignermembershipID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatepackagesignermembershipID, localVarBuff_pkiEzsigntemplatepackagesignermembershipID);
 
@@ -181,7 +181,7 @@ end:
 // 
 //
 ezsigntemplatepackagesignermembership_get_object_v2_response_t*
-ObjectEzsigntemplatepackagesignermembershipAPI_ezsigntemplatepackagesignermembershipGetObjectV2(apiClient_t *apiClient, int pkiEzsigntemplatepackagesignermembershipID )
+ObjectEzsigntemplatepackagesignermembershipAPI_ezsigntemplatepackagesignermembershipGetObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplatepackagesignermembershipID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -205,7 +205,7 @@ ObjectEzsigntemplatepackagesignermembershipAPI_ezsigntemplatepackagesignermember
     snprintf(localVarToReplace_pkiEzsigntemplatepackagesignermembershipID, sizeOfPathParams_pkiEzsigntemplatepackagesignermembershipID, "{%s}", "pkiEzsigntemplatepackagesignermembershipID");
 
     char localVarBuff_pkiEzsigntemplatepackagesignermembershipID[256];
-    intToStr(localVarBuff_pkiEzsigntemplatepackagesignermembershipID, pkiEzsigntemplatepackagesignermembershipID);
+    intToStr(localVarBuff_pkiEzsigntemplatepackagesignermembershipID, *pkiEzsigntemplatepackagesignermembershipID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatepackagesignermembershipID, localVarBuff_pkiEzsigntemplatepackagesignermembershipID);
 

@@ -31,6 +31,9 @@ webhook_response_compound_t* instantiate_webhook_response_compound(int include_o
       ezmax_api_definition__full_webhook_response_compound__"UserCreated",
       "https://www.example.com",
       "email@example.com",
+      "0",
+      "0",
+      true,
       true,
       false,
       "Ezsign-DocumentCompleted"
@@ -46,6 +49,9 @@ webhook_response_compound_t* instantiate_webhook_response_compound(int include_o
       ezmax_api_definition__full_webhook_response_compound__"UserCreated",
       "https://www.example.com",
       "email@example.com",
+      "0",
+      "0",
+      true,
       true,
       false,
       "Ezsign-DocumentCompleted"

@@ -17,7 +17,7 @@
 // The endpoint allows to create one or many elements at once.  The array can contain simple (Just the object) or compound (The object and its child) objects.  Creating compound elements allows to reduce the multiple requests to create all child objects.
 //
 franchisereferalincome_create_object_v1_response_t*
-ObjectFranchisereferalincomeAPI_franchisereferalincomeCreateObjectV1(apiClient_t *apiClient, list_t * franchisereferalincome_create_object_v1_request )
+ObjectFranchisereferalincomeAPI_franchisereferalincomeCreateObjectV1(apiClient_t *apiClient, list_t *franchisereferalincome_create_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -123,7 +123,7 @@ end:
 // The endpoint allows to create one or many elements at once.
 //
 franchisereferalincome_create_object_v2_response_t*
-ObjectFranchisereferalincomeAPI_franchisereferalincomeCreateObjectV2(apiClient_t *apiClient, franchisereferalincome_create_object_v2_request_t * franchisereferalincome_create_object_v2_request )
+ObjectFranchisereferalincomeAPI_franchisereferalincomeCreateObjectV2(apiClient_t *apiClient, franchisereferalincome_create_object_v2_request_t *franchisereferalincome_create_object_v2_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;

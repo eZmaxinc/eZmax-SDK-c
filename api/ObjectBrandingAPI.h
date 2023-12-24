@@ -36,7 +36,7 @@ typedef enum  { ezmax_api_definition__full_brandingGetListV1__NULL = 0, ezmax_ap
 // The endpoint allows to create one or many elements at once.
 //
 branding_create_object_v1_response_t*
-ObjectBrandingAPI_brandingCreateObjectV1(apiClient_t *apiClient, branding_create_object_v1_request_t * branding_create_object_v1_request );
+ObjectBrandingAPI_brandingCreateObjectV1(apiClient_t *apiClient, branding_create_object_v1_request_t *branding_create_object_v1_request);
 
 
 // Edit an existing Branding
@@ -44,7 +44,7 @@ ObjectBrandingAPI_brandingCreateObjectV1(apiClient_t *apiClient, branding_create
 // 
 //
 branding_edit_object_v1_response_t*
-ObjectBrandingAPI_brandingEditObjectV1(apiClient_t *apiClient, int pkiBrandingID , branding_edit_object_v1_request_t * branding_edit_object_v1_request );
+ObjectBrandingAPI_brandingEditObjectV1(apiClient_t *apiClient, int *pkiBrandingID, branding_edit_object_v1_request_t *branding_edit_object_v1_request);
 
 
 // Retrieve Brandings and IDs
@@ -52,7 +52,7 @@ ObjectBrandingAPI_brandingEditObjectV1(apiClient_t *apiClient, int pkiBrandingID
 // Get the list of Branding to be used in a dropdown or autocomplete control.
 //
 branding_get_autocomplete_v2_response_t*
-ObjectBrandingAPI_brandingGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_brandingGetAutocompleteV2_sSelector_e sSelector , ezmax_api_definition__full_brandingGetAutocompleteV2_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language );
+ObjectBrandingAPI_brandingGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_brandingGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_brandingGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
 
 
 // Retrieve Branding list
@@ -60,7 +60,7 @@ ObjectBrandingAPI_brandingGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_de
 // Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eBrandingLogo | Default<br>JPEG<br>PNG |
 //
 branding_get_list_v1_response_t*
-ObjectBrandingAPI_brandingGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_brandingGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter );
+ObjectBrandingAPI_brandingGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_brandingGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
 
 
 // Retrieve an existing Branding
@@ -68,6 +68,6 @@ ObjectBrandingAPI_brandingGetListV1(apiClient_t *apiClient, ezmax_api_definition
 // 
 //
 branding_get_object_v2_response_t*
-ObjectBrandingAPI_brandingGetObjectV2(apiClient_t *apiClient, int pkiBrandingID );
+ObjectBrandingAPI_brandingGetObjectV2(apiClient_t *apiClient, int *pkiBrandingID);
 
 

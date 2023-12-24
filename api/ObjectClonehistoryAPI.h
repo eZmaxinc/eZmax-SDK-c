@@ -21,6 +21,6 @@ typedef enum  { ezmax_api_definition__full_clonehistoryGetListV1__NULL = 0, ezma
 // 
 //
 clonehistory_get_list_v1_response_t*
-ObjectClonehistoryAPI_clonehistoryGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_clonehistoryGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter );
+ObjectClonehistoryAPI_clonehistoryGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_clonehistoryGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
 
 

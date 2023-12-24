@@ -53,7 +53,7 @@ ezsignbulksendsignermapping_delete_object_v1_response_t* ObjectEzsignbulksendsig
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignbulksendsignermappingID** | **int** |  | 
+**pkiEzsignbulksendsignermappingID** | **int \*** |  | 
 
 ### Return type
 
@@ -84,7 +84,7 @@ ezsignbulksendsignermapping_get_object_v2_response_t* ObjectEzsignbulksendsigner
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignbulksendsignermappingID** | **int** |  | 
+**pkiEzsignbulksendsignermappingID** | **int \*** |  | 
 
 ### Return type
 

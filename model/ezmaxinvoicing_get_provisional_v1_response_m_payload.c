@@ -6,7 +6,7 @@
 
 char* e_ezmaxinvoicing_paymenttypeezmaxinvoicing_get_provisional_v1_response_m_payload_ToString(ezmax_api_definition__full_ezmaxinvoicing_get_provisional_v1_response_m_payload__e e_ezmaxinvoicing_paymenttype) {
     char* e_ezmaxinvoicing_paymenttypeArray[] =  { "NULL", "Cheque", "CreditCard", "DirectDebit" };
-	return e_ezmaxinvoicing_paymenttypeArray[e_ezmaxinvoicing_paymenttype];
+    return e_ezmaxinvoicing_paymenttypeArray[e_ezmaxinvoicing_paymenttype];
 }
 
 ezmax_api_definition__full_ezmaxinvoicing_get_provisional_v1_response_m_payload__e e_ezmaxinvoicing_paymenttypeezmaxinvoicing_get_provisional_v1_response_m_payload_FromString(char* e_ezmaxinvoicing_paymenttype){

@@ -17,7 +17,7 @@
 // The endpoint allows to create one or many elements at once.
 //
 ezsignbulksendsignermapping_create_object_v1_response_t*
-ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingCreateObjectV1(apiClient_t *apiClient, ezsignbulksendsignermapping_create_object_v1_request_t * ezsignbulksendsignermapping_create_object_v1_request )
+ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingCreateObjectV1(apiClient_t *apiClient, ezsignbulksendsignermapping_create_object_v1_request_t *ezsignbulksendsignermapping_create_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -95,7 +95,7 @@ end:
 // 
 //
 ezsignbulksendsignermapping_delete_object_v1_response_t*
-ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingDeleteObjectV1(apiClient_t *apiClient, int pkiEzsignbulksendsignermappingID )
+ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksendsignermappingID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -119,7 +119,7 @@ ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingDeleteObjectV1(a
     snprintf(localVarToReplace_pkiEzsignbulksendsignermappingID, sizeOfPathParams_pkiEzsignbulksendsignermappingID, "{%s}", "pkiEzsignbulksendsignermappingID");
 
     char localVarBuff_pkiEzsignbulksendsignermappingID[256];
-    intToStr(localVarBuff_pkiEzsignbulksendsignermappingID, pkiEzsignbulksendsignermappingID);
+    intToStr(localVarBuff_pkiEzsignbulksendsignermappingID, *pkiEzsignbulksendsignermappingID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksendsignermappingID, localVarBuff_pkiEzsignbulksendsignermappingID);
 
@@ -177,7 +177,7 @@ end:
 // 
 //
 ezsignbulksendsignermapping_get_object_v2_response_t*
-ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingGetObjectV2(apiClient_t *apiClient, int pkiEzsignbulksendsignermappingID )
+ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingGetObjectV2(apiClient_t *apiClient, int *pkiEzsignbulksendsignermappingID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -201,7 +201,7 @@ ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingGetObjectV2(apiC
     snprintf(localVarToReplace_pkiEzsignbulksendsignermappingID, sizeOfPathParams_pkiEzsignbulksendsignermappingID, "{%s}", "pkiEzsignbulksendsignermappingID");
 
     char localVarBuff_pkiEzsignbulksendsignermappingID[256];
-    intToStr(localVarBuff_pkiEzsignbulksendsignermappingID, pkiEzsignbulksendsignermappingID);
+    intToStr(localVarBuff_pkiEzsignbulksendsignermappingID, *pkiEzsignbulksendsignermappingID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksendsignermappingID, localVarBuff_pkiEzsignbulksendsignermappingID);
 

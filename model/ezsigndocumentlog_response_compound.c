@@ -6,7 +6,7 @@
 
 char* e_ezsigndocumentlog_typeezsigndocumentlog_response_compound_ToString(ezmax_api_definition__full_ezsigndocumentlog_response_compound__e e_ezsigndocumentlog_type) {
     char* e_ezsigndocumentlog_typeArray[] =  { "NULL", "Clone", "Login", "Sendcode", "Badcode", "Goodcode", "Badresponse", "Goodresponse", "Authentication", "Createpage", "Download", "Send", "Sign", "Upload", "View", "Completion", "Changelimitdate", "Unsign", "ImportFromInstanet", "SendEmail", "FormCompletion", "SignatureAttachmentAdd", "SignatureAttachmentValidation", "SignatureAttachmentRefused", "SignatureAttachmentDeleted", "DeclinedToSign", "DelayedSendEmail", "AnnotationAdded", "Flatten", "RegeneratePage", "RegeneratePageForm", "Reassign" };
-	return e_ezsigndocumentlog_typeArray[e_ezsigndocumentlog_type];
+    return e_ezsigndocumentlog_typeArray[e_ezsigndocumentlog_type];
 }
 
 ezmax_api_definition__full_ezsigndocumentlog_response_compound__e e_ezsigndocumentlog_typeezsigndocumentlog_response_compound_FromString(char* e_ezsigndocumentlog_type){

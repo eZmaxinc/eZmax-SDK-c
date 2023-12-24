@@ -31,6 +31,7 @@ webhook_request_t* instantiate_webhook_request(int include_optional) {
       "https://www.example.com",
       "email@example.com",
       true,
+      true,
       false
     );
   } else {
@@ -43,6 +44,7 @@ webhook_request_t* instantiate_webhook_request(int include_optional) {
       ezmax_api_definition__full_webhook_request__"UserCreated",
       "https://www.example.com",
       "email@example.com",
+      true,
       true,
       false
     );

@@ -60,6 +60,7 @@ typedef struct ezsigndocument_get_object_v1_response_m_payload_t {
     int b_ezsigndocument_hassignedsignatures; //boolean
     struct common_audit_t *obj_audit; //model
     char *s_ezsigndocument_externalid; // string
+    int i_ezsigndocument_ezsignsignatureattachmenttotal; //numeric
     computed_e_ezsigndocument_steptype_t *e_ezsigndocument_steptype; // custom
     int i_ezsigndocument_stepformtotal; //numeric
     int i_ezsigndocument_stepformcurrent; //numeric
@@ -91,6 +92,7 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
     int b_ezsigndocument_hassignedsignatures,
     common_audit_t *obj_audit,
     char *s_ezsigndocument_externalid,
+    int i_ezsigndocument_ezsignsignatureattachmenttotal,
     computed_e_ezsigndocument_steptype_t *e_ezsigndocument_steptype,
     int i_ezsigndocument_stepformtotal,
     int i_ezsigndocument_stepformcurrent,

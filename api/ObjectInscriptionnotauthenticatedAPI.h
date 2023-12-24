@@ -14,6 +14,6 @@
 // 
 //
 inscriptionnotauthenticated_get_communication_list_v1_response_t*
-ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunicationListV1(apiClient_t *apiClient, int pkiInscriptionnotauthenticatedID );
+ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunicationListV1(apiClient_t *apiClient, int *pkiInscriptionnotauthenticatedID);
 
 

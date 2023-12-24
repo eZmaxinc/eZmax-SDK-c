@@ -56,7 +56,7 @@ ezsignsignergroup_delete_object_v1_response_t* ObjectEzsignsignergroupAPI_ezsign
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignsignergroupID** | **int** | The unique ID of the Ezsignsignergroup | 
+**pkiEzsignsignergroupID** | **int \*** | The unique ID of the Ezsignsignergroup | 
 
 ### Return type
 
@@ -87,7 +87,7 @@ ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_t* ObjectEzsigns
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignsignergroupID** | **int** |  | 
+**pkiEzsignsignergroupID** | **int \*** |  | 
 **ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_request** | **[ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_request_t](ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_request.md) \*** |  | 
 
 ### Return type
@@ -119,7 +119,7 @@ ezsignsignergroup_edit_object_v1_response_t* ObjectEzsignsignergroupAPI_ezsignsi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignsignergroupID** | **int** | The unique ID of the Ezsignsignergroup | 
+**pkiEzsignsignergroupID** | **int \*** | The unique ID of the Ezsignsignergroup | 
 **ezsignsignergroup_edit_object_v1_request** | **[ezsignsignergroup_edit_object_v1_request_t](ezsignsignergroup_edit_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -149,7 +149,7 @@ ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_t* ObjectEzsignsi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignsignergroupID** | **int** |  | 
+**pkiEzsignsignergroupID** | **int \*** |  | 
 
 ### Return type
 
@@ -180,7 +180,7 @@ ezsignsignergroup_get_object_v2_response_t* ObjectEzsignsignergroupAPI_ezsignsig
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignsignergroupID** | **int** | The unique ID of the Ezsignsignergroup | 
+**pkiEzsignsignergroupID** | **int \*** | The unique ID of the Ezsignsignergroup | 
 
 ### Return type
 

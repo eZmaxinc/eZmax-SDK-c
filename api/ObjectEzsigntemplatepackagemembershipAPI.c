@@ -17,7 +17,7 @@
 // The endpoint allows to create one or many elements at once.
 //
 ezsigntemplatepackagemembership_create_object_v1_response_t*
-ObjectEzsigntemplatepackagemembershipAPI_ezsigntemplatepackagemembershipCreateObjectV1(apiClient_t *apiClient, ezsigntemplatepackagemembership_create_object_v1_request_t * ezsigntemplatepackagemembership_create_object_v1_request )
+ObjectEzsigntemplatepackagemembershipAPI_ezsigntemplatepackagemembershipCreateObjectV1(apiClient_t *apiClient, ezsigntemplatepackagemembership_create_object_v1_request_t *ezsigntemplatepackagemembership_create_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -99,7 +99,7 @@ end:
 // 
 //
 ezsigntemplatepackagemembership_delete_object_v1_response_t*
-ObjectEzsigntemplatepackagemembershipAPI_ezsigntemplatepackagemembershipDeleteObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatepackagemembershipID )
+ObjectEzsigntemplatepackagemembershipAPI_ezsigntemplatepackagemembershipDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatepackagemembershipID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -123,7 +123,7 @@ ObjectEzsigntemplatepackagemembershipAPI_ezsigntemplatepackagemembershipDeleteOb
     snprintf(localVarToReplace_pkiEzsigntemplatepackagemembershipID, sizeOfPathParams_pkiEzsigntemplatepackagemembershipID, "{%s}", "pkiEzsigntemplatepackagemembershipID");
 
     char localVarBuff_pkiEzsigntemplatepackagemembershipID[256];
-    intToStr(localVarBuff_pkiEzsigntemplatepackagemembershipID, pkiEzsigntemplatepackagemembershipID);
+    intToStr(localVarBuff_pkiEzsigntemplatepackagemembershipID, *pkiEzsigntemplatepackagemembershipID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatepackagemembershipID, localVarBuff_pkiEzsigntemplatepackagemembershipID);
 
@@ -181,7 +181,7 @@ end:
 // 
 //
 ezsigntemplatepackagemembership_get_object_v2_response_t*
-ObjectEzsigntemplatepackagemembershipAPI_ezsigntemplatepackagemembershipGetObjectV2(apiClient_t *apiClient, int pkiEzsigntemplatepackagemembershipID )
+ObjectEzsigntemplatepackagemembershipAPI_ezsigntemplatepackagemembershipGetObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplatepackagemembershipID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -205,7 +205,7 @@ ObjectEzsigntemplatepackagemembershipAPI_ezsigntemplatepackagemembershipGetObjec
     snprintf(localVarToReplace_pkiEzsigntemplatepackagemembershipID, sizeOfPathParams_pkiEzsigntemplatepackagemembershipID, "{%s}", "pkiEzsigntemplatepackagemembershipID");
 
     char localVarBuff_pkiEzsigntemplatepackagemembershipID[256];
-    intToStr(localVarBuff_pkiEzsigntemplatepackagemembershipID, pkiEzsigntemplatepackagemembershipID);
+    intToStr(localVarBuff_pkiEzsigntemplatepackagemembershipID, *pkiEzsigntemplatepackagemembershipID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatepackagemembershipID, localVarBuff_pkiEzsigntemplatepackagemembershipID);
 

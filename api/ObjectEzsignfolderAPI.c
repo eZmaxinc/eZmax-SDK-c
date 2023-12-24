@@ -112,7 +112,7 @@ end:
 // 
 //
 ezsignfolder_archive_v1_response_t*
-ObjectEzsignfolderAPI_ezsignfolderArchiveV1(apiClient_t *apiClient, int pkiEzsignfolderID , object_t * body )
+ObjectEzsignfolderAPI_ezsignfolderArchiveV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -136,7 +136,7 @@ ObjectEzsignfolderAPI_ezsignfolderArchiveV1(apiClient_t *apiClient, int pkiEzsig
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, pkiEzsignfolderID);
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -211,7 +211,7 @@ end:
 // Download multiples files from an Ezsignfolder
 //
 binary_t**
-ObjectEzsignfolderAPI_ezsignfolderBatchDownloadV1(apiClient_t *apiClient, int pkiEzsignfolderID , ezsignfolder_batch_download_v1_request_t * ezsignfolder_batch_download_v1_request )
+ObjectEzsignfolderAPI_ezsignfolderBatchDownloadV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_batch_download_v1_request_t *ezsignfolder_batch_download_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -235,7 +235,7 @@ ObjectEzsignfolderAPI_ezsignfolderBatchDownloadV1(apiClient_t *apiClient, int pk
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, pkiEzsignfolderID);
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -311,7 +311,7 @@ end:
 // The endpoint allows to create one or many elements at once.  The array can contain simple (Just the object) or compound (The object and its child) objects.  Creating compound elements allows to reduce the multiple requests to create all child objects.
 //
 ezsignfolder_create_object_v1_response_t*
-ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1(apiClient_t *apiClient, list_t * ezsignfolder_create_object_v1_request )
+ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1(apiClient_t *apiClient, list_t *ezsignfolder_create_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -417,7 +417,7 @@ end:
 // The endpoint allows to create one or many elements at once.
 //
 ezsignfolder_create_object_v2_response_t*
-ObjectEzsignfolderAPI_ezsignfolderCreateObjectV2(apiClient_t *apiClient, ezsignfolder_create_object_v2_request_t * ezsignfolder_create_object_v2_request )
+ObjectEzsignfolderAPI_ezsignfolderCreateObjectV2(apiClient_t *apiClient, ezsignfolder_create_object_v2_request_t *ezsignfolder_create_object_v2_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -493,7 +493,7 @@ end:
 // Delete an existing Ezsignfolder
 //
 ezsignfolder_delete_object_v1_response_t*
-ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1(apiClient_t *apiClient, int pkiEzsignfolderID )
+ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignfolderID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -517,7 +517,7 @@ ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1(apiClient_t *apiClient, int pki
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, pkiEzsignfolderID);
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -579,7 +579,7 @@ end:
 // 
 //
 ezsignfolder_dispose_ezsignfolders_v1_response_t*
-ObjectEzsignfolderAPI_ezsignfolderDisposeEzsignfoldersV1(apiClient_t *apiClient, ezsignfolder_dispose_ezsignfolders_v1_request_t * ezsignfolder_dispose_ezsignfolders_v1_request )
+ObjectEzsignfolderAPI_ezsignfolderDisposeEzsignfoldersV1(apiClient_t *apiClient, ezsignfolder_dispose_ezsignfolders_v1_request_t *ezsignfolder_dispose_ezsignfolders_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -665,7 +665,7 @@ end:
 // 
 //
 ezsignfolder_dispose_v1_response_t*
-ObjectEzsignfolderAPI_ezsignfolderDisposeV1(apiClient_t *apiClient, int pkiEzsignfolderID , object_t * body )
+ObjectEzsignfolderAPI_ezsignfolderDisposeV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -689,7 +689,7 @@ ObjectEzsignfolderAPI_ezsignfolderDisposeV1(apiClient_t *apiClient, int pkiEzsig
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, pkiEzsignfolderID);
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -766,7 +766,7 @@ end:
 // 
 //
 ezsignfolder_edit_object_v1_response_t*
-ObjectEzsignfolderAPI_ezsignfolderEditObjectV1(apiClient_t *apiClient, int pkiEzsignfolderID , ezsignfolder_edit_object_v1_request_t * ezsignfolder_edit_object_v1_request )
+ObjectEzsignfolderAPI_ezsignfolderEditObjectV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_edit_object_v1_request_t *ezsignfolder_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -790,7 +790,7 @@ ObjectEzsignfolderAPI_ezsignfolderEditObjectV1(apiClient_t *apiClient, int pkiEz
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, pkiEzsignfolderID);
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -867,7 +867,7 @@ end:
 // Return the Ezsignsignatures that can be signed and Ezsignformfieldgroups that can be filled by the current user at the current step in the process
 //
 ezsignfolder_get_actionable_elements_v1_response_t*
-ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV1(apiClient_t *apiClient, int pkiEzsignfolderID )
+ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV1(apiClient_t *apiClient, int *pkiEzsignfolderID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -891,7 +891,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV1(apiClient_t *apiClient
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, pkiEzsignfolderID);
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -948,12 +948,176 @@ end:
 
 }
 
+// Retrieve Attachment count
+//
+// 
+//
+ezsignfolder_get_attachment_count_v1_response_t*
+ObjectEzsignfolderAPI_ezsignfolderGetAttachmentCountV1(apiClient_t *apiClient, int *pkiEzsignfolderID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}/getAttachmentCount")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}/getAttachmentCount");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    if(pkiEzsignfolderID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsignfolderID = malloc(sizeOfPathParams_pkiEzsignfolderID);
+    snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
+
+    char localVarBuff_pkiEzsignfolderID[256];
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsignfolder_get_attachment_count_v1_response_t *elementToReturn = ezsignfolder_get_attachment_count_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsignfolderID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve Ezsignfolder's Attachments
+//
+// 
+//
+ezsignfolder_get_attachments_v1_response_t*
+ObjectEzsignfolderAPI_ezsignfolderGetAttachmentsV1(apiClient_t *apiClient, int *pkiEzsignfolderID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}/getAttachments")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}/getAttachments");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    if(pkiEzsignfolderID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsignfolderID = malloc(sizeOfPathParams_pkiEzsignfolderID);
+    snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
+
+    char localVarBuff_pkiEzsignfolderID[256];
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsignfolder_get_attachments_v1_response_t *elementToReturn = ezsignfolder_get_attachments_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsignfolderID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Retrieve Communication count
 //
 // 
 //
 ezsignfolder_get_communication_count_v1_response_t*
-ObjectEzsignfolderAPI_ezsignfolderGetCommunicationCountV1(apiClient_t *apiClient, int pkiEzsignfolderID )
+ObjectEzsignfolderAPI_ezsignfolderGetCommunicationCountV1(apiClient_t *apiClient, int *pkiEzsignfolderID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -977,7 +1141,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetCommunicationCountV1(apiClient_t *apiClient
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, pkiEzsignfolderID);
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -1035,7 +1199,7 @@ end:
 // 
 //
 ezsignfolder_get_communication_list_v1_response_t*
-ObjectEzsignfolderAPI_ezsignfolderGetCommunicationListV1(apiClient_t *apiClient, int pkiEzsignfolderID )
+ObjectEzsignfolderAPI_ezsignfolderGetCommunicationListV1(apiClient_t *apiClient, int *pkiEzsignfolderID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1059,7 +1223,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetCommunicationListV1(apiClient_t *apiClient,
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, pkiEzsignfolderID);
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -1117,7 +1281,7 @@ end:
 // 
 //
 ezsignfolder_get_communicationrecipients_v1_response_t*
-ObjectEzsignfolderAPI_ezsignfolderGetCommunicationrecipientsV1(apiClient_t *apiClient, int pkiEzsignfolderID )
+ObjectEzsignfolderAPI_ezsignfolderGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiEzsignfolderID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1141,7 +1305,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetCommunicationrecipientsV1(apiClient_t *apiC
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, pkiEzsignfolderID);
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -1199,7 +1363,7 @@ end:
 // 
 //
 ezsignfolder_get_communicationsenders_v1_response_t*
-ObjectEzsignfolderAPI_ezsignfolderGetCommunicationsendersV1(apiClient_t *apiClient, int pkiEzsignfolderID )
+ObjectEzsignfolderAPI_ezsignfolderGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiEzsignfolderID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1223,7 +1387,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetCommunicationsendersV1(apiClient_t *apiClie
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, pkiEzsignfolderID);
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -1281,7 +1445,7 @@ end:
 // 
 //
 ezsignfolder_get_ezsigndocuments_v1_response_t*
-ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1(apiClient_t *apiClient, int pkiEzsignfolderID )
+ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1(apiClient_t *apiClient, int *pkiEzsignfolderID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1305,7 +1469,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1(apiClient_t *apiClient, i
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, pkiEzsignfolderID);
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -1363,7 +1527,7 @@ end:
 // 
 //
 ezsignfolder_get_ezsignfoldersignerassociations_v1_response_t*
-ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1(apiClient_t *apiClient, int pkiEzsignfolderID )
+ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1(apiClient_t *apiClient, int *pkiEzsignfolderID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1387,7 +1551,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1(apiClient_
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, pkiEzsignfolderID);
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -1445,7 +1609,7 @@ end:
 // Return the Ezsignsignatures that can be signed by the current user at the current step in the process
 //
 ezsignfolder_get_ezsignsignatures_automatic_v1_response_t*
-ObjectEzsignfolderAPI_ezsignfolderGetEzsignsignaturesAutomaticV1(apiClient_t *apiClient, int pkiEzsignfolderID )
+ObjectEzsignfolderAPI_ezsignfolderGetEzsignsignaturesAutomaticV1(apiClient_t *apiClient, int *pkiEzsignfolderID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1469,7 +1633,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetEzsignsignaturesAutomaticV1(apiClient_t *ap
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, pkiEzsignfolderID);
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -1527,7 +1691,7 @@ end:
 // 
 //
 ezsignfolder_get_forms_data_v1_response_t*
-ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1(apiClient_t *apiClient, int pkiEzsignfolderID )
+ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1(apiClient_t *apiClient, int *pkiEzsignfolderID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1551,7 +1715,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1(apiClient_t *apiClient, int pki
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, pkiEzsignfolderID);
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -1618,7 +1782,7 @@ end:
 // Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eEzsignfolderStep | Unsent<br>Sent<br>PartiallySigned<br>Expired<br>Completed<br>Archived<br>Disposed| | eEzsignfoldertypePrivacylevel | User<br>Usergroup |  Advanced filters that can be used in query parameter *sFilter*:  | Variable | |---| | fkiUserID | | sContactFirstname | | sContactLastname | | sEzsigndocumentName |
 //
 ezsignfolder_get_list_v1_response_t*
-ObjectEzsignfolderAPI_ezsignfolderGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsignfolderGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter )
+ObjectEzsignfolderAPI_ezsignfolderGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsignfolderGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -1656,7 +1820,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetListV1(apiClient_t *apiClient, ezmax_api_de
         keyQuery_eOrderBy = strdup("eOrderBy");
         valueQuery_eOrderBy = (eOrderBy);
         keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, (void *)strdup(ezsignfolderGetListV1_EORDERBY_ToString(
-		valueQuery_eOrderBy)));
+        valueQuery_eOrderBy)));
         list_addElement(localVarQueryParameters,keyPairQuery_eOrderBy);
     }
 
@@ -1664,11 +1828,11 @@ ObjectEzsignfolderAPI_ezsignfolderGetListV1(apiClient_t *apiClient, ezmax_api_de
     char *keyQuery_iRowMax = NULL;
     char * valueQuery_iRowMax = NULL;
     keyValuePair_t *keyPairQuery_iRowMax = 0;
-    if (1) // Always send integer parameters to the API server
+    if (iRowMax)
     {
         keyQuery_iRowMax = strdup("iRowMax");
         valueQuery_iRowMax = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_iRowMax, MAX_NUMBER_LENGTH, "%d", iRowMax);
+        snprintf(valueQuery_iRowMax, MAX_NUMBER_LENGTH, "%d", *iRowMax);
         keyPairQuery_iRowMax = keyValuePair_create(keyQuery_iRowMax, valueQuery_iRowMax);
         list_addElement(localVarQueryParameters,keyPairQuery_iRowMax);
     }
@@ -1677,11 +1841,11 @@ ObjectEzsignfolderAPI_ezsignfolderGetListV1(apiClient_t *apiClient, ezmax_api_de
     char *keyQuery_iRowOffset = NULL;
     char * valueQuery_iRowOffset = NULL;
     keyValuePair_t *keyPairQuery_iRowOffset = 0;
-    if (1) // Always send integer parameters to the API server
+    if (iRowOffset)
     {
         keyQuery_iRowOffset = strdup("iRowOffset");
         valueQuery_iRowOffset = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_iRowOffset, MAX_NUMBER_LENGTH, "%d", iRowOffset);
+        snprintf(valueQuery_iRowOffset, MAX_NUMBER_LENGTH, "%d", *iRowOffset);
         keyPairQuery_iRowOffset = keyValuePair_create(keyQuery_iRowOffset, valueQuery_iRowOffset);
         list_addElement(localVarQueryParameters,keyPairQuery_iRowOffset);
     }
@@ -1796,7 +1960,7 @@ end:
 // Retrieve an existing Ezsignfolder
 //
 ezsignfolder_get_object_v1_response_t*
-ObjectEzsignfolderAPI_ezsignfolderGetObjectV1(apiClient_t *apiClient, int pkiEzsignfolderID )
+ObjectEzsignfolderAPI_ezsignfolderGetObjectV1(apiClient_t *apiClient, int *pkiEzsignfolderID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1820,7 +1984,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetObjectV1(apiClient_t *apiClient, int pkiEzs
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, pkiEzsignfolderID);
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -1878,7 +2042,7 @@ end:
 // 
 //
 ezsignfolder_get_object_v2_response_t*
-ObjectEzsignfolderAPI_ezsignfolderGetObjectV2(apiClient_t *apiClient, int pkiEzsignfolderID )
+ObjectEzsignfolderAPI_ezsignfolderGetObjectV2(apiClient_t *apiClient, int *pkiEzsignfolderID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1902,7 +2066,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetObjectV2(apiClient_t *apiClient, int pkiEzs
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, pkiEzsignfolderID);
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -1960,7 +2124,7 @@ end:
 // 
 //
 ezsignfolder_import_ezsignfoldersignerassociations_v1_response_t*
-ObjectEzsignfolderAPI_ezsignfolderImportEzsignfoldersignerassociationsV1(apiClient_t *apiClient, int pkiEzsignfolderID , ezsignfolder_import_ezsignfoldersignerassociations_v1_request_t * ezsignfolder_import_ezsignfoldersignerassociations_v1_request )
+ObjectEzsignfolderAPI_ezsignfolderImportEzsignfoldersignerassociationsV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_import_ezsignfoldersignerassociations_v1_request_t *ezsignfolder_import_ezsignfoldersignerassociations_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1984,7 +2148,7 @@ ObjectEzsignfolderAPI_ezsignfolderImportEzsignfoldersignerassociationsV1(apiClie
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, pkiEzsignfolderID);
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -2065,7 +2229,7 @@ end:
 // This endpoint imports all of the Ezsigntemplates from the Ezsigntemplatepackage into the Ezsignfolder as Ezsigndocuments.  This allows to automatically apply all the Ezsigntemplateformfieldgroups and Ezsigntemplatesignatures on the newly created Ezsigndocuments in a single step.
 //
 ezsignfolder_import_ezsigntemplatepackage_v1_response_t*
-ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV1(apiClient_t *apiClient, int pkiEzsignfolderID , ezsignfolder_import_ezsigntemplatepackage_v1_request_t * ezsignfolder_import_ezsigntemplatepackage_v1_request )
+ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_import_ezsigntemplatepackage_v1_request_t *ezsignfolder_import_ezsigntemplatepackage_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -2089,7 +2253,7 @@ ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV1(apiClient_t *api
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, pkiEzsignfolderID);
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -2164,7 +2328,7 @@ end:
 // Reorder Ezsigndocuments in the Ezsignfolder
 //
 ezsignfolder_reorder_v1_response_t*
-ObjectEzsignfolderAPI_ezsignfolderReorderV1(apiClient_t *apiClient, int pkiEzsignfolderID , ezsignfolder_reorder_v1_request_t * ezsignfolder_reorder_v1_request )
+ObjectEzsignfolderAPI_ezsignfolderReorderV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_reorder_v1_request_t *ezsignfolder_reorder_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -2188,7 +2352,7 @@ ObjectEzsignfolderAPI_ezsignfolderReorderV1(apiClient_t *apiClient, int pkiEzsig
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, pkiEzsignfolderID);
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -2265,7 +2429,7 @@ end:
 // 
 //
 ezsignfolder_send_v1_response_t*
-ObjectEzsignfolderAPI_ezsignfolderSendV1(apiClient_t *apiClient, int pkiEzsignfolderID , ezsignfolder_send_v1_request_t * ezsignfolder_send_v1_request )
+ObjectEzsignfolderAPI_ezsignfolderSendV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_send_v1_request_t *ezsignfolder_send_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -2289,7 +2453,7 @@ ObjectEzsignfolderAPI_ezsignfolderSendV1(apiClient_t *apiClient, int pkiEzsignfo
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, pkiEzsignfolderID);
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -2366,7 +2530,7 @@ end:
 // 
 //
 ezsignfolder_send_v2_response_t*
-ObjectEzsignfolderAPI_ezsignfolderSendV2(apiClient_t *apiClient, int pkiEzsignfolderID , ezsignfolder_send_v2_request_t * ezsignfolder_send_v2_request )
+ObjectEzsignfolderAPI_ezsignfolderSendV2(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_send_v2_request_t *ezsignfolder_send_v2_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -2390,7 +2554,7 @@ ObjectEzsignfolderAPI_ezsignfolderSendV2(apiClient_t *apiClient, int pkiEzsignfo
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, pkiEzsignfolderID);
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -2467,7 +2631,7 @@ end:
 // 
 //
 ezsignfolder_send_v3_response_t*
-ObjectEzsignfolderAPI_ezsignfolderSendV3(apiClient_t *apiClient, int pkiEzsignfolderID , ezsignfolder_send_v3_request_t * ezsignfolder_send_v3_request )
+ObjectEzsignfolderAPI_ezsignfolderSendV3(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_send_v3_request_t *ezsignfolder_send_v3_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -2491,7 +2655,7 @@ ObjectEzsignfolderAPI_ezsignfolderSendV3(apiClient_t *apiClient, int pkiEzsignfo
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, pkiEzsignfolderID);
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -2568,7 +2732,7 @@ end:
 // Once an Ezsignfolder has been sent to signatories, it cannot be modified.  Using this endpoint, you can unsend the Ezsignfolder and make it modifiable again.  Signatories will receive an email informing them the signature process was aborted and they might receive a new invitation to sign.  ⚠️ Warning: Any signature previously made by signatories on \"Non-completed\" Ezsigndocuments will be lost.
 //
 ezsignfolder_unsend_v1_response_t*
-ObjectEzsignfolderAPI_ezsignfolderUnsendV1(apiClient_t *apiClient, int pkiEzsignfolderID , object_t * body )
+ObjectEzsignfolderAPI_ezsignfolderUnsendV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -2592,7 +2756,7 @@ ObjectEzsignfolderAPI_ezsignfolderUnsendV1(apiClient_t *apiClient, int pkiEzsign
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, pkiEzsignfolderID);
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 

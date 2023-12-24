@@ -17,7 +17,7 @@
 // The endpoint allows to create one or many elements at once.  The array can contain simple (Just the object) or compound (The object and its child) objects.  Creating compound elements allows to reduce the multiple requests to create all child objects.
 //
 ezsignfoldersignerassociation_create_object_v1_response_t*
-ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateObjectV1(apiClient_t *apiClient, list_t * ezsignfoldersignerassociation_create_object_v1_request )
+ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateObjectV1(apiClient_t *apiClient, list_t *ezsignfoldersignerassociation_create_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -123,7 +123,7 @@ end:
 // The endpoint allows to create one or many elements at once.
 //
 ezsignfoldersignerassociation_create_object_v2_response_t*
-ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateObjectV2(apiClient_t *apiClient, ezsignfoldersignerassociation_create_object_v2_request_t * ezsignfoldersignerassociation_create_object_v2_request )
+ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateObjectV2(apiClient_t *apiClient, ezsignfoldersignerassociation_create_object_v2_request_t *ezsignfoldersignerassociation_create_object_v2_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -201,7 +201,7 @@ end:
 // 
 //
 ezsignfoldersignerassociation_delete_object_v1_response_t*
-ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationDeleteObjectV1(apiClient_t *apiClient, int pkiEzsignfoldersignerassociationID )
+ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -225,7 +225,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationDeleteObject
     snprintf(localVarToReplace_pkiEzsignfoldersignerassociationID, sizeOfPathParams_pkiEzsignfoldersignerassociationID, "{%s}", "pkiEzsignfoldersignerassociationID");
 
     char localVarBuff_pkiEzsignfoldersignerassociationID[256];
-    intToStr(localVarBuff_pkiEzsignfoldersignerassociationID, pkiEzsignfoldersignerassociationID);
+    intToStr(localVarBuff_pkiEzsignfoldersignerassociationID, *pkiEzsignfoldersignerassociationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfoldersignerassociationID, localVarBuff_pkiEzsignfoldersignerassociationID);
 
@@ -287,7 +287,7 @@ end:
 // 
 //
 ezsignfoldersignerassociation_edit_object_v1_response_t*
-ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationEditObjectV1(apiClient_t *apiClient, int pkiEzsignfoldersignerassociationID , ezsignfoldersignerassociation_edit_object_v1_request_t * ezsignfoldersignerassociation_edit_object_v1_request )
+ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationEditObjectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_edit_object_v1_request_t *ezsignfoldersignerassociation_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -311,7 +311,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationEditObjectV1
     snprintf(localVarToReplace_pkiEzsignfoldersignerassociationID, sizeOfPathParams_pkiEzsignfoldersignerassociationID, "{%s}", "pkiEzsignfoldersignerassociationID");
 
     char localVarBuff_pkiEzsignfoldersignerassociationID[256];
-    intToStr(localVarBuff_pkiEzsignfoldersignerassociationID, pkiEzsignfoldersignerassociationID);
+    intToStr(localVarBuff_pkiEzsignfoldersignerassociationID, *pkiEzsignfoldersignerassociationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfoldersignerassociationID, localVarBuff_pkiEzsignfoldersignerassociationID);
 
@@ -388,7 +388,7 @@ end:
 // 
 //
 ezsignfoldersignerassociation_force_disconnect_v1_response_t*
-ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationForceDisconnectV1(apiClient_t *apiClient, int pkiEzsignfoldersignerassociationID , object_t * body )
+ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationForceDisconnectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -412,7 +412,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationForceDisconn
     snprintf(localVarToReplace_pkiEzsignfoldersignerassociationID, sizeOfPathParams_pkiEzsignfoldersignerassociationID, "{%s}", "pkiEzsignfoldersignerassociationID");
 
     char localVarBuff_pkiEzsignfoldersignerassociationID[256];
-    intToStr(localVarBuff_pkiEzsignfoldersignerassociationID, pkiEzsignfoldersignerassociationID);
+    intToStr(localVarBuff_pkiEzsignfoldersignerassociationID, *pkiEzsignfoldersignerassociationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfoldersignerassociationID, localVarBuff_pkiEzsignfoldersignerassociationID);
 
@@ -489,7 +489,7 @@ end:
 // This endpoint returns a Login Url that can be used in a browser or embedded in an I-Frame to allow in person signing.  The signer Login type must be configured as In-Person.
 //
 ezsignfoldersignerassociation_get_in_person_login_url_v1_response_t*
-ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetInPersonLoginUrlV1(apiClient_t *apiClient, int pkiEzsignfoldersignerassociationID )
+ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetInPersonLoginUrlV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -513,7 +513,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetInPersonL
     snprintf(localVarToReplace_pkiEzsignfoldersignerassociationID, sizeOfPathParams_pkiEzsignfoldersignerassociationID, "{%s}", "pkiEzsignfoldersignerassociationID");
 
     char localVarBuff_pkiEzsignfoldersignerassociationID[256];
-    intToStr(localVarBuff_pkiEzsignfoldersignerassociationID, pkiEzsignfoldersignerassociationID);
+    intToStr(localVarBuff_pkiEzsignfoldersignerassociationID, *pkiEzsignfoldersignerassociationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfoldersignerassociationID, localVarBuff_pkiEzsignfoldersignerassociationID);
 
@@ -575,7 +575,7 @@ end:
 // 
 //
 ezsignfoldersignerassociation_get_object_v1_response_t*
-ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV1(apiClient_t *apiClient, int pkiEzsignfoldersignerassociationID )
+ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -599,7 +599,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV1(
     snprintf(localVarToReplace_pkiEzsignfoldersignerassociationID, sizeOfPathParams_pkiEzsignfoldersignerassociationID, "{%s}", "pkiEzsignfoldersignerassociationID");
 
     char localVarBuff_pkiEzsignfoldersignerassociationID[256];
-    intToStr(localVarBuff_pkiEzsignfoldersignerassociationID, pkiEzsignfoldersignerassociationID);
+    intToStr(localVarBuff_pkiEzsignfoldersignerassociationID, *pkiEzsignfoldersignerassociationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfoldersignerassociationID, localVarBuff_pkiEzsignfoldersignerassociationID);
 
@@ -657,7 +657,7 @@ end:
 // 
 //
 ezsignfoldersignerassociation_get_object_v2_response_t*
-ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV2(apiClient_t *apiClient, int pkiEzsignfoldersignerassociationID )
+ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV2(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -681,7 +681,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV2(
     snprintf(localVarToReplace_pkiEzsignfoldersignerassociationID, sizeOfPathParams_pkiEzsignfoldersignerassociationID, "{%s}", "pkiEzsignfoldersignerassociationID");
 
     char localVarBuff_pkiEzsignfoldersignerassociationID[256];
-    intToStr(localVarBuff_pkiEzsignfoldersignerassociationID, pkiEzsignfoldersignerassociationID);
+    intToStr(localVarBuff_pkiEzsignfoldersignerassociationID, *pkiEzsignfoldersignerassociationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfoldersignerassociationID, localVarBuff_pkiEzsignfoldersignerassociationID);
 
@@ -737,7 +737,7 @@ end:
 // Patch an existing Ezsignfoldersignerassociation
 //
 ezsignfoldersignerassociation_patch_object_v1_response_t*
-ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationPatchObjectV1(apiClient_t *apiClient, int pkiEzsignfoldersignerassociationID , ezsignfoldersignerassociation_patch_object_v1_request_t * ezsignfoldersignerassociation_patch_object_v1_request )
+ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationPatchObjectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_patch_object_v1_request_t *ezsignfoldersignerassociation_patch_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -761,7 +761,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationPatchObjectV
     snprintf(localVarToReplace_pkiEzsignfoldersignerassociationID, sizeOfPathParams_pkiEzsignfoldersignerassociationID, "{%s}", "pkiEzsignfoldersignerassociationID");
 
     char localVarBuff_pkiEzsignfoldersignerassociationID[256];
-    intToStr(localVarBuff_pkiEzsignfoldersignerassociationID, pkiEzsignfoldersignerassociationID);
+    intToStr(localVarBuff_pkiEzsignfoldersignerassociationID, *pkiEzsignfoldersignerassociationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfoldersignerassociationID, localVarBuff_pkiEzsignfoldersignerassociationID);
 

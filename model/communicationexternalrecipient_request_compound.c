@@ -6,7 +6,7 @@
 
 char* e_communicationexternalrecipient_typecommunicationexternalrecipient_request_compound_ToString(ezmax_api_definition__full_communicationexternalrecipient_request_compound__e e_communicationexternalrecipient_type) {
     char* e_communicationexternalrecipient_typeArray[] =  { "NULL", "To", "Cc", "Bcc" };
-	return e_communicationexternalrecipient_typeArray[e_communicationexternalrecipient_type];
+    return e_communicationexternalrecipient_typeArray[e_communicationexternalrecipient_type];
 }
 
 ezmax_api_definition__full_communicationexternalrecipient_request_compound__e e_communicationexternalrecipient_typecommunicationexternalrecipient_request_compound_FromString(char* e_communicationexternalrecipient_type){
@@ -108,11 +108,10 @@ cJSON *communicationexternalrecipient_request_compound_convertToJSON(communicati
 
 
     // communicationexternalrecipient_request_compound->s_communicationexternalrecipient_name
-    if (!communicationexternalrecipient_request_compound->s_communicationexternalrecipient_name) {
-        goto fail;
-    }
+    if(communicationexternalrecipient_request_compound->s_communicationexternalrecipient_name) {
     if(cJSON_AddStringToObject(item, "sCommunicationexternalrecipientName", communicationexternalrecipient_request_compound->s_communicationexternalrecipient_name) == NULL) {
     goto fail; //String
+    }
     }
 
     return item;
@@ -165,14 +164,11 @@ communicationexternalrecipient_request_compound_t *communicationexternalrecipien
 
     // communicationexternalrecipient_request_compound->s_communicationexternalrecipient_name
     cJSON *s_communicationexternalrecipient_name = cJSON_GetObjectItemCaseSensitive(communicationexternalrecipient_request_compoundJSON, "sCommunicationexternalrecipientName");
-    if (!s_communicationexternalrecipient_name) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(s_communicationexternalrecipient_name))
+    if (s_communicationexternalrecipient_name) { 
+    if(!cJSON_IsString(s_communicationexternalrecipient_name) && !cJSON_IsNull(s_communicationexternalrecipient_name))
     {
     goto end; //String
+    }
     }
 
 
@@ -181,7 +177,7 @@ communicationexternalrecipient_request_compound_t *communicationexternalrecipien
         s_email_address && !cJSON_IsNull(s_email_address) ? strdup(s_email_address->valuestring) : NULL,
         s_phone_e164 && !cJSON_IsNull(s_phone_e164) ? strdup(s_phone_e164->valuestring) : NULL,
         e_communicationexternalrecipient_type ? e_communicationexternalrecipient_type_local_nonprim : NULL,
-        strdup(s_communicationexternalrecipient_name->valuestring)
+        s_communicationexternalrecipient_name && !cJSON_IsNull(s_communicationexternalrecipient_name) ? strdup(s_communicationexternalrecipient_name->valuestring) : NULL
         );
 
     return communicationexternalrecipient_request_compound_local_var;

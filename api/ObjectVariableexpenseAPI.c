@@ -259,7 +259,7 @@ end:
 // The endpoint allows to create one or many elements at once.
 //
 variableexpense_create_object_v1_response_t*
-ObjectVariableexpenseAPI_variableexpenseCreateObjectV1(apiClient_t *apiClient, variableexpense_create_object_v1_request_t * variableexpense_create_object_v1_request )
+ObjectVariableexpenseAPI_variableexpenseCreateObjectV1(apiClient_t *apiClient, variableexpense_create_object_v1_request_t *variableexpense_create_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -337,7 +337,7 @@ end:
 // 
 //
 variableexpense_edit_object_v1_response_t*
-ObjectVariableexpenseAPI_variableexpenseEditObjectV1(apiClient_t *apiClient, int pkiVariableexpenseID , variableexpense_edit_object_v1_request_t * variableexpense_edit_object_v1_request )
+ObjectVariableexpenseAPI_variableexpenseEditObjectV1(apiClient_t *apiClient, int *pkiVariableexpenseID, variableexpense_edit_object_v1_request_t *variableexpense_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -361,7 +361,7 @@ ObjectVariableexpenseAPI_variableexpenseEditObjectV1(apiClient_t *apiClient, int
     snprintf(localVarToReplace_pkiVariableexpenseID, sizeOfPathParams_pkiVariableexpenseID, "{%s}", "pkiVariableexpenseID");
 
     char localVarBuff_pkiVariableexpenseID[256];
-    intToStr(localVarBuff_pkiVariableexpenseID, pkiVariableexpenseID);
+    intToStr(localVarBuff_pkiVariableexpenseID, *pkiVariableexpenseID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiVariableexpenseID, localVarBuff_pkiVariableexpenseID);
 
@@ -438,7 +438,7 @@ end:
 // Get the list of Variableexpense to be used in a dropdown or autocomplete control.
 //
 variableexpense_get_autocomplete_v2_response_t*
-ObjectVariableexpenseAPI_variableexpenseGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_variableexpenseGetAutocompleteV2_sSelector_e sSelector , ezmax_api_definition__full_variableexpenseGetAutocompleteV2_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language )
+ObjectVariableexpenseAPI_variableexpenseGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_variableexpenseGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_variableexpenseGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -486,7 +486,7 @@ ObjectVariableexpenseAPI_variableexpenseGetAutocompleteV2(apiClient_t *apiClient
         keyQuery_eFilterActive = strdup("eFilterActive");
         valueQuery_eFilterActive = (eFilterActive);
         keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(variableexpenseGetAutocompleteV2_EFILTERACTIVE_ToString(
-		valueQuery_eFilterActive)));
+        valueQuery_eFilterActive)));
         list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
     }
 
@@ -574,7 +574,7 @@ end:
 // Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eVariableexpenseTaxable | Yes<br>No<br>Included |
 //
 variableexpense_get_list_v1_response_t*
-ObjectVariableexpenseAPI_variableexpenseGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_variableexpenseGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter )
+ObjectVariableexpenseAPI_variableexpenseGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_variableexpenseGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -612,7 +612,7 @@ ObjectVariableexpenseAPI_variableexpenseGetListV1(apiClient_t *apiClient, ezmax_
         keyQuery_eOrderBy = strdup("eOrderBy");
         valueQuery_eOrderBy = (eOrderBy);
         keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, (void *)strdup(variableexpenseGetListV1_EORDERBY_ToString(
-		valueQuery_eOrderBy)));
+        valueQuery_eOrderBy)));
         list_addElement(localVarQueryParameters,keyPairQuery_eOrderBy);
     }
 
@@ -620,11 +620,11 @@ ObjectVariableexpenseAPI_variableexpenseGetListV1(apiClient_t *apiClient, ezmax_
     char *keyQuery_iRowMax = NULL;
     char * valueQuery_iRowMax = NULL;
     keyValuePair_t *keyPairQuery_iRowMax = 0;
-    if (1) // Always send integer parameters to the API server
+    if (iRowMax)
     {
         keyQuery_iRowMax = strdup("iRowMax");
         valueQuery_iRowMax = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_iRowMax, MAX_NUMBER_LENGTH, "%d", iRowMax);
+        snprintf(valueQuery_iRowMax, MAX_NUMBER_LENGTH, "%d", *iRowMax);
         keyPairQuery_iRowMax = keyValuePair_create(keyQuery_iRowMax, valueQuery_iRowMax);
         list_addElement(localVarQueryParameters,keyPairQuery_iRowMax);
     }
@@ -633,11 +633,11 @@ ObjectVariableexpenseAPI_variableexpenseGetListV1(apiClient_t *apiClient, ezmax_
     char *keyQuery_iRowOffset = NULL;
     char * valueQuery_iRowOffset = NULL;
     keyValuePair_t *keyPairQuery_iRowOffset = 0;
-    if (1) // Always send integer parameters to the API server
+    if (iRowOffset)
     {
         keyQuery_iRowOffset = strdup("iRowOffset");
         valueQuery_iRowOffset = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_iRowOffset, MAX_NUMBER_LENGTH, "%d", iRowOffset);
+        snprintf(valueQuery_iRowOffset, MAX_NUMBER_LENGTH, "%d", *iRowOffset);
         keyPairQuery_iRowOffset = keyValuePair_create(keyQuery_iRowOffset, valueQuery_iRowOffset);
         list_addElement(localVarQueryParameters,keyPairQuery_iRowOffset);
     }
@@ -754,7 +754,7 @@ end:
 // 
 //
 variableexpense_get_object_v2_response_t*
-ObjectVariableexpenseAPI_variableexpenseGetObjectV2(apiClient_t *apiClient, int pkiVariableexpenseID )
+ObjectVariableexpenseAPI_variableexpenseGetObjectV2(apiClient_t *apiClient, int *pkiVariableexpenseID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -778,7 +778,7 @@ ObjectVariableexpenseAPI_variableexpenseGetObjectV2(apiClient_t *apiClient, int 
     snprintf(localVarToReplace_pkiVariableexpenseID, sizeOfPathParams_pkiVariableexpenseID, "{%s}", "pkiVariableexpenseID");
 
     char localVarBuff_pkiVariableexpenseID[256];
-    intToStr(localVarBuff_pkiVariableexpenseID, pkiVariableexpenseID);
+    intToStr(localVarBuff_pkiVariableexpenseID, *pkiVariableexpenseID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiVariableexpenseID, localVarBuff_pkiVariableexpenseID);
 

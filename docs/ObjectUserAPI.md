@@ -61,7 +61,7 @@ user_edit_object_v1_response_t* ObjectUserAPI_userEditObjectV1(apiClient_t *apiC
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUserID** | **int** | The unique ID of the User | 
+**pkiUserID** | **int \*** | The unique ID of the User | 
 **user_edit_object_v1_request** | **[user_edit_object_v1_request_t](user_edit_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -93,7 +93,7 @@ user_edit_permissions_v1_response_t* ObjectUserAPI_userEditPermissionsV1(apiClie
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUserID** | **int** |  | 
+**pkiUserID** | **int \*** |  | 
 **user_edit_permissions_v1_request** | **[user_edit_permissions_v1_request_t](user_edit_permissions_v1_request.md) \*** |  | 
 
 ### Return type
@@ -123,7 +123,7 @@ user_get_apikeys_v1_response_t* ObjectUserAPI_userGetApikeysV1(apiClient_t *apiC
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUserID** | **int** |  | 
+**pkiUserID** | **int \*** |  | 
 
 ### Return type
 
@@ -188,7 +188,7 @@ user_get_effective_permissions_v1_response_t* ObjectUserAPI_userGetEffectivePerm
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUserID** | **int** |  | 
+**pkiUserID** | **int \*** |  | 
 
 ### Return type
 
@@ -220,8 +220,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **eOrderBy** | **ezmax_api_definition__full_userGetListV1_eOrderBy_e** | Specify how you want the results to be sorted | [optional] 
-**iRowMax** | **int** |  | [optional] 
-**iRowOffset** | **int** |  | [optional] [default to 0]
+**iRowMax** | **int \*** |  | [optional] 
+**iRowOffset** | **int \*** |  | [optional] [default to 0]
 **Accept_Language** | **header_accept_language_e** |  | [optional] 
 **sFilter** | **char \*** |  | [optional] 
 
@@ -254,7 +254,7 @@ user_get_object_v2_response_t* ObjectUserAPI_userGetObjectV2(apiClient_t *apiCli
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUserID** | **int** | The unique ID of the User | 
+**pkiUserID** | **int \*** | The unique ID of the User | 
 
 ### Return type
 
@@ -283,7 +283,7 @@ user_get_permissions_v1_response_t* ObjectUserAPI_userGetPermissionsV1(apiClient
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUserID** | **int** |  | 
+**pkiUserID** | **int \*** |  | 
 
 ### Return type
 
@@ -312,7 +312,7 @@ user_get_subnets_v1_response_t* ObjectUserAPI_userGetSubnetsV1(apiClient_t *apiC
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUserID** | **int** |  | 
+**pkiUserID** | **int \*** |  | 
 
 ### Return type
 
@@ -343,7 +343,7 @@ user_send_password_reset_v1_response_t* ObjectUserAPI_userSendPasswordResetV1(ap
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUserID** | **int** |  | 
+**pkiUserID** | **int \*** |  | 
 **body** | **[object_t](object.md) \*** |  | 
 
 ### Return type

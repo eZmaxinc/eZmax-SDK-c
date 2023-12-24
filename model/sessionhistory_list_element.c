@@ -6,7 +6,7 @@
 
 char* e_sessionhistory_endbysessionhistory_list_element_ToString(ezmax_api_definition__full_sessionhistory_list_element__e e_sessionhistory_endby) {
     char* e_sessionhistory_endbyArray[] =  { "NULL", "Decryption", "Hack", "Expired", "Hijack", "DoubleLogon", "Garbage", "Logoff", "BadAuth", "Locked", "Inactive", "InvalidUser", "BadUserType", "BadIP", "ForcedLogoff" };
-	return e_sessionhistory_endbyArray[e_sessionhistory_endby];
+    return e_sessionhistory_endbyArray[e_sessionhistory_endby];
 }
 
 ezmax_api_definition__full_sessionhistory_list_element__e e_sessionhistory_endbysessionhistory_list_element_FromString(char* e_sessionhistory_endby){

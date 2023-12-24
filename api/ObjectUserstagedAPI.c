@@ -112,7 +112,7 @@ end:
 // Default values will be used while creating the User. If you need to change those values, you should use the route to edit a User.
 //
 userstaged_create_user_v1_response_t*
-ObjectUserstagedAPI_userstagedCreateUserV1(apiClient_t *apiClient, int pkiUserstagedID , object_t * body )
+ObjectUserstagedAPI_userstagedCreateUserV1(apiClient_t *apiClient, int *pkiUserstagedID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -136,7 +136,7 @@ ObjectUserstagedAPI_userstagedCreateUserV1(apiClient_t *apiClient, int pkiUserst
     snprintf(localVarToReplace_pkiUserstagedID, sizeOfPathParams_pkiUserstagedID, "{%s}", "pkiUserstagedID");
 
     char localVarBuff_pkiUserstagedID[256];
-    intToStr(localVarBuff_pkiUserstagedID, pkiUserstagedID);
+    intToStr(localVarBuff_pkiUserstagedID, *pkiUserstagedID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUserstagedID, localVarBuff_pkiUserstagedID);
 
@@ -209,7 +209,7 @@ end:
 // 
 //
 userstaged_delete_object_v1_response_t*
-ObjectUserstagedAPI_userstagedDeleteObjectV1(apiClient_t *apiClient, int pkiUserstagedID )
+ObjectUserstagedAPI_userstagedDeleteObjectV1(apiClient_t *apiClient, int *pkiUserstagedID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -233,7 +233,7 @@ ObjectUserstagedAPI_userstagedDeleteObjectV1(apiClient_t *apiClient, int pkiUser
     snprintf(localVarToReplace_pkiUserstagedID, sizeOfPathParams_pkiUserstagedID, "{%s}", "pkiUserstagedID");
 
     char localVarBuff_pkiUserstagedID[256];
-    intToStr(localVarBuff_pkiUserstagedID, pkiUserstagedID);
+    intToStr(localVarBuff_pkiUserstagedID, *pkiUserstagedID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUserstagedID, localVarBuff_pkiUserstagedID);
 
@@ -291,7 +291,7 @@ end:
 // 
 //
 userstaged_get_list_v1_response_t*
-ObjectUserstagedAPI_userstagedGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_userstagedGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter )
+ObjectUserstagedAPI_userstagedGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_userstagedGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -329,7 +329,7 @@ ObjectUserstagedAPI_userstagedGetListV1(apiClient_t *apiClient, ezmax_api_defini
         keyQuery_eOrderBy = strdup("eOrderBy");
         valueQuery_eOrderBy = (eOrderBy);
         keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, (void *)strdup(userstagedGetListV1_EORDERBY_ToString(
-		valueQuery_eOrderBy)));
+        valueQuery_eOrderBy)));
         list_addElement(localVarQueryParameters,keyPairQuery_eOrderBy);
     }
 
@@ -337,11 +337,11 @@ ObjectUserstagedAPI_userstagedGetListV1(apiClient_t *apiClient, ezmax_api_defini
     char *keyQuery_iRowMax = NULL;
     char * valueQuery_iRowMax = NULL;
     keyValuePair_t *keyPairQuery_iRowMax = 0;
-    if (1) // Always send integer parameters to the API server
+    if (iRowMax)
     {
         keyQuery_iRowMax = strdup("iRowMax");
         valueQuery_iRowMax = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_iRowMax, MAX_NUMBER_LENGTH, "%d", iRowMax);
+        snprintf(valueQuery_iRowMax, MAX_NUMBER_LENGTH, "%d", *iRowMax);
         keyPairQuery_iRowMax = keyValuePair_create(keyQuery_iRowMax, valueQuery_iRowMax);
         list_addElement(localVarQueryParameters,keyPairQuery_iRowMax);
     }
@@ -350,11 +350,11 @@ ObjectUserstagedAPI_userstagedGetListV1(apiClient_t *apiClient, ezmax_api_defini
     char *keyQuery_iRowOffset = NULL;
     char * valueQuery_iRowOffset = NULL;
     keyValuePair_t *keyPairQuery_iRowOffset = 0;
-    if (1) // Always send integer parameters to the API server
+    if (iRowOffset)
     {
         keyQuery_iRowOffset = strdup("iRowOffset");
         valueQuery_iRowOffset = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_iRowOffset, MAX_NUMBER_LENGTH, "%d", iRowOffset);
+        snprintf(valueQuery_iRowOffset, MAX_NUMBER_LENGTH, "%d", *iRowOffset);
         keyPairQuery_iRowOffset = keyValuePair_create(keyQuery_iRowOffset, valueQuery_iRowOffset);
         list_addElement(localVarQueryParameters,keyPairQuery_iRowOffset);
     }
@@ -471,7 +471,7 @@ end:
 // 
 //
 userstaged_get_object_v2_response_t*
-ObjectUserstagedAPI_userstagedGetObjectV2(apiClient_t *apiClient, int pkiUserstagedID )
+ObjectUserstagedAPI_userstagedGetObjectV2(apiClient_t *apiClient, int *pkiUserstagedID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -495,7 +495,7 @@ ObjectUserstagedAPI_userstagedGetObjectV2(apiClient_t *apiClient, int pkiUsersta
     snprintf(localVarToReplace_pkiUserstagedID, sizeOfPathParams_pkiUserstagedID, "{%s}", "pkiUserstagedID");
 
     char localVarBuff_pkiUserstagedID[256];
-    intToStr(localVarBuff_pkiUserstagedID, pkiUserstagedID);
+    intToStr(localVarBuff_pkiUserstagedID, *pkiUserstagedID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUserstagedID, localVarBuff_pkiUserstagedID);
 
@@ -553,7 +553,7 @@ end:
 // 
 //
 userstaged_map_v1_response_t*
-ObjectUserstagedAPI_userstagedMapV1(apiClient_t *apiClient, int pkiUserstagedID , userstaged_map_v1_request_t * userstaged_map_v1_request )
+ObjectUserstagedAPI_userstagedMapV1(apiClient_t *apiClient, int *pkiUserstagedID, userstaged_map_v1_request_t *userstaged_map_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -577,7 +577,7 @@ ObjectUserstagedAPI_userstagedMapV1(apiClient_t *apiClient, int pkiUserstagedID 
     snprintf(localVarToReplace_pkiUserstagedID, sizeOfPathParams_pkiUserstagedID, "{%s}", "pkiUserstagedID");
 
     char localVarBuff_pkiUserstagedID[256];
-    intToStr(localVarBuff_pkiUserstagedID, pkiUserstagedID);
+    intToStr(localVarBuff_pkiUserstagedID, *pkiUserstagedID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUserstagedID, localVarBuff_pkiUserstagedID);
 

@@ -6,7 +6,7 @@
 
 char* e_attachments_confirmation_decisionezsignsignature_sign_v1_request_ToString(ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_e e_attachments_confirmation_decision) {
     char* e_attachments_confirmation_decisionArray[] =  { "NULL", "Accepted", "Refused" };
-	return e_attachments_confirmation_decisionArray[e_attachments_confirmation_decision];
+    return e_attachments_confirmation_decisionArray[e_attachments_confirmation_decision];
 }
 
 ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_e e_attachments_confirmation_decisionezsignsignature_sign_v1_request_FromString(char* e_attachments_confirmation_decision){
@@ -23,6 +23,7 @@ ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMAT
 }
 
 ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_create(
+    int fki_ezsignsigningreason_id,
     char *s_value,
     ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_e e_attachments_confirmation_decision,
     char *s_attachments_refusal_reason,
@@ -34,6 +35,7 @@ ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_create(
     if (!ezsignsignature_sign_v1_request_local_var) {
         return NULL;
     }
+    ezsignsignature_sign_v1_request_local_var->fki_ezsignsigningreason_id = fki_ezsignsigningreason_id;
     ezsignsignature_sign_v1_request_local_var->s_value = s_value;
     ezsignsignature_sign_v1_request_local_var->e_attachments_confirmation_decision = e_attachments_confirmation_decision;
     ezsignsignature_sign_v1_request_local_var->s_attachments_refusal_reason = s_attachments_refusal_reason;
@@ -74,6 +76,14 @@ void ezsignsignature_sign_v1_request_free(ezsignsignature_sign_v1_request_t *ezs
 
 cJSON *ezsignsignature_sign_v1_request_convertToJSON(ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request) {
     cJSON *item = cJSON_CreateObject();
+
+    // ezsignsignature_sign_v1_request->fki_ezsignsigningreason_id
+    if(ezsignsignature_sign_v1_request->fki_ezsignsigningreason_id) {
+    if(cJSON_AddNumberToObject(item, "fkiEzsignsigningreasonID", ezsignsignature_sign_v1_request->fki_ezsignsigningreason_id) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
 
     // ezsignsignature_sign_v1_request->s_value
     if(ezsignsignature_sign_v1_request->s_value) {
@@ -151,6 +161,15 @@ ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_parseFromJSON
     // define the local list for ezsignsignature_sign_v1_request->a_obj_file
     list_t *a_obj_fileList = NULL;
 
+    // ezsignsignature_sign_v1_request->fki_ezsignsigningreason_id
+    cJSON *fki_ezsignsigningreason_id = cJSON_GetObjectItemCaseSensitive(ezsignsignature_sign_v1_requestJSON, "fkiEzsignsigningreasonID");
+    if (fki_ezsignsigningreason_id) { 
+    if(!cJSON_IsNumber(fki_ezsignsigningreason_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
     // ezsignsignature_sign_v1_request->s_value
     cJSON *s_value = cJSON_GetObjectItemCaseSensitive(ezsignsignature_sign_v1_requestJSON, "sValue");
     if (s_value) { 
@@ -224,6 +243,7 @@ ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_parseFromJSON
 
 
     ezsignsignature_sign_v1_request_local_var = ezsignsignature_sign_v1_request_create (
+        fki_ezsignsigningreason_id ? fki_ezsignsigningreason_id->valuedouble : 0,
         s_value && !cJSON_IsNull(s_value) ? strdup(s_value->valuestring) : NULL,
         e_attachments_confirmation_decision ? e_attachments_confirmation_decisionVariable : -1,
         s_attachments_refusal_reason && !cJSON_IsNull(s_attachments_refusal_reason) ? strdup(s_attachments_refusal_reason->valuestring) : NULL,

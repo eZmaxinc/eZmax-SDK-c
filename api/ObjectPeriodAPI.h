@@ -33,7 +33,7 @@ typedef enum  { ezmax_api_definition__full_periodGetAutocompleteV2__NULL = 0, ez
 // Get the list of Periods to be used in a dropdown or autocomplete control.
 //
 common_get_autocomplete_v1_response_t*
-ObjectPeriodAPI_periodGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_periodGetAutocompleteV1_sSelector_e sSelector , ezmax_api_definition__full_periodGetAutocompleteV1_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language );
+ObjectPeriodAPI_periodGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_periodGetAutocompleteV1_sSelector_e sSelector, ezmax_api_definition__full_periodGetAutocompleteV1_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
 
 
 // Retrieve Periods and IDs
@@ -41,6 +41,6 @@ ObjectPeriodAPI_periodGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_defini
 // Get the list of Period to be used in a dropdown or autocomplete control.
 //
 period_get_autocomplete_v2_response_t*
-ObjectPeriodAPI_periodGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_periodGetAutocompleteV2_sSelector_e sSelector , ezmax_api_definition__full_periodGetAutocompleteV2_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language );
+ObjectPeriodAPI_periodGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_periodGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_periodGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
 
 

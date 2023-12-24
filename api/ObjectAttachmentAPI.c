@@ -16,8 +16,8 @@
 //
 // Using this endpoint, you can retrieve the content of an attachment.
 //
-attachment_download_v1_response_t*
-ObjectAttachmentAPI_attachmentDownloadV1(apiClient_t *apiClient, int pkiAttachmentID )
+void
+ObjectAttachmentAPI_attachmentDownloadV1(apiClient_t *apiClient, int *pkiAttachmentID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -41,7 +41,160 @@ ObjectAttachmentAPI_attachmentDownloadV1(apiClient_t *apiClient, int pkiAttachme
     snprintf(localVarToReplace_pkiAttachmentID, sizeOfPathParams_pkiAttachmentID, "{%s}", "pkiAttachmentID");
 
     char localVarBuff_pkiAttachmentID[256];
-    intToStr(localVarBuff_pkiAttachmentID, pkiAttachmentID);
+    intToStr(localVarBuff_pkiAttachmentID, *pkiAttachmentID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiAttachmentID, localVarBuff_pkiAttachmentID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 302) {
+    //    printf("%s\n","The user has been redirected");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //No return type
+end:
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiAttachmentID);
+
+}
+
+// Retrieve the Attachmentlogs
+//
+// Using this endpoint, you can retrieve the Attachmentlogs of an attachment.
+//
+attachment_get_attachmentlogs_v1_response_t*
+ObjectAttachmentAPI_attachmentGetAttachmentlogsV1(apiClient_t *apiClient, int *pkiAttachmentID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/attachment/{pkiAttachmentID}/getAttachmentlogs")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/attachment/{pkiAttachmentID}/getAttachmentlogs");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiAttachmentID =  + strlen("{ pkiAttachmentID }");
+    if(pkiAttachmentID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiAttachmentID = malloc(sizeOfPathParams_pkiAttachmentID);
+    snprintf(localVarToReplace_pkiAttachmentID, sizeOfPathParams_pkiAttachmentID, "{%s}", "pkiAttachmentID");
+
+    char localVarBuff_pkiAttachmentID[256];
+    intToStr(localVarBuff_pkiAttachmentID, *pkiAttachmentID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiAttachmentID, localVarBuff_pkiAttachmentID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectAttachmentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    attachment_get_attachmentlogs_v1_response_t *elementToReturn = attachment_get_attachmentlogs_v1_response_parseFromJSON(ObjectAttachmentAPIlocalVarJSON);
+    cJSON_Delete(ObjectAttachmentAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiAttachmentID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve a URL to download attachments.
+//
+// This endpoint returns an URL to download the attachment.  These links will expire after 5 minutes so the download of the file should be made soon after retrieving the link.
+//
+attachment_get_download_url_v1_response_t*
+ObjectAttachmentAPI_attachmentGetDownloadUrlV1(apiClient_t *apiClient, int *pkiAttachmentID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/attachment/{pkiAttachmentID}/getDownloadUrl")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/attachment/{pkiAttachmentID}/getDownloadUrl");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiAttachmentID =  + strlen("{ pkiAttachmentID }");
+    if(pkiAttachmentID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiAttachmentID = malloc(sizeOfPathParams_pkiAttachmentID);
+    snprintf(localVarToReplace_pkiAttachmentID, sizeOfPathParams_pkiAttachmentID, "{%s}", "pkiAttachmentID");
+
+    char localVarBuff_pkiAttachmentID[256];
+    intToStr(localVarBuff_pkiAttachmentID, *pkiAttachmentID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiAttachmentID, localVarBuff_pkiAttachmentID);
 
@@ -72,7 +225,7 @@ ObjectAttachmentAPI_attachmentDownloadV1(apiClient_t *apiClient, int pkiAttachme
     //}
     //nonprimitive not container
     cJSON *ObjectAttachmentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    attachment_download_v1_response_t *elementToReturn = attachment_download_v1_response_parseFromJSON(ObjectAttachmentAPIlocalVarJSON);
+    attachment_get_download_url_v1_response_t *elementToReturn = attachment_get_download_url_v1_response_parseFromJSON(ObjectAttachmentAPIlocalVarJSON);
     cJSON_Delete(ObjectAttachmentAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

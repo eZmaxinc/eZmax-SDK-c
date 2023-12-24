@@ -11,30 +11,30 @@
 // Create a new Usergroup
 //
 scim_group_t*
-ScimGroupsAPI_groupsCreateObjectScimV2(apiClient_t *apiClient, scim_group_t * scim_group );
+ScimGroupsAPI_groupsCreateObjectScimV2(apiClient_t *apiClient, scim_group_t *scim_group);
 
 
 // Delete an existing Usergroup
 //
 void
-ScimGroupsAPI_groupsDeleteObjectScimV2(apiClient_t *apiClient, char * groupId );
+ScimGroupsAPI_groupsDeleteObjectScimV2(apiClient_t *apiClient, char *groupId);
 
 
 // Edit an existing Usergroup
 //
 scim_group_t*
-ScimGroupsAPI_groupsEditObjectScimV2(apiClient_t *apiClient, char * groupId , scim_group_t * scim_group );
+ScimGroupsAPI_groupsEditObjectScimV2(apiClient_t *apiClient, char *groupId, scim_group_t *scim_group);
 
 
 // Retrieve Usergroup list
 //
 scim_group_t*
-ScimGroupsAPI_groupsGetListScimV2(apiClient_t *apiClient, char * filter );
+ScimGroupsAPI_groupsGetListScimV2(apiClient_t *apiClient, char *filter);
 
 
 // Retrieve an existing Usergroup
 //
 scim_group_t*
-ScimGroupsAPI_groupsGetObjectScimV2(apiClient_t *apiClient, char * groupId );
+ScimGroupsAPI_groupsGetObjectScimV2(apiClient_t *apiClient, char *groupId);
 
 

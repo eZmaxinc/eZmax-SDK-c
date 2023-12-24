@@ -61,7 +61,7 @@ usergroup_edit_object_v1_response_t* ObjectUsergroupAPI_usergroupEditObjectV1(ap
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUsergroupID** | **int** |  | 
+**pkiUsergroupID** | **int \*** |  | 
 **usergroup_edit_object_v1_request** | **[usergroup_edit_object_v1_request_t](usergroup_edit_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -93,7 +93,7 @@ usergroup_edit_permissions_v1_response_t* ObjectUsergroupAPI_usergroupEditPermis
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUsergroupID** | **int** |  | 
+**pkiUsergroupID** | **int \*** |  | 
 **usergroup_edit_permissions_v1_request** | **[usergroup_edit_permissions_v1_request_t](usergroup_edit_permissions_v1_request.md) \*** |  | 
 
 ### Return type
@@ -125,7 +125,7 @@ usergroup_edit_usergroupdelegations_v1_response_t* ObjectUsergroupAPI_usergroupE
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUsergroupID** | **int** |  | 
+**pkiUsergroupID** | **int \*** |  | 
 **usergroup_edit_usergroupdelegations_v1_request** | **[usergroup_edit_usergroupdelegations_v1_request_t](usergroup_edit_usergroupdelegations_v1_request.md) \*** |  | 
 
 ### Return type
@@ -157,7 +157,7 @@ usergroup_edit_usergroupmemberships_v1_response_t* ObjectUsergroupAPI_usergroupE
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUsergroupID** | **int** |  | 
+**pkiUsergroupID** | **int \*** |  | 
 **usergroup_edit_usergroupmemberships_v1_request** | **[usergroup_edit_usergroupmemberships_v1_request_t](usergroup_edit_usergroupmemberships_v1_request.md) \*** |  | 
 
 ### Return type
@@ -224,8 +224,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **eOrderBy** | **ezmax_api_definition__full_usergroupGetListV1_eOrderBy_e** | Specify how you want the results to be sorted | [optional] 
-**iRowMax** | **int** |  | [optional] 
-**iRowOffset** | **int** |  | [optional] [default to 0]
+**iRowMax** | **int \*** |  | [optional] 
+**iRowOffset** | **int \*** |  | [optional] [default to 0]
 **Accept_Language** | **header_accept_language_e** |  | [optional] 
 **sFilter** | **char \*** |  | [optional] 
 
@@ -258,7 +258,7 @@ usergroup_get_object_v2_response_t* ObjectUsergroupAPI_usergroupGetObjectV2(apiC
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUsergroupID** | **int** |  | 
+**pkiUsergroupID** | **int \*** |  | 
 
 ### Return type
 
@@ -287,7 +287,7 @@ usergroup_get_permissions_v1_response_t* ObjectUsergroupAPI_usergroupGetPermissi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUsergroupID** | **int** |  | 
+**pkiUsergroupID** | **int \*** |  | 
 
 ### Return type
 
@@ -316,7 +316,7 @@ usergroup_get_usergroupdelegations_v1_response_t* ObjectUsergroupAPI_usergroupGe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUsergroupID** | **int** |  | 
+**pkiUsergroupID** | **int \*** |  | 
 
 ### Return type
 
@@ -345,7 +345,7 @@ usergroup_get_usergroupmemberships_v1_response_t* ObjectUsergroupAPI_usergroupGe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUsergroupID** | **int** |  | 
+**pkiUsergroupID** | **int \*** |  | 
 
 ### Return type
 

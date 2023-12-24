@@ -17,7 +17,7 @@
 // The endpoint allows to create one or many elements at once.
 //
 ezsignbulksenddocumentmapping_create_object_v1_response_t*
-ObjectEzsignbulksenddocumentmappingAPI_ezsignbulksenddocumentmappingCreateObjectV1(apiClient_t *apiClient, ezsignbulksenddocumentmapping_create_object_v1_request_t * ezsignbulksenddocumentmapping_create_object_v1_request )
+ObjectEzsignbulksenddocumentmappingAPI_ezsignbulksenddocumentmappingCreateObjectV1(apiClient_t *apiClient, ezsignbulksenddocumentmapping_create_object_v1_request_t *ezsignbulksenddocumentmapping_create_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -99,7 +99,7 @@ end:
 // 
 //
 ezsignbulksenddocumentmapping_delete_object_v1_response_t*
-ObjectEzsignbulksenddocumentmappingAPI_ezsignbulksenddocumentmappingDeleteObjectV1(apiClient_t *apiClient, int pkiEzsignbulksenddocumentmappingID )
+ObjectEzsignbulksenddocumentmappingAPI_ezsignbulksenddocumentmappingDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksenddocumentmappingID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -123,7 +123,7 @@ ObjectEzsignbulksenddocumentmappingAPI_ezsignbulksenddocumentmappingDeleteObject
     snprintf(localVarToReplace_pkiEzsignbulksenddocumentmappingID, sizeOfPathParams_pkiEzsignbulksenddocumentmappingID, "{%s}", "pkiEzsignbulksenddocumentmappingID");
 
     char localVarBuff_pkiEzsignbulksenddocumentmappingID[256];
-    intToStr(localVarBuff_pkiEzsignbulksenddocumentmappingID, pkiEzsignbulksenddocumentmappingID);
+    intToStr(localVarBuff_pkiEzsignbulksenddocumentmappingID, *pkiEzsignbulksenddocumentmappingID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksenddocumentmappingID, localVarBuff_pkiEzsignbulksenddocumentmappingID);
 
@@ -181,7 +181,7 @@ end:
 // 
 //
 ezsignbulksenddocumentmapping_get_object_v2_response_t*
-ObjectEzsignbulksenddocumentmappingAPI_ezsignbulksenddocumentmappingGetObjectV2(apiClient_t *apiClient, int pkiEzsignbulksenddocumentmappingID )
+ObjectEzsignbulksenddocumentmappingAPI_ezsignbulksenddocumentmappingGetObjectV2(apiClient_t *apiClient, int *pkiEzsignbulksenddocumentmappingID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -205,7 +205,7 @@ ObjectEzsignbulksenddocumentmappingAPI_ezsignbulksenddocumentmappingGetObjectV2(
     snprintf(localVarToReplace_pkiEzsignbulksenddocumentmappingID, sizeOfPathParams_pkiEzsignbulksenddocumentmappingID, "{%s}", "pkiEzsignbulksenddocumentmappingID");
 
     char localVarBuff_pkiEzsignbulksenddocumentmappingID[256];
-    intToStr(localVarBuff_pkiEzsignbulksenddocumentmappingID, pkiEzsignbulksenddocumentmappingID);
+    intToStr(localVarBuff_pkiEzsignbulksenddocumentmappingID, *pkiEzsignbulksenddocumentmappingID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksenddocumentmappingID, localVarBuff_pkiEzsignbulksenddocumentmappingID);
 

@@ -54,7 +54,7 @@ usergroupdelegation_delete_object_v1_response_t* ObjectUsergroupdelegationAPI_us
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUsergroupdelegationID** | **int** | The unique ID of the Usergroupdelegation | 
+**pkiUsergroupdelegationID** | **int \*** | The unique ID of the Usergroupdelegation | 
 
 ### Return type
 
@@ -85,7 +85,7 @@ usergroupdelegation_edit_object_v1_response_t* ObjectUsergroupdelegationAPI_user
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUsergroupdelegationID** | **int** | The unique ID of the Usergroupdelegation | 
+**pkiUsergroupdelegationID** | **int \*** | The unique ID of the Usergroupdelegation | 
 **usergroupdelegation_edit_object_v1_request** | **[usergroupdelegation_edit_object_v1_request_t](usergroupdelegation_edit_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -117,7 +117,7 @@ usergroupdelegation_get_object_v2_response_t* ObjectUsergroupdelegationAPI_userg
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUsergroupdelegationID** | **int** | The unique ID of the Usergroupdelegation | 
+**pkiUsergroupdelegationID** | **int \*** | The unique ID of the Usergroupdelegation | 
 
 ### Return type
 

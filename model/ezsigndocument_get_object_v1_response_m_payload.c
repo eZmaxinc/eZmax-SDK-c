@@ -6,7 +6,7 @@
 
 char* e_ezsigndocument_stepezsigndocument_get_object_v1_response_m_payload_ToString(ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__e e_ezsigndocument_step) {
     char* e_ezsigndocument_stepArray[] =  { "NULL", "Unsent", "Unsigned", "PartiallySigned", "DeclinedToSign", "PrematurelyEnded", "Completed", "Disposed" };
-	return e_ezsigndocument_stepArray[e_ezsigndocument_step];
+    return e_ezsigndocument_stepArray[e_ezsigndocument_step];
 }
 
 ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__e e_ezsigndocument_stepezsigndocument_get_object_v1_response_m_payload_FromString(char* e_ezsigndocument_step){
@@ -23,7 +23,7 @@ ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__e e_
 }
 char* e_ezsigndocument_steptypeezsigndocument_get_object_v1_response_m_payload_ToString(ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__e e_ezsigndocument_steptype) {
     char* e_ezsigndocument_steptypeArray[] =  { "NULL", "Form", "Sign", "None" };
-	return e_ezsigndocument_steptypeArray[e_ezsigndocument_steptype];
+    return e_ezsigndocument_steptypeArray[e_ezsigndocument_steptype];
 }
 
 ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__e e_ezsigndocument_steptypeezsigndocument_get_object_v1_response_m_payload_FromString(char* e_ezsigndocument_steptype){
@@ -61,6 +61,7 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
     int b_ezsigndocument_hassignedsignatures,
     common_audit_t *obj_audit,
     char *s_ezsigndocument_externalid,
+    int i_ezsigndocument_ezsignsignatureattachmenttotal,
     computed_e_ezsigndocument_steptype_t *e_ezsigndocument_steptype,
     int i_ezsigndocument_stepformtotal,
     int i_ezsigndocument_stepformcurrent,
@@ -93,6 +94,7 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
     ezsigndocument_get_object_v1_response_m_payload_local_var->b_ezsigndocument_hassignedsignatures = b_ezsigndocument_hassignedsignatures;
     ezsigndocument_get_object_v1_response_m_payload_local_var->obj_audit = obj_audit;
     ezsigndocument_get_object_v1_response_m_payload_local_var->s_ezsigndocument_externalid = s_ezsigndocument_externalid;
+    ezsigndocument_get_object_v1_response_m_payload_local_var->i_ezsigndocument_ezsignsignatureattachmenttotal = i_ezsigndocument_ezsignsignatureattachmenttotal;
     ezsigndocument_get_object_v1_response_m_payload_local_var->e_ezsigndocument_steptype = e_ezsigndocument_steptype;
     ezsigndocument_get_object_v1_response_m_payload_local_var->i_ezsigndocument_stepformtotal = i_ezsigndocument_stepformtotal;
     ezsigndocument_get_object_v1_response_m_payload_local_var->i_ezsigndocument_stepformcurrent = i_ezsigndocument_stepformcurrent;
@@ -354,6 +356,15 @@ cJSON *ezsigndocument_get_object_v1_response_m_payload_convertToJSON(ezsigndocum
     if(cJSON_AddStringToObject(item, "sEzsigndocumentExternalid", ezsigndocument_get_object_v1_response_m_payload->s_ezsigndocument_externalid) == NULL) {
     goto fail; //String
     }
+    }
+
+
+    // ezsigndocument_get_object_v1_response_m_payload->i_ezsigndocument_ezsignsignatureattachmenttotal
+    if (!ezsigndocument_get_object_v1_response_m_payload->i_ezsigndocument_ezsignsignatureattachmenttotal) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iEzsigndocumentEzsignsignatureattachmenttotal", ezsigndocument_get_object_v1_response_m_payload->i_ezsigndocument_ezsignsignatureattachmenttotal) == NULL) {
+    goto fail; //Numeric
     }
 
 
@@ -661,6 +672,18 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
     }
     }
 
+    // ezsigndocument_get_object_v1_response_m_payload->i_ezsigndocument_ezsignsignatureattachmenttotal
+    cJSON *i_ezsigndocument_ezsignsignatureattachmenttotal = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_object_v1_response_m_payloadJSON, "iEzsigndocumentEzsignsignatureattachmenttotal");
+    if (!i_ezsigndocument_ezsignsignatureattachmenttotal) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_ezsigndocument_ezsignsignatureattachmenttotal))
+    {
+    goto end; //Numeric
+    }
+
     // ezsigndocument_get_object_v1_response_m_payload->e_ezsigndocument_steptype
     cJSON *e_ezsigndocument_steptype = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_object_v1_response_m_payloadJSON, "eEzsigndocumentSteptype");
     if (!e_ezsigndocument_steptype) {
@@ -765,6 +788,7 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
         b_ezsigndocument_hassignedsignatures ? b_ezsigndocument_hassignedsignatures->valueint : 0,
         obj_audit ? obj_audit_local_nonprim : NULL,
         s_ezsigndocument_externalid && !cJSON_IsNull(s_ezsigndocument_externalid) ? strdup(s_ezsigndocument_externalid->valuestring) : NULL,
+        i_ezsigndocument_ezsignsignatureattachmenttotal->valuedouble,
         e_ezsigndocument_steptype_local_nonprim,
         i_ezsigndocument_stepformtotal->valuedouble,
         i_ezsigndocument_stepformcurrent->valuedouble,

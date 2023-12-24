@@ -19,7 +19,7 @@
 // The endpoint allows to create one or many elements at once.
 //
 ezsignformfieldgroup_create_object_v1_response_t*
-ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupCreateObjectV1(apiClient_t *apiClient, ezsignformfieldgroup_create_object_v1_request_t * ezsignformfieldgroup_create_object_v1_request );
+ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupCreateObjectV1(apiClient_t *apiClient, ezsignformfieldgroup_create_object_v1_request_t *ezsignformfieldgroup_create_object_v1_request);
 
 
 // Delete an existing Ezsignformfieldgroup
@@ -27,7 +27,7 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupCreateObjectV1(apiClient_t *ap
 // 
 //
 ezsignformfieldgroup_delete_object_v1_response_t*
-ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupDeleteObjectV1(apiClient_t *apiClient, int pkiEzsignformfieldgroupID );
+ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignformfieldgroupID);
 
 
 // Edit an existing Ezsignformfieldgroup
@@ -35,7 +35,7 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupDeleteObjectV1(apiClient_t *ap
 // 
 //
 ezsignformfieldgroup_edit_object_v1_response_t*
-ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupEditObjectV1(apiClient_t *apiClient, int pkiEzsignformfieldgroupID , ezsignformfieldgroup_edit_object_v1_request_t * ezsignformfieldgroup_edit_object_v1_request );
+ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupEditObjectV1(apiClient_t *apiClient, int *pkiEzsignformfieldgroupID, ezsignformfieldgroup_edit_object_v1_request_t *ezsignformfieldgroup_edit_object_v1_request);
 
 
 // Retrieve an existing Ezsignformfieldgroup
@@ -43,6 +43,6 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupEditObjectV1(apiClient_t *apiC
 // 
 //
 ezsignformfieldgroup_get_object_v2_response_t*
-ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupGetObjectV2(apiClient_t *apiClient, int pkiEzsignformfieldgroupID );
+ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupGetObjectV2(apiClient_t *apiClient, int *pkiEzsignformfieldgroupID);
 
 

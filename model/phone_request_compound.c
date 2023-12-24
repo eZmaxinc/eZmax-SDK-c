@@ -6,7 +6,7 @@
 
 char* e_phone_typephone_request_compound_ToString(ezmax_api_definition__full_phone_request_compound__e e_phone_type) {
     char* e_phone_typeArray[] =  { "NULL", "Local", "International" };
-	return e_phone_typeArray[e_phone_type];
+    return e_phone_typeArray[e_phone_type];
 }
 
 ezmax_api_definition__full_phone_request_compound__e e_phone_typephone_request_compound_FromString(char* e_phone_type){

@@ -5,13 +5,13 @@
 
 
 char* e_ezsigntemplateformfieldgroup_typeezsigntemplateformfieldgroup_response_compound_ToString(ezmax_api_definition__full_ezsigntemplateformfieldgroup_response_compound__e e_ezsigntemplateformfieldgroup_type) {
-    char* e_ezsigntemplateformfieldgroup_typeArray[] =  { "NULL", "Text", "Textarea", "Dropdown", "Radio", "Checkbox" };
-	return e_ezsigntemplateformfieldgroup_typeArray[e_ezsigntemplateformfieldgroup_type];
+    char* e_ezsigntemplateformfieldgroup_typeArray[] =  { "NULL", "Text", "Textarea", "Dropdown", "Radio", "Checkbox", "Number", "Date" };
+    return e_ezsigntemplateformfieldgroup_typeArray[e_ezsigntemplateformfieldgroup_type];
 }
 
 ezmax_api_definition__full_ezsigntemplateformfieldgroup_response_compound__e e_ezsigntemplateformfieldgroup_typeezsigntemplateformfieldgroup_response_compound_FromString(char* e_ezsigntemplateformfieldgroup_type){
     int stringToReturn = 0;
-    char *e_ezsigntemplateformfieldgroup_typeArray[] =  { "NULL", "Text", "Textarea", "Dropdown", "Radio", "Checkbox" };
+    char *e_ezsigntemplateformfieldgroup_typeArray[] =  { "NULL", "Text", "Textarea", "Dropdown", "Radio", "Checkbox", "Number", "Date" };
     size_t sizeofArray = sizeof(e_ezsigntemplateformfieldgroup_typeArray) / sizeof(e_ezsigntemplateformfieldgroup_typeArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(e_ezsigntemplateformfieldgroup_type, e_ezsigntemplateformfieldgroup_typeArray[stringToReturn]) == 0) {
@@ -23,7 +23,7 @@ ezmax_api_definition__full_ezsigntemplateformfieldgroup_response_compound__e e_e
 }
 char* e_ezsigntemplateformfieldgroup_signerrequirementezsigntemplateformfieldgroup_response_compound_ToString(ezmax_api_definition__full_ezsigntemplateformfieldgroup_response_compound__e e_ezsigntemplateformfieldgroup_signerrequirement) {
     char* e_ezsigntemplateformfieldgroup_signerrequirementArray[] =  { "NULL", "All", "One" };
-	return e_ezsigntemplateformfieldgroup_signerrequirementArray[e_ezsigntemplateformfieldgroup_signerrequirement];
+    return e_ezsigntemplateformfieldgroup_signerrequirementArray[e_ezsigntemplateformfieldgroup_signerrequirement];
 }
 
 ezmax_api_definition__full_ezsigntemplateformfieldgroup_response_compound__e e_ezsigntemplateformfieldgroup_signerrequirementezsigntemplateformfieldgroup_response_compound_FromString(char* e_ezsigntemplateformfieldgroup_signerrequirement){
@@ -40,7 +40,7 @@ ezmax_api_definition__full_ezsigntemplateformfieldgroup_response_compound__e e_e
 }
 char* e_ezsigntemplateformfieldgroup_textvalidationezsigntemplateformfieldgroup_response_compound_ToString(ezmax_api_definition__full_ezsigntemplateformfieldgroup_response_compound__e e_ezsigntemplateformfieldgroup_textvalidation) {
     char* e_ezsigntemplateformfieldgroup_textvalidationArray[] =  { "NULL", "None", "Date (YYYY-MM-DD)", "Date (MM/DD/YYYY)", "Date (MM/DD/YY)", "Date (DD/MM/YYYY)", "Date (DD/MM/YY)", "Email", "Letters", "Numbers", "Zip", "Zip+4", "PostalCode", "Custom" };
-	return e_ezsigntemplateformfieldgroup_textvalidationArray[e_ezsigntemplateformfieldgroup_textvalidation];
+    return e_ezsigntemplateformfieldgroup_textvalidationArray[e_ezsigntemplateformfieldgroup_textvalidation];
 }
 
 ezmax_api_definition__full_ezsigntemplateformfieldgroup_response_compound__e e_ezsigntemplateformfieldgroup_textvalidationezsigntemplateformfieldgroup_response_compound_FromString(char* e_ezsigntemplateformfieldgroup_textvalidation){
@@ -57,7 +57,7 @@ ezmax_api_definition__full_ezsigntemplateformfieldgroup_response_compound__e e_e
 }
 char* e_ezsigntemplateformfieldgroup_tooltippositionezsigntemplateformfieldgroup_response_compound_ToString(ezmax_api_definition__full_ezsigntemplateformfieldgroup_response_compound__e e_ezsigntemplateformfieldgroup_tooltipposition) {
     char* e_ezsigntemplateformfieldgroup_tooltippositionArray[] =  { "NULL", "TopLeft", "TopCenter", "TopRight", "MiddleLeft", "MiddleRight", "BottomLeft", "BottomCenter", "BottomRight" };
-	return e_ezsigntemplateformfieldgroup_tooltippositionArray[e_ezsigntemplateformfieldgroup_tooltipposition];
+    return e_ezsigntemplateformfieldgroup_tooltippositionArray[e_ezsigntemplateformfieldgroup_tooltipposition];
 }
 
 ezmax_api_definition__full_ezsigntemplateformfieldgroup_response_compound__e e_ezsigntemplateformfieldgroup_tooltippositionezsigntemplateformfieldgroup_response_compound_FromString(char* e_ezsigntemplateformfieldgroup_tooltipposition){

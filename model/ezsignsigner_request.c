@@ -6,7 +6,7 @@
 
 char* e_ezsignsigner_logintypeezsignsigner_request_ToString(ezmax_api_definition__full_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_e e_ezsignsigner_logintype) {
     char* e_ezsignsigner_logintypeArray[] =  { "NULL", "Password", "PasswordPhone", "PasswordQuestion", "InPersonPhone", "InPerson" };
-	return e_ezsignsigner_logintypeArray[e_ezsignsigner_logintype];
+    return e_ezsignsigner_logintypeArray[e_ezsignsigner_logintype];
 }
 
 ezmax_api_definition__full_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_e e_ezsignsigner_logintypeezsignsigner_request_FromString(char* e_ezsignsigner_logintype){

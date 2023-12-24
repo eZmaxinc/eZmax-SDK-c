@@ -31,6 +31,7 @@ webhook_request_compound_t* instantiate_webhook_request_compound(int include_opt
       "https://www.example.com",
       "email@example.com",
       true,
+      true,
       false
     );
   } else {
@@ -43,6 +44,7 @@ webhook_request_compound_t* instantiate_webhook_request_compound(int include_opt
       ezmax_api_definition__full_webhook_request_compound__"UserCreated",
       "https://www.example.com",
       "email@example.com",
+      true,
       true,
       false
     );

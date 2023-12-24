@@ -1,7 +1,7 @@
 /*
  * field_e_user_ezsignaccess.h
  *
- * The type or eZsign access the User has
+ * The type of eZsign access the User has
  */
 
 #ifndef _field_e_user_ezsignaccess_H_

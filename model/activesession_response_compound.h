@@ -20,6 +20,8 @@ typedef struct activesession_response_compound_t activesession_response_compound
 #include "field_e_activesession_origin.h"
 #include "field_e_activesession_usertype.h"
 #include "field_e_activesession_weekdaystart.h"
+#include "field_e_user_ezsignaccess.h"
+#include "field_e_user_ezsignprepaid.h"
 
 // Enum  for activesession_response_compound
 
@@ -45,6 +47,22 @@ char* activesession_response_compound_e_activesession_weekdaystart_ToString(ezma
 
 ezmax_api_definition__full_activesession_response_compound__e activesession_response_compound_e_activesession_weekdaystart_FromString(char* e_activesession_weekdaystart);
 
+// Enum  for activesession_response_compound
+
+typedef enum  { ezmax_api_definition__full_activesession_response_compound__NULL = 0, ezmax_api_definition__full_activesession_response_compound__No, ezmax_api_definition__full_activesession_response_compound__PaidByOffice, ezmax_api_definition__full_activesession_response_compound__PerDocument, ezmax_api_definition__full_activesession_response_compound__Prepaid } ezmax_api_definition__full_activesession_response_compound__e;
+
+char* activesession_response_compound_e_user_ezsignaccess_ToString(ezmax_api_definition__full_activesession_response_compound__e e_user_ezsignaccess);
+
+ezmax_api_definition__full_activesession_response_compound__e activesession_response_compound_e_user_ezsignaccess_FromString(char* e_user_ezsignaccess);
+
+// Enum  for activesession_response_compound
+
+typedef enum  { ezmax_api_definition__full_activesession_response_compound__NULL = 0, ezmax_api_definition__full_activesession_response_compound__Basic, ezmax_api_definition__full_activesession_response_compound__Unlimited, ezmax_api_definition__full_activesession_response_compound__Pro } ezmax_api_definition__full_activesession_response_compound__e;
+
+char* activesession_response_compound_e_user_ezsignprepaid_ToString(ezmax_api_definition__full_activesession_response_compound__e e_user_ezsignprepaid);
+
+ezmax_api_definition__full_activesession_response_compound__e activesession_response_compound_e_user_ezsignprepaid_FromString(char* e_user_ezsignprepaid);
+
 
 
 typedef struct activesession_response_compound_t {
@@ -59,6 +77,9 @@ typedef struct activesession_response_compound_t {
     char *pks_customer_code; // string
     int fki_systemconfigurationtype_id; //numeric
     int fki_signature_id; //numeric
+    field_e_user_ezsignaccess_t *e_user_ezsignaccess; // custom
+    field_e_user_ezsignprepaid_t *e_user_ezsignprepaid; // custom
+    char *dt_user_ezsignprepaidexpiration; // string
     list_t *a_pki_permission_id; //primitive container
     struct activesession_response_compound_user_t *obj_user_real; //model
     struct activesession_response_compound_user_t *obj_user_cloned; //model
@@ -79,6 +100,9 @@ activesession_response_compound_t *activesession_response_compound_create(
     char *pks_customer_code,
     int fki_systemconfigurationtype_id,
     int fki_signature_id,
+    field_e_user_ezsignaccess_t *e_user_ezsignaccess,
+    field_e_user_ezsignprepaid_t *e_user_ezsignprepaid,
+    char *dt_user_ezsignprepaidexpiration,
     list_t *a_pki_permission_id,
     activesession_response_compound_user_t *obj_user_real,
     activesession_response_compound_user_t *obj_user_cloned,

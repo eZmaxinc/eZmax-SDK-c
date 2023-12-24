@@ -6,7 +6,7 @@
 
 char* e_ezmaxinvoicinguser_variationezsignezmaxinvoicinguser_response_ToString(ezmax_api_definition__full_ezmaxinvoicinguser_response__e e_ezmaxinvoicinguser_variationezsign) {
     char* e_ezmaxinvoicinguser_variationezsignArray[] =  { "NULL", "Charge", "Refund", "Same" };
-	return e_ezmaxinvoicinguser_variationezsignArray[e_ezmaxinvoicinguser_variationezsign];
+    return e_ezmaxinvoicinguser_variationezsignArray[e_ezmaxinvoicinguser_variationezsign];
 }
 
 ezmax_api_definition__full_ezmaxinvoicinguser_response__e e_ezmaxinvoicinguser_variationezsignezmaxinvoicinguser_response_FromString(char* e_ezmaxinvoicinguser_variationezsign){

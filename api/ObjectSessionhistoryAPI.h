@@ -19,6 +19,6 @@ typedef enum  { ezmax_api_definition__full_sessionhistoryGetListV1__NULL = 0, ez
 // Retrieve Sessionhistory list
 //
 sessionhistory_get_list_v1_response_t*
-ObjectSessionhistoryAPI_sessionhistoryGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_sessionhistoryGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter );
+ObjectSessionhistoryAPI_sessionhistoryGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_sessionhistoryGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
 
 

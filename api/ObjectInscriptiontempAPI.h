@@ -14,6 +14,6 @@
 // 
 //
 inscriptiontemp_get_communication_list_v1_response_t*
-ObjectInscriptiontempAPI_inscriptiontempGetCommunicationListV1(apiClient_t *apiClient, int pkiInscriptiontempID );
+ObjectInscriptiontempAPI_inscriptiontempGetCommunicationListV1(apiClient_t *apiClient, int *pkiInscriptiontempID);
 
 

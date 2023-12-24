@@ -6,7 +6,7 @@
 
 char* e_ezsigntemplateelementdependency_validationezsigntemplateelementdependency_request_compound_ToString(ezmax_api_definition__full_ezsigntemplateelementdependency_request_compound__e e_ezsigntemplateelementdependency_validation) {
     char* e_ezsigntemplateelementdependency_validationArray[] =  { "NULL", "Value", "Selected", "Filled" };
-	return e_ezsigntemplateelementdependency_validationArray[e_ezsigntemplateelementdependency_validation];
+    return e_ezsigntemplateelementdependency_validationArray[e_ezsigntemplateelementdependency_validation];
 }
 
 ezmax_api_definition__full_ezsigntemplateelementdependency_request_compound__e e_ezsigntemplateelementdependency_validationezsigntemplateelementdependency_request_compound_FromString(char* e_ezsigntemplateelementdependency_validation){
@@ -23,7 +23,7 @@ ezmax_api_definition__full_ezsigntemplateelementdependency_request_compound__e e
 }
 char* e_ezsigntemplateelementdependency_operatorezsigntemplateelementdependency_request_compound_ToString(ezmax_api_definition__full_ezsigntemplateelementdependency_request_compound__e e_ezsigntemplateelementdependency_operator) {
     char* e_ezsigntemplateelementdependency_operatorArray[] =  { "NULL", "eq", "neq", "gt", "gte", "lt", "lte", "in", "nin", "rg", "like", "between" };
-	return e_ezsigntemplateelementdependency_operatorArray[e_ezsigntemplateelementdependency_operator];
+    return e_ezsigntemplateelementdependency_operatorArray[e_ezsigntemplateelementdependency_operator];
 }
 
 ezmax_api_definition__full_ezsigntemplateelementdependency_request_compound__e e_ezsigntemplateelementdependency_operatorezsigntemplateelementdependency_request_compound_FromString(char* e_ezsigntemplateelementdependency_operator){

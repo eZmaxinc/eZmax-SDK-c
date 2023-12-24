@@ -6,7 +6,7 @@
 
 char* e_ezsignfolder_sendreminderfrequencyezsignfolder_request_ToString(ezmax_api_definition__full_ezsignfolder_request__e e_ezsignfolder_sendreminderfrequency) {
     char* e_ezsignfolder_sendreminderfrequencyArray[] =  { "NULL", "None", "Daily", "Weekly" };
-	return e_ezsignfolder_sendreminderfrequencyArray[e_ezsignfolder_sendreminderfrequency];
+    return e_ezsignfolder_sendreminderfrequencyArray[e_ezsignfolder_sendreminderfrequency];
 }
 
 ezmax_api_definition__full_ezsignfolder_request__e e_ezsignfolder_sendreminderfrequencyezsignfolder_request_FromString(char* e_ezsignfolder_sendreminderfrequency){

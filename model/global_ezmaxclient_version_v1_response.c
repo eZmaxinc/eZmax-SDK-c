@@ -6,13 +6,15 @@
 
 
 global_ezmaxclient_version_v1_response_t *global_ezmaxclient_version_v1_response_create(
-    char *s_ezmaxclient_version
+    char *s_ezmaxclient_version,
+    char *s_ezmaxclient_oslatestversion
     ) {
     global_ezmaxclient_version_v1_response_t *global_ezmaxclient_version_v1_response_local_var = malloc(sizeof(global_ezmaxclient_version_v1_response_t));
     if (!global_ezmaxclient_version_v1_response_local_var) {
         return NULL;
     }
     global_ezmaxclient_version_v1_response_local_var->s_ezmaxclient_version = s_ezmaxclient_version;
+    global_ezmaxclient_version_v1_response_local_var->s_ezmaxclient_oslatestversion = s_ezmaxclient_oslatestversion;
 
     return global_ezmaxclient_version_v1_response_local_var;
 }
@@ -27,6 +29,10 @@ void global_ezmaxclient_version_v1_response_free(global_ezmaxclient_version_v1_r
         free(global_ezmaxclient_version_v1_response->s_ezmaxclient_version);
         global_ezmaxclient_version_v1_response->s_ezmaxclient_version = NULL;
     }
+    if (global_ezmaxclient_version_v1_response->s_ezmaxclient_oslatestversion) {
+        free(global_ezmaxclient_version_v1_response->s_ezmaxclient_oslatestversion);
+        global_ezmaxclient_version_v1_response->s_ezmaxclient_oslatestversion = NULL;
+    }
     free(global_ezmaxclient_version_v1_response);
 }
 
@@ -38,6 +44,15 @@ cJSON *global_ezmaxclient_version_v1_response_convertToJSON(global_ezmaxclient_v
         goto fail;
     }
     if(cJSON_AddStringToObject(item, "sEzmaxclientVersion", global_ezmaxclient_version_v1_response->s_ezmaxclient_version) == NULL) {
+    goto fail; //String
+    }
+
+
+    // global_ezmaxclient_version_v1_response->s_ezmaxclient_oslatestversion
+    if (!global_ezmaxclient_version_v1_response->s_ezmaxclient_oslatestversion) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "sEzmaxclientOslatestversion", global_ezmaxclient_version_v1_response->s_ezmaxclient_oslatestversion) == NULL) {
     goto fail; //String
     }
 
@@ -65,9 +80,22 @@ global_ezmaxclient_version_v1_response_t *global_ezmaxclient_version_v1_response
     goto end; //String
     }
 
+    // global_ezmaxclient_version_v1_response->s_ezmaxclient_oslatestversion
+    cJSON *s_ezmaxclient_oslatestversion = cJSON_GetObjectItemCaseSensitive(global_ezmaxclient_version_v1_responseJSON, "sEzmaxclientOslatestversion");
+    if (!s_ezmaxclient_oslatestversion) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_ezmaxclient_oslatestversion))
+    {
+    goto end; //String
+    }
+
 
     global_ezmaxclient_version_v1_response_local_var = global_ezmaxclient_version_v1_response_create (
-        strdup(s_ezmaxclient_version->valuestring)
+        strdup(s_ezmaxclient_version->valuestring),
+        strdup(s_ezmaxclient_oslatestversion->valuestring)
         );
 
     return global_ezmaxclient_version_v1_response_local_var;

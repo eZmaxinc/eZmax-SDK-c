@@ -16,7 +16,7 @@
 // 
 //
 char*
-ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetCsvErrorsV1(apiClient_t *apiClient, int pkiEzsignbulksendtransmissionID );
+ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetCsvErrorsV1(apiClient_t *apiClient, int *pkiEzsignbulksendtransmissionID);
 
 
 // Retrieve an existing Ezsignbulksendtransmission's automatic Ezsignsignatures
@@ -24,7 +24,7 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetCsvErrorsV1(api
 // Return the Ezsignsignatures that can be signed by the current user at the current step in the process
 //
 ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_t*
-ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetEzsignsignaturesAutomaticV1(apiClient_t *apiClient, int pkiEzsignbulksendtransmissionID );
+ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetEzsignsignaturesAutomaticV1(apiClient_t *apiClient, int *pkiEzsignbulksendtransmissionID);
 
 
 // Retrieve an existing Ezsignbulksendtransmission's forms data
@@ -32,7 +32,7 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetEzsignsignature
 // 
 //
 ezsignbulksendtransmission_get_forms_data_v1_response_t*
-ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetFormsDataV1(apiClient_t *apiClient, int pkiEzsignbulksendtransmissionID );
+ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetFormsDataV1(apiClient_t *apiClient, int *pkiEzsignbulksendtransmissionID);
 
 
 // Retrieve an existing Ezsignbulksendtransmission
@@ -40,6 +40,6 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetFormsDataV1(api
 // 
 //
 ezsignbulksendtransmission_get_object_v2_response_t*
-ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetObjectV2(apiClient_t *apiClient, int pkiEzsignbulksendtransmissionID );
+ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetObjectV2(apiClient_t *apiClient, int *pkiEzsignbulksendtransmissionID);
 
 

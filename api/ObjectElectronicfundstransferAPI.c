@@ -17,7 +17,7 @@
 // 
 //
 electronicfundstransfer_get_communication_list_v1_response_t*
-ObjectElectronicfundstransferAPI_eletronicfundstransferGetCommunicationListV1(apiClient_t *apiClient, int pkiElectronicfundstransferID )
+ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationListV1(apiClient_t *apiClient, int *pkiElectronicfundstransferID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -41,7 +41,7 @@ ObjectElectronicfundstransferAPI_eletronicfundstransferGetCommunicationListV1(ap
     snprintf(localVarToReplace_pkiElectronicfundstransferID, sizeOfPathParams_pkiElectronicfundstransferID, "{%s}", "pkiElectronicfundstransferID");
 
     char localVarBuff_pkiElectronicfundstransferID[256];
-    intToStr(localVarBuff_pkiElectronicfundstransferID, pkiElectronicfundstransferID);
+    intToStr(localVarBuff_pkiElectronicfundstransferID, *pkiElectronicfundstransferID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiElectronicfundstransferID, localVarBuff_pkiElectronicfundstransferID);
 

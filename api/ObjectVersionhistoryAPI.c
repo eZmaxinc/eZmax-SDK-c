@@ -17,7 +17,7 @@
 // 
 //
 versionhistory_get_object_v2_response_t*
-ObjectVersionhistoryAPI_versionhistoryGetObjectV2(apiClient_t *apiClient, int pkiVersionhistoryID )
+ObjectVersionhistoryAPI_versionhistoryGetObjectV2(apiClient_t *apiClient, int *pkiVersionhistoryID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -41,7 +41,7 @@ ObjectVersionhistoryAPI_versionhistoryGetObjectV2(apiClient_t *apiClient, int pk
     snprintf(localVarToReplace_pkiVersionhistoryID, sizeOfPathParams_pkiVersionhistoryID, "{%s}", "pkiVersionhistoryID");
 
     char localVarBuff_pkiVersionhistoryID[256];
-    intToStr(localVarBuff_pkiVersionhistoryID, pkiVersionhistoryID);
+    intToStr(localVarBuff_pkiVersionhistoryID, *pkiVersionhistoryID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiVersionhistoryID, localVarBuff_pkiVersionhistoryID);
 

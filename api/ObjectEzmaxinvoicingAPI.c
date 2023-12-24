@@ -311,7 +311,7 @@ end:
 // Get the list of Ezmaxinvoicing to be used in a dropdown or autocomplete control.
 //
 common_get_autocomplete_v1_response_t*
-ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_ezmaxinvoicingGetAutocompleteV1_sSelector_e sSelector , ezmax_api_definition__full_ezmaxinvoicingGetAutocompleteV1_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language )
+ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_ezmaxinvoicingGetAutocompleteV1_sSelector_e sSelector, ezmax_api_definition__full_ezmaxinvoicingGetAutocompleteV1_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -359,7 +359,7 @@ ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetAutocompleteV1(apiClient_t *apiClient, 
         keyQuery_eFilterActive = strdup("eFilterActive");
         valueQuery_eFilterActive = (eFilterActive);
         keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(ezmaxinvoicingGetAutocompleteV1_EFILTERACTIVE_ToString(
-		valueQuery_eFilterActive)));
+        valueQuery_eFilterActive)));
         list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
     }
 
@@ -447,7 +447,7 @@ end:
 // Get the list of Ezmaxinvoicing to be used in a dropdown or autocomplete control.
 //
 ezmaxinvoicing_get_autocomplete_v2_response_t*
-ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezmaxinvoicingGetAutocompleteV2_sSelector_e sSelector , ezmax_api_definition__full_ezmaxinvoicingGetAutocompleteV2_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language )
+ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezmaxinvoicingGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_ezmaxinvoicingGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -495,7 +495,7 @@ ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetAutocompleteV2(apiClient_t *apiClient, 
         keyQuery_eFilterActive = strdup("eFilterActive");
         valueQuery_eFilterActive = (eFilterActive);
         keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(ezmaxinvoicingGetAutocompleteV2_EFILTERACTIVE_ToString(
-		valueQuery_eFilterActive)));
+        valueQuery_eFilterActive)));
         list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
     }
 
@@ -583,7 +583,7 @@ end:
 // 
 //
 ezmaxinvoicing_get_object_v2_response_t*
-ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetObjectV2(apiClient_t *apiClient, int pkiEzmaxinvoicingID )
+ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetObjectV2(apiClient_t *apiClient, int *pkiEzmaxinvoicingID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -607,7 +607,7 @@ ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetObjectV2(apiClient_t *apiClient, int pk
     snprintf(localVarToReplace_pkiEzmaxinvoicingID, sizeOfPathParams_pkiEzmaxinvoicingID, "{%s}", "pkiEzmaxinvoicingID");
 
     char localVarBuff_pkiEzmaxinvoicingID[256];
-    intToStr(localVarBuff_pkiEzmaxinvoicingID, pkiEzmaxinvoicingID);
+    intToStr(localVarBuff_pkiEzmaxinvoicingID, *pkiEzmaxinvoicingID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzmaxinvoicingID, localVarBuff_pkiEzmaxinvoicingID);
 

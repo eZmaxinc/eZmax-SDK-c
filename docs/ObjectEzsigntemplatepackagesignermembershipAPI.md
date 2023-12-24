@@ -53,7 +53,7 @@ ezsigntemplatepackagesignermembership_delete_object_v1_response_t* ObjectEzsignt
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplatepackagesignermembershipID** | **int** |  | 
+**pkiEzsigntemplatepackagesignermembershipID** | **int \*** |  | 
 
 ### Return type
 
@@ -84,7 +84,7 @@ ezsigntemplatepackagesignermembership_get_object_v2_response_t* ObjectEzsigntemp
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplatepackagesignermembershipID** | **int** |  | 
+**pkiEzsigntemplatepackagesignermembershipID** | **int \*** |  | 
 
 ### Return type
 

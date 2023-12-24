@@ -6,7 +6,7 @@
 
 char* e_phone_typephone_response_compound_ToString(ezmax_api_definition__full_phone_response_compound__e e_phone_type) {
     char* e_phone_typeArray[] =  { "NULL", "Local", "International" };
-	return e_phone_typeArray[e_phone_type];
+    return e_phone_typeArray[e_phone_type];
 }
 
 ezmax_api_definition__full_phone_response_compound__e e_phone_typephone_response_compound_FromString(char* e_phone_type){
@@ -27,7 +27,8 @@ phone_response_compound_t *phone_response_compound_create(
     int fki_phonetype_id,
     field_e_phone_type_t *e_phone_type,
     char *s_phone_e164,
-    char *s_phone_extension
+    char *s_phone_extension,
+    int b_phone_international
     ) {
     phone_response_compound_t *phone_response_compound_local_var = malloc(sizeof(phone_response_compound_t));
     if (!phone_response_compound_local_var) {
@@ -38,6 +39,7 @@ phone_response_compound_t *phone_response_compound_create(
     phone_response_compound_local_var->e_phone_type = e_phone_type;
     phone_response_compound_local_var->s_phone_e164 = s_phone_e164;
     phone_response_compound_local_var->s_phone_extension = s_phone_extension;
+    phone_response_compound_local_var->b_phone_international = b_phone_international;
 
     return phone_response_compound_local_var;
 }
@@ -112,6 +114,14 @@ cJSON *phone_response_compound_convertToJSON(phone_response_compound_t *phone_re
     }
     }
 
+
+    // phone_response_compound->b_phone_international
+    if(phone_response_compound->b_phone_international) {
+    if(cJSON_AddBoolToObject(item, "bPhoneInternational", phone_response_compound->b_phone_international) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -175,13 +185,23 @@ phone_response_compound_t *phone_response_compound_parseFromJSON(cJSON *phone_re
     }
     }
 
+    // phone_response_compound->b_phone_international
+    cJSON *b_phone_international = cJSON_GetObjectItemCaseSensitive(phone_response_compoundJSON, "bPhoneInternational");
+    if (b_phone_international) { 
+    if(!cJSON_IsBool(b_phone_international))
+    {
+    goto end; //Bool
+    }
+    }
+
 
     phone_response_compound_local_var = phone_response_compound_create (
         pki_phone_id->valuedouble,
         fki_phonetype_id->valuedouble,
         e_phone_type ? e_phone_type_local_nonprim : NULL,
         s_phone_e164 && !cJSON_IsNull(s_phone_e164) ? strdup(s_phone_e164->valuestring) : NULL,
-        s_phone_extension && !cJSON_IsNull(s_phone_extension) ? strdup(s_phone_extension->valuestring) : NULL
+        s_phone_extension && !cJSON_IsNull(s_phone_extension) ? strdup(s_phone_extension->valuestring) : NULL,
+        b_phone_international ? b_phone_international->valueint : 0
         );
 
     return phone_response_compound_local_var;

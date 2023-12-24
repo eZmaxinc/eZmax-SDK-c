@@ -20,11 +20,13 @@ typedef struct global_ezmaxclient_version_v1_response_t global_ezmaxclient_versi
 
 typedef struct global_ezmaxclient_version_v1_response_t {
     char *s_ezmaxclient_version; // string
+    char *s_ezmaxclient_oslatestversion; // string
 
 } global_ezmaxclient_version_v1_response_t;
 
 global_ezmaxclient_version_v1_response_t *global_ezmaxclient_version_v1_response_create(
-    char *s_ezmaxclient_version
+    char *s_ezmaxclient_version,
+    char *s_ezmaxclient_oslatestversion
 );
 
 void global_ezmaxclient_version_v1_response_free(global_ezmaxclient_version_v1_response_t *global_ezmaxclient_version_v1_response);

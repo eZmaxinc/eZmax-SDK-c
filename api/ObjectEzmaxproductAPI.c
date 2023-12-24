@@ -164,7 +164,7 @@ end:
 // Get the list of Ezmaxproduct to be used in a dropdown or autocomplete control.
 //
 ezmaxproduct_get_autocomplete_v2_response_t*
-ObjectEzmaxproductAPI_ezmaxproductGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezmaxproductGetAutocompleteV2_sSelector_e sSelector , ezmax_api_definition__full_ezmaxproductGetAutocompleteV2_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language )
+ObjectEzmaxproductAPI_ezmaxproductGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezmaxproductGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_ezmaxproductGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -212,7 +212,7 @@ ObjectEzmaxproductAPI_ezmaxproductGetAutocompleteV2(apiClient_t *apiClient, ezma
         keyQuery_eFilterActive = strdup("eFilterActive");
         valueQuery_eFilterActive = (eFilterActive);
         keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(ezmaxproductGetAutocompleteV2_EFILTERACTIVE_ToString(
-		valueQuery_eFilterActive)));
+        valueQuery_eFilterActive)));
         list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
     }
 

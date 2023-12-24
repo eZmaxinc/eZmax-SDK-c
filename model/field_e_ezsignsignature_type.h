@@ -1,7 +1,7 @@
 /*
  * field_e_ezsignsignature_type.h
  *
- * The type of signature.  1. **Acknowledgement** is for an acknowledgment of receipt. 2. **City** is to request the city where the document is signed. 3. **Handwritten** is for a handwritten kind of signature where users needs to \&quot;draw\&quot; their signature on screen. 4. **Initials** is a simple \&quot;click to add initials\&quot; block. 5. **Name** is a simple \&quot;Click to sign\&quot; block. This is the most common block of signature. 6. **Attachments** is to ask for files as attachment that may be validate in another step.  7. **FieldText** is to ask for a short text. 8. **Fieldtextarea** is to ask for a text
+ * The type of signature.  1. **Acknowledgement** is for an acknowledgment of receipt. 2. **City** is to request the city where the document is signed. 3. **Handwritten** is for a handwritten kind of signature where users needs to \&quot;draw\&quot; their signature on screen. 4. **Initials** is a simple \&quot;click to add initials\&quot; block. 5. **Name** is a simple \&quot;Click to sign\&quot; block. This is the most common block of signature. 6. **NameReason** is to ask for a signing reason.  7. **Attachments** is to ask for files as attachment that may be validate in another step.  8. **FieldText** is to ask for a short text. 9. **Fieldtextarea** is to ask for a text
  */
 
 #ifndef _field_e_ezsignsignature_type_H_
@@ -18,7 +18,7 @@ typedef struct field_e_ezsignsignature_type_t field_e_ezsignsignature_type_t;
 
 // Enum  for field_e_ezsignsignature_type
 
-typedef enum { ezmax_api_definition__full_field_e_ezsignsignature_type__NULL = 0, ezmax_api_definition__full_field_e_ezsignsignature_type__Acknowledgement, ezmax_api_definition__full_field_e_ezsignsignature_type__City, ezmax_api_definition__full_field_e_ezsignsignature_type__Handwritten, ezmax_api_definition__full_field_e_ezsignsignature_type__Initials, ezmax_api_definition__full_field_e_ezsignsignature_type__Name, ezmax_api_definition__full_field_e_ezsignsignature_type__Attachments, ezmax_api_definition__full_field_e_ezsignsignature_type__AttachmentsConfirmation, ezmax_api_definition__full_field_e_ezsignsignature_type__FieldText, ezmax_api_definition__full_field_e_ezsignsignature_type__FieldTextarea } ezmax_api_definition__full_field_e_ezsignsignature_type__e;
+typedef enum { ezmax_api_definition__full_field_e_ezsignsignature_type__NULL = 0, ezmax_api_definition__full_field_e_ezsignsignature_type__Acknowledgement, ezmax_api_definition__full_field_e_ezsignsignature_type__City, ezmax_api_definition__full_field_e_ezsignsignature_type__Handwritten, ezmax_api_definition__full_field_e_ezsignsignature_type__Initials, ezmax_api_definition__full_field_e_ezsignsignature_type__Name, ezmax_api_definition__full_field_e_ezsignsignature_type__NameReason, ezmax_api_definition__full_field_e_ezsignsignature_type__Attachments, ezmax_api_definition__full_field_e_ezsignsignature_type__AttachmentsConfirmation, ezmax_api_definition__full_field_e_ezsignsignature_type__FieldText, ezmax_api_definition__full_field_e_ezsignsignature_type__FieldTextarea } ezmax_api_definition__full_field_e_ezsignsignature_type__e;
 
 char* field_e_ezsignsignature_type_field_e_ezsignsignature_type_ToString(ezmax_api_definition__full_field_e_ezsignsignature_type__e field_e_ezsignsignature_type);
 

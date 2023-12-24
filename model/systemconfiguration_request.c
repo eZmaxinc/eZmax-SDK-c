@@ -6,7 +6,7 @@
 
 char* e_systemconfiguration_newexternaluseractionsystemconfiguration_request_ToString(ezmax_api_definition__full_systemconfiguration_request__e e_systemconfiguration_newexternaluseraction) {
     char* e_systemconfiguration_newexternaluseractionArray[] =  { "NULL", "Stage", "AutoCreate" };
-	return e_systemconfiguration_newexternaluseractionArray[e_systemconfiguration_newexternaluseraction];
+    return e_systemconfiguration_newexternaluseractionArray[e_systemconfiguration_newexternaluseraction];
 }
 
 ezmax_api_definition__full_systemconfiguration_request__e e_systemconfiguration_newexternaluseractionsystemconfiguration_request_FromString(char* e_systemconfiguration_newexternaluseraction){
@@ -23,7 +23,7 @@ ezmax_api_definition__full_systemconfiguration_request__e e_systemconfiguration_
 }
 char* e_systemconfiguration_language1systemconfiguration_request_ToString(ezmax_api_definition__full_systemconfiguration_request__e e_systemconfiguration_language1) {
     char* e_systemconfiguration_language1Array[] =  { "NULL", "fr_QC" };
-	return e_systemconfiguration_language1Array[e_systemconfiguration_language1];
+    return e_systemconfiguration_language1Array[e_systemconfiguration_language1];
 }
 
 ezmax_api_definition__full_systemconfiguration_request__e e_systemconfiguration_language1systemconfiguration_request_FromString(char* e_systemconfiguration_language1){
@@ -40,7 +40,7 @@ ezmax_api_definition__full_systemconfiguration_request__e e_systemconfiguration_
 }
 char* e_systemconfiguration_language2systemconfiguration_request_ToString(ezmax_api_definition__full_systemconfiguration_request__e e_systemconfiguration_language2) {
     char* e_systemconfiguration_language2Array[] =  { "NULL", "en_CA", "en_QC", "en_US" };
-	return e_systemconfiguration_language2Array[e_systemconfiguration_language2];
+    return e_systemconfiguration_language2Array[e_systemconfiguration_language2];
 }
 
 ezmax_api_definition__full_systemconfiguration_request__e e_systemconfiguration_language2systemconfiguration_request_FromString(char* e_systemconfiguration_language2){
@@ -57,7 +57,7 @@ ezmax_api_definition__full_systemconfiguration_request__e e_systemconfiguration_
 }
 char* e_systemconfiguration_ezsignsystemconfiguration_request_ToString(ezmax_api_definition__full_systemconfiguration_request__e e_systemconfiguration_ezsign) {
     char* e_systemconfiguration_ezsignArray[] =  { "NULL", "No", "Yes" };
-	return e_systemconfiguration_ezsignArray[e_systemconfiguration_ezsign];
+    return e_systemconfiguration_ezsignArray[e_systemconfiguration_ezsign];
 }
 
 ezmax_api_definition__full_systemconfiguration_request__e e_systemconfiguration_ezsignsystemconfiguration_request_FromString(char* e_systemconfiguration_ezsign){

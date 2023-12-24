@@ -17,6 +17,9 @@
 custom_communicationsender_response_t* instantiate_custom_communicationsender_response(int include_optional);
 
 #include "test_custom_contact_name_response.c"
+#include "test_email_response_compound.c"
+#include "test_phone_response_compound.c"
+#include "test_phone_response_compound.c"
 
 
 custom_communicationsender_response_t* instantiate_custom_communicationsender_response(int include_optional) {
@@ -27,11 +30,16 @@ custom_communicationsender_response_t* instantiate_custom_communicationsender_re
       26,
       70,
       47,
+      47,
       ezmax_api_definition__full_custom_communicationsender_response_ECOMMUNICATIONSENDEROBJECTTYPE_"User",
        // false, not to have infinite recursion
       instantiate_custom_contact_name_response(0),
-      "email@example.com",
-      "+15149901516"
+       // false, not to have infinite recursion
+      instantiate_email_response_compound(0),
+       // false, not to have infinite recursion
+      instantiate_phone_response_compound(0),
+       // false, not to have infinite recursion
+      instantiate_phone_response_compound(0)
     );
   } else {
     custom_communicationsender_response = custom_communicationsender_response_create(
@@ -39,10 +47,12 @@ custom_communicationsender_response_t* instantiate_custom_communicationsender_re
       26,
       70,
       47,
+      47,
       ezmax_api_definition__full_custom_communicationsender_response_ECOMMUNICATIONSENDEROBJECTTYPE_"User",
       NULL,
-      "email@example.com",
-      "+15149901516"
+      NULL,
+      NULL,
+      NULL
     );
   }
 

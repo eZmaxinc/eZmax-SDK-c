@@ -6,7 +6,7 @@
 
 char* e_webhook_modulewebhook_response_ToString(ezmax_api_definition__full_webhook_response__e e_webhook_module) {
     char* e_webhook_moduleArray[] =  { "NULL", "Ezsign", "Management" };
-	return e_webhook_moduleArray[e_webhook_module];
+    return e_webhook_moduleArray[e_webhook_module];
 }
 
 ezmax_api_definition__full_webhook_response__e e_webhook_modulewebhook_response_FromString(char* e_webhook_module){
@@ -23,7 +23,7 @@ ezmax_api_definition__full_webhook_response__e e_webhook_modulewebhook_response_
 }
 char* e_webhook_ezsigneventwebhook_response_ToString(ezmax_api_definition__full_webhook_response__e e_webhook_ezsignevent) {
     char* e_webhook_ezsigneventArray[] =  { "NULL", "DocumentCompleted", "EzsignsignerAcceptclause", "EzsignsignerConnect", "FolderCompleted" };
-	return e_webhook_ezsigneventArray[e_webhook_ezsignevent];
+    return e_webhook_ezsigneventArray[e_webhook_ezsignevent];
 }
 
 ezmax_api_definition__full_webhook_response__e e_webhook_ezsigneventwebhook_response_FromString(char* e_webhook_ezsignevent){
@@ -40,7 +40,7 @@ ezmax_api_definition__full_webhook_response__e e_webhook_ezsigneventwebhook_resp
 }
 char* e_webhook_managementeventwebhook_response_ToString(ezmax_api_definition__full_webhook_response__e e_webhook_managementevent) {
     char* e_webhook_managementeventArray[] =  { "NULL", "UserCreated", "UserstagedCreated" };
-	return e_webhook_managementeventArray[e_webhook_managementevent];
+    return e_webhook_managementeventArray[e_webhook_managementevent];
 }
 
 ezmax_api_definition__full_webhook_response__e e_webhook_managementeventwebhook_response_FromString(char* e_webhook_managementevent){
@@ -66,7 +66,10 @@ webhook_response_t *webhook_response_create(
     field_e_webhook_managementevent_t *e_webhook_managementevent,
     char *s_webhook_url,
     char *s_webhook_emailfailed,
+    char *s_webhook_apikey,
+    char *s_webhook_secret,
     int b_webhook_isactive,
+    int b_webhook_issigned,
     int b_webhook_skipsslvalidation
     ) {
     webhook_response_t *webhook_response_local_var = malloc(sizeof(webhook_response_t));
@@ -82,7 +85,10 @@ webhook_response_t *webhook_response_create(
     webhook_response_local_var->e_webhook_managementevent = e_webhook_managementevent;
     webhook_response_local_var->s_webhook_url = s_webhook_url;
     webhook_response_local_var->s_webhook_emailfailed = s_webhook_emailfailed;
+    webhook_response_local_var->s_webhook_apikey = s_webhook_apikey;
+    webhook_response_local_var->s_webhook_secret = s_webhook_secret;
     webhook_response_local_var->b_webhook_isactive = b_webhook_isactive;
+    webhook_response_local_var->b_webhook_issigned = b_webhook_issigned;
     webhook_response_local_var->b_webhook_skipsslvalidation = b_webhook_skipsslvalidation;
 
     return webhook_response_local_var;
@@ -121,6 +127,14 @@ void webhook_response_free(webhook_response_t *webhook_response) {
     if (webhook_response->s_webhook_emailfailed) {
         free(webhook_response->s_webhook_emailfailed);
         webhook_response->s_webhook_emailfailed = NULL;
+    }
+    if (webhook_response->s_webhook_apikey) {
+        free(webhook_response->s_webhook_apikey);
+        webhook_response->s_webhook_apikey = NULL;
+    }
+    if (webhook_response->s_webhook_secret) {
+        free(webhook_response->s_webhook_secret);
+        webhook_response->s_webhook_secret = NULL;
     }
     free(webhook_response);
 }
@@ -220,11 +234,36 @@ cJSON *webhook_response_convertToJSON(webhook_response_t *webhook_response) {
     }
 
 
+    // webhook_response->s_webhook_apikey
+    if(webhook_response->s_webhook_apikey) {
+    if(cJSON_AddStringToObject(item, "sWebhookApikey", webhook_response->s_webhook_apikey) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // webhook_response->s_webhook_secret
+    if(webhook_response->s_webhook_secret) {
+    if(cJSON_AddStringToObject(item, "sWebhookSecret", webhook_response->s_webhook_secret) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
     // webhook_response->b_webhook_isactive
     if (!webhook_response->b_webhook_isactive) {
         goto fail;
     }
     if(cJSON_AddBoolToObject(item, "bWebhookIsactive", webhook_response->b_webhook_isactive) == NULL) {
+    goto fail; //Bool
+    }
+
+
+    // webhook_response->b_webhook_issigned
+    if (!webhook_response->b_webhook_issigned) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "bWebhookIssigned", webhook_response->b_webhook_issigned) == NULL) {
     goto fail; //Bool
     }
 
@@ -345,6 +384,24 @@ webhook_response_t *webhook_response_parseFromJSON(cJSON *webhook_responseJSON){
     goto end; //String
     }
 
+    // webhook_response->s_webhook_apikey
+    cJSON *s_webhook_apikey = cJSON_GetObjectItemCaseSensitive(webhook_responseJSON, "sWebhookApikey");
+    if (s_webhook_apikey) { 
+    if(!cJSON_IsString(s_webhook_apikey) && !cJSON_IsNull(s_webhook_apikey))
+    {
+    goto end; //String
+    }
+    }
+
+    // webhook_response->s_webhook_secret
+    cJSON *s_webhook_secret = cJSON_GetObjectItemCaseSensitive(webhook_responseJSON, "sWebhookSecret");
+    if (s_webhook_secret) { 
+    if(!cJSON_IsString(s_webhook_secret) && !cJSON_IsNull(s_webhook_secret))
+    {
+    goto end; //String
+    }
+    }
+
     // webhook_response->b_webhook_isactive
     cJSON *b_webhook_isactive = cJSON_GetObjectItemCaseSensitive(webhook_responseJSON, "bWebhookIsactive");
     if (!b_webhook_isactive) {
@@ -353,6 +410,18 @@ webhook_response_t *webhook_response_parseFromJSON(cJSON *webhook_responseJSON){
 
     
     if(!cJSON_IsBool(b_webhook_isactive))
+    {
+    goto end; //Bool
+    }
+
+    // webhook_response->b_webhook_issigned
+    cJSON *b_webhook_issigned = cJSON_GetObjectItemCaseSensitive(webhook_responseJSON, "bWebhookIssigned");
+    if (!b_webhook_issigned) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(b_webhook_issigned))
     {
     goto end; //Bool
     }
@@ -380,7 +449,10 @@ webhook_response_t *webhook_response_parseFromJSON(cJSON *webhook_responseJSON){
         e_webhook_managementevent ? e_webhook_managementevent_local_nonprim : NULL,
         strdup(s_webhook_url->valuestring),
         strdup(s_webhook_emailfailed->valuestring),
+        s_webhook_apikey && !cJSON_IsNull(s_webhook_apikey) ? strdup(s_webhook_apikey->valuestring) : NULL,
+        s_webhook_secret && !cJSON_IsNull(s_webhook_secret) ? strdup(s_webhook_secret->valuestring) : NULL,
         b_webhook_isactive->valueint,
+        b_webhook_issigned->valueint,
         b_webhook_skipsslvalidation->valueint
         );
 

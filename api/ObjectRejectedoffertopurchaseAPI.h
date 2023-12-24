@@ -14,6 +14,6 @@
 // 
 //
 rejectedoffertopurchase_get_communication_list_v1_response_t*
-ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseGetCommunicationListV1(apiClient_t *apiClient, int pkiRejectedoffertopurchaseID );
+ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseGetCommunicationListV1(apiClient_t *apiClient, int *pkiRejectedoffertopurchaseID);
 
 

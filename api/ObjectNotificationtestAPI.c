@@ -17,7 +17,7 @@
 // 
 //
 notificationtest_get_elements_v1_response_t*
-ObjectNotificationtestAPI_notificationtestGetElementsV1(apiClient_t *apiClient, int pkiNotificationtestID )
+ObjectNotificationtestAPI_notificationtestGetElementsV1(apiClient_t *apiClient, int *pkiNotificationtestID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -41,7 +41,7 @@ ObjectNotificationtestAPI_notificationtestGetElementsV1(apiClient_t *apiClient, 
     snprintf(localVarToReplace_pkiNotificationtestID, sizeOfPathParams_pkiNotificationtestID, "{%s}", "pkiNotificationtestID");
 
     char localVarBuff_pkiNotificationtestID[256];
-    intToStr(localVarBuff_pkiNotificationtestID, pkiNotificationtestID);
+    intToStr(localVarBuff_pkiNotificationtestID, *pkiNotificationtestID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiNotificationtestID, localVarBuff_pkiNotificationtestID);
 

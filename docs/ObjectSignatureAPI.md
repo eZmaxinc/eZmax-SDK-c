@@ -54,7 +54,7 @@ signature_delete_object_v1_response_t* ObjectSignatureAPI_signatureDeleteObjectV
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiSignatureID** | **int** | The unique ID of the Signature | 
+**pkiSignatureID** | **int \*** | The unique ID of the Signature | 
 
 ### Return type
 
@@ -85,7 +85,7 @@ signature_edit_object_v1_response_t* ObjectSignatureAPI_signatureEditObjectV1(ap
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiSignatureID** | **int** | The unique ID of the Signature | 
+**pkiSignatureID** | **int \*** | The unique ID of the Signature | 
 **signature_edit_object_v1_request** | **[signature_edit_object_v1_request_t](signature_edit_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -117,7 +117,7 @@ signature_get_object_v2_response_t* ObjectSignatureAPI_signatureGetObjectV2(apiC
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiSignatureID** | **int** | The unique ID of the Signature | 
+**pkiSignatureID** | **int \*** | The unique ID of the Signature | 
 
 ### Return type
 

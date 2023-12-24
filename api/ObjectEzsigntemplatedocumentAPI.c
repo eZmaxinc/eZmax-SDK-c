@@ -17,7 +17,7 @@
 // The endpoint allows to create one or many elements at once.
 //
 ezsigntemplatedocument_create_object_v1_response_t*
-ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentCreateObjectV1(apiClient_t *apiClient, ezsigntemplatedocument_create_object_v1_request_t * ezsigntemplatedocument_create_object_v1_request )
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentCreateObjectV1(apiClient_t *apiClient, ezsigntemplatedocument_create_object_v1_request_t *ezsigntemplatedocument_create_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -99,7 +99,7 @@ end:
 // Using this endpoint, you can edit multiple Ezsigntemplateformfieldgroups at the same time.
 //
 ezsigntemplatedocument_edit_ezsigntemplateformfieldgroups_v1_response_t*
-ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditEzsigntemplateformfieldgroupsV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID , ezsigntemplatedocument_edit_ezsigntemplateformfieldgroups_v1_request_t * ezsigntemplatedocument_edit_ezsigntemplateformfieldgroups_v1_request )
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditEzsigntemplateformfieldgroupsV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, ezsigntemplatedocument_edit_ezsigntemplateformfieldgroups_v1_request_t *ezsigntemplatedocument_edit_ezsigntemplateformfieldgroups_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -123,7 +123,7 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditEzsigntemplateformfiel
     snprintf(localVarToReplace_pkiEzsigntemplatedocumentID, sizeOfPathParams_pkiEzsigntemplatedocumentID, "{%s}", "pkiEzsigntemplatedocumentID");
 
     char localVarBuff_pkiEzsigntemplatedocumentID[256];
-    intToStr(localVarBuff_pkiEzsigntemplatedocumentID, pkiEzsigntemplatedocumentID);
+    intToStr(localVarBuff_pkiEzsigntemplatedocumentID, *pkiEzsigntemplatedocumentID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatedocumentID, localVarBuff_pkiEzsigntemplatedocumentID);
 
@@ -200,7 +200,7 @@ end:
 // Using this endpoint, you can edit multiple Ezsigntemplatesignatures at the same time.
 //
 ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_t*
-ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditEzsigntemplatesignaturesV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID , ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_t * ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request )
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditEzsigntemplatesignaturesV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_t *ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -224,7 +224,7 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditEzsigntemplatesignatur
     snprintf(localVarToReplace_pkiEzsigntemplatedocumentID, sizeOfPathParams_pkiEzsigntemplatedocumentID, "{%s}", "pkiEzsigntemplatedocumentID");
 
     char localVarBuff_pkiEzsigntemplatedocumentID[256];
-    intToStr(localVarBuff_pkiEzsigntemplatedocumentID, pkiEzsigntemplatedocumentID);
+    intToStr(localVarBuff_pkiEzsigntemplatedocumentID, *pkiEzsigntemplatedocumentID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatedocumentID, localVarBuff_pkiEzsigntemplatedocumentID);
 
@@ -301,7 +301,7 @@ end:
 // 
 //
 ezsigntemplatedocument_edit_object_v1_response_t*
-ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID , ezsigntemplatedocument_edit_object_v1_request_t * ezsigntemplatedocument_edit_object_v1_request )
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, ezsigntemplatedocument_edit_object_v1_request_t *ezsigntemplatedocument_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -325,7 +325,7 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditObjectV1(apiClient_t *
     snprintf(localVarToReplace_pkiEzsigntemplatedocumentID, sizeOfPathParams_pkiEzsigntemplatedocumentID, "{%s}", "pkiEzsigntemplatedocumentID");
 
     char localVarBuff_pkiEzsigntemplatedocumentID[256];
-    intToStr(localVarBuff_pkiEzsigntemplatedocumentID, pkiEzsigntemplatedocumentID);
+    intToStr(localVarBuff_pkiEzsigntemplatedocumentID, *pkiEzsigntemplatedocumentID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatedocumentID, localVarBuff_pkiEzsigntemplatedocumentID);
 
@@ -402,7 +402,7 @@ end:
 // Flatten an Ezsigntemplatedocument signatures, forms and annotations. This process finalizes the PDF so that the forms and annotations become part of the document content and cannot be edited.
 //
 ezsigntemplatedocument_flatten_v1_response_t*
-ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentFlattenV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID , object_t * body )
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentFlattenV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -426,7 +426,7 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentFlattenV1(apiClient_t *api
     snprintf(localVarToReplace_pkiEzsigntemplatedocumentID, sizeOfPathParams_pkiEzsigntemplatedocumentID, "{%s}", "pkiEzsigntemplatedocumentID");
 
     char localVarBuff_pkiEzsigntemplatedocumentID[256];
-    intToStr(localVarBuff_pkiEzsigntemplatedocumentID, pkiEzsigntemplatedocumentID);
+    intToStr(localVarBuff_pkiEzsigntemplatedocumentID, *pkiEzsigntemplatedocumentID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatedocumentID, localVarBuff_pkiEzsigntemplatedocumentID);
 
@@ -503,7 +503,7 @@ end:
 // 
 //
 ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response_t*
-ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatedocumentpagesV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID )
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatedocumentpagesV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -527,7 +527,7 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatedocumentp
     snprintf(localVarToReplace_pkiEzsigntemplatedocumentID, sizeOfPathParams_pkiEzsigntemplatedocumentID, "{%s}", "pkiEzsigntemplatedocumentID");
 
     char localVarBuff_pkiEzsigntemplatedocumentID[256];
-    intToStr(localVarBuff_pkiEzsigntemplatedocumentID, pkiEzsigntemplatedocumentID);
+    intToStr(localVarBuff_pkiEzsigntemplatedocumentID, *pkiEzsigntemplatedocumentID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatedocumentID, localVarBuff_pkiEzsigntemplatedocumentID);
 
@@ -585,7 +585,7 @@ end:
 // 
 //
 ezsigntemplatedocument_get_ezsigntemplateformfieldgroups_v1_response_t*
-ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplateformfieldgroupsV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID )
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplateformfieldgroupsV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -609,7 +609,7 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplateformfield
     snprintf(localVarToReplace_pkiEzsigntemplatedocumentID, sizeOfPathParams_pkiEzsigntemplatedocumentID, "{%s}", "pkiEzsigntemplatedocumentID");
 
     char localVarBuff_pkiEzsigntemplatedocumentID[256];
-    intToStr(localVarBuff_pkiEzsigntemplatedocumentID, pkiEzsigntemplatedocumentID);
+    intToStr(localVarBuff_pkiEzsigntemplatedocumentID, *pkiEzsigntemplatedocumentID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatedocumentID, localVarBuff_pkiEzsigntemplatedocumentID);
 
@@ -671,7 +671,7 @@ end:
 // 
 //
 ezsigntemplatedocument_get_ezsigntemplatesignatures_v1_response_t*
-ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatesignaturesV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID )
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatesignaturesV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -695,7 +695,7 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatesignature
     snprintf(localVarToReplace_pkiEzsigntemplatedocumentID, sizeOfPathParams_pkiEzsigntemplatedocumentID, "{%s}", "pkiEzsigntemplatedocumentID");
 
     char localVarBuff_pkiEzsigntemplatedocumentID[256];
-    intToStr(localVarBuff_pkiEzsigntemplatedocumentID, pkiEzsigntemplatedocumentID);
+    intToStr(localVarBuff_pkiEzsigntemplatedocumentID, *pkiEzsigntemplatedocumentID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatedocumentID, localVarBuff_pkiEzsigntemplatedocumentID);
 
@@ -757,7 +757,7 @@ end:
 // 
 //
 ezsigntemplatedocument_get_object_v2_response_t*
-ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetObjectV2(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID )
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -781,7 +781,7 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetObjectV2(apiClient_t *a
     snprintf(localVarToReplace_pkiEzsigntemplatedocumentID, sizeOfPathParams_pkiEzsigntemplatedocumentID, "{%s}", "pkiEzsigntemplatedocumentID");
 
     char localVarBuff_pkiEzsigntemplatedocumentID[256];
-    intToStr(localVarBuff_pkiEzsigntemplatedocumentID, pkiEzsigntemplatedocumentID);
+    intToStr(localVarBuff_pkiEzsigntemplatedocumentID, *pkiEzsigntemplatedocumentID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatedocumentID, localVarBuff_pkiEzsigntemplatedocumentID);
 
@@ -839,7 +839,7 @@ end:
 // 
 //
 ezsigntemplatedocument_get_words_positions_v1_response_t*
-ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetWordsPositionsV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID , ezsigntemplatedocument_get_words_positions_v1_request_t * ezsigntemplatedocument_get_words_positions_v1_request )
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetWordsPositionsV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, ezsigntemplatedocument_get_words_positions_v1_request_t *ezsigntemplatedocument_get_words_positions_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -863,7 +863,7 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetWordsPositionsV1(apiCli
     snprintf(localVarToReplace_pkiEzsigntemplatedocumentID, sizeOfPathParams_pkiEzsigntemplatedocumentID, "{%s}", "pkiEzsigntemplatedocumentID");
 
     char localVarBuff_pkiEzsigntemplatedocumentID[256];
-    intToStr(localVarBuff_pkiEzsigntemplatedocumentID, pkiEzsigntemplatedocumentID);
+    intToStr(localVarBuff_pkiEzsigntemplatedocumentID, *pkiEzsigntemplatedocumentID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatedocumentID, localVarBuff_pkiEzsigntemplatedocumentID);
 
@@ -936,7 +936,7 @@ end:
 // 
 //
 ezsigntemplatedocument_patch_object_v1_response_t*
-ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentPatchObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID , ezsigntemplatedocument_patch_object_v1_request_t * ezsigntemplatedocument_patch_object_v1_request )
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentPatchObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, ezsigntemplatedocument_patch_object_v1_request_t *ezsigntemplatedocument_patch_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -960,7 +960,7 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentPatchObjectV1(apiClient_t 
     snprintf(localVarToReplace_pkiEzsigntemplatedocumentID, sizeOfPathParams_pkiEzsigntemplatedocumentID, "{%s}", "pkiEzsigntemplatedocumentID");
 
     char localVarBuff_pkiEzsigntemplatedocumentID[256];
-    intToStr(localVarBuff_pkiEzsigntemplatedocumentID, pkiEzsigntemplatedocumentID);
+    intToStr(localVarBuff_pkiEzsigntemplatedocumentID, *pkiEzsigntemplatedocumentID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatedocumentID, localVarBuff_pkiEzsigntemplatedocumentID);
 

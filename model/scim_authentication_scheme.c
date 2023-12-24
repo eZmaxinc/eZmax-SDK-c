@@ -6,7 +6,7 @@
 
 char* typescim_authentication_scheme_ToString(ezmax_api_definition__full_scim_authentication_scheme_TYPE_e type) {
     char* typeArray[] =  { "NULL", "oauth", "oauth2", "oauthbearertoken", "httpbasic", "httpdigest" };
-	return typeArray[type];
+    return typeArray[type];
 }
 
 ezmax_api_definition__full_scim_authentication_scheme_TYPE_e typescim_authentication_scheme_FromString(char* type){

@@ -6,7 +6,7 @@
 
 
 ezsignfolder_import_ezsignfoldersignerassociations_v1_request_t *ezsignfolder_import_ezsignfoldersignerassociations_v1_request_create(
-    set_t *a_fki_ezsignfoldersignerassociation_id
+    list_t *a_fki_ezsignfoldersignerassociation_id
     ) {
     ezsignfolder_import_ezsignfoldersignerassociations_v1_request_t *ezsignfolder_import_ezsignfoldersignerassociations_v1_request_local_var = malloc(sizeof(ezsignfolder_import_ezsignfoldersignerassociations_v1_request_t));
     if (!ezsignfolder_import_ezsignfoldersignerassociations_v1_request_local_var) {

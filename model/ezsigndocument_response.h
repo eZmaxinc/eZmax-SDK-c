@@ -50,6 +50,7 @@ typedef struct ezsigndocument_response_t {
     int b_ezsigndocument_hassignedsignatures; //boolean
     struct common_audit_t *obj_audit; //model
     char *s_ezsigndocument_externalid; // string
+    int i_ezsigndocument_ezsignsignatureattachmenttotal; //numeric
 
 } ezsigndocument_response_t;
 
@@ -74,7 +75,8 @@ ezsigndocument_response_t *ezsigndocument_response_create(
     int b_ezsigndocument_ezsignform,
     int b_ezsigndocument_hassignedsignatures,
     common_audit_t *obj_audit,
-    char *s_ezsigndocument_externalid
+    char *s_ezsigndocument_externalid,
+    int i_ezsigndocument_ezsignsignatureattachmenttotal
 );
 
 void ezsigndocument_response_free(ezsigndocument_response_t *ezsigndocument_response);

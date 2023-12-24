@@ -61,7 +61,7 @@ ezsigntemplatedocument_edit_ezsigntemplateformfieldgroups_v1_response_t* ObjectE
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplatedocumentID** | **int** |  | 
+**pkiEzsigntemplatedocumentID** | **int \*** |  | 
 **ezsigntemplatedocument_edit_ezsigntemplateformfieldgroups_v1_request** | **[ezsigntemplatedocument_edit_ezsigntemplateformfieldgroups_v1_request_t](ezsigntemplatedocument_edit_ezsigntemplateformfieldgroups_v1_request.md) \*** |  | 
 
 ### Return type
@@ -93,7 +93,7 @@ ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_t* ObjectEzsign
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplatedocumentID** | **int** |  | 
+**pkiEzsigntemplatedocumentID** | **int \*** |  | 
 **ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request** | **[ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_t](ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request.md) \*** |  | 
 
 ### Return type
@@ -125,7 +125,7 @@ ezsigntemplatedocument_edit_object_v1_response_t* ObjectEzsigntemplatedocumentAP
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplatedocumentID** | **int** |  | 
+**pkiEzsigntemplatedocumentID** | **int \*** |  | 
 **ezsigntemplatedocument_edit_object_v1_request** | **[ezsigntemplatedocument_edit_object_v1_request_t](ezsigntemplatedocument_edit_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -157,7 +157,7 @@ ezsigntemplatedocument_flatten_v1_response_t* ObjectEzsigntemplatedocumentAPI_ez
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplatedocumentID** | **int** |  | 
+**pkiEzsigntemplatedocumentID** | **int \*** |  | 
 **body** | **[object_t](object.md) \*** |  | 
 
 ### Return type
@@ -189,7 +189,7 @@ ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response_t* ObjectEzsi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplatedocumentID** | **int** |  | 
+**pkiEzsigntemplatedocumentID** | **int \*** |  | 
 
 ### Return type
 
@@ -220,7 +220,7 @@ ezsigntemplatedocument_get_ezsigntemplateformfieldgroups_v1_response_t* ObjectEz
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplatedocumentID** | **int** |  | 
+**pkiEzsigntemplatedocumentID** | **int \*** |  | 
 
 ### Return type
 
@@ -251,7 +251,7 @@ ezsigntemplatedocument_get_ezsigntemplatesignatures_v1_response_t* ObjectEzsignt
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplatedocumentID** | **int** |  | 
+**pkiEzsigntemplatedocumentID** | **int \*** |  | 
 
 ### Return type
 
@@ -282,7 +282,7 @@ ezsigntemplatedocument_get_object_v2_response_t* ObjectEzsigntemplatedocumentAPI
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplatedocumentID** | **int** |  | 
+**pkiEzsigntemplatedocumentID** | **int \*** |  | 
 
 ### Return type
 
@@ -313,7 +313,7 @@ ezsigntemplatedocument_get_words_positions_v1_response_t* ObjectEzsigntemplatedo
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplatedocumentID** | **int** |  | 
+**pkiEzsigntemplatedocumentID** | **int \*** |  | 
 **ezsigntemplatedocument_get_words_positions_v1_request** | **[ezsigntemplatedocument_get_words_positions_v1_request_t](ezsigntemplatedocument_get_words_positions_v1_request.md) \*** |  | 
 
 ### Return type
@@ -345,7 +345,7 @@ ezsigntemplatedocument_patch_object_v1_response_t* ObjectEzsigntemplatedocumentA
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplatedocumentID** | **int** |  | 
+**pkiEzsigntemplatedocumentID** | **int \*** |  | 
 **ezsigntemplatedocument_patch_object_v1_request** | **[ezsigntemplatedocument_patch_object_v1_request_t](ezsigntemplatedocument_patch_object_v1_request.md) \*** |  | 
 
 ### Return type

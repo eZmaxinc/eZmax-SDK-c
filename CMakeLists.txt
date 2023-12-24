@@ -91,7 +91,14 @@ set(SRCS
     model/apikey_request_compound.c
     model/apikey_response.c
     model/apikey_response_compound.c
-    model/attachment_download_v1_response.c
+    model/attachment_get_attachmentlogs_v1_response.c
+    model/attachment_get_attachmentlogs_v1_response_m_payload.c
+    model/attachment_get_download_url_v1_response.c
+    model/attachment_get_download_url_v1_response_m_payload.c
+    model/attachment_response.c
+    model/attachment_response_compound.c
+    model/attachmentlog_response.c
+    model/attachmentlog_response_compound.c
     model/attempt_response.c
     model/attempt_response_compound.c
     model/billingentityexternal_autocomplete_element_response.c
@@ -204,6 +211,8 @@ set(SRCS
     model/cors_request_compound.c
     model/cors_response.c
     model/cors_response_compound.c
+    model/custom_attachment_response.c
+    model/custom_attachmentdocumenttype_response.c
     model/custom_autocomplete_element_response.c
     model/custom_communication_list_element_response.c
     model/custom_communicationattachment_request.c
@@ -377,6 +386,8 @@ set(SRCS
     model/ezsigndocument_flatten_v1_response.c
     model/ezsigndocument_get_actionable_elements_v1_response.c
     model/ezsigndocument_get_actionable_elements_v1_response_m_payload.c
+    model/ezsigndocument_get_attachments_v1_response.c
+    model/ezsigndocument_get_attachments_v1_response_m_payload.c
     model/ezsigndocument_get_completed_elements_v1_response.c
     model/ezsigndocument_get_completed_elements_v1_response_m_payload.c
     model/ezsigndocument_get_download_url_v1_response.c
@@ -433,6 +444,10 @@ set(SRCS
     model/ezsignfolder_edit_object_v1_response.c
     model/ezsignfolder_get_actionable_elements_v1_response.c
     model/ezsignfolder_get_actionable_elements_v1_response_m_payload.c
+    model/ezsignfolder_get_attachment_count_v1_response.c
+    model/ezsignfolder_get_attachment_count_v1_response_m_payload.c
+    model/ezsignfolder_get_attachments_v1_response.c
+    model/ezsignfolder_get_attachments_v1_response_m_payload.c
     model/ezsignfolder_get_communication_count_v1_response.c
     model/ezsignfolder_get_communication_count_v1_response_m_payload.c
     model/ezsignfolder_get_communication_list_v1_response.c
@@ -598,6 +613,23 @@ set(SRCS
     model/ezsignsignergroupmembership_request_compound.c
     model/ezsignsignergroupmembership_response.c
     model/ezsignsignergroupmembership_response_compound.c
+    model/ezsignsigningreason_autocomplete_element_response.c
+    model/ezsignsigningreason_create_object_v1_request.c
+    model/ezsignsigningreason_create_object_v1_response.c
+    model/ezsignsigningreason_create_object_v1_response_m_payload.c
+    model/ezsignsigningreason_edit_object_v1_request.c
+    model/ezsignsigningreason_edit_object_v1_response.c
+    model/ezsignsigningreason_get_autocomplete_v2_response.c
+    model/ezsignsigningreason_get_autocomplete_v2_response_m_payload.c
+    model/ezsignsigningreason_get_list_v1_response.c
+    model/ezsignsigningreason_get_list_v1_response_m_payload.c
+    model/ezsignsigningreason_get_object_v2_response.c
+    model/ezsignsigningreason_get_object_v2_response_m_payload.c
+    model/ezsignsigningreason_list_element.c
+    model/ezsignsigningreason_request.c
+    model/ezsignsigningreason_request_compound.c
+    model/ezsignsigningreason_response.c
+    model/ezsignsigningreason_response_compound.c
     model/ezsigntemplate_autocomplete_element_response.c
     model/ezsigntemplate_copy_v1_request.c
     model/ezsigntemplate_copy_v1_response.c
@@ -765,6 +797,11 @@ set(SRCS
     model/field_e_activesession_origin.c
     model/field_e_activesession_usertype.c
     model/field_e_activesession_weekdaystart.c
+    model/field_e_attachment_documenttype.c
+    model/field_e_attachment_privacy.c
+    model/field_e_attachment_type.c
+    model/field_e_attachment_verified.c
+    model/field_e_attachmentlog_type.c
     model/field_e_branding_logo.c
     model/field_e_communication_importance.c
     model/field_e_communication_type.c
@@ -816,6 +853,7 @@ set(SRCS
     model/field_e_systemconfiguration_language2.c
     model/field_e_systemconfiguration_newexternaluseraction.c
     model/field_e_user_ezsignaccess.c
+    model/field_e_user_ezsignprepaid.c
     model/field_e_user_ezsignsendreminderfrequency.c
     model/field_e_user_logintype.c
     model/field_e_user_origin.c
@@ -848,12 +886,18 @@ set(SRCS
     model/global_ezmaxclient_version_v1_response.c
     model/global_ezmaxcustomer_get_configuration_v1_response.c
     model/header_accept_language.c
+    model/inscription_get_attachments_v1_response.c
+    model/inscription_get_attachments_v1_response_m_payload.c
     model/inscription_get_communication_list_v1_response.c
     model/inscription_get_communication_list_v1_response_m_payload.c
+    model/inscription_get_communicationsenders_v1_response.c
+    model/inscription_get_communicationsenders_v1_response_m_payload.c
     model/inscriptionnotauthenticated_get_communication_list_v1_response.c
     model/inscriptionnotauthenticated_get_communication_list_v1_response_m_payload.c
     model/inscriptiontemp_get_communication_list_v1_response.c
     model/inscriptiontemp_get_communication_list_v1_response_m_payload.c
+    model/invoice_get_attachments_v1_response.c
+    model/invoice_get_attachments_v1_response_m_payload.c
     model/invoice_get_communication_list_v1_response.c
     model/invoice_get_communication_list_v1_response_m_payload.c
     model/language_autocomplete_element_response.c
@@ -873,6 +917,7 @@ set(SRCS
     model/multilingual_ezmaxinvoicingsummaryinternal_description.c
     model/multilingual_ezsignfoldertype_name.c
     model/multilingual_ezsignsignergroup_description.c
+    model/multilingual_ezsignsigningreason_description.c
     model/multilingual_notificationsubsection_name.c
     model/multilingual_notificationtest_name.c
     model/multilingual_paymentterm_description.c
@@ -1115,6 +1160,9 @@ set(SRCS
     model/webhook_create_object_v1_request.c
     model/webhook_create_object_v1_response.c
     model/webhook_create_object_v1_response_m_payload.c
+    model/webhook_create_object_v2_request.c
+    model/webhook_create_object_v2_response.c
+    model/webhook_create_object_v2_response_m_payload.c
     model/webhook_delete_object_v1_response.c
     model/webhook_edit_object_v1_request.c
     model/webhook_edit_object_v1_response.c
@@ -1129,6 +1177,9 @@ set(SRCS
     model/webhook_get_object_v2_response.c
     model/webhook_get_object_v2_response_m_payload.c
     model/webhook_list_element.c
+    model/webhook_regenerate_apikey_v1_request.c
+    model/webhook_regenerate_apikey_v1_response.c
+    model/webhook_regenerate_apikey_v1_response_m_payload.c
     model/webhook_request.c
     model/webhook_request_compound.c
     model/webhook_response.c
@@ -1180,6 +1231,7 @@ set(SRCS
     api/ObjectEzsignsignatureAPI.c
     api/ObjectEzsignsignergroupAPI.c
     api/ObjectEzsignsignergroupmembershipAPI.c
+    api/ObjectEzsignsigningreasonAPI.c
     api/ObjectEzsigntemplateAPI.c
     api/ObjectEzsigntemplatedocumentAPI.c
     api/ObjectEzsigntemplateformfieldgroupAPI.c
@@ -1274,7 +1326,14 @@ set(HDRS
     model/apikey_request_compound.h
     model/apikey_response.h
     model/apikey_response_compound.h
-    model/attachment_download_v1_response.h
+    model/attachment_get_attachmentlogs_v1_response.h
+    model/attachment_get_attachmentlogs_v1_response_m_payload.h
+    model/attachment_get_download_url_v1_response.h
+    model/attachment_get_download_url_v1_response_m_payload.h
+    model/attachment_response.h
+    model/attachment_response_compound.h
+    model/attachmentlog_response.h
+    model/attachmentlog_response_compound.h
     model/attempt_response.h
     model/attempt_response_compound.h
     model/billingentityexternal_autocomplete_element_response.h
@@ -1387,6 +1446,8 @@ set(HDRS
     model/cors_request_compound.h
     model/cors_response.h
     model/cors_response_compound.h
+    model/custom_attachment_response.h
+    model/custom_attachmentdocumenttype_response.h
     model/custom_autocomplete_element_response.h
     model/custom_communication_list_element_response.h
     model/custom_communicationattachment_request.h
@@ -1560,6 +1621,8 @@ set(HDRS
     model/ezsigndocument_flatten_v1_response.h
     model/ezsigndocument_get_actionable_elements_v1_response.h
     model/ezsigndocument_get_actionable_elements_v1_response_m_payload.h
+    model/ezsigndocument_get_attachments_v1_response.h
+    model/ezsigndocument_get_attachments_v1_response_m_payload.h
     model/ezsigndocument_get_completed_elements_v1_response.h
     model/ezsigndocument_get_completed_elements_v1_response_m_payload.h
     model/ezsigndocument_get_download_url_v1_response.h
@@ -1616,6 +1679,10 @@ set(HDRS
     model/ezsignfolder_edit_object_v1_response.h
     model/ezsignfolder_get_actionable_elements_v1_response.h
     model/ezsignfolder_get_actionable_elements_v1_response_m_payload.h
+    model/ezsignfolder_get_attachment_count_v1_response.h
+    model/ezsignfolder_get_attachment_count_v1_response_m_payload.h
+    model/ezsignfolder_get_attachments_v1_response.h
+    model/ezsignfolder_get_attachments_v1_response_m_payload.h
     model/ezsignfolder_get_communication_count_v1_response.h
     model/ezsignfolder_get_communication_count_v1_response_m_payload.h
     model/ezsignfolder_get_communication_list_v1_response.h
@@ -1781,6 +1848,23 @@ set(HDRS
     model/ezsignsignergroupmembership_request_compound.h
     model/ezsignsignergroupmembership_response.h
     model/ezsignsignergroupmembership_response_compound.h
+    model/ezsignsigningreason_autocomplete_element_response.h
+    model/ezsignsigningreason_create_object_v1_request.h
+    model/ezsignsigningreason_create_object_v1_response.h
+    model/ezsignsigningreason_create_object_v1_response_m_payload.h
+    model/ezsignsigningreason_edit_object_v1_request.h
+    model/ezsignsigningreason_edit_object_v1_response.h
+    model/ezsignsigningreason_get_autocomplete_v2_response.h
+    model/ezsignsigningreason_get_autocomplete_v2_response_m_payload.h
+    model/ezsignsigningreason_get_list_v1_response.h
+    model/ezsignsigningreason_get_list_v1_response_m_payload.h
+    model/ezsignsigningreason_get_object_v2_response.h
+    model/ezsignsigningreason_get_object_v2_response_m_payload.h
+    model/ezsignsigningreason_list_element.h
+    model/ezsignsigningreason_request.h
+    model/ezsignsigningreason_request_compound.h
+    model/ezsignsigningreason_response.h
+    model/ezsignsigningreason_response_compound.h
     model/ezsigntemplate_autocomplete_element_response.h
     model/ezsigntemplate_copy_v1_request.h
     model/ezsigntemplate_copy_v1_response.h
@@ -1948,6 +2032,11 @@ set(HDRS
     model/field_e_activesession_origin.h
     model/field_e_activesession_usertype.h
     model/field_e_activesession_weekdaystart.h
+    model/field_e_attachment_documenttype.h
+    model/field_e_attachment_privacy.h
+    model/field_e_attachment_type.h
+    model/field_e_attachment_verified.h
+    model/field_e_attachmentlog_type.h
     model/field_e_branding_logo.h
     model/field_e_communication_importance.h
     model/field_e_communication_type.h
@@ -1999,6 +2088,7 @@ set(HDRS
     model/field_e_systemconfiguration_language2.h
     model/field_e_systemconfiguration_newexternaluseraction.h
     model/field_e_user_ezsignaccess.h
+    model/field_e_user_ezsignprepaid.h
     model/field_e_user_ezsignsendreminderfrequency.h
     model/field_e_user_logintype.h
     model/field_e_user_origin.h
@@ -2031,12 +2121,18 @@ set(HDRS
     model/global_ezmaxclient_version_v1_response.h
     model/global_ezmaxcustomer_get_configuration_v1_response.h
     model/header_accept_language.h
+    model/inscription_get_attachments_v1_response.h
+    model/inscription_get_attachments_v1_response_m_payload.h
     model/inscription_get_communication_list_v1_response.h
     model/inscription_get_communication_list_v1_response_m_payload.h
+    model/inscription_get_communicationsenders_v1_response.h
+    model/inscription_get_communicationsenders_v1_response_m_payload.h
     model/inscriptionnotauthenticated_get_communication_list_v1_response.h
     model/inscriptionnotauthenticated_get_communication_list_v1_response_m_payload.h
     model/inscriptiontemp_get_communication_list_v1_response.h
     model/inscriptiontemp_get_communication_list_v1_response_m_payload.h
+    model/invoice_get_attachments_v1_response.h
+    model/invoice_get_attachments_v1_response_m_payload.h
     model/invoice_get_communication_list_v1_response.h
     model/invoice_get_communication_list_v1_response_m_payload.h
     model/language_autocomplete_element_response.h
@@ -2056,6 +2152,7 @@ set(HDRS
     model/multilingual_ezmaxinvoicingsummaryinternal_description.h
     model/multilingual_ezsignfoldertype_name.h
     model/multilingual_ezsignsignergroup_description.h
+    model/multilingual_ezsignsigningreason_description.h
     model/multilingual_notificationsubsection_name.h
     model/multilingual_notificationtest_name.h
     model/multilingual_paymentterm_description.h
@@ -2298,6 +2395,9 @@ set(HDRS
     model/webhook_create_object_v1_request.h
     model/webhook_create_object_v1_response.h
     model/webhook_create_object_v1_response_m_payload.h
+    model/webhook_create_object_v2_request.h
+    model/webhook_create_object_v2_response.h
+    model/webhook_create_object_v2_response_m_payload.h
     model/webhook_delete_object_v1_response.h
     model/webhook_edit_object_v1_request.h
     model/webhook_edit_object_v1_response.h
@@ -2312,6 +2412,9 @@ set(HDRS
     model/webhook_get_object_v2_response.h
     model/webhook_get_object_v2_response_m_payload.h
     model/webhook_list_element.h
+    model/webhook_regenerate_apikey_v1_request.h
+    model/webhook_regenerate_apikey_v1_response.h
+    model/webhook_regenerate_apikey_v1_response_m_payload.h
     model/webhook_request.h
     model/webhook_request_compound.h
     model/webhook_response.h
@@ -2363,6 +2466,7 @@ set(HDRS
     api/ObjectEzsignsignatureAPI.h
     api/ObjectEzsignsignergroupAPI.h
     api/ObjectEzsignsignergroupmembershipAPI.h
+    api/ObjectEzsignsigningreasonAPI.h
     api/ObjectEzsigntemplateAPI.h
     api/ObjectEzsigntemplatedocumentAPI.h
     api/ObjectEzsigntemplateformfieldgroupAPI.h
@@ -2526,6 +2630,7 @@ set(HDRS "")
 #    unit-tests/manual-ObjectEzsignsignatureAPI.c
 #    unit-tests/manual-ObjectEzsignsignergroupAPI.c
 #    unit-tests/manual-ObjectEzsignsignergroupmembershipAPI.c
+#    unit-tests/manual-ObjectEzsignsigningreasonAPI.c
 #    unit-tests/manual-ObjectEzsigntemplateAPI.c
 #    unit-tests/manual-ObjectEzsigntemplatedocumentAPI.c
 #    unit-tests/manual-ObjectEzsigntemplateformfieldgroupAPI.c

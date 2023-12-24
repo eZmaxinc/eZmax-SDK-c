@@ -90,7 +90,7 @@ ezsignfoldersignerassociation_delete_object_v1_response_t* ObjectEzsignfoldersig
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfoldersignerassociationID** | **int** |  | 
+**pkiEzsignfoldersignerassociationID** | **int \*** |  | 
 
 ### Return type
 
@@ -121,7 +121,7 @@ ezsignfoldersignerassociation_edit_object_v1_response_t* ObjectEzsignfoldersigne
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfoldersignerassociationID** | **int** |  | 
+**pkiEzsignfoldersignerassociationID** | **int \*** |  | 
 **ezsignfoldersignerassociation_edit_object_v1_request** | **[ezsignfoldersignerassociation_edit_object_v1_request_t](ezsignfoldersignerassociation_edit_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -153,7 +153,7 @@ ezsignfoldersignerassociation_force_disconnect_v1_response_t* ObjectEzsignfolder
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfoldersignerassociationID** | **int** |  | 
+**pkiEzsignfoldersignerassociationID** | **int \*** |  | 
 **body** | **[object_t](object.md) \*** |  | 
 
 ### Return type
@@ -185,7 +185,7 @@ ezsignfoldersignerassociation_get_in_person_login_url_v1_response_t* ObjectEzsig
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfoldersignerassociationID** | **int** |  | 
+**pkiEzsignfoldersignerassociationID** | **int \*** |  | 
 
 ### Return type
 
@@ -216,7 +216,7 @@ ezsignfoldersignerassociation_get_object_v1_response_t* ObjectEzsignfoldersigner
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfoldersignerassociationID** | **int** |  | 
+**pkiEzsignfoldersignerassociationID** | **int \*** |  | 
 
 ### Return type
 
@@ -247,7 +247,7 @@ ezsignfoldersignerassociation_get_object_v2_response_t* ObjectEzsignfoldersigner
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfoldersignerassociationID** | **int** |  | 
+**pkiEzsignfoldersignerassociationID** | **int \*** |  | 
 
 ### Return type
 
@@ -276,7 +276,7 @@ ezsignfoldersignerassociation_patch_object_v1_response_t* ObjectEzsignfoldersign
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfoldersignerassociationID** | **int** |  | 
+**pkiEzsignfoldersignerassociationID** | **int \*** |  | 
 **ezsignfoldersignerassociation_patch_object_v1_request** | **[ezsignfoldersignerassociation_patch_object_v1_request_t](ezsignfoldersignerassociation_patch_object_v1_request.md) \*** |  | 
 
 ### Return type

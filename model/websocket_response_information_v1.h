@@ -29,12 +29,14 @@ ezmax_api_definition__full_websocket_response_information_v1_EWEBSOCKETMESSAGETY
 
 typedef struct websocket_response_information_v1_t {
     ezmax_api_definition__full_websocket_response_information_v1_EWEBSOCKETMESSAGETYPE_e e_websocket_messagetype; //enum
+    char *s_websocket_channel; // string
     struct websocket_response_information_v1_m_payload_t *m_payload; //model
 
 } websocket_response_information_v1_t;
 
 websocket_response_information_v1_t *websocket_response_information_v1_create(
     ezmax_api_definition__full_websocket_response_information_v1_EWEBSOCKETMESSAGETYPE_e e_websocket_messagetype,
+    char *s_websocket_channel,
     websocket_response_information_v1_m_payload_t *m_payload
 );
 

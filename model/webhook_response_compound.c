@@ -6,7 +6,7 @@
 
 char* e_webhook_modulewebhook_response_compound_ToString(ezmax_api_definition__full_webhook_response_compound__e e_webhook_module) {
     char* e_webhook_moduleArray[] =  { "NULL", "Ezsign", "Management" };
-	return e_webhook_moduleArray[e_webhook_module];
+    return e_webhook_moduleArray[e_webhook_module];
 }
 
 ezmax_api_definition__full_webhook_response_compound__e e_webhook_modulewebhook_response_compound_FromString(char* e_webhook_module){
@@ -23,7 +23,7 @@ ezmax_api_definition__full_webhook_response_compound__e e_webhook_modulewebhook_
 }
 char* e_webhook_ezsigneventwebhook_response_compound_ToString(ezmax_api_definition__full_webhook_response_compound__e e_webhook_ezsignevent) {
     char* e_webhook_ezsigneventArray[] =  { "NULL", "DocumentCompleted", "EzsignsignerAcceptclause", "EzsignsignerConnect", "FolderCompleted" };
-	return e_webhook_ezsigneventArray[e_webhook_ezsignevent];
+    return e_webhook_ezsigneventArray[e_webhook_ezsignevent];
 }
 
 ezmax_api_definition__full_webhook_response_compound__e e_webhook_ezsigneventwebhook_response_compound_FromString(char* e_webhook_ezsignevent){
@@ -40,7 +40,7 @@ ezmax_api_definition__full_webhook_response_compound__e e_webhook_ezsigneventweb
 }
 char* e_webhook_managementeventwebhook_response_compound_ToString(ezmax_api_definition__full_webhook_response_compound__e e_webhook_managementevent) {
     char* e_webhook_managementeventArray[] =  { "NULL", "UserCreated", "UserstagedCreated" };
-	return e_webhook_managementeventArray[e_webhook_managementevent];
+    return e_webhook_managementeventArray[e_webhook_managementevent];
 }
 
 ezmax_api_definition__full_webhook_response_compound__e e_webhook_managementeventwebhook_response_compound_FromString(char* e_webhook_managementevent){
@@ -66,7 +66,10 @@ webhook_response_compound_t *webhook_response_compound_create(
     field_e_webhook_managementevent_t *e_webhook_managementevent,
     char *s_webhook_url,
     char *s_webhook_emailfailed,
+    char *s_webhook_apikey,
+    char *s_webhook_secret,
     int b_webhook_isactive,
+    int b_webhook_issigned,
     int b_webhook_skipsslvalidation,
     char *s_webhook_event
     ) {
@@ -83,7 +86,10 @@ webhook_response_compound_t *webhook_response_compound_create(
     webhook_response_compound_local_var->e_webhook_managementevent = e_webhook_managementevent;
     webhook_response_compound_local_var->s_webhook_url = s_webhook_url;
     webhook_response_compound_local_var->s_webhook_emailfailed = s_webhook_emailfailed;
+    webhook_response_compound_local_var->s_webhook_apikey = s_webhook_apikey;
+    webhook_response_compound_local_var->s_webhook_secret = s_webhook_secret;
     webhook_response_compound_local_var->b_webhook_isactive = b_webhook_isactive;
+    webhook_response_compound_local_var->b_webhook_issigned = b_webhook_issigned;
     webhook_response_compound_local_var->b_webhook_skipsslvalidation = b_webhook_skipsslvalidation;
     webhook_response_compound_local_var->s_webhook_event = s_webhook_event;
 
@@ -123,6 +129,14 @@ void webhook_response_compound_free(webhook_response_compound_t *webhook_respons
     if (webhook_response_compound->s_webhook_emailfailed) {
         free(webhook_response_compound->s_webhook_emailfailed);
         webhook_response_compound->s_webhook_emailfailed = NULL;
+    }
+    if (webhook_response_compound->s_webhook_apikey) {
+        free(webhook_response_compound->s_webhook_apikey);
+        webhook_response_compound->s_webhook_apikey = NULL;
+    }
+    if (webhook_response_compound->s_webhook_secret) {
+        free(webhook_response_compound->s_webhook_secret);
+        webhook_response_compound->s_webhook_secret = NULL;
     }
     if (webhook_response_compound->s_webhook_event) {
         free(webhook_response_compound->s_webhook_event);
@@ -226,11 +240,36 @@ cJSON *webhook_response_compound_convertToJSON(webhook_response_compound_t *webh
     }
 
 
+    // webhook_response_compound->s_webhook_apikey
+    if(webhook_response_compound->s_webhook_apikey) {
+    if(cJSON_AddStringToObject(item, "sWebhookApikey", webhook_response_compound->s_webhook_apikey) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // webhook_response_compound->s_webhook_secret
+    if(webhook_response_compound->s_webhook_secret) {
+    if(cJSON_AddStringToObject(item, "sWebhookSecret", webhook_response_compound->s_webhook_secret) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
     // webhook_response_compound->b_webhook_isactive
     if (!webhook_response_compound->b_webhook_isactive) {
         goto fail;
     }
     if(cJSON_AddBoolToObject(item, "bWebhookIsactive", webhook_response_compound->b_webhook_isactive) == NULL) {
+    goto fail; //Bool
+    }
+
+
+    // webhook_response_compound->b_webhook_issigned
+    if (!webhook_response_compound->b_webhook_issigned) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "bWebhookIssigned", webhook_response_compound->b_webhook_issigned) == NULL) {
     goto fail; //Bool
     }
 
@@ -359,6 +398,24 @@ webhook_response_compound_t *webhook_response_compound_parseFromJSON(cJSON *webh
     goto end; //String
     }
 
+    // webhook_response_compound->s_webhook_apikey
+    cJSON *s_webhook_apikey = cJSON_GetObjectItemCaseSensitive(webhook_response_compoundJSON, "sWebhookApikey");
+    if (s_webhook_apikey) { 
+    if(!cJSON_IsString(s_webhook_apikey) && !cJSON_IsNull(s_webhook_apikey))
+    {
+    goto end; //String
+    }
+    }
+
+    // webhook_response_compound->s_webhook_secret
+    cJSON *s_webhook_secret = cJSON_GetObjectItemCaseSensitive(webhook_response_compoundJSON, "sWebhookSecret");
+    if (s_webhook_secret) { 
+    if(!cJSON_IsString(s_webhook_secret) && !cJSON_IsNull(s_webhook_secret))
+    {
+    goto end; //String
+    }
+    }
+
     // webhook_response_compound->b_webhook_isactive
     cJSON *b_webhook_isactive = cJSON_GetObjectItemCaseSensitive(webhook_response_compoundJSON, "bWebhookIsactive");
     if (!b_webhook_isactive) {
@@ -367,6 +424,18 @@ webhook_response_compound_t *webhook_response_compound_parseFromJSON(cJSON *webh
 
     
     if(!cJSON_IsBool(b_webhook_isactive))
+    {
+    goto end; //Bool
+    }
+
+    // webhook_response_compound->b_webhook_issigned
+    cJSON *b_webhook_issigned = cJSON_GetObjectItemCaseSensitive(webhook_response_compoundJSON, "bWebhookIssigned");
+    if (!b_webhook_issigned) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(b_webhook_issigned))
     {
     goto end; //Bool
     }
@@ -403,7 +472,10 @@ webhook_response_compound_t *webhook_response_compound_parseFromJSON(cJSON *webh
         e_webhook_managementevent ? e_webhook_managementevent_local_nonprim : NULL,
         strdup(s_webhook_url->valuestring),
         strdup(s_webhook_emailfailed->valuestring),
+        s_webhook_apikey && !cJSON_IsNull(s_webhook_apikey) ? strdup(s_webhook_apikey->valuestring) : NULL,
+        s_webhook_secret && !cJSON_IsNull(s_webhook_secret) ? strdup(s_webhook_secret->valuestring) : NULL,
         b_webhook_isactive->valueint,
+        b_webhook_issigned->valueint,
         b_webhook_skipsslvalidation->valueint,
         s_webhook_event && !cJSON_IsNull(s_webhook_event) ? strdup(s_webhook_event->valuestring) : NULL
         );

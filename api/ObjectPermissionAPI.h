@@ -19,7 +19,7 @@
 // The endpoint allows to create one or many elements at once.
 //
 permission_create_object_v1_response_t*
-ObjectPermissionAPI_permissionCreateObjectV1(apiClient_t *apiClient, permission_create_object_v1_request_t * permission_create_object_v1_request );
+ObjectPermissionAPI_permissionCreateObjectV1(apiClient_t *apiClient, permission_create_object_v1_request_t *permission_create_object_v1_request);
 
 
 // Delete an existing Permission
@@ -27,7 +27,7 @@ ObjectPermissionAPI_permissionCreateObjectV1(apiClient_t *apiClient, permission_
 // 
 //
 permission_delete_object_v1_response_t*
-ObjectPermissionAPI_permissionDeleteObjectV1(apiClient_t *apiClient, int pkiPermissionID );
+ObjectPermissionAPI_permissionDeleteObjectV1(apiClient_t *apiClient, int *pkiPermissionID);
 
 
 // Edit an existing Permission
@@ -35,7 +35,7 @@ ObjectPermissionAPI_permissionDeleteObjectV1(apiClient_t *apiClient, int pkiPerm
 // 
 //
 permission_edit_object_v1_response_t*
-ObjectPermissionAPI_permissionEditObjectV1(apiClient_t *apiClient, int pkiPermissionID , permission_edit_object_v1_request_t * permission_edit_object_v1_request );
+ObjectPermissionAPI_permissionEditObjectV1(apiClient_t *apiClient, int *pkiPermissionID, permission_edit_object_v1_request_t *permission_edit_object_v1_request);
 
 
 // Retrieve an existing Permission
@@ -43,6 +43,6 @@ ObjectPermissionAPI_permissionEditObjectV1(apiClient_t *apiClient, int pkiPermis
 // 
 //
 permission_get_object_v2_response_t*
-ObjectPermissionAPI_permissionGetObjectV2(apiClient_t *apiClient, int pkiPermissionID );
+ObjectPermissionAPI_permissionGetObjectV2(apiClient_t *apiClient, int *pkiPermissionID);
 
 

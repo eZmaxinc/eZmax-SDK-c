@@ -30,8 +30,8 @@ ezmax_api_definition__full_communicationrecipient_request_compound__e communicat
 typedef struct communicationrecipient_request_compound_t {
     int pki_communicationrecipient_id; //numeric
     int fki_agent_id; //numeric
-    int fki_agentincorporation_id; //numeric
     int fki_broker_id; //numeric
+    int fki_contact_id; //numeric
     int fki_customer_id; //numeric
     int fki_employee_id; //numeric
     int fki_assistant_id; //numeric
@@ -40,6 +40,8 @@ typedef struct communicationrecipient_request_compound_t {
     int fki_notary_id; //numeric
     int fki_supplier_id; //numeric
     int fki_user_id; //numeric
+    int fki_mailboxshared_id; //numeric
+    int fki_phonelineshared_id; //numeric
     field_e_communicationrecipient_type_t *e_communicationrecipient_type; // custom
 
 } communicationrecipient_request_compound_t;
@@ -47,8 +49,8 @@ typedef struct communicationrecipient_request_compound_t {
 communicationrecipient_request_compound_t *communicationrecipient_request_compound_create(
     int pki_communicationrecipient_id,
     int fki_agent_id,
-    int fki_agentincorporation_id,
     int fki_broker_id,
+    int fki_contact_id,
     int fki_customer_id,
     int fki_employee_id,
     int fki_assistant_id,
@@ -57,6 +59,8 @@ communicationrecipient_request_compound_t *communicationrecipient_request_compou
     int fki_notary_id,
     int fki_supplier_id,
     int fki_user_id,
+    int fki_mailboxshared_id,
+    int fki_phonelineshared_id,
     field_e_communicationrecipient_type_t *e_communicationrecipient_type
 );
 

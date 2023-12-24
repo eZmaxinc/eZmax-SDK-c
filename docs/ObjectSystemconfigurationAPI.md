@@ -21,7 +21,7 @@ systemconfiguration_edit_object_v1_response_t* ObjectSystemconfigurationAPI_syst
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiSystemconfigurationID** | **int** | The unique ID of the Systemconfiguration | 
+**pkiSystemconfigurationID** | **int \*** | The unique ID of the Systemconfiguration | 
 **systemconfiguration_edit_object_v1_request** | **[systemconfiguration_edit_object_v1_request_t](systemconfiguration_edit_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -53,7 +53,7 @@ systemconfiguration_get_object_v2_response_t* ObjectSystemconfigurationAPI_syste
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiSystemconfigurationID** | **int** | The unique ID of the Systemconfiguration | 
+**pkiSystemconfigurationID** | **int \*** | The unique ID of the Systemconfiguration | 
 
 ### Return type
 

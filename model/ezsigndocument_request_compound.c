@@ -6,7 +6,7 @@
 
 char* e_ezsigndocument_sourceezsigndocument_request_compound_ToString(ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTSOURCE_e e_ezsigndocument_source) {
     char* e_ezsigndocument_sourceArray[] =  { "NULL", "Base64", "Ezsigntemplate", "Url" };
-	return e_ezsigndocument_sourceArray[e_ezsigndocument_source];
+    return e_ezsigndocument_sourceArray[e_ezsigndocument_source];
 }
 
 ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTSOURCE_e e_ezsigndocument_sourceezsigndocument_request_compound_FromString(char* e_ezsigndocument_source){
@@ -23,7 +23,7 @@ ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTSOURCE
 }
 char* e_ezsigndocument_formatezsigndocument_request_compound_ToString(ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_e e_ezsigndocument_format) {
     char* e_ezsigndocument_formatArray[] =  { "NULL", "Pdf", "Doc", "Docx", "Xls", "Xlsx", "Ppt", "Pptx" };
-	return e_ezsigndocument_formatArray[e_ezsigndocument_format];
+    return e_ezsigndocument_formatArray[e_ezsigndocument_format];
 }
 
 ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_e e_ezsigndocument_formatezsigndocument_request_compound_FromString(char* e_ezsigndocument_format){
@@ -40,7 +40,7 @@ ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT
 }
 char* e_ezsigndocument_formezsigndocument_request_compound_ToString(ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORM_e e_ezsigndocument_form) {
     char* e_ezsigndocument_formArray[] =  { "NULL", "Keep", "Convert" };
-	return e_ezsigndocument_formArray[e_ezsigndocument_form];
+    return e_ezsigndocument_formArray[e_ezsigndocument_form];
 }
 
 ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORM_e e_ezsigndocument_formezsigndocument_request_compound_FromString(char* e_ezsigndocument_form){

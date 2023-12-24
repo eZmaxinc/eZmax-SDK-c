@@ -46,7 +46,7 @@ typedef enum  { ezmax_api_definition__full_ezsignfoldertypeGetListV1__NULL = 0, 
 // The endpoint allows to create one or many elements at once.
 //
 ezsignfoldertype_create_object_v1_response_t*
-ObjectEzsignfoldertypeAPI_ezsignfoldertypeCreateObjectV1(apiClient_t *apiClient, ezsignfoldertype_create_object_v1_request_t * ezsignfoldertype_create_object_v1_request );
+ObjectEzsignfoldertypeAPI_ezsignfoldertypeCreateObjectV1(apiClient_t *apiClient, ezsignfoldertype_create_object_v1_request_t *ezsignfoldertype_create_object_v1_request);
 
 
 // Edit an existing Ezsignfoldertype
@@ -54,7 +54,7 @@ ObjectEzsignfoldertypeAPI_ezsignfoldertypeCreateObjectV1(apiClient_t *apiClient,
 // 
 //
 ezsignfoldertype_edit_object_v1_response_t*
-ObjectEzsignfoldertypeAPI_ezsignfoldertypeEditObjectV1(apiClient_t *apiClient, int pkiEzsignfoldertypeID , ezsignfoldertype_edit_object_v1_request_t * ezsignfoldertype_edit_object_v1_request );
+ObjectEzsignfoldertypeAPI_ezsignfoldertypeEditObjectV1(apiClient_t *apiClient, int *pkiEzsignfoldertypeID, ezsignfoldertype_edit_object_v1_request_t *ezsignfoldertype_edit_object_v1_request);
 
 
 // Retrieve Ezsignfoldertypes and IDs
@@ -62,7 +62,7 @@ ObjectEzsignfoldertypeAPI_ezsignfoldertypeEditObjectV1(apiClient_t *apiClient, i
 // Get the list of Ezsignfoldertypes to be used in a dropdown or autocomplete control.
 //
 common_get_autocomplete_v1_response_t*
-ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV1_sSelector_e sSelector , ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV1_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language );
+ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV1_sSelector_e sSelector, ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV1_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
 
 
 // Retrieve Ezsignfoldertypes and IDs
@@ -70,7 +70,7 @@ ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV1(apiClient_t *apiClie
 // Get the list of Ezsignfoldertype to be used in a dropdown or autocomplete control.
 //
 ezsignfoldertype_get_autocomplete_v2_response_t*
-ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV2_sSelector_e sSelector , ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV2_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language );
+ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_ezsignfoldertypeGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
 
 
 // Retrieve Ezsignfoldertype list
@@ -78,7 +78,7 @@ ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV2(apiClient_t *apiClie
 // Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eEzsignfoldertypePrivacylevel | User<br>Usergroup |
 //
 ezsignfoldertype_get_list_v1_response_t*
-ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsignfoldertypeGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter );
+ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsignfoldertypeGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
 
 
 // Retrieve an existing Ezsignfoldertype
@@ -86,6 +86,6 @@ ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetListV1(apiClient_t *apiClient, ezma
 // 
 //
 ezsignfoldertype_get_object_v2_response_t*
-ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetObjectV2(apiClient_t *apiClient, int pkiEzsignfoldertypeID );
+ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetObjectV2(apiClient_t *apiClient, int *pkiEzsignfoldertypeID);
 
 

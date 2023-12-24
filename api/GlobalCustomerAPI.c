@@ -69,7 +69,7 @@ end:
 // Retrieve the customer's specific server endpoint where to send requests. This will help locate the proper region (ie: sInfrastructureregionCode) and the proper environment (ie: sInfrastructureenvironmenttypeDescription) where the customer's data is stored.
 //
 global_customer_get_endpoint_v1_response_t*
-GlobalCustomerAPI_globalCustomerGetEndpointV1(apiClient_t *apiClient, char * pksCustomerCode , ezmax_api_definition__full_globalCustomerGetEndpointV1_sInfrastructureproductCode_e sInfrastructureproductCode )
+GlobalCustomerAPI_globalCustomerGetEndpointV1(apiClient_t *apiClient, char *pksCustomerCode, ezmax_api_definition__full_globalCustomerGetEndpointV1_sInfrastructureproductCode_e sInfrastructureproductCode)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
@@ -105,7 +105,7 @@ GlobalCustomerAPI_globalCustomerGetEndpointV1(apiClient_t *apiClient, char * pks
         keyQuery_sInfrastructureproductCode = strdup("sInfrastructureproductCode");
         valueQuery_sInfrastructureproductCode = (sInfrastructureproductCode);
         keyPairQuery_sInfrastructureproductCode = keyValuePair_create(keyQuery_sInfrastructureproductCode, (void *)strdup(globalCustomerGetEndpointV1_SINFRASTRUCTUREPRODUCTCODE_ToString(
-		valueQuery_sInfrastructureproductCode)));
+        valueQuery_sInfrastructureproductCode)));
         list_addElement(localVarQueryParameters,keyPairQuery_sInfrastructureproductCode);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces

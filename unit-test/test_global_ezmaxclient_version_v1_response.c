@@ -22,11 +22,13 @@ global_ezmaxclient_version_v1_response_t* instantiate_global_ezmaxclient_version
   global_ezmaxclient_version_v1_response_t* global_ezmaxclient_version_v1_response = NULL;
   if (include_optional) {
     global_ezmaxclient_version_v1_response = global_ezmaxclient_version_v1_response_create(
-      "0"
+      "0",
+      "11"
     );
   } else {
     global_ezmaxclient_version_v1_response = global_ezmaxclient_version_v1_response_create(
-      "0"
+      "0",
+      "11"
     );
   }
 

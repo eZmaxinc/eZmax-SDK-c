@@ -162,7 +162,7 @@ end:
 // Create a new Ezsignbulksendtransmission in the Ezsignbulksend
 //
 ezsignbulksend_create_ezsignbulksendtransmission_v1_response_t*
-ObjectEzsignbulksendAPI_ezsignbulksendCreateEzsignbulksendtransmissionV1(apiClient_t *apiClient, int pkiEzsignbulksendID , ezsignbulksend_create_ezsignbulksendtransmission_v1_request_t * ezsignbulksend_create_ezsignbulksendtransmission_v1_request )
+ObjectEzsignbulksendAPI_ezsignbulksendCreateEzsignbulksendtransmissionV1(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_create_ezsignbulksendtransmission_v1_request_t *ezsignbulksend_create_ezsignbulksendtransmission_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -186,7 +186,7 @@ ObjectEzsignbulksendAPI_ezsignbulksendCreateEzsignbulksendtransmissionV1(apiClie
     snprintf(localVarToReplace_pkiEzsignbulksendID, sizeOfPathParams_pkiEzsignbulksendID, "{%s}", "pkiEzsignbulksendID");
 
     char localVarBuff_pkiEzsignbulksendID[256];
-    intToStr(localVarBuff_pkiEzsignbulksendID, pkiEzsignbulksendID);
+    intToStr(localVarBuff_pkiEzsignbulksendID, *pkiEzsignbulksendID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksendID, localVarBuff_pkiEzsignbulksendID);
 
@@ -263,7 +263,7 @@ end:
 // The endpoint allows to create one or many elements at once.
 //
 ezsignbulksend_create_object_v1_response_t*
-ObjectEzsignbulksendAPI_ezsignbulksendCreateObjectV1(apiClient_t *apiClient, ezsignbulksend_create_object_v1_request_t * ezsignbulksend_create_object_v1_request )
+ObjectEzsignbulksendAPI_ezsignbulksendCreateObjectV1(apiClient_t *apiClient, ezsignbulksend_create_object_v1_request_t *ezsignbulksend_create_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -341,7 +341,7 @@ end:
 // 
 //
 ezsignbulksend_delete_object_v1_response_t*
-ObjectEzsignbulksendAPI_ezsignbulksendDeleteObjectV1(apiClient_t *apiClient, int pkiEzsignbulksendID )
+ObjectEzsignbulksendAPI_ezsignbulksendDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksendID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -365,7 +365,7 @@ ObjectEzsignbulksendAPI_ezsignbulksendDeleteObjectV1(apiClient_t *apiClient, int
     snprintf(localVarToReplace_pkiEzsignbulksendID, sizeOfPathParams_pkiEzsignbulksendID, "{%s}", "pkiEzsignbulksendID");
 
     char localVarBuff_pkiEzsignbulksendID[256];
-    intToStr(localVarBuff_pkiEzsignbulksendID, pkiEzsignbulksendID);
+    intToStr(localVarBuff_pkiEzsignbulksendID, *pkiEzsignbulksendID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksendID, localVarBuff_pkiEzsignbulksendID);
 
@@ -427,7 +427,7 @@ end:
 // 
 //
 ezsignbulksend_edit_object_v1_response_t*
-ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV1(apiClient_t *apiClient, int pkiEzsignbulksendID , ezsignbulksend_edit_object_v1_request_t * ezsignbulksend_edit_object_v1_request )
+ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_edit_object_v1_request_t *ezsignbulksend_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -451,7 +451,7 @@ ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV1(apiClient_t *apiClient, int p
     snprintf(localVarToReplace_pkiEzsignbulksendID, sizeOfPathParams_pkiEzsignbulksendID, "{%s}", "pkiEzsignbulksendID");
 
     char localVarBuff_pkiEzsignbulksendID[256];
-    intToStr(localVarBuff_pkiEzsignbulksendID, pkiEzsignbulksendID);
+    intToStr(localVarBuff_pkiEzsignbulksendID, *pkiEzsignbulksendID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksendID, localVarBuff_pkiEzsignbulksendID);
 
@@ -528,7 +528,7 @@ end:
 // 
 //
 char*
-ObjectEzsignbulksendAPI_ezsignbulksendGetCsvTemplateV1(apiClient_t *apiClient, int pkiEzsignbulksendID , ezmax_api_definition__full_ezsignbulksendGetCsvTemplateV1_eCsvSeparator_e eCsvSeparator )
+ObjectEzsignbulksendAPI_ezsignbulksendGetCsvTemplateV1(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezmax_api_definition__full_ezsignbulksendGetCsvTemplateV1_eCsvSeparator_e eCsvSeparator)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
@@ -552,7 +552,7 @@ ObjectEzsignbulksendAPI_ezsignbulksendGetCsvTemplateV1(apiClient_t *apiClient, i
     snprintf(localVarToReplace_pkiEzsignbulksendID, sizeOfPathParams_pkiEzsignbulksendID, "{%s}", "pkiEzsignbulksendID");
 
     char localVarBuff_pkiEzsignbulksendID[256];
-    intToStr(localVarBuff_pkiEzsignbulksendID, pkiEzsignbulksendID);
+    intToStr(localVarBuff_pkiEzsignbulksendID, *pkiEzsignbulksendID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksendID, localVarBuff_pkiEzsignbulksendID);
 
@@ -568,7 +568,7 @@ ObjectEzsignbulksendAPI_ezsignbulksendGetCsvTemplateV1(apiClient_t *apiClient, i
         keyQuery_eCsvSeparator = strdup("eCsvSeparator");
         valueQuery_eCsvSeparator = (eCsvSeparator);
         keyPairQuery_eCsvSeparator = keyValuePair_create(keyQuery_eCsvSeparator, (void *)strdup(ezsignbulksendGetCsvTemplateV1_ECSVSEPARATOR_ToString(
-		valueQuery_eCsvSeparator)));
+        valueQuery_eCsvSeparator)));
         list_addElement(localVarQueryParameters,keyPairQuery_eCsvSeparator);
     }
     list_addElement(localVarHeaderType,"text/csv"); //produces
@@ -634,7 +634,7 @@ end:
 // 
 //
 ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_t*
-ObjectEzsignbulksendAPI_ezsignbulksendGetEzsignbulksendtransmissionsV1(apiClient_t *apiClient, int pkiEzsignbulksendID )
+ObjectEzsignbulksendAPI_ezsignbulksendGetEzsignbulksendtransmissionsV1(apiClient_t *apiClient, int *pkiEzsignbulksendID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -658,7 +658,7 @@ ObjectEzsignbulksendAPI_ezsignbulksendGetEzsignbulksendtransmissionsV1(apiClient
     snprintf(localVarToReplace_pkiEzsignbulksendID, sizeOfPathParams_pkiEzsignbulksendID, "{%s}", "pkiEzsignbulksendID");
 
     char localVarBuff_pkiEzsignbulksendID[256];
-    intToStr(localVarBuff_pkiEzsignbulksendID, pkiEzsignbulksendID);
+    intToStr(localVarBuff_pkiEzsignbulksendID, *pkiEzsignbulksendID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksendID, localVarBuff_pkiEzsignbulksendID);
 
@@ -716,7 +716,7 @@ end:
 // Return the Ezsignsignatures that can be signed by the current user at the current step in the process
 //
 ezsignbulksend_get_ezsignsignatures_automatic_v1_response_t*
-ObjectEzsignbulksendAPI_ezsignbulksendGetEzsignsignaturesAutomaticV1(apiClient_t *apiClient, int pkiEzsignbulksendID )
+ObjectEzsignbulksendAPI_ezsignbulksendGetEzsignsignaturesAutomaticV1(apiClient_t *apiClient, int *pkiEzsignbulksendID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -740,7 +740,7 @@ ObjectEzsignbulksendAPI_ezsignbulksendGetEzsignsignaturesAutomaticV1(apiClient_t
     snprintf(localVarToReplace_pkiEzsignbulksendID, sizeOfPathParams_pkiEzsignbulksendID, "{%s}", "pkiEzsignbulksendID");
 
     char localVarBuff_pkiEzsignbulksendID[256];
-    intToStr(localVarBuff_pkiEzsignbulksendID, pkiEzsignbulksendID);
+    intToStr(localVarBuff_pkiEzsignbulksendID, *pkiEzsignbulksendID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksendID, localVarBuff_pkiEzsignbulksendID);
 
@@ -798,7 +798,7 @@ end:
 // 
 //
 ezsignbulksend_get_forms_data_v1_response_t*
-ObjectEzsignbulksendAPI_ezsignbulksendGetFormsDataV1(apiClient_t *apiClient, int pkiEzsignbulksendID )
+ObjectEzsignbulksendAPI_ezsignbulksendGetFormsDataV1(apiClient_t *apiClient, int *pkiEzsignbulksendID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -822,7 +822,7 @@ ObjectEzsignbulksendAPI_ezsignbulksendGetFormsDataV1(apiClient_t *apiClient, int
     snprintf(localVarToReplace_pkiEzsignbulksendID, sizeOfPathParams_pkiEzsignbulksendID, "{%s}", "pkiEzsignbulksendID");
 
     char localVarBuff_pkiEzsignbulksendID[256];
-    intToStr(localVarBuff_pkiEzsignbulksendID, pkiEzsignbulksendID);
+    intToStr(localVarBuff_pkiEzsignbulksendID, *pkiEzsignbulksendID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksendID, localVarBuff_pkiEzsignbulksendID);
 
@@ -889,7 +889,7 @@ end:
 // Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eEzsignfoldertypePrivacylevel | User<br>Usergroup |
 //
 ezsignbulksend_get_list_v1_response_t*
-ObjectEzsignbulksendAPI_ezsignbulksendGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsignbulksendGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter )
+ObjectEzsignbulksendAPI_ezsignbulksendGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsignbulksendGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -927,7 +927,7 @@ ObjectEzsignbulksendAPI_ezsignbulksendGetListV1(apiClient_t *apiClient, ezmax_ap
         keyQuery_eOrderBy = strdup("eOrderBy");
         valueQuery_eOrderBy = (eOrderBy);
         keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, (void *)strdup(ezsignbulksendGetListV1_EORDERBY_ToString(
-		valueQuery_eOrderBy)));
+        valueQuery_eOrderBy)));
         list_addElement(localVarQueryParameters,keyPairQuery_eOrderBy);
     }
 
@@ -935,11 +935,11 @@ ObjectEzsignbulksendAPI_ezsignbulksendGetListV1(apiClient_t *apiClient, ezmax_ap
     char *keyQuery_iRowMax = NULL;
     char * valueQuery_iRowMax = NULL;
     keyValuePair_t *keyPairQuery_iRowMax = 0;
-    if (1) // Always send integer parameters to the API server
+    if (iRowMax)
     {
         keyQuery_iRowMax = strdup("iRowMax");
         valueQuery_iRowMax = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_iRowMax, MAX_NUMBER_LENGTH, "%d", iRowMax);
+        snprintf(valueQuery_iRowMax, MAX_NUMBER_LENGTH, "%d", *iRowMax);
         keyPairQuery_iRowMax = keyValuePair_create(keyQuery_iRowMax, valueQuery_iRowMax);
         list_addElement(localVarQueryParameters,keyPairQuery_iRowMax);
     }
@@ -948,11 +948,11 @@ ObjectEzsignbulksendAPI_ezsignbulksendGetListV1(apiClient_t *apiClient, ezmax_ap
     char *keyQuery_iRowOffset = NULL;
     char * valueQuery_iRowOffset = NULL;
     keyValuePair_t *keyPairQuery_iRowOffset = 0;
-    if (1) // Always send integer parameters to the API server
+    if (iRowOffset)
     {
         keyQuery_iRowOffset = strdup("iRowOffset");
         valueQuery_iRowOffset = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_iRowOffset, MAX_NUMBER_LENGTH, "%d", iRowOffset);
+        snprintf(valueQuery_iRowOffset, MAX_NUMBER_LENGTH, "%d", *iRowOffset);
         keyPairQuery_iRowOffset = keyValuePair_create(keyQuery_iRowOffset, valueQuery_iRowOffset);
         list_addElement(localVarQueryParameters,keyPairQuery_iRowOffset);
     }
@@ -1069,7 +1069,7 @@ end:
 // 
 //
 ezsignbulksend_get_object_v2_response_t*
-ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV2(apiClient_t *apiClient, int pkiEzsignbulksendID )
+ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV2(apiClient_t *apiClient, int *pkiEzsignbulksendID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1093,7 +1093,7 @@ ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV2(apiClient_t *apiClient, int pk
     snprintf(localVarToReplace_pkiEzsignbulksendID, sizeOfPathParams_pkiEzsignbulksendID, "{%s}", "pkiEzsignbulksendID");
 
     char localVarBuff_pkiEzsignbulksendID[256];
-    intToStr(localVarBuff_pkiEzsignbulksendID, pkiEzsignbulksendID);
+    intToStr(localVarBuff_pkiEzsignbulksendID, *pkiEzsignbulksendID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksendID, localVarBuff_pkiEzsignbulksendID);
 
@@ -1149,7 +1149,7 @@ end:
 // Reorder Ezsignbulksenddocumentmappings in the Ezsignbulksend
 //
 ezsignbulksend_reorder_v1_response_t*
-ObjectEzsignbulksendAPI_ezsignbulksendReorderV1(apiClient_t *apiClient, int pkiEzsignbulksendID , ezsignbulksend_reorder_v1_request_t * ezsignbulksend_reorder_v1_request )
+ObjectEzsignbulksendAPI_ezsignbulksendReorderV1(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_reorder_v1_request_t *ezsignbulksend_reorder_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1173,7 +1173,7 @@ ObjectEzsignbulksendAPI_ezsignbulksendReorderV1(apiClient_t *apiClient, int pkiE
     snprintf(localVarToReplace_pkiEzsignbulksendID, sizeOfPathParams_pkiEzsignbulksendID, "{%s}", "pkiEzsignbulksendID");
 
     char localVarBuff_pkiEzsignbulksendID[256];
-    intToStr(localVarBuff_pkiEzsignbulksendID, pkiEzsignbulksendID);
+    intToStr(localVarBuff_pkiEzsignbulksendID, *pkiEzsignbulksendID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksendID, localVarBuff_pkiEzsignbulksendID);
 

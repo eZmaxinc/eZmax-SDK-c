@@ -14,6 +14,6 @@ typedef enum  { ezmax_api_definition__full_modulegroupGetAllV1_ECONTEXT_NULL = 0
 // Retrieve all Modulegroups
 //
 modulegroup_get_all_v1_response_t*
-ObjectModulegroupAPI_modulegroupGetAllV1(apiClient_t *apiClient, ezmax_api_definition__full_modulegroupGetAllV1_eContext_e eContext );
+ObjectModulegroupAPI_modulegroupGetAllV1(apiClient_t *apiClient, ezmax_api_definition__full_modulegroupGetAllV1_eContext_e eContext);
 
 

@@ -6,7 +6,7 @@
 
 char* e_user_typeuser_request_compound_ToString(ezmax_api_definition__full_user_request_compound__e e_user_type) {
     char* e_user_typeArray[] =  { "NULL", "AgentBroker", "Assistant", "Employee", "EzsignUser", "Normal" };
-	return e_user_typeArray[e_user_type];
+    return e_user_typeArray[e_user_type];
 }
 
 ezmax_api_definition__full_user_request_compound__e e_user_typeuser_request_compound_FromString(char* e_user_type){
@@ -23,7 +23,7 @@ ezmax_api_definition__full_user_request_compound__e e_user_typeuser_request_comp
 }
 char* e_user_logintypeuser_request_compound_ToString(ezmax_api_definition__full_user_request_compound__e e_user_logintype) {
     char* e_user_logintypeArray[] =  { "NULL", "Password", "PasswordPhone", "PasswordQuestion" };
-	return e_user_logintypeArray[e_user_logintype];
+    return e_user_logintypeArray[e_user_logintype];
 }
 
 ezmax_api_definition__full_user_request_compound__e e_user_logintypeuser_request_compound_FromString(char* e_user_logintype){
@@ -40,7 +40,7 @@ ezmax_api_definition__full_user_request_compound__e e_user_logintypeuser_request
 }
 char* e_user_ezsignaccessuser_request_compound_ToString(ezmax_api_definition__full_user_request_compound__e e_user_ezsignaccess) {
     char* e_user_ezsignaccessArray[] =  { "NULL", "No", "PaidByOffice", "PerDocument", "Prepaid" };
-	return e_user_ezsignaccessArray[e_user_ezsignaccess];
+    return e_user_ezsignaccessArray[e_user_ezsignaccess];
 }
 
 ezmax_api_definition__full_user_request_compound__e e_user_ezsignaccessuser_request_compound_FromString(char* e_user_ezsignaccess){

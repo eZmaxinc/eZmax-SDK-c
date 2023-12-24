@@ -22,6 +22,6 @@ ModuleEzsignAPI_ezsignSuggestSignersV1(apiClient_t *apiClient);
 // Retrieve Ezsigntemplates and Ezsigntemplatepackages that can be imported in a Ezsignfolder
 //
 ezsign_suggest_templates_v1_response_t*
-ModuleEzsignAPI_ezsignSuggestTemplatesV1(apiClient_t *apiClient, int fkiEzsignfoldertypeID );
+ModuleEzsignAPI_ezsignSuggestTemplatesV1(apiClient_t *apiClient, int *fkiEzsignfoldertypeID);
 
 

@@ -55,7 +55,10 @@ typedef struct custom_webhook_response_t {
     field_e_webhook_managementevent_t *e_webhook_managementevent; // custom
     char *s_webhook_url; // string
     char *s_webhook_emailfailed; // string
+    char *s_webhook_apikey; // string
+    char *s_webhook_secret; // string
     int b_webhook_isactive; //boolean
+    int b_webhook_issigned; //boolean
     int b_webhook_skipsslvalidation; //boolean
     char *pks_customer_code; // string
     int b_webhook_test; //boolean
@@ -72,7 +75,10 @@ custom_webhook_response_t *custom_webhook_response_create(
     field_e_webhook_managementevent_t *e_webhook_managementevent,
     char *s_webhook_url,
     char *s_webhook_emailfailed,
+    char *s_webhook_apikey,
+    char *s_webhook_secret,
     int b_webhook_isactive,
+    int b_webhook_issigned,
     int b_webhook_skipsslvalidation,
     char *pks_customer_code,
     int b_webhook_test

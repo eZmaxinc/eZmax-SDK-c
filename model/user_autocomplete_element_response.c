@@ -6,7 +6,7 @@
 
 char* e_user_typeuser_autocomplete_element_response_ToString(ezmax_api_definition__full_user_autocomplete_element_response__e e_user_type) {
     char* e_user_typeArray[] =  { "NULL", "AgentBroker", "Assistant", "Employee", "EzsignUser", "Normal" };
-	return e_user_typeArray[e_user_type];
+    return e_user_typeArray[e_user_type];
 }
 
 ezmax_api_definition__full_user_autocomplete_element_response__e e_user_typeuser_autocomplete_element_response_FromString(char* e_user_type){

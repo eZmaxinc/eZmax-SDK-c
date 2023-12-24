@@ -6,7 +6,7 @@
 
 char* e_ezsignsignaturestatus_steptypecustom_ezsignsignaturestatus_response_ToString(ezmax_api_definition__full_custom_ezsignsignaturestatus_response_EEZSIGNSIGNATURESTATUSSTEPTYPE_e e_ezsignsignaturestatus_steptype) {
     char* e_ezsignsignaturestatus_steptypeArray[] =  { "NULL", "Form", "Signature" };
-	return e_ezsignsignaturestatus_steptypeArray[e_ezsignsignaturestatus_steptype];
+    return e_ezsignsignaturestatus_steptypeArray[e_ezsignsignaturestatus_steptype];
 }
 
 ezmax_api_definition__full_custom_ezsignsignaturestatus_response_EEZSIGNSIGNATURESTATUSSTEPTYPE_e e_ezsignsignaturestatus_steptypecustom_ezsignsignaturestatus_response_FromString(char* e_ezsignsignaturestatus_steptype){

@@ -91,7 +91,7 @@ ezmaxinvoicing_get_object_v2_response_t* ObjectEzmaxinvoicingAPI_ezmaxinvoicingG
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzmaxinvoicingID** | **int** |  | 
+**pkiEzmaxinvoicingID** | **int \*** |  | 
 
 ### Return type
 

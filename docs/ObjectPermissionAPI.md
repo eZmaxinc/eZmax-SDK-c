@@ -54,7 +54,7 @@ permission_delete_object_v1_response_t* ObjectPermissionAPI_permissionDeleteObje
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiPermissionID** | **int** | The unique ID of the Permission | 
+**pkiPermissionID** | **int \*** | The unique ID of the Permission | 
 
 ### Return type
 
@@ -85,7 +85,7 @@ permission_edit_object_v1_response_t* ObjectPermissionAPI_permissionEditObjectV1
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiPermissionID** | **int** | The unique ID of the Permission | 
+**pkiPermissionID** | **int \*** | The unique ID of the Permission | 
 **permission_edit_object_v1_request** | **[permission_edit_object_v1_request_t](permission_edit_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -117,7 +117,7 @@ permission_get_object_v2_response_t* ObjectPermissionAPI_permissionGetObjectV2(a
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiPermissionID** | **int** | The unique ID of the Permission | 
+**pkiPermissionID** | **int \*** | The unique ID of the Permission | 
 
 ### Return type
 

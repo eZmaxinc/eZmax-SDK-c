@@ -6,7 +6,7 @@
 
 char* e_ezsignfolder_sendreminderfrequencyezsignfolder_response_compound_ToString(ezmax_api_definition__full_ezsignfolder_response_compound__e e_ezsignfolder_sendreminderfrequency) {
     char* e_ezsignfolder_sendreminderfrequencyArray[] =  { "NULL", "None", "Daily", "Weekly" };
-	return e_ezsignfolder_sendreminderfrequencyArray[e_ezsignfolder_sendreminderfrequency];
+    return e_ezsignfolder_sendreminderfrequencyArray[e_ezsignfolder_sendreminderfrequency];
 }
 
 ezmax_api_definition__full_ezsignfolder_response_compound__e e_ezsignfolder_sendreminderfrequencyezsignfolder_response_compound_FromString(char* e_ezsignfolder_sendreminderfrequency){
@@ -23,7 +23,7 @@ ezmax_api_definition__full_ezsignfolder_response_compound__e e_ezsignfolder_send
 }
 char* e_ezsignfolder_stepezsignfolder_response_compound_ToString(ezmax_api_definition__full_ezsignfolder_response_compound__e e_ezsignfolder_step) {
     char* e_ezsignfolder_stepArray[] =  { "NULL", "Unsent", "PendingSend", "Sent", "PartiallySigned", "Expired", "Completed", "Archived", "Disposed" };
-	return e_ezsignfolder_stepArray[e_ezsignfolder_step];
+    return e_ezsignfolder_stepArray[e_ezsignfolder_step];
 }
 
 ezmax_api_definition__full_ezsignfolder_response_compound__e e_ezsignfolder_stepezsignfolder_response_compound_FromString(char* e_ezsignfolder_step){

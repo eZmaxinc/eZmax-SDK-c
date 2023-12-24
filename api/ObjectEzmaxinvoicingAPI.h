@@ -36,7 +36,7 @@ typedef enum  { ezmax_api_definition__full_ezmaxinvoicingGetAutocompleteV2__NULL
 // Get the list of Ezmaxinvoicing to be used in a dropdown or autocomplete control.
 //
 common_get_autocomplete_v1_response_t*
-ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_ezmaxinvoicingGetAutocompleteV1_sSelector_e sSelector , ezmax_api_definition__full_ezmaxinvoicingGetAutocompleteV1_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language );
+ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_ezmaxinvoicingGetAutocompleteV1_sSelector_e sSelector, ezmax_api_definition__full_ezmaxinvoicingGetAutocompleteV1_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
 
 
 // Retrieve Ezmaxinvoicings and IDs
@@ -44,7 +44,7 @@ ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetAutocompleteV1(apiClient_t *apiClient, 
 // Get the list of Ezmaxinvoicing to be used in a dropdown or autocomplete control.
 //
 ezmaxinvoicing_get_autocomplete_v2_response_t*
-ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezmaxinvoicingGetAutocompleteV2_sSelector_e sSelector , ezmax_api_definition__full_ezmaxinvoicingGetAutocompleteV2_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language );
+ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezmaxinvoicingGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_ezmaxinvoicingGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
 
 
 // Retrieve an existing Ezmaxinvoicing
@@ -52,7 +52,7 @@ ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetAutocompleteV2(apiClient_t *apiClient, 
 // 
 //
 ezmaxinvoicing_get_object_v2_response_t*
-ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetObjectV2(apiClient_t *apiClient, int pkiEzmaxinvoicingID );
+ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetObjectV2(apiClient_t *apiClient, int *pkiEzmaxinvoicingID);
 
 
 // Retrieve provisional Ezmaxinvoicing

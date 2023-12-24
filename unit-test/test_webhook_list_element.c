@@ -30,6 +30,7 @@ webhook_list_element_t* instantiate_webhook_list_element(int include_optional) {
       ezmax_api_definition__full_webhook_list_element__"Ezsign",
       ezmax_api_definition__full_webhook_list_element__"FolderCompleted",
       ezmax_api_definition__full_webhook_list_element__"UserCreated",
+      true,
       true
     );
   } else {
@@ -42,6 +43,7 @@ webhook_list_element_t* instantiate_webhook_list_element(int include_optional) {
       ezmax_api_definition__full_webhook_list_element__"Ezsign",
       ezmax_api_definition__full_webhook_list_element__"FolderCompleted",
       ezmax_api_definition__full_webhook_list_element__"UserCreated",
+      true,
       true
     );
   }

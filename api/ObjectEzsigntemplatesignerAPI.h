@@ -19,7 +19,7 @@
 // The endpoint allows to create one or many elements at once.
 //
 ezsigntemplatesigner_create_object_v1_response_t*
-ObjectEzsigntemplatesignerAPI_ezsigntemplatesignerCreateObjectV1(apiClient_t *apiClient, ezsigntemplatesigner_create_object_v1_request_t * ezsigntemplatesigner_create_object_v1_request );
+ObjectEzsigntemplatesignerAPI_ezsigntemplatesignerCreateObjectV1(apiClient_t *apiClient, ezsigntemplatesigner_create_object_v1_request_t *ezsigntemplatesigner_create_object_v1_request);
 
 
 // Delete an existing Ezsigntemplatesigner
@@ -27,7 +27,7 @@ ObjectEzsigntemplatesignerAPI_ezsigntemplatesignerCreateObjectV1(apiClient_t *ap
 // 
 //
 ezsigntemplatesigner_delete_object_v1_response_t*
-ObjectEzsigntemplatesignerAPI_ezsigntemplatesignerDeleteObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatesignerID );
+ObjectEzsigntemplatesignerAPI_ezsigntemplatesignerDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatesignerID);
 
 
 // Edit an existing Ezsigntemplatesigner
@@ -35,7 +35,7 @@ ObjectEzsigntemplatesignerAPI_ezsigntemplatesignerDeleteObjectV1(apiClient_t *ap
 // 
 //
 ezsigntemplatesigner_edit_object_v1_response_t*
-ObjectEzsigntemplatesignerAPI_ezsigntemplatesignerEditObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatesignerID , ezsigntemplatesigner_edit_object_v1_request_t * ezsigntemplatesigner_edit_object_v1_request );
+ObjectEzsigntemplatesignerAPI_ezsigntemplatesignerEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatesignerID, ezsigntemplatesigner_edit_object_v1_request_t *ezsigntemplatesigner_edit_object_v1_request);
 
 
 // Retrieve an existing Ezsigntemplatesigner
@@ -43,6 +43,6 @@ ObjectEzsigntemplatesignerAPI_ezsigntemplatesignerEditObjectV1(apiClient_t *apiC
 // 
 //
 ezsigntemplatesigner_get_object_v2_response_t*
-ObjectEzsigntemplatesignerAPI_ezsigntemplatesignerGetObjectV2(apiClient_t *apiClient, int pkiEzsigntemplatesignerID );
+ObjectEzsigntemplatesignerAPI_ezsigntemplatesignerGetObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplatesignerID);
 
 

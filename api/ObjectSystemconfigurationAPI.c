@@ -17,7 +17,7 @@
 // 
 //
 systemconfiguration_edit_object_v1_response_t*
-ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1(apiClient_t *apiClient, int pkiSystemconfigurationID , systemconfiguration_edit_object_v1_request_t * systemconfiguration_edit_object_v1_request )
+ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1(apiClient_t *apiClient, int *pkiSystemconfigurationID, systemconfiguration_edit_object_v1_request_t *systemconfiguration_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -41,7 +41,7 @@ ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1(apiClient_t *apiCli
     snprintf(localVarToReplace_pkiSystemconfigurationID, sizeOfPathParams_pkiSystemconfigurationID, "{%s}", "pkiSystemconfigurationID");
 
     char localVarBuff_pkiSystemconfigurationID[256];
-    intToStr(localVarBuff_pkiSystemconfigurationID, pkiSystemconfigurationID);
+    intToStr(localVarBuff_pkiSystemconfigurationID, *pkiSystemconfigurationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiSystemconfigurationID, localVarBuff_pkiSystemconfigurationID);
 
@@ -118,7 +118,7 @@ end:
 // 
 //
 systemconfiguration_get_object_v2_response_t*
-ObjectSystemconfigurationAPI_systemconfigurationGetObjectV2(apiClient_t *apiClient, int pkiSystemconfigurationID )
+ObjectSystemconfigurationAPI_systemconfigurationGetObjectV2(apiClient_t *apiClient, int *pkiSystemconfigurationID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -142,7 +142,7 @@ ObjectSystemconfigurationAPI_systemconfigurationGetObjectV2(apiClient_t *apiClie
     snprintf(localVarToReplace_pkiSystemconfigurationID, sizeOfPathParams_pkiSystemconfigurationID, "{%s}", "pkiSystemconfigurationID");
 
     char localVarBuff_pkiSystemconfigurationID[256];
-    intToStr(localVarBuff_pkiSystemconfigurationID, pkiSystemconfigurationID);
+    intToStr(localVarBuff_pkiSystemconfigurationID, *pkiSystemconfigurationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiSystemconfigurationID, localVarBuff_pkiSystemconfigurationID);
 

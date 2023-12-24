@@ -16,7 +16,7 @@
 // 
 //
 systemconfiguration_edit_object_v1_response_t*
-ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1(apiClient_t *apiClient, int pkiSystemconfigurationID , systemconfiguration_edit_object_v1_request_t * systemconfiguration_edit_object_v1_request );
+ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1(apiClient_t *apiClient, int *pkiSystemconfigurationID, systemconfiguration_edit_object_v1_request_t *systemconfiguration_edit_object_v1_request);
 
 
 // Retrieve an existing Systemconfiguration
@@ -24,6 +24,6 @@ ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1(apiClient_t *apiCli
 // 
 //
 systemconfiguration_get_object_v2_response_t*
-ObjectSystemconfigurationAPI_systemconfigurationGetObjectV2(apiClient_t *apiClient, int pkiSystemconfigurationID );
+ObjectSystemconfigurationAPI_systemconfigurationGetObjectV2(apiClient_t *apiClient, int *pkiSystemconfigurationID);
 
 

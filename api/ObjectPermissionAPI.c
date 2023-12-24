@@ -17,7 +17,7 @@
 // The endpoint allows to create one or many elements at once.
 //
 permission_create_object_v1_response_t*
-ObjectPermissionAPI_permissionCreateObjectV1(apiClient_t *apiClient, permission_create_object_v1_request_t * permission_create_object_v1_request )
+ObjectPermissionAPI_permissionCreateObjectV1(apiClient_t *apiClient, permission_create_object_v1_request_t *permission_create_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -99,7 +99,7 @@ end:
 // 
 //
 permission_delete_object_v1_response_t*
-ObjectPermissionAPI_permissionDeleteObjectV1(apiClient_t *apiClient, int pkiPermissionID )
+ObjectPermissionAPI_permissionDeleteObjectV1(apiClient_t *apiClient, int *pkiPermissionID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -123,7 +123,7 @@ ObjectPermissionAPI_permissionDeleteObjectV1(apiClient_t *apiClient, int pkiPerm
     snprintf(localVarToReplace_pkiPermissionID, sizeOfPathParams_pkiPermissionID, "{%s}", "pkiPermissionID");
 
     char localVarBuff_pkiPermissionID[256];
-    intToStr(localVarBuff_pkiPermissionID, pkiPermissionID);
+    intToStr(localVarBuff_pkiPermissionID, *pkiPermissionID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiPermissionID, localVarBuff_pkiPermissionID);
 
@@ -181,7 +181,7 @@ end:
 // 
 //
 permission_edit_object_v1_response_t*
-ObjectPermissionAPI_permissionEditObjectV1(apiClient_t *apiClient, int pkiPermissionID , permission_edit_object_v1_request_t * permission_edit_object_v1_request )
+ObjectPermissionAPI_permissionEditObjectV1(apiClient_t *apiClient, int *pkiPermissionID, permission_edit_object_v1_request_t *permission_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -205,7 +205,7 @@ ObjectPermissionAPI_permissionEditObjectV1(apiClient_t *apiClient, int pkiPermis
     snprintf(localVarToReplace_pkiPermissionID, sizeOfPathParams_pkiPermissionID, "{%s}", "pkiPermissionID");
 
     char localVarBuff_pkiPermissionID[256];
-    intToStr(localVarBuff_pkiPermissionID, pkiPermissionID);
+    intToStr(localVarBuff_pkiPermissionID, *pkiPermissionID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiPermissionID, localVarBuff_pkiPermissionID);
 
@@ -282,7 +282,7 @@ end:
 // 
 //
 permission_get_object_v2_response_t*
-ObjectPermissionAPI_permissionGetObjectV2(apiClient_t *apiClient, int pkiPermissionID )
+ObjectPermissionAPI_permissionGetObjectV2(apiClient_t *apiClient, int *pkiPermissionID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -306,7 +306,7 @@ ObjectPermissionAPI_permissionGetObjectV2(apiClient_t *apiClient, int pkiPermiss
     snprintf(localVarToReplace_pkiPermissionID, sizeOfPathParams_pkiPermissionID, "{%s}", "pkiPermissionID");
 
     char localVarBuff_pkiPermissionID[256];
-    intToStr(localVarBuff_pkiPermissionID, pkiPermissionID);
+    intToStr(localVarBuff_pkiPermissionID, *pkiPermissionID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiPermissionID, localVarBuff_pkiPermissionID);
 

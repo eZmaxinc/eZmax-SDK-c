@@ -17,7 +17,7 @@
 // The endpoint allows to create one or many elements at once.
 //
 usergroupdelegation_create_object_v1_response_t*
-ObjectUsergroupdelegationAPI_usergroupdelegationCreateObjectV1(apiClient_t *apiClient, usergroupdelegation_create_object_v1_request_t * usergroupdelegation_create_object_v1_request )
+ObjectUsergroupdelegationAPI_usergroupdelegationCreateObjectV1(apiClient_t *apiClient, usergroupdelegation_create_object_v1_request_t *usergroupdelegation_create_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -95,7 +95,7 @@ end:
 // 
 //
 usergroupdelegation_delete_object_v1_response_t*
-ObjectUsergroupdelegationAPI_usergroupdelegationDeleteObjectV1(apiClient_t *apiClient, int pkiUsergroupdelegationID )
+ObjectUsergroupdelegationAPI_usergroupdelegationDeleteObjectV1(apiClient_t *apiClient, int *pkiUsergroupdelegationID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -119,7 +119,7 @@ ObjectUsergroupdelegationAPI_usergroupdelegationDeleteObjectV1(apiClient_t *apiC
     snprintf(localVarToReplace_pkiUsergroupdelegationID, sizeOfPathParams_pkiUsergroupdelegationID, "{%s}", "pkiUsergroupdelegationID");
 
     char localVarBuff_pkiUsergroupdelegationID[256];
-    intToStr(localVarBuff_pkiUsergroupdelegationID, pkiUsergroupdelegationID);
+    intToStr(localVarBuff_pkiUsergroupdelegationID, *pkiUsergroupdelegationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUsergroupdelegationID, localVarBuff_pkiUsergroupdelegationID);
 
@@ -177,7 +177,7 @@ end:
 // 
 //
 usergroupdelegation_edit_object_v1_response_t*
-ObjectUsergroupdelegationAPI_usergroupdelegationEditObjectV1(apiClient_t *apiClient, int pkiUsergroupdelegationID , usergroupdelegation_edit_object_v1_request_t * usergroupdelegation_edit_object_v1_request )
+ObjectUsergroupdelegationAPI_usergroupdelegationEditObjectV1(apiClient_t *apiClient, int *pkiUsergroupdelegationID, usergroupdelegation_edit_object_v1_request_t *usergroupdelegation_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -201,7 +201,7 @@ ObjectUsergroupdelegationAPI_usergroupdelegationEditObjectV1(apiClient_t *apiCli
     snprintf(localVarToReplace_pkiUsergroupdelegationID, sizeOfPathParams_pkiUsergroupdelegationID, "{%s}", "pkiUsergroupdelegationID");
 
     char localVarBuff_pkiUsergroupdelegationID[256];
-    intToStr(localVarBuff_pkiUsergroupdelegationID, pkiUsergroupdelegationID);
+    intToStr(localVarBuff_pkiUsergroupdelegationID, *pkiUsergroupdelegationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUsergroupdelegationID, localVarBuff_pkiUsergroupdelegationID);
 
@@ -278,7 +278,7 @@ end:
 // 
 //
 usergroupdelegation_get_object_v2_response_t*
-ObjectUsergroupdelegationAPI_usergroupdelegationGetObjectV2(apiClient_t *apiClient, int pkiUsergroupdelegationID )
+ObjectUsergroupdelegationAPI_usergroupdelegationGetObjectV2(apiClient_t *apiClient, int *pkiUsergroupdelegationID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -302,7 +302,7 @@ ObjectUsergroupdelegationAPI_usergroupdelegationGetObjectV2(apiClient_t *apiClie
     snprintf(localVarToReplace_pkiUsergroupdelegationID, sizeOfPathParams_pkiUsergroupdelegationID, "{%s}", "pkiUsergroupdelegationID");
 
     char localVarBuff_pkiUsergroupdelegationID[256];
-    intToStr(localVarBuff_pkiUsergroupdelegationID, pkiUsergroupdelegationID);
+    intToStr(localVarBuff_pkiUsergroupdelegationID, *pkiUsergroupdelegationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUsergroupdelegationID, localVarBuff_pkiUsergroupdelegationID);
 

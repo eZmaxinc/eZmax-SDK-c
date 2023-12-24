@@ -6,7 +6,7 @@
 
 char* e_user_ezsignsendreminderfrequencyactivesession_response_compound_user_ToString(ezmax_api_definition__full_activesession_response_compound_user__e e_user_ezsignsendreminderfrequency) {
     char* e_user_ezsignsendreminderfrequencyArray[] =  { "NULL", "None", "Daily", "Weekly" };
-	return e_user_ezsignsendreminderfrequencyArray[e_user_ezsignsendreminderfrequency];
+    return e_user_ezsignsendreminderfrequencyArray[e_user_ezsignsendreminderfrequency];
 }
 
 ezmax_api_definition__full_activesession_response_compound_user__e e_user_ezsignsendreminderfrequencyactivesession_response_compound_user_FromString(char* e_user_ezsignsendreminderfrequency){

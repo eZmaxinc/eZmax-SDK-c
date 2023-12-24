@@ -24,8 +24,8 @@ communicationrecipient_request_compound_t* instantiate_communicationrecipient_re
     communicationrecipient_request_compound = communicationrecipient_request_compound_create(
       1,
       1,
-      1,
       26,
+      21,
       18,
       31,
       1,
@@ -34,14 +34,16 @@ communicationrecipient_request_compound_t* instantiate_communicationrecipient_re
       1,
       1,
       70,
+      47,
+      47,
       ezmax_api_definition__full_communicationrecipient_request_compound__"To"
     );
   } else {
     communicationrecipient_request_compound = communicationrecipient_request_compound_create(
       1,
       1,
-      1,
       26,
+      21,
       18,
       31,
       1,
@@ -50,6 +52,8 @@ communicationrecipient_request_compound_t* instantiate_communicationrecipient_re
       1,
       1,
       70,
+      47,
+      47,
       ezmax_api_definition__full_communicationrecipient_request_compound__"To"
     );
   }

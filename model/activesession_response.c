@@ -6,7 +6,7 @@
 
 char* e_activesession_usertypeactivesession_response_ToString(ezmax_api_definition__full_activesession_response__e e_activesession_usertype) {
     char* e_activesession_usertypeArray[] =  { "NULL", "AgentBroker", "Assistant", "EzsignSigner", "EzsignUser", "Normal" };
-	return e_activesession_usertypeArray[e_activesession_usertype];
+    return e_activesession_usertypeArray[e_activesession_usertype];
 }
 
 ezmax_api_definition__full_activesession_response__e e_activesession_usertypeactivesession_response_FromString(char* e_activesession_usertype){
@@ -23,7 +23,7 @@ ezmax_api_definition__full_activesession_response__e e_activesession_usertypeact
 }
 char* e_activesession_originactivesession_response_ToString(ezmax_api_definition__full_activesession_response__e e_activesession_origin) {
     char* e_activesession_originArray[] =  { "NULL", "BuiltIn", "External" };
-	return e_activesession_originArray[e_activesession_origin];
+    return e_activesession_originArray[e_activesession_origin];
 }
 
 ezmax_api_definition__full_activesession_response__e e_activesession_originactivesession_response_FromString(char* e_activesession_origin){
@@ -40,7 +40,7 @@ ezmax_api_definition__full_activesession_response__e e_activesession_originactiv
 }
 char* e_activesession_weekdaystartactivesession_response_ToString(ezmax_api_definition__full_activesession_response__e e_activesession_weekdaystart) {
     char* e_activesession_weekdaystartArray[] =  { "NULL", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
-	return e_activesession_weekdaystartArray[e_activesession_weekdaystart];
+    return e_activesession_weekdaystartArray[e_activesession_weekdaystart];
 }
 
 ezmax_api_definition__full_activesession_response__e e_activesession_weekdaystartactivesession_response_FromString(char* e_activesession_weekdaystart){

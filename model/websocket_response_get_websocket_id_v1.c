@@ -6,7 +6,7 @@
 
 char* e_websocket_messagetypewebsocket_response_get_websocket_id_v1_ToString(ezmax_api_definition__full_websocket_response_get_websocket_id_v1_EWEBSOCKETMESSAGETYPE_e e_websocket_messagetype) {
     char* e_websocket_messagetypeArray[] =  { "NULL", "Response-GetWebsocketID-V1" };
-	return e_websocket_messagetypeArray[e_websocket_messagetype];
+    return e_websocket_messagetypeArray[e_websocket_messagetype];
 }
 
 ezmax_api_definition__full_websocket_response_get_websocket_id_v1_EWEBSOCKETMESSAGETYPE_e e_websocket_messagetypewebsocket_response_get_websocket_id_v1_FromString(char* e_websocket_messagetype){

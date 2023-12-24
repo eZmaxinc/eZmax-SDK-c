@@ -15,7 +15,7 @@
 // Create a new User
 //
 scim_user_t*
-ScimUsersAPI_usersCreateObjectScimV2(apiClient_t *apiClient, scim_user_t * scim_user )
+ScimUsersAPI_usersCreateObjectScimV2(apiClient_t *apiClient, scim_user_t *scim_user)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -91,7 +91,7 @@ end:
 // Delete an existing User
 //
 void
-ScimUsersAPI_usersDeleteObjectScimV2(apiClient_t *apiClient, char * userId )
+ScimUsersAPI_usersDeleteObjectScimV2(apiClient_t *apiClient, char *userId)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -151,7 +151,7 @@ end:
 // Edit an existing User
 //
 scim_user_t*
-ScimUsersAPI_usersEditObjectScimV2(apiClient_t *apiClient, char * userId , scim_user_t * scim_user )
+ScimUsersAPI_usersEditObjectScimV2(apiClient_t *apiClient, char *userId, scim_user_t *scim_user)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -238,7 +238,7 @@ end:
 // Retrieve User list
 //
 scim_user_list_t*
-ScimUsersAPI_usersGetListScimV2(apiClient_t *apiClient, char * filter )
+ScimUsersAPI_usersGetListScimV2(apiClient_t *apiClient, char *filter)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = NULL;
@@ -323,7 +323,7 @@ end:
 // Retrieve an existing User
 //
 scim_user_t*
-ScimUsersAPI_usersGetObjectScimV2(apiClient_t *apiClient, char * userId )
+ScimUsersAPI_usersGetObjectScimV2(apiClient_t *apiClient, char *userId)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;

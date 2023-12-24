@@ -18,7 +18,7 @@ ezsignpage_consult_v1_response_t* ObjectEzsignpageAPI_ezsignpageConsultV1(apiCli
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignpageID** | **int** |  | 
+**pkiEzsignpageID** | **int \*** |  | 
 **body** | **[object_t](object.md) \*** |  | 
 
 ### Return type

@@ -32,7 +32,7 @@
 // The endpoint allows to create one or many elements at once.
 //
 ezsigntemplatedocument_create_object_v1_response_t*
-ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentCreateObjectV1(apiClient_t *apiClient, ezsigntemplatedocument_create_object_v1_request_t * ezsigntemplatedocument_create_object_v1_request );
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentCreateObjectV1(apiClient_t *apiClient, ezsigntemplatedocument_create_object_v1_request_t *ezsigntemplatedocument_create_object_v1_request);
 
 
 // Edit multiple Ezsigntemplateformfieldgroups
@@ -40,7 +40,7 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentCreateObjectV1(apiClient_t
 // Using this endpoint, you can edit multiple Ezsigntemplateformfieldgroups at the same time.
 //
 ezsigntemplatedocument_edit_ezsigntemplateformfieldgroups_v1_response_t*
-ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditEzsigntemplateformfieldgroupsV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID , ezsigntemplatedocument_edit_ezsigntemplateformfieldgroups_v1_request_t * ezsigntemplatedocument_edit_ezsigntemplateformfieldgroups_v1_request );
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditEzsigntemplateformfieldgroupsV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, ezsigntemplatedocument_edit_ezsigntemplateformfieldgroups_v1_request_t *ezsigntemplatedocument_edit_ezsigntemplateformfieldgroups_v1_request);
 
 
 // Edit multiple Ezsigntemplatesignatures
@@ -48,7 +48,7 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditEzsigntemplateformfiel
 // Using this endpoint, you can edit multiple Ezsigntemplatesignatures at the same time.
 //
 ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_t*
-ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditEzsigntemplatesignaturesV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID , ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_t * ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request );
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditEzsigntemplatesignaturesV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_t *ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request);
 
 
 // Edit an existing Ezsigntemplatedocument
@@ -56,7 +56,7 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditEzsigntemplatesignatur
 // 
 //
 ezsigntemplatedocument_edit_object_v1_response_t*
-ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID , ezsigntemplatedocument_edit_object_v1_request_t * ezsigntemplatedocument_edit_object_v1_request );
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, ezsigntemplatedocument_edit_object_v1_request_t *ezsigntemplatedocument_edit_object_v1_request);
 
 
 // Flatten
@@ -64,7 +64,7 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditObjectV1(apiClient_t *
 // Flatten an Ezsigntemplatedocument signatures, forms and annotations. This process finalizes the PDF so that the forms and annotations become part of the document content and cannot be edited.
 //
 ezsigntemplatedocument_flatten_v1_response_t*
-ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentFlattenV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID , object_t * body );
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentFlattenV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, object_t *body);
 
 
 // Retrieve an existing Ezsigntemplatedocument's Ezsigntemplatedocumentpages
@@ -72,7 +72,7 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentFlattenV1(apiClient_t *api
 // 
 //
 ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response_t*
-ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatedocumentpagesV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID );
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatedocumentpagesV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID);
 
 
 // Retrieve an existing Ezsigntemplatedocument's Ezsigntemplateformfieldgroups
@@ -80,7 +80,7 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatedocumentp
 // 
 //
 ezsigntemplatedocument_get_ezsigntemplateformfieldgroups_v1_response_t*
-ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplateformfieldgroupsV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID );
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplateformfieldgroupsV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID);
 
 
 // Retrieve an existing Ezsigntemplatedocument's Ezsigntemplatesignatures
@@ -88,7 +88,7 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplateformfield
 // 
 //
 ezsigntemplatedocument_get_ezsigntemplatesignatures_v1_response_t*
-ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatesignaturesV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID );
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatesignaturesV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID);
 
 
 // Retrieve an existing Ezsigntemplatedocument
@@ -96,7 +96,7 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatesignature
 // 
 //
 ezsigntemplatedocument_get_object_v2_response_t*
-ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetObjectV2(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID );
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID);
 
 
 // Retrieve positions X,Y of given words from a Ezsigntemplatedocument
@@ -104,7 +104,7 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetObjectV2(apiClient_t *a
 // 
 //
 ezsigntemplatedocument_get_words_positions_v1_response_t*
-ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetWordsPositionsV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID , ezsigntemplatedocument_get_words_positions_v1_request_t * ezsigntemplatedocument_get_words_positions_v1_request );
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetWordsPositionsV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, ezsigntemplatedocument_get_words_positions_v1_request_t *ezsigntemplatedocument_get_words_positions_v1_request);
 
 
 // Patch an existing Ezsigntemplatedocument
@@ -112,6 +112,6 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetWordsPositionsV1(apiCli
 // 
 //
 ezsigntemplatedocument_patch_object_v1_response_t*
-ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentPatchObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID , ezsigntemplatedocument_patch_object_v1_request_t * ezsigntemplatedocument_patch_object_v1_request );
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentPatchObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, ezsigntemplatedocument_patch_object_v1_request_t *ezsigntemplatedocument_patch_object_v1_request);
 
 

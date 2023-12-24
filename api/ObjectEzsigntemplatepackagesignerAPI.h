@@ -19,7 +19,7 @@
 // The endpoint allows to create one or many elements at once.
 //
 ezsigntemplatepackagesigner_create_object_v1_response_t*
-ObjectEzsigntemplatepackagesignerAPI_ezsigntemplatepackagesignerCreateObjectV1(apiClient_t *apiClient, ezsigntemplatepackagesigner_create_object_v1_request_t * ezsigntemplatepackagesigner_create_object_v1_request );
+ObjectEzsigntemplatepackagesignerAPI_ezsigntemplatepackagesignerCreateObjectV1(apiClient_t *apiClient, ezsigntemplatepackagesigner_create_object_v1_request_t *ezsigntemplatepackagesigner_create_object_v1_request);
 
 
 // Delete an existing Ezsigntemplatepackagesigner
@@ -27,7 +27,7 @@ ObjectEzsigntemplatepackagesignerAPI_ezsigntemplatepackagesignerCreateObjectV1(a
 // 
 //
 ezsigntemplatepackagesigner_delete_object_v1_response_t*
-ObjectEzsigntemplatepackagesignerAPI_ezsigntemplatepackagesignerDeleteObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatepackagesignerID );
+ObjectEzsigntemplatepackagesignerAPI_ezsigntemplatepackagesignerDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatepackagesignerID);
 
 
 // Edit an existing Ezsigntemplatepackagesigner
@@ -35,7 +35,7 @@ ObjectEzsigntemplatepackagesignerAPI_ezsigntemplatepackagesignerDeleteObjectV1(a
 // 
 //
 ezsigntemplatepackagesigner_edit_object_v1_response_t*
-ObjectEzsigntemplatepackagesignerAPI_ezsigntemplatepackagesignerEditObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatepackagesignerID , ezsigntemplatepackagesigner_edit_object_v1_request_t * ezsigntemplatepackagesigner_edit_object_v1_request );
+ObjectEzsigntemplatepackagesignerAPI_ezsigntemplatepackagesignerEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatepackagesignerID, ezsigntemplatepackagesigner_edit_object_v1_request_t *ezsigntemplatepackagesigner_edit_object_v1_request);
 
 
 // Retrieve an existing Ezsigntemplatepackagesigner
@@ -43,6 +43,6 @@ ObjectEzsigntemplatepackagesignerAPI_ezsigntemplatepackagesignerEditObjectV1(api
 // 
 //
 ezsigntemplatepackagesigner_get_object_v2_response_t*
-ObjectEzsigntemplatepackagesignerAPI_ezsigntemplatepackagesignerGetObjectV2(apiClient_t *apiClient, int pkiEzsigntemplatepackagesignerID );
+ObjectEzsigntemplatepackagesignerAPI_ezsigntemplatepackagesignerGetObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplatepackagesignerID);
 
 

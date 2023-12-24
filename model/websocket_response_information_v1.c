@@ -6,7 +6,7 @@
 
 char* e_websocket_messagetypewebsocket_response_information_v1_ToString(ezmax_api_definition__full_websocket_response_information_v1_EWEBSOCKETMESSAGETYPE_e e_websocket_messagetype) {
     char* e_websocket_messagetypeArray[] =  { "NULL", "Response-Information-V1" };
-	return e_websocket_messagetypeArray[e_websocket_messagetype];
+    return e_websocket_messagetypeArray[e_websocket_messagetype];
 }
 
 ezmax_api_definition__full_websocket_response_information_v1_EWEBSOCKETMESSAGETYPE_e e_websocket_messagetypewebsocket_response_information_v1_FromString(char* e_websocket_messagetype){
@@ -24,6 +24,7 @@ ezmax_api_definition__full_websocket_response_information_v1_EWEBSOCKETMESSAGETY
 
 websocket_response_information_v1_t *websocket_response_information_v1_create(
     ezmax_api_definition__full_websocket_response_information_v1_EWEBSOCKETMESSAGETYPE_e e_websocket_messagetype,
+    char *s_websocket_channel,
     websocket_response_information_v1_m_payload_t *m_payload
     ) {
     websocket_response_information_v1_t *websocket_response_information_v1_local_var = malloc(sizeof(websocket_response_information_v1_t));
@@ -31,6 +32,7 @@ websocket_response_information_v1_t *websocket_response_information_v1_create(
         return NULL;
     }
     websocket_response_information_v1_local_var->e_websocket_messagetype = e_websocket_messagetype;
+    websocket_response_information_v1_local_var->s_websocket_channel = s_websocket_channel;
     websocket_response_information_v1_local_var->m_payload = m_payload;
 
     return websocket_response_information_v1_local_var;
@@ -42,6 +44,10 @@ void websocket_response_information_v1_free(websocket_response_information_v1_t 
         return ;
     }
     listEntry_t *listEntry;
+    if (websocket_response_information_v1->s_websocket_channel) {
+        free(websocket_response_information_v1->s_websocket_channel);
+        websocket_response_information_v1->s_websocket_channel = NULL;
+    }
     if (websocket_response_information_v1->m_payload) {
         websocket_response_information_v1_m_payload_free(websocket_response_information_v1->m_payload);
         websocket_response_information_v1->m_payload = NULL;
@@ -59,6 +65,15 @@ cJSON *websocket_response_information_v1_convertToJSON(websocket_response_inform
     if(cJSON_AddStringToObject(item, "eWebsocketMessagetype", e_websocket_messagetypewebsocket_response_information_v1_ToString(websocket_response_information_v1->e_websocket_messagetype)) == NULL)
     {
     goto fail; //Enum
+    }
+
+
+    // websocket_response_information_v1->s_websocket_channel
+    if (!websocket_response_information_v1->s_websocket_channel) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "sWebsocketChannel", websocket_response_information_v1->s_websocket_channel) == NULL) {
+    goto fail; //String
     }
 
 
@@ -104,6 +119,18 @@ websocket_response_information_v1_t *websocket_response_information_v1_parseFrom
     }
     e_websocket_messagetypeVariable = e_websocket_messagetypewebsocket_response_information_v1_FromString(e_websocket_messagetype->valuestring);
 
+    // websocket_response_information_v1->s_websocket_channel
+    cJSON *s_websocket_channel = cJSON_GetObjectItemCaseSensitive(websocket_response_information_v1JSON, "sWebsocketChannel");
+    if (!s_websocket_channel) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_websocket_channel))
+    {
+    goto end; //String
+    }
+
     // websocket_response_information_v1->m_payload
     cJSON *m_payload = cJSON_GetObjectItemCaseSensitive(websocket_response_information_v1JSON, "mPayload");
     if (!m_payload) {
@@ -116,6 +143,7 @@ websocket_response_information_v1_t *websocket_response_information_v1_parseFrom
 
     websocket_response_information_v1_local_var = websocket_response_information_v1_create (
         e_websocket_messagetypeVariable,
+        strdup(s_websocket_channel->valuestring),
         m_payload_local_nonprim
         );
 

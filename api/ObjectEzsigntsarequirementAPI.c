@@ -164,7 +164,7 @@ end:
 // Get the list of Ezsigntsarequirement to be used in a dropdown or autocomplete control.
 //
 ezsigntsarequirement_get_autocomplete_v2_response_t*
-ObjectEzsigntsarequirementAPI_ezsigntsarequirementGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV2_sSelector_e sSelector , int fkiEzsignfoldertypeID , ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV2_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language )
+ObjectEzsigntsarequirementAPI_ezsigntsarequirementGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV2_sSelector_e sSelector, int *fkiEzsignfoldertypeID, ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -207,11 +207,11 @@ ObjectEzsigntsarequirementAPI_ezsigntsarequirementGetAutocompleteV2(apiClient_t 
     char *keyQuery_fkiEzsignfoldertypeID = NULL;
     char * valueQuery_fkiEzsignfoldertypeID = NULL;
     keyValuePair_t *keyPairQuery_fkiEzsignfoldertypeID = 0;
-    if (1) // Always send integer parameters to the API server
+    if (fkiEzsignfoldertypeID)
     {
         keyQuery_fkiEzsignfoldertypeID = strdup("fkiEzsignfoldertypeID");
         valueQuery_fkiEzsignfoldertypeID = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_fkiEzsignfoldertypeID, MAX_NUMBER_LENGTH, "%d", fkiEzsignfoldertypeID);
+        snprintf(valueQuery_fkiEzsignfoldertypeID, MAX_NUMBER_LENGTH, "%d", *fkiEzsignfoldertypeID);
         keyPairQuery_fkiEzsignfoldertypeID = keyValuePair_create(keyQuery_fkiEzsignfoldertypeID, valueQuery_fkiEzsignfoldertypeID);
         list_addElement(localVarQueryParameters,keyPairQuery_fkiEzsignfoldertypeID);
     }
@@ -225,7 +225,7 @@ ObjectEzsigntsarequirementAPI_ezsigntsarequirementGetAutocompleteV2(apiClient_t 
         keyQuery_eFilterActive = strdup("eFilterActive");
         valueQuery_eFilterActive = (eFilterActive);
         keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(ezsigntsarequirementGetAutocompleteV2_EFILTERACTIVE_ToString(
-		valueQuery_eFilterActive)));
+        valueQuery_eFilterActive)));
         list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
     }
 

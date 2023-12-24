@@ -19,7 +19,7 @@
 // The endpoint allows to create one or many elements at once.
 //
 ezsigntemplatesignature_create_object_v1_response_t*
-ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureCreateObjectV1(apiClient_t *apiClient, ezsigntemplatesignature_create_object_v1_request_t * ezsigntemplatesignature_create_object_v1_request );
+ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureCreateObjectV1(apiClient_t *apiClient, ezsigntemplatesignature_create_object_v1_request_t *ezsigntemplatesignature_create_object_v1_request);
 
 
 // Delete an existing Ezsigntemplatesignature
@@ -27,7 +27,7 @@ ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureCreateObjectV1(apiClient
 // 
 //
 ezsigntemplatesignature_delete_object_v1_response_t*
-ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureDeleteObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatesignatureID );
+ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatesignatureID);
 
 
 // Edit an existing Ezsigntemplatesignature
@@ -35,7 +35,7 @@ ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureDeleteObjectV1(apiClient
 // 
 //
 ezsigntemplatesignature_edit_object_v1_response_t*
-ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureEditObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatesignatureID , ezsigntemplatesignature_edit_object_v1_request_t * ezsigntemplatesignature_edit_object_v1_request );
+ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatesignatureID, ezsigntemplatesignature_edit_object_v1_request_t *ezsigntemplatesignature_edit_object_v1_request);
 
 
 // Retrieve an existing Ezsigntemplatesignature
@@ -43,6 +43,6 @@ ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureEditObjectV1(apiClient_t
 // 
 //
 ezsigntemplatesignature_get_object_v2_response_t*
-ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureGetObjectV2(apiClient_t *apiClient, int pkiEzsigntemplatesignatureID );
+ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureGetObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplatesignatureID);
 
 

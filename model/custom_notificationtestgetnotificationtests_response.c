@@ -6,7 +6,7 @@
 
 char* e_notificationpreference_statuscustom_notificationtestgetnotificationtests_response_ToString(ezmax_api_definition__full_custom_notificationtestgetnotificationtests_response__e e_notificationpreference_status) {
     char* e_notificationpreference_statusArray[] =  { "NULL", "Show", "Hide", "Pin" };
-	return e_notificationpreference_statusArray[e_notificationpreference_status];
+    return e_notificationpreference_statusArray[e_notificationpreference_status];
 }
 
 ezmax_api_definition__full_custom_notificationtestgetnotificationtests_response__e e_notificationpreference_statuscustom_notificationtestgetnotificationtests_response_FromString(char* e_notificationpreference_status){

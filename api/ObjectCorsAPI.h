@@ -19,7 +19,7 @@
 // The endpoint allows to create one or many elements at once.
 //
 cors_create_object_v1_response_t*
-ObjectCorsAPI_corsCreateObjectV1(apiClient_t *apiClient, cors_create_object_v1_request_t * cors_create_object_v1_request );
+ObjectCorsAPI_corsCreateObjectV1(apiClient_t *apiClient, cors_create_object_v1_request_t *cors_create_object_v1_request);
 
 
 // Delete an existing Cors
@@ -27,7 +27,7 @@ ObjectCorsAPI_corsCreateObjectV1(apiClient_t *apiClient, cors_create_object_v1_r
 // 
 //
 cors_delete_object_v1_response_t*
-ObjectCorsAPI_corsDeleteObjectV1(apiClient_t *apiClient, int pkiCorsID );
+ObjectCorsAPI_corsDeleteObjectV1(apiClient_t *apiClient, int *pkiCorsID);
 
 
 // Edit an existing Cors
@@ -35,7 +35,7 @@ ObjectCorsAPI_corsDeleteObjectV1(apiClient_t *apiClient, int pkiCorsID );
 // 
 //
 cors_edit_object_v1_response_t*
-ObjectCorsAPI_corsEditObjectV1(apiClient_t *apiClient, int pkiCorsID , cors_edit_object_v1_request_t * cors_edit_object_v1_request );
+ObjectCorsAPI_corsEditObjectV1(apiClient_t *apiClient, int *pkiCorsID, cors_edit_object_v1_request_t *cors_edit_object_v1_request);
 
 
 // Retrieve an existing Cors
@@ -43,6 +43,6 @@ ObjectCorsAPI_corsEditObjectV1(apiClient_t *apiClient, int pkiCorsID , cors_edit
 // 
 //
 cors_get_object_v2_response_t*
-ObjectCorsAPI_corsGetObjectV2(apiClient_t *apiClient, int pkiCorsID );
+ObjectCorsAPI_corsGetObjectV2(apiClient_t *apiClient, int *pkiCorsID);
 
 

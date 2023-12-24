@@ -20,8 +20,8 @@ notificationsection_get_notificationtests_v1_response_t* ObjectNotificationsecti
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiNotificationsectionID** | **int** |  | 
-**bShowHidden** | **int** | Whether or not to return the hidden Notificationtests | 
+**pkiNotificationsectionID** | **int \*** |  | 
+**bShowHidden** | **int \*** | Whether or not to return the hidden Notificationtests | 
 
 ### Return type
 

@@ -5,13 +5,13 @@
 
 
 char* e_communicationsender_objecttypecustom_communicationsender_response_ToString(ezmax_api_definition__full_custom_communicationsender_response_ECOMMUNICATIONSENDEROBJECTTYPE_e e_communicationsender_objecttype) {
-    char* e_communicationsender_objecttypeArray[] =  { "NULL", "Agent", "Broker", "User", "Mailboxshared" };
-	return e_communicationsender_objecttypeArray[e_communicationsender_objecttype];
+    char* e_communicationsender_objecttypeArray[] =  { "NULL", "Agent", "Broker", "User", "Mailboxshared", "Phonelineshared" };
+    return e_communicationsender_objecttypeArray[e_communicationsender_objecttype];
 }
 
 ezmax_api_definition__full_custom_communicationsender_response_ECOMMUNICATIONSENDEROBJECTTYPE_e e_communicationsender_objecttypecustom_communicationsender_response_FromString(char* e_communicationsender_objecttype){
     int stringToReturn = 0;
-    char *e_communicationsender_objecttypeArray[] =  { "NULL", "Agent", "Broker", "User", "Mailboxshared" };
+    char *e_communicationsender_objecttypeArray[] =  { "NULL", "Agent", "Broker", "User", "Mailboxshared", "Phonelineshared" };
     size_t sizeofArray = sizeof(e_communicationsender_objecttypeArray) / sizeof(e_communicationsender_objecttypeArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(e_communicationsender_objecttype, e_communicationsender_objecttypeArray[stringToReturn]) == 0) {
@@ -27,10 +27,12 @@ custom_communicationsender_response_t *custom_communicationsender_response_creat
     int fki_broker_id,
     int fki_user_id,
     int fki_mailboxshared_id,
+    int fki_phonelineshared_id,
     ezmax_api_definition__full_custom_communicationsender_response_ECOMMUNICATIONSENDEROBJECTTYPE_e e_communicationsender_objecttype,
     custom_contact_name_response_t *obj_contact_name,
-    char *s_email_address,
-    char *s_phone_e164
+    email_response_compound_t *obj_email,
+    phone_response_compound_t *obj_phone_fax,
+    phone_response_compound_t *obj_phone_sms
     ) {
     custom_communicationsender_response_t *custom_communicationsender_response_local_var = malloc(sizeof(custom_communicationsender_response_t));
     if (!custom_communicationsender_response_local_var) {
@@ -40,10 +42,12 @@ custom_communicationsender_response_t *custom_communicationsender_response_creat
     custom_communicationsender_response_local_var->fki_broker_id = fki_broker_id;
     custom_communicationsender_response_local_var->fki_user_id = fki_user_id;
     custom_communicationsender_response_local_var->fki_mailboxshared_id = fki_mailboxshared_id;
+    custom_communicationsender_response_local_var->fki_phonelineshared_id = fki_phonelineshared_id;
     custom_communicationsender_response_local_var->e_communicationsender_objecttype = e_communicationsender_objecttype;
     custom_communicationsender_response_local_var->obj_contact_name = obj_contact_name;
-    custom_communicationsender_response_local_var->s_email_address = s_email_address;
-    custom_communicationsender_response_local_var->s_phone_e164 = s_phone_e164;
+    custom_communicationsender_response_local_var->obj_email = obj_email;
+    custom_communicationsender_response_local_var->obj_phone_fax = obj_phone_fax;
+    custom_communicationsender_response_local_var->obj_phone_sms = obj_phone_sms;
 
     return custom_communicationsender_response_local_var;
 }
@@ -58,13 +62,17 @@ void custom_communicationsender_response_free(custom_communicationsender_respons
         custom_contact_name_response_free(custom_communicationsender_response->obj_contact_name);
         custom_communicationsender_response->obj_contact_name = NULL;
     }
-    if (custom_communicationsender_response->s_email_address) {
-        free(custom_communicationsender_response->s_email_address);
-        custom_communicationsender_response->s_email_address = NULL;
+    if (custom_communicationsender_response->obj_email) {
+        email_response_compound_free(custom_communicationsender_response->obj_email);
+        custom_communicationsender_response->obj_email = NULL;
     }
-    if (custom_communicationsender_response->s_phone_e164) {
-        free(custom_communicationsender_response->s_phone_e164);
-        custom_communicationsender_response->s_phone_e164 = NULL;
+    if (custom_communicationsender_response->obj_phone_fax) {
+        phone_response_compound_free(custom_communicationsender_response->obj_phone_fax);
+        custom_communicationsender_response->obj_phone_fax = NULL;
+    }
+    if (custom_communicationsender_response->obj_phone_sms) {
+        phone_response_compound_free(custom_communicationsender_response->obj_phone_sms);
+        custom_communicationsender_response->obj_phone_sms = NULL;
     }
     free(custom_communicationsender_response);
 }
@@ -104,6 +112,14 @@ cJSON *custom_communicationsender_response_convertToJSON(custom_communicationsen
     }
 
 
+    // custom_communicationsender_response->fki_phonelineshared_id
+    if(custom_communicationsender_response->fki_phonelineshared_id) {
+    if(cJSON_AddNumberToObject(item, "fkiPhonelinesharedID", custom_communicationsender_response->fki_phonelineshared_id) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
     // custom_communicationsender_response->e_communicationsender_objecttype
     if (ezmax_api_definition__full_custom_communicationsender_response_ECOMMUNICATIONSENDEROBJECTTYPE_NULL == custom_communicationsender_response->e_communicationsender_objecttype) {
         goto fail;
@@ -128,18 +144,41 @@ cJSON *custom_communicationsender_response_convertToJSON(custom_communicationsen
     }
 
 
-    // custom_communicationsender_response->s_email_address
-    if(custom_communicationsender_response->s_email_address) {
-    if(cJSON_AddStringToObject(item, "sEmailAddress", custom_communicationsender_response->s_email_address) == NULL) {
-    goto fail; //String
+    // custom_communicationsender_response->obj_email
+    if(custom_communicationsender_response->obj_email) {
+    cJSON *obj_email_local_JSON = email_response_compound_convertToJSON(custom_communicationsender_response->obj_email);
+    if(obj_email_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objEmail", obj_email_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
     }
     }
 
 
-    // custom_communicationsender_response->s_phone_e164
-    if(custom_communicationsender_response->s_phone_e164) {
-    if(cJSON_AddStringToObject(item, "sPhoneE164", custom_communicationsender_response->s_phone_e164) == NULL) {
-    goto fail; //String
+    // custom_communicationsender_response->obj_phone_fax
+    if(custom_communicationsender_response->obj_phone_fax) {
+    cJSON *obj_phone_fax_local_JSON = phone_response_compound_convertToJSON(custom_communicationsender_response->obj_phone_fax);
+    if(obj_phone_fax_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objPhoneFax", obj_phone_fax_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+    }
+
+
+    // custom_communicationsender_response->obj_phone_sms
+    if(custom_communicationsender_response->obj_phone_sms) {
+    cJSON *obj_phone_sms_local_JSON = phone_response_compound_convertToJSON(custom_communicationsender_response->obj_phone_sms);
+    if(obj_phone_sms_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objPhoneSMS", obj_phone_sms_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
     }
     }
 
@@ -157,6 +196,15 @@ custom_communicationsender_response_t *custom_communicationsender_response_parse
 
     // define the local variable for custom_communicationsender_response->obj_contact_name
     custom_contact_name_response_t *obj_contact_name_local_nonprim = NULL;
+
+    // define the local variable for custom_communicationsender_response->obj_email
+    email_response_compound_t *obj_email_local_nonprim = NULL;
+
+    // define the local variable for custom_communicationsender_response->obj_phone_fax
+    phone_response_compound_t *obj_phone_fax_local_nonprim = NULL;
+
+    // define the local variable for custom_communicationsender_response->obj_phone_sms
+    phone_response_compound_t *obj_phone_sms_local_nonprim = NULL;
 
     // custom_communicationsender_response->fki_agent_id
     cJSON *fki_agent_id = cJSON_GetObjectItemCaseSensitive(custom_communicationsender_responseJSON, "fkiAgentID");
@@ -194,6 +242,15 @@ custom_communicationsender_response_t *custom_communicationsender_response_parse
     }
     }
 
+    // custom_communicationsender_response->fki_phonelineshared_id
+    cJSON *fki_phonelineshared_id = cJSON_GetObjectItemCaseSensitive(custom_communicationsender_responseJSON, "fkiPhonelinesharedID");
+    if (fki_phonelineshared_id) { 
+    if(!cJSON_IsNumber(fki_phonelineshared_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
     // custom_communicationsender_response->e_communicationsender_objecttype
     cJSON *e_communicationsender_objecttype = cJSON_GetObjectItemCaseSensitive(custom_communicationsender_responseJSON, "eCommunicationsenderObjecttype");
     if (!e_communicationsender_objecttype) {
@@ -217,22 +274,22 @@ custom_communicationsender_response_t *custom_communicationsender_response_parse
     
     obj_contact_name_local_nonprim = custom_contact_name_response_parseFromJSON(obj_contact_name); //nonprimitive
 
-    // custom_communicationsender_response->s_email_address
-    cJSON *s_email_address = cJSON_GetObjectItemCaseSensitive(custom_communicationsender_responseJSON, "sEmailAddress");
-    if (s_email_address) { 
-    if(!cJSON_IsString(s_email_address) && !cJSON_IsNull(s_email_address))
-    {
-    goto end; //String
-    }
+    // custom_communicationsender_response->obj_email
+    cJSON *obj_email = cJSON_GetObjectItemCaseSensitive(custom_communicationsender_responseJSON, "objEmail");
+    if (obj_email) { 
+    obj_email_local_nonprim = email_response_compound_parseFromJSON(obj_email); //nonprimitive
     }
 
-    // custom_communicationsender_response->s_phone_e164
-    cJSON *s_phone_e164 = cJSON_GetObjectItemCaseSensitive(custom_communicationsender_responseJSON, "sPhoneE164");
-    if (s_phone_e164) { 
-    if(!cJSON_IsString(s_phone_e164) && !cJSON_IsNull(s_phone_e164))
-    {
-    goto end; //String
+    // custom_communicationsender_response->obj_phone_fax
+    cJSON *obj_phone_fax = cJSON_GetObjectItemCaseSensitive(custom_communicationsender_responseJSON, "objPhoneFax");
+    if (obj_phone_fax) { 
+    obj_phone_fax_local_nonprim = phone_response_compound_parseFromJSON(obj_phone_fax); //nonprimitive
     }
+
+    // custom_communicationsender_response->obj_phone_sms
+    cJSON *obj_phone_sms = cJSON_GetObjectItemCaseSensitive(custom_communicationsender_responseJSON, "objPhoneSMS");
+    if (obj_phone_sms) { 
+    obj_phone_sms_local_nonprim = phone_response_compound_parseFromJSON(obj_phone_sms); //nonprimitive
     }
 
 
@@ -241,10 +298,12 @@ custom_communicationsender_response_t *custom_communicationsender_response_parse
         fki_broker_id ? fki_broker_id->valuedouble : 0,
         fki_user_id ? fki_user_id->valuedouble : 0,
         fki_mailboxshared_id ? fki_mailboxshared_id->valuedouble : 0,
+        fki_phonelineshared_id ? fki_phonelineshared_id->valuedouble : 0,
         e_communicationsender_objecttypeVariable,
         obj_contact_name_local_nonprim,
-        s_email_address && !cJSON_IsNull(s_email_address) ? strdup(s_email_address->valuestring) : NULL,
-        s_phone_e164 && !cJSON_IsNull(s_phone_e164) ? strdup(s_phone_e164->valuestring) : NULL
+        obj_email ? obj_email_local_nonprim : NULL,
+        obj_phone_fax ? obj_phone_fax_local_nonprim : NULL,
+        obj_phone_sms ? obj_phone_sms_local_nonprim : NULL
         );
 
     return custom_communicationsender_response_local_var;
@@ -252,6 +311,18 @@ end:
     if (obj_contact_name_local_nonprim) {
         custom_contact_name_response_free(obj_contact_name_local_nonprim);
         obj_contact_name_local_nonprim = NULL;
+    }
+    if (obj_email_local_nonprim) {
+        email_response_compound_free(obj_email_local_nonprim);
+        obj_email_local_nonprim = NULL;
+    }
+    if (obj_phone_fax_local_nonprim) {
+        phone_response_compound_free(obj_phone_fax_local_nonprim);
+        obj_phone_fax_local_nonprim = NULL;
+    }
+    if (obj_phone_sms_local_nonprim) {
+        phone_response_compound_free(obj_phone_sms_local_nonprim);
+        obj_phone_sms_local_nonprim = NULL;
     }
     return NULL;
 

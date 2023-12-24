@@ -24,7 +24,7 @@ userstaged_create_user_v1_response_t* ObjectUserstagedAPI_userstagedCreateUserV1
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUserstagedID** | **int** |  | 
+**pkiUserstagedID** | **int \*** |  | 
 **body** | **[object_t](object.md) \*** |  | 
 
 ### Return type
@@ -56,7 +56,7 @@ userstaged_delete_object_v1_response_t* ObjectUserstagedAPI_userstagedDeleteObje
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUserstagedID** | **int** |  | 
+**pkiUserstagedID** | **int \*** |  | 
 
 ### Return type
 
@@ -88,8 +88,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **eOrderBy** | **ezmax_api_definition__full_userstagedGetListV1_eOrderBy_e** | Specify how you want the results to be sorted | [optional] 
-**iRowMax** | **int** |  | [optional] 
-**iRowOffset** | **int** |  | [optional] [default to 0]
+**iRowMax** | **int \*** |  | [optional] 
+**iRowOffset** | **int \*** |  | [optional] [default to 0]
 **Accept_Language** | **header_accept_language_e** |  | [optional] 
 **sFilter** | **char \*** |  | [optional] 
 
@@ -122,7 +122,7 @@ userstaged_get_object_v2_response_t* ObjectUserstagedAPI_userstagedGetObjectV2(a
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUserstagedID** | **int** |  | 
+**pkiUserstagedID** | **int \*** |  | 
 
 ### Return type
 
@@ -153,7 +153,7 @@ userstaged_map_v1_response_t* ObjectUserstagedAPI_userstagedMapV1(apiClient_t *a
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiUserstagedID** | **int** |  | 
+**pkiUserstagedID** | **int \*** |  | 
 **userstaged_map_v1_request** | **[userstaged_map_v1_request_t](userstaged_map_v1_request.md) \*** |  | 
 
 ### Return type

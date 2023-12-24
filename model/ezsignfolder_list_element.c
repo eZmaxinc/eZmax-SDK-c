@@ -6,7 +6,7 @@
 
 char* e_ezsignfoldertype_privacylevelezsignfolder_list_element_ToString(ezmax_api_definition__full_ezsignfolder_list_element__e e_ezsignfoldertype_privacylevel) {
     char* e_ezsignfoldertype_privacylevelArray[] =  { "NULL", "User", "Usergroup" };
-	return e_ezsignfoldertype_privacylevelArray[e_ezsignfoldertype_privacylevel];
+    return e_ezsignfoldertype_privacylevelArray[e_ezsignfoldertype_privacylevel];
 }
 
 ezmax_api_definition__full_ezsignfolder_list_element__e e_ezsignfoldertype_privacylevelezsignfolder_list_element_FromString(char* e_ezsignfoldertype_privacylevel){
@@ -23,7 +23,7 @@ ezmax_api_definition__full_ezsignfolder_list_element__e e_ezsignfoldertype_priva
 }
 char* e_ezsignfolder_stepezsignfolder_list_element_ToString(ezmax_api_definition__full_ezsignfolder_list_element__e e_ezsignfolder_step) {
     char* e_ezsignfolder_stepArray[] =  { "NULL", "Unsent", "PendingSend", "Sent", "PartiallySigned", "Expired", "Completed", "Archived", "Disposed" };
-	return e_ezsignfolder_stepArray[e_ezsignfolder_step];
+    return e_ezsignfolder_stepArray[e_ezsignfolder_step];
 }
 
 ezmax_api_definition__full_ezsignfolder_list_element__e e_ezsignfolder_stepezsignfolder_list_element_FromString(char* e_ezsignfolder_step){

@@ -14,6 +14,6 @@
 // 
 //
 buyercontract_get_communication_list_v1_response_t*
-ObjectBuyercontractAPI_buyercontractGetCommunicationListV1(apiClient_t *apiClient, int pkiBuyercontractID );
+ObjectBuyercontractAPI_buyercontractGetCommunicationListV1(apiClient_t *apiClient, int *pkiBuyercontractID);
 
 

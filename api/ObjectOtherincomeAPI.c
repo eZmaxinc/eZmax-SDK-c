@@ -17,7 +17,7 @@
 // 
 //
 otherincome_get_communication_list_v1_response_t*
-ObjectOtherincomeAPI_otherincomeGetCommunicationListV1(apiClient_t *apiClient, int pkiOtherincomeID )
+ObjectOtherincomeAPI_otherincomeGetCommunicationListV1(apiClient_t *apiClient, int *pkiOtherincomeID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -41,7 +41,7 @@ ObjectOtherincomeAPI_otherincomeGetCommunicationListV1(apiClient_t *apiClient, i
     snprintf(localVarToReplace_pkiOtherincomeID, sizeOfPathParams_pkiOtherincomeID, "{%s}", "pkiOtherincomeID");
 
     char localVarBuff_pkiOtherincomeID[256];
-    intToStr(localVarBuff_pkiOtherincomeID, pkiOtherincomeID);
+    intToStr(localVarBuff_pkiOtherincomeID, *pkiOtherincomeID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiOtherincomeID, localVarBuff_pkiOtherincomeID);
 

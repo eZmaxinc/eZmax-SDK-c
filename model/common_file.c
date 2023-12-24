@@ -6,7 +6,7 @@
 
 char* e_file_sourcecommon_file_ToString(ezmax_api_definition__full_common_file_EFILESOURCE_e e_file_source) {
     char* e_file_sourceArray[] =  { "NULL", "Base64", "Url" };
-	return e_file_sourceArray[e_file_source];
+    return e_file_sourceArray[e_file_source];
 }
 
 ezmax_api_definition__full_common_file_EFILESOURCE_e e_file_sourcecommon_file_FromString(char* e_file_source){

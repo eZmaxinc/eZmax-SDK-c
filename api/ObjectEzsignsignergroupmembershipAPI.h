@@ -17,7 +17,7 @@
 // The endpoint allows to create one or many elements at once.
 //
 ezsignsignergroupmembership_create_object_v1_response_t*
-ObjectEzsignsignergroupmembershipAPI_ezsignsignergroupmembershipCreateObjectV1(apiClient_t *apiClient, ezsignsignergroupmembership_create_object_v1_request_t * ezsignsignergroupmembership_create_object_v1_request );
+ObjectEzsignsignergroupmembershipAPI_ezsignsignergroupmembershipCreateObjectV1(apiClient_t *apiClient, ezsignsignergroupmembership_create_object_v1_request_t *ezsignsignergroupmembership_create_object_v1_request);
 
 
 // Delete an existing Ezsignsignergroupmembership
@@ -25,7 +25,7 @@ ObjectEzsignsignergroupmembershipAPI_ezsignsignergroupmembershipCreateObjectV1(a
 // 
 //
 ezsignsignergroupmembership_delete_object_v1_response_t*
-ObjectEzsignsignergroupmembershipAPI_ezsignsignergroupmembershipDeleteObjectV1(apiClient_t *apiClient, int pkiEzsignsignergroupmembershipID );
+ObjectEzsignsignergroupmembershipAPI_ezsignsignergroupmembershipDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignsignergroupmembershipID);
 
 
 // Retrieve an existing Ezsignsignergroupmembership
@@ -33,6 +33,6 @@ ObjectEzsignsignergroupmembershipAPI_ezsignsignergroupmembershipDeleteObjectV1(a
 // 
 //
 ezsignsignergroupmembership_get_object_v2_response_t*
-ObjectEzsignsignergroupmembershipAPI_ezsignsignergroupmembershipGetObjectV2(apiClient_t *apiClient, int pkiEzsignsignergroupmembershipID );
+ObjectEzsignsignergroupmembershipAPI_ezsignsignergroupmembershipGetObjectV2(apiClient_t *apiClient, int *pkiEzsignsignergroupmembershipID);
 
 

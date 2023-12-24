@@ -20,7 +20,7 @@ versionhistory_get_object_v2_response_t* ObjectVersionhistoryAPI_versionhistoryG
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiVersionhistoryID** | **int** |  | 
+**pkiVersionhistoryID** | **int \*** |  | 
 
 ### Return type
 

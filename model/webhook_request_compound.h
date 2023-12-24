@@ -55,6 +55,7 @@ typedef struct webhook_request_compound_t {
     char *s_webhook_url; // string
     char *s_webhook_emailfailed; // string
     int b_webhook_isactive; //boolean
+    int b_webhook_issigned; //boolean
     int b_webhook_skipsslvalidation; //boolean
 
 } webhook_request_compound_t;
@@ -69,6 +70,7 @@ webhook_request_compound_t *webhook_request_compound_create(
     char *s_webhook_url,
     char *s_webhook_emailfailed,
     int b_webhook_isactive,
+    int b_webhook_issigned,
     int b_webhook_skipsslvalidation
 );
 

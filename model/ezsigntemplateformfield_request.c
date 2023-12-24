@@ -6,7 +6,7 @@
 
 char* e_ezsigntemplateformfield_dependencyrequirementezsigntemplateformfield_request_ToString(ezmax_api_definition__full_ezsigntemplateformfield_request__e e_ezsigntemplateformfield_dependencyrequirement) {
     char* e_ezsigntemplateformfield_dependencyrequirementArray[] =  { "NULL", "AllOf", "AnyOf" };
-	return e_ezsigntemplateformfield_dependencyrequirementArray[e_ezsigntemplateformfield_dependencyrequirement];
+    return e_ezsigntemplateformfield_dependencyrequirementArray[e_ezsigntemplateformfield_dependencyrequirement];
 }
 
 ezmax_api_definition__full_ezsigntemplateformfield_request__e e_ezsigntemplateformfield_dependencyrequirementezsigntemplateformfield_request_FromString(char* e_ezsigntemplateformfield_dependencyrequirement){

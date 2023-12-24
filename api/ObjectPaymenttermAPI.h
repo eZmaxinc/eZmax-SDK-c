@@ -36,7 +36,7 @@ typedef enum  { ezmax_api_definition__full_paymenttermGetListV1__NULL = 0, ezmax
 // The endpoint allows to create one or many elements at once.
 //
 paymentterm_create_object_v1_response_t*
-ObjectPaymenttermAPI_paymenttermCreateObjectV1(apiClient_t *apiClient, paymentterm_create_object_v1_request_t * paymentterm_create_object_v1_request );
+ObjectPaymenttermAPI_paymenttermCreateObjectV1(apiClient_t *apiClient, paymentterm_create_object_v1_request_t *paymentterm_create_object_v1_request);
 
 
 // Edit an existing Paymentterm
@@ -44,7 +44,7 @@ ObjectPaymenttermAPI_paymenttermCreateObjectV1(apiClient_t *apiClient, paymentte
 // 
 //
 paymentterm_edit_object_v1_response_t*
-ObjectPaymenttermAPI_paymenttermEditObjectV1(apiClient_t *apiClient, int pkiPaymenttermID , paymentterm_edit_object_v1_request_t * paymentterm_edit_object_v1_request );
+ObjectPaymenttermAPI_paymenttermEditObjectV1(apiClient_t *apiClient, int *pkiPaymenttermID, paymentterm_edit_object_v1_request_t *paymentterm_edit_object_v1_request);
 
 
 // Retrieve Paymentterms and IDs
@@ -52,13 +52,13 @@ ObjectPaymenttermAPI_paymenttermEditObjectV1(apiClient_t *apiClient, int pkiPaym
 // Get the list of Paymentterm to be used in a dropdown or autocomplete control.
 //
 paymentterm_get_autocomplete_v2_response_t*
-ObjectPaymenttermAPI_paymenttermGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_paymenttermGetAutocompleteV2_sSelector_e sSelector , ezmax_api_definition__full_paymenttermGetAutocompleteV2_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language );
+ObjectPaymenttermAPI_paymenttermGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_paymenttermGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_paymenttermGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
 
 
 // Retrieve Paymentterm list
 //
 paymentterm_get_list_v1_response_t*
-ObjectPaymenttermAPI_paymenttermGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_paymenttermGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter );
+ObjectPaymenttermAPI_paymenttermGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_paymenttermGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
 
 
 // Retrieve an existing Paymentterm
@@ -66,6 +66,6 @@ ObjectPaymenttermAPI_paymenttermGetListV1(apiClient_t *apiClient, ezmax_api_defi
 // 
 //
 paymentterm_get_object_v2_response_t*
-ObjectPaymenttermAPI_paymenttermGetObjectV2(apiClient_t *apiClient, int pkiPaymenttermID );
+ObjectPaymenttermAPI_paymenttermGetObjectV2(apiClient_t *apiClient, int *pkiPaymenttermID);
 
 

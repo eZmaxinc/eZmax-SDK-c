@@ -5,13 +5,13 @@
 
 
 char* field_e_ezsignformfieldgroup_type_field_e_ezsignformfieldgroup_type_ToString(ezmax_api_definition__full_field_e_ezsignformfieldgroup_type__e field_e_ezsignformfieldgroup_type) {
-    char *field_e_ezsignformfieldgroup_typeArray[] =  { "NULL", "Text", "Textarea", "Dropdown", "Radio", "Checkbox" };
+    char *field_e_ezsignformfieldgroup_typeArray[] =  { "NULL", "Text", "Textarea", "Dropdown", "Radio", "Checkbox", "Number", "Date" };
     return field_e_ezsignformfieldgroup_typeArray[field_e_ezsignformfieldgroup_type];
 }
 
 ezmax_api_definition__full_field_e_ezsignformfieldgroup_type__e field_e_ezsignformfieldgroup_type_field_e_ezsignformfieldgroup_type_FromString(char* field_e_ezsignformfieldgroup_type) {
     int stringToReturn = 0;
-    char *field_e_ezsignformfieldgroup_typeArray[] =  { "NULL", "Text", "Textarea", "Dropdown", "Radio", "Checkbox" };
+    char *field_e_ezsignformfieldgroup_typeArray[] =  { "NULL", "Text", "Textarea", "Dropdown", "Radio", "Checkbox", "Number", "Date" };
     size_t sizeofArray = sizeof(field_e_ezsignformfieldgroup_typeArray) / sizeof(field_e_ezsignformfieldgroup_typeArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(field_e_ezsignformfieldgroup_type, field_e_ezsignformfieldgroup_typeArray[stringToReturn]) == 0) {

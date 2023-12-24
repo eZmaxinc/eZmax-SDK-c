@@ -17,7 +17,7 @@
 // 
 //
 inscriptionnotauthenticated_get_communication_list_v1_response_t*
-ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunicationListV1(apiClient_t *apiClient, int pkiInscriptionnotauthenticatedID )
+ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunicationListV1(apiClient_t *apiClient, int *pkiInscriptionnotauthenticatedID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -41,7 +41,7 @@ ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunication
     snprintf(localVarToReplace_pkiInscriptionnotauthenticatedID, sizeOfPathParams_pkiInscriptionnotauthenticatedID, "{%s}", "pkiInscriptionnotauthenticatedID");
 
     char localVarBuff_pkiInscriptionnotauthenticatedID[256];
-    intToStr(localVarBuff_pkiInscriptionnotauthenticatedID, pkiInscriptionnotauthenticatedID);
+    intToStr(localVarBuff_pkiInscriptionnotauthenticatedID, *pkiInscriptionnotauthenticatedID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiInscriptionnotauthenticatedID, localVarBuff_pkiInscriptionnotauthenticatedID);
 

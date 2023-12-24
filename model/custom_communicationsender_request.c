@@ -9,6 +9,7 @@ custom_communicationsender_request_t *custom_communicationsender_request_create(
     int fki_agent_id,
     int fki_broker_id,
     int fki_mailboxshared_id,
+    int fki_phonelineshared_id,
     int fki_user_id
     ) {
     custom_communicationsender_request_t *custom_communicationsender_request_local_var = malloc(sizeof(custom_communicationsender_request_t));
@@ -18,6 +19,7 @@ custom_communicationsender_request_t *custom_communicationsender_request_create(
     custom_communicationsender_request_local_var->fki_agent_id = fki_agent_id;
     custom_communicationsender_request_local_var->fki_broker_id = fki_broker_id;
     custom_communicationsender_request_local_var->fki_mailboxshared_id = fki_mailboxshared_id;
+    custom_communicationsender_request_local_var->fki_phonelineshared_id = fki_phonelineshared_id;
     custom_communicationsender_request_local_var->fki_user_id = fki_user_id;
 
     return custom_communicationsender_request_local_var;
@@ -54,6 +56,14 @@ cJSON *custom_communicationsender_request_convertToJSON(custom_communicationsend
     // custom_communicationsender_request->fki_mailboxshared_id
     if(custom_communicationsender_request->fki_mailboxshared_id) {
     if(cJSON_AddNumberToObject(item, "fkiMailboxsharedID", custom_communicationsender_request->fki_mailboxshared_id) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // custom_communicationsender_request->fki_phonelineshared_id
+    if(custom_communicationsender_request->fki_phonelineshared_id) {
+    if(cJSON_AddNumberToObject(item, "fkiPhonelinesharedID", custom_communicationsender_request->fki_phonelineshared_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -105,6 +115,15 @@ custom_communicationsender_request_t *custom_communicationsender_request_parseFr
     }
     }
 
+    // custom_communicationsender_request->fki_phonelineshared_id
+    cJSON *fki_phonelineshared_id = cJSON_GetObjectItemCaseSensitive(custom_communicationsender_requestJSON, "fkiPhonelinesharedID");
+    if (fki_phonelineshared_id) { 
+    if(!cJSON_IsNumber(fki_phonelineshared_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
     // custom_communicationsender_request->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(custom_communicationsender_requestJSON, "fkiUserID");
     if (fki_user_id) { 
@@ -119,6 +138,7 @@ custom_communicationsender_request_t *custom_communicationsender_request_parseFr
         fki_agent_id ? fki_agent_id->valuedouble : 0,
         fki_broker_id ? fki_broker_id->valuedouble : 0,
         fki_mailboxshared_id ? fki_mailboxshared_id->valuedouble : 0,
+        fki_phonelineshared_id ? fki_phonelineshared_id->valuedouble : 0,
         fki_user_id ? fki_user_id->valuedouble : 0
         );
 

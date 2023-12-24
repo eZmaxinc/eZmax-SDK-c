@@ -27,7 +27,7 @@ ezsigntemplate_copy_v1_response_t* ObjectEzsigntemplateAPI_ezsigntemplateCopyV1(
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplateID** | **int** |  | 
+**pkiEzsigntemplateID** | **int \*** |  | 
 **ezsigntemplate_copy_v1_request** | **[ezsigntemplate_copy_v1_request_t](ezsigntemplate_copy_v1_request.md) \*** |  | 
 
 ### Return type
@@ -90,7 +90,7 @@ ezsigntemplate_delete_object_v1_response_t* ObjectEzsigntemplateAPI_ezsigntempla
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplateID** | **int** |  | 
+**pkiEzsigntemplateID** | **int \*** |  | 
 
 ### Return type
 
@@ -121,7 +121,7 @@ ezsigntemplate_edit_object_v1_response_t* ObjectEzsigntemplateAPI_ezsigntemplate
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplateID** | **int** |  | 
+**pkiEzsigntemplateID** | **int \*** |  | 
 **ezsigntemplate_edit_object_v1_request** | **[ezsigntemplate_edit_object_v1_request_t](ezsigntemplate_edit_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -188,8 +188,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **eOrderBy** | **ezmax_api_definition__full_ezsigntemplateGetListV1_eOrderBy_e** | Specify how you want the results to be sorted | [optional] 
-**iRowMax** | **int** |  | [optional] 
-**iRowOffset** | **int** |  | [optional] [default to 0]
+**iRowMax** | **int \*** |  | [optional] 
+**iRowOffset** | **int \*** |  | [optional] [default to 0]
 **Accept_Language** | **header_accept_language_e** |  | [optional] 
 **sFilter** | **char \*** |  | [optional] 
 
@@ -222,7 +222,7 @@ ezsigntemplate_get_object_v1_response_t* ObjectEzsigntemplateAPI_ezsigntemplateG
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplateID** | **int** |  | 
+**pkiEzsigntemplateID** | **int \*** |  | 
 
 ### Return type
 
@@ -253,7 +253,7 @@ ezsigntemplate_get_object_v2_response_t* ObjectEzsigntemplateAPI_ezsigntemplateG
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplateID** | **int** |  | 
+**pkiEzsigntemplateID** | **int \*** |  | 
 
 ### Return type
 

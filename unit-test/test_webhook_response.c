@@ -31,6 +31,9 @@ webhook_response_t* instantiate_webhook_response(int include_optional) {
       ezmax_api_definition__full_webhook_response__"UserCreated",
       "https://www.example.com",
       "email@example.com",
+      "0",
+      "0",
+      true,
       true,
       false
     );
@@ -45,6 +48,9 @@ webhook_response_t* instantiate_webhook_response(int include_optional) {
       ezmax_api_definition__full_webhook_response__"UserCreated",
       "https://www.example.com",
       "email@example.com",
+      "0",
+      "0",
+      true,
       true,
       false
     );

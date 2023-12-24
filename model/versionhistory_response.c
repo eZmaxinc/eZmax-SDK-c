@@ -6,7 +6,7 @@
 
 char* e_versionhistory_usertypeversionhistory_response_ToString(ezmax_api_definition__full_versionhistory_response__e e_versionhistory_usertype) {
     char* e_versionhistory_usertypeArray[] =  { "NULL", "", "AgentBroker", "EzsignUser", "Normal" };
-	return e_versionhistory_usertypeArray[e_versionhistory_usertype];
+    return e_versionhistory_usertypeArray[e_versionhistory_usertype];
 }
 
 ezmax_api_definition__full_versionhistory_response__e e_versionhistory_usertypeversionhistory_response_FromString(char* e_versionhistory_usertype){
@@ -23,7 +23,7 @@ ezmax_api_definition__full_versionhistory_response__e e_versionhistory_usertypev
 }
 char* e_versionhistory_typeversionhistory_response_ToString(ezmax_api_definition__full_versionhistory_response__e e_versionhistory_type) {
     char* e_versionhistory_typeArray[] =  { "NULL", "AgentBroker", "NewFeature", "Correction", "Modification", "ImportantMessage" };
-	return e_versionhistory_typeArray[e_versionhistory_type];
+    return e_versionhistory_typeArray[e_versionhistory_type];
 }
 
 ezmax_api_definition__full_versionhistory_response__e e_versionhistory_typeversionhistory_response_FromString(char* e_versionhistory_type){

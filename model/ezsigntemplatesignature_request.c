@@ -5,13 +5,13 @@
 
 
 char* e_ezsigntemplatesignature_typeezsigntemplatesignature_request_ToString(ezmax_api_definition__full_ezsigntemplatesignature_request__e e_ezsigntemplatesignature_type) {
-    char* e_ezsigntemplatesignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name", "Attachments", "FieldText", "FieldTextarea" };
-	return e_ezsigntemplatesignature_typeArray[e_ezsigntemplatesignature_type];
+    char* e_ezsigntemplatesignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name", "NameReason", "Attachments", "FieldText", "FieldTextarea" };
+    return e_ezsigntemplatesignature_typeArray[e_ezsigntemplatesignature_type];
 }
 
 ezmax_api_definition__full_ezsigntemplatesignature_request__e e_ezsigntemplatesignature_typeezsigntemplatesignature_request_FromString(char* e_ezsigntemplatesignature_type){
     int stringToReturn = 0;
-    char *e_ezsigntemplatesignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name", "Attachments", "FieldText", "FieldTextarea" };
+    char *e_ezsigntemplatesignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name", "NameReason", "Attachments", "FieldText", "FieldTextarea" };
     size_t sizeofArray = sizeof(e_ezsigntemplatesignature_typeArray) / sizeof(e_ezsigntemplatesignature_typeArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(e_ezsigntemplatesignature_type, e_ezsigntemplatesignature_typeArray[stringToReturn]) == 0) {
@@ -23,7 +23,7 @@ ezmax_api_definition__full_ezsigntemplatesignature_request__e e_ezsigntemplatesi
 }
 char* e_ezsigntemplatesignature_tooltippositionezsigntemplatesignature_request_ToString(ezmax_api_definition__full_ezsigntemplatesignature_request__e e_ezsigntemplatesignature_tooltipposition) {
     char* e_ezsigntemplatesignature_tooltippositionArray[] =  { "NULL", "TopLeft", "TopCenter", "TopRight", "MiddleLeft", "MiddleRight", "BottomLeft", "BottomCenter", "BottomRight" };
-	return e_ezsigntemplatesignature_tooltippositionArray[e_ezsigntemplatesignature_tooltipposition];
+    return e_ezsigntemplatesignature_tooltippositionArray[e_ezsigntemplatesignature_tooltipposition];
 }
 
 ezmax_api_definition__full_ezsigntemplatesignature_request__e e_ezsigntemplatesignature_tooltippositionezsigntemplatesignature_request_FromString(char* e_ezsigntemplatesignature_tooltipposition){
@@ -40,7 +40,7 @@ ezmax_api_definition__full_ezsigntemplatesignature_request__e e_ezsigntemplatesi
 }
 char* e_ezsigntemplatesignature_fontezsigntemplatesignature_request_ToString(ezmax_api_definition__full_ezsigntemplatesignature_request__e e_ezsigntemplatesignature_font) {
     char* e_ezsigntemplatesignature_fontArray[] =  { "NULL", "Normal", "Cursive" };
-	return e_ezsigntemplatesignature_fontArray[e_ezsigntemplatesignature_font];
+    return e_ezsigntemplatesignature_fontArray[e_ezsigntemplatesignature_font];
 }
 
 ezmax_api_definition__full_ezsigntemplatesignature_request__e e_ezsigntemplatesignature_fontezsigntemplatesignature_request_FromString(char* e_ezsigntemplatesignature_font){
@@ -57,7 +57,7 @@ ezmax_api_definition__full_ezsigntemplatesignature_request__e e_ezsigntemplatesi
 }
 char* e_ezsigntemplatesignature_attachmentnamesourceezsigntemplatesignature_request_ToString(ezmax_api_definition__full_ezsigntemplatesignature_request__e e_ezsigntemplatesignature_attachmentnamesource) {
     char* e_ezsigntemplatesignature_attachmentnamesourceArray[] =  { "NULL", "Description", "Customer", "DescriptionCustomer" };
-	return e_ezsigntemplatesignature_attachmentnamesourceArray[e_ezsigntemplatesignature_attachmentnamesource];
+    return e_ezsigntemplatesignature_attachmentnamesourceArray[e_ezsigntemplatesignature_attachmentnamesource];
 }
 
 ezmax_api_definition__full_ezsigntemplatesignature_request__e e_ezsigntemplatesignature_attachmentnamesourceezsigntemplatesignature_request_FromString(char* e_ezsigntemplatesignature_attachmentnamesource){
@@ -74,7 +74,7 @@ ezmax_api_definition__full_ezsigntemplatesignature_request__e e_ezsigntemplatesi
 }
 char* e_ezsigntemplatesignature_textvalidationezsigntemplatesignature_request_ToString(ezmax_api_definition__full_ezsigntemplatesignature_request__e e_ezsigntemplatesignature_textvalidation) {
     char* e_ezsigntemplatesignature_textvalidationArray[] =  { "NULL", "None", "Date (YYYY-MM-DD)", "Date (MM/DD/YYYY)", "Date (MM/DD/YY)", "Date (DD/MM/YYYY)", "Date (DD/MM/YY)", "Email", "Letters", "Numbers", "Zip", "Zip+4", "PostalCode", "Custom" };
-	return e_ezsigntemplatesignature_textvalidationArray[e_ezsigntemplatesignature_textvalidation];
+    return e_ezsigntemplatesignature_textvalidationArray[e_ezsigntemplatesignature_textvalidation];
 }
 
 ezmax_api_definition__full_ezsigntemplatesignature_request__e e_ezsigntemplatesignature_textvalidationezsigntemplatesignature_request_FromString(char* e_ezsigntemplatesignature_textvalidation){
@@ -91,7 +91,7 @@ ezmax_api_definition__full_ezsigntemplatesignature_request__e e_ezsigntemplatesi
 }
 char* e_ezsigntemplatesignature_dependencyrequirementezsigntemplatesignature_request_ToString(ezmax_api_definition__full_ezsigntemplatesignature_request__e e_ezsigntemplatesignature_dependencyrequirement) {
     char* e_ezsigntemplatesignature_dependencyrequirementArray[] =  { "NULL", "AllOf", "AnyOf" };
-	return e_ezsigntemplatesignature_dependencyrequirementArray[e_ezsigntemplatesignature_dependencyrequirement];
+    return e_ezsigntemplatesignature_dependencyrequirementArray[e_ezsigntemplatesignature_dependencyrequirement];
 }
 
 ezmax_api_definition__full_ezsigntemplatesignature_request__e e_ezsigntemplatesignature_dependencyrequirementezsigntemplatesignature_request_FromString(char* e_ezsigntemplatesignature_dependencyrequirement){

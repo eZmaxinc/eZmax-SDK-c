@@ -6,7 +6,7 @@
 
 char* e_ezsignelementdependency_validationezsignelementdependency_response_ToString(ezmax_api_definition__full_ezsignelementdependency_response__e e_ezsignelementdependency_validation) {
     char* e_ezsignelementdependency_validationArray[] =  { "NULL", "Value", "Selected", "Filled" };
-	return e_ezsignelementdependency_validationArray[e_ezsignelementdependency_validation];
+    return e_ezsignelementdependency_validationArray[e_ezsignelementdependency_validation];
 }
 
 ezmax_api_definition__full_ezsignelementdependency_response__e e_ezsignelementdependency_validationezsignelementdependency_response_FromString(char* e_ezsignelementdependency_validation){
@@ -23,7 +23,7 @@ ezmax_api_definition__full_ezsignelementdependency_response__e e_ezsignelementde
 }
 char* e_ezsignelementdependency_operatorezsignelementdependency_response_ToString(ezmax_api_definition__full_ezsignelementdependency_response__e e_ezsignelementdependency_operator) {
     char* e_ezsignelementdependency_operatorArray[] =  { "NULL", "eq", "neq", "gt", "gte", "lt", "lte", "in", "nin", "rg", "like", "between" };
-	return e_ezsignelementdependency_operatorArray[e_ezsignelementdependency_operator];
+    return e_ezsignelementdependency_operatorArray[e_ezsignelementdependency_operator];
 }
 
 ezmax_api_definition__full_ezsignelementdependency_response__e e_ezsignelementdependency_operatorezsignelementdependency_response_FromString(char* e_ezsignelementdependency_operator){

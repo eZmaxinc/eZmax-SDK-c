@@ -24,8 +24,11 @@ custom_ezsignfoldertype_response_t* instantiate_custom_ezsignfoldertype_response
     custom_ezsignfoldertype_response = custom_ezsignfoldertype_response_create(
       5,
       "Default",
+      false,
       true,
       true,
+      false,
+      false,
       true,
       true
     );
@@ -33,8 +36,11 @@ custom_ezsignfoldertype_response_t* instantiate_custom_ezsignfoldertype_response
     custom_ezsignfoldertype_response = custom_ezsignfoldertype_response_create(
       5,
       "Default",
+      false,
       true,
       true,
+      false,
+      false,
       true,
       true
     );

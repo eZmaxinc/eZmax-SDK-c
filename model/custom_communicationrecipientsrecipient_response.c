@@ -6,7 +6,7 @@
 
 char* e_communicationrecipientsrecipient_objecttypecustom_communicationrecipientsrecipient_response_ToString(ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_e e_communicationrecipientsrecipient_objecttype) {
     char* e_communicationrecipientsrecipient_objecttypeArray[] =  { "NULL", "Agent", "Agentincorporation", "Assistant", "Broker", "Contact", "Customer", "Employee", "Externalbroker", "Ezcomagent", "Ezcomcompany", "Ezsignsigner", "Franchiseoffice", "Notary", "Rewardmember", "Supplier", "User" };
-	return e_communicationrecipientsrecipient_objecttypeArray[e_communicationrecipientsrecipient_objecttype];
+    return e_communicationrecipientsrecipient_objecttypeArray[e_communicationrecipientsrecipient_objecttype];
 }
 
 ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_e e_communicationrecipientsrecipient_objecttypecustom_communicationrecipientsrecipient_response_FromString(char* e_communicationrecipientsrecipient_objecttype){

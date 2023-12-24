@@ -112,7 +112,7 @@ end:
 // The endpoint allows to create one or many elements at once.
 //
 apikey_create_object_v2_response_t*
-ObjectApikeyAPI_apikeyCreateObjectV2(apiClient_t *apiClient, apikey_create_object_v2_request_t * apikey_create_object_v2_request )
+ObjectApikeyAPI_apikeyCreateObjectV2(apiClient_t *apiClient, apikey_create_object_v2_request_t *apikey_create_object_v2_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -190,7 +190,7 @@ end:
 // 
 //
 apikey_edit_object_v1_response_t*
-ObjectApikeyAPI_apikeyEditObjectV1(apiClient_t *apiClient, int pkiApikeyID , apikey_edit_object_v1_request_t * apikey_edit_object_v1_request )
+ObjectApikeyAPI_apikeyEditObjectV1(apiClient_t *apiClient, int *pkiApikeyID, apikey_edit_object_v1_request_t *apikey_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -214,7 +214,7 @@ ObjectApikeyAPI_apikeyEditObjectV1(apiClient_t *apiClient, int pkiApikeyID , api
     snprintf(localVarToReplace_pkiApikeyID, sizeOfPathParams_pkiApikeyID, "{%s}", "pkiApikeyID");
 
     char localVarBuff_pkiApikeyID[256];
-    intToStr(localVarBuff_pkiApikeyID, pkiApikeyID);
+    intToStr(localVarBuff_pkiApikeyID, *pkiApikeyID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiApikeyID, localVarBuff_pkiApikeyID);
 
@@ -291,7 +291,7 @@ end:
 // Using this endpoint, you can edit multiple Permissions at the same time.
 //
 apikey_edit_permissions_v1_response_t*
-ObjectApikeyAPI_apikeyEditPermissionsV1(apiClient_t *apiClient, int pkiApikeyID , apikey_edit_permissions_v1_request_t * apikey_edit_permissions_v1_request )
+ObjectApikeyAPI_apikeyEditPermissionsV1(apiClient_t *apiClient, int *pkiApikeyID, apikey_edit_permissions_v1_request_t *apikey_edit_permissions_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -315,7 +315,7 @@ ObjectApikeyAPI_apikeyEditPermissionsV1(apiClient_t *apiClient, int pkiApikeyID 
     snprintf(localVarToReplace_pkiApikeyID, sizeOfPathParams_pkiApikeyID, "{%s}", "pkiApikeyID");
 
     char localVarBuff_pkiApikeyID[256];
-    intToStr(localVarBuff_pkiApikeyID, pkiApikeyID);
+    intToStr(localVarBuff_pkiApikeyID, *pkiApikeyID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiApikeyID, localVarBuff_pkiApikeyID);
 
@@ -390,7 +390,7 @@ end:
 // Retrieve an existing Apikey's cors
 //
 apikey_get_cors_v1_response_t*
-ObjectApikeyAPI_apikeyGetCorsV1(apiClient_t *apiClient, int pkiApikeyID )
+ObjectApikeyAPI_apikeyGetCorsV1(apiClient_t *apiClient, int *pkiApikeyID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -414,7 +414,7 @@ ObjectApikeyAPI_apikeyGetCorsV1(apiClient_t *apiClient, int pkiApikeyID )
     snprintf(localVarToReplace_pkiApikeyID, sizeOfPathParams_pkiApikeyID, "{%s}", "pkiApikeyID");
 
     char localVarBuff_pkiApikeyID[256];
-    intToStr(localVarBuff_pkiApikeyID, pkiApikeyID);
+    intToStr(localVarBuff_pkiApikeyID, *pkiApikeyID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiApikeyID, localVarBuff_pkiApikeyID);
 
@@ -472,7 +472,7 @@ end:
 // Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---|
 //
 apikey_get_list_v1_response_t*
-ObjectApikeyAPI_apikeyGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_apikeyGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter )
+ObjectApikeyAPI_apikeyGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_apikeyGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -510,7 +510,7 @@ ObjectApikeyAPI_apikeyGetListV1(apiClient_t *apiClient, ezmax_api_definition__fu
         keyQuery_eOrderBy = strdup("eOrderBy");
         valueQuery_eOrderBy = (eOrderBy);
         keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, (void *)strdup(apikeyGetListV1_EORDERBY_ToString(
-		valueQuery_eOrderBy)));
+        valueQuery_eOrderBy)));
         list_addElement(localVarQueryParameters,keyPairQuery_eOrderBy);
     }
 
@@ -518,11 +518,11 @@ ObjectApikeyAPI_apikeyGetListV1(apiClient_t *apiClient, ezmax_api_definition__fu
     char *keyQuery_iRowMax = NULL;
     char * valueQuery_iRowMax = NULL;
     keyValuePair_t *keyPairQuery_iRowMax = 0;
-    if (1) // Always send integer parameters to the API server
+    if (iRowMax)
     {
         keyQuery_iRowMax = strdup("iRowMax");
         valueQuery_iRowMax = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_iRowMax, MAX_NUMBER_LENGTH, "%d", iRowMax);
+        snprintf(valueQuery_iRowMax, MAX_NUMBER_LENGTH, "%d", *iRowMax);
         keyPairQuery_iRowMax = keyValuePair_create(keyQuery_iRowMax, valueQuery_iRowMax);
         list_addElement(localVarQueryParameters,keyPairQuery_iRowMax);
     }
@@ -531,11 +531,11 @@ ObjectApikeyAPI_apikeyGetListV1(apiClient_t *apiClient, ezmax_api_definition__fu
     char *keyQuery_iRowOffset = NULL;
     char * valueQuery_iRowOffset = NULL;
     keyValuePair_t *keyPairQuery_iRowOffset = 0;
-    if (1) // Always send integer parameters to the API server
+    if (iRowOffset)
     {
         keyQuery_iRowOffset = strdup("iRowOffset");
         valueQuery_iRowOffset = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_iRowOffset, MAX_NUMBER_LENGTH, "%d", iRowOffset);
+        snprintf(valueQuery_iRowOffset, MAX_NUMBER_LENGTH, "%d", *iRowOffset);
         keyPairQuery_iRowOffset = keyValuePair_create(keyQuery_iRowOffset, valueQuery_iRowOffset);
         list_addElement(localVarQueryParameters,keyPairQuery_iRowOffset);
     }
@@ -652,7 +652,7 @@ end:
 // 
 //
 apikey_get_object_v2_response_t*
-ObjectApikeyAPI_apikeyGetObjectV2(apiClient_t *apiClient, int pkiApikeyID )
+ObjectApikeyAPI_apikeyGetObjectV2(apiClient_t *apiClient, int *pkiApikeyID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -676,7 +676,7 @@ ObjectApikeyAPI_apikeyGetObjectV2(apiClient_t *apiClient, int pkiApikeyID )
     snprintf(localVarToReplace_pkiApikeyID, sizeOfPathParams_pkiApikeyID, "{%s}", "pkiApikeyID");
 
     char localVarBuff_pkiApikeyID[256];
-    intToStr(localVarBuff_pkiApikeyID, pkiApikeyID);
+    intToStr(localVarBuff_pkiApikeyID, *pkiApikeyID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiApikeyID, localVarBuff_pkiApikeyID);
 
@@ -732,7 +732,7 @@ end:
 // Retrieve an existing Apikey's Permissions
 //
 apikey_get_permissions_v1_response_t*
-ObjectApikeyAPI_apikeyGetPermissionsV1(apiClient_t *apiClient, int pkiApikeyID )
+ObjectApikeyAPI_apikeyGetPermissionsV1(apiClient_t *apiClient, int *pkiApikeyID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -756,7 +756,7 @@ ObjectApikeyAPI_apikeyGetPermissionsV1(apiClient_t *apiClient, int pkiApikeyID )
     snprintf(localVarToReplace_pkiApikeyID, sizeOfPathParams_pkiApikeyID, "{%s}", "pkiApikeyID");
 
     char localVarBuff_pkiApikeyID[256];
-    intToStr(localVarBuff_pkiApikeyID, pkiApikeyID);
+    intToStr(localVarBuff_pkiApikeyID, *pkiApikeyID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiApikeyID, localVarBuff_pkiApikeyID);
 
@@ -812,7 +812,7 @@ end:
 // Retrieve an existing Apikey's subnets
 //
 apikey_get_subnets_v1_response_t*
-ObjectApikeyAPI_apikeyGetSubnetsV1(apiClient_t *apiClient, int pkiApikeyID )
+ObjectApikeyAPI_apikeyGetSubnetsV1(apiClient_t *apiClient, int *pkiApikeyID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -836,7 +836,7 @@ ObjectApikeyAPI_apikeyGetSubnetsV1(apiClient_t *apiClient, int pkiApikeyID )
     snprintf(localVarToReplace_pkiApikeyID, sizeOfPathParams_pkiApikeyID, "{%s}", "pkiApikeyID");
 
     char localVarBuff_pkiApikeyID[256];
-    intToStr(localVarBuff_pkiApikeyID, pkiApikeyID);
+    intToStr(localVarBuff_pkiApikeyID, *pkiApikeyID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiApikeyID, localVarBuff_pkiApikeyID);
 
@@ -894,7 +894,7 @@ end:
 // 
 //
 apikey_regenerate_v1_response_t*
-ObjectApikeyAPI_apikeyRegenerateV1(apiClient_t *apiClient, int pkiApikeyID , apikey_regenerate_v1_request_t * apikey_regenerate_v1_request )
+ObjectApikeyAPI_apikeyRegenerateV1(apiClient_t *apiClient, int *pkiApikeyID, apikey_regenerate_v1_request_t *apikey_regenerate_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -918,7 +918,7 @@ ObjectApikeyAPI_apikeyRegenerateV1(apiClient_t *apiClient, int pkiApikeyID , api
     snprintf(localVarToReplace_pkiApikeyID, sizeOfPathParams_pkiApikeyID, "{%s}", "pkiApikeyID");
 
     char localVarBuff_pkiApikeyID[256];
-    intToStr(localVarBuff_pkiApikeyID, pkiApikeyID);
+    intToStr(localVarBuff_pkiApikeyID, *pkiApikeyID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiApikeyID, localVarBuff_pkiApikeyID);
 

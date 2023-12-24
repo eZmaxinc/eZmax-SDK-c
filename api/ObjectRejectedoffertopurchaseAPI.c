@@ -17,7 +17,7 @@
 // 
 //
 rejectedoffertopurchase_get_communication_list_v1_response_t*
-ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseGetCommunicationListV1(apiClient_t *apiClient, int pkiRejectedoffertopurchaseID )
+ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseGetCommunicationListV1(apiClient_t *apiClient, int *pkiRejectedoffertopurchaseID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -41,7 +41,7 @@ ObjectRejectedoffertopurchaseAPI_rejectedoffertopurchaseGetCommunicationListV1(a
     snprintf(localVarToReplace_pkiRejectedoffertopurchaseID, sizeOfPathParams_pkiRejectedoffertopurchaseID, "{%s}", "pkiRejectedoffertopurchaseID");
 
     char localVarBuff_pkiRejectedoffertopurchaseID[256];
-    intToStr(localVarBuff_pkiRejectedoffertopurchaseID, pkiRejectedoffertopurchaseID);
+    intToStr(localVarBuff_pkiRejectedoffertopurchaseID, *pkiRejectedoffertopurchaseID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiRejectedoffertopurchaseID, localVarBuff_pkiRejectedoffertopurchaseID);
 

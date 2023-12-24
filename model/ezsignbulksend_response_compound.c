@@ -6,7 +6,7 @@
 
 char* e_ezsignfoldertype_privacylevelezsignbulksend_response_compound_ToString(ezmax_api_definition__full_ezsignbulksend_response_compound__e e_ezsignfoldertype_privacylevel) {
     char* e_ezsignfoldertype_privacylevelArray[] =  { "NULL", "User", "Usergroup" };
-	return e_ezsignfoldertype_privacylevelArray[e_ezsignfoldertype_privacylevel];
+    return e_ezsignfoldertype_privacylevelArray[e_ezsignfoldertype_privacylevel];
 }
 
 ezmax_api_definition__full_ezsignbulksend_response_compound__e e_ezsignfoldertype_privacylevelezsignbulksend_response_compound_FromString(char* e_ezsignfoldertype_privacylevel){

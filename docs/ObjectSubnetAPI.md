@@ -54,7 +54,7 @@ subnet_delete_object_v1_response_t* ObjectSubnetAPI_subnetDeleteObjectV1(apiClie
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiSubnetID** | **int** | The unique ID of the Subnet | 
+**pkiSubnetID** | **int \*** | The unique ID of the Subnet | 
 
 ### Return type
 
@@ -85,7 +85,7 @@ subnet_edit_object_v1_response_t* ObjectSubnetAPI_subnetEditObjectV1(apiClient_t
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiSubnetID** | **int** | The unique ID of the Subnet | 
+**pkiSubnetID** | **int \*** | The unique ID of the Subnet | 
 **subnet_edit_object_v1_request** | **[subnet_edit_object_v1_request_t](subnet_edit_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -117,7 +117,7 @@ subnet_get_object_v2_response_t* ObjectSubnetAPI_subnetGetObjectV2(apiClient_t *
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiSubnetID** | **int** | The unique ID of the Subnet | 
+**pkiSubnetID** | **int \*** | The unique ID of the Subnet | 
 
 ### Return type
 

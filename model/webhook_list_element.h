@@ -55,6 +55,7 @@ typedef struct webhook_list_element_t {
     field_e_webhook_ezsignevent_t *e_webhook_ezsignevent; // custom
     field_e_webhook_managementevent_t *e_webhook_managementevent; // custom
     int b_webhook_isactive; //boolean
+    int b_webhook_issigned; //boolean
 
 } webhook_list_element_t;
 
@@ -67,7 +68,8 @@ webhook_list_element_t *webhook_list_element_create(
     field_e_webhook_module_t *e_webhook_module,
     field_e_webhook_ezsignevent_t *e_webhook_ezsignevent,
     field_e_webhook_managementevent_t *e_webhook_managementevent,
-    int b_webhook_isactive
+    int b_webhook_isactive,
+    int b_webhook_issigned
 );
 
 void webhook_list_element_free(webhook_list_element_t *webhook_list_element);

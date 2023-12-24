@@ -55,7 +55,7 @@ variableexpense_edit_object_v1_response_t* ObjectVariableexpenseAPI_variableexpe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiVariableexpenseID** | **int** |  | 
+**pkiVariableexpenseID** | **int \*** |  | 
 **variableexpense_edit_object_v1_request** | **[variableexpense_edit_object_v1_request_t](variableexpense_edit_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -122,8 +122,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **eOrderBy** | **ezmax_api_definition__full_variableexpenseGetListV1_eOrderBy_e** | Specify how you want the results to be sorted | [optional] 
-**iRowMax** | **int** |  | [optional] 
-**iRowOffset** | **int** |  | [optional] [default to 0]
+**iRowMax** | **int \*** |  | [optional] 
+**iRowOffset** | **int \*** |  | [optional] [default to 0]
 **Accept_Language** | **header_accept_language_e** |  | [optional] 
 **sFilter** | **char \*** |  | [optional] 
 
@@ -156,7 +156,7 @@ variableexpense_get_object_v2_response_t* ObjectVariableexpenseAPI_variableexpen
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiVariableexpenseID** | **int** |  | 
+**pkiVariableexpenseID** | **int \*** |  | 
 
 ### Return type
 

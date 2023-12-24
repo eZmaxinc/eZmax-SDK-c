@@ -6,7 +6,7 @@
 
 char* e_webhook_modulewebhook_list_element_ToString(ezmax_api_definition__full_webhook_list_element__e e_webhook_module) {
     char* e_webhook_moduleArray[] =  { "NULL", "Ezsign", "Management" };
-	return e_webhook_moduleArray[e_webhook_module];
+    return e_webhook_moduleArray[e_webhook_module];
 }
 
 ezmax_api_definition__full_webhook_list_element__e e_webhook_modulewebhook_list_element_FromString(char* e_webhook_module){
@@ -23,7 +23,7 @@ ezmax_api_definition__full_webhook_list_element__e e_webhook_modulewebhook_list_
 }
 char* e_webhook_ezsigneventwebhook_list_element_ToString(ezmax_api_definition__full_webhook_list_element__e e_webhook_ezsignevent) {
     char* e_webhook_ezsigneventArray[] =  { "NULL", "DocumentCompleted", "EzsignsignerAcceptclause", "EzsignsignerConnect", "FolderCompleted" };
-	return e_webhook_ezsigneventArray[e_webhook_ezsignevent];
+    return e_webhook_ezsigneventArray[e_webhook_ezsignevent];
 }
 
 ezmax_api_definition__full_webhook_list_element__e e_webhook_ezsigneventwebhook_list_element_FromString(char* e_webhook_ezsignevent){
@@ -40,7 +40,7 @@ ezmax_api_definition__full_webhook_list_element__e e_webhook_ezsigneventwebhook_
 }
 char* e_webhook_managementeventwebhook_list_element_ToString(ezmax_api_definition__full_webhook_list_element__e e_webhook_managementevent) {
     char* e_webhook_managementeventArray[] =  { "NULL", "UserCreated", "UserstagedCreated" };
-	return e_webhook_managementeventArray[e_webhook_managementevent];
+    return e_webhook_managementeventArray[e_webhook_managementevent];
 }
 
 ezmax_api_definition__full_webhook_list_element__e e_webhook_managementeventwebhook_list_element_FromString(char* e_webhook_managementevent){
@@ -65,7 +65,8 @@ webhook_list_element_t *webhook_list_element_create(
     field_e_webhook_module_t *e_webhook_module,
     field_e_webhook_ezsignevent_t *e_webhook_ezsignevent,
     field_e_webhook_managementevent_t *e_webhook_managementevent,
-    int b_webhook_isactive
+    int b_webhook_isactive,
+    int b_webhook_issigned
     ) {
     webhook_list_element_t *webhook_list_element_local_var = malloc(sizeof(webhook_list_element_t));
     if (!webhook_list_element_local_var) {
@@ -80,6 +81,7 @@ webhook_list_element_t *webhook_list_element_create(
     webhook_list_element_local_var->e_webhook_ezsignevent = e_webhook_ezsignevent;
     webhook_list_element_local_var->e_webhook_managementevent = e_webhook_managementevent;
     webhook_list_element_local_var->b_webhook_isactive = b_webhook_isactive;
+    webhook_list_element_local_var->b_webhook_issigned = b_webhook_issigned;
 
     return webhook_list_element_local_var;
 }
@@ -217,6 +219,15 @@ cJSON *webhook_list_element_convertToJSON(webhook_list_element_t *webhook_list_e
     goto fail; //Bool
     }
 
+
+    // webhook_list_element->b_webhook_issigned
+    if (!webhook_list_element->b_webhook_issigned) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "bWebhookIssigned", webhook_list_element->b_webhook_issigned) == NULL) {
+    goto fail; //Bool
+    }
+
     return item;
 fail:
     if (item) {
@@ -331,6 +342,18 @@ webhook_list_element_t *webhook_list_element_parseFromJSON(cJSON *webhook_list_e
     goto end; //Bool
     }
 
+    // webhook_list_element->b_webhook_issigned
+    cJSON *b_webhook_issigned = cJSON_GetObjectItemCaseSensitive(webhook_list_elementJSON, "bWebhookIssigned");
+    if (!b_webhook_issigned) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(b_webhook_issigned))
+    {
+    goto end; //Bool
+    }
+
 
     webhook_list_element_local_var = webhook_list_element_create (
         pki_webhook_id->valuedouble,
@@ -341,7 +364,8 @@ webhook_list_element_t *webhook_list_element_parseFromJSON(cJSON *webhook_list_e
         e_webhook_module_local_nonprim,
         e_webhook_ezsignevent ? e_webhook_ezsignevent_local_nonprim : NULL,
         e_webhook_managementevent ? e_webhook_managementevent_local_nonprim : NULL,
-        b_webhook_isactive->valueint
+        b_webhook_isactive->valueint,
+        b_webhook_issigned->valueint
         );
 
     return webhook_list_element_local_var;

@@ -17,7 +17,7 @@
 // 
 //
 buyercontract_get_communication_list_v1_response_t*
-ObjectBuyercontractAPI_buyercontractGetCommunicationListV1(apiClient_t *apiClient, int pkiBuyercontractID )
+ObjectBuyercontractAPI_buyercontractGetCommunicationListV1(apiClient_t *apiClient, int *pkiBuyercontractID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -41,7 +41,7 @@ ObjectBuyercontractAPI_buyercontractGetCommunicationListV1(apiClient_t *apiClien
     snprintf(localVarToReplace_pkiBuyercontractID, sizeOfPathParams_pkiBuyercontractID, "{%s}", "pkiBuyercontractID");
 
     char localVarBuff_pkiBuyercontractID[256];
-    intToStr(localVarBuff_pkiBuyercontractID, pkiBuyercontractID);
+    intToStr(localVarBuff_pkiBuyercontractID, *pkiBuyercontractID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiBuyercontractID, localVarBuff_pkiBuyercontractID);
 

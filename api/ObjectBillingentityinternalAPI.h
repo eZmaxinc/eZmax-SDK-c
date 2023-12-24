@@ -36,7 +36,7 @@ typedef enum  { ezmax_api_definition__full_billingentityinternalGetListV1__NULL 
 // The endpoint allows to create one or many elements at once.
 //
 billingentityinternal_create_object_v1_response_t*
-ObjectBillingentityinternalAPI_billingentityinternalCreateObjectV1(apiClient_t *apiClient, billingentityinternal_create_object_v1_request_t * billingentityinternal_create_object_v1_request );
+ObjectBillingentityinternalAPI_billingentityinternalCreateObjectV1(apiClient_t *apiClient, billingentityinternal_create_object_v1_request_t *billingentityinternal_create_object_v1_request);
 
 
 // Edit an existing Billingentityinternal
@@ -44,7 +44,7 @@ ObjectBillingentityinternalAPI_billingentityinternalCreateObjectV1(apiClient_t *
 // 
 //
 billingentityinternal_edit_object_v1_response_t*
-ObjectBillingentityinternalAPI_billingentityinternalEditObjectV1(apiClient_t *apiClient, int pkiBillingentityinternalID , billingentityinternal_edit_object_v1_request_t * billingentityinternal_edit_object_v1_request );
+ObjectBillingentityinternalAPI_billingentityinternalEditObjectV1(apiClient_t *apiClient, int *pkiBillingentityinternalID, billingentityinternal_edit_object_v1_request_t *billingentityinternal_edit_object_v1_request);
 
 
 // Retrieve Billingentityinternals and IDs
@@ -52,7 +52,7 @@ ObjectBillingentityinternalAPI_billingentityinternalEditObjectV1(apiClient_t *ap
 // Get the list of Billingentityinternal to be used in a dropdown or autocomplete control.
 //
 billingentityinternal_get_autocomplete_v2_response_t*
-ObjectBillingentityinternalAPI_billingentityinternalGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_billingentityinternalGetAutocompleteV2_sSelector_e sSelector , ezmax_api_definition__full_billingentityinternalGetAutocompleteV2_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language );
+ObjectBillingentityinternalAPI_billingentityinternalGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_billingentityinternalGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_billingentityinternalGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
 
 
 // Retrieve Billingentityinternal list
@@ -60,7 +60,7 @@ ObjectBillingentityinternalAPI_billingentityinternalGetAutocompleteV2(apiClient_
 // 
 //
 billingentityinternal_get_list_v1_response_t*
-ObjectBillingentityinternalAPI_billingentityinternalGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_billingentityinternalGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter );
+ObjectBillingentityinternalAPI_billingentityinternalGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_billingentityinternalGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
 
 
 // Retrieve an existing Billingentityinternal
@@ -68,6 +68,6 @@ ObjectBillingentityinternalAPI_billingentityinternalGetListV1(apiClient_t *apiCl
 // 
 //
 billingentityinternal_get_object_v2_response_t*
-ObjectBillingentityinternalAPI_billingentityinternalGetObjectV2(apiClient_t *apiClient, int pkiBillingentityinternalID );
+ObjectBillingentityinternalAPI_billingentityinternalGetObjectV2(apiClient_t *apiClient, int *pkiBillingentityinternalID);
 
 

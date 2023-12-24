@@ -39,7 +39,7 @@ typedef enum  { ezmax_api_definition__full_ezsigntemplatepackageGetListV1__NULL 
 // The endpoint allows to create one or many elements at once.
 //
 ezsigntemplatepackage_create_object_v1_response_t*
-ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageCreateObjectV1(apiClient_t *apiClient, ezsigntemplatepackage_create_object_v1_request_t * ezsigntemplatepackage_create_object_v1_request );
+ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageCreateObjectV1(apiClient_t *apiClient, ezsigntemplatepackage_create_object_v1_request_t *ezsigntemplatepackage_create_object_v1_request);
 
 
 // Delete an existing Ezsigntemplatepackage
@@ -47,7 +47,7 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageCreateObjectV1(apiClient_t *
 // 
 //
 ezsigntemplatepackage_delete_object_v1_response_t*
-ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageDeleteObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatepackageID );
+ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatepackageID);
 
 
 // Edit multiple Ezsigntemplatepackagesigners
@@ -55,7 +55,7 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageDeleteObjectV1(apiClient_t *
 // Using this endpoint, you can edit multiple Ezsigntemplatepackagesigners at the same time.
 //
 ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_t*
-ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditEzsigntemplatepackagesignersV1(apiClient_t *apiClient, int pkiEzsigntemplatepackageID , ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_request_t * ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_request );
+ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditEzsigntemplatepackagesignersV1(apiClient_t *apiClient, int *pkiEzsigntemplatepackageID, ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_request_t *ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_request);
 
 
 // Edit an existing Ezsigntemplatepackage
@@ -63,7 +63,7 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditEzsigntemplatepackagesig
 // 
 //
 ezsigntemplatepackage_edit_object_v1_response_t*
-ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatepackageID , ezsigntemplatepackage_edit_object_v1_request_t * ezsigntemplatepackage_edit_object_v1_request );
+ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatepackageID, ezsigntemplatepackage_edit_object_v1_request_t *ezsigntemplatepackage_edit_object_v1_request);
 
 
 // Retrieve Ezsigntemplatepackages and IDs
@@ -71,7 +71,7 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditObjectV1(apiClient_t *ap
 // Get the list of Ezsigntemplatepackage to be used in a dropdown or autocomplete control.
 //
 ezsigntemplatepackage_get_autocomplete_v2_response_t*
-ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_sSelector_e sSelector , ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language );
+ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
 
 
 // Retrieve Ezsigntemplatepackage list
@@ -79,7 +79,7 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV2(apiClient_
 // Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eEzsigntemplatepackageType | Company<br>Team<br>User<br>Usergroup |
 //
 ezsigntemplatepackage_get_list_v1_response_t*
-ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplatepackageGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter );
+ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplatepackageGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
 
 
 // Retrieve an existing Ezsigntemplatepackage
@@ -87,6 +87,6 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetListV1(apiClient_t *apiCl
 // 
 //
 ezsigntemplatepackage_get_object_v2_response_t*
-ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetObjectV2(apiClient_t *apiClient, int pkiEzsigntemplatepackageID );
+ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplatepackageID);
 
 

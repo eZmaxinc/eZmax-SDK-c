@@ -5,13 +5,13 @@
 
 
 char* field_pks_ezmaxclient_os_field_pks_ezmaxclient_os_ToString(ezmax_api_definition__full_field_pks_ezmaxclient_os__e field_pks_ezmaxclient_os) {
-    char *field_pks_ezmaxclient_osArray[] =  { "NULL", "iOS", "macOS", "Windows" };
+    char *field_pks_ezmaxclient_osArray[] =  { "NULL", "iOS", "iPadOS", "macOS", "Windows" };
     return field_pks_ezmaxclient_osArray[field_pks_ezmaxclient_os];
 }
 
 ezmax_api_definition__full_field_pks_ezmaxclient_os__e field_pks_ezmaxclient_os_field_pks_ezmaxclient_os_FromString(char* field_pks_ezmaxclient_os) {
     int stringToReturn = 0;
-    char *field_pks_ezmaxclient_osArray[] =  { "NULL", "iOS", "macOS", "Windows" };
+    char *field_pks_ezmaxclient_osArray[] =  { "NULL", "iOS", "iPadOS", "macOS", "Windows" };
     size_t sizeofArray = sizeof(field_pks_ezmaxclient_osArray) / sizeof(field_pks_ezmaxclient_osArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(field_pks_ezmaxclient_os, field_pks_ezmaxclient_osArray[stringToReturn]) == 0) {

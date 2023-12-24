@@ -14,13 +14,13 @@
 // Functions for enum  for GlobalEzmaxclientAPI_globalEzmaxclientVersionV1
 
 static char* globalEzmaxclientVersionV1__ToString(ezmax_api_definition__full_globalEzmaxclientVersionV1_pksEzmaxclientOs_e ){
-    char *Array[] =  { "NULL", "iOS", "macOS", "Windows" };
+    char *Array[] =  { "NULL", "iOS", "iPadOS", "macOS", "Windows" };
     return Array[];
 }
 
 static ezmax_api_definition__full_globalEzmaxclientVersionV1_pksEzmaxclientOs_e globalEzmaxclientVersionV1__FromString(char* ){
     int stringToReturn = 0;
-    char *Array[] =  { "NULL", "iOS", "macOS", "Windows" };
+    char *Array[] =  { "NULL", "iOS", "iPadOS", "macOS", "Windows" };
     size_t sizeofArray = sizeof(Array) / sizeof(Array[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(, Array[stringToReturn]) == 0) {
@@ -60,7 +60,7 @@ end:
 // Retrieve the latest version of the Ezmaxclient that is available on the store.
 //
 global_ezmaxclient_version_v1_response_t*
-GlobalEzmaxclientAPI_globalEzmaxclientVersionV1(apiClient_t *apiClient, field_pks_ezmaxclient_os_e pksEzmaxclientOs )
+GlobalEzmaxclientAPI_globalEzmaxclientVersionV1(apiClient_t *apiClient, field_pks_ezmaxclient_os_e pksEzmaxclientOs)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;

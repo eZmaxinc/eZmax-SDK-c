@@ -6,7 +6,7 @@
 
 char* e_activesession_usertypeactivesession_get_current_v1_response_m_payload_ToString(ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__e e_activesession_usertype) {
     char* e_activesession_usertypeArray[] =  { "NULL", "AgentBroker", "Assistant", "EzsignSigner", "EzsignUser", "Normal" };
-	return e_activesession_usertypeArray[e_activesession_usertype];
+    return e_activesession_usertypeArray[e_activesession_usertype];
 }
 
 ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__e e_activesession_usertypeactivesession_get_current_v1_response_m_payload_FromString(char* e_activesession_usertype){
@@ -23,7 +23,7 @@ ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__e e_
 }
 char* e_activesession_originactivesession_get_current_v1_response_m_payload_ToString(ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__e e_activesession_origin) {
     char* e_activesession_originArray[] =  { "NULL", "BuiltIn", "External" };
-	return e_activesession_originArray[e_activesession_origin];
+    return e_activesession_originArray[e_activesession_origin];
 }
 
 ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__e e_activesession_originactivesession_get_current_v1_response_m_payload_FromString(char* e_activesession_origin){
@@ -40,7 +40,7 @@ ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__e e_
 }
 char* e_activesession_weekdaystartactivesession_get_current_v1_response_m_payload_ToString(ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__e e_activesession_weekdaystart) {
     char* e_activesession_weekdaystartArray[] =  { "NULL", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
-	return e_activesession_weekdaystartArray[e_activesession_weekdaystart];
+    return e_activesession_weekdaystartArray[e_activesession_weekdaystart];
 }
 
 ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__e e_activesession_weekdaystartactivesession_get_current_v1_response_m_payload_FromString(char* e_activesession_weekdaystart){
@@ -49,6 +49,40 @@ ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__e e_
     size_t sizeofArray = sizeof(e_activesession_weekdaystartArray) / sizeof(e_activesession_weekdaystartArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(e_activesession_weekdaystart, e_activesession_weekdaystartArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
+char* e_user_ezsignaccessactivesession_get_current_v1_response_m_payload_ToString(ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__e e_user_ezsignaccess) {
+    char* e_user_ezsignaccessArray[] =  { "NULL", "No", "PaidByOffice", "PerDocument", "Prepaid" };
+    return e_user_ezsignaccessArray[e_user_ezsignaccess];
+}
+
+ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__e e_user_ezsignaccessactivesession_get_current_v1_response_m_payload_FromString(char* e_user_ezsignaccess){
+    int stringToReturn = 0;
+    char *e_user_ezsignaccessArray[] =  { "NULL", "No", "PaidByOffice", "PerDocument", "Prepaid" };
+    size_t sizeofArray = sizeof(e_user_ezsignaccessArray) / sizeof(e_user_ezsignaccessArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(e_user_ezsignaccess, e_user_ezsignaccessArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
+char* e_user_ezsignprepaidactivesession_get_current_v1_response_m_payload_ToString(ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__e e_user_ezsignprepaid) {
+    char* e_user_ezsignprepaidArray[] =  { "NULL", "Basic", "Unlimited", "Pro" };
+    return e_user_ezsignprepaidArray[e_user_ezsignprepaid];
+}
+
+ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__e e_user_ezsignprepaidactivesession_get_current_v1_response_m_payload_FromString(char* e_user_ezsignprepaid){
+    int stringToReturn = 0;
+    char *e_user_ezsignprepaidArray[] =  { "NULL", "Basic", "Unlimited", "Pro" };
+    size_t sizeofArray = sizeof(e_user_ezsignprepaidArray) / sizeof(e_user_ezsignprepaidArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(e_user_ezsignprepaid, e_user_ezsignprepaidArray[stringToReturn]) == 0) {
             return stringToReturn;
         }
         stringToReturn++;
@@ -68,6 +102,9 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
     char *pks_customer_code,
     int fki_systemconfigurationtype_id,
     int fki_signature_id,
+    field_e_user_ezsignaccess_t *e_user_ezsignaccess,
+    field_e_user_ezsignprepaid_t *e_user_ezsignprepaid,
+    char *dt_user_ezsignprepaidexpiration,
     list_t *a_pki_permission_id,
     activesession_response_compound_user_t *obj_user_real,
     activesession_response_compound_user_t *obj_user_cloned,
@@ -89,6 +126,9 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
     activesession_get_current_v1_response_m_payload_local_var->pks_customer_code = pks_customer_code;
     activesession_get_current_v1_response_m_payload_local_var->fki_systemconfigurationtype_id = fki_systemconfigurationtype_id;
     activesession_get_current_v1_response_m_payload_local_var->fki_signature_id = fki_signature_id;
+    activesession_get_current_v1_response_m_payload_local_var->e_user_ezsignaccess = e_user_ezsignaccess;
+    activesession_get_current_v1_response_m_payload_local_var->e_user_ezsignprepaid = e_user_ezsignprepaid;
+    activesession_get_current_v1_response_m_payload_local_var->dt_user_ezsignprepaidexpiration = dt_user_ezsignprepaidexpiration;
     activesession_get_current_v1_response_m_payload_local_var->a_pki_permission_id = a_pki_permission_id;
     activesession_get_current_v1_response_m_payload_local_var->obj_user_real = obj_user_real;
     activesession_get_current_v1_response_m_payload_local_var->obj_user_cloned = obj_user_cloned;
@@ -127,6 +167,18 @@ void activesession_get_current_v1_response_m_payload_free(activesession_get_curr
     if (activesession_get_current_v1_response_m_payload->pks_customer_code) {
         free(activesession_get_current_v1_response_m_payload->pks_customer_code);
         activesession_get_current_v1_response_m_payload->pks_customer_code = NULL;
+    }
+    if (activesession_get_current_v1_response_m_payload->e_user_ezsignaccess) {
+        field_e_user_ezsignaccess_free(activesession_get_current_v1_response_m_payload->e_user_ezsignaccess);
+        activesession_get_current_v1_response_m_payload->e_user_ezsignaccess = NULL;
+    }
+    if (activesession_get_current_v1_response_m_payload->e_user_ezsignprepaid) {
+        field_e_user_ezsignprepaid_free(activesession_get_current_v1_response_m_payload->e_user_ezsignprepaid);
+        activesession_get_current_v1_response_m_payload->e_user_ezsignprepaid = NULL;
+    }
+    if (activesession_get_current_v1_response_m_payload->dt_user_ezsignprepaidexpiration) {
+        free(activesession_get_current_v1_response_m_payload->dt_user_ezsignprepaidexpiration);
+        activesession_get_current_v1_response_m_payload->dt_user_ezsignprepaidexpiration = NULL;
     }
     if (activesession_get_current_v1_response_m_payload->a_pki_permission_id) {
         list_ForEach(listEntry, activesession_get_current_v1_response_m_payload->a_pki_permission_id) {
@@ -273,6 +325,41 @@ cJSON *activesession_get_current_v1_response_m_payload_convertToJSON(activesessi
     }
 
 
+    // activesession_get_current_v1_response_m_payload->e_user_ezsignaccess
+    if (ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__NULL == activesession_get_current_v1_response_m_payload->e_user_ezsignaccess) {
+        goto fail;
+    }
+    cJSON *e_user_ezsignaccess_local_JSON = field_e_user_ezsignaccess_convertToJSON(activesession_get_current_v1_response_m_payload->e_user_ezsignaccess);
+    if(e_user_ezsignaccess_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eUserEzsignaccess", e_user_ezsignaccess_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
+
+
+    // activesession_get_current_v1_response_m_payload->e_user_ezsignprepaid
+    if(activesession_get_current_v1_response_m_payload->e_user_ezsignprepaid != ezmax_api_definition__full_activesession_get_current_v1_response_m_payload__NULL) {
+    cJSON *e_user_ezsignprepaid_local_JSON = field_e_user_ezsignprepaid_convertToJSON(activesession_get_current_v1_response_m_payload->e_user_ezsignprepaid);
+    if(e_user_ezsignprepaid_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eUserEzsignprepaid", e_user_ezsignprepaid_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
+    }
+
+
+    // activesession_get_current_v1_response_m_payload->dt_user_ezsignprepaidexpiration
+    if(activesession_get_current_v1_response_m_payload->dt_user_ezsignprepaidexpiration) {
+    if(cJSON_AddStringToObject(item, "dtUserEzsignprepaidexpiration", activesession_get_current_v1_response_m_payload->dt_user_ezsignprepaidexpiration) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
     // activesession_get_current_v1_response_m_payload->a_pki_permission_id
     if (!activesession_get_current_v1_response_m_payload->a_pki_permission_id) {
         goto fail;
@@ -368,6 +455,12 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
 
     // define the local variable for activesession_get_current_v1_response_m_payload->e_activesession_weekdaystart
     field_e_activesession_weekdaystart_t *e_activesession_weekdaystart_local_nonprim = NULL;
+
+    // define the local variable for activesession_get_current_v1_response_m_payload->e_user_ezsignaccess
+    field_e_user_ezsignaccess_t *e_user_ezsignaccess_local_nonprim = NULL;
+
+    // define the local variable for activesession_get_current_v1_response_m_payload->e_user_ezsignprepaid
+    field_e_user_ezsignprepaid_t *e_user_ezsignprepaid_local_nonprim = NULL;
 
     // define the local list for activesession_get_current_v1_response_m_payload->a_pki_permission_id
     list_t *a_pki_permission_idList = NULL;
@@ -504,6 +597,30 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
     }
     }
 
+    // activesession_get_current_v1_response_m_payload->e_user_ezsignaccess
+    cJSON *e_user_ezsignaccess = cJSON_GetObjectItemCaseSensitive(activesession_get_current_v1_response_m_payloadJSON, "eUserEzsignaccess");
+    if (!e_user_ezsignaccess) {
+        goto end;
+    }
+
+    
+    e_user_ezsignaccess_local_nonprim = field_e_user_ezsignaccess_parseFromJSON(e_user_ezsignaccess); //custom
+
+    // activesession_get_current_v1_response_m_payload->e_user_ezsignprepaid
+    cJSON *e_user_ezsignprepaid = cJSON_GetObjectItemCaseSensitive(activesession_get_current_v1_response_m_payloadJSON, "eUserEzsignprepaid");
+    if (e_user_ezsignprepaid) { 
+    e_user_ezsignprepaid_local_nonprim = field_e_user_ezsignprepaid_parseFromJSON(e_user_ezsignprepaid); //custom
+    }
+
+    // activesession_get_current_v1_response_m_payload->dt_user_ezsignprepaidexpiration
+    cJSON *dt_user_ezsignprepaidexpiration = cJSON_GetObjectItemCaseSensitive(activesession_get_current_v1_response_m_payloadJSON, "dtUserEzsignprepaidexpiration");
+    if (dt_user_ezsignprepaidexpiration) { 
+    if(!cJSON_IsString(dt_user_ezsignprepaidexpiration) && !cJSON_IsNull(dt_user_ezsignprepaidexpiration))
+    {
+    goto end; //String
+    }
+    }
+
     // activesession_get_current_v1_response_m_payload->a_pki_permission_id
     cJSON *a_pki_permission_id = cJSON_GetObjectItemCaseSensitive(activesession_get_current_v1_response_m_payloadJSON, "a_pkiPermissionID");
     if (!a_pki_permission_id) {
@@ -588,6 +705,9 @@ activesession_get_current_v1_response_m_payload_t *activesession_get_current_v1_
         strdup(pks_customer_code->valuestring),
         fki_systemconfigurationtype_id->valuedouble,
         fki_signature_id ? fki_signature_id->valuedouble : 0,
+        e_user_ezsignaccess_local_nonprim,
+        e_user_ezsignprepaid ? e_user_ezsignprepaid_local_nonprim : NULL,
+        dt_user_ezsignprepaidexpiration && !cJSON_IsNull(dt_user_ezsignprepaidexpiration) ? strdup(dt_user_ezsignprepaidexpiration->valuestring) : NULL,
         a_pki_permission_idList,
         obj_user_real_local_nonprim,
         obj_user_cloned ? obj_user_cloned_local_nonprim : NULL,
@@ -608,6 +728,14 @@ end:
     if (e_activesession_weekdaystart_local_nonprim) {
         field_e_activesession_weekdaystart_free(e_activesession_weekdaystart_local_nonprim);
         e_activesession_weekdaystart_local_nonprim = NULL;
+    }
+    if (e_user_ezsignaccess_local_nonprim) {
+        field_e_user_ezsignaccess_free(e_user_ezsignaccess_local_nonprim);
+        e_user_ezsignaccess_local_nonprim = NULL;
+    }
+    if (e_user_ezsignprepaid_local_nonprim) {
+        field_e_user_ezsignprepaid_free(e_user_ezsignprepaid_local_nonprim);
+        e_user_ezsignprepaid_local_nonprim = NULL;
     }
     if (a_pki_permission_idList) {
         listEntry_t *listEntry = NULL;

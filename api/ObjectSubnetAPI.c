@@ -17,7 +17,7 @@
 // The endpoint allows to create one or many elements at once.
 //
 subnet_create_object_v1_response_t*
-ObjectSubnetAPI_subnetCreateObjectV1(apiClient_t *apiClient, subnet_create_object_v1_request_t * subnet_create_object_v1_request )
+ObjectSubnetAPI_subnetCreateObjectV1(apiClient_t *apiClient, subnet_create_object_v1_request_t *subnet_create_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -99,7 +99,7 @@ end:
 // 
 //
 subnet_delete_object_v1_response_t*
-ObjectSubnetAPI_subnetDeleteObjectV1(apiClient_t *apiClient, int pkiSubnetID )
+ObjectSubnetAPI_subnetDeleteObjectV1(apiClient_t *apiClient, int *pkiSubnetID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -123,7 +123,7 @@ ObjectSubnetAPI_subnetDeleteObjectV1(apiClient_t *apiClient, int pkiSubnetID )
     snprintf(localVarToReplace_pkiSubnetID, sizeOfPathParams_pkiSubnetID, "{%s}", "pkiSubnetID");
 
     char localVarBuff_pkiSubnetID[256];
-    intToStr(localVarBuff_pkiSubnetID, pkiSubnetID);
+    intToStr(localVarBuff_pkiSubnetID, *pkiSubnetID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiSubnetID, localVarBuff_pkiSubnetID);
 
@@ -185,7 +185,7 @@ end:
 // 
 //
 subnet_edit_object_v1_response_t*
-ObjectSubnetAPI_subnetEditObjectV1(apiClient_t *apiClient, int pkiSubnetID , subnet_edit_object_v1_request_t * subnet_edit_object_v1_request )
+ObjectSubnetAPI_subnetEditObjectV1(apiClient_t *apiClient, int *pkiSubnetID, subnet_edit_object_v1_request_t *subnet_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -209,7 +209,7 @@ ObjectSubnetAPI_subnetEditObjectV1(apiClient_t *apiClient, int pkiSubnetID , sub
     snprintf(localVarToReplace_pkiSubnetID, sizeOfPathParams_pkiSubnetID, "{%s}", "pkiSubnetID");
 
     char localVarBuff_pkiSubnetID[256];
-    intToStr(localVarBuff_pkiSubnetID, pkiSubnetID);
+    intToStr(localVarBuff_pkiSubnetID, *pkiSubnetID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiSubnetID, localVarBuff_pkiSubnetID);
 
@@ -286,7 +286,7 @@ end:
 // 
 //
 subnet_get_object_v2_response_t*
-ObjectSubnetAPI_subnetGetObjectV2(apiClient_t *apiClient, int pkiSubnetID )
+ObjectSubnetAPI_subnetGetObjectV2(apiClient_t *apiClient, int *pkiSubnetID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -310,7 +310,7 @@ ObjectSubnetAPI_subnetGetObjectV2(apiClient_t *apiClient, int pkiSubnetID )
     snprintf(localVarToReplace_pkiSubnetID, sizeOfPathParams_pkiSubnetID, "{%s}", "pkiSubnetID");
 
     char localVarBuff_pkiSubnetID[256];
-    intToStr(localVarBuff_pkiSubnetID, pkiSubnetID);
+    intToStr(localVarBuff_pkiSubnetID, *pkiSubnetID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiSubnetID, localVarBuff_pkiSubnetID);
 

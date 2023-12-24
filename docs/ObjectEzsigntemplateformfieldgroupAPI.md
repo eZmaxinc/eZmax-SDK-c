@@ -54,7 +54,7 @@ ezsigntemplateformfieldgroup_delete_object_v1_response_t* ObjectEzsigntemplatefo
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplateformfieldgroupID** | **int** |  | 
+**pkiEzsigntemplateformfieldgroupID** | **int \*** |  | 
 
 ### Return type
 
@@ -85,7 +85,7 @@ ezsigntemplateformfieldgroup_edit_object_v1_response_t* ObjectEzsigntemplateform
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplateformfieldgroupID** | **int** |  | 
+**pkiEzsigntemplateformfieldgroupID** | **int \*** |  | 
 **ezsigntemplateformfieldgroup_edit_object_v1_request** | **[ezsigntemplateformfieldgroup_edit_object_v1_request_t](ezsigntemplateformfieldgroup_edit_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -117,7 +117,7 @@ ezsigntemplateformfieldgroup_get_object_v2_response_t* ObjectEzsigntemplateformf
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplateformfieldgroupID** | **int** |  | 
+**pkiEzsigntemplateformfieldgroupID** | **int \*** |  | 
 
 ### Return type
 

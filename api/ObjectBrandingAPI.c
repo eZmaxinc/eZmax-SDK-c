@@ -259,7 +259,7 @@ end:
 // The endpoint allows to create one or many elements at once.
 //
 branding_create_object_v1_response_t*
-ObjectBrandingAPI_brandingCreateObjectV1(apiClient_t *apiClient, branding_create_object_v1_request_t * branding_create_object_v1_request )
+ObjectBrandingAPI_brandingCreateObjectV1(apiClient_t *apiClient, branding_create_object_v1_request_t *branding_create_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -337,7 +337,7 @@ end:
 // 
 //
 branding_edit_object_v1_response_t*
-ObjectBrandingAPI_brandingEditObjectV1(apiClient_t *apiClient, int pkiBrandingID , branding_edit_object_v1_request_t * branding_edit_object_v1_request )
+ObjectBrandingAPI_brandingEditObjectV1(apiClient_t *apiClient, int *pkiBrandingID, branding_edit_object_v1_request_t *branding_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -361,7 +361,7 @@ ObjectBrandingAPI_brandingEditObjectV1(apiClient_t *apiClient, int pkiBrandingID
     snprintf(localVarToReplace_pkiBrandingID, sizeOfPathParams_pkiBrandingID, "{%s}", "pkiBrandingID");
 
     char localVarBuff_pkiBrandingID[256];
-    intToStr(localVarBuff_pkiBrandingID, pkiBrandingID);
+    intToStr(localVarBuff_pkiBrandingID, *pkiBrandingID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiBrandingID, localVarBuff_pkiBrandingID);
 
@@ -434,7 +434,7 @@ end:
 // Get the list of Branding to be used in a dropdown or autocomplete control.
 //
 branding_get_autocomplete_v2_response_t*
-ObjectBrandingAPI_brandingGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_brandingGetAutocompleteV2_sSelector_e sSelector , ezmax_api_definition__full_brandingGetAutocompleteV2_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language )
+ObjectBrandingAPI_brandingGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_brandingGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_brandingGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -482,7 +482,7 @@ ObjectBrandingAPI_brandingGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_de
         keyQuery_eFilterActive = strdup("eFilterActive");
         valueQuery_eFilterActive = (eFilterActive);
         keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(brandingGetAutocompleteV2_EFILTERACTIVE_ToString(
-		valueQuery_eFilterActive)));
+        valueQuery_eFilterActive)));
         list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
     }
 
@@ -570,7 +570,7 @@ end:
 // Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eBrandingLogo | Default<br>JPEG<br>PNG |
 //
 branding_get_list_v1_response_t*
-ObjectBrandingAPI_brandingGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_brandingGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter )
+ObjectBrandingAPI_brandingGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_brandingGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -608,7 +608,7 @@ ObjectBrandingAPI_brandingGetListV1(apiClient_t *apiClient, ezmax_api_definition
         keyQuery_eOrderBy = strdup("eOrderBy");
         valueQuery_eOrderBy = (eOrderBy);
         keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, (void *)strdup(brandingGetListV1_EORDERBY_ToString(
-		valueQuery_eOrderBy)));
+        valueQuery_eOrderBy)));
         list_addElement(localVarQueryParameters,keyPairQuery_eOrderBy);
     }
 
@@ -616,11 +616,11 @@ ObjectBrandingAPI_brandingGetListV1(apiClient_t *apiClient, ezmax_api_definition
     char *keyQuery_iRowMax = NULL;
     char * valueQuery_iRowMax = NULL;
     keyValuePair_t *keyPairQuery_iRowMax = 0;
-    if (1) // Always send integer parameters to the API server
+    if (iRowMax)
     {
         keyQuery_iRowMax = strdup("iRowMax");
         valueQuery_iRowMax = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_iRowMax, MAX_NUMBER_LENGTH, "%d", iRowMax);
+        snprintf(valueQuery_iRowMax, MAX_NUMBER_LENGTH, "%d", *iRowMax);
         keyPairQuery_iRowMax = keyValuePair_create(keyQuery_iRowMax, valueQuery_iRowMax);
         list_addElement(localVarQueryParameters,keyPairQuery_iRowMax);
     }
@@ -629,11 +629,11 @@ ObjectBrandingAPI_brandingGetListV1(apiClient_t *apiClient, ezmax_api_definition
     char *keyQuery_iRowOffset = NULL;
     char * valueQuery_iRowOffset = NULL;
     keyValuePair_t *keyPairQuery_iRowOffset = 0;
-    if (1) // Always send integer parameters to the API server
+    if (iRowOffset)
     {
         keyQuery_iRowOffset = strdup("iRowOffset");
         valueQuery_iRowOffset = calloc(1,MAX_NUMBER_LENGTH);
-        snprintf(valueQuery_iRowOffset, MAX_NUMBER_LENGTH, "%d", iRowOffset);
+        snprintf(valueQuery_iRowOffset, MAX_NUMBER_LENGTH, "%d", *iRowOffset);
         keyPairQuery_iRowOffset = keyValuePair_create(keyQuery_iRowOffset, valueQuery_iRowOffset);
         list_addElement(localVarQueryParameters,keyPairQuery_iRowOffset);
     }
@@ -750,7 +750,7 @@ end:
 // 
 //
 branding_get_object_v2_response_t*
-ObjectBrandingAPI_brandingGetObjectV2(apiClient_t *apiClient, int pkiBrandingID )
+ObjectBrandingAPI_brandingGetObjectV2(apiClient_t *apiClient, int *pkiBrandingID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -774,7 +774,7 @@ ObjectBrandingAPI_brandingGetObjectV2(apiClient_t *apiClient, int pkiBrandingID 
     snprintf(localVarToReplace_pkiBrandingID, sizeOfPathParams_pkiBrandingID, "{%s}", "pkiBrandingID");
 
     char localVarBuff_pkiBrandingID[256];
-    intToStr(localVarBuff_pkiBrandingID, pkiBrandingID);
+    intToStr(localVarBuff_pkiBrandingID, *pkiBrandingID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiBrandingID, localVarBuff_pkiBrandingID);
 

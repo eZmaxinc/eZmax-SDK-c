@@ -51,7 +51,7 @@ ezsign_suggest_templates_v1_response_t* ModuleEzsignAPI_ezsignSuggestTemplatesV1
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**fkiEzsignfoldertypeID** | **int** |  | [optional] 
+**fkiEzsignfoldertypeID** | **int \*** |  | [optional] 
 
 ### Return type
 

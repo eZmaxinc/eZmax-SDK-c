@@ -6,7 +6,7 @@
 
 char* e_ezsigntemplatedocument_sourceezsigntemplatedocument_request_ToString(ezmax_api_definition__full_ezsigntemplatedocument_request_EEZSIGNTEMPLATEDOCUMENTSOURCE_e e_ezsigntemplatedocument_source) {
     char* e_ezsigntemplatedocument_sourceArray[] =  { "NULL", "Base64", "Url", "Ezsigndocument" };
-	return e_ezsigntemplatedocument_sourceArray[e_ezsigntemplatedocument_source];
+    return e_ezsigntemplatedocument_sourceArray[e_ezsigntemplatedocument_source];
 }
 
 ezmax_api_definition__full_ezsigntemplatedocument_request_EEZSIGNTEMPLATEDOCUMENTSOURCE_e e_ezsigntemplatedocument_sourceezsigntemplatedocument_request_FromString(char* e_ezsigntemplatedocument_source){
@@ -23,7 +23,7 @@ ezmax_api_definition__full_ezsigntemplatedocument_request_EEZSIGNTEMPLATEDOCUMEN
 }
 char* e_ezsigntemplatedocument_formatezsigntemplatedocument_request_ToString(ezmax_api_definition__full_ezsigntemplatedocument_request_EEZSIGNTEMPLATEDOCUMENTFORMAT_e e_ezsigntemplatedocument_format) {
     char* e_ezsigntemplatedocument_formatArray[] =  { "NULL", "Pdf", "Doc", "Docx", "Xls", "Xlsx", "Ppt", "Pptx" };
-	return e_ezsigntemplatedocument_formatArray[e_ezsigntemplatedocument_format];
+    return e_ezsigntemplatedocument_formatArray[e_ezsigntemplatedocument_format];
 }
 
 ezmax_api_definition__full_ezsigntemplatedocument_request_EEZSIGNTEMPLATEDOCUMENTFORMAT_e e_ezsigntemplatedocument_formatezsigntemplatedocument_request_FromString(char* e_ezsigntemplatedocument_format){
@@ -40,7 +40,7 @@ ezmax_api_definition__full_ezsigntemplatedocument_request_EEZSIGNTEMPLATEDOCUMEN
 }
 char* e_ezsigntemplatedocument_formezsigntemplatedocument_request_ToString(ezmax_api_definition__full_ezsigntemplatedocument_request_EEZSIGNTEMPLATEDOCUMENTFORM_e e_ezsigntemplatedocument_form) {
     char* e_ezsigntemplatedocument_formArray[] =  { "NULL", "Keep", "Convert" };
-	return e_ezsigntemplatedocument_formArray[e_ezsigntemplatedocument_form];
+    return e_ezsigntemplatedocument_formArray[e_ezsigntemplatedocument_form];
 }
 
 ezmax_api_definition__full_ezsigntemplatedocument_request_EEZSIGNTEMPLATEDOCUMENTFORM_e e_ezsigntemplatedocument_formezsigntemplatedocument_request_FromString(char* e_ezsigntemplatedocument_form){

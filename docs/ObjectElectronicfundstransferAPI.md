@@ -4,23 +4,23 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ObjectElectronicfundstransferAPI_eletronicfundstransferGetCommunicationListV1**](ObjectElectronicfundstransferAPI.md#ObjectElectronicfundstransferAPI_eletronicfundstransferGetCommunicationListV1) | **GET** /1/object/electronicfundstransfer/{pkiElectronicfundstransferID}/getCommunicationList | Retrieve Communication list
+[**ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationListV1**](ObjectElectronicfundstransferAPI.md#ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationListV1) | **GET** /1/object/electronicfundstransfer/{pkiElectronicfundstransferID}/getCommunicationList | Retrieve Communication list
 
 
-# **ObjectElectronicfundstransferAPI_eletronicfundstransferGetCommunicationListV1**
+# **ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationListV1**
 ```c
 // Retrieve Communication list
 //
 // 
 //
-electronicfundstransfer_get_communication_list_v1_response_t* ObjectElectronicfundstransferAPI_eletronicfundstransferGetCommunicationListV1(apiClient_t *apiClient, int pkiElectronicfundstransferID);
+electronicfundstransfer_get_communication_list_v1_response_t* ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationListV1(apiClient_t *apiClient, int pkiElectronicfundstransferID);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiElectronicfundstransferID** | **int** |  | 
+**pkiElectronicfundstransferID** | **int \*** |  | 
 
 ### Return type
 

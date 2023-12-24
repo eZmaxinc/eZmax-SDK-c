@@ -53,7 +53,7 @@ ezsignsignergroupmembership_delete_object_v1_response_t* ObjectEzsignsignergroup
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignsignergroupmembershipID** | **int** | The unique ID of the Ezsignsignergroupmembership | 
+**pkiEzsignsignergroupmembershipID** | **int \*** | The unique ID of the Ezsignsignergroupmembership | 
 
 ### Return type
 
@@ -84,7 +84,7 @@ ezsignsignergroupmembership_get_object_v2_response_t* ObjectEzsignsignergroupmem
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignsignergroupmembershipID** | **int** | The unique ID of the Ezsignsignergroupmembership | 
+**pkiEzsignsignergroupmembershipID** | **int \*** | The unique ID of the Ezsignsignergroupmembership | 
 
 ### Return type
 

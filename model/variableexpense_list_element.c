@@ -6,7 +6,7 @@
 
 char* e_variableexpense_taxablevariableexpense_list_element_ToString(ezmax_api_definition__full_variableexpense_list_element__e e_variableexpense_taxable) {
     char* e_variableexpense_taxableArray[] =  { "NULL", "Yes", "No", "Included" };
-	return e_variableexpense_taxableArray[e_variableexpense_taxable];
+    return e_variableexpense_taxableArray[e_variableexpense_taxable];
 }
 
 ezmax_api_definition__full_variableexpense_list_element__e e_variableexpense_taxablevariableexpense_list_element_FromString(char* e_variableexpense_taxable){

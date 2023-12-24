@@ -17,7 +17,7 @@
 // 
 //
 inscriptiontemp_get_communication_list_v1_response_t*
-ObjectInscriptiontempAPI_inscriptiontempGetCommunicationListV1(apiClient_t *apiClient, int pkiInscriptiontempID )
+ObjectInscriptiontempAPI_inscriptiontempGetCommunicationListV1(apiClient_t *apiClient, int *pkiInscriptiontempID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -41,7 +41,7 @@ ObjectInscriptiontempAPI_inscriptiontempGetCommunicationListV1(apiClient_t *apiC
     snprintf(localVarToReplace_pkiInscriptiontempID, sizeOfPathParams_pkiInscriptiontempID, "{%s}", "pkiInscriptiontempID");
 
     char localVarBuff_pkiInscriptiontempID[256];
-    intToStr(localVarBuff_pkiInscriptiontempID, pkiInscriptiontempID);
+    intToStr(localVarBuff_pkiInscriptiontempID, *pkiInscriptiontempID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiInscriptiontempID, localVarBuff_pkiInscriptiontempID);
 

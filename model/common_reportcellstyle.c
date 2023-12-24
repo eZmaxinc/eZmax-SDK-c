@@ -6,7 +6,7 @@
 
 char* e_reportcell_horizontalalignmentcommon_reportcellstyle_ToString(ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_horizontalalignment) {
     char* e_reportcell_horizontalalignmentArray[] =  { "NULL", "Center", "Left", "Right" };
-	return e_reportcell_horizontalalignmentArray[e_reportcell_horizontalalignment];
+    return e_reportcell_horizontalalignmentArray[e_reportcell_horizontalalignment];
 }
 
 ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_horizontalalignmentcommon_reportcellstyle_FromString(char* e_reportcell_horizontalalignment){
@@ -23,7 +23,7 @@ ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_horizontalalig
 }
 char* e_reportcell_verticalalignmentcommon_reportcellstyle_ToString(ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_verticalalignment) {
     char* e_reportcell_verticalalignmentArray[] =  { "NULL", "Bottom", "Middle", "Top" };
-	return e_reportcell_verticalalignmentArray[e_reportcell_verticalalignment];
+    return e_reportcell_verticalalignmentArray[e_reportcell_verticalalignment];
 }
 
 ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_verticalalignmentcommon_reportcellstyle_FromString(char* e_reportcell_verticalalignment){
@@ -40,7 +40,7 @@ ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_verticalalignm
 }
 char* e_reportcell_fontweightcommon_reportcellstyle_ToString(ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_fontweight) {
     char* e_reportcell_fontweightArray[] =  { "NULL", "Normal", "Bold" };
-	return e_reportcell_fontweightArray[e_reportcell_fontweight];
+    return e_reportcell_fontweightArray[e_reportcell_fontweight];
 }
 
 ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_fontweightcommon_reportcellstyle_FromString(char* e_reportcell_fontweight){
@@ -57,7 +57,7 @@ ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_fontweightcomm
 }
 char* e_reportcell_fontunderlinecommon_reportcellstyle_ToString(ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_fontunderline) {
     char* e_reportcell_fontunderlineArray[] =  { "NULL", "None", "Single", "Double" };
-	return e_reportcell_fontunderlineArray[e_reportcell_fontunderline];
+    return e_reportcell_fontunderlineArray[e_reportcell_fontunderline];
 }
 
 ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_fontunderlinecommon_reportcellstyle_FromString(char* e_reportcell_fontunderline){

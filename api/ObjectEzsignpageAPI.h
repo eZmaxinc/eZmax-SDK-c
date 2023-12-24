@@ -13,6 +13,6 @@
 // Consult an Ezsignpage
 //
 ezsignpage_consult_v1_response_t*
-ObjectEzsignpageAPI_ezsignpageConsultV1(apiClient_t *apiClient, int pkiEzsignpageID , object_t * body );
+ObjectEzsignpageAPI_ezsignpageConsultV1(apiClient_t *apiClient, int *pkiEzsignpageID, object_t *body);
 
 

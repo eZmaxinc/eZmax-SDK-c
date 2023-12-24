@@ -14,6 +14,6 @@
 // 
 //
 notificationtest_get_elements_v1_response_t*
-ObjectNotificationtestAPI_notificationtestGetElementsV1(apiClient_t *apiClient, int pkiNotificationtestID );
+ObjectNotificationtestAPI_notificationtestGetElementsV1(apiClient_t *apiClient, int *pkiNotificationtestID);
 
 

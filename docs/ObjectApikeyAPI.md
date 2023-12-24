@@ -59,7 +59,7 @@ apikey_edit_object_v1_response_t* ObjectApikeyAPI_apikeyEditObjectV1(apiClient_t
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiApikeyID** | **int** | The unique ID of the Apikey | 
+**pkiApikeyID** | **int \*** | The unique ID of the Apikey | 
 **apikey_edit_object_v1_request** | **[apikey_edit_object_v1_request_t](apikey_edit_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -91,7 +91,7 @@ apikey_edit_permissions_v1_response_t* ObjectApikeyAPI_apikeyEditPermissionsV1(a
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiApikeyID** | **int** |  | 
+**pkiApikeyID** | **int \*** |  | 
 **apikey_edit_permissions_v1_request** | **[apikey_edit_permissions_v1_request_t](apikey_edit_permissions_v1_request.md) \*** |  | 
 
 ### Return type
@@ -121,7 +121,7 @@ apikey_get_cors_v1_response_t* ObjectApikeyAPI_apikeyGetCorsV1(apiClient_t *apiC
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiApikeyID** | **int** |  | 
+**pkiApikeyID** | **int \*** |  | 
 
 ### Return type
 
@@ -153,8 +153,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **eOrderBy** | **ezmax_api_definition__full_apikeyGetListV1_eOrderBy_e** | Specify how you want the results to be sorted | [optional] 
-**iRowMax** | **int** |  | [optional] 
-**iRowOffset** | **int** |  | [optional] [default to 0]
+**iRowMax** | **int \*** |  | [optional] 
+**iRowOffset** | **int \*** |  | [optional] [default to 0]
 **Accept_Language** | **header_accept_language_e** |  | [optional] 
 **sFilter** | **char \*** |  | [optional] 
 
@@ -187,7 +187,7 @@ apikey_get_object_v2_response_t* ObjectApikeyAPI_apikeyGetObjectV2(apiClient_t *
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiApikeyID** | **int** | The unique ID of the Apikey | 
+**pkiApikeyID** | **int \*** | The unique ID of the Apikey | 
 
 ### Return type
 
@@ -216,7 +216,7 @@ apikey_get_permissions_v1_response_t* ObjectApikeyAPI_apikeyGetPermissionsV1(api
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiApikeyID** | **int** |  | 
+**pkiApikeyID** | **int \*** |  | 
 
 ### Return type
 
@@ -245,7 +245,7 @@ apikey_get_subnets_v1_response_t* ObjectApikeyAPI_apikeyGetSubnetsV1(apiClient_t
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiApikeyID** | **int** |  | 
+**pkiApikeyID** | **int \*** |  | 
 
 ### Return type
 
@@ -276,7 +276,7 @@ apikey_regenerate_v1_response_t* ObjectApikeyAPI_apikeyRegenerateV1(apiClient_t 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiApikeyID** | **int** |  | 
+**pkiApikeyID** | **int \*** |  | 
 **apikey_regenerate_v1_request** | **[apikey_regenerate_v1_request_t](apikey_regenerate_v1_request.md) \*** |  | 
 
 ### Return type

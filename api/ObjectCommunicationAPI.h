@@ -14,6 +14,6 @@
 // The endpoint allows to send one or many elements at once.
 //
 communication_send_v1_response_t*
-ObjectCommunicationAPI_communicationSendV1(apiClient_t *apiClient, communication_send_v1_request_t * communication_send_v1_request );
+ObjectCommunicationAPI_communicationSendV1(apiClient_t *apiClient, communication_send_v1_request_t *communication_send_v1_request);
 
 

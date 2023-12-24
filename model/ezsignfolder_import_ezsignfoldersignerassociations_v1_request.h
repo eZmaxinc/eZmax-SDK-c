@@ -15,17 +15,16 @@
 
 typedef struct ezsignfolder_import_ezsignfoldersignerassociations_v1_request_t ezsignfolder_import_ezsignfoldersignerassociations_v1_request_t;
 
-#include "set.h"
 
 
 
 typedef struct ezsignfolder_import_ezsignfoldersignerassociations_v1_request_t {
-    set_t *a_fki_ezsignfoldersignerassociation_id; //primitive container
+    list_t *a_fki_ezsignfoldersignerassociation_id; //primitive container
 
 } ezsignfolder_import_ezsignfoldersignerassociations_v1_request_t;
 
 ezsignfolder_import_ezsignfoldersignerassociations_v1_request_t *ezsignfolder_import_ezsignfoldersignerassociations_v1_request_create(
-    set_t *a_fki_ezsignfoldersignerassociation_id
+    list_t *a_fki_ezsignfoldersignerassociation_id
 );
 
 void ezsignfolder_import_ezsignfoldersignerassociations_v1_request_free(ezsignfolder_import_ezsignfoldersignerassociations_v1_request_t *ezsignfolder_import_ezsignfoldersignerassociations_v1_request);

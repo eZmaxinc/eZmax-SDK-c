@@ -5,11 +5,13 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectWebhookAPI_webhookCreateObjectV1**](ObjectWebhookAPI.md#ObjectWebhookAPI_webhookCreateObjectV1) | **POST** /1/object/webhook | Create a new Webhook
+[**ObjectWebhookAPI_webhookCreateObjectV2**](ObjectWebhookAPI.md#ObjectWebhookAPI_webhookCreateObjectV2) | **POST** /2/object/webhook | Create a new Webhook
 [**ObjectWebhookAPI_webhookDeleteObjectV1**](ObjectWebhookAPI.md#ObjectWebhookAPI_webhookDeleteObjectV1) | **DELETE** /1/object/webhook/{pkiWebhookID} | Delete an existing Webhook
 [**ObjectWebhookAPI_webhookEditObjectV1**](ObjectWebhookAPI.md#ObjectWebhookAPI_webhookEditObjectV1) | **PUT** /1/object/webhook/{pkiWebhookID} | Edit an existing Webhook
 [**ObjectWebhookAPI_webhookGetHistoryV1**](ObjectWebhookAPI.md#ObjectWebhookAPI_webhookGetHistoryV1) | **GET** /1/object/webhook/{pkiWebhookID}/getHistory | Retrieve the logs for recent Webhook calls
 [**ObjectWebhookAPI_webhookGetListV1**](ObjectWebhookAPI.md#ObjectWebhookAPI_webhookGetListV1) | **GET** /1/object/webhook/getList | Retrieve Webhook list
 [**ObjectWebhookAPI_webhookGetObjectV2**](ObjectWebhookAPI.md#ObjectWebhookAPI_webhookGetObjectV2) | **GET** /2/object/webhook/{pkiWebhookID} | Retrieve an existing Webhook
+[**ObjectWebhookAPI_webhookRegenerateApikeyV1**](ObjectWebhookAPI.md#ObjectWebhookAPI_webhookRegenerateApikeyV1) | **POST** /1/object/webhook/{pkiWebhookID}/regenerateApikey | Regenerate the Apikey
 [**ObjectWebhookAPI_webhookTestV1**](ObjectWebhookAPI.md#ObjectWebhookAPI_webhookTestV1) | **POST** /1/object/webhook/{pkiWebhookID}/test | Test the Webhook by calling the Url
 
 
@@ -44,6 +46,37 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **ObjectWebhookAPI_webhookCreateObjectV2**
+```c
+// Create a new Webhook
+//
+// The endpoint allows to create one or many elements at once.
+//
+webhook_create_object_v2_response_t* ObjectWebhookAPI_webhookCreateObjectV2(apiClient_t *apiClient, webhook_create_object_v2_request_t * webhook_create_object_v2_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**webhook_create_object_v2_request** | **[webhook_create_object_v2_request_t](webhook_create_object_v2_request.md) \*** |  | 
+
+### Return type
+
+[webhook_create_object_v2_response_t](webhook_create_object_v2_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **ObjectWebhookAPI_webhookDeleteObjectV1**
 ```c
 // Delete an existing Webhook
@@ -57,7 +90,7 @@ webhook_delete_object_v1_response_t* ObjectWebhookAPI_webhookDeleteObjectV1(apiC
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiWebhookID** | **int** |  | 
+**pkiWebhookID** | **int \*** |  | 
 
 ### Return type
 
@@ -88,7 +121,7 @@ webhook_edit_object_v1_response_t* ObjectWebhookAPI_webhookEditObjectV1(apiClien
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiWebhookID** | **int** |  | 
+**pkiWebhookID** | **int \*** |  | 
 **webhook_edit_object_v1_request** | **[webhook_edit_object_v1_request_t](webhook_edit_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -120,7 +153,7 @@ webhook_get_history_v1_response_t* ObjectWebhookAPI_webhookGetHistoryV1(apiClien
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiWebhookID** | **int** |  | 
+**pkiWebhookID** | **int \*** |  | 
 **eWebhookHistoryinterval** | **ezmax_api_definition__full_webhookGetHistoryV1_eWebhookHistoryinterval_e** | The number of days to return | 
 
 ### Return type
@@ -153,8 +186,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **eOrderBy** | **ezmax_api_definition__full_webhookGetListV1_eOrderBy_e** | Specify how you want the results to be sorted | [optional] 
-**iRowMax** | **int** |  | [optional] 
-**iRowOffset** | **int** |  | [optional] [default to 0]
+**iRowMax** | **int \*** |  | [optional] 
+**iRowOffset** | **int \*** |  | [optional] [default to 0]
 **Accept_Language** | **header_accept_language_e** |  | [optional] 
 **sFilter** | **char \*** |  | [optional] 
 
@@ -187,7 +220,7 @@ webhook_get_object_v2_response_t* ObjectWebhookAPI_webhookGetObjectV2(apiClient_
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiWebhookID** | **int** |  | 
+**pkiWebhookID** | **int \*** |  | 
 
 ### Return type
 
@@ -205,6 +238,38 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **ObjectWebhookAPI_webhookRegenerateApikeyV1**
+```c
+// Regenerate the Apikey
+//
+// 
+//
+webhook_regenerate_apikey_v1_response_t* ObjectWebhookAPI_webhookRegenerateApikeyV1(apiClient_t *apiClient, int pkiWebhookID, webhook_regenerate_apikey_v1_request_t * webhook_regenerate_apikey_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiWebhookID** | **int \*** |  | 
+**webhook_regenerate_apikey_v1_request** | **[webhook_regenerate_apikey_v1_request_t](webhook_regenerate_apikey_v1_request.md) \*** |  | 
+
+### Return type
+
+[webhook_regenerate_apikey_v1_response_t](webhook_regenerate_apikey_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **ObjectWebhookAPI_webhookTestV1**
 ```c
 // Test the Webhook by calling the Url
@@ -218,7 +283,7 @@ webhook_test_v1_response_t* ObjectWebhookAPI_webhookTestV1(apiClient_t *apiClien
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiWebhookID** | **int** |  | 
+**pkiWebhookID** | **int \*** |  | 
 **body** | **[object_t](object.md) \*** |  | 
 
 ### Return type

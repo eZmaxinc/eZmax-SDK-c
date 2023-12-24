@@ -15,7 +15,7 @@
 // Consult an Ezsignpage
 //
 ezsignpage_consult_v1_response_t*
-ObjectEzsignpageAPI_ezsignpageConsultV1(apiClient_t *apiClient, int pkiEzsignpageID , object_t * body )
+ObjectEzsignpageAPI_ezsignpageConsultV1(apiClient_t *apiClient, int *pkiEzsignpageID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -39,7 +39,7 @@ ObjectEzsignpageAPI_ezsignpageConsultV1(apiClient_t *apiClient, int pkiEzsignpag
     snprintf(localVarToReplace_pkiEzsignpageID, sizeOfPathParams_pkiEzsignpageID, "{%s}", "pkiEzsignpageID");
 
     char localVarBuff_pkiEzsignpageID[256];
-    intToStr(localVarBuff_pkiEzsignpageID, pkiEzsignpageID);
+    intToStr(localVarBuff_pkiEzsignpageID, *pkiEzsignpageID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignpageID, localVarBuff_pkiEzsignpageID);
 

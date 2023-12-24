@@ -17,7 +17,7 @@
 // The endpoint allows to create one or many elements at once.
 //
 ezsignformfieldgroup_create_object_v1_response_t*
-ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupCreateObjectV1(apiClient_t *apiClient, ezsignformfieldgroup_create_object_v1_request_t * ezsignformfieldgroup_create_object_v1_request )
+ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupCreateObjectV1(apiClient_t *apiClient, ezsignformfieldgroup_create_object_v1_request_t *ezsignformfieldgroup_create_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -95,7 +95,7 @@ end:
 // 
 //
 ezsignformfieldgroup_delete_object_v1_response_t*
-ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupDeleteObjectV1(apiClient_t *apiClient, int pkiEzsignformfieldgroupID )
+ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignformfieldgroupID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -119,7 +119,7 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupDeleteObjectV1(apiClient_t *ap
     snprintf(localVarToReplace_pkiEzsignformfieldgroupID, sizeOfPathParams_pkiEzsignformfieldgroupID, "{%s}", "pkiEzsignformfieldgroupID");
 
     char localVarBuff_pkiEzsignformfieldgroupID[256];
-    intToStr(localVarBuff_pkiEzsignformfieldgroupID, pkiEzsignformfieldgroupID);
+    intToStr(localVarBuff_pkiEzsignformfieldgroupID, *pkiEzsignformfieldgroupID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignformfieldgroupID, localVarBuff_pkiEzsignformfieldgroupID);
 
@@ -181,7 +181,7 @@ end:
 // 
 //
 ezsignformfieldgroup_edit_object_v1_response_t*
-ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupEditObjectV1(apiClient_t *apiClient, int pkiEzsignformfieldgroupID , ezsignformfieldgroup_edit_object_v1_request_t * ezsignformfieldgroup_edit_object_v1_request )
+ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupEditObjectV1(apiClient_t *apiClient, int *pkiEzsignformfieldgroupID, ezsignformfieldgroup_edit_object_v1_request_t *ezsignformfieldgroup_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -205,7 +205,7 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupEditObjectV1(apiClient_t *apiC
     snprintf(localVarToReplace_pkiEzsignformfieldgroupID, sizeOfPathParams_pkiEzsignformfieldgroupID, "{%s}", "pkiEzsignformfieldgroupID");
 
     char localVarBuff_pkiEzsignformfieldgroupID[256];
-    intToStr(localVarBuff_pkiEzsignformfieldgroupID, pkiEzsignformfieldgroupID);
+    intToStr(localVarBuff_pkiEzsignformfieldgroupID, *pkiEzsignformfieldgroupID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignformfieldgroupID, localVarBuff_pkiEzsignformfieldgroupID);
 
@@ -282,7 +282,7 @@ end:
 // 
 //
 ezsignformfieldgroup_get_object_v2_response_t*
-ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupGetObjectV2(apiClient_t *apiClient, int pkiEzsignformfieldgroupID )
+ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupGetObjectV2(apiClient_t *apiClient, int *pkiEzsignformfieldgroupID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -306,7 +306,7 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupGetObjectV2(apiClient_t *apiCl
     snprintf(localVarToReplace_pkiEzsignformfieldgroupID, sizeOfPathParams_pkiEzsignformfieldgroupID, "{%s}", "pkiEzsignformfieldgroupID");
 
     char localVarBuff_pkiEzsignformfieldgroupID[256];
-    intToStr(localVarBuff_pkiEzsignformfieldgroupID, pkiEzsignformfieldgroupID);
+    intToStr(localVarBuff_pkiEzsignformfieldgroupID, *pkiEzsignformfieldgroupID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignformfieldgroupID, localVarBuff_pkiEzsignformfieldgroupID);
 

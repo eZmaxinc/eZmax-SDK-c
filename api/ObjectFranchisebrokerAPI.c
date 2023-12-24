@@ -311,7 +311,7 @@ end:
 // Get the list of Franchisebrokers to be used in a dropdown or autocomplete control.
 //
 common_get_autocomplete_v1_response_t*
-ObjectFranchisebrokerAPI_franchisebrokerGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_franchisebrokerGetAutocompleteV1_sSelector_e sSelector , ezmax_api_definition__full_franchisebrokerGetAutocompleteV1_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language )
+ObjectFranchisebrokerAPI_franchisebrokerGetAutocompleteV1(apiClient_t *apiClient, ezmax_api_definition__full_franchisebrokerGetAutocompleteV1_sSelector_e sSelector, ezmax_api_definition__full_franchisebrokerGetAutocompleteV1_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -359,7 +359,7 @@ ObjectFranchisebrokerAPI_franchisebrokerGetAutocompleteV1(apiClient_t *apiClient
         keyQuery_eFilterActive = strdup("eFilterActive");
         valueQuery_eFilterActive = (eFilterActive);
         keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(franchisebrokerGetAutocompleteV1_EFILTERACTIVE_ToString(
-		valueQuery_eFilterActive)));
+        valueQuery_eFilterActive)));
         list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
     }
 
@@ -447,7 +447,7 @@ end:
 // Get the list of Franchisebroker to be used in a dropdown or autocomplete control.
 //
 franchisebroker_get_autocomplete_v2_response_t*
-ObjectFranchisebrokerAPI_franchisebrokerGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_franchisebrokerGetAutocompleteV2_sSelector_e sSelector , ezmax_api_definition__full_franchisebrokerGetAutocompleteV2_eFilterActive_e eFilterActive , char * sQuery , header_accept_language_e Accept_Language )
+ObjectFranchisebrokerAPI_franchisebrokerGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_franchisebrokerGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_franchisebrokerGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -495,7 +495,7 @@ ObjectFranchisebrokerAPI_franchisebrokerGetAutocompleteV2(apiClient_t *apiClient
         keyQuery_eFilterActive = strdup("eFilterActive");
         valueQuery_eFilterActive = (eFilterActive);
         keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(franchisebrokerGetAutocompleteV2_EFILTERACTIVE_ToString(
-		valueQuery_eFilterActive)));
+        valueQuery_eFilterActive)));
         list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
     }
 

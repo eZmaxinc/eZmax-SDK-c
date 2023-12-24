@@ -20,7 +20,7 @@ otherincome_get_communication_list_v1_response_t* ObjectOtherincomeAPI_otherinco
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiOtherincomeID** | **int** |  | 
+**pkiOtherincomeID** | **int \*** |  | 
 
 ### Return type
 

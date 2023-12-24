@@ -14,6 +14,6 @@
 // 
 //
 electronicfundstransfer_get_communication_list_v1_response_t*
-ObjectElectronicfundstransferAPI_eletronicfundstransferGetCommunicationListV1(apiClient_t *apiClient, int pkiElectronicfundstransferID );
+ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationListV1(apiClient_t *apiClient, int *pkiElectronicfundstransferID);
 
 

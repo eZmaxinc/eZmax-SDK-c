@@ -17,7 +17,7 @@
 // 
 //
 char*
-ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetCsvErrorsV1(apiClient_t *apiClient, int pkiEzsignbulksendtransmissionID )
+ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetCsvErrorsV1(apiClient_t *apiClient, int *pkiEzsignbulksendtransmissionID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -41,7 +41,7 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetCsvErrorsV1(api
     snprintf(localVarToReplace_pkiEzsignbulksendtransmissionID, sizeOfPathParams_pkiEzsignbulksendtransmissionID, "{%s}", "pkiEzsignbulksendtransmissionID");
 
     char localVarBuff_pkiEzsignbulksendtransmissionID[256];
-    intToStr(localVarBuff_pkiEzsignbulksendtransmissionID, pkiEzsignbulksendtransmissionID);
+    intToStr(localVarBuff_pkiEzsignbulksendtransmissionID, *pkiEzsignbulksendtransmissionID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksendtransmissionID, localVarBuff_pkiEzsignbulksendtransmissionID);
 
@@ -102,7 +102,7 @@ end:
 // Return the Ezsignsignatures that can be signed by the current user at the current step in the process
 //
 ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_t*
-ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetEzsignsignaturesAutomaticV1(apiClient_t *apiClient, int pkiEzsignbulksendtransmissionID )
+ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetEzsignsignaturesAutomaticV1(apiClient_t *apiClient, int *pkiEzsignbulksendtransmissionID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -126,7 +126,7 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetEzsignsignature
     snprintf(localVarToReplace_pkiEzsignbulksendtransmissionID, sizeOfPathParams_pkiEzsignbulksendtransmissionID, "{%s}", "pkiEzsignbulksendtransmissionID");
 
     char localVarBuff_pkiEzsignbulksendtransmissionID[256];
-    intToStr(localVarBuff_pkiEzsignbulksendtransmissionID, pkiEzsignbulksendtransmissionID);
+    intToStr(localVarBuff_pkiEzsignbulksendtransmissionID, *pkiEzsignbulksendtransmissionID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksendtransmissionID, localVarBuff_pkiEzsignbulksendtransmissionID);
 
@@ -184,7 +184,7 @@ end:
 // 
 //
 ezsignbulksendtransmission_get_forms_data_v1_response_t*
-ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetFormsDataV1(apiClient_t *apiClient, int pkiEzsignbulksendtransmissionID )
+ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetFormsDataV1(apiClient_t *apiClient, int *pkiEzsignbulksendtransmissionID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -208,7 +208,7 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetFormsDataV1(api
     snprintf(localVarToReplace_pkiEzsignbulksendtransmissionID, sizeOfPathParams_pkiEzsignbulksendtransmissionID, "{%s}", "pkiEzsignbulksendtransmissionID");
 
     char localVarBuff_pkiEzsignbulksendtransmissionID[256];
-    intToStr(localVarBuff_pkiEzsignbulksendtransmissionID, pkiEzsignbulksendtransmissionID);
+    intToStr(localVarBuff_pkiEzsignbulksendtransmissionID, *pkiEzsignbulksendtransmissionID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksendtransmissionID, localVarBuff_pkiEzsignbulksendtransmissionID);
 
@@ -275,7 +275,7 @@ end:
 // 
 //
 ezsignbulksendtransmission_get_object_v2_response_t*
-ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetObjectV2(apiClient_t *apiClient, int pkiEzsignbulksendtransmissionID )
+ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetObjectV2(apiClient_t *apiClient, int *pkiEzsignbulksendtransmissionID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -299,7 +299,7 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetObjectV2(apiCli
     snprintf(localVarToReplace_pkiEzsignbulksendtransmissionID, sizeOfPathParams_pkiEzsignbulksendtransmissionID, "{%s}", "pkiEzsignbulksendtransmissionID");
 
     char localVarBuff_pkiEzsignbulksendtransmissionID[256];
-    intToStr(localVarBuff_pkiEzsignbulksendtransmissionID, pkiEzsignbulksendtransmissionID);
+    intToStr(localVarBuff_pkiEzsignbulksendtransmissionID, *pkiEzsignbulksendtransmissionID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksendtransmissionID, localVarBuff_pkiEzsignbulksendtransmissionID);
 

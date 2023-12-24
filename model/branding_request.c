@@ -6,7 +6,7 @@
 
 char* e_branding_logobranding_request_ToString(ezmax_api_definition__full_branding_request__e e_branding_logo) {
     char* e_branding_logoArray[] =  { "NULL", "Default", "JPEG", "PNG" };
-	return e_branding_logoArray[e_branding_logo];
+    return e_branding_logoArray[e_branding_logo];
 }
 
 ezmax_api_definition__full_branding_request__e e_branding_logobranding_request_FromString(char* e_branding_logo){

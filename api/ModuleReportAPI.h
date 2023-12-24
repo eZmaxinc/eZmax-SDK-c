@@ -14,6 +14,6 @@
 // Retrieve a report that was previously generated and cached
 //
 common_get_report_v1_response_t*
-ModuleReportAPI_reportGetReportFromCacheV1(apiClient_t *apiClient, char * sReportgroupCacheID );
+ModuleReportAPI_reportGetReportFromCacheV1(apiClient_t *apiClient, char *sReportgroupCacheID);
 
 

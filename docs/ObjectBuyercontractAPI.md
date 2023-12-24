@@ -20,7 +20,7 @@ buyercontract_get_communication_list_v1_response_t* ObjectBuyercontractAPI_buyer
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiBuyercontractID** | **int** |  | 
+**pkiBuyercontractID** | **int \*** |  | 
 
 ### Return type
 

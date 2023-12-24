@@ -57,7 +57,7 @@ ezsigntemplatepackage_delete_object_v1_response_t* ObjectEzsigntemplatepackageAP
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplatepackageID** | **int** |  | 
+**pkiEzsigntemplatepackageID** | **int \*** |  | 
 
 ### Return type
 
@@ -88,7 +88,7 @@ ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_t* ObjectEzs
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplatepackageID** | **int** |  | 
+**pkiEzsigntemplatepackageID** | **int \*** |  | 
 **ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_request** | **[ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_request_t](ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_request.md) \*** |  | 
 
 ### Return type
@@ -120,7 +120,7 @@ ezsigntemplatepackage_edit_object_v1_response_t* ObjectEzsigntemplatepackageAPI_
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplatepackageID** | **int** |  | 
+**pkiEzsigntemplatepackageID** | **int \*** |  | 
 **ezsigntemplatepackage_edit_object_v1_request** | **[ezsigntemplatepackage_edit_object_v1_request_t](ezsigntemplatepackage_edit_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -187,8 +187,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **eOrderBy** | **ezmax_api_definition__full_ezsigntemplatepackageGetListV1_eOrderBy_e** | Specify how you want the results to be sorted | [optional] 
-**iRowMax** | **int** |  | [optional] 
-**iRowOffset** | **int** |  | [optional] [default to 0]
+**iRowMax** | **int \*** |  | [optional] 
+**iRowOffset** | **int \*** |  | [optional] [default to 0]
 **Accept_Language** | **header_accept_language_e** |  | [optional] 
 **sFilter** | **char \*** |  | [optional] 
 
@@ -221,7 +221,7 @@ ezsigntemplatepackage_get_object_v2_response_t* ObjectEzsigntemplatepackageAPI_e
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplatepackageID** | **int** |  | 
+**pkiEzsigntemplatepackageID** | **int \*** |  | 
 
 ### Return type
 

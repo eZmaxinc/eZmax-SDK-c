@@ -20,7 +20,7 @@ inscriptionnotauthenticated_get_communication_list_v1_response_t* ObjectInscript
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiInscriptionnotauthenticatedID** | **int** |  | 
+**pkiInscriptionnotauthenticatedID** | **int \*** |  | 
 
 ### Return type
 

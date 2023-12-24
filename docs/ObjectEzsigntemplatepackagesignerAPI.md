@@ -54,7 +54,7 @@ ezsigntemplatepackagesigner_delete_object_v1_response_t* ObjectEzsigntemplatepac
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplatepackagesignerID** | **int** |  | 
+**pkiEzsigntemplatepackagesignerID** | **int \*** |  | 
 
 ### Return type
 
@@ -85,7 +85,7 @@ ezsigntemplatepackagesigner_edit_object_v1_response_t* ObjectEzsigntemplatepacka
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplatepackagesignerID** | **int** |  | 
+**pkiEzsigntemplatepackagesignerID** | **int \*** |  | 
 **ezsigntemplatepackagesigner_edit_object_v1_request** | **[ezsigntemplatepackagesigner_edit_object_v1_request_t](ezsigntemplatepackagesigner_edit_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -117,7 +117,7 @@ ezsigntemplatepackagesigner_get_object_v2_response_t* ObjectEzsigntemplatepackag
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigntemplatepackagesignerID** | **int** |  | 
+**pkiEzsigntemplatepackagesignerID** | **int \*** |  | 
 
 ### Return type
 

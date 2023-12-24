@@ -6,7 +6,7 @@
 
 char* e_getezsigndocument_get_words_positions_v1_request_ToString(ezmax_api_definition__full_ezsigndocument_get_words_positions_v1_request_EGET_e e_get) {
     char* e_getArray[] =  { "NULL", "All", "Words" };
-	return e_getArray[e_get];
+    return e_getArray[e_get];
 }
 
 ezmax_api_definition__full_ezsigndocument_get_words_positions_v1_request_EGET_e e_getezsigndocument_get_words_positions_v1_request_FromString(char* e_get){

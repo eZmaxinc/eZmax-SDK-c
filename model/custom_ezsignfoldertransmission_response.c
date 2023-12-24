@@ -6,7 +6,7 @@
 
 char* e_ezsignfolder_stepcustom_ezsignfoldertransmission_response_ToString(ezmax_api_definition__full_custom_ezsignfoldertransmission_response__e e_ezsignfolder_step) {
     char* e_ezsignfolder_stepArray[] =  { "NULL", "Unsent", "PendingSend", "Sent", "PartiallySigned", "Expired", "Completed", "Archived", "Disposed" };
-	return e_ezsignfolder_stepArray[e_ezsignfolder_step];
+    return e_ezsignfolder_stepArray[e_ezsignfolder_step];
 }
 
 ezmax_api_definition__full_custom_ezsignfoldertransmission_response__e e_ezsignfolder_stepcustom_ezsignfoldertransmission_response_FromString(char* e_ezsignfolder_step){

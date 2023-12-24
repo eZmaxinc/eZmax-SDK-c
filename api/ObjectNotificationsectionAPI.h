@@ -14,6 +14,6 @@
 // 
 //
 notificationsection_get_notificationtests_v1_response_t*
-ObjectNotificationsectionAPI_notificationsectionGetNotificationtestsV1(apiClient_t *apiClient, int pkiNotificationsectionID , int bShowHidden );
+ObjectNotificationsectionAPI_notificationsectionGetNotificationtestsV1(apiClient_t *apiClient, int *pkiNotificationsectionID, int *bShowHidden);
 
 

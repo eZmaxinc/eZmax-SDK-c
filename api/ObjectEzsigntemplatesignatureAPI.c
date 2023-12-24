@@ -17,7 +17,7 @@
 // The endpoint allows to create one or many elements at once.
 //
 ezsigntemplatesignature_create_object_v1_response_t*
-ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureCreateObjectV1(apiClient_t *apiClient, ezsigntemplatesignature_create_object_v1_request_t * ezsigntemplatesignature_create_object_v1_request )
+ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureCreateObjectV1(apiClient_t *apiClient, ezsigntemplatesignature_create_object_v1_request_t *ezsigntemplatesignature_create_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -95,7 +95,7 @@ end:
 // 
 //
 ezsigntemplatesignature_delete_object_v1_response_t*
-ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureDeleteObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatesignatureID )
+ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatesignatureID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -119,7 +119,7 @@ ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureDeleteObjectV1(apiClient
     snprintf(localVarToReplace_pkiEzsigntemplatesignatureID, sizeOfPathParams_pkiEzsigntemplatesignatureID, "{%s}", "pkiEzsigntemplatesignatureID");
 
     char localVarBuff_pkiEzsigntemplatesignatureID[256];
-    intToStr(localVarBuff_pkiEzsigntemplatesignatureID, pkiEzsigntemplatesignatureID);
+    intToStr(localVarBuff_pkiEzsigntemplatesignatureID, *pkiEzsigntemplatesignatureID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatesignatureID, localVarBuff_pkiEzsigntemplatesignatureID);
 
@@ -177,7 +177,7 @@ end:
 // 
 //
 ezsigntemplatesignature_edit_object_v1_response_t*
-ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureEditObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatesignatureID , ezsigntemplatesignature_edit_object_v1_request_t * ezsigntemplatesignature_edit_object_v1_request )
+ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatesignatureID, ezsigntemplatesignature_edit_object_v1_request_t *ezsigntemplatesignature_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -201,7 +201,7 @@ ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureEditObjectV1(apiClient_t
     snprintf(localVarToReplace_pkiEzsigntemplatesignatureID, sizeOfPathParams_pkiEzsigntemplatesignatureID, "{%s}", "pkiEzsigntemplatesignatureID");
 
     char localVarBuff_pkiEzsigntemplatesignatureID[256];
-    intToStr(localVarBuff_pkiEzsigntemplatesignatureID, pkiEzsigntemplatesignatureID);
+    intToStr(localVarBuff_pkiEzsigntemplatesignatureID, *pkiEzsigntemplatesignatureID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatesignatureID, localVarBuff_pkiEzsigntemplatesignatureID);
 
@@ -278,7 +278,7 @@ end:
 // 
 //
 ezsigntemplatesignature_get_object_v2_response_t*
-ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureGetObjectV2(apiClient_t *apiClient, int pkiEzsigntemplatesignatureID )
+ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureGetObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplatesignatureID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -302,7 +302,7 @@ ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureGetObjectV2(apiClient_t 
     snprintf(localVarToReplace_pkiEzsigntemplatesignatureID, sizeOfPathParams_pkiEzsigntemplatesignatureID, "{%s}", "pkiEzsigntemplatesignatureID");
 
     char localVarBuff_pkiEzsigntemplatesignatureID[256];
-    intToStr(localVarBuff_pkiEzsigntemplatesignatureID, pkiEzsigntemplatesignatureID);
+    intToStr(localVarBuff_pkiEzsigntemplatesignatureID, *pkiEzsigntemplatesignatureID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatesignatureID, localVarBuff_pkiEzsigntemplatesignatureID);
 

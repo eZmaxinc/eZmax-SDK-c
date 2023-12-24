@@ -23,7 +23,7 @@ char* ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetCsvErrors
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignbulksendtransmissionID** | **int** |  | 
+**pkiEzsignbulksendtransmissionID** | **int \*** |  | 
 
 ### Return type
 
@@ -55,7 +55,7 @@ ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_t* ObjectE
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignbulksendtransmissionID** | **int** |  | 
+**pkiEzsignbulksendtransmissionID** | **int \*** |  | 
 
 ### Return type
 
@@ -86,7 +86,7 @@ ezsignbulksendtransmission_get_forms_data_v1_response_t* ObjectEzsignbulksendtra
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignbulksendtransmissionID** | **int** |  | 
+**pkiEzsignbulksendtransmissionID** | **int \*** |  | 
 
 ### Return type
 
@@ -117,7 +117,7 @@ ezsignbulksendtransmission_get_object_v2_response_t* ObjectEzsignbulksendtransmi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignbulksendtransmissionID** | **int** |  | 
+**pkiEzsignbulksendtransmissionID** | **int \*** |  | 
 
 ### Return type
 

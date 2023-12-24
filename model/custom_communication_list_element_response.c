@@ -6,7 +6,7 @@
 
 char* e_communication_directioncustom_communication_list_element_response_ToString(ezmax_api_definition__full_custom_communication_list_element_response__e e_communication_direction) {
     char* e_communication_directionArray[] =  { "NULL", "Outbound", "Inbound" };
-	return e_communication_directionArray[e_communication_direction];
+    return e_communication_directionArray[e_communication_direction];
 }
 
 ezmax_api_definition__full_custom_communication_list_element_response__e e_communication_directioncustom_communication_list_element_response_FromString(char* e_communication_direction){
@@ -23,7 +23,7 @@ ezmax_api_definition__full_custom_communication_list_element_response__e e_commu
 }
 char* e_communication_importancecustom_communication_list_element_response_ToString(ezmax_api_definition__full_custom_communication_list_element_response__e e_communication_importance) {
     char* e_communication_importanceArray[] =  { "NULL", "High", "Normal", "Low" };
-	return e_communication_importanceArray[e_communication_importance];
+    return e_communication_importanceArray[e_communication_importance];
 }
 
 ezmax_api_definition__full_custom_communication_list_element_response__e e_communication_importancecustom_communication_list_element_response_FromString(char* e_communication_importance){
@@ -40,7 +40,7 @@ ezmax_api_definition__full_custom_communication_list_element_response__e e_commu
 }
 char* e_communication_typecustom_communication_list_element_response_ToString(ezmax_api_definition__full_custom_communication_list_element_response__e e_communication_type) {
     char* e_communication_typeArray[] =  { "NULL", "Email", "Fax", "Sms" };
-	return e_communication_typeArray[e_communication_type];
+    return e_communication_typeArray[e_communication_type];
 }
 
 ezmax_api_definition__full_custom_communication_list_element_response__e e_communication_typecustom_communication_list_element_response_FromString(char* e_communication_type){

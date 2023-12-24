@@ -6,7 +6,7 @@
 
 char* e_communication_importancecommunication_request_ToString(ezmax_api_definition__full_communication_request__e e_communication_importance) {
     char* e_communication_importanceArray[] =  { "NULL", "High", "Normal", "Low" };
-	return e_communication_importanceArray[e_communication_importance];
+    return e_communication_importanceArray[e_communication_importance];
 }
 
 ezmax_api_definition__full_communication_request__e e_communication_importancecommunication_request_FromString(char* e_communication_importance){
@@ -23,7 +23,7 @@ ezmax_api_definition__full_communication_request__e e_communication_importanceco
 }
 char* e_communication_typecommunication_request_ToString(ezmax_api_definition__full_communication_request__e e_communication_type) {
     char* e_communication_typeArray[] =  { "NULL", "Email", "Fax", "Sms" };
-	return e_communication_typeArray[e_communication_type];
+    return e_communication_typeArray[e_communication_type];
 }
 
 ezmax_api_definition__full_communication_request__e e_communication_typecommunication_request_FromString(char* e_communication_type){
@@ -40,7 +40,7 @@ ezmax_api_definition__full_communication_request__e e_communication_typecommunic
 }
 char* e_communication_attachmenttypecommunication_request_ToString(ezmax_api_definition__full_communication_request_ECOMMUNICATIONATTACHMENTTYPE_e e_communication_attachmenttype) {
     char* e_communication_attachmenttypeArray[] =  { "NULL", "Attachment", "Url" };
-	return e_communication_attachmenttypeArray[e_communication_attachmenttype];
+    return e_communication_attachmenttypeArray[e_communication_attachmenttype];
 }
 
 ezmax_api_definition__full_communication_request_ECOMMUNICATIONATTACHMENTTYPE_e e_communication_attachmenttypecommunication_request_FromString(char* e_communication_attachmenttype){

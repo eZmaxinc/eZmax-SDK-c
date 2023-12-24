@@ -27,7 +27,7 @@ typedef enum  { ezmax_api_definition__full_userstagedGetListV1__NULL = 0, ezmax_
 // Default values will be used while creating the User. If you need to change those values, you should use the route to edit a User.
 //
 userstaged_create_user_v1_response_t*
-ObjectUserstagedAPI_userstagedCreateUserV1(apiClient_t *apiClient, int pkiUserstagedID , object_t * body );
+ObjectUserstagedAPI_userstagedCreateUserV1(apiClient_t *apiClient, int *pkiUserstagedID, object_t *body);
 
 
 // Delete an existing Userstaged
@@ -35,7 +35,7 @@ ObjectUserstagedAPI_userstagedCreateUserV1(apiClient_t *apiClient, int pkiUserst
 // 
 //
 userstaged_delete_object_v1_response_t*
-ObjectUserstagedAPI_userstagedDeleteObjectV1(apiClient_t *apiClient, int pkiUserstagedID );
+ObjectUserstagedAPI_userstagedDeleteObjectV1(apiClient_t *apiClient, int *pkiUserstagedID);
 
 
 // Retrieve Userstaged list
@@ -43,7 +43,7 @@ ObjectUserstagedAPI_userstagedDeleteObjectV1(apiClient_t *apiClient, int pkiUser
 // 
 //
 userstaged_get_list_v1_response_t*
-ObjectUserstagedAPI_userstagedGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_userstagedGetListV1_eOrderBy_e eOrderBy , int iRowMax , int iRowOffset , header_accept_language_e Accept_Language , char * sFilter );
+ObjectUserstagedAPI_userstagedGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_userstagedGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
 
 
 // Retrieve an existing Userstaged
@@ -51,7 +51,7 @@ ObjectUserstagedAPI_userstagedGetListV1(apiClient_t *apiClient, ezmax_api_defini
 // 
 //
 userstaged_get_object_v2_response_t*
-ObjectUserstagedAPI_userstagedGetObjectV2(apiClient_t *apiClient, int pkiUserstagedID );
+ObjectUserstagedAPI_userstagedGetObjectV2(apiClient_t *apiClient, int *pkiUserstagedID);
 
 
 // Map the Userstaged to an existing user
@@ -59,6 +59,6 @@ ObjectUserstagedAPI_userstagedGetObjectV2(apiClient_t *apiClient, int pkiUsersta
 // 
 //
 userstaged_map_v1_response_t*
-ObjectUserstagedAPI_userstagedMapV1(apiClient_t *apiClient, int pkiUserstagedID , userstaged_map_v1_request_t * userstaged_map_v1_request );
+ObjectUserstagedAPI_userstagedMapV1(apiClient_t *apiClient, int *pkiUserstagedID, userstaged_map_v1_request_t *userstaged_map_v1_request);
 
 

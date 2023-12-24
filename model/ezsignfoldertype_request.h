@@ -65,6 +65,16 @@ typedef struct ezsignfoldertype_request_t {
     int b_ezsignfoldertype_delegate; //boolean
     int b_ezsignfoldertype_reassign; //boolean
     int b_ezsignfoldertype_sendattatchmentsigner; //boolean
+    int b_ezsignfoldertype_sendsignedtoezsignsigner; //boolean
+    int b_ezsignfoldertype_sendsignedtouser; //boolean
+    int b_ezsignfoldertype_sendattachmentezsignsigner; //boolean
+    int b_ezsignfoldertype_sendproofezsignsigner; //boolean
+    int b_ezsignfoldertype_sendattachmentuser; //boolean
+    int b_ezsignfoldertype_sendproofuser; //boolean
+    int b_ezsignfoldertype_sendproofemail; //boolean
+    int b_ezsignfoldertype_allowdownloadattachmentezsignsigner; //boolean
+    int b_ezsignfoldertype_allowdownloadproofezsignsigner; //boolean
+    int b_ezsignfoldertype_sendproofreceivealldocument; //boolean
     int b_ezsignfoldertype_sendsignedtodocumentowner; //boolean
     int b_ezsignfoldertype_sendsignedtofolderowner; //boolean
     int b_ezsignfoldertype_sendsignedtofullgroup; //boolean
@@ -100,6 +110,16 @@ ezsignfoldertype_request_t *ezsignfoldertype_request_create(
     int b_ezsignfoldertype_delegate,
     int b_ezsignfoldertype_reassign,
     int b_ezsignfoldertype_sendattatchmentsigner,
+    int b_ezsignfoldertype_sendsignedtoezsignsigner,
+    int b_ezsignfoldertype_sendsignedtouser,
+    int b_ezsignfoldertype_sendattachmentezsignsigner,
+    int b_ezsignfoldertype_sendproofezsignsigner,
+    int b_ezsignfoldertype_sendattachmentuser,
+    int b_ezsignfoldertype_sendproofuser,
+    int b_ezsignfoldertype_sendproofemail,
+    int b_ezsignfoldertype_allowdownloadattachmentezsignsigner,
+    int b_ezsignfoldertype_allowdownloadproofezsignsigner,
+    int b_ezsignfoldertype_sendproofreceivealldocument,
     int b_ezsignfoldertype_sendsignedtodocumentowner,
     int b_ezsignfoldertype_sendsignedtofolderowner,
     int b_ezsignfoldertype_sendsignedtofullgroup,

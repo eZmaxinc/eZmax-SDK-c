@@ -54,7 +54,7 @@ cors_delete_object_v1_response_t* ObjectCorsAPI_corsDeleteObjectV1(apiClient_t *
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiCorsID** | **int** | The unique ID of the Cors | 
+**pkiCorsID** | **int \*** | The unique ID of the Cors | 
 
 ### Return type
 
@@ -85,7 +85,7 @@ cors_edit_object_v1_response_t* ObjectCorsAPI_corsEditObjectV1(apiClient_t *apiC
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiCorsID** | **int** | The unique ID of the Cors | 
+**pkiCorsID** | **int \*** | The unique ID of the Cors | 
 **cors_edit_object_v1_request** | **[cors_edit_object_v1_request_t](cors_edit_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -117,7 +117,7 @@ cors_get_object_v2_response_t* ObjectCorsAPI_corsGetObjectV2(apiClient_t *apiCli
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiCorsID** | **int** | The unique ID of the Cors | 
+**pkiCorsID** | **int \*** | The unique ID of the Cors | 
 
 ### Return type
 

@@ -19,7 +19,7 @@
 // The endpoint allows to create one or many elements at once.
 //
 usergroupmembership_create_object_v1_response_t*
-ObjectUsergroupmembershipAPI_usergroupmembershipCreateObjectV1(apiClient_t *apiClient, usergroupmembership_create_object_v1_request_t * usergroupmembership_create_object_v1_request );
+ObjectUsergroupmembershipAPI_usergroupmembershipCreateObjectV1(apiClient_t *apiClient, usergroupmembership_create_object_v1_request_t *usergroupmembership_create_object_v1_request);
 
 
 // Delete an existing Usergroupmembership
@@ -27,7 +27,7 @@ ObjectUsergroupmembershipAPI_usergroupmembershipCreateObjectV1(apiClient_t *apiC
 // 
 //
 usergroupmembership_delete_object_v1_response_t*
-ObjectUsergroupmembershipAPI_usergroupmembershipDeleteObjectV1(apiClient_t *apiClient, int pkiUsergroupmembershipID );
+ObjectUsergroupmembershipAPI_usergroupmembershipDeleteObjectV1(apiClient_t *apiClient, int *pkiUsergroupmembershipID);
 
 
 // Edit an existing Usergroupmembership
@@ -35,7 +35,7 @@ ObjectUsergroupmembershipAPI_usergroupmembershipDeleteObjectV1(apiClient_t *apiC
 // 
 //
 usergroupmembership_edit_object_v1_response_t*
-ObjectUsergroupmembershipAPI_usergroupmembershipEditObjectV1(apiClient_t *apiClient, int pkiUsergroupmembershipID , usergroupmembership_edit_object_v1_request_t * usergroupmembership_edit_object_v1_request );
+ObjectUsergroupmembershipAPI_usergroupmembershipEditObjectV1(apiClient_t *apiClient, int *pkiUsergroupmembershipID, usergroupmembership_edit_object_v1_request_t *usergroupmembership_edit_object_v1_request);
 
 
 // Retrieve an existing Usergroupmembership
@@ -43,6 +43,6 @@ ObjectUsergroupmembershipAPI_usergroupmembershipEditObjectV1(apiClient_t *apiCli
 // 
 //
 usergroupmembership_get_object_v2_response_t*
-ObjectUsergroupmembershipAPI_usergroupmembershipGetObjectV2(apiClient_t *apiClient, int pkiUsergroupmembershipID );
+ObjectUsergroupmembershipAPI_usergroupmembershipGetObjectV2(apiClient_t *apiClient, int *pkiUsergroupmembershipID);
 
 

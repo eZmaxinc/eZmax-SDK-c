@@ -17,7 +17,7 @@
 // The endpoint allows to create one or many elements at once.
 //
 cors_create_object_v1_response_t*
-ObjectCorsAPI_corsCreateObjectV1(apiClient_t *apiClient, cors_create_object_v1_request_t * cors_create_object_v1_request )
+ObjectCorsAPI_corsCreateObjectV1(apiClient_t *apiClient, cors_create_object_v1_request_t *cors_create_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -95,7 +95,7 @@ end:
 // 
 //
 cors_delete_object_v1_response_t*
-ObjectCorsAPI_corsDeleteObjectV1(apiClient_t *apiClient, int pkiCorsID )
+ObjectCorsAPI_corsDeleteObjectV1(apiClient_t *apiClient, int *pkiCorsID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -119,7 +119,7 @@ ObjectCorsAPI_corsDeleteObjectV1(apiClient_t *apiClient, int pkiCorsID )
     snprintf(localVarToReplace_pkiCorsID, sizeOfPathParams_pkiCorsID, "{%s}", "pkiCorsID");
 
     char localVarBuff_pkiCorsID[256];
-    intToStr(localVarBuff_pkiCorsID, pkiCorsID);
+    intToStr(localVarBuff_pkiCorsID, *pkiCorsID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiCorsID, localVarBuff_pkiCorsID);
 
@@ -177,7 +177,7 @@ end:
 // 
 //
 cors_edit_object_v1_response_t*
-ObjectCorsAPI_corsEditObjectV1(apiClient_t *apiClient, int pkiCorsID , cors_edit_object_v1_request_t * cors_edit_object_v1_request )
+ObjectCorsAPI_corsEditObjectV1(apiClient_t *apiClient, int *pkiCorsID, cors_edit_object_v1_request_t *cors_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -201,7 +201,7 @@ ObjectCorsAPI_corsEditObjectV1(apiClient_t *apiClient, int pkiCorsID , cors_edit
     snprintf(localVarToReplace_pkiCorsID, sizeOfPathParams_pkiCorsID, "{%s}", "pkiCorsID");
 
     char localVarBuff_pkiCorsID[256];
-    intToStr(localVarBuff_pkiCorsID, pkiCorsID);
+    intToStr(localVarBuff_pkiCorsID, *pkiCorsID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiCorsID, localVarBuff_pkiCorsID);
 
@@ -278,7 +278,7 @@ end:
 // 
 //
 cors_get_object_v2_response_t*
-ObjectCorsAPI_corsGetObjectV2(apiClient_t *apiClient, int pkiCorsID )
+ObjectCorsAPI_corsGetObjectV2(apiClient_t *apiClient, int *pkiCorsID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -302,7 +302,7 @@ ObjectCorsAPI_corsGetObjectV2(apiClient_t *apiClient, int pkiCorsID )
     snprintf(localVarToReplace_pkiCorsID, sizeOfPathParams_pkiCorsID, "{%s}", "pkiCorsID");
 
     char localVarBuff_pkiCorsID[256];
-    intToStr(localVarBuff_pkiCorsID, pkiCorsID);
+    intToStr(localVarBuff_pkiCorsID, *pkiCorsID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiCorsID, localVarBuff_pkiCorsID);
 

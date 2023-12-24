@@ -15,6 +15,7 @@ Method | HTTP request | Description
 [**ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/endPrematurely | End prematurely
 [**ObjectEzsigndocumentAPI_ezsigndocumentFlattenV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentFlattenV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/flatten | Flatten
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getActionableElements | Retrieve actionable elements for the Ezsigndocument
+[**ObjectEzsigndocumentAPI_ezsigndocumentGetAttachmentsV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetAttachmentsV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getAttachments | Retrieve Ezsigndocument&#39;s Attachments
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetCompletedElementsV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetCompletedElementsV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getCompletedElements | Retrieve completed elements for the Ezsigndocument
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getDownloadUrl/{eDocumentType} | Retrieve a URL to download documents.
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignannotationsV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignannotationsV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getEzsignannotations | Retrieve an existing Ezsigndocument&#39;s Ezsignannotations
@@ -45,7 +46,7 @@ ezsigndocument_apply_ezsigntemplate_v1_response_t* ObjectEzsigndocumentAPI_ezsig
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigndocumentID** | **int** |  | 
+**pkiEzsigndocumentID** | **int \*** |  | 
 **ezsigndocument_apply_ezsigntemplate_v1_request** | **[ezsigndocument_apply_ezsigntemplate_v1_request_t](ezsigndocument_apply_ezsigntemplate_v1_request.md) \*** |  | 
 
 ### Return type
@@ -77,7 +78,7 @@ ezsigndocument_apply_ezsigntemplate_v2_response_t* ObjectEzsigndocumentAPI_ezsig
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigndocumentID** | **int** |  | 
+**pkiEzsigndocumentID** | **int \*** |  | 
 **ezsigndocument_apply_ezsigntemplate_v2_request** | **[ezsigndocument_apply_ezsigntemplate_v2_request_t](ezsigndocument_apply_ezsigntemplate_v2_request.md) \*** |  | 
 
 ### Return type
@@ -171,7 +172,7 @@ ezsigndocument_decline_to_sign_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocu
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigndocumentID** | **int** |  | 
+**pkiEzsigndocumentID** | **int \*** |  | 
 **ezsigndocument_decline_to_sign_v1_request** | **[ezsigndocument_decline_to_sign_v1_request_t](ezsigndocument_decline_to_sign_v1_request.md) \*** |  | 
 
 ### Return type
@@ -203,7 +204,7 @@ ezsigndocument_delete_object_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocume
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigndocumentID** | **int** |  | 
+**pkiEzsigndocumentID** | **int \*** |  | 
 
 ### Return type
 
@@ -234,7 +235,7 @@ ezsigndocument_edit_ezsignformfieldgroups_v1_response_t* ObjectEzsigndocumentAPI
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigndocumentID** | **int** |  | 
+**pkiEzsigndocumentID** | **int \*** |  | 
 **ezsigndocument_edit_ezsignformfieldgroups_v1_request** | **[ezsigndocument_edit_ezsignformfieldgroups_v1_request_t](ezsigndocument_edit_ezsignformfieldgroups_v1_request.md) \*** |  | 
 
 ### Return type
@@ -266,7 +267,7 @@ ezsigndocument_edit_ezsignsignatures_v1_response_t* ObjectEzsigndocumentAPI_ezsi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigndocumentID** | **int** |  | 
+**pkiEzsigndocumentID** | **int \*** |  | 
 **ezsigndocument_edit_ezsignsignatures_v1_request** | **[ezsigndocument_edit_ezsignsignatures_v1_request_t](ezsigndocument_edit_ezsignsignatures_v1_request.md) \*** |  | 
 
 ### Return type
@@ -298,7 +299,7 @@ ezsigndocument_end_prematurely_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocu
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigndocumentID** | **int** |  | 
+**pkiEzsigndocumentID** | **int \*** |  | 
 **body** | **[object_t](object.md) \*** |  | 
 
 ### Return type
@@ -330,7 +331,7 @@ ezsigndocument_flatten_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentFlat
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigndocumentID** | **int** |  | 
+**pkiEzsigndocumentID** | **int \*** |  | 
 **body** | **[object_t](object.md) \*** |  | 
 
 ### Return type
@@ -362,11 +363,42 @@ ezsigndocument_get_actionable_elements_v1_response_t* ObjectEzsigndocumentAPI_ez
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigndocumentID** | **int** |  | 
+**pkiEzsigndocumentID** | **int \*** |  | 
 
 ### Return type
 
 [ezsigndocument_get_actionable_elements_v1_response_t](ezsigndocument_get_actionable_elements_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsigndocumentAPI_ezsigndocumentGetAttachmentsV1**
+```c
+// Retrieve Ezsigndocument's Attachments
+//
+// 
+//
+ezsigndocument_get_attachments_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentGetAttachmentsV1(apiClient_t *apiClient, int pkiEzsigndocumentID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsigndocumentID** | **int \*** |  | 
+
+### Return type
+
+[ezsigndocument_get_attachments_v1_response_t](ezsigndocument_get_attachments_v1_response.md) *
 
 
 ### Authorization
@@ -393,7 +425,7 @@ ezsigndocument_get_completed_elements_v1_response_t* ObjectEzsigndocumentAPI_ezs
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigndocumentID** | **int** |  | 
+**pkiEzsigndocumentID** | **int \*** |  | 
 
 ### Return type
 
@@ -424,7 +456,7 @@ ezsigndocument_get_download_url_v1_response_t* ObjectEzsigndocumentAPI_ezsigndoc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigndocumentID** | **int** |  | 
+**pkiEzsigndocumentID** | **int \*** |  | 
 **eDocumentType** | **ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_eDocumentType_e** | The type of document to retrieve.  1. **Initial** Is the initial document before any signature were applied. 2. **SignatureReady** Is the version containing the annotations/form to show the signer. 3. **Signed** Is the final document once all signatures were applied. 4. **Proofdocument** Is the evidence report. 5. **Proof** Is the complete evidence archive including all of the above and more.  | 
 
 ### Return type
@@ -456,7 +488,7 @@ ezsigndocument_get_ezsignannotations_v1_response_t* ObjectEzsigndocumentAPI_ezsi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigndocumentID** | **int** |  | 
+**pkiEzsigndocumentID** | **int \*** |  | 
 
 ### Return type
 
@@ -487,7 +519,7 @@ ezsigndocument_get_ezsignformfieldgroups_v1_response_t* ObjectEzsigndocumentAPI_
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigndocumentID** | **int** |  | 
+**pkiEzsigndocumentID** | **int \*** |  | 
 
 ### Return type
 
@@ -518,7 +550,7 @@ ezsigndocument_get_ezsignpages_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocu
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigndocumentID** | **int** |  | 
+**pkiEzsigndocumentID** | **int \*** |  | 
 
 ### Return type
 
@@ -549,7 +581,7 @@ ezsigndocument_get_ezsignsignatures_automatic_v1_response_t* ObjectEzsigndocumen
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigndocumentID** | **int** |  | 
+**pkiEzsigndocumentID** | **int \*** |  | 
 
 ### Return type
 
@@ -580,7 +612,7 @@ ezsigndocument_get_ezsignsignatures_v1_response_t* ObjectEzsigndocumentAPI_ezsig
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigndocumentID** | **int** |  | 
+**pkiEzsigndocumentID** | **int \*** |  | 
 
 ### Return type
 
@@ -611,7 +643,7 @@ ezsigndocument_get_form_data_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocume
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigndocumentID** | **int** |  | 
+**pkiEzsigndocumentID** | **int \*** |  | 
 
 ### Return type
 
@@ -640,7 +672,7 @@ ezsigndocument_get_object_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentG
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigndocumentID** | **int** |  | 
+**pkiEzsigndocumentID** | **int \*** |  | 
 
 ### Return type
 
@@ -671,7 +703,7 @@ ezsigndocument_get_object_v2_response_t* ObjectEzsigndocumentAPI_ezsigndocumentG
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigndocumentID** | **int** |  | 
+**pkiEzsigndocumentID** | **int \*** |  | 
 
 ### Return type
 
@@ -702,7 +734,7 @@ ezsigndocument_get_temporary_proof_v1_response_t* ObjectEzsigndocumentAPI_ezsign
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigndocumentID** | **int** |  | 
+**pkiEzsigndocumentID** | **int \*** |  | 
 
 ### Return type
 
@@ -733,7 +765,7 @@ ezsigndocument_get_words_positions_v1_response_t* ObjectEzsigndocumentAPI_ezsign
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigndocumentID** | **int** |  | 
+**pkiEzsigndocumentID** | **int \*** |  | 
 **ezsigndocument_get_words_positions_v1_request** | **[ezsigndocument_get_words_positions_v1_request_t](ezsigndocument_get_words_positions_v1_request.md) \*** |  | 
 
 ### Return type
@@ -765,7 +797,7 @@ ezsigndocument_patch_object_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumen
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigndocumentID** | **int** |  | 
+**pkiEzsigndocumentID** | **int \*** |  | 
 **ezsigndocument_patch_object_v1_request** | **[ezsigndocument_patch_object_v1_request_t](ezsigndocument_patch_object_v1_request.md) \*** |  | 
 
 ### Return type
@@ -797,7 +829,7 @@ ezsigndocument_submit_ezsignform_v1_response_t* ObjectEzsigndocumentAPI_ezsigndo
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigndocumentID** | **int** |  | 
+**pkiEzsigndocumentID** | **int \*** |  | 
 **ezsigndocument_submit_ezsignform_v1_request** | **[ezsigndocument_submit_ezsignform_v1_request_t](ezsigndocument_submit_ezsignform_v1_request.md) \*** |  | 
 
 ### Return type
@@ -829,7 +861,7 @@ ezsigndocument_unsend_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentUnsen
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsigndocumentID** | **int** |  | 
+**pkiEzsigndocumentID** | **int \*** |  | 
 **body** | **[object_t](object.md) \*** |  | 
 
 ### Return type

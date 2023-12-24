@@ -6,7 +6,7 @@
 
 char* e_paymentterm_typepaymentterm_list_element_ToString(ezmax_api_definition__full_paymentterm_list_element__e e_paymentterm_type) {
     char* e_paymentterm_typeArray[] =  { "NULL", "Days", "Dayofthemonth" };
-	return e_paymentterm_typeArray[e_paymentterm_type];
+    return e_paymentterm_typeArray[e_paymentterm_type];
 }
 
 ezmax_api_definition__full_paymentterm_list_element__e e_paymentterm_typepaymentterm_list_element_FromString(char* e_paymentterm_type){
