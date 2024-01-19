@@ -17,8 +17,17 @@ typedef struct ezsignfolder_response_compound_t ezsignfolder_response_compound_t
 
 #include "common_audit.h"
 #include "custom_ezsignfoldertype_response.h"
+#include "field_e_ezsignfolder_completion.h"
 #include "field_e_ezsignfolder_sendreminderfrequency.h"
 #include "field_e_ezsignfolder_step.h"
+
+// Enum  for ezsignfolder_response_compound
+
+typedef enum  { ezmax_api_definition__full_ezsignfolder_response_compound__NULL = 0, ezmax_api_definition__full_ezsignfolder_response_compound__PerEzsigndocument, ezmax_api_definition__full_ezsignfolder_response_compound__PerEzsignfolder } ezmax_api_definition__full_ezsignfolder_response_compound__e;
+
+char* ezsignfolder_response_compound_e_ezsignfolder_completion_ToString(ezmax_api_definition__full_ezsignfolder_response_compound__e e_ezsignfolder_completion);
+
+ezmax_api_definition__full_ezsignfolder_response_compound__e ezsignfolder_response_compound_e_ezsignfolder_completion_FromString(char* e_ezsignfolder_completion);
 
 // Enum  for ezsignfolder_response_compound
 
@@ -42,6 +51,7 @@ typedef struct ezsignfolder_response_compound_t {
     int pki_ezsignfolder_id; //numeric
     int fki_ezsignfoldertype_id; //numeric
     struct custom_ezsignfoldertype_response_t *obj_ezsignfoldertype; //model
+    field_e_ezsignfolder_completion_t *e_ezsignfolder_completion; // custom
     char *s_ezsignfoldertype_name_x; // string
     int fki_billingentityinternal_id; //numeric
     char *s_billingentityinternal_description_x; // string
@@ -68,6 +78,7 @@ ezsignfolder_response_compound_t *ezsignfolder_response_compound_create(
     int pki_ezsignfolder_id,
     int fki_ezsignfoldertype_id,
     custom_ezsignfoldertype_response_t *obj_ezsignfoldertype,
+    field_e_ezsignfolder_completion_t *e_ezsignfolder_completion,
     char *s_ezsignfoldertype_name_x,
     int fki_billingentityinternal_id,
     char *s_billingentityinternal_description_x,

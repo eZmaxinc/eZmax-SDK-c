@@ -101,6 +101,7 @@ user_response_compound_t *user_response_compound_create(
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_user_loginname,
+    char *s_user_jobtitle,
     field_e_user_ezsignaccess_t *e_user_ezsignaccess,
     char *dt_user_lastlogondate,
     char *dt_user_passwordchanged,
@@ -143,6 +144,7 @@ user_response_compound_t *user_response_compound_create(
     user_response_compound_local_var->s_user_firstname = s_user_firstname;
     user_response_compound_local_var->s_user_lastname = s_user_lastname;
     user_response_compound_local_var->s_user_loginname = s_user_loginname;
+    user_response_compound_local_var->s_user_jobtitle = s_user_jobtitle;
     user_response_compound_local_var->e_user_ezsignaccess = e_user_ezsignaccess;
     user_response_compound_local_var->dt_user_lastlogondate = dt_user_lastlogondate;
     user_response_compound_local_var->dt_user_passwordchanged = dt_user_passwordchanged;
@@ -222,6 +224,10 @@ void user_response_compound_free(user_response_compound_t *user_response_compoun
     if (user_response_compound->s_user_loginname) {
         free(user_response_compound->s_user_loginname);
         user_response_compound->s_user_loginname = NULL;
+    }
+    if (user_response_compound->s_user_jobtitle) {
+        free(user_response_compound->s_user_jobtitle);
+        user_response_compound->s_user_jobtitle = NULL;
     }
     if (user_response_compound->e_user_ezsignaccess) {
         field_e_user_ezsignaccess_free(user_response_compound->e_user_ezsignaccess);
@@ -510,6 +516,14 @@ cJSON *user_response_compound_convertToJSON(user_response_compound_t *user_respo
     }
     if(cJSON_AddStringToObject(item, "sUserLoginname", user_response_compound->s_user_loginname) == NULL) {
     goto fail; //String
+    }
+
+
+    // user_response_compound->s_user_jobtitle
+    if(user_response_compound->s_user_jobtitle) {
+    if(cJSON_AddStringToObject(item, "sUserJobtitle", user_response_compound->s_user_jobtitle) == NULL) {
+    goto fail; //String
+    }
     }
 
 
@@ -921,6 +935,15 @@ user_response_compound_t *user_response_compound_parseFromJSON(cJSON *user_respo
     goto end; //String
     }
 
+    // user_response_compound->s_user_jobtitle
+    cJSON *s_user_jobtitle = cJSON_GetObjectItemCaseSensitive(user_response_compoundJSON, "sUserJobtitle");
+    if (s_user_jobtitle) { 
+    if(!cJSON_IsString(s_user_jobtitle) && !cJSON_IsNull(s_user_jobtitle))
+    {
+    goto end; //String
+    }
+    }
+
     // user_response_compound->e_user_ezsignaccess
     cJSON *e_user_ezsignaccess = cJSON_GetObjectItemCaseSensitive(user_response_compoundJSON, "eUserEzsignaccess");
     if (!e_user_ezsignaccess) {
@@ -1046,6 +1069,7 @@ user_response_compound_t *user_response_compound_parseFromJSON(cJSON *user_respo
         strdup(s_user_firstname->valuestring),
         strdup(s_user_lastname->valuestring),
         strdup(s_user_loginname->valuestring),
+        s_user_jobtitle && !cJSON_IsNull(s_user_jobtitle) ? strdup(s_user_jobtitle->valuestring) : NULL,
         e_user_ezsignaccess_local_nonprim,
         dt_user_lastlogondate && !cJSON_IsNull(dt_user_lastlogondate) ? strdup(dt_user_lastlogondate->valuestring) : NULL,
         dt_user_passwordchanged && !cJSON_IsNull(dt_user_passwordchanged) ? strdup(dt_user_passwordchanged->valuestring) : NULL,

@@ -16,6 +16,7 @@
 #include "../model/custom_webhook_response.h"
 custom_webhook_response_t* instantiate_custom_webhook_response(int include_optional);
 
+#include "test_common_audit.c"
 
 
 custom_webhook_response_t* instantiate_custom_webhook_response(int include_optional) {
@@ -36,6 +37,8 @@ custom_webhook_response_t* instantiate_custom_webhook_response(int include_optio
       true,
       true,
       false,
+       // false, not to have infinite recursion
+      instantiate_common_audit(0),
       "demo",
       1
     );
@@ -55,6 +58,7 @@ custom_webhook_response_t* instantiate_custom_webhook_response(int include_optio
       true,
       true,
       false,
+      NULL,
       "demo",
       1
     );

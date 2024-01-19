@@ -5,13 +5,13 @@
 
 
 char* e_ezsignsignature_typeezsignsignature_response_ToString(ezmax_api_definition__full_ezsignsignature_response__e e_ezsignsignature_type) {
-    char* e_ezsignsignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name", "NameReason", "Attachments", "AttachmentsConfirmation", "FieldText", "FieldTextarea" };
+    char* e_ezsignsignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name", "NameReason", "Attachments", "AttachmentsConfirmation", "FieldText", "FieldTextarea", "Consultation" };
     return e_ezsignsignature_typeArray[e_ezsignsignature_type];
 }
 
 ezmax_api_definition__full_ezsignsignature_response__e e_ezsignsignature_typeezsignsignature_response_FromString(char* e_ezsignsignature_type){
     int stringToReturn = 0;
-    char *e_ezsignsignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name", "NameReason", "Attachments", "AttachmentsConfirmation", "FieldText", "FieldTextarea" };
+    char *e_ezsignsignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name", "NameReason", "Attachments", "AttachmentsConfirmation", "FieldText", "FieldTextarea", "Consultation" };
     size_t sizeofArray = sizeof(e_ezsignsignature_typeArray) / sizeof(e_ezsignsignature_typeArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(e_ezsignsignature_type, e_ezsignsignature_typeArray[stringToReturn]) == 0) {
@@ -119,6 +119,7 @@ ezsignsignature_response_t *ezsignsignature_response_create(
     int i_ezsignsignature_height,
     int i_ezsignsignature_width,
     int i_ezsignsignature_step,
+    int i_ezsignsignature_stepadjusted,
     field_e_ezsignsignature_type_t *e_ezsignsignature_type,
     char *t_ezsignsignature_tooltip,
     field_e_ezsignsignature_tooltipposition_t *e_ezsignsignature_tooltipposition,
@@ -154,6 +155,7 @@ ezsignsignature_response_t *ezsignsignature_response_create(
     ezsignsignature_response_local_var->i_ezsignsignature_height = i_ezsignsignature_height;
     ezsignsignature_response_local_var->i_ezsignsignature_width = i_ezsignsignature_width;
     ezsignsignature_response_local_var->i_ezsignsignature_step = i_ezsignsignature_step;
+    ezsignsignature_response_local_var->i_ezsignsignature_stepadjusted = i_ezsignsignature_stepadjusted;
     ezsignsignature_response_local_var->e_ezsignsignature_type = e_ezsignsignature_type;
     ezsignsignature_response_local_var->t_ezsignsignature_tooltip = t_ezsignsignature_tooltip;
     ezsignsignature_response_local_var->e_ezsignsignature_tooltipposition = e_ezsignsignature_tooltipposition;
@@ -341,6 +343,14 @@ cJSON *ezsignsignature_response_convertToJSON(ezsignsignature_response_t *ezsign
     }
     if(cJSON_AddNumberToObject(item, "iEzsignsignatureStep", ezsignsignature_response->i_ezsignsignature_step) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // ezsignsignature_response->i_ezsignsignature_stepadjusted
+    if(ezsignsignature_response->i_ezsignsignature_stepadjusted) {
+    if(cJSON_AddNumberToObject(item, "iEzsignsignatureStepadjusted", ezsignsignature_response->i_ezsignsignature_stepadjusted) == NULL) {
+    goto fail; //Numeric
+    }
     }
 
 
@@ -701,6 +711,15 @@ ezsignsignature_response_t *ezsignsignature_response_parseFromJSON(cJSON *ezsign
     goto end; //Numeric
     }
 
+    // ezsignsignature_response->i_ezsignsignature_stepadjusted
+    cJSON *i_ezsignsignature_stepadjusted = cJSON_GetObjectItemCaseSensitive(ezsignsignature_responseJSON, "iEzsignsignatureStepadjusted");
+    if (i_ezsignsignature_stepadjusted) { 
+    if(!cJSON_IsNumber(i_ezsignsignature_stepadjusted))
+    {
+    goto end; //Numeric
+    }
+    }
+
     // ezsignsignature_response->e_ezsignsignature_type
     cJSON *e_ezsignsignature_type = cJSON_GetObjectItemCaseSensitive(ezsignsignature_responseJSON, "eEzsignsignatureType");
     if (!e_ezsignsignature_type) {
@@ -864,6 +883,7 @@ ezsignsignature_response_t *ezsignsignature_response_parseFromJSON(cJSON *ezsign
         i_ezsignsignature_height ? i_ezsignsignature_height->valuedouble : 0,
         i_ezsignsignature_width ? i_ezsignsignature_width->valuedouble : 0,
         i_ezsignsignature_step->valuedouble,
+        i_ezsignsignature_stepadjusted ? i_ezsignsignature_stepadjusted->valuedouble : 0,
         e_ezsignsignature_type_local_nonprim,
         t_ezsignsignature_tooltip && !cJSON_IsNull(t_ezsignsignature_tooltip) ? strdup(t_ezsignsignature_tooltip->valuestring) : NULL,
         e_ezsignsignature_tooltipposition ? e_ezsignsignature_tooltipposition_local_nonprim : NULL,

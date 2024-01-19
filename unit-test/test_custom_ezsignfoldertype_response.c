@@ -30,6 +30,8 @@ custom_ezsignfoldertype_response_t* instantiate_custom_ezsignfoldertype_response
       false,
       false,
       true,
+      true,
+      true,
       true
     );
   } else {
@@ -41,6 +43,8 @@ custom_ezsignfoldertype_response_t* instantiate_custom_ezsignfoldertype_response
       true,
       false,
       false,
+      true,
+      true,
       true,
       true
     );

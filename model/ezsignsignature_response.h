@@ -26,7 +26,7 @@ typedef struct ezsignsignature_response_t ezsignsignature_response_t;
 
 // Enum  for ezsignsignature_response
 
-typedef enum  { ezmax_api_definition__full_ezsignsignature_response__NULL = 0, ezmax_api_definition__full_ezsignsignature_response__Acknowledgement, ezmax_api_definition__full_ezsignsignature_response__City, ezmax_api_definition__full_ezsignsignature_response__Handwritten, ezmax_api_definition__full_ezsignsignature_response__Initials, ezmax_api_definition__full_ezsignsignature_response__Name, ezmax_api_definition__full_ezsignsignature_response__NameReason, ezmax_api_definition__full_ezsignsignature_response__Attachments, ezmax_api_definition__full_ezsignsignature_response__AttachmentsConfirmation, ezmax_api_definition__full_ezsignsignature_response__FieldText, ezmax_api_definition__full_ezsignsignature_response__FieldTextarea } ezmax_api_definition__full_ezsignsignature_response__e;
+typedef enum  { ezmax_api_definition__full_ezsignsignature_response__NULL = 0, ezmax_api_definition__full_ezsignsignature_response__Acknowledgement, ezmax_api_definition__full_ezsignsignature_response__City, ezmax_api_definition__full_ezsignsignature_response__Handwritten, ezmax_api_definition__full_ezsignsignature_response__Initials, ezmax_api_definition__full_ezsignsignature_response__Name, ezmax_api_definition__full_ezsignsignature_response__NameReason, ezmax_api_definition__full_ezsignsignature_response__Attachments, ezmax_api_definition__full_ezsignsignature_response__AttachmentsConfirmation, ezmax_api_definition__full_ezsignsignature_response__FieldText, ezmax_api_definition__full_ezsignsignature_response__FieldTextarea, ezmax_api_definition__full_ezsignsignature_response__Consultation } ezmax_api_definition__full_ezsignsignature_response__e;
 
 char* ezsignsignature_response_e_ezsignsignature_type_ToString(ezmax_api_definition__full_ezsignsignature_response__e e_ezsignsignature_type);
 
@@ -86,6 +86,7 @@ typedef struct ezsignsignature_response_t {
     int i_ezsignsignature_height; //numeric
     int i_ezsignsignature_width; //numeric
     int i_ezsignsignature_step; //numeric
+    int i_ezsignsignature_stepadjusted; //numeric
     field_e_ezsignsignature_type_t *e_ezsignsignature_type; // custom
     char *t_ezsignsignature_tooltip; // string
     field_e_ezsignsignature_tooltipposition_t *e_ezsignsignature_tooltipposition; // custom
@@ -120,6 +121,7 @@ ezsignsignature_response_t *ezsignsignature_response_create(
     int i_ezsignsignature_height,
     int i_ezsignsignature_width,
     int i_ezsignsignature_step,
+    int i_ezsignsignature_stepadjusted,
     field_e_ezsignsignature_type_t *e_ezsignsignature_type,
     char *t_ezsignsignature_tooltip,
     field_e_ezsignsignature_tooltipposition_t *e_ezsignsignature_tooltipposition,

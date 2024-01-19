@@ -16,6 +16,7 @@
 #include "../model/webhook_response.h"
 webhook_response_t* instantiate_webhook_response(int include_optional);
 
+#include "test_common_audit.c"
 
 
 webhook_response_t* instantiate_webhook_response(int include_optional) {
@@ -35,7 +36,9 @@ webhook_response_t* instantiate_webhook_response(int include_optional) {
       "0",
       true,
       true,
-      false
+      false,
+       // false, not to have infinite recursion
+      instantiate_common_audit(0)
     );
   } else {
     webhook_response = webhook_response_create(
@@ -52,7 +55,8 @@ webhook_response_t* instantiate_webhook_response(int include_optional) {
       "0",
       true,
       true,
-      false
+      false,
+      NULL
     );
   }
 

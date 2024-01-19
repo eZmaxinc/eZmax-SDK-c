@@ -71,6 +71,7 @@ webhook_response_compound_t *webhook_response_compound_create(
     int b_webhook_isactive,
     int b_webhook_issigned,
     int b_webhook_skipsslvalidation,
+    common_audit_t *obj_audit,
     char *s_webhook_event
     ) {
     webhook_response_compound_t *webhook_response_compound_local_var = malloc(sizeof(webhook_response_compound_t));
@@ -91,6 +92,7 @@ webhook_response_compound_t *webhook_response_compound_create(
     webhook_response_compound_local_var->b_webhook_isactive = b_webhook_isactive;
     webhook_response_compound_local_var->b_webhook_issigned = b_webhook_issigned;
     webhook_response_compound_local_var->b_webhook_skipsslvalidation = b_webhook_skipsslvalidation;
+    webhook_response_compound_local_var->obj_audit = obj_audit;
     webhook_response_compound_local_var->s_webhook_event = s_webhook_event;
 
     return webhook_response_compound_local_var;
@@ -137,6 +139,10 @@ void webhook_response_compound_free(webhook_response_compound_t *webhook_respons
     if (webhook_response_compound->s_webhook_secret) {
         free(webhook_response_compound->s_webhook_secret);
         webhook_response_compound->s_webhook_secret = NULL;
+    }
+    if (webhook_response_compound->obj_audit) {
+        common_audit_free(webhook_response_compound->obj_audit);
+        webhook_response_compound->obj_audit = NULL;
     }
     if (webhook_response_compound->s_webhook_event) {
         free(webhook_response_compound->s_webhook_event);
@@ -283,6 +289,20 @@ cJSON *webhook_response_compound_convertToJSON(webhook_response_compound_t *webh
     }
 
 
+    // webhook_response_compound->obj_audit
+    if (!webhook_response_compound->obj_audit) {
+        goto fail;
+    }
+    cJSON *obj_audit_local_JSON = common_audit_convertToJSON(webhook_response_compound->obj_audit);
+    if(obj_audit_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objAudit", obj_audit_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
+
     // webhook_response_compound->s_webhook_event
     if(webhook_response_compound->s_webhook_event) {
     if(cJSON_AddStringToObject(item, "sWebhookEvent", webhook_response_compound->s_webhook_event) == NULL) {
@@ -310,6 +330,9 @@ webhook_response_compound_t *webhook_response_compound_parseFromJSON(cJSON *webh
 
     // define the local variable for webhook_response_compound->e_webhook_managementevent
     field_e_webhook_managementevent_t *e_webhook_managementevent_local_nonprim = NULL;
+
+    // define the local variable for webhook_response_compound->obj_audit
+    common_audit_t *obj_audit_local_nonprim = NULL;
 
     // webhook_response_compound->pki_webhook_id
     cJSON *pki_webhook_id = cJSON_GetObjectItemCaseSensitive(webhook_response_compoundJSON, "pkiWebhookID");
@@ -452,6 +475,15 @@ webhook_response_compound_t *webhook_response_compound_parseFromJSON(cJSON *webh
     goto end; //Bool
     }
 
+    // webhook_response_compound->obj_audit
+    cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(webhook_response_compoundJSON, "objAudit");
+    if (!obj_audit) {
+        goto end;
+    }
+
+    
+    obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
+
     // webhook_response_compound->s_webhook_event
     cJSON *s_webhook_event = cJSON_GetObjectItemCaseSensitive(webhook_response_compoundJSON, "sWebhookEvent");
     if (s_webhook_event) { 
@@ -477,6 +509,7 @@ webhook_response_compound_t *webhook_response_compound_parseFromJSON(cJSON *webh
         b_webhook_isactive->valueint,
         b_webhook_issigned->valueint,
         b_webhook_skipsslvalidation->valueint,
+        obj_audit_local_nonprim,
         s_webhook_event && !cJSON_IsNull(s_webhook_event) ? strdup(s_webhook_event->valuestring) : NULL
         );
 
@@ -493,6 +526,10 @@ end:
     if (e_webhook_managementevent_local_nonprim) {
         field_e_webhook_managementevent_free(e_webhook_managementevent_local_nonprim);
         e_webhook_managementevent_local_nonprim = NULL;
+    }
+    if (obj_audit_local_nonprim) {
+        common_audit_free(obj_audit_local_nonprim);
+        obj_audit_local_nonprim = NULL;
     }
     return NULL;
 

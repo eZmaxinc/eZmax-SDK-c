@@ -15,6 +15,7 @@
 
 typedef struct webhook_response_t webhook_response_t;
 
+#include "common_audit.h"
 #include "field_e_webhook_ezsignevent.h"
 #include "field_e_webhook_managementevent.h"
 #include "field_e_webhook_module.h"
@@ -60,6 +61,7 @@ typedef struct webhook_response_t {
     int b_webhook_isactive; //boolean
     int b_webhook_issigned; //boolean
     int b_webhook_skipsslvalidation; //boolean
+    struct common_audit_t *obj_audit; //model
 
 } webhook_response_t;
 
@@ -77,7 +79,8 @@ webhook_response_t *webhook_response_create(
     char *s_webhook_secret,
     int b_webhook_isactive,
     int b_webhook_issigned,
-    int b_webhook_skipsslvalidation
+    int b_webhook_skipsslvalidation,
+    common_audit_t *obj_audit
 );
 
 void webhook_response_free(webhook_response_t *webhook_response);

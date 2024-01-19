@@ -15,6 +15,7 @@
 
 typedef struct webhook_response_compound_t webhook_response_compound_t;
 
+#include "common_audit.h"
 #include "field_e_webhook_ezsignevent.h"
 #include "field_e_webhook_managementevent.h"
 #include "field_e_webhook_module.h"
@@ -60,6 +61,7 @@ typedef struct webhook_response_compound_t {
     int b_webhook_isactive; //boolean
     int b_webhook_issigned; //boolean
     int b_webhook_skipsslvalidation; //boolean
+    struct common_audit_t *obj_audit; //model
     char *s_webhook_event; // string
 
 } webhook_response_compound_t;
@@ -79,6 +81,7 @@ webhook_response_compound_t *webhook_response_compound_create(
     int b_webhook_isactive,
     int b_webhook_issigned,
     int b_webhook_skipsslvalidation,
+    common_audit_t *obj_audit,
     char *s_webhook_event
 );
 

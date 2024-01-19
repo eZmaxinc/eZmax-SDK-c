@@ -28,6 +28,8 @@ typedef struct custom_ezsignfoldertype_response_t {
     int b_ezsignfoldertype_allowdownloadproofezsignsigner; //boolean
     int b_ezsignfoldertype_delegate; //boolean
     int b_ezsignfoldertype_reassign; //boolean
+    int b_ezsignfoldertype_reassignezsignsigner; //boolean
+    int b_ezsignfoldertype_reassignuser; //boolean
 
 } custom_ezsignfoldertype_response_t;
 
@@ -40,7 +42,9 @@ custom_ezsignfoldertype_response_t *custom_ezsignfoldertype_response_create(
     int b_ezsignfoldertype_allowdownloadattachmentezsignsigner,
     int b_ezsignfoldertype_allowdownloadproofezsignsigner,
     int b_ezsignfoldertype_delegate,
-    int b_ezsignfoldertype_reassign
+    int b_ezsignfoldertype_reassign,
+    int b_ezsignfoldertype_reassignezsignsigner,
+    int b_ezsignfoldertype_reassignuser
 );
 
 void custom_ezsignfoldertype_response_free(custom_ezsignfoldertype_response_t *custom_ezsignfoldertype_response);

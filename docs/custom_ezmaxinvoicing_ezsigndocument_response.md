@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **fki_ezsignfolder_id** | **int** | The unique ID of the Ezsignfolder | 
+**fki_billingentityinternal_id** | **int** | The unique ID of the Billingentityinternal. | [optional] 
 **s_name** | **char \*** |  | 
 **s_ezsignfolder_description** | **char \*** | The description of the Ezsignfolder | 
 **s_ezsigndocument_name** | **char \*** | The name of the document that will be presented to Ezsignfoldersignerassociations | 

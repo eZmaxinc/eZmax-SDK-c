@@ -16,6 +16,7 @@
 #include "../model/webhook_response_compound.h"
 webhook_response_compound_t* instantiate_webhook_response_compound(int include_optional);
 
+#include "test_common_audit.c"
 
 
 webhook_response_compound_t* instantiate_webhook_response_compound(int include_optional) {
@@ -36,6 +37,8 @@ webhook_response_compound_t* instantiate_webhook_response_compound(int include_o
       true,
       true,
       false,
+       // false, not to have infinite recursion
+      instantiate_common_audit(0),
       "Ezsign-DocumentCompleted"
     );
   } else {
@@ -54,6 +57,7 @@ webhook_response_compound_t* instantiate_webhook_response_compound(int include_o
       true,
       true,
       false,
+      NULL,
       "Ezsign-DocumentCompleted"
     );
   }

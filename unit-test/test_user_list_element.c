@@ -31,7 +31,8 @@ user_list_element_t* instantiate_user_list_element(int include_optional) {
       ezmax_api_definition__full_user_list_element__"BuiltIn",
       ezmax_api_definition__full_user_list_element__"PaidByOffice",
       "2020-12-31",
-      "email@example.com"
+      "email@example.com",
+      "Sales Representative"
     );
   } else {
     user_list_element = user_list_element_create(
@@ -44,7 +45,8 @@ user_list_element_t* instantiate_user_list_element(int include_optional) {
       ezmax_api_definition__full_user_list_element__"BuiltIn",
       ezmax_api_definition__full_user_list_element__"PaidByOffice",
       "2020-12-31",
-      "email@example.com"
+      "email@example.com",
+      "Sales Representative"
     );
   }
 

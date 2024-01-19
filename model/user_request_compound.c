@@ -78,6 +78,7 @@ user_request_compound_t *user_request_compound_create(
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_user_loginname,
+    char *s_user_jobtitle,
     field_e_user_ezsignaccess_t *e_user_ezsignaccess,
     int b_user_isactive,
     int b_user_validatebyadministration,
@@ -110,6 +111,7 @@ user_request_compound_t *user_request_compound_create(
     user_request_compound_local_var->s_user_firstname = s_user_firstname;
     user_request_compound_local_var->s_user_lastname = s_user_lastname;
     user_request_compound_local_var->s_user_loginname = s_user_loginname;
+    user_request_compound_local_var->s_user_jobtitle = s_user_jobtitle;
     user_request_compound_local_var->e_user_ezsignaccess = e_user_ezsignaccess;
     user_request_compound_local_var->b_user_isactive = b_user_isactive;
     user_request_compound_local_var->b_user_validatebyadministration = b_user_validatebyadministration;
@@ -161,6 +163,10 @@ void user_request_compound_free(user_request_compound_t *user_request_compound) 
     if (user_request_compound->s_user_loginname) {
         free(user_request_compound->s_user_loginname);
         user_request_compound->s_user_loginname = NULL;
+    }
+    if (user_request_compound->s_user_jobtitle) {
+        free(user_request_compound->s_user_jobtitle);
+        user_request_compound->s_user_jobtitle = NULL;
     }
     if (user_request_compound->e_user_ezsignaccess) {
         field_e_user_ezsignaccess_free(user_request_compound->e_user_ezsignaccess);
@@ -373,6 +379,14 @@ cJSON *user_request_compound_convertToJSON(user_request_compound_t *user_request
     }
     if(cJSON_AddStringToObject(item, "sUserLoginname", user_request_compound->s_user_loginname) == NULL) {
     goto fail; //String
+    }
+
+
+    // user_request_compound->s_user_jobtitle
+    if(user_request_compound->s_user_jobtitle) {
+    if(cJSON_AddStringToObject(item, "sUserJobtitle", user_request_compound->s_user_jobtitle) == NULL) {
+    goto fail; //String
+    }
     }
 
 
@@ -667,6 +681,15 @@ user_request_compound_t *user_request_compound_parseFromJSON(cJSON *user_request
     goto end; //String
     }
 
+    // user_request_compound->s_user_jobtitle
+    cJSON *s_user_jobtitle = cJSON_GetObjectItemCaseSensitive(user_request_compoundJSON, "sUserJobtitle");
+    if (s_user_jobtitle) { 
+    if(!cJSON_IsString(s_user_jobtitle) && !cJSON_IsNull(s_user_jobtitle))
+    {
+    goto end; //String
+    }
+    }
+
     // user_request_compound->e_user_ezsignaccess
     cJSON *e_user_ezsignaccess = cJSON_GetObjectItemCaseSensitive(user_request_compoundJSON, "eUserEzsignaccess");
     if (!e_user_ezsignaccess) {
@@ -747,6 +770,7 @@ user_request_compound_t *user_request_compound_parseFromJSON(cJSON *user_request
         strdup(s_user_firstname->valuestring),
         strdup(s_user_lastname->valuestring),
         strdup(s_user_loginname->valuestring),
+        s_user_jobtitle && !cJSON_IsNull(s_user_jobtitle) ? strdup(s_user_jobtitle->valuestring) : NULL,
         e_user_ezsignaccess_local_nonprim,
         b_user_isactive->valueint,
         b_user_validatebyadministration ? b_user_validatebyadministration->valueint : 0,

@@ -70,7 +70,8 @@ webhook_response_t *webhook_response_create(
     char *s_webhook_secret,
     int b_webhook_isactive,
     int b_webhook_issigned,
-    int b_webhook_skipsslvalidation
+    int b_webhook_skipsslvalidation,
+    common_audit_t *obj_audit
     ) {
     webhook_response_t *webhook_response_local_var = malloc(sizeof(webhook_response_t));
     if (!webhook_response_local_var) {
@@ -90,6 +91,7 @@ webhook_response_t *webhook_response_create(
     webhook_response_local_var->b_webhook_isactive = b_webhook_isactive;
     webhook_response_local_var->b_webhook_issigned = b_webhook_issigned;
     webhook_response_local_var->b_webhook_skipsslvalidation = b_webhook_skipsslvalidation;
+    webhook_response_local_var->obj_audit = obj_audit;
 
     return webhook_response_local_var;
 }
@@ -135,6 +137,10 @@ void webhook_response_free(webhook_response_t *webhook_response) {
     if (webhook_response->s_webhook_secret) {
         free(webhook_response->s_webhook_secret);
         webhook_response->s_webhook_secret = NULL;
+    }
+    if (webhook_response->obj_audit) {
+        common_audit_free(webhook_response->obj_audit);
+        webhook_response->obj_audit = NULL;
     }
     free(webhook_response);
 }
@@ -276,6 +282,20 @@ cJSON *webhook_response_convertToJSON(webhook_response_t *webhook_response) {
     goto fail; //Bool
     }
 
+
+    // webhook_response->obj_audit
+    if (!webhook_response->obj_audit) {
+        goto fail;
+    }
+    cJSON *obj_audit_local_JSON = common_audit_convertToJSON(webhook_response->obj_audit);
+    if(obj_audit_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objAudit", obj_audit_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
     return item;
 fail:
     if (item) {
@@ -296,6 +316,9 @@ webhook_response_t *webhook_response_parseFromJSON(cJSON *webhook_responseJSON){
 
     // define the local variable for webhook_response->e_webhook_managementevent
     field_e_webhook_managementevent_t *e_webhook_managementevent_local_nonprim = NULL;
+
+    // define the local variable for webhook_response->obj_audit
+    common_audit_t *obj_audit_local_nonprim = NULL;
 
     // webhook_response->pki_webhook_id
     cJSON *pki_webhook_id = cJSON_GetObjectItemCaseSensitive(webhook_responseJSON, "pkiWebhookID");
@@ -438,6 +461,15 @@ webhook_response_t *webhook_response_parseFromJSON(cJSON *webhook_responseJSON){
     goto end; //Bool
     }
 
+    // webhook_response->obj_audit
+    cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(webhook_responseJSON, "objAudit");
+    if (!obj_audit) {
+        goto end;
+    }
+
+    
+    obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
+
 
     webhook_response_local_var = webhook_response_create (
         pki_webhook_id->valuedouble,
@@ -453,7 +485,8 @@ webhook_response_t *webhook_response_parseFromJSON(cJSON *webhook_responseJSON){
         s_webhook_secret && !cJSON_IsNull(s_webhook_secret) ? strdup(s_webhook_secret->valuestring) : NULL,
         b_webhook_isactive->valueint,
         b_webhook_issigned->valueint,
-        b_webhook_skipsslvalidation->valueint
+        b_webhook_skipsslvalidation->valueint,
+        obj_audit_local_nonprim
         );
 
     return webhook_response_local_var;
@@ -469,6 +502,10 @@ end:
     if (e_webhook_managementevent_local_nonprim) {
         field_e_webhook_managementevent_free(e_webhook_managementevent_local_nonprim);
         e_webhook_managementevent_local_nonprim = NULL;
+    }
+    if (obj_audit_local_nonprim) {
+        common_audit_free(obj_audit_local_nonprim);
+        obj_audit_local_nonprim = NULL;
     }
     return NULL;
 

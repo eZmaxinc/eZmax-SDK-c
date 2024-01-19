@@ -44,6 +44,7 @@ typedef struct ezsignfolder_list_element_t {
     char *s_ezsignfolder_description; // string
     field_e_ezsignfolder_step_t *e_ezsignfolder_step; // custom
     char *dt_created_date; // string
+    char *dt_ezsignfolder_delayedsenddate; // string
     char *dt_ezsignfolder_sentdate; // string
     char *dt_ezsignfolder_duedate; // string
     int i_ezsigndocument; //numeric
@@ -61,6 +62,7 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_create(
     char *s_ezsignfolder_description,
     field_e_ezsignfolder_step_t *e_ezsignfolder_step,
     char *dt_created_date,
+    char *dt_ezsignfolder_delayedsenddate,
     char *dt_ezsignfolder_sentdate,
     char *dt_ezsignfolder_duedate,
     int i_ezsigndocument,

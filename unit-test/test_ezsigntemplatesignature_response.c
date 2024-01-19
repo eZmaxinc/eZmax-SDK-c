@@ -26,6 +26,7 @@ ezsigntemplatesignature_response_t* instantiate_ezsigntemplatesignature_response
       133,
       9,
       9,
+      ezmax_api_definition__full_ezsigntemplatesignature_response__"PerCoordinates",
       1,
       200,
       300,
@@ -43,7 +44,11 @@ ezsigntemplatesignature_response_t* instantiate_ezsigntemplatesignature_response
       75,
       "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
       ezmax_api_definition__full_ezsigntemplatesignature_response__"None",
-      ezmax_api_definition__full_ezsigntemplatesignature_response__"AllOf"
+      ezmax_api_definition__full_ezsigntemplatesignature_response__"AllOf",
+      "Signature",
+      200,
+      200,
+      ezmax_api_definition__full_ezsigntemplatesignature_response__"All"
     );
   } else {
     ezsigntemplatesignature_response = ezsigntemplatesignature_response_create(
@@ -51,6 +56,7 @@ ezsigntemplatesignature_response_t* instantiate_ezsigntemplatesignature_response
       133,
       9,
       9,
+      ezmax_api_definition__full_ezsigntemplatesignature_response__"PerCoordinates",
       1,
       200,
       300,
@@ -68,7 +74,11 @@ ezsigntemplatesignature_response_t* instantiate_ezsigntemplatesignature_response
       75,
       "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
       ezmax_api_definition__full_ezsigntemplatesignature_response__"None",
-      ezmax_api_definition__full_ezsigntemplatesignature_response__"AllOf"
+      ezmax_api_definition__full_ezsigntemplatesignature_response__"AllOf",
+      "Signature",
+      200,
+      200,
+      ezmax_api_definition__full_ezsigntemplatesignature_response__"All"
     );
   }
 

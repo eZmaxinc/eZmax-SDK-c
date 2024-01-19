@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **s_ezsignfolder_description** | **char \*** | The description of the Ezsignfolder | 
 **e_ezsignfolder_step** | **field_e_ezsignfolder_step_t \*** |  | 
 **dt_created_date** | **char \*** | The date and time at which the object was created | 
+**dt_ezsignfolder_delayedsenddate** | **char \*** | The date and time at which the Ezsignfolder will be sent in the future. | [optional] 
 **dt_ezsignfolder_sentdate** | **char \*** | The date and time at which the Ezsignfolder was sent the last time. | [optional] 
 **dt_ezsignfolder_duedate** | **char \*** | The maximum date and time at which the Ezsignfolder can be signed. | [optional] 
 **i_ezsigndocument** | **int** | The total number of Ezsigndocument in the folder | 

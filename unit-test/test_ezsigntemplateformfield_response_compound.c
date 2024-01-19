@@ -23,6 +23,7 @@ ezsigntemplateformfield_response_compound_t* instantiate_ezsigntemplateformfield
   if (include_optional) {
     ezsigntemplateformfield_response_compound = ezsigntemplateformfield_response_compound_create(
       71,
+      ezmax_api_definition__full_ezsigntemplateformfield_response_compound__"PerCoordinates",
       1,
       "Peanuts",
       "Yes",
@@ -33,11 +34,16 @@ ezsigntemplateformfield_response_compound_t* instantiate_ezsigntemplateformfield
       1,
       1,
       ezmax_api_definition__full_ezsigntemplateformfield_response_compound__"AllOf",
+      "Signature",
+      200,
+      200,
+      ezmax_api_definition__full_ezsigntemplateformfield_response_compound__"All",
       list_createList()
     );
   } else {
     ezsigntemplateformfield_response_compound = ezsigntemplateformfield_response_compound_create(
       71,
+      ezmax_api_definition__full_ezsigntemplateformfield_response_compound__"PerCoordinates",
       1,
       "Peanuts",
       "Yes",
@@ -48,6 +54,10 @@ ezsigntemplateformfield_response_compound_t* instantiate_ezsigntemplateformfield
       1,
       1,
       ezmax_api_definition__full_ezsigntemplateformfield_response_compound__"AllOf",
+      "Signature",
+      200,
+      200,
+      ezmax_api_definition__full_ezsigntemplateformfield_response_compound__"All",
       list_createList()
     );
   }

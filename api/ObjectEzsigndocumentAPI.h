@@ -12,6 +12,8 @@
 #include "../model/ezsigndocument_apply_ezsigntemplate_v1_response.h"
 #include "../model/ezsigndocument_apply_ezsigntemplate_v2_request.h"
 #include "../model/ezsigndocument_apply_ezsigntemplate_v2_response.h"
+#include "../model/ezsigndocument_create_ezsignelements_positioned_by_word_v1_request.h"
+#include "../model/ezsigndocument_create_ezsignelements_positioned_by_word_v1_response.h"
 #include "../model/ezsigndocument_create_object_v1_request.h"
 #include "../model/ezsigndocument_create_object_v1_response.h"
 #include "../model/ezsigndocument_create_object_v2_request.h"
@@ -30,6 +32,7 @@
 #include "../model/ezsigndocument_get_completed_elements_v1_response.h"
 #include "../model/ezsigndocument_get_download_url_v1_response.h"
 #include "../model/ezsigndocument_get_ezsignannotations_v1_response.h"
+#include "../model/ezsigndocument_get_ezsigndiscussions_v1_response.h"
 #include "../model/ezsigndocument_get_ezsignformfieldgroups_v1_response.h"
 #include "../model/ezsigndocument_get_ezsignpages_v1_response.h"
 #include "../model/ezsigndocument_get_ezsignsignatures_automatic_v1_response.h"
@@ -65,6 +68,14 @@ ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV1(apiClient_t *apiClie
 //
 ezsigndocument_apply_ezsigntemplate_v2_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV2(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_apply_ezsigntemplate_v2_request_t *ezsigndocument_apply_ezsigntemplate_v2_request);
+
+
+// Create multiple Ezsignsignatures/Ezsignformfieldgroups
+//
+// Using this endpoint, you can create multiple Ezsignsignatures/Ezsignformfieldgroups positioned by word at the same time.
+//
+ezsigndocument_create_ezsignelements_positioned_by_word_v1_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentCreateEzsignelementsPositionedByWordV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_t *ezsigndocument_create_ezsignelements_positioned_by_word_v1_request);
 
 
 // Create a new Ezsigndocument
@@ -169,6 +180,14 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1(apiClient_t *apiClient, i
 //
 ezsigndocument_get_ezsignannotations_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignannotationsV1(apiClient_t *apiClient, int *pkiEzsigndocumentID);
+
+
+// Retrieve an existing Ezsigndocument's Ezsigndiscussions
+//
+// 
+//
+ezsigndocument_get_ezsigndiscussions_v1_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentGetEzsigndiscussionsV1(apiClient_t *apiClient, int *pkiEzsigndocumentID);
 
 
 // Retrieve an existing Ezsigndocument's Ezsignformfieldgroups

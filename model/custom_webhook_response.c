@@ -71,6 +71,7 @@ custom_webhook_response_t *custom_webhook_response_create(
     int b_webhook_isactive,
     int b_webhook_issigned,
     int b_webhook_skipsslvalidation,
+    common_audit_t *obj_audit,
     char *pks_customer_code,
     int b_webhook_test
     ) {
@@ -92,6 +93,7 @@ custom_webhook_response_t *custom_webhook_response_create(
     custom_webhook_response_local_var->b_webhook_isactive = b_webhook_isactive;
     custom_webhook_response_local_var->b_webhook_issigned = b_webhook_issigned;
     custom_webhook_response_local_var->b_webhook_skipsslvalidation = b_webhook_skipsslvalidation;
+    custom_webhook_response_local_var->obj_audit = obj_audit;
     custom_webhook_response_local_var->pks_customer_code = pks_customer_code;
     custom_webhook_response_local_var->b_webhook_test = b_webhook_test;
 
@@ -139,6 +141,10 @@ void custom_webhook_response_free(custom_webhook_response_t *custom_webhook_resp
     if (custom_webhook_response->s_webhook_secret) {
         free(custom_webhook_response->s_webhook_secret);
         custom_webhook_response->s_webhook_secret = NULL;
+    }
+    if (custom_webhook_response->obj_audit) {
+        common_audit_free(custom_webhook_response->obj_audit);
+        custom_webhook_response->obj_audit = NULL;
     }
     if (custom_webhook_response->pks_customer_code) {
         free(custom_webhook_response->pks_customer_code);
@@ -285,6 +291,20 @@ cJSON *custom_webhook_response_convertToJSON(custom_webhook_response_t *custom_w
     }
 
 
+    // custom_webhook_response->obj_audit
+    if (!custom_webhook_response->obj_audit) {
+        goto fail;
+    }
+    cJSON *obj_audit_local_JSON = common_audit_convertToJSON(custom_webhook_response->obj_audit);
+    if(obj_audit_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objAudit", obj_audit_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
+
     // custom_webhook_response->pks_customer_code
     if (!custom_webhook_response->pks_customer_code) {
         goto fail;
@@ -322,6 +342,9 @@ custom_webhook_response_t *custom_webhook_response_parseFromJSON(cJSON *custom_w
 
     // define the local variable for custom_webhook_response->e_webhook_managementevent
     field_e_webhook_managementevent_t *e_webhook_managementevent_local_nonprim = NULL;
+
+    // define the local variable for custom_webhook_response->obj_audit
+    common_audit_t *obj_audit_local_nonprim = NULL;
 
     // custom_webhook_response->pki_webhook_id
     cJSON *pki_webhook_id = cJSON_GetObjectItemCaseSensitive(custom_webhook_responseJSON, "pkiWebhookID");
@@ -464,6 +487,15 @@ custom_webhook_response_t *custom_webhook_response_parseFromJSON(cJSON *custom_w
     goto end; //Bool
     }
 
+    // custom_webhook_response->obj_audit
+    cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(custom_webhook_responseJSON, "objAudit");
+    if (!obj_audit) {
+        goto end;
+    }
+
+    
+    obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
+
     // custom_webhook_response->pks_customer_code
     cJSON *pks_customer_code = cJSON_GetObjectItemCaseSensitive(custom_webhook_responseJSON, "pksCustomerCode");
     if (!pks_customer_code) {
@@ -504,6 +536,7 @@ custom_webhook_response_t *custom_webhook_response_parseFromJSON(cJSON *custom_w
         b_webhook_isactive->valueint,
         b_webhook_issigned->valueint,
         b_webhook_skipsslvalidation->valueint,
+        obj_audit_local_nonprim,
         strdup(pks_customer_code->valuestring),
         b_webhook_test->valueint
         );
@@ -521,6 +554,10 @@ end:
     if (e_webhook_managementevent_local_nonprim) {
         field_e_webhook_managementevent_free(e_webhook_managementevent_local_nonprim);
         e_webhook_managementevent_local_nonprim = NULL;
+    }
+    if (obj_audit_local_nonprim) {
+        common_audit_free(obj_audit_local_nonprim);
+        obj_audit_local_nonprim = NULL;
     }
     return NULL;
 

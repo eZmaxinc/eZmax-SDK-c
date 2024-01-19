@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **s_user_firstname** | **char \*** | The first name of the user | 
 **s_user_lastname** | **char \*** | The last name of the user | 
 **s_user_loginname** | **char \*** | The login name of the User. | 
+**s_user_jobtitle** | **char \*** | The job title of the user | [optional] 
 **e_user_ezsignaccess** | **field_e_user_ezsignaccess_t \*** |  | 
 **b_user_isactive** | **int** | Whether the User is active or not | 
 **b_user_validatebyadministration** | **int** | Whether if the transactions in which the User is implicated must be validated by administrative personnel or not | [optional] 

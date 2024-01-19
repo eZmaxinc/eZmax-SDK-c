@@ -4,6 +4,23 @@
 #include "ezsignfolder_response_compound.h"
 
 
+char* e_ezsignfolder_completionezsignfolder_response_compound_ToString(ezmax_api_definition__full_ezsignfolder_response_compound__e e_ezsignfolder_completion) {
+    char* e_ezsignfolder_completionArray[] =  { "NULL", "PerEzsigndocument", "PerEzsignfolder" };
+    return e_ezsignfolder_completionArray[e_ezsignfolder_completion];
+}
+
+ezmax_api_definition__full_ezsignfolder_response_compound__e e_ezsignfolder_completionezsignfolder_response_compound_FromString(char* e_ezsignfolder_completion){
+    int stringToReturn = 0;
+    char *e_ezsignfolder_completionArray[] =  { "NULL", "PerEzsigndocument", "PerEzsignfolder" };
+    size_t sizeofArray = sizeof(e_ezsignfolder_completionArray) / sizeof(e_ezsignfolder_completionArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(e_ezsignfolder_completion, e_ezsignfolder_completionArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
 char* e_ezsignfolder_sendreminderfrequencyezsignfolder_response_compound_ToString(ezmax_api_definition__full_ezsignfolder_response_compound__e e_ezsignfolder_sendreminderfrequency) {
     char* e_ezsignfolder_sendreminderfrequencyArray[] =  { "NULL", "None", "Daily", "Weekly" };
     return e_ezsignfolder_sendreminderfrequencyArray[e_ezsignfolder_sendreminderfrequency];
@@ -43,6 +60,7 @@ ezsignfolder_response_compound_t *ezsignfolder_response_compound_create(
     int pki_ezsignfolder_id,
     int fki_ezsignfoldertype_id,
     custom_ezsignfoldertype_response_t *obj_ezsignfoldertype,
+    field_e_ezsignfolder_completion_t *e_ezsignfolder_completion,
     char *s_ezsignfoldertype_name_x,
     int fki_billingentityinternal_id,
     char *s_billingentityinternal_description_x,
@@ -70,6 +88,7 @@ ezsignfolder_response_compound_t *ezsignfolder_response_compound_create(
     ezsignfolder_response_compound_local_var->pki_ezsignfolder_id = pki_ezsignfolder_id;
     ezsignfolder_response_compound_local_var->fki_ezsignfoldertype_id = fki_ezsignfoldertype_id;
     ezsignfolder_response_compound_local_var->obj_ezsignfoldertype = obj_ezsignfoldertype;
+    ezsignfolder_response_compound_local_var->e_ezsignfolder_completion = e_ezsignfolder_completion;
     ezsignfolder_response_compound_local_var->s_ezsignfoldertype_name_x = s_ezsignfoldertype_name_x;
     ezsignfolder_response_compound_local_var->fki_billingentityinternal_id = fki_billingentityinternal_id;
     ezsignfolder_response_compound_local_var->s_billingentityinternal_description_x = s_billingentityinternal_description_x;
@@ -102,6 +121,10 @@ void ezsignfolder_response_compound_free(ezsignfolder_response_compound_t *ezsig
     if (ezsignfolder_response_compound->obj_ezsignfoldertype) {
         custom_ezsignfoldertype_response_free(ezsignfolder_response_compound->obj_ezsignfoldertype);
         ezsignfolder_response_compound->obj_ezsignfoldertype = NULL;
+    }
+    if (ezsignfolder_response_compound->e_ezsignfolder_completion) {
+        field_e_ezsignfolder_completion_free(ezsignfolder_response_compound->e_ezsignfolder_completion);
+        ezsignfolder_response_compound->e_ezsignfolder_completion = NULL;
     }
     if (ezsignfolder_response_compound->s_ezsignfoldertype_name_x) {
         free(ezsignfolder_response_compound->s_ezsignfoldertype_name_x);
@@ -199,6 +222,19 @@ cJSON *ezsignfolder_response_compound_convertToJSON(ezsignfolder_response_compou
     cJSON_AddItemToObject(item, "objEzsignfoldertype", obj_ezsignfoldertype_local_JSON);
     if(item->child == NULL) {
     goto fail;
+    }
+    }
+
+
+    // ezsignfolder_response_compound->e_ezsignfolder_completion
+    if(ezsignfolder_response_compound->e_ezsignfolder_completion != ezmax_api_definition__full_ezsignfolder_response_compound__NULL) {
+    cJSON *e_ezsignfolder_completion_local_JSON = field_e_ezsignfolder_completion_convertToJSON(ezsignfolder_response_compound->e_ezsignfolder_completion);
+    if(e_ezsignfolder_completion_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsignfolderCompletion", e_ezsignfolder_completion_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
     }
     }
 
@@ -385,6 +421,9 @@ ezsignfolder_response_compound_t *ezsignfolder_response_compound_parseFromJSON(c
     // define the local variable for ezsignfolder_response_compound->obj_ezsignfoldertype
     custom_ezsignfoldertype_response_t *obj_ezsignfoldertype_local_nonprim = NULL;
 
+    // define the local variable for ezsignfolder_response_compound->e_ezsignfolder_completion
+    field_e_ezsignfolder_completion_t *e_ezsignfolder_completion_local_nonprim = NULL;
+
     // define the local variable for ezsignfolder_response_compound->e_ezsignfolder_sendreminderfrequency
     field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency_local_nonprim = NULL;
 
@@ -419,6 +458,12 @@ ezsignfolder_response_compound_t *ezsignfolder_response_compound_parseFromJSON(c
     cJSON *obj_ezsignfoldertype = cJSON_GetObjectItemCaseSensitive(ezsignfolder_response_compoundJSON, "objEzsignfoldertype");
     if (obj_ezsignfoldertype) { 
     obj_ezsignfoldertype_local_nonprim = custom_ezsignfoldertype_response_parseFromJSON(obj_ezsignfoldertype); //nonprimitive
+    }
+
+    // ezsignfolder_response_compound->e_ezsignfolder_completion
+    cJSON *e_ezsignfolder_completion = cJSON_GetObjectItemCaseSensitive(ezsignfolder_response_compoundJSON, "eEzsignfolderCompletion");
+    if (e_ezsignfolder_completion) { 
+    e_ezsignfolder_completion_local_nonprim = field_e_ezsignfolder_completion_parseFromJSON(e_ezsignfolder_completion); //custom
     }
 
     // ezsignfolder_response_compound->s_ezsignfoldertype_name_x
@@ -591,6 +636,7 @@ ezsignfolder_response_compound_t *ezsignfolder_response_compound_parseFromJSON(c
         pki_ezsignfolder_id->valuedouble,
         fki_ezsignfoldertype_id ? fki_ezsignfoldertype_id->valuedouble : 0,
         obj_ezsignfoldertype ? obj_ezsignfoldertype_local_nonprim : NULL,
+        e_ezsignfolder_completion ? e_ezsignfolder_completion_local_nonprim : NULL,
         s_ezsignfoldertype_name_x && !cJSON_IsNull(s_ezsignfoldertype_name_x) ? strdup(s_ezsignfoldertype_name_x->valuestring) : NULL,
         fki_billingentityinternal_id ? fki_billingentityinternal_id->valuedouble : 0,
         s_billingentityinternal_description_x && !cJSON_IsNull(s_billingentityinternal_description_x) ? strdup(s_billingentityinternal_description_x->valuestring) : NULL,
@@ -617,6 +663,10 @@ end:
     if (obj_ezsignfoldertype_local_nonprim) {
         custom_ezsignfoldertype_response_free(obj_ezsignfoldertype_local_nonprim);
         obj_ezsignfoldertype_local_nonprim = NULL;
+    }
+    if (e_ezsignfolder_completion_local_nonprim) {
+        field_e_ezsignfolder_completion_free(e_ezsignfolder_completion_local_nonprim);
+        e_ezsignfolder_completion_local_nonprim = NULL;
     }
     if (e_ezsignfolder_sendreminderfrequency_local_nonprim) {
         field_e_ezsignfolder_sendreminderfrequency_free(e_ezsignfolder_sendreminderfrequency_local_nonprim);

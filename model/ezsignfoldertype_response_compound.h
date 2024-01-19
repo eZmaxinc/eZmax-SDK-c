@@ -15,6 +15,7 @@
 
 typedef struct ezsignfoldertype_response_compound_t ezsignfoldertype_response_compound_t;
 
+#include "field_e_ezsignfoldertype_completion.h"
 #include "field_e_ezsignfoldertype_disposal.h"
 #include "field_e_ezsignfoldertype_privacylevel.h"
 #include "field_e_ezsignfoldertype_sendreminderfrequency.h"
@@ -44,6 +45,14 @@ char* ezsignfoldertype_response_compound_e_ezsignfoldertype_disposal_ToString(ez
 
 ezmax_api_definition__full_ezsignfoldertype_response_compound__e ezsignfoldertype_response_compound_e_ezsignfoldertype_disposal_FromString(char* e_ezsignfoldertype_disposal);
 
+// Enum  for ezsignfoldertype_response_compound
+
+typedef enum  { ezmax_api_definition__full_ezsignfoldertype_response_compound__NULL = 0, ezmax_api_definition__full_ezsignfoldertype_response_compound__PerEzsigndocument, ezmax_api_definition__full_ezsignfoldertype_response_compound__PerEzsignfolder } ezmax_api_definition__full_ezsignfoldertype_response_compound__e;
+
+char* ezsignfoldertype_response_compound_e_ezsignfoldertype_completion_ToString(ezmax_api_definition__full_ezsignfoldertype_response_compound__e e_ezsignfoldertype_completion);
+
+ezmax_api_definition__full_ezsignfoldertype_response_compound__e ezsignfoldertype_response_compound_e_ezsignfoldertype_completion_FromString(char* e_ezsignfoldertype_completion);
+
 
 
 typedef struct ezsignfoldertype_response_compound_t {
@@ -65,10 +74,13 @@ typedef struct ezsignfoldertype_response_compound_t {
     field_e_ezsignfoldertype_sendreminderfrequency_t *e_ezsignfoldertype_sendreminderfrequency; // custom
     int i_ezsignfoldertype_archivaldays; //numeric
     field_e_ezsignfoldertype_disposal_t *e_ezsignfoldertype_disposal; // custom
+    field_e_ezsignfoldertype_completion_t *e_ezsignfoldertype_completion; // custom
     int i_ezsignfoldertype_disposaldays; //numeric
     int i_ezsignfoldertype_deadlinedays; //numeric
     int b_ezsignfoldertype_delegate; //boolean
     int b_ezsignfoldertype_reassign; //boolean
+    int b_ezsignfoldertype_reassignezsignsigner; //boolean
+    int b_ezsignfoldertype_reassignuser; //boolean
     int b_ezsignfoldertype_sendattatchmentsigner; //boolean
     int b_ezsignfoldertype_sendsignedtoezsignsigner; //boolean
     int b_ezsignfoldertype_sendsignedtouser; //boolean
@@ -117,10 +129,13 @@ ezsignfoldertype_response_compound_t *ezsignfoldertype_response_compound_create(
     field_e_ezsignfoldertype_sendreminderfrequency_t *e_ezsignfoldertype_sendreminderfrequency,
     int i_ezsignfoldertype_archivaldays,
     field_e_ezsignfoldertype_disposal_t *e_ezsignfoldertype_disposal,
+    field_e_ezsignfoldertype_completion_t *e_ezsignfoldertype_completion,
     int i_ezsignfoldertype_disposaldays,
     int i_ezsignfoldertype_deadlinedays,
     int b_ezsignfoldertype_delegate,
     int b_ezsignfoldertype_reassign,
+    int b_ezsignfoldertype_reassignezsignsigner,
+    int b_ezsignfoldertype_reassignuser,
     int b_ezsignfoldertype_sendattatchmentsigner,
     int b_ezsignfoldertype_sendsignedtoezsignsigner,
     int b_ezsignfoldertype_sendsignedtouser,

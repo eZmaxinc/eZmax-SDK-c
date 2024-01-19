@@ -47,6 +47,7 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_create(
     char *s_ezsignfolder_description,
     field_e_ezsignfolder_step_t *e_ezsignfolder_step,
     char *dt_created_date,
+    char *dt_ezsignfolder_delayedsenddate,
     char *dt_ezsignfolder_sentdate,
     char *dt_ezsignfolder_duedate,
     int i_ezsigndocument,
@@ -65,6 +66,7 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_create(
     ezsignfolder_list_element_local_var->s_ezsignfolder_description = s_ezsignfolder_description;
     ezsignfolder_list_element_local_var->e_ezsignfolder_step = e_ezsignfolder_step;
     ezsignfolder_list_element_local_var->dt_created_date = dt_created_date;
+    ezsignfolder_list_element_local_var->dt_ezsignfolder_delayedsenddate = dt_ezsignfolder_delayedsenddate;
     ezsignfolder_list_element_local_var->dt_ezsignfolder_sentdate = dt_ezsignfolder_sentdate;
     ezsignfolder_list_element_local_var->dt_ezsignfolder_duedate = dt_ezsignfolder_duedate;
     ezsignfolder_list_element_local_var->i_ezsigndocument = i_ezsigndocument;
@@ -100,6 +102,10 @@ void ezsignfolder_list_element_free(ezsignfolder_list_element_t *ezsignfolder_li
     if (ezsignfolder_list_element->dt_created_date) {
         free(ezsignfolder_list_element->dt_created_date);
         ezsignfolder_list_element->dt_created_date = NULL;
+    }
+    if (ezsignfolder_list_element->dt_ezsignfolder_delayedsenddate) {
+        free(ezsignfolder_list_element->dt_ezsignfolder_delayedsenddate);
+        ezsignfolder_list_element->dt_ezsignfolder_delayedsenddate = NULL;
     }
     if (ezsignfolder_list_element->dt_ezsignfolder_sentdate) {
         free(ezsignfolder_list_element->dt_ezsignfolder_sentdate);
@@ -185,6 +191,14 @@ cJSON *ezsignfolder_list_element_convertToJSON(ezsignfolder_list_element_t *ezsi
     }
     if(cJSON_AddStringToObject(item, "dtCreatedDate", ezsignfolder_list_element->dt_created_date) == NULL) {
     goto fail; //String
+    }
+
+
+    // ezsignfolder_list_element->dt_ezsignfolder_delayedsenddate
+    if(ezsignfolder_list_element->dt_ezsignfolder_delayedsenddate) {
+    if(cJSON_AddStringToObject(item, "dtEzsignfolderDelayedsenddate", ezsignfolder_list_element->dt_ezsignfolder_delayedsenddate) == NULL) {
+    goto fail; //String
+    }
     }
 
 
@@ -335,6 +349,15 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_parseFromJSON(cJSON *ezsi
     goto end; //String
     }
 
+    // ezsignfolder_list_element->dt_ezsignfolder_delayedsenddate
+    cJSON *dt_ezsignfolder_delayedsenddate = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "dtEzsignfolderDelayedsenddate");
+    if (dt_ezsignfolder_delayedsenddate) { 
+    if(!cJSON_IsString(dt_ezsignfolder_delayedsenddate) && !cJSON_IsNull(dt_ezsignfolder_delayedsenddate))
+    {
+    goto end; //String
+    }
+    }
+
     // ezsignfolder_list_element->dt_ezsignfolder_sentdate
     cJSON *dt_ezsignfolder_sentdate = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "dtEzsignfolderSentdate");
     if (dt_ezsignfolder_sentdate) { 
@@ -410,6 +433,7 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_parseFromJSON(cJSON *ezsi
         strdup(s_ezsignfolder_description->valuestring),
         e_ezsignfolder_step_local_nonprim,
         strdup(dt_created_date->valuestring),
+        dt_ezsignfolder_delayedsenddate && !cJSON_IsNull(dt_ezsignfolder_delayedsenddate) ? strdup(dt_ezsignfolder_delayedsenddate->valuestring) : NULL,
         dt_ezsignfolder_sentdate && !cJSON_IsNull(dt_ezsignfolder_sentdate) ? strdup(dt_ezsignfolder_sentdate->valuestring) : NULL,
         dt_ezsignfolder_duedate && !cJSON_IsNull(dt_ezsignfolder_duedate) ? strdup(dt_ezsignfolder_duedate->valuestring) : NULL,
         i_ezsigndocument->valuedouble,

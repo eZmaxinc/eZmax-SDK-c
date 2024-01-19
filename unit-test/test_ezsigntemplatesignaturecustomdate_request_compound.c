@@ -25,6 +25,8 @@ ezsigntemplatesignaturecustomdate_request_compound_t* instantiate_ezsigntemplate
       58,
       200,
       300,
+      200,
+      200,
       "Signature date: {YYYY}/{MM}/{DD} {hh}:{mm}{ss} {Z}"
     );
   } else {
@@ -32,6 +34,8 @@ ezsigntemplatesignaturecustomdate_request_compound_t* instantiate_ezsigntemplate
       58,
       200,
       300,
+      200,
+      200,
       "Signature date: {YYYY}/{MM}/{DD} {hh}:{mm}{ss} {Z}"
     );
   }

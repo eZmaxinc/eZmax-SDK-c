@@ -23,6 +23,7 @@ custom_ezmaxinvoicing_ezsigndocument_response_t* instantiate_custom_ezmaxinvoici
   if (include_optional) {
     custom_ezmaxinvoicing_ezsigndocument_response = custom_ezmaxinvoicing_ezsigndocument_response_create(
       33,
+      1,
       "0",
       "Test eZsign Folder",
       "Contract #123",
@@ -31,6 +32,7 @@ custom_ezmaxinvoicing_ezsigndocument_response_t* instantiate_custom_ezmaxinvoici
   } else {
     custom_ezmaxinvoicing_ezsigndocument_response = custom_ezmaxinvoicing_ezsigndocument_response_create(
       33,
+      1,
       "0",
       "Test eZsign Folder",
       "Contract #123",

@@ -30,6 +30,7 @@ Name | Type | Description | Notes
 **s_user_firstname** | **char \*** | The first name of the user | 
 **s_user_lastname** | **char \*** | The last name of the user | 
 **s_user_loginname** | **char \*** | The login name of the User. | 
+**s_user_jobtitle** | **char \*** | The job title of the user | [optional] 
 **e_user_ezsignaccess** | **field_e_user_ezsignaccess_t \*** |  | 
 **dt_user_lastlogondate** | **char \*** | The last logon date of the User | [optional] 
 **dt_user_passwordchanged** | **char \*** | The date at which the User&#39;s password was last changed | [optional] 

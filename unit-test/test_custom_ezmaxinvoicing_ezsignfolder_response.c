@@ -23,6 +23,7 @@ custom_ezmaxinvoicing_ezsignfolder_response_t* instantiate_custom_ezmaxinvoicing
   if (include_optional) {
     custom_ezmaxinvoicing_ezsignfolder_response = custom_ezmaxinvoicing_ezsignfolder_response_create(
       33,
+      1,
       "Test eZsign Folder",
       true,
       true,
@@ -32,6 +33,7 @@ custom_ezmaxinvoicing_ezsignfolder_response_t* instantiate_custom_ezmaxinvoicing
   } else {
     custom_ezmaxinvoicing_ezsignfolder_response = custom_ezmaxinvoicing_ezsignfolder_response_create(
       33,
+      1,
       "Test eZsign Folder",
       true,
       true,

@@ -85,6 +85,7 @@ typedef struct user_response_compound_t {
     char *s_user_firstname; // string
     char *s_user_lastname; // string
     char *s_user_loginname; // string
+    char *s_user_jobtitle; // string
     field_e_user_ezsignaccess_t *e_user_ezsignaccess; // custom
     char *dt_user_lastlogondate; // string
     char *dt_user_passwordchanged; // string
@@ -126,6 +127,7 @@ user_response_compound_t *user_response_compound_create(
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_user_loginname,
+    char *s_user_jobtitle,
     field_e_user_ezsignaccess_t *e_user_ezsignaccess,
     char *dt_user_lastlogondate,
     char *dt_user_passwordchanged,

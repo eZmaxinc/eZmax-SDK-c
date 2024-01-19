@@ -56,6 +56,7 @@ typedef struct user_list_element_t {
     field_e_user_ezsignaccess_t *e_user_ezsignaccess; // custom
     char *dt_user_ezsignprepaidexpiration; // string
     char *s_email_address; // string
+    char *s_user_jobtitle; // string
 
 } user_list_element_t;
 
@@ -69,7 +70,8 @@ user_list_element_t *user_list_element_create(
     field_e_user_origin_t *e_user_origin,
     field_e_user_ezsignaccess_t *e_user_ezsignaccess,
     char *dt_user_ezsignprepaidexpiration,
-    char *s_email_address
+    char *s_email_address,
+    char *s_user_jobtitle
 );
 
 void user_list_element_free(user_list_element_t *user_list_element);

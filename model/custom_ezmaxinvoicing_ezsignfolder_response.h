@@ -20,6 +20,7 @@ typedef struct custom_ezmaxinvoicing_ezsignfolder_response_t custom_ezmaxinvoici
 
 typedef struct custom_ezmaxinvoicing_ezsignfolder_response_t {
     int fki_ezsignfolder_id; //numeric
+    int fki_billingentityinternal_id; //numeric
     char *s_ezsignfolder_description; // string
     int b_ezsigntsarequirement_billable; //boolean
     int b_ezsignfolder_mfaused; //boolean
@@ -30,6 +31,7 @@ typedef struct custom_ezmaxinvoicing_ezsignfolder_response_t {
 
 custom_ezmaxinvoicing_ezsignfolder_response_t *custom_ezmaxinvoicing_ezsignfolder_response_create(
     int fki_ezsignfolder_id,
+    int fki_billingentityinternal_id,
     char *s_ezsignfolder_description,
     int b_ezsigntsarequirement_billable,
     int b_ezsignfolder_mfaused,

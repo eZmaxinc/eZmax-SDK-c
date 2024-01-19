@@ -69,6 +69,7 @@ typedef struct user_request_t {
     char *s_user_firstname; // string
     char *s_user_lastname; // string
     char *s_user_loginname; // string
+    char *s_user_jobtitle; // string
     field_e_user_ezsignaccess_t *e_user_ezsignaccess; // custom
     int b_user_isactive; //boolean
     int b_user_validatebyadministration; //boolean
@@ -100,6 +101,7 @@ user_request_t *user_request_create(
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_user_loginname,
+    char *s_user_jobtitle,
     field_e_user_ezsignaccess_t *e_user_ezsignaccess,
     int b_user_isactive,
     int b_user_validatebyadministration,

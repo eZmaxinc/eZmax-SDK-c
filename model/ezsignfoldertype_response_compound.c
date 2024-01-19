@@ -55,6 +55,23 @@ ezmax_api_definition__full_ezsignfoldertype_response_compound__e e_ezsignfoldert
     }
     return 0;
 }
+char* e_ezsignfoldertype_completionezsignfoldertype_response_compound_ToString(ezmax_api_definition__full_ezsignfoldertype_response_compound__e e_ezsignfoldertype_completion) {
+    char* e_ezsignfoldertype_completionArray[] =  { "NULL", "PerEzsigndocument", "PerEzsignfolder" };
+    return e_ezsignfoldertype_completionArray[e_ezsignfoldertype_completion];
+}
+
+ezmax_api_definition__full_ezsignfoldertype_response_compound__e e_ezsignfoldertype_completionezsignfoldertype_response_compound_FromString(char* e_ezsignfoldertype_completion){
+    int stringToReturn = 0;
+    char *e_ezsignfoldertype_completionArray[] =  { "NULL", "PerEzsigndocument", "PerEzsignfolder" };
+    size_t sizeofArray = sizeof(e_ezsignfoldertype_completionArray) / sizeof(e_ezsignfoldertype_completionArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(e_ezsignfoldertype_completion, e_ezsignfoldertype_completionArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
 
 ezsignfoldertype_response_compound_t *ezsignfoldertype_response_compound_create(
     int pki_ezsignfoldertype_id,
@@ -75,10 +92,13 @@ ezsignfoldertype_response_compound_t *ezsignfoldertype_response_compound_create(
     field_e_ezsignfoldertype_sendreminderfrequency_t *e_ezsignfoldertype_sendreminderfrequency,
     int i_ezsignfoldertype_archivaldays,
     field_e_ezsignfoldertype_disposal_t *e_ezsignfoldertype_disposal,
+    field_e_ezsignfoldertype_completion_t *e_ezsignfoldertype_completion,
     int i_ezsignfoldertype_disposaldays,
     int i_ezsignfoldertype_deadlinedays,
     int b_ezsignfoldertype_delegate,
     int b_ezsignfoldertype_reassign,
+    int b_ezsignfoldertype_reassignezsignsigner,
+    int b_ezsignfoldertype_reassignuser,
     int b_ezsignfoldertype_sendattatchmentsigner,
     int b_ezsignfoldertype_sendsignedtoezsignsigner,
     int b_ezsignfoldertype_sendsignedtouser,
@@ -128,10 +148,13 @@ ezsignfoldertype_response_compound_t *ezsignfoldertype_response_compound_create(
     ezsignfoldertype_response_compound_local_var->e_ezsignfoldertype_sendreminderfrequency = e_ezsignfoldertype_sendreminderfrequency;
     ezsignfoldertype_response_compound_local_var->i_ezsignfoldertype_archivaldays = i_ezsignfoldertype_archivaldays;
     ezsignfoldertype_response_compound_local_var->e_ezsignfoldertype_disposal = e_ezsignfoldertype_disposal;
+    ezsignfoldertype_response_compound_local_var->e_ezsignfoldertype_completion = e_ezsignfoldertype_completion;
     ezsignfoldertype_response_compound_local_var->i_ezsignfoldertype_disposaldays = i_ezsignfoldertype_disposaldays;
     ezsignfoldertype_response_compound_local_var->i_ezsignfoldertype_deadlinedays = i_ezsignfoldertype_deadlinedays;
     ezsignfoldertype_response_compound_local_var->b_ezsignfoldertype_delegate = b_ezsignfoldertype_delegate;
     ezsignfoldertype_response_compound_local_var->b_ezsignfoldertype_reassign = b_ezsignfoldertype_reassign;
+    ezsignfoldertype_response_compound_local_var->b_ezsignfoldertype_reassignezsignsigner = b_ezsignfoldertype_reassignezsignsigner;
+    ezsignfoldertype_response_compound_local_var->b_ezsignfoldertype_reassignuser = b_ezsignfoldertype_reassignuser;
     ezsignfoldertype_response_compound_local_var->b_ezsignfoldertype_sendattatchmentsigner = b_ezsignfoldertype_sendattatchmentsigner;
     ezsignfoldertype_response_compound_local_var->b_ezsignfoldertype_sendsignedtoezsignsigner = b_ezsignfoldertype_sendsignedtoezsignsigner;
     ezsignfoldertype_response_compound_local_var->b_ezsignfoldertype_sendsignedtouser = b_ezsignfoldertype_sendsignedtouser;
@@ -211,6 +234,10 @@ void ezsignfoldertype_response_compound_free(ezsignfoldertype_response_compound_
     if (ezsignfoldertype_response_compound->e_ezsignfoldertype_disposal) {
         field_e_ezsignfoldertype_disposal_free(ezsignfoldertype_response_compound->e_ezsignfoldertype_disposal);
         ezsignfoldertype_response_compound->e_ezsignfoldertype_disposal = NULL;
+    }
+    if (ezsignfoldertype_response_compound->e_ezsignfoldertype_completion) {
+        field_e_ezsignfoldertype_completion_free(ezsignfoldertype_response_compound->e_ezsignfoldertype_completion);
+        ezsignfoldertype_response_compound->e_ezsignfoldertype_completion = NULL;
     }
     if (ezsignfoldertype_response_compound->a_fki_user_id_signed) {
         list_ForEach(listEntry, ezsignfoldertype_response_compound->a_fki_user_id_signed) {
@@ -403,6 +430,19 @@ cJSON *ezsignfoldertype_response_compound_convertToJSON(ezsignfoldertype_respons
     }
 
 
+    // ezsignfoldertype_response_compound->e_ezsignfoldertype_completion
+    if(ezsignfoldertype_response_compound->e_ezsignfoldertype_completion != ezmax_api_definition__full_ezsignfoldertype_response_compound__NULL) {
+    cJSON *e_ezsignfoldertype_completion_local_JSON = field_e_ezsignfoldertype_completion_convertToJSON(ezsignfoldertype_response_compound->e_ezsignfoldertype_completion);
+    if(e_ezsignfoldertype_completion_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsignfoldertypeCompletion", e_ezsignfoldertype_completion_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
+    }
+
+
     // ezsignfoldertype_response_compound->i_ezsignfoldertype_disposaldays
     if(ezsignfoldertype_response_compound->i_ezsignfoldertype_disposaldays) {
     if(cJSON_AddNumberToObject(item, "iEzsignfoldertypeDisposaldays", ezsignfoldertype_response_compound->i_ezsignfoldertype_disposaldays) == NULL) {
@@ -431,6 +471,22 @@ cJSON *ezsignfoldertype_response_compound_convertToJSON(ezsignfoldertype_respons
     // ezsignfoldertype_response_compound->b_ezsignfoldertype_reassign
     if(ezsignfoldertype_response_compound->b_ezsignfoldertype_reassign) {
     if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeReassign", ezsignfoldertype_response_compound->b_ezsignfoldertype_reassign) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
+    // ezsignfoldertype_response_compound->b_ezsignfoldertype_reassignezsignsigner
+    if(ezsignfoldertype_response_compound->b_ezsignfoldertype_reassignezsignsigner) {
+    if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeReassignezsignsigner", ezsignfoldertype_response_compound->b_ezsignfoldertype_reassignezsignsigner) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
+    // ezsignfoldertype_response_compound->b_ezsignfoldertype_reassignuser
+    if(ezsignfoldertype_response_compound->b_ezsignfoldertype_reassignuser) {
+    if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeReassignuser", ezsignfoldertype_response_compound->b_ezsignfoldertype_reassignuser) == NULL) {
     goto fail; //Bool
     }
     }
@@ -693,6 +749,9 @@ ezsignfoldertype_response_compound_t *ezsignfoldertype_response_compound_parseFr
     // define the local variable for ezsignfoldertype_response_compound->e_ezsignfoldertype_disposal
     field_e_ezsignfoldertype_disposal_t *e_ezsignfoldertype_disposal_local_nonprim = NULL;
 
+    // define the local variable for ezsignfoldertype_response_compound->e_ezsignfoldertype_completion
+    field_e_ezsignfoldertype_completion_t *e_ezsignfoldertype_completion_local_nonprim = NULL;
+
     // define the local list for ezsignfoldertype_response_compound->a_fki_user_id_signed
     list_t *a_fki_user_id_signedList = NULL;
 
@@ -870,6 +929,12 @@ ezsignfoldertype_response_compound_t *ezsignfoldertype_response_compound_parseFr
     
     e_ezsignfoldertype_disposal_local_nonprim = field_e_ezsignfoldertype_disposal_parseFromJSON(e_ezsignfoldertype_disposal); //custom
 
+    // ezsignfoldertype_response_compound->e_ezsignfoldertype_completion
+    cJSON *e_ezsignfoldertype_completion = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_response_compoundJSON, "eEzsignfoldertypeCompletion");
+    if (e_ezsignfoldertype_completion) { 
+    e_ezsignfoldertype_completion_local_nonprim = field_e_ezsignfoldertype_completion_parseFromJSON(e_ezsignfoldertype_completion); //custom
+    }
+
     // ezsignfoldertype_response_compound->i_ezsignfoldertype_disposaldays
     cJSON *i_ezsignfoldertype_disposaldays = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_response_compoundJSON, "iEzsignfoldertypeDisposaldays");
     if (i_ezsignfoldertype_disposaldays) { 
@@ -904,6 +969,24 @@ ezsignfoldertype_response_compound_t *ezsignfoldertype_response_compound_parseFr
     cJSON *b_ezsignfoldertype_reassign = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_response_compoundJSON, "bEzsignfoldertypeReassign");
     if (b_ezsignfoldertype_reassign) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_reassign))
+    {
+    goto end; //Bool
+    }
+    }
+
+    // ezsignfoldertype_response_compound->b_ezsignfoldertype_reassignezsignsigner
+    cJSON *b_ezsignfoldertype_reassignezsignsigner = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_response_compoundJSON, "bEzsignfoldertypeReassignezsignsigner");
+    if (b_ezsignfoldertype_reassignezsignsigner) { 
+    if(!cJSON_IsBool(b_ezsignfoldertype_reassignezsignsigner))
+    {
+    goto end; //Bool
+    }
+    }
+
+    // ezsignfoldertype_response_compound->b_ezsignfoldertype_reassignuser
+    cJSON *b_ezsignfoldertype_reassignuser = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_response_compoundJSON, "bEzsignfoldertypeReassignuser");
+    if (b_ezsignfoldertype_reassignuser) { 
+    if(!cJSON_IsBool(b_ezsignfoldertype_reassignuser))
     {
     goto end; //Bool
     }
@@ -1219,10 +1302,13 @@ ezsignfoldertype_response_compound_t *ezsignfoldertype_response_compound_parseFr
         e_ezsignfoldertype_sendreminderfrequency ? e_ezsignfoldertype_sendreminderfrequency_local_nonprim : NULL,
         i_ezsignfoldertype_archivaldays->valuedouble,
         e_ezsignfoldertype_disposal_local_nonprim,
+        e_ezsignfoldertype_completion ? e_ezsignfoldertype_completion_local_nonprim : NULL,
         i_ezsignfoldertype_disposaldays ? i_ezsignfoldertype_disposaldays->valuedouble : 0,
         i_ezsignfoldertype_deadlinedays->valuedouble,
         b_ezsignfoldertype_delegate ? b_ezsignfoldertype_delegate->valueint : 0,
         b_ezsignfoldertype_reassign ? b_ezsignfoldertype_reassign->valueint : 0,
+        b_ezsignfoldertype_reassignezsignsigner ? b_ezsignfoldertype_reassignezsignsigner->valueint : 0,
+        b_ezsignfoldertype_reassignuser ? b_ezsignfoldertype_reassignuser->valueint : 0,
         b_ezsignfoldertype_sendattatchmentsigner ? b_ezsignfoldertype_sendattatchmentsigner->valueint : 0,
         b_ezsignfoldertype_sendsignedtoezsignsigner ? b_ezsignfoldertype_sendsignedtoezsignsigner->valueint : 0,
         b_ezsignfoldertype_sendsignedtouser ? b_ezsignfoldertype_sendsignedtouser->valueint : 0,
@@ -1268,6 +1354,10 @@ end:
     if (e_ezsignfoldertype_disposal_local_nonprim) {
         field_e_ezsignfoldertype_disposal_free(e_ezsignfoldertype_disposal_local_nonprim);
         e_ezsignfoldertype_disposal_local_nonprim = NULL;
+    }
+    if (e_ezsignfoldertype_completion_local_nonprim) {
+        field_e_ezsignfoldertype_completion_free(e_ezsignfoldertype_completion_local_nonprim);
+        e_ezsignfoldertype_completion_local_nonprim = NULL;
     }
     if (a_fki_user_id_signedList) {
         listEntry_t *listEntry = NULL;

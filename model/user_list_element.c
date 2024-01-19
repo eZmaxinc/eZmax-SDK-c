@@ -66,7 +66,8 @@ user_list_element_t *user_list_element_create(
     field_e_user_origin_t *e_user_origin,
     field_e_user_ezsignaccess_t *e_user_ezsignaccess,
     char *dt_user_ezsignprepaidexpiration,
-    char *s_email_address
+    char *s_email_address,
+    char *s_user_jobtitle
     ) {
     user_list_element_t *user_list_element_local_var = malloc(sizeof(user_list_element_t));
     if (!user_list_element_local_var) {
@@ -82,6 +83,7 @@ user_list_element_t *user_list_element_create(
     user_list_element_local_var->e_user_ezsignaccess = e_user_ezsignaccess;
     user_list_element_local_var->dt_user_ezsignprepaidexpiration = dt_user_ezsignprepaidexpiration;
     user_list_element_local_var->s_email_address = s_email_address;
+    user_list_element_local_var->s_user_jobtitle = s_user_jobtitle;
 
     return user_list_element_local_var;
 }
@@ -123,6 +125,10 @@ void user_list_element_free(user_list_element_t *user_list_element) {
     if (user_list_element->s_email_address) {
         free(user_list_element->s_email_address);
         user_list_element->s_email_address = NULL;
+    }
+    if (user_list_element->s_user_jobtitle) {
+        free(user_list_element->s_user_jobtitle);
+        user_list_element->s_user_jobtitle = NULL;
     }
     free(user_list_element);
 }
@@ -231,6 +237,14 @@ cJSON *user_list_element_convertToJSON(user_list_element_t *user_list_element) {
     }
     if(cJSON_AddStringToObject(item, "sEmailAddress", user_list_element->s_email_address) == NULL) {
     goto fail; //String
+    }
+
+
+    // user_list_element->s_user_jobtitle
+    if(user_list_element->s_user_jobtitle) {
+    if(cJSON_AddStringToObject(item, "sUserJobtitle", user_list_element->s_user_jobtitle) == NULL) {
+    goto fail; //String
+    }
     }
 
     return item;
@@ -362,6 +376,15 @@ user_list_element_t *user_list_element_parseFromJSON(cJSON *user_list_elementJSO
     goto end; //String
     }
 
+    // user_list_element->s_user_jobtitle
+    cJSON *s_user_jobtitle = cJSON_GetObjectItemCaseSensitive(user_list_elementJSON, "sUserJobtitle");
+    if (s_user_jobtitle) { 
+    if(!cJSON_IsString(s_user_jobtitle) && !cJSON_IsNull(s_user_jobtitle))
+    {
+    goto end; //String
+    }
+    }
+
 
     user_list_element_local_var = user_list_element_create (
         pki_user_id->valuedouble,
@@ -373,7 +396,8 @@ user_list_element_t *user_list_element_parseFromJSON(cJSON *user_list_elementJSO
         e_user_origin_local_nonprim,
         e_user_ezsignaccess_local_nonprim,
         dt_user_ezsignprepaidexpiration && !cJSON_IsNull(dt_user_ezsignprepaidexpiration) ? strdup(dt_user_ezsignprepaidexpiration->valuestring) : NULL,
-        strdup(s_email_address->valuestring)
+        strdup(s_email_address->valuestring),
+        s_user_jobtitle && !cJSON_IsNull(s_user_jobtitle) ? strdup(s_user_jobtitle->valuestring) : NULL
         );
 
     return user_list_element_local_var;

@@ -14,7 +14,9 @@ custom_ezsignfoldertype_response_t *custom_ezsignfoldertype_response_create(
     int b_ezsignfoldertype_allowdownloadattachmentezsignsigner,
     int b_ezsignfoldertype_allowdownloadproofezsignsigner,
     int b_ezsignfoldertype_delegate,
-    int b_ezsignfoldertype_reassign
+    int b_ezsignfoldertype_reassign,
+    int b_ezsignfoldertype_reassignezsignsigner,
+    int b_ezsignfoldertype_reassignuser
     ) {
     custom_ezsignfoldertype_response_t *custom_ezsignfoldertype_response_local_var = malloc(sizeof(custom_ezsignfoldertype_response_t));
     if (!custom_ezsignfoldertype_response_local_var) {
@@ -29,6 +31,8 @@ custom_ezsignfoldertype_response_t *custom_ezsignfoldertype_response_create(
     custom_ezsignfoldertype_response_local_var->b_ezsignfoldertype_allowdownloadproofezsignsigner = b_ezsignfoldertype_allowdownloadproofezsignsigner;
     custom_ezsignfoldertype_response_local_var->b_ezsignfoldertype_delegate = b_ezsignfoldertype_delegate;
     custom_ezsignfoldertype_response_local_var->b_ezsignfoldertype_reassign = b_ezsignfoldertype_reassign;
+    custom_ezsignfoldertype_response_local_var->b_ezsignfoldertype_reassignezsignsigner = b_ezsignfoldertype_reassignezsignsigner;
+    custom_ezsignfoldertype_response_local_var->b_ezsignfoldertype_reassignuser = b_ezsignfoldertype_reassignuser;
 
     return custom_ezsignfoldertype_response_local_var;
 }
@@ -117,6 +121,22 @@ cJSON *custom_ezsignfoldertype_response_convertToJSON(custom_ezsignfoldertype_re
     // custom_ezsignfoldertype_response->b_ezsignfoldertype_reassign
     if(custom_ezsignfoldertype_response->b_ezsignfoldertype_reassign) {
     if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeReassign", custom_ezsignfoldertype_response->b_ezsignfoldertype_reassign) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
+    // custom_ezsignfoldertype_response->b_ezsignfoldertype_reassignezsignsigner
+    if(custom_ezsignfoldertype_response->b_ezsignfoldertype_reassignezsignsigner) {
+    if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeReassignezsignsigner", custom_ezsignfoldertype_response->b_ezsignfoldertype_reassignezsignsigner) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
+    // custom_ezsignfoldertype_response->b_ezsignfoldertype_reassignuser
+    if(custom_ezsignfoldertype_response->b_ezsignfoldertype_reassignuser) {
+    if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeReassignuser", custom_ezsignfoldertype_response->b_ezsignfoldertype_reassignuser) == NULL) {
     goto fail; //Bool
     }
     }
@@ -217,6 +237,24 @@ custom_ezsignfoldertype_response_t *custom_ezsignfoldertype_response_parseFromJS
     }
     }
 
+    // custom_ezsignfoldertype_response->b_ezsignfoldertype_reassignezsignsigner
+    cJSON *b_ezsignfoldertype_reassignezsignsigner = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldertype_responseJSON, "bEzsignfoldertypeReassignezsignsigner");
+    if (b_ezsignfoldertype_reassignezsignsigner) { 
+    if(!cJSON_IsBool(b_ezsignfoldertype_reassignezsignsigner))
+    {
+    goto end; //Bool
+    }
+    }
+
+    // custom_ezsignfoldertype_response->b_ezsignfoldertype_reassignuser
+    cJSON *b_ezsignfoldertype_reassignuser = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldertype_responseJSON, "bEzsignfoldertypeReassignuser");
+    if (b_ezsignfoldertype_reassignuser) { 
+    if(!cJSON_IsBool(b_ezsignfoldertype_reassignuser))
+    {
+    goto end; //Bool
+    }
+    }
+
 
     custom_ezsignfoldertype_response_local_var = custom_ezsignfoldertype_response_create (
         pki_ezsignfoldertype_id->valuedouble,
@@ -227,7 +265,9 @@ custom_ezsignfoldertype_response_t *custom_ezsignfoldertype_response_parseFromJS
         b_ezsignfoldertype_allowdownloadattachmentezsignsigner ? b_ezsignfoldertype_allowdownloadattachmentezsignsigner->valueint : 0,
         b_ezsignfoldertype_allowdownloadproofezsignsigner ? b_ezsignfoldertype_allowdownloadproofezsignsigner->valueint : 0,
         b_ezsignfoldertype_delegate ? b_ezsignfoldertype_delegate->valueint : 0,
-        b_ezsignfoldertype_reassign ? b_ezsignfoldertype_reassign->valueint : 0
+        b_ezsignfoldertype_reassign ? b_ezsignfoldertype_reassign->valueint : 0,
+        b_ezsignfoldertype_reassignezsignsigner ? b_ezsignfoldertype_reassignezsignsigner->valueint : 0,
+        b_ezsignfoldertype_reassignuser ? b_ezsignfoldertype_reassignuser->valueint : 0
         );
 
     return custom_ezsignfoldertype_response_local_var;
