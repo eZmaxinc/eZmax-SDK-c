@@ -4,12 +4,12 @@
 #include "common_reportsection.h"
 
 
-char* e_reportsection_horizontalalignmentcommon_reportsection_ToString(ezmax_api_definition__full_common_reportsection__e e_reportsection_horizontalalignment) {
+char* common_reportsection_e_reportsection_horizontalalignment_ToString(ezmax_api_definition__full_common_reportsection__e e_reportsection_horizontalalignment) {
     char* e_reportsection_horizontalalignmentArray[] =  { "NULL", "Center", "Left", "Right" };
     return e_reportsection_horizontalalignmentArray[e_reportsection_horizontalalignment];
 }
 
-ezmax_api_definition__full_common_reportsection__e e_reportsection_horizontalalignmentcommon_reportsection_FromString(char* e_reportsection_horizontalalignment){
+ezmax_api_definition__full_common_reportsection__e common_reportsection_e_reportsection_horizontalalignment_FromString(char* e_reportsection_horizontalalignment){
     int stringToReturn = 0;
     char *e_reportsection_horizontalalignmentArray[] =  { "NULL", "Center", "Left", "Right" };
     size_t sizeofArray = sizeof(e_reportsection_horizontalalignmentArray) / sizeof(e_reportsection_horizontalalignmentArray[0]);

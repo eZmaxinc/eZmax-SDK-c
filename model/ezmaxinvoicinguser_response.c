@@ -4,12 +4,12 @@
 #include "ezmaxinvoicinguser_response.h"
 
 
-char* e_ezmaxinvoicinguser_variationezsignezmaxinvoicinguser_response_ToString(ezmax_api_definition__full_ezmaxinvoicinguser_response__e e_ezmaxinvoicinguser_variationezsign) {
+char* ezmaxinvoicinguser_response_e_ezmaxinvoicinguser_variationezsign_ToString(ezmax_api_definition__full_ezmaxinvoicinguser_response__e e_ezmaxinvoicinguser_variationezsign) {
     char* e_ezmaxinvoicinguser_variationezsignArray[] =  { "NULL", "Charge", "Refund", "Same" };
     return e_ezmaxinvoicinguser_variationezsignArray[e_ezmaxinvoicinguser_variationezsign];
 }
 
-ezmax_api_definition__full_ezmaxinvoicinguser_response__e e_ezmaxinvoicinguser_variationezsignezmaxinvoicinguser_response_FromString(char* e_ezmaxinvoicinguser_variationezsign){
+ezmax_api_definition__full_ezmaxinvoicinguser_response__e ezmaxinvoicinguser_response_e_ezmaxinvoicinguser_variationezsign_FromString(char* e_ezmaxinvoicinguser_variationezsign){
     int stringToReturn = 0;
     char *e_ezmaxinvoicinguser_variationezsignArray[] =  { "NULL", "Charge", "Refund", "Same" };
     size_t sizeofArray = sizeof(e_ezmaxinvoicinguser_variationezsignArray) / sizeof(e_ezmaxinvoicinguser_variationezsignArray[0]);

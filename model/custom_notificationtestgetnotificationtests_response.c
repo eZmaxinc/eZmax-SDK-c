@@ -4,12 +4,12 @@
 #include "custom_notificationtestgetnotificationtests_response.h"
 
 
-char* e_notificationpreference_statuscustom_notificationtestgetnotificationtests_response_ToString(ezmax_api_definition__full_custom_notificationtestgetnotificationtests_response__e e_notificationpreference_status) {
+char* custom_notificationtestgetnotificationtests_response_e_notificationpreference_status_ToString(ezmax_api_definition__full_custom_notificationtestgetnotificationtests_response__e e_notificationpreference_status) {
     char* e_notificationpreference_statusArray[] =  { "NULL", "Show", "Hide", "Pin" };
     return e_notificationpreference_statusArray[e_notificationpreference_status];
 }
 
-ezmax_api_definition__full_custom_notificationtestgetnotificationtests_response__e e_notificationpreference_statuscustom_notificationtestgetnotificationtests_response_FromString(char* e_notificationpreference_status){
+ezmax_api_definition__full_custom_notificationtestgetnotificationtests_response__e custom_notificationtestgetnotificationtests_response_e_notificationpreference_status_FromString(char* e_notificationpreference_status){
     int stringToReturn = 0;
     char *e_notificationpreference_statusArray[] =  { "NULL", "Show", "Hide", "Pin" };
     size_t sizeofArray = sizeof(e_notificationpreference_statusArray) / sizeof(e_notificationpreference_statusArray[0]);

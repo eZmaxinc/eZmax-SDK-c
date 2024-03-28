@@ -4,12 +4,12 @@
 #include "custom_attachmentdocumenttype_response.h"
 
 
-char* e_attachment_documenttypecustom_attachmentdocumenttype_response_ToString(ezmax_api_definition__full_custom_attachmentdocumenttype_response__e e_attachment_documenttype) {
+char* custom_attachmentdocumenttype_response_e_attachment_documenttype_ToString(ezmax_api_definition__full_custom_attachmentdocumenttype_response__e e_attachment_documenttype) {
     char* e_attachment_documenttypeArray[] =  { "NULL", "Adjustment", "Agent", "Bankaccount", "Broker", "Buyercontract", "Commissionadvance", "Communication", "Customer", "Customertemplate", "Deposit", "Deposittransitcheque", "Disclosure", "Electronicfundstransfer", "Employee", "Externalbroker", "Ezcomadvanceserver", "Ezcomcompany", "Ezsigndocument", "EzsigndocumentProof", "EzsigndocumentProofdocument", "Ezsigndocumentgroup", "EzsigndocumentgroupProof", "EzsigndocumentgroupProofdocument", "EzsigndocumentAttachment", "Folder", "Franchiseagence", "Franchisebroker", "Franchisecomplaint", "Franchisefranchise", "Franchiseoffice", "Ghacqcontract", "Inscription", "Inscriptionnotauthenticated", "Inscriptiontemp", "Invoice", "Lead", "Marketingfollow", "Marketingprogram", "Notary", "Officetaxreport", "Otherincome", "Paymentpreparation", "Purchase", "Reconciliation", "Rejectedoffertopurchase", "Salary", "Supplier", "Template", "Tranqcontract" };
     return e_attachment_documenttypeArray[e_attachment_documenttype];
 }
 
-ezmax_api_definition__full_custom_attachmentdocumenttype_response__e e_attachment_documenttypecustom_attachmentdocumenttype_response_FromString(char* e_attachment_documenttype){
+ezmax_api_definition__full_custom_attachmentdocumenttype_response__e custom_attachmentdocumenttype_response_e_attachment_documenttype_FromString(char* e_attachment_documenttype){
     int stringToReturn = 0;
     char *e_attachment_documenttypeArray[] =  { "NULL", "Adjustment", "Agent", "Bankaccount", "Broker", "Buyercontract", "Commissionadvance", "Communication", "Customer", "Customertemplate", "Deposit", "Deposittransitcheque", "Disclosure", "Electronicfundstransfer", "Employee", "Externalbroker", "Ezcomadvanceserver", "Ezcomcompany", "Ezsigndocument", "EzsigndocumentProof", "EzsigndocumentProofdocument", "Ezsigndocumentgroup", "EzsigndocumentgroupProof", "EzsigndocumentgroupProofdocument", "EzsigndocumentAttachment", "Folder", "Franchiseagence", "Franchisebroker", "Franchisecomplaint", "Franchisefranchise", "Franchiseoffice", "Ghacqcontract", "Inscription", "Inscriptionnotauthenticated", "Inscriptiontemp", "Invoice", "Lead", "Marketingfollow", "Marketingprogram", "Notary", "Officetaxreport", "Otherincome", "Paymentpreparation", "Purchase", "Reconciliation", "Rejectedoffertopurchase", "Salary", "Supplier", "Template", "Tranqcontract" };
     size_t sizeofArray = sizeof(e_attachment_documenttypeArray) / sizeof(e_attachment_documenttypeArray[0]);

@@ -39,7 +39,8 @@ webhook_response_compound_t* instantiate_webhook_response_compound(int include_o
       false,
        // false, not to have infinite recursion
       instantiate_common_audit(0),
-      "Ezsign-DocumentCompleted"
+      "Ezsign-DocumentCompleted",
+      list_createList()
     );
   } else {
     webhook_response_compound = webhook_response_compound_create(
@@ -58,7 +59,8 @@ webhook_response_compound_t* instantiate_webhook_response_compound(int include_o
       true,
       false,
       NULL,
-      "Ezsign-DocumentCompleted"
+      "Ezsign-DocumentCompleted",
+      list_createList()
     );
   }
 

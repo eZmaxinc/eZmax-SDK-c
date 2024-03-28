@@ -24,14 +24,14 @@ common_file_t* instantiate_common_file(int include_optional) {
     common_file = common_file_create(
       "example.pdf",
       "0",
-      "[B@77a98a6a",
+      "[B@3f0846c6",
       ezmax_api_definition__full_common_file_EFILESOURCE_Base64
     );
   } else {
     common_file = common_file_create(
       "example.pdf",
       "0",
-      "[B@77a98a6a",
+      "[B@3f0846c6",
       ezmax_api_definition__full_common_file_EFILESOURCE_Base64
     );
   }

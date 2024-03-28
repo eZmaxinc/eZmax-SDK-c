@@ -31,6 +31,7 @@ ezsigntemplatepackage_response_compound_t* instantiate_ezsigntemplatepackage_res
       1,
       true,
       "Default",
+      1,
       list_createList(),
       list_createList()
     );
@@ -45,6 +46,7 @@ ezsigntemplatepackage_response_compound_t* instantiate_ezsigntemplatepackage_res
       1,
       true,
       "Default",
+      1,
       list_createList(),
       list_createList()
     );

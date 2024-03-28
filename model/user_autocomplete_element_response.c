@@ -4,12 +4,12 @@
 #include "user_autocomplete_element_response.h"
 
 
-char* e_user_typeuser_autocomplete_element_response_ToString(ezmax_api_definition__full_user_autocomplete_element_response__e e_user_type) {
+char* user_autocomplete_element_response_e_user_type_ToString(ezmax_api_definition__full_user_autocomplete_element_response__e e_user_type) {
     char* e_user_typeArray[] =  { "NULL", "AgentBroker", "Assistant", "Employee", "EzsignUser", "Normal" };
     return e_user_typeArray[e_user_type];
 }
 
-ezmax_api_definition__full_user_autocomplete_element_response__e e_user_typeuser_autocomplete_element_response_FromString(char* e_user_type){
+ezmax_api_definition__full_user_autocomplete_element_response__e user_autocomplete_element_response_e_user_type_FromString(char* e_user_type){
     int stringToReturn = 0;
     char *e_user_typeArray[] =  { "NULL", "AgentBroker", "Assistant", "Employee", "EzsignUser", "Normal" };
     size_t sizeofArray = sizeof(e_user_typeArray) / sizeof(e_user_typeArray[0]);

@@ -27,6 +27,8 @@ typedef struct address_request_compound_t {
     int fki_province_id; //numeric
     int fki_country_id; //numeric
     char *s_address_zip; // string
+    char *f_address_longitude; // string
+    char *f_address_latitude; // string
 
 } address_request_compound_t;
 
@@ -38,7 +40,9 @@ address_request_compound_t *address_request_compound_create(
     char *s_address_city,
     int fki_province_id,
     int fki_country_id,
-    char *s_address_zip
+    char *s_address_zip,
+    char *f_address_longitude,
+    char *f_address_latitude
 );
 
 void address_request_compound_free(address_request_compound_t *address_request_compound);

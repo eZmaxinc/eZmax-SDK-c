@@ -59,6 +59,10 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentCreateObjectV1(apiClient_t
     //    printf("%s\n","Successful response");
     //}
     // uncomment below to debug the error response
+    //if (apiClient->response_code == 413) {
+    //    printf("%s\n","The request was large. Look for detail about the error in the body");
+    //}
+    // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body. If the error is recoverable sTemporaryFileUrl will be set and you can use this url to try a new request without sending the file over again");
     //}

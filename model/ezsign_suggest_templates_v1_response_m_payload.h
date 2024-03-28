@@ -16,6 +16,7 @@
 typedef struct ezsign_suggest_templates_v1_response_m_payload_t ezsign_suggest_templates_v1_response_m_payload_t;
 
 #include "ezsigntemplate_response_compound.h"
+#include "ezsigntemplateglobal_response_compound.h"
 #include "ezsigntemplatepackage_response_compound.h"
 
 
@@ -23,12 +24,14 @@ typedef struct ezsign_suggest_templates_v1_response_m_payload_t ezsign_suggest_t
 typedef struct ezsign_suggest_templates_v1_response_m_payload_t {
     list_t *a_obj_ezsigntemplate; //nonprimitive container
     list_t *a_obj_ezsigntemplatepackage; //nonprimitive container
+    list_t *a_obj_ezsigntemplateglobal; //nonprimitive container
 
 } ezsign_suggest_templates_v1_response_m_payload_t;
 
 ezsign_suggest_templates_v1_response_m_payload_t *ezsign_suggest_templates_v1_response_m_payload_create(
     list_t *a_obj_ezsigntemplate,
-    list_t *a_obj_ezsigntemplatepackage
+    list_t *a_obj_ezsigntemplatepackage,
+    list_t *a_obj_ezsigntemplateglobal
 );
 
 void ezsign_suggest_templates_v1_response_m_payload_free(ezsign_suggest_templates_v1_response_m_payload_t *ezsign_suggest_templates_v1_response_m_payload);

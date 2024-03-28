@@ -4,12 +4,12 @@
 #include "ezsigntemplateformfieldgroup_request_compound.h"
 
 
-char* e_ezsigntemplateformfieldgroup_typeezsigntemplateformfieldgroup_request_compound_ToString(ezmax_api_definition__full_ezsigntemplateformfieldgroup_request_compound__e e_ezsigntemplateformfieldgroup_type) {
+char* ezsigntemplateformfieldgroup_request_compound_e_ezsigntemplateformfieldgroup_type_ToString(ezmax_api_definition__full_ezsigntemplateformfieldgroup_request_compound__e e_ezsigntemplateformfieldgroup_type) {
     char* e_ezsigntemplateformfieldgroup_typeArray[] =  { "NULL", "Text", "Textarea", "Dropdown", "Radio", "Checkbox", "Number", "Date" };
     return e_ezsigntemplateformfieldgroup_typeArray[e_ezsigntemplateformfieldgroup_type];
 }
 
-ezmax_api_definition__full_ezsigntemplateformfieldgroup_request_compound__e e_ezsigntemplateformfieldgroup_typeezsigntemplateformfieldgroup_request_compound_FromString(char* e_ezsigntemplateformfieldgroup_type){
+ezmax_api_definition__full_ezsigntemplateformfieldgroup_request_compound__e ezsigntemplateformfieldgroup_request_compound_e_ezsigntemplateformfieldgroup_type_FromString(char* e_ezsigntemplateformfieldgroup_type){
     int stringToReturn = 0;
     char *e_ezsigntemplateformfieldgroup_typeArray[] =  { "NULL", "Text", "Textarea", "Dropdown", "Radio", "Checkbox", "Number", "Date" };
     size_t sizeofArray = sizeof(e_ezsigntemplateformfieldgroup_typeArray) / sizeof(e_ezsigntemplateformfieldgroup_typeArray[0]);
@@ -21,12 +21,12 @@ ezmax_api_definition__full_ezsigntemplateformfieldgroup_request_compound__e e_ez
     }
     return 0;
 }
-char* e_ezsigntemplateformfieldgroup_signerrequirementezsigntemplateformfieldgroup_request_compound_ToString(ezmax_api_definition__full_ezsigntemplateformfieldgroup_request_compound__e e_ezsigntemplateformfieldgroup_signerrequirement) {
+char* ezsigntemplateformfieldgroup_request_compound_e_ezsigntemplateformfieldgroup_signerrequirement_ToString(ezmax_api_definition__full_ezsigntemplateformfieldgroup_request_compound__e e_ezsigntemplateformfieldgroup_signerrequirement) {
     char* e_ezsigntemplateformfieldgroup_signerrequirementArray[] =  { "NULL", "All", "One" };
     return e_ezsigntemplateformfieldgroup_signerrequirementArray[e_ezsigntemplateformfieldgroup_signerrequirement];
 }
 
-ezmax_api_definition__full_ezsigntemplateformfieldgroup_request_compound__e e_ezsigntemplateformfieldgroup_signerrequirementezsigntemplateformfieldgroup_request_compound_FromString(char* e_ezsigntemplateformfieldgroup_signerrequirement){
+ezmax_api_definition__full_ezsigntemplateformfieldgroup_request_compound__e ezsigntemplateformfieldgroup_request_compound_e_ezsigntemplateformfieldgroup_signerrequirement_FromString(char* e_ezsigntemplateformfieldgroup_signerrequirement){
     int stringToReturn = 0;
     char *e_ezsigntemplateformfieldgroup_signerrequirementArray[] =  { "NULL", "All", "One" };
     size_t sizeofArray = sizeof(e_ezsigntemplateformfieldgroup_signerrequirementArray) / sizeof(e_ezsigntemplateformfieldgroup_signerrequirementArray[0]);
@@ -38,12 +38,12 @@ ezmax_api_definition__full_ezsigntemplateformfieldgroup_request_compound__e e_ez
     }
     return 0;
 }
-char* e_ezsigntemplateformfieldgroup_textvalidationezsigntemplateformfieldgroup_request_compound_ToString(ezmax_api_definition__full_ezsigntemplateformfieldgroup_request_compound__e e_ezsigntemplateformfieldgroup_textvalidation) {
+char* ezsigntemplateformfieldgroup_request_compound_e_ezsigntemplateformfieldgroup_textvalidation_ToString(ezmax_api_definition__full_ezsigntemplateformfieldgroup_request_compound__e e_ezsigntemplateformfieldgroup_textvalidation) {
     char* e_ezsigntemplateformfieldgroup_textvalidationArray[] =  { "NULL", "None", "Date (YYYY-MM-DD)", "Date (MM/DD/YYYY)", "Date (MM/DD/YY)", "Date (DD/MM/YYYY)", "Date (DD/MM/YY)", "Email", "Letters", "Numbers", "Zip", "Zip+4", "PostalCode", "Custom" };
     return e_ezsigntemplateformfieldgroup_textvalidationArray[e_ezsigntemplateformfieldgroup_textvalidation];
 }
 
-ezmax_api_definition__full_ezsigntemplateformfieldgroup_request_compound__e e_ezsigntemplateformfieldgroup_textvalidationezsigntemplateformfieldgroup_request_compound_FromString(char* e_ezsigntemplateformfieldgroup_textvalidation){
+ezmax_api_definition__full_ezsigntemplateformfieldgroup_request_compound__e ezsigntemplateformfieldgroup_request_compound_e_ezsigntemplateformfieldgroup_textvalidation_FromString(char* e_ezsigntemplateformfieldgroup_textvalidation){
     int stringToReturn = 0;
     char *e_ezsigntemplateformfieldgroup_textvalidationArray[] =  { "NULL", "None", "Date (YYYY-MM-DD)", "Date (MM/DD/YYYY)", "Date (MM/DD/YY)", "Date (DD/MM/YYYY)", "Date (DD/MM/YY)", "Email", "Letters", "Numbers", "Zip", "Zip+4", "PostalCode", "Custom" };
     size_t sizeofArray = sizeof(e_ezsigntemplateformfieldgroup_textvalidationArray) / sizeof(e_ezsigntemplateformfieldgroup_textvalidationArray[0]);
@@ -55,12 +55,12 @@ ezmax_api_definition__full_ezsigntemplateformfieldgroup_request_compound__e e_ez
     }
     return 0;
 }
-char* e_ezsigntemplateformfieldgroup_tooltippositionezsigntemplateformfieldgroup_request_compound_ToString(ezmax_api_definition__full_ezsigntemplateformfieldgroup_request_compound__e e_ezsigntemplateformfieldgroup_tooltipposition) {
+char* ezsigntemplateformfieldgroup_request_compound_e_ezsigntemplateformfieldgroup_tooltipposition_ToString(ezmax_api_definition__full_ezsigntemplateformfieldgroup_request_compound__e e_ezsigntemplateformfieldgroup_tooltipposition) {
     char* e_ezsigntemplateformfieldgroup_tooltippositionArray[] =  { "NULL", "TopLeft", "TopCenter", "TopRight", "MiddleLeft", "MiddleRight", "BottomLeft", "BottomCenter", "BottomRight" };
     return e_ezsigntemplateformfieldgroup_tooltippositionArray[e_ezsigntemplateformfieldgroup_tooltipposition];
 }
 
-ezmax_api_definition__full_ezsigntemplateformfieldgroup_request_compound__e e_ezsigntemplateformfieldgroup_tooltippositionezsigntemplateformfieldgroup_request_compound_FromString(char* e_ezsigntemplateformfieldgroup_tooltipposition){
+ezmax_api_definition__full_ezsigntemplateformfieldgroup_request_compound__e ezsigntemplateformfieldgroup_request_compound_e_ezsigntemplateformfieldgroup_tooltipposition_FromString(char* e_ezsigntemplateformfieldgroup_tooltipposition){
     int stringToReturn = 0;
     char *e_ezsigntemplateformfieldgroup_tooltippositionArray[] =  { "NULL", "TopLeft", "TopCenter", "TopRight", "MiddleLeft", "MiddleRight", "BottomLeft", "BottomCenter", "BottomRight" };
     size_t sizeofArray = sizeof(e_ezsigntemplateformfieldgroup_tooltippositionArray) / sizeof(e_ezsigntemplateformfieldgroup_tooltippositionArray[0]);
@@ -218,9 +218,7 @@ cJSON *ezsigntemplateformfieldgroup_request_compound_convertToJSON(ezsigntemplat
 
 
     // ezsigntemplateformfieldgroup_request_compound->e_ezsigntemplateformfieldgroup_signerrequirement
-    if (ezmax_api_definition__full_ezsigntemplateformfieldgroup_request_compound__NULL == ezsigntemplateformfieldgroup_request_compound->e_ezsigntemplateformfieldgroup_signerrequirement) {
-        goto fail;
-    }
+    if(ezsigntemplateformfieldgroup_request_compound->e_ezsigntemplateformfieldgroup_signerrequirement != ezmax_api_definition__full_ezsigntemplateformfieldgroup_request_compound__NULL) {
     cJSON *e_ezsigntemplateformfieldgroup_signerrequirement_local_JSON = field_e_ezsigntemplateformfieldgroup_signerrequirement_convertToJSON(ezsigntemplateformfieldgroup_request_compound->e_ezsigntemplateformfieldgroup_signerrequirement);
     if(e_ezsigntemplateformfieldgroup_signerrequirement_local_JSON == NULL) {
         goto fail; // custom
@@ -228,6 +226,7 @@ cJSON *ezsigntemplateformfieldgroup_request_compound_convertToJSON(ezsigntemplat
     cJSON_AddItemToObject(item, "eEzsigntemplateformfieldgroupSignerrequirement", e_ezsigntemplateformfieldgroup_signerrequirement_local_JSON);
     if(item->child == NULL) {
         goto fail;
+    }
     }
 
 
@@ -469,12 +468,9 @@ ezsigntemplateformfieldgroup_request_compound_t *ezsigntemplateformfieldgroup_re
 
     // ezsigntemplateformfieldgroup_request_compound->e_ezsigntemplateformfieldgroup_signerrequirement
     cJSON *e_ezsigntemplateformfieldgroup_signerrequirement = cJSON_GetObjectItemCaseSensitive(ezsigntemplateformfieldgroup_request_compoundJSON, "eEzsigntemplateformfieldgroupSignerrequirement");
-    if (!e_ezsigntemplateformfieldgroup_signerrequirement) {
-        goto end;
-    }
-
-    
+    if (e_ezsigntemplateformfieldgroup_signerrequirement) { 
     e_ezsigntemplateformfieldgroup_signerrequirement_local_nonprim = field_e_ezsigntemplateformfieldgroup_signerrequirement_parseFromJSON(e_ezsigntemplateformfieldgroup_signerrequirement); //custom
+    }
 
     // ezsigntemplateformfieldgroup_request_compound->s_ezsigntemplateformfieldgroup_label
     cJSON *s_ezsigntemplateformfieldgroup_label = cJSON_GetObjectItemCaseSensitive(ezsigntemplateformfieldgroup_request_compoundJSON, "sEzsigntemplateformfieldgroupLabel");
@@ -670,7 +666,7 @@ ezsigntemplateformfieldgroup_request_compound_t *ezsigntemplateformfieldgroup_re
         pki_ezsigntemplateformfieldgroup_id ? pki_ezsigntemplateformfieldgroup_id->valuedouble : 0,
         fki_ezsigntemplatedocument_id->valuedouble,
         e_ezsigntemplateformfieldgroup_type_local_nonprim,
-        e_ezsigntemplateformfieldgroup_signerrequirement_local_nonprim,
+        e_ezsigntemplateformfieldgroup_signerrequirement ? e_ezsigntemplateformfieldgroup_signerrequirement_local_nonprim : NULL,
         strdup(s_ezsigntemplateformfieldgroup_label->valuestring),
         i_ezsigntemplateformfieldgroup_step->valuedouble,
         strdup(s_ezsigntemplateformfieldgroup_defaultvalue->valuestring),

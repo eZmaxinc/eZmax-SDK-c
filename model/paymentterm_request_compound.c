@@ -4,12 +4,12 @@
 #include "paymentterm_request_compound.h"
 
 
-char* e_paymentterm_typepaymentterm_request_compound_ToString(ezmax_api_definition__full_paymentterm_request_compound__e e_paymentterm_type) {
+char* paymentterm_request_compound_e_paymentterm_type_ToString(ezmax_api_definition__full_paymentterm_request_compound__e e_paymentterm_type) {
     char* e_paymentterm_typeArray[] =  { "NULL", "Days", "Dayofthemonth" };
     return e_paymentterm_typeArray[e_paymentterm_type];
 }
 
-ezmax_api_definition__full_paymentterm_request_compound__e e_paymentterm_typepaymentterm_request_compound_FromString(char* e_paymentterm_type){
+ezmax_api_definition__full_paymentterm_request_compound__e paymentterm_request_compound_e_paymentterm_type_FromString(char* e_paymentterm_type){
     int stringToReturn = 0;
     char *e_paymentterm_typeArray[] =  { "NULL", "Days", "Dayofthemonth" };
     size_t sizeofArray = sizeof(e_paymentterm_typeArray) / sizeof(e_paymentterm_typeArray[0]);

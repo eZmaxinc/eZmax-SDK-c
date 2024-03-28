@@ -13,7 +13,7 @@ Method | HTTP request | Description
 //
 // 
 //
-inscriptiontemp_get_communication_list_v1_response_t* ObjectInscriptiontempAPI_inscriptiontempGetCommunicationListV1(apiClient_t *apiClient, int pkiInscriptiontempID);
+inscriptiontemp_get_communication_list_v1_response_t* ObjectInscriptiontempAPI_inscriptiontempGetCommunicationListV1(apiClient_t *apiClient, int *pkiInscriptiontempID);
 ```
 
 ### Parameters

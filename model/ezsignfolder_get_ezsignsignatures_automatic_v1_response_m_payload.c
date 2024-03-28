@@ -4,12 +4,12 @@
 #include "ezsignfolder_get_ezsignsignatures_automatic_v1_response_m_payload.h"
 
 
-char* a_e_ezsignsignature_typeezsignfolder_get_ezsignsignatures_automatic_v1_response_m_payload_ToString(ezmax_api_definition__full_ezsignfolder_get_ezsignsignatures_automatic_v1_response_m_payload__e a_e_ezsignsignature_type) {
+char* ezsignfolder_get_ezsignsignatures_automatic_v1_response_m_payload_a_e_ezsignsignature_type_ToString(ezmax_api_definition__full_ezsignfolder_get_ezsignsignatures_automatic_v1_response_m_payload__e a_e_ezsignsignature_type) {
     char *a_e_ezsignsignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name", "NameReason", "Attachments", "AttachmentsConfirmation", "FieldText", "FieldTextarea", "Consultation" };
     return a_e_ezsignsignature_typeArray[a_e_ezsignsignature_type - 1];
 }
 
-ezmax_api_definition__full_ezsignfolder_get_ezsignsignatures_automatic_v1_response_m_payload__e a_e_ezsignsignature_typeezsignfolder_get_ezsignsignatures_automatic_v1_response_m_payload_FromString(char* a_e_ezsignsignature_type) {
+ezmax_api_definition__full_ezsignfolder_get_ezsignsignatures_automatic_v1_response_m_payload__e ezsignfolder_get_ezsignsignatures_automatic_v1_response_m_payload_a_e_ezsignsignature_type_FromString(char* a_e_ezsignsignature_type) {
     int stringToReturn = 0;
     char *a_e_ezsignsignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name", "NameReason", "Attachments", "AttachmentsConfirmation", "FieldText", "FieldTextarea", "Consultation" };
     size_t sizeofArray = sizeof(a_e_ezsignsignature_typeArray) / sizeof(a_e_ezsignsignature_typeArray[0]);

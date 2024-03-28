@@ -29,7 +29,10 @@ systemconfiguration_response_compound_t* instantiate_systemconfiguration_respons
       ezmax_api_definition__full_systemconfiguration_response_compound__"fr_QC",
       ezmax_api_definition__full_systemconfiguration_response_compound__"en_CA",
       ezmax_api_definition__full_systemconfiguration_response_compound__"Yes",
+      ezmax_api_definition__full_systemconfiguration_response_compound__"Standard",
       true,
+      true,
+      1,
       true,
       "2020-12-31",
       "2021-12-31"
@@ -43,7 +46,10 @@ systemconfiguration_response_compound_t* instantiate_systemconfiguration_respons
       ezmax_api_definition__full_systemconfiguration_response_compound__"fr_QC",
       ezmax_api_definition__full_systemconfiguration_response_compound__"en_CA",
       ezmax_api_definition__full_systemconfiguration_response_compound__"Yes",
+      ezmax_api_definition__full_systemconfiguration_response_compound__"Standard",
       true,
+      true,
+      1,
       true,
       "2020-12-31",
       "2021-12-31"

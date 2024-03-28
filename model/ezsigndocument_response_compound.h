@@ -61,6 +61,7 @@ typedef struct ezsigndocument_response_compound_t {
     struct common_audit_t *obj_audit; //model
     char *s_ezsigndocument_externalid; // string
     int i_ezsigndocument_ezsignsignatureattachmenttotal; //numeric
+    int i_ezsigndocument_ezsigndiscussiontotal; //numeric
     computed_e_ezsigndocument_steptype_t *e_ezsigndocument_steptype; // custom
     int i_ezsigndocument_stepformtotal; //numeric
     int i_ezsigndocument_stepformcurrent; //numeric
@@ -93,6 +94,7 @@ ezsigndocument_response_compound_t *ezsigndocument_response_compound_create(
     common_audit_t *obj_audit,
     char *s_ezsigndocument_externalid,
     int i_ezsigndocument_ezsignsignatureattachmenttotal,
+    int i_ezsigndocument_ezsigndiscussiontotal,
     computed_e_ezsigndocument_steptype_t *e_ezsigndocument_steptype,
     int i_ezsigndocument_stepformtotal,
     int i_ezsigndocument_stepformcurrent,

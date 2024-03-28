@@ -15,7 +15,7 @@ Method | HTTP request | Description
 ```c
 // Create a new Usergroup
 //
-scim_group_t* ScimGroupsAPI_groupsCreateObjectScimV2(apiClient_t *apiClient, scim_group_t * scim_group);
+scim_group_t* ScimGroupsAPI_groupsCreateObjectScimV2(apiClient_t *apiClient, scim_group_t *scim_group);
 ```
 
 ### Parameters
@@ -44,7 +44,7 @@ Name | Type | Description  | Notes
 ```c
 // Delete an existing Usergroup
 //
-void ScimGroupsAPI_groupsDeleteObjectScimV2(apiClient_t *apiClient, char * groupId);
+void ScimGroupsAPI_groupsDeleteObjectScimV2(apiClient_t *apiClient, char *groupId);
 ```
 
 ### Parameters
@@ -72,7 +72,7 @@ void
 ```c
 // Edit an existing Usergroup
 //
-scim_group_t* ScimGroupsAPI_groupsEditObjectScimV2(apiClient_t *apiClient, char * groupId, scim_group_t * scim_group);
+scim_group_t* ScimGroupsAPI_groupsEditObjectScimV2(apiClient_t *apiClient, char *groupId, scim_group_t *scim_group);
 ```
 
 ### Parameters
@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve Usergroup list
 //
-scim_group_t* ScimGroupsAPI_groupsGetListScimV2(apiClient_t *apiClient, char * filter);
+scim_group_t* ScimGroupsAPI_groupsGetListScimV2(apiClient_t *apiClient, char *filter);
 ```
 
 ### Parameters
@@ -131,7 +131,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve an existing Usergroup
 //
-scim_group_t* ScimGroupsAPI_groupsGetObjectScimV2(apiClient_t *apiClient, char * groupId);
+scim_group_t* ScimGroupsAPI_groupsGetObjectScimV2(apiClient_t *apiClient, char *groupId);
 ```
 
 ### Parameters

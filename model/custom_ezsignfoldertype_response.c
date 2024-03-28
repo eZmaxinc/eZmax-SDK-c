@@ -9,12 +9,10 @@ custom_ezsignfoldertype_response_t *custom_ezsignfoldertype_response_create(
     int pki_ezsignfoldertype_id,
     char *s_ezsignfoldertype_name_x,
     int b_ezsignfoldertype_sendproofezsignsigner,
-    int b_ezsignfoldertype_includeproofsigner,
-    int b_ezsignfoldertype_includeproofuser,
     int b_ezsignfoldertype_allowdownloadattachmentezsignsigner,
     int b_ezsignfoldertype_allowdownloadproofezsignsigner,
     int b_ezsignfoldertype_delegate,
-    int b_ezsignfoldertype_reassign,
+    int b_ezsignfoldertype_discussion,
     int b_ezsignfoldertype_reassignezsignsigner,
     int b_ezsignfoldertype_reassignuser
     ) {
@@ -25,12 +23,10 @@ custom_ezsignfoldertype_response_t *custom_ezsignfoldertype_response_create(
     custom_ezsignfoldertype_response_local_var->pki_ezsignfoldertype_id = pki_ezsignfoldertype_id;
     custom_ezsignfoldertype_response_local_var->s_ezsignfoldertype_name_x = s_ezsignfoldertype_name_x;
     custom_ezsignfoldertype_response_local_var->b_ezsignfoldertype_sendproofezsignsigner = b_ezsignfoldertype_sendproofezsignsigner;
-    custom_ezsignfoldertype_response_local_var->b_ezsignfoldertype_includeproofsigner = b_ezsignfoldertype_includeproofsigner;
-    custom_ezsignfoldertype_response_local_var->b_ezsignfoldertype_includeproofuser = b_ezsignfoldertype_includeproofuser;
     custom_ezsignfoldertype_response_local_var->b_ezsignfoldertype_allowdownloadattachmentezsignsigner = b_ezsignfoldertype_allowdownloadattachmentezsignsigner;
     custom_ezsignfoldertype_response_local_var->b_ezsignfoldertype_allowdownloadproofezsignsigner = b_ezsignfoldertype_allowdownloadproofezsignsigner;
     custom_ezsignfoldertype_response_local_var->b_ezsignfoldertype_delegate = b_ezsignfoldertype_delegate;
-    custom_ezsignfoldertype_response_local_var->b_ezsignfoldertype_reassign = b_ezsignfoldertype_reassign;
+    custom_ezsignfoldertype_response_local_var->b_ezsignfoldertype_discussion = b_ezsignfoldertype_discussion;
     custom_ezsignfoldertype_response_local_var->b_ezsignfoldertype_reassignezsignsigner = b_ezsignfoldertype_reassignezsignsigner;
     custom_ezsignfoldertype_response_local_var->b_ezsignfoldertype_reassignuser = b_ezsignfoldertype_reassignuser;
 
@@ -78,22 +74,6 @@ cJSON *custom_ezsignfoldertype_response_convertToJSON(custom_ezsignfoldertype_re
     }
 
 
-    // custom_ezsignfoldertype_response->b_ezsignfoldertype_includeproofsigner
-    if(custom_ezsignfoldertype_response->b_ezsignfoldertype_includeproofsigner) {
-    if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeIncludeproofsigner", custom_ezsignfoldertype_response->b_ezsignfoldertype_includeproofsigner) == NULL) {
-    goto fail; //Bool
-    }
-    }
-
-
-    // custom_ezsignfoldertype_response->b_ezsignfoldertype_includeproofuser
-    if(custom_ezsignfoldertype_response->b_ezsignfoldertype_includeproofuser) {
-    if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeIncludeproofuser", custom_ezsignfoldertype_response->b_ezsignfoldertype_includeproofuser) == NULL) {
-    goto fail; //Bool
-    }
-    }
-
-
     // custom_ezsignfoldertype_response->b_ezsignfoldertype_allowdownloadattachmentezsignsigner
     if(custom_ezsignfoldertype_response->b_ezsignfoldertype_allowdownloadattachmentezsignsigner) {
     if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeAllowdownloadattachmentezsignsigner", custom_ezsignfoldertype_response->b_ezsignfoldertype_allowdownloadattachmentezsignsigner) == NULL) {
@@ -118,9 +98,9 @@ cJSON *custom_ezsignfoldertype_response_convertToJSON(custom_ezsignfoldertype_re
     }
 
 
-    // custom_ezsignfoldertype_response->b_ezsignfoldertype_reassign
-    if(custom_ezsignfoldertype_response->b_ezsignfoldertype_reassign) {
-    if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeReassign", custom_ezsignfoldertype_response->b_ezsignfoldertype_reassign) == NULL) {
+    // custom_ezsignfoldertype_response->b_ezsignfoldertype_discussion
+    if(custom_ezsignfoldertype_response->b_ezsignfoldertype_discussion) {
+    if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeDiscussion", custom_ezsignfoldertype_response->b_ezsignfoldertype_discussion) == NULL) {
     goto fail; //Bool
     }
     }
@@ -183,24 +163,6 @@ custom_ezsignfoldertype_response_t *custom_ezsignfoldertype_response_parseFromJS
     }
     }
 
-    // custom_ezsignfoldertype_response->b_ezsignfoldertype_includeproofsigner
-    cJSON *b_ezsignfoldertype_includeproofsigner = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldertype_responseJSON, "bEzsignfoldertypeIncludeproofsigner");
-    if (b_ezsignfoldertype_includeproofsigner) { 
-    if(!cJSON_IsBool(b_ezsignfoldertype_includeproofsigner))
-    {
-    goto end; //Bool
-    }
-    }
-
-    // custom_ezsignfoldertype_response->b_ezsignfoldertype_includeproofuser
-    cJSON *b_ezsignfoldertype_includeproofuser = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldertype_responseJSON, "bEzsignfoldertypeIncludeproofuser");
-    if (b_ezsignfoldertype_includeproofuser) { 
-    if(!cJSON_IsBool(b_ezsignfoldertype_includeproofuser))
-    {
-    goto end; //Bool
-    }
-    }
-
     // custom_ezsignfoldertype_response->b_ezsignfoldertype_allowdownloadattachmentezsignsigner
     cJSON *b_ezsignfoldertype_allowdownloadattachmentezsignsigner = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldertype_responseJSON, "bEzsignfoldertypeAllowdownloadattachmentezsignsigner");
     if (b_ezsignfoldertype_allowdownloadattachmentezsignsigner) { 
@@ -228,10 +190,10 @@ custom_ezsignfoldertype_response_t *custom_ezsignfoldertype_response_parseFromJS
     }
     }
 
-    // custom_ezsignfoldertype_response->b_ezsignfoldertype_reassign
-    cJSON *b_ezsignfoldertype_reassign = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldertype_responseJSON, "bEzsignfoldertypeReassign");
-    if (b_ezsignfoldertype_reassign) { 
-    if(!cJSON_IsBool(b_ezsignfoldertype_reassign))
+    // custom_ezsignfoldertype_response->b_ezsignfoldertype_discussion
+    cJSON *b_ezsignfoldertype_discussion = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldertype_responseJSON, "bEzsignfoldertypeDiscussion");
+    if (b_ezsignfoldertype_discussion) { 
+    if(!cJSON_IsBool(b_ezsignfoldertype_discussion))
     {
     goto end; //Bool
     }
@@ -260,12 +222,10 @@ custom_ezsignfoldertype_response_t *custom_ezsignfoldertype_response_parseFromJS
         pki_ezsignfoldertype_id->valuedouble,
         s_ezsignfoldertype_name_x && !cJSON_IsNull(s_ezsignfoldertype_name_x) ? strdup(s_ezsignfoldertype_name_x->valuestring) : NULL,
         b_ezsignfoldertype_sendproofezsignsigner ? b_ezsignfoldertype_sendproofezsignsigner->valueint : 0,
-        b_ezsignfoldertype_includeproofsigner ? b_ezsignfoldertype_includeproofsigner->valueint : 0,
-        b_ezsignfoldertype_includeproofuser ? b_ezsignfoldertype_includeproofuser->valueint : 0,
         b_ezsignfoldertype_allowdownloadattachmentezsignsigner ? b_ezsignfoldertype_allowdownloadattachmentezsignsigner->valueint : 0,
         b_ezsignfoldertype_allowdownloadproofezsignsigner ? b_ezsignfoldertype_allowdownloadproofezsignsigner->valueint : 0,
         b_ezsignfoldertype_delegate ? b_ezsignfoldertype_delegate->valueint : 0,
-        b_ezsignfoldertype_reassign ? b_ezsignfoldertype_reassign->valueint : 0,
+        b_ezsignfoldertype_discussion ? b_ezsignfoldertype_discussion->valueint : 0,
         b_ezsignfoldertype_reassignezsignsigner ? b_ezsignfoldertype_reassignezsignsigner->valueint : 0,
         b_ezsignfoldertype_reassignuser ? b_ezsignfoldertype_reassignuser->valueint : 0
         );

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 //
 // The endpoint allows to create one or many elements at once.
 //
-ezsignbulksenddocumentmapping_create_object_v1_response_t* ObjectEzsignbulksenddocumentmappingAPI_ezsignbulksenddocumentmappingCreateObjectV1(apiClient_t *apiClient, ezsignbulksenddocumentmapping_create_object_v1_request_t * ezsignbulksenddocumentmapping_create_object_v1_request);
+ezsignbulksenddocumentmapping_create_object_v1_response_t* ObjectEzsignbulksenddocumentmappingAPI_ezsignbulksenddocumentmappingCreateObjectV1(apiClient_t *apiClient, ezsignbulksenddocumentmapping_create_object_v1_request_t *ezsignbulksenddocumentmapping_create_object_v1_request);
 ```
 
 ### Parameters
@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignbulksenddocumentmapping_delete_object_v1_response_t* ObjectEzsignbulksenddocumentmappingAPI_ezsignbulksenddocumentmappingDeleteObjectV1(apiClient_t *apiClient, int pkiEzsignbulksenddocumentmappingID);
+ezsignbulksenddocumentmapping_delete_object_v1_response_t* ObjectEzsignbulksenddocumentmappingAPI_ezsignbulksenddocumentmappingDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksenddocumentmappingID);
 ```
 
 ### Parameters
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignbulksenddocumentmapping_get_object_v2_response_t* ObjectEzsignbulksenddocumentmappingAPI_ezsignbulksenddocumentmappingGetObjectV2(apiClient_t *apiClient, int pkiEzsignbulksenddocumentmappingID);
+ezsignbulksenddocumentmapping_get_object_v2_response_t* ObjectEzsignbulksenddocumentmappingAPI_ezsignbulksenddocumentmappingGetObjectV2(apiClient_t *apiClient, int *pkiEzsignbulksenddocumentmappingID);
 ```
 
 ### Parameters

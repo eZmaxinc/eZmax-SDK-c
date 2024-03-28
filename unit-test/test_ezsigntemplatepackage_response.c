@@ -30,7 +30,8 @@ ezsigntemplatepackage_response_t* instantiate_ezsigntemplatepackage_response(int
       1,
       1,
       true,
-      "Default"
+      "Default",
+      1
     );
   } else {
     ezsigntemplatepackage_response = ezsigntemplatepackage_response_create(
@@ -42,7 +43,8 @@ ezsigntemplatepackage_response_t* instantiate_ezsigntemplatepackage_response(int
       1,
       1,
       true,
-      "Default"
+      "Default",
+      1
     );
   }
 

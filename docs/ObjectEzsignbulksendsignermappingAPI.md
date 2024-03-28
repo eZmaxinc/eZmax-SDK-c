@@ -15,7 +15,7 @@ Method | HTTP request | Description
 //
 // The endpoint allows to create one or many elements at once.
 //
-ezsignbulksendsignermapping_create_object_v1_response_t* ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingCreateObjectV1(apiClient_t *apiClient, ezsignbulksendsignermapping_create_object_v1_request_t * ezsignbulksendsignermapping_create_object_v1_request);
+ezsignbulksendsignermapping_create_object_v1_response_t* ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingCreateObjectV1(apiClient_t *apiClient, ezsignbulksendsignermapping_create_object_v1_request_t *ezsignbulksendsignermapping_create_object_v1_request);
 ```
 
 ### Parameters
@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignbulksendsignermapping_delete_object_v1_response_t* ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingDeleteObjectV1(apiClient_t *apiClient, int pkiEzsignbulksendsignermappingID);
+ezsignbulksendsignermapping_delete_object_v1_response_t* ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksendsignermappingID);
 ```
 
 ### Parameters
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignbulksendsignermapping_get_object_v2_response_t* ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingGetObjectV2(apiClient_t *apiClient, int pkiEzsignbulksendsignermappingID);
+ezsignbulksendsignermapping_get_object_v2_response_t* ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingGetObjectV2(apiClient_t *apiClient, int *pkiEzsignbulksendsignermappingID);
 ```
 
 ### Parameters

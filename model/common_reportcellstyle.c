@@ -4,12 +4,12 @@
 #include "common_reportcellstyle.h"
 
 
-char* e_reportcell_horizontalalignmentcommon_reportcellstyle_ToString(ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_horizontalalignment) {
+char* common_reportcellstyle_e_reportcell_horizontalalignment_ToString(ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_horizontalalignment) {
     char* e_reportcell_horizontalalignmentArray[] =  { "NULL", "Center", "Left", "Right" };
     return e_reportcell_horizontalalignmentArray[e_reportcell_horizontalalignment];
 }
 
-ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_horizontalalignmentcommon_reportcellstyle_FromString(char* e_reportcell_horizontalalignment){
+ezmax_api_definition__full_common_reportcellstyle__e common_reportcellstyle_e_reportcell_horizontalalignment_FromString(char* e_reportcell_horizontalalignment){
     int stringToReturn = 0;
     char *e_reportcell_horizontalalignmentArray[] =  { "NULL", "Center", "Left", "Right" };
     size_t sizeofArray = sizeof(e_reportcell_horizontalalignmentArray) / sizeof(e_reportcell_horizontalalignmentArray[0]);
@@ -21,12 +21,12 @@ ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_horizontalalig
     }
     return 0;
 }
-char* e_reportcell_verticalalignmentcommon_reportcellstyle_ToString(ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_verticalalignment) {
+char* common_reportcellstyle_e_reportcell_verticalalignment_ToString(ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_verticalalignment) {
     char* e_reportcell_verticalalignmentArray[] =  { "NULL", "Bottom", "Middle", "Top" };
     return e_reportcell_verticalalignmentArray[e_reportcell_verticalalignment];
 }
 
-ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_verticalalignmentcommon_reportcellstyle_FromString(char* e_reportcell_verticalalignment){
+ezmax_api_definition__full_common_reportcellstyle__e common_reportcellstyle_e_reportcell_verticalalignment_FromString(char* e_reportcell_verticalalignment){
     int stringToReturn = 0;
     char *e_reportcell_verticalalignmentArray[] =  { "NULL", "Bottom", "Middle", "Top" };
     size_t sizeofArray = sizeof(e_reportcell_verticalalignmentArray) / sizeof(e_reportcell_verticalalignmentArray[0]);
@@ -38,12 +38,12 @@ ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_verticalalignm
     }
     return 0;
 }
-char* e_reportcell_fontweightcommon_reportcellstyle_ToString(ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_fontweight) {
+char* common_reportcellstyle_e_reportcell_fontweight_ToString(ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_fontweight) {
     char* e_reportcell_fontweightArray[] =  { "NULL", "Normal", "Bold" };
     return e_reportcell_fontweightArray[e_reportcell_fontweight];
 }
 
-ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_fontweightcommon_reportcellstyle_FromString(char* e_reportcell_fontweight){
+ezmax_api_definition__full_common_reportcellstyle__e common_reportcellstyle_e_reportcell_fontweight_FromString(char* e_reportcell_fontweight){
     int stringToReturn = 0;
     char *e_reportcell_fontweightArray[] =  { "NULL", "Normal", "Bold" };
     size_t sizeofArray = sizeof(e_reportcell_fontweightArray) / sizeof(e_reportcell_fontweightArray[0]);
@@ -55,12 +55,12 @@ ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_fontweightcomm
     }
     return 0;
 }
-char* e_reportcell_fontunderlinecommon_reportcellstyle_ToString(ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_fontunderline) {
+char* common_reportcellstyle_e_reportcell_fontunderline_ToString(ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_fontunderline) {
     char* e_reportcell_fontunderlineArray[] =  { "NULL", "None", "Single", "Double" };
     return e_reportcell_fontunderlineArray[e_reportcell_fontunderline];
 }
 
-ezmax_api_definition__full_common_reportcellstyle__e e_reportcell_fontunderlinecommon_reportcellstyle_FromString(char* e_reportcell_fontunderline){
+ezmax_api_definition__full_common_reportcellstyle__e common_reportcellstyle_e_reportcell_fontunderline_FromString(char* e_reportcell_fontunderline){
     int stringToReturn = 0;
     char *e_reportcell_fontunderlineArray[] =  { "NULL", "None", "Single", "Double" };
     size_t sizeofArray = sizeof(e_reportcell_fontunderlineArray) / sizeof(e_reportcell_fontunderlineArray[0]);

@@ -35,7 +35,11 @@ ezsignfolder_list_element_t* instantiate_ezsignfolder_list_element(int include_o
       56,
       56,
       56,
-      56
+      56,
+      56,
+      56,
+      1,
+      "a"
     );
   } else {
     ezsignfolder_list_element = ezsignfolder_list_element_create(
@@ -52,7 +56,11 @@ ezsignfolder_list_element_t* instantiate_ezsignfolder_list_element(int include_o
       56,
       56,
       56,
-      56
+      56,
+      56,
+      56,
+      1,
+      "a"
     );
   }
 

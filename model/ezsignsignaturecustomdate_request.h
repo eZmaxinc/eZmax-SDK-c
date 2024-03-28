@@ -22,6 +22,8 @@ typedef struct ezsignsignaturecustomdate_request_t {
     int pki_ezsignsignaturecustomdate_id; //numeric
     int i_ezsignsignaturecustomdate_x; //numeric
     int i_ezsignsignaturecustomdate_y; //numeric
+    int i_ezsignsignaturecustomdate_offsetx; //numeric
+    int i_ezsignsignaturecustomdate_offsety; //numeric
     char *s_ezsignsignaturecustomdate_format; // string
 
 } ezsignsignaturecustomdate_request_t;
@@ -30,6 +32,8 @@ ezsignsignaturecustomdate_request_t *ezsignsignaturecustomdate_request_create(
     int pki_ezsignsignaturecustomdate_id,
     int i_ezsignsignaturecustomdate_x,
     int i_ezsignsignaturecustomdate_y,
+    int i_ezsignsignaturecustomdate_offsetx,
+    int i_ezsignsignaturecustomdate_offsety,
     char *s_ezsignsignaturecustomdate_format
 );
 

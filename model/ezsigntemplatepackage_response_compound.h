@@ -30,6 +30,7 @@ typedef struct ezsigntemplatepackage_response_compound_t {
     int b_ezsigntemplatepackage_needvalidation; //boolean
     int b_ezsigntemplatepackage_isactive; //boolean
     char *s_ezsignfoldertype_name_x; // string
+    int b_ezsigntemplatepackage_editallowed; //boolean
     list_t *a_obj_ezsigntemplatepackagesigner; //nonprimitive container
     list_t *a_obj_ezsigntemplatepackagemembership; //nonprimitive container
 
@@ -45,6 +46,7 @@ ezsigntemplatepackage_response_compound_t *ezsigntemplatepackage_response_compou
     int b_ezsigntemplatepackage_needvalidation,
     int b_ezsigntemplatepackage_isactive,
     char *s_ezsignfoldertype_name_x,
+    int b_ezsigntemplatepackage_editallowed,
     list_t *a_obj_ezsigntemplatepackagesigner,
     list_t *a_obj_ezsigntemplatepackagemembership
 );

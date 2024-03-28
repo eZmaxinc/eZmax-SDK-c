@@ -4,12 +4,12 @@
 #include "ezsigntemplateformfield_request_compound.h"
 
 
-char* e_ezsigntemplateformfield_positioningezsigntemplateformfield_request_compound_ToString(ezmax_api_definition__full_ezsigntemplateformfield_request_compound__e e_ezsigntemplateformfield_positioning) {
+char* ezsigntemplateformfield_request_compound_e_ezsigntemplateformfield_positioning_ToString(ezmax_api_definition__full_ezsigntemplateformfield_request_compound__e e_ezsigntemplateformfield_positioning) {
     char* e_ezsigntemplateformfield_positioningArray[] =  { "NULL", "PerCoordinates", "PerPositioningPattern" };
     return e_ezsigntemplateformfield_positioningArray[e_ezsigntemplateformfield_positioning];
 }
 
-ezmax_api_definition__full_ezsigntemplateformfield_request_compound__e e_ezsigntemplateformfield_positioningezsigntemplateformfield_request_compound_FromString(char* e_ezsigntemplateformfield_positioning){
+ezmax_api_definition__full_ezsigntemplateformfield_request_compound__e ezsigntemplateformfield_request_compound_e_ezsigntemplateformfield_positioning_FromString(char* e_ezsigntemplateformfield_positioning){
     int stringToReturn = 0;
     char *e_ezsigntemplateformfield_positioningArray[] =  { "NULL", "PerCoordinates", "PerPositioningPattern" };
     size_t sizeofArray = sizeof(e_ezsigntemplateformfield_positioningArray) / sizeof(e_ezsigntemplateformfield_positioningArray[0]);
@@ -21,12 +21,12 @@ ezmax_api_definition__full_ezsigntemplateformfield_request_compound__e e_ezsignt
     }
     return 0;
 }
-char* e_ezsigntemplateformfield_dependencyrequirementezsigntemplateformfield_request_compound_ToString(ezmax_api_definition__full_ezsigntemplateformfield_request_compound__e e_ezsigntemplateformfield_dependencyrequirement) {
+char* ezsigntemplateformfield_request_compound_e_ezsigntemplateformfield_dependencyrequirement_ToString(ezmax_api_definition__full_ezsigntemplateformfield_request_compound__e e_ezsigntemplateformfield_dependencyrequirement) {
     char* e_ezsigntemplateformfield_dependencyrequirementArray[] =  { "NULL", "AllOf", "AnyOf" };
     return e_ezsigntemplateformfield_dependencyrequirementArray[e_ezsigntemplateformfield_dependencyrequirement];
 }
 
-ezmax_api_definition__full_ezsigntemplateformfield_request_compound__e e_ezsigntemplateformfield_dependencyrequirementezsigntemplateformfield_request_compound_FromString(char* e_ezsigntemplateformfield_dependencyrequirement){
+ezmax_api_definition__full_ezsigntemplateformfield_request_compound__e ezsigntemplateformfield_request_compound_e_ezsigntemplateformfield_dependencyrequirement_FromString(char* e_ezsigntemplateformfield_dependencyrequirement){
     int stringToReturn = 0;
     char *e_ezsigntemplateformfield_dependencyrequirementArray[] =  { "NULL", "AllOf", "AnyOf" };
     size_t sizeofArray = sizeof(e_ezsigntemplateformfield_dependencyrequirementArray) / sizeof(e_ezsigntemplateformfield_dependencyrequirementArray[0]);
@@ -38,12 +38,12 @@ ezmax_api_definition__full_ezsigntemplateformfield_request_compound__e e_ezsignt
     }
     return 0;
 }
-char* e_ezsigntemplateformfield_positioningoccurenceezsigntemplateformfield_request_compound_ToString(ezmax_api_definition__full_ezsigntemplateformfield_request_compound__e e_ezsigntemplateformfield_positioningoccurence) {
+char* ezsigntemplateformfield_request_compound_e_ezsigntemplateformfield_positioningoccurence_ToString(ezmax_api_definition__full_ezsigntemplateformfield_request_compound__e e_ezsigntemplateformfield_positioningoccurence) {
     char* e_ezsigntemplateformfield_positioningoccurenceArray[] =  { "NULL", "All", "First", "Last" };
     return e_ezsigntemplateformfield_positioningoccurenceArray[e_ezsigntemplateformfield_positioningoccurence];
 }
 
-ezmax_api_definition__full_ezsigntemplateformfield_request_compound__e e_ezsigntemplateformfield_positioningoccurenceezsigntemplateformfield_request_compound_FromString(char* e_ezsigntemplateformfield_positioningoccurence){
+ezmax_api_definition__full_ezsigntemplateformfield_request_compound__e ezsigntemplateformfield_request_compound_e_ezsigntemplateformfield_positioningoccurence_FromString(char* e_ezsigntemplateformfield_positioningoccurence){
     int stringToReturn = 0;
     char *e_ezsigntemplateformfield_positioningoccurenceArray[] =  { "NULL", "All", "First", "Last" };
     size_t sizeofArray = sizeof(e_ezsigntemplateformfield_positioningoccurenceArray) / sizeof(e_ezsigntemplateformfield_positioningoccurenceArray[0]);

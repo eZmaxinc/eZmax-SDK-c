@@ -4,12 +4,12 @@
 #include "custom_communicationrecipientsrecipient_response.h"
 
 
-char* e_communicationrecipientsrecipient_objecttypecustom_communicationrecipientsrecipient_response_ToString(ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_e e_communicationrecipientsrecipient_objecttype) {
+char* custom_communicationrecipientsrecipient_response_e_communicationrecipientsrecipient_objecttype_ToString(ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_e e_communicationrecipientsrecipient_objecttype) {
     char* e_communicationrecipientsrecipient_objecttypeArray[] =  { "NULL", "Agent", "Agentincorporation", "Assistant", "Broker", "Contact", "Customer", "Employee", "Externalbroker", "Ezcomagent", "Ezcomcompany", "Ezsignsigner", "Franchiseoffice", "Notary", "Rewardmember", "Supplier", "User" };
     return e_communicationrecipientsrecipient_objecttypeArray[e_communicationrecipientsrecipient_objecttype];
 }
 
-ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_e e_communicationrecipientsrecipient_objecttypecustom_communicationrecipientsrecipient_response_FromString(char* e_communicationrecipientsrecipient_objecttype){
+ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_e custom_communicationrecipientsrecipient_response_e_communicationrecipientsrecipient_objecttype_FromString(char* e_communicationrecipientsrecipient_objecttype){
     int stringToReturn = 0;
     char *e_communicationrecipientsrecipient_objecttypeArray[] =  { "NULL", "Agent", "Agentincorporation", "Assistant", "Broker", "Contact", "Customer", "Employee", "Externalbroker", "Ezcomagent", "Ezcomcompany", "Ezsignsigner", "Franchiseoffice", "Notary", "Rewardmember", "Supplier", "User" };
     size_t sizeofArray = sizeof(e_communicationrecipientsrecipient_objecttypeArray) / sizeof(e_communicationrecipientsrecipient_objecttypeArray[0]);
@@ -453,7 +453,7 @@ custom_communicationrecipientsrecipient_response_t *custom_communicationrecipien
     {
     goto end; //Enum
     }
-    e_communicationrecipientsrecipient_objecttypeVariable = e_communicationrecipientsrecipient_objecttypecustom_communicationrecipientsrecipient_response_FromString(e_communicationrecipientsrecipient_objecttype->valuestring);
+    e_communicationrecipientsrecipient_objecttypeVariable = custom_communicationrecipientsrecipient_response_e_communicationrecipientsrecipient_objecttype_FromString(e_communicationrecipientsrecipient_objecttype->valuestring);
 
     // custom_communicationrecipientsrecipient_response->obj_contact_name
     cJSON *obj_contact_name = cJSON_GetObjectItemCaseSensitive(custom_communicationrecipientsrecipient_responseJSON, "objContactName");

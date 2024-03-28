@@ -13,7 +13,7 @@ Method | HTTP request | Description
 //
 // 
 //
-clonehistory_get_list_v1_response_t* ObjectClonehistoryAPI_clonehistoryGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_clonehistoryGetListV1_eOrderBy_e eOrderBy, int iRowMax, int iRowOffset, header_accept_language_e Accept_Language, char * sFilter);
+clonehistory_get_list_v1_response_t* ObjectClonehistoryAPI_clonehistoryGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_clonehistoryGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
 ```
 
 ### Parameters

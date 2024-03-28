@@ -4,12 +4,12 @@
 #include "common_reportsubsectionpart.h"
 
 
-char* e_reportsubsectionpart_typecommon_reportsubsectionpart_ToString(ezmax_api_definition__full_common_reportsubsectionpart_EREPORTSUBSECTIONPARTTYPE_e e_reportsubsectionpart_type) {
+char* common_reportsubsectionpart_e_reportsubsectionpart_type_ToString(ezmax_api_definition__full_common_reportsubsectionpart_EREPORTSUBSECTIONPARTTYPE_e e_reportsubsectionpart_type) {
     char* e_reportsubsectionpart_typeArray[] =  { "NULL", "Header", "Body", "Footer" };
     return e_reportsubsectionpart_typeArray[e_reportsubsectionpart_type];
 }
 
-ezmax_api_definition__full_common_reportsubsectionpart_EREPORTSUBSECTIONPARTTYPE_e e_reportsubsectionpart_typecommon_reportsubsectionpart_FromString(char* e_reportsubsectionpart_type){
+ezmax_api_definition__full_common_reportsubsectionpart_EREPORTSUBSECTIONPARTTYPE_e common_reportsubsectionpart_e_reportsubsectionpart_type_FromString(char* e_reportsubsectionpart_type){
     int stringToReturn = 0;
     char *e_reportsubsectionpart_typeArray[] =  { "NULL", "Header", "Body", "Footer" };
     size_t sizeofArray = sizeof(e_reportsubsectionpart_typeArray) / sizeof(e_reportsubsectionpart_typeArray[0]);
@@ -112,7 +112,7 @@ common_reportsubsectionpart_t *common_reportsubsectionpart_parseFromJSON(cJSON *
     {
     goto end; //Enum
     }
-    e_reportsubsectionpart_typeVariable = e_reportsubsectionpart_typecommon_reportsubsectionpart_FromString(e_reportsubsectionpart_type->valuestring);
+    e_reportsubsectionpart_typeVariable = common_reportsubsectionpart_e_reportsubsectionpart_type_FromString(e_reportsubsectionpart_type->valuestring);
 
     // common_reportsubsectionpart->a_obj_reportrow
     cJSON *a_obj_reportrow = cJSON_GetObjectItemCaseSensitive(common_reportsubsectionpartJSON, "a_objReportrow");

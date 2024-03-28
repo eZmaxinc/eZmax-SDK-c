@@ -42,7 +42,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve Activesession list
 //
-activesession_get_list_v1_response_t* ObjectActivesessionAPI_activesessionGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_activesessionGetListV1_eOrderBy_e eOrderBy, int iRowMax, int iRowOffset, header_accept_language_e Accept_Language, char * sFilter);
+activesession_get_list_v1_response_t* ObjectActivesessionAPI_activesessionGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_activesessionGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
 ```
 
 ### Parameters

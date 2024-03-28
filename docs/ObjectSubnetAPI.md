@@ -16,7 +16,7 @@ Method | HTTP request | Description
 //
 // The endpoint allows to create one or many elements at once.
 //
-subnet_create_object_v1_response_t* ObjectSubnetAPI_subnetCreateObjectV1(apiClient_t *apiClient, subnet_create_object_v1_request_t * subnet_create_object_v1_request);
+subnet_create_object_v1_response_t* ObjectSubnetAPI_subnetCreateObjectV1(apiClient_t *apiClient, subnet_create_object_v1_request_t *subnet_create_object_v1_request);
 ```
 
 ### Parameters
@@ -47,7 +47,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-subnet_delete_object_v1_response_t* ObjectSubnetAPI_subnetDeleteObjectV1(apiClient_t *apiClient, int pkiSubnetID);
+subnet_delete_object_v1_response_t* ObjectSubnetAPI_subnetDeleteObjectV1(apiClient_t *apiClient, int *pkiSubnetID);
 ```
 
 ### Parameters
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-subnet_edit_object_v1_response_t* ObjectSubnetAPI_subnetEditObjectV1(apiClient_t *apiClient, int pkiSubnetID, subnet_edit_object_v1_request_t * subnet_edit_object_v1_request);
+subnet_edit_object_v1_response_t* ObjectSubnetAPI_subnetEditObjectV1(apiClient_t *apiClient, int *pkiSubnetID, subnet_edit_object_v1_request_t *subnet_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-subnet_get_object_v2_response_t* ObjectSubnetAPI_subnetGetObjectV2(apiClient_t *apiClient, int pkiSubnetID);
+subnet_get_object_v2_response_t* ObjectSubnetAPI_subnetGetObjectV2(apiClient_t *apiClient, int *pkiSubnetID);
 ```
 
 ### Parameters

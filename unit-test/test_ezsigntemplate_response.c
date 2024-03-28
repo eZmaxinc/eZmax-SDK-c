@@ -29,10 +29,13 @@ ezsigntemplate_response_t* instantiate_ezsigntemplate_response(int include_optio
       2,
       "English",
       "Standard Contract",
+      "Contract",
       1,
       "Default",
        // false, not to have infinite recursion
-      instantiate_common_audit(0)
+      instantiate_common_audit(0),
+      1,
+      ezmax_api_definition__full_ezsigntemplate_response__"Usergroup"
     );
   } else {
     ezsigntemplate_response = ezsigntemplate_response_create(
@@ -42,9 +45,12 @@ ezsigntemplate_response_t* instantiate_ezsigntemplate_response(int include_optio
       2,
       "English",
       "Standard Contract",
+      "Contract",
       1,
       "Default",
-      NULL
+      NULL,
+      1,
+      ezmax_api_definition__full_ezsigntemplate_response__"Usergroup"
     );
   }
 

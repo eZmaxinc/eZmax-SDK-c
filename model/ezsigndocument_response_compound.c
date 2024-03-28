@@ -4,12 +4,12 @@
 #include "ezsigndocument_response_compound.h"
 
 
-char* e_ezsigndocument_stepezsigndocument_response_compound_ToString(ezmax_api_definition__full_ezsigndocument_response_compound__e e_ezsigndocument_step) {
+char* ezsigndocument_response_compound_e_ezsigndocument_step_ToString(ezmax_api_definition__full_ezsigndocument_response_compound__e e_ezsigndocument_step) {
     char* e_ezsigndocument_stepArray[] =  { "NULL", "Unsent", "Unsigned", "PartiallySigned", "DeclinedToSign", "PrematurelyEnded", "PendingCompletion", "Completed", "Disposed" };
     return e_ezsigndocument_stepArray[e_ezsigndocument_step];
 }
 
-ezmax_api_definition__full_ezsigndocument_response_compound__e e_ezsigndocument_stepezsigndocument_response_compound_FromString(char* e_ezsigndocument_step){
+ezmax_api_definition__full_ezsigndocument_response_compound__e ezsigndocument_response_compound_e_ezsigndocument_step_FromString(char* e_ezsigndocument_step){
     int stringToReturn = 0;
     char *e_ezsigndocument_stepArray[] =  { "NULL", "Unsent", "Unsigned", "PartiallySigned", "DeclinedToSign", "PrematurelyEnded", "PendingCompletion", "Completed", "Disposed" };
     size_t sizeofArray = sizeof(e_ezsigndocument_stepArray) / sizeof(e_ezsigndocument_stepArray[0]);
@@ -21,12 +21,12 @@ ezmax_api_definition__full_ezsigndocument_response_compound__e e_ezsigndocument_
     }
     return 0;
 }
-char* e_ezsigndocument_steptypeezsigndocument_response_compound_ToString(ezmax_api_definition__full_ezsigndocument_response_compound__e e_ezsigndocument_steptype) {
+char* ezsigndocument_response_compound_e_ezsigndocument_steptype_ToString(ezmax_api_definition__full_ezsigndocument_response_compound__e e_ezsigndocument_steptype) {
     char* e_ezsigndocument_steptypeArray[] =  { "NULL", "Form", "Sign", "None" };
     return e_ezsigndocument_steptypeArray[e_ezsigndocument_steptype];
 }
 
-ezmax_api_definition__full_ezsigndocument_response_compound__e e_ezsigndocument_steptypeezsigndocument_response_compound_FromString(char* e_ezsigndocument_steptype){
+ezmax_api_definition__full_ezsigndocument_response_compound__e ezsigndocument_response_compound_e_ezsigndocument_steptype_FromString(char* e_ezsigndocument_steptype){
     int stringToReturn = 0;
     char *e_ezsigndocument_steptypeArray[] =  { "NULL", "Form", "Sign", "None" };
     size_t sizeofArray = sizeof(e_ezsigndocument_steptypeArray) / sizeof(e_ezsigndocument_steptypeArray[0]);
@@ -62,6 +62,7 @@ ezsigndocument_response_compound_t *ezsigndocument_response_compound_create(
     common_audit_t *obj_audit,
     char *s_ezsigndocument_externalid,
     int i_ezsigndocument_ezsignsignatureattachmenttotal,
+    int i_ezsigndocument_ezsigndiscussiontotal,
     computed_e_ezsigndocument_steptype_t *e_ezsigndocument_steptype,
     int i_ezsigndocument_stepformtotal,
     int i_ezsigndocument_stepformcurrent,
@@ -95,6 +96,7 @@ ezsigndocument_response_compound_t *ezsigndocument_response_compound_create(
     ezsigndocument_response_compound_local_var->obj_audit = obj_audit;
     ezsigndocument_response_compound_local_var->s_ezsigndocument_externalid = s_ezsigndocument_externalid;
     ezsigndocument_response_compound_local_var->i_ezsigndocument_ezsignsignatureattachmenttotal = i_ezsigndocument_ezsignsignatureattachmenttotal;
+    ezsigndocument_response_compound_local_var->i_ezsigndocument_ezsigndiscussiontotal = i_ezsigndocument_ezsigndiscussiontotal;
     ezsigndocument_response_compound_local_var->e_ezsigndocument_steptype = e_ezsigndocument_steptype;
     ezsigndocument_response_compound_local_var->i_ezsigndocument_stepformtotal = i_ezsigndocument_stepformtotal;
     ezsigndocument_response_compound_local_var->i_ezsigndocument_stepformcurrent = i_ezsigndocument_stepformcurrent;
@@ -364,6 +366,15 @@ cJSON *ezsigndocument_response_compound_convertToJSON(ezsigndocument_response_co
         goto fail;
     }
     if(cJSON_AddNumberToObject(item, "iEzsigndocumentEzsignsignatureattachmenttotal", ezsigndocument_response_compound->i_ezsigndocument_ezsignsignatureattachmenttotal) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // ezsigndocument_response_compound->i_ezsigndocument_ezsigndiscussiontotal
+    if (!ezsigndocument_response_compound->i_ezsigndocument_ezsigndiscussiontotal) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iEzsigndocumentEzsigndiscussiontotal", ezsigndocument_response_compound->i_ezsigndocument_ezsigndiscussiontotal) == NULL) {
     goto fail; //Numeric
     }
 
@@ -684,6 +695,18 @@ ezsigndocument_response_compound_t *ezsigndocument_response_compound_parseFromJS
     goto end; //Numeric
     }
 
+    // ezsigndocument_response_compound->i_ezsigndocument_ezsigndiscussiontotal
+    cJSON *i_ezsigndocument_ezsigndiscussiontotal = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compoundJSON, "iEzsigndocumentEzsigndiscussiontotal");
+    if (!i_ezsigndocument_ezsigndiscussiontotal) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_ezsigndocument_ezsigndiscussiontotal))
+    {
+    goto end; //Numeric
+    }
+
     // ezsigndocument_response_compound->e_ezsigndocument_steptype
     cJSON *e_ezsigndocument_steptype = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compoundJSON, "eEzsigndocumentSteptype");
     if (!e_ezsigndocument_steptype) {
@@ -789,6 +812,7 @@ ezsigndocument_response_compound_t *ezsigndocument_response_compound_parseFromJS
         obj_audit ? obj_audit_local_nonprim : NULL,
         s_ezsigndocument_externalid && !cJSON_IsNull(s_ezsigndocument_externalid) ? strdup(s_ezsigndocument_externalid->valuestring) : NULL,
         i_ezsigndocument_ezsignsignatureattachmenttotal->valuedouble,
+        i_ezsigndocument_ezsigndiscussiontotal->valuedouble,
         e_ezsigndocument_steptype_local_nonprim,
         i_ezsigndocument_stepformtotal->valuedouble,
         i_ezsigndocument_stepformcurrent->valuedouble,

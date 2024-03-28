@@ -4,12 +4,12 @@
 #include "activesession_response_compound.h"
 
 
-char* e_activesession_usertypeactivesession_response_compound_ToString(ezmax_api_definition__full_activesession_response_compound__e e_activesession_usertype) {
+char* activesession_response_compound_e_activesession_usertype_ToString(ezmax_api_definition__full_activesession_response_compound__e e_activesession_usertype) {
     char* e_activesession_usertypeArray[] =  { "NULL", "AgentBroker", "Assistant", "EzsignSigner", "EzsignUser", "Normal" };
     return e_activesession_usertypeArray[e_activesession_usertype];
 }
 
-ezmax_api_definition__full_activesession_response_compound__e e_activesession_usertypeactivesession_response_compound_FromString(char* e_activesession_usertype){
+ezmax_api_definition__full_activesession_response_compound__e activesession_response_compound_e_activesession_usertype_FromString(char* e_activesession_usertype){
     int stringToReturn = 0;
     char *e_activesession_usertypeArray[] =  { "NULL", "AgentBroker", "Assistant", "EzsignSigner", "EzsignUser", "Normal" };
     size_t sizeofArray = sizeof(e_activesession_usertypeArray) / sizeof(e_activesession_usertypeArray[0]);
@@ -21,12 +21,12 @@ ezmax_api_definition__full_activesession_response_compound__e e_activesession_us
     }
     return 0;
 }
-char* e_activesession_originactivesession_response_compound_ToString(ezmax_api_definition__full_activesession_response_compound__e e_activesession_origin) {
+char* activesession_response_compound_e_activesession_origin_ToString(ezmax_api_definition__full_activesession_response_compound__e e_activesession_origin) {
     char* e_activesession_originArray[] =  { "NULL", "BuiltIn", "External" };
     return e_activesession_originArray[e_activesession_origin];
 }
 
-ezmax_api_definition__full_activesession_response_compound__e e_activesession_originactivesession_response_compound_FromString(char* e_activesession_origin){
+ezmax_api_definition__full_activesession_response_compound__e activesession_response_compound_e_activesession_origin_FromString(char* e_activesession_origin){
     int stringToReturn = 0;
     char *e_activesession_originArray[] =  { "NULL", "BuiltIn", "External" };
     size_t sizeofArray = sizeof(e_activesession_originArray) / sizeof(e_activesession_originArray[0]);
@@ -38,12 +38,12 @@ ezmax_api_definition__full_activesession_response_compound__e e_activesession_or
     }
     return 0;
 }
-char* e_activesession_weekdaystartactivesession_response_compound_ToString(ezmax_api_definition__full_activesession_response_compound__e e_activesession_weekdaystart) {
+char* activesession_response_compound_e_activesession_weekdaystart_ToString(ezmax_api_definition__full_activesession_response_compound__e e_activesession_weekdaystart) {
     char* e_activesession_weekdaystartArray[] =  { "NULL", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
     return e_activesession_weekdaystartArray[e_activesession_weekdaystart];
 }
 
-ezmax_api_definition__full_activesession_response_compound__e e_activesession_weekdaystartactivesession_response_compound_FromString(char* e_activesession_weekdaystart){
+ezmax_api_definition__full_activesession_response_compound__e activesession_response_compound_e_activesession_weekdaystart_FromString(char* e_activesession_weekdaystart){
     int stringToReturn = 0;
     char *e_activesession_weekdaystartArray[] =  { "NULL", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
     size_t sizeofArray = sizeof(e_activesession_weekdaystartArray) / sizeof(e_activesession_weekdaystartArray[0]);
@@ -55,12 +55,29 @@ ezmax_api_definition__full_activesession_response_compound__e e_activesession_we
     }
     return 0;
 }
-char* e_user_ezsignaccessactivesession_response_compound_ToString(ezmax_api_definition__full_activesession_response_compound__e e_user_ezsignaccess) {
+char* activesession_response_compound_e_systemconfiguration_ezsignofficeplan_ToString(ezmax_api_definition__full_activesession_response_compound__e e_systemconfiguration_ezsignofficeplan) {
+    char* e_systemconfiguration_ezsignofficeplanArray[] =  { "NULL", "Standard", "Pro" };
+    return e_systemconfiguration_ezsignofficeplanArray[e_systemconfiguration_ezsignofficeplan];
+}
+
+ezmax_api_definition__full_activesession_response_compound__e activesession_response_compound_e_systemconfiguration_ezsignofficeplan_FromString(char* e_systemconfiguration_ezsignofficeplan){
+    int stringToReturn = 0;
+    char *e_systemconfiguration_ezsignofficeplanArray[] =  { "NULL", "Standard", "Pro" };
+    size_t sizeofArray = sizeof(e_systemconfiguration_ezsignofficeplanArray) / sizeof(e_systemconfiguration_ezsignofficeplanArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(e_systemconfiguration_ezsignofficeplan, e_systemconfiguration_ezsignofficeplanArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
+char* activesession_response_compound_e_user_ezsignaccess_ToString(ezmax_api_definition__full_activesession_response_compound__e e_user_ezsignaccess) {
     char* e_user_ezsignaccessArray[] =  { "NULL", "No", "PaidByOffice", "PerDocument", "Prepaid" };
     return e_user_ezsignaccessArray[e_user_ezsignaccess];
 }
 
-ezmax_api_definition__full_activesession_response_compound__e e_user_ezsignaccessactivesession_response_compound_FromString(char* e_user_ezsignaccess){
+ezmax_api_definition__full_activesession_response_compound__e activesession_response_compound_e_user_ezsignaccess_FromString(char* e_user_ezsignaccess){
     int stringToReturn = 0;
     char *e_user_ezsignaccessArray[] =  { "NULL", "No", "PaidByOffice", "PerDocument", "Prepaid" };
     size_t sizeofArray = sizeof(e_user_ezsignaccessArray) / sizeof(e_user_ezsignaccessArray[0]);
@@ -72,14 +89,14 @@ ezmax_api_definition__full_activesession_response_compound__e e_user_ezsignacces
     }
     return 0;
 }
-char* e_user_ezsignprepaidactivesession_response_compound_ToString(ezmax_api_definition__full_activesession_response_compound__e e_user_ezsignprepaid) {
-    char* e_user_ezsignprepaidArray[] =  { "NULL", "Basic", "Unlimited", "Pro" };
+char* activesession_response_compound_e_user_ezsignprepaid_ToString(ezmax_api_definition__full_activesession_response_compound__e e_user_ezsignprepaid) {
+    char* e_user_ezsignprepaidArray[] =  { "NULL", "No", "Basic", "Standard", "Pro" };
     return e_user_ezsignprepaidArray[e_user_ezsignprepaid];
 }
 
-ezmax_api_definition__full_activesession_response_compound__e e_user_ezsignprepaidactivesession_response_compound_FromString(char* e_user_ezsignprepaid){
+ezmax_api_definition__full_activesession_response_compound__e activesession_response_compound_e_user_ezsignprepaid_FromString(char* e_user_ezsignprepaid){
     int stringToReturn = 0;
-    char *e_user_ezsignprepaidArray[] =  { "NULL", "Basic", "Unlimited", "Pro" };
+    char *e_user_ezsignprepaidArray[] =  { "NULL", "No", "Basic", "Standard", "Pro" };
     size_t sizeofArray = sizeof(e_user_ezsignprepaidArray) / sizeof(e_user_ezsignprepaidArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(e_user_ezsignprepaid, e_user_ezsignprepaidArray[stringToReturn]) == 0) {
@@ -102,6 +119,8 @@ activesession_response_compound_t *activesession_response_compound_create(
     char *pks_customer_code,
     int fki_systemconfigurationtype_id,
     int fki_signature_id,
+    int b_systemconfiguration_ezsignpaidbyoffice,
+    field_e_systemconfiguration_ezsignofficeplan_t *e_systemconfiguration_ezsignofficeplan,
     field_e_user_ezsignaccess_t *e_user_ezsignaccess,
     field_e_user_ezsignprepaid_t *e_user_ezsignprepaid,
     char *dt_user_ezsignprepaidexpiration,
@@ -126,6 +145,8 @@ activesession_response_compound_t *activesession_response_compound_create(
     activesession_response_compound_local_var->pks_customer_code = pks_customer_code;
     activesession_response_compound_local_var->fki_systemconfigurationtype_id = fki_systemconfigurationtype_id;
     activesession_response_compound_local_var->fki_signature_id = fki_signature_id;
+    activesession_response_compound_local_var->b_systemconfiguration_ezsignpaidbyoffice = b_systemconfiguration_ezsignpaidbyoffice;
+    activesession_response_compound_local_var->e_systemconfiguration_ezsignofficeplan = e_systemconfiguration_ezsignofficeplan;
     activesession_response_compound_local_var->e_user_ezsignaccess = e_user_ezsignaccess;
     activesession_response_compound_local_var->e_user_ezsignprepaid = e_user_ezsignprepaid;
     activesession_response_compound_local_var->dt_user_ezsignprepaidexpiration = dt_user_ezsignprepaidexpiration;
@@ -167,6 +188,10 @@ void activesession_response_compound_free(activesession_response_compound_t *act
     if (activesession_response_compound->pks_customer_code) {
         free(activesession_response_compound->pks_customer_code);
         activesession_response_compound->pks_customer_code = NULL;
+    }
+    if (activesession_response_compound->e_systemconfiguration_ezsignofficeplan) {
+        field_e_systemconfiguration_ezsignofficeplan_free(activesession_response_compound->e_systemconfiguration_ezsignofficeplan);
+        activesession_response_compound->e_systemconfiguration_ezsignofficeplan = NULL;
     }
     if (activesession_response_compound->e_user_ezsignaccess) {
         field_e_user_ezsignaccess_free(activesession_response_compound->e_user_ezsignaccess);
@@ -325,6 +350,27 @@ cJSON *activesession_response_compound_convertToJSON(activesession_response_comp
     }
 
 
+    // activesession_response_compound->b_systemconfiguration_ezsignpaidbyoffice
+    if(activesession_response_compound->b_systemconfiguration_ezsignpaidbyoffice) {
+    if(cJSON_AddBoolToObject(item, "bSystemconfigurationEzsignpaidbyoffice", activesession_response_compound->b_systemconfiguration_ezsignpaidbyoffice) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
+    // activesession_response_compound->e_systemconfiguration_ezsignofficeplan
+    if(activesession_response_compound->e_systemconfiguration_ezsignofficeplan != ezmax_api_definition__full_activesession_response_compound__NULL) {
+    cJSON *e_systemconfiguration_ezsignofficeplan_local_JSON = field_e_systemconfiguration_ezsignofficeplan_convertToJSON(activesession_response_compound->e_systemconfiguration_ezsignofficeplan);
+    if(e_systemconfiguration_ezsignofficeplan_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eSystemconfigurationEzsignofficeplan", e_systemconfiguration_ezsignofficeplan_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
+    }
+
+
     // activesession_response_compound->e_user_ezsignaccess
     if (ezmax_api_definition__full_activesession_response_compound__NULL == activesession_response_compound->e_user_ezsignaccess) {
         goto fail;
@@ -455,6 +501,9 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
 
     // define the local variable for activesession_response_compound->e_activesession_weekdaystart
     field_e_activesession_weekdaystart_t *e_activesession_weekdaystart_local_nonprim = NULL;
+
+    // define the local variable for activesession_response_compound->e_systemconfiguration_ezsignofficeplan
+    field_e_systemconfiguration_ezsignofficeplan_t *e_systemconfiguration_ezsignofficeplan_local_nonprim = NULL;
 
     // define the local variable for activesession_response_compound->e_user_ezsignaccess
     field_e_user_ezsignaccess_t *e_user_ezsignaccess_local_nonprim = NULL;
@@ -597,6 +646,21 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
     }
     }
 
+    // activesession_response_compound->b_systemconfiguration_ezsignpaidbyoffice
+    cJSON *b_systemconfiguration_ezsignpaidbyoffice = cJSON_GetObjectItemCaseSensitive(activesession_response_compoundJSON, "bSystemconfigurationEzsignpaidbyoffice");
+    if (b_systemconfiguration_ezsignpaidbyoffice) { 
+    if(!cJSON_IsBool(b_systemconfiguration_ezsignpaidbyoffice))
+    {
+    goto end; //Bool
+    }
+    }
+
+    // activesession_response_compound->e_systemconfiguration_ezsignofficeplan
+    cJSON *e_systemconfiguration_ezsignofficeplan = cJSON_GetObjectItemCaseSensitive(activesession_response_compoundJSON, "eSystemconfigurationEzsignofficeplan");
+    if (e_systemconfiguration_ezsignofficeplan) { 
+    e_systemconfiguration_ezsignofficeplan_local_nonprim = field_e_systemconfiguration_ezsignofficeplan_parseFromJSON(e_systemconfiguration_ezsignofficeplan); //custom
+    }
+
     // activesession_response_compound->e_user_ezsignaccess
     cJSON *e_user_ezsignaccess = cJSON_GetObjectItemCaseSensitive(activesession_response_compoundJSON, "eUserEzsignaccess");
     if (!e_user_ezsignaccess) {
@@ -705,6 +769,8 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
         strdup(pks_customer_code->valuestring),
         fki_systemconfigurationtype_id->valuedouble,
         fki_signature_id ? fki_signature_id->valuedouble : 0,
+        b_systemconfiguration_ezsignpaidbyoffice ? b_systemconfiguration_ezsignpaidbyoffice->valueint : 0,
+        e_systemconfiguration_ezsignofficeplan ? e_systemconfiguration_ezsignofficeplan_local_nonprim : NULL,
         e_user_ezsignaccess_local_nonprim,
         e_user_ezsignprepaid ? e_user_ezsignprepaid_local_nonprim : NULL,
         dt_user_ezsignprepaidexpiration && !cJSON_IsNull(dt_user_ezsignprepaidexpiration) ? strdup(dt_user_ezsignprepaidexpiration->valuestring) : NULL,
@@ -728,6 +794,10 @@ end:
     if (e_activesession_weekdaystart_local_nonprim) {
         field_e_activesession_weekdaystart_free(e_activesession_weekdaystart_local_nonprim);
         e_activesession_weekdaystart_local_nonprim = NULL;
+    }
+    if (e_systemconfiguration_ezsignofficeplan_local_nonprim) {
+        field_e_systemconfiguration_ezsignofficeplan_free(e_systemconfiguration_ezsignofficeplan_local_nonprim);
+        e_systemconfiguration_ezsignofficeplan_local_nonprim = NULL;
     }
     if (e_user_ezsignaccess_local_nonprim) {
         field_e_user_ezsignaccess_free(e_user_ezsignaccess_local_nonprim);

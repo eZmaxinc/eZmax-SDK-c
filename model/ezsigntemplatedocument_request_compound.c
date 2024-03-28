@@ -4,12 +4,12 @@
 #include "ezsigntemplatedocument_request_compound.h"
 
 
-char* e_ezsigntemplatedocument_sourceezsigntemplatedocument_request_compound_ToString(ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLATEDOCUMENTSOURCE_e e_ezsigntemplatedocument_source) {
+char* ezsigntemplatedocument_request_compound_e_ezsigntemplatedocument_source_ToString(ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLATEDOCUMENTSOURCE_e e_ezsigntemplatedocument_source) {
     char* e_ezsigntemplatedocument_sourceArray[] =  { "NULL", "Base64", "Url", "Ezsigndocument" };
     return e_ezsigntemplatedocument_sourceArray[e_ezsigntemplatedocument_source];
 }
 
-ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLATEDOCUMENTSOURCE_e e_ezsigntemplatedocument_sourceezsigntemplatedocument_request_compound_FromString(char* e_ezsigntemplatedocument_source){
+ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLATEDOCUMENTSOURCE_e ezsigntemplatedocument_request_compound_e_ezsigntemplatedocument_source_FromString(char* e_ezsigntemplatedocument_source){
     int stringToReturn = 0;
     char *e_ezsigntemplatedocument_sourceArray[] =  { "NULL", "Base64", "Url", "Ezsigndocument" };
     size_t sizeofArray = sizeof(e_ezsigntemplatedocument_sourceArray) / sizeof(e_ezsigntemplatedocument_sourceArray[0]);
@@ -21,12 +21,12 @@ ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLA
     }
     return 0;
 }
-char* e_ezsigntemplatedocument_formatezsigntemplatedocument_request_compound_ToString(ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLATEDOCUMENTFORMAT_e e_ezsigntemplatedocument_format) {
+char* ezsigntemplatedocument_request_compound_e_ezsigntemplatedocument_format_ToString(ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLATEDOCUMENTFORMAT_e e_ezsigntemplatedocument_format) {
     char* e_ezsigntemplatedocument_formatArray[] =  { "NULL", "Pdf", "Doc", "Docx", "Xls", "Xlsx", "Ppt", "Pptx" };
     return e_ezsigntemplatedocument_formatArray[e_ezsigntemplatedocument_format];
 }
 
-ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLATEDOCUMENTFORMAT_e e_ezsigntemplatedocument_formatezsigntemplatedocument_request_compound_FromString(char* e_ezsigntemplatedocument_format){
+ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLATEDOCUMENTFORMAT_e ezsigntemplatedocument_request_compound_e_ezsigntemplatedocument_format_FromString(char* e_ezsigntemplatedocument_format){
     int stringToReturn = 0;
     char *e_ezsigntemplatedocument_formatArray[] =  { "NULL", "Pdf", "Doc", "Docx", "Xls", "Xlsx", "Ppt", "Pptx" };
     size_t sizeofArray = sizeof(e_ezsigntemplatedocument_formatArray) / sizeof(e_ezsigntemplatedocument_formatArray[0]);
@@ -38,14 +38,14 @@ ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLA
     }
     return 0;
 }
-char* e_ezsigntemplatedocument_formezsigntemplatedocument_request_compound_ToString(ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLATEDOCUMENTFORM_e e_ezsigntemplatedocument_form) {
-    char* e_ezsigntemplatedocument_formArray[] =  { "NULL", "Keep", "Convert" };
+char* ezsigntemplatedocument_request_compound_e_ezsigntemplatedocument_form_ToString(ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLATEDOCUMENTFORM_e e_ezsigntemplatedocument_form) {
+    char* e_ezsigntemplatedocument_formArray[] =  { "NULL", "Keep", "Convert", "Discard" };
     return e_ezsigntemplatedocument_formArray[e_ezsigntemplatedocument_form];
 }
 
-ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLATEDOCUMENTFORM_e e_ezsigntemplatedocument_formezsigntemplatedocument_request_compound_FromString(char* e_ezsigntemplatedocument_form){
+ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLATEDOCUMENTFORM_e ezsigntemplatedocument_request_compound_e_ezsigntemplatedocument_form_FromString(char* e_ezsigntemplatedocument_form){
     int stringToReturn = 0;
-    char *e_ezsigntemplatedocument_formArray[] =  { "NULL", "Keep", "Convert" };
+    char *e_ezsigntemplatedocument_formArray[] =  { "NULL", "Keep", "Convert", "Discard" };
     size_t sizeofArray = sizeof(e_ezsigntemplatedocument_formArray) / sizeof(e_ezsigntemplatedocument_formArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(e_ezsigntemplatedocument_form, e_ezsigntemplatedocument_formArray[stringToReturn]) == 0) {
@@ -294,7 +294,7 @@ ezsigntemplatedocument_request_compound_t *ezsigntemplatedocument_request_compou
     {
     goto end; //Enum
     }
-    e_ezsigntemplatedocument_sourceVariable = e_ezsigntemplatedocument_sourceezsigntemplatedocument_request_compound_FromString(e_ezsigntemplatedocument_source->valuestring);
+    e_ezsigntemplatedocument_sourceVariable = ezsigntemplatedocument_request_compound_e_ezsigntemplatedocument_source_FromString(e_ezsigntemplatedocument_source->valuestring);
 
     // ezsigntemplatedocument_request_compound->e_ezsigntemplatedocument_format
     cJSON *e_ezsigntemplatedocument_format = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocument_request_compoundJSON, "eEzsigntemplatedocumentFormat");
@@ -304,7 +304,7 @@ ezsigntemplatedocument_request_compound_t *ezsigntemplatedocument_request_compou
     {
     goto end; //Enum
     }
-    e_ezsigntemplatedocument_formatVariable = e_ezsigntemplatedocument_formatezsigntemplatedocument_request_compound_FromString(e_ezsigntemplatedocument_format->valuestring);
+    e_ezsigntemplatedocument_formatVariable = ezsigntemplatedocument_request_compound_e_ezsigntemplatedocument_format_FromString(e_ezsigntemplatedocument_format->valuestring);
     }
 
     // ezsigntemplatedocument_request_compound->s_ezsigntemplatedocument_base64
@@ -342,7 +342,7 @@ ezsigntemplatedocument_request_compound_t *ezsigntemplatedocument_request_compou
     {
     goto end; //Enum
     }
-    e_ezsigntemplatedocument_formVariable = e_ezsigntemplatedocument_formezsigntemplatedocument_request_compound_FromString(e_ezsigntemplatedocument_form->valuestring);
+    e_ezsigntemplatedocument_formVariable = ezsigntemplatedocument_request_compound_e_ezsigntemplatedocument_form_FromString(e_ezsigntemplatedocument_form->valuestring);
     }
 
     // ezsigntemplatedocument_request_compound->s_ezsigntemplatedocument_password
@@ -362,11 +362,11 @@ ezsigntemplatedocument_request_compound_t *ezsigntemplatedocument_request_compou
         fki_ezsigntemplatesigner_id ? fki_ezsigntemplatesigner_id->valuedouble : 0,
         strdup(s_ezsigntemplatedocument_name->valuestring),
         e_ezsigntemplatedocument_sourceVariable,
-        e_ezsigntemplatedocument_format ? e_ezsigntemplatedocument_formatVariable : -1,
+        e_ezsigntemplatedocument_format ? e_ezsigntemplatedocument_formatVariable : ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLATEDOCUMENTFORMAT_NULL,
         s_ezsigntemplatedocument_base64 ? strdup(s_ezsigntemplatedocument_base64->valuestring) : NULL,
         s_ezsigntemplatedocument_url && !cJSON_IsNull(s_ezsigntemplatedocument_url) ? strdup(s_ezsigntemplatedocument_url->valuestring) : NULL,
         b_ezsigntemplatedocument_forcerepair ? b_ezsigntemplatedocument_forcerepair->valueint : 0,
-        e_ezsigntemplatedocument_form ? e_ezsigntemplatedocument_formVariable : -1,
+        e_ezsigntemplatedocument_form ? e_ezsigntemplatedocument_formVariable : ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLATEDOCUMENTFORM_NULL,
         s_ezsigntemplatedocument_password && !cJSON_IsNull(s_ezsigntemplatedocument_password) ? strdup(s_ezsigntemplatedocument_password->valuestring) : NULL
         );
 

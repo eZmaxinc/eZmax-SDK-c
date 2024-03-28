@@ -4,12 +4,12 @@
 #include "custom_communication_list_element_response.h"
 
 
-char* e_communication_directioncustom_communication_list_element_response_ToString(ezmax_api_definition__full_custom_communication_list_element_response__e e_communication_direction) {
+char* custom_communication_list_element_response_e_communication_direction_ToString(ezmax_api_definition__full_custom_communication_list_element_response__e e_communication_direction) {
     char* e_communication_directionArray[] =  { "NULL", "Outbound", "Inbound" };
     return e_communication_directionArray[e_communication_direction];
 }
 
-ezmax_api_definition__full_custom_communication_list_element_response__e e_communication_directioncustom_communication_list_element_response_FromString(char* e_communication_direction){
+ezmax_api_definition__full_custom_communication_list_element_response__e custom_communication_list_element_response_e_communication_direction_FromString(char* e_communication_direction){
     int stringToReturn = 0;
     char *e_communication_directionArray[] =  { "NULL", "Outbound", "Inbound" };
     size_t sizeofArray = sizeof(e_communication_directionArray) / sizeof(e_communication_directionArray[0]);
@@ -21,12 +21,12 @@ ezmax_api_definition__full_custom_communication_list_element_response__e e_commu
     }
     return 0;
 }
-char* e_communication_importancecustom_communication_list_element_response_ToString(ezmax_api_definition__full_custom_communication_list_element_response__e e_communication_importance) {
+char* custom_communication_list_element_response_e_communication_importance_ToString(ezmax_api_definition__full_custom_communication_list_element_response__e e_communication_importance) {
     char* e_communication_importanceArray[] =  { "NULL", "High", "Normal", "Low" };
     return e_communication_importanceArray[e_communication_importance];
 }
 
-ezmax_api_definition__full_custom_communication_list_element_response__e e_communication_importancecustom_communication_list_element_response_FromString(char* e_communication_importance){
+ezmax_api_definition__full_custom_communication_list_element_response__e custom_communication_list_element_response_e_communication_importance_FromString(char* e_communication_importance){
     int stringToReturn = 0;
     char *e_communication_importanceArray[] =  { "NULL", "High", "Normal", "Low" };
     size_t sizeofArray = sizeof(e_communication_importanceArray) / sizeof(e_communication_importanceArray[0]);
@@ -38,12 +38,12 @@ ezmax_api_definition__full_custom_communication_list_element_response__e e_commu
     }
     return 0;
 }
-char* e_communication_typecustom_communication_list_element_response_ToString(ezmax_api_definition__full_custom_communication_list_element_response__e e_communication_type) {
+char* custom_communication_list_element_response_e_communication_type_ToString(ezmax_api_definition__full_custom_communication_list_element_response__e e_communication_type) {
     char* e_communication_typeArray[] =  { "NULL", "Email", "Fax", "Sms" };
     return e_communication_typeArray[e_communication_type];
 }
 
-ezmax_api_definition__full_custom_communication_list_element_response__e e_communication_typecustom_communication_list_element_response_FromString(char* e_communication_type){
+ezmax_api_definition__full_custom_communication_list_element_response__e custom_communication_list_element_response_e_communication_type_FromString(char* e_communication_type){
     int stringToReturn = 0;
     char *e_communication_typeArray[] =  { "NULL", "Email", "Fax", "Sms" };
     size_t sizeofArray = sizeof(e_communication_typeArray) / sizeof(e_communication_typeArray[0]);

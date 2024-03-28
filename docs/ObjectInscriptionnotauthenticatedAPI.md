@@ -13,7 +13,7 @@ Method | HTTP request | Description
 //
 // 
 //
-inscriptionnotauthenticated_get_communication_list_v1_response_t* ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunicationListV1(apiClient_t *apiClient, int pkiInscriptionnotauthenticatedID);
+inscriptionnotauthenticated_get_communication_list_v1_response_t* ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunicationListV1(apiClient_t *apiClient, int *pkiInscriptionnotauthenticatedID);
 ```
 
 ### Parameters

@@ -26,6 +26,7 @@ ezsigntemplate_request_compound_t* instantiate_ezsigntemplate_request_compound(i
       5,
       2,
       "Standard Contract",
+      "Contract",
       1
     );
   } else {
@@ -34,6 +35,7 @@ ezsigntemplate_request_compound_t* instantiate_ezsigntemplate_request_compound(i
       5,
       2,
       "Standard Contract",
+      "Contract",
       1
     );
   }

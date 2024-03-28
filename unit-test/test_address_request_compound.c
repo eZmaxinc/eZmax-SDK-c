@@ -29,7 +29,9 @@ address_request_compound_t* instantiate_address_request_compound(int include_opt
       "Laval",
       11,
       1,
-      "H7T2S3"
+      "H7T2S3",
+      "doej",
+      "doej"
     );
   } else {
     address_request_compound = address_request_compound_create(
@@ -40,7 +42,9 @@ address_request_compound_t* instantiate_address_request_compound(int include_opt
       "Laval",
       11,
       1,
-      "H7T2S3"
+      "H7T2S3",
+      "doej",
+      "doej"
     );
   }
 

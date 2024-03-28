@@ -4,12 +4,12 @@
 #include "phone_request_compound.h"
 
 
-char* e_phone_typephone_request_compound_ToString(ezmax_api_definition__full_phone_request_compound__e e_phone_type) {
+char* phone_request_compound_e_phone_type_ToString(ezmax_api_definition__full_phone_request_compound__e e_phone_type) {
     char* e_phone_typeArray[] =  { "NULL", "Local", "International" };
     return e_phone_typeArray[e_phone_type];
 }
 
-ezmax_api_definition__full_phone_request_compound__e e_phone_typephone_request_compound_FromString(char* e_phone_type){
+ezmax_api_definition__full_phone_request_compound__e phone_request_compound_e_phone_type_FromString(char* e_phone_type){
     int stringToReturn = 0;
     char *e_phone_typeArray[] =  { "NULL", "Local", "International" };
     size_t sizeofArray = sizeof(e_phone_typeArray) / sizeof(e_phone_typeArray[0]);

@@ -4,12 +4,12 @@
 #include "scim_authentication_scheme.h"
 
 
-char* typescim_authentication_scheme_ToString(ezmax_api_definition__full_scim_authentication_scheme_TYPE_e type) {
+char* scim_authentication_scheme_type_ToString(ezmax_api_definition__full_scim_authentication_scheme_TYPE_e type) {
     char* typeArray[] =  { "NULL", "oauth", "oauth2", "oauthbearertoken", "httpbasic", "httpdigest" };
     return typeArray[type];
 }
 
-ezmax_api_definition__full_scim_authentication_scheme_TYPE_e typescim_authentication_scheme_FromString(char* type){
+ezmax_api_definition__full_scim_authentication_scheme_TYPE_e scim_authentication_scheme_type_FromString(char* type){
     int stringToReturn = 0;
     char *typeArray[] =  { "NULL", "oauth", "oauth2", "oauthbearertoken", "httpbasic", "httpdigest" };
     size_t sizeofArray = sizeof(typeArray) / sizeof(typeArray[0]);
@@ -133,7 +133,7 @@ scim_authentication_scheme_t *scim_authentication_scheme_parseFromJSON(cJSON *sc
     {
     goto end; //Enum
     }
-    typeVariable = typescim_authentication_scheme_FromString(type->valuestring);
+    typeVariable = scim_authentication_scheme_type_FromString(type->valuestring);
 
 
     scim_authentication_scheme_local_var = scim_authentication_scheme_create (

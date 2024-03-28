@@ -4,12 +4,12 @@
 #include "ezmaxinvoicingagent_response.h"
 
 
-char* e_ezmaxinvoicingagent_variationezmaxezmaxinvoicingagent_response_ToString(ezmax_api_definition__full_ezmaxinvoicingagent_response__e e_ezmaxinvoicingagent_variationezmax) {
+char* ezmaxinvoicingagent_response_e_ezmaxinvoicingagent_variationezmax_ToString(ezmax_api_definition__full_ezmaxinvoicingagent_response__e e_ezmaxinvoicingagent_variationezmax) {
     char* e_ezmaxinvoicingagent_variationezmaxArray[] =  { "NULL", "Charge", "Refund", "Same" };
     return e_ezmaxinvoicingagent_variationezmaxArray[e_ezmaxinvoicingagent_variationezmax];
 }
 
-ezmax_api_definition__full_ezmaxinvoicingagent_response__e e_ezmaxinvoicingagent_variationezmaxezmaxinvoicingagent_response_FromString(char* e_ezmaxinvoicingagent_variationezmax){
+ezmax_api_definition__full_ezmaxinvoicingagent_response__e ezmaxinvoicingagent_response_e_ezmaxinvoicingagent_variationezmax_FromString(char* e_ezmaxinvoicingagent_variationezmax){
     int stringToReturn = 0;
     char *e_ezmaxinvoicingagent_variationezmaxArray[] =  { "NULL", "Charge", "Refund", "Same" };
     size_t sizeofArray = sizeof(e_ezmaxinvoicingagent_variationezmaxArray) / sizeof(e_ezmaxinvoicingagent_variationezmaxArray[0]);
@@ -21,12 +21,12 @@ ezmax_api_definition__full_ezmaxinvoicingagent_response__e e_ezmaxinvoicingagent
     }
     return 0;
 }
-char* e_ezmaxinvoicingagent_variationezsignezmaxinvoicingagent_response_ToString(ezmax_api_definition__full_ezmaxinvoicingagent_response__e e_ezmaxinvoicingagent_variationezsign) {
+char* ezmaxinvoicingagent_response_e_ezmaxinvoicingagent_variationezsign_ToString(ezmax_api_definition__full_ezmaxinvoicingagent_response__e e_ezmaxinvoicingagent_variationezsign) {
     char* e_ezmaxinvoicingagent_variationezsignArray[] =  { "NULL", "Charge", "Refund", "Same" };
     return e_ezmaxinvoicingagent_variationezsignArray[e_ezmaxinvoicingagent_variationezsign];
 }
 
-ezmax_api_definition__full_ezmaxinvoicingagent_response__e e_ezmaxinvoicingagent_variationezsignezmaxinvoicingagent_response_FromString(char* e_ezmaxinvoicingagent_variationezsign){
+ezmax_api_definition__full_ezmaxinvoicingagent_response__e ezmaxinvoicingagent_response_e_ezmaxinvoicingagent_variationezsign_FromString(char* e_ezmaxinvoicingagent_variationezsign){
     int stringToReturn = 0;
     char *e_ezmaxinvoicingagent_variationezsignArray[] =  { "NULL", "Charge", "Refund", "Same" };
     size_t sizeofArray = sizeof(e_ezmaxinvoicingagent_variationezsignArray) / sizeof(e_ezmaxinvoicingagent_variationezsignArray[0]);

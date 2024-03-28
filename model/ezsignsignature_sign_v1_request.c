@@ -4,12 +4,12 @@
 #include "ezsignsignature_sign_v1_request.h"
 
 
-char* e_attachments_confirmation_decisionezsignsignature_sign_v1_request_ToString(ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_e e_attachments_confirmation_decision) {
+char* ezsignsignature_sign_v1_request_e_attachments_confirmation_decision_ToString(ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_e e_attachments_confirmation_decision) {
     char* e_attachments_confirmation_decisionArray[] =  { "NULL", "Accepted", "Refused" };
     return e_attachments_confirmation_decisionArray[e_attachments_confirmation_decision];
 }
 
-ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_e e_attachments_confirmation_decisionezsignsignature_sign_v1_request_FromString(char* e_attachments_confirmation_decision){
+ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_e ezsignsignature_sign_v1_request_e_attachments_confirmation_decision_FromString(char* e_attachments_confirmation_decision){
     int stringToReturn = 0;
     char *e_attachments_confirmation_decisionArray[] =  { "NULL", "Accepted", "Refused" };
     size_t sizeofArray = sizeof(e_attachments_confirmation_decisionArray) / sizeof(e_attachments_confirmation_decisionArray[0]);
@@ -187,7 +187,7 @@ ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_parseFromJSON
     {
     goto end; //Enum
     }
-    e_attachments_confirmation_decisionVariable = e_attachments_confirmation_decisionezsignsignature_sign_v1_request_FromString(e_attachments_confirmation_decision->valuestring);
+    e_attachments_confirmation_decisionVariable = ezsignsignature_sign_v1_request_e_attachments_confirmation_decision_FromString(e_attachments_confirmation_decision->valuestring);
     }
 
     // ezsignsignature_sign_v1_request->s_attachments_refusal_reason
@@ -245,7 +245,7 @@ ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_parseFromJSON
     ezsignsignature_sign_v1_request_local_var = ezsignsignature_sign_v1_request_create (
         fki_ezsignsigningreason_id ? fki_ezsignsigningreason_id->valuedouble : 0,
         s_value && !cJSON_IsNull(s_value) ? strdup(s_value->valuestring) : NULL,
-        e_attachments_confirmation_decision ? e_attachments_confirmation_decisionVariable : -1,
+        e_attachments_confirmation_decision ? e_attachments_confirmation_decisionVariable : ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_NULL,
         s_attachments_refusal_reason && !cJSON_IsNull(s_attachments_refusal_reason) ? strdup(s_attachments_refusal_reason->valuestring) : NULL,
         s_svg && !cJSON_IsNull(s_svg) ? strdup(s_svg->valuestring) : NULL,
         a_obj_file ? a_obj_fileList : NULL,

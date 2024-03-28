@@ -11,7 +11,7 @@ Method | HTTP request | Description
 ```c
 // Retrieve Sessionhistory list
 //
-sessionhistory_get_list_v1_response_t* ObjectSessionhistoryAPI_sessionhistoryGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_sessionhistoryGetListV1_eOrderBy_e eOrderBy, int iRowMax, int iRowOffset, header_accept_language_e Accept_Language, char * sFilter);
+sessionhistory_get_list_v1_response_t* ObjectSessionhistoryAPI_sessionhistoryGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_sessionhistoryGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
 ```
 
 ### Parameters

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 //
 // Using this endpoint, you can retrieve the content of an attachment.
 //
-void ObjectAttachmentAPI_attachmentDownloadV1(apiClient_t *apiClient, int pkiAttachmentID);
+void ObjectAttachmentAPI_attachmentDownloadV1(apiClient_t *apiClient, int *pkiAttachmentID);
 ```
 
 ### Parameters
@@ -45,7 +45,7 @@ void
 //
 // Using this endpoint, you can retrieve the Attachmentlogs of an attachment.
 //
-attachment_get_attachmentlogs_v1_response_t* ObjectAttachmentAPI_attachmentGetAttachmentlogsV1(apiClient_t *apiClient, int pkiAttachmentID);
+attachment_get_attachmentlogs_v1_response_t* ObjectAttachmentAPI_attachmentGetAttachmentlogsV1(apiClient_t *apiClient, int *pkiAttachmentID);
 ```
 
 ### Parameters
@@ -76,7 +76,7 @@ Name | Type | Description  | Notes
 //
 // This endpoint returns an URL to download the attachment.  These links will expire after 5 minutes so the download of the file should be made soon after retrieving the link.
 //
-attachment_get_download_url_v1_response_t* ObjectAttachmentAPI_attachmentGetDownloadUrlV1(apiClient_t *apiClient, int pkiAttachmentID);
+attachment_get_download_url_v1_response_t* ObjectAttachmentAPI_attachmentGetDownloadUrlV1(apiClient_t *apiClient, int *pkiAttachmentID);
 ```
 
 ### Parameters

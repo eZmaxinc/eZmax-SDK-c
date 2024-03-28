@@ -18,6 +18,15 @@ typedef struct ezsigntemplate_get_object_v1_response_m_payload_t ezsigntemplate_
 #include "common_audit.h"
 #include "ezsigntemplatedocument_response.h"
 #include "ezsigntemplatesigner_response_compound.h"
+#include "field_e_ezsigntemplate_type.h"
+
+// Enum  for ezsigntemplate_get_object_v1_response_m_payload
+
+typedef enum  { ezmax_api_definition__full_ezsigntemplate_get_object_v1_response_m_payload__NULL = 0, ezmax_api_definition__full_ezsigntemplate_get_object_v1_response_m_payload__User, ezmax_api_definition__full_ezsigntemplate_get_object_v1_response_m_payload__Usergroup, ezmax_api_definition__full_ezsigntemplate_get_object_v1_response_m_payload__Company } ezmax_api_definition__full_ezsigntemplate_get_object_v1_response_m_payload__e;
+
+char* ezsigntemplate_get_object_v1_response_m_payload_e_ezsigntemplate_type_ToString(ezmax_api_definition__full_ezsigntemplate_get_object_v1_response_m_payload__e e_ezsigntemplate_type);
+
+ezmax_api_definition__full_ezsigntemplate_get_object_v1_response_m_payload__e ezsigntemplate_get_object_v1_response_m_payload_e_ezsigntemplate_type_FromString(char* e_ezsigntemplate_type);
 
 
 
@@ -28,9 +37,12 @@ typedef struct ezsigntemplate_get_object_v1_response_m_payload_t {
     int fki_language_id; //numeric
     char *s_language_name_x; // string
     char *s_ezsigntemplate_description; // string
+    char *s_ezsigntemplate_filenamepattern; // string
     int b_ezsigntemplate_adminonly; //boolean
     char *s_ezsignfoldertype_name_x; // string
     struct common_audit_t *obj_audit; //model
+    int b_ezsigntemplate_editallowed; //boolean
+    field_e_ezsigntemplate_type_t *e_ezsigntemplate_type; // custom
     struct ezsigntemplatedocument_response_t *obj_ezsigntemplatedocument; //model
     list_t *a_obj_ezsigntemplatesigner; //nonprimitive container
 
@@ -43,9 +55,12 @@ ezsigntemplate_get_object_v1_response_m_payload_t *ezsigntemplate_get_object_v1_
     int fki_language_id,
     char *s_language_name_x,
     char *s_ezsigntemplate_description,
+    char *s_ezsigntemplate_filenamepattern,
     int b_ezsigntemplate_adminonly,
     char *s_ezsignfoldertype_name_x,
     common_audit_t *obj_audit,
+    int b_ezsigntemplate_editallowed,
+    field_e_ezsigntemplate_type_t *e_ezsigntemplate_type,
     ezsigntemplatedocument_response_t *obj_ezsigntemplatedocument,
     list_t *a_obj_ezsigntemplatesigner
 );

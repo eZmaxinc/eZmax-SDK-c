@@ -15,7 +15,7 @@ Method | HTTP request | Description
 ```c
 // Create a new User
 //
-scim_user_t* ScimUsersAPI_usersCreateObjectScimV2(apiClient_t *apiClient, scim_user_t * scim_user);
+scim_user_t* ScimUsersAPI_usersCreateObjectScimV2(apiClient_t *apiClient, scim_user_t *scim_user);
 ```
 
 ### Parameters
@@ -44,7 +44,7 @@ Name | Type | Description  | Notes
 ```c
 // Delete an existing User
 //
-void ScimUsersAPI_usersDeleteObjectScimV2(apiClient_t *apiClient, char * userId);
+void ScimUsersAPI_usersDeleteObjectScimV2(apiClient_t *apiClient, char *userId);
 ```
 
 ### Parameters
@@ -72,7 +72,7 @@ void
 ```c
 // Edit an existing User
 //
-scim_user_t* ScimUsersAPI_usersEditObjectScimV2(apiClient_t *apiClient, char * userId, scim_user_t * scim_user);
+scim_user_t* ScimUsersAPI_usersEditObjectScimV2(apiClient_t *apiClient, char *userId, scim_user_t *scim_user);
 ```
 
 ### Parameters
@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve User list
 //
-scim_user_list_t* ScimUsersAPI_usersGetListScimV2(apiClient_t *apiClient, char * filter);
+scim_user_list_t* ScimUsersAPI_usersGetListScimV2(apiClient_t *apiClient, char *filter);
 ```
 
 ### Parameters
@@ -131,7 +131,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve an existing User
 //
-scim_user_t* ScimUsersAPI_usersGetObjectScimV2(apiClient_t *apiClient, char * userId);
+scim_user_t* ScimUsersAPI_usersGetObjectScimV2(apiClient_t *apiClient, char *userId);
 ```
 
 ### Parameters

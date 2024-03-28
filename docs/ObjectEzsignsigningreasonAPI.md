@@ -17,7 +17,7 @@ Method | HTTP request | Description
 //
 // The endpoint allows to create one or many elements at once.
 //
-ezsignsigningreason_create_object_v1_response_t* ObjectEzsignsigningreasonAPI_ezsignsigningreasonCreateObjectV1(apiClient_t *apiClient, ezsignsigningreason_create_object_v1_request_t * ezsignsigningreason_create_object_v1_request);
+ezsignsigningreason_create_object_v1_response_t* ObjectEzsignsigningreasonAPI_ezsignsigningreasonCreateObjectV1(apiClient_t *apiClient, ezsignsigningreason_create_object_v1_request_t *ezsignsigningreason_create_object_v1_request);
 ```
 
 ### Parameters
@@ -48,7 +48,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignsigningreason_edit_object_v1_response_t* ObjectEzsignsigningreasonAPI_ezsignsigningreasonEditObjectV1(apiClient_t *apiClient, int pkiEzsignsigningreasonID, ezsignsigningreason_edit_object_v1_request_t * ezsignsigningreason_edit_object_v1_request);
+ezsignsigningreason_edit_object_v1_response_t* ObjectEzsignsigningreasonAPI_ezsignsigningreasonEditObjectV1(apiClient_t *apiClient, int *pkiEzsignsigningreasonID, ezsignsigningreason_edit_object_v1_request_t *ezsignsigningreason_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 //
 // Get the list of Ezsignsigningreason to be used in a dropdown or autocomplete control.
 //
-ezsignsigningreason_get_autocomplete_v2_response_t* ObjectEzsignsigningreasonAPI_ezsignsigningreasonGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezsignsigningreasonGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_ezsignsigningreasonGetAutocompleteV2_eFilterActive_e eFilterActive, char * sQuery, header_accept_language_e Accept_Language);
+ezsignsigningreason_get_autocomplete_v2_response_t* ObjectEzsignsigningreasonAPI_ezsignsigningreasonGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezsignsigningreasonGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_ezsignsigningreasonGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
 ```
 
 ### Parameters
@@ -114,7 +114,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignsigningreason_get_list_v1_response_t* ObjectEzsignsigningreasonAPI_ezsignsigningreasonGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsignsigningreasonGetListV1_eOrderBy_e eOrderBy, int iRowMax, int iRowOffset, header_accept_language_e Accept_Language, char * sFilter);
+ezsignsigningreason_get_list_v1_response_t* ObjectEzsignsigningreasonAPI_ezsignsigningreasonGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsignsigningreasonGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
 ```
 
 ### Parameters
@@ -149,7 +149,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignsigningreason_get_object_v2_response_t* ObjectEzsignsigningreasonAPI_ezsignsigningreasonGetObjectV2(apiClient_t *apiClient, int pkiEzsignsigningreasonID);
+ezsignsigningreason_get_object_v2_response_t* ObjectEzsignsigningreasonAPI_ezsignsigningreasonGetObjectV2(apiClient_t *apiClient, int *pkiEzsignsigningreasonID);
 ```
 
 ### Parameters

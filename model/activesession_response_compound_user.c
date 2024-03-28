@@ -4,12 +4,12 @@
 #include "activesession_response_compound_user.h"
 
 
-char* e_user_ezsignsendreminderfrequencyactivesession_response_compound_user_ToString(ezmax_api_definition__full_activesession_response_compound_user__e e_user_ezsignsendreminderfrequency) {
+char* activesession_response_compound_user_e_user_ezsignsendreminderfrequency_ToString(ezmax_api_definition__full_activesession_response_compound_user__e e_user_ezsignsendreminderfrequency) {
     char* e_user_ezsignsendreminderfrequencyArray[] =  { "NULL", "None", "Daily", "Weekly" };
     return e_user_ezsignsendreminderfrequencyArray[e_user_ezsignsendreminderfrequency];
 }
 
-ezmax_api_definition__full_activesession_response_compound_user__e e_user_ezsignsendreminderfrequencyactivesession_response_compound_user_FromString(char* e_user_ezsignsendreminderfrequency){
+ezmax_api_definition__full_activesession_response_compound_user__e activesession_response_compound_user_e_user_ezsignsendreminderfrequency_FromString(char* e_user_ezsignsendreminderfrequency){
     int stringToReturn = 0;
     char *e_user_ezsignsendreminderfrequencyArray[] =  { "NULL", "None", "Daily", "Weekly" };
     size_t sizeofArray = sizeof(e_user_ezsignsendreminderfrequencyArray) / sizeof(e_user_ezsignsendreminderfrequencyArray[0]);
@@ -103,11 +103,10 @@ cJSON *activesession_response_compound_user_convertToJSON(activesession_response
 
 
     // activesession_response_compound_user->s_avatar_url
-    if (!activesession_response_compound_user->s_avatar_url) {
-        goto fail;
-    }
+    if(activesession_response_compound_user->s_avatar_url) {
     if(cJSON_AddStringToObject(item, "sAvatarUrl", activesession_response_compound_user->s_avatar_url) == NULL) {
     goto fail; //String
+    }
     }
 
 
@@ -130,11 +129,10 @@ cJSON *activesession_response_compound_user_convertToJSON(activesession_response
 
 
     // activesession_response_compound_user->s_email_address
-    if (!activesession_response_compound_user->s_email_address) {
-        goto fail;
-    }
+    if(activesession_response_compound_user->s_email_address) {
     if(cJSON_AddStringToObject(item, "sEmailAddress", activesession_response_compound_user->s_email_address) == NULL) {
     goto fail; //String
+    }
     }
 
 
@@ -219,14 +217,11 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
 
     // activesession_response_compound_user->s_avatar_url
     cJSON *s_avatar_url = cJSON_GetObjectItemCaseSensitive(activesession_response_compound_userJSON, "sAvatarUrl");
-    if (!s_avatar_url) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(s_avatar_url))
+    if (s_avatar_url) { 
+    if(!cJSON_IsString(s_avatar_url) && !cJSON_IsNull(s_avatar_url))
     {
     goto end; //String
+    }
     }
 
     // activesession_response_compound_user->s_user_firstname
@@ -255,14 +250,11 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
 
     // activesession_response_compound_user->s_email_address
     cJSON *s_email_address = cJSON_GetObjectItemCaseSensitive(activesession_response_compound_userJSON, "sEmailAddress");
-    if (!s_email_address) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(s_email_address))
+    if (s_email_address) { 
+    if(!cJSON_IsString(s_email_address) && !cJSON_IsNull(s_email_address))
     {
     goto end; //String
+    }
     }
 
     // activesession_response_compound_user->e_user_ezsignsendreminderfrequency
@@ -314,10 +306,10 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
     activesession_response_compound_user_local_var = activesession_response_compound_user_create (
         pki_user_id->valuedouble,
         fki_timezone_id->valuedouble,
-        strdup(s_avatar_url->valuestring),
+        s_avatar_url && !cJSON_IsNull(s_avatar_url) ? strdup(s_avatar_url->valuestring) : NULL,
         strdup(s_user_firstname->valuestring),
         strdup(s_user_lastname->valuestring),
-        strdup(s_email_address->valuestring),
+        s_email_address && !cJSON_IsNull(s_email_address) ? strdup(s_email_address->valuestring) : NULL,
         e_user_ezsignsendreminderfrequency_local_nonprim,
         i_user_interfacecolor->valuedouble,
         b_user_interfacedark->valueint,

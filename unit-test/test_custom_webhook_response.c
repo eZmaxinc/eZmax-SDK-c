@@ -39,6 +39,8 @@ custom_webhook_response_t* instantiate_custom_webhook_response(int include_optio
       false,
        // false, not to have infinite recursion
       instantiate_common_audit(0),
+      "Ezsign-DocumentCompleted",
+      list_createList(),
       "demo",
       1
     );
@@ -59,6 +61,8 @@ custom_webhook_response_t* instantiate_custom_webhook_response(int include_optio
       true,
       false,
       NULL,
+      "Ezsign-DocumentCompleted",
+      list_createList(),
       "demo",
       1
     );

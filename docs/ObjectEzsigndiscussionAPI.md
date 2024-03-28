@@ -15,7 +15,7 @@ Method | HTTP request | Description
 //
 // The endpoint allows to create one or many elements at once.
 //
-ezsigndiscussion_create_object_v1_response_t* ObjectEzsigndiscussionAPI_ezsigndiscussionCreateObjectV1(apiClient_t *apiClient, ezsigndiscussion_create_object_v1_request_t * ezsigndiscussion_create_object_v1_request);
+ezsigndiscussion_create_object_v1_response_t* ObjectEzsigndiscussionAPI_ezsigndiscussionCreateObjectV1(apiClient_t *apiClient, ezsigndiscussion_create_object_v1_request_t *ezsigndiscussion_create_object_v1_request);
 ```
 
 ### Parameters
@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsigndiscussion_delete_object_v1_response_t* ObjectEzsigndiscussionAPI_ezsigndiscussionDeleteObjectV1(apiClient_t *apiClient, int pkiEzsigndiscussionID);
+ezsigndiscussion_delete_object_v1_response_t* ObjectEzsigndiscussionAPI_ezsigndiscussionDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigndiscussionID);
 ```
 
 ### Parameters
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsigndiscussion_get_object_v2_response_t* ObjectEzsigndiscussionAPI_ezsigndiscussionGetObjectV2(apiClient_t *apiClient, int pkiEzsigndiscussionID);
+ezsigndiscussion_get_object_v2_response_t* ObjectEzsigndiscussionAPI_ezsigndiscussionGetObjectV2(apiClient_t *apiClient, int *pkiEzsigndiscussionID);
 ```
 
 ### Parameters

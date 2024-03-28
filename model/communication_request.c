@@ -4,12 +4,12 @@
 #include "communication_request.h"
 
 
-char* e_communication_importancecommunication_request_ToString(ezmax_api_definition__full_communication_request__e e_communication_importance) {
+char* communication_request_e_communication_importance_ToString(ezmax_api_definition__full_communication_request__e e_communication_importance) {
     char* e_communication_importanceArray[] =  { "NULL", "High", "Normal", "Low" };
     return e_communication_importanceArray[e_communication_importance];
 }
 
-ezmax_api_definition__full_communication_request__e e_communication_importancecommunication_request_FromString(char* e_communication_importance){
+ezmax_api_definition__full_communication_request__e communication_request_e_communication_importance_FromString(char* e_communication_importance){
     int stringToReturn = 0;
     char *e_communication_importanceArray[] =  { "NULL", "High", "Normal", "Low" };
     size_t sizeofArray = sizeof(e_communication_importanceArray) / sizeof(e_communication_importanceArray[0]);
@@ -21,12 +21,12 @@ ezmax_api_definition__full_communication_request__e e_communication_importanceco
     }
     return 0;
 }
-char* e_communication_typecommunication_request_ToString(ezmax_api_definition__full_communication_request__e e_communication_type) {
+char* communication_request_e_communication_type_ToString(ezmax_api_definition__full_communication_request__e e_communication_type) {
     char* e_communication_typeArray[] =  { "NULL", "Email", "Fax", "Sms" };
     return e_communication_typeArray[e_communication_type];
 }
 
-ezmax_api_definition__full_communication_request__e e_communication_typecommunication_request_FromString(char* e_communication_type){
+ezmax_api_definition__full_communication_request__e communication_request_e_communication_type_FromString(char* e_communication_type){
     int stringToReturn = 0;
     char *e_communication_typeArray[] =  { "NULL", "Email", "Fax", "Sms" };
     size_t sizeofArray = sizeof(e_communication_typeArray) / sizeof(e_communication_typeArray[0]);
@@ -38,12 +38,12 @@ ezmax_api_definition__full_communication_request__e e_communication_typecommunic
     }
     return 0;
 }
-char* e_communication_attachmenttypecommunication_request_ToString(ezmax_api_definition__full_communication_request_ECOMMUNICATIONATTACHMENTTYPE_e e_communication_attachmenttype) {
+char* communication_request_e_communication_attachmenttype_ToString(ezmax_api_definition__full_communication_request_ECOMMUNICATIONATTACHMENTTYPE_e e_communication_attachmenttype) {
     char* e_communication_attachmenttypeArray[] =  { "NULL", "Attachment", "Url" };
     return e_communication_attachmenttypeArray[e_communication_attachmenttype];
 }
 
-ezmax_api_definition__full_communication_request_ECOMMUNICATIONATTACHMENTTYPE_e e_communication_attachmenttypecommunication_request_FromString(char* e_communication_attachmenttype){
+ezmax_api_definition__full_communication_request_ECOMMUNICATIONATTACHMENTTYPE_e communication_request_e_communication_attachmenttype_FromString(char* e_communication_attachmenttype){
     int stringToReturn = 0;
     char *e_communication_attachmenttypeArray[] =  { "NULL", "Attachment", "Url" };
     size_t sizeofArray = sizeof(e_communication_attachmenttypeArray) / sizeof(e_communication_attachmenttypeArray[0]);
@@ -308,7 +308,7 @@ communication_request_t *communication_request_parseFromJSON(cJSON *communicatio
     {
     goto end; //Enum
     }
-    e_communication_attachmenttypeVariable = e_communication_attachmenttypecommunication_request_FromString(e_communication_attachmenttype->valuestring);
+    e_communication_attachmenttypeVariable = communication_request_e_communication_attachmenttype_FromString(e_communication_attachmenttype->valuestring);
     }
 
     // communication_request->i_communication_attachmentlinkexpiration
@@ -338,7 +338,7 @@ communication_request_t *communication_request_parseFromJSON(cJSON *communicatio
         s_communication_subject && !cJSON_IsNull(s_communication_subject) ? strdup(s_communication_subject->valuestring) : NULL,
         strdup(t_communication_body->valuestring),
         b_communication_private->valueint,
-        e_communication_attachmenttype ? e_communication_attachmenttypeVariable : -1,
+        e_communication_attachmenttype ? e_communication_attachmenttypeVariable : ezmax_api_definition__full_communication_request_ECOMMUNICATIONATTACHMENTTYPE_NULL,
         i_communication_attachmentlinkexpiration ? i_communication_attachmentlinkexpiration->valuedouble : 0,
         b_communication_readreceipt ? b_communication_readreceipt->valueint : 0
         );

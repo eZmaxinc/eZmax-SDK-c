@@ -4,12 +4,12 @@
 #include "custom_ezsignsignaturestatus_response.h"
 
 
-char* e_ezsignsignaturestatus_steptypecustom_ezsignsignaturestatus_response_ToString(ezmax_api_definition__full_custom_ezsignsignaturestatus_response_EEZSIGNSIGNATURESTATUSSTEPTYPE_e e_ezsignsignaturestatus_steptype) {
+char* custom_ezsignsignaturestatus_response_e_ezsignsignaturestatus_steptype_ToString(ezmax_api_definition__full_custom_ezsignsignaturestatus_response_EEZSIGNSIGNATURESTATUSSTEPTYPE_e e_ezsignsignaturestatus_steptype) {
     char* e_ezsignsignaturestatus_steptypeArray[] =  { "NULL", "Form", "Signature" };
     return e_ezsignsignaturestatus_steptypeArray[e_ezsignsignaturestatus_steptype];
 }
 
-ezmax_api_definition__full_custom_ezsignsignaturestatus_response_EEZSIGNSIGNATURESTATUSSTEPTYPE_e e_ezsignsignaturestatus_steptypecustom_ezsignsignaturestatus_response_FromString(char* e_ezsignsignaturestatus_steptype){
+ezmax_api_definition__full_custom_ezsignsignaturestatus_response_EEZSIGNSIGNATURESTATUSSTEPTYPE_e custom_ezsignsignaturestatus_response_e_ezsignsignaturestatus_steptype_FromString(char* e_ezsignsignaturestatus_steptype){
     int stringToReturn = 0;
     char *e_ezsignsignaturestatus_steptypeArray[] =  { "NULL", "Form", "Signature" };
     size_t sizeofArray = sizeof(e_ezsignsignaturestatus_steptypeArray) / sizeof(e_ezsignsignaturestatus_steptypeArray[0]);
@@ -112,7 +112,7 @@ custom_ezsignsignaturestatus_response_t *custom_ezsignsignaturestatus_response_p
     {
     goto end; //Enum
     }
-    e_ezsignsignaturestatus_steptypeVariable = e_ezsignsignaturestatus_steptypecustom_ezsignsignaturestatus_response_FromString(e_ezsignsignaturestatus_steptype->valuestring);
+    e_ezsignsignaturestatus_steptypeVariable = custom_ezsignsignaturestatus_response_e_ezsignsignaturestatus_steptype_FromString(e_ezsignsignaturestatus_steptype->valuestring);
 
     // custom_ezsignsignaturestatus_response->i_ezsignsignaturestatus_step
     cJSON *i_ezsignsignaturestatus_step = cJSON_GetObjectItemCaseSensitive(custom_ezsignsignaturestatus_responseJSON, "iEzsignsignaturestatusStep");

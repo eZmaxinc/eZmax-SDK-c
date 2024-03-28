@@ -69,10 +69,8 @@ ezsignfoldertype_response_compound_t* instantiate_ezsignfoldertype_response_comp
       false,
       false,
       false,
-      false,
       true,
-      true,
-      true,
+      list_createList(),
       list_createList(),
       list_createList()
     );
@@ -123,10 +121,8 @@ ezsignfoldertype_response_compound_t* instantiate_ezsignfoldertype_response_comp
       false,
       false,
       false,
-      false,
       true,
-      true,
-      true,
+      list_createList(),
       list_createList(),
       list_createList()
     );

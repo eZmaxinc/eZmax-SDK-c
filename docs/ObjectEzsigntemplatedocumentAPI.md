@@ -23,7 +23,7 @@ Method | HTTP request | Description
 //
 // The endpoint allows to create one or many elements at once.
 //
-ezsigntemplatedocument_create_object_v1_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentCreateObjectV1(apiClient_t *apiClient, ezsigntemplatedocument_create_object_v1_request_t * ezsigntemplatedocument_create_object_v1_request);
+ezsigntemplatedocument_create_object_v1_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentCreateObjectV1(apiClient_t *apiClient, ezsigntemplatedocument_create_object_v1_request_t *ezsigntemplatedocument_create_object_v1_request);
 ```
 
 ### Parameters
@@ -54,7 +54,7 @@ Name | Type | Description  | Notes
 //
 // Using this endpoint, you can edit multiple Ezsigntemplateformfieldgroups at the same time.
 //
-ezsigntemplatedocument_edit_ezsigntemplateformfieldgroups_v1_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditEzsigntemplateformfieldgroupsV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID, ezsigntemplatedocument_edit_ezsigntemplateformfieldgroups_v1_request_t * ezsigntemplatedocument_edit_ezsigntemplateformfieldgroups_v1_request);
+ezsigntemplatedocument_edit_ezsigntemplateformfieldgroups_v1_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditEzsigntemplateformfieldgroupsV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, ezsigntemplatedocument_edit_ezsigntemplateformfieldgroups_v1_request_t *ezsigntemplatedocument_edit_ezsigntemplateformfieldgroups_v1_request);
 ```
 
 ### Parameters
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 //
 // Using this endpoint, you can edit multiple Ezsigntemplatesignatures at the same time.
 //
-ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditEzsigntemplatesignaturesV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID, ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_t * ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request);
+ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditEzsigntemplatesignaturesV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_t *ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request);
 ```
 
 ### Parameters
@@ -118,7 +118,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsigntemplatedocument_edit_object_v1_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID, ezsigntemplatedocument_edit_object_v1_request_t * ezsigntemplatedocument_edit_object_v1_request);
+ezsigntemplatedocument_edit_object_v1_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, ezsigntemplatedocument_edit_object_v1_request_t *ezsigntemplatedocument_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 //
 // Flatten an Ezsigntemplatedocument signatures, forms and annotations. This process finalizes the PDF so that the forms and annotations become part of the document content and cannot be edited.
 //
-ezsigntemplatedocument_flatten_v1_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentFlattenV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID, object_t * body);
+ezsigntemplatedocument_flatten_v1_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentFlattenV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, object_t *body);
 ```
 
 ### Parameters
@@ -182,7 +182,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatedocumentpagesV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID);
+ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatedocumentpagesV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID);
 ```
 
 ### Parameters
@@ -213,7 +213,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsigntemplatedocument_get_ezsigntemplateformfieldgroups_v1_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplateformfieldgroupsV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID);
+ezsigntemplatedocument_get_ezsigntemplateformfieldgroups_v1_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplateformfieldgroupsV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID);
 ```
 
 ### Parameters
@@ -244,7 +244,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsigntemplatedocument_get_ezsigntemplatesignatures_v1_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatesignaturesV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID);
+ezsigntemplatedocument_get_ezsigntemplatesignatures_v1_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatesignaturesV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID);
 ```
 
 ### Parameters
@@ -275,7 +275,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsigntemplatedocument_get_object_v2_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetObjectV2(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID);
+ezsigntemplatedocument_get_object_v2_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID);
 ```
 
 ### Parameters
@@ -306,7 +306,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsigntemplatedocument_get_words_positions_v1_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetWordsPositionsV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID, ezsigntemplatedocument_get_words_positions_v1_request_t * ezsigntemplatedocument_get_words_positions_v1_request);
+ezsigntemplatedocument_get_words_positions_v1_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetWordsPositionsV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, ezsigntemplatedocument_get_words_positions_v1_request_t *ezsigntemplatedocument_get_words_positions_v1_request);
 ```
 
 ### Parameters
@@ -338,7 +338,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsigntemplatedocument_patch_object_v1_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentPatchObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatedocumentID, ezsigntemplatedocument_patch_object_v1_request_t * ezsigntemplatedocument_patch_object_v1_request);
+ezsigntemplatedocument_patch_object_v1_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentPatchObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, ezsigntemplatedocument_patch_object_v1_request_t *ezsigntemplatedocument_patch_object_v1_request);
 ```
 
 ### Parameters

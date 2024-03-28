@@ -4,12 +4,12 @@
 #include "ezsignformfieldgroup_response.h"
 
 
-char* e_ezsignformfieldgroup_typeezsignformfieldgroup_response_ToString(ezmax_api_definition__full_ezsignformfieldgroup_response__e e_ezsignformfieldgroup_type) {
+char* ezsignformfieldgroup_response_e_ezsignformfieldgroup_type_ToString(ezmax_api_definition__full_ezsignformfieldgroup_response__e e_ezsignformfieldgroup_type) {
     char* e_ezsignformfieldgroup_typeArray[] =  { "NULL", "Text", "Textarea", "Dropdown", "Radio", "Checkbox", "Number", "Date" };
     return e_ezsignformfieldgroup_typeArray[e_ezsignformfieldgroup_type];
 }
 
-ezmax_api_definition__full_ezsignformfieldgroup_response__e e_ezsignformfieldgroup_typeezsignformfieldgroup_response_FromString(char* e_ezsignformfieldgroup_type){
+ezmax_api_definition__full_ezsignformfieldgroup_response__e ezsignformfieldgroup_response_e_ezsignformfieldgroup_type_FromString(char* e_ezsignformfieldgroup_type){
     int stringToReturn = 0;
     char *e_ezsignformfieldgroup_typeArray[] =  { "NULL", "Text", "Textarea", "Dropdown", "Radio", "Checkbox", "Number", "Date" };
     size_t sizeofArray = sizeof(e_ezsignformfieldgroup_typeArray) / sizeof(e_ezsignformfieldgroup_typeArray[0]);
@@ -21,12 +21,12 @@ ezmax_api_definition__full_ezsignformfieldgroup_response__e e_ezsignformfieldgro
     }
     return 0;
 }
-char* e_ezsignformfieldgroup_signerrequirementezsignformfieldgroup_response_ToString(ezmax_api_definition__full_ezsignformfieldgroup_response__e e_ezsignformfieldgroup_signerrequirement) {
+char* ezsignformfieldgroup_response_e_ezsignformfieldgroup_signerrequirement_ToString(ezmax_api_definition__full_ezsignformfieldgroup_response__e e_ezsignformfieldgroup_signerrequirement) {
     char* e_ezsignformfieldgroup_signerrequirementArray[] =  { "NULL", "All", "One" };
     return e_ezsignformfieldgroup_signerrequirementArray[e_ezsignformfieldgroup_signerrequirement];
 }
 
-ezmax_api_definition__full_ezsignformfieldgroup_response__e e_ezsignformfieldgroup_signerrequirementezsignformfieldgroup_response_FromString(char* e_ezsignformfieldgroup_signerrequirement){
+ezmax_api_definition__full_ezsignformfieldgroup_response__e ezsignformfieldgroup_response_e_ezsignformfieldgroup_signerrequirement_FromString(char* e_ezsignformfieldgroup_signerrequirement){
     int stringToReturn = 0;
     char *e_ezsignformfieldgroup_signerrequirementArray[] =  { "NULL", "All", "One" };
     size_t sizeofArray = sizeof(e_ezsignformfieldgroup_signerrequirementArray) / sizeof(e_ezsignformfieldgroup_signerrequirementArray[0]);
@@ -38,12 +38,12 @@ ezmax_api_definition__full_ezsignformfieldgroup_response__e e_ezsignformfieldgro
     }
     return 0;
 }
-char* e_ezsignformfieldgroup_textvalidationezsignformfieldgroup_response_ToString(ezmax_api_definition__full_ezsignformfieldgroup_response__e e_ezsignformfieldgroup_textvalidation) {
+char* ezsignformfieldgroup_response_e_ezsignformfieldgroup_textvalidation_ToString(ezmax_api_definition__full_ezsignformfieldgroup_response__e e_ezsignformfieldgroup_textvalidation) {
     char* e_ezsignformfieldgroup_textvalidationArray[] =  { "NULL", "None", "Date (YYYY-MM-DD)", "Date (MM/DD/YYYY)", "Date (MM/DD/YY)", "Date (DD/MM/YYYY)", "Date (DD/MM/YY)", "Email", "Letters", "Numbers", "Zip", "Zip+4", "PostalCode", "Custom" };
     return e_ezsignformfieldgroup_textvalidationArray[e_ezsignformfieldgroup_textvalidation];
 }
 
-ezmax_api_definition__full_ezsignformfieldgroup_response__e e_ezsignformfieldgroup_textvalidationezsignformfieldgroup_response_FromString(char* e_ezsignformfieldgroup_textvalidation){
+ezmax_api_definition__full_ezsignformfieldgroup_response__e ezsignformfieldgroup_response_e_ezsignformfieldgroup_textvalidation_FromString(char* e_ezsignformfieldgroup_textvalidation){
     int stringToReturn = 0;
     char *e_ezsignformfieldgroup_textvalidationArray[] =  { "NULL", "None", "Date (YYYY-MM-DD)", "Date (MM/DD/YYYY)", "Date (MM/DD/YY)", "Date (DD/MM/YYYY)", "Date (DD/MM/YY)", "Email", "Letters", "Numbers", "Zip", "Zip+4", "PostalCode", "Custom" };
     size_t sizeofArray = sizeof(e_ezsignformfieldgroup_textvalidationArray) / sizeof(e_ezsignformfieldgroup_textvalidationArray[0]);
@@ -55,12 +55,12 @@ ezmax_api_definition__full_ezsignformfieldgroup_response__e e_ezsignformfieldgro
     }
     return 0;
 }
-char* e_ezsignformfieldgroup_tooltippositionezsignformfieldgroup_response_ToString(ezmax_api_definition__full_ezsignformfieldgroup_response__e e_ezsignformfieldgroup_tooltipposition) {
+char* ezsignformfieldgroup_response_e_ezsignformfieldgroup_tooltipposition_ToString(ezmax_api_definition__full_ezsignformfieldgroup_response__e e_ezsignformfieldgroup_tooltipposition) {
     char* e_ezsignformfieldgroup_tooltippositionArray[] =  { "NULL", "TopLeft", "TopCenter", "TopRight", "MiddleLeft", "MiddleRight", "BottomLeft", "BottomCenter", "BottomRight" };
     return e_ezsignformfieldgroup_tooltippositionArray[e_ezsignformfieldgroup_tooltipposition];
 }
 
-ezmax_api_definition__full_ezsignformfieldgroup_response__e e_ezsignformfieldgroup_tooltippositionezsignformfieldgroup_response_FromString(char* e_ezsignformfieldgroup_tooltipposition){
+ezmax_api_definition__full_ezsignformfieldgroup_response__e ezsignformfieldgroup_response_e_ezsignformfieldgroup_tooltipposition_FromString(char* e_ezsignformfieldgroup_tooltipposition){
     int stringToReturn = 0;
     char *e_ezsignformfieldgroup_tooltippositionArray[] =  { "NULL", "TopLeft", "TopCenter", "TopRight", "MiddleLeft", "MiddleRight", "BottomLeft", "BottomCenter", "BottomRight" };
     size_t sizeofArray = sizeof(e_ezsignformfieldgroup_tooltippositionArray) / sizeof(e_ezsignformfieldgroup_tooltippositionArray[0]);
@@ -192,9 +192,7 @@ cJSON *ezsignformfieldgroup_response_convertToJSON(ezsignformfieldgroup_response
 
 
     // ezsignformfieldgroup_response->e_ezsignformfieldgroup_signerrequirement
-    if (ezmax_api_definition__full_ezsignformfieldgroup_response__NULL == ezsignformfieldgroup_response->e_ezsignformfieldgroup_signerrequirement) {
-        goto fail;
-    }
+    if(ezsignformfieldgroup_response->e_ezsignformfieldgroup_signerrequirement != ezmax_api_definition__full_ezsignformfieldgroup_response__NULL) {
     cJSON *e_ezsignformfieldgroup_signerrequirement_local_JSON = field_e_ezsignformfieldgroup_signerrequirement_convertToJSON(ezsignformfieldgroup_response->e_ezsignformfieldgroup_signerrequirement);
     if(e_ezsignformfieldgroup_signerrequirement_local_JSON == NULL) {
         goto fail; // custom
@@ -202,6 +200,7 @@ cJSON *ezsignformfieldgroup_response_convertToJSON(ezsignformfieldgroup_response
     cJSON_AddItemToObject(item, "eEzsignformfieldgroupSignerrequirement", e_ezsignformfieldgroup_signerrequirement_local_JSON);
     if(item->child == NULL) {
         goto fail;
+    }
     }
 
 
@@ -374,12 +373,9 @@ ezsignformfieldgroup_response_t *ezsignformfieldgroup_response_parseFromJSON(cJS
 
     // ezsignformfieldgroup_response->e_ezsignformfieldgroup_signerrequirement
     cJSON *e_ezsignformfieldgroup_signerrequirement = cJSON_GetObjectItemCaseSensitive(ezsignformfieldgroup_responseJSON, "eEzsignformfieldgroupSignerrequirement");
-    if (!e_ezsignformfieldgroup_signerrequirement) {
-        goto end;
-    }
-
-    
+    if (e_ezsignformfieldgroup_signerrequirement) { 
     e_ezsignformfieldgroup_signerrequirement_local_nonprim = field_e_ezsignformfieldgroup_signerrequirement_parseFromJSON(e_ezsignformfieldgroup_signerrequirement); //custom
+    }
 
     // ezsignformfieldgroup_response->s_ezsignformfieldgroup_label
     cJSON *s_ezsignformfieldgroup_label = cJSON_GetObjectItemCaseSensitive(ezsignformfieldgroup_responseJSON, "sEzsignformfieldgroupLabel");
@@ -503,7 +499,7 @@ ezsignformfieldgroup_response_t *ezsignformfieldgroup_response_parseFromJSON(cJS
         pki_ezsignformfieldgroup_id->valuedouble,
         fki_ezsigndocument_id->valuedouble,
         e_ezsignformfieldgroup_type_local_nonprim,
-        e_ezsignformfieldgroup_signerrequirement_local_nonprim,
+        e_ezsignformfieldgroup_signerrequirement ? e_ezsignformfieldgroup_signerrequirement_local_nonprim : NULL,
         strdup(s_ezsignformfieldgroup_label->valuestring),
         i_ezsignformfieldgroup_step->valuedouble,
         s_ezsignformfieldgroup_defaultvalue && !cJSON_IsNull(s_ezsignformfieldgroup_defaultvalue) ? strdup(s_ezsignformfieldgroup_defaultvalue->valuestring) : NULL,

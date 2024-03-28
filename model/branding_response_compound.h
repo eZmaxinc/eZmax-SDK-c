@@ -16,6 +16,7 @@
 typedef struct branding_response_compound_t branding_response_compound_t;
 
 #include "field_e_branding_logo.h"
+#include "field_e_branding_logointerface.h"
 #include "multilingual_branding_description.h"
 
 // Enum  for branding_response_compound
@@ -25,6 +26,14 @@ typedef enum  { ezmax_api_definition__full_branding_response_compound__NULL = 0,
 char* branding_response_compound_e_branding_logo_ToString(ezmax_api_definition__full_branding_response_compound__e e_branding_logo);
 
 ezmax_api_definition__full_branding_response_compound__e branding_response_compound_e_branding_logo_FromString(char* e_branding_logo);
+
+// Enum  for branding_response_compound
+
+typedef enum  { ezmax_api_definition__full_branding_response_compound__NULL = 0, ezmax_api_definition__full_branding_response_compound___Default, ezmax_api_definition__full_branding_response_compound__JPEG, ezmax_api_definition__full_branding_response_compound__PNG } ezmax_api_definition__full_branding_response_compound__e;
+
+char* branding_response_compound_e_branding_logointerface_ToString(ezmax_api_definition__full_branding_response_compound__e e_branding_logointerface);
+
+ezmax_api_definition__full_branding_response_compound__e branding_response_compound_e_branding_logointerface_FromString(char* e_branding_logointerface);
 
 
 
@@ -36,14 +45,17 @@ typedef struct branding_response_compound_t {
     char *s_branding_name; // string
     char *s_email_address; // string
     field_e_branding_logo_t *e_branding_logo; // custom
+    field_e_branding_logointerface_t *e_branding_logointerface; // custom
     int i_branding_colortext; //numeric
     int i_branding_colortextlinkbox; //numeric
     int i_branding_colortextbutton; //numeric
     int i_branding_colorbackground; //numeric
     int i_branding_colorbackgroundbutton; //numeric
     int i_branding_colorbackgroundsmallbox; //numeric
+    int i_branding_interfacecolor; //numeric
     int b_branding_isactive; //boolean
     char *s_branding_logourl; // string
+    char *s_branding_logointerfaceurl; // string
 
 } branding_response_compound_t;
 
@@ -55,14 +67,17 @@ branding_response_compound_t *branding_response_compound_create(
     char *s_branding_name,
     char *s_email_address,
     field_e_branding_logo_t *e_branding_logo,
+    field_e_branding_logointerface_t *e_branding_logointerface,
     int i_branding_colortext,
     int i_branding_colortextlinkbox,
     int i_branding_colortextbutton,
     int i_branding_colorbackground,
     int i_branding_colorbackgroundbutton,
     int i_branding_colorbackgroundsmallbox,
+    int i_branding_interfacecolor,
     int b_branding_isactive,
-    char *s_branding_logourl
+    char *s_branding_logourl,
+    char *s_branding_logointerfaceurl
 );
 
 void branding_response_compound_free(branding_response_compound_t *branding_response_compound);

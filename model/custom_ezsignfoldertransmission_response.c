@@ -4,12 +4,12 @@
 #include "custom_ezsignfoldertransmission_response.h"
 
 
-char* e_ezsignfolder_stepcustom_ezsignfoldertransmission_response_ToString(ezmax_api_definition__full_custom_ezsignfoldertransmission_response__e e_ezsignfolder_step) {
+char* custom_ezsignfoldertransmission_response_e_ezsignfolder_step_ToString(ezmax_api_definition__full_custom_ezsignfoldertransmission_response__e e_ezsignfolder_step) {
     char* e_ezsignfolder_stepArray[] =  { "NULL", "Unsent", "PendingSend", "Sent", "PartiallySigned", "Expired", "Completed", "Archived", "Disposed" };
     return e_ezsignfolder_stepArray[e_ezsignfolder_step];
 }
 
-ezmax_api_definition__full_custom_ezsignfoldertransmission_response__e e_ezsignfolder_stepcustom_ezsignfoldertransmission_response_FromString(char* e_ezsignfolder_step){
+ezmax_api_definition__full_custom_ezsignfoldertransmission_response__e custom_ezsignfoldertransmission_response_e_ezsignfolder_step_FromString(char* e_ezsignfolder_step){
     int stringToReturn = 0;
     char *e_ezsignfolder_stepArray[] =  { "NULL", "Unsent", "PendingSend", "Sent", "PartiallySigned", "Expired", "Completed", "Archived", "Disposed" };
     size_t sizeofArray = sizeof(e_ezsignfolder_stepArray) / sizeof(e_ezsignfolder_stepArray[0]);

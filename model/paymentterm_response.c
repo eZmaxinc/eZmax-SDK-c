@@ -4,12 +4,12 @@
 #include "paymentterm_response.h"
 
 
-char* e_paymentterm_typepaymentterm_response_ToString(ezmax_api_definition__full_paymentterm_response__e e_paymentterm_type) {
+char* paymentterm_response_e_paymentterm_type_ToString(ezmax_api_definition__full_paymentterm_response__e e_paymentterm_type) {
     char* e_paymentterm_typeArray[] =  { "NULL", "Days", "Dayofthemonth" };
     return e_paymentterm_typeArray[e_paymentterm_type];
 }
 
-ezmax_api_definition__full_paymentterm_response__e e_paymentterm_typepaymentterm_response_FromString(char* e_paymentterm_type){
+ezmax_api_definition__full_paymentterm_response__e paymentterm_response_e_paymentterm_type_FromString(char* e_paymentterm_type){
     int stringToReturn = 0;
     char *e_paymentterm_typeArray[] =  { "NULL", "Days", "Dayofthemonth" };
     size_t sizeofArray = sizeof(e_paymentterm_typeArray) / sizeof(e_paymentterm_typeArray[0]);

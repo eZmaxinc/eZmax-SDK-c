@@ -22,11 +22,13 @@ typedef struct usergroupmembership_response_compound_t {
     int pki_usergroupmembership_id; //numeric
     int fki_usergroup_id; //numeric
     int fki_user_id; //numeric
+    int fki_usergroupexternal_id; //numeric
     char *s_user_firstname; // string
     char *s_user_lastname; // string
     char *s_user_loginname; // string
     char *s_email_address; // string
     char *s_usergroup_name_x; // string
+    char *s_usergroupexternal_name; // string
 
 } usergroupmembership_response_compound_t;
 
@@ -34,11 +36,13 @@ usergroupmembership_response_compound_t *usergroupmembership_response_compound_c
     int pki_usergroupmembership_id,
     int fki_usergroup_id,
     int fki_user_id,
+    int fki_usergroupexternal_id,
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_user_loginname,
     char *s_email_address,
-    char *s_usergroup_name_x
+    char *s_usergroup_name_x,
+    char *s_usergroupexternal_name
 );
 
 void usergroupmembership_response_compound_free(usergroupmembership_response_compound_t *usergroupmembership_response_compound);

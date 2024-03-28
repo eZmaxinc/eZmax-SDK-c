@@ -15,6 +15,7 @@ ezsigntemplatepackage_response_compound_t *ezsigntemplatepackage_response_compou
     int b_ezsigntemplatepackage_needvalidation,
     int b_ezsigntemplatepackage_isactive,
     char *s_ezsignfoldertype_name_x,
+    int b_ezsigntemplatepackage_editallowed,
     list_t *a_obj_ezsigntemplatepackagesigner,
     list_t *a_obj_ezsigntemplatepackagemembership
     ) {
@@ -31,6 +32,7 @@ ezsigntemplatepackage_response_compound_t *ezsigntemplatepackage_response_compou
     ezsigntemplatepackage_response_compound_local_var->b_ezsigntemplatepackage_needvalidation = b_ezsigntemplatepackage_needvalidation;
     ezsigntemplatepackage_response_compound_local_var->b_ezsigntemplatepackage_isactive = b_ezsigntemplatepackage_isactive;
     ezsigntemplatepackage_response_compound_local_var->s_ezsignfoldertype_name_x = s_ezsignfoldertype_name_x;
+    ezsigntemplatepackage_response_compound_local_var->b_ezsigntemplatepackage_editallowed = b_ezsigntemplatepackage_editallowed;
     ezsigntemplatepackage_response_compound_local_var->a_obj_ezsigntemplatepackagesigner = a_obj_ezsigntemplatepackagesigner;
     ezsigntemplatepackage_response_compound_local_var->a_obj_ezsigntemplatepackagemembership = a_obj_ezsigntemplatepackagemembership;
 
@@ -153,6 +155,15 @@ cJSON *ezsigntemplatepackage_response_compound_convertToJSON(ezsigntemplatepacka
     }
     if(cJSON_AddStringToObject(item, "sEzsignfoldertypeNameX", ezsigntemplatepackage_response_compound->s_ezsignfoldertype_name_x) == NULL) {
     goto fail; //String
+    }
+
+
+    // ezsigntemplatepackage_response_compound->b_ezsigntemplatepackage_editallowed
+    if (!ezsigntemplatepackage_response_compound->b_ezsigntemplatepackage_editallowed) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "bEzsigntemplatepackageEditallowed", ezsigntemplatepackage_response_compound->b_ezsigntemplatepackage_editallowed) == NULL) {
+    goto fail; //Bool
     }
 
 
@@ -323,6 +334,18 @@ ezsigntemplatepackage_response_compound_t *ezsigntemplatepackage_response_compou
     goto end; //String
     }
 
+    // ezsigntemplatepackage_response_compound->b_ezsigntemplatepackage_editallowed
+    cJSON *b_ezsigntemplatepackage_editallowed = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackage_response_compoundJSON, "bEzsigntemplatepackageEditallowed");
+    if (!b_ezsigntemplatepackage_editallowed) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(b_ezsigntemplatepackage_editallowed))
+    {
+    goto end; //Bool
+    }
+
     // ezsigntemplatepackage_response_compound->a_obj_ezsigntemplatepackagesigner
     cJSON *a_obj_ezsigntemplatepackagesigner = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackage_response_compoundJSON, "a_objEzsigntemplatepackagesigner");
     if (!a_obj_ezsigntemplatepackagesigner) {
@@ -382,6 +405,7 @@ ezsigntemplatepackage_response_compound_t *ezsigntemplatepackage_response_compou
         b_ezsigntemplatepackage_needvalidation->valueint,
         b_ezsigntemplatepackage_isactive->valueint,
         strdup(s_ezsignfoldertype_name_x->valuestring),
+        b_ezsigntemplatepackage_editallowed->valueint,
         a_obj_ezsigntemplatepackagesignerList,
         a_obj_ezsigntemplatepackagemembershipList
         );

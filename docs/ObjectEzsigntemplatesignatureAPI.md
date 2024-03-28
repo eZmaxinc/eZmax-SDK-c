@@ -16,7 +16,7 @@ Method | HTTP request | Description
 //
 // The endpoint allows to create one or many elements at once.
 //
-ezsigntemplatesignature_create_object_v1_response_t* ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureCreateObjectV1(apiClient_t *apiClient, ezsigntemplatesignature_create_object_v1_request_t * ezsigntemplatesignature_create_object_v1_request);
+ezsigntemplatesignature_create_object_v1_response_t* ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureCreateObjectV1(apiClient_t *apiClient, ezsigntemplatesignature_create_object_v1_request_t *ezsigntemplatesignature_create_object_v1_request);
 ```
 
 ### Parameters
@@ -47,7 +47,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsigntemplatesignature_delete_object_v1_response_t* ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureDeleteObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatesignatureID);
+ezsigntemplatesignature_delete_object_v1_response_t* ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatesignatureID);
 ```
 
 ### Parameters
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsigntemplatesignature_edit_object_v1_response_t* ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureEditObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatesignatureID, ezsigntemplatesignature_edit_object_v1_request_t * ezsigntemplatesignature_edit_object_v1_request);
+ezsigntemplatesignature_edit_object_v1_response_t* ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatesignatureID, ezsigntemplatesignature_edit_object_v1_request_t *ezsigntemplatesignature_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsigntemplatesignature_get_object_v2_response_t* ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureGetObjectV2(apiClient_t *apiClient, int pkiEzsigntemplatesignatureID);
+ezsigntemplatesignature_get_object_v2_response_t* ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureGetObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplatesignatureID);
 ```
 
 ### Parameters

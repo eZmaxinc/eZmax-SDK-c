@@ -10,6 +10,8 @@
 #include "../model/object.h"
 #include "../model/user_create_object_v1_request.h"
 #include "../model/user_create_object_v1_response.h"
+#include "../model/user_create_object_v2_request.h"
+#include "../model/user_create_object_v2_response.h"
 #include "../model/user_edit_object_v1_request.h"
 #include "../model/user_edit_object_v1_response.h"
 #include "../model/user_edit_permissions_v1_request.h"
@@ -21,6 +23,8 @@
 #include "../model/user_get_object_v2_response.h"
 #include "../model/user_get_permissions_v1_response.h"
 #include "../model/user_get_subnets_v1_response.h"
+#include "../model/user_get_usergroupexternals_v1_response.h"
+#include "../model/user_get_usergroups_v1_response.h"
 #include "../model/user_send_password_reset_v1_response.h"
 
 // Enum SSELECTOR for ObjectUserAPI_userGetAutocompleteV2
@@ -45,6 +49,14 @@ typedef enum  { ezmax_api_definition__full_userGetListV1__NULL = 0, ezmax_api_de
 //
 user_create_object_v1_response_t*
 ObjectUserAPI_userCreateObjectV1(apiClient_t *apiClient, user_create_object_v1_request_t *user_create_object_v1_request);
+
+
+// Create a new User
+//
+// The endpoint allows to create one or many elements at once.
+//
+user_create_object_v2_response_t*
+ObjectUserAPI_userCreateObjectV2(apiClient_t *apiClient, user_create_object_v2_request_t *user_create_object_v2_request);
 
 
 // Edit an existing User
@@ -111,6 +123,18 @@ ObjectUserAPI_userGetPermissionsV1(apiClient_t *apiClient, int *pkiUserID);
 //
 user_get_subnets_v1_response_t*
 ObjectUserAPI_userGetSubnetsV1(apiClient_t *apiClient, int *pkiUserID);
+
+
+// Get User's Usergroupexternals
+//
+user_get_usergroupexternals_v1_response_t*
+ObjectUserAPI_userGetUsergroupexternalsV1(apiClient_t *apiClient, int *pkiUserID);
+
+
+// Get User's Usergroups
+//
+user_get_usergroups_v1_response_t*
+ObjectUserAPI_userGetUsergroupsV1(apiClient_t *apiClient, int *pkiUserID);
 
 
 // Send password reset

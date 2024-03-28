@@ -14,7 +14,7 @@ Method | HTTP request | Description
 //
 // 
 //
-systemconfiguration_edit_object_v1_response_t* ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1(apiClient_t *apiClient, int pkiSystemconfigurationID, systemconfiguration_edit_object_v1_request_t * systemconfiguration_edit_object_v1_request);
+systemconfiguration_edit_object_v1_response_t* ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1(apiClient_t *apiClient, int *pkiSystemconfigurationID, systemconfiguration_edit_object_v1_request_t *systemconfiguration_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-systemconfiguration_get_object_v2_response_t* ObjectSystemconfigurationAPI_systemconfigurationGetObjectV2(apiClient_t *apiClient, int pkiSystemconfigurationID);
+systemconfiguration_get_object_v2_response_t* ObjectSystemconfigurationAPI_systemconfigurationGetObjectV2(apiClient_t *apiClient, int *pkiSystemconfigurationID);
 ```
 
 ### Parameters

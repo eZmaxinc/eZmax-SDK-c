@@ -4,12 +4,12 @@
 #include "websocket_request_server_get_websocket_id_v1.h"
 
 
-char* e_websocket_messagetypewebsocket_request_server_get_websocket_id_v1_ToString(ezmax_api_definition__full_websocket_request_server_get_websocket_id_v1_EWEBSOCKETMESSAGETYPE_e e_websocket_messagetype) {
+char* websocket_request_server_get_websocket_id_v1_e_websocket_messagetype_ToString(ezmax_api_definition__full_websocket_request_server_get_websocket_id_v1_EWEBSOCKETMESSAGETYPE_e e_websocket_messagetype) {
     char* e_websocket_messagetypeArray[] =  { "NULL", "RequestServer-GetWebsocketID-V1" };
     return e_websocket_messagetypeArray[e_websocket_messagetype];
 }
 
-ezmax_api_definition__full_websocket_request_server_get_websocket_id_v1_EWEBSOCKETMESSAGETYPE_e e_websocket_messagetypewebsocket_request_server_get_websocket_id_v1_FromString(char* e_websocket_messagetype){
+ezmax_api_definition__full_websocket_request_server_get_websocket_id_v1_EWEBSOCKETMESSAGETYPE_e websocket_request_server_get_websocket_id_v1_e_websocket_messagetype_FromString(char* e_websocket_messagetype){
     int stringToReturn = 0;
     char *e_websocket_messagetypeArray[] =  { "NULL", "RequestServer-GetWebsocketID-V1" };
     size_t sizeofArray = sizeof(e_websocket_messagetypeArray) / sizeof(e_websocket_messagetypeArray[0]);
@@ -79,7 +79,7 @@ websocket_request_server_get_websocket_id_v1_t *websocket_request_server_get_web
     {
     goto end; //Enum
     }
-    e_websocket_messagetypeVariable = e_websocket_messagetypewebsocket_request_server_get_websocket_id_v1_FromString(e_websocket_messagetype->valuestring);
+    e_websocket_messagetypeVariable = websocket_request_server_get_websocket_id_v1_e_websocket_messagetype_FromString(e_websocket_messagetype->valuestring);
 
 
     websocket_request_server_get_websocket_id_v1_local_var = websocket_request_server_get_websocket_id_v1_create (

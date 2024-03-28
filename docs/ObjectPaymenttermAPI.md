@@ -17,7 +17,7 @@ Method | HTTP request | Description
 //
 // The endpoint allows to create one or many elements at once.
 //
-paymentterm_create_object_v1_response_t* ObjectPaymenttermAPI_paymenttermCreateObjectV1(apiClient_t *apiClient, paymentterm_create_object_v1_request_t * paymentterm_create_object_v1_request);
+paymentterm_create_object_v1_response_t* ObjectPaymenttermAPI_paymenttermCreateObjectV1(apiClient_t *apiClient, paymentterm_create_object_v1_request_t *paymentterm_create_object_v1_request);
 ```
 
 ### Parameters
@@ -48,7 +48,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-paymentterm_edit_object_v1_response_t* ObjectPaymenttermAPI_paymenttermEditObjectV1(apiClient_t *apiClient, int pkiPaymenttermID, paymentterm_edit_object_v1_request_t * paymentterm_edit_object_v1_request);
+paymentterm_edit_object_v1_response_t* ObjectPaymenttermAPI_paymenttermEditObjectV1(apiClient_t *apiClient, int *pkiPaymenttermID, paymentterm_edit_object_v1_request_t *paymentterm_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 //
 // Get the list of Paymentterm to be used in a dropdown or autocomplete control.
 //
-paymentterm_get_autocomplete_v2_response_t* ObjectPaymenttermAPI_paymenttermGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_paymenttermGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_paymenttermGetAutocompleteV2_eFilterActive_e eFilterActive, char * sQuery, header_accept_language_e Accept_Language);
+paymentterm_get_autocomplete_v2_response_t* ObjectPaymenttermAPI_paymenttermGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_paymenttermGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_paymenttermGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
 ```
 
 ### Parameters
@@ -112,7 +112,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve Paymentterm list
 //
-paymentterm_get_list_v1_response_t* ObjectPaymenttermAPI_paymenttermGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_paymenttermGetListV1_eOrderBy_e eOrderBy, int iRowMax, int iRowOffset, header_accept_language_e Accept_Language, char * sFilter);
+paymentterm_get_list_v1_response_t* ObjectPaymenttermAPI_paymenttermGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_paymenttermGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
 ```
 
 ### Parameters
@@ -147,7 +147,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-paymentterm_get_object_v2_response_t* ObjectPaymenttermAPI_paymenttermGetObjectV2(apiClient_t *apiClient, int pkiPaymenttermID);
+paymentterm_get_object_v2_response_t* ObjectPaymenttermAPI_paymenttermGetObjectV2(apiClient_t *apiClient, int *pkiPaymenttermID);
 ```
 
 ### Parameters

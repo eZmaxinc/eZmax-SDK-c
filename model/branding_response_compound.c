@@ -4,17 +4,34 @@
 #include "branding_response_compound.h"
 
 
-char* e_branding_logobranding_response_compound_ToString(ezmax_api_definition__full_branding_response_compound__e e_branding_logo) {
+char* branding_response_compound_e_branding_logo_ToString(ezmax_api_definition__full_branding_response_compound__e e_branding_logo) {
     char* e_branding_logoArray[] =  { "NULL", "Default", "JPEG", "PNG" };
     return e_branding_logoArray[e_branding_logo];
 }
 
-ezmax_api_definition__full_branding_response_compound__e e_branding_logobranding_response_compound_FromString(char* e_branding_logo){
+ezmax_api_definition__full_branding_response_compound__e branding_response_compound_e_branding_logo_FromString(char* e_branding_logo){
     int stringToReturn = 0;
     char *e_branding_logoArray[] =  { "NULL", "Default", "JPEG", "PNG" };
     size_t sizeofArray = sizeof(e_branding_logoArray) / sizeof(e_branding_logoArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(e_branding_logo, e_branding_logoArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
+char* branding_response_compound_e_branding_logointerface_ToString(ezmax_api_definition__full_branding_response_compound__e e_branding_logointerface) {
+    char* e_branding_logointerfaceArray[] =  { "NULL", "Default", "JPEG", "PNG" };
+    return e_branding_logointerfaceArray[e_branding_logointerface];
+}
+
+ezmax_api_definition__full_branding_response_compound__e branding_response_compound_e_branding_logointerface_FromString(char* e_branding_logointerface){
+    int stringToReturn = 0;
+    char *e_branding_logointerfaceArray[] =  { "NULL", "Default", "JPEG", "PNG" };
+    size_t sizeofArray = sizeof(e_branding_logointerfaceArray) / sizeof(e_branding_logointerfaceArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(e_branding_logointerface, e_branding_logointerfaceArray[stringToReturn]) == 0) {
             return stringToReturn;
         }
         stringToReturn++;
@@ -30,14 +47,17 @@ branding_response_compound_t *branding_response_compound_create(
     char *s_branding_name,
     char *s_email_address,
     field_e_branding_logo_t *e_branding_logo,
+    field_e_branding_logointerface_t *e_branding_logointerface,
     int i_branding_colortext,
     int i_branding_colortextlinkbox,
     int i_branding_colortextbutton,
     int i_branding_colorbackground,
     int i_branding_colorbackgroundbutton,
     int i_branding_colorbackgroundsmallbox,
+    int i_branding_interfacecolor,
     int b_branding_isactive,
-    char *s_branding_logourl
+    char *s_branding_logourl,
+    char *s_branding_logointerfaceurl
     ) {
     branding_response_compound_t *branding_response_compound_local_var = malloc(sizeof(branding_response_compound_t));
     if (!branding_response_compound_local_var) {
@@ -50,14 +70,17 @@ branding_response_compound_t *branding_response_compound_create(
     branding_response_compound_local_var->s_branding_name = s_branding_name;
     branding_response_compound_local_var->s_email_address = s_email_address;
     branding_response_compound_local_var->e_branding_logo = e_branding_logo;
+    branding_response_compound_local_var->e_branding_logointerface = e_branding_logointerface;
     branding_response_compound_local_var->i_branding_colortext = i_branding_colortext;
     branding_response_compound_local_var->i_branding_colortextlinkbox = i_branding_colortextlinkbox;
     branding_response_compound_local_var->i_branding_colortextbutton = i_branding_colortextbutton;
     branding_response_compound_local_var->i_branding_colorbackground = i_branding_colorbackground;
     branding_response_compound_local_var->i_branding_colorbackgroundbutton = i_branding_colorbackgroundbutton;
     branding_response_compound_local_var->i_branding_colorbackgroundsmallbox = i_branding_colorbackgroundsmallbox;
+    branding_response_compound_local_var->i_branding_interfacecolor = i_branding_interfacecolor;
     branding_response_compound_local_var->b_branding_isactive = b_branding_isactive;
     branding_response_compound_local_var->s_branding_logourl = s_branding_logourl;
+    branding_response_compound_local_var->s_branding_logointerfaceurl = s_branding_logointerfaceurl;
 
     return branding_response_compound_local_var;
 }
@@ -88,9 +111,17 @@ void branding_response_compound_free(branding_response_compound_t *branding_resp
         field_e_branding_logo_free(branding_response_compound->e_branding_logo);
         branding_response_compound->e_branding_logo = NULL;
     }
+    if (branding_response_compound->e_branding_logointerface) {
+        field_e_branding_logointerface_free(branding_response_compound->e_branding_logointerface);
+        branding_response_compound->e_branding_logointerface = NULL;
+    }
     if (branding_response_compound->s_branding_logourl) {
         free(branding_response_compound->s_branding_logourl);
         branding_response_compound->s_branding_logourl = NULL;
+    }
+    if (branding_response_compound->s_branding_logointerfaceurl) {
+        free(branding_response_compound->s_branding_logointerfaceurl);
+        branding_response_compound->s_branding_logointerfaceurl = NULL;
     }
     free(branding_response_compound);
 }
@@ -168,6 +199,19 @@ cJSON *branding_response_compound_convertToJSON(branding_response_compound_t *br
     }
 
 
+    // branding_response_compound->e_branding_logointerface
+    if(branding_response_compound->e_branding_logointerface != ezmax_api_definition__full_branding_response_compound__NULL) {
+    cJSON *e_branding_logointerface_local_JSON = field_e_branding_logointerface_convertToJSON(branding_response_compound->e_branding_logointerface);
+    if(e_branding_logointerface_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eBrandingLogointerface", e_branding_logointerface_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
+    }
+
+
     // branding_response_compound->i_branding_colortext
     if (!branding_response_compound->i_branding_colortext) {
         goto fail;
@@ -222,6 +266,14 @@ cJSON *branding_response_compound_convertToJSON(branding_response_compound_t *br
     }
 
 
+    // branding_response_compound->i_branding_interfacecolor
+    if(branding_response_compound->i_branding_interfacecolor) {
+    if(cJSON_AddNumberToObject(item, "iBrandingInterfacecolor", branding_response_compound->i_branding_interfacecolor) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
     // branding_response_compound->b_branding_isactive
     if (!branding_response_compound->b_branding_isactive) {
         goto fail;
@@ -234,6 +286,14 @@ cJSON *branding_response_compound_convertToJSON(branding_response_compound_t *br
     // branding_response_compound->s_branding_logourl
     if(branding_response_compound->s_branding_logourl) {
     if(cJSON_AddStringToObject(item, "sBrandingLogourl", branding_response_compound->s_branding_logourl) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // branding_response_compound->s_branding_logointerfaceurl
+    if(branding_response_compound->s_branding_logointerfaceurl) {
+    if(cJSON_AddStringToObject(item, "sBrandingLogointerfaceurl", branding_response_compound->s_branding_logointerfaceurl) == NULL) {
     goto fail; //String
     }
     }
@@ -255,6 +315,9 @@ branding_response_compound_t *branding_response_compound_parseFromJSON(cJSON *br
 
     // define the local variable for branding_response_compound->e_branding_logo
     field_e_branding_logo_t *e_branding_logo_local_nonprim = NULL;
+
+    // define the local variable for branding_response_compound->e_branding_logointerface
+    field_e_branding_logointerface_t *e_branding_logointerface_local_nonprim = NULL;
 
     // branding_response_compound->pki_branding_id
     cJSON *pki_branding_id = cJSON_GetObjectItemCaseSensitive(branding_response_compoundJSON, "pkiBrandingID");
@@ -324,6 +387,12 @@ branding_response_compound_t *branding_response_compound_parseFromJSON(cJSON *br
 
     
     e_branding_logo_local_nonprim = field_e_branding_logo_parseFromJSON(e_branding_logo); //custom
+
+    // branding_response_compound->e_branding_logointerface
+    cJSON *e_branding_logointerface = cJSON_GetObjectItemCaseSensitive(branding_response_compoundJSON, "eBrandingLogointerface");
+    if (e_branding_logointerface) { 
+    e_branding_logointerface_local_nonprim = field_e_branding_logointerface_parseFromJSON(e_branding_logointerface); //custom
+    }
 
     // branding_response_compound->i_branding_colortext
     cJSON *i_branding_colortext = cJSON_GetObjectItemCaseSensitive(branding_response_compoundJSON, "iBrandingColortext");
@@ -397,6 +466,15 @@ branding_response_compound_t *branding_response_compound_parseFromJSON(cJSON *br
     goto end; //Numeric
     }
 
+    // branding_response_compound->i_branding_interfacecolor
+    cJSON *i_branding_interfacecolor = cJSON_GetObjectItemCaseSensitive(branding_response_compoundJSON, "iBrandingInterfacecolor");
+    if (i_branding_interfacecolor) { 
+    if(!cJSON_IsNumber(i_branding_interfacecolor))
+    {
+    goto end; //Numeric
+    }
+    }
+
     // branding_response_compound->b_branding_isactive
     cJSON *b_branding_isactive = cJSON_GetObjectItemCaseSensitive(branding_response_compoundJSON, "bBrandingIsactive");
     if (!b_branding_isactive) {
@@ -418,6 +496,15 @@ branding_response_compound_t *branding_response_compound_parseFromJSON(cJSON *br
     }
     }
 
+    // branding_response_compound->s_branding_logointerfaceurl
+    cJSON *s_branding_logointerfaceurl = cJSON_GetObjectItemCaseSensitive(branding_response_compoundJSON, "sBrandingLogointerfaceurl");
+    if (s_branding_logointerfaceurl) { 
+    if(!cJSON_IsString(s_branding_logointerfaceurl) && !cJSON_IsNull(s_branding_logointerfaceurl))
+    {
+    goto end; //String
+    }
+    }
+
 
     branding_response_compound_local_var = branding_response_compound_create (
         pki_branding_id->valuedouble,
@@ -427,14 +514,17 @@ branding_response_compound_t *branding_response_compound_parseFromJSON(cJSON *br
         s_branding_name && !cJSON_IsNull(s_branding_name) ? strdup(s_branding_name->valuestring) : NULL,
         s_email_address && !cJSON_IsNull(s_email_address) ? strdup(s_email_address->valuestring) : NULL,
         e_branding_logo_local_nonprim,
+        e_branding_logointerface ? e_branding_logointerface_local_nonprim : NULL,
         i_branding_colortext->valuedouble,
         i_branding_colortextlinkbox->valuedouble,
         i_branding_colortextbutton->valuedouble,
         i_branding_colorbackground->valuedouble,
         i_branding_colorbackgroundbutton->valuedouble,
         i_branding_colorbackgroundsmallbox->valuedouble,
+        i_branding_interfacecolor ? i_branding_interfacecolor->valuedouble : 0,
         b_branding_isactive->valueint,
-        s_branding_logourl && !cJSON_IsNull(s_branding_logourl) ? strdup(s_branding_logourl->valuestring) : NULL
+        s_branding_logourl && !cJSON_IsNull(s_branding_logourl) ? strdup(s_branding_logourl->valuestring) : NULL,
+        s_branding_logointerfaceurl && !cJSON_IsNull(s_branding_logointerfaceurl) ? strdup(s_branding_logointerfaceurl->valuestring) : NULL
         );
 
     return branding_response_compound_local_var;
@@ -446,6 +536,10 @@ end:
     if (e_branding_logo_local_nonprim) {
         field_e_branding_logo_free(e_branding_logo_local_nonprim);
         e_branding_logo_local_nonprim = NULL;
+    }
+    if (e_branding_logointerface_local_nonprim) {
+        field_e_branding_logointerface_free(e_branding_logointerface_local_nonprim);
+        e_branding_logointerface_local_nonprim = NULL;
     }
     return NULL;
 

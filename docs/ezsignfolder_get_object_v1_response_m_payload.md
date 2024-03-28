@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 **pki_ezsignfolder_id** | **int** | The unique ID of the Ezsignfolder | 
 **fki_ezsignfoldertype_id** | **int** | The unique ID of the Ezsignfoldertype. | [optional] 
 **obj_ezsignfoldertype** | [**custom_ezsignfoldertype_response_t**](custom_ezsignfoldertype_response.md) \* |  | [optional] 
-**e_ezsignfolder_completion** | **field_e_ezsignfolder_completion_t \*** |  | [optional] 
+**e_ezsignfolder_completion** | **field_e_ezsignfolder_completion_t \*** |  | 
 **s_ezsignfoldertype_name_x** | **char \*** |  | [optional] 
 **fki_billingentityinternal_id** | **int** | The unique ID of the Billingentityinternal. | [optional] 
 **s_billingentityinternal_description_x** | **char \*** | The description of the Billingentityinternal in the language of the requester | [optional] 

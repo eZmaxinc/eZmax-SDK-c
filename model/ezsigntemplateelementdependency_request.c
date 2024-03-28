@@ -4,12 +4,12 @@
 #include "ezsigntemplateelementdependency_request.h"
 
 
-char* e_ezsigntemplateelementdependency_validationezsigntemplateelementdependency_request_ToString(ezmax_api_definition__full_ezsigntemplateelementdependency_request__e e_ezsigntemplateelementdependency_validation) {
+char* ezsigntemplateelementdependency_request_e_ezsigntemplateelementdependency_validation_ToString(ezmax_api_definition__full_ezsigntemplateelementdependency_request__e e_ezsigntemplateelementdependency_validation) {
     char* e_ezsigntemplateelementdependency_validationArray[] =  { "NULL", "Value", "Selected", "Filled" };
     return e_ezsigntemplateelementdependency_validationArray[e_ezsigntemplateelementdependency_validation];
 }
 
-ezmax_api_definition__full_ezsigntemplateelementdependency_request__e e_ezsigntemplateelementdependency_validationezsigntemplateelementdependency_request_FromString(char* e_ezsigntemplateelementdependency_validation){
+ezmax_api_definition__full_ezsigntemplateelementdependency_request__e ezsigntemplateelementdependency_request_e_ezsigntemplateelementdependency_validation_FromString(char* e_ezsigntemplateelementdependency_validation){
     int stringToReturn = 0;
     char *e_ezsigntemplateelementdependency_validationArray[] =  { "NULL", "Value", "Selected", "Filled" };
     size_t sizeofArray = sizeof(e_ezsigntemplateelementdependency_validationArray) / sizeof(e_ezsigntemplateelementdependency_validationArray[0]);
@@ -21,12 +21,12 @@ ezmax_api_definition__full_ezsigntemplateelementdependency_request__e e_ezsignte
     }
     return 0;
 }
-char* e_ezsigntemplateelementdependency_operatorezsigntemplateelementdependency_request_ToString(ezmax_api_definition__full_ezsigntemplateelementdependency_request__e e_ezsigntemplateelementdependency_operator) {
+char* ezsigntemplateelementdependency_request_e_ezsigntemplateelementdependency_operator_ToString(ezmax_api_definition__full_ezsigntemplateelementdependency_request__e e_ezsigntemplateelementdependency_operator) {
     char* e_ezsigntemplateelementdependency_operatorArray[] =  { "NULL", "eq", "neq", "gt", "gte", "lt", "lte", "in", "nin", "rg", "like", "between" };
     return e_ezsigntemplateelementdependency_operatorArray[e_ezsigntemplateelementdependency_operator];
 }
 
-ezmax_api_definition__full_ezsigntemplateelementdependency_request__e e_ezsigntemplateelementdependency_operatorezsigntemplateelementdependency_request_FromString(char* e_ezsigntemplateelementdependency_operator){
+ezmax_api_definition__full_ezsigntemplateelementdependency_request__e ezsigntemplateelementdependency_request_e_ezsigntemplateelementdependency_operator_FromString(char* e_ezsigntemplateelementdependency_operator){
     int stringToReturn = 0;
     char *e_ezsigntemplateelementdependency_operatorArray[] =  { "NULL", "eq", "neq", "gt", "gte", "lt", "lte", "in", "nin", "rg", "like", "between" };
     size_t sizeofArray = sizeof(e_ezsigntemplateelementdependency_operatorArray) / sizeof(e_ezsigntemplateelementdependency_operatorArray[0]);

@@ -64,9 +64,6 @@ ezsignfoldertype_request_t* instantiate_ezsignfoldertype_request(int include_opt
       false,
       false,
       false,
-      false,
-      true,
-      true,
       true
     );
   } else {
@@ -111,9 +108,6 @@ ezsignfoldertype_request_t* instantiate_ezsignfoldertype_request(int include_opt
       false,
       false,
       false,
-      false,
-      true,
-      true,
       true
     );
   }

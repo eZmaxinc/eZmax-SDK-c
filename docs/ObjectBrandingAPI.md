@@ -17,7 +17,7 @@ Method | HTTP request | Description
 //
 // The endpoint allows to create one or many elements at once.
 //
-branding_create_object_v1_response_t* ObjectBrandingAPI_brandingCreateObjectV1(apiClient_t *apiClient, branding_create_object_v1_request_t * branding_create_object_v1_request);
+branding_create_object_v1_response_t* ObjectBrandingAPI_brandingCreateObjectV1(apiClient_t *apiClient, branding_create_object_v1_request_t *branding_create_object_v1_request);
 ```
 
 ### Parameters
@@ -48,7 +48,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-branding_edit_object_v1_response_t* ObjectBrandingAPI_brandingEditObjectV1(apiClient_t *apiClient, int pkiBrandingID, branding_edit_object_v1_request_t * branding_edit_object_v1_request);
+branding_edit_object_v1_response_t* ObjectBrandingAPI_brandingEditObjectV1(apiClient_t *apiClient, int *pkiBrandingID, branding_edit_object_v1_request_t *branding_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 //
 // Get the list of Branding to be used in a dropdown or autocomplete control.
 //
-branding_get_autocomplete_v2_response_t* ObjectBrandingAPI_brandingGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_brandingGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_brandingGetAutocompleteV2_eFilterActive_e eFilterActive, char * sQuery, header_accept_language_e Accept_Language);
+branding_get_autocomplete_v2_response_t* ObjectBrandingAPI_brandingGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_brandingGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_brandingGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
 ```
 
 ### Parameters
@@ -112,9 +112,9 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve Branding list
 //
-// Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eBrandingLogo | Default<br>JPEG<br>PNG |
+// Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eBrandingLogo | Default<br>JPEG<br>PNG | | eBrandingLogointerface | Default<br>JPEG<br>PNG |
 //
-branding_get_list_v1_response_t* ObjectBrandingAPI_brandingGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_brandingGetListV1_eOrderBy_e eOrderBy, int iRowMax, int iRowOffset, header_accept_language_e Accept_Language, char * sFilter);
+branding_get_list_v1_response_t* ObjectBrandingAPI_brandingGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_brandingGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
 ```
 
 ### Parameters
@@ -149,7 +149,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-branding_get_object_v2_response_t* ObjectBrandingAPI_brandingGetObjectV2(apiClient_t *apiClient, int pkiBrandingID);
+branding_get_object_v2_response_t* ObjectBrandingAPI_brandingGetObjectV2(apiClient_t *apiClient, int *pkiBrandingID);
 ```
 
 ### Parameters

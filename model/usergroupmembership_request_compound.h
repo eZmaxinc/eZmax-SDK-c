@@ -22,13 +22,15 @@ typedef struct usergroupmembership_request_compound_t {
     int pki_usergroupmembership_id; //numeric
     int fki_usergroup_id; //numeric
     int fki_user_id; //numeric
+    int fki_usergroupexternal_id; //numeric
 
 } usergroupmembership_request_compound_t;
 
 usergroupmembership_request_compound_t *usergroupmembership_request_compound_create(
     int pki_usergroupmembership_id,
     int fki_usergroup_id,
-    int fki_user_id
+    int fki_user_id,
+    int fki_usergroupexternal_id
 );
 
 void usergroupmembership_request_compound_free(usergroupmembership_request_compound_t *usergroupmembership_request_compound);

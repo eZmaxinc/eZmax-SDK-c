@@ -32,7 +32,8 @@ webhook_request_compound_t* instantiate_webhook_request_compound(int include_opt
       "email@example.com",
       true,
       true,
-      false
+      false,
+      list_createList()
     );
   } else {
     webhook_request_compound = webhook_request_compound_create(
@@ -46,7 +47,8 @@ webhook_request_compound_t* instantiate_webhook_request_compound(int include_opt
       "email@example.com",
       true,
       true,
-      false
+      false,
+      list_createList()
     );
   }
 

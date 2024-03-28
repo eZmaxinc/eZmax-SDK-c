@@ -28,6 +28,7 @@ typedef struct ezsigntemplatepackage_response_t {
     int b_ezsigntemplatepackage_needvalidation; //boolean
     int b_ezsigntemplatepackage_isactive; //boolean
     char *s_ezsignfoldertype_name_x; // string
+    int b_ezsigntemplatepackage_editallowed; //boolean
 
 } ezsigntemplatepackage_response_t;
 
@@ -40,7 +41,8 @@ ezsigntemplatepackage_response_t *ezsigntemplatepackage_response_create(
     int b_ezsigntemplatepackage_adminonly,
     int b_ezsigntemplatepackage_needvalidation,
     int b_ezsigntemplatepackage_isactive,
-    char *s_ezsignfoldertype_name_x
+    char *s_ezsignfoldertype_name_x,
+    int b_ezsigntemplatepackage_editallowed
 );
 
 void ezsigntemplatepackage_response_free(ezsigntemplatepackage_response_t *ezsigntemplatepackage_response);

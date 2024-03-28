@@ -4,12 +4,12 @@
 #include "ezsignsigner_request.h"
 
 
-char* e_ezsignsigner_logintypeezsignsigner_request_ToString(ezmax_api_definition__full_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_e e_ezsignsigner_logintype) {
+char* ezsignsigner_request_e_ezsignsigner_logintype_ToString(ezmax_api_definition__full_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_e e_ezsignsigner_logintype) {
     char* e_ezsignsigner_logintypeArray[] =  { "NULL", "Password", "PasswordPhone", "PasswordQuestion", "InPersonPhone", "InPerson" };
     return e_ezsignsigner_logintypeArray[e_ezsignsigner_logintype];
 }
 
-ezmax_api_definition__full_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_e e_ezsignsigner_logintypeezsignsigner_request_FromString(char* e_ezsignsigner_logintype){
+ezmax_api_definition__full_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_e ezsignsigner_request_e_ezsignsigner_logintype_FromString(char* e_ezsignsigner_logintype){
     int stringToReturn = 0;
     char *e_ezsignsigner_logintypeArray[] =  { "NULL", "Password", "PasswordPhone", "PasswordQuestion", "InPersonPhone", "InPerson" };
     size_t sizeofArray = sizeof(e_ezsignsigner_logintypeArray) / sizeof(e_ezsignsigner_logintypeArray[0]);
@@ -149,7 +149,7 @@ ezsignsigner_request_t *ezsignsigner_request_parseFromJSON(cJSON *ezsignsigner_r
     {
     goto end; //Enum
     }
-    e_ezsignsigner_logintypeVariable = e_ezsignsigner_logintypeezsignsigner_request_FromString(e_ezsignsigner_logintype->valuestring);
+    e_ezsignsigner_logintypeVariable = ezsignsigner_request_e_ezsignsigner_logintype_FromString(e_ezsignsigner_logintype->valuestring);
     }
 
     // ezsignsigner_request->s_ezsignsigner_secretanswer
@@ -166,7 +166,7 @@ ezsignsigner_request_t *ezsignsigner_request_parseFromJSON(cJSON *ezsignsigner_r
         fki_userlogintype_id ? fki_userlogintype_id->valuedouble : 0,
         fki_taxassignment_id->valuedouble,
         fki_secretquestion_id ? fki_secretquestion_id->valuedouble : 0,
-        e_ezsignsigner_logintype ? e_ezsignsigner_logintypeVariable : -1,
+        e_ezsignsigner_logintype ? e_ezsignsigner_logintypeVariable : ezmax_api_definition__full_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_NULL,
         s_ezsignsigner_secretanswer && !cJSON_IsNull(s_ezsignsigner_secretanswer) ? strdup(s_ezsignsigner_secretanswer->valuestring) : NULL
         );
 

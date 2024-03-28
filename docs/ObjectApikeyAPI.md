@@ -21,7 +21,7 @@ Method | HTTP request | Description
 //
 // The endpoint allows to create one or many elements at once.
 //
-apikey_create_object_v2_response_t* ObjectApikeyAPI_apikeyCreateObjectV2(apiClient_t *apiClient, apikey_create_object_v2_request_t * apikey_create_object_v2_request);
+apikey_create_object_v2_response_t* ObjectApikeyAPI_apikeyCreateObjectV2(apiClient_t *apiClient, apikey_create_object_v2_request_t *apikey_create_object_v2_request);
 ```
 
 ### Parameters
@@ -52,7 +52,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-apikey_edit_object_v1_response_t* ObjectApikeyAPI_apikeyEditObjectV1(apiClient_t *apiClient, int pkiApikeyID, apikey_edit_object_v1_request_t * apikey_edit_object_v1_request);
+apikey_edit_object_v1_response_t* ObjectApikeyAPI_apikeyEditObjectV1(apiClient_t *apiClient, int *pkiApikeyID, apikey_edit_object_v1_request_t *apikey_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 //
 // Using this endpoint, you can edit multiple Permissions at the same time.
 //
-apikey_edit_permissions_v1_response_t* ObjectApikeyAPI_apikeyEditPermissionsV1(apiClient_t *apiClient, int pkiApikeyID, apikey_edit_permissions_v1_request_t * apikey_edit_permissions_v1_request);
+apikey_edit_permissions_v1_response_t* ObjectApikeyAPI_apikeyEditPermissionsV1(apiClient_t *apiClient, int *pkiApikeyID, apikey_edit_permissions_v1_request_t *apikey_edit_permissions_v1_request);
 ```
 
 ### Parameters
@@ -114,7 +114,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve an existing Apikey's cors
 //
-apikey_get_cors_v1_response_t* ObjectApikeyAPI_apikeyGetCorsV1(apiClient_t *apiClient, int pkiApikeyID);
+apikey_get_cors_v1_response_t* ObjectApikeyAPI_apikeyGetCorsV1(apiClient_t *apiClient, int *pkiApikeyID);
 ```
 
 ### Parameters
@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 //
 // Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---|
 //
-apikey_get_list_v1_response_t* ObjectApikeyAPI_apikeyGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_apikeyGetListV1_eOrderBy_e eOrderBy, int iRowMax, int iRowOffset, header_accept_language_e Accept_Language, char * sFilter);
+apikey_get_list_v1_response_t* ObjectApikeyAPI_apikeyGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_apikeyGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
 ```
 
 ### Parameters
@@ -180,7 +180,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-apikey_get_object_v2_response_t* ObjectApikeyAPI_apikeyGetObjectV2(apiClient_t *apiClient, int pkiApikeyID);
+apikey_get_object_v2_response_t* ObjectApikeyAPI_apikeyGetObjectV2(apiClient_t *apiClient, int *pkiApikeyID);
 ```
 
 ### Parameters
@@ -209,7 +209,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve an existing Apikey's Permissions
 //
-apikey_get_permissions_v1_response_t* ObjectApikeyAPI_apikeyGetPermissionsV1(apiClient_t *apiClient, int pkiApikeyID);
+apikey_get_permissions_v1_response_t* ObjectApikeyAPI_apikeyGetPermissionsV1(apiClient_t *apiClient, int *pkiApikeyID);
 ```
 
 ### Parameters
@@ -238,7 +238,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve an existing Apikey's subnets
 //
-apikey_get_subnets_v1_response_t* ObjectApikeyAPI_apikeyGetSubnetsV1(apiClient_t *apiClient, int pkiApikeyID);
+apikey_get_subnets_v1_response_t* ObjectApikeyAPI_apikeyGetSubnetsV1(apiClient_t *apiClient, int *pkiApikeyID);
 ```
 
 ### Parameters
@@ -269,7 +269,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-apikey_regenerate_v1_response_t* ObjectApikeyAPI_apikeyRegenerateV1(apiClient_t *apiClient, int pkiApikeyID, apikey_regenerate_v1_request_t * apikey_regenerate_v1_request);
+apikey_regenerate_v1_response_t* ObjectApikeyAPI_apikeyRegenerateV1(apiClient_t *apiClient, int *pkiApikeyID, apikey_regenerate_v1_request_t *apikey_regenerate_v1_request);
 ```
 
 ### Parameters

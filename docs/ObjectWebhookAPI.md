@@ -4,7 +4,6 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ObjectWebhookAPI_webhookCreateObjectV1**](ObjectWebhookAPI.md#ObjectWebhookAPI_webhookCreateObjectV1) | **POST** /1/object/webhook | Create a new Webhook
 [**ObjectWebhookAPI_webhookCreateObjectV2**](ObjectWebhookAPI.md#ObjectWebhookAPI_webhookCreateObjectV2) | **POST** /2/object/webhook | Create a new Webhook
 [**ObjectWebhookAPI_webhookDeleteObjectV1**](ObjectWebhookAPI.md#ObjectWebhookAPI_webhookDeleteObjectV1) | **DELETE** /1/object/webhook/{pkiWebhookID} | Delete an existing Webhook
 [**ObjectWebhookAPI_webhookEditObjectV1**](ObjectWebhookAPI.md#ObjectWebhookAPI_webhookEditObjectV1) | **PUT** /1/object/webhook/{pkiWebhookID} | Edit an existing Webhook
@@ -15,44 +14,13 @@ Method | HTTP request | Description
 [**ObjectWebhookAPI_webhookTestV1**](ObjectWebhookAPI.md#ObjectWebhookAPI_webhookTestV1) | **POST** /1/object/webhook/{pkiWebhookID}/test | Test the Webhook by calling the Url
 
 
-# **ObjectWebhookAPI_webhookCreateObjectV1**
-```c
-// Create a new Webhook
-//
-// The endpoint allows to create one or many elements at once.
-//
-webhook_create_object_v1_response_t* ObjectWebhookAPI_webhookCreateObjectV1(apiClient_t *apiClient, webhook_create_object_v1_request_t * webhook_create_object_v1_request);
-```
-
-### Parameters
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration |
-**webhook_create_object_v1_request** | **[webhook_create_object_v1_request_t](webhook_create_object_v1_request.md) \*** |  | 
-
-### Return type
-
-[webhook_create_object_v1_response_t](webhook_create_object_v1_response.md) *
-
-
-### Authorization
-
-[Authorization](../README.md#Authorization)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **ObjectWebhookAPI_webhookCreateObjectV2**
 ```c
 // Create a new Webhook
 //
 // The endpoint allows to create one or many elements at once.
 //
-webhook_create_object_v2_response_t* ObjectWebhookAPI_webhookCreateObjectV2(apiClient_t *apiClient, webhook_create_object_v2_request_t * webhook_create_object_v2_request);
+webhook_create_object_v2_response_t* ObjectWebhookAPI_webhookCreateObjectV2(apiClient_t *apiClient, webhook_create_object_v2_request_t *webhook_create_object_v2_request);
 ```
 
 ### Parameters
@@ -83,7 +51,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-webhook_delete_object_v1_response_t* ObjectWebhookAPI_webhookDeleteObjectV1(apiClient_t *apiClient, int pkiWebhookID);
+webhook_delete_object_v1_response_t* ObjectWebhookAPI_webhookDeleteObjectV1(apiClient_t *apiClient, int *pkiWebhookID);
 ```
 
 ### Parameters
@@ -114,7 +82,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-webhook_edit_object_v1_response_t* ObjectWebhookAPI_webhookEditObjectV1(apiClient_t *apiClient, int pkiWebhookID, webhook_edit_object_v1_request_t * webhook_edit_object_v1_request);
+webhook_edit_object_v1_response_t* ObjectWebhookAPI_webhookEditObjectV1(apiClient_t *apiClient, int *pkiWebhookID, webhook_edit_object_v1_request_t *webhook_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -146,7 +114,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-webhook_get_history_v1_response_t* ObjectWebhookAPI_webhookGetHistoryV1(apiClient_t *apiClient, int pkiWebhookID, ezmax_api_definition__full_webhookGetHistoryV1_eWebhookHistoryinterval_e eWebhookHistoryinterval);
+webhook_get_history_v1_response_t* ObjectWebhookAPI_webhookGetHistoryV1(apiClient_t *apiClient, int *pkiWebhookID, ezmax_api_definition__full_webhookGetHistoryV1_eWebhookHistoryinterval_e eWebhookHistoryinterval);
 ```
 
 ### Parameters
@@ -178,7 +146,7 @@ Name | Type | Description  | Notes
 //
 // Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eWebhookModule | Ezsign<br>Management | | eWebhookEzsignevent | DocumentCompleted<br>FolderCompleted | | eWebhookManagementevent | UserCreated |
 //
-webhook_get_list_v1_response_t* ObjectWebhookAPI_webhookGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_webhookGetListV1_eOrderBy_e eOrderBy, int iRowMax, int iRowOffset, header_accept_language_e Accept_Language, char * sFilter);
+webhook_get_list_v1_response_t* ObjectWebhookAPI_webhookGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_webhookGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
 ```
 
 ### Parameters
@@ -213,7 +181,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-webhook_get_object_v2_response_t* ObjectWebhookAPI_webhookGetObjectV2(apiClient_t *apiClient, int pkiWebhookID);
+webhook_get_object_v2_response_t* ObjectWebhookAPI_webhookGetObjectV2(apiClient_t *apiClient, int *pkiWebhookID);
 ```
 
 ### Parameters
@@ -244,7 +212,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-webhook_regenerate_apikey_v1_response_t* ObjectWebhookAPI_webhookRegenerateApikeyV1(apiClient_t *apiClient, int pkiWebhookID, webhook_regenerate_apikey_v1_request_t * webhook_regenerate_apikey_v1_request);
+webhook_regenerate_apikey_v1_response_t* ObjectWebhookAPI_webhookRegenerateApikeyV1(apiClient_t *apiClient, int *pkiWebhookID, webhook_regenerate_apikey_v1_request_t *webhook_regenerate_apikey_v1_request);
 ```
 
 ### Parameters
@@ -276,7 +244,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-webhook_test_v1_response_t* ObjectWebhookAPI_webhookTestV1(apiClient_t *apiClient, int pkiWebhookID, object_t * body);
+webhook_test_v1_response_t* ObjectWebhookAPI_webhookTestV1(apiClient_t *apiClient, int *pkiWebhookID, object_t *body);
 ```
 
 ### Parameters

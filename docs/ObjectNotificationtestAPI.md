@@ -13,7 +13,7 @@ Method | HTTP request | Description
 //
 // 
 //
-notificationtest_get_elements_v1_response_t* ObjectNotificationtestAPI_notificationtestGetElementsV1(apiClient_t *apiClient, int pkiNotificationtestID);
+notificationtest_get_elements_v1_response_t* ObjectNotificationtestAPI_notificationtestGetElementsV1(apiClient_t *apiClient, int *pkiNotificationtestID);
 ```
 
 ### Parameters

@@ -44,7 +44,7 @@ Name | Type | Description  | Notes
 //
 // Retrieve Ezsigntemplates and Ezsigntemplatepackages that can be imported in a Ezsignfolder
 //
-ezsign_suggest_templates_v1_response_t* ModuleEzsignAPI_ezsignSuggestTemplatesV1(apiClient_t *apiClient, int fkiEzsignfoldertypeID);
+ezsign_suggest_templates_v1_response_t* ModuleEzsignAPI_ezsignSuggestTemplatesV1(apiClient_t *apiClient, int *fkiEzsignfoldertypeID);
 ```
 
 ### Parameters

@@ -4,12 +4,12 @@
 #include "ezsignformfield_response.h"
 
 
-char* e_ezsignformfield_dependencyrequirementezsignformfield_response_ToString(ezmax_api_definition__full_ezsignformfield_response__e e_ezsignformfield_dependencyrequirement) {
+char* ezsignformfield_response_e_ezsignformfield_dependencyrequirement_ToString(ezmax_api_definition__full_ezsignformfield_response__e e_ezsignformfield_dependencyrequirement) {
     char* e_ezsignformfield_dependencyrequirementArray[] =  { "NULL", "AllOf", "AnyOf" };
     return e_ezsignformfield_dependencyrequirementArray[e_ezsignformfield_dependencyrequirement];
 }
 
-ezmax_api_definition__full_ezsignformfield_response__e e_ezsignformfield_dependencyrequirementezsignformfield_response_FromString(char* e_ezsignformfield_dependencyrequirement){
+ezmax_api_definition__full_ezsignformfield_response__e ezsignformfield_response_e_ezsignformfield_dependencyrequirement_FromString(char* e_ezsignformfield_dependencyrequirement){
     int stringToReturn = 0;
     char *e_ezsignformfield_dependencyrequirementArray[] =  { "NULL", "AllOf", "AnyOf" };
     size_t sizeofArray = sizeof(e_ezsignformfield_dependencyrequirementArray) / sizeof(e_ezsignformfield_dependencyrequirementArray[0]);

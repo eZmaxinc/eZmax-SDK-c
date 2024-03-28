@@ -15,7 +15,7 @@ Method | HTTP request | Description
 //
 // The endpoint allows to create one or many elements at once.
 //
-ezsignsignergroupmembership_create_object_v1_response_t* ObjectEzsignsignergroupmembershipAPI_ezsignsignergroupmembershipCreateObjectV1(apiClient_t *apiClient, ezsignsignergroupmembership_create_object_v1_request_t * ezsignsignergroupmembership_create_object_v1_request);
+ezsignsignergroupmembership_create_object_v1_response_t* ObjectEzsignsignergroupmembershipAPI_ezsignsignergroupmembershipCreateObjectV1(apiClient_t *apiClient, ezsignsignergroupmembership_create_object_v1_request_t *ezsignsignergroupmembership_create_object_v1_request);
 ```
 
 ### Parameters
@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignsignergroupmembership_delete_object_v1_response_t* ObjectEzsignsignergroupmembershipAPI_ezsignsignergroupmembershipDeleteObjectV1(apiClient_t *apiClient, int pkiEzsignsignergroupmembershipID);
+ezsignsignergroupmembership_delete_object_v1_response_t* ObjectEzsignsignergroupmembershipAPI_ezsignsignergroupmembershipDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignsignergroupmembershipID);
 ```
 
 ### Parameters
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignsignergroupmembership_get_object_v2_response_t* ObjectEzsignsignergroupmembershipAPI_ezsignsignergroupmembershipGetObjectV2(apiClient_t *apiClient, int pkiEzsignsignergroupmembershipID);
+ezsignsignergroupmembership_get_object_v2_response_t* ObjectEzsignsignergroupmembershipAPI_ezsignsignergroupmembershipGetObjectV2(apiClient_t *apiClient, int *pkiEzsignsignergroupmembershipID);
 ```
 
 ### Parameters

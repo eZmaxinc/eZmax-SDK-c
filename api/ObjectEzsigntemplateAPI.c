@@ -161,13 +161,13 @@ end:
 // Functions for enum EORDERBY for ObjectEzsigntemplateAPI_ezsigntemplateGetListV1
 
 static char* ezsigntemplateGetListV1_EORDERBY_ToString(ezmax_api_definition__full_ezsigntemplateGetListV1_eOrderBy_e EORDERBY){
-    char *EORDERBYArray[] =  { "NULL", "pkiEzsigntemplateID_ASC", "pkiEzsigntemplateID_DESC", "fkiTeamID_ASC", "fkiTeamID_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "fkiUserIDOwner_ASC", "fkiUserIDOwner_DESC", "fkiLanguageID_ASC", "fkiLanguageID_DESC", "eEzsigntemplateType_ASC", "eEzsigntemplateType_DESC", "sEzsigntemplateDescription_ASC", "sEzsigntemplateDescription_DESC", "sEzsigntemplatedocumentDescription_ASC", "sEzsigntemplatedocumentDescription_DESC", "iEzsigntemplatedocumentPagetotal_ASC", "iEzsigntemplatedocumentPagetotal_DESC", "iEzsigntemplateSignaturetotal_ASC", "iEzsigntemplateSignaturetotal_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiEzsigntemplateID_ASC", "pkiEzsigntemplateID_DESC", "fkiTeamID_ASC", "fkiTeamID_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "fkiUserIDOwner_ASC", "fkiUserIDOwner_DESC", "fkiLanguageID_ASC", "fkiLanguageID_DESC", "eEzsigntemplateType_ASC", "eEzsigntemplateType_DESC", "sEzsigntemplateDescription_ASC", "sEzsigntemplateDescription_DESC", "sEzsigntemplatedocumentDescription_ASC", "sEzsigntemplatedocumentDescription_DESC", "iEzsigntemplatedocumentPagetotal_ASC", "iEzsigntemplatedocumentPagetotal_DESC", "iEzsigntemplateSignaturetotal_ASC", "iEzsigntemplateSignaturetotal_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC", "eEzsigntemplateType_ASC", "eEzsigntemplateType_DESC" };
     return EORDERBYArray[EORDERBY];
 }
 
 static ezmax_api_definition__full_ezsigntemplateGetListV1_eOrderBy_e ezsigntemplateGetListV1_EORDERBY_FromString(char* EORDERBY){
     int stringToReturn = 0;
-    char *EORDERBYArray[] =  { "NULL", "pkiEzsigntemplateID_ASC", "pkiEzsigntemplateID_DESC", "fkiTeamID_ASC", "fkiTeamID_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "fkiUserIDOwner_ASC", "fkiUserIDOwner_DESC", "fkiLanguageID_ASC", "fkiLanguageID_DESC", "eEzsigntemplateType_ASC", "eEzsigntemplateType_DESC", "sEzsigntemplateDescription_ASC", "sEzsigntemplateDescription_DESC", "sEzsigntemplatedocumentDescription_ASC", "sEzsigntemplatedocumentDescription_DESC", "iEzsigntemplatedocumentPagetotal_ASC", "iEzsigntemplatedocumentPagetotal_DESC", "iEzsigntemplateSignaturetotal_ASC", "iEzsigntemplateSignaturetotal_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiEzsigntemplateID_ASC", "pkiEzsigntemplateID_DESC", "fkiTeamID_ASC", "fkiTeamID_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "fkiUserIDOwner_ASC", "fkiUserIDOwner_DESC", "fkiLanguageID_ASC", "fkiLanguageID_DESC", "eEzsigntemplateType_ASC", "eEzsigntemplateType_DESC", "sEzsigntemplateDescription_ASC", "sEzsigntemplateDescription_DESC", "sEzsigntemplatedocumentDescription_ASC", "sEzsigntemplatedocumentDescription_DESC", "iEzsigntemplatedocumentPagetotal_ASC", "iEzsigntemplatedocumentPagetotal_DESC", "iEzsigntemplateSignaturetotal_ASC", "iEzsigntemplateSignaturetotal_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC", "eEzsigntemplateType_ASC", "eEzsigntemplateType_DESC" };
     size_t sizeofArray = sizeof(EORDERBYArray) / sizeof(EORDERBYArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(EORDERBY, EORDERBYArray[stringToReturn]) == 0) {
@@ -429,6 +429,84 @@ end:
 
 }
 
+// Create a new Ezsigntemplate
+//
+// The endpoint allows to create one or many elements at once.
+//
+ezsigntemplate_create_object_v2_response_t*
+ObjectEzsigntemplateAPI_ezsigntemplateCreateObjectV2(apiClient_t *apiClient, ezsigntemplate_create_object_v2_request_t *ezsigntemplate_create_object_v2_request)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/2/object/ezsigntemplate")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/2/object/ezsigntemplate");
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_ezsigntemplate_create_object_v2_request = NULL;
+    if (ezsigntemplate_create_object_v2_request != NULL)
+    {
+        //string
+        localVarSingleItemJSON_ezsigntemplate_create_object_v2_request = ezsigntemplate_create_object_v2_request_convertToJSON(ezsigntemplate_create_object_v2_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsigntemplate_create_object_v2_request);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "POST");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 201) {
+    //    printf("%s\n","Successful response");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectEzsigntemplateAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsigntemplate_create_object_v2_response_t *elementToReturn = ezsigntemplate_create_object_v2_response_parseFromJSON(ObjectEzsigntemplateAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsigntemplateAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    if (localVarSingleItemJSON_ezsigntemplate_create_object_v2_request) {
+        cJSON_Delete(localVarSingleItemJSON_ezsigntemplate_create_object_v2_request);
+        localVarSingleItemJSON_ezsigntemplate_create_object_v2_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Delete an existing Ezsigntemplate
 //
 // 
@@ -603,6 +681,107 @@ ObjectEzsigntemplateAPI_ezsigntemplateEditObjectV1(apiClient_t *apiClient, int *
     if (localVarSingleItemJSON_ezsigntemplate_edit_object_v1_request) {
         cJSON_Delete(localVarSingleItemJSON_ezsigntemplate_edit_object_v1_request);
         localVarSingleItemJSON_ezsigntemplate_edit_object_v1_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Edit an existing Ezsigntemplate
+//
+// 
+//
+ezsigntemplate_edit_object_v2_response_t*
+ObjectEzsigntemplateAPI_ezsigntemplateEditObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplateID, ezsigntemplate_edit_object_v2_request_t *ezsigntemplate_edit_object_v2_request)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/2/object/ezsigntemplate/{pkiEzsigntemplateID}")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/2/object/ezsigntemplate/{pkiEzsigntemplateID}");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsigntemplateID =  + strlen("{ pkiEzsigntemplateID }");
+    if(pkiEzsigntemplateID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsigntemplateID = malloc(sizeOfPathParams_pkiEzsigntemplateID);
+    snprintf(localVarToReplace_pkiEzsigntemplateID, sizeOfPathParams_pkiEzsigntemplateID, "{%s}", "pkiEzsigntemplateID");
+
+    char localVarBuff_pkiEzsigntemplateID[256];
+    intToStr(localVarBuff_pkiEzsigntemplateID, *pkiEzsigntemplateID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplateID, localVarBuff_pkiEzsigntemplateID);
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_ezsigntemplate_edit_object_v2_request = NULL;
+    if (ezsigntemplate_edit_object_v2_request != NULL)
+    {
+        //string
+        localVarSingleItemJSON_ezsigntemplate_edit_object_v2_request = ezsigntemplate_edit_object_v2_request_convertToJSON(ezsigntemplate_edit_object_v2_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsigntemplate_edit_object_v2_request);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "PUT");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectEzsigntemplateAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsigntemplate_edit_object_v2_response_t *elementToReturn = ezsigntemplate_edit_object_v2_response_parseFromJSON(ObjectEzsigntemplateAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsigntemplateAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsigntemplateID);
+    if (localVarSingleItemJSON_ezsigntemplate_edit_object_v2_request) {
+        cJSON_Delete(localVarSingleItemJSON_ezsigntemplate_edit_object_v2_request);
+        localVarSingleItemJSON_ezsigntemplate_edit_object_v2_request = NULL;
     }
     free(localVarBodyParameters);
     return elementToReturn;

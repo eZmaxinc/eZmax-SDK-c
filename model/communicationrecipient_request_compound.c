@@ -4,12 +4,12 @@
 #include "communicationrecipient_request_compound.h"
 
 
-char* e_communicationrecipient_typecommunicationrecipient_request_compound_ToString(ezmax_api_definition__full_communicationrecipient_request_compound__e e_communicationrecipient_type) {
+char* communicationrecipient_request_compound_e_communicationrecipient_type_ToString(ezmax_api_definition__full_communicationrecipient_request_compound__e e_communicationrecipient_type) {
     char* e_communicationrecipient_typeArray[] =  { "NULL", "To", "Cc", "Bcc" };
     return e_communicationrecipient_typeArray[e_communicationrecipient_type];
 }
 
-ezmax_api_definition__full_communicationrecipient_request_compound__e e_communicationrecipient_typecommunicationrecipient_request_compound_FromString(char* e_communicationrecipient_type){
+ezmax_api_definition__full_communicationrecipient_request_compound__e communicationrecipient_request_compound_e_communicationrecipient_type_FromString(char* e_communicationrecipient_type){
     int stringToReturn = 0;
     char *e_communicationrecipient_typeArray[] =  { "NULL", "To", "Cc", "Bcc" };
     size_t sizeofArray = sizeof(e_communicationrecipient_typeArray) / sizeof(e_communicationrecipient_typeArray[0]);

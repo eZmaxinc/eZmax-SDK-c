@@ -16,6 +16,7 @@
 typedef struct branding_response_t branding_response_t;
 
 #include "field_e_branding_logo.h"
+#include "field_e_branding_logointerface.h"
 #include "multilingual_branding_description.h"
 
 // Enum  for branding_response
@@ -25,6 +26,14 @@ typedef enum  { ezmax_api_definition__full_branding_response__NULL = 0, ezmax_ap
 char* branding_response_e_branding_logo_ToString(ezmax_api_definition__full_branding_response__e e_branding_logo);
 
 ezmax_api_definition__full_branding_response__e branding_response_e_branding_logo_FromString(char* e_branding_logo);
+
+// Enum  for branding_response
+
+typedef enum  { ezmax_api_definition__full_branding_response__NULL = 0, ezmax_api_definition__full_branding_response___Default, ezmax_api_definition__full_branding_response__JPEG, ezmax_api_definition__full_branding_response__PNG } ezmax_api_definition__full_branding_response__e;
+
+char* branding_response_e_branding_logointerface_ToString(ezmax_api_definition__full_branding_response__e e_branding_logointerface);
+
+ezmax_api_definition__full_branding_response__e branding_response_e_branding_logointerface_FromString(char* e_branding_logointerface);
 
 
 
@@ -36,12 +45,14 @@ typedef struct branding_response_t {
     char *s_branding_name; // string
     char *s_email_address; // string
     field_e_branding_logo_t *e_branding_logo; // custom
+    field_e_branding_logointerface_t *e_branding_logointerface; // custom
     int i_branding_colortext; //numeric
     int i_branding_colortextlinkbox; //numeric
     int i_branding_colortextbutton; //numeric
     int i_branding_colorbackground; //numeric
     int i_branding_colorbackgroundbutton; //numeric
     int i_branding_colorbackgroundsmallbox; //numeric
+    int i_branding_interfacecolor; //numeric
     int b_branding_isactive; //boolean
 
 } branding_response_t;
@@ -54,12 +65,14 @@ branding_response_t *branding_response_create(
     char *s_branding_name,
     char *s_email_address,
     field_e_branding_logo_t *e_branding_logo,
+    field_e_branding_logointerface_t *e_branding_logointerface,
     int i_branding_colortext,
     int i_branding_colortextlinkbox,
     int i_branding_colortextbutton,
     int i_branding_colorbackground,
     int i_branding_colorbackgroundbutton,
     int i_branding_colorbackgroundsmallbox,
+    int i_branding_interfacecolor,
     int b_branding_isactive
 );
 

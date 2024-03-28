@@ -17,7 +17,7 @@ Method | HTTP request | Description
 //
 // The endpoint allows to create one or many elements at once.
 //
-variableexpense_create_object_v1_response_t* ObjectVariableexpenseAPI_variableexpenseCreateObjectV1(apiClient_t *apiClient, variableexpense_create_object_v1_request_t * variableexpense_create_object_v1_request);
+variableexpense_create_object_v1_response_t* ObjectVariableexpenseAPI_variableexpenseCreateObjectV1(apiClient_t *apiClient, variableexpense_create_object_v1_request_t *variableexpense_create_object_v1_request);
 ```
 
 ### Parameters
@@ -48,7 +48,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-variableexpense_edit_object_v1_response_t* ObjectVariableexpenseAPI_variableexpenseEditObjectV1(apiClient_t *apiClient, int pkiVariableexpenseID, variableexpense_edit_object_v1_request_t * variableexpense_edit_object_v1_request);
+variableexpense_edit_object_v1_response_t* ObjectVariableexpenseAPI_variableexpenseEditObjectV1(apiClient_t *apiClient, int *pkiVariableexpenseID, variableexpense_edit_object_v1_request_t *variableexpense_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 //
 // Get the list of Variableexpense to be used in a dropdown or autocomplete control.
 //
-variableexpense_get_autocomplete_v2_response_t* ObjectVariableexpenseAPI_variableexpenseGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_variableexpenseGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_variableexpenseGetAutocompleteV2_eFilterActive_e eFilterActive, char * sQuery, header_accept_language_e Accept_Language);
+variableexpense_get_autocomplete_v2_response_t* ObjectVariableexpenseAPI_variableexpenseGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_variableexpenseGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_variableexpenseGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
 ```
 
 ### Parameters
@@ -114,7 +114,7 @@ Name | Type | Description  | Notes
 //
 // Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eVariableexpenseTaxable | Yes<br>No<br>Included |
 //
-variableexpense_get_list_v1_response_t* ObjectVariableexpenseAPI_variableexpenseGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_variableexpenseGetListV1_eOrderBy_e eOrderBy, int iRowMax, int iRowOffset, header_accept_language_e Accept_Language, char * sFilter);
+variableexpense_get_list_v1_response_t* ObjectVariableexpenseAPI_variableexpenseGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_variableexpenseGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
 ```
 
 ### Parameters
@@ -149,7 +149,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-variableexpense_get_object_v2_response_t* ObjectVariableexpenseAPI_variableexpenseGetObjectV2(apiClient_t *apiClient, int pkiVariableexpenseID);
+variableexpense_get_object_v2_response_t* ObjectVariableexpenseAPI_variableexpenseGetObjectV2(apiClient_t *apiClient, int *pkiVariableexpenseID);
 ```
 
 ### Parameters

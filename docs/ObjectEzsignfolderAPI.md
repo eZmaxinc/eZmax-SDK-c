@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**ObjectEzsignfolderAPI_ezsignfolderDisposeEzsignfoldersV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderDisposeEzsignfoldersV1) | **POST** /1/object/ezsignfolder/disposeEzsignfolders | Dispose Ezsignfolders
 [**ObjectEzsignfolderAPI_ezsignfolderDisposeV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderDisposeV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/dispose | Dispose the Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderEditObjectV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderEditObjectV1) | **PUT** /1/object/ezsignfolder/{pkiEzsignfolderID} | Edit an existing Ezsignfolder
+[**ObjectEzsignfolderAPI_ezsignfolderEndPrematurelyV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderEndPrematurelyV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/endPrematurely | End prematurely
 [**ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getActionableElements | Retrieve actionable elements for the Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderGetAttachmentCountV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetAttachmentCountV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getAttachmentCount | Retrieve Attachment count
 [**ObjectEzsignfolderAPI_ezsignfolderGetAttachmentsV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetAttachmentsV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getAttachments | Retrieve Ezsignfolder&#39;s Attachments
@@ -30,7 +31,6 @@ Method | HTTP request | Description
 [**ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/importEzsigntemplatepackage | Import an Ezsigntemplatepackage in the Ezsignfolder.
 [**ObjectEzsignfolderAPI_ezsignfolderReorderV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderReorderV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/reorder | Reorder Ezsigndocuments in the Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderSendV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderSendV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/send | Send the Ezsignfolder to the signatories for signature
-[**ObjectEzsignfolderAPI_ezsignfolderSendV2**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderSendV2) | **POST** /2/object/ezsignfolder/{pkiEzsignfolderID}/send | Send the Ezsignfolder to the signatories for signature
 [**ObjectEzsignfolderAPI_ezsignfolderSendV3**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderSendV3) | **POST** /3/object/ezsignfolder/{pkiEzsignfolderID}/send | Send the Ezsignfolder to the signatories for signature
 [**ObjectEzsignfolderAPI_ezsignfolderUnsendV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderUnsendV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/unsend | Unsend the Ezsignfolder
 
@@ -41,7 +41,7 @@ Method | HTTP request | Description
 //
 // 
 //
-ezsignfolder_archive_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderArchiveV1(apiClient_t *apiClient, int pkiEzsignfolderID, object_t * body);
+ezsignfolder_archive_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderArchiveV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body);
 ```
 
 ### Parameters
@@ -71,7 +71,7 @@ Name | Type | Description  | Notes
 ```c
 // Download multiples files from an Ezsignfolder
 //
-binary_t** ObjectEzsignfolderAPI_ezsignfolderBatchDownloadV1(apiClient_t *apiClient, int pkiEzsignfolderID, ezsignfolder_batch_download_v1_request_t * ezsignfolder_batch_download_v1_request);
+binary_t** ObjectEzsignfolderAPI_ezsignfolderBatchDownloadV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_batch_download_v1_request_t *ezsignfolder_batch_download_v1_request);
 ```
 
 ### Parameters
@@ -104,7 +104,7 @@ binary_t**
 //
 // The endpoint allows to create one or many elements at once.  The array can contain simple (Just the object) or compound (The object and its child) objects.  Creating compound elements allows to reduce the multiple requests to create all child objects.
 //
-ezsignfolder_create_object_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1(apiClient_t *apiClient, list_t * ezsignfolder_create_object_v1_request);
+ezsignfolder_create_object_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1(apiClient_t *apiClient, list_t *ezsignfolder_create_object_v1_request);
 ```
 
 ### Parameters
@@ -135,7 +135,7 @@ Name | Type | Description  | Notes
 //
 // The endpoint allows to create one or many elements at once.
 //
-ezsignfolder_create_object_v2_response_t* ObjectEzsignfolderAPI_ezsignfolderCreateObjectV2(apiClient_t *apiClient, ezsignfolder_create_object_v2_request_t * ezsignfolder_create_object_v2_request);
+ezsignfolder_create_object_v2_response_t* ObjectEzsignfolderAPI_ezsignfolderCreateObjectV2(apiClient_t *apiClient, ezsignfolder_create_object_v2_request_t *ezsignfolder_create_object_v2_request);
 ```
 
 ### Parameters
@@ -164,7 +164,7 @@ Name | Type | Description  | Notes
 ```c
 // Delete an existing Ezsignfolder
 //
-ezsignfolder_delete_object_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1(apiClient_t *apiClient, int pkiEzsignfolderID);
+ezsignfolder_delete_object_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignfolderID);
 ```
 
 ### Parameters
@@ -195,7 +195,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignfolder_dispose_ezsignfolders_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderDisposeEzsignfoldersV1(apiClient_t *apiClient, ezsignfolder_dispose_ezsignfolders_v1_request_t * ezsignfolder_dispose_ezsignfolders_v1_request);
+ezsignfolder_dispose_ezsignfolders_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderDisposeEzsignfoldersV1(apiClient_t *apiClient, ezsignfolder_dispose_ezsignfolders_v1_request_t *ezsignfolder_dispose_ezsignfolders_v1_request);
 ```
 
 ### Parameters
@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignfolder_dispose_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderDisposeV1(apiClient_t *apiClient, int pkiEzsignfolderID, object_t * body);
+ezsignfolder_dispose_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderDisposeV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body);
 ```
 
 ### Parameters
@@ -258,7 +258,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignfolder_edit_object_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderEditObjectV1(apiClient_t *apiClient, int pkiEzsignfolderID, ezsignfolder_edit_object_v1_request_t * ezsignfolder_edit_object_v1_request);
+ezsignfolder_edit_object_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderEditObjectV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_edit_object_v1_request_t *ezsignfolder_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -284,13 +284,45 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **ObjectEzsignfolderAPI_ezsignfolderEndPrematurelyV1**
+```c
+// End prematurely
+//
+// End prematurely all Ezsigndocument of Ezsignfolder when some signatures are still required
+//
+ezsignfolder_end_prematurely_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderEndPrematurelyV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsignfolderID** | **int \*** |  | 
+**body** | **[object_t](object.md) \*** |  | 
+
+### Return type
+
+[ezsignfolder_end_prematurely_v1_response_t](ezsignfolder_end_prematurely_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV1**
 ```c
 // Retrieve actionable elements for the Ezsignfolder
 //
 // Return the Ezsignsignatures that can be signed and Ezsignformfieldgroups that can be filled by the current user at the current step in the process
 //
-ezsignfolder_get_actionable_elements_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV1(apiClient_t *apiClient, int pkiEzsignfolderID);
+ezsignfolder_get_actionable_elements_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV1(apiClient_t *apiClient, int *pkiEzsignfolderID);
 ```
 
 ### Parameters
@@ -321,7 +353,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignfolder_get_attachment_count_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetAttachmentCountV1(apiClient_t *apiClient, int pkiEzsignfolderID);
+ezsignfolder_get_attachment_count_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetAttachmentCountV1(apiClient_t *apiClient, int *pkiEzsignfolderID);
 ```
 
 ### Parameters
@@ -352,7 +384,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignfolder_get_attachments_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetAttachmentsV1(apiClient_t *apiClient, int pkiEzsignfolderID);
+ezsignfolder_get_attachments_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetAttachmentsV1(apiClient_t *apiClient, int *pkiEzsignfolderID);
 ```
 
 ### Parameters
@@ -383,7 +415,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignfolder_get_communication_count_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetCommunicationCountV1(apiClient_t *apiClient, int pkiEzsignfolderID);
+ezsignfolder_get_communication_count_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetCommunicationCountV1(apiClient_t *apiClient, int *pkiEzsignfolderID);
 ```
 
 ### Parameters
@@ -414,7 +446,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignfolder_get_communication_list_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetCommunicationListV1(apiClient_t *apiClient, int pkiEzsignfolderID);
+ezsignfolder_get_communication_list_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetCommunicationListV1(apiClient_t *apiClient, int *pkiEzsignfolderID);
 ```
 
 ### Parameters
@@ -445,7 +477,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignfolder_get_communicationrecipients_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetCommunicationrecipientsV1(apiClient_t *apiClient, int pkiEzsignfolderID);
+ezsignfolder_get_communicationrecipients_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetCommunicationrecipientsV1(apiClient_t *apiClient, int *pkiEzsignfolderID);
 ```
 
 ### Parameters
@@ -476,7 +508,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignfolder_get_communicationsenders_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetCommunicationsendersV1(apiClient_t *apiClient, int pkiEzsignfolderID);
+ezsignfolder_get_communicationsenders_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiEzsignfolderID);
 ```
 
 ### Parameters
@@ -507,7 +539,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignfolder_get_ezsigndocuments_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1(apiClient_t *apiClient, int pkiEzsignfolderID);
+ezsignfolder_get_ezsigndocuments_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1(apiClient_t *apiClient, int *pkiEzsignfolderID);
 ```
 
 ### Parameters
@@ -538,7 +570,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignfolder_get_ezsignfoldersignerassociations_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1(apiClient_t *apiClient, int pkiEzsignfolderID);
+ezsignfolder_get_ezsignfoldersignerassociations_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1(apiClient_t *apiClient, int *pkiEzsignfolderID);
 ```
 
 ### Parameters
@@ -569,7 +601,7 @@ Name | Type | Description  | Notes
 //
 // Return the Ezsignsignatures that can be signed by the current user at the current step in the process
 //
-ezsignfolder_get_ezsignsignatures_automatic_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetEzsignsignaturesAutomaticV1(apiClient_t *apiClient, int pkiEzsignfolderID);
+ezsignfolder_get_ezsignsignatures_automatic_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetEzsignsignaturesAutomaticV1(apiClient_t *apiClient, int *pkiEzsignfolderID);
 ```
 
 ### Parameters
@@ -600,7 +632,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignfolder_get_forms_data_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1(apiClient_t *apiClient, int pkiEzsignfolderID);
+ezsignfolder_get_forms_data_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1(apiClient_t *apiClient, int *pkiEzsignfolderID);
 ```
 
 ### Parameters
@@ -631,7 +663,7 @@ Name | Type | Description  | Notes
 //
 // Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eEzsignfolderStep | Unsent<br>Sent<br>PartiallySigned<br>Expired<br>Completed<br>Archived<br>Disposed| | eEzsignfoldertypePrivacylevel | User<br>Usergroup |  Advanced filters that can be used in query parameter *sFilter*:  | Variable | |---| | fkiUserID | | sContactFirstname | | sContactLastname | | sEzsigndocumentName |
 //
-ezsignfolder_get_list_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsignfolderGetListV1_eOrderBy_e eOrderBy, int iRowMax, int iRowOffset, header_accept_language_e Accept_Language, char * sFilter);
+ezsignfolder_get_list_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsignfolderGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
 ```
 
 ### Parameters
@@ -664,7 +696,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve an existing Ezsignfolder
 //
-ezsignfolder_get_object_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetObjectV1(apiClient_t *apiClient, int pkiEzsignfolderID);
+ezsignfolder_get_object_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderGetObjectV1(apiClient_t *apiClient, int *pkiEzsignfolderID);
 ```
 
 ### Parameters
@@ -695,7 +727,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignfolder_get_object_v2_response_t* ObjectEzsignfolderAPI_ezsignfolderGetObjectV2(apiClient_t *apiClient, int pkiEzsignfolderID);
+ezsignfolder_get_object_v2_response_t* ObjectEzsignfolderAPI_ezsignfolderGetObjectV2(apiClient_t *apiClient, int *pkiEzsignfolderID);
 ```
 
 ### Parameters
@@ -726,7 +758,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignfolder_import_ezsignfoldersignerassociations_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderImportEzsignfoldersignerassociationsV1(apiClient_t *apiClient, int pkiEzsignfolderID, ezsignfolder_import_ezsignfoldersignerassociations_v1_request_t * ezsignfolder_import_ezsignfoldersignerassociations_v1_request);
+ezsignfolder_import_ezsignfoldersignerassociations_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderImportEzsignfoldersignerassociationsV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_import_ezsignfoldersignerassociations_v1_request_t *ezsignfolder_import_ezsignfoldersignerassociations_v1_request);
 ```
 
 ### Parameters
@@ -758,7 +790,7 @@ Name | Type | Description  | Notes
 //
 // This endpoint imports all of the Ezsigntemplates from the Ezsigntemplatepackage into the Ezsignfolder as Ezsigndocuments.  This allows to automatically apply all the Ezsigntemplateformfieldgroups and Ezsigntemplatesignatures on the newly created Ezsigndocuments in a single step.
 //
-ezsignfolder_import_ezsigntemplatepackage_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV1(apiClient_t *apiClient, int pkiEzsignfolderID, ezsignfolder_import_ezsigntemplatepackage_v1_request_t * ezsignfolder_import_ezsigntemplatepackage_v1_request);
+ezsignfolder_import_ezsigntemplatepackage_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_import_ezsigntemplatepackage_v1_request_t *ezsignfolder_import_ezsigntemplatepackage_v1_request);
 ```
 
 ### Parameters
@@ -788,7 +820,7 @@ Name | Type | Description  | Notes
 ```c
 // Reorder Ezsigndocuments in the Ezsignfolder
 //
-ezsignfolder_reorder_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderReorderV1(apiClient_t *apiClient, int pkiEzsignfolderID, ezsignfolder_reorder_v1_request_t * ezsignfolder_reorder_v1_request);
+ezsignfolder_reorder_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderReorderV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_reorder_v1_request_t *ezsignfolder_reorder_v1_request);
 ```
 
 ### Parameters
@@ -820,7 +852,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignfolder_send_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderSendV1(apiClient_t *apiClient, int pkiEzsignfolderID, ezsignfolder_send_v1_request_t * ezsignfolder_send_v1_request);
+ezsignfolder_send_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderSendV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_send_v1_request_t *ezsignfolder_send_v1_request);
 ```
 
 ### Parameters
@@ -846,45 +878,13 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **ObjectEzsignfolderAPI_ezsignfolderSendV2**
-```c
-// Send the Ezsignfolder to the signatories for signature
-//
-// 
-//
-ezsignfolder_send_v2_response_t* ObjectEzsignfolderAPI_ezsignfolderSendV2(apiClient_t *apiClient, int pkiEzsignfolderID, ezsignfolder_send_v2_request_t * ezsignfolder_send_v2_request);
-```
-
-### Parameters
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int \*** |  | 
-**ezsignfolder_send_v2_request** | **[ezsignfolder_send_v2_request_t](ezsignfolder_send_v2_request.md) \*** |  | 
-
-### Return type
-
-[ezsignfolder_send_v2_response_t](ezsignfolder_send_v2_response.md) *
-
-
-### Authorization
-
-[Authorization](../README.md#Authorization)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **ObjectEzsignfolderAPI_ezsignfolderSendV3**
 ```c
 // Send the Ezsignfolder to the signatories for signature
 //
 // 
 //
-ezsignfolder_send_v3_response_t* ObjectEzsignfolderAPI_ezsignfolderSendV3(apiClient_t *apiClient, int pkiEzsignfolderID, ezsignfolder_send_v3_request_t * ezsignfolder_send_v3_request);
+ezsignfolder_send_v3_response_t* ObjectEzsignfolderAPI_ezsignfolderSendV3(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_send_v3_request_t *ezsignfolder_send_v3_request);
 ```
 
 ### Parameters
@@ -916,7 +916,7 @@ Name | Type | Description  | Notes
 //
 // Once an Ezsignfolder has been sent to signatories, it cannot be modified.  Using this endpoint, you can unsend the Ezsignfolder and make it modifiable again.  Signatories will receive an email informing them the signature process was aborted and they might receive a new invitation to sign.  ⚠️ Warning: Any signature previously made by signatories on \"Non-completed\" Ezsigndocuments will be lost.
 //
-ezsignfolder_unsend_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderUnsendV1(apiClient_t *apiClient, int pkiEzsignfolderID, object_t * body);
+ezsignfolder_unsend_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderUnsendV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body);
 ```
 
 ### Parameters

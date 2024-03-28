@@ -1,0 +1,37 @@
+/*
+ * ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload.h
+ *
+ * Payload for POST /1/object/ezsignfoldersignerassociation/createEmbeddedUrl
+ */
+
+#ifndef _ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload_H_
+#define _ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload_t ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload_t;
+
+
+
+
+typedef struct ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload_t {
+    char *s_embedded_url; // string
+
+} ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload_t;
+
+ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload_t *ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload_create(
+    char *s_embedded_url
+);
+
+void ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload_free(ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload_t *ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload);
+
+ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload_t *ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload_parseFromJSON(cJSON *ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payloadJSON);
+
+cJSON *ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload_convertToJSON(ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload_t *ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload);
+
+#endif /* _ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload_H_ */
+

@@ -25,11 +25,15 @@ ezsignsignaturecustomdate_response_compound_t* instantiate_ezsignsignaturecustom
       27,
       200,
       300,
+      200,
+      300,
       "Signature date: {YYYY}/{MM}/{DD} {hh}:{mm}{ss} {Z}"
     );
   } else {
     ezsignsignaturecustomdate_response_compound = ezsignsignaturecustomdate_response_compound_create(
       27,
+      200,
+      300,
       200,
       300,
       "Signature date: {YYYY}/{MM}/{DD} {hh}:{mm}{ss} {Z}"

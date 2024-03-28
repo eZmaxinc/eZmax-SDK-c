@@ -4,12 +4,12 @@
 #include "ezsigntemplatepackage_autocomplete_element_response.h"
 
 
-char* e_ezsignfoldertype_privacylevelezsigntemplatepackage_autocomplete_element_response_ToString(ezmax_api_definition__full_ezsigntemplatepackage_autocomplete_element_response__e e_ezsignfoldertype_privacylevel) {
+char* ezsigntemplatepackage_autocomplete_element_response_e_ezsignfoldertype_privacylevel_ToString(ezmax_api_definition__full_ezsigntemplatepackage_autocomplete_element_response__e e_ezsignfoldertype_privacylevel) {
     char* e_ezsignfoldertype_privacylevelArray[] =  { "NULL", "User", "Usergroup" };
     return e_ezsignfoldertype_privacylevelArray[e_ezsignfoldertype_privacylevel];
 }
 
-ezmax_api_definition__full_ezsigntemplatepackage_autocomplete_element_response__e e_ezsignfoldertype_privacylevelezsigntemplatepackage_autocomplete_element_response_FromString(char* e_ezsignfoldertype_privacylevel){
+ezmax_api_definition__full_ezsigntemplatepackage_autocomplete_element_response__e ezsigntemplatepackage_autocomplete_element_response_e_ezsignfoldertype_privacylevel_FromString(char* e_ezsignfoldertype_privacylevel){
     int stringToReturn = 0;
     char *e_ezsignfoldertype_privacylevelArray[] =  { "NULL", "User", "Usergroup" };
     size_t sizeofArray = sizeof(e_ezsignfoldertype_privacylevelArray) / sizeof(e_ezsignfoldertype_privacylevelArray[0]);

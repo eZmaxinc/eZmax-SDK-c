@@ -4,12 +4,12 @@
 #include "custom_creditcardtransaction_response.h"
 
 
-char* e_creditcardtype_codenamecustom_creditcardtransaction_response_ToString(ezmax_api_definition__full_custom_creditcardtransaction_response__e e_creditcardtype_codename) {
+char* custom_creditcardtransaction_response_e_creditcardtype_codename_ToString(ezmax_api_definition__full_custom_creditcardtransaction_response__e e_creditcardtype_codename) {
     char* e_creditcardtype_codenameArray[] =  { "NULL", "Amex", "Mastercard", "Visa" };
     return e_creditcardtype_codenameArray[e_creditcardtype_codename];
 }
 
-ezmax_api_definition__full_custom_creditcardtransaction_response__e e_creditcardtype_codenamecustom_creditcardtransaction_response_FromString(char* e_creditcardtype_codename){
+ezmax_api_definition__full_custom_creditcardtransaction_response__e custom_creditcardtransaction_response_e_creditcardtype_codename_FromString(char* e_creditcardtype_codename){
     int stringToReturn = 0;
     char *e_creditcardtype_codenameArray[] =  { "NULL", "Amex", "Mastercard", "Visa" };
     size_t sizeofArray = sizeof(e_creditcardtype_codenameArray) / sizeof(e_creditcardtype_codenameArray[0]);

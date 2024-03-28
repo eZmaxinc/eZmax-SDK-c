@@ -16,7 +16,7 @@ Method | HTTP request | Description
 //
 // The endpoint allows to create one or many elements at once.
 //
-signature_create_object_v1_response_t* ObjectSignatureAPI_signatureCreateObjectV1(apiClient_t *apiClient, signature_create_object_v1_request_t * signature_create_object_v1_request);
+signature_create_object_v1_response_t* ObjectSignatureAPI_signatureCreateObjectV1(apiClient_t *apiClient, signature_create_object_v1_request_t *signature_create_object_v1_request);
 ```
 
 ### Parameters
@@ -47,7 +47,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-signature_delete_object_v1_response_t* ObjectSignatureAPI_signatureDeleteObjectV1(apiClient_t *apiClient, int pkiSignatureID);
+signature_delete_object_v1_response_t* ObjectSignatureAPI_signatureDeleteObjectV1(apiClient_t *apiClient, int *pkiSignatureID);
 ```
 
 ### Parameters
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-signature_edit_object_v1_response_t* ObjectSignatureAPI_signatureEditObjectV1(apiClient_t *apiClient, int pkiSignatureID, signature_edit_object_v1_request_t * signature_edit_object_v1_request);
+signature_edit_object_v1_response_t* ObjectSignatureAPI_signatureEditObjectV1(apiClient_t *apiClient, int *pkiSignatureID, signature_edit_object_v1_request_t *signature_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-signature_get_object_v2_response_t* ObjectSignatureAPI_signatureGetObjectV2(apiClient_t *apiClient, int pkiSignatureID);
+signature_get_object_v2_response_t* ObjectSignatureAPI_signatureGetObjectV2(apiClient_t *apiClient, int *pkiSignatureID);
 ```
 
 ### Parameters

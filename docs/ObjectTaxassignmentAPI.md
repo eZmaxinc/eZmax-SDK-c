@@ -13,7 +13,7 @@ Method | HTTP request | Description
 //
 // Get the list of Taxassignment to be used in a dropdown or autocomplete control.
 //
-taxassignment_get_autocomplete_v2_response_t* ObjectTaxassignmentAPI_taxassignmentGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_taxassignmentGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_taxassignmentGetAutocompleteV2_eFilterActive_e eFilterActive, char * sQuery, header_accept_language_e Accept_Language);
+taxassignment_get_autocomplete_v2_response_t* ObjectTaxassignmentAPI_taxassignmentGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_taxassignmentGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_taxassignmentGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
 ```
 
 ### Parameters

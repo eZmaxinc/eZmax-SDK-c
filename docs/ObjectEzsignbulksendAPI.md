@@ -21,7 +21,7 @@ Method | HTTP request | Description
 ```c
 // Create a new Ezsignbulksendtransmission in the Ezsignbulksend
 //
-ezsignbulksend_create_ezsignbulksendtransmission_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulksendCreateEzsignbulksendtransmissionV1(apiClient_t *apiClient, int pkiEzsignbulksendID, ezsignbulksend_create_ezsignbulksendtransmission_v1_request_t * ezsignbulksend_create_ezsignbulksendtransmission_v1_request);
+ezsignbulksend_create_ezsignbulksendtransmission_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulksendCreateEzsignbulksendtransmissionV1(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_create_ezsignbulksendtransmission_v1_request_t *ezsignbulksend_create_ezsignbulksendtransmission_v1_request);
 ```
 
 ### Parameters
@@ -53,7 +53,7 @@ Name | Type | Description  | Notes
 //
 // The endpoint allows to create one or many elements at once.
 //
-ezsignbulksend_create_object_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulksendCreateObjectV1(apiClient_t *apiClient, ezsignbulksend_create_object_v1_request_t * ezsignbulksend_create_object_v1_request);
+ezsignbulksend_create_object_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulksendCreateObjectV1(apiClient_t *apiClient, ezsignbulksend_create_object_v1_request_t *ezsignbulksend_create_object_v1_request);
 ```
 
 ### Parameters
@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignbulksend_delete_object_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulksendDeleteObjectV1(apiClient_t *apiClient, int pkiEzsignbulksendID);
+ezsignbulksend_delete_object_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulksendDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksendID);
 ```
 
 ### Parameters
@@ -115,7 +115,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignbulksend_edit_object_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV1(apiClient_t *apiClient, int pkiEzsignbulksendID, ezsignbulksend_edit_object_v1_request_t * ezsignbulksend_edit_object_v1_request);
+ezsignbulksend_edit_object_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_edit_object_v1_request_t *ezsignbulksend_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -147,7 +147,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-char* ObjectEzsignbulksendAPI_ezsignbulksendGetCsvTemplateV1(apiClient_t *apiClient, int pkiEzsignbulksendID, ezmax_api_definition__full_ezsignbulksendGetCsvTemplateV1_eCsvSeparator_e eCsvSeparator);
+char* ObjectEzsignbulksendAPI_ezsignbulksendGetCsvTemplateV1(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezmax_api_definition__full_ezsignbulksendGetCsvTemplateV1_eCsvSeparator_e eCsvSeparator);
 ```
 
 ### Parameters
@@ -180,7 +180,7 @@ char*
 //
 // 
 //
-ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulksendGetEzsignbulksendtransmissionsV1(apiClient_t *apiClient, int pkiEzsignbulksendID);
+ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulksendGetEzsignbulksendtransmissionsV1(apiClient_t *apiClient, int *pkiEzsignbulksendID);
 ```
 
 ### Parameters
@@ -211,7 +211,7 @@ Name | Type | Description  | Notes
 //
 // Return the Ezsignsignatures that can be signed by the current user at the current step in the process
 //
-ezsignbulksend_get_ezsignsignatures_automatic_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulksendGetEzsignsignaturesAutomaticV1(apiClient_t *apiClient, int pkiEzsignbulksendID);
+ezsignbulksend_get_ezsignsignatures_automatic_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulksendGetEzsignsignaturesAutomaticV1(apiClient_t *apiClient, int *pkiEzsignbulksendID);
 ```
 
 ### Parameters
@@ -242,7 +242,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignbulksend_get_forms_data_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulksendGetFormsDataV1(apiClient_t *apiClient, int pkiEzsignbulksendID);
+ezsignbulksend_get_forms_data_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulksendGetFormsDataV1(apiClient_t *apiClient, int *pkiEzsignbulksendID);
 ```
 
 ### Parameters
@@ -273,7 +273,7 @@ Name | Type | Description  | Notes
 //
 // Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eEzsignfoldertypePrivacylevel | User<br>Usergroup |
 //
-ezsignbulksend_get_list_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulksendGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsignbulksendGetListV1_eOrderBy_e eOrderBy, int iRowMax, int iRowOffset, header_accept_language_e Accept_Language, char * sFilter);
+ezsignbulksend_get_list_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulksendGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsignbulksendGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
 ```
 
 ### Parameters
@@ -308,7 +308,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignbulksend_get_object_v2_response_t* ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV2(apiClient_t *apiClient, int pkiEzsignbulksendID);
+ezsignbulksend_get_object_v2_response_t* ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV2(apiClient_t *apiClient, int *pkiEzsignbulksendID);
 ```
 
 ### Parameters
@@ -337,7 +337,7 @@ Name | Type | Description  | Notes
 ```c
 // Reorder Ezsignbulksenddocumentmappings in the Ezsignbulksend
 //
-ezsignbulksend_reorder_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulksendReorderV1(apiClient_t *apiClient, int pkiEzsignbulksendID, ezsignbulksend_reorder_v1_request_t * ezsignbulksend_reorder_v1_request);
+ezsignbulksend_reorder_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulksendReorderV1(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_reorder_v1_request_t *ezsignbulksend_reorder_v1_request);
 ```
 
 ### Parameters

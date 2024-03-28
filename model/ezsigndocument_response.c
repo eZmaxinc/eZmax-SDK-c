@@ -4,12 +4,12 @@
 #include "ezsigndocument_response.h"
 
 
-char* e_ezsigndocument_stepezsigndocument_response_ToString(ezmax_api_definition__full_ezsigndocument_response__e e_ezsigndocument_step) {
+char* ezsigndocument_response_e_ezsigndocument_step_ToString(ezmax_api_definition__full_ezsigndocument_response__e e_ezsigndocument_step) {
     char* e_ezsigndocument_stepArray[] =  { "NULL", "Unsent", "Unsigned", "PartiallySigned", "DeclinedToSign", "PrematurelyEnded", "PendingCompletion", "Completed", "Disposed" };
     return e_ezsigndocument_stepArray[e_ezsigndocument_step];
 }
 
-ezmax_api_definition__full_ezsigndocument_response__e e_ezsigndocument_stepezsigndocument_response_FromString(char* e_ezsigndocument_step){
+ezmax_api_definition__full_ezsigndocument_response__e ezsigndocument_response_e_ezsigndocument_step_FromString(char* e_ezsigndocument_step){
     int stringToReturn = 0;
     char *e_ezsigndocument_stepArray[] =  { "NULL", "Unsent", "Unsigned", "PartiallySigned", "DeclinedToSign", "PrematurelyEnded", "PendingCompletion", "Completed", "Disposed" };
     size_t sizeofArray = sizeof(e_ezsigndocument_stepArray) / sizeof(e_ezsigndocument_stepArray[0]);
@@ -44,7 +44,8 @@ ezsigndocument_response_t *ezsigndocument_response_create(
     int b_ezsigndocument_hassignedsignatures,
     common_audit_t *obj_audit,
     char *s_ezsigndocument_externalid,
-    int i_ezsigndocument_ezsignsignatureattachmenttotal
+    int i_ezsigndocument_ezsignsignatureattachmenttotal,
+    int i_ezsigndocument_ezsigndiscussiontotal
     ) {
     ezsigndocument_response_t *ezsigndocument_response_local_var = malloc(sizeof(ezsigndocument_response_t));
     if (!ezsigndocument_response_local_var) {
@@ -72,6 +73,7 @@ ezsigndocument_response_t *ezsigndocument_response_create(
     ezsigndocument_response_local_var->obj_audit = obj_audit;
     ezsigndocument_response_local_var->s_ezsigndocument_externalid = s_ezsigndocument_externalid;
     ezsigndocument_response_local_var->i_ezsigndocument_ezsignsignatureattachmenttotal = i_ezsigndocument_ezsignsignatureattachmenttotal;
+    ezsigndocument_response_local_var->i_ezsigndocument_ezsigndiscussiontotal = i_ezsigndocument_ezsigndiscussiontotal;
 
     return ezsigndocument_response_local_var;
 }
@@ -327,6 +329,15 @@ cJSON *ezsigndocument_response_convertToJSON(ezsigndocument_response_t *ezsigndo
     goto fail; //Numeric
     }
 
+
+    // ezsigndocument_response->i_ezsigndocument_ezsigndiscussiontotal
+    if (!ezsigndocument_response->i_ezsigndocument_ezsigndiscussiontotal) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iEzsigndocumentEzsigndiscussiontotal", ezsigndocument_response->i_ezsigndocument_ezsigndiscussiontotal) == NULL) {
+    goto fail; //Numeric
+    }
+
     return item;
 fail:
     if (item) {
@@ -567,6 +578,18 @@ ezsigndocument_response_t *ezsigndocument_response_parseFromJSON(cJSON *ezsigndo
     goto end; //Numeric
     }
 
+    // ezsigndocument_response->i_ezsigndocument_ezsigndiscussiontotal
+    cJSON *i_ezsigndocument_ezsigndiscussiontotal = cJSON_GetObjectItemCaseSensitive(ezsigndocument_responseJSON, "iEzsigndocumentEzsigndiscussiontotal");
+    if (!i_ezsigndocument_ezsigndiscussiontotal) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_ezsigndocument_ezsigndiscussiontotal))
+    {
+    goto end; //Numeric
+    }
+
 
     ezsigndocument_response_local_var = ezsigndocument_response_create (
         pki_ezsigndocument_id->valuedouble,
@@ -590,7 +613,8 @@ ezsigndocument_response_t *ezsigndocument_response_parseFromJSON(cJSON *ezsigndo
         b_ezsigndocument_hassignedsignatures ? b_ezsigndocument_hassignedsignatures->valueint : 0,
         obj_audit ? obj_audit_local_nonprim : NULL,
         s_ezsigndocument_externalid && !cJSON_IsNull(s_ezsigndocument_externalid) ? strdup(s_ezsigndocument_externalid->valuestring) : NULL,
-        i_ezsigndocument_ezsignsignatureattachmenttotal->valuedouble
+        i_ezsigndocument_ezsignsignatureattachmenttotal->valuedouble,
+        i_ezsigndocument_ezsigndiscussiontotal->valuedouble
         );
 
     return ezsigndocument_response_local_var;

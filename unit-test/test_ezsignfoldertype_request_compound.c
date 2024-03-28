@@ -64,9 +64,6 @@ ezsignfoldertype_request_compound_t* instantiate_ezsignfoldertype_request_compou
       false,
       false,
       false,
-      false,
-      true,
-      true,
       true,
       list_createList(),
       list_createList()
@@ -113,9 +110,6 @@ ezsignfoldertype_request_compound_t* instantiate_ezsignfoldertype_request_compou
       false,
       false,
       false,
-      false,
-      true,
-      true,
       true,
       list_createList(),
       list_createList()

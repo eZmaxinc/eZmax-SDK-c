@@ -4,12 +4,12 @@
 #include "versionhistory_response.h"
 
 
-char* e_versionhistory_usertypeversionhistory_response_ToString(ezmax_api_definition__full_versionhistory_response__e e_versionhistory_usertype) {
+char* versionhistory_response_e_versionhistory_usertype_ToString(ezmax_api_definition__full_versionhistory_response__e e_versionhistory_usertype) {
     char* e_versionhistory_usertypeArray[] =  { "NULL", "", "AgentBroker", "EzsignUser", "Normal" };
     return e_versionhistory_usertypeArray[e_versionhistory_usertype];
 }
 
-ezmax_api_definition__full_versionhistory_response__e e_versionhistory_usertypeversionhistory_response_FromString(char* e_versionhistory_usertype){
+ezmax_api_definition__full_versionhistory_response__e versionhistory_response_e_versionhistory_usertype_FromString(char* e_versionhistory_usertype){
     int stringToReturn = 0;
     char *e_versionhistory_usertypeArray[] =  { "NULL", "", "AgentBroker", "EzsignUser", "Normal" };
     size_t sizeofArray = sizeof(e_versionhistory_usertypeArray) / sizeof(e_versionhistory_usertypeArray[0]);
@@ -21,12 +21,12 @@ ezmax_api_definition__full_versionhistory_response__e e_versionhistory_usertypev
     }
     return 0;
 }
-char* e_versionhistory_typeversionhistory_response_ToString(ezmax_api_definition__full_versionhistory_response__e e_versionhistory_type) {
+char* versionhistory_response_e_versionhistory_type_ToString(ezmax_api_definition__full_versionhistory_response__e e_versionhistory_type) {
     char* e_versionhistory_typeArray[] =  { "NULL", "AgentBroker", "NewFeature", "Correction", "Modification", "ImportantMessage" };
     return e_versionhistory_typeArray[e_versionhistory_type];
 }
 
-ezmax_api_definition__full_versionhistory_response__e e_versionhistory_typeversionhistory_response_FromString(char* e_versionhistory_type){
+ezmax_api_definition__full_versionhistory_response__e versionhistory_response_e_versionhistory_type_FromString(char* e_versionhistory_type){
     int stringToReturn = 0;
     char *e_versionhistory_typeArray[] =  { "NULL", "AgentBroker", "NewFeature", "Correction", "Modification", "ImportantMessage" };
     size_t sizeofArray = sizeof(e_versionhistory_typeArray) / sizeof(e_versionhistory_typeArray[0]);

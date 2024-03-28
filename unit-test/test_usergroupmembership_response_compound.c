@@ -25,22 +25,26 @@ usergroupmembership_response_compound_t* instantiate_usergroupmembership_respons
       21,
       2,
       70,
+      16,
       "John",
       "Doe",
       "JohnDoe",
       "email@example.com",
-      "Administration"
+      "Administration",
+      "Administrators"
     );
   } else {
     usergroupmembership_response_compound = usergroupmembership_response_compound_create(
       21,
       2,
       70,
+      16,
       "John",
       "Doe",
       "JohnDoe",
       "email@example.com",
-      "Administration"
+      "Administration",
+      "Administrators"
     );
   }
 

@@ -9,8 +9,11 @@ Name | Type | Description | Notes
 **e_systemconfiguration_newexternaluseraction** | **field_e_systemconfiguration_newexternaluseraction_t \*** |  | 
 **e_systemconfiguration_language1** | **field_e_systemconfiguration_language1_t \*** |  | 
 **e_systemconfiguration_language2** | **field_e_systemconfiguration_language2_t \*** |  | 
-**e_systemconfiguration_ezsign** | **field_e_systemconfiguration_ezsign_t \*** |  | 
+**e_systemconfiguration_ezsign** | **field_e_systemconfiguration_ezsign_t \*** |  | [optional] 
+**e_systemconfiguration_ezsignofficeplan** | **field_e_systemconfiguration_ezsignofficeplan_t \*** |  | [optional] 
+**b_systemconfiguration_ezsignpaidbyoffice** | **int** | Whether if Ezsign is paid by the company or not | [optional] 
 **b_systemconfiguration_ezsignpersonnal** | **int** | Whether if we allow the creation of personal files in eZsign | 
+**b_systemconfiguration_isdisposalactive** | **int** | Whether is Disposal processus is active or not | [optional] 
 **b_systemconfiguration_sspr** | **int** | Whether if we allow SSPR | 
 **dt_systemconfiguration_readonlyexpirationstart** | **char \*** | The start date where the system will be in read only | [optional] 
 **dt_systemconfiguration_readonlyexpirationend** | **char \*** | The end date where the system will be in read only | [optional] 

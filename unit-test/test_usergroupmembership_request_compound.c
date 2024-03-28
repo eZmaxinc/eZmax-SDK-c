@@ -24,13 +24,15 @@ usergroupmembership_request_compound_t* instantiate_usergroupmembership_request_
     usergroupmembership_request_compound = usergroupmembership_request_compound_create(
       21,
       2,
-      70
+      70,
+      16
     );
   } else {
     usergroupmembership_request_compound = usergroupmembership_request_compound_create(
       21,
       2,
-      70
+      70,
+      16
     );
   }
 

@@ -4,12 +4,12 @@
 #include "variableexpense_request_compound.h"
 
 
-char* e_variableexpense_taxablevariableexpense_request_compound_ToString(ezmax_api_definition__full_variableexpense_request_compound__e e_variableexpense_taxable) {
+char* variableexpense_request_compound_e_variableexpense_taxable_ToString(ezmax_api_definition__full_variableexpense_request_compound__e e_variableexpense_taxable) {
     char* e_variableexpense_taxableArray[] =  { "NULL", "Yes", "No", "Included" };
     return e_variableexpense_taxableArray[e_variableexpense_taxable];
 }
 
-ezmax_api_definition__full_variableexpense_request_compound__e e_variableexpense_taxablevariableexpense_request_compound_FromString(char* e_variableexpense_taxable){
+ezmax_api_definition__full_variableexpense_request_compound__e variableexpense_request_compound_e_variableexpense_taxable_FromString(char* e_variableexpense_taxable){
     int stringToReturn = 0;
     char *e_variableexpense_taxableArray[] =  { "NULL", "Yes", "No", "Included" };
     size_t sizeofArray = sizeof(e_variableexpense_taxableArray) / sizeof(e_variableexpense_taxableArray[0]);

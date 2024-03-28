@@ -5,6 +5,7 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectUserAPI_userCreateObjectV1**](ObjectUserAPI.md#ObjectUserAPI_userCreateObjectV1) | **POST** /1/object/user | Create a new User
+[**ObjectUserAPI_userCreateObjectV2**](ObjectUserAPI.md#ObjectUserAPI_userCreateObjectV2) | **POST** /2/object/user | Create a new User
 [**ObjectUserAPI_userEditObjectV1**](ObjectUserAPI.md#ObjectUserAPI_userEditObjectV1) | **PUT** /1/object/user/{pkiUserID} | Edit an existing User
 [**ObjectUserAPI_userEditPermissionsV1**](ObjectUserAPI.md#ObjectUserAPI_userEditPermissionsV1) | **PUT** /1/object/user/{pkiUserID}/editPermissions | Edit multiple Permissions
 [**ObjectUserAPI_userGetApikeysV1**](ObjectUserAPI.md#ObjectUserAPI_userGetApikeysV1) | **GET** /1/object/user/{pkiUserID}/getApikeys | Retrieve an existing User&#39;s Apikeys
@@ -14,6 +15,8 @@ Method | HTTP request | Description
 [**ObjectUserAPI_userGetObjectV2**](ObjectUserAPI.md#ObjectUserAPI_userGetObjectV2) | **GET** /2/object/user/{pkiUserID} | Retrieve an existing User
 [**ObjectUserAPI_userGetPermissionsV1**](ObjectUserAPI.md#ObjectUserAPI_userGetPermissionsV1) | **GET** /1/object/user/{pkiUserID}/getPermissions | Retrieve an existing User&#39;s Permissions
 [**ObjectUserAPI_userGetSubnetsV1**](ObjectUserAPI.md#ObjectUserAPI_userGetSubnetsV1) | **GET** /1/object/user/{pkiUserID}/getSubnets | Retrieve an existing User&#39;s Subnets
+[**ObjectUserAPI_userGetUsergroupexternalsV1**](ObjectUserAPI.md#ObjectUserAPI_userGetUsergroupexternalsV1) | **GET** /1/object/user/{pkiUserID}/getUsergroupexternals | Get User&#39;s Usergroupexternals
+[**ObjectUserAPI_userGetUsergroupsV1**](ObjectUserAPI.md#ObjectUserAPI_userGetUsergroupsV1) | **GET** /1/object/user/{pkiUserID}/getUsergroups | Get User&#39;s Usergroups
 [**ObjectUserAPI_userSendPasswordResetV1**](ObjectUserAPI.md#ObjectUserAPI_userSendPasswordResetV1) | **POST** /1/object/user/{pkiUserID}/sendPasswordReset | Send password reset
 
 
@@ -23,7 +26,7 @@ Method | HTTP request | Description
 //
 // The endpoint allows to create one or many elements at once.
 //
-user_create_object_v1_response_t* ObjectUserAPI_userCreateObjectV1(apiClient_t *apiClient, user_create_object_v1_request_t * user_create_object_v1_request);
+user_create_object_v1_response_t* ObjectUserAPI_userCreateObjectV1(apiClient_t *apiClient, user_create_object_v1_request_t *user_create_object_v1_request);
 ```
 
 ### Parameters
@@ -48,13 +51,44 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **ObjectUserAPI_userCreateObjectV2**
+```c
+// Create a new User
+//
+// The endpoint allows to create one or many elements at once.
+//
+user_create_object_v2_response_t* ObjectUserAPI_userCreateObjectV2(apiClient_t *apiClient, user_create_object_v2_request_t *user_create_object_v2_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**user_create_object_v2_request** | **[user_create_object_v2_request_t](user_create_object_v2_request.md) \*** |  | 
+
+### Return type
+
+[user_create_object_v2_response_t](user_create_object_v2_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **ObjectUserAPI_userEditObjectV1**
 ```c
 // Edit an existing User
 //
 // 
 //
-user_edit_object_v1_response_t* ObjectUserAPI_userEditObjectV1(apiClient_t *apiClient, int pkiUserID, user_edit_object_v1_request_t * user_edit_object_v1_request);
+user_edit_object_v1_response_t* ObjectUserAPI_userEditObjectV1(apiClient_t *apiClient, int *pkiUserID, user_edit_object_v1_request_t *user_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -86,7 +120,7 @@ Name | Type | Description  | Notes
 //
 // Using this endpoint, you can edit multiple Permissions at the same time.
 //
-user_edit_permissions_v1_response_t* ObjectUserAPI_userEditPermissionsV1(apiClient_t *apiClient, int pkiUserID, user_edit_permissions_v1_request_t * user_edit_permissions_v1_request);
+user_edit_permissions_v1_response_t* ObjectUserAPI_userEditPermissionsV1(apiClient_t *apiClient, int *pkiUserID, user_edit_permissions_v1_request_t *user_edit_permissions_v1_request);
 ```
 
 ### Parameters
@@ -116,7 +150,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve an existing User's Apikeys
 //
-user_get_apikeys_v1_response_t* ObjectUserAPI_userGetApikeysV1(apiClient_t *apiClient, int pkiUserID);
+user_get_apikeys_v1_response_t* ObjectUserAPI_userGetApikeysV1(apiClient_t *apiClient, int *pkiUserID);
 ```
 
 ### Parameters
@@ -147,7 +181,7 @@ Name | Type | Description  | Notes
 //
 // Get the list of User to be used in a dropdown or autocomplete control.
 //
-user_get_autocomplete_v2_response_t* ObjectUserAPI_userGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_userGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_userGetAutocompleteV2_eFilterActive_e eFilterActive, char * sQuery, header_accept_language_e Accept_Language);
+user_get_autocomplete_v2_response_t* ObjectUserAPI_userGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_userGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_userGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
 ```
 
 ### Parameters
@@ -181,7 +215,7 @@ Name | Type | Description  | Notes
 //
 // Effective Permissions refers to the combination of Permissions held by a User and the Permissions associated with the Usergroups they belong to.
 //
-user_get_effective_permissions_v1_response_t* ObjectUserAPI_userGetEffectivePermissionsV1(apiClient_t *apiClient, int pkiUserID);
+user_get_effective_permissions_v1_response_t* ObjectUserAPI_userGetEffectivePermissionsV1(apiClient_t *apiClient, int *pkiUserID);
 ```
 
 ### Parameters
@@ -212,7 +246,7 @@ Name | Type | Description  | Notes
 //
 // Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eUserType | AgentBroker<br>Assistant<br>Employee<br>EzsignUser<br>Normal | | eUserOrigin | BuiltIn<br>External | | eUserEzsignaccess | No<br>PaidByOffice<br>PerDocument<br>Prepaid |
 //
-user_get_list_v1_response_t* ObjectUserAPI_userGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_userGetListV1_eOrderBy_e eOrderBy, int iRowMax, int iRowOffset, header_accept_language_e Accept_Language, char * sFilter);
+user_get_list_v1_response_t* ObjectUserAPI_userGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_userGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
 ```
 
 ### Parameters
@@ -247,7 +281,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-user_get_object_v2_response_t* ObjectUserAPI_userGetObjectV2(apiClient_t *apiClient, int pkiUserID);
+user_get_object_v2_response_t* ObjectUserAPI_userGetObjectV2(apiClient_t *apiClient, int *pkiUserID);
 ```
 
 ### Parameters
@@ -276,7 +310,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve an existing User's Permissions
 //
-user_get_permissions_v1_response_t* ObjectUserAPI_userGetPermissionsV1(apiClient_t *apiClient, int pkiUserID);
+user_get_permissions_v1_response_t* ObjectUserAPI_userGetPermissionsV1(apiClient_t *apiClient, int *pkiUserID);
 ```
 
 ### Parameters
@@ -305,7 +339,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve an existing User's Subnets
 //
-user_get_subnets_v1_response_t* ObjectUserAPI_userGetSubnetsV1(apiClient_t *apiClient, int pkiUserID);
+user_get_subnets_v1_response_t* ObjectUserAPI_userGetSubnetsV1(apiClient_t *apiClient, int *pkiUserID);
 ```
 
 ### Parameters
@@ -330,13 +364,71 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **ObjectUserAPI_userGetUsergroupexternalsV1**
+```c
+// Get User's Usergroupexternals
+//
+user_get_usergroupexternals_v1_response_t* ObjectUserAPI_userGetUsergroupexternalsV1(apiClient_t *apiClient, int *pkiUserID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiUserID** | **int \*** |  | 
+
+### Return type
+
+[user_get_usergroupexternals_v1_response_t](user_get_usergroupexternals_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectUserAPI_userGetUsergroupsV1**
+```c
+// Get User's Usergroups
+//
+user_get_usergroups_v1_response_t* ObjectUserAPI_userGetUsergroupsV1(apiClient_t *apiClient, int *pkiUserID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiUserID** | **int \*** |  | 
+
+### Return type
+
+[user_get_usergroups_v1_response_t](user_get_usergroups_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **ObjectUserAPI_userSendPasswordResetV1**
 ```c
 // Send password reset
 //
 // Send the password reset email
 //
-user_send_password_reset_v1_response_t* ObjectUserAPI_userSendPasswordResetV1(apiClient_t *apiClient, int pkiUserID, object_t * body);
+user_send_password_reset_v1_response_t* ObjectUserAPI_userSendPasswordResetV1(apiClient_t *apiClient, int *pkiUserID, object_t *body);
 ```
 
 ### Parameters

@@ -15,6 +15,15 @@
 
 typedef struct ezsigntemplate_list_element_t ezsigntemplate_list_element_t;
 
+#include "field_e_ezsigntemplate_type.h"
+
+// Enum  for ezsigntemplate_list_element
+
+typedef enum  { ezmax_api_definition__full_ezsigntemplate_list_element__NULL = 0, ezmax_api_definition__full_ezsigntemplate_list_element__User, ezmax_api_definition__full_ezsigntemplate_list_element__Usergroup, ezmax_api_definition__full_ezsigntemplate_list_element__Company } ezmax_api_definition__full_ezsigntemplate_list_element__e;
+
+char* ezsigntemplate_list_element_e_ezsigntemplate_type_ToString(ezmax_api_definition__full_ezsigntemplate_list_element__e e_ezsigntemplate_type);
+
+ezmax_api_definition__full_ezsigntemplate_list_element__e ezsigntemplate_list_element_e_ezsigntemplate_type_FromString(char* e_ezsigntemplate_type);
 
 
 
@@ -28,6 +37,7 @@ typedef struct ezsigntemplate_list_element_t {
     int i_ezsigntemplate_formfieldtotal; //numeric
     int b_ezsigntemplate_incomplete; //boolean
     char *s_ezsignfoldertype_name_x; // string
+    field_e_ezsigntemplate_type_t *e_ezsigntemplate_type; // custom
 
 } ezsigntemplate_list_element_t;
 
@@ -40,7 +50,8 @@ ezsigntemplate_list_element_t *ezsigntemplate_list_element_create(
     int i_ezsigntemplate_signaturetotal,
     int i_ezsigntemplate_formfieldtotal,
     int b_ezsigntemplate_incomplete,
-    char *s_ezsignfoldertype_name_x
+    char *s_ezsignfoldertype_name_x,
+    field_e_ezsigntemplate_type_t *e_ezsigntemplate_type
 );
 
 void ezsigntemplate_list_element_free(ezsigntemplate_list_element_t *ezsigntemplate_list_element);

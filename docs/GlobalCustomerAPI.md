@@ -13,7 +13,7 @@ Method | HTTP request | Description
 //
 // Retrieve the customer's specific server endpoint where to send requests. This will help locate the proper region (ie: sInfrastructureregionCode) and the proper environment (ie: sInfrastructureenvironmenttypeDescription) where the customer's data is stored.
 //
-global_customer_get_endpoint_v1_response_t* GlobalCustomerAPI_globalCustomerGetEndpointV1(apiClient_t *apiClient, char * pksCustomerCode, ezmax_api_definition__full_globalCustomerGetEndpointV1_sInfrastructureproductCode_e sInfrastructureproductCode);
+global_customer_get_endpoint_v1_response_t* GlobalCustomerAPI_globalCustomerGetEndpointV1(apiClient_t *apiClient, char *pksCustomerCode, ezmax_api_definition__full_globalCustomerGetEndpointV1_sInfrastructureproductCode_e sInfrastructureproductCode);
 ```
 
 ### Parameters

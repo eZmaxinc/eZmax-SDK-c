@@ -4,12 +4,12 @@
 #include "ezsignfoldertype_list_element.h"
 
 
-char* e_ezsignfoldertype_privacylevelezsignfoldertype_list_element_ToString(ezmax_api_definition__full_ezsignfoldertype_list_element__e e_ezsignfoldertype_privacylevel) {
+char* ezsignfoldertype_list_element_e_ezsignfoldertype_privacylevel_ToString(ezmax_api_definition__full_ezsignfoldertype_list_element__e e_ezsignfoldertype_privacylevel) {
     char* e_ezsignfoldertype_privacylevelArray[] =  { "NULL", "User", "Usergroup" };
     return e_ezsignfoldertype_privacylevelArray[e_ezsignfoldertype_privacylevel];
 }
 
-ezmax_api_definition__full_ezsignfoldertype_list_element__e e_ezsignfoldertype_privacylevelezsignfoldertype_list_element_FromString(char* e_ezsignfoldertype_privacylevel){
+ezmax_api_definition__full_ezsignfoldertype_list_element__e ezsignfoldertype_list_element_e_ezsignfoldertype_privacylevel_FromString(char* e_ezsignfoldertype_privacylevel){
     int stringToReturn = 0;
     char *e_ezsignfoldertype_privacylevelArray[] =  { "NULL", "User", "Usergroup" };
     size_t sizeofArray = sizeof(e_ezsignfoldertype_privacylevelArray) / sizeof(e_ezsignfoldertype_privacylevelArray[0]);

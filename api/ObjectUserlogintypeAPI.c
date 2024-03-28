@@ -14,13 +14,13 @@
 // Functions for enum SSELECTOR for ObjectUserlogintypeAPI_userlogintypeGetAutocompleteV2
 
 static char* userlogintypeGetAutocompleteV2_SSELECTOR_ToString(ezmax_api_definition__full_userlogintypeGetAutocompleteV2_sSelector_e SSELECTOR){
-    char *SSELECTORArray[] =  { "NULL", "All" };
+    char *SSELECTORArray[] =  { "NULL", "All", "Ezsignfoldertype" };
     return SSELECTORArray[SSELECTOR];
 }
 
 static ezmax_api_definition__full_userlogintypeGetAutocompleteV2_sSelector_e userlogintypeGetAutocompleteV2_SSELECTOR_FromString(char* SSELECTOR){
     int stringToReturn = 0;
-    char *SSELECTORArray[] =  { "NULL", "All" };
+    char *SSELECTORArray[] =  { "NULL", "All", "Ezsignfoldertype" };
     size_t sizeofArray = sizeof(SSELECTORArray) / sizeof(SSELECTORArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(SSELECTOR, SSELECTORArray[stringToReturn]) == 0) {
@@ -164,7 +164,7 @@ end:
 // Get the list of Userlogintype to be used in a dropdown or autocomplete control.
 //
 userlogintype_get_autocomplete_v2_response_t*
-ObjectUserlogintypeAPI_userlogintypeGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_userlogintypeGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_userlogintypeGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language)
+ObjectUserlogintypeAPI_userlogintypeGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_userlogintypeGetAutocompleteV2_sSelector_e sSelector, int *fkiEzsignfoldertypeID, ezmax_api_definition__full_userlogintypeGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -202,6 +202,19 @@ ObjectUserlogintypeAPI_userlogintypeGetAutocompleteV2(apiClient_t *apiClient, ez
         list_addElement(localVarHeaderParameters,keyPairHeader_Accept_Language);
     }
 
+
+    // query parameters
+    char *keyQuery_fkiEzsignfoldertypeID = NULL;
+    char * valueQuery_fkiEzsignfoldertypeID = NULL;
+    keyValuePair_t *keyPairQuery_fkiEzsignfoldertypeID = 0;
+    if (fkiEzsignfoldertypeID)
+    {
+        keyQuery_fkiEzsignfoldertypeID = strdup("fkiEzsignfoldertypeID");
+        valueQuery_fkiEzsignfoldertypeID = calloc(1,MAX_NUMBER_LENGTH);
+        snprintf(valueQuery_fkiEzsignfoldertypeID, MAX_NUMBER_LENGTH, "%d", *fkiEzsignfoldertypeID);
+        keyPairQuery_fkiEzsignfoldertypeID = keyValuePair_create(keyQuery_fkiEzsignfoldertypeID, valueQuery_fkiEzsignfoldertypeID);
+        list_addElement(localVarQueryParameters,keyPairQuery_fkiEzsignfoldertypeID);
+    }
 
     // query parameters
     char *keyQuery_eFilterActive = NULL;
@@ -268,6 +281,18 @@ ObjectUserlogintypeAPI_userlogintypeGetAutocompleteV2(apiClient_t *apiClient, ez
         keyHeader_Accept_Language = NULL;
     }
     free(keyPairHeader_Accept_Language);
+    if(keyQuery_fkiEzsignfoldertypeID){
+        free(keyQuery_fkiEzsignfoldertypeID);
+        keyQuery_fkiEzsignfoldertypeID = NULL;
+    }
+    if(valueQuery_fkiEzsignfoldertypeID){
+        free(valueQuery_fkiEzsignfoldertypeID);
+        valueQuery_fkiEzsignfoldertypeID = NULL;
+    }
+    if(keyPairQuery_fkiEzsignfoldertypeID){
+        keyValuePair_free(keyPairQuery_fkiEzsignfoldertypeID);
+        keyPairQuery_fkiEzsignfoldertypeID = NULL;
+    }
     if(keyQuery_eFilterActive){
         free(keyQuery_eFilterActive);
         keyQuery_eFilterActive = NULL;

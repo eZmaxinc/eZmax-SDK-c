@@ -13,7 +13,7 @@ Method | HTTP request | Description
 //
 // Get the list of Billingentityexternal to be used in a dropdown or autocomplete control.
 //
-billingentityexternal_get_autocomplete_v2_response_t* ObjectBillingentityexternalAPI_billingentityexternalGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_billingentityexternalGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_billingentityexternalGetAutocompleteV2_eFilterActive_e eFilterActive, char * sQuery, header_accept_language_e Accept_Language);
+billingentityexternal_get_autocomplete_v2_response_t* ObjectBillingentityexternalAPI_billingentityexternalGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_billingentityexternalGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_billingentityexternalGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
 ```
 
 ### Parameters

@@ -6,10 +6,10 @@ Name | Type | Description | Notes
 **pki_ezsignformfieldgroup_id** | **int** | The unique ID of the Ezsignformfieldgroup | 
 **fki_ezsigndocument_id** | **int** | The unique ID of the Ezsigndocument | 
 **e_ezsignformfieldgroup_type** | **field_e_ezsignformfieldgroup_type_t \*** |  | 
-**e_ezsignformfieldgroup_signerrequirement** | **field_e_ezsignformfieldgroup_signerrequirement_t \*** |  | 
+**e_ezsignformfieldgroup_signerrequirement** | **field_e_ezsignformfieldgroup_signerrequirement_t \*** |  | [optional] 
 **s_ezsignformfieldgroup_label** | **char \*** | The Label for the Ezsignformfieldgroup | 
 **i_ezsignformfieldgroup_step** | **int** | The step when the Ezsignsigner will be invited to fill the form fields | 
-**s_ezsignformfieldgroup_defaultvalue** | **char \*** | The default value for the Ezsignformfieldgroup | [optional] 
+**s_ezsignformfieldgroup_defaultvalue** | **char \*** | The default value for the Ezsignformfieldgroup  You can use the codes below and they will be replaced at signature time.    | Code | Description | Example | | ------------------------- | ------------ | ------------ | | {sUserFirstname} | The first name of the contact | John | | {sUserLastname} | The last name of the contact | Doe | | {sUserJobtitle} | The job title | Sales Representative | | {sEmailAddress} | The email address | email@example.com | | {sPhoneE164} | A phone number in E.164 Format | +15149901516 | | {sPhoneE164Cell} | A phone number in E.164 Format | +15149901516 | | [optional] 
 **i_ezsignformfieldgroup_filledmin** | **int** | The minimum number of Ezsignformfield that must be filled in the Ezsignformfieldgroup | 
 **i_ezsignformfieldgroup_filledmax** | **int** | The maximum number of Ezsignformfield that must be filled in the Ezsignformfieldgroup | 
 **b_ezsignformfieldgroup_readonly** | **int** | Whether the Ezsignformfieldgroup is read only or not. | 

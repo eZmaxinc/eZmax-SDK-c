@@ -4,12 +4,12 @@
 #include "common_file.h"
 
 
-char* e_file_sourcecommon_file_ToString(ezmax_api_definition__full_common_file_EFILESOURCE_e e_file_source) {
+char* common_file_e_file_source_ToString(ezmax_api_definition__full_common_file_EFILESOURCE_e e_file_source) {
     char* e_file_sourceArray[] =  { "NULL", "Base64", "Url" };
     return e_file_sourceArray[e_file_source];
 }
 
-ezmax_api_definition__full_common_file_EFILESOURCE_e e_file_sourcecommon_file_FromString(char* e_file_source){
+ezmax_api_definition__full_common_file_EFILESOURCE_e common_file_e_file_source_FromString(char* e_file_source){
     int stringToReturn = 0;
     char *e_file_sourceArray[] =  { "NULL", "Base64", "Url" };
     size_t sizeofArray = sizeof(e_file_sourceArray) / sizeof(e_file_sourceArray[0]);
@@ -152,7 +152,7 @@ common_file_t *common_file_parseFromJSON(cJSON *common_fileJSON){
     {
     goto end; //Enum
     }
-    e_file_sourceVariable = e_file_sourcecommon_file_FromString(e_file_source->valuestring);
+    e_file_sourceVariable = common_file_e_file_source_FromString(e_file_source->valuestring);
 
 
     common_file_local_var = common_file_create (

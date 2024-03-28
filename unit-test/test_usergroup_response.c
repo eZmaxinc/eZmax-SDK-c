@@ -25,12 +25,14 @@ usergroup_response_t* instantiate_usergroup_response(int include_optional) {
     usergroup_response = usergroup_response_create(
       2,
        // false, not to have infinite recursion
-      instantiate_multilingual_usergroup_name(0)
+      instantiate_multilingual_usergroup_name(0),
+      "Administration"
     );
   } else {
     usergroup_response = usergroup_response_create(
       2,
-      NULL
+      NULL,
+      "Administration"
     );
   }
 

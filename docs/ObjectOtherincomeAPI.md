@@ -13,7 +13,7 @@ Method | HTTP request | Description
 //
 // 
 //
-otherincome_get_communication_list_v1_response_t* ObjectOtherincomeAPI_otherincomeGetCommunicationListV1(apiClient_t *apiClient, int pkiOtherincomeID);
+otherincome_get_communication_list_v1_response_t* ObjectOtherincomeAPI_otherincomeGetCommunicationListV1(apiClient_t *apiClient, int *pkiOtherincomeID);
 ```
 
 ### Parameters

@@ -13,7 +13,7 @@ Method | HTTP request | Description
 //
 // Get the list of Franchiseoffice to be used in a dropdown or autocomplete control.
 //
-franchiseoffice_get_autocomplete_v2_response_t* ObjectFranchiseofficeAPI_franchiseofficeGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_franchiseofficeGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_franchiseofficeGetAutocompleteV2_eFilterActive_e eFilterActive, char * sQuery, header_accept_language_e Accept_Language);
+franchiseoffice_get_autocomplete_v2_response_t* ObjectFranchiseofficeAPI_franchiseofficeGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_franchiseofficeGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_franchiseofficeGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
 ```
 
 ### Parameters

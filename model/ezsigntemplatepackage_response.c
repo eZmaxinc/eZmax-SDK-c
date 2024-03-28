@@ -14,7 +14,8 @@ ezsigntemplatepackage_response_t *ezsigntemplatepackage_response_create(
     int b_ezsigntemplatepackage_adminonly,
     int b_ezsigntemplatepackage_needvalidation,
     int b_ezsigntemplatepackage_isactive,
-    char *s_ezsignfoldertype_name_x
+    char *s_ezsignfoldertype_name_x,
+    int b_ezsigntemplatepackage_editallowed
     ) {
     ezsigntemplatepackage_response_t *ezsigntemplatepackage_response_local_var = malloc(sizeof(ezsigntemplatepackage_response_t));
     if (!ezsigntemplatepackage_response_local_var) {
@@ -29,6 +30,7 @@ ezsigntemplatepackage_response_t *ezsigntemplatepackage_response_create(
     ezsigntemplatepackage_response_local_var->b_ezsigntemplatepackage_needvalidation = b_ezsigntemplatepackage_needvalidation;
     ezsigntemplatepackage_response_local_var->b_ezsigntemplatepackage_isactive = b_ezsigntemplatepackage_isactive;
     ezsigntemplatepackage_response_local_var->s_ezsignfoldertype_name_x = s_ezsignfoldertype_name_x;
+    ezsigntemplatepackage_response_local_var->b_ezsigntemplatepackage_editallowed = b_ezsigntemplatepackage_editallowed;
 
     return ezsigntemplatepackage_response_local_var;
 }
@@ -135,6 +137,15 @@ cJSON *ezsigntemplatepackage_response_convertToJSON(ezsigntemplatepackage_respon
     }
     if(cJSON_AddStringToObject(item, "sEzsignfoldertypeNameX", ezsigntemplatepackage_response->s_ezsignfoldertype_name_x) == NULL) {
     goto fail; //String
+    }
+
+
+    // ezsigntemplatepackage_response->b_ezsigntemplatepackage_editallowed
+    if (!ezsigntemplatepackage_response->b_ezsigntemplatepackage_editallowed) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "bEzsigntemplatepackageEditallowed", ezsigntemplatepackage_response->b_ezsigntemplatepackage_editallowed) == NULL) {
+    goto fail; //Bool
     }
 
     return item;
@@ -257,6 +268,18 @@ ezsigntemplatepackage_response_t *ezsigntemplatepackage_response_parseFromJSON(c
     goto end; //String
     }
 
+    // ezsigntemplatepackage_response->b_ezsigntemplatepackage_editallowed
+    cJSON *b_ezsigntemplatepackage_editallowed = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackage_responseJSON, "bEzsigntemplatepackageEditallowed");
+    if (!b_ezsigntemplatepackage_editallowed) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(b_ezsigntemplatepackage_editallowed))
+    {
+    goto end; //Bool
+    }
+
 
     ezsigntemplatepackage_response_local_var = ezsigntemplatepackage_response_create (
         pki_ezsigntemplatepackage_id->valuedouble,
@@ -267,7 +290,8 @@ ezsigntemplatepackage_response_t *ezsigntemplatepackage_response_parseFromJSON(c
         b_ezsigntemplatepackage_adminonly->valueint,
         b_ezsigntemplatepackage_needvalidation->valueint,
         b_ezsigntemplatepackage_isactive->valueint,
-        strdup(s_ezsignfoldertype_name_x->valuestring)
+        strdup(s_ezsignfoldertype_name_x->valuestring),
+        b_ezsigntemplatepackage_editallowed->valueint
         );
 
     return ezsigntemplatepackage_response_local_var;

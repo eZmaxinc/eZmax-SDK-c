@@ -13,7 +13,7 @@ Method | HTTP request | Description
 //
 // Get the list of Department to be used in a dropdown or autocomplete control.
 //
-department_get_autocomplete_v2_response_t* ObjectDepartmentAPI_departmentGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_departmentGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_departmentGetAutocompleteV2_eFilterActive_e eFilterActive, char * sQuery, header_accept_language_e Accept_Language);
+department_get_autocomplete_v2_response_t* ObjectDepartmentAPI_departmentGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_departmentGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_departmentGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
 ```
 
 ### Parameters

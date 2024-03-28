@@ -4,12 +4,12 @@
 #include "ezsignfolder_request_compound.h"
 
 
-char* e_ezsignfolder_sendreminderfrequencyezsignfolder_request_compound_ToString(ezmax_api_definition__full_ezsignfolder_request_compound__e e_ezsignfolder_sendreminderfrequency) {
+char* ezsignfolder_request_compound_e_ezsignfolder_sendreminderfrequency_ToString(ezmax_api_definition__full_ezsignfolder_request_compound__e e_ezsignfolder_sendreminderfrequency) {
     char* e_ezsignfolder_sendreminderfrequencyArray[] =  { "NULL", "None", "Daily", "Weekly" };
     return e_ezsignfolder_sendreminderfrequencyArray[e_ezsignfolder_sendreminderfrequency];
 }
 
-ezmax_api_definition__full_ezsignfolder_request_compound__e e_ezsignfolder_sendreminderfrequencyezsignfolder_request_compound_FromString(char* e_ezsignfolder_sendreminderfrequency){
+ezmax_api_definition__full_ezsignfolder_request_compound__e ezsignfolder_request_compound_e_ezsignfolder_sendreminderfrequency_FromString(char* e_ezsignfolder_sendreminderfrequency){
     int stringToReturn = 0;
     char *e_ezsignfolder_sendreminderfrequencyArray[] =  { "NULL", "None", "Daily", "Weekly" };
     size_t sizeofArray = sizeof(e_ezsignfolder_sendreminderfrequencyArray) / sizeof(e_ezsignfolder_sendreminderfrequencyArray[0]);

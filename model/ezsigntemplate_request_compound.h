@@ -23,6 +23,7 @@ typedef struct ezsigntemplate_request_compound_t {
     int fki_ezsignfoldertype_id; //numeric
     int fki_language_id; //numeric
     char *s_ezsigntemplate_description; // string
+    char *s_ezsigntemplate_filenamepattern; // string
     int b_ezsigntemplate_adminonly; //boolean
 
 } ezsigntemplate_request_compound_t;
@@ -32,6 +33,7 @@ ezsigntemplate_request_compound_t *ezsigntemplate_request_compound_create(
     int fki_ezsignfoldertype_id,
     int fki_language_id,
     char *s_ezsigntemplate_description,
+    char *s_ezsigntemplate_filenamepattern,
     int b_ezsigntemplate_adminonly
 );
 

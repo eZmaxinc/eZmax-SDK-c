@@ -10,6 +10,7 @@ ezsigntemplate_request_compound_t *ezsigntemplate_request_compound_create(
     int fki_ezsignfoldertype_id,
     int fki_language_id,
     char *s_ezsigntemplate_description,
+    char *s_ezsigntemplate_filenamepattern,
     int b_ezsigntemplate_adminonly
     ) {
     ezsigntemplate_request_compound_t *ezsigntemplate_request_compound_local_var = malloc(sizeof(ezsigntemplate_request_compound_t));
@@ -20,6 +21,7 @@ ezsigntemplate_request_compound_t *ezsigntemplate_request_compound_create(
     ezsigntemplate_request_compound_local_var->fki_ezsignfoldertype_id = fki_ezsignfoldertype_id;
     ezsigntemplate_request_compound_local_var->fki_language_id = fki_language_id;
     ezsigntemplate_request_compound_local_var->s_ezsigntemplate_description = s_ezsigntemplate_description;
+    ezsigntemplate_request_compound_local_var->s_ezsigntemplate_filenamepattern = s_ezsigntemplate_filenamepattern;
     ezsigntemplate_request_compound_local_var->b_ezsigntemplate_adminonly = b_ezsigntemplate_adminonly;
 
     return ezsigntemplate_request_compound_local_var;
@@ -34,6 +36,10 @@ void ezsigntemplate_request_compound_free(ezsigntemplate_request_compound_t *ezs
     if (ezsigntemplate_request_compound->s_ezsigntemplate_description) {
         free(ezsigntemplate_request_compound->s_ezsigntemplate_description);
         ezsigntemplate_request_compound->s_ezsigntemplate_description = NULL;
+    }
+    if (ezsigntemplate_request_compound->s_ezsigntemplate_filenamepattern) {
+        free(ezsigntemplate_request_compound->s_ezsigntemplate_filenamepattern);
+        ezsigntemplate_request_compound->s_ezsigntemplate_filenamepattern = NULL;
     }
     free(ezsigntemplate_request_compound);
 }
@@ -73,6 +79,14 @@ cJSON *ezsigntemplate_request_compound_convertToJSON(ezsigntemplate_request_comp
     }
     if(cJSON_AddStringToObject(item, "sEzsigntemplateDescription", ezsigntemplate_request_compound->s_ezsigntemplate_description) == NULL) {
     goto fail; //String
+    }
+
+
+    // ezsigntemplate_request_compound->s_ezsigntemplate_filenamepattern
+    if(ezsigntemplate_request_compound->s_ezsigntemplate_filenamepattern) {
+    if(cJSON_AddStringToObject(item, "sEzsigntemplateFilenamepattern", ezsigntemplate_request_compound->s_ezsigntemplate_filenamepattern) == NULL) {
+    goto fail; //String
+    }
     }
 
 
@@ -141,6 +155,15 @@ ezsigntemplate_request_compound_t *ezsigntemplate_request_compound_parseFromJSON
     goto end; //String
     }
 
+    // ezsigntemplate_request_compound->s_ezsigntemplate_filenamepattern
+    cJSON *s_ezsigntemplate_filenamepattern = cJSON_GetObjectItemCaseSensitive(ezsigntemplate_request_compoundJSON, "sEzsigntemplateFilenamepattern");
+    if (s_ezsigntemplate_filenamepattern) { 
+    if(!cJSON_IsString(s_ezsigntemplate_filenamepattern) && !cJSON_IsNull(s_ezsigntemplate_filenamepattern))
+    {
+    goto end; //String
+    }
+    }
+
     // ezsigntemplate_request_compound->b_ezsigntemplate_adminonly
     cJSON *b_ezsigntemplate_adminonly = cJSON_GetObjectItemCaseSensitive(ezsigntemplate_request_compoundJSON, "bEzsigntemplateAdminonly");
     if (!b_ezsigntemplate_adminonly) {
@@ -159,6 +182,7 @@ ezsigntemplate_request_compound_t *ezsigntemplate_request_compound_parseFromJSON
         fki_ezsignfoldertype_id->valuedouble,
         fki_language_id->valuedouble,
         strdup(s_ezsigntemplate_description->valuestring),
+        s_ezsigntemplate_filenamepattern && !cJSON_IsNull(s_ezsigntemplate_filenamepattern) ? strdup(s_ezsigntemplate_filenamepattern->valuestring) : NULL,
         b_ezsigntemplate_adminonly->valueint
         );
 

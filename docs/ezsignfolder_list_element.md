@@ -17,6 +17,10 @@ Name | Type | Description | Notes
 **i_ezsigndocument_edm** | **int** | The total number of Ezsigndocument in the folder that were saved in the edm system | 
 **i_ezsignsignature** | **int** | The total number of signature blocks in all Ezsigndocuments in the folder | 
 **i_ezsignsignature_signed** | **int** | The total number of already signed signature blocks in all Ezsigndocuments in the folder | 
+**i_ezsignformfieldgroup** | **int** | The total number of Ezsignformfieldgroup in all Ezsigndocuments in the folder | 
+**i_ezsignformfieldgroup_completed** | **int** | The total number of completed Ezsignformfieldgroup in all Ezsigndocuments in the folder | 
+**b_ezsignform_hasdependencies** | **int** | Whether the Ezsignform/Ezsignsignatures has dependencies or not | [optional] 
+**d_ezsignfolder_completedpercentage** | **char \*** | Whether the Ezsignform/Ezsignsignatures has dependencies or not | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

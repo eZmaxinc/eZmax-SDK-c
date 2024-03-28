@@ -18,6 +18,7 @@ typedef struct webhook_request_compound_t webhook_request_compound_t;
 #include "field_e_webhook_ezsignevent.h"
 #include "field_e_webhook_managementevent.h"
 #include "field_e_webhook_module.h"
+#include "webhookheader_request_compound.h"
 
 // Enum  for webhook_request_compound
 
@@ -29,7 +30,7 @@ ezmax_api_definition__full_webhook_request_compound__e webhook_request_compound_
 
 // Enum  for webhook_request_compound
 
-typedef enum  { ezmax_api_definition__full_webhook_request_compound__NULL = 0, ezmax_api_definition__full_webhook_request_compound__DocumentCompleted, ezmax_api_definition__full_webhook_request_compound__EzsignsignerAcceptclause, ezmax_api_definition__full_webhook_request_compound__EzsignsignerConnect, ezmax_api_definition__full_webhook_request_compound__FolderCompleted } ezmax_api_definition__full_webhook_request_compound__e;
+typedef enum  { ezmax_api_definition__full_webhook_request_compound__NULL = 0, ezmax_api_definition__full_webhook_request_compound__DocumentCompleted, ezmax_api_definition__full_webhook_request_compound__DocumentFormCompleted, ezmax_api_definition__full_webhook_request_compound__DocumentUnsent, ezmax_api_definition__full_webhook_request_compound__EzsignsignerAcceptclause, ezmax_api_definition__full_webhook_request_compound__EzsignsignerConnect, ezmax_api_definition__full_webhook_request_compound__FolderCompleted, ezmax_api_definition__full_webhook_request_compound__FolderDisposed, ezmax_api_definition__full_webhook_request_compound__FolderSent, ezmax_api_definition__full_webhook_request_compound__FolderUnsent, ezmax_api_definition__full_webhook_request_compound__SignatureSigned } ezmax_api_definition__full_webhook_request_compound__e;
 
 char* webhook_request_compound_e_webhook_ezsignevent_ToString(ezmax_api_definition__full_webhook_request_compound__e e_webhook_ezsignevent);
 
@@ -57,6 +58,7 @@ typedef struct webhook_request_compound_t {
     int b_webhook_isactive; //boolean
     int b_webhook_issigned; //boolean
     int b_webhook_skipsslvalidation; //boolean
+    list_t *a_obj_webhookheader; //nonprimitive container
 
 } webhook_request_compound_t;
 
@@ -71,7 +73,8 @@ webhook_request_compound_t *webhook_request_compound_create(
     char *s_webhook_emailfailed,
     int b_webhook_isactive,
     int b_webhook_issigned,
-    int b_webhook_skipsslvalidation
+    int b_webhook_skipsslvalidation,
+    list_t *a_obj_webhookheader
 );
 
 void webhook_request_compound_free(webhook_request_compound_t *webhook_request_compound);

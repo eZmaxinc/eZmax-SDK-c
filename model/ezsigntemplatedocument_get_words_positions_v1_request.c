@@ -4,12 +4,12 @@
 #include "ezsigntemplatedocument_get_words_positions_v1_request.h"
 
 
-char* e_getezsigntemplatedocument_get_words_positions_v1_request_ToString(ezmax_api_definition__full_ezsigntemplatedocument_get_words_positions_v1_request_EGET_e e_get) {
+char* ezsigntemplatedocument_get_words_positions_v1_request_e_get_ToString(ezmax_api_definition__full_ezsigntemplatedocument_get_words_positions_v1_request_EGET_e e_get) {
     char* e_getArray[] =  { "NULL", "All", "Words" };
     return e_getArray[e_get];
 }
 
-ezmax_api_definition__full_ezsigntemplatedocument_get_words_positions_v1_request_EGET_e e_getezsigntemplatedocument_get_words_positions_v1_request_FromString(char* e_get){
+ezmax_api_definition__full_ezsigntemplatedocument_get_words_positions_v1_request_EGET_e ezsigntemplatedocument_get_words_positions_v1_request_e_get_FromString(char* e_get){
     int stringToReturn = 0;
     char *e_getArray[] =  { "NULL", "All", "Words" };
     size_t sizeofArray = sizeof(e_getArray) / sizeof(e_getArray[0]);
@@ -119,7 +119,7 @@ ezsigntemplatedocument_get_words_positions_v1_request_t *ezsigntemplatedocument_
     {
     goto end; //Enum
     }
-    e_getVariable = e_getezsigntemplatedocument_get_words_positions_v1_request_FromString(e_get->valuestring);
+    e_getVariable = ezsigntemplatedocument_get_words_positions_v1_request_e_get_FromString(e_get->valuestring);
 
     // ezsigntemplatedocument_get_words_positions_v1_request->b_word_case_sensitive
     cJSON *b_word_case_sensitive = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocument_get_words_positions_v1_requestJSON, "bWordCaseSensitive");

@@ -4,12 +4,12 @@
 #include "webhook_request.h"
 
 
-char* e_webhook_modulewebhook_request_ToString(ezmax_api_definition__full_webhook_request__e e_webhook_module) {
+char* webhook_request_e_webhook_module_ToString(ezmax_api_definition__full_webhook_request__e e_webhook_module) {
     char* e_webhook_moduleArray[] =  { "NULL", "Ezsign", "Management" };
     return e_webhook_moduleArray[e_webhook_module];
 }
 
-ezmax_api_definition__full_webhook_request__e e_webhook_modulewebhook_request_FromString(char* e_webhook_module){
+ezmax_api_definition__full_webhook_request__e webhook_request_e_webhook_module_FromString(char* e_webhook_module){
     int stringToReturn = 0;
     char *e_webhook_moduleArray[] =  { "NULL", "Ezsign", "Management" };
     size_t sizeofArray = sizeof(e_webhook_moduleArray) / sizeof(e_webhook_moduleArray[0]);
@@ -21,14 +21,14 @@ ezmax_api_definition__full_webhook_request__e e_webhook_modulewebhook_request_Fr
     }
     return 0;
 }
-char* e_webhook_ezsigneventwebhook_request_ToString(ezmax_api_definition__full_webhook_request__e e_webhook_ezsignevent) {
-    char* e_webhook_ezsigneventArray[] =  { "NULL", "DocumentCompleted", "EzsignsignerAcceptclause", "EzsignsignerConnect", "FolderCompleted" };
+char* webhook_request_e_webhook_ezsignevent_ToString(ezmax_api_definition__full_webhook_request__e e_webhook_ezsignevent) {
+    char* e_webhook_ezsigneventArray[] =  { "NULL", "DocumentCompleted", "DocumentFormCompleted", "DocumentUnsent", "EzsignsignerAcceptclause", "EzsignsignerConnect", "FolderCompleted", "FolderDisposed", "FolderSent", "FolderUnsent", "SignatureSigned" };
     return e_webhook_ezsigneventArray[e_webhook_ezsignevent];
 }
 
-ezmax_api_definition__full_webhook_request__e e_webhook_ezsigneventwebhook_request_FromString(char* e_webhook_ezsignevent){
+ezmax_api_definition__full_webhook_request__e webhook_request_e_webhook_ezsignevent_FromString(char* e_webhook_ezsignevent){
     int stringToReturn = 0;
-    char *e_webhook_ezsigneventArray[] =  { "NULL", "DocumentCompleted", "EzsignsignerAcceptclause", "EzsignsignerConnect", "FolderCompleted" };
+    char *e_webhook_ezsigneventArray[] =  { "NULL", "DocumentCompleted", "DocumentFormCompleted", "DocumentUnsent", "EzsignsignerAcceptclause", "EzsignsignerConnect", "FolderCompleted", "FolderDisposed", "FolderSent", "FolderUnsent", "SignatureSigned" };
     size_t sizeofArray = sizeof(e_webhook_ezsigneventArray) / sizeof(e_webhook_ezsigneventArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(e_webhook_ezsignevent, e_webhook_ezsigneventArray[stringToReturn]) == 0) {
@@ -38,12 +38,12 @@ ezmax_api_definition__full_webhook_request__e e_webhook_ezsigneventwebhook_reque
     }
     return 0;
 }
-char* e_webhook_managementeventwebhook_request_ToString(ezmax_api_definition__full_webhook_request__e e_webhook_managementevent) {
+char* webhook_request_e_webhook_managementevent_ToString(ezmax_api_definition__full_webhook_request__e e_webhook_managementevent) {
     char* e_webhook_managementeventArray[] =  { "NULL", "UserCreated", "UserstagedCreated" };
     return e_webhook_managementeventArray[e_webhook_managementevent];
 }
 
-ezmax_api_definition__full_webhook_request__e e_webhook_managementeventwebhook_request_FromString(char* e_webhook_managementevent){
+ezmax_api_definition__full_webhook_request__e webhook_request_e_webhook_managementevent_FromString(char* e_webhook_managementevent){
     int stringToReturn = 0;
     char *e_webhook_managementeventArray[] =  { "NULL", "UserCreated", "UserstagedCreated" };
     size_t sizeofArray = sizeof(e_webhook_managementeventArray) / sizeof(e_webhook_managementeventArray[0]);

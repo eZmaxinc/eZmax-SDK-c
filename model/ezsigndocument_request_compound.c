@@ -4,12 +4,12 @@
 #include "ezsigndocument_request_compound.h"
 
 
-char* e_ezsigndocument_sourceezsigndocument_request_compound_ToString(ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTSOURCE_e e_ezsigndocument_source) {
+char* ezsigndocument_request_compound_e_ezsigndocument_source_ToString(ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTSOURCE_e e_ezsigndocument_source) {
     char* e_ezsigndocument_sourceArray[] =  { "NULL", "Base64", "Ezsigntemplate", "Url" };
     return e_ezsigndocument_sourceArray[e_ezsigndocument_source];
 }
 
-ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTSOURCE_e e_ezsigndocument_sourceezsigndocument_request_compound_FromString(char* e_ezsigndocument_source){
+ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTSOURCE_e ezsigndocument_request_compound_e_ezsigndocument_source_FromString(char* e_ezsigndocument_source){
     int stringToReturn = 0;
     char *e_ezsigndocument_sourceArray[] =  { "NULL", "Base64", "Ezsigntemplate", "Url" };
     size_t sizeofArray = sizeof(e_ezsigndocument_sourceArray) / sizeof(e_ezsigndocument_sourceArray[0]);
@@ -21,12 +21,12 @@ ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTSOURCE
     }
     return 0;
 }
-char* e_ezsigndocument_formatezsigndocument_request_compound_ToString(ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_e e_ezsigndocument_format) {
+char* ezsigndocument_request_compound_e_ezsigndocument_format_ToString(ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_e e_ezsigndocument_format) {
     char* e_ezsigndocument_formatArray[] =  { "NULL", "Pdf", "Doc", "Docx", "Xls", "Xlsx", "Ppt", "Pptx" };
     return e_ezsigndocument_formatArray[e_ezsigndocument_format];
 }
 
-ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_e e_ezsigndocument_formatezsigndocument_request_compound_FromString(char* e_ezsigndocument_format){
+ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_e ezsigndocument_request_compound_e_ezsigndocument_format_FromString(char* e_ezsigndocument_format){
     int stringToReturn = 0;
     char *e_ezsigndocument_formatArray[] =  { "NULL", "Pdf", "Doc", "Docx", "Xls", "Xlsx", "Ppt", "Pptx" };
     size_t sizeofArray = sizeof(e_ezsigndocument_formatArray) / sizeof(e_ezsigndocument_formatArray[0]);
@@ -38,14 +38,14 @@ ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT
     }
     return 0;
 }
-char* e_ezsigndocument_formezsigndocument_request_compound_ToString(ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORM_e e_ezsigndocument_form) {
-    char* e_ezsigndocument_formArray[] =  { "NULL", "Keep", "Convert" };
+char* ezsigndocument_request_compound_e_ezsigndocument_form_ToString(ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORM_e e_ezsigndocument_form) {
+    char* e_ezsigndocument_formArray[] =  { "NULL", "Keep", "Convert", "Discard" };
     return e_ezsigndocument_formArray[e_ezsigndocument_form];
 }
 
-ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORM_e e_ezsigndocument_formezsigndocument_request_compound_FromString(char* e_ezsigndocument_form){
+ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORM_e ezsigndocument_request_compound_e_ezsigndocument_form_FromString(char* e_ezsigndocument_form){
     int stringToReturn = 0;
-    char *e_ezsigndocument_formArray[] =  { "NULL", "Keep", "Convert" };
+    char *e_ezsigndocument_formArray[] =  { "NULL", "Keep", "Convert", "Discard" };
     size_t sizeofArray = sizeof(e_ezsigndocument_formArray) / sizeof(e_ezsigndocument_formArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(e_ezsigndocument_form, e_ezsigndocument_formArray[stringToReturn]) == 0) {
@@ -334,7 +334,7 @@ ezsigndocument_request_compound_t *ezsigndocument_request_compound_parseFromJSON
     {
     goto end; //Enum
     }
-    e_ezsigndocument_sourceVariable = e_ezsigndocument_sourceezsigndocument_request_compound_FromString(e_ezsigndocument_source->valuestring);
+    e_ezsigndocument_sourceVariable = ezsigndocument_request_compound_e_ezsigndocument_source_FromString(e_ezsigndocument_source->valuestring);
 
     // ezsigndocument_request_compound->e_ezsigndocument_format
     cJSON *e_ezsigndocument_format = cJSON_GetObjectItemCaseSensitive(ezsigndocument_request_compoundJSON, "eEzsigndocumentFormat");
@@ -344,7 +344,7 @@ ezsigndocument_request_compound_t *ezsigndocument_request_compound_parseFromJSON
     {
     goto end; //Enum
     }
-    e_ezsigndocument_formatVariable = e_ezsigndocument_formatezsigndocument_request_compound_FromString(e_ezsigndocument_format->valuestring);
+    e_ezsigndocument_formatVariable = ezsigndocument_request_compound_e_ezsigndocument_format_FromString(e_ezsigndocument_format->valuestring);
     }
 
     // ezsigndocument_request_compound->s_ezsigndocument_base64
@@ -391,7 +391,7 @@ ezsigndocument_request_compound_t *ezsigndocument_request_compound_parseFromJSON
     {
     goto end; //Enum
     }
-    e_ezsigndocument_formVariable = e_ezsigndocument_formezsigndocument_request_compound_FromString(e_ezsigndocument_form->valuestring);
+    e_ezsigndocument_formVariable = ezsigndocument_request_compound_e_ezsigndocument_form_FromString(e_ezsigndocument_form->valuestring);
     }
 
     // ezsigndocument_request_compound->dt_ezsigndocument_duedate
@@ -435,12 +435,12 @@ ezsigndocument_request_compound_t *ezsigndocument_request_compound_parseFromJSON
         fki_ezsignfoldersignerassociation_id ? fki_ezsignfoldersignerassociation_id->valuedouble : 0,
         fki_language_id->valuedouble,
         e_ezsigndocument_sourceVariable,
-        e_ezsigndocument_format ? e_ezsigndocument_formatVariable : -1,
+        e_ezsigndocument_format ? e_ezsigndocument_formatVariable : ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORMAT_NULL,
         s_ezsigndocument_base64 ? strdup(s_ezsigndocument_base64->valuestring) : NULL,
         s_ezsigndocument_url && !cJSON_IsNull(s_ezsigndocument_url) ? strdup(s_ezsigndocument_url->valuestring) : NULL,
         b_ezsigndocument_forcerepair ? b_ezsigndocument_forcerepair->valueint : 0,
         s_ezsigndocument_password && !cJSON_IsNull(s_ezsigndocument_password) ? strdup(s_ezsigndocument_password->valuestring) : NULL,
-        e_ezsigndocument_form ? e_ezsigndocument_formVariable : -1,
+        e_ezsigndocument_form ? e_ezsigndocument_formVariable : ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORM_NULL,
         strdup(dt_ezsigndocument_duedate->valuestring),
         strdup(s_ezsigndocument_name->valuestring),
         s_ezsigndocument_externalid && !cJSON_IsNull(s_ezsigndocument_externalid) ? strdup(s_ezsigndocument_externalid->valuestring) : NULL

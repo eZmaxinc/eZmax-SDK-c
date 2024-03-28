@@ -1,0 +1,32 @@
+/*
+ * field_e_systemconfiguration_ezsignofficeplan.h
+ *
+ * Plan choose of this company for eZsign if Ezsign is paid by the company
+ */
+
+#ifndef _field_e_systemconfiguration_ezsignofficeplan_H_
+#define _field_e_systemconfiguration_ezsignofficeplan_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_systemconfiguration_ezsignofficeplan_t field_e_systemconfiguration_ezsignofficeplan_t;
+
+
+// Enum  for field_e_systemconfiguration_ezsignofficeplan
+
+typedef enum { ezmax_api_definition__full_field_e_systemconfiguration_ezsignofficeplan__NULL = 0, ezmax_api_definition__full_field_e_systemconfiguration_ezsignofficeplan__Standard, ezmax_api_definition__full_field_e_systemconfiguration_ezsignofficeplan__Pro } ezmax_api_definition__full_field_e_systemconfiguration_ezsignofficeplan__e;
+
+char* field_e_systemconfiguration_ezsignofficeplan_field_e_systemconfiguration_ezsignofficeplan_ToString(ezmax_api_definition__full_field_e_systemconfiguration_ezsignofficeplan__e field_e_systemconfiguration_ezsignofficeplan);
+
+ezmax_api_definition__full_field_e_systemconfiguration_ezsignofficeplan__e field_e_systemconfiguration_ezsignofficeplan_field_e_systemconfiguration_ezsignofficeplan_FromString(char* field_e_systemconfiguration_ezsignofficeplan);
+
+//cJSON *field_e_systemconfiguration_ezsignofficeplan_field_e_systemconfiguration_ezsignofficeplan_convertToJSON(ezmax_api_definition__full_field_e_systemconfiguration_ezsignofficeplan__e field_e_systemconfiguration_ezsignofficeplan);
+
+//ezmax_api_definition__full_field_e_systemconfiguration_ezsignofficeplan__e field_e_systemconfiguration_ezsignofficeplan_field_e_systemconfiguration_ezsignofficeplan_parseFromJSON(cJSON *field_e_systemconfiguration_ezsignofficeplanJSON);
+
+#endif /* _field_e_systemconfiguration_ezsignofficeplan_H_ */
+

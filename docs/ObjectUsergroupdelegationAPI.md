@@ -16,7 +16,7 @@ Method | HTTP request | Description
 //
 // The endpoint allows to create one or many elements at once.
 //
-usergroupdelegation_create_object_v1_response_t* ObjectUsergroupdelegationAPI_usergroupdelegationCreateObjectV1(apiClient_t *apiClient, usergroupdelegation_create_object_v1_request_t * usergroupdelegation_create_object_v1_request);
+usergroupdelegation_create_object_v1_response_t* ObjectUsergroupdelegationAPI_usergroupdelegationCreateObjectV1(apiClient_t *apiClient, usergroupdelegation_create_object_v1_request_t *usergroupdelegation_create_object_v1_request);
 ```
 
 ### Parameters
@@ -47,7 +47,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-usergroupdelegation_delete_object_v1_response_t* ObjectUsergroupdelegationAPI_usergroupdelegationDeleteObjectV1(apiClient_t *apiClient, int pkiUsergroupdelegationID);
+usergroupdelegation_delete_object_v1_response_t* ObjectUsergroupdelegationAPI_usergroupdelegationDeleteObjectV1(apiClient_t *apiClient, int *pkiUsergroupdelegationID);
 ```
 
 ### Parameters
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-usergroupdelegation_edit_object_v1_response_t* ObjectUsergroupdelegationAPI_usergroupdelegationEditObjectV1(apiClient_t *apiClient, int pkiUsergroupdelegationID, usergroupdelegation_edit_object_v1_request_t * usergroupdelegation_edit_object_v1_request);
+usergroupdelegation_edit_object_v1_response_t* ObjectUsergroupdelegationAPI_usergroupdelegationEditObjectV1(apiClient_t *apiClient, int *pkiUsergroupdelegationID, usergroupdelegation_edit_object_v1_request_t *usergroupdelegation_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-usergroupdelegation_get_object_v2_response_t* ObjectUsergroupdelegationAPI_usergroupdelegationGetObjectV2(apiClient_t *apiClient, int pkiUsergroupdelegationID);
+usergroupdelegation_get_object_v2_response_t* ObjectUsergroupdelegationAPI_usergroupdelegationGetObjectV2(apiClient_t *apiClient, int *pkiUsergroupdelegationID);
 ```
 
 ### Parameters

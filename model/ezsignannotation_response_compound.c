@@ -4,12 +4,12 @@
 #include "ezsignannotation_response_compound.h"
 
 
-char* e_ezsignannotation_horizontalalignmentezsignannotation_response_compound_ToString(ezmax_api_definition__full_ezsignannotation_response_compound__e e_ezsignannotation_horizontalalignment) {
+char* ezsignannotation_response_compound_e_ezsignannotation_horizontalalignment_ToString(ezmax_api_definition__full_ezsignannotation_response_compound__e e_ezsignannotation_horizontalalignment) {
     char* e_ezsignannotation_horizontalalignmentArray[] =  { "NULL", "Center", "Left", "Right" };
     return e_ezsignannotation_horizontalalignmentArray[e_ezsignannotation_horizontalalignment];
 }
 
-ezmax_api_definition__full_ezsignannotation_response_compound__e e_ezsignannotation_horizontalalignmentezsignannotation_response_compound_FromString(char* e_ezsignannotation_horizontalalignment){
+ezmax_api_definition__full_ezsignannotation_response_compound__e ezsignannotation_response_compound_e_ezsignannotation_horizontalalignment_FromString(char* e_ezsignannotation_horizontalalignment){
     int stringToReturn = 0;
     char *e_ezsignannotation_horizontalalignmentArray[] =  { "NULL", "Center", "Left", "Right" };
     size_t sizeofArray = sizeof(e_ezsignannotation_horizontalalignmentArray) / sizeof(e_ezsignannotation_horizontalalignmentArray[0]);
@@ -21,12 +21,12 @@ ezmax_api_definition__full_ezsignannotation_response_compound__e e_ezsignannotat
     }
     return 0;
 }
-char* e_ezsignannotation_verticalalignmentezsignannotation_response_compound_ToString(ezmax_api_definition__full_ezsignannotation_response_compound__e e_ezsignannotation_verticalalignment) {
+char* ezsignannotation_response_compound_e_ezsignannotation_verticalalignment_ToString(ezmax_api_definition__full_ezsignannotation_response_compound__e e_ezsignannotation_verticalalignment) {
     char* e_ezsignannotation_verticalalignmentArray[] =  { "NULL", "Bottom", "Middle", "Top" };
     return e_ezsignannotation_verticalalignmentArray[e_ezsignannotation_verticalalignment];
 }
 
-ezmax_api_definition__full_ezsignannotation_response_compound__e e_ezsignannotation_verticalalignmentezsignannotation_response_compound_FromString(char* e_ezsignannotation_verticalalignment){
+ezmax_api_definition__full_ezsignannotation_response_compound__e ezsignannotation_response_compound_e_ezsignannotation_verticalalignment_FromString(char* e_ezsignannotation_verticalalignment){
     int stringToReturn = 0;
     char *e_ezsignannotation_verticalalignmentArray[] =  { "NULL", "Bottom", "Middle", "Top" };
     size_t sizeofArray = sizeof(e_ezsignannotation_verticalalignmentArray) / sizeof(e_ezsignannotation_verticalalignmentArray[0]);
@@ -38,12 +38,12 @@ ezmax_api_definition__full_ezsignannotation_response_compound__e e_ezsignannotat
     }
     return 0;
 }
-char* e_ezsignannotation_typeezsignannotation_response_compound_ToString(ezmax_api_definition__full_ezsignannotation_response_compound__e e_ezsignannotation_type) {
+char* ezsignannotation_response_compound_e_ezsignannotation_type_ToString(ezmax_api_definition__full_ezsignannotation_response_compound__e e_ezsignannotation_type) {
     char* e_ezsignannotation_typeArray[] =  { "NULL", "StrikethroughBlock", "StrikethroughLine", "Text" };
     return e_ezsignannotation_typeArray[e_ezsignannotation_type];
 }
 
-ezmax_api_definition__full_ezsignannotation_response_compound__e e_ezsignannotation_typeezsignannotation_response_compound_FromString(char* e_ezsignannotation_type){
+ezmax_api_definition__full_ezsignannotation_response_compound__e ezsignannotation_response_compound_e_ezsignannotation_type_FromString(char* e_ezsignannotation_type){
     int stringToReturn = 0;
     char *e_ezsignannotation_typeArray[] =  { "NULL", "StrikethroughBlock", "StrikethroughLine", "Text" };
     size_t sizeofArray = sizeof(e_ezsignannotation_typeArray) / sizeof(e_ezsignannotation_typeArray[0]);

@@ -10,14 +10,17 @@ Name | Type | Description | Notes
 **s_branding_name** | **char \*** | The name of the Branding  This value will only be set if you wish to overwrite the default name. If you want to keep the default name, leave this property empty | [optional] 
 **s_email_address** | **char \*** | The email address. | [optional] 
 **e_branding_logo** | **field_e_branding_logo_t \*** |  | 
+**e_branding_logointerface** | **field_e_branding_logointerface_t \*** |  | [optional] 
 **i_branding_colortext** | **int** | The color of the text. This is a RGB color converted into integer | 
 **i_branding_colortextlinkbox** | **int** | The color of the text in the link box. This is a RGB color converted into integer | 
 **i_branding_colortextbutton** | **int** | The color of the text in the button. This is a RGB color converted into integer | 
 **i_branding_colorbackground** | **int** | The color of the background. This is a RGB color converted into integer | 
 **i_branding_colorbackgroundbutton** | **int** | The color of the background of the button. This is a RGB color converted into integer | 
 **i_branding_colorbackgroundsmallbox** | **int** | The color of the background of the small box. This is a RGB color converted into integer | 
+**i_branding_interfacecolor** | **int** | The color of the interface. This is a RGB color converted into integer | [optional] 
 **b_branding_isactive** | **int** | Whether the Branding is active or not | 
 **s_branding_logourl** | **char \*** | The url of the picture used as logo in the Branding | [optional] 
+**s_branding_logointerfaceurl** | **char \*** | The url of the picture used as logo in the Branding | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

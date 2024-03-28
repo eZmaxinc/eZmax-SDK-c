@@ -23,10 +23,12 @@ ezsign_suggest_templates_v1_response_m_payload_t* instantiate_ezsign_suggest_tem
   if (include_optional) {
     ezsign_suggest_templates_v1_response_m_payload = ezsign_suggest_templates_v1_response_m_payload_create(
       list_createList(),
+      list_createList(),
       list_createList()
     );
   } else {
     ezsign_suggest_templates_v1_response_m_payload = ezsign_suggest_templates_v1_response_m_payload_create(
+      list_createList(),
       list_createList(),
       list_createList()
     );

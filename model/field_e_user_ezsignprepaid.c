@@ -5,13 +5,13 @@
 
 
 char* field_e_user_ezsignprepaid_field_e_user_ezsignprepaid_ToString(ezmax_api_definition__full_field_e_user_ezsignprepaid__e field_e_user_ezsignprepaid) {
-    char *field_e_user_ezsignprepaidArray[] =  { "NULL", "Basic", "Unlimited", "Pro" };
+    char *field_e_user_ezsignprepaidArray[] =  { "NULL", "No", "Basic", "Standard", "Pro" };
     return field_e_user_ezsignprepaidArray[field_e_user_ezsignprepaid];
 }
 
 ezmax_api_definition__full_field_e_user_ezsignprepaid__e field_e_user_ezsignprepaid_field_e_user_ezsignprepaid_FromString(char* field_e_user_ezsignprepaid) {
     int stringToReturn = 0;
-    char *field_e_user_ezsignprepaidArray[] =  { "NULL", "Basic", "Unlimited", "Pro" };
+    char *field_e_user_ezsignprepaidArray[] =  { "NULL", "No", "Basic", "Standard", "Pro" };
     size_t sizeofArray = sizeof(field_e_user_ezsignprepaidArray) / sizeof(field_e_user_ezsignprepaidArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(field_e_user_ezsignprepaid, field_e_user_ezsignprepaidArray[stringToReturn]) == 0) {

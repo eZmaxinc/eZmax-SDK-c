@@ -8,7 +8,8 @@
 usergroupmembership_request_t *usergroupmembership_request_create(
     int pki_usergroupmembership_id,
     int fki_usergroup_id,
-    int fki_user_id
+    int fki_user_id,
+    int fki_usergroupexternal_id
     ) {
     usergroupmembership_request_t *usergroupmembership_request_local_var = malloc(sizeof(usergroupmembership_request_t));
     if (!usergroupmembership_request_local_var) {
@@ -17,6 +18,7 @@ usergroupmembership_request_t *usergroupmembership_request_create(
     usergroupmembership_request_local_var->pki_usergroupmembership_id = pki_usergroupmembership_id;
     usergroupmembership_request_local_var->fki_usergroup_id = fki_usergroup_id;
     usergroupmembership_request_local_var->fki_user_id = fki_user_id;
+    usergroupmembership_request_local_var->fki_usergroupexternal_id = fki_usergroupexternal_id;
 
     return usergroupmembership_request_local_var;
 }
@@ -51,11 +53,18 @@ cJSON *usergroupmembership_request_convertToJSON(usergroupmembership_request_t *
 
 
     // usergroupmembership_request->fki_user_id
-    if (!usergroupmembership_request->fki_user_id) {
-        goto fail;
-    }
+    if(usergroupmembership_request->fki_user_id) {
     if(cJSON_AddNumberToObject(item, "fkiUserID", usergroupmembership_request->fki_user_id) == NULL) {
     goto fail; //Numeric
+    }
+    }
+
+
+    // usergroupmembership_request->fki_usergroupexternal_id
+    if(usergroupmembership_request->fki_usergroupexternal_id) {
+    if(cJSON_AddNumberToObject(item, "fkiUsergroupexternalID", usergroupmembership_request->fki_usergroupexternal_id) == NULL) {
+    goto fail; //Numeric
+    }
     }
 
     return item;
@@ -93,21 +102,28 @@ usergroupmembership_request_t *usergroupmembership_request_parseFromJSON(cJSON *
 
     // usergroupmembership_request->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(usergroupmembership_requestJSON, "fkiUserID");
-    if (!fki_user_id) {
-        goto end;
-    }
-
-    
+    if (fki_user_id) { 
     if(!cJSON_IsNumber(fki_user_id))
     {
     goto end; //Numeric
+    }
+    }
+
+    // usergroupmembership_request->fki_usergroupexternal_id
+    cJSON *fki_usergroupexternal_id = cJSON_GetObjectItemCaseSensitive(usergroupmembership_requestJSON, "fkiUsergroupexternalID");
+    if (fki_usergroupexternal_id) { 
+    if(!cJSON_IsNumber(fki_usergroupexternal_id))
+    {
+    goto end; //Numeric
+    }
     }
 
 
     usergroupmembership_request_local_var = usergroupmembership_request_create (
         pki_usergroupmembership_id ? pki_usergroupmembership_id->valuedouble : 0,
         fki_usergroup_id->valuedouble,
-        fki_user_id->valuedouble
+        fki_user_id ? fki_user_id->valuedouble : 0,
+        fki_usergroupexternal_id ? fki_usergroupexternal_id->valuedouble : 0
         );
 
     return usergroupmembership_request_local_var;

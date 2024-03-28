@@ -4,12 +4,12 @@
 #include "activesession_response.h"
 
 
-char* e_activesession_usertypeactivesession_response_ToString(ezmax_api_definition__full_activesession_response__e e_activesession_usertype) {
+char* activesession_response_e_activesession_usertype_ToString(ezmax_api_definition__full_activesession_response__e e_activesession_usertype) {
     char* e_activesession_usertypeArray[] =  { "NULL", "AgentBroker", "Assistant", "EzsignSigner", "EzsignUser", "Normal" };
     return e_activesession_usertypeArray[e_activesession_usertype];
 }
 
-ezmax_api_definition__full_activesession_response__e e_activesession_usertypeactivesession_response_FromString(char* e_activesession_usertype){
+ezmax_api_definition__full_activesession_response__e activesession_response_e_activesession_usertype_FromString(char* e_activesession_usertype){
     int stringToReturn = 0;
     char *e_activesession_usertypeArray[] =  { "NULL", "AgentBroker", "Assistant", "EzsignSigner", "EzsignUser", "Normal" };
     size_t sizeofArray = sizeof(e_activesession_usertypeArray) / sizeof(e_activesession_usertypeArray[0]);
@@ -21,12 +21,12 @@ ezmax_api_definition__full_activesession_response__e e_activesession_usertypeact
     }
     return 0;
 }
-char* e_activesession_originactivesession_response_ToString(ezmax_api_definition__full_activesession_response__e e_activesession_origin) {
+char* activesession_response_e_activesession_origin_ToString(ezmax_api_definition__full_activesession_response__e e_activesession_origin) {
     char* e_activesession_originArray[] =  { "NULL", "BuiltIn", "External" };
     return e_activesession_originArray[e_activesession_origin];
 }
 
-ezmax_api_definition__full_activesession_response__e e_activesession_originactivesession_response_FromString(char* e_activesession_origin){
+ezmax_api_definition__full_activesession_response__e activesession_response_e_activesession_origin_FromString(char* e_activesession_origin){
     int stringToReturn = 0;
     char *e_activesession_originArray[] =  { "NULL", "BuiltIn", "External" };
     size_t sizeofArray = sizeof(e_activesession_originArray) / sizeof(e_activesession_originArray[0]);
@@ -38,12 +38,12 @@ ezmax_api_definition__full_activesession_response__e e_activesession_originactiv
     }
     return 0;
 }
-char* e_activesession_weekdaystartactivesession_response_ToString(ezmax_api_definition__full_activesession_response__e e_activesession_weekdaystart) {
+char* activesession_response_e_activesession_weekdaystart_ToString(ezmax_api_definition__full_activesession_response__e e_activesession_weekdaystart) {
     char* e_activesession_weekdaystartArray[] =  { "NULL", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
     return e_activesession_weekdaystartArray[e_activesession_weekdaystart];
 }
 
-ezmax_api_definition__full_activesession_response__e e_activesession_weekdaystartactivesession_response_FromString(char* e_activesession_weekdaystart){
+ezmax_api_definition__full_activesession_response__e activesession_response_e_activesession_weekdaystart_FromString(char* e_activesession_weekdaystart){
     int stringToReturn = 0;
     char *e_activesession_weekdaystartArray[] =  { "NULL", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
     size_t sizeofArray = sizeof(e_activesession_weekdaystartArray) / sizeof(e_activesession_weekdaystartArray[0]);

@@ -4,12 +4,12 @@
 #include "discussionmessage_response.h"
 
 
-char* e_discussionmessage_statusdiscussionmessage_response_ToString(ezmax_api_definition__full_discussionmessage_response__e e_discussionmessage_status) {
+char* discussionmessage_response_e_discussionmessage_status_ToString(ezmax_api_definition__full_discussionmessage_response__e e_discussionmessage_status) {
     char* e_discussionmessage_statusArray[] =  { "NULL", "New", "Edited", "Deleted" };
     return e_discussionmessage_statusArray[e_discussionmessage_status];
 }
 
-ezmax_api_definition__full_discussionmessage_response__e e_discussionmessage_statusdiscussionmessage_response_FromString(char* e_discussionmessage_status){
+ezmax_api_definition__full_discussionmessage_response__e discussionmessage_response_e_discussionmessage_status_FromString(char* e_discussionmessage_status){
     int stringToReturn = 0;
     char *e_discussionmessage_statusArray[] =  { "NULL", "New", "Edited", "Deleted" };
     size_t sizeofArray = sizeof(e_discussionmessage_statusArray) / sizeof(e_discussionmessage_statusArray[0]);

@@ -45,7 +45,8 @@ ezsigndocument_response_t* instantiate_ezsigndocument_response(int include_optio
        // false, not to have infinite recursion
       instantiate_common_audit(0),
       "{"ID": 1234, "TAGS": ["tag1", "tag2", "tag3"]}",
-      3
+      3,
+      14
     );
   } else {
     ezsigndocument_response = ezsigndocument_response_create(
@@ -70,7 +71,8 @@ ezsigndocument_response_t* instantiate_ezsigndocument_response(int include_optio
       true,
       NULL,
       "{"ID": 1234, "TAGS": ["tag1", "tag2", "tag3"]}",
-      3
+      3,
+      14
     );
   }
 

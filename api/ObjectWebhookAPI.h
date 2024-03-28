@@ -9,8 +9,6 @@
 #include "../model/common_response_error_too_many_requests.h"
 #include "../model/header_accept_language.h"
 #include "../model/object.h"
-#include "../model/webhook_create_object_v1_request.h"
-#include "../model/webhook_create_object_v1_response.h"
 #include "../model/webhook_create_object_v2_request.h"
 #include "../model/webhook_create_object_v2_response.h"
 #include "../model/webhook_delete_object_v1_response.h"
@@ -31,14 +29,6 @@ typedef enum  { ezmax_api_definition__full_webhookGetListV1_EORDERBY_NULL = 0, e
 
 // Enum  for ObjectWebhookAPI_webhookGetListV1
 typedef enum  { ezmax_api_definition__full_webhookGetListV1__NULL = 0, ezmax_api_definition__full_webhookGetListV1__*, ezmax_api_definition__full_webhookGetListV1__en, ezmax_api_definition__full_webhookGetListV1__fr } ezmax_api_definition__full_webhookGetListV1_Accept-Language_e;
-
-
-// Create a new Webhook
-//
-// The endpoint allows to create one or many elements at once.
-//
-webhook_create_object_v1_response_t*
-ObjectWebhookAPI_webhookCreateObjectV1(apiClient_t *apiClient, webhook_create_object_v1_request_t *webhook_create_object_v1_request);
 
 
 // Create a new Webhook

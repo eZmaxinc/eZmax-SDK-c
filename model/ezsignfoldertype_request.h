@@ -73,10 +73,9 @@ typedef struct ezsignfoldertype_request_t {
     int i_ezsignfoldertype_disposaldays; //numeric
     int i_ezsignfoldertype_deadlinedays; //numeric
     int b_ezsignfoldertype_delegate; //boolean
-    int b_ezsignfoldertype_reassign; //boolean
+    int b_ezsignfoldertype_discussion; //boolean
     int b_ezsignfoldertype_reassignezsignsigner; //boolean
     int b_ezsignfoldertype_reassignuser; //boolean
-    int b_ezsignfoldertype_sendattatchmentsigner; //boolean
     int b_ezsignfoldertype_sendsignedtoezsignsigner; //boolean
     int b_ezsignfoldertype_sendsignedtouser; //boolean
     int b_ezsignfoldertype_sendattachmentezsignsigner; //boolean
@@ -97,8 +96,6 @@ typedef struct ezsignfoldertype_request_t {
     int b_ezsignfoldertype_sendsummarytofullgroup; //boolean
     int b_ezsignfoldertype_sendsummarytolimitedgroup; //boolean
     int b_ezsignfoldertype_sendsummarytocolleague; //boolean
-    int b_ezsignfoldertype_includeproofsigner; //boolean
-    int b_ezsignfoldertype_includeproofuser; //boolean
     int b_ezsignfoldertype_isactive; //boolean
 
 } ezsignfoldertype_request_t;
@@ -121,10 +118,9 @@ ezsignfoldertype_request_t *ezsignfoldertype_request_create(
     int i_ezsignfoldertype_disposaldays,
     int i_ezsignfoldertype_deadlinedays,
     int b_ezsignfoldertype_delegate,
-    int b_ezsignfoldertype_reassign,
+    int b_ezsignfoldertype_discussion,
     int b_ezsignfoldertype_reassignezsignsigner,
     int b_ezsignfoldertype_reassignuser,
-    int b_ezsignfoldertype_sendattatchmentsigner,
     int b_ezsignfoldertype_sendsignedtoezsignsigner,
     int b_ezsignfoldertype_sendsignedtouser,
     int b_ezsignfoldertype_sendattachmentezsignsigner,
@@ -145,8 +141,6 @@ ezsignfoldertype_request_t *ezsignfoldertype_request_create(
     int b_ezsignfoldertype_sendsummarytofullgroup,
     int b_ezsignfoldertype_sendsummarytolimitedgroup,
     int b_ezsignfoldertype_sendsummarytocolleague,
-    int b_ezsignfoldertype_includeproofsigner,
-    int b_ezsignfoldertype_includeproofuser,
     int b_ezsignfoldertype_isactive
 );
 

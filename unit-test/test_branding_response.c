@@ -31,12 +31,14 @@ branding_response_t* instantiate_branding_response(int include_optional) {
       "eZmax (Corp)",
       "email@example.com",
       ezmax_api_definition__full_branding_response__"Default",
+      ezmax_api_definition__full_branding_response__"Default",
       3752795,
       0,
       16777215,
       15658734,
       13577007,
       16777215,
+      15658734,
       true
     );
   } else {
@@ -48,12 +50,14 @@ branding_response_t* instantiate_branding_response(int include_optional) {
       "eZmax (Corp)",
       "email@example.com",
       ezmax_api_definition__full_branding_response__"Default",
+      ezmax_api_definition__full_branding_response__"Default",
       3752795,
       0,
       16777215,
       15658734,
       13577007,
       16777215,
+      15658734,
       true
     );
   }

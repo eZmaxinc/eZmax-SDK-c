@@ -30,10 +30,13 @@ ezsigntemplate_get_object_v1_response_m_payload_t* instantiate_ezsigntemplate_ge
       2,
       "English",
       "Standard Contract",
+      "Contract",
       1,
       "Default",
        // false, not to have infinite recursion
       instantiate_common_audit(0),
+      1,
+      ezmax_api_definition__full_ezsigntemplate_get_object_v1_response_m_payload__"Usergroup",
        // false, not to have infinite recursion
       instantiate_ezsigntemplatedocument_response(0),
       list_createList()
@@ -46,9 +49,12 @@ ezsigntemplate_get_object_v1_response_m_payload_t* instantiate_ezsigntemplate_ge
       2,
       "English",
       "Standard Contract",
+      "Contract",
       1,
       "Default",
       NULL,
+      1,
+      ezmax_api_definition__full_ezsigntemplate_get_object_v1_response_m_payload__"Usergroup",
       NULL,
       list_createList()
     );

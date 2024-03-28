@@ -1,0 +1,86 @@
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include "ezsignfoldertype_get_object_v3_response_m_payload.h"
+
+
+
+ezsignfoldertype_get_object_v3_response_m_payload_t *ezsignfoldertype_get_object_v3_response_m_payload_create(
+    ezsignfoldertype_response_compound_v3_t *obj_ezsignfoldertype
+    ) {
+    ezsignfoldertype_get_object_v3_response_m_payload_t *ezsignfoldertype_get_object_v3_response_m_payload_local_var = malloc(sizeof(ezsignfoldertype_get_object_v3_response_m_payload_t));
+    if (!ezsignfoldertype_get_object_v3_response_m_payload_local_var) {
+        return NULL;
+    }
+    ezsignfoldertype_get_object_v3_response_m_payload_local_var->obj_ezsignfoldertype = obj_ezsignfoldertype;
+
+    return ezsignfoldertype_get_object_v3_response_m_payload_local_var;
+}
+
+
+void ezsignfoldertype_get_object_v3_response_m_payload_free(ezsignfoldertype_get_object_v3_response_m_payload_t *ezsignfoldertype_get_object_v3_response_m_payload) {
+    if(NULL == ezsignfoldertype_get_object_v3_response_m_payload){
+        return ;
+    }
+    listEntry_t *listEntry;
+    if (ezsignfoldertype_get_object_v3_response_m_payload->obj_ezsignfoldertype) {
+        ezsignfoldertype_response_compound_v3_free(ezsignfoldertype_get_object_v3_response_m_payload->obj_ezsignfoldertype);
+        ezsignfoldertype_get_object_v3_response_m_payload->obj_ezsignfoldertype = NULL;
+    }
+    free(ezsignfoldertype_get_object_v3_response_m_payload);
+}
+
+cJSON *ezsignfoldertype_get_object_v3_response_m_payload_convertToJSON(ezsignfoldertype_get_object_v3_response_m_payload_t *ezsignfoldertype_get_object_v3_response_m_payload) {
+    cJSON *item = cJSON_CreateObject();
+
+    // ezsignfoldertype_get_object_v3_response_m_payload->obj_ezsignfoldertype
+    if (!ezsignfoldertype_get_object_v3_response_m_payload->obj_ezsignfoldertype) {
+        goto fail;
+    }
+    cJSON *obj_ezsignfoldertype_local_JSON = ezsignfoldertype_response_compound_v3_convertToJSON(ezsignfoldertype_get_object_v3_response_m_payload->obj_ezsignfoldertype);
+    if(obj_ezsignfoldertype_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objEzsignfoldertype", obj_ezsignfoldertype_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
+    return item;
+fail:
+    if (item) {
+        cJSON_Delete(item);
+    }
+    return NULL;
+}
+
+ezsignfoldertype_get_object_v3_response_m_payload_t *ezsignfoldertype_get_object_v3_response_m_payload_parseFromJSON(cJSON *ezsignfoldertype_get_object_v3_response_m_payloadJSON){
+
+    ezsignfoldertype_get_object_v3_response_m_payload_t *ezsignfoldertype_get_object_v3_response_m_payload_local_var = NULL;
+
+    // define the local variable for ezsignfoldertype_get_object_v3_response_m_payload->obj_ezsignfoldertype
+    ezsignfoldertype_response_compound_v3_t *obj_ezsignfoldertype_local_nonprim = NULL;
+
+    // ezsignfoldertype_get_object_v3_response_m_payload->obj_ezsignfoldertype
+    cJSON *obj_ezsignfoldertype = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_get_object_v3_response_m_payloadJSON, "objEzsignfoldertype");
+    if (!obj_ezsignfoldertype) {
+        goto end;
+    }
+
+    
+    obj_ezsignfoldertype_local_nonprim = ezsignfoldertype_response_compound_v3_parseFromJSON(obj_ezsignfoldertype); //nonprimitive
+
+
+    ezsignfoldertype_get_object_v3_response_m_payload_local_var = ezsignfoldertype_get_object_v3_response_m_payload_create (
+        obj_ezsignfoldertype_local_nonprim
+        );
+
+    return ezsignfoldertype_get_object_v3_response_m_payload_local_var;
+end:
+    if (obj_ezsignfoldertype_local_nonprim) {
+        ezsignfoldertype_response_compound_v3_free(obj_ezsignfoldertype_local_nonprim);
+        obj_ezsignfoldertype_local_nonprim = NULL;
+    }
+    return NULL;
+
+}

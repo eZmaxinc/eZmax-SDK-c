@@ -13,7 +13,7 @@ Method | HTTP request | Description
 //
 // Get the list of Ezmaxproduct to be used in a dropdown or autocomplete control.
 //
-ezmaxproduct_get_autocomplete_v2_response_t* ObjectEzmaxproductAPI_ezmaxproductGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezmaxproductGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_ezmaxproductGetAutocompleteV2_eFilterActive_e eFilterActive, char * sQuery, header_accept_language_e Accept_Language);
+ezmaxproduct_get_autocomplete_v2_response_t* ObjectEzmaxproductAPI_ezmaxproductGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezmaxproductGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_ezmaxproductGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
 ```
 
 ### Parameters

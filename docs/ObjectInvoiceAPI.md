@@ -14,7 +14,7 @@ Method | HTTP request | Description
 //
 // 
 //
-invoice_get_attachments_v1_response_t* ObjectInvoiceAPI_invoiceGetAttachmentsV1(apiClient_t *apiClient, int pkiInvoiceID);
+invoice_get_attachments_v1_response_t* ObjectInvoiceAPI_invoiceGetAttachmentsV1(apiClient_t *apiClient, int *pkiInvoiceID);
 ```
 
 ### Parameters
@@ -45,7 +45,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-invoice_get_communication_list_v1_response_t* ObjectInvoiceAPI_invoiceGetCommunicationListV1(apiClient_t *apiClient, int pkiInvoiceID);
+invoice_get_communication_list_v1_response_t* ObjectInvoiceAPI_invoiceGetCommunicationListV1(apiClient_t *apiClient, int *pkiInvoiceID);
 ```
 
 ### Parameters

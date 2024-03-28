@@ -16,7 +16,7 @@ Method | HTTP request | Description
 //
 // The endpoint allows to create one or many elements at once.
 //
-cors_create_object_v1_response_t* ObjectCorsAPI_corsCreateObjectV1(apiClient_t *apiClient, cors_create_object_v1_request_t * cors_create_object_v1_request);
+cors_create_object_v1_response_t* ObjectCorsAPI_corsCreateObjectV1(apiClient_t *apiClient, cors_create_object_v1_request_t *cors_create_object_v1_request);
 ```
 
 ### Parameters
@@ -47,7 +47,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-cors_delete_object_v1_response_t* ObjectCorsAPI_corsDeleteObjectV1(apiClient_t *apiClient, int pkiCorsID);
+cors_delete_object_v1_response_t* ObjectCorsAPI_corsDeleteObjectV1(apiClient_t *apiClient, int *pkiCorsID);
 ```
 
 ### Parameters
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-cors_edit_object_v1_response_t* ObjectCorsAPI_corsEditObjectV1(apiClient_t *apiClient, int pkiCorsID, cors_edit_object_v1_request_t * cors_edit_object_v1_request);
+cors_edit_object_v1_response_t* ObjectCorsAPI_corsEditObjectV1(apiClient_t *apiClient, int *pkiCorsID, cors_edit_object_v1_request_t *cors_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-cors_get_object_v2_response_t* ObjectCorsAPI_corsGetObjectV2(apiClient_t *apiClient, int pkiCorsID);
+cors_get_object_v2_response_t* ObjectCorsAPI_corsGetObjectV2(apiClient_t *apiClient, int *pkiCorsID);
 ```
 
 ### Parameters

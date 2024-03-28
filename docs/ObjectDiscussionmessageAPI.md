@@ -15,7 +15,7 @@ Method | HTTP request | Description
 //
 // The endpoint allows to create one or many elements at once.
 //
-discussionmessage_create_object_v1_response_t* ObjectDiscussionmessageAPI_discussionmessageCreateObjectV1(apiClient_t *apiClient, discussionmessage_create_object_v1_request_t * discussionmessage_create_object_v1_request);
+discussionmessage_create_object_v1_response_t* ObjectDiscussionmessageAPI_discussionmessageCreateObjectV1(apiClient_t *apiClient, discussionmessage_create_object_v1_request_t *discussionmessage_create_object_v1_request);
 ```
 
 ### Parameters
@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-discussionmessage_delete_object_v1_response_t* ObjectDiscussionmessageAPI_discussionmessageDeleteObjectV1(apiClient_t *apiClient, int pkiDiscussionmessageID);
+discussionmessage_delete_object_v1_response_t* ObjectDiscussionmessageAPI_discussionmessageDeleteObjectV1(apiClient_t *apiClient, int *pkiDiscussionmessageID);
 ```
 
 ### Parameters
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-discussionmessage_patch_object_v1_response_t* ObjectDiscussionmessageAPI_discussionmessagePatchObjectV1(apiClient_t *apiClient, int pkiDiscussionmessageID, discussionmessage_patch_object_v1_request_t * discussionmessage_patch_object_v1_request);
+discussionmessage_patch_object_v1_response_t* ObjectDiscussionmessageAPI_discussionmessagePatchObjectV1(apiClient_t *apiClient, int *pkiDiscussionmessageID, discussionmessage_patch_object_v1_request_t *discussionmessage_patch_object_v1_request);
 ```
 
 ### Parameters

@@ -4,12 +4,12 @@
 #include "ezsignbulksend_create_ezsignbulksendtransmission_v1_request.h"
 
 
-char* e_ezsignfolder_sendreminderfrequencyezsignbulksend_create_ezsignbulksendtransmission_v1_request_ToString(ezmax_api_definition__full_ezsignbulksend_create_ezsignbulksendtransmission_v1_request__e e_ezsignfolder_sendreminderfrequency) {
+char* ezsignbulksend_create_ezsignbulksendtransmission_v1_request_e_ezsignfolder_sendreminderfrequency_ToString(ezmax_api_definition__full_ezsignbulksend_create_ezsignbulksendtransmission_v1_request__e e_ezsignfolder_sendreminderfrequency) {
     char* e_ezsignfolder_sendreminderfrequencyArray[] =  { "NULL", "None", "Daily", "Weekly" };
     return e_ezsignfolder_sendreminderfrequencyArray[e_ezsignfolder_sendreminderfrequency];
 }
 
-ezmax_api_definition__full_ezsignbulksend_create_ezsignbulksendtransmission_v1_request__e e_ezsignfolder_sendreminderfrequencyezsignbulksend_create_ezsignbulksendtransmission_v1_request_FromString(char* e_ezsignfolder_sendreminderfrequency){
+ezmax_api_definition__full_ezsignbulksend_create_ezsignbulksendtransmission_v1_request__e ezsignbulksend_create_ezsignbulksendtransmission_v1_request_e_ezsignfolder_sendreminderfrequency_FromString(char* e_ezsignfolder_sendreminderfrequency){
     int stringToReturn = 0;
     char *e_ezsignfolder_sendreminderfrequencyArray[] =  { "NULL", "None", "Daily", "Weekly" };
     size_t sizeofArray = sizeof(e_ezsignfolder_sendreminderfrequencyArray) / sizeof(e_ezsignfolder_sendreminderfrequencyArray[0]);

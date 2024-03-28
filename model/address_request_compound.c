@@ -13,7 +13,9 @@ address_request_compound_t *address_request_compound_create(
     char *s_address_city,
     int fki_province_id,
     int fki_country_id,
-    char *s_address_zip
+    char *s_address_zip,
+    char *f_address_longitude,
+    char *f_address_latitude
     ) {
     address_request_compound_t *address_request_compound_local_var = malloc(sizeof(address_request_compound_t));
     if (!address_request_compound_local_var) {
@@ -27,6 +29,8 @@ address_request_compound_t *address_request_compound_create(
     address_request_compound_local_var->fki_province_id = fki_province_id;
     address_request_compound_local_var->fki_country_id = fki_country_id;
     address_request_compound_local_var->s_address_zip = s_address_zip;
+    address_request_compound_local_var->f_address_longitude = f_address_longitude;
+    address_request_compound_local_var->f_address_latitude = f_address_latitude;
 
     return address_request_compound_local_var;
 }
@@ -56,6 +60,14 @@ void address_request_compound_free(address_request_compound_t *address_request_c
     if (address_request_compound->s_address_zip) {
         free(address_request_compound->s_address_zip);
         address_request_compound->s_address_zip = NULL;
+    }
+    if (address_request_compound->f_address_longitude) {
+        free(address_request_compound->f_address_longitude);
+        address_request_compound->f_address_longitude = NULL;
+    }
+    if (address_request_compound->f_address_latitude) {
+        free(address_request_compound->f_address_latitude);
+        address_request_compound->f_address_latitude = NULL;
     }
     free(address_request_compound);
 }
@@ -132,6 +144,22 @@ cJSON *address_request_compound_convertToJSON(address_request_compound_t *addres
     }
     if(cJSON_AddStringToObject(item, "sAddressZip", address_request_compound->s_address_zip) == NULL) {
     goto fail; //String
+    }
+
+
+    // address_request_compound->f_address_longitude
+    if(address_request_compound->f_address_longitude) {
+    if(cJSON_AddStringToObject(item, "fAddressLongitude", address_request_compound->f_address_longitude) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // address_request_compound->f_address_latitude
+    if(address_request_compound->f_address_latitude) {
+    if(cJSON_AddStringToObject(item, "fAddressLatitude", address_request_compound->f_address_latitude) == NULL) {
+    goto fail; //String
+    }
     }
 
     return item;
@@ -242,6 +270,24 @@ address_request_compound_t *address_request_compound_parseFromJSON(cJSON *addres
     goto end; //String
     }
 
+    // address_request_compound->f_address_longitude
+    cJSON *f_address_longitude = cJSON_GetObjectItemCaseSensitive(address_request_compoundJSON, "fAddressLongitude");
+    if (f_address_longitude) { 
+    if(!cJSON_IsString(f_address_longitude) && !cJSON_IsNull(f_address_longitude))
+    {
+    goto end; //String
+    }
+    }
+
+    // address_request_compound->f_address_latitude
+    cJSON *f_address_latitude = cJSON_GetObjectItemCaseSensitive(address_request_compoundJSON, "fAddressLatitude");
+    if (f_address_latitude) { 
+    if(!cJSON_IsString(f_address_latitude) && !cJSON_IsNull(f_address_latitude))
+    {
+    goto end; //String
+    }
+    }
+
 
     address_request_compound_local_var = address_request_compound_create (
         fki_addresstype_id->valuedouble,
@@ -251,7 +297,9 @@ address_request_compound_t *address_request_compound_parseFromJSON(cJSON *addres
         strdup(s_address_city->valuestring),
         fki_province_id->valuedouble,
         fki_country_id->valuedouble,
-        strdup(s_address_zip->valuestring)
+        strdup(s_address_zip->valuestring),
+        f_address_longitude && !cJSON_IsNull(f_address_longitude) ? strdup(f_address_longitude->valuestring) : NULL,
+        f_address_latitude && !cJSON_IsNull(f_address_latitude) ? strdup(f_address_latitude->valuestring) : NULL
         );
 
     return address_request_compound_local_var;

@@ -4,12 +4,12 @@
 #include "user_request_compound.h"
 
 
-char* e_user_typeuser_request_compound_ToString(ezmax_api_definition__full_user_request_compound__e e_user_type) {
+char* user_request_compound_e_user_type_ToString(ezmax_api_definition__full_user_request_compound__e e_user_type) {
     char* e_user_typeArray[] =  { "NULL", "AgentBroker", "Assistant", "Employee", "EzsignUser", "Normal" };
     return e_user_typeArray[e_user_type];
 }
 
-ezmax_api_definition__full_user_request_compound__e e_user_typeuser_request_compound_FromString(char* e_user_type){
+ezmax_api_definition__full_user_request_compound__e user_request_compound_e_user_type_FromString(char* e_user_type){
     int stringToReturn = 0;
     char *e_user_typeArray[] =  { "NULL", "AgentBroker", "Assistant", "Employee", "EzsignUser", "Normal" };
     size_t sizeofArray = sizeof(e_user_typeArray) / sizeof(e_user_typeArray[0]);
@@ -21,12 +21,12 @@ ezmax_api_definition__full_user_request_compound__e e_user_typeuser_request_comp
     }
     return 0;
 }
-char* e_user_logintypeuser_request_compound_ToString(ezmax_api_definition__full_user_request_compound__e e_user_logintype) {
+char* user_request_compound_e_user_logintype_ToString(ezmax_api_definition__full_user_request_compound__e e_user_logintype) {
     char* e_user_logintypeArray[] =  { "NULL", "Password", "PasswordPhone", "PasswordQuestion" };
     return e_user_logintypeArray[e_user_logintype];
 }
 
-ezmax_api_definition__full_user_request_compound__e e_user_logintypeuser_request_compound_FromString(char* e_user_logintype){
+ezmax_api_definition__full_user_request_compound__e user_request_compound_e_user_logintype_FromString(char* e_user_logintype){
     int stringToReturn = 0;
     char *e_user_logintypeArray[] =  { "NULL", "Password", "PasswordPhone", "PasswordQuestion" };
     size_t sizeofArray = sizeof(e_user_logintypeArray) / sizeof(e_user_logintypeArray[0]);
@@ -38,12 +38,12 @@ ezmax_api_definition__full_user_request_compound__e e_user_logintypeuser_request
     }
     return 0;
 }
-char* e_user_ezsignaccessuser_request_compound_ToString(ezmax_api_definition__full_user_request_compound__e e_user_ezsignaccess) {
+char* user_request_compound_e_user_ezsignaccess_ToString(ezmax_api_definition__full_user_request_compound__e e_user_ezsignaccess) {
     char* e_user_ezsignaccessArray[] =  { "NULL", "No", "PaidByOffice", "PerDocument", "Prepaid" };
     return e_user_ezsignaccessArray[e_user_ezsignaccess];
 }
 
-ezmax_api_definition__full_user_request_compound__e e_user_ezsignaccessuser_request_compound_FromString(char* e_user_ezsignaccess){
+ezmax_api_definition__full_user_request_compound__e user_request_compound_e_user_ezsignaccess_FromString(char* e_user_ezsignaccess){
     int stringToReturn = 0;
     char *e_user_ezsignaccessArray[] =  { "NULL", "No", "PaidByOffice", "PerDocument", "Prepaid" };
     size_t sizeofArray = sizeof(e_user_ezsignaccessArray) / sizeof(e_user_ezsignaccessArray[0]);

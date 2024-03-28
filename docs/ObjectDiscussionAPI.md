@@ -17,7 +17,7 @@ Method | HTTP request | Description
 //
 // The endpoint allows to create one or many elements at once.
 //
-discussion_create_object_v1_response_t* ObjectDiscussionAPI_discussionCreateObjectV1(apiClient_t *apiClient, discussion_create_object_v1_request_t * discussion_create_object_v1_request);
+discussion_create_object_v1_response_t* ObjectDiscussionAPI_discussionCreateObjectV1(apiClient_t *apiClient, discussion_create_object_v1_request_t *discussion_create_object_v1_request);
 ```
 
 ### Parameters
@@ -48,7 +48,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-discussion_delete_object_v1_response_t* ObjectDiscussionAPI_discussionDeleteObjectV1(apiClient_t *apiClient, int pkiDiscussionID);
+discussion_delete_object_v1_response_t* ObjectDiscussionAPI_discussionDeleteObjectV1(apiClient_t *apiClient, int *pkiDiscussionID);
 ```
 
 ### Parameters
@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-discussion_get_object_v2_response_t* ObjectDiscussionAPI_discussionGetObjectV2(apiClient_t *apiClient, int pkiDiscussionID);
+discussion_get_object_v2_response_t* ObjectDiscussionAPI_discussionGetObjectV2(apiClient_t *apiClient, int *pkiDiscussionID);
 ```
 
 ### Parameters
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-discussion_patch_object_v1_response_t* ObjectDiscussionAPI_discussionPatchObjectV1(apiClient_t *apiClient, int pkiDiscussionID, discussion_patch_object_v1_request_t * discussion_patch_object_v1_request);
+discussion_patch_object_v1_response_t* ObjectDiscussionAPI_discussionPatchObjectV1(apiClient_t *apiClient, int *pkiDiscussionID, discussion_patch_object_v1_request_t *discussion_patch_object_v1_request);
 ```
 
 ### Parameters
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 ```c
 // Update the read status of the discussion
 //
-discussion_update_discussionreadstatus_v1_response_t* ObjectDiscussionAPI_discussionUpdateDiscussionreadstatusV1(apiClient_t *apiClient, int pkiDiscussionID, discussion_update_discussionreadstatus_v1_request_t * discussion_update_discussionreadstatus_v1_request);
+discussion_update_discussionreadstatus_v1_response_t* ObjectDiscussionAPI_discussionUpdateDiscussionreadstatusV1(apiClient_t *apiClient, int *pkiDiscussionID, discussion_update_discussionreadstatus_v1_request_t *discussion_update_discussionreadstatus_v1_request);
 ```
 
 ### Parameters

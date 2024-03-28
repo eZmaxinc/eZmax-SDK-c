@@ -4,12 +4,12 @@
 #include "ezsignfolder_batch_download_v1_request.h"
 
 
-char* a_e_document_typeezsignfolder_batch_download_v1_request_ToString(ezmax_api_definition__full_ezsignfolder_batch_download_v1_request_AEDOCUMENTTYPE_e a_e_document_type) {
+char* ezsignfolder_batch_download_v1_request_a_e_document_type_ToString(ezmax_api_definition__full_ezsignfolder_batch_download_v1_request_AEDOCUMENTTYPE_e a_e_document_type) {
     char *a_e_document_typeArray[] =  { "NULL", "Signed", "Proof", "Proofdocument" };
     return a_e_document_typeArray[a_e_document_type - 1];
 }
 
-ezmax_api_definition__full_ezsignfolder_batch_download_v1_request_AEDOCUMENTTYPE_e a_e_document_typeezsignfolder_batch_download_v1_request_FromString(char* a_e_document_type) {
+ezmax_api_definition__full_ezsignfolder_batch_download_v1_request_AEDOCUMENTTYPE_e ezsignfolder_batch_download_v1_request_a_e_document_type_FromString(char* a_e_document_type) {
     int stringToReturn = 0;
     char *a_e_document_typeArray[] =  { "NULL", "Signed", "Proof", "Proofdocument" };
     size_t sizeofArray = sizeof(a_e_document_typeArray) / sizeof(a_e_document_typeArray[0]);

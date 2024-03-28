@@ -19,7 +19,7 @@ Method | HTTP request | Description
 //
 // The endpoint allows to create one or many elements at once.
 //
-ezsigntemplatepackage_create_object_v1_response_t* ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageCreateObjectV1(apiClient_t *apiClient, ezsigntemplatepackage_create_object_v1_request_t * ezsigntemplatepackage_create_object_v1_request);
+ezsigntemplatepackage_create_object_v1_response_t* ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageCreateObjectV1(apiClient_t *apiClient, ezsigntemplatepackage_create_object_v1_request_t *ezsigntemplatepackage_create_object_v1_request);
 ```
 
 ### Parameters
@@ -50,7 +50,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsigntemplatepackage_delete_object_v1_response_t* ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageDeleteObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatepackageID);
+ezsigntemplatepackage_delete_object_v1_response_t* ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatepackageID);
 ```
 
 ### Parameters
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 //
 // Using this endpoint, you can edit multiple Ezsigntemplatepackagesigners at the same time.
 //
-ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_t* ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditEzsigntemplatepackagesignersV1(apiClient_t *apiClient, int pkiEzsigntemplatepackageID, ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_request_t * ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_request);
+ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_response_t* ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditEzsigntemplatepackagesignersV1(apiClient_t *apiClient, int *pkiEzsigntemplatepackageID, ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_request_t *ezsigntemplatepackage_edit_ezsigntemplatepackagesigners_v1_request);
 ```
 
 ### Parameters
@@ -113,7 +113,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsigntemplatepackage_edit_object_v1_response_t* ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditObjectV1(apiClient_t *apiClient, int pkiEzsigntemplatepackageID, ezsigntemplatepackage_edit_object_v1_request_t * ezsigntemplatepackage_edit_object_v1_request);
+ezsigntemplatepackage_edit_object_v1_response_t* ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatepackageID, ezsigntemplatepackage_edit_object_v1_request_t *ezsigntemplatepackage_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 //
 // Get the list of Ezsigntemplatepackage to be used in a dropdown or autocomplete control.
 //
-ezsigntemplatepackage_get_autocomplete_v2_response_t* ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_eFilterActive_e eFilterActive, char * sQuery, header_accept_language_e Accept_Language);
+ezsigntemplatepackage_get_autocomplete_v2_response_t* ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
 ```
 
 ### Parameters
@@ -179,7 +179,7 @@ Name | Type | Description  | Notes
 //
 // Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eEzsigntemplatepackageType | Company<br>Team<br>User<br>Usergroup |
 //
-ezsigntemplatepackage_get_list_v1_response_t* ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplatepackageGetListV1_eOrderBy_e eOrderBy, int iRowMax, int iRowOffset, header_accept_language_e Accept_Language, char * sFilter);
+ezsigntemplatepackage_get_list_v1_response_t* ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplatepackageGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
 ```
 
 ### Parameters
@@ -214,7 +214,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsigntemplatepackage_get_object_v2_response_t* ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetObjectV2(apiClient_t *apiClient, int pkiEzsigntemplatepackageID);
+ezsigntemplatepackage_get_object_v2_response_t* ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplatepackageID);
 ```
 
 ### Parameters

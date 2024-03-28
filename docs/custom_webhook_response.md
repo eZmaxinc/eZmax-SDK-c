@@ -18,6 +18,8 @@ Name | Type | Description | Notes
 **b_webhook_issigned** | **int** | Whether the requests will be signed or not | 
 **b_webhook_skipsslvalidation** | **int** | Wheter the server&#39;s SSL certificate should be validated or not. Not recommended to skip for production use | 
 **obj_audit** | [**common_audit_t**](common_audit.md) \* |  | 
+**s_webhook_event** | **char \*** | The concatenated string to describe the Webhook event | [optional] 
+**a_obj_webhookheader** | [**list_t**](webhookheader_response_compound.md) \* |  | [optional] 
 **pks_customer_code** | **char \*** | The customer code assigned to your account | 
 **b_webhook_test** | **int** | Wheter the webhook received is a manual test or a real event | 
 

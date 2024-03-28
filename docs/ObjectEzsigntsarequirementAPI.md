@@ -13,7 +13,7 @@ Method | HTTP request | Description
 //
 // Get the list of Ezsigntsarequirement to be used in a dropdown or autocomplete control.
 //
-ezsigntsarequirement_get_autocomplete_v2_response_t* ObjectEzsigntsarequirementAPI_ezsigntsarequirementGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV2_sSelector_e sSelector, int fkiEzsignfoldertypeID, ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV2_eFilterActive_e eFilterActive, char * sQuery, header_accept_language_e Accept_Language);
+ezsigntsarequirement_get_autocomplete_v2_response_t* ObjectEzsigntsarequirementAPI_ezsigntsarequirementGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV2_sSelector_e sSelector, int *fkiEzsignfoldertypeID, ezmax_api_definition__full_ezsigntsarequirementGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
 ```
 
 ### Parameters

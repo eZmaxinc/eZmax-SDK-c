@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **b_ezsigntemplatepackage_needvalidation** | **int** | Whether the Ezsignbulksend was automatically modified and needs a manual validation | 
 **b_ezsigntemplatepackage_isactive** | **int** | Whether the Ezsigntemplatepackage is active or not | 
 **s_ezsignfoldertype_name_x** | **char \*** | The name of the Ezsignfoldertype in the language of the requester | 
+**b_ezsigntemplatepackage_editallowed** | **int** | Whether the Ezsigntemplatepackage if allowed to edit or not | 
 **a_obj_ezsigntemplatepackagesigner** | [**list_t**](ezsigntemplatepackagesigner_response_compound.md) \* |  | 
 **a_obj_ezsigntemplatepackagemembership** | [**list_t**](ezsigntemplatepackagemembership_response_compound.md) \* |  | 
 

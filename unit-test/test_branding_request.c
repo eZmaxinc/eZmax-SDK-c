@@ -27,6 +27,8 @@ branding_request_t* instantiate_branding_request(int include_optional) {
        // false, not to have infinite recursion
       instantiate_multilingual_branding_description(0),
       ezmax_api_definition__full_branding_request__"Default",
+      "[B@77a98a6a",
+      ezmax_api_definition__full_branding_request__"Default",
       "[B@78fbff54",
       3752795,
       0,
@@ -34,6 +36,7 @@ branding_request_t* instantiate_branding_request(int include_optional) {
       15658734,
       13577007,
       16777215,
+      15658734,
       "eZmax (Corp)",
       "email@example.com",
       true
@@ -43,6 +46,8 @@ branding_request_t* instantiate_branding_request(int include_optional) {
       78,
       NULL,
       ezmax_api_definition__full_branding_request__"Default",
+      "[B@77a98a6a",
+      ezmax_api_definition__full_branding_request__"Default",
       "[B@78fbff54",
       3752795,
       0,
@@ -50,6 +55,7 @@ branding_request_t* instantiate_branding_request(int include_optional) {
       15658734,
       13577007,
       16777215,
+      15658734,
       "eZmax (Corp)",
       "email@example.com",
       true

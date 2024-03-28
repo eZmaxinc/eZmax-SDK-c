@@ -24,13 +24,15 @@ usergroupmembership_request_t* instantiate_usergroupmembership_request(int inclu
     usergroupmembership_request = usergroupmembership_request_create(
       21,
       2,
-      70
+      70,
+      16
     );
   } else {
     usergroupmembership_request = usergroupmembership_request_create(
       21,
       2,
-      70
+      70,
+      16
     );
   }
 

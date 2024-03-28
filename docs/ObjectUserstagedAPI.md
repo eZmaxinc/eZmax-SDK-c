@@ -17,7 +17,7 @@ Method | HTTP request | Description
 //
 // Default values will be used while creating the User. If you need to change those values, you should use the route to edit a User.
 //
-userstaged_create_user_v1_response_t* ObjectUserstagedAPI_userstagedCreateUserV1(apiClient_t *apiClient, int pkiUserstagedID, object_t * body);
+userstaged_create_user_v1_response_t* ObjectUserstagedAPI_userstagedCreateUserV1(apiClient_t *apiClient, int *pkiUserstagedID, object_t *body);
 ```
 
 ### Parameters
@@ -49,7 +49,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-userstaged_delete_object_v1_response_t* ObjectUserstagedAPI_userstagedDeleteObjectV1(apiClient_t *apiClient, int pkiUserstagedID);
+userstaged_delete_object_v1_response_t* ObjectUserstagedAPI_userstagedDeleteObjectV1(apiClient_t *apiClient, int *pkiUserstagedID);
 ```
 
 ### Parameters
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-userstaged_get_list_v1_response_t* ObjectUserstagedAPI_userstagedGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_userstagedGetListV1_eOrderBy_e eOrderBy, int iRowMax, int iRowOffset, header_accept_language_e Accept_Language, char * sFilter);
+userstaged_get_list_v1_response_t* ObjectUserstagedAPI_userstagedGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_userstagedGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
 ```
 
 ### Parameters
@@ -115,7 +115,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-userstaged_get_object_v2_response_t* ObjectUserstagedAPI_userstagedGetObjectV2(apiClient_t *apiClient, int pkiUserstagedID);
+userstaged_get_object_v2_response_t* ObjectUserstagedAPI_userstagedGetObjectV2(apiClient_t *apiClient, int *pkiUserstagedID);
 ```
 
 ### Parameters
@@ -146,7 +146,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-userstaged_map_v1_response_t* ObjectUserstagedAPI_userstagedMapV1(apiClient_t *apiClient, int pkiUserstagedID, userstaged_map_v1_request_t * userstaged_map_v1_request);
+userstaged_map_v1_response_t* ObjectUserstagedAPI_userstagedMapV1(apiClient_t *apiClient, int *pkiUserstagedID, userstaged_map_v1_request_t *userstaged_map_v1_request);
 ```
 
 ### Parameters

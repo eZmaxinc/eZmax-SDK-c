@@ -29,7 +29,9 @@ address_request_t* instantiate_address_request(int include_optional) {
       "Laval",
       11,
       1,
-      "H7T2S3"
+      "H7T2S3",
+      "doej",
+      "doej"
     );
   } else {
     address_request = address_request_create(
@@ -40,7 +42,9 @@ address_request_t* instantiate_address_request(int include_optional) {
       "Laval",
       11,
       1,
-      "H7T2S3"
+      "H7T2S3",
+      "doej",
+      "doej"
     );
   }
 

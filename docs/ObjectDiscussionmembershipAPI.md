@@ -14,7 +14,7 @@ Method | HTTP request | Description
 //
 // The endpoint allows to create one or many elements at once.
 //
-discussionmembership_create_object_v1_response_t* ObjectDiscussionmembershipAPI_discussionmembershipCreateObjectV1(apiClient_t *apiClient, discussionmembership_create_object_v1_request_t * discussionmembership_create_object_v1_request);
+discussionmembership_create_object_v1_response_t* ObjectDiscussionmembershipAPI_discussionmembershipCreateObjectV1(apiClient_t *apiClient, discussionmembership_create_object_v1_request_t *discussionmembership_create_object_v1_request);
 ```
 
 ### Parameters
@@ -45,7 +45,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-discussionmembership_delete_object_v1_response_t* ObjectDiscussionmembershipAPI_discussionmembershipDeleteObjectV1(apiClient_t *apiClient, int pkiDiscussionmembershipID);
+discussionmembership_delete_object_v1_response_t* ObjectDiscussionmembershipAPI_discussionmembershipDeleteObjectV1(apiClient_t *apiClient, int *pkiDiscussionmembershipID);
 ```
 
 ### Parameters

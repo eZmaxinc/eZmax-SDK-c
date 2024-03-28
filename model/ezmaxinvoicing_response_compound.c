@@ -4,12 +4,12 @@
 #include "ezmaxinvoicing_response_compound.h"
 
 
-char* e_ezmaxinvoicing_paymenttypeezmaxinvoicing_response_compound_ToString(ezmax_api_definition__full_ezmaxinvoicing_response_compound__e e_ezmaxinvoicing_paymenttype) {
+char* ezmaxinvoicing_response_compound_e_ezmaxinvoicing_paymenttype_ToString(ezmax_api_definition__full_ezmaxinvoicing_response_compound__e e_ezmaxinvoicing_paymenttype) {
     char* e_ezmaxinvoicing_paymenttypeArray[] =  { "NULL", "Cheque", "CreditCard", "DirectDebit" };
     return e_ezmaxinvoicing_paymenttypeArray[e_ezmaxinvoicing_paymenttype];
 }
 
-ezmax_api_definition__full_ezmaxinvoicing_response_compound__e e_ezmaxinvoicing_paymenttypeezmaxinvoicing_response_compound_FromString(char* e_ezmaxinvoicing_paymenttype){
+ezmax_api_definition__full_ezmaxinvoicing_response_compound__e ezmaxinvoicing_response_compound_e_ezmaxinvoicing_paymenttype_FromString(char* e_ezmaxinvoicing_paymenttype){
     int stringToReturn = 0;
     char *e_ezmaxinvoicing_paymenttypeArray[] =  { "NULL", "Cheque", "CreditCard", "DirectDebit" };
     size_t sizeofArray = sizeof(e_ezmaxinvoicing_paymenttypeArray) / sizeof(e_ezmaxinvoicing_paymenttypeArray[0]);

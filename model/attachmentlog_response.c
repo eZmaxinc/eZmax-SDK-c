@@ -4,12 +4,12 @@
 #include "attachmentlog_response.h"
 
 
-char* e_attachmentlog_typeattachmentlog_response_ToString(ezmax_api_definition__full_attachmentlog_response__e e_attachmentlog_type) {
+char* attachmentlog_response_e_attachmentlog_type_ToString(ezmax_api_definition__full_attachmentlog_response__e e_attachmentlog_type) {
     char* e_attachmentlog_typeArray[] =  { "NULL", "AutoValidation", "CopyFrom", "CopyTo", "CopyToEzsign", "CreateByEzsign", "Download", "Deleted", "Destroyed", "Email", "EmailCC", "EmailCCI", "Fax", "ImportedFromExternalSystem", "ImportedFromEZA", "ImportedFromFaltour", "ImportedFromLonewolf", "ImportedFromProspects", "Move", "OpenFromEmail", "Purged", "Reject", "Rename", "Restore", "Scanned", "SendToGED", "UnvalidatedBy", "Upload", "ValidatedBy", "VetinfoUpload" };
     return e_attachmentlog_typeArray[e_attachmentlog_type];
 }
 
-ezmax_api_definition__full_attachmentlog_response__e e_attachmentlog_typeattachmentlog_response_FromString(char* e_attachmentlog_type){
+ezmax_api_definition__full_attachmentlog_response__e attachmentlog_response_e_attachmentlog_type_FromString(char* e_attachmentlog_type){
     int stringToReturn = 0;
     char *e_attachmentlog_typeArray[] =  { "NULL", "AutoValidation", "CopyFrom", "CopyTo", "CopyToEzsign", "CreateByEzsign", "Download", "Deleted", "Destroyed", "Email", "EmailCC", "EmailCCI", "Fax", "ImportedFromExternalSystem", "ImportedFromEZA", "ImportedFromFaltour", "ImportedFromLonewolf", "ImportedFromProspects", "Move", "OpenFromEmail", "Purged", "Reject", "Rename", "Restore", "Scanned", "SendToGED", "UnvalidatedBy", "Upload", "ValidatedBy", "VetinfoUpload" };
     size_t sizeofArray = sizeof(e_attachmentlog_typeArray) / sizeof(e_attachmentlog_typeArray[0]);

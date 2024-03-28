@@ -69,10 +69,8 @@ ezsignfoldertype_response_t* instantiate_ezsignfoldertype_response(int include_o
       false,
       false,
       false,
-      false,
       true,
-      true,
-      true
+      list_createList()
     );
   } else {
     ezsignfoldertype_response = ezsignfoldertype_response_create(
@@ -121,10 +119,8 @@ ezsignfoldertype_response_t* instantiate_ezsignfoldertype_response(int include_o
       false,
       false,
       false,
-      false,
       true,
-      true,
-      true
+      list_createList()
     );
   }
 

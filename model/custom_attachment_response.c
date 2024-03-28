@@ -4,12 +4,12 @@
 #include "custom_attachment_response.h"
 
 
-char* e_attachment_documenttypecustom_attachment_response_ToString(ezmax_api_definition__full_custom_attachment_response__e e_attachment_documenttype) {
+char* custom_attachment_response_e_attachment_documenttype_ToString(ezmax_api_definition__full_custom_attachment_response__e e_attachment_documenttype) {
     char* e_attachment_documenttypeArray[] =  { "NULL", "Adjustment", "Agent", "Bankaccount", "Broker", "Buyercontract", "Commissionadvance", "Communication", "Customer", "Customertemplate", "Deposit", "Deposittransitcheque", "Disclosure", "Electronicfundstransfer", "Employee", "Externalbroker", "Ezcomadvanceserver", "Ezcomcompany", "Ezsigndocument", "EzsigndocumentProof", "EzsigndocumentProofdocument", "Ezsigndocumentgroup", "EzsigndocumentgroupProof", "EzsigndocumentgroupProofdocument", "EzsigndocumentAttachment", "Folder", "Franchiseagence", "Franchisebroker", "Franchisecomplaint", "Franchisefranchise", "Franchiseoffice", "Ghacqcontract", "Inscription", "Inscriptionnotauthenticated", "Inscriptiontemp", "Invoice", "Lead", "Marketingfollow", "Marketingprogram", "Notary", "Officetaxreport", "Otherincome", "Paymentpreparation", "Purchase", "Reconciliation", "Rejectedoffertopurchase", "Salary", "Supplier", "Template", "Tranqcontract" };
     return e_attachment_documenttypeArray[e_attachment_documenttype];
 }
 
-ezmax_api_definition__full_custom_attachment_response__e e_attachment_documenttypecustom_attachment_response_FromString(char* e_attachment_documenttype){
+ezmax_api_definition__full_custom_attachment_response__e custom_attachment_response_e_attachment_documenttype_FromString(char* e_attachment_documenttype){
     int stringToReturn = 0;
     char *e_attachment_documenttypeArray[] =  { "NULL", "Adjustment", "Agent", "Bankaccount", "Broker", "Buyercontract", "Commissionadvance", "Communication", "Customer", "Customertemplate", "Deposit", "Deposittransitcheque", "Disclosure", "Electronicfundstransfer", "Employee", "Externalbroker", "Ezcomadvanceserver", "Ezcomcompany", "Ezsigndocument", "EzsigndocumentProof", "EzsigndocumentProofdocument", "Ezsigndocumentgroup", "EzsigndocumentgroupProof", "EzsigndocumentgroupProofdocument", "EzsigndocumentAttachment", "Folder", "Franchiseagence", "Franchisebroker", "Franchisecomplaint", "Franchisefranchise", "Franchiseoffice", "Ghacqcontract", "Inscription", "Inscriptionnotauthenticated", "Inscriptiontemp", "Invoice", "Lead", "Marketingfollow", "Marketingprogram", "Notary", "Officetaxreport", "Otherincome", "Paymentpreparation", "Purchase", "Reconciliation", "Rejectedoffertopurchase", "Salary", "Supplier", "Template", "Tranqcontract" };
     size_t sizeofArray = sizeof(e_attachment_documenttypeArray) / sizeof(e_attachment_documenttypeArray[0]);
@@ -21,12 +21,12 @@ ezmax_api_definition__full_custom_attachment_response__e e_attachment_documentty
     }
     return 0;
 }
-char* e_attachment_privacycustom_attachment_response_ToString(ezmax_api_definition__full_custom_attachment_response__e e_attachment_privacy) {
+char* custom_attachment_response_e_attachment_privacy_ToString(ezmax_api_definition__full_custom_attachment_response__e e_attachment_privacy) {
     char* e_attachment_privacyArray[] =  { "NULL", "All", "Inscriptor", "Seller", "Administration", "Creator", "Specificuser" };
     return e_attachment_privacyArray[e_attachment_privacy];
 }
 
-ezmax_api_definition__full_custom_attachment_response__e e_attachment_privacycustom_attachment_response_FromString(char* e_attachment_privacy){
+ezmax_api_definition__full_custom_attachment_response__e custom_attachment_response_e_attachment_privacy_FromString(char* e_attachment_privacy){
     int stringToReturn = 0;
     char *e_attachment_privacyArray[] =  { "NULL", "All", "Inscriptor", "Seller", "Administration", "Creator", "Specificuser" };
     size_t sizeofArray = sizeof(e_attachment_privacyArray) / sizeof(e_attachment_privacyArray[0]);
@@ -38,12 +38,12 @@ ezmax_api_definition__full_custom_attachment_response__e e_attachment_privacycus
     }
     return 0;
 }
-char* e_attachment_typecustom_attachment_response_ToString(ezmax_api_definition__full_custom_attachment_response__e e_attachment_type) {
+char* custom_attachment_response_e_attachment_type_ToString(ezmax_api_definition__full_custom_attachment_response__e e_attachment_type) {
     char* e_attachment_typeArray[] =  { "NULL", "Other", "Pdf", "PdfGenerated", "PdfScanned", "Ezsign" };
     return e_attachment_typeArray[e_attachment_type];
 }
 
-ezmax_api_definition__full_custom_attachment_response__e e_attachment_typecustom_attachment_response_FromString(char* e_attachment_type){
+ezmax_api_definition__full_custom_attachment_response__e custom_attachment_response_e_attachment_type_FromString(char* e_attachment_type){
     int stringToReturn = 0;
     char *e_attachment_typeArray[] =  { "NULL", "Other", "Pdf", "PdfGenerated", "PdfScanned", "Ezsign" };
     size_t sizeofArray = sizeof(e_attachment_typeArray) / sizeof(e_attachment_typeArray[0]);
@@ -55,12 +55,12 @@ ezmax_api_definition__full_custom_attachment_response__e e_attachment_typecustom
     }
     return 0;
 }
-char* e_attachment_verifiedcustom_attachment_response_ToString(ezmax_api_definition__full_custom_attachment_response__e e_attachment_verified) {
+char* custom_attachment_response_e_attachment_verified_ToString(ezmax_api_definition__full_custom_attachment_response__e e_attachment_verified) {
     char* e_attachment_verifiedArray[] =  { "NULL", "No", "Yes", "Rejected" };
     return e_attachment_verifiedArray[e_attachment_verified];
 }
 
-ezmax_api_definition__full_custom_attachment_response__e e_attachment_verifiedcustom_attachment_response_FromString(char* e_attachment_verified){
+ezmax_api_definition__full_custom_attachment_response__e custom_attachment_response_e_attachment_verified_FromString(char* e_attachment_verified){
     int stringToReturn = 0;
     char *e_attachment_verifiedArray[] =  { "NULL", "No", "Yes", "Rejected" };
     size_t sizeofArray = sizeof(e_attachment_verifiedArray) / sizeof(e_attachment_verifiedArray[0]);

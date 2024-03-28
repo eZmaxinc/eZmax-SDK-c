@@ -4,12 +4,12 @@
 #include "custom_communicationsender_response.h"
 
 
-char* e_communicationsender_objecttypecustom_communicationsender_response_ToString(ezmax_api_definition__full_custom_communicationsender_response_ECOMMUNICATIONSENDEROBJECTTYPE_e e_communicationsender_objecttype) {
+char* custom_communicationsender_response_e_communicationsender_objecttype_ToString(ezmax_api_definition__full_custom_communicationsender_response_ECOMMUNICATIONSENDEROBJECTTYPE_e e_communicationsender_objecttype) {
     char* e_communicationsender_objecttypeArray[] =  { "NULL", "Agent", "Broker", "User", "Mailboxshared", "Phonelineshared" };
     return e_communicationsender_objecttypeArray[e_communicationsender_objecttype];
 }
 
-ezmax_api_definition__full_custom_communicationsender_response_ECOMMUNICATIONSENDEROBJECTTYPE_e e_communicationsender_objecttypecustom_communicationsender_response_FromString(char* e_communicationsender_objecttype){
+ezmax_api_definition__full_custom_communicationsender_response_ECOMMUNICATIONSENDEROBJECTTYPE_e custom_communicationsender_response_e_communicationsender_objecttype_FromString(char* e_communicationsender_objecttype){
     int stringToReturn = 0;
     char *e_communicationsender_objecttypeArray[] =  { "NULL", "Agent", "Broker", "User", "Mailboxshared", "Phonelineshared" };
     size_t sizeofArray = sizeof(e_communicationsender_objecttypeArray) / sizeof(e_communicationsender_objecttypeArray[0]);
@@ -263,7 +263,7 @@ custom_communicationsender_response_t *custom_communicationsender_response_parse
     {
     goto end; //Enum
     }
-    e_communicationsender_objecttypeVariable = e_communicationsender_objecttypecustom_communicationsender_response_FromString(e_communicationsender_objecttype->valuestring);
+    e_communicationsender_objecttypeVariable = custom_communicationsender_response_e_communicationsender_objecttype_FromString(e_communicationsender_objecttype->valuestring);
 
     // custom_communicationsender_response->obj_contact_name
     cJSON *obj_contact_name = cJSON_GetObjectItemCaseSensitive(custom_communicationsender_responseJSON, "objContactName");

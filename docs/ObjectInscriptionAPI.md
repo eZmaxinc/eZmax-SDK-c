@@ -15,7 +15,7 @@ Method | HTTP request | Description
 //
 // 
 //
-inscription_get_attachments_v1_response_t* ObjectInscriptionAPI_inscriptionGetAttachmentsV1(apiClient_t *apiClient, int pkiInscriptionID);
+inscription_get_attachments_v1_response_t* ObjectInscriptionAPI_inscriptionGetAttachmentsV1(apiClient_t *apiClient, int *pkiInscriptionID);
 ```
 
 ### Parameters
@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-inscription_get_communication_list_v1_response_t* ObjectInscriptionAPI_inscriptionGetCommunicationListV1(apiClient_t *apiClient, int pkiInscriptionID);
+inscription_get_communication_list_v1_response_t* ObjectInscriptionAPI_inscriptionGetCommunicationListV1(apiClient_t *apiClient, int *pkiInscriptionID);
 ```
 
 ### Parameters
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-inscription_get_communicationsenders_v1_response_t* ObjectInscriptionAPI_inscriptionGetCommunicationsendersV1(apiClient_t *apiClient, int pkiInscriptionID);
+inscription_get_communicationsenders_v1_response_t* ObjectInscriptionAPI_inscriptionGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiInscriptionID);
 ```
 
 ### Parameters

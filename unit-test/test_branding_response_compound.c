@@ -31,13 +31,16 @@ branding_response_compound_t* instantiate_branding_response_compound(int include
       "eZmax (Corp)",
       "email@example.com",
       ezmax_api_definition__full_branding_response_compound__"Default",
+      ezmax_api_definition__full_branding_response_compound__"Default",
       3752795,
       0,
       16777215,
       15658734,
       13577007,
       16777215,
+      15658734,
       true,
+      "http://www.example.com/logo.jpg",
       "http://www.example.com/logo.jpg"
     );
   } else {
@@ -49,13 +52,16 @@ branding_response_compound_t* instantiate_branding_response_compound(int include
       "eZmax (Corp)",
       "email@example.com",
       ezmax_api_definition__full_branding_response_compound__"Default",
+      ezmax_api_definition__full_branding_response_compound__"Default",
       3752795,
       0,
       16777215,
       15658734,
       13577007,
       16777215,
+      15658734,
       true,
+      "http://www.example.com/logo.jpg",
       "http://www.example.com/logo.jpg"
     );
   }
