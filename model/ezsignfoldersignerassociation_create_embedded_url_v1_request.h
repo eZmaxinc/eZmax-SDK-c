@@ -21,14 +21,14 @@ typedef struct ezsignfoldersignerassociation_create_embedded_url_v1_request_t ez
 typedef struct ezsignfoldersignerassociation_create_embedded_url_v1_request_t {
     char *s_return_url; // string
     char *s_iframedomain; // string
-    int b_isiframe; //boolean
+    int b_is_iframe; //boolean
 
 } ezsignfoldersignerassociation_create_embedded_url_v1_request_t;
 
 ezsignfoldersignerassociation_create_embedded_url_v1_request_t *ezsignfoldersignerassociation_create_embedded_url_v1_request_create(
     char *s_return_url,
     char *s_iframedomain,
-    int b_isiframe
+    int b_is_iframe
 );
 
 void ezsignfoldersignerassociation_create_embedded_url_v1_request_free(ezsignfoldersignerassociation_create_embedded_url_v1_request_t *ezsignfoldersignerassociation_create_embedded_url_v1_request);

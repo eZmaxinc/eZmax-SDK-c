@@ -8,7 +8,7 @@
 ezsignfoldersignerassociation_create_embedded_url_v1_request_t *ezsignfoldersignerassociation_create_embedded_url_v1_request_create(
     char *s_return_url,
     char *s_iframedomain,
-    int b_isiframe
+    int b_is_iframe
     ) {
     ezsignfoldersignerassociation_create_embedded_url_v1_request_t *ezsignfoldersignerassociation_create_embedded_url_v1_request_local_var = malloc(sizeof(ezsignfoldersignerassociation_create_embedded_url_v1_request_t));
     if (!ezsignfoldersignerassociation_create_embedded_url_v1_request_local_var) {
@@ -16,7 +16,7 @@ ezsignfoldersignerassociation_create_embedded_url_v1_request_t *ezsignfoldersign
     }
     ezsignfoldersignerassociation_create_embedded_url_v1_request_local_var->s_return_url = s_return_url;
     ezsignfoldersignerassociation_create_embedded_url_v1_request_local_var->s_iframedomain = s_iframedomain;
-    ezsignfoldersignerassociation_create_embedded_url_v1_request_local_var->b_isiframe = b_isiframe;
+    ezsignfoldersignerassociation_create_embedded_url_v1_request_local_var->b_is_iframe = b_is_iframe;
 
     return ezsignfoldersignerassociation_create_embedded_url_v1_request_local_var;
 }
@@ -57,9 +57,9 @@ cJSON *ezsignfoldersignerassociation_create_embedded_url_v1_request_convertToJSO
     }
 
 
-    // ezsignfoldersignerassociation_create_embedded_url_v1_request->b_isiframe
-    if(ezsignfoldersignerassociation_create_embedded_url_v1_request->b_isiframe) {
-    if(cJSON_AddBoolToObject(item, "bIsiframe", ezsignfoldersignerassociation_create_embedded_url_v1_request->b_isiframe) == NULL) {
+    // ezsignfoldersignerassociation_create_embedded_url_v1_request->b_is_iframe
+    if(ezsignfoldersignerassociation_create_embedded_url_v1_request->b_is_iframe) {
+    if(cJSON_AddBoolToObject(item, "bIsIframe", ezsignfoldersignerassociation_create_embedded_url_v1_request->b_is_iframe) == NULL) {
     goto fail; //Bool
     }
     }
@@ -94,10 +94,10 @@ ezsignfoldersignerassociation_create_embedded_url_v1_request_t *ezsignfoldersign
     }
     }
 
-    // ezsignfoldersignerassociation_create_embedded_url_v1_request->b_isiframe
-    cJSON *b_isiframe = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_create_embedded_url_v1_requestJSON, "bIsiframe");
-    if (b_isiframe) { 
-    if(!cJSON_IsBool(b_isiframe))
+    // ezsignfoldersignerassociation_create_embedded_url_v1_request->b_is_iframe
+    cJSON *b_is_iframe = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_create_embedded_url_v1_requestJSON, "bIsIframe");
+    if (b_is_iframe) { 
+    if(!cJSON_IsBool(b_is_iframe))
     {
     goto end; //Bool
     }
@@ -107,7 +107,7 @@ ezsignfoldersignerassociation_create_embedded_url_v1_request_t *ezsignfoldersign
     ezsignfoldersignerassociation_create_embedded_url_v1_request_local_var = ezsignfoldersignerassociation_create_embedded_url_v1_request_create (
         s_return_url && !cJSON_IsNull(s_return_url) ? strdup(s_return_url->valuestring) : NULL,
         s_iframedomain && !cJSON_IsNull(s_iframedomain) ? strdup(s_iframedomain->valuestring) : NULL,
-        b_isiframe ? b_isiframe->valueint : 0
+        b_is_iframe ? b_is_iframe->valueint : 0
         );
 
     return ezsignfoldersignerassociation_create_embedded_url_v1_request_local_var;
