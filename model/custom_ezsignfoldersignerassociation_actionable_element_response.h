@@ -27,6 +27,7 @@ typedef struct custom_ezsignfoldersignerassociation_actionable_element_response_
     int b_ezsignfoldersignerassociation_delayedsend; //boolean
     int b_ezsignfoldersignerassociation_receivecopy; //boolean
     char *t_ezsignfoldersignerassociation_message; // string
+    int b_ezsignfoldersignerassociation_allowsigninginperson; //boolean
     struct ezsignsignergroup_response_compound_t *obj_ezsignsignergroup; //model
     struct ezsignfoldersignerassociation_response_compound_user_t *obj_user; //model
     struct ezsignsigner_response_compound_t *obj_ezsignsigner; //model
@@ -41,6 +42,7 @@ custom_ezsignfoldersignerassociation_actionable_element_response_t *custom_ezsig
     int b_ezsignfoldersignerassociation_delayedsend,
     int b_ezsignfoldersignerassociation_receivecopy,
     char *t_ezsignfoldersignerassociation_message,
+    int b_ezsignfoldersignerassociation_allowsigninginperson,
     ezsignsignergroup_response_compound_t *obj_ezsignsignergroup,
     ezsignfoldersignerassociation_response_compound_user_t *obj_user,
     ezsignsigner_response_compound_t *obj_ezsignsigner,

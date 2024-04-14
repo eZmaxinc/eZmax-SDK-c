@@ -23,6 +23,7 @@ typedef struct common_response_obj_debug_payload_t {
     int i_version_max; //numeric
     list_t *a_required_permission; //primitive container
     int b_version_deprecated; //boolean
+    char *dt_response_date; // string
 
 } common_response_obj_debug_payload_t;
 
@@ -30,7 +31,8 @@ common_response_obj_debug_payload_t *common_response_obj_debug_payload_create(
     int i_version_min,
     int i_version_max,
     list_t *a_required_permission,
-    int b_version_deprecated
+    int b_version_deprecated,
+    char *dt_response_date
 );
 
 void common_response_obj_debug_payload_free(common_response_obj_debug_payload_t *common_response_obj_debug_payload);

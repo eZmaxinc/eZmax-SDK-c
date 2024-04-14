@@ -107,6 +107,13 @@ Category | Method | HTTP request | Description
 *ObjectCorsAPI* | [**ObjectCorsAPI_corsEditObjectV1**](docs/ObjectCorsAPI.md#ObjectCorsAPI_corsEditObjectV1) | **PUT** /1/object/cors/{pkiCorsID} | Edit an existing Cors
 *ObjectCorsAPI* | [**ObjectCorsAPI_corsGetObjectV2**](docs/ObjectCorsAPI.md#ObjectCorsAPI_corsGetObjectV2) | **GET** /2/object/cors/{pkiCorsID} | Retrieve an existing Cors
 *ObjectCountryAPI* | [**ObjectCountryAPI_countryGetAutocompleteV2**](docs/ObjectCountryAPI.md#ObjectCountryAPI_countryGetAutocompleteV2) | **GET** /2/object/country/getAutocomplete/{sSelector} | Retrieve Countries and IDs
+*ObjectCreditcardclientAPI* | [**ObjectCreditcardclientAPI_creditcardclientCreateObjectV1**](docs/ObjectCreditcardclientAPI.md#ObjectCreditcardclientAPI_creditcardclientCreateObjectV1) | **POST** /1/object/creditcardclient | Create a new Creditcardclient
+*ObjectCreditcardclientAPI* | [**ObjectCreditcardclientAPI_creditcardclientDeleteObjectV1**](docs/ObjectCreditcardclientAPI.md#ObjectCreditcardclientAPI_creditcardclientDeleteObjectV1) | **DELETE** /1/object/creditcardclient/{pkiCreditcardclientID} | Delete an existing Creditcardclient
+*ObjectCreditcardclientAPI* | [**ObjectCreditcardclientAPI_creditcardclientEditObjectV1**](docs/ObjectCreditcardclientAPI.md#ObjectCreditcardclientAPI_creditcardclientEditObjectV1) | **PUT** /1/object/creditcardclient/{pkiCreditcardclientID} | Edit an existing Creditcardclient
+*ObjectCreditcardclientAPI* | [**ObjectCreditcardclientAPI_creditcardclientGetAutocompleteV2**](docs/ObjectCreditcardclientAPI.md#ObjectCreditcardclientAPI_creditcardclientGetAutocompleteV2) | **GET** /2/object/creditcardclient/getAutocomplete/{sSelector} | Retrieve Creditcardclients and IDs
+*ObjectCreditcardclientAPI* | [**ObjectCreditcardclientAPI_creditcardclientGetListV1**](docs/ObjectCreditcardclientAPI.md#ObjectCreditcardclientAPI_creditcardclientGetListV1) | **GET** /1/object/creditcardclient/getList | Retrieve Creditcardclient list
+*ObjectCreditcardclientAPI* | [**ObjectCreditcardclientAPI_creditcardclientGetObjectV2**](docs/ObjectCreditcardclientAPI.md#ObjectCreditcardclientAPI_creditcardclientGetObjectV2) | **GET** /2/object/creditcardclient/{pkiCreditcardclientID} | Retrieve an existing Creditcardclient
+*ObjectCreditcardtypeAPI* | [**ObjectCreditcardtypeAPI_creditcardtypeGetAutocompleteV2**](docs/ObjectCreditcardtypeAPI.md#ObjectCreditcardtypeAPI_creditcardtypeGetAutocompleteV2) | **GET** /2/object/creditcardtype/getAutocomplete/{sSelector} | Retrieve Creditcardtypes and IDs
 *ObjectDepartmentAPI* | [**ObjectDepartmentAPI_departmentGetAutocompleteV2**](docs/ObjectDepartmentAPI.md#ObjectDepartmentAPI_departmentGetAutocompleteV2) | **GET** /2/object/department/getAutocomplete/{sSelector} | Retrieve Departments and IDs
 *ObjectDiscussionAPI* | [**ObjectDiscussionAPI_discussionCreateObjectV1**](docs/ObjectDiscussionAPI.md#ObjectDiscussionAPI_discussionCreateObjectV1) | **POST** /1/object/discussion | Create a new Discussion
 *ObjectDiscussionAPI* | [**ObjectDiscussionAPI_discussionDeleteObjectV1**](docs/ObjectDiscussionAPI.md#ObjectDiscussionAPI_discussionDeleteObjectV1) | **DELETE** /1/object/discussion/{pkiDiscussionID} | Delete an existing Discussion
@@ -583,6 +590,30 @@ Category | Method | HTTP request | Description
  - [country_autocomplete_element_response_t](docs/country_autocomplete_element_response.md)
  - [country_get_autocomplete_v2_response_t](docs/country_get_autocomplete_v2_response.md)
  - [country_get_autocomplete_v2_response_m_payload_t](docs/country_get_autocomplete_v2_response_m_payload.md)
+ - [creditcardclient_autocomplete_element_response_t](docs/creditcardclient_autocomplete_element_response.md)
+ - [creditcardclient_create_object_v1_request_t](docs/creditcardclient_create_object_v1_request.md)
+ - [creditcardclient_create_object_v1_response_t](docs/creditcardclient_create_object_v1_response.md)
+ - [creditcardclient_create_object_v1_response_m_payload_t](docs/creditcardclient_create_object_v1_response_m_payload.md)
+ - [creditcardclient_delete_object_v1_response_t](docs/creditcardclient_delete_object_v1_response.md)
+ - [creditcardclient_edit_object_v1_request_t](docs/creditcardclient_edit_object_v1_request.md)
+ - [creditcardclient_edit_object_v1_response_t](docs/creditcardclient_edit_object_v1_response.md)
+ - [creditcardclient_get_autocomplete_v2_response_t](docs/creditcardclient_get_autocomplete_v2_response.md)
+ - [creditcardclient_get_autocomplete_v2_response_m_payload_t](docs/creditcardclient_get_autocomplete_v2_response_m_payload.md)
+ - [creditcardclient_get_list_v1_response_t](docs/creditcardclient_get_list_v1_response.md)
+ - [creditcardclient_get_list_v1_response_m_payload_t](docs/creditcardclient_get_list_v1_response_m_payload.md)
+ - [creditcardclient_get_object_v2_response_t](docs/creditcardclient_get_object_v2_response.md)
+ - [creditcardclient_get_object_v2_response_m_payload_t](docs/creditcardclient_get_object_v2_response_m_payload.md)
+ - [creditcardclient_list_element_t](docs/creditcardclient_list_element.md)
+ - [creditcardclient_request_t](docs/creditcardclient_request.md)
+ - [creditcardclient_request_compound_t](docs/creditcardclient_request_compound.md)
+ - [creditcardclient_response_t](docs/creditcardclient_response.md)
+ - [creditcardclient_response_compound_t](docs/creditcardclient_response_compound.md)
+ - [creditcarddetail_request_t](docs/creditcarddetail_request.md)
+ - [creditcarddetail_response_t](docs/creditcarddetail_response.md)
+ - [creditcarddetail_response_compound_t](docs/creditcarddetail_response_compound.md)
+ - [creditcardtype_autocomplete_element_response_t](docs/creditcardtype_autocomplete_element_response.md)
+ - [creditcardtype_get_autocomplete_v2_response_t](docs/creditcardtype_get_autocomplete_v2_response.md)
+ - [creditcardtype_get_autocomplete_v2_response_m_payload_t](docs/creditcardtype_get_autocomplete_v2_response_m_payload.md)
  - [custom_attachment_response_t](docs/custom_attachment_response.md)
  - [custom_attachmentdocumenttype_response_t](docs/custom_attachmentdocumenttype_response.md)
  - [custom_communication_list_element_response_t](docs/custom_communication_list_element_response.md)

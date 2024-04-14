@@ -10,6 +10,7 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
     int i_version_max,
     list_t *a_required_permission,
     int b_version_deprecated,
+    char *dt_response_date,
     common_response_filter_t *a_filter,
     list_t* a_order_by,
     int i_row_max,
@@ -23,6 +24,7 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
     common_response_obj_debug_payload_get_list_local_var->i_version_max = i_version_max;
     common_response_obj_debug_payload_get_list_local_var->a_required_permission = a_required_permission;
     common_response_obj_debug_payload_get_list_local_var->b_version_deprecated = b_version_deprecated;
+    common_response_obj_debug_payload_get_list_local_var->dt_response_date = dt_response_date;
     common_response_obj_debug_payload_get_list_local_var->a_filter = a_filter;
     common_response_obj_debug_payload_get_list_local_var->a_order_by = a_order_by;
     common_response_obj_debug_payload_get_list_local_var->i_row_max = i_row_max;
@@ -43,6 +45,10 @@ void common_response_obj_debug_payload_get_list_free(common_response_obj_debug_p
         }
         list_freeList(common_response_obj_debug_payload_get_list->a_required_permission);
         common_response_obj_debug_payload_get_list->a_required_permission = NULL;
+    }
+    if (common_response_obj_debug_payload_get_list->dt_response_date) {
+        free(common_response_obj_debug_payload_get_list->dt_response_date);
+        common_response_obj_debug_payload_get_list->dt_response_date = NULL;
     }
     if (common_response_obj_debug_payload_get_list->a_filter) {
         common_response_filter_free(common_response_obj_debug_payload_get_list->a_filter);
@@ -106,6 +112,15 @@ cJSON *common_response_obj_debug_payload_get_list_convertToJSON(common_response_
     }
     if(cJSON_AddBoolToObject(item, "bVersionDeprecated", common_response_obj_debug_payload_get_list->b_version_deprecated) == NULL) {
     goto fail; //Bool
+    }
+
+
+    // common_response_obj_debug_payload_get_list->dt_response_date
+    if (!common_response_obj_debug_payload_get_list->dt_response_date) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "dtResponseDate", common_response_obj_debug_payload_get_list->dt_response_date) == NULL) {
+    goto fail; //String
     }
 
 
@@ -246,6 +261,18 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
     goto end; //Bool
     }
 
+    // common_response_obj_debug_payload_get_list->dt_response_date
+    cJSON *dt_response_date = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payload_get_listJSON, "dtResponseDate");
+    if (!dt_response_date) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(dt_response_date))
+    {
+    goto end; //String
+    }
+
     // common_response_obj_debug_payload_get_list->a_filter
     cJSON *a_filter = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payload_get_listJSON, "a_Filter");
     if (!a_filter) {
@@ -313,6 +340,7 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
         i_version_max->valuedouble,
         a_required_permissionList,
         b_version_deprecated->valueint,
+        strdup(dt_response_date->valuestring),
         a_filter_local_nonprim,
         a_order_byList,
         i_row_max->valuedouble,

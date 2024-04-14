@@ -24,6 +24,7 @@ typedef struct ezsignfoldersignerassociation_response_t {
     int b_ezsignfoldersignerassociation_delayedsend; //boolean
     int b_ezsignfoldersignerassociation_receivecopy; //boolean
     char *t_ezsignfoldersignerassociation_message; // string
+    int b_ezsignfoldersignerassociation_allowsigninginperson; //boolean
 
 } ezsignfoldersignerassociation_response_t;
 
@@ -32,7 +33,8 @@ ezsignfoldersignerassociation_response_t *ezsignfoldersignerassociation_response
     int fki_ezsignfolder_id,
     int b_ezsignfoldersignerassociation_delayedsend,
     int b_ezsignfoldersignerassociation_receivecopy,
-    char *t_ezsignfoldersignerassociation_message
+    char *t_ezsignfoldersignerassociation_message,
+    int b_ezsignfoldersignerassociation_allowsigninginperson
 );
 
 void ezsignfoldersignerassociation_response_free(ezsignfoldersignerassociation_response_t *ezsignfoldersignerassociation_response);

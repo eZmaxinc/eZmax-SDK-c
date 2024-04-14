@@ -25,14 +25,16 @@ common_response_obj_debug_payload_t* instantiate_common_response_obj_debug_paylo
       1,
       2,
       list_createList(),
-      false
+      false,
+      "2020-12-31 23:59:59"
     );
   } else {
     common_response_obj_debug_payload = common_response_obj_debug_payload_create(
       1,
       2,
       list_createList(),
-      false
+      false,
+      "2020-12-31 23:59:59"
     );
   }
 

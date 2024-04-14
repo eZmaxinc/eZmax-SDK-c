@@ -24,6 +24,7 @@ typedef struct common_response_obj_debug_payload_get_list_t {
     int i_version_max; //numeric
     list_t *a_required_permission; //primitive container
     int b_version_deprecated; //boolean
+    char *dt_response_date; // string
     struct common_response_filter_t *a_filter; //model
     list_t* a_order_by; //map
     int i_row_max; //numeric
@@ -36,6 +37,7 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
     int i_version_max,
     list_t *a_required_permission,
     int b_version_deprecated,
+    char *dt_response_date,
     common_response_filter_t *a_filter,
     list_t* a_order_by,
     int i_row_max,

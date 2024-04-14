@@ -213,6 +213,30 @@ set(SRCS
     model/country_autocomplete_element_response.c
     model/country_get_autocomplete_v2_response.c
     model/country_get_autocomplete_v2_response_m_payload.c
+    model/creditcardclient_autocomplete_element_response.c
+    model/creditcardclient_create_object_v1_request.c
+    model/creditcardclient_create_object_v1_response.c
+    model/creditcardclient_create_object_v1_response_m_payload.c
+    model/creditcardclient_delete_object_v1_response.c
+    model/creditcardclient_edit_object_v1_request.c
+    model/creditcardclient_edit_object_v1_response.c
+    model/creditcardclient_get_autocomplete_v2_response.c
+    model/creditcardclient_get_autocomplete_v2_response_m_payload.c
+    model/creditcardclient_get_list_v1_response.c
+    model/creditcardclient_get_list_v1_response_m_payload.c
+    model/creditcardclient_get_object_v2_response.c
+    model/creditcardclient_get_object_v2_response_m_payload.c
+    model/creditcardclient_list_element.c
+    model/creditcardclient_request.c
+    model/creditcardclient_request_compound.c
+    model/creditcardclient_response.c
+    model/creditcardclient_response_compound.c
+    model/creditcarddetail_request.c
+    model/creditcarddetail_response.c
+    model/creditcarddetail_response_compound.c
+    model/creditcardtype_autocomplete_element_response.c
+    model/creditcardtype_get_autocomplete_v2_response.c
+    model/creditcardtype_get_autocomplete_v2_response_m_payload.c
     model/custom_attachment_response.c
     model/custom_attachmentdocumenttype_response.c
     model/custom_communication_list_element_response.c
@@ -1355,6 +1379,8 @@ set(SRCS
     api/ObjectCompanyAPI.c
     api/ObjectCorsAPI.c
     api/ObjectCountryAPI.c
+    api/ObjectCreditcardclientAPI.c
+    api/ObjectCreditcardtypeAPI.c
     api/ObjectDepartmentAPI.c
     api/ObjectDiscussionAPI.c
     api/ObjectDiscussionmembershipAPI.c
@@ -1598,6 +1624,30 @@ set(HDRS
     model/country_autocomplete_element_response.h
     model/country_get_autocomplete_v2_response.h
     model/country_get_autocomplete_v2_response_m_payload.h
+    model/creditcardclient_autocomplete_element_response.h
+    model/creditcardclient_create_object_v1_request.h
+    model/creditcardclient_create_object_v1_response.h
+    model/creditcardclient_create_object_v1_response_m_payload.h
+    model/creditcardclient_delete_object_v1_response.h
+    model/creditcardclient_edit_object_v1_request.h
+    model/creditcardclient_edit_object_v1_response.h
+    model/creditcardclient_get_autocomplete_v2_response.h
+    model/creditcardclient_get_autocomplete_v2_response_m_payload.h
+    model/creditcardclient_get_list_v1_response.h
+    model/creditcardclient_get_list_v1_response_m_payload.h
+    model/creditcardclient_get_object_v2_response.h
+    model/creditcardclient_get_object_v2_response_m_payload.h
+    model/creditcardclient_list_element.h
+    model/creditcardclient_request.h
+    model/creditcardclient_request_compound.h
+    model/creditcardclient_response.h
+    model/creditcardclient_response_compound.h
+    model/creditcarddetail_request.h
+    model/creditcarddetail_response.h
+    model/creditcarddetail_response_compound.h
+    model/creditcardtype_autocomplete_element_response.h
+    model/creditcardtype_get_autocomplete_v2_response.h
+    model/creditcardtype_get_autocomplete_v2_response_m_payload.h
     model/custom_attachment_response.h
     model/custom_attachmentdocumenttype_response.h
     model/custom_communication_list_element_response.h
@@ -2740,6 +2790,8 @@ set(HDRS
     api/ObjectCompanyAPI.h
     api/ObjectCorsAPI.h
     api/ObjectCountryAPI.h
+    api/ObjectCreditcardclientAPI.h
+    api/ObjectCreditcardtypeAPI.h
     api/ObjectDepartmentAPI.h
     api/ObjectDiscussionAPI.h
     api/ObjectDiscussionmembershipAPI.h
@@ -2913,6 +2965,8 @@ set(HDRS "")
 #    unit-tests/manual-ObjectCompanyAPI.c
 #    unit-tests/manual-ObjectCorsAPI.c
 #    unit-tests/manual-ObjectCountryAPI.c
+#    unit-tests/manual-ObjectCreditcardclientAPI.c
+#    unit-tests/manual-ObjectCreditcardtypeAPI.c
 #    unit-tests/manual-ObjectDepartmentAPI.c
 #    unit-tests/manual-ObjectDiscussionAPI.c
 #    unit-tests/manual-ObjectDiscussionmembershipAPI.c

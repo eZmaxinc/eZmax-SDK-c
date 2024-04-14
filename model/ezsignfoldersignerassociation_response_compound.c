@@ -11,6 +11,7 @@ ezsignfoldersignerassociation_response_compound_t *ezsignfoldersignerassociation
     int b_ezsignfoldersignerassociation_delayedsend,
     int b_ezsignfoldersignerassociation_receivecopy,
     char *t_ezsignfoldersignerassociation_message,
+    int b_ezsignfoldersignerassociation_allowsigninginperson,
     ezsignsignergroup_response_compound_t *obj_ezsignsignergroup,
     ezsignfoldersignerassociation_response_compound_user_t *obj_user,
     ezsignsigner_response_compound_t *obj_ezsignsigner
@@ -24,6 +25,7 @@ ezsignfoldersignerassociation_response_compound_t *ezsignfoldersignerassociation
     ezsignfoldersignerassociation_response_compound_local_var->b_ezsignfoldersignerassociation_delayedsend = b_ezsignfoldersignerassociation_delayedsend;
     ezsignfoldersignerassociation_response_compound_local_var->b_ezsignfoldersignerassociation_receivecopy = b_ezsignfoldersignerassociation_receivecopy;
     ezsignfoldersignerassociation_response_compound_local_var->t_ezsignfoldersignerassociation_message = t_ezsignfoldersignerassociation_message;
+    ezsignfoldersignerassociation_response_compound_local_var->b_ezsignfoldersignerassociation_allowsigninginperson = b_ezsignfoldersignerassociation_allowsigninginperson;
     ezsignfoldersignerassociation_response_compound_local_var->obj_ezsignsignergroup = obj_ezsignsignergroup;
     ezsignfoldersignerassociation_response_compound_local_var->obj_user = obj_user;
     ezsignfoldersignerassociation_response_compound_local_var->obj_ezsignsigner = obj_ezsignsigner;
@@ -101,6 +103,15 @@ cJSON *ezsignfoldersignerassociation_response_compound_convertToJSON(ezsignfolde
     }
     if(cJSON_AddStringToObject(item, "tEzsignfoldersignerassociationMessage", ezsignfoldersignerassociation_response_compound->t_ezsignfoldersignerassociation_message) == NULL) {
     goto fail; //String
+    }
+
+
+    // ezsignfoldersignerassociation_response_compound->b_ezsignfoldersignerassociation_allowsigninginperson
+    if (!ezsignfoldersignerassociation_response_compound->b_ezsignfoldersignerassociation_allowsigninginperson) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "bEzsignfoldersignerassociationAllowsigninginperson", ezsignfoldersignerassociation_response_compound->b_ezsignfoldersignerassociation_allowsigninginperson) == NULL) {
+    goto fail; //Bool
     }
 
 
@@ -223,6 +234,18 @@ ezsignfoldersignerassociation_response_compound_t *ezsignfoldersignerassociation
     goto end; //String
     }
 
+    // ezsignfoldersignerassociation_response_compound->b_ezsignfoldersignerassociation_allowsigninginperson
+    cJSON *b_ezsignfoldersignerassociation_allowsigninginperson = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_response_compoundJSON, "bEzsignfoldersignerassociationAllowsigninginperson");
+    if (!b_ezsignfoldersignerassociation_allowsigninginperson) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(b_ezsignfoldersignerassociation_allowsigninginperson))
+    {
+    goto end; //Bool
+    }
+
     // ezsignfoldersignerassociation_response_compound->obj_ezsignsignergroup
     cJSON *obj_ezsignsignergroup = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_response_compoundJSON, "objEzsignsignergroup");
     if (obj_ezsignsignergroup) { 
@@ -248,6 +271,7 @@ ezsignfoldersignerassociation_response_compound_t *ezsignfoldersignerassociation
         b_ezsignfoldersignerassociation_delayedsend->valueint,
         b_ezsignfoldersignerassociation_receivecopy->valueint,
         strdup(t_ezsignfoldersignerassociation_message->valuestring),
+        b_ezsignfoldersignerassociation_allowsigninginperson->valueint,
         obj_ezsignsignergroup ? obj_ezsignsignergroup_local_nonprim : NULL,
         obj_user ? obj_user_local_nonprim : NULL,
         obj_ezsignsigner ? obj_ezsignsigner_local_nonprim : NULL

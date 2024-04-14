@@ -34,7 +34,8 @@ Could you sign it before Monday please.
 
 Best Regards.
 
-Mary"
+Mary",
+      true
     );
   } else {
     ezsignfoldersignerassociation_response = ezsignfoldersignerassociation_response_create(
@@ -50,7 +51,8 @@ Could you sign it before Monday please.
 
 Best Regards.
 
-Mary"
+Mary",
+      true
     );
   }
 

@@ -38,6 +38,7 @@ Could you sign it before Monday please.
 Best Regards.
 
 Mary",
+      true,
        // false, not to have infinite recursion
       instantiate_ezsignsignergroup_response_compound(0),
        // false, not to have infinite recursion
@@ -60,6 +61,7 @@ Could you sign it before Monday please.
 Best Regards.
 
 Mary",
+      true,
       NULL,
       NULL,
       NULL

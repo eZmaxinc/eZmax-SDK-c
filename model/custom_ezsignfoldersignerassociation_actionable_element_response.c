@@ -11,6 +11,7 @@ custom_ezsignfoldersignerassociation_actionable_element_response_t *custom_ezsig
     int b_ezsignfoldersignerassociation_delayedsend,
     int b_ezsignfoldersignerassociation_receivecopy,
     char *t_ezsignfoldersignerassociation_message,
+    int b_ezsignfoldersignerassociation_allowsigninginperson,
     ezsignsignergroup_response_compound_t *obj_ezsignsignergroup,
     ezsignfoldersignerassociation_response_compound_user_t *obj_user,
     ezsignsigner_response_compound_t *obj_ezsignsigner,
@@ -26,6 +27,7 @@ custom_ezsignfoldersignerassociation_actionable_element_response_t *custom_ezsig
     custom_ezsignfoldersignerassociation_actionable_element_response_local_var->b_ezsignfoldersignerassociation_delayedsend = b_ezsignfoldersignerassociation_delayedsend;
     custom_ezsignfoldersignerassociation_actionable_element_response_local_var->b_ezsignfoldersignerassociation_receivecopy = b_ezsignfoldersignerassociation_receivecopy;
     custom_ezsignfoldersignerassociation_actionable_element_response_local_var->t_ezsignfoldersignerassociation_message = t_ezsignfoldersignerassociation_message;
+    custom_ezsignfoldersignerassociation_actionable_element_response_local_var->b_ezsignfoldersignerassociation_allowsigninginperson = b_ezsignfoldersignerassociation_allowsigninginperson;
     custom_ezsignfoldersignerassociation_actionable_element_response_local_var->obj_ezsignsignergroup = obj_ezsignsignergroup;
     custom_ezsignfoldersignerassociation_actionable_element_response_local_var->obj_user = obj_user;
     custom_ezsignfoldersignerassociation_actionable_element_response_local_var->obj_ezsignsigner = obj_ezsignsigner;
@@ -105,6 +107,15 @@ cJSON *custom_ezsignfoldersignerassociation_actionable_element_response_convertT
     }
     if(cJSON_AddStringToObject(item, "tEzsignfoldersignerassociationMessage", custom_ezsignfoldersignerassociation_actionable_element_response->t_ezsignfoldersignerassociation_message) == NULL) {
     goto fail; //String
+    }
+
+
+    // custom_ezsignfoldersignerassociation_actionable_element_response->b_ezsignfoldersignerassociation_allowsigninginperson
+    if (!custom_ezsignfoldersignerassociation_actionable_element_response->b_ezsignfoldersignerassociation_allowsigninginperson) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "bEzsignfoldersignerassociationAllowsigninginperson", custom_ezsignfoldersignerassociation_actionable_element_response->b_ezsignfoldersignerassociation_allowsigninginperson) == NULL) {
+    goto fail; //Bool
     }
 
 
@@ -245,6 +256,18 @@ custom_ezsignfoldersignerassociation_actionable_element_response_t *custom_ezsig
     goto end; //String
     }
 
+    // custom_ezsignfoldersignerassociation_actionable_element_response->b_ezsignfoldersignerassociation_allowsigninginperson
+    cJSON *b_ezsignfoldersignerassociation_allowsigninginperson = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldersignerassociation_actionable_element_responseJSON, "bEzsignfoldersignerassociationAllowsigninginperson");
+    if (!b_ezsignfoldersignerassociation_allowsigninginperson) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(b_ezsignfoldersignerassociation_allowsigninginperson))
+    {
+    goto end; //Bool
+    }
+
     // custom_ezsignfoldersignerassociation_actionable_element_response->obj_ezsignsignergroup
     cJSON *obj_ezsignsignergroup = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldersignerassociation_actionable_element_responseJSON, "objEzsignsignergroup");
     if (obj_ezsignsignergroup) { 
@@ -294,6 +317,7 @@ custom_ezsignfoldersignerassociation_actionable_element_response_t *custom_ezsig
         b_ezsignfoldersignerassociation_delayedsend->valueint,
         b_ezsignfoldersignerassociation_receivecopy->valueint,
         strdup(t_ezsignfoldersignerassociation_message->valuestring),
+        b_ezsignfoldersignerassociation_allowsigninginperson->valueint,
         obj_ezsignsignergroup ? obj_ezsignsignergroup_local_nonprim : NULL,
         obj_user ? obj_user_local_nonprim : NULL,
         obj_ezsignsigner ? obj_ezsignsigner_local_nonprim : NULL,
