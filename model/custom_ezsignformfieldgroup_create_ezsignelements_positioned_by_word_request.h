@@ -72,6 +72,7 @@ typedef struct custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_w
     int i_ezsignformfieldgroup_maxlength; //numeric
     int b_ezsignformfieldgroup_encrypted; //boolean
     char *s_ezsignformfieldgroup_regexp; // string
+    char *s_ezsignformfieldgroup_textvalidationcustommessage; // string
     char *t_ezsignformfieldgroup_tooltip; // string
     field_e_ezsignformfieldgroup_tooltipposition_t *e_ezsignformfieldgroup_tooltipposition; // custom
     enum_textvalidation_t *e_ezsignformfieldgroup_textvalidation; // custom
@@ -96,6 +97,7 @@ custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request_t *
     int i_ezsignformfieldgroup_maxlength,
     int b_ezsignformfieldgroup_encrypted,
     char *s_ezsignformfieldgroup_regexp,
+    char *s_ezsignformfieldgroup_textvalidationcustommessage,
     char *t_ezsignformfieldgroup_tooltip,
     field_e_ezsignformfieldgroup_tooltipposition_t *e_ezsignformfieldgroup_tooltipposition,
     enum_textvalidation_t *e_ezsignformfieldgroup_textvalidation,

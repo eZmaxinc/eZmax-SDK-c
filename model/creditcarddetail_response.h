@@ -21,7 +21,7 @@ typedef struct creditcarddetail_response_t creditcarddetail_response_t;
 typedef struct creditcarddetail_response_t {
     int pki_creditcarddetail_id; //numeric
     int fki_creditcardtype_id; //numeric
-    char *s_creditcarddetail_numbermasked; // string
+    int i_creditcarddetail_lastdigits; //numeric
     int i_creditcarddetail_expirationmonth; //numeric
     int i_creditcarddetail_expirationyear; //numeric
     char *s_creditcarddetail_civic; // string
@@ -33,7 +33,7 @@ typedef struct creditcarddetail_response_t {
 creditcarddetail_response_t *creditcarddetail_response_create(
     int pki_creditcarddetail_id,
     int fki_creditcardtype_id,
-    char *s_creditcarddetail_numbermasked,
+    int i_creditcarddetail_lastdigits,
     int i_creditcarddetail_expirationmonth,
     int i_creditcarddetail_expirationyear,
     char *s_creditcarddetail_civic,

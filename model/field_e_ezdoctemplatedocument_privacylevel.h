@@ -1,0 +1,32 @@
+/*
+ * field_e_ezdoctemplatedocument_privacylevel.h
+ *
+ * The Privacy level of the Ezdoctemplatedocument.  * **User** is for personal templates use and cannot be shared * **Ezsignfoldertype** and **Company** is for shared template
+ */
+
+#ifndef _field_e_ezdoctemplatedocument_privacylevel_H_
+#define _field_e_ezdoctemplatedocument_privacylevel_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_ezdoctemplatedocument_privacylevel_t field_e_ezdoctemplatedocument_privacylevel_t;
+
+
+// Enum  for field_e_ezdoctemplatedocument_privacylevel
+
+typedef enum { ezmax_api_definition__full_field_e_ezdoctemplatedocument_privacylevel__NULL = 0, ezmax_api_definition__full_field_e_ezdoctemplatedocument_privacylevel__Company, ezmax_api_definition__full_field_e_ezdoctemplatedocument_privacylevel__Ezsignfoldertype, ezmax_api_definition__full_field_e_ezdoctemplatedocument_privacylevel__User } ezmax_api_definition__full_field_e_ezdoctemplatedocument_privacylevel__e;
+
+char* field_e_ezdoctemplatedocument_privacylevel_field_e_ezdoctemplatedocument_privacylevel_ToString(ezmax_api_definition__full_field_e_ezdoctemplatedocument_privacylevel__e field_e_ezdoctemplatedocument_privacylevel);
+
+ezmax_api_definition__full_field_e_ezdoctemplatedocument_privacylevel__e field_e_ezdoctemplatedocument_privacylevel_field_e_ezdoctemplatedocument_privacylevel_FromString(char* field_e_ezdoctemplatedocument_privacylevel);
+
+//cJSON *field_e_ezdoctemplatedocument_privacylevel_field_e_ezdoctemplatedocument_privacylevel_convertToJSON(ezmax_api_definition__full_field_e_ezdoctemplatedocument_privacylevel__e field_e_ezdoctemplatedocument_privacylevel);
+
+//ezmax_api_definition__full_field_e_ezdoctemplatedocument_privacylevel__e field_e_ezdoctemplatedocument_privacylevel_field_e_ezdoctemplatedocument_privacylevel_parseFromJSON(cJSON *field_e_ezdoctemplatedocument_privacylevelJSON);
+
+#endif /* _field_e_ezdoctemplatedocument_privacylevel_H_ */
+

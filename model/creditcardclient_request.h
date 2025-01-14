@@ -24,9 +24,8 @@ typedef struct creditcardclient_request_t {
     char *fks_creditcardtoken_id; // string
     int b_creditcardclientrelation_isdefault; //boolean
     char *s_creditcardclient_description; // string
-    int b_creditcardclient_isactive; //boolean
-    int b_creditcardclient_allowedagencypayment; //boolean
-    int b_creditcardclient_allowedroyallepageprotection; //boolean
+    int b_creditcardclient_allowedcompanypayment; //boolean
+    int b_creditcardclient_allowedezsign; //boolean
     int b_creditcardclient_allowedtranquillit; //boolean
     struct creditcarddetail_request_t *obj_creditcarddetail; //model
     char *s_creditcardclient_cvv; // string
@@ -38,9 +37,8 @@ creditcardclient_request_t *creditcardclient_request_create(
     char *fks_creditcardtoken_id,
     int b_creditcardclientrelation_isdefault,
     char *s_creditcardclient_description,
-    int b_creditcardclient_isactive,
-    int b_creditcardclient_allowedagencypayment,
-    int b_creditcardclient_allowedroyallepageprotection,
+    int b_creditcardclient_allowedcompanypayment,
+    int b_creditcardclient_allowedezsign,
     int b_creditcardclient_allowedtranquillit,
     creditcarddetail_request_t *obj_creditcarddetail,
     char *s_creditcardclient_cvv

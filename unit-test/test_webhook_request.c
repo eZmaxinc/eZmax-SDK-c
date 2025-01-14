@@ -23,6 +23,7 @@ webhook_request_t* instantiate_webhook_request(int include_optional) {
   if (include_optional) {
     webhook_request = webhook_request_create(
       77,
+      56,
       5,
       "Import into our system",
       ezmax_api_definition__full_webhook_request__"Ezsign",
@@ -37,6 +38,7 @@ webhook_request_t* instantiate_webhook_request(int include_optional) {
   } else {
     webhook_request = webhook_request_create(
       77,
+      56,
       5,
       "Import into our system",
       ezmax_api_definition__full_webhook_request__"Ezsign",

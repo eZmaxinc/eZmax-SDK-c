@@ -37,11 +37,16 @@ ezsignsignature_request_t* instantiate_ezsignsignature_request(int include_optio
       ezmax_api_definition__full_ezsignsignature_request__"Normal",
       20,
       1,
+      1,
+      1,
       ezmax_api_definition__full_ezsignsignature_request__"Description",
       "Attachment",
+      ezmax_api_definition__full_ezsignsignature_request__"Manual",
       1,
       75,
+      "Foo",
       ezmax_api_definition__full_ezsignsignature_request__"None",
+      "Phone number",
       "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
       ezmax_api_definition__full_ezsignsignature_request__"AllOf"
     );
@@ -62,11 +67,16 @@ ezsignsignature_request_t* instantiate_ezsignsignature_request(int include_optio
       ezmax_api_definition__full_ezsignsignature_request__"Normal",
       20,
       1,
+      1,
+      1,
       ezmax_api_definition__full_ezsignsignature_request__"Description",
       "Attachment",
+      ezmax_api_definition__full_ezsignsignature_request__"Manual",
       1,
       75,
+      "Foo",
       ezmax_api_definition__full_ezsignsignature_request__"None",
+      "Phone number",
       "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
       ezmax_api_definition__full_ezsignsignature_request__"AllOf"
     );

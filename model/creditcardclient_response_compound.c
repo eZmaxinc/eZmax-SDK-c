@@ -10,9 +10,7 @@ creditcardclient_response_compound_t *creditcardclient_response_compound_create(
     int fki_creditcarddetail_id,
     int b_creditcardclientrelation_isdefault,
     char *s_creditcardclient_description,
-    int b_creditcardclient_isactive,
-    int b_creditcardclient_allowedagencypayment,
-    int b_creditcardclient_allowedroyallepageprotection,
+    int b_creditcardclient_allowedcompanypayment,
     int b_creditcardclient_allowedtranquillit,
     creditcarddetail_response_compound_t *obj_creditcarddetail
     ) {
@@ -24,9 +22,7 @@ creditcardclient_response_compound_t *creditcardclient_response_compound_create(
     creditcardclient_response_compound_local_var->fki_creditcarddetail_id = fki_creditcarddetail_id;
     creditcardclient_response_compound_local_var->b_creditcardclientrelation_isdefault = b_creditcardclientrelation_isdefault;
     creditcardclient_response_compound_local_var->s_creditcardclient_description = s_creditcardclient_description;
-    creditcardclient_response_compound_local_var->b_creditcardclient_isactive = b_creditcardclient_isactive;
-    creditcardclient_response_compound_local_var->b_creditcardclient_allowedagencypayment = b_creditcardclient_allowedagencypayment;
-    creditcardclient_response_compound_local_var->b_creditcardclient_allowedroyallepageprotection = b_creditcardclient_allowedroyallepageprotection;
+    creditcardclient_response_compound_local_var->b_creditcardclient_allowedcompanypayment = b_creditcardclient_allowedcompanypayment;
     creditcardclient_response_compound_local_var->b_creditcardclient_allowedtranquillit = b_creditcardclient_allowedtranquillit;
     creditcardclient_response_compound_local_var->obj_creditcarddetail = obj_creditcarddetail;
 
@@ -89,29 +85,11 @@ cJSON *creditcardclient_response_compound_convertToJSON(creditcardclient_respons
     }
 
 
-    // creditcardclient_response_compound->b_creditcardclient_isactive
-    if (!creditcardclient_response_compound->b_creditcardclient_isactive) {
+    // creditcardclient_response_compound->b_creditcardclient_allowedcompanypayment
+    if (!creditcardclient_response_compound->b_creditcardclient_allowedcompanypayment) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bCreditcardclientIsactive", creditcardclient_response_compound->b_creditcardclient_isactive) == NULL) {
-    goto fail; //Bool
-    }
-
-
-    // creditcardclient_response_compound->b_creditcardclient_allowedagencypayment
-    if (!creditcardclient_response_compound->b_creditcardclient_allowedagencypayment) {
-        goto fail;
-    }
-    if(cJSON_AddBoolToObject(item, "bCreditcardclientAllowedagencypayment", creditcardclient_response_compound->b_creditcardclient_allowedagencypayment) == NULL) {
-    goto fail; //Bool
-    }
-
-
-    // creditcardclient_response_compound->b_creditcardclient_allowedroyallepageprotection
-    if (!creditcardclient_response_compound->b_creditcardclient_allowedroyallepageprotection) {
-        goto fail;
-    }
-    if(cJSON_AddBoolToObject(item, "bCreditcardclientAllowedroyallepageprotection", creditcardclient_response_compound->b_creditcardclient_allowedroyallepageprotection) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bCreditcardclientAllowedcompanypayment", creditcardclient_response_compound->b_creditcardclient_allowedcompanypayment) == NULL) {
     goto fail; //Bool
     }
 
@@ -201,38 +179,14 @@ creditcardclient_response_compound_t *creditcardclient_response_compound_parseFr
     goto end; //String
     }
 
-    // creditcardclient_response_compound->b_creditcardclient_isactive
-    cJSON *b_creditcardclient_isactive = cJSON_GetObjectItemCaseSensitive(creditcardclient_response_compoundJSON, "bCreditcardclientIsactive");
-    if (!b_creditcardclient_isactive) {
+    // creditcardclient_response_compound->b_creditcardclient_allowedcompanypayment
+    cJSON *b_creditcardclient_allowedcompanypayment = cJSON_GetObjectItemCaseSensitive(creditcardclient_response_compoundJSON, "bCreditcardclientAllowedcompanypayment");
+    if (!b_creditcardclient_allowedcompanypayment) {
         goto end;
     }
 
     
-    if(!cJSON_IsBool(b_creditcardclient_isactive))
-    {
-    goto end; //Bool
-    }
-
-    // creditcardclient_response_compound->b_creditcardclient_allowedagencypayment
-    cJSON *b_creditcardclient_allowedagencypayment = cJSON_GetObjectItemCaseSensitive(creditcardclient_response_compoundJSON, "bCreditcardclientAllowedagencypayment");
-    if (!b_creditcardclient_allowedagencypayment) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsBool(b_creditcardclient_allowedagencypayment))
-    {
-    goto end; //Bool
-    }
-
-    // creditcardclient_response_compound->b_creditcardclient_allowedroyallepageprotection
-    cJSON *b_creditcardclient_allowedroyallepageprotection = cJSON_GetObjectItemCaseSensitive(creditcardclient_response_compoundJSON, "bCreditcardclientAllowedroyallepageprotection");
-    if (!b_creditcardclient_allowedroyallepageprotection) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsBool(b_creditcardclient_allowedroyallepageprotection))
+    if(!cJSON_IsBool(b_creditcardclient_allowedcompanypayment))
     {
     goto end; //Bool
     }
@@ -264,9 +218,7 @@ creditcardclient_response_compound_t *creditcardclient_response_compound_parseFr
         fki_creditcarddetail_id->valuedouble,
         b_creditcardclientrelation_isdefault->valueint,
         strdup(s_creditcardclient_description->valuestring),
-        b_creditcardclient_isactive->valueint,
-        b_creditcardclient_allowedagencypayment->valueint,
-        b_creditcardclient_allowedroyallepageprotection->valueint,
+        b_creditcardclient_allowedcompanypayment->valueint,
         b_creditcardclient_allowedtranquillit->valueint,
         obj_creditcarddetail_local_nonprim
         );

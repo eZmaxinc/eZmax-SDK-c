@@ -55,6 +55,23 @@ ezmax_api_definition__full_ezsigntemplateformfield_request_compound__e ezsigntem
     }
     return 0;
 }
+char* ezsigntemplateformfield_request_compound_e_ezsigntemplateformfield_horizontalalignment_ToString(ezmax_api_definition__full_ezsigntemplateformfield_request_compound__e e_ezsigntemplateformfield_horizontalalignment) {
+    char* e_ezsigntemplateformfield_horizontalalignmentArray[] =  { "NULL", "Center", "Left", "Right" };
+    return e_ezsigntemplateformfield_horizontalalignmentArray[e_ezsigntemplateformfield_horizontalalignment];
+}
+
+ezmax_api_definition__full_ezsigntemplateformfield_request_compound__e ezsigntemplateformfield_request_compound_e_ezsigntemplateformfield_horizontalalignment_FromString(char* e_ezsigntemplateformfield_horizontalalignment){
+    int stringToReturn = 0;
+    char *e_ezsigntemplateformfield_horizontalalignmentArray[] =  { "NULL", "Center", "Left", "Right" };
+    size_t sizeofArray = sizeof(e_ezsigntemplateformfield_horizontalalignmentArray) / sizeof(e_ezsigntemplateformfield_horizontalalignmentArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(e_ezsigntemplateformfield_horizontalalignment, e_ezsigntemplateformfield_horizontalalignmentArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
 
 ezsigntemplateformfield_request_compound_t *ezsigntemplateformfield_request_compound_create(
     int pki_ezsigntemplateformfield_id,
@@ -73,6 +90,8 @@ ezsigntemplateformfield_request_compound_t *ezsigntemplateformfield_request_comp
     int i_ezsigntemplateformfield_positioningoffsetx,
     int i_ezsigntemplateformfield_positioningoffsety,
     field_e_ezsigntemplateformfield_positioningoccurence_t *e_ezsigntemplateformfield_positioningoccurence,
+    enum_horizontalalignment_t *e_ezsigntemplateformfield_horizontalalignment,
+    textstylestatic_request_compound_t *obj_textstylestatic,
     list_t *a_obj_ezsigntemplateelementdependency
     ) {
     ezsigntemplateformfield_request_compound_t *ezsigntemplateformfield_request_compound_local_var = malloc(sizeof(ezsigntemplateformfield_request_compound_t));
@@ -95,6 +114,8 @@ ezsigntemplateformfield_request_compound_t *ezsigntemplateformfield_request_comp
     ezsigntemplateformfield_request_compound_local_var->i_ezsigntemplateformfield_positioningoffsetx = i_ezsigntemplateformfield_positioningoffsetx;
     ezsigntemplateformfield_request_compound_local_var->i_ezsigntemplateformfield_positioningoffsety = i_ezsigntemplateformfield_positioningoffsety;
     ezsigntemplateformfield_request_compound_local_var->e_ezsigntemplateformfield_positioningoccurence = e_ezsigntemplateformfield_positioningoccurence;
+    ezsigntemplateformfield_request_compound_local_var->e_ezsigntemplateformfield_horizontalalignment = e_ezsigntemplateformfield_horizontalalignment;
+    ezsigntemplateformfield_request_compound_local_var->obj_textstylestatic = obj_textstylestatic;
     ezsigntemplateformfield_request_compound_local_var->a_obj_ezsigntemplateelementdependency = a_obj_ezsigntemplateelementdependency;
 
     return ezsigntemplateformfield_request_compound_local_var;
@@ -129,6 +150,14 @@ void ezsigntemplateformfield_request_compound_free(ezsigntemplateformfield_reque
     if (ezsigntemplateformfield_request_compound->e_ezsigntemplateformfield_positioningoccurence) {
         field_e_ezsigntemplateformfield_positioningoccurence_free(ezsigntemplateformfield_request_compound->e_ezsigntemplateformfield_positioningoccurence);
         ezsigntemplateformfield_request_compound->e_ezsigntemplateformfield_positioningoccurence = NULL;
+    }
+    if (ezsigntemplateformfield_request_compound->e_ezsigntemplateformfield_horizontalalignment) {
+        enum_horizontalalignment_free(ezsigntemplateformfield_request_compound->e_ezsigntemplateformfield_horizontalalignment);
+        ezsigntemplateformfield_request_compound->e_ezsigntemplateformfield_horizontalalignment = NULL;
+    }
+    if (ezsigntemplateformfield_request_compound->obj_textstylestatic) {
+        textstylestatic_request_compound_free(ezsigntemplateformfield_request_compound->obj_textstylestatic);
+        ezsigntemplateformfield_request_compound->obj_textstylestatic = NULL;
     }
     if (ezsigntemplateformfield_request_compound->a_obj_ezsigntemplateelementdependency) {
         list_ForEach(listEntry, ezsigntemplateformfield_request_compound->a_obj_ezsigntemplateelementdependency) {
@@ -290,6 +319,32 @@ cJSON *ezsigntemplateformfield_request_compound_convertToJSON(ezsigntemplateform
     }
 
 
+    // ezsigntemplateformfield_request_compound->e_ezsigntemplateformfield_horizontalalignment
+    if(ezsigntemplateformfield_request_compound->e_ezsigntemplateformfield_horizontalalignment != ezmax_api_definition__full_ezsigntemplateformfield_request_compound__NULL) {
+    cJSON *e_ezsigntemplateformfield_horizontalalignment_local_JSON = enum_horizontalalignment_convertToJSON(ezsigntemplateformfield_request_compound->e_ezsigntemplateformfield_horizontalalignment);
+    if(e_ezsigntemplateformfield_horizontalalignment_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsigntemplateformfieldHorizontalalignment", e_ezsigntemplateformfield_horizontalalignment_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
+    }
+
+
+    // ezsigntemplateformfield_request_compound->obj_textstylestatic
+    if(ezsigntemplateformfield_request_compound->obj_textstylestatic) {
+    cJSON *obj_textstylestatic_local_JSON = textstylestatic_request_compound_convertToJSON(ezsigntemplateformfield_request_compound->obj_textstylestatic);
+    if(obj_textstylestatic_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objTextstylestatic", obj_textstylestatic_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+    }
+
+
     // ezsigntemplateformfield_request_compound->a_obj_ezsigntemplateelementdependency
     if(ezsigntemplateformfield_request_compound->a_obj_ezsigntemplateelementdependency) {
     cJSON *a_obj_ezsigntemplateelementdependency = cJSON_AddArrayToObject(item, "a_objEzsigntemplateelementdependency");
@@ -329,6 +384,12 @@ ezsigntemplateformfield_request_compound_t *ezsigntemplateformfield_request_comp
 
     // define the local variable for ezsigntemplateformfield_request_compound->e_ezsigntemplateformfield_positioningoccurence
     field_e_ezsigntemplateformfield_positioningoccurence_t *e_ezsigntemplateformfield_positioningoccurence_local_nonprim = NULL;
+
+    // define the local variable for ezsigntemplateformfield_request_compound->e_ezsigntemplateformfield_horizontalalignment
+    enum_horizontalalignment_t *e_ezsigntemplateformfield_horizontalalignment_local_nonprim = NULL;
+
+    // define the local variable for ezsigntemplateformfield_request_compound->obj_textstylestatic
+    textstylestatic_request_compound_t *obj_textstylestatic_local_nonprim = NULL;
 
     // define the local list for ezsigntemplateformfield_request_compound->a_obj_ezsigntemplateelementdependency
     list_t *a_obj_ezsigntemplateelementdependencyList = NULL;
@@ -480,6 +541,18 @@ ezsigntemplateformfield_request_compound_t *ezsigntemplateformfield_request_comp
     e_ezsigntemplateformfield_positioningoccurence_local_nonprim = field_e_ezsigntemplateformfield_positioningoccurence_parseFromJSON(e_ezsigntemplateformfield_positioningoccurence); //custom
     }
 
+    // ezsigntemplateformfield_request_compound->e_ezsigntemplateformfield_horizontalalignment
+    cJSON *e_ezsigntemplateformfield_horizontalalignment = cJSON_GetObjectItemCaseSensitive(ezsigntemplateformfield_request_compoundJSON, "eEzsigntemplateformfieldHorizontalalignment");
+    if (e_ezsigntemplateformfield_horizontalalignment) { 
+    e_ezsigntemplateformfield_horizontalalignment_local_nonprim = enum_horizontalalignment_parseFromJSON(e_ezsigntemplateformfield_horizontalalignment); //custom
+    }
+
+    // ezsigntemplateformfield_request_compound->obj_textstylestatic
+    cJSON *obj_textstylestatic = cJSON_GetObjectItemCaseSensitive(ezsigntemplateformfield_request_compoundJSON, "objTextstylestatic");
+    if (obj_textstylestatic) { 
+    obj_textstylestatic_local_nonprim = textstylestatic_request_compound_parseFromJSON(obj_textstylestatic); //nonprimitive
+    }
+
     // ezsigntemplateformfield_request_compound->a_obj_ezsigntemplateelementdependency
     cJSON *a_obj_ezsigntemplateelementdependency = cJSON_GetObjectItemCaseSensitive(ezsigntemplateformfield_request_compoundJSON, "a_objEzsigntemplateelementdependency");
     if (a_obj_ezsigntemplateelementdependency) { 
@@ -519,6 +592,8 @@ ezsigntemplateformfield_request_compound_t *ezsigntemplateformfield_request_comp
         i_ezsigntemplateformfield_positioningoffsetx ? i_ezsigntemplateformfield_positioningoffsetx->valuedouble : 0,
         i_ezsigntemplateformfield_positioningoffsety ? i_ezsigntemplateformfield_positioningoffsety->valuedouble : 0,
         e_ezsigntemplateformfield_positioningoccurence ? e_ezsigntemplateformfield_positioningoccurence_local_nonprim : NULL,
+        e_ezsigntemplateformfield_horizontalalignment ? e_ezsigntemplateformfield_horizontalalignment_local_nonprim : NULL,
+        obj_textstylestatic ? obj_textstylestatic_local_nonprim : NULL,
         a_obj_ezsigntemplateelementdependency ? a_obj_ezsigntemplateelementdependencyList : NULL
         );
 
@@ -535,6 +610,14 @@ end:
     if (e_ezsigntemplateformfield_positioningoccurence_local_nonprim) {
         field_e_ezsigntemplateformfield_positioningoccurence_free(e_ezsigntemplateformfield_positioningoccurence_local_nonprim);
         e_ezsigntemplateformfield_positioningoccurence_local_nonprim = NULL;
+    }
+    if (e_ezsigntemplateformfield_horizontalalignment_local_nonprim) {
+        enum_horizontalalignment_free(e_ezsigntemplateformfield_horizontalalignment_local_nonprim);
+        e_ezsigntemplateformfield_horizontalalignment_local_nonprim = NULL;
+    }
+    if (obj_textstylestatic_local_nonprim) {
+        textstylestatic_request_compound_free(obj_textstylestatic_local_nonprim);
+        obj_textstylestatic_local_nonprim = NULL;
     }
     if (a_obj_ezsigntemplateelementdependencyList) {
         listEntry_t *listEntry = NULL;

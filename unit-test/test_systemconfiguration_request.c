@@ -23,6 +23,7 @@ systemconfiguration_request_t* instantiate_systemconfiguration_request(int inclu
   if (include_optional) {
     systemconfiguration_request = systemconfiguration_request_create(
       1,
+      78,
       ezmax_api_definition__full_systemconfiguration_request__"Stage",
       ezmax_api_definition__full_systemconfiguration_request__"fr_QC",
       ezmax_api_definition__full_systemconfiguration_request__"en_CA",
@@ -37,6 +38,7 @@ systemconfiguration_request_t* instantiate_systemconfiguration_request(int inclu
   } else {
     systemconfiguration_request = systemconfiguration_request_create(
       1,
+      78,
       ezmax_api_definition__full_systemconfiguration_request__"Stage",
       ezmax_api_definition__full_systemconfiguration_request__"fr_QC",
       ezmax_api_definition__full_systemconfiguration_request__"en_CA",

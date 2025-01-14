@@ -26,7 +26,8 @@ custom_ezsignsignaturestatus_response_t *custom_ezsignsignaturestatus_response_c
     ezmax_api_definition__full_custom_ezsignsignaturestatus_response_EEZSIGNSIGNATURESTATUSSTEPTYPE_e e_ezsignsignaturestatus_steptype,
     int i_ezsignsignaturestatus_step,
     int i_ezsignsignaturestatus_total,
-    int i_ezsignsignaturestatus_signed
+    int i_ezsignsignaturestatus_signed,
+    int i_ezsignsignaturestatus_conditional
     ) {
     custom_ezsignsignaturestatus_response_t *custom_ezsignsignaturestatus_response_local_var = malloc(sizeof(custom_ezsignsignaturestatus_response_t));
     if (!custom_ezsignsignaturestatus_response_local_var) {
@@ -36,6 +37,7 @@ custom_ezsignsignaturestatus_response_t *custom_ezsignsignaturestatus_response_c
     custom_ezsignsignaturestatus_response_local_var->i_ezsignsignaturestatus_step = i_ezsignsignaturestatus_step;
     custom_ezsignsignaturestatus_response_local_var->i_ezsignsignaturestatus_total = i_ezsignsignaturestatus_total;
     custom_ezsignsignaturestatus_response_local_var->i_ezsignsignaturestatus_signed = i_ezsignsignaturestatus_signed;
+    custom_ezsignsignaturestatus_response_local_var->i_ezsignsignaturestatus_conditional = i_ezsignsignaturestatus_conditional;
 
     return custom_ezsignsignaturestatus_response_local_var;
 }
@@ -85,6 +87,15 @@ cJSON *custom_ezsignsignaturestatus_response_convertToJSON(custom_ezsignsignatur
         goto fail;
     }
     if(cJSON_AddNumberToObject(item, "iEzsignsignaturestatusSigned", custom_ezsignsignaturestatus_response->i_ezsignsignaturestatus_signed) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // custom_ezsignsignaturestatus_response->i_ezsignsignaturestatus_conditional
+    if (!custom_ezsignsignaturestatus_response->i_ezsignsignaturestatus_conditional) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iEzsignsignaturestatusConditional", custom_ezsignsignaturestatus_response->i_ezsignsignaturestatus_conditional) == NULL) {
     goto fail; //Numeric
     }
 
@@ -150,12 +161,25 @@ custom_ezsignsignaturestatus_response_t *custom_ezsignsignaturestatus_response_p
     goto end; //Numeric
     }
 
+    // custom_ezsignsignaturestatus_response->i_ezsignsignaturestatus_conditional
+    cJSON *i_ezsignsignaturestatus_conditional = cJSON_GetObjectItemCaseSensitive(custom_ezsignsignaturestatus_responseJSON, "iEzsignsignaturestatusConditional");
+    if (!i_ezsignsignaturestatus_conditional) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_ezsignsignaturestatus_conditional))
+    {
+    goto end; //Numeric
+    }
+
 
     custom_ezsignsignaturestatus_response_local_var = custom_ezsignsignaturestatus_response_create (
         e_ezsignsignaturestatus_steptypeVariable,
         i_ezsignsignaturestatus_step->valuedouble,
         i_ezsignsignaturestatus_total->valuedouble,
-        i_ezsignsignaturestatus_signed->valuedouble
+        i_ezsignsignaturestatus_signed->valuedouble,
+        i_ezsignsignaturestatus_conditional->valuedouble
         );
 
     return custom_ezsignsignaturestatus_response_local_var;

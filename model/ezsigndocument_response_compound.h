@@ -18,6 +18,7 @@ typedef struct ezsigndocument_response_compound_t ezsigndocument_response_compou
 #include "common_audit.h"
 #include "computed_e_ezsigndocument_steptype.h"
 #include "custom_ezsignfoldersignerassociationstatus_response.h"
+#include "ezsigndocumentdependency_response.h"
 #include "field_e_ezsigndocument_step.h"
 
 // Enum  for ezsigndocument_response_compound
@@ -53,6 +54,7 @@ typedef struct ezsigndocument_response_compound_t {
     int i_ezsigndocument_pagetotal; //numeric
     int i_ezsigndocument_signaturesigned; //numeric
     int i_ezsigndocument_signaturetotal; //numeric
+    int i_ezsigndocument_formfieldtotal; //numeric
     char *s_ezsigndocument_md5initial; // string
     char *t_ezsigndocument_declinedtosignreason; // string
     char *s_ezsigndocument_md5signed; // string
@@ -68,6 +70,7 @@ typedef struct ezsigndocument_response_compound_t {
     int i_ezsigndocument_stepsignaturetotal; //numeric
     int i_ezsigndocument_stepsignature_current; //numeric
     list_t *a_obj_ezsignfoldersignerassociationstatus; //nonprimitive container
+    list_t *a_obj_ezsigndocumentdependency; //nonprimitive container
 
 } ezsigndocument_response_compound_t;
 
@@ -86,6 +89,7 @@ ezsigndocument_response_compound_t *ezsigndocument_response_compound_create(
     int i_ezsigndocument_pagetotal,
     int i_ezsigndocument_signaturesigned,
     int i_ezsigndocument_signaturetotal,
+    int i_ezsigndocument_formfieldtotal,
     char *s_ezsigndocument_md5initial,
     char *t_ezsigndocument_declinedtosignreason,
     char *s_ezsigndocument_md5signed,
@@ -100,7 +104,8 @@ ezsigndocument_response_compound_t *ezsigndocument_response_compound_create(
     int i_ezsigndocument_stepformcurrent,
     int i_ezsigndocument_stepsignaturetotal,
     int i_ezsigndocument_stepsignature_current,
-    list_t *a_obj_ezsignfoldersignerassociationstatus
+    list_t *a_obj_ezsignfoldersignerassociationstatus,
+    list_t *a_obj_ezsigndocumentdependency
 );
 
 void ezsigndocument_response_compound_free(ezsigndocument_response_compound_t *ezsigndocument_response_compound);

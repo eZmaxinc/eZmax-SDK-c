@@ -21,6 +21,7 @@ typedef struct ezsigntemplatepackage_request_compound_t ezsigntemplatepackage_re
 typedef struct ezsigntemplatepackage_request_compound_t {
     int pki_ezsigntemplatepackage_id; //numeric
     int fki_ezsignfoldertype_id; //numeric
+    int fki_ezdoctemplatedocument_id; //numeric
     int fki_language_id; //numeric
     char *s_ezsigntemplatepackage_description; // string
     int b_ezsigntemplatepackage_adminonly; //boolean
@@ -31,6 +32,7 @@ typedef struct ezsigntemplatepackage_request_compound_t {
 ezsigntemplatepackage_request_compound_t *ezsigntemplatepackage_request_compound_create(
     int pki_ezsigntemplatepackage_id,
     int fki_ezsignfoldertype_id,
+    int fki_ezdoctemplatedocument_id,
     int fki_language_id,
     char *s_ezsigntemplatepackage_description,
     int b_ezsigntemplatepackage_adminonly,

@@ -35,6 +35,7 @@ ezsignformfieldgroup_request_t* instantiate_ezsignformfieldgroup_request(int inc
       75,
       1,
       "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
+      "Phone number",
       "Please enter a valid email address",
       ezmax_api_definition__full_ezsignformfieldgroup_request__"TopLeft",
       ezmax_api_definition__full_ezsignformfieldgroup_request__"None"
@@ -54,6 +55,7 @@ ezsignformfieldgroup_request_t* instantiate_ezsignformfieldgroup_request(int inc
       75,
       1,
       "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
+      "Phone number",
       "Please enter a valid email address",
       ezmax_api_definition__full_ezsignformfieldgroup_request__"TopLeft",
       ezmax_api_definition__full_ezsignformfieldgroup_request__"None"

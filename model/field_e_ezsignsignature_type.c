@@ -5,13 +5,13 @@
 
 
 char* field_e_ezsignsignature_type_field_e_ezsignsignature_type_ToString(ezmax_api_definition__full_field_e_ezsignsignature_type__e field_e_ezsignsignature_type) {
-    char *field_e_ezsignsignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name", "NameReason", "Attachments", "AttachmentsConfirmation", "FieldText", "FieldTextarea", "Consultation" };
+    char *field_e_ezsignsignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name", "NameReason", "Attachments", "AttachmentsConfirmation", "FieldText", "FieldTextarea", "Consultation", "Signature" };
     return field_e_ezsignsignature_typeArray[field_e_ezsignsignature_type];
 }
 
 ezmax_api_definition__full_field_e_ezsignsignature_type__e field_e_ezsignsignature_type_field_e_ezsignsignature_type_FromString(char* field_e_ezsignsignature_type) {
     int stringToReturn = 0;
-    char *field_e_ezsignsignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name", "NameReason", "Attachments", "AttachmentsConfirmation", "FieldText", "FieldTextarea", "Consultation" };
+    char *field_e_ezsignsignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name", "NameReason", "Attachments", "AttachmentsConfirmation", "FieldText", "FieldTextarea", "Consultation", "Signature" };
     size_t sizeofArray = sizeof(field_e_ezsignsignature_typeArray) / sizeof(field_e_ezsignsignature_typeArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(field_e_ezsignsignature_type, field_e_ezsignsignature_typeArray[stringToReturn]) == 0) {

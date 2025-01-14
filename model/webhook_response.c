@@ -58,6 +58,7 @@ ezmax_api_definition__full_webhook_response__e webhook_response_e_webhook_manage
 
 webhook_response_t *webhook_response_create(
     int pki_webhook_id,
+    int fki_authenticationexternal_id,
     char *s_webhook_description,
     int fki_ezsignfoldertype_id,
     char *s_ezsignfoldertype_name_x,
@@ -71,6 +72,7 @@ webhook_response_t *webhook_response_create(
     int b_webhook_isactive,
     int b_webhook_issigned,
     int b_webhook_skipsslvalidation,
+    char *s_authenticationexternal_description,
     common_audit_t *obj_audit
     ) {
     webhook_response_t *webhook_response_local_var = malloc(sizeof(webhook_response_t));
@@ -78,6 +80,7 @@ webhook_response_t *webhook_response_create(
         return NULL;
     }
     webhook_response_local_var->pki_webhook_id = pki_webhook_id;
+    webhook_response_local_var->fki_authenticationexternal_id = fki_authenticationexternal_id;
     webhook_response_local_var->s_webhook_description = s_webhook_description;
     webhook_response_local_var->fki_ezsignfoldertype_id = fki_ezsignfoldertype_id;
     webhook_response_local_var->s_ezsignfoldertype_name_x = s_ezsignfoldertype_name_x;
@@ -91,6 +94,7 @@ webhook_response_t *webhook_response_create(
     webhook_response_local_var->b_webhook_isactive = b_webhook_isactive;
     webhook_response_local_var->b_webhook_issigned = b_webhook_issigned;
     webhook_response_local_var->b_webhook_skipsslvalidation = b_webhook_skipsslvalidation;
+    webhook_response_local_var->s_authenticationexternal_description = s_authenticationexternal_description;
     webhook_response_local_var->obj_audit = obj_audit;
 
     return webhook_response_local_var;
@@ -138,6 +142,10 @@ void webhook_response_free(webhook_response_t *webhook_response) {
         free(webhook_response->s_webhook_secret);
         webhook_response->s_webhook_secret = NULL;
     }
+    if (webhook_response->s_authenticationexternal_description) {
+        free(webhook_response->s_authenticationexternal_description);
+        webhook_response->s_authenticationexternal_description = NULL;
+    }
     if (webhook_response->obj_audit) {
         common_audit_free(webhook_response->obj_audit);
         webhook_response->obj_audit = NULL;
@@ -154,6 +162,14 @@ cJSON *webhook_response_convertToJSON(webhook_response_t *webhook_response) {
     }
     if(cJSON_AddNumberToObject(item, "pkiWebhookID", webhook_response->pki_webhook_id) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // webhook_response->fki_authenticationexternal_id
+    if(webhook_response->fki_authenticationexternal_id) {
+    if(cJSON_AddNumberToObject(item, "fkiAuthenticationexternalID", webhook_response->fki_authenticationexternal_id) == NULL) {
+    goto fail; //Numeric
+    }
     }
 
 
@@ -283,6 +299,14 @@ cJSON *webhook_response_convertToJSON(webhook_response_t *webhook_response) {
     }
 
 
+    // webhook_response->s_authenticationexternal_description
+    if(webhook_response->s_authenticationexternal_description) {
+    if(cJSON_AddStringToObject(item, "sAuthenticationexternalDescription", webhook_response->s_authenticationexternal_description) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
     // webhook_response->obj_audit
     if (!webhook_response->obj_audit) {
         goto fail;
@@ -330,6 +354,15 @@ webhook_response_t *webhook_response_parseFromJSON(cJSON *webhook_responseJSON){
     if(!cJSON_IsNumber(pki_webhook_id))
     {
     goto end; //Numeric
+    }
+
+    // webhook_response->fki_authenticationexternal_id
+    cJSON *fki_authenticationexternal_id = cJSON_GetObjectItemCaseSensitive(webhook_responseJSON, "fkiAuthenticationexternalID");
+    if (fki_authenticationexternal_id) { 
+    if(!cJSON_IsNumber(fki_authenticationexternal_id))
+    {
+    goto end; //Numeric
+    }
     }
 
     // webhook_response->s_webhook_description
@@ -461,6 +494,15 @@ webhook_response_t *webhook_response_parseFromJSON(cJSON *webhook_responseJSON){
     goto end; //Bool
     }
 
+    // webhook_response->s_authenticationexternal_description
+    cJSON *s_authenticationexternal_description = cJSON_GetObjectItemCaseSensitive(webhook_responseJSON, "sAuthenticationexternalDescription");
+    if (s_authenticationexternal_description) { 
+    if(!cJSON_IsString(s_authenticationexternal_description) && !cJSON_IsNull(s_authenticationexternal_description))
+    {
+    goto end; //String
+    }
+    }
+
     // webhook_response->obj_audit
     cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(webhook_responseJSON, "objAudit");
     if (!obj_audit) {
@@ -473,6 +515,7 @@ webhook_response_t *webhook_response_parseFromJSON(cJSON *webhook_responseJSON){
 
     webhook_response_local_var = webhook_response_create (
         pki_webhook_id->valuedouble,
+        fki_authenticationexternal_id ? fki_authenticationexternal_id->valuedouble : 0,
         strdup(s_webhook_description->valuestring),
         fki_ezsignfoldertype_id ? fki_ezsignfoldertype_id->valuedouble : 0,
         s_ezsignfoldertype_name_x && !cJSON_IsNull(s_ezsignfoldertype_name_x) ? strdup(s_ezsignfoldertype_name_x->valuestring) : NULL,
@@ -486,6 +529,7 @@ webhook_response_t *webhook_response_parseFromJSON(cJSON *webhook_responseJSON){
         b_webhook_isactive->valueint,
         b_webhook_issigned->valueint,
         b_webhook_skipsslvalidation->valueint,
+        s_authenticationexternal_description && !cJSON_IsNull(s_authenticationexternal_description) ? strdup(s_authenticationexternal_description->valuestring) : NULL,
         obj_audit_local_nonprim
         );
 

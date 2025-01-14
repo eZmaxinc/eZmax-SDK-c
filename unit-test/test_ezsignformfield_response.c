@@ -16,6 +16,7 @@
 #include "../model/ezsignformfield_response.h"
 ezsignformfield_response_t* instantiate_ezsignformfield_response(int include_optional);
 
+#include "test_textstylestatic_response_compound.c"
 
 
 ezsignformfield_response_t* instantiate_ezsignformfield_response(int include_optional) {
@@ -33,7 +34,10 @@ ezsignformfield_response_t* instantiate_ezsignformfield_response(int include_opt
       1,
       1,
       "Montreal",
-      ezmax_api_definition__full_ezsignformfield_response__"AllOf"
+      ezmax_api_definition__full_ezsignformfield_response__"AllOf",
+      ezmax_api_definition__full_ezsignformfield_response__"Center",
+       // false, not to have infinite recursion
+      instantiate_textstylestatic_response_compound(0)
     );
   } else {
     ezsignformfield_response = ezsignformfield_response_create(
@@ -48,7 +52,9 @@ ezsignformfield_response_t* instantiate_ezsignformfield_response(int include_opt
       1,
       1,
       "Montreal",
-      ezmax_api_definition__full_ezsignformfield_response__"AllOf"
+      ezmax_api_definition__full_ezsignformfield_response__"AllOf",
+      ezmax_api_definition__full_ezsignformfield_response__"Center",
+      NULL
     );
   }
 

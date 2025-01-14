@@ -19,6 +19,7 @@ typedef struct address_request_compound_t address_request_compound_t;
 
 
 typedef struct address_request_compound_t {
+    int pki_address_id; //numeric
     int fki_addresstype_id; //numeric
     char *s_address_civic; // string
     char *s_address_street; // string
@@ -33,6 +34,7 @@ typedef struct address_request_compound_t {
 } address_request_compound_t;
 
 address_request_compound_t *address_request_compound_create(
+    int pki_address_id,
     int fki_addresstype_id,
     char *s_address_civic,
     char *s_address_street,

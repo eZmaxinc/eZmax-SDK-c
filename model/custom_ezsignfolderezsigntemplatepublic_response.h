@@ -1,0 +1,59 @@
+/*
+ * custom_ezsignfolderezsigntemplatepublic_response.h
+ *
+ * An Ezsignfolder Object in the context of an Ezsigntemplatepublic
+ */
+
+#ifndef _custom_ezsignfolderezsigntemplatepublic_response_H_
+#define _custom_ezsignfolderezsigntemplatepublic_response_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct custom_ezsignfolderezsigntemplatepublic_response_t custom_ezsignfolderezsigntemplatepublic_response_t;
+
+#include "custom_ezsignfolderezsigntemplatepublic_signer_response.h"
+#include "field_e_ezsignfolder_step.h"
+
+// Enum  for custom_ezsignfolderezsigntemplatepublic_response
+
+typedef enum  { ezmax_api_definition__full_custom_ezsignfolderezsigntemplatepublic_response__NULL = 0, ezmax_api_definition__full_custom_ezsignfolderezsigntemplatepublic_response__Unsent, ezmax_api_definition__full_custom_ezsignfolderezsigntemplatepublic_response__PendingSend, ezmax_api_definition__full_custom_ezsignfolderezsigntemplatepublic_response__Sent, ezmax_api_definition__full_custom_ezsignfolderezsigntemplatepublic_response__PartiallySigned, ezmax_api_definition__full_custom_ezsignfolderezsigntemplatepublic_response__Expired, ezmax_api_definition__full_custom_ezsignfolderezsigntemplatepublic_response__Completed, ezmax_api_definition__full_custom_ezsignfolderezsigntemplatepublic_response__Archived, ezmax_api_definition__full_custom_ezsignfolderezsigntemplatepublic_response__Disposed } ezmax_api_definition__full_custom_ezsignfolderezsigntemplatepublic_response__e;
+
+char* custom_ezsignfolderezsigntemplatepublic_response_e_ezsignfolder_step_ToString(ezmax_api_definition__full_custom_ezsignfolderezsigntemplatepublic_response__e e_ezsignfolder_step);
+
+ezmax_api_definition__full_custom_ezsignfolderezsigntemplatepublic_response__e custom_ezsignfolderezsigntemplatepublic_response_e_ezsignfolder_step_FromString(char* e_ezsignfolder_step);
+
+
+
+typedef struct custom_ezsignfolderezsigntemplatepublic_response_t {
+    int pki_ezsignfolder_id; //numeric
+    char *s_ezsignfolder_description; // string
+    field_e_ezsignfolder_step_t *e_ezsignfolder_step; // custom
+    int i_ezsignfolder_signaturetotal; //numeric
+    int i_ezsignfolder_formfieldtotal; //numeric
+    int i_ezsignfolder_signaturesigned; //numeric
+    list_t *a_obj_ezsignfolderezsigntemplatepublic_signer; //nonprimitive container
+
+} custom_ezsignfolderezsigntemplatepublic_response_t;
+
+custom_ezsignfolderezsigntemplatepublic_response_t *custom_ezsignfolderezsigntemplatepublic_response_create(
+    int pki_ezsignfolder_id,
+    char *s_ezsignfolder_description,
+    field_e_ezsignfolder_step_t *e_ezsignfolder_step,
+    int i_ezsignfolder_signaturetotal,
+    int i_ezsignfolder_formfieldtotal,
+    int i_ezsignfolder_signaturesigned,
+    list_t *a_obj_ezsignfolderezsigntemplatepublic_signer
+);
+
+void custom_ezsignfolderezsigntemplatepublic_response_free(custom_ezsignfolderezsigntemplatepublic_response_t *custom_ezsignfolderezsigntemplatepublic_response);
+
+custom_ezsignfolderezsigntemplatepublic_response_t *custom_ezsignfolderezsigntemplatepublic_response_parseFromJSON(cJSON *custom_ezsignfolderezsigntemplatepublic_responseJSON);
+
+cJSON *custom_ezsignfolderezsigntemplatepublic_response_convertToJSON(custom_ezsignfolderezsigntemplatepublic_response_t *custom_ezsignfolderezsigntemplatepublic_response);
+
+#endif /* _custom_ezsignfolderezsigntemplatepublic_response_H_ */
+

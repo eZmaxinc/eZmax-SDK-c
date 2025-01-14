@@ -98,6 +98,107 @@ end:
 
 }
 
+// Edit multiple Ezsigntemplatedocumentpagerecognitions
+//
+// Edit multiple Ezsigntemplatedocumentpagerecognitions
+//
+ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response_t*
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditEzsigntemplatedocumentpagerecognitionsV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_request_t *ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_request)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/ezsigntemplatedocument/{pkiEzsigntemplatedocumentID}/editEzsigntemplatedocumentpagerecognitions")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/ezsigntemplatedocument/{pkiEzsigntemplatedocumentID}/editEzsigntemplatedocumentpagerecognitions");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsigntemplatedocumentID =  + strlen("{ pkiEzsigntemplatedocumentID }");
+    if(pkiEzsigntemplatedocumentID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsigntemplatedocumentID = malloc(sizeOfPathParams_pkiEzsigntemplatedocumentID);
+    snprintf(localVarToReplace_pkiEzsigntemplatedocumentID, sizeOfPathParams_pkiEzsigntemplatedocumentID, "{%s}", "pkiEzsigntemplatedocumentID");
+
+    char localVarBuff_pkiEzsigntemplatedocumentID[256];
+    intToStr(localVarBuff_pkiEzsigntemplatedocumentID, *pkiEzsigntemplatedocumentID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatedocumentID, localVarBuff_pkiEzsigntemplatedocumentID);
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_request = NULL;
+    if (ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_request != NULL)
+    {
+        //string
+        localVarSingleItemJSON_ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_request = ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_request_convertToJSON(ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_request);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "PUT");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectEzsigntemplatedocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response_t *elementToReturn = ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_response_parseFromJSON(ObjectEzsigntemplatedocumentAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsigntemplatedocumentAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsigntemplatedocumentID);
+    if (localVarSingleItemJSON_ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_request) {
+        cJSON_Delete(localVarSingleItemJSON_ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_request);
+        localVarSingleItemJSON_ezsigntemplatedocument_edit_ezsigntemplatedocumentpagerecognitions_v1_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Edit multiple Ezsigntemplateformfieldgroups
 //
 // Using this endpoint, you can edit multiple Ezsigntemplateformfieldgroups at the same time.
@@ -401,6 +502,107 @@ end:
 
 }
 
+// Extract text from Ezsigntemplatedocument area
+//
+// Extract text from Ezsigntemplatedocument area
+//
+ezsigntemplatedocument_extract_text_v1_response_t*
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentExtractTextV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, ezsigntemplatedocument_extract_text_v1_request_t *ezsigntemplatedocument_extract_text_v1_request)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/ezsigntemplatedocument/{pkiEzsigntemplatedocumentID}/extractText")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/ezsigntemplatedocument/{pkiEzsigntemplatedocumentID}/extractText");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsigntemplatedocumentID =  + strlen("{ pkiEzsigntemplatedocumentID }");
+    if(pkiEzsigntemplatedocumentID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsigntemplatedocumentID = malloc(sizeOfPathParams_pkiEzsigntemplatedocumentID);
+    snprintf(localVarToReplace_pkiEzsigntemplatedocumentID, sizeOfPathParams_pkiEzsigntemplatedocumentID, "{%s}", "pkiEzsigntemplatedocumentID");
+
+    char localVarBuff_pkiEzsigntemplatedocumentID[256];
+    intToStr(localVarBuff_pkiEzsigntemplatedocumentID, *pkiEzsigntemplatedocumentID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatedocumentID, localVarBuff_pkiEzsigntemplatedocumentID);
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_ezsigntemplatedocument_extract_text_v1_request = NULL;
+    if (ezsigntemplatedocument_extract_text_v1_request != NULL)
+    {
+        //string
+        localVarSingleItemJSON_ezsigntemplatedocument_extract_text_v1_request = ezsigntemplatedocument_extract_text_v1_request_convertToJSON(ezsigntemplatedocument_extract_text_v1_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsigntemplatedocument_extract_text_v1_request);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "POST");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectEzsigntemplatedocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsigntemplatedocument_extract_text_v1_response_t *elementToReturn = ezsigntemplatedocument_extract_text_v1_response_parseFromJSON(ObjectEzsigntemplatedocumentAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsigntemplatedocumentAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsigntemplatedocumentID);
+    if (localVarSingleItemJSON_ezsigntemplatedocument_extract_text_v1_request) {
+        cJSON_Delete(localVarSingleItemJSON_ezsigntemplatedocument_extract_text_v1_request);
+        localVarSingleItemJSON_ezsigntemplatedocument_extract_text_v1_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Flatten
 //
 // Flatten an Ezsigntemplatedocument signatures, forms and annotations. This process finalizes the PDF so that the forms and annotations become part of the document content and cannot be edited.
@@ -495,6 +697,92 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentFlattenV1(apiClient_t *api
         localVarSingleItemJSON_body = NULL;
     }
     free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve an existing Ezsigntemplatedocument's Ezsigntemplatedocumentpagerecognitions
+//
+// 
+//
+ezsigntemplatedocument_get_ezsigntemplatedocumentpagerecognitions_v1_response_t*
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatedocumentpagerecognitionsV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/ezsigntemplatedocument/{pkiEzsigntemplatedocumentID}/getEzsigntemplatedocumentpagerecognitions")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/ezsigntemplatedocument/{pkiEzsigntemplatedocumentID}/getEzsigntemplatedocumentpagerecognitions");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsigntemplatedocumentID =  + strlen("{ pkiEzsigntemplatedocumentID }");
+    if(pkiEzsigntemplatedocumentID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsigntemplatedocumentID = malloc(sizeOfPathParams_pkiEzsigntemplatedocumentID);
+    snprintf(localVarToReplace_pkiEzsigntemplatedocumentID, sizeOfPathParams_pkiEzsigntemplatedocumentID, "{%s}", "pkiEzsigntemplatedocumentID");
+
+    char localVarBuff_pkiEzsigntemplatedocumentID[256];
+    intToStr(localVarBuff_pkiEzsigntemplatedocumentID, *pkiEzsigntemplatedocumentID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatedocumentID, localVarBuff_pkiEzsigntemplatedocumentID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectEzsigntemplatedocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsigntemplatedocument_get_ezsigntemplatedocumentpagerecognitions_v1_response_t *elementToReturn = ezsigntemplatedocument_get_ezsigntemplatedocumentpagerecognitions_v1_response_parseFromJSON(ObjectEzsigntemplatedocumentAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsigntemplatedocumentAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsigntemplatedocumentID);
     return elementToReturn;
 end:
     free(localVarPath);

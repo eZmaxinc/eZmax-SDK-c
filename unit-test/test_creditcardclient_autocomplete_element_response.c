@@ -23,14 +23,12 @@ creditcardclient_autocomplete_element_response_t* instantiate_creditcardclient_a
   if (include_optional) {
     creditcardclient_autocomplete_element_response = creditcardclient_autocomplete_element_response_create(
       114,
-      "Visa",
-      true
+      "Visa"
     );
   } else {
     creditcardclient_autocomplete_element_response = creditcardclient_autocomplete_element_response_create(
       114,
-      "Visa",
-      true
+      "Visa"
     );
   }
 

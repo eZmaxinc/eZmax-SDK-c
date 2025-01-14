@@ -5,13 +5,13 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/branding_create_object_v1_request.h"
-#include "../model/branding_create_object_v1_response.h"
-#include "../model/branding_edit_object_v1_request.h"
-#include "../model/branding_edit_object_v1_response.h"
+#include "../model/branding_create_object_v2_request.h"
+#include "../model/branding_create_object_v2_response.h"
+#include "../model/branding_edit_object_v2_request.h"
+#include "../model/branding_edit_object_v2_response.h"
 #include "../model/branding_get_autocomplete_v2_response.h"
 #include "../model/branding_get_list_v1_response.h"
-#include "../model/branding_get_object_v2_response.h"
+#include "../model/branding_get_object_v3_response.h"
 #include "../model/common_response_error.h"
 #include "../model/header_accept_language.h"
 
@@ -35,16 +35,16 @@ typedef enum  { ezmax_api_definition__full_brandingGetListV1__NULL = 0, ezmax_ap
 //
 // The endpoint allows to create one or many elements at once.
 //
-branding_create_object_v1_response_t*
-ObjectBrandingAPI_brandingCreateObjectV1(apiClient_t *apiClient, branding_create_object_v1_request_t *branding_create_object_v1_request);
+branding_create_object_v2_response_t*
+ObjectBrandingAPI_brandingCreateObjectV2(apiClient_t *apiClient, branding_create_object_v2_request_t *branding_create_object_v2_request);
 
 
 // Edit an existing Branding
 //
 // 
 //
-branding_edit_object_v1_response_t*
-ObjectBrandingAPI_brandingEditObjectV1(apiClient_t *apiClient, int *pkiBrandingID, branding_edit_object_v1_request_t *branding_edit_object_v1_request);
+branding_edit_object_v2_response_t*
+ObjectBrandingAPI_brandingEditObjectV2(apiClient_t *apiClient, int *pkiBrandingID, branding_edit_object_v2_request_t *branding_edit_object_v2_request);
 
 
 // Retrieve Brandings and IDs
@@ -67,7 +67,7 @@ ObjectBrandingAPI_brandingGetListV1(apiClient_t *apiClient, ezmax_api_definition
 //
 // 
 //
-branding_get_object_v2_response_t*
-ObjectBrandingAPI_brandingGetObjectV2(apiClient_t *apiClient, int *pkiBrandingID);
+branding_get_object_v3_response_t*
+ObjectBrandingAPI_brandingGetObjectV3(apiClient_t *apiClient, int *pkiBrandingID);
 
 

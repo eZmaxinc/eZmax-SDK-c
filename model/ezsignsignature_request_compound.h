@@ -19,6 +19,7 @@ typedef struct ezsignsignature_request_compound_t ezsignsignature_request_compou
 #include "ezsignelementdependency_request_compound.h"
 #include "ezsignsignaturecustomdate_request_compound.h"
 #include "field_e_ezsignsignature_attachmentnamesource.h"
+#include "field_e_ezsignsignature_consultationtrigger.h"
 #include "field_e_ezsignsignature_dependencyrequirement.h"
 #include "field_e_ezsignsignature_font.h"
 #include "field_e_ezsignsignature_tooltipposition.h"
@@ -26,7 +27,7 @@ typedef struct ezsignsignature_request_compound_t ezsignsignature_request_compou
 
 // Enum  for ezsignsignature_request_compound
 
-typedef enum  { ezmax_api_definition__full_ezsignsignature_request_compound__NULL = 0, ezmax_api_definition__full_ezsignsignature_request_compound__Acknowledgement, ezmax_api_definition__full_ezsignsignature_request_compound__City, ezmax_api_definition__full_ezsignsignature_request_compound__Handwritten, ezmax_api_definition__full_ezsignsignature_request_compound__Initials, ezmax_api_definition__full_ezsignsignature_request_compound__Name, ezmax_api_definition__full_ezsignsignature_request_compound__NameReason, ezmax_api_definition__full_ezsignsignature_request_compound__Attachments, ezmax_api_definition__full_ezsignsignature_request_compound__AttachmentsConfirmation, ezmax_api_definition__full_ezsignsignature_request_compound__FieldText, ezmax_api_definition__full_ezsignsignature_request_compound__FieldTextarea, ezmax_api_definition__full_ezsignsignature_request_compound__Consultation } ezmax_api_definition__full_ezsignsignature_request_compound__e;
+typedef enum  { ezmax_api_definition__full_ezsignsignature_request_compound__NULL = 0, ezmax_api_definition__full_ezsignsignature_request_compound__Acknowledgement, ezmax_api_definition__full_ezsignsignature_request_compound__City, ezmax_api_definition__full_ezsignsignature_request_compound__Handwritten, ezmax_api_definition__full_ezsignsignature_request_compound__Initials, ezmax_api_definition__full_ezsignsignature_request_compound__Name, ezmax_api_definition__full_ezsignsignature_request_compound__NameReason, ezmax_api_definition__full_ezsignsignature_request_compound__Attachments, ezmax_api_definition__full_ezsignsignature_request_compound__AttachmentsConfirmation, ezmax_api_definition__full_ezsignsignature_request_compound__FieldText, ezmax_api_definition__full_ezsignsignature_request_compound__FieldTextarea, ezmax_api_definition__full_ezsignsignature_request_compound__Consultation, ezmax_api_definition__full_ezsignsignature_request_compound__Signature } ezmax_api_definition__full_ezsignsignature_request_compound__e;
 
 char* ezsignsignature_request_compound_e_ezsignsignature_type_ToString(ezmax_api_definition__full_ezsignsignature_request_compound__e e_ezsignsignature_type);
 
@@ -55,6 +56,14 @@ typedef enum  { ezmax_api_definition__full_ezsignsignature_request_compound__NUL
 char* ezsignsignature_request_compound_e_ezsignsignature_attachmentnamesource_ToString(ezmax_api_definition__full_ezsignsignature_request_compound__e e_ezsignsignature_attachmentnamesource);
 
 ezmax_api_definition__full_ezsignsignature_request_compound__e ezsignsignature_request_compound_e_ezsignsignature_attachmentnamesource_FromString(char* e_ezsignsignature_attachmentnamesource);
+
+// Enum  for ezsignsignature_request_compound
+
+typedef enum  { ezmax_api_definition__full_ezsignsignature_request_compound__NULL = 0, ezmax_api_definition__full_ezsignsignature_request_compound__Automatic, ezmax_api_definition__full_ezsignsignature_request_compound__Manual } ezmax_api_definition__full_ezsignsignature_request_compound__e;
+
+char* ezsignsignature_request_compound_e_ezsignsignature_consultationtrigger_ToString(ezmax_api_definition__full_ezsignsignature_request_compound__e e_ezsignsignature_consultationtrigger);
+
+ezmax_api_definition__full_ezsignsignature_request_compound__e ezsignsignature_request_compound_e_ezsignsignature_consultationtrigger_FromString(char* e_ezsignsignature_consultationtrigger);
 
 // Enum  for ezsignsignature_request_compound
 
@@ -89,12 +98,17 @@ typedef struct ezsignsignature_request_compound_t {
     field_e_ezsignsignature_tooltipposition_t *e_ezsignsignature_tooltipposition; // custom
     field_e_ezsignsignature_font_t *e_ezsignsignature_font; // custom
     int fki_ezsignfoldersignerassociation_id_validation; //numeric
+    int b_ezsignsignature_handwritten; //boolean
+    int b_ezsignsignature_reason; //boolean
     int b_ezsignsignature_required; //boolean
     field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource; // custom
     char *s_ezsignsignature_attachmentdescription; // string
+    field_e_ezsignsignature_consultationtrigger_t *e_ezsignsignature_consultationtrigger; // custom
     int i_ezsignsignature_validationstep; //numeric
     int i_ezsignsignature_maxlength; //numeric
+    char *s_ezsignsignature_defaultvalue; // string
     enum_textvalidation_t *e_ezsignsignature_textvalidation; // custom
+    char *s_ezsignsignature_textvalidationcustommessage; // string
     char *s_ezsignsignature_regexp; // string
     field_e_ezsignsignature_dependencyrequirement_t *e_ezsignsignature_dependencyrequirement; // custom
     int b_ezsignsignature_customdate; //boolean
@@ -118,12 +132,17 @@ ezsignsignature_request_compound_t *ezsignsignature_request_compound_create(
     field_e_ezsignsignature_tooltipposition_t *e_ezsignsignature_tooltipposition,
     field_e_ezsignsignature_font_t *e_ezsignsignature_font,
     int fki_ezsignfoldersignerassociation_id_validation,
+    int b_ezsignsignature_handwritten,
+    int b_ezsignsignature_reason,
     int b_ezsignsignature_required,
     field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource,
     char *s_ezsignsignature_attachmentdescription,
+    field_e_ezsignsignature_consultationtrigger_t *e_ezsignsignature_consultationtrigger,
     int i_ezsignsignature_validationstep,
     int i_ezsignsignature_maxlength,
+    char *s_ezsignsignature_defaultvalue,
     enum_textvalidation_t *e_ezsignsignature_textvalidation,
+    char *s_ezsignsignature_textvalidationcustommessage,
     char *s_ezsignsignature_regexp,
     field_e_ezsignsignature_dependencyrequirement_t *e_ezsignsignature_dependencyrequirement,
     int b_ezsignsignature_customdate,

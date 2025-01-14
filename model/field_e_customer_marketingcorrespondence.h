@@ -1,0 +1,32 @@
+/*
+ * field_e_customer_marketingcorrespondence.h
+ *
+ * The marketingcorrespondence of the Customer
+ */
+
+#ifndef _field_e_customer_marketingcorrespondence_H_
+#define _field_e_customer_marketingcorrespondence_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_customer_marketingcorrespondence_t field_e_customer_marketingcorrespondence_t;
+
+
+// Enum  for field_e_customer_marketingcorrespondence
+
+typedef enum { ezmax_api_definition__full_field_e_customer_marketingcorrespondence__NULL = 0, ezmax_api_definition__full_field_e_customer_marketingcorrespondence__No, ezmax_api_definition__full_field_e_customer_marketingcorrespondence__Email, ezmax_api_definition__full_field_e_customer_marketingcorrespondence__Mail, ezmax_api_definition__full_field_e_customer_marketingcorrespondence__Any } ezmax_api_definition__full_field_e_customer_marketingcorrespondence__e;
+
+char* field_e_customer_marketingcorrespondence_field_e_customer_marketingcorrespondence_ToString(ezmax_api_definition__full_field_e_customer_marketingcorrespondence__e field_e_customer_marketingcorrespondence);
+
+ezmax_api_definition__full_field_e_customer_marketingcorrespondence__e field_e_customer_marketingcorrespondence_field_e_customer_marketingcorrespondence_FromString(char* field_e_customer_marketingcorrespondence);
+
+//cJSON *field_e_customer_marketingcorrespondence_field_e_customer_marketingcorrespondence_convertToJSON(ezmax_api_definition__full_field_e_customer_marketingcorrespondence__e field_e_customer_marketingcorrespondence);
+
+//ezmax_api_definition__full_field_e_customer_marketingcorrespondence__e field_e_customer_marketingcorrespondence_field_e_customer_marketingcorrespondence_parseFromJSON(cJSON *field_e_customer_marketingcorrespondenceJSON);
+
+#endif /* _field_e_customer_marketingcorrespondence_H_ */
+

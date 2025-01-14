@@ -19,6 +19,8 @@
 #include "../model/webhook_get_object_v2_response.h"
 #include "../model/webhook_regenerate_apikey_v1_request.h"
 #include "../model/webhook_regenerate_apikey_v1_response.h"
+#include "../model/webhook_send_webhook_v1_request.h"
+#include "../model/webhook_send_webhook_v1_response.h"
 #include "../model/webhook_test_v1_response.h"
 
 // Enum EWEBHOOKHISTORYINTERVAL for ObjectWebhookAPI_webhookGetHistoryV1
@@ -85,6 +87,12 @@ ObjectWebhookAPI_webhookGetObjectV2(apiClient_t *apiClient, int *pkiWebhookID);
 //
 webhook_regenerate_apikey_v1_response_t*
 ObjectWebhookAPI_webhookRegenerateApikeyV1(apiClient_t *apiClient, int *pkiWebhookID, webhook_regenerate_apikey_v1_request_t *webhook_regenerate_apikey_v1_request);
+
+
+// Emit a Webhook event
+//
+webhook_send_webhook_v1_response_t*
+ObjectWebhookAPI_webhookSendWebhookV1(apiClient_t *apiClient, webhook_send_webhook_v1_request_t *webhook_send_webhook_v1_request);
 
 
 // Test the Webhook by calling the Url

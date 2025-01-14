@@ -30,6 +30,7 @@ ezmax_api_definition__full_ezsignfolder_request_compound__e ezsignfolder_request
 typedef struct ezsignfolder_request_compound_t {
     int pki_ezsignfolder_id; //numeric
     int fki_ezsignfoldertype_id; //numeric
+    int fki_timezone_id; //numeric
     int fki_ezsigntsarequirement_id; //numeric
     char *s_ezsignfolder_description; // string
     char *t_ezsignfolder_note; // string
@@ -41,6 +42,7 @@ typedef struct ezsignfolder_request_compound_t {
 ezsignfolder_request_compound_t *ezsignfolder_request_compound_create(
     int pki_ezsignfolder_id,
     int fki_ezsignfoldertype_id,
+    int fki_timezone_id,
     int fki_ezsigntsarequirement_id,
     char *s_ezsignfolder_description,
     char *t_ezsignfolder_note,

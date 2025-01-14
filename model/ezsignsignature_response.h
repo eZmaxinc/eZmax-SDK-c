@@ -18,6 +18,7 @@ typedef struct ezsignsignature_response_t ezsignsignature_response_t;
 #include "custom_contact_name_response.h"
 #include "enum_textvalidation.h"
 #include "field_e_ezsignsignature_attachmentnamesource.h"
+#include "field_e_ezsignsignature_consultationtrigger.h"
 #include "field_e_ezsignsignature_dependencyrequirement.h"
 #include "field_e_ezsignsignature_font.h"
 #include "field_e_ezsignsignature_tooltipposition.h"
@@ -26,7 +27,7 @@ typedef struct ezsignsignature_response_t ezsignsignature_response_t;
 
 // Enum  for ezsignsignature_response
 
-typedef enum  { ezmax_api_definition__full_ezsignsignature_response__NULL = 0, ezmax_api_definition__full_ezsignsignature_response__Acknowledgement, ezmax_api_definition__full_ezsignsignature_response__City, ezmax_api_definition__full_ezsignsignature_response__Handwritten, ezmax_api_definition__full_ezsignsignature_response__Initials, ezmax_api_definition__full_ezsignsignature_response__Name, ezmax_api_definition__full_ezsignsignature_response__NameReason, ezmax_api_definition__full_ezsignsignature_response__Attachments, ezmax_api_definition__full_ezsignsignature_response__AttachmentsConfirmation, ezmax_api_definition__full_ezsignsignature_response__FieldText, ezmax_api_definition__full_ezsignsignature_response__FieldTextarea, ezmax_api_definition__full_ezsignsignature_response__Consultation } ezmax_api_definition__full_ezsignsignature_response__e;
+typedef enum  { ezmax_api_definition__full_ezsignsignature_response__NULL = 0, ezmax_api_definition__full_ezsignsignature_response__Acknowledgement, ezmax_api_definition__full_ezsignsignature_response__City, ezmax_api_definition__full_ezsignsignature_response__Handwritten, ezmax_api_definition__full_ezsignsignature_response__Initials, ezmax_api_definition__full_ezsignsignature_response__Name, ezmax_api_definition__full_ezsignsignature_response__NameReason, ezmax_api_definition__full_ezsignsignature_response__Attachments, ezmax_api_definition__full_ezsignsignature_response__AttachmentsConfirmation, ezmax_api_definition__full_ezsignsignature_response__FieldText, ezmax_api_definition__full_ezsignsignature_response__FieldTextarea, ezmax_api_definition__full_ezsignsignature_response__Consultation, ezmax_api_definition__full_ezsignsignature_response__Signature } ezmax_api_definition__full_ezsignsignature_response__e;
 
 char* ezsignsignature_response_e_ezsignsignature_type_ToString(ezmax_api_definition__full_ezsignsignature_response__e e_ezsignsignature_type);
 
@@ -58,6 +59,14 @@ ezmax_api_definition__full_ezsignsignature_response__e ezsignsignature_response_
 
 // Enum  for ezsignsignature_response
 
+typedef enum  { ezmax_api_definition__full_ezsignsignature_response__NULL = 0, ezmax_api_definition__full_ezsignsignature_response__Automatic, ezmax_api_definition__full_ezsignsignature_response__Manual } ezmax_api_definition__full_ezsignsignature_response__e;
+
+char* ezsignsignature_response_e_ezsignsignature_consultationtrigger_ToString(ezmax_api_definition__full_ezsignsignature_response__e e_ezsignsignature_consultationtrigger);
+
+ezmax_api_definition__full_ezsignsignature_response__e ezsignsignature_response_e_ezsignsignature_consultationtrigger_FromString(char* e_ezsignsignature_consultationtrigger);
+
+// Enum  for ezsignsignature_response
+
 typedef enum  { ezmax_api_definition__full_ezsignsignature_response__NULL = 0, ezmax_api_definition__full_ezsignsignature_response__None, ezmax_api_definition__full_ezsignsignature_response__Date (YYYY_MM_DD), ezmax_api_definition__full_ezsignsignature_response__Date (MM/DD/YYYY), ezmax_api_definition__full_ezsignsignature_response__Date (MM/DD/YY), ezmax_api_definition__full_ezsignsignature_response__Date (DD/MM/YYYY), ezmax_api_definition__full_ezsignsignature_response__Date (DD/MM/YY), ezmax_api_definition__full_ezsignsignature_response__Email, ezmax_api_definition__full_ezsignsignature_response__Letters, ezmax_api_definition__full_ezsignsignature_response__Numbers, ezmax_api_definition__full_ezsignsignature_response__Zip, ezmax_api_definition__full_ezsignsignature_response__Zip+4, ezmax_api_definition__full_ezsignsignature_response__PostalCode, ezmax_api_definition__full_ezsignsignature_response__Custom } ezmax_api_definition__full_ezsignsignature_response__e;
 
 char* ezsignsignature_response_e_ezsignsignature_textvalidation_ToString(ezmax_api_definition__full_ezsignsignature_response__e e_ezsignsignature_textvalidation);
@@ -79,6 +88,7 @@ typedef struct ezsignsignature_response_t {
     int fki_ezsigndocument_id; //numeric
     int fki_ezsignfoldersignerassociation_id; //numeric
     int fki_ezsignsigningreason_id; //numeric
+    int fki_font_id; //numeric
     char *s_ezsignsigningreason_description_x; // string
     int i_ezsignpage_pagenumber; //numeric
     int i_ezsignsignature_x; //numeric
@@ -94,6 +104,9 @@ typedef struct ezsignsignature_response_t {
     int i_ezsignsignature_validationstep; //numeric
     char *s_ezsignsignature_attachmentdescription; // string
     field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource; // custom
+    field_e_ezsignsignature_consultationtrigger_t *e_ezsignsignature_consultationtrigger; // custom
+    int b_ezsignsignature_handwritten; //boolean
+    int b_ezsignsignature_reason; //boolean
     int b_ezsignsignature_required; //boolean
     int fki_ezsignfoldersignerassociation_id_validation; //numeric
     char *dt_ezsignsignature_date; // string
@@ -101,7 +114,9 @@ typedef struct ezsignsignature_response_t {
     char *s_ezsignsignature_description; // string
     int i_ezsignsignature_maxlength; //numeric
     enum_textvalidation_t *e_ezsignsignature_textvalidation; // custom
+    char *s_ezsignsignature_textvalidationcustommessage; // string
     field_e_ezsignsignature_dependencyrequirement_t *e_ezsignsignature_dependencyrequirement; // custom
+    char *s_ezsignsignature_defaultvalue; // string
     char *s_ezsignsignature_regexp; // string
     struct custom_contact_name_response_t *obj_contact_name; //model
     struct custom_contact_name_response_t *obj_contact_name_delegation; //model
@@ -114,6 +129,7 @@ ezsignsignature_response_t *ezsignsignature_response_create(
     int fki_ezsigndocument_id,
     int fki_ezsignfoldersignerassociation_id,
     int fki_ezsignsigningreason_id,
+    int fki_font_id,
     char *s_ezsignsigningreason_description_x,
     int i_ezsignpage_pagenumber,
     int i_ezsignsignature_x,
@@ -129,6 +145,9 @@ ezsignsignature_response_t *ezsignsignature_response_create(
     int i_ezsignsignature_validationstep,
     char *s_ezsignsignature_attachmentdescription,
     field_e_ezsignsignature_attachmentnamesource_t *e_ezsignsignature_attachmentnamesource,
+    field_e_ezsignsignature_consultationtrigger_t *e_ezsignsignature_consultationtrigger,
+    int b_ezsignsignature_handwritten,
+    int b_ezsignsignature_reason,
     int b_ezsignsignature_required,
     int fki_ezsignfoldersignerassociation_id_validation,
     char *dt_ezsignsignature_date,
@@ -136,7 +155,9 @@ ezsignsignature_response_t *ezsignsignature_response_create(
     char *s_ezsignsignature_description,
     int i_ezsignsignature_maxlength,
     enum_textvalidation_t *e_ezsignsignature_textvalidation,
+    char *s_ezsignsignature_textvalidationcustommessage,
     field_e_ezsignsignature_dependencyrequirement_t *e_ezsignsignature_dependencyrequirement,
+    char *s_ezsignsignature_defaultvalue,
     char *s_ezsignsignature_regexp,
     custom_contact_name_response_t *obj_contact_name,
     custom_contact_name_response_t *obj_contact_name_delegation,

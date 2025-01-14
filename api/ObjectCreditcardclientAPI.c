@@ -161,13 +161,13 @@ end:
 // Functions for enum EORDERBY for ObjectCreditcardclientAPI_creditcardclientGetListV1
 
 static char* creditcardclientGetListV1_EORDERBY_ToString(ezmax_api_definition__full_creditcardclientGetListV1_eOrderBy_e EORDERBY){
-    char *EORDERBYArray[] =  { "NULL", "pkiCreditcardclientID_ASC", "pkiCreditcardclientID_DESC", "fkiCreditcarddetailID_ASC", "fkiCreditcarddetailID_DESC", "bCreditcardclientrelationIsdefault_ASC", "bCreditcardclientrelationIsdefault_DESC", "sCreditcardclientDescription_ASC", "sCreditcardclientDescription_DESC", "bCreditcardclientIsactive_ASC", "bCreditcardclientIsactive_DESC", "bCreditcardclientAllowedagencypayment_ASC", "bCreditcardclientAllowedagencypayment_DESC", "bCreditcardclientAllowedroyallepageprotection_ASC", "bCreditcardclientAllowedroyallepageprotection_DESC", "bCreditcardclientAllowedtranquillit_ASC", "bCreditcardclientAllowedtranquillit_DESC", "iCreditcarddetailExpirationmonth_ASC", "iCreditcarddetailExpirationmonth_DESC", "iCreditcarddetailExpirationyear_ASC", "iCreditcarddetailExpirationyear_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiCreditcardclientID_ASC", "pkiCreditcardclientID_DESC", "fkiCreditcarddetailID_ASC", "fkiCreditcarddetailID_DESC", "fkiCreditcardtypeID_ASC", "fkiCreditcardtypeID_DESC", "bCreditcardclientrelationIsdefault_ASC", "bCreditcardclientrelationIsdefault_DESC", "sCreditcardclientDescription_ASC", "sCreditcardclientDescription_DESC", "bCreditcardclientIsactive_ASC", "bCreditcardclientIsactive_DESC", "bCreditcardclientAllowedagencypayment_ASC", "bCreditcardclientAllowedagencypayment_DESC", "bCreditcardclientAllowedtranquillit_ASC", "bCreditcardclientAllowedtranquillit_DESC", "iCreditcarddetailExpirationmonth_ASC", "iCreditcarddetailExpirationmonth_DESC", "iCreditcarddetailExpirationyear_ASC", "iCreditcarddetailExpirationyear_DESC" };
     return EORDERBYArray[EORDERBY];
 }
 
 static ezmax_api_definition__full_creditcardclientGetListV1_eOrderBy_e creditcardclientGetListV1_EORDERBY_FromString(char* EORDERBY){
     int stringToReturn = 0;
-    char *EORDERBYArray[] =  { "NULL", "pkiCreditcardclientID_ASC", "pkiCreditcardclientID_DESC", "fkiCreditcarddetailID_ASC", "fkiCreditcarddetailID_DESC", "bCreditcardclientrelationIsdefault_ASC", "bCreditcardclientrelationIsdefault_DESC", "sCreditcardclientDescription_ASC", "sCreditcardclientDescription_DESC", "bCreditcardclientIsactive_ASC", "bCreditcardclientIsactive_DESC", "bCreditcardclientAllowedagencypayment_ASC", "bCreditcardclientAllowedagencypayment_DESC", "bCreditcardclientAllowedroyallepageprotection_ASC", "bCreditcardclientAllowedroyallepageprotection_DESC", "bCreditcardclientAllowedtranquillit_ASC", "bCreditcardclientAllowedtranquillit_DESC", "iCreditcarddetailExpirationmonth_ASC", "iCreditcarddetailExpirationmonth_DESC", "iCreditcarddetailExpirationyear_ASC", "iCreditcarddetailExpirationyear_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiCreditcardclientID_ASC", "pkiCreditcardclientID_DESC", "fkiCreditcarddetailID_ASC", "fkiCreditcarddetailID_DESC", "fkiCreditcardtypeID_ASC", "fkiCreditcardtypeID_DESC", "bCreditcardclientrelationIsdefault_ASC", "bCreditcardclientrelationIsdefault_DESC", "sCreditcardclientDescription_ASC", "sCreditcardclientDescription_DESC", "bCreditcardclientIsactive_ASC", "bCreditcardclientIsactive_DESC", "bCreditcardclientAllowedagencypayment_ASC", "bCreditcardclientAllowedagencypayment_DESC", "bCreditcardclientAllowedtranquillit_ASC", "bCreditcardclientAllowedtranquillit_DESC", "iCreditcarddetailExpirationmonth_ASC", "iCreditcarddetailExpirationmonth_DESC", "iCreditcarddetailExpirationyear_ASC", "iCreditcarddetailExpirationyear_DESC" };
     size_t sizeofArray = sizeof(EORDERBYArray) / sizeof(EORDERBYArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(EORDERBY, EORDERBYArray[stringToReturn]) == 0) {
@@ -299,6 +299,10 @@ ObjectCreditcardclientAPI_creditcardclientCreateObjectV1(apiClient_t *apiClient,
     // uncomment below to debug the error response
     //if (apiClient->response_code == 201) {
     //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     cJSON *ObjectCreditcardclientAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
@@ -480,7 +484,7 @@ ObjectCreditcardclientAPI_creditcardclientEditObjectV1(apiClient_t *apiClient, i
     //}
     // uncomment below to debug the error response
     //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
     cJSON *ObjectCreditcardclientAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
@@ -906,6 +910,107 @@ ObjectCreditcardclientAPI_creditcardclientGetObjectV2(apiClient_t *apiClient, in
     
     free(localVarPath);
     free(localVarToReplace_pkiCreditcardclientID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Patch an existing Creditcardclient
+//
+// 
+//
+creditcardclient_patch_object_v1_response_t*
+ObjectCreditcardclientAPI_creditcardclientPatchObjectV1(apiClient_t *apiClient, int *pkiCreditcardclientID, creditcardclient_patch_object_v1_request_t *creditcardclient_patch_object_v1_request)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/creditcardclient/{pkiCreditcardclientID}")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/creditcardclient/{pkiCreditcardclientID}");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiCreditcardclientID =  + strlen("{ pkiCreditcardclientID }");
+    if(pkiCreditcardclientID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiCreditcardclientID = malloc(sizeOfPathParams_pkiCreditcardclientID);
+    snprintf(localVarToReplace_pkiCreditcardclientID, sizeOfPathParams_pkiCreditcardclientID, "{%s}", "pkiCreditcardclientID");
+
+    char localVarBuff_pkiCreditcardclientID[256];
+    intToStr(localVarBuff_pkiCreditcardclientID, *pkiCreditcardclientID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiCreditcardclientID, localVarBuff_pkiCreditcardclientID);
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_creditcardclient_patch_object_v1_request = NULL;
+    if (creditcardclient_patch_object_v1_request != NULL)
+    {
+        //string
+        localVarSingleItemJSON_creditcardclient_patch_object_v1_request = creditcardclient_patch_object_v1_request_convertToJSON(creditcardclient_patch_object_v1_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_creditcardclient_patch_object_v1_request);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "PATCH");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectCreditcardclientAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    creditcardclient_patch_object_v1_response_t *elementToReturn = creditcardclient_patch_object_v1_response_parseFromJSON(ObjectCreditcardclientAPIlocalVarJSON);
+    cJSON_Delete(ObjectCreditcardclientAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_pkiCreditcardclientID);
+    if (localVarSingleItemJSON_creditcardclient_patch_object_v1_request) {
+        cJSON_Delete(localVarSingleItemJSON_creditcardclient_patch_object_v1_request);
+        localVarSingleItemJSON_creditcardclient_patch_object_v1_request = NULL;
+    }
+    free(localVarBodyParameters);
     return elementToReturn;
 end:
     free(localVarPath);

@@ -1,0 +1,38 @@
+/*
+ * ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload.h
+ *
+ * Payload for POST /2/object/ezdoctemplatefieldtypecategory/getAutocomplete
+ */
+
+#ifndef _ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_H_
+#define _ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t;
+
+#include "ezdoctemplatefieldtypecategory_autocomplete_element_response.h"
+
+
+
+typedef struct ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t {
+    list_t *a_obj_ezdoctemplatefieldtypecategory; //nonprimitive container
+
+} ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t;
+
+ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t *ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_ezdoctemplatefieldtypecategory
+);
+
+void ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_free(ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t *ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload);
+
+ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t *ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_parseFromJSON(cJSON *ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payloadJSON);
+
+cJSON *ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_convertToJSON(ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t *ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload);
+
+#endif /* _ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_H_ */
+

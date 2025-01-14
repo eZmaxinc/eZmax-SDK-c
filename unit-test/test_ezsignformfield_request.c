@@ -16,6 +16,7 @@
 #include "../model/ezsignformfield_request.h"
 ezsignformfield_request_t* instantiate_ezsignformfield_request(int include_optional);
 
+#include "test_textstylestatic_request_compound.c"
 
 
 ezsignformfield_request_t* instantiate_ezsignformfield_request(int include_optional) {
@@ -33,7 +34,10 @@ ezsignformfield_request_t* instantiate_ezsignformfield_request(int include_optio
       1,
       1,
       "Montreal",
-      ezmax_api_definition__full_ezsignformfield_request__"AllOf"
+      ezmax_api_definition__full_ezsignformfield_request__"AllOf",
+      ezmax_api_definition__full_ezsignformfield_request__"Center",
+       // false, not to have infinite recursion
+      instantiate_textstylestatic_request_compound(0)
     );
   } else {
     ezsignformfield_request = ezsignformfield_request_create(
@@ -48,7 +52,9 @@ ezsignformfield_request_t* instantiate_ezsignformfield_request(int include_optio
       1,
       1,
       "Montreal",
-      ezmax_api_definition__full_ezsignformfield_request__"AllOf"
+      ezmax_api_definition__full_ezsignformfield_request__"AllOf",
+      ezmax_api_definition__full_ezsignformfield_request__"Center",
+      NULL
     );
   }
 

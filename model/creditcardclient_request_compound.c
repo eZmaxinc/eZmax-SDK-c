@@ -10,9 +10,8 @@ creditcardclient_request_compound_t *creditcardclient_request_compound_create(
     char *fks_creditcardtoken_id,
     int b_creditcardclientrelation_isdefault,
     char *s_creditcardclient_description,
-    int b_creditcardclient_isactive,
-    int b_creditcardclient_allowedagencypayment,
-    int b_creditcardclient_allowedroyallepageprotection,
+    int b_creditcardclient_allowedcompanypayment,
+    int b_creditcardclient_allowedezsign,
     int b_creditcardclient_allowedtranquillit,
     creditcarddetail_request_t *obj_creditcarddetail,
     char *s_creditcardclient_cvv
@@ -25,9 +24,8 @@ creditcardclient_request_compound_t *creditcardclient_request_compound_create(
     creditcardclient_request_compound_local_var->fks_creditcardtoken_id = fks_creditcardtoken_id;
     creditcardclient_request_compound_local_var->b_creditcardclientrelation_isdefault = b_creditcardclientrelation_isdefault;
     creditcardclient_request_compound_local_var->s_creditcardclient_description = s_creditcardclient_description;
-    creditcardclient_request_compound_local_var->b_creditcardclient_isactive = b_creditcardclient_isactive;
-    creditcardclient_request_compound_local_var->b_creditcardclient_allowedagencypayment = b_creditcardclient_allowedagencypayment;
-    creditcardclient_request_compound_local_var->b_creditcardclient_allowedroyallepageprotection = b_creditcardclient_allowedroyallepageprotection;
+    creditcardclient_request_compound_local_var->b_creditcardclient_allowedcompanypayment = b_creditcardclient_allowedcompanypayment;
+    creditcardclient_request_compound_local_var->b_creditcardclient_allowedezsign = b_creditcardclient_allowedezsign;
     creditcardclient_request_compound_local_var->b_creditcardclient_allowedtranquillit = b_creditcardclient_allowedtranquillit;
     creditcardclient_request_compound_local_var->obj_creditcarddetail = obj_creditcarddetail;
     creditcardclient_request_compound_local_var->s_creditcardclient_cvv = s_creditcardclient_cvv;
@@ -97,29 +95,20 @@ cJSON *creditcardclient_request_compound_convertToJSON(creditcardclient_request_
     }
 
 
-    // creditcardclient_request_compound->b_creditcardclient_isactive
-    if (!creditcardclient_request_compound->b_creditcardclient_isactive) {
+    // creditcardclient_request_compound->b_creditcardclient_allowedcompanypayment
+    if (!creditcardclient_request_compound->b_creditcardclient_allowedcompanypayment) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bCreditcardclientIsactive", creditcardclient_request_compound->b_creditcardclient_isactive) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bCreditcardclientAllowedcompanypayment", creditcardclient_request_compound->b_creditcardclient_allowedcompanypayment) == NULL) {
     goto fail; //Bool
     }
 
 
-    // creditcardclient_request_compound->b_creditcardclient_allowedagencypayment
-    if (!creditcardclient_request_compound->b_creditcardclient_allowedagencypayment) {
+    // creditcardclient_request_compound->b_creditcardclient_allowedezsign
+    if (!creditcardclient_request_compound->b_creditcardclient_allowedezsign) {
         goto fail;
     }
-    if(cJSON_AddBoolToObject(item, "bCreditcardclientAllowedagencypayment", creditcardclient_request_compound->b_creditcardclient_allowedagencypayment) == NULL) {
-    goto fail; //Bool
-    }
-
-
-    // creditcardclient_request_compound->b_creditcardclient_allowedroyallepageprotection
-    if (!creditcardclient_request_compound->b_creditcardclient_allowedroyallepageprotection) {
-        goto fail;
-    }
-    if(cJSON_AddBoolToObject(item, "bCreditcardclientAllowedroyallepageprotection", creditcardclient_request_compound->b_creditcardclient_allowedroyallepageprotection) == NULL) {
+    if(cJSON_AddBoolToObject(item, "bCreditcardclientAllowedezsign", creditcardclient_request_compound->b_creditcardclient_allowedezsign) == NULL) {
     goto fail; //Bool
     }
 
@@ -212,38 +201,26 @@ creditcardclient_request_compound_t *creditcardclient_request_compound_parseFrom
     goto end; //String
     }
 
-    // creditcardclient_request_compound->b_creditcardclient_isactive
-    cJSON *b_creditcardclient_isactive = cJSON_GetObjectItemCaseSensitive(creditcardclient_request_compoundJSON, "bCreditcardclientIsactive");
-    if (!b_creditcardclient_isactive) {
+    // creditcardclient_request_compound->b_creditcardclient_allowedcompanypayment
+    cJSON *b_creditcardclient_allowedcompanypayment = cJSON_GetObjectItemCaseSensitive(creditcardclient_request_compoundJSON, "bCreditcardclientAllowedcompanypayment");
+    if (!b_creditcardclient_allowedcompanypayment) {
         goto end;
     }
 
     
-    if(!cJSON_IsBool(b_creditcardclient_isactive))
+    if(!cJSON_IsBool(b_creditcardclient_allowedcompanypayment))
     {
     goto end; //Bool
     }
 
-    // creditcardclient_request_compound->b_creditcardclient_allowedagencypayment
-    cJSON *b_creditcardclient_allowedagencypayment = cJSON_GetObjectItemCaseSensitive(creditcardclient_request_compoundJSON, "bCreditcardclientAllowedagencypayment");
-    if (!b_creditcardclient_allowedagencypayment) {
+    // creditcardclient_request_compound->b_creditcardclient_allowedezsign
+    cJSON *b_creditcardclient_allowedezsign = cJSON_GetObjectItemCaseSensitive(creditcardclient_request_compoundJSON, "bCreditcardclientAllowedezsign");
+    if (!b_creditcardclient_allowedezsign) {
         goto end;
     }
 
     
-    if(!cJSON_IsBool(b_creditcardclient_allowedagencypayment))
-    {
-    goto end; //Bool
-    }
-
-    // creditcardclient_request_compound->b_creditcardclient_allowedroyallepageprotection
-    cJSON *b_creditcardclient_allowedroyallepageprotection = cJSON_GetObjectItemCaseSensitive(creditcardclient_request_compoundJSON, "bCreditcardclientAllowedroyallepageprotection");
-    if (!b_creditcardclient_allowedroyallepageprotection) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsBool(b_creditcardclient_allowedroyallepageprotection))
+    if(!cJSON_IsBool(b_creditcardclient_allowedezsign))
     {
     goto end; //Bool
     }
@@ -287,9 +264,8 @@ creditcardclient_request_compound_t *creditcardclient_request_compound_parseFrom
         fks_creditcardtoken_id && !cJSON_IsNull(fks_creditcardtoken_id) ? strdup(fks_creditcardtoken_id->valuestring) : NULL,
         b_creditcardclientrelation_isdefault->valueint,
         strdup(s_creditcardclient_description->valuestring),
-        b_creditcardclient_isactive->valueint,
-        b_creditcardclient_allowedagencypayment->valueint,
-        b_creditcardclient_allowedroyallepageprotection->valueint,
+        b_creditcardclient_allowedcompanypayment->valueint,
+        b_creditcardclient_allowedezsign->valueint,
         b_creditcardclient_allowedtranquillit->valueint,
         obj_creditcarddetail_local_nonprim,
         strdup(s_creditcardclient_cvv->valuestring)

@@ -22,11 +22,15 @@ ezsigntemplate_copy_v1_request_t* instantiate_ezsigntemplate_copy_v1_request(int
   ezsigntemplate_copy_v1_request_t* ezsigntemplate_copy_v1_request = NULL;
   if (include_optional) {
     ezsigntemplate_copy_v1_request = ezsigntemplate_copy_v1_request_create(
-      list_createList()
+      list_createList(),
+      1,
+      1
     );
   } else {
     ezsigntemplate_copy_v1_request = ezsigntemplate_copy_v1_request_create(
-      list_createList()
+      list_createList(),
+      1,
+      1
     );
   }
 

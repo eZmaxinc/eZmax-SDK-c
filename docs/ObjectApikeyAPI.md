@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**ObjectApikeyAPI_apikeyCreateObjectV2**](ObjectApikeyAPI.md#ObjectApikeyAPI_apikeyCreateObjectV2) | **POST** /2/object/apikey | Create a new Apikey
 [**ObjectApikeyAPI_apikeyEditObjectV1**](ObjectApikeyAPI.md#ObjectApikeyAPI_apikeyEditObjectV1) | **PUT** /1/object/apikey/{pkiApikeyID} | Edit an existing Apikey
 [**ObjectApikeyAPI_apikeyEditPermissionsV1**](ObjectApikeyAPI.md#ObjectApikeyAPI_apikeyEditPermissionsV1) | **PUT** /1/object/apikey/{pkiApikeyID}/editPermissions | Edit multiple Permissions
+[**ObjectApikeyAPI_apikeyGenerateDelegatedCredentialsV1**](ObjectApikeyAPI.md#ObjectApikeyAPI_apikeyGenerateDelegatedCredentialsV1) | **POST** /1/object/apikey/generateDelegatedCredentials | Generate a delegated credentials
 [**ObjectApikeyAPI_apikeyGetCorsV1**](ObjectApikeyAPI.md#ObjectApikeyAPI_apikeyGetCorsV1) | **GET** /1/object/apikey/{pkiApikeyID}/getCors | Retrieve an existing Apikey&#39;s cors
 [**ObjectApikeyAPI_apikeyGetListV1**](ObjectApikeyAPI.md#ObjectApikeyAPI_apikeyGetListV1) | **GET** /1/object/apikey/getList | Retrieve Apikey list
 [**ObjectApikeyAPI_apikeyGetObjectV2**](ObjectApikeyAPI.md#ObjectApikeyAPI_apikeyGetObjectV2) | **GET** /2/object/apikey/{pkiApikeyID} | Retrieve an existing Apikey
@@ -97,6 +98,37 @@ Name | Type | Description  | Notes
 ### Return type
 
 [apikey_edit_permissions_v1_response_t](apikey_edit_permissions_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectApikeyAPI_apikeyGenerateDelegatedCredentialsV1**
+```c
+// Generate a delegated credentials
+//
+// 
+//
+apikey_generate_delegated_credentials_v1_response_t* ObjectApikeyAPI_apikeyGenerateDelegatedCredentialsV1(apiClient_t *apiClient, apikey_generate_delegated_credentials_v1_request_t *apikey_generate_delegated_credentials_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**apikey_generate_delegated_credentials_v1_request** | **[apikey_generate_delegated_credentials_v1_request_t](apikey_generate_delegated_credentials_v1_request.md) \*** |  | 
+
+### Return type
+
+[apikey_generate_delegated_credentials_v1_response_t](apikey_generate_delegated_credentials_v1_response.md) *
 
 
 ### Authorization

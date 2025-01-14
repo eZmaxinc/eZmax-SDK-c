@@ -24,6 +24,7 @@ ezsignfolder_request_compound_t* instantiate_ezsignfolder_request_compound(int i
     ezsignfolder_request_compound = ezsignfolder_request_compound_create(
       33,
       5,
+      247,
       1,
       "Test eZsign Folder",
       "This is a note",
@@ -34,6 +35,7 @@ ezsignfolder_request_compound_t* instantiate_ezsignfolder_request_compound(int i
     ezsignfolder_request_compound = ezsignfolder_request_compound_create(
       33,
       5,
+      247,
       1,
       "Test eZsign Folder",
       "This is a note",

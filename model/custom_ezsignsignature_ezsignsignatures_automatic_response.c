@@ -5,13 +5,13 @@
 
 
 char* custom_ezsignsignature_ezsignsignatures_automatic_response_e_ezsignsignature_type_ToString(ezmax_api_definition__full_custom_ezsignsignature_ezsignsignatures_automatic_response__e e_ezsignsignature_type) {
-    char* e_ezsignsignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name", "NameReason", "Attachments", "AttachmentsConfirmation", "FieldText", "FieldTextarea", "Consultation" };
+    char* e_ezsignsignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name", "NameReason", "Attachments", "AttachmentsConfirmation", "FieldText", "FieldTextarea", "Consultation", "Signature" };
     return e_ezsignsignature_typeArray[e_ezsignsignature_type];
 }
 
 ezmax_api_definition__full_custom_ezsignsignature_ezsignsignatures_automatic_response__e custom_ezsignsignature_ezsignsignatures_automatic_response_e_ezsignsignature_type_FromString(char* e_ezsignsignature_type){
     int stringToReturn = 0;
-    char *e_ezsignsignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name", "NameReason", "Attachments", "AttachmentsConfirmation", "FieldText", "FieldTextarea", "Consultation" };
+    char *e_ezsignsignature_typeArray[] =  { "NULL", "Acknowledgement", "City", "Handwritten", "Initials", "Name", "NameReason", "Attachments", "AttachmentsConfirmation", "FieldText", "FieldTextarea", "Consultation", "Signature" };
     size_t sizeofArray = sizeof(e_ezsignsignature_typeArray) / sizeof(e_ezsignsignature_typeArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(e_ezsignsignature_type, e_ezsignsignature_typeArray[stringToReturn]) == 0) {

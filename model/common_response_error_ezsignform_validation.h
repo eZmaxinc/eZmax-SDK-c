@@ -31,6 +31,7 @@ ezmax_api_definition__full_common_response_error_ezsignform_validation__e common
 typedef struct common_response_error_ezsignform_validation_t {
     char *s_error_message; // string
     field_e_error_code_t *e_error_code; // custom
+    list_t *a_s_error_messagedetail; //primitive container
     list_t *a_obj_ezsignformfielderror; //nonprimitive container
 
 } common_response_error_ezsignform_validation_t;
@@ -38,6 +39,7 @@ typedef struct common_response_error_ezsignform_validation_t {
 common_response_error_ezsignform_validation_t *common_response_error_ezsignform_validation_create(
     char *s_error_message,
     field_e_error_code_t *e_error_code,
+    list_t *a_s_error_messagedetail,
     list_t *a_obj_ezsignformfielderror
 );
 

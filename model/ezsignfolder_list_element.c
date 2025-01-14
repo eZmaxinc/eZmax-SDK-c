@@ -57,7 +57,10 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_create(
     int i_ezsignformfieldgroup,
     int i_ezsignformfieldgroup_completed,
     int b_ezsignform_hasdependencies,
-    char *d_ezsignfolder_completedpercentage
+    char *d_ezsignfolder_completedpercentage,
+    char *d_ezsignfolder_formcompletedpercentage,
+    char *d_ezsignfolder_signaturecompletedpercentage,
+    int b_ezsignfolder_signer
     ) {
     ezsignfolder_list_element_t *ezsignfolder_list_element_local_var = malloc(sizeof(ezsignfolder_list_element_t));
     if (!ezsignfolder_list_element_local_var) {
@@ -81,6 +84,9 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_create(
     ezsignfolder_list_element_local_var->i_ezsignformfieldgroup_completed = i_ezsignformfieldgroup_completed;
     ezsignfolder_list_element_local_var->b_ezsignform_hasdependencies = b_ezsignform_hasdependencies;
     ezsignfolder_list_element_local_var->d_ezsignfolder_completedpercentage = d_ezsignfolder_completedpercentage;
+    ezsignfolder_list_element_local_var->d_ezsignfolder_formcompletedpercentage = d_ezsignfolder_formcompletedpercentage;
+    ezsignfolder_list_element_local_var->d_ezsignfolder_signaturecompletedpercentage = d_ezsignfolder_signaturecompletedpercentage;
+    ezsignfolder_list_element_local_var->b_ezsignfolder_signer = b_ezsignfolder_signer;
 
     return ezsignfolder_list_element_local_var;
 }
@@ -126,6 +132,14 @@ void ezsignfolder_list_element_free(ezsignfolder_list_element_t *ezsignfolder_li
     if (ezsignfolder_list_element->d_ezsignfolder_completedpercentage) {
         free(ezsignfolder_list_element->d_ezsignfolder_completedpercentage);
         ezsignfolder_list_element->d_ezsignfolder_completedpercentage = NULL;
+    }
+    if (ezsignfolder_list_element->d_ezsignfolder_formcompletedpercentage) {
+        free(ezsignfolder_list_element->d_ezsignfolder_formcompletedpercentage);
+        ezsignfolder_list_element->d_ezsignfolder_formcompletedpercentage = NULL;
+    }
+    if (ezsignfolder_list_element->d_ezsignfolder_signaturecompletedpercentage) {
+        free(ezsignfolder_list_element->d_ezsignfolder_signaturecompletedpercentage);
+        ezsignfolder_list_element->d_ezsignfolder_signaturecompletedpercentage = NULL;
     }
     free(ezsignfolder_list_element);
 }
@@ -298,6 +312,32 @@ cJSON *ezsignfolder_list_element_convertToJSON(ezsignfolder_list_element_t *ezsi
     }
     if(cJSON_AddStringToObject(item, "dEzsignfolderCompletedpercentage", ezsignfolder_list_element->d_ezsignfolder_completedpercentage) == NULL) {
     goto fail; //String
+    }
+
+
+    // ezsignfolder_list_element->d_ezsignfolder_formcompletedpercentage
+    if (!ezsignfolder_list_element->d_ezsignfolder_formcompletedpercentage) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "dEzsignfolderFormcompletedpercentage", ezsignfolder_list_element->d_ezsignfolder_formcompletedpercentage) == NULL) {
+    goto fail; //String
+    }
+
+
+    // ezsignfolder_list_element->d_ezsignfolder_signaturecompletedpercentage
+    if (!ezsignfolder_list_element->d_ezsignfolder_signaturecompletedpercentage) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "dEzsignfolderSignaturecompletedpercentage", ezsignfolder_list_element->d_ezsignfolder_signaturecompletedpercentage) == NULL) {
+    goto fail; //String
+    }
+
+
+    // ezsignfolder_list_element->b_ezsignfolder_signer
+    if(ezsignfolder_list_element->b_ezsignfolder_signer) {
+    if(cJSON_AddBoolToObject(item, "bEzsignfolderSigner", ezsignfolder_list_element->b_ezsignfolder_signer) == NULL) {
+    goto fail; //Bool
+    }
     }
 
     return item;
@@ -516,6 +556,39 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_parseFromJSON(cJSON *ezsi
     goto end; //String
     }
 
+    // ezsignfolder_list_element->d_ezsignfolder_formcompletedpercentage
+    cJSON *d_ezsignfolder_formcompletedpercentage = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "dEzsignfolderFormcompletedpercentage");
+    if (!d_ezsignfolder_formcompletedpercentage) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(d_ezsignfolder_formcompletedpercentage))
+    {
+    goto end; //String
+    }
+
+    // ezsignfolder_list_element->d_ezsignfolder_signaturecompletedpercentage
+    cJSON *d_ezsignfolder_signaturecompletedpercentage = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "dEzsignfolderSignaturecompletedpercentage");
+    if (!d_ezsignfolder_signaturecompletedpercentage) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(d_ezsignfolder_signaturecompletedpercentage))
+    {
+    goto end; //String
+    }
+
+    // ezsignfolder_list_element->b_ezsignfolder_signer
+    cJSON *b_ezsignfolder_signer = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "bEzsignfolderSigner");
+    if (b_ezsignfolder_signer) { 
+    if(!cJSON_IsBool(b_ezsignfolder_signer))
+    {
+    goto end; //Bool
+    }
+    }
+
 
     ezsignfolder_list_element_local_var = ezsignfolder_list_element_create (
         pki_ezsignfolder_id->valuedouble,
@@ -535,7 +608,10 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_parseFromJSON(cJSON *ezsi
         i_ezsignformfieldgroup->valuedouble,
         i_ezsignformfieldgroup_completed->valuedouble,
         b_ezsignform_hasdependencies ? b_ezsignform_hasdependencies->valueint : 0,
-        strdup(d_ezsignfolder_completedpercentage->valuestring)
+        strdup(d_ezsignfolder_completedpercentage->valuestring),
+        strdup(d_ezsignfolder_formcompletedpercentage->valuestring),
+        strdup(d_ezsignfolder_signaturecompletedpercentage->valuestring),
+        b_ezsignfolder_signer ? b_ezsignfolder_signer->valueint : 0
         );
 
     return ezsignfolder_list_element_local_var;

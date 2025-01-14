@@ -33,6 +33,7 @@ typedef struct custom_ezsignfoldertransmission_response_t {
     char *s_ezsignfolder_description; // string
     field_e_ezsignfolder_step_t *e_ezsignfolder_step; // custom
     int i_ezsignfolder_signaturetotal; //numeric
+    int i_ezsignfolder_formfieldtotal; //numeric
     int i_ezsignfolder_signaturesigned; //numeric
     list_t *a_obj_ezsignfoldertransmission_signer; //nonprimitive container
 
@@ -43,6 +44,7 @@ custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_resp
     char *s_ezsignfolder_description,
     field_e_ezsignfolder_step_t *e_ezsignfolder_step,
     int i_ezsignfolder_signaturetotal,
+    int i_ezsignfolder_formfieldtotal,
     int i_ezsignfolder_signaturesigned,
     list_t *a_obj_ezsignfoldertransmission_signer
 );

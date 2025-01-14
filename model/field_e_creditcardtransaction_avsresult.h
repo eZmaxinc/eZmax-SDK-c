@@ -1,0 +1,32 @@
+/*
+ * field_e_creditcardtransaction_avsresult.h
+ *
+ * The result for the address validation
+ */
+
+#ifndef _field_e_creditcardtransaction_avsresult_H_
+#define _field_e_creditcardtransaction_avsresult_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_creditcardtransaction_avsresult_t field_e_creditcardtransaction_avsresult_t;
+
+
+// Enum  for field_e_creditcardtransaction_avsresult
+
+typedef enum { ezmax_api_definition__full_field_e_creditcardtransaction_avsresult__NULL = 0, ezmax_api_definition__full_field_e_creditcardtransaction_avsresult__Match, ezmax_api_definition__full_field_e_creditcardtransaction_avsresult__NoMatch, ezmax_api_definition__full_field_e_creditcardtransaction_avsresult__PartialMatch, ezmax_api_definition__full_field_e_creditcardtransaction_avsresult__NotImplemented, ezmax_api_definition__full_field_e_creditcardtransaction_avsresult__NotVerified } ezmax_api_definition__full_field_e_creditcardtransaction_avsresult__e;
+
+char* field_e_creditcardtransaction_avsresult_field_e_creditcardtransaction_avsresult_ToString(ezmax_api_definition__full_field_e_creditcardtransaction_avsresult__e field_e_creditcardtransaction_avsresult);
+
+ezmax_api_definition__full_field_e_creditcardtransaction_avsresult__e field_e_creditcardtransaction_avsresult_field_e_creditcardtransaction_avsresult_FromString(char* field_e_creditcardtransaction_avsresult);
+
+//cJSON *field_e_creditcardtransaction_avsresult_field_e_creditcardtransaction_avsresult_convertToJSON(ezmax_api_definition__full_field_e_creditcardtransaction_avsresult__e field_e_creditcardtransaction_avsresult);
+
+//ezmax_api_definition__full_field_e_creditcardtransaction_avsresult__e field_e_creditcardtransaction_avsresult_field_e_creditcardtransaction_avsresult_parseFromJSON(cJSON *field_e_creditcardtransaction_avsresultJSON);
+
+#endif /* _field_e_creditcardtransaction_avsresult_H_ */
+

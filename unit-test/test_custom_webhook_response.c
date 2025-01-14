@@ -24,6 +24,7 @@ custom_webhook_response_t* instantiate_custom_webhook_response(int include_optio
   if (include_optional) {
     custom_webhook_response = custom_webhook_response_create(
       77,
+      56,
       "Import into our system",
       5,
       "Default",
@@ -37,16 +38,19 @@ custom_webhook_response_t* instantiate_custom_webhook_response(int include_optio
       true,
       true,
       false,
+      "Authentification",
        // false, not to have infinite recursion
       instantiate_common_audit(0),
       "Ezsign-DocumentCompleted",
       list_createList(),
       "demo",
-      1
+      1,
+      ezmax_api_definition__full_custom_webhook_response_EWEBHOOKEMITTYPE_Automatic
     );
   } else {
     custom_webhook_response = custom_webhook_response_create(
       77,
+      56,
       "Import into our system",
       5,
       "Default",
@@ -60,11 +64,13 @@ custom_webhook_response_t* instantiate_custom_webhook_response(int include_optio
       true,
       true,
       false,
+      "Authentification",
       NULL,
       "Ezsign-DocumentCompleted",
       list_createList(),
       "demo",
-      1
+      1,
+      ezmax_api_definition__full_custom_webhook_response_EWEBHOOKEMITTYPE_Automatic
     );
   }
 

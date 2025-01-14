@@ -24,13 +24,29 @@ ezsigntemplatepackagesigner_response_t* instantiate_ezsigntemplatepackagesigner_
     ezsigntemplatepackagesigner_response = ezsigntemplatepackagesigner_response_create(
       174,
       99,
-      "Customer"
+      95,
+      70,
+      2,
+      "Standard Contract",
+      1,
+      ezmax_api_definition__full_ezsigntemplatepackagesigner_response__"Manual",
+      "Customer",
+      "Default",
+      "Administration"
     );
   } else {
     ezsigntemplatepackagesigner_response = ezsigntemplatepackagesigner_response_create(
       174,
       99,
-      "Customer"
+      95,
+      70,
+      2,
+      "Standard Contract",
+      1,
+      ezmax_api_definition__full_ezsigntemplatepackagesigner_response__"Manual",
+      "Customer",
+      "Default",
+      "Administration"
     );
   }
 

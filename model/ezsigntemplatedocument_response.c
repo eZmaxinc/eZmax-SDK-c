@@ -11,6 +11,7 @@ ezsigntemplatedocument_response_t *ezsigntemplatedocument_response_create(
     char *s_ezsigntemplatedocument_name,
     int i_ezsigntemplatedocument_pagetotal,
     int i_ezsigntemplatedocument_signaturetotal,
+    int i_ezsigntemplatedocument_formfieldtotal,
     int b_ezsigntemplatedocument_hassignedsignatures
     ) {
     ezsigntemplatedocument_response_t *ezsigntemplatedocument_response_local_var = malloc(sizeof(ezsigntemplatedocument_response_t));
@@ -22,6 +23,7 @@ ezsigntemplatedocument_response_t *ezsigntemplatedocument_response_create(
     ezsigntemplatedocument_response_local_var->s_ezsigntemplatedocument_name = s_ezsigntemplatedocument_name;
     ezsigntemplatedocument_response_local_var->i_ezsigntemplatedocument_pagetotal = i_ezsigntemplatedocument_pagetotal;
     ezsigntemplatedocument_response_local_var->i_ezsigntemplatedocument_signaturetotal = i_ezsigntemplatedocument_signaturetotal;
+    ezsigntemplatedocument_response_local_var->i_ezsigntemplatedocument_formfieldtotal = i_ezsigntemplatedocument_formfieldtotal;
     ezsigntemplatedocument_response_local_var->b_ezsigntemplatedocument_hassignedsignatures = b_ezsigntemplatedocument_hassignedsignatures;
 
     return ezsigntemplatedocument_response_local_var;
@@ -84,6 +86,15 @@ cJSON *ezsigntemplatedocument_response_convertToJSON(ezsigntemplatedocument_resp
         goto fail;
     }
     if(cJSON_AddNumberToObject(item, "iEzsigntemplatedocumentSignaturetotal", ezsigntemplatedocument_response->i_ezsigntemplatedocument_signaturetotal) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // ezsigntemplatedocument_response->i_ezsigntemplatedocument_formfieldtotal
+    if (!ezsigntemplatedocument_response->i_ezsigntemplatedocument_formfieldtotal) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iEzsigntemplatedocumentFormfieldtotal", ezsigntemplatedocument_response->i_ezsigntemplatedocument_formfieldtotal) == NULL) {
     goto fail; //Numeric
     }
 
@@ -168,6 +179,18 @@ ezsigntemplatedocument_response_t *ezsigntemplatedocument_response_parseFromJSON
     goto end; //Numeric
     }
 
+    // ezsigntemplatedocument_response->i_ezsigntemplatedocument_formfieldtotal
+    cJSON *i_ezsigntemplatedocument_formfieldtotal = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocument_responseJSON, "iEzsigntemplatedocumentFormfieldtotal");
+    if (!i_ezsigntemplatedocument_formfieldtotal) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_ezsigntemplatedocument_formfieldtotal))
+    {
+    goto end; //Numeric
+    }
+
     // ezsigntemplatedocument_response->b_ezsigntemplatedocument_hassignedsignatures
     cJSON *b_ezsigntemplatedocument_hassignedsignatures = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocument_responseJSON, "bEzsigntemplatedocumentHassignedsignatures");
     if (!b_ezsigntemplatedocument_hassignedsignatures) {
@@ -187,6 +210,7 @@ ezsigntemplatedocument_response_t *ezsigntemplatedocument_response_parseFromJSON
         strdup(s_ezsigntemplatedocument_name->valuestring),
         i_ezsigntemplatedocument_pagetotal->valuedouble,
         i_ezsigntemplatedocument_signaturetotal->valuedouble,
+        i_ezsigntemplatedocument_formfieldtotal->valuedouble,
         b_ezsigntemplatedocument_hassignedsignatures->valueint
         );
 

@@ -8,7 +8,7 @@
 creditcarddetail_response_compound_t *creditcarddetail_response_compound_create(
     int pki_creditcarddetail_id,
     int fki_creditcardtype_id,
-    char *s_creditcarddetail_numbermasked,
+    int i_creditcarddetail_lastdigits,
     int i_creditcarddetail_expirationmonth,
     int i_creditcarddetail_expirationyear,
     char *s_creditcarddetail_civic,
@@ -21,7 +21,7 @@ creditcarddetail_response_compound_t *creditcarddetail_response_compound_create(
     }
     creditcarddetail_response_compound_local_var->pki_creditcarddetail_id = pki_creditcarddetail_id;
     creditcarddetail_response_compound_local_var->fki_creditcardtype_id = fki_creditcardtype_id;
-    creditcarddetail_response_compound_local_var->s_creditcarddetail_numbermasked = s_creditcarddetail_numbermasked;
+    creditcarddetail_response_compound_local_var->i_creditcarddetail_lastdigits = i_creditcarddetail_lastdigits;
     creditcarddetail_response_compound_local_var->i_creditcarddetail_expirationmonth = i_creditcarddetail_expirationmonth;
     creditcarddetail_response_compound_local_var->i_creditcarddetail_expirationyear = i_creditcarddetail_expirationyear;
     creditcarddetail_response_compound_local_var->s_creditcarddetail_civic = s_creditcarddetail_civic;
@@ -37,10 +37,6 @@ void creditcarddetail_response_compound_free(creditcarddetail_response_compound_
         return ;
     }
     listEntry_t *listEntry;
-    if (creditcarddetail_response_compound->s_creditcarddetail_numbermasked) {
-        free(creditcarddetail_response_compound->s_creditcarddetail_numbermasked);
-        creditcarddetail_response_compound->s_creditcarddetail_numbermasked = NULL;
-    }
     if (creditcarddetail_response_compound->s_creditcarddetail_civic) {
         free(creditcarddetail_response_compound->s_creditcarddetail_civic);
         creditcarddetail_response_compound->s_creditcarddetail_civic = NULL;
@@ -77,12 +73,12 @@ cJSON *creditcarddetail_response_compound_convertToJSON(creditcarddetail_respons
     }
 
 
-    // creditcarddetail_response_compound->s_creditcarddetail_numbermasked
-    if (!creditcarddetail_response_compound->s_creditcarddetail_numbermasked) {
+    // creditcarddetail_response_compound->i_creditcarddetail_lastdigits
+    if (!creditcarddetail_response_compound->i_creditcarddetail_lastdigits) {
         goto fail;
     }
-    if(cJSON_AddStringToObject(item, "sCreditcarddetailNumbermasked", creditcarddetail_response_compound->s_creditcarddetail_numbermasked) == NULL) {
-    goto fail; //String
+    if(cJSON_AddNumberToObject(item, "iCreditcarddetailLastdigits", creditcarddetail_response_compound->i_creditcarddetail_lastdigits) == NULL) {
+    goto fail; //Numeric
     }
 
 
@@ -166,16 +162,16 @@ creditcarddetail_response_compound_t *creditcarddetail_response_compound_parseFr
     goto end; //Numeric
     }
 
-    // creditcarddetail_response_compound->s_creditcarddetail_numbermasked
-    cJSON *s_creditcarddetail_numbermasked = cJSON_GetObjectItemCaseSensitive(creditcarddetail_response_compoundJSON, "sCreditcarddetailNumbermasked");
-    if (!s_creditcarddetail_numbermasked) {
+    // creditcarddetail_response_compound->i_creditcarddetail_lastdigits
+    cJSON *i_creditcarddetail_lastdigits = cJSON_GetObjectItemCaseSensitive(creditcarddetail_response_compoundJSON, "iCreditcarddetailLastdigits");
+    if (!i_creditcarddetail_lastdigits) {
         goto end;
     }
 
     
-    if(!cJSON_IsString(s_creditcarddetail_numbermasked))
+    if(!cJSON_IsNumber(i_creditcarddetail_lastdigits))
     {
-    goto end; //String
+    goto end; //Numeric
     }
 
     // creditcarddetail_response_compound->i_creditcarddetail_expirationmonth
@@ -242,7 +238,7 @@ creditcarddetail_response_compound_t *creditcarddetail_response_compound_parseFr
     creditcarddetail_response_compound_local_var = creditcarddetail_response_compound_create (
         pki_creditcarddetail_id->valuedouble,
         fki_creditcardtype_id->valuedouble,
-        strdup(s_creditcarddetail_numbermasked->valuestring),
+        i_creditcarddetail_lastdigits->valuedouble,
         i_creditcarddetail_expirationmonth->valuedouble,
         i_creditcarddetail_expirationyear->valuedouble,
         strdup(s_creditcarddetail_civic->valuestring),

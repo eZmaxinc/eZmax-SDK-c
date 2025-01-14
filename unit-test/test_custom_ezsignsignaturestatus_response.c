@@ -25,6 +25,7 @@ custom_ezsignsignaturestatus_response_t* instantiate_custom_ezsignsignaturestatu
       ezmax_api_definition__full_custom_ezsignsignaturestatus_response_EEZSIGNSIGNATURESTATUSSTEPTYPE_Form,
       1,
       2,
+      1,
       1
     );
   } else {
@@ -32,6 +33,7 @@ custom_ezsignsignaturestatus_response_t* instantiate_custom_ezsignsignaturestatu
       ezmax_api_definition__full_custom_ezsignsignaturestatus_response_EEZSIGNSIGNATURESTATUSSTEPTYPE_Form,
       1,
       2,
+      1,
       1
     );
   }

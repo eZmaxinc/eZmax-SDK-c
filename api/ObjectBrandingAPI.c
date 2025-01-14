@@ -258,8 +258,8 @@ end:
 //
 // The endpoint allows to create one or many elements at once.
 //
-branding_create_object_v1_response_t*
-ObjectBrandingAPI_brandingCreateObjectV1(apiClient_t *apiClient, branding_create_object_v1_request_t *branding_create_object_v1_request)
+branding_create_object_v2_response_t*
+ObjectBrandingAPI_brandingCreateObjectV2(apiClient_t *apiClient, branding_create_object_v2_request_t *branding_create_object_v2_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -269,20 +269,20 @@ ObjectBrandingAPI_brandingCreateObjectV1(apiClient_t *apiClient, branding_create
     char      *localVarBodyParameters = NULL;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/branding")+1;
+    long sizeOfPath = strlen("/2/object/branding")+1;
     char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/branding");
+    snprintf(localVarPath, sizeOfPath, "/2/object/branding");
 
 
 
 
     // Body Param
-    cJSON *localVarSingleItemJSON_branding_create_object_v1_request = NULL;
-    if (branding_create_object_v1_request != NULL)
+    cJSON *localVarSingleItemJSON_branding_create_object_v2_request = NULL;
+    if (branding_create_object_v2_request != NULL)
     {
         //string
-        localVarSingleItemJSON_branding_create_object_v1_request = branding_create_object_v1_request_convertToJSON(branding_create_object_v1_request);
-        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_branding_create_object_v1_request);
+        localVarSingleItemJSON_branding_create_object_v2_request = branding_create_object_v2_request_convertToJSON(branding_create_object_v2_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_branding_create_object_v2_request);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -302,7 +302,7 @@ ObjectBrandingAPI_brandingCreateObjectV1(apiClient_t *apiClient, branding_create
     //}
     //nonprimitive not container
     cJSON *ObjectBrandingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    branding_create_object_v1_response_t *elementToReturn = branding_create_object_v1_response_parseFromJSON(ObjectBrandingAPIlocalVarJSON);
+    branding_create_object_v2_response_t *elementToReturn = branding_create_object_v2_response_parseFromJSON(ObjectBrandingAPIlocalVarJSON);
     cJSON_Delete(ObjectBrandingAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -320,9 +320,9 @@ ObjectBrandingAPI_brandingCreateObjectV1(apiClient_t *apiClient, branding_create
     list_freeList(localVarHeaderType);
     list_freeList(localVarContentType);
     free(localVarPath);
-    if (localVarSingleItemJSON_branding_create_object_v1_request) {
-        cJSON_Delete(localVarSingleItemJSON_branding_create_object_v1_request);
-        localVarSingleItemJSON_branding_create_object_v1_request = NULL;
+    if (localVarSingleItemJSON_branding_create_object_v2_request) {
+        cJSON_Delete(localVarSingleItemJSON_branding_create_object_v2_request);
+        localVarSingleItemJSON_branding_create_object_v2_request = NULL;
     }
     free(localVarBodyParameters);
     return elementToReturn;
@@ -336,8 +336,8 @@ end:
 //
 // 
 //
-branding_edit_object_v1_response_t*
-ObjectBrandingAPI_brandingEditObjectV1(apiClient_t *apiClient, int *pkiBrandingID, branding_edit_object_v1_request_t *branding_edit_object_v1_request)
+branding_edit_object_v2_response_t*
+ObjectBrandingAPI_brandingEditObjectV2(apiClient_t *apiClient, int *pkiBrandingID, branding_edit_object_v2_request_t *branding_edit_object_v2_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -347,9 +347,9 @@ ObjectBrandingAPI_brandingEditObjectV1(apiClient_t *apiClient, int *pkiBrandingI
     char      *localVarBodyParameters = NULL;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/branding/{pkiBrandingID}")+1;
+    long sizeOfPath = strlen("/2/object/branding/{pkiBrandingID}")+1;
     char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/branding/{pkiBrandingID}");
+    snprintf(localVarPath, sizeOfPath, "/2/object/branding/{pkiBrandingID}");
 
 
     // Path Params
@@ -369,12 +369,12 @@ ObjectBrandingAPI_brandingEditObjectV1(apiClient_t *apiClient, int *pkiBrandingI
 
 
     // Body Param
-    cJSON *localVarSingleItemJSON_branding_edit_object_v1_request = NULL;
-    if (branding_edit_object_v1_request != NULL)
+    cJSON *localVarSingleItemJSON_branding_edit_object_v2_request = NULL;
+    if (branding_edit_object_v2_request != NULL)
     {
         //string
-        localVarSingleItemJSON_branding_edit_object_v1_request = branding_edit_object_v1_request_convertToJSON(branding_edit_object_v1_request);
-        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_branding_edit_object_v1_request);
+        localVarSingleItemJSON_branding_edit_object_v2_request = branding_edit_object_v2_request_convertToJSON(branding_edit_object_v2_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_branding_edit_object_v2_request);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -398,7 +398,7 @@ ObjectBrandingAPI_brandingEditObjectV1(apiClient_t *apiClient, int *pkiBrandingI
     //}
     //nonprimitive not container
     cJSON *ObjectBrandingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    branding_edit_object_v1_response_t *elementToReturn = branding_edit_object_v1_response_parseFromJSON(ObjectBrandingAPIlocalVarJSON);
+    branding_edit_object_v2_response_t *elementToReturn = branding_edit_object_v2_response_parseFromJSON(ObjectBrandingAPIlocalVarJSON);
     cJSON_Delete(ObjectBrandingAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -417,9 +417,9 @@ ObjectBrandingAPI_brandingEditObjectV1(apiClient_t *apiClient, int *pkiBrandingI
     list_freeList(localVarContentType);
     free(localVarPath);
     free(localVarToReplace_pkiBrandingID);
-    if (localVarSingleItemJSON_branding_edit_object_v1_request) {
-        cJSON_Delete(localVarSingleItemJSON_branding_edit_object_v1_request);
-        localVarSingleItemJSON_branding_edit_object_v1_request = NULL;
+    if (localVarSingleItemJSON_branding_edit_object_v2_request) {
+        cJSON_Delete(localVarSingleItemJSON_branding_edit_object_v2_request);
+        localVarSingleItemJSON_branding_edit_object_v2_request = NULL;
     }
     free(localVarBodyParameters);
     return elementToReturn;
@@ -749,8 +749,8 @@ end:
 //
 // 
 //
-branding_get_object_v2_response_t*
-ObjectBrandingAPI_brandingGetObjectV2(apiClient_t *apiClient, int *pkiBrandingID)
+branding_get_object_v3_response_t*
+ObjectBrandingAPI_brandingGetObjectV3(apiClient_t *apiClient, int *pkiBrandingID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -760,9 +760,9 @@ ObjectBrandingAPI_brandingGetObjectV2(apiClient_t *apiClient, int *pkiBrandingID
     char      *localVarBodyParameters = NULL;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/branding/{pkiBrandingID}")+1;
+    long sizeOfPath = strlen("/3/object/branding/{pkiBrandingID}")+1;
     char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/branding/{pkiBrandingID}");
+    snprintf(localVarPath, sizeOfPath, "/3/object/branding/{pkiBrandingID}");
 
 
     // Path Params
@@ -801,7 +801,7 @@ ObjectBrandingAPI_brandingGetObjectV2(apiClient_t *apiClient, int *pkiBrandingID
     //}
     //nonprimitive not container
     cJSON *ObjectBrandingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    branding_get_object_v2_response_t *elementToReturn = branding_get_object_v2_response_parseFromJSON(ObjectBrandingAPIlocalVarJSON);
+    branding_get_object_v3_response_t *elementToReturn = branding_get_object_v3_response_parseFromJSON(ObjectBrandingAPIlocalVarJSON);
     cJSON_Delete(ObjectBrandingAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

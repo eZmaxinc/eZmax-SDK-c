@@ -87,6 +87,7 @@ custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request_t *
     int i_ezsignformfieldgroup_maxlength,
     int b_ezsignformfieldgroup_encrypted,
     char *s_ezsignformfieldgroup_regexp,
+    char *s_ezsignformfieldgroup_textvalidationcustommessage,
     char *t_ezsignformfieldgroup_tooltip,
     field_e_ezsignformfieldgroup_tooltipposition_t *e_ezsignformfieldgroup_tooltipposition,
     enum_textvalidation_t *e_ezsignformfieldgroup_textvalidation,
@@ -112,6 +113,7 @@ custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request_t *
     custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request_local_var->i_ezsignformfieldgroup_maxlength = i_ezsignformfieldgroup_maxlength;
     custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request_local_var->b_ezsignformfieldgroup_encrypted = b_ezsignformfieldgroup_encrypted;
     custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request_local_var->s_ezsignformfieldgroup_regexp = s_ezsignformfieldgroup_regexp;
+    custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request_local_var->s_ezsignformfieldgroup_textvalidationcustommessage = s_ezsignformfieldgroup_textvalidationcustommessage;
     custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request_local_var->t_ezsignformfieldgroup_tooltip = t_ezsignformfieldgroup_tooltip;
     custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request_local_var->e_ezsignformfieldgroup_tooltipposition = e_ezsignformfieldgroup_tooltipposition;
     custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request_local_var->e_ezsignformfieldgroup_textvalidation = e_ezsignformfieldgroup_textvalidation;
@@ -148,6 +150,10 @@ void custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_reques
     if (custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request->s_ezsignformfieldgroup_regexp) {
         free(custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request->s_ezsignformfieldgroup_regexp);
         custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request->s_ezsignformfieldgroup_regexp = NULL;
+    }
+    if (custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request->s_ezsignformfieldgroup_textvalidationcustommessage) {
+        free(custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request->s_ezsignformfieldgroup_textvalidationcustommessage);
+        custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request->s_ezsignformfieldgroup_textvalidationcustommessage = NULL;
     }
     if (custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request->t_ezsignformfieldgroup_tooltip) {
         free(custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request->t_ezsignformfieldgroup_tooltip);
@@ -308,6 +314,14 @@ cJSON *custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_requ
     // custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request->s_ezsignformfieldgroup_regexp
     if(custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request->s_ezsignformfieldgroup_regexp) {
     if(cJSON_AddStringToObject(item, "sEzsignformfieldgroupRegexp", custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request->s_ezsignformfieldgroup_regexp) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request->s_ezsignformfieldgroup_textvalidationcustommessage
+    if(custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request->s_ezsignformfieldgroup_textvalidationcustommessage) {
+    if(cJSON_AddStringToObject(item, "sEzsignformfieldgroupTextvalidationcustommessage", custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request->s_ezsignformfieldgroup_textvalidationcustommessage) == NULL) {
     goto fail; //String
     }
     }
@@ -590,6 +604,15 @@ custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request_t *
     }
     }
 
+    // custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request->s_ezsignformfieldgroup_textvalidationcustommessage
+    cJSON *s_ezsignformfieldgroup_textvalidationcustommessage = cJSON_GetObjectItemCaseSensitive(custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_requestJSON, "sEzsignformfieldgroupTextvalidationcustommessage");
+    if (s_ezsignformfieldgroup_textvalidationcustommessage) { 
+    if(!cJSON_IsString(s_ezsignformfieldgroup_textvalidationcustommessage) && !cJSON_IsNull(s_ezsignformfieldgroup_textvalidationcustommessage))
+    {
+    goto end; //String
+    }
+    }
+
     // custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request->t_ezsignformfieldgroup_tooltip
     cJSON *t_ezsignformfieldgroup_tooltip = cJSON_GetObjectItemCaseSensitive(custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_requestJSON, "tEzsignformfieldgroupTooltip");
     if (t_ezsignformfieldgroup_tooltip) { 
@@ -704,6 +727,7 @@ custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request_t *
         i_ezsignformfieldgroup_maxlength ? i_ezsignformfieldgroup_maxlength->valuedouble : 0,
         b_ezsignformfieldgroup_encrypted ? b_ezsignformfieldgroup_encrypted->valueint : 0,
         s_ezsignformfieldgroup_regexp && !cJSON_IsNull(s_ezsignformfieldgroup_regexp) ? strdup(s_ezsignformfieldgroup_regexp->valuestring) : NULL,
+        s_ezsignformfieldgroup_textvalidationcustommessage && !cJSON_IsNull(s_ezsignformfieldgroup_textvalidationcustommessage) ? strdup(s_ezsignformfieldgroup_textvalidationcustommessage->valuestring) : NULL,
         t_ezsignformfieldgroup_tooltip && !cJSON_IsNull(t_ezsignformfieldgroup_tooltip) ? strdup(t_ezsignformfieldgroup_tooltip->valuestring) : NULL,
         e_ezsignformfieldgroup_tooltipposition ? e_ezsignformfieldgroup_tooltipposition_local_nonprim : NULL,
         e_ezsignformfieldgroup_textvalidation ? e_ezsignformfieldgroup_textvalidation_local_nonprim : NULL,

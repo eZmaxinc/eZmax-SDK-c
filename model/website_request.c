@@ -6,6 +6,7 @@
 
 
 website_request_t *website_request_create(
+    int pki_website_id,
     int fki_websitetype_id,
     char *s_website_address
     ) {
@@ -13,6 +14,7 @@ website_request_t *website_request_create(
     if (!website_request_local_var) {
         return NULL;
     }
+    website_request_local_var->pki_website_id = pki_website_id;
     website_request_local_var->fki_websitetype_id = fki_websitetype_id;
     website_request_local_var->s_website_address = s_website_address;
 
@@ -34,6 +36,14 @@ void website_request_free(website_request_t *website_request) {
 
 cJSON *website_request_convertToJSON(website_request_t *website_request) {
     cJSON *item = cJSON_CreateObject();
+
+    // website_request->pki_website_id
+    if(website_request->pki_website_id) {
+    if(cJSON_AddNumberToObject(item, "pkiWebsiteID", website_request->pki_website_id) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
 
     // website_request->fki_websitetype_id
     if (!website_request->fki_websitetype_id) {
@@ -64,6 +74,15 @@ website_request_t *website_request_parseFromJSON(cJSON *website_requestJSON){
 
     website_request_t *website_request_local_var = NULL;
 
+    // website_request->pki_website_id
+    cJSON *pki_website_id = cJSON_GetObjectItemCaseSensitive(website_requestJSON, "pkiWebsiteID");
+    if (pki_website_id) { 
+    if(!cJSON_IsNumber(pki_website_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
     // website_request->fki_websitetype_id
     cJSON *fki_websitetype_id = cJSON_GetObjectItemCaseSensitive(website_requestJSON, "fkiWebsitetypeID");
     if (!fki_websitetype_id) {
@@ -90,6 +109,7 @@ website_request_t *website_request_parseFromJSON(cJSON *website_requestJSON){
 
 
     website_request_local_var = website_request_create (
+        pki_website_id ? pki_website_id->valuedouble : 0,
         fki_websitetype_id->valuedouble,
         strdup(s_website_address->valuestring)
         );

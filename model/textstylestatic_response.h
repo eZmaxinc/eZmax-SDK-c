@@ -21,6 +21,7 @@ typedef struct textstylestatic_response_t textstylestatic_response_t;
 typedef struct textstylestatic_response_t {
     int pki_textstylestatic_id; //numeric
     int fki_font_id; //numeric
+    char *s_font_name; // string
     int b_textstylestatic_bold; //boolean
     int b_textstylestatic_underline; //boolean
     int b_textstylestatic_italic; //boolean
@@ -33,6 +34,7 @@ typedef struct textstylestatic_response_t {
 textstylestatic_response_t *textstylestatic_response_create(
     int pki_textstylestatic_id,
     int fki_font_id,
+    char *s_font_name,
     int b_textstylestatic_bold,
     int b_textstylestatic_underline,
     int b_textstylestatic_italic,

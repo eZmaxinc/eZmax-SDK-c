@@ -24,6 +24,7 @@ webhook_response_compound_t* instantiate_webhook_response_compound(int include_o
   if (include_optional) {
     webhook_response_compound = webhook_response_compound_create(
       77,
+      56,
       "Import into our system",
       5,
       "Default",
@@ -37,6 +38,7 @@ webhook_response_compound_t* instantiate_webhook_response_compound(int include_o
       true,
       true,
       false,
+      "Authentification",
        // false, not to have infinite recursion
       instantiate_common_audit(0),
       "Ezsign-DocumentCompleted",
@@ -45,6 +47,7 @@ webhook_response_compound_t* instantiate_webhook_response_compound(int include_o
   } else {
     webhook_response_compound = webhook_response_compound_create(
       77,
+      56,
       "Import into our system",
       5,
       "Default",
@@ -58,6 +61,7 @@ webhook_response_compound_t* instantiate_webhook_response_compound(int include_o
       true,
       true,
       false,
+      "Authentification",
       NULL,
       "Ezsign-DocumentCompleted",
       list_createList()

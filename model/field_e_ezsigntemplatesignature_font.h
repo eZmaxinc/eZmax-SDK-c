@@ -1,7 +1,7 @@
 /*
  * field_e_ezsigntemplatesignature_font.h
  *
- * The font of the signature. This can only be set if eEzsigntemplatesignatureType is **Name** or **Initials**
+ * The font of the signature. This can only be set if eEzsigntemplatesignatureType is **Name** or **Initials** **Deprecated**
  */
 
 #ifndef _field_e_ezsigntemplatesignature_font_H_

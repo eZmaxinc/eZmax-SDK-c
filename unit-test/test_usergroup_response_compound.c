@@ -17,6 +17,7 @@
 usergroup_response_compound_t* instantiate_usergroup_response_compound(int include_optional);
 
 #include "test_multilingual_usergroup_name.c"
+#include "test_email_request.c"
 
 
 usergroup_response_compound_t* instantiate_usergroup_response_compound(int include_optional) {
@@ -26,13 +27,16 @@ usergroup_response_compound_t* instantiate_usergroup_response_compound(int inclu
       2,
        // false, not to have infinite recursion
       instantiate_multilingual_usergroup_name(0),
-      "Administration"
+      "Administration",
+       // false, not to have infinite recursion
+      instantiate_email_request(0)
     );
   } else {
     usergroup_response_compound = usergroup_response_compound_create(
       2,
       NULL,
-      "Administration"
+      "Administration",
+      NULL
     );
   }
 

@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 //
 // Get the list of Ezsigntemplatepackage to be used in a dropdown or autocomplete control.
 //
-ezsigntemplatepackage_get_autocomplete_v2_response_t* ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
+ezsigntemplatepackage_get_autocomplete_v2_response_t* ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language, int *fkiEzsignfoldertypeID);
 ```
 
 ### Parameters
@@ -156,6 +156,7 @@ Name | Type | Description  | Notes
 **eFilterActive** | **ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_eFilterActive_e** | Specify which results we want to display. | [optional] [default to &#39;Active&#39;]
 **sQuery** | **char \*** | Allow to filter the returned results | [optional] 
 **Accept_Language** | **header_accept_language_e** |  | [optional] 
+**fkiEzsignfoldertypeID** | **int \*** | The fkiEzsignfoldertypeID to use with the selector Ezsigntemplatepublic | [optional] 
 
 ### Return type
 

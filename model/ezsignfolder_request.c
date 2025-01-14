@@ -25,6 +25,7 @@ ezmax_api_definition__full_ezsignfolder_request__e ezsignfolder_request_e_ezsign
 ezsignfolder_request_t *ezsignfolder_request_create(
     int pki_ezsignfolder_id,
     int fki_ezsignfoldertype_id,
+    int fki_timezone_id,
     int fki_ezsigntsarequirement_id,
     char *s_ezsignfolder_description,
     char *t_ezsignfolder_note,
@@ -37,6 +38,7 @@ ezsignfolder_request_t *ezsignfolder_request_create(
     }
     ezsignfolder_request_local_var->pki_ezsignfolder_id = pki_ezsignfolder_id;
     ezsignfolder_request_local_var->fki_ezsignfoldertype_id = fki_ezsignfoldertype_id;
+    ezsignfolder_request_local_var->fki_timezone_id = fki_timezone_id;
     ezsignfolder_request_local_var->fki_ezsigntsarequirement_id = fki_ezsigntsarequirement_id;
     ezsignfolder_request_local_var->s_ezsignfolder_description = s_ezsignfolder_description;
     ezsignfolder_request_local_var->t_ezsignfolder_note = t_ezsignfolder_note;
@@ -88,6 +90,14 @@ cJSON *ezsignfolder_request_convertToJSON(ezsignfolder_request_t *ezsignfolder_r
     }
     if(cJSON_AddNumberToObject(item, "fkiEzsignfoldertypeID", ezsignfolder_request->fki_ezsignfoldertype_id) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // ezsignfolder_request->fki_timezone_id
+    if(ezsignfolder_request->fki_timezone_id) {
+    if(cJSON_AddNumberToObject(item, "fkiTimezoneID", ezsignfolder_request->fki_timezone_id) == NULL) {
+    goto fail; //Numeric
+    }
     }
 
 
@@ -173,6 +183,15 @@ ezsignfolder_request_t *ezsignfolder_request_parseFromJSON(cJSON *ezsignfolder_r
     goto end; //Numeric
     }
 
+    // ezsignfolder_request->fki_timezone_id
+    cJSON *fki_timezone_id = cJSON_GetObjectItemCaseSensitive(ezsignfolder_requestJSON, "fkiTimezoneID");
+    if (fki_timezone_id) { 
+    if(!cJSON_IsNumber(fki_timezone_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
     // ezsignfolder_request->fki_ezsigntsarequirement_id
     cJSON *fki_ezsigntsarequirement_id = cJSON_GetObjectItemCaseSensitive(ezsignfolder_requestJSON, "fkiEzsigntsarequirementID");
     if (fki_ezsigntsarequirement_id) { 
@@ -225,6 +244,7 @@ ezsignfolder_request_t *ezsignfolder_request_parseFromJSON(cJSON *ezsignfolder_r
     ezsignfolder_request_local_var = ezsignfolder_request_create (
         pki_ezsignfolder_id ? pki_ezsignfolder_id->valuedouble : 0,
         fki_ezsignfoldertype_id->valuedouble,
+        fki_timezone_id ? fki_timezone_id->valuedouble : 0,
         fki_ezsigntsarequirement_id ? fki_ezsigntsarequirement_id->valuedouble : 0,
         strdup(s_ezsignfolder_description->valuestring),
         t_ezsignfolder_note && !cJSON_IsNull(t_ezsignfolder_note) ? strdup(t_ezsignfolder_note->valuestring) : NULL,

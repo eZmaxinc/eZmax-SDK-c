@@ -387,6 +387,88 @@ end:
 
 }
 
+// Generate a delegated credentials
+//
+// 
+//
+apikey_generate_delegated_credentials_v1_response_t*
+ObjectApikeyAPI_apikeyGenerateDelegatedCredentialsV1(apiClient_t *apiClient, apikey_generate_delegated_credentials_v1_request_t *apikey_generate_delegated_credentials_v1_request)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/apikey/generateDelegatedCredentials")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/apikey/generateDelegatedCredentials");
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_apikey_generate_delegated_credentials_v1_request = NULL;
+    if (apikey_generate_delegated_credentials_v1_request != NULL)
+    {
+        //string
+        localVarSingleItemJSON_apikey_generate_delegated_credentials_v1_request = apikey_generate_delegated_credentials_v1_request_convertToJSON(apikey_generate_delegated_credentials_v1_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_apikey_generate_delegated_credentials_v1_request);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "POST");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectApikeyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    apikey_generate_delegated_credentials_v1_response_t *elementToReturn = apikey_generate_delegated_credentials_v1_response_parseFromJSON(ObjectApikeyAPIlocalVarJSON);
+    cJSON_Delete(ObjectApikeyAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    if (localVarSingleItemJSON_apikey_generate_delegated_credentials_v1_request) {
+        cJSON_Delete(localVarSingleItemJSON_apikey_generate_delegated_credentials_v1_request);
+        localVarSingleItemJSON_apikey_generate_delegated_credentials_v1_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Retrieve an existing Apikey's cors
 //
 apikey_get_cors_v1_response_t*

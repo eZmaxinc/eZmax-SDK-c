@@ -14,13 +14,13 @@
 // Functions for enum EORDERBY for ObjectEzsignfolderAPI_ezsignfolderGetListV1
 
 static char* ezsignfolderGetListV1_EORDERBY_ToString(ezmax_api_definition__full_ezsignfolderGetListV1_eOrderBy_e EORDERBY){
-    char *EORDERBYArray[] =  { "NULL", "pkiEzsignfolderID_ASC", "pkiEzsignfolderID_DESC", "sEzsignfolderDescription_ASC", "sEzsignfolderDescription_DESC", "dtCreatedDate_ASC", "dtCreatedDate_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC", "eEzsignfolderStep_ASC", "eEzsignfolderStep_DESC", "dtEzsignfolderSentdate_ASC", "dtEzsignfolderSentdate_DESC", "dtEzsignfolderDuedate_ASC", "dtEzsignfolderDuedate_DESC", "iEzsigndocument_ASC", "iEzsigndocument_DESC", "iEzsigndocumentEdm_ASC", "iEzsigndocumentEdm_DESC", "iEzsignsignature_ASC", "iEzsignsignature_DESC", "iEzsignsignatureSigned_ASC", "iEzsignsignatureSigned_DESC", "iEzsignformfieldgroup_ASC", "iEzsignformfieldgroup_DESC", "iEzsignformfieldgroupCompleted_ASC", "iEzsignformfieldgroupCompleted_DESC", "dEzsignfolderCompletedpercentage_ASC", "dEzsignfolderCompletedpercentage_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiEzsignfolderID_ASC", "pkiEzsignfolderID_DESC", "sEzsignfolderDescription_ASC", "sEzsignfolderDescription_DESC", "dtCreatedDate_ASC", "dtCreatedDate_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC", "eEzsignfolderStep_ASC", "eEzsignfolderStep_DESC", "dtEzsignfolderSentdate_ASC", "dtEzsignfolderSentdate_DESC", "dtEzsignfolderDuedate_ASC", "dtEzsignfolderDuedate_DESC", "iEzsigndocument_ASC", "iEzsigndocument_DESC", "iEzsigndocumentEdm_ASC", "iEzsigndocumentEdm_DESC", "iEzsignsignature_ASC", "iEzsignsignature_DESC", "iEzsignsignatureSigned_ASC", "iEzsignsignatureSigned_DESC", "iEzsignformfieldgroup_ASC", "iEzsignformfieldgroup_DESC", "iEzsignformfieldgroupCompleted_ASC", "iEzsignformfieldgroupCompleted_DESC", "dEzsignfolderCompletedpercentage_ASC", "dEzsignfolderCompletedpercentage_DESC", "dEzsignfolderFormcompletedpercentage_ASC", "dEzsignfolderFormcompletedpercentage_DESC", "dEzsignfolderSignaturecompletedpercentage_ASC", "dEzsignfolderSignaturecompletedpercentagee_DESC" };
     return EORDERBYArray[EORDERBY];
 }
 
 static ezmax_api_definition__full_ezsignfolderGetListV1_eOrderBy_e ezsignfolderGetListV1_EORDERBY_FromString(char* EORDERBY){
     int stringToReturn = 0;
-    char *EORDERBYArray[] =  { "NULL", "pkiEzsignfolderID_ASC", "pkiEzsignfolderID_DESC", "sEzsignfolderDescription_ASC", "sEzsignfolderDescription_DESC", "dtCreatedDate_ASC", "dtCreatedDate_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC", "eEzsignfolderStep_ASC", "eEzsignfolderStep_DESC", "dtEzsignfolderSentdate_ASC", "dtEzsignfolderSentdate_DESC", "dtEzsignfolderDuedate_ASC", "dtEzsignfolderDuedate_DESC", "iEzsigndocument_ASC", "iEzsigndocument_DESC", "iEzsigndocumentEdm_ASC", "iEzsigndocumentEdm_DESC", "iEzsignsignature_ASC", "iEzsignsignature_DESC", "iEzsignsignatureSigned_ASC", "iEzsignsignatureSigned_DESC", "iEzsignformfieldgroup_ASC", "iEzsignformfieldgroup_DESC", "iEzsignformfieldgroupCompleted_ASC", "iEzsignformfieldgroupCompleted_DESC", "dEzsignfolderCompletedpercentage_ASC", "dEzsignfolderCompletedpercentage_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiEzsignfolderID_ASC", "pkiEzsignfolderID_DESC", "sEzsignfolderDescription_ASC", "sEzsignfolderDescription_DESC", "dtCreatedDate_ASC", "dtCreatedDate_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC", "eEzsignfolderStep_ASC", "eEzsignfolderStep_DESC", "dtEzsignfolderSentdate_ASC", "dtEzsignfolderSentdate_DESC", "dtEzsignfolderDuedate_ASC", "dtEzsignfolderDuedate_DESC", "iEzsigndocument_ASC", "iEzsigndocument_DESC", "iEzsigndocumentEdm_ASC", "iEzsigndocumentEdm_DESC", "iEzsignsignature_ASC", "iEzsignsignature_DESC", "iEzsignsignatureSigned_ASC", "iEzsignsignatureSigned_DESC", "iEzsignformfieldgroup_ASC", "iEzsignformfieldgroup_DESC", "iEzsignformfieldgroupCompleted_ASC", "iEzsignformfieldgroupCompleted_DESC", "dEzsignfolderCompletedpercentage_ASC", "dEzsignfolderCompletedpercentage_DESC", "dEzsignfolderFormcompletedpercentage_ASC", "dEzsignfolderFormcompletedpercentage_DESC", "dEzsignfolderSignaturecompletedpercentage_ASC", "dEzsignfolderSignaturecompletedpercentagee_DESC" };
     size_t sizeofArray = sizeof(EORDERBYArray) / sizeof(EORDERBYArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(EORDERBY, EORDERBYArray[stringToReturn]) == 0) {
@@ -490,6 +490,84 @@ end:
 
 }
 
+// Create a new Ezsignfolder
+//
+// The endpoint allows to create one or many elements at once.
+//
+ezsignfolder_create_object_v3_response_t*
+ObjectEzsignfolderAPI_ezsignfolderCreateObjectV3(apiClient_t *apiClient, ezsignfolder_create_object_v3_request_t *ezsignfolder_create_object_v3_request)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/3/object/ezsignfolder")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/3/object/ezsignfolder");
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_ezsignfolder_create_object_v3_request = NULL;
+    if (ezsignfolder_create_object_v3_request != NULL)
+    {
+        //string
+        localVarSingleItemJSON_ezsignfolder_create_object_v3_request = ezsignfolder_create_object_v3_request_convertToJSON(ezsignfolder_create_object_v3_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignfolder_create_object_v3_request);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "POST");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 201) {
+    //    printf("%s\n","Successful response");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsignfolder_create_object_v3_response_t *elementToReturn = ezsignfolder_create_object_v3_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    if (localVarSingleItemJSON_ezsignfolder_create_object_v3_request) {
+        cJSON_Delete(localVarSingleItemJSON_ezsignfolder_create_object_v3_request);
+        localVarSingleItemJSON_ezsignfolder_create_object_v3_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Delete an existing Ezsignfolder
 //
 ezsignfolder_delete_object_v1_response_t*
@@ -765,8 +843,8 @@ end:
 //
 // 
 //
-ezsignfolder_edit_object_v1_response_t*
-ObjectEzsignfolderAPI_ezsignfolderEditObjectV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_edit_object_v1_request_t *ezsignfolder_edit_object_v1_request)
+ezsignfolder_edit_object_v3_response_t*
+ObjectEzsignfolderAPI_ezsignfolderEditObjectV3(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_edit_object_v3_request_t *ezsignfolder_edit_object_v3_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -776,9 +854,9 @@ ObjectEzsignfolderAPI_ezsignfolderEditObjectV1(apiClient_t *apiClient, int *pkiE
     char      *localVarBodyParameters = NULL;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}")+1;
+    long sizeOfPath = strlen("/3/object/ezsignfolder/{pkiEzsignfolderID}")+1;
     char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}");
+    snprintf(localVarPath, sizeOfPath, "/3/object/ezsignfolder/{pkiEzsignfolderID}");
 
 
     // Path Params
@@ -798,12 +876,12 @@ ObjectEzsignfolderAPI_ezsignfolderEditObjectV1(apiClient_t *apiClient, int *pkiE
 
 
     // Body Param
-    cJSON *localVarSingleItemJSON_ezsignfolder_edit_object_v1_request = NULL;
-    if (ezsignfolder_edit_object_v1_request != NULL)
+    cJSON *localVarSingleItemJSON_ezsignfolder_edit_object_v3_request = NULL;
+    if (ezsignfolder_edit_object_v3_request != NULL)
     {
         //string
-        localVarSingleItemJSON_ezsignfolder_edit_object_v1_request = ezsignfolder_edit_object_v1_request_convertToJSON(ezsignfolder_edit_object_v1_request);
-        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignfolder_edit_object_v1_request);
+        localVarSingleItemJSON_ezsignfolder_edit_object_v3_request = ezsignfolder_edit_object_v3_request_convertToJSON(ezsignfolder_edit_object_v3_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignfolder_edit_object_v3_request);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -831,7 +909,7 @@ ObjectEzsignfolderAPI_ezsignfolderEditObjectV1(apiClient_t *apiClient, int *pkiE
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfolder_edit_object_v1_response_t *elementToReturn = ezsignfolder_edit_object_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+    ezsignfolder_edit_object_v3_response_t *elementToReturn = ezsignfolder_edit_object_v3_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -850,9 +928,9 @@ ObjectEzsignfolderAPI_ezsignfolderEditObjectV1(apiClient_t *apiClient, int *pkiE
     list_freeList(localVarContentType);
     free(localVarPath);
     free(localVarToReplace_pkiEzsignfolderID);
-    if (localVarSingleItemJSON_ezsignfolder_edit_object_v1_request) {
-        cJSON_Delete(localVarSingleItemJSON_ezsignfolder_edit_object_v1_request);
-        localVarSingleItemJSON_ezsignfolder_edit_object_v1_request = NULL;
+    if (localVarSingleItemJSON_ezsignfolder_edit_object_v3_request) {
+        cJSON_Delete(localVarSingleItemJSON_ezsignfolder_edit_object_v3_request);
+        localVarSingleItemJSON_ezsignfolder_edit_object_v3_request = NULL;
     }
     free(localVarBodyParameters);
     return elementToReturn;
@@ -1880,7 +1958,7 @@ end:
 
 // Retrieve Ezsignfolder list
 //
-// Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eEzsignfolderStep | Unsent<br>Sent<br>PartiallySigned<br>Expired<br>Completed<br>Archived<br>Disposed| | eEzsignfoldertypePrivacylevel | User<br>Usergroup |  Advanced filters that can be used in query parameter *sFilter*:  | Variable | |---| | fkiUserID | | sContactFirstname | | sContactLastname | | sEzsigndocumentName |
+// Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eEzsignfolderStep | Unsent<br>Sent<br>PartiallySigned<br>Expired<br>Completed<br>Archived<br>Disposed| | eEzsignfoldertypePrivacylevel | User<br>Usergroup |  Advanced filters that can be used in query parameter *sFilter*:  | Variable | |---| | fkiUserID | | sContactFirstname | | sContactLastname | | sUserFirstname | | sUserLastname | | sEzsigndocumentName |
 //
 ezsignfolder_get_list_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsignfolderGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter)
@@ -2220,6 +2298,88 @@ end:
 
 }
 
+// Retrieve an existing Ezsignfolder
+//
+// 
+//
+ezsignfolder_get_object_v3_response_t*
+ObjectEzsignfolderAPI_ezsignfolderGetObjectV3(apiClient_t *apiClient, int *pkiEzsignfolderID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/3/object/ezsignfolder/{pkiEzsignfolderID}")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/3/object/ezsignfolder/{pkiEzsignfolderID}");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    if(pkiEzsignfolderID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsignfolderID = malloc(sizeOfPathParams_pkiEzsignfolderID);
+    snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
+
+    char localVarBuff_pkiEzsignfolderID[256];
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsignfolder_get_object_v3_response_t *elementToReturn = ezsignfolder_get_object_v3_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsignfolderID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Import an existing Ezsignfoldersignerassociation into this Ezsignfolder
 //
 // 
@@ -2516,6 +2676,105 @@ ObjectEzsignfolderAPI_ezsignfolderReorderV1(apiClient_t *apiClient, int *pkiEzsi
     if (localVarSingleItemJSON_ezsignfolder_reorder_v1_request) {
         cJSON_Delete(localVarSingleItemJSON_ezsignfolder_reorder_v1_request);
         localVarSingleItemJSON_ezsignfolder_reorder_v1_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Reorder Ezsigndocuments in the Ezsignfolder
+//
+ezsignfolder_reorder_v2_response_t*
+ObjectEzsignfolderAPI_ezsignfolderReorderV2(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_reorder_v2_request_t *ezsignfolder_reorder_v2_request)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/2/object/ezsignfolder/{pkiEzsignfolderID}/reorder")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/2/object/ezsignfolder/{pkiEzsignfolderID}/reorder");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    if(pkiEzsignfolderID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsignfolderID = malloc(sizeOfPathParams_pkiEzsignfolderID);
+    snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
+
+    char localVarBuff_pkiEzsignfolderID[256];
+    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_ezsignfolder_reorder_v2_request = NULL;
+    if (ezsignfolder_reorder_v2_request != NULL)
+    {
+        //string
+        localVarSingleItemJSON_ezsignfolder_reorder_v2_request = ezsignfolder_reorder_v2_request_convertToJSON(ezsignfolder_reorder_v2_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignfolder_reorder_v2_request);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "POST");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsignfolder_reorder_v2_response_t *elementToReturn = ezsignfolder_reorder_v2_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsignfolderID);
+    if (localVarSingleItemJSON_ezsignfolder_reorder_v2_request) {
+        cJSON_Delete(localVarSingleItemJSON_ezsignfolder_reorder_v2_request);
+        localVarSingleItemJSON_ezsignfolder_reorder_v2_request = NULL;
     }
     free(localVarBodyParameters);
     return elementToReturn;

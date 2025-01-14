@@ -23,11 +23,17 @@ signature_request_t* instantiate_signature_request(int include_optional) {
   if (include_optional) {
     signature_request = signature_request_create(
       12,
+      1,
+      ezmax_api_definition__full_signature_request__"Text",
+      "{"$ref":"#/components/examples/Svg/value"}",
       "{"$ref":"#/components/examples/Svg/value"}"
     );
   } else {
     signature_request = signature_request_create(
       12,
+      1,
+      ezmax_api_definition__full_signature_request__"Text",
+      "{"$ref":"#/components/examples/Svg/value"}",
       "{"$ref":"#/components/examples/Svg/value"}"
     );
   }

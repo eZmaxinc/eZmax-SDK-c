@@ -24,6 +24,7 @@ ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMAT
 
 ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_create(
     int fki_ezsignsigningreason_id,
+    int fki_font_id,
     char *s_value,
     ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_e e_attachments_confirmation_decision,
     char *s_attachments_refusal_reason,
@@ -36,6 +37,7 @@ ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_create(
         return NULL;
     }
     ezsignsignature_sign_v1_request_local_var->fki_ezsignsigningreason_id = fki_ezsignsigningreason_id;
+    ezsignsignature_sign_v1_request_local_var->fki_font_id = fki_font_id;
     ezsignsignature_sign_v1_request_local_var->s_value = s_value;
     ezsignsignature_sign_v1_request_local_var->e_attachments_confirmation_decision = e_attachments_confirmation_decision;
     ezsignsignature_sign_v1_request_local_var->s_attachments_refusal_reason = s_attachments_refusal_reason;
@@ -80,6 +82,14 @@ cJSON *ezsignsignature_sign_v1_request_convertToJSON(ezsignsignature_sign_v1_req
     // ezsignsignature_sign_v1_request->fki_ezsignsigningreason_id
     if(ezsignsignature_sign_v1_request->fki_ezsignsigningreason_id) {
     if(cJSON_AddNumberToObject(item, "fkiEzsignsigningreasonID", ezsignsignature_sign_v1_request->fki_ezsignsigningreason_id) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // ezsignsignature_sign_v1_request->fki_font_id
+    if(ezsignsignature_sign_v1_request->fki_font_id) {
+    if(cJSON_AddNumberToObject(item, "fkiFontID", ezsignsignature_sign_v1_request->fki_font_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -170,6 +180,15 @@ ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_parseFromJSON
     }
     }
 
+    // ezsignsignature_sign_v1_request->fki_font_id
+    cJSON *fki_font_id = cJSON_GetObjectItemCaseSensitive(ezsignsignature_sign_v1_requestJSON, "fkiFontID");
+    if (fki_font_id) { 
+    if(!cJSON_IsNumber(fki_font_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
     // ezsignsignature_sign_v1_request->s_value
     cJSON *s_value = cJSON_GetObjectItemCaseSensitive(ezsignsignature_sign_v1_requestJSON, "sValue");
     if (s_value) { 
@@ -244,6 +263,7 @@ ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_parseFromJSON
 
     ezsignsignature_sign_v1_request_local_var = ezsignsignature_sign_v1_request_create (
         fki_ezsignsigningreason_id ? fki_ezsignsigningreason_id->valuedouble : 0,
+        fki_font_id ? fki_font_id->valuedouble : 0,
         s_value && !cJSON_IsNull(s_value) ? strdup(s_value->valuestring) : NULL,
         e_attachments_confirmation_decision ? e_attachments_confirmation_decisionVariable : ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_NULL,
         s_attachments_refusal_reason && !cJSON_IsNull(s_attachments_refusal_reason) ? strdup(s_attachments_refusal_reason->valuestring) : NULL,

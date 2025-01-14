@@ -16,8 +16,8 @@
 //
 // The endpoint allows to create one or many elements at once.
 //
-ezsigntemplatesignature_create_object_v1_response_t*
-ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureCreateObjectV1(apiClient_t *apiClient, ezsigntemplatesignature_create_object_v1_request_t *ezsigntemplatesignature_create_object_v1_request)
+ezsigntemplatesignature_create_object_v2_response_t*
+ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureCreateObjectV2(apiClient_t *apiClient, ezsigntemplatesignature_create_object_v2_request_t *ezsigntemplatesignature_create_object_v2_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -27,20 +27,20 @@ ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureCreateObjectV1(apiClient
     char      *localVarBodyParameters = NULL;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsigntemplatesignature")+1;
+    long sizeOfPath = strlen("/2/object/ezsigntemplatesignature")+1;
     char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsigntemplatesignature");
+    snprintf(localVarPath, sizeOfPath, "/2/object/ezsigntemplatesignature");
 
 
 
 
     // Body Param
-    cJSON *localVarSingleItemJSON_ezsigntemplatesignature_create_object_v1_request = NULL;
-    if (ezsigntemplatesignature_create_object_v1_request != NULL)
+    cJSON *localVarSingleItemJSON_ezsigntemplatesignature_create_object_v2_request = NULL;
+    if (ezsigntemplatesignature_create_object_v2_request != NULL)
     {
         //string
-        localVarSingleItemJSON_ezsigntemplatesignature_create_object_v1_request = ezsigntemplatesignature_create_object_v1_request_convertToJSON(ezsigntemplatesignature_create_object_v1_request);
-        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsigntemplatesignature_create_object_v1_request);
+        localVarSingleItemJSON_ezsigntemplatesignature_create_object_v2_request = ezsigntemplatesignature_create_object_v2_request_convertToJSON(ezsigntemplatesignature_create_object_v2_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsigntemplatesignature_create_object_v2_request);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -60,7 +60,7 @@ ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureCreateObjectV1(apiClient
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigntemplatesignatureAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsigntemplatesignature_create_object_v1_response_t *elementToReturn = ezsigntemplatesignature_create_object_v1_response_parseFromJSON(ObjectEzsigntemplatesignatureAPIlocalVarJSON);
+    ezsigntemplatesignature_create_object_v2_response_t *elementToReturn = ezsigntemplatesignature_create_object_v2_response_parseFromJSON(ObjectEzsigntemplatesignatureAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsigntemplatesignatureAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -78,9 +78,9 @@ ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureCreateObjectV1(apiClient
     list_freeList(localVarHeaderType);
     list_freeList(localVarContentType);
     free(localVarPath);
-    if (localVarSingleItemJSON_ezsigntemplatesignature_create_object_v1_request) {
-        cJSON_Delete(localVarSingleItemJSON_ezsigntemplatesignature_create_object_v1_request);
-        localVarSingleItemJSON_ezsigntemplatesignature_create_object_v1_request = NULL;
+    if (localVarSingleItemJSON_ezsigntemplatesignature_create_object_v2_request) {
+        cJSON_Delete(localVarSingleItemJSON_ezsigntemplatesignature_create_object_v2_request);
+        localVarSingleItemJSON_ezsigntemplatesignature_create_object_v2_request = NULL;
     }
     free(localVarBodyParameters);
     return elementToReturn;
@@ -176,8 +176,8 @@ end:
 //
 // 
 //
-ezsigntemplatesignature_edit_object_v1_response_t*
-ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatesignatureID, ezsigntemplatesignature_edit_object_v1_request_t *ezsigntemplatesignature_edit_object_v1_request)
+ezsigntemplatesignature_edit_object_v2_response_t*
+ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureEditObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplatesignatureID, ezsigntemplatesignature_edit_object_v2_request_t *ezsigntemplatesignature_edit_object_v2_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -187,9 +187,9 @@ ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureEditObjectV1(apiClient_t
     char      *localVarBodyParameters = NULL;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsigntemplatesignature/{pkiEzsigntemplatesignatureID}")+1;
+    long sizeOfPath = strlen("/2/object/ezsigntemplatesignature/{pkiEzsigntemplatesignatureID}")+1;
     char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsigntemplatesignature/{pkiEzsigntemplatesignatureID}");
+    snprintf(localVarPath, sizeOfPath, "/2/object/ezsigntemplatesignature/{pkiEzsigntemplatesignatureID}");
 
 
     // Path Params
@@ -209,12 +209,12 @@ ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureEditObjectV1(apiClient_t
 
 
     // Body Param
-    cJSON *localVarSingleItemJSON_ezsigntemplatesignature_edit_object_v1_request = NULL;
-    if (ezsigntemplatesignature_edit_object_v1_request != NULL)
+    cJSON *localVarSingleItemJSON_ezsigntemplatesignature_edit_object_v2_request = NULL;
+    if (ezsigntemplatesignature_edit_object_v2_request != NULL)
     {
         //string
-        localVarSingleItemJSON_ezsigntemplatesignature_edit_object_v1_request = ezsigntemplatesignature_edit_object_v1_request_convertToJSON(ezsigntemplatesignature_edit_object_v1_request);
-        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsigntemplatesignature_edit_object_v1_request);
+        localVarSingleItemJSON_ezsigntemplatesignature_edit_object_v2_request = ezsigntemplatesignature_edit_object_v2_request_convertToJSON(ezsigntemplatesignature_edit_object_v2_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsigntemplatesignature_edit_object_v2_request);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -242,7 +242,7 @@ ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureEditObjectV1(apiClient_t
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigntemplatesignatureAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsigntemplatesignature_edit_object_v1_response_t *elementToReturn = ezsigntemplatesignature_edit_object_v1_response_parseFromJSON(ObjectEzsigntemplatesignatureAPIlocalVarJSON);
+    ezsigntemplatesignature_edit_object_v2_response_t *elementToReturn = ezsigntemplatesignature_edit_object_v2_response_parseFromJSON(ObjectEzsigntemplatesignatureAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsigntemplatesignatureAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -261,9 +261,9 @@ ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureEditObjectV1(apiClient_t
     list_freeList(localVarContentType);
     free(localVarPath);
     free(localVarToReplace_pkiEzsigntemplatesignatureID);
-    if (localVarSingleItemJSON_ezsigntemplatesignature_edit_object_v1_request) {
-        cJSON_Delete(localVarSingleItemJSON_ezsigntemplatesignature_edit_object_v1_request);
-        localVarSingleItemJSON_ezsigntemplatesignature_edit_object_v1_request = NULL;
+    if (localVarSingleItemJSON_ezsigntemplatesignature_edit_object_v2_request) {
+        cJSON_Delete(localVarSingleItemJSON_ezsigntemplatesignature_edit_object_v2_request);
+        localVarSingleItemJSON_ezsigntemplatesignature_edit_object_v2_request = NULL;
     }
     free(localVarBodyParameters);
     return elementToReturn;
@@ -277,8 +277,8 @@ end:
 //
 // 
 //
-ezsigntemplatesignature_get_object_v2_response_t*
-ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureGetObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplatesignatureID)
+ezsigntemplatesignature_get_object_v3_response_t*
+ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureGetObjectV3(apiClient_t *apiClient, int *pkiEzsigntemplatesignatureID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -288,9 +288,9 @@ ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureGetObjectV2(apiClient_t 
     char      *localVarBodyParameters = NULL;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/ezsigntemplatesignature/{pkiEzsigntemplatesignatureID}")+1;
+    long sizeOfPath = strlen("/3/object/ezsigntemplatesignature/{pkiEzsigntemplatesignatureID}")+1;
     char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/ezsigntemplatesignature/{pkiEzsigntemplatesignatureID}");
+    snprintf(localVarPath, sizeOfPath, "/3/object/ezsigntemplatesignature/{pkiEzsigntemplatesignatureID}");
 
 
     // Path Params
@@ -329,7 +329,7 @@ ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureGetObjectV2(apiClient_t 
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigntemplatesignatureAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsigntemplatesignature_get_object_v2_response_t *elementToReturn = ezsigntemplatesignature_get_object_v2_response_parseFromJSON(ObjectEzsigntemplatesignatureAPIlocalVarJSON);
+    ezsigntemplatesignature_get_object_v3_response_t *elementToReturn = ezsigntemplatesignature_get_object_v3_response_parseFromJSON(ObjectEzsigntemplatesignatureAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsigntemplatesignatureAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

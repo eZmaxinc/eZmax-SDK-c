@@ -23,12 +23,14 @@ common_response_error_t* instantiate_common_response_error(int include_optional)
   if (include_optional) {
     common_response_error = common_response_error_create(
       "Invalid Signature Headers",
-      ezmax_api_definition__full_common_response_error__"BADREQUEST"
+      ezmax_api_definition__full_common_response_error__"BADREQUEST",
+      list_createList()
     );
   } else {
     common_response_error = common_response_error_create(
       "Invalid Signature Headers",
-      ezmax_api_definition__full_common_response_error__"BADREQUEST"
+      ezmax_api_definition__full_common_response_error__"BADREQUEST",
+      list_createList()
     );
   }
 

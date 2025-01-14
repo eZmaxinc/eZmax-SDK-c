@@ -8,23 +8,18 @@
 #include "../model/common_response_error.h"
 #include "../model/ezsigntemplate_copy_v1_request.h"
 #include "../model/ezsigntemplate_copy_v1_response.h"
-#include "../model/ezsigntemplate_create_object_v1_request.h"
-#include "../model/ezsigntemplate_create_object_v1_response.h"
-#include "../model/ezsigntemplate_create_object_v2_request.h"
-#include "../model/ezsigntemplate_create_object_v2_response.h"
+#include "../model/ezsigntemplate_create_object_v3_request.h"
+#include "../model/ezsigntemplate_create_object_v3_response.h"
 #include "../model/ezsigntemplate_delete_object_v1_response.h"
-#include "../model/ezsigntemplate_edit_object_v1_request.h"
-#include "../model/ezsigntemplate_edit_object_v1_response.h"
-#include "../model/ezsigntemplate_edit_object_v2_request.h"
-#include "../model/ezsigntemplate_edit_object_v2_response.h"
+#include "../model/ezsigntemplate_edit_object_v3_request.h"
+#include "../model/ezsigntemplate_edit_object_v3_response.h"
 #include "../model/ezsigntemplate_get_autocomplete_v2_response.h"
 #include "../model/ezsigntemplate_get_list_v1_response.h"
-#include "../model/ezsigntemplate_get_object_v1_response.h"
-#include "../model/ezsigntemplate_get_object_v2_response.h"
+#include "../model/ezsigntemplate_get_object_v3_response.h"
 #include "../model/header_accept_language.h"
 
 // Enum SSELECTOR for ObjectEzsigntemplateAPI_ezsigntemplateGetAutocompleteV2
-typedef enum  { ezmax_api_definition__full_ezsigntemplateGetAutocompleteV2_SSELECTOR_NULL = 0, ezmax_api_definition__full_ezsigntemplateGetAutocompleteV2_SSELECTOR_All } ezmax_api_definition__full_ezsigntemplateGetAutocompleteV2_sSelector_e;
+typedef enum  { ezmax_api_definition__full_ezsigntemplateGetAutocompleteV2_SSELECTOR_NULL = 0, ezmax_api_definition__full_ezsigntemplateGetAutocompleteV2_SSELECTOR_All, ezmax_api_definition__full_ezsigntemplateGetAutocompleteV2_SSELECTOR_Ezsigntemplatepublic } ezmax_api_definition__full_ezsigntemplateGetAutocompleteV2_sSelector_e;
 
 // Enum EFILTERACTIVE for ObjectEzsigntemplateAPI_ezsigntemplateGetAutocompleteV2
 typedef enum  { ezmax_api_definition__full_ezsigntemplateGetAutocompleteV2_EFILTERACTIVE_NULL = 0, ezmax_api_definition__full_ezsigntemplateGetAutocompleteV2_EFILTERACTIVE_All, ezmax_api_definition__full_ezsigntemplateGetAutocompleteV2_EFILTERACTIVE_Active, ezmax_api_definition__full_ezsigntemplateGetAutocompleteV2_EFILTERACTIVE_Inactive } ezmax_api_definition__full_ezsigntemplateGetAutocompleteV2_eFilterActive_e;
@@ -51,16 +46,8 @@ ObjectEzsigntemplateAPI_ezsigntemplateCopyV1(apiClient_t *apiClient, int *pkiEzs
 //
 // The endpoint allows to create one or many elements at once.
 //
-ezsigntemplate_create_object_v1_response_t*
-ObjectEzsigntemplateAPI_ezsigntemplateCreateObjectV1(apiClient_t *apiClient, ezsigntemplate_create_object_v1_request_t *ezsigntemplate_create_object_v1_request);
-
-
-// Create a new Ezsigntemplate
-//
-// The endpoint allows to create one or many elements at once.
-//
-ezsigntemplate_create_object_v2_response_t*
-ObjectEzsigntemplateAPI_ezsigntemplateCreateObjectV2(apiClient_t *apiClient, ezsigntemplate_create_object_v2_request_t *ezsigntemplate_create_object_v2_request);
+ezsigntemplate_create_object_v3_response_t*
+ObjectEzsigntemplateAPI_ezsigntemplateCreateObjectV3(apiClient_t *apiClient, ezsigntemplate_create_object_v3_request_t *ezsigntemplate_create_object_v3_request);
 
 
 // Delete an existing Ezsigntemplate
@@ -75,16 +62,8 @@ ObjectEzsigntemplateAPI_ezsigntemplateDeleteObjectV1(apiClient_t *apiClient, int
 //
 // 
 //
-ezsigntemplate_edit_object_v1_response_t*
-ObjectEzsigntemplateAPI_ezsigntemplateEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplateID, ezsigntemplate_edit_object_v1_request_t *ezsigntemplate_edit_object_v1_request);
-
-
-// Edit an existing Ezsigntemplate
-//
-// 
-//
-ezsigntemplate_edit_object_v2_response_t*
-ObjectEzsigntemplateAPI_ezsigntemplateEditObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplateID, ezsigntemplate_edit_object_v2_request_t *ezsigntemplate_edit_object_v2_request);
+ezsigntemplate_edit_object_v3_response_t*
+ObjectEzsigntemplateAPI_ezsigntemplateEditObjectV3(apiClient_t *apiClient, int *pkiEzsigntemplateID, ezsigntemplate_edit_object_v3_request_t *ezsigntemplate_edit_object_v3_request);
 
 
 // Retrieve Ezsigntemplates and IDs
@@ -92,7 +71,7 @@ ObjectEzsigntemplateAPI_ezsigntemplateEditObjectV2(apiClient_t *apiClient, int *
 // Get the list of Ezsigntemplate to be used in a dropdown or autocomplete control.
 //
 ezsigntemplate_get_autocomplete_v2_response_t*
-ObjectEzsigntemplateAPI_ezsigntemplateGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplateGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_ezsigntemplateGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
+ObjectEzsigntemplateAPI_ezsigntemplateGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplateGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_ezsigntemplateGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language, int *fkiEzsignfoldertypeID);
 
 
 // Retrieve Ezsigntemplate list
@@ -107,15 +86,7 @@ ObjectEzsigntemplateAPI_ezsigntemplateGetListV1(apiClient_t *apiClient, ezmax_ap
 //
 // 
 //
-ezsigntemplate_get_object_v1_response_t*
-ObjectEzsigntemplateAPI_ezsigntemplateGetObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplateID);
-
-
-// Retrieve an existing Ezsigntemplate
-//
-// 
-//
-ezsigntemplate_get_object_v2_response_t*
-ObjectEzsigntemplateAPI_ezsigntemplateGetObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplateID);
+ezsigntemplate_get_object_v3_response_t*
+ObjectEzsigntemplateAPI_ezsigntemplateGetObjectV3(apiClient_t *apiClient, int *pkiEzsigntemplateID);
 
 

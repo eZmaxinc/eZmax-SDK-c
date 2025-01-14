@@ -1,0 +1,58 @@
+#ifndef ezsigntemplatedocumentpagerecognition_create_object_v1_request_TEST
+#define ezsigntemplatedocumentpagerecognition_create_object_v1_request_TEST
+
+// the following is to include only the main from the first c file
+#ifndef TEST_MAIN
+#define TEST_MAIN
+#define ezsigntemplatedocumentpagerecognition_create_object_v1_request_MAIN
+#endif // TEST_MAIN
+
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdbool.h>
+#include "../external/cJSON.h"
+
+#include "../model/ezsigntemplatedocumentpagerecognition_create_object_v1_request.h"
+ezsigntemplatedocumentpagerecognition_create_object_v1_request_t* instantiate_ezsigntemplatedocumentpagerecognition_create_object_v1_request(int include_optional);
+
+
+
+ezsigntemplatedocumentpagerecognition_create_object_v1_request_t* instantiate_ezsigntemplatedocumentpagerecognition_create_object_v1_request(int include_optional) {
+  ezsigntemplatedocumentpagerecognition_create_object_v1_request_t* ezsigntemplatedocumentpagerecognition_create_object_v1_request = NULL;
+  if (include_optional) {
+    ezsigntemplatedocumentpagerecognition_create_object_v1_request = ezsigntemplatedocumentpagerecognition_create_object_v1_request_create(
+      list_createList()
+    );
+  } else {
+    ezsigntemplatedocumentpagerecognition_create_object_v1_request = ezsigntemplatedocumentpagerecognition_create_object_v1_request_create(
+      list_createList()
+    );
+  }
+
+  return ezsigntemplatedocumentpagerecognition_create_object_v1_request;
+}
+
+
+#ifdef ezsigntemplatedocumentpagerecognition_create_object_v1_request_MAIN
+
+void test_ezsigntemplatedocumentpagerecognition_create_object_v1_request(int include_optional) {
+    ezsigntemplatedocumentpagerecognition_create_object_v1_request_t* ezsigntemplatedocumentpagerecognition_create_object_v1_request_1 = instantiate_ezsigntemplatedocumentpagerecognition_create_object_v1_request(include_optional);
+
+	cJSON* jsonezsigntemplatedocumentpagerecognition_create_object_v1_request_1 = ezsigntemplatedocumentpagerecognition_create_object_v1_request_convertToJSON(ezsigntemplatedocumentpagerecognition_create_object_v1_request_1);
+	printf("ezsigntemplatedocumentpagerecognition_create_object_v1_request :\n%s\n", cJSON_Print(jsonezsigntemplatedocumentpagerecognition_create_object_v1_request_1));
+	ezsigntemplatedocumentpagerecognition_create_object_v1_request_t* ezsigntemplatedocumentpagerecognition_create_object_v1_request_2 = ezsigntemplatedocumentpagerecognition_create_object_v1_request_parseFromJSON(jsonezsigntemplatedocumentpagerecognition_create_object_v1_request_1);
+	cJSON* jsonezsigntemplatedocumentpagerecognition_create_object_v1_request_2 = ezsigntemplatedocumentpagerecognition_create_object_v1_request_convertToJSON(ezsigntemplatedocumentpagerecognition_create_object_v1_request_2);
+	printf("repeating ezsigntemplatedocumentpagerecognition_create_object_v1_request:\n%s\n", cJSON_Print(jsonezsigntemplatedocumentpagerecognition_create_object_v1_request_2));
+}
+
+int main() {
+  test_ezsigntemplatedocumentpagerecognition_create_object_v1_request(1);
+  test_ezsigntemplatedocumentpagerecognition_create_object_v1_request(0);
+
+  printf("Hello world \n");
+  return 0;
+}
+
+#endif // ezsigntemplatedocumentpagerecognition_create_object_v1_request_MAIN
+#endif // ezsigntemplatedocumentpagerecognition_create_object_v1_request_TEST

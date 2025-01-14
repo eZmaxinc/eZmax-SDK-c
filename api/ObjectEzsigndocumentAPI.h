@@ -20,14 +20,22 @@
 #include "../model/ezsigndocument_create_object_v1_response.h"
 #include "../model/ezsigndocument_create_object_v2_request.h"
 #include "../model/ezsigndocument_create_object_v2_response.h"
+#include "../model/ezsigndocument_create_object_v3_request.h"
+#include "../model/ezsigndocument_create_object_v3_response.h"
 #include "../model/ezsigndocument_decline_to_sign_v1_request.h"
 #include "../model/ezsigndocument_decline_to_sign_v1_response.h"
 #include "../model/ezsigndocument_delete_object_v1_response.h"
+#include "../model/ezsigndocument_edit_ezsignannotations_v1_request.h"
+#include "../model/ezsigndocument_edit_ezsignannotations_v1_response.h"
 #include "../model/ezsigndocument_edit_ezsignformfieldgroups_v1_request.h"
 #include "../model/ezsigndocument_edit_ezsignformfieldgroups_v1_response.h"
 #include "../model/ezsigndocument_edit_ezsignsignatures_v1_request.h"
 #include "../model/ezsigndocument_edit_ezsignsignatures_v1_response.h"
+#include "../model/ezsigndocument_edit_object_v1_request.h"
+#include "../model/ezsigndocument_edit_object_v1_response.h"
 #include "../model/ezsigndocument_end_prematurely_v1_response.h"
+#include "../model/ezsigndocument_extract_text_v1_request.h"
+#include "../model/ezsigndocument_extract_text_v1_response.h"
 #include "../model/ezsigndocument_flatten_v1_response.h"
 #include "../model/ezsigndocument_get_actionable_elements_v1_response.h"
 #include "../model/ezsigndocument_get_attachments_v1_response.h"
@@ -104,6 +112,14 @@ ezsigndocument_create_object_v2_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV2(apiClient_t *apiClient, ezsigndocument_create_object_v2_request_t *ezsigndocument_create_object_v2_request);
 
 
+// Create a new Ezsigndocument
+//
+// The endpoint allows to create one or many elements at once.
+//
+ezsigndocument_create_object_v3_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV3(apiClient_t *apiClient, ezsigndocument_create_object_v3_request_t *ezsigndocument_create_object_v3_request);
+
+
 // Decline to sign
 //
 // Decline to sign
@@ -118,6 +134,14 @@ ObjectEzsigndocumentAPI_ezsigndocumentDeclineToSignV1(apiClient_t *apiClient, in
 //
 ezsigndocument_delete_object_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigndocumentID);
+
+
+// Edit multiple Ezsignannotations
+//
+// Using this endpoint, you can edit multiple Ezsignannotations at the same time.
+//
+ezsigndocument_edit_ezsignannotations_v1_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignannotationsV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_edit_ezsignannotations_v1_request_t *ezsigndocument_edit_ezsignannotations_v1_request);
 
 
 // Edit multiple Ezsignformfieldgroups
@@ -136,12 +160,28 @@ ezsigndocument_edit_ezsignsignatures_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_edit_ezsignsignatures_v1_request_t *ezsigndocument_edit_ezsignsignatures_v1_request);
 
 
+// Edit an existing Ezsigndocument
+//
+// 
+//
+ezsigndocument_edit_object_v1_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentEditObjectV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_edit_object_v1_request_t *ezsigndocument_edit_object_v1_request);
+
+
 // End prematurely
 //
 // End prematurely an Ezsigndocument when some signatures are still required
 //
 ezsigndocument_end_prematurely_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, object_t *body);
+
+
+// Extract text from Ezsigndocument area
+//
+// Extract text from Ezsigndocument area
+//
+ezsigndocument_extract_text_v1_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentExtractTextV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_extract_text_v1_request_t *ezsigndocument_extract_text_v1_request);
 
 
 // Flatten

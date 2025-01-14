@@ -1,0 +1,73 @@
+/*
+ * ezsigntemplatedocumentpagerecognition_request.h
+ *
+ * A Ezsigntemplatedocumentpagerecognition Object
+ */
+
+#ifndef _ezsigntemplatedocumentpagerecognition_request_H_
+#define _ezsigntemplatedocumentpagerecognition_request_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct ezsigntemplatedocumentpagerecognition_request_t ezsigntemplatedocumentpagerecognition_request_t;
+
+#include "field_e_ezsigntemplatedocumentpagerecognition_operator.h"
+#include "field_e_ezsigntemplatedocumentpagerecognition_section.h"
+
+// Enum  for ezsigntemplatedocumentpagerecognition_request
+
+typedef enum  { ezmax_api_definition__full_ezsigntemplatedocumentpagerecognition_request__NULL = 0, ezmax_api_definition__full_ezsigntemplatedocumentpagerecognition_request__eq, ezmax_api_definition__full_ezsigntemplatedocumentpagerecognition_request__in, ezmax_api_definition__full_ezsigntemplatedocumentpagerecognition_request__similar } ezmax_api_definition__full_ezsigntemplatedocumentpagerecognition_request__e;
+
+char* ezsigntemplatedocumentpagerecognition_request_e_ezsigntemplatedocumentpagerecognition_operator_ToString(ezmax_api_definition__full_ezsigntemplatedocumentpagerecognition_request__e e_ezsigntemplatedocumentpagerecognition_operator);
+
+ezmax_api_definition__full_ezsigntemplatedocumentpagerecognition_request__e ezsigntemplatedocumentpagerecognition_request_e_ezsigntemplatedocumentpagerecognition_operator_FromString(char* e_ezsigntemplatedocumentpagerecognition_operator);
+
+// Enum  for ezsigntemplatedocumentpagerecognition_request
+
+typedef enum  { ezmax_api_definition__full_ezsigntemplatedocumentpagerecognition_request__NULL = 0, ezmax_api_definition__full_ezsigntemplatedocumentpagerecognition_request__FirstLine, ezmax_api_definition__full_ezsigntemplatedocumentpagerecognition_request__LastLine, ezmax_api_definition__full_ezsigntemplatedocumentpagerecognition_request__Page, ezmax_api_definition__full_ezsigntemplatedocumentpagerecognition_request__Region } ezmax_api_definition__full_ezsigntemplatedocumentpagerecognition_request__e;
+
+char* ezsigntemplatedocumentpagerecognition_request_e_ezsigntemplatedocumentpagerecognition_section_ToString(ezmax_api_definition__full_ezsigntemplatedocumentpagerecognition_request__e e_ezsigntemplatedocumentpagerecognition_section);
+
+ezmax_api_definition__full_ezsigntemplatedocumentpagerecognition_request__e ezsigntemplatedocumentpagerecognition_request_e_ezsigntemplatedocumentpagerecognition_section_FromString(char* e_ezsigntemplatedocumentpagerecognition_section);
+
+
+
+typedef struct ezsigntemplatedocumentpagerecognition_request_t {
+    int pki_ezsigntemplatedocumentpagerecognition_id; //numeric
+    int fki_ezsigntemplatedocumentpage_id; //numeric
+    field_e_ezsigntemplatedocumentpagerecognition_operator_t *e_ezsigntemplatedocumentpagerecognition_operator; // custom
+    field_e_ezsigntemplatedocumentpagerecognition_section_t *e_ezsigntemplatedocumentpagerecognition_section; // custom
+    int i_ezsigntemplatedocumentpagerecognition_similarpercentage; //numeric
+    int i_ezsigntemplatedocumentpagerecognition_x; //numeric
+    int i_ezsigntemplatedocumentpagerecognition_y; //numeric
+    int i_ezsigntemplatedocumentpagerecognition_width; //numeric
+    int i_ezsigntemplatedocumentpagerecognition_height; //numeric
+    char *t_ezsigntemplatedocumentpagerecognition_text; // string
+
+} ezsigntemplatedocumentpagerecognition_request_t;
+
+ezsigntemplatedocumentpagerecognition_request_t *ezsigntemplatedocumentpagerecognition_request_create(
+    int pki_ezsigntemplatedocumentpagerecognition_id,
+    int fki_ezsigntemplatedocumentpage_id,
+    field_e_ezsigntemplatedocumentpagerecognition_operator_t *e_ezsigntemplatedocumentpagerecognition_operator,
+    field_e_ezsigntemplatedocumentpagerecognition_section_t *e_ezsigntemplatedocumentpagerecognition_section,
+    int i_ezsigntemplatedocumentpagerecognition_similarpercentage,
+    int i_ezsigntemplatedocumentpagerecognition_x,
+    int i_ezsigntemplatedocumentpagerecognition_y,
+    int i_ezsigntemplatedocumentpagerecognition_width,
+    int i_ezsigntemplatedocumentpagerecognition_height,
+    char *t_ezsigntemplatedocumentpagerecognition_text
+);
+
+void ezsigntemplatedocumentpagerecognition_request_free(ezsigntemplatedocumentpagerecognition_request_t *ezsigntemplatedocumentpagerecognition_request);
+
+ezsigntemplatedocumentpagerecognition_request_t *ezsigntemplatedocumentpagerecognition_request_parseFromJSON(cJSON *ezsigntemplatedocumentpagerecognition_requestJSON);
+
+cJSON *ezsigntemplatedocumentpagerecognition_request_convertToJSON(ezsigntemplatedocumentpagerecognition_request_t *ezsigntemplatedocumentpagerecognition_request);
+
+#endif /* _ezsigntemplatedocumentpagerecognition_request_H_ */
+

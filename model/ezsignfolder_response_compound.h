@@ -17,6 +17,7 @@ typedef struct ezsignfolder_response_compound_t ezsignfolder_response_compound_t
 
 #include "common_audit.h"
 #include "custom_ezsignfoldertype_response.h"
+#include "custom_timezone_with_code_response.h"
 #include "field_e_ezsignfolder_completion.h"
 #include "field_e_ezsignfolder_sendreminderfrequency.h"
 #include "field_e_ezsignfolder_step.h"
@@ -51,6 +52,7 @@ typedef struct ezsignfolder_response_compound_t {
     int pki_ezsignfolder_id; //numeric
     int fki_ezsignfoldertype_id; //numeric
     struct custom_ezsignfoldertype_response_t *obj_ezsignfoldertype; //model
+    int fki_timezone_id; //numeric
     field_e_ezsignfolder_completion_t *e_ezsignfolder_completion; // custom
     char *s_ezsignfoldertype_name_x; // string
     int fki_billingentityinternal_id; //numeric
@@ -61,6 +63,8 @@ typedef struct ezsignfolder_response_compound_t {
     char *t_ezsignfolder_note; // string
     int b_ezsignfolder_isdisposable; //boolean
     field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency; // custom
+    int i_ezsignfolder_sendreminderfirstdays; //numeric
+    int i_ezsignfolder_sendreminderotherdays; //numeric
     char *dt_ezsignfolder_delayedsenddate; // string
     char *dt_ezsignfolder_duedate; // string
     char *dt_ezsignfolder_sentdate; // string
@@ -71,6 +75,7 @@ typedef struct ezsignfolder_response_compound_t {
     char *t_ezsignfolder_message; // string
     struct common_audit_t *obj_audit; //model
     char *s_ezsignfolder_externalid; // string
+    struct custom_timezone_with_code_response_t *obj_timezone; //model
 
 } ezsignfolder_response_compound_t;
 
@@ -78,6 +83,7 @@ ezsignfolder_response_compound_t *ezsignfolder_response_compound_create(
     int pki_ezsignfolder_id,
     int fki_ezsignfoldertype_id,
     custom_ezsignfoldertype_response_t *obj_ezsignfoldertype,
+    int fki_timezone_id,
     field_e_ezsignfolder_completion_t *e_ezsignfolder_completion,
     char *s_ezsignfoldertype_name_x,
     int fki_billingentityinternal_id,
@@ -88,6 +94,8 @@ ezsignfolder_response_compound_t *ezsignfolder_response_compound_create(
     char *t_ezsignfolder_note,
     int b_ezsignfolder_isdisposable,
     field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency,
+    int i_ezsignfolder_sendreminderfirstdays,
+    int i_ezsignfolder_sendreminderotherdays,
     char *dt_ezsignfolder_delayedsenddate,
     char *dt_ezsignfolder_duedate,
     char *dt_ezsignfolder_sentdate,
@@ -97,7 +105,8 @@ ezsignfolder_response_compound_t *ezsignfolder_response_compound_create(
     char *dt_ezsignfolder_close,
     char *t_ezsignfolder_message,
     common_audit_t *obj_audit,
-    char *s_ezsignfolder_externalid
+    char *s_ezsignfolder_externalid,
+    custom_timezone_with_code_response_t *obj_timezone
 );
 
 void ezsignfolder_response_compound_free(ezsignfolder_response_compound_t *ezsignfolder_response_compound);

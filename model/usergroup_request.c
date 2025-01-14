@@ -7,6 +7,7 @@
 
 usergroup_request_t *usergroup_request_create(
     int pki_usergroup_id,
+    email_request_t *obj_email,
     multilingual_usergroup_name_t *obj_usergroup_name
     ) {
     usergroup_request_t *usergroup_request_local_var = malloc(sizeof(usergroup_request_t));
@@ -14,6 +15,7 @@ usergroup_request_t *usergroup_request_create(
         return NULL;
     }
     usergroup_request_local_var->pki_usergroup_id = pki_usergroup_id;
+    usergroup_request_local_var->obj_email = obj_email;
     usergroup_request_local_var->obj_usergroup_name = obj_usergroup_name;
 
     return usergroup_request_local_var;
@@ -25,6 +27,10 @@ void usergroup_request_free(usergroup_request_t *usergroup_request) {
         return ;
     }
     listEntry_t *listEntry;
+    if (usergroup_request->obj_email) {
+        email_request_free(usergroup_request->obj_email);
+        usergroup_request->obj_email = NULL;
+    }
     if (usergroup_request->obj_usergroup_name) {
         multilingual_usergroup_name_free(usergroup_request->obj_usergroup_name);
         usergroup_request->obj_usergroup_name = NULL;
@@ -39,6 +45,19 @@ cJSON *usergroup_request_convertToJSON(usergroup_request_t *usergroup_request) {
     if(usergroup_request->pki_usergroup_id) {
     if(cJSON_AddNumberToObject(item, "pkiUsergroupID", usergroup_request->pki_usergroup_id) == NULL) {
     goto fail; //Numeric
+    }
+    }
+
+
+    // usergroup_request->obj_email
+    if(usergroup_request->obj_email) {
+    cJSON *obj_email_local_JSON = email_request_convertToJSON(usergroup_request->obj_email);
+    if(obj_email_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objEmail", obj_email_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
     }
     }
 
@@ -68,6 +87,9 @@ usergroup_request_t *usergroup_request_parseFromJSON(cJSON *usergroup_requestJSO
 
     usergroup_request_t *usergroup_request_local_var = NULL;
 
+    // define the local variable for usergroup_request->obj_email
+    email_request_t *obj_email_local_nonprim = NULL;
+
     // define the local variable for usergroup_request->obj_usergroup_name
     multilingual_usergroup_name_t *obj_usergroup_name_local_nonprim = NULL;
 
@@ -78,6 +100,12 @@ usergroup_request_t *usergroup_request_parseFromJSON(cJSON *usergroup_requestJSO
     {
     goto end; //Numeric
     }
+    }
+
+    // usergroup_request->obj_email
+    cJSON *obj_email = cJSON_GetObjectItemCaseSensitive(usergroup_requestJSON, "objEmail");
+    if (obj_email) { 
+    obj_email_local_nonprim = email_request_parseFromJSON(obj_email); //nonprimitive
     }
 
     // usergroup_request->obj_usergroup_name
@@ -92,11 +120,16 @@ usergroup_request_t *usergroup_request_parseFromJSON(cJSON *usergroup_requestJSO
 
     usergroup_request_local_var = usergroup_request_create (
         pki_usergroup_id ? pki_usergroup_id->valuedouble : 0,
+        obj_email ? obj_email_local_nonprim : NULL,
         obj_usergroup_name_local_nonprim
         );
 
     return usergroup_request_local_var;
 end:
+    if (obj_email_local_nonprim) {
+        email_request_free(obj_email_local_nonprim);
+        obj_email_local_nonprim = NULL;
+    }
     if (obj_usergroup_name_local_nonprim) {
         multilingual_usergroup_name_free(obj_usergroup_name_local_nonprim);
         obj_usergroup_name_local_nonprim = NULL;

@@ -22,6 +22,7 @@ address_request_compound_t* instantiate_address_request_compound(int include_opt
   address_request_compound_t* address_request_compound = NULL;
   if (include_optional) {
     address_request_compound = address_request_compound_create(
+      142,
       1,
       "2540",
       "Daniel-Johnson Blvd.",
@@ -35,6 +36,7 @@ address_request_compound_t* instantiate_address_request_compound(int include_opt
     );
   } else {
     address_request_compound = address_request_compound_create(
+      142,
       1,
       "2540",
       "Daniel-Johnson Blvd.",

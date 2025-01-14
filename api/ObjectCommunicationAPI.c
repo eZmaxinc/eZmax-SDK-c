@@ -12,6 +12,77 @@
 }while(0)
 
 
+// Retrieve the communication body.
+//
+// This endpoint returns the communication body.
+//
+void
+ObjectCommunicationAPI_communicationGetCommunicationBodyV1(apiClient_t *apiClient, int *pkiCommunicationID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/communication/{pkiCommunicationID}/getCommunicationBody")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/communication/{pkiCommunicationID}/getCommunicationBody");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiCommunicationID =  + strlen("{ pkiCommunicationID }");
+    if(pkiCommunicationID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiCommunicationID = malloc(sizeOfPathParams_pkiCommunicationID);
+    snprintf(localVarToReplace_pkiCommunicationID, sizeOfPathParams_pkiCommunicationID, "{%s}", "pkiCommunicationID");
+
+    char localVarBuff_pkiCommunicationID[256];
+    intToStr(localVarBuff_pkiCommunicationID, *pkiCommunicationID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiCommunicationID, localVarBuff_pkiCommunicationID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 302) {
+    //    printf("%s\n","The user has been redirected");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //No return type
+end:
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiCommunicationID);
+
+}
+
 // Send a new Communication
 //
 // The endpoint allows to send one or many elements at once.

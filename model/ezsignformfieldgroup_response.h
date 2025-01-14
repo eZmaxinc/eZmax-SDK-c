@@ -69,6 +69,7 @@ typedef struct ezsignformfieldgroup_response_t {
     int b_ezsignformfieldgroup_encrypted; //boolean
     enum_textvalidation_t *e_ezsignformfieldgroup_textvalidation; // custom
     char *s_ezsignformfieldgroup_regexp; // string
+    char *s_ezsignformfieldgroup_textvalidationcustommessage; // string
     char *t_ezsignformfieldgroup_tooltip; // string
     field_e_ezsignformfieldgroup_tooltipposition_t *e_ezsignformfieldgroup_tooltipposition; // custom
 
@@ -89,6 +90,7 @@ ezsignformfieldgroup_response_t *ezsignformfieldgroup_response_create(
     int b_ezsignformfieldgroup_encrypted,
     enum_textvalidation_t *e_ezsignformfieldgroup_textvalidation,
     char *s_ezsignformfieldgroup_regexp,
+    char *s_ezsignformfieldgroup_textvalidationcustommessage,
     char *t_ezsignformfieldgroup_tooltip,
     field_e_ezsignformfieldgroup_tooltipposition_t *e_ezsignformfieldgroup_tooltipposition
 );

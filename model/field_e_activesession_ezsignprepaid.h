@@ -1,0 +1,32 @@
+/*
+ * field_e_activesession_ezsignprepaid.h
+ *
+ * eZsign subscription level
+ */
+
+#ifndef _field_e_activesession_ezsignprepaid_H_
+#define _field_e_activesession_ezsignprepaid_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_activesession_ezsignprepaid_t field_e_activesession_ezsignprepaid_t;
+
+
+// Enum  for field_e_activesession_ezsignprepaid
+
+typedef enum { ezmax_api_definition__full_field_e_activesession_ezsignprepaid__NULL = 0, ezmax_api_definition__full_field_e_activesession_ezsignprepaid__No, ezmax_api_definition__full_field_e_activesession_ezsignprepaid__Basic, ezmax_api_definition__full_field_e_activesession_ezsignprepaid__Standard, ezmax_api_definition__full_field_e_activesession_ezsignprepaid__Pro } ezmax_api_definition__full_field_e_activesession_ezsignprepaid__e;
+
+char* field_e_activesession_ezsignprepaid_field_e_activesession_ezsignprepaid_ToString(ezmax_api_definition__full_field_e_activesession_ezsignprepaid__e field_e_activesession_ezsignprepaid);
+
+ezmax_api_definition__full_field_e_activesession_ezsignprepaid__e field_e_activesession_ezsignprepaid_field_e_activesession_ezsignprepaid_FromString(char* field_e_activesession_ezsignprepaid);
+
+//cJSON *field_e_activesession_ezsignprepaid_field_e_activesession_ezsignprepaid_convertToJSON(ezmax_api_definition__full_field_e_activesession_ezsignprepaid__e field_e_activesession_ezsignprepaid);
+
+//ezmax_api_definition__full_field_e_activesession_ezsignprepaid__e field_e_activesession_ezsignprepaid_field_e_activesession_ezsignprepaid_parseFromJSON(cJSON *field_e_activesession_ezsignprepaidJSON);
+
+#endif /* _field_e_activesession_ezsignprepaid_H_ */
+

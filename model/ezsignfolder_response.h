@@ -51,6 +51,7 @@ typedef struct ezsignfolder_response_t {
     int pki_ezsignfolder_id; //numeric
     int fki_ezsignfoldertype_id; //numeric
     struct custom_ezsignfoldertype_response_t *obj_ezsignfoldertype; //model
+    int fki_timezone_id; //numeric
     field_e_ezsignfolder_completion_t *e_ezsignfolder_completion; // custom
     char *s_ezsignfoldertype_name_x; // string
     int fki_billingentityinternal_id; //numeric
@@ -61,6 +62,8 @@ typedef struct ezsignfolder_response_t {
     char *t_ezsignfolder_note; // string
     int b_ezsignfolder_isdisposable; //boolean
     field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency; // custom
+    int i_ezsignfolder_sendreminderfirstdays; //numeric
+    int i_ezsignfolder_sendreminderotherdays; //numeric
     char *dt_ezsignfolder_delayedsenddate; // string
     char *dt_ezsignfolder_duedate; // string
     char *dt_ezsignfolder_sentdate; // string
@@ -78,6 +81,7 @@ ezsignfolder_response_t *ezsignfolder_response_create(
     int pki_ezsignfolder_id,
     int fki_ezsignfoldertype_id,
     custom_ezsignfoldertype_response_t *obj_ezsignfoldertype,
+    int fki_timezone_id,
     field_e_ezsignfolder_completion_t *e_ezsignfolder_completion,
     char *s_ezsignfoldertype_name_x,
     int fki_billingentityinternal_id,
@@ -88,6 +92,8 @@ ezsignfolder_response_t *ezsignfolder_response_create(
     char *t_ezsignfolder_note,
     int b_ezsignfolder_isdisposable,
     field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency,
+    int i_ezsignfolder_sendreminderfirstdays,
+    int i_ezsignfolder_sendreminderotherdays,
     char *dt_ezsignfolder_delayedsenddate,
     char *dt_ezsignfolder_duedate,
     char *dt_ezsignfolder_sentdate,

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 **pki_ezsignfolder_id** | **int** | The unique ID of the Ezsignfolder | 
 **fki_ezsignfoldertype_id** | **int** | The unique ID of the Ezsignfoldertype. | [optional] 
 **obj_ezsignfoldertype** | [**custom_ezsignfoldertype_response_t**](custom_ezsignfoldertype_response.md) \* |  | [optional] 
+**fki_timezone_id** | **int** | The unique ID of the Timezone | [optional] 
 **e_ezsignfolder_completion** | **field_e_ezsignfolder_completion_t \*** |  | 
 **s_ezsignfoldertype_name_x** | **char \*** |  | [optional] 
 **fki_billingentityinternal_id** | **int** | The unique ID of the Billingentityinternal. | [optional] 
@@ -16,6 +17,8 @@ Name | Type | Description | Notes
 **t_ezsignfolder_note** | **char \*** | Note about the Ezsignfolder | [optional] 
 **b_ezsignfolder_isdisposable** | **int** | If the Ezsigndocument can be disposed | [optional] 
 **e_ezsignfolder_sendreminderfrequency** | **field_e_ezsignfolder_sendreminderfrequency_t \*** |  | [optional] 
+**i_ezsignfolder_sendreminderfirstdays** | **int** | The number of days before the the first reminder sending | [optional] 
+**i_ezsignfolder_sendreminderotherdays** | **int** | The number of days after the first reminder sending | [optional] 
 **dt_ezsignfolder_delayedsenddate** | **char \*** | The date and time at which the Ezsignfolder will be sent in the future. | [optional] 
 **dt_ezsignfolder_duedate** | **char \*** | The maximum date and time at which the Ezsignfolder can be signed. | [optional] 
 **dt_ezsignfolder_sentdate** | **char \*** | The date and time at which the Ezsignfolder was sent the last time. | [optional] 

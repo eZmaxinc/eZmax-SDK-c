@@ -1,0 +1,40 @@
+/*
+ * billingentityexternal_generate_federation_token_v1_response_m_payload.h
+ *
+ * Payload for POST /1/object/billingentityexternal/{pkiBillingentityexternalID}/generateFederationToken
+ */
+
+#ifndef _billingentityexternal_generate_federation_token_v1_response_m_payload_H_
+#define _billingentityexternal_generate_federation_token_v1_response_m_payload_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct billingentityexternal_generate_federation_token_v1_response_m_payload_t billingentityexternal_generate_federation_token_v1_response_m_payload_t;
+
+#include "custom_apikeyfederation.h"
+
+
+
+typedef struct billingentityexternal_generate_federation_token_v1_response_m_payload_t {
+    struct custom_apikeyfederation_t *obj_apikeyfederation; //model
+    char *s_ezmaxcustomercode_url; // string
+
+} billingentityexternal_generate_federation_token_v1_response_m_payload_t;
+
+billingentityexternal_generate_federation_token_v1_response_m_payload_t *billingentityexternal_generate_federation_token_v1_response_m_payload_create(
+    custom_apikeyfederation_t *obj_apikeyfederation,
+    char *s_ezmaxcustomercode_url
+);
+
+void billingentityexternal_generate_federation_token_v1_response_m_payload_free(billingentityexternal_generate_federation_token_v1_response_m_payload_t *billingentityexternal_generate_federation_token_v1_response_m_payload);
+
+billingentityexternal_generate_federation_token_v1_response_m_payload_t *billingentityexternal_generate_federation_token_v1_response_m_payload_parseFromJSON(cJSON *billingentityexternal_generate_federation_token_v1_response_m_payloadJSON);
+
+cJSON *billingentityexternal_generate_federation_token_v1_response_m_payload_convertToJSON(billingentityexternal_generate_federation_token_v1_response_m_payload_t *billingentityexternal_generate_federation_token_v1_response_m_payload);
+
+#endif /* _billingentityexternal_generate_federation_token_v1_response_m_payload_H_ */
+

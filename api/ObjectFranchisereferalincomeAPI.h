@@ -5,6 +5,7 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
+#include "../model/common_response_error_wrong_franchiseoffice.h"
 #include "../model/franchisereferalincome_create_object_v2_request.h"
 #include "../model/franchisereferalincome_create_object_v2_response.h"
 

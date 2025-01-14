@@ -6,13 +6,17 @@
 
 
 ezsigntemplate_copy_v1_request_t *ezsigntemplate_copy_v1_request_create(
-    list_t *a_fki_ezsignfoldertype_id
+    list_t *a_fki_ezsignfoldertype_id,
+    int b_copy_company,
+    int b_copy_user
     ) {
     ezsigntemplate_copy_v1_request_t *ezsigntemplate_copy_v1_request_local_var = malloc(sizeof(ezsigntemplate_copy_v1_request_t));
     if (!ezsigntemplate_copy_v1_request_local_var) {
         return NULL;
     }
     ezsigntemplate_copy_v1_request_local_var->a_fki_ezsignfoldertype_id = a_fki_ezsignfoldertype_id;
+    ezsigntemplate_copy_v1_request_local_var->b_copy_company = b_copy_company;
+    ezsigntemplate_copy_v1_request_local_var->b_copy_user = b_copy_user;
 
     return ezsigntemplate_copy_v1_request_local_var;
 }
@@ -37,9 +41,7 @@ cJSON *ezsigntemplate_copy_v1_request_convertToJSON(ezsigntemplate_copy_v1_reque
     cJSON *item = cJSON_CreateObject();
 
     // ezsigntemplate_copy_v1_request->a_fki_ezsignfoldertype_id
-    if (!ezsigntemplate_copy_v1_request->a_fki_ezsignfoldertype_id) {
-        goto fail;
-    }
+    if(ezsigntemplate_copy_v1_request->a_fki_ezsignfoldertype_id) {
     cJSON *a_fki_ezsignfoldertype_id = cJSON_AddArrayToObject(item, "a_fkiEzsignfoldertypeID");
     if(a_fki_ezsignfoldertype_id == NULL) {
         goto fail; //primitive container
@@ -50,6 +52,23 @@ cJSON *ezsigntemplate_copy_v1_request_convertToJSON(ezsigntemplate_copy_v1_reque
     if(cJSON_AddNumberToObject(a_fki_ezsignfoldertype_id, "", *(double *)a_fki_ezsignfoldertype_idListEntry->data) == NULL)
     {
         goto fail;
+    }
+    }
+    }
+
+
+    // ezsigntemplate_copy_v1_request->b_copy_company
+    if(ezsigntemplate_copy_v1_request->b_copy_company) {
+    if(cJSON_AddBoolToObject(item, "bCopyCompany", ezsigntemplate_copy_v1_request->b_copy_company) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
+    // ezsigntemplate_copy_v1_request->b_copy_user
+    if(ezsigntemplate_copy_v1_request->b_copy_user) {
+    if(cJSON_AddBoolToObject(item, "bCopyUser", ezsigntemplate_copy_v1_request->b_copy_user) == NULL) {
+    goto fail; //Bool
     }
     }
 
@@ -70,11 +89,7 @@ ezsigntemplate_copy_v1_request_t *ezsigntemplate_copy_v1_request_parseFromJSON(c
 
     // ezsigntemplate_copy_v1_request->a_fki_ezsignfoldertype_id
     cJSON *a_fki_ezsignfoldertype_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplate_copy_v1_requestJSON, "a_fkiEzsignfoldertypeID");
-    if (!a_fki_ezsignfoldertype_id) {
-        goto end;
-    }
-
-    
+    if (a_fki_ezsignfoldertype_id) { 
     cJSON *a_fki_ezsignfoldertype_id_local = NULL;
     if(!cJSON_IsArray(a_fki_ezsignfoldertype_id)) {
         goto end;//primitive container
@@ -95,10 +110,31 @@ ezsigntemplate_copy_v1_request_t *ezsigntemplate_copy_v1_request_parseFromJSON(c
         *a_fki_ezsignfoldertype_id_local_value = a_fki_ezsignfoldertype_id_local->valuedouble;
         list_addElement(a_fki_ezsignfoldertype_idList , a_fki_ezsignfoldertype_id_local_value);
     }
+    }
+
+    // ezsigntemplate_copy_v1_request->b_copy_company
+    cJSON *b_copy_company = cJSON_GetObjectItemCaseSensitive(ezsigntemplate_copy_v1_requestJSON, "bCopyCompany");
+    if (b_copy_company) { 
+    if(!cJSON_IsBool(b_copy_company))
+    {
+    goto end; //Bool
+    }
+    }
+
+    // ezsigntemplate_copy_v1_request->b_copy_user
+    cJSON *b_copy_user = cJSON_GetObjectItemCaseSensitive(ezsigntemplate_copy_v1_requestJSON, "bCopyUser");
+    if (b_copy_user) { 
+    if(!cJSON_IsBool(b_copy_user))
+    {
+    goto end; //Bool
+    }
+    }
 
 
     ezsigntemplate_copy_v1_request_local_var = ezsigntemplate_copy_v1_request_create (
-        a_fki_ezsignfoldertype_idList
+        a_fki_ezsignfoldertype_id ? a_fki_ezsignfoldertype_idList : NULL,
+        b_copy_company ? b_copy_company->valueint : 0,
+        b_copy_user ? b_copy_user->valueint : 0
         );
 
     return ezsigntemplate_copy_v1_request_local_var;

@@ -1,0 +1,49 @@
+/*
+ * ezdoctemplatedocument_request_patch.h
+ *
+ * An Ezdoctemplatedocument Object
+ */
+
+#ifndef _ezdoctemplatedocument_request_patch_H_
+#define _ezdoctemplatedocument_request_patch_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct ezdoctemplatedocument_request_patch_t ezdoctemplatedocument_request_patch_t;
+
+
+// Enum EEZDOCTEMPLATEDOCUMENTFORMAT for ezdoctemplatedocument_request_patch
+
+typedef enum  { ezmax_api_definition__full_ezdoctemplatedocument_request_patch_EEZDOCTEMPLATEDOCUMENTFORMAT_NULL = 0, ezmax_api_definition__full_ezdoctemplatedocument_request_patch_EEZDOCTEMPLATEDOCUMENTFORMAT_Docx, ezmax_api_definition__full_ezdoctemplatedocument_request_patch_EEZDOCTEMPLATEDOCUMENTFORMAT_Html, ezmax_api_definition__full_ezdoctemplatedocument_request_patch_EEZDOCTEMPLATEDOCUMENTFORMAT_Tx } ezmax_api_definition__full_ezdoctemplatedocument_request_patch_EEZDOCTEMPLATEDOCUMENTFORMAT_e;
+
+char* ezdoctemplatedocument_request_patch_e_ezdoctemplatedocument_format_ToString(ezmax_api_definition__full_ezdoctemplatedocument_request_patch_EEZDOCTEMPLATEDOCUMENTFORMAT_e e_ezdoctemplatedocument_format);
+
+ezmax_api_definition__full_ezdoctemplatedocument_request_patch_EEZDOCTEMPLATEDOCUMENTFORMAT_e ezdoctemplatedocument_request_patch_e_ezdoctemplatedocument_format_FromString(char* e_ezdoctemplatedocument_format);
+
+
+
+typedef struct ezdoctemplatedocument_request_patch_t {
+    ezmax_api_definition__full_ezdoctemplatedocument_request_patch_EEZDOCTEMPLATEDOCUMENTFORMAT_e e_ezdoctemplatedocument_format; //enum
+    char *s_ezdoctemplatedocument_fields; // string
+    char *s_ezdoctemplatedocument_base64; //ByteArray
+
+} ezdoctemplatedocument_request_patch_t;
+
+ezdoctemplatedocument_request_patch_t *ezdoctemplatedocument_request_patch_create(
+    ezmax_api_definition__full_ezdoctemplatedocument_request_patch_EEZDOCTEMPLATEDOCUMENTFORMAT_e e_ezdoctemplatedocument_format,
+    char *s_ezdoctemplatedocument_fields,
+    char *s_ezdoctemplatedocument_base64
+);
+
+void ezdoctemplatedocument_request_patch_free(ezdoctemplatedocument_request_patch_t *ezdoctemplatedocument_request_patch);
+
+ezdoctemplatedocument_request_patch_t *ezdoctemplatedocument_request_patch_parseFromJSON(cJSON *ezdoctemplatedocument_request_patchJSON);
+
+cJSON *ezdoctemplatedocument_request_patch_convertToJSON(ezdoctemplatedocument_request_patch_t *ezdoctemplatedocument_request_patch);
+
+#endif /* _ezdoctemplatedocument_request_patch_H_ */
+

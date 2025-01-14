@@ -92,6 +92,7 @@ ezmax_api_definition__full_systemconfiguration_request__e systemconfiguration_re
 
 systemconfiguration_request_t *systemconfiguration_request_create(
     int pki_systemconfiguration_id,
+    int fki_branding_id,
     field_e_systemconfiguration_newexternaluseraction_t *e_systemconfiguration_newexternaluseraction,
     field_e_systemconfiguration_language1_t *e_systemconfiguration_language1,
     field_e_systemconfiguration_language2_t *e_systemconfiguration_language2,
@@ -108,6 +109,7 @@ systemconfiguration_request_t *systemconfiguration_request_create(
         return NULL;
     }
     systemconfiguration_request_local_var->pki_systemconfiguration_id = pki_systemconfiguration_id;
+    systemconfiguration_request_local_var->fki_branding_id = fki_branding_id;
     systemconfiguration_request_local_var->e_systemconfiguration_newexternaluseraction = e_systemconfiguration_newexternaluseraction;
     systemconfiguration_request_local_var->e_systemconfiguration_language1 = e_systemconfiguration_language1;
     systemconfiguration_request_local_var->e_systemconfiguration_language2 = e_systemconfiguration_language2;
@@ -165,6 +167,14 @@ cJSON *systemconfiguration_request_convertToJSON(systemconfiguration_request_t *
     // systemconfiguration_request->pki_systemconfiguration_id
     if(systemconfiguration_request->pki_systemconfiguration_id) {
     if(cJSON_AddNumberToObject(item, "pkiSystemconfigurationID", systemconfiguration_request->pki_systemconfiguration_id) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // systemconfiguration_request->fki_branding_id
+    if(systemconfiguration_request->fki_branding_id) {
+    if(cJSON_AddNumberToObject(item, "fkiBrandingID", systemconfiguration_request->fki_branding_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -315,6 +325,15 @@ systemconfiguration_request_t *systemconfiguration_request_parseFromJSON(cJSON *
     }
     }
 
+    // systemconfiguration_request->fki_branding_id
+    cJSON *fki_branding_id = cJSON_GetObjectItemCaseSensitive(systemconfiguration_requestJSON, "fkiBrandingID");
+    if (fki_branding_id) { 
+    if(!cJSON_IsNumber(fki_branding_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
     // systemconfiguration_request->e_systemconfiguration_newexternaluseraction
     cJSON *e_systemconfiguration_newexternaluseraction = cJSON_GetObjectItemCaseSensitive(systemconfiguration_requestJSON, "eSystemconfigurationNewexternaluseraction");
     if (!e_systemconfiguration_newexternaluseraction) {
@@ -408,6 +427,7 @@ systemconfiguration_request_t *systemconfiguration_request_parseFromJSON(cJSON *
 
     systemconfiguration_request_local_var = systemconfiguration_request_create (
         pki_systemconfiguration_id ? pki_systemconfiguration_id->valuedouble : 0,
+        fki_branding_id ? fki_branding_id->valuedouble : 0,
         e_systemconfiguration_newexternaluseraction_local_nonprim,
         e_systemconfiguration_language1_local_nonprim,
         e_systemconfiguration_language2_local_nonprim,

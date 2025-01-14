@@ -21,14 +21,12 @@ typedef struct creditcardclient_autocomplete_element_response_t creditcardclient
 typedef struct creditcardclient_autocomplete_element_response_t {
     int pki_creditcardclient_id; //numeric
     char *s_creditcardclient_description; // string
-    int b_creditcardclient_isactive; //boolean
 
 } creditcardclient_autocomplete_element_response_t;
 
 creditcardclient_autocomplete_element_response_t *creditcardclient_autocomplete_element_response_create(
     int pki_creditcardclient_id,
-    char *s_creditcardclient_description,
-    int b_creditcardclient_isactive
+    char *s_creditcardclient_description
 );
 
 void creditcardclient_autocomplete_element_response_free(creditcardclient_autocomplete_element_response_t *creditcardclient_autocomplete_element_response);

@@ -30,7 +30,6 @@ creditcardclient_request_compound_t* instantiate_creditcardclient_request_compou
       true,
       true,
       true,
-      true,
        // false, not to have infinite recursion
       instantiate_creditcarddetail_request(0),
       "a"
@@ -41,7 +40,6 @@ creditcardclient_request_compound_t* instantiate_creditcardclient_request_compou
       "6B29FC40-CA47-1067-B31D-00DD010662DA",
       true,
       "Visa",
-      true,
       true,
       true,
       true,

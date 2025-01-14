@@ -23,12 +23,14 @@ common_response_error_too_many_requests_t* instantiate_common_response_error_too
   if (include_optional) {
     common_response_error_too_many_requests = common_response_error_too_many_requests_create(
       "Invalid Signature Headers",
-      ezmax_api_definition__full_common_response_error_too_many_requests__"BADREQUEST"
+      ezmax_api_definition__full_common_response_error_too_many_requests__"BADREQUEST",
+      list_createList()
     );
   } else {
     common_response_error_too_many_requests = common_response_error_too_many_requests_create(
       "Invalid Signature Headers",
-      ezmax_api_definition__full_common_response_error_too_many_requests__"BADREQUEST"
+      ezmax_api_definition__full_common_response_error_too_many_requests__"BADREQUEST",
+      list_createList()
     );
   }
 

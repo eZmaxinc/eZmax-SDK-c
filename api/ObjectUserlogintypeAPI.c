@@ -14,13 +14,13 @@
 // Functions for enum SSELECTOR for ObjectUserlogintypeAPI_userlogintypeGetAutocompleteV2
 
 static char* userlogintypeGetAutocompleteV2_SSELECTOR_ToString(ezmax_api_definition__full_userlogintypeGetAutocompleteV2_sSelector_e SSELECTOR){
-    char *SSELECTORArray[] =  { "NULL", "All", "Ezsignfoldertype" };
+    char *SSELECTORArray[] =  { "NULL", "All", "Ezsignfoldertype", "Ezsigntemplatepublic" };
     return SSELECTORArray[SSELECTOR];
 }
 
 static ezmax_api_definition__full_userlogintypeGetAutocompleteV2_sSelector_e userlogintypeGetAutocompleteV2_SSELECTOR_FromString(char* SSELECTOR){
     int stringToReturn = 0;
-    char *SSELECTORArray[] =  { "NULL", "All", "Ezsignfoldertype" };
+    char *SSELECTORArray[] =  { "NULL", "All", "Ezsignfoldertype", "Ezsigntemplatepublic" };
     size_t sizeofArray = sizeof(SSELECTORArray) / sizeof(SSELECTORArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(SSELECTOR, SSELECTORArray[stringToReturn]) == 0) {

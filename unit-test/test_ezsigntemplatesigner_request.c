@@ -24,12 +24,22 @@ ezsigntemplatesigner_request_t* instantiate_ezsigntemplatesigner_request(int inc
     ezsigntemplatesigner_request = ezsigntemplatesigner_request_create(
       9,
       36,
+      70,
+      2,
+      95,
+      1,
+      ezmax_api_definition__full_ezsigntemplatesigner_request__"Manual",
       "Customer"
     );
   } else {
     ezsigntemplatesigner_request = ezsigntemplatesigner_request_create(
       9,
       36,
+      70,
+      2,
+      95,
+      1,
+      ezmax_api_definition__full_ezsigntemplatesigner_request__"Manual",
       "Customer"
     );
   }

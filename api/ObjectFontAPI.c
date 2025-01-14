@@ -14,13 +14,13 @@
 // Functions for enum SSELECTOR for ObjectFontAPI_fontGetAutocompleteV2
 
 static char* fontGetAutocompleteV2_SSELECTOR_ToString(ezmax_api_definition__full_fontGetAutocompleteV2_sSelector_e SSELECTOR){
-    char *SSELECTORArray[] =  { "NULL", "All" };
+    char *SSELECTORArray[] =  { "NULL", "All", "Ezsignannotation", "Ezsignformfield", "Ezsignsignature" };
     return SSELECTORArray[SSELECTOR];
 }
 
 static ezmax_api_definition__full_fontGetAutocompleteV2_sSelector_e fontGetAutocompleteV2_SSELECTOR_FromString(char* SSELECTOR){
     int stringToReturn = 0;
-    char *SSELECTORArray[] =  { "NULL", "All" };
+    char *SSELECTORArray[] =  { "NULL", "All", "Ezsignannotation", "Ezsignformfield", "Ezsignsignature" };
     size_t sizeofArray = sizeof(SSELECTORArray) / sizeof(SSELECTORArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(SSELECTOR, SSELECTORArray[stringToReturn]) == 0) {

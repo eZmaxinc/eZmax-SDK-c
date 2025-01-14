@@ -24,6 +24,7 @@ ezsigntemplatepackage_request_t* instantiate_ezsigntemplatepackage_request(int i
     ezsigntemplatepackage_request = ezsigntemplatepackage_request_create(
       99,
       5,
+      95,
       2,
       "Package for new clients",
       1,
@@ -33,6 +34,7 @@ ezsigntemplatepackage_request_t* instantiate_ezsigntemplatepackage_request(int i
     ezsigntemplatepackage_request = ezsigntemplatepackage_request_create(
       99,
       5,
+      95,
       2,
       "Package for new clients",
       1,

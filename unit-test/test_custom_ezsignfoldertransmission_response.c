@@ -26,6 +26,7 @@ custom_ezsignfoldertransmission_response_t* instantiate_custom_ezsignfoldertrans
       "Test eZsign Folder",
       ezmax_api_definition__full_custom_ezsignfoldertransmission_response__"Completed",
       4,
+      4,
       3,
       list_createList()
     );
@@ -34,6 +35,7 @@ custom_ezsignfoldertransmission_response_t* instantiate_custom_ezsignfoldertrans
       33,
       "Test eZsign Folder",
       ezmax_api_definition__full_custom_ezsignfoldertransmission_response__"Completed",
+      4,
       4,
       3,
       list_createList()

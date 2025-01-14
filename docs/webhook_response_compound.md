@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pki_webhook_id** | **int** | The unique ID of the Webhook | 
+**fki_authenticationexternal_id** | **int** | The unique ID of the Authenticationexternal | [optional] 
 **s_webhook_description** | **char \*** | The description of the Webhook | 
 **fki_ezsignfoldertype_id** | **int** | The unique ID of the Ezsignfoldertype. | [optional] 
 **s_ezsignfoldertype_name_x** | **char \*** | The name of the Ezsignfoldertype in the language of the requester | [optional] 
@@ -17,6 +18,7 @@ Name | Type | Description | Notes
 **b_webhook_isactive** | **int** | Whether the Webhook is active or not | 
 **b_webhook_issigned** | **int** | Whether the requests will be signed or not | 
 **b_webhook_skipsslvalidation** | **int** | Wheter the server&#39;s SSL certificate should be validated or not. Not recommended to skip for production use | 
+**s_authenticationexternal_description** | **char \*** | The description of the Authenticationexternal | [optional] 
 **obj_audit** | [**common_audit_t**](common_audit.md) \* |  | 
 **s_webhook_event** | **char \*** | The concatenated string to describe the Webhook event | [optional] 
 **a_obj_webhookheader** | [**list_t**](webhookheader_response_compound.md) \* |  | [optional] 

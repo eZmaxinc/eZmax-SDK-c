@@ -24,6 +24,7 @@ ezsigntemplatepackage_request_compound_t* instantiate_ezsigntemplatepackage_requ
     ezsigntemplatepackage_request_compound = ezsigntemplatepackage_request_compound_create(
       99,
       5,
+      95,
       2,
       "Package for new clients",
       1,
@@ -33,6 +34,7 @@ ezsigntemplatepackage_request_compound_t* instantiate_ezsigntemplatepackage_requ
     ezsigntemplatepackage_request_compound = ezsigntemplatepackage_request_compound_create(
       99,
       5,
+      95,
       2,
       "Package for new clients",
       1,

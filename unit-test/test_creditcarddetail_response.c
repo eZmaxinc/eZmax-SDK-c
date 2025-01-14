@@ -24,7 +24,7 @@ creditcarddetail_response_t* instantiate_creditcarddetail_response(int include_o
     creditcarddetail_response = creditcarddetail_response_create(
       53,
       2,
-      "XXXX XXXX XXXX 4242",
+      4242,
       10,
       2024,
       "2500",
@@ -35,7 +35,7 @@ creditcarddetail_response_t* instantiate_creditcarddetail_response(int include_o
     creditcarddetail_response = creditcarddetail_response_create(
       53,
       2,
-      "XXXX XXXX XXXX 4242",
+      4242,
       10,
       2024,
       "2500",

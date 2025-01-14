@@ -28,15 +28,18 @@ ezsigntemplate_response_compound_t* instantiate_ezsigntemplate_response_compound
       133,
       5,
       2,
+      95,
       "English",
       "Standard Contract",
+      "Test eZsign Folder",
+      "0",
       "Contract",
       1,
       "Default",
        // false, not to have infinite recursion
       instantiate_common_audit(0),
       1,
-      ezmax_api_definition__full_ezsigntemplate_response_compound__"Usergroup",
+      ezmax_api_definition__full_ezsigntemplate_response_compound__"Ezsignfoldertype",
        // false, not to have infinite recursion
       instantiate_ezsigntemplatedocument_response(0),
       list_createList()
@@ -47,14 +50,17 @@ ezsigntemplate_response_compound_t* instantiate_ezsigntemplate_response_compound
       133,
       5,
       2,
+      95,
       "English",
       "Standard Contract",
+      "Test eZsign Folder",
+      "0",
       "Contract",
       1,
       "Default",
       NULL,
       1,
-      ezmax_api_definition__full_ezsigntemplate_response_compound__"Usergroup",
+      ezmax_api_definition__full_ezsigntemplate_response_compound__"Ezsignfoldertype",
       NULL,
       list_createList()
     );

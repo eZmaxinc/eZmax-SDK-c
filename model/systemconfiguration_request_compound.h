@@ -65,6 +65,7 @@ ezmax_api_definition__full_systemconfiguration_request_compound__e systemconfigu
 
 typedef struct systemconfiguration_request_compound_t {
     int pki_systemconfiguration_id; //numeric
+    int fki_branding_id; //numeric
     field_e_systemconfiguration_newexternaluseraction_t *e_systemconfiguration_newexternaluseraction; // custom
     field_e_systemconfiguration_language1_t *e_systemconfiguration_language1; // custom
     field_e_systemconfiguration_language2_t *e_systemconfiguration_language2; // custom
@@ -80,6 +81,7 @@ typedef struct systemconfiguration_request_compound_t {
 
 systemconfiguration_request_compound_t *systemconfiguration_request_compound_create(
     int pki_systemconfiguration_id,
+    int fki_branding_id,
     field_e_systemconfiguration_newexternaluseraction_t *e_systemconfiguration_newexternaluseraction,
     field_e_systemconfiguration_language1_t *e_systemconfiguration_language1,
     field_e_systemconfiguration_language2_t *e_systemconfiguration_language2,

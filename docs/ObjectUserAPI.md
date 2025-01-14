@@ -6,10 +6,12 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectUserAPI_userCreateObjectV1**](ObjectUserAPI.md#ObjectUserAPI_userCreateObjectV1) | **POST** /1/object/user | Create a new User
 [**ObjectUserAPI_userCreateObjectV2**](ObjectUserAPI.md#ObjectUserAPI_userCreateObjectV2) | **POST** /2/object/user | Create a new User
+[**ObjectUserAPI_userEditColleaguesV2**](ObjectUserAPI.md#ObjectUserAPI_userEditColleaguesV2) | **PUT** /2/object/user/{pkiUserID}/editColleagues | Edit multiple Colleagues
 [**ObjectUserAPI_userEditObjectV1**](ObjectUserAPI.md#ObjectUserAPI_userEditObjectV1) | **PUT** /1/object/user/{pkiUserID} | Edit an existing User
 [**ObjectUserAPI_userEditPermissionsV1**](ObjectUserAPI.md#ObjectUserAPI_userEditPermissionsV1) | **PUT** /1/object/user/{pkiUserID}/editPermissions | Edit multiple Permissions
 [**ObjectUserAPI_userGetApikeysV1**](ObjectUserAPI.md#ObjectUserAPI_userGetApikeysV1) | **GET** /1/object/user/{pkiUserID}/getApikeys | Retrieve an existing User&#39;s Apikeys
 [**ObjectUserAPI_userGetAutocompleteV2**](ObjectUserAPI.md#ObjectUserAPI_userGetAutocompleteV2) | **GET** /2/object/user/getAutocomplete/{sSelector} | Retrieve Users and IDs
+[**ObjectUserAPI_userGetColleaguesV2**](ObjectUserAPI.md#ObjectUserAPI_userGetColleaguesV2) | **GET** /2/object/user/{pkiUserID}/getColleagues | Retrieve an existing User&#39;s Colleagues
 [**ObjectUserAPI_userGetEffectivePermissionsV1**](ObjectUserAPI.md#ObjectUserAPI_userGetEffectivePermissionsV1) | **GET** /1/object/user/{pkiUserID}/getEffectivePermissions | Retrieve an existing User&#39;s Effective Permissions
 [**ObjectUserAPI_userGetListV1**](ObjectUserAPI.md#ObjectUserAPI_userGetListV1) | **GET** /1/object/user/getList | Retrieve User list
 [**ObjectUserAPI_userGetObjectV2**](ObjectUserAPI.md#ObjectUserAPI_userGetObjectV2) | **GET** /2/object/user/{pkiUserID} | Retrieve an existing User
@@ -69,6 +71,38 @@ Name | Type | Description  | Notes
 ### Return type
 
 [user_create_object_v2_response_t](user_create_object_v2_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectUserAPI_userEditColleaguesV2**
+```c
+// Edit multiple Colleagues
+//
+// Using this endpoint, you can edit multiple Colleagues at the same time.
+//
+user_edit_colleagues_v2_response_t* ObjectUserAPI_userEditColleaguesV2(apiClient_t *apiClient, int *pkiUserID, user_edit_colleagues_v2_request_t *user_edit_colleagues_v2_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiUserID** | **int \*** |  | 
+**user_edit_colleagues_v2_request** | **[user_edit_colleagues_v2_request_t](user_edit_colleagues_v2_request.md) \*** |  | 
+
+### Return type
+
+[user_edit_colleagues_v2_response_t](user_edit_colleagues_v2_response.md) *
 
 
 ### Authorization
@@ -196,6 +230,35 @@ Name | Type | Description  | Notes
 ### Return type
 
 [user_get_autocomplete_v2_response_t](user_get_autocomplete_v2_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectUserAPI_userGetColleaguesV2**
+```c
+// Retrieve an existing User's Colleagues
+//
+user_get_colleagues_v2_response_t* ObjectUserAPI_userGetColleaguesV2(apiClient_t *apiClient, int *pkiUserID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiUserID** | **int \*** |  | 
+
+### Return type
+
+[user_get_colleagues_v2_response_t](user_get_colleagues_v2_response.md) *
 
 
 ### Authorization

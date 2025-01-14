@@ -19,12 +19,14 @@ typedef struct website_request_t website_request_t;
 
 
 typedef struct website_request_t {
+    int pki_website_id; //numeric
     int fki_websitetype_id; //numeric
     char *s_website_address; // string
 
 } website_request_t;
 
 website_request_t *website_request_create(
+    int pki_website_id,
     int fki_websitetype_id,
     char *s_website_address
 );

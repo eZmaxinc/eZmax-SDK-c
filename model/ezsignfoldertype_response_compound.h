@@ -78,10 +78,12 @@ typedef struct ezsignfoldertype_response_compound_t {
     field_e_ezsignfoldertype_completion_t *e_ezsignfoldertype_completion; // custom
     int i_ezsignfoldertype_disposaldays; //numeric
     int i_ezsignfoldertype_deadlinedays; //numeric
+    int b_ezsignfoldertype_automaticsignature; //boolean
     int b_ezsignfoldertype_delegate; //boolean
     int b_ezsignfoldertype_discussion; //boolean
     int b_ezsignfoldertype_reassignezsignsigner; //boolean
     int b_ezsignfoldertype_reassignuser; //boolean
+    int b_ezsignfoldertype_reassigngroup; //boolean
     int b_ezsignfoldertype_sendsignedtoezsignsigner; //boolean
     int b_ezsignfoldertype_sendsignedtouser; //boolean
     int b_ezsignfoldertype_sendattachmentezsignsigner; //boolean
@@ -131,10 +133,12 @@ ezsignfoldertype_response_compound_t *ezsignfoldertype_response_compound_create(
     field_e_ezsignfoldertype_completion_t *e_ezsignfoldertype_completion,
     int i_ezsignfoldertype_disposaldays,
     int i_ezsignfoldertype_deadlinedays,
+    int b_ezsignfoldertype_automaticsignature,
     int b_ezsignfoldertype_delegate,
     int b_ezsignfoldertype_discussion,
     int b_ezsignfoldertype_reassignezsignsigner,
     int b_ezsignfoldertype_reassignuser,
+    int b_ezsignfoldertype_reassigngroup,
     int b_ezsignfoldertype_sendsignedtoezsignsigner,
     int b_ezsignfoldertype_sendsignedtouser,
     int b_ezsignfoldertype_sendattachmentezsignsigner,

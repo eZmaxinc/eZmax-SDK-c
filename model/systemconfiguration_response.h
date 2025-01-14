@@ -15,6 +15,7 @@
 
 typedef struct systemconfiguration_response_t systemconfiguration_response_t;
 
+#include "custom_branding_response.h"
 #include "field_e_systemconfiguration_ezsign.h"
 #include "field_e_systemconfiguration_ezsignofficeplan.h"
 #include "field_e_systemconfiguration_language1.h"
@@ -66,6 +67,7 @@ ezmax_api_definition__full_systemconfiguration_response__e systemconfiguration_r
 typedef struct systemconfiguration_response_t {
     int pki_systemconfiguration_id; //numeric
     int fki_systemconfigurationtype_id; //numeric
+    int fki_branding_id; //numeric
     char *s_systemconfigurationtype_description_x; // string
     field_e_systemconfiguration_newexternaluseraction_t *e_systemconfiguration_newexternaluseraction; // custom
     field_e_systemconfiguration_language1_t *e_systemconfiguration_language1; // custom
@@ -74,16 +76,19 @@ typedef struct systemconfiguration_response_t {
     field_e_systemconfiguration_ezsignofficeplan_t *e_systemconfiguration_ezsignofficeplan; // custom
     int b_systemconfiguration_ezsignpaidbyoffice; //boolean
     int b_systemconfiguration_ezsignpersonnal; //boolean
+    int b_systemconfiguration_hascreditcardmerchant; //boolean
     int b_systemconfiguration_isdisposalactive; //boolean
     int b_systemconfiguration_sspr; //boolean
     char *dt_systemconfiguration_readonlyexpirationstart; // string
     char *dt_systemconfiguration_readonlyexpirationend; // string
+    struct custom_branding_response_t *obj_branding; //model
 
 } systemconfiguration_response_t;
 
 systemconfiguration_response_t *systemconfiguration_response_create(
     int pki_systemconfiguration_id,
     int fki_systemconfigurationtype_id,
+    int fki_branding_id,
     char *s_systemconfigurationtype_description_x,
     field_e_systemconfiguration_newexternaluseraction_t *e_systemconfiguration_newexternaluseraction,
     field_e_systemconfiguration_language1_t *e_systemconfiguration_language1,
@@ -92,10 +97,12 @@ systemconfiguration_response_t *systemconfiguration_response_create(
     field_e_systemconfiguration_ezsignofficeplan_t *e_systemconfiguration_ezsignofficeplan,
     int b_systemconfiguration_ezsignpaidbyoffice,
     int b_systemconfiguration_ezsignpersonnal,
+    int b_systemconfiguration_hascreditcardmerchant,
     int b_systemconfiguration_isdisposalactive,
     int b_systemconfiguration_sspr,
     char *dt_systemconfiguration_readonlyexpirationstart,
-    char *dt_systemconfiguration_readonlyexpirationend
+    char *dt_systemconfiguration_readonlyexpirationend,
+    custom_branding_response_t *obj_branding
 );
 
 void systemconfiguration_response_free(systemconfiguration_response_t *systemconfiguration_response);

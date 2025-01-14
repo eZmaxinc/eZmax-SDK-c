@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **t_ezsignfolder_message** | **char \*** | A custom text message that will be added to the email sent. | [optional] 
+**e_ezsignfolder_messageorder** | **field_e_ezsignfolder_messageorder_t \*** |  | [optional] 
 **dt_ezsignfolder_delayedsenddate** | **char \*** | The date and time at which the Ezsignfolder will be sent in the future. | [optional] 
 **a_fki_ezsignfoldersignerassociation_id** | **list_t \*** |  | 
 

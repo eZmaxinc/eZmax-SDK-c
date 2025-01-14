@@ -43,6 +43,7 @@ typedef struct ezsigndocument_response_t {
     int i_ezsigndocument_pagetotal; //numeric
     int i_ezsigndocument_signaturesigned; //numeric
     int i_ezsigndocument_signaturetotal; //numeric
+    int i_ezsigndocument_formfieldtotal; //numeric
     char *s_ezsigndocument_md5initial; // string
     char *t_ezsigndocument_declinedtosignreason; // string
     char *s_ezsigndocument_md5signed; // string
@@ -70,6 +71,7 @@ ezsigndocument_response_t *ezsigndocument_response_create(
     int i_ezsigndocument_pagetotal,
     int i_ezsigndocument_signaturesigned,
     int i_ezsigndocument_signaturetotal,
+    int i_ezsigndocument_formfieldtotal,
     char *s_ezsigndocument_md5initial,
     char *t_ezsigndocument_declinedtosignreason,
     char *s_ezsigndocument_md5signed,

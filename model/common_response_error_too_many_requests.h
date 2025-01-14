@@ -30,12 +30,14 @@ ezmax_api_definition__full_common_response_error_too_many_requests__e common_res
 typedef struct common_response_error_too_many_requests_t {
     char *s_error_message; // string
     field_e_error_code_t *e_error_code; // custom
+    list_t *a_s_error_messagedetail; //primitive container
 
 } common_response_error_too_many_requests_t;
 
 common_response_error_too_many_requests_t *common_response_error_too_many_requests_create(
     char *s_error_message,
-    field_e_error_code_t *e_error_code
+    field_e_error_code_t *e_error_code,
+    list_t *a_s_error_messagedetail
 );
 
 void common_response_error_too_many_requests_free(common_response_error_too_many_requests_t *common_response_error_too_many_requests);

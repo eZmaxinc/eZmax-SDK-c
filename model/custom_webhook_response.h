@@ -45,10 +45,19 @@ char* custom_webhook_response_e_webhook_managementevent_ToString(ezmax_api_defin
 
 ezmax_api_definition__full_custom_webhook_response__e custom_webhook_response_e_webhook_managementevent_FromString(char* e_webhook_managementevent);
 
+// Enum EWEBHOOKEMITTYPE for custom_webhook_response
+
+typedef enum  { ezmax_api_definition__full_custom_webhook_response_EWEBHOOKEMITTYPE_NULL = 0, ezmax_api_definition__full_custom_webhook_response_EWEBHOOKEMITTYPE_Automatic, ezmax_api_definition__full_custom_webhook_response_EWEBHOOKEMITTYPE_Manual, ezmax_api_definition__full_custom_webhook_response_EWEBHOOKEMITTYPE_Test } ezmax_api_definition__full_custom_webhook_response_EWEBHOOKEMITTYPE_e;
+
+char* custom_webhook_response_e_webhook_emittype_ToString(ezmax_api_definition__full_custom_webhook_response_EWEBHOOKEMITTYPE_e e_webhook_emittype);
+
+ezmax_api_definition__full_custom_webhook_response_EWEBHOOKEMITTYPE_e custom_webhook_response_e_webhook_emittype_FromString(char* e_webhook_emittype);
+
 
 
 typedef struct custom_webhook_response_t {
     int pki_webhook_id; //numeric
+    int fki_authenticationexternal_id; //numeric
     char *s_webhook_description; // string
     int fki_ezsignfoldertype_id; //numeric
     char *s_ezsignfoldertype_name_x; // string
@@ -62,16 +71,19 @@ typedef struct custom_webhook_response_t {
     int b_webhook_isactive; //boolean
     int b_webhook_issigned; //boolean
     int b_webhook_skipsslvalidation; //boolean
+    char *s_authenticationexternal_description; // string
     struct common_audit_t *obj_audit; //model
     char *s_webhook_event; // string
     list_t *a_obj_webhookheader; //nonprimitive container
     char *pks_customer_code; // string
     int b_webhook_test; //boolean
+    ezmax_api_definition__full_custom_webhook_response_EWEBHOOKEMITTYPE_e e_webhook_emittype; //enum
 
 } custom_webhook_response_t;
 
 custom_webhook_response_t *custom_webhook_response_create(
     int pki_webhook_id,
+    int fki_authenticationexternal_id,
     char *s_webhook_description,
     int fki_ezsignfoldertype_id,
     char *s_ezsignfoldertype_name_x,
@@ -85,11 +97,13 @@ custom_webhook_response_t *custom_webhook_response_create(
     int b_webhook_isactive,
     int b_webhook_issigned,
     int b_webhook_skipsslvalidation,
+    char *s_authenticationexternal_description,
     common_audit_t *obj_audit,
     char *s_webhook_event,
     list_t *a_obj_webhookheader,
     char *pks_customer_code,
-    int b_webhook_test
+    int b_webhook_test,
+    ezmax_api_definition__full_custom_webhook_response_EWEBHOOKEMITTYPE_e e_webhook_emittype
 );
 
 void custom_webhook_response_free(custom_webhook_response_t *custom_webhook_response);

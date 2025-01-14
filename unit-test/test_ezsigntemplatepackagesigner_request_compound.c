@@ -24,12 +24,22 @@ ezsigntemplatepackagesigner_request_compound_t* instantiate_ezsigntemplatepackag
     ezsigntemplatepackagesigner_request_compound = ezsigntemplatepackagesigner_request_compound_create(
       174,
       99,
+      95,
+      70,
+      2,
+      1,
+      ezmax_api_definition__full_ezsigntemplatepackagesigner_request_compound__"Manual",
       "Customer"
     );
   } else {
     ezsigntemplatepackagesigner_request_compound = ezsigntemplatepackagesigner_request_compound_create(
       174,
       99,
+      95,
+      70,
+      2,
+      1,
+      ezmax_api_definition__full_ezsigntemplatepackagesigner_request_compound__"Manual",
       "Customer"
     );
   }

@@ -7,8 +7,7 @@
 
 creditcardclient_autocomplete_element_response_t *creditcardclient_autocomplete_element_response_create(
     int pki_creditcardclient_id,
-    char *s_creditcardclient_description,
-    int b_creditcardclient_isactive
+    char *s_creditcardclient_description
     ) {
     creditcardclient_autocomplete_element_response_t *creditcardclient_autocomplete_element_response_local_var = malloc(sizeof(creditcardclient_autocomplete_element_response_t));
     if (!creditcardclient_autocomplete_element_response_local_var) {
@@ -16,7 +15,6 @@ creditcardclient_autocomplete_element_response_t *creditcardclient_autocomplete_
     }
     creditcardclient_autocomplete_element_response_local_var->pki_creditcardclient_id = pki_creditcardclient_id;
     creditcardclient_autocomplete_element_response_local_var->s_creditcardclient_description = s_creditcardclient_description;
-    creditcardclient_autocomplete_element_response_local_var->b_creditcardclient_isactive = b_creditcardclient_isactive;
 
     return creditcardclient_autocomplete_element_response_local_var;
 }
@@ -52,15 +50,6 @@ cJSON *creditcardclient_autocomplete_element_response_convertToJSON(creditcardcl
     }
     if(cJSON_AddStringToObject(item, "sCreditcardclientDescription", creditcardclient_autocomplete_element_response->s_creditcardclient_description) == NULL) {
     goto fail; //String
-    }
-
-
-    // creditcardclient_autocomplete_element_response->b_creditcardclient_isactive
-    if (!creditcardclient_autocomplete_element_response->b_creditcardclient_isactive) {
-        goto fail;
-    }
-    if(cJSON_AddBoolToObject(item, "bCreditcardclientIsactive", creditcardclient_autocomplete_element_response->b_creditcardclient_isactive) == NULL) {
-    goto fail; //Bool
     }
 
     return item;
@@ -99,23 +88,10 @@ creditcardclient_autocomplete_element_response_t *creditcardclient_autocomplete_
     goto end; //String
     }
 
-    // creditcardclient_autocomplete_element_response->b_creditcardclient_isactive
-    cJSON *b_creditcardclient_isactive = cJSON_GetObjectItemCaseSensitive(creditcardclient_autocomplete_element_responseJSON, "bCreditcardclientIsactive");
-    if (!b_creditcardclient_isactive) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsBool(b_creditcardclient_isactive))
-    {
-    goto end; //Bool
-    }
-
 
     creditcardclient_autocomplete_element_response_local_var = creditcardclient_autocomplete_element_response_create (
         pki_creditcardclient_id->valuedouble,
-        strdup(s_creditcardclient_description->valuestring),
-        b_creditcardclient_isactive->valueint
+        strdup(s_creditcardclient_description->valuestring)
         );
 
     return creditcardclient_autocomplete_element_response_local_var;

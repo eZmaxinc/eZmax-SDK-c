@@ -21,6 +21,23 @@ ezmax_api_definition__full_ezsignformfield_response__e ezsignformfield_response_
     }
     return 0;
 }
+char* ezsignformfield_response_e_ezsignformfield_horizontalalignment_ToString(ezmax_api_definition__full_ezsignformfield_response__e e_ezsignformfield_horizontalalignment) {
+    char* e_ezsignformfield_horizontalalignmentArray[] =  { "NULL", "Center", "Left", "Right" };
+    return e_ezsignformfield_horizontalalignmentArray[e_ezsignformfield_horizontalalignment];
+}
+
+ezmax_api_definition__full_ezsignformfield_response__e ezsignformfield_response_e_ezsignformfield_horizontalalignment_FromString(char* e_ezsignformfield_horizontalalignment){
+    int stringToReturn = 0;
+    char *e_ezsignformfield_horizontalalignmentArray[] =  { "NULL", "Center", "Left", "Right" };
+    size_t sizeofArray = sizeof(e_ezsignformfield_horizontalalignmentArray) / sizeof(e_ezsignformfield_horizontalalignmentArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(e_ezsignformfield_horizontalalignment, e_ezsignformfield_horizontalalignmentArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
 
 ezsignformfield_response_t *ezsignformfield_response_create(
     int pki_ezsignformfield_id,
@@ -34,7 +51,9 @@ ezsignformfield_response_t *ezsignformfield_response_create(
     int b_ezsignformfield_autocomplete,
     int b_ezsignformfield_selected,
     char *s_ezsignformfield_enteredvalue,
-    field_e_ezsignformfield_dependencyrequirement_t *e_ezsignformfield_dependencyrequirement
+    field_e_ezsignformfield_dependencyrequirement_t *e_ezsignformfield_dependencyrequirement,
+    enum_horizontalalignment_t *e_ezsignformfield_horizontalalignment,
+    textstylestatic_response_compound_t *obj_textstylestatic
     ) {
     ezsignformfield_response_t *ezsignformfield_response_local_var = malloc(sizeof(ezsignformfield_response_t));
     if (!ezsignformfield_response_local_var) {
@@ -52,6 +71,8 @@ ezsignformfield_response_t *ezsignformfield_response_create(
     ezsignformfield_response_local_var->b_ezsignformfield_selected = b_ezsignformfield_selected;
     ezsignformfield_response_local_var->s_ezsignformfield_enteredvalue = s_ezsignformfield_enteredvalue;
     ezsignformfield_response_local_var->e_ezsignformfield_dependencyrequirement = e_ezsignformfield_dependencyrequirement;
+    ezsignformfield_response_local_var->e_ezsignformfield_horizontalalignment = e_ezsignformfield_horizontalalignment;
+    ezsignformfield_response_local_var->obj_textstylestatic = obj_textstylestatic;
 
     return ezsignformfield_response_local_var;
 }
@@ -77,6 +98,14 @@ void ezsignformfield_response_free(ezsignformfield_response_t *ezsignformfield_r
     if (ezsignformfield_response->e_ezsignformfield_dependencyrequirement) {
         field_e_ezsignformfield_dependencyrequirement_free(ezsignformfield_response->e_ezsignformfield_dependencyrequirement);
         ezsignformfield_response->e_ezsignformfield_dependencyrequirement = NULL;
+    }
+    if (ezsignformfield_response->e_ezsignformfield_horizontalalignment) {
+        enum_horizontalalignment_free(ezsignformfield_response->e_ezsignformfield_horizontalalignment);
+        ezsignformfield_response->e_ezsignformfield_horizontalalignment = NULL;
+    }
+    if (ezsignformfield_response->obj_textstylestatic) {
+        textstylestatic_response_compound_free(ezsignformfield_response->obj_textstylestatic);
+        ezsignformfield_response->obj_textstylestatic = NULL;
     }
     free(ezsignformfield_response);
 }
@@ -191,6 +220,32 @@ cJSON *ezsignformfield_response_convertToJSON(ezsignformfield_response_t *ezsign
     }
     }
 
+
+    // ezsignformfield_response->e_ezsignformfield_horizontalalignment
+    if(ezsignformfield_response->e_ezsignformfield_horizontalalignment != ezmax_api_definition__full_ezsignformfield_response__NULL) {
+    cJSON *e_ezsignformfield_horizontalalignment_local_JSON = enum_horizontalalignment_convertToJSON(ezsignformfield_response->e_ezsignformfield_horizontalalignment);
+    if(e_ezsignformfield_horizontalalignment_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsignformfieldHorizontalalignment", e_ezsignformfield_horizontalalignment_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
+    }
+
+
+    // ezsignformfield_response->obj_textstylestatic
+    if(ezsignformfield_response->obj_textstylestatic) {
+    cJSON *obj_textstylestatic_local_JSON = textstylestatic_response_compound_convertToJSON(ezsignformfield_response->obj_textstylestatic);
+    if(obj_textstylestatic_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objTextstylestatic", obj_textstylestatic_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -205,6 +260,12 @@ ezsignformfield_response_t *ezsignformfield_response_parseFromJSON(cJSON *ezsign
 
     // define the local variable for ezsignformfield_response->e_ezsignformfield_dependencyrequirement
     field_e_ezsignformfield_dependencyrequirement_t *e_ezsignformfield_dependencyrequirement_local_nonprim = NULL;
+
+    // define the local variable for ezsignformfield_response->e_ezsignformfield_horizontalalignment
+    enum_horizontalalignment_t *e_ezsignformfield_horizontalalignment_local_nonprim = NULL;
+
+    // define the local variable for ezsignformfield_response->obj_textstylestatic
+    textstylestatic_response_compound_t *obj_textstylestatic_local_nonprim = NULL;
 
     // ezsignformfield_response->pki_ezsignformfield_id
     cJSON *pki_ezsignformfield_id = cJSON_GetObjectItemCaseSensitive(ezsignformfield_responseJSON, "pkiEzsignformfieldID");
@@ -332,6 +393,18 @@ ezsignformfield_response_t *ezsignformfield_response_parseFromJSON(cJSON *ezsign
     e_ezsignformfield_dependencyrequirement_local_nonprim = field_e_ezsignformfield_dependencyrequirement_parseFromJSON(e_ezsignformfield_dependencyrequirement); //custom
     }
 
+    // ezsignformfield_response->e_ezsignformfield_horizontalalignment
+    cJSON *e_ezsignformfield_horizontalalignment = cJSON_GetObjectItemCaseSensitive(ezsignformfield_responseJSON, "eEzsignformfieldHorizontalalignment");
+    if (e_ezsignformfield_horizontalalignment) { 
+    e_ezsignformfield_horizontalalignment_local_nonprim = enum_horizontalalignment_parseFromJSON(e_ezsignformfield_horizontalalignment); //custom
+    }
+
+    // ezsignformfield_response->obj_textstylestatic
+    cJSON *obj_textstylestatic = cJSON_GetObjectItemCaseSensitive(ezsignformfield_responseJSON, "objTextstylestatic");
+    if (obj_textstylestatic) { 
+    obj_textstylestatic_local_nonprim = textstylestatic_response_compound_parseFromJSON(obj_textstylestatic); //nonprimitive
+    }
+
 
     ezsignformfield_response_local_var = ezsignformfield_response_create (
         pki_ezsignformfield_id->valuedouble,
@@ -345,7 +418,9 @@ ezsignformfield_response_t *ezsignformfield_response_parseFromJSON(cJSON *ezsign
         b_ezsignformfield_autocomplete ? b_ezsignformfield_autocomplete->valueint : 0,
         b_ezsignformfield_selected ? b_ezsignformfield_selected->valueint : 0,
         s_ezsignformfield_enteredvalue && !cJSON_IsNull(s_ezsignformfield_enteredvalue) ? strdup(s_ezsignformfield_enteredvalue->valuestring) : NULL,
-        e_ezsignformfield_dependencyrequirement ? e_ezsignformfield_dependencyrequirement_local_nonprim : NULL
+        e_ezsignformfield_dependencyrequirement ? e_ezsignformfield_dependencyrequirement_local_nonprim : NULL,
+        e_ezsignformfield_horizontalalignment ? e_ezsignformfield_horizontalalignment_local_nonprim : NULL,
+        obj_textstylestatic ? obj_textstylestatic_local_nonprim : NULL
         );
 
     return ezsignformfield_response_local_var;
@@ -353,6 +428,14 @@ end:
     if (e_ezsignformfield_dependencyrequirement_local_nonprim) {
         field_e_ezsignformfield_dependencyrequirement_free(e_ezsignformfield_dependencyrequirement_local_nonprim);
         e_ezsignformfield_dependencyrequirement_local_nonprim = NULL;
+    }
+    if (e_ezsignformfield_horizontalalignment_local_nonprim) {
+        enum_horizontalalignment_free(e_ezsignformfield_horizontalalignment_local_nonprim);
+        e_ezsignformfield_horizontalalignment_local_nonprim = NULL;
+    }
+    if (obj_textstylestatic_local_nonprim) {
+        textstylestatic_response_compound_free(obj_textstylestatic_local_nonprim);
+        obj_textstylestatic_local_nonprim = NULL;
     }
     return NULL;
 

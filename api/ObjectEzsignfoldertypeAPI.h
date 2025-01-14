@@ -6,16 +6,14 @@
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
-#include "../model/ezsignfoldertype_create_object_v2_request.h"
-#include "../model/ezsignfoldertype_create_object_v2_response.h"
-#include "../model/ezsignfoldertype_edit_object_v1_request.h"
-#include "../model/ezsignfoldertype_edit_object_v1_response.h"
-#include "../model/ezsignfoldertype_edit_object_v2_request.h"
-#include "../model/ezsignfoldertype_edit_object_v2_response.h"
+#include "../model/ezsignfoldertype_create_object_v3_request.h"
+#include "../model/ezsignfoldertype_create_object_v3_response.h"
+#include "../model/ezsignfoldertype_edit_object_v3_request.h"
+#include "../model/ezsignfoldertype_edit_object_v3_response.h"
 #include "../model/ezsignfoldertype_get_autocomplete_v2_response.h"
 #include "../model/ezsignfoldertype_get_list_v1_response.h"
 #include "../model/ezsignfoldertype_get_object_v2_response.h"
-#include "../model/ezsignfoldertype_get_object_v3_response.h"
+#include "../model/ezsignfoldertype_get_object_v4_response.h"
 #include "../model/header_accept_language.h"
 
 // Enum SSELECTOR for ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetAutocompleteV2
@@ -38,24 +36,16 @@ typedef enum  { ezmax_api_definition__full_ezsignfoldertypeGetListV1__NULL = 0, 
 //
 // The endpoint allows to create one or many elements at once.
 //
-ezsignfoldertype_create_object_v2_response_t*
-ObjectEzsignfoldertypeAPI_ezsignfoldertypeCreateObjectV2(apiClient_t *apiClient, ezsignfoldertype_create_object_v2_request_t *ezsignfoldertype_create_object_v2_request);
+ezsignfoldertype_create_object_v3_response_t*
+ObjectEzsignfoldertypeAPI_ezsignfoldertypeCreateObjectV3(apiClient_t *apiClient, ezsignfoldertype_create_object_v3_request_t *ezsignfoldertype_create_object_v3_request);
 
 
 // Edit an existing Ezsignfoldertype
 //
 // 
 //
-ezsignfoldertype_edit_object_v1_response_t*
-ObjectEzsignfoldertypeAPI_ezsignfoldertypeEditObjectV1(apiClient_t *apiClient, int *pkiEzsignfoldertypeID, ezsignfoldertype_edit_object_v1_request_t *ezsignfoldertype_edit_object_v1_request);
-
-
-// Edit an existing Ezsignfoldertype
-//
-// 
-//
-ezsignfoldertype_edit_object_v2_response_t*
-ObjectEzsignfoldertypeAPI_ezsignfoldertypeEditObjectV2(apiClient_t *apiClient, int *pkiEzsignfoldertypeID, ezsignfoldertype_edit_object_v2_request_t *ezsignfoldertype_edit_object_v2_request);
+ezsignfoldertype_edit_object_v3_response_t*
+ObjectEzsignfoldertypeAPI_ezsignfoldertypeEditObjectV3(apiClient_t *apiClient, int *pkiEzsignfoldertypeID, ezsignfoldertype_edit_object_v3_request_t *ezsignfoldertype_edit_object_v3_request);
 
 
 // Retrieve Ezsignfoldertypes and IDs
@@ -86,7 +76,7 @@ ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetObjectV2(apiClient_t *apiClient, in
 //
 // 
 //
-ezsignfoldertype_get_object_v3_response_t*
-ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetObjectV3(apiClient_t *apiClient, int *pkiEzsignfoldertypeID);
+ezsignfoldertype_get_object_v4_response_t*
+ObjectEzsignfoldertypeAPI_ezsignfoldertypeGetObjectV4(apiClient_t *apiClient, int *pkiEzsignfoldertypeID);
 
 

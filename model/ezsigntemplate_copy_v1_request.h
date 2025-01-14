@@ -20,11 +20,15 @@ typedef struct ezsigntemplate_copy_v1_request_t ezsigntemplate_copy_v1_request_t
 
 typedef struct ezsigntemplate_copy_v1_request_t {
     list_t *a_fki_ezsignfoldertype_id; //primitive container
+    int b_copy_company; //boolean
+    int b_copy_user; //boolean
 
 } ezsigntemplate_copy_v1_request_t;
 
 ezsigntemplate_copy_v1_request_t *ezsigntemplate_copy_v1_request_create(
-    list_t *a_fki_ezsignfoldertype_id
+    list_t *a_fki_ezsignfoldertype_id,
+    int b_copy_company,
+    int b_copy_user
 );
 
 void ezsigntemplate_copy_v1_request_free(ezsigntemplate_copy_v1_request_t *ezsigntemplate_copy_v1_request);

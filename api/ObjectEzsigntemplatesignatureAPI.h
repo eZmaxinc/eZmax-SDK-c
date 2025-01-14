@@ -6,20 +6,20 @@
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
-#include "../model/ezsigntemplatesignature_create_object_v1_request.h"
-#include "../model/ezsigntemplatesignature_create_object_v1_response.h"
+#include "../model/ezsigntemplatesignature_create_object_v2_request.h"
+#include "../model/ezsigntemplatesignature_create_object_v2_response.h"
 #include "../model/ezsigntemplatesignature_delete_object_v1_response.h"
-#include "../model/ezsigntemplatesignature_edit_object_v1_request.h"
-#include "../model/ezsigntemplatesignature_edit_object_v1_response.h"
-#include "../model/ezsigntemplatesignature_get_object_v2_response.h"
+#include "../model/ezsigntemplatesignature_edit_object_v2_request.h"
+#include "../model/ezsigntemplatesignature_edit_object_v2_response.h"
+#include "../model/ezsigntemplatesignature_get_object_v3_response.h"
 
 
 // Create a new Ezsigntemplatesignature
 //
 // The endpoint allows to create one or many elements at once.
 //
-ezsigntemplatesignature_create_object_v1_response_t*
-ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureCreateObjectV1(apiClient_t *apiClient, ezsigntemplatesignature_create_object_v1_request_t *ezsigntemplatesignature_create_object_v1_request);
+ezsigntemplatesignature_create_object_v2_response_t*
+ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureCreateObjectV2(apiClient_t *apiClient, ezsigntemplatesignature_create_object_v2_request_t *ezsigntemplatesignature_create_object_v2_request);
 
 
 // Delete an existing Ezsigntemplatesignature
@@ -34,15 +34,15 @@ ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureDeleteObjectV1(apiClient
 //
 // 
 //
-ezsigntemplatesignature_edit_object_v1_response_t*
-ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatesignatureID, ezsigntemplatesignature_edit_object_v1_request_t *ezsigntemplatesignature_edit_object_v1_request);
+ezsigntemplatesignature_edit_object_v2_response_t*
+ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureEditObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplatesignatureID, ezsigntemplatesignature_edit_object_v2_request_t *ezsigntemplatesignature_edit_object_v2_request);
 
 
 // Retrieve an existing Ezsigntemplatesignature
 //
 // 
 //
-ezsigntemplatesignature_get_object_v2_response_t*
-ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureGetObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplatesignatureID);
+ezsigntemplatesignature_get_object_v3_response_t*
+ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureGetObjectV3(apiClient_t *apiClient, int *pkiEzsigntemplatesignatureID);
 
 

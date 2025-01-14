@@ -31,7 +31,7 @@ ezsigntemplate_list_element_t* instantiate_ezsigntemplate_list_element(int inclu
       8,
       false,
       "Default",
-      ezmax_api_definition__full_ezsigntemplate_list_element__"Usergroup"
+      ezmax_api_definition__full_ezsigntemplate_list_element__"Ezsignfoldertype"
     );
   } else {
     ezsigntemplate_list_element = ezsigntemplate_list_element_create(
@@ -44,7 +44,7 @@ ezsigntemplate_list_element_t* instantiate_ezsigntemplate_list_element(int inclu
       8,
       false,
       "Default",
-      ezmax_api_definition__full_ezsigntemplate_list_element__"Usergroup"
+      ezmax_api_definition__full_ezsigntemplate_list_element__"Ezsignfoldertype"
     );
   }
 

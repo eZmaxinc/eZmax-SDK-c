@@ -22,6 +22,7 @@ address_request_t* instantiate_address_request(int include_optional) {
   address_request_t* address_request = NULL;
   if (include_optional) {
     address_request = address_request_create(
+      142,
       1,
       "2540",
       "Daniel-Johnson Blvd.",
@@ -35,6 +36,7 @@ address_request_t* instantiate_address_request(int include_optional) {
     );
   } else {
     address_request = address_request_create(
+      142,
       1,
       "2540",
       "Daniel-Johnson Blvd.",

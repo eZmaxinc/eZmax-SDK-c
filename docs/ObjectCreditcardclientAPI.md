@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**ObjectCreditcardclientAPI_creditcardclientGetAutocompleteV2**](ObjectCreditcardclientAPI.md#ObjectCreditcardclientAPI_creditcardclientGetAutocompleteV2) | **GET** /2/object/creditcardclient/getAutocomplete/{sSelector} | Retrieve Creditcardclients and IDs
 [**ObjectCreditcardclientAPI_creditcardclientGetListV1**](ObjectCreditcardclientAPI.md#ObjectCreditcardclientAPI_creditcardclientGetListV1) | **GET** /1/object/creditcardclient/getList | Retrieve Creditcardclient list
 [**ObjectCreditcardclientAPI_creditcardclientGetObjectV2**](ObjectCreditcardclientAPI.md#ObjectCreditcardclientAPI_creditcardclientGetObjectV2) | **GET** /2/object/creditcardclient/{pkiCreditcardclientID} | Retrieve an existing Creditcardclient
+[**ObjectCreditcardclientAPI_creditcardclientPatchObjectV1**](ObjectCreditcardclientAPI.md#ObjectCreditcardclientAPI_creditcardclientPatchObjectV1) | **PATCH** /1/object/creditcardclient/{pkiCreditcardclientID} | Patch an existing Creditcardclient
 
 
 # **ObjectCreditcardclientAPI_creditcardclientCreateObjectV1**
@@ -202,6 +203,38 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectCreditcardclientAPI_creditcardclientPatchObjectV1**
+```c
+// Patch an existing Creditcardclient
+//
+// 
+//
+creditcardclient_patch_object_v1_response_t* ObjectCreditcardclientAPI_creditcardclientPatchObjectV1(apiClient_t *apiClient, int *pkiCreditcardclientID, creditcardclient_patch_object_v1_request_t *creditcardclient_patch_object_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiCreditcardclientID** | **int \*** | The unique ID of the Creditcardclient | 
+**creditcardclient_patch_object_v1_request** | **[creditcardclient_patch_object_v1_request_t](creditcardclient_patch_object_v1_request.md) \*** |  | 
+
+### Return type
+
+[creditcardclient_patch_object_v1_response_t](creditcardclient_patch_object_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

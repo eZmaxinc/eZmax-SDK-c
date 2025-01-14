@@ -5,13 +5,13 @@
 
 
 char* ezsigntemplate_list_element_e_ezsigntemplate_type_ToString(ezmax_api_definition__full_ezsigntemplate_list_element__e e_ezsigntemplate_type) {
-    char* e_ezsigntemplate_typeArray[] =  { "NULL", "User", "Usergroup", "Company" };
+    char* e_ezsigntemplate_typeArray[] =  { "NULL", "User", "Usergroup", "Company", "Ezsignfoldertype" };
     return e_ezsigntemplate_typeArray[e_ezsigntemplate_type];
 }
 
 ezmax_api_definition__full_ezsigntemplate_list_element__e ezsigntemplate_list_element_e_ezsigntemplate_type_FromString(char* e_ezsigntemplate_type){
     int stringToReturn = 0;
-    char *e_ezsigntemplate_typeArray[] =  { "NULL", "User", "Usergroup", "Company" };
+    char *e_ezsigntemplate_typeArray[] =  { "NULL", "User", "Usergroup", "Company", "Ezsignfoldertype" };
     size_t sizeofArray = sizeof(e_ezsigntemplate_typeArray) / sizeof(e_ezsigntemplate_typeArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(e_ezsigntemplate_type, e_ezsigntemplate_typeArray[stringToReturn]) == 0) {

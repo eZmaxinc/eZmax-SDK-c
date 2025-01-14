@@ -58,6 +58,7 @@ ezmax_api_definition__full_webhook_request__e webhook_request_e_webhook_manageme
 
 webhook_request_t *webhook_request_create(
     int pki_webhook_id,
+    int fki_authenticationexternal_id,
     int fki_ezsignfoldertype_id,
     char *s_webhook_description,
     field_e_webhook_module_t *e_webhook_module,
@@ -74,6 +75,7 @@ webhook_request_t *webhook_request_create(
         return NULL;
     }
     webhook_request_local_var->pki_webhook_id = pki_webhook_id;
+    webhook_request_local_var->fki_authenticationexternal_id = fki_authenticationexternal_id;
     webhook_request_local_var->fki_ezsignfoldertype_id = fki_ezsignfoldertype_id;
     webhook_request_local_var->s_webhook_description = s_webhook_description;
     webhook_request_local_var->e_webhook_module = e_webhook_module;
@@ -127,6 +129,14 @@ cJSON *webhook_request_convertToJSON(webhook_request_t *webhook_request) {
     // webhook_request->pki_webhook_id
     if(webhook_request->pki_webhook_id) {
     if(cJSON_AddNumberToObject(item, "pkiWebhookID", webhook_request->pki_webhook_id) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // webhook_request->fki_authenticationexternal_id
+    if(webhook_request->fki_authenticationexternal_id) {
+    if(cJSON_AddNumberToObject(item, "fkiAuthenticationexternalID", webhook_request->fki_authenticationexternal_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -262,6 +272,15 @@ webhook_request_t *webhook_request_parseFromJSON(cJSON *webhook_requestJSON){
     }
     }
 
+    // webhook_request->fki_authenticationexternal_id
+    cJSON *fki_authenticationexternal_id = cJSON_GetObjectItemCaseSensitive(webhook_requestJSON, "fkiAuthenticationexternalID");
+    if (fki_authenticationexternal_id) { 
+    if(!cJSON_IsNumber(fki_authenticationexternal_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
     // webhook_request->fki_ezsignfoldertype_id
     cJSON *fki_ezsignfoldertype_id = cJSON_GetObjectItemCaseSensitive(webhook_requestJSON, "fkiEzsignfoldertypeID");
     if (fki_ezsignfoldertype_id) { 
@@ -364,6 +383,7 @@ webhook_request_t *webhook_request_parseFromJSON(cJSON *webhook_requestJSON){
 
     webhook_request_local_var = webhook_request_create (
         pki_webhook_id ? pki_webhook_id->valuedouble : 0,
+        fki_authenticationexternal_id ? fki_authenticationexternal_id->valuedouble : 0,
         fki_ezsignfoldertype_id ? fki_ezsignfoldertype_id->valuedouble : 0,
         strdup(s_webhook_description->valuestring),
         e_webhook_module_local_nonprim,

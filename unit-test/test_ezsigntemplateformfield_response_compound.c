@@ -16,6 +16,7 @@
 #include "../model/ezsigntemplateformfield_response_compound.h"
 ezsigntemplateformfield_response_compound_t* instantiate_ezsigntemplateformfield_response_compound(int include_optional);
 
+#include "test_textstylestatic_response_compound.c"
 
 
 ezsigntemplateformfield_response_compound_t* instantiate_ezsigntemplateformfield_response_compound(int include_optional) {
@@ -38,6 +39,9 @@ ezsigntemplateformfield_response_compound_t* instantiate_ezsigntemplateformfield
       200,
       200,
       ezmax_api_definition__full_ezsigntemplateformfield_response_compound__"All",
+      ezmax_api_definition__full_ezsigntemplateformfield_response_compound__"Center",
+       // false, not to have infinite recursion
+      instantiate_textstylestatic_response_compound(0),
       list_createList()
     );
   } else {
@@ -58,6 +62,8 @@ ezsigntemplateformfield_response_compound_t* instantiate_ezsigntemplateformfield
       200,
       200,
       ezmax_api_definition__full_ezsigntemplateformfield_response_compound__"All",
+      ezmax_api_definition__full_ezsigntemplateformfield_response_compound__"Center",
+      NULL,
       list_createList()
     );
   }

@@ -71,6 +71,7 @@ typedef struct ezsigntemplateformfieldgroup_response_compound_t {
     int i_ezsigntemplateformfieldgroup_maxlength; //numeric
     int b_ezsigntemplateformfieldgroup_encrypted; //boolean
     char *s_ezsigntemplateformfieldgroup_regexp; // string
+    char *s_ezsigntemplateformfieldgroup_textvalidationcustommessage; // string
     enum_textvalidation_t *e_ezsigntemplateformfieldgroup_textvalidation; // custom
     char *t_ezsigntemplateformfieldgroup_tooltip; // string
     field_e_ezsigntemplateformfieldgroup_tooltipposition_t *e_ezsigntemplateformfieldgroup_tooltipposition; // custom
@@ -94,6 +95,7 @@ ezsigntemplateformfieldgroup_response_compound_t *ezsigntemplateformfieldgroup_r
     int i_ezsigntemplateformfieldgroup_maxlength,
     int b_ezsigntemplateformfieldgroup_encrypted,
     char *s_ezsigntemplateformfieldgroup_regexp,
+    char *s_ezsigntemplateformfieldgroup_textvalidationcustommessage,
     enum_textvalidation_t *e_ezsigntemplateformfieldgroup_textvalidation,
     char *t_ezsigntemplateformfieldgroup_tooltip,
     field_e_ezsigntemplateformfieldgroup_tooltipposition_t *e_ezsigntemplateformfieldgroup_tooltipposition,

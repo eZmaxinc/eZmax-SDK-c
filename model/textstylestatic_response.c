@@ -8,6 +8,7 @@
 textstylestatic_response_t *textstylestatic_response_create(
     int pki_textstylestatic_id,
     int fki_font_id,
+    char *s_font_name,
     int b_textstylestatic_bold,
     int b_textstylestatic_underline,
     int b_textstylestatic_italic,
@@ -21,6 +22,7 @@ textstylestatic_response_t *textstylestatic_response_create(
     }
     textstylestatic_response_local_var->pki_textstylestatic_id = pki_textstylestatic_id;
     textstylestatic_response_local_var->fki_font_id = fki_font_id;
+    textstylestatic_response_local_var->s_font_name = s_font_name;
     textstylestatic_response_local_var->b_textstylestatic_bold = b_textstylestatic_bold;
     textstylestatic_response_local_var->b_textstylestatic_underline = b_textstylestatic_underline;
     textstylestatic_response_local_var->b_textstylestatic_italic = b_textstylestatic_italic;
@@ -37,6 +39,10 @@ void textstylestatic_response_free(textstylestatic_response_t *textstylestatic_r
         return ;
     }
     listEntry_t *listEntry;
+    if (textstylestatic_response->s_font_name) {
+        free(textstylestatic_response->s_font_name);
+        textstylestatic_response->s_font_name = NULL;
+    }
     free(textstylestatic_response);
 }
 
@@ -57,6 +63,15 @@ cJSON *textstylestatic_response_convertToJSON(textstylestatic_response_t *textst
     }
     if(cJSON_AddNumberToObject(item, "fkiFontID", textstylestatic_response->fki_font_id) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // textstylestatic_response->s_font_name
+    if (!textstylestatic_response->s_font_name) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "sFontName", textstylestatic_response->s_font_name) == NULL) {
+    goto fail; //String
     }
 
 
@@ -146,6 +161,18 @@ textstylestatic_response_t *textstylestatic_response_parseFromJSON(cJSON *textst
     goto end; //Numeric
     }
 
+    // textstylestatic_response->s_font_name
+    cJSON *s_font_name = cJSON_GetObjectItemCaseSensitive(textstylestatic_responseJSON, "sFontName");
+    if (!s_font_name) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_font_name))
+    {
+    goto end; //String
+    }
+
     // textstylestatic_response->b_textstylestatic_bold
     cJSON *b_textstylestatic_bold = cJSON_GetObjectItemCaseSensitive(textstylestatic_responseJSON, "bTextstylestaticBold");
     if (!b_textstylestatic_bold) {
@@ -222,6 +249,7 @@ textstylestatic_response_t *textstylestatic_response_parseFromJSON(cJSON *textst
     textstylestatic_response_local_var = textstylestatic_response_create (
         pki_textstylestatic_id ? pki_textstylestatic_id->valuedouble : 0,
         fki_font_id->valuedouble,
+        strdup(s_font_name->valuestring),
         b_textstylestatic_bold->valueint,
         b_textstylestatic_underline->valueint,
         b_textstylestatic_italic->valueint,

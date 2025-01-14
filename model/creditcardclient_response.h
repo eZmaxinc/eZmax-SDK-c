@@ -24,9 +24,7 @@ typedef struct creditcardclient_response_t {
     int fki_creditcarddetail_id; //numeric
     int b_creditcardclientrelation_isdefault; //boolean
     char *s_creditcardclient_description; // string
-    int b_creditcardclient_isactive; //boolean
-    int b_creditcardclient_allowedagencypayment; //boolean
-    int b_creditcardclient_allowedroyallepageprotection; //boolean
+    int b_creditcardclient_allowedcompanypayment; //boolean
     int b_creditcardclient_allowedtranquillit; //boolean
     struct creditcarddetail_response_compound_t *obj_creditcarddetail; //model
 
@@ -37,9 +35,7 @@ creditcardclient_response_t *creditcardclient_response_create(
     int fki_creditcarddetail_id,
     int b_creditcardclientrelation_isdefault,
     char *s_creditcardclient_description,
-    int b_creditcardclient_isactive,
-    int b_creditcardclient_allowedagencypayment,
-    int b_creditcardclient_allowedroyallepageprotection,
+    int b_creditcardclient_allowedcompanypayment,
     int b_creditcardclient_allowedtranquillit,
     creditcarddetail_response_compound_t *obj_creditcarddetail
 );

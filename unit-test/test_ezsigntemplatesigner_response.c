@@ -24,13 +24,27 @@ ezsigntemplatesigner_response_t* instantiate_ezsigntemplatesigner_response(int i
     ezsigntemplatesigner_response = ezsigntemplatesigner_response_create(
       9,
       36,
-      "Customer"
+      70,
+      2,
+      95,
+      1,
+      ezmax_api_definition__full_ezsigntemplatesigner_response__"Manual",
+      "Customer",
+      "Default",
+      "Administration"
     );
   } else {
     ezsigntemplatesigner_response = ezsigntemplatesigner_response_create(
       9,
       36,
-      "Customer"
+      70,
+      2,
+      95,
+      1,
+      ezmax_api_definition__full_ezsigntemplatesigner_response__"Manual",
+      "Customer",
+      "Default",
+      "Administration"
     );
   }
 

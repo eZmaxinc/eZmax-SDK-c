@@ -54,6 +54,7 @@ ezsigndocument_response_compound_t *ezsigndocument_response_compound_create(
     int i_ezsigndocument_pagetotal,
     int i_ezsigndocument_signaturesigned,
     int i_ezsigndocument_signaturetotal,
+    int i_ezsigndocument_formfieldtotal,
     char *s_ezsigndocument_md5initial,
     char *t_ezsigndocument_declinedtosignreason,
     char *s_ezsigndocument_md5signed,
@@ -68,7 +69,8 @@ ezsigndocument_response_compound_t *ezsigndocument_response_compound_create(
     int i_ezsigndocument_stepformcurrent,
     int i_ezsigndocument_stepsignaturetotal,
     int i_ezsigndocument_stepsignature_current,
-    list_t *a_obj_ezsignfoldersignerassociationstatus
+    list_t *a_obj_ezsignfoldersignerassociationstatus,
+    list_t *a_obj_ezsigndocumentdependency
     ) {
     ezsigndocument_response_compound_t *ezsigndocument_response_compound_local_var = malloc(sizeof(ezsigndocument_response_compound_t));
     if (!ezsigndocument_response_compound_local_var) {
@@ -88,6 +90,7 @@ ezsigndocument_response_compound_t *ezsigndocument_response_compound_create(
     ezsigndocument_response_compound_local_var->i_ezsigndocument_pagetotal = i_ezsigndocument_pagetotal;
     ezsigndocument_response_compound_local_var->i_ezsigndocument_signaturesigned = i_ezsigndocument_signaturesigned;
     ezsigndocument_response_compound_local_var->i_ezsigndocument_signaturetotal = i_ezsigndocument_signaturetotal;
+    ezsigndocument_response_compound_local_var->i_ezsigndocument_formfieldtotal = i_ezsigndocument_formfieldtotal;
     ezsigndocument_response_compound_local_var->s_ezsigndocument_md5initial = s_ezsigndocument_md5initial;
     ezsigndocument_response_compound_local_var->t_ezsigndocument_declinedtosignreason = t_ezsigndocument_declinedtosignreason;
     ezsigndocument_response_compound_local_var->s_ezsigndocument_md5signed = s_ezsigndocument_md5signed;
@@ -103,6 +106,7 @@ ezsigndocument_response_compound_t *ezsigndocument_response_compound_create(
     ezsigndocument_response_compound_local_var->i_ezsigndocument_stepsignaturetotal = i_ezsigndocument_stepsignaturetotal;
     ezsigndocument_response_compound_local_var->i_ezsigndocument_stepsignature_current = i_ezsigndocument_stepsignature_current;
     ezsigndocument_response_compound_local_var->a_obj_ezsignfoldersignerassociationstatus = a_obj_ezsignfoldersignerassociationstatus;
+    ezsigndocument_response_compound_local_var->a_obj_ezsigndocumentdependency = a_obj_ezsigndocumentdependency;
 
     return ezsigndocument_response_compound_local_var;
 }
@@ -167,6 +171,13 @@ void ezsigndocument_response_compound_free(ezsigndocument_response_compound_t *e
         }
         list_freeList(ezsigndocument_response_compound->a_obj_ezsignfoldersignerassociationstatus);
         ezsigndocument_response_compound->a_obj_ezsignfoldersignerassociationstatus = NULL;
+    }
+    if (ezsigndocument_response_compound->a_obj_ezsigndocumentdependency) {
+        list_ForEach(listEntry, ezsigndocument_response_compound->a_obj_ezsigndocumentdependency) {
+            ezsigndocumentdependency_response_free(listEntry->data);
+        }
+        list_freeList(ezsigndocument_response_compound->a_obj_ezsigndocumentdependency);
+        ezsigndocument_response_compound->a_obj_ezsigndocumentdependency = NULL;
     }
     free(ezsigndocument_response_compound);
 }
@@ -296,6 +307,15 @@ cJSON *ezsigndocument_response_compound_convertToJSON(ezsigndocument_response_co
         goto fail;
     }
     if(cJSON_AddNumberToObject(item, "iEzsigndocumentSignaturetotal", ezsigndocument_response_compound->i_ezsigndocument_signaturetotal) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // ezsigndocument_response_compound->i_ezsigndocument_formfieldtotal
+    if (!ezsigndocument_response_compound->i_ezsigndocument_formfieldtotal) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iEzsigndocumentFormfieldtotal", ezsigndocument_response_compound->i_ezsigndocument_formfieldtotal) == NULL) {
     goto fail; //Numeric
     }
 
@@ -449,6 +469,26 @@ cJSON *ezsigndocument_response_compound_convertToJSON(ezsigndocument_response_co
     }
     }
 
+
+    // ezsigndocument_response_compound->a_obj_ezsigndocumentdependency
+    if(ezsigndocument_response_compound->a_obj_ezsigndocumentdependency) {
+    cJSON *a_obj_ezsigndocumentdependency = cJSON_AddArrayToObject(item, "a_objEzsigndocumentdependency");
+    if(a_obj_ezsigndocumentdependency == NULL) {
+    goto fail; //nonprimitive container
+    }
+
+    listEntry_t *a_obj_ezsigndocumentdependencyListEntry;
+    if (ezsigndocument_response_compound->a_obj_ezsigndocumentdependency) {
+    list_ForEach(a_obj_ezsigndocumentdependencyListEntry, ezsigndocument_response_compound->a_obj_ezsigndocumentdependency) {
+    cJSON *itemLocal = ezsigndocumentdependency_response_convertToJSON(a_obj_ezsigndocumentdependencyListEntry->data);
+    if(itemLocal == NULL) {
+    goto fail;
+    }
+    cJSON_AddItemToArray(a_obj_ezsigndocumentdependency, itemLocal);
+    }
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -472,6 +512,9 @@ ezsigndocument_response_compound_t *ezsigndocument_response_compound_parseFromJS
 
     // define the local list for ezsigndocument_response_compound->a_obj_ezsignfoldersignerassociationstatus
     list_t *a_obj_ezsignfoldersignerassociationstatusList = NULL;
+
+    // define the local list for ezsigndocument_response_compound->a_obj_ezsigndocumentdependency
+    list_t *a_obj_ezsigndocumentdependencyList = NULL;
 
     // ezsigndocument_response_compound->pki_ezsigndocument_id
     cJSON *pki_ezsigndocument_id = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compoundJSON, "pkiEzsigndocumentID");
@@ -619,6 +662,18 @@ ezsigndocument_response_compound_t *ezsigndocument_response_compound_parseFromJS
 
     
     if(!cJSON_IsNumber(i_ezsigndocument_signaturetotal))
+    {
+    goto end; //Numeric
+    }
+
+    // ezsigndocument_response_compound->i_ezsigndocument_formfieldtotal
+    cJSON *i_ezsigndocument_formfieldtotal = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compoundJSON, "iEzsigndocumentFormfieldtotal");
+    if (!i_ezsigndocument_formfieldtotal) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_ezsigndocument_formfieldtotal))
     {
     goto end; //Numeric
     }
@@ -788,6 +843,27 @@ ezsigndocument_response_compound_t *ezsigndocument_response_compound_parseFromJS
         list_addElement(a_obj_ezsignfoldersignerassociationstatusList, a_obj_ezsignfoldersignerassociationstatusItem);
     }
 
+    // ezsigndocument_response_compound->a_obj_ezsigndocumentdependency
+    cJSON *a_obj_ezsigndocumentdependency = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compoundJSON, "a_objEzsigndocumentdependency");
+    if (a_obj_ezsigndocumentdependency) { 
+    cJSON *a_obj_ezsigndocumentdependency_local_nonprimitive = NULL;
+    if(!cJSON_IsArray(a_obj_ezsigndocumentdependency)){
+        goto end; //nonprimitive container
+    }
+
+    a_obj_ezsigndocumentdependencyList = list_createList();
+
+    cJSON_ArrayForEach(a_obj_ezsigndocumentdependency_local_nonprimitive,a_obj_ezsigndocumentdependency )
+    {
+        if(!cJSON_IsObject(a_obj_ezsigndocumentdependency_local_nonprimitive)){
+            goto end;
+        }
+        ezsigndocumentdependency_response_t *a_obj_ezsigndocumentdependencyItem = ezsigndocumentdependency_response_parseFromJSON(a_obj_ezsigndocumentdependency_local_nonprimitive);
+
+        list_addElement(a_obj_ezsigndocumentdependencyList, a_obj_ezsigndocumentdependencyItem);
+    }
+    }
+
 
     ezsigndocument_response_compound_local_var = ezsigndocument_response_compound_create (
         pki_ezsigndocument_id->valuedouble,
@@ -804,6 +880,7 @@ ezsigndocument_response_compound_t *ezsigndocument_response_compound_parseFromJS
         i_ezsigndocument_pagetotal->valuedouble,
         i_ezsigndocument_signaturesigned->valuedouble,
         i_ezsigndocument_signaturetotal->valuedouble,
+        i_ezsigndocument_formfieldtotal->valuedouble,
         s_ezsigndocument_md5initial && !cJSON_IsNull(s_ezsigndocument_md5initial) ? strdup(s_ezsigndocument_md5initial->valuestring) : NULL,
         t_ezsigndocument_declinedtosignreason && !cJSON_IsNull(t_ezsigndocument_declinedtosignreason) ? strdup(t_ezsigndocument_declinedtosignreason->valuestring) : NULL,
         s_ezsigndocument_md5signed && !cJSON_IsNull(s_ezsigndocument_md5signed) ? strdup(s_ezsigndocument_md5signed->valuestring) : NULL,
@@ -818,7 +895,8 @@ ezsigndocument_response_compound_t *ezsigndocument_response_compound_parseFromJS
         i_ezsigndocument_stepformcurrent->valuedouble,
         i_ezsigndocument_stepsignaturetotal->valuedouble,
         i_ezsigndocument_stepsignature_current->valuedouble,
-        a_obj_ezsignfoldersignerassociationstatusList
+        a_obj_ezsignfoldersignerassociationstatusList,
+        a_obj_ezsigndocumentdependency ? a_obj_ezsigndocumentdependencyList : NULL
         );
 
     return ezsigndocument_response_compound_local_var;
@@ -843,6 +921,15 @@ end:
         }
         list_freeList(a_obj_ezsignfoldersignerassociationstatusList);
         a_obj_ezsignfoldersignerassociationstatusList = NULL;
+    }
+    if (a_obj_ezsigndocumentdependencyList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_ezsigndocumentdependencyList) {
+            ezsigndocumentdependency_response_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_ezsigndocumentdependencyList);
+        a_obj_ezsigndocumentdependencyList = NULL;
     }
     return NULL;
 

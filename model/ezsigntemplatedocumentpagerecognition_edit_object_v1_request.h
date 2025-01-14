@@ -1,0 +1,38 @@
+/*
+ * ezsigntemplatedocumentpagerecognition_edit_object_v1_request.h
+ *
+ * Request for PUT /1/object/ezsigntemplatedocumentpagerecognition/{pkiEzsigntemplatedocumentpagerecognitionID}
+ */
+
+#ifndef _ezsigntemplatedocumentpagerecognition_edit_object_v1_request_H_
+#define _ezsigntemplatedocumentpagerecognition_edit_object_v1_request_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct ezsigntemplatedocumentpagerecognition_edit_object_v1_request_t ezsigntemplatedocumentpagerecognition_edit_object_v1_request_t;
+
+#include "ezsigntemplatedocumentpagerecognition_request_compound.h"
+
+
+
+typedef struct ezsigntemplatedocumentpagerecognition_edit_object_v1_request_t {
+    struct ezsigntemplatedocumentpagerecognition_request_compound_t *obj_ezsigntemplatedocumentpagerecognition; //model
+
+} ezsigntemplatedocumentpagerecognition_edit_object_v1_request_t;
+
+ezsigntemplatedocumentpagerecognition_edit_object_v1_request_t *ezsigntemplatedocumentpagerecognition_edit_object_v1_request_create(
+    ezsigntemplatedocumentpagerecognition_request_compound_t *obj_ezsigntemplatedocumentpagerecognition
+);
+
+void ezsigntemplatedocumentpagerecognition_edit_object_v1_request_free(ezsigntemplatedocumentpagerecognition_edit_object_v1_request_t *ezsigntemplatedocumentpagerecognition_edit_object_v1_request);
+
+ezsigntemplatedocumentpagerecognition_edit_object_v1_request_t *ezsigntemplatedocumentpagerecognition_edit_object_v1_request_parseFromJSON(cJSON *ezsigntemplatedocumentpagerecognition_edit_object_v1_requestJSON);
+
+cJSON *ezsigntemplatedocumentpagerecognition_edit_object_v1_request_convertToJSON(ezsigntemplatedocumentpagerecognition_edit_object_v1_request_t *ezsigntemplatedocumentpagerecognition_edit_object_v1_request);
+
+#endif /* _ezsigntemplatedocumentpagerecognition_edit_object_v1_request_H_ */
+

@@ -6,8 +6,8 @@
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
-#include "../model/ezsignbulksend_create_ezsignbulksendtransmission_v1_request.h"
-#include "../model/ezsignbulksend_create_ezsignbulksendtransmission_v1_response.h"
+#include "../model/ezsignbulksend_create_ezsignbulksendtransmission_v2_request.h"
+#include "../model/ezsignbulksend_create_ezsignbulksendtransmission_v2_response.h"
 #include "../model/ezsignbulksend_create_object_v1_request.h"
 #include "../model/ezsignbulksend_create_object_v1_response.h"
 #include "../model/ezsignbulksend_delete_object_v1_response.h"
@@ -34,8 +34,8 @@ typedef enum  { ezmax_api_definition__full_ezsignbulksendGetListV1__NULL = 0, ez
 
 // Create a new Ezsignbulksendtransmission in the Ezsignbulksend
 //
-ezsignbulksend_create_ezsignbulksendtransmission_v1_response_t*
-ObjectEzsignbulksendAPI_ezsignbulksendCreateEzsignbulksendtransmissionV1(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_create_ezsignbulksendtransmission_v1_request_t *ezsignbulksend_create_ezsignbulksendtransmission_v1_request);
+ezsignbulksend_create_ezsignbulksendtransmission_v2_response_t*
+ObjectEzsignbulksendAPI_ezsignbulksendCreateEzsignbulksendtransmissionV2(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_create_ezsignbulksendtransmission_v2_request_t *ezsignbulksend_create_ezsignbulksendtransmission_v2_request);
 
 
 // Create a new Ezsignbulksend

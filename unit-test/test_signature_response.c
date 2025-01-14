@@ -23,11 +23,15 @@ signature_response_t* instantiate_signature_response(int include_optional) {
   if (include_optional) {
     signature_response = signature_response_create(
       12,
+      1,
+      "https://www.example.com/signature.svg",
       "https://www.example.com/signature.svg"
     );
   } else {
     signature_response = signature_response_create(
       12,
+      1,
+      "https://www.example.com/signature.svg",
       "https://www.example.com/signature.svg"
     );
   }

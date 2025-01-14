@@ -14,13 +14,14 @@ Method | HTTP request | Description
 [**ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV1**](ObjectEzsignfoldersignerassociationAPI.md#ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV1) | **GET** /1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID} | Retrieve an existing Ezsignfoldersignerassociation
 [**ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV2**](ObjectEzsignfoldersignerassociationAPI.md#ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV2) | **GET** /2/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID} | Retrieve an existing Ezsignfoldersignerassociation
 [**ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationPatchObjectV1**](ObjectEzsignfoldersignerassociationAPI.md#ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationPatchObjectV1) | **PATCH** /1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID} | Patch an existing Ezsignfoldersignerassociation
+[**ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationReassignV1**](ObjectEzsignfoldersignerassociationAPI.md#ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationReassignV1) | **POST** /1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}/reassign | Reassign remaining unsigned signatures and forms
 
 
 # **ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateEmbeddedUrlV1**
 ```c
 // Creates an Url to allow embedded signing
 //
-// This endpoint creates an Url that can be used in a browser or embedded in an I-Frame to allow signing.  The signer Login type must be configured as Embedded.  There will be a list to retrieve informations after the signing happens in the embedded version. To do so, there is a list of parameter to add to your sReturnUrl.  In example: https://www.example.com/sReturl?sParameter1&sParameter2. The sParameter1 et sParameter2 will be replace when we will redirect on the url.
+// This endpoint creates an Url that can be used in a browser or embedded in an I-Frame to allow signing.  The signer Login type must be configured as Embedded.
 //
 ezsignfoldersignerassociation_create_embedded_url_v1_response_t* ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateEmbeddedUrlV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_create_embedded_url_v1_request_t *ezsignfoldersignerassociation_create_embedded_url_v1_request);
 ```
@@ -315,6 +316,38 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsignfoldersignerassociation_patch_object_v1_response_t](ezsignfoldersignerassociation_patch_object_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationReassignV1**
+```c
+// Reassign remaining unsigned signatures and forms
+//
+// Reassign remaining unsigned signatures and forms
+//
+ezsignfoldersignerassociation_reassign_v1_response_t* ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationReassignV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_reassign_v1_request_t *ezsignfoldersignerassociation_reassign_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsignfoldersignerassociationID** | **int \*** |  | 
+**ezsignfoldersignerassociation_reassign_v1_request** | **[ezsignfoldersignerassociation_reassign_v1_request_t](ezsignfoldersignerassociation_reassign_v1_request.md) \*** |  | 
+
+### Return type
+
+[ezsignfoldersignerassociation_reassign_v1_response_t](ezsignfoldersignerassociation_reassign_v1_response.md) *
 
 
 ### Authorization

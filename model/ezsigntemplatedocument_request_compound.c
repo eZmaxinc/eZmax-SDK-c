@@ -39,13 +39,13 @@ ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLA
     return 0;
 }
 char* ezsigntemplatedocument_request_compound_e_ezsigntemplatedocument_form_ToString(ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLATEDOCUMENTFORM_e e_ezsigntemplatedocument_form) {
-    char* e_ezsigntemplatedocument_formArray[] =  { "NULL", "Keep", "Convert", "Discard" };
+    char* e_ezsigntemplatedocument_formArray[] =  { "NULL", "Keep", "Convert", "Discard", "Flatten" };
     return e_ezsigntemplatedocument_formArray[e_ezsigntemplatedocument_form];
 }
 
 ezmax_api_definition__full_ezsigntemplatedocument_request_compound_EEZSIGNTEMPLATEDOCUMENTFORM_e ezsigntemplatedocument_request_compound_e_ezsigntemplatedocument_form_FromString(char* e_ezsigntemplatedocument_form){
     int stringToReturn = 0;
-    char *e_ezsigntemplatedocument_formArray[] =  { "NULL", "Keep", "Convert", "Discard" };
+    char *e_ezsigntemplatedocument_formArray[] =  { "NULL", "Keep", "Convert", "Discard", "Flatten" };
     size_t sizeofArray = sizeof(e_ezsigntemplatedocument_formArray) / sizeof(e_ezsigntemplatedocument_formArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(e_ezsigntemplatedocument_form, e_ezsigntemplatedocument_formArray[stringToReturn]) == 0) {

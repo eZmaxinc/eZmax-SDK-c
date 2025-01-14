@@ -22,7 +22,7 @@ typedef struct ezsigntemplate_response_compound_t ezsigntemplate_response_compou
 
 // Enum  for ezsigntemplate_response_compound
 
-typedef enum  { ezmax_api_definition__full_ezsigntemplate_response_compound__NULL = 0, ezmax_api_definition__full_ezsigntemplate_response_compound__User, ezmax_api_definition__full_ezsigntemplate_response_compound__Usergroup, ezmax_api_definition__full_ezsigntemplate_response_compound__Company } ezmax_api_definition__full_ezsigntemplate_response_compound__e;
+typedef enum  { ezmax_api_definition__full_ezsigntemplate_response_compound__NULL = 0, ezmax_api_definition__full_ezsigntemplate_response_compound__User, ezmax_api_definition__full_ezsigntemplate_response_compound__Usergroup, ezmax_api_definition__full_ezsigntemplate_response_compound__Company, ezmax_api_definition__full_ezsigntemplate_response_compound__Ezsignfoldertype } ezmax_api_definition__full_ezsigntemplate_response_compound__e;
 
 char* ezsigntemplate_response_compound_e_ezsigntemplate_type_ToString(ezmax_api_definition__full_ezsigntemplate_response_compound__e e_ezsigntemplate_type);
 
@@ -35,8 +35,11 @@ typedef struct ezsigntemplate_response_compound_t {
     int fki_ezsigntemplatedocument_id; //numeric
     int fki_ezsignfoldertype_id; //numeric
     int fki_language_id; //numeric
+    int fki_ezdoctemplatedocument_id; //numeric
     char *s_language_name_x; // string
     char *s_ezsigntemplate_description; // string
+    char *s_ezsigntemplate_externaldescription; // string
+    char *t_ezsigntemplate_comment; // string
     char *s_ezsigntemplate_filenamepattern; // string
     int b_ezsigntemplate_adminonly; //boolean
     char *s_ezsignfoldertype_name_x; // string
@@ -53,8 +56,11 @@ ezsigntemplate_response_compound_t *ezsigntemplate_response_compound_create(
     int fki_ezsigntemplatedocument_id,
     int fki_ezsignfoldertype_id,
     int fki_language_id,
+    int fki_ezdoctemplatedocument_id,
     char *s_language_name_x,
     char *s_ezsigntemplate_description,
+    char *s_ezsigntemplate_externaldescription,
+    char *t_ezsigntemplate_comment,
     char *s_ezsigntemplate_filenamepattern,
     int b_ezsigntemplate_adminonly,
     char *s_ezsignfoldertype_name_x,

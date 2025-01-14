@@ -4,7 +4,7 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ObjectEzsignbulksendAPI_ezsignbulksendCreateEzsignbulksendtransmissionV1**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendCreateEzsignbulksendtransmissionV1) | **POST** /1/object/ezsignbulksend/{pkiEzsignbulksendID}/createEzsignbulksendtransmission | Create a new Ezsignbulksendtransmission in the Ezsignbulksend
+[**ObjectEzsignbulksendAPI_ezsignbulksendCreateEzsignbulksendtransmissionV2**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendCreateEzsignbulksendtransmissionV2) | **POST** /2/object/ezsignbulksend/{pkiEzsignbulksendID}/createEzsignbulksendtransmission | Create a new Ezsignbulksendtransmission in the Ezsignbulksend
 [**ObjectEzsignbulksendAPI_ezsignbulksendCreateObjectV1**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendCreateObjectV1) | **POST** /1/object/ezsignbulksend | Create a new Ezsignbulksend
 [**ObjectEzsignbulksendAPI_ezsignbulksendDeleteObjectV1**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendDeleteObjectV1) | **DELETE** /1/object/ezsignbulksend/{pkiEzsignbulksendID} | Delete an existing Ezsignbulksend
 [**ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV1**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV1) | **PUT** /1/object/ezsignbulksend/{pkiEzsignbulksendID} | Edit an existing Ezsignbulksend
@@ -17,11 +17,11 @@ Method | HTTP request | Description
 [**ObjectEzsignbulksendAPI_ezsignbulksendReorderV1**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendReorderV1) | **POST** /1/object/ezsignbulksend/{pkiEzsignbulksendID}/reorder | Reorder Ezsignbulksenddocumentmappings in the Ezsignbulksend
 
 
-# **ObjectEzsignbulksendAPI_ezsignbulksendCreateEzsignbulksendtransmissionV1**
+# **ObjectEzsignbulksendAPI_ezsignbulksendCreateEzsignbulksendtransmissionV2**
 ```c
 // Create a new Ezsignbulksendtransmission in the Ezsignbulksend
 //
-ezsignbulksend_create_ezsignbulksendtransmission_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulksendCreateEzsignbulksendtransmissionV1(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_create_ezsignbulksendtransmission_v1_request_t *ezsignbulksend_create_ezsignbulksendtransmission_v1_request);
+ezsignbulksend_create_ezsignbulksendtransmission_v2_response_t* ObjectEzsignbulksendAPI_ezsignbulksendCreateEzsignbulksendtransmissionV2(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_create_ezsignbulksendtransmission_v2_request_t *ezsignbulksend_create_ezsignbulksendtransmission_v2_request);
 ```
 
 ### Parameters
@@ -29,11 +29,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **pkiEzsignbulksendID** | **int \*** |  | 
-**ezsignbulksend_create_ezsignbulksendtransmission_v1_request** | **[ezsignbulksend_create_ezsignbulksendtransmission_v1_request_t](ezsignbulksend_create_ezsignbulksendtransmission_v1_request.md) \*** |  | 
+**ezsignbulksend_create_ezsignbulksendtransmission_v2_request** | **[ezsignbulksend_create_ezsignbulksendtransmission_v2_request_t](ezsignbulksend_create_ezsignbulksendtransmission_v2_request.md) \*** |  | 
 
 ### Return type
 
-[ezsignbulksend_create_ezsignbulksendtransmission_v1_response_t](ezsignbulksend_create_ezsignbulksendtransmission_v1_response.md) *
+[ezsignbulksend_create_ezsignbulksendtransmission_v2_response_t](ezsignbulksend_create_ezsignbulksendtransmission_v2_response.md) *
 
 
 ### Authorization

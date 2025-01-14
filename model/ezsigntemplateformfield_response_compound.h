@@ -15,10 +15,12 @@
 
 typedef struct ezsigntemplateformfield_response_compound_t ezsigntemplateformfield_response_compound_t;
 
+#include "enum_horizontalalignment.h"
 #include "ezsigntemplateelementdependency_response_compound.h"
 #include "field_e_ezsigntemplateformfield_dependencyrequirement.h"
 #include "field_e_ezsigntemplateformfield_positioning.h"
 #include "field_e_ezsigntemplateformfield_positioningoccurence.h"
+#include "textstylestatic_response_compound.h"
 
 // Enum  for ezsigntemplateformfield_response_compound
 
@@ -44,6 +46,14 @@ char* ezsigntemplateformfield_response_compound_e_ezsigntemplateformfield_positi
 
 ezmax_api_definition__full_ezsigntemplateformfield_response_compound__e ezsigntemplateformfield_response_compound_e_ezsigntemplateformfield_positioningoccurence_FromString(char* e_ezsigntemplateformfield_positioningoccurence);
 
+// Enum  for ezsigntemplateformfield_response_compound
+
+typedef enum  { ezmax_api_definition__full_ezsigntemplateformfield_response_compound__NULL = 0, ezmax_api_definition__full_ezsigntemplateformfield_response_compound__Center, ezmax_api_definition__full_ezsigntemplateformfield_response_compound__Left, ezmax_api_definition__full_ezsigntemplateformfield_response_compound__Right } ezmax_api_definition__full_ezsigntemplateformfield_response_compound__e;
+
+char* ezsigntemplateformfield_response_compound_e_ezsigntemplateformfield_horizontalalignment_ToString(ezmax_api_definition__full_ezsigntemplateformfield_response_compound__e e_ezsigntemplateformfield_horizontalalignment);
+
+ezmax_api_definition__full_ezsigntemplateformfield_response_compound__e ezsigntemplateformfield_response_compound_e_ezsigntemplateformfield_horizontalalignment_FromString(char* e_ezsigntemplateformfield_horizontalalignment);
+
 
 
 typedef struct ezsigntemplateformfield_response_compound_t {
@@ -63,6 +73,8 @@ typedef struct ezsigntemplateformfield_response_compound_t {
     int i_ezsigntemplateformfield_positioningoffsetx; //numeric
     int i_ezsigntemplateformfield_positioningoffsety; //numeric
     field_e_ezsigntemplateformfield_positioningoccurence_t *e_ezsigntemplateformfield_positioningoccurence; // custom
+    enum_horizontalalignment_t *e_ezsigntemplateformfield_horizontalalignment; // custom
+    struct textstylestatic_response_compound_t *obj_textstylestatic; //model
     list_t *a_obj_ezsigntemplateelementdependency; //nonprimitive container
 
 } ezsigntemplateformfield_response_compound_t;
@@ -84,6 +96,8 @@ ezsigntemplateformfield_response_compound_t *ezsigntemplateformfield_response_co
     int i_ezsigntemplateformfield_positioningoffsetx,
     int i_ezsigntemplateformfield_positioningoffsety,
     field_e_ezsigntemplateformfield_positioningoccurence_t *e_ezsigntemplateformfield_positioningoccurence,
+    enum_horizontalalignment_t *e_ezsigntemplateformfield_horizontalalignment,
+    textstylestatic_response_compound_t *obj_textstylestatic,
     list_t *a_obj_ezsigntemplateelementdependency
 );
 

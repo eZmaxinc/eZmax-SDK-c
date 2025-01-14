@@ -4,31 +4,31 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ObjectBrandingAPI_brandingCreateObjectV1**](ObjectBrandingAPI.md#ObjectBrandingAPI_brandingCreateObjectV1) | **POST** /1/object/branding | Create a new Branding
-[**ObjectBrandingAPI_brandingEditObjectV1**](ObjectBrandingAPI.md#ObjectBrandingAPI_brandingEditObjectV1) | **PUT** /1/object/branding/{pkiBrandingID} | Edit an existing Branding
+[**ObjectBrandingAPI_brandingCreateObjectV2**](ObjectBrandingAPI.md#ObjectBrandingAPI_brandingCreateObjectV2) | **POST** /2/object/branding | Create a new Branding
+[**ObjectBrandingAPI_brandingEditObjectV2**](ObjectBrandingAPI.md#ObjectBrandingAPI_brandingEditObjectV2) | **PUT** /2/object/branding/{pkiBrandingID} | Edit an existing Branding
 [**ObjectBrandingAPI_brandingGetAutocompleteV2**](ObjectBrandingAPI.md#ObjectBrandingAPI_brandingGetAutocompleteV2) | **GET** /2/object/branding/getAutocomplete/{sSelector} | Retrieve Brandings and IDs
 [**ObjectBrandingAPI_brandingGetListV1**](ObjectBrandingAPI.md#ObjectBrandingAPI_brandingGetListV1) | **GET** /1/object/branding/getList | Retrieve Branding list
-[**ObjectBrandingAPI_brandingGetObjectV2**](ObjectBrandingAPI.md#ObjectBrandingAPI_brandingGetObjectV2) | **GET** /2/object/branding/{pkiBrandingID} | Retrieve an existing Branding
+[**ObjectBrandingAPI_brandingGetObjectV3**](ObjectBrandingAPI.md#ObjectBrandingAPI_brandingGetObjectV3) | **GET** /3/object/branding/{pkiBrandingID} | Retrieve an existing Branding
 
 
-# **ObjectBrandingAPI_brandingCreateObjectV1**
+# **ObjectBrandingAPI_brandingCreateObjectV2**
 ```c
 // Create a new Branding
 //
 // The endpoint allows to create one or many elements at once.
 //
-branding_create_object_v1_response_t* ObjectBrandingAPI_brandingCreateObjectV1(apiClient_t *apiClient, branding_create_object_v1_request_t *branding_create_object_v1_request);
+branding_create_object_v2_response_t* ObjectBrandingAPI_brandingCreateObjectV2(apiClient_t *apiClient, branding_create_object_v2_request_t *branding_create_object_v2_request);
 ```
 
 ### Parameters
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
-**branding_create_object_v1_request** | **[branding_create_object_v1_request_t](branding_create_object_v1_request.md) \*** |  | 
+**branding_create_object_v2_request** | **[branding_create_object_v2_request_t](branding_create_object_v2_request.md) \*** |  | 
 
 ### Return type
 
-[branding_create_object_v1_response_t](branding_create_object_v1_response.md) *
+[branding_create_object_v2_response_t](branding_create_object_v2_response.md) *
 
 
 ### Authorization
@@ -42,13 +42,13 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **ObjectBrandingAPI_brandingEditObjectV1**
+# **ObjectBrandingAPI_brandingEditObjectV2**
 ```c
 // Edit an existing Branding
 //
 // 
 //
-branding_edit_object_v1_response_t* ObjectBrandingAPI_brandingEditObjectV1(apiClient_t *apiClient, int *pkiBrandingID, branding_edit_object_v1_request_t *branding_edit_object_v1_request);
+branding_edit_object_v2_response_t* ObjectBrandingAPI_brandingEditObjectV2(apiClient_t *apiClient, int *pkiBrandingID, branding_edit_object_v2_request_t *branding_edit_object_v2_request);
 ```
 
 ### Parameters
@@ -56,11 +56,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **pkiBrandingID** | **int \*** |  | 
-**branding_edit_object_v1_request** | **[branding_edit_object_v1_request_t](branding_edit_object_v1_request.md) \*** |  | 
+**branding_edit_object_v2_request** | **[branding_edit_object_v2_request_t](branding_edit_object_v2_request.md) \*** |  | 
 
 ### Return type
 
-[branding_edit_object_v1_response_t](branding_edit_object_v1_response.md) *
+[branding_edit_object_v2_response_t](branding_edit_object_v2_response.md) *
 
 
 ### Authorization
@@ -143,13 +143,13 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **ObjectBrandingAPI_brandingGetObjectV2**
+# **ObjectBrandingAPI_brandingGetObjectV3**
 ```c
 // Retrieve an existing Branding
 //
 // 
 //
-branding_get_object_v2_response_t* ObjectBrandingAPI_brandingGetObjectV2(apiClient_t *apiClient, int *pkiBrandingID);
+branding_get_object_v3_response_t* ObjectBrandingAPI_brandingGetObjectV3(apiClient_t *apiClient, int *pkiBrandingID);
 ```
 
 ### Parameters
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[branding_get_object_v2_response_t](branding_get_object_v2_response.md) *
+[branding_get_object_v3_response_t](branding_get_object_v3_response.md) *
 
 
 ### Authorization

@@ -1,0 +1,32 @@
+/*
+ * field_e_activesession_ezsignaccess.h
+ *
+ * Whether the user is subscribed to eZsign and who pays for the subscription
+ */
+
+#ifndef _field_e_activesession_ezsignaccess_H_
+#define _field_e_activesession_ezsignaccess_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_activesession_ezsignaccess_t field_e_activesession_ezsignaccess_t;
+
+
+// Enum  for field_e_activesession_ezsignaccess
+
+typedef enum { ezmax_api_definition__full_field_e_activesession_ezsignaccess__NULL = 0, ezmax_api_definition__full_field_e_activesession_ezsignaccess__No, ezmax_api_definition__full_field_e_activesession_ezsignaccess__PaidByOffice, ezmax_api_definition__full_field_e_activesession_ezsignaccess__PerDocument, ezmax_api_definition__full_field_e_activesession_ezsignaccess__Prepaid } ezmax_api_definition__full_field_e_activesession_ezsignaccess__e;
+
+char* field_e_activesession_ezsignaccess_field_e_activesession_ezsignaccess_ToString(ezmax_api_definition__full_field_e_activesession_ezsignaccess__e field_e_activesession_ezsignaccess);
+
+ezmax_api_definition__full_field_e_activesession_ezsignaccess__e field_e_activesession_ezsignaccess_field_e_activesession_ezsignaccess_FromString(char* field_e_activesession_ezsignaccess);
+
+//cJSON *field_e_activesession_ezsignaccess_field_e_activesession_ezsignaccess_convertToJSON(ezmax_api_definition__full_field_e_activesession_ezsignaccess__e field_e_activesession_ezsignaccess);
+
+//ezmax_api_definition__full_field_e_activesession_ezsignaccess__e field_e_activesession_ezsignaccess_field_e_activesession_ezsignaccess_parseFromJSON(cJSON *field_e_activesession_ezsignaccessJSON);
+
+#endif /* _field_e_activesession_ezsignaccess_H_ */
+

@@ -58,6 +58,7 @@ ezmax_api_definition__full_webhook_response_compound__e webhook_response_compoun
 
 webhook_response_compound_t *webhook_response_compound_create(
     int pki_webhook_id,
+    int fki_authenticationexternal_id,
     char *s_webhook_description,
     int fki_ezsignfoldertype_id,
     char *s_ezsignfoldertype_name_x,
@@ -71,6 +72,7 @@ webhook_response_compound_t *webhook_response_compound_create(
     int b_webhook_isactive,
     int b_webhook_issigned,
     int b_webhook_skipsslvalidation,
+    char *s_authenticationexternal_description,
     common_audit_t *obj_audit,
     char *s_webhook_event,
     list_t *a_obj_webhookheader
@@ -80,6 +82,7 @@ webhook_response_compound_t *webhook_response_compound_create(
         return NULL;
     }
     webhook_response_compound_local_var->pki_webhook_id = pki_webhook_id;
+    webhook_response_compound_local_var->fki_authenticationexternal_id = fki_authenticationexternal_id;
     webhook_response_compound_local_var->s_webhook_description = s_webhook_description;
     webhook_response_compound_local_var->fki_ezsignfoldertype_id = fki_ezsignfoldertype_id;
     webhook_response_compound_local_var->s_ezsignfoldertype_name_x = s_ezsignfoldertype_name_x;
@@ -93,6 +96,7 @@ webhook_response_compound_t *webhook_response_compound_create(
     webhook_response_compound_local_var->b_webhook_isactive = b_webhook_isactive;
     webhook_response_compound_local_var->b_webhook_issigned = b_webhook_issigned;
     webhook_response_compound_local_var->b_webhook_skipsslvalidation = b_webhook_skipsslvalidation;
+    webhook_response_compound_local_var->s_authenticationexternal_description = s_authenticationexternal_description;
     webhook_response_compound_local_var->obj_audit = obj_audit;
     webhook_response_compound_local_var->s_webhook_event = s_webhook_event;
     webhook_response_compound_local_var->a_obj_webhookheader = a_obj_webhookheader;
@@ -142,6 +146,10 @@ void webhook_response_compound_free(webhook_response_compound_t *webhook_respons
         free(webhook_response_compound->s_webhook_secret);
         webhook_response_compound->s_webhook_secret = NULL;
     }
+    if (webhook_response_compound->s_authenticationexternal_description) {
+        free(webhook_response_compound->s_authenticationexternal_description);
+        webhook_response_compound->s_authenticationexternal_description = NULL;
+    }
     if (webhook_response_compound->obj_audit) {
         common_audit_free(webhook_response_compound->obj_audit);
         webhook_response_compound->obj_audit = NULL;
@@ -169,6 +177,14 @@ cJSON *webhook_response_compound_convertToJSON(webhook_response_compound_t *webh
     }
     if(cJSON_AddNumberToObject(item, "pkiWebhookID", webhook_response_compound->pki_webhook_id) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // webhook_response_compound->fki_authenticationexternal_id
+    if(webhook_response_compound->fki_authenticationexternal_id) {
+    if(cJSON_AddNumberToObject(item, "fkiAuthenticationexternalID", webhook_response_compound->fki_authenticationexternal_id) == NULL) {
+    goto fail; //Numeric
+    }
     }
 
 
@@ -298,6 +314,14 @@ cJSON *webhook_response_compound_convertToJSON(webhook_response_compound_t *webh
     }
 
 
+    // webhook_response_compound->s_authenticationexternal_description
+    if(webhook_response_compound->s_authenticationexternal_description) {
+    if(cJSON_AddStringToObject(item, "sAuthenticationexternalDescription", webhook_response_compound->s_authenticationexternal_description) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
     // webhook_response_compound->obj_audit
     if (!webhook_response_compound->obj_audit) {
         goto fail;
@@ -376,6 +400,15 @@ webhook_response_compound_t *webhook_response_compound_parseFromJSON(cJSON *webh
     if(!cJSON_IsNumber(pki_webhook_id))
     {
     goto end; //Numeric
+    }
+
+    // webhook_response_compound->fki_authenticationexternal_id
+    cJSON *fki_authenticationexternal_id = cJSON_GetObjectItemCaseSensitive(webhook_response_compoundJSON, "fkiAuthenticationexternalID");
+    if (fki_authenticationexternal_id) { 
+    if(!cJSON_IsNumber(fki_authenticationexternal_id))
+    {
+    goto end; //Numeric
+    }
     }
 
     // webhook_response_compound->s_webhook_description
@@ -507,6 +540,15 @@ webhook_response_compound_t *webhook_response_compound_parseFromJSON(cJSON *webh
     goto end; //Bool
     }
 
+    // webhook_response_compound->s_authenticationexternal_description
+    cJSON *s_authenticationexternal_description = cJSON_GetObjectItemCaseSensitive(webhook_response_compoundJSON, "sAuthenticationexternalDescription");
+    if (s_authenticationexternal_description) { 
+    if(!cJSON_IsString(s_authenticationexternal_description) && !cJSON_IsNull(s_authenticationexternal_description))
+    {
+    goto end; //String
+    }
+    }
+
     // webhook_response_compound->obj_audit
     cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(webhook_response_compoundJSON, "objAudit");
     if (!obj_audit) {
@@ -549,6 +591,7 @@ webhook_response_compound_t *webhook_response_compound_parseFromJSON(cJSON *webh
 
     webhook_response_compound_local_var = webhook_response_compound_create (
         pki_webhook_id->valuedouble,
+        fki_authenticationexternal_id ? fki_authenticationexternal_id->valuedouble : 0,
         strdup(s_webhook_description->valuestring),
         fki_ezsignfoldertype_id ? fki_ezsignfoldertype_id->valuedouble : 0,
         s_ezsignfoldertype_name_x && !cJSON_IsNull(s_ezsignfoldertype_name_x) ? strdup(s_ezsignfoldertype_name_x->valuestring) : NULL,
@@ -562,6 +605,7 @@ webhook_response_compound_t *webhook_response_compound_parseFromJSON(cJSON *webh
         b_webhook_isactive->valueint,
         b_webhook_issigned->valueint,
         b_webhook_skipsslvalidation->valueint,
+        s_authenticationexternal_description && !cJSON_IsNull(s_authenticationexternal_description) ? strdup(s_authenticationexternal_description->valuestring) : NULL,
         obj_audit_local_nonprim,
         s_webhook_event && !cJSON_IsNull(s_webhook_event) ? strdup(s_webhook_event->valuestring) : NULL,
         a_obj_webhookheader ? a_obj_webhookheaderList : NULL

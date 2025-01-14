@@ -17,6 +17,7 @@ typedef struct ezsigntemplatesignature_request_t ezsigntemplatesignature_request
 
 #include "enum_textvalidation.h"
 #include "field_e_ezsigntemplatesignature_attachmentnamesource.h"
+#include "field_e_ezsigntemplatesignature_consultationtrigger.h"
 #include "field_e_ezsigntemplatesignature_dependencyrequirement.h"
 #include "field_e_ezsigntemplatesignature_font.h"
 #include "field_e_ezsigntemplatesignature_positioning.h"
@@ -34,11 +35,19 @@ ezmax_api_definition__full_ezsigntemplatesignature_request__e ezsigntemplatesign
 
 // Enum  for ezsigntemplatesignature_request
 
-typedef enum  { ezmax_api_definition__full_ezsigntemplatesignature_request__NULL = 0, ezmax_api_definition__full_ezsigntemplatesignature_request__Acknowledgement, ezmax_api_definition__full_ezsigntemplatesignature_request__City, ezmax_api_definition__full_ezsigntemplatesignature_request__Handwritten, ezmax_api_definition__full_ezsigntemplatesignature_request__Initials, ezmax_api_definition__full_ezsigntemplatesignature_request__Name, ezmax_api_definition__full_ezsigntemplatesignature_request__NameReason, ezmax_api_definition__full_ezsigntemplatesignature_request__Attachments, ezmax_api_definition__full_ezsigntemplatesignature_request__FieldText, ezmax_api_definition__full_ezsigntemplatesignature_request__FieldTextarea, ezmax_api_definition__full_ezsigntemplatesignature_request__Consultation } ezmax_api_definition__full_ezsigntemplatesignature_request__e;
+typedef enum  { ezmax_api_definition__full_ezsigntemplatesignature_request__NULL = 0, ezmax_api_definition__full_ezsigntemplatesignature_request__Acknowledgement, ezmax_api_definition__full_ezsigntemplatesignature_request__City, ezmax_api_definition__full_ezsigntemplatesignature_request__Handwritten, ezmax_api_definition__full_ezsigntemplatesignature_request__Initials, ezmax_api_definition__full_ezsigntemplatesignature_request__Name, ezmax_api_definition__full_ezsigntemplatesignature_request__NameReason, ezmax_api_definition__full_ezsigntemplatesignature_request__Attachments, ezmax_api_definition__full_ezsigntemplatesignature_request__FieldText, ezmax_api_definition__full_ezsigntemplatesignature_request__FieldTextarea, ezmax_api_definition__full_ezsigntemplatesignature_request__Consultation, ezmax_api_definition__full_ezsigntemplatesignature_request__Signature } ezmax_api_definition__full_ezsigntemplatesignature_request__e;
 
 char* ezsigntemplatesignature_request_e_ezsigntemplatesignature_type_ToString(ezmax_api_definition__full_ezsigntemplatesignature_request__e e_ezsigntemplatesignature_type);
 
 ezmax_api_definition__full_ezsigntemplatesignature_request__e ezsigntemplatesignature_request_e_ezsigntemplatesignature_type_FromString(char* e_ezsigntemplatesignature_type);
+
+// Enum  for ezsigntemplatesignature_request
+
+typedef enum  { ezmax_api_definition__full_ezsigntemplatesignature_request__NULL = 0, ezmax_api_definition__full_ezsigntemplatesignature_request__Automatic, ezmax_api_definition__full_ezsigntemplatesignature_request__Manual } ezmax_api_definition__full_ezsigntemplatesignature_request__e;
+
+char* ezsigntemplatesignature_request_e_ezsigntemplatesignature_consultationtrigger_ToString(ezmax_api_definition__full_ezsigntemplatesignature_request__e e_ezsigntemplatesignature_consultationtrigger);
+
+ezmax_api_definition__full_ezsigntemplatesignature_request__e ezsigntemplatesignature_request_e_ezsigntemplatesignature_consultationtrigger_FromString(char* e_ezsigntemplatesignature_consultationtrigger);
 
 // Enum  for ezsigntemplatesignature_request
 
@@ -95,6 +104,8 @@ typedef struct ezsigntemplatesignature_request_t {
     int fki_ezsigntemplatedocument_id; //numeric
     int fki_ezsigntemplatesigner_id; //numeric
     int fki_ezsigntemplatesigner_id_validation; //numeric
+    int b_ezsigntemplatesignature_handwritten; //boolean
+    int b_ezsigntemplatesignature_reason; //boolean
     field_e_ezsigntemplatesignature_positioning_t *e_ezsigntemplatesignature_positioning; // custom
     int i_ezsigntemplatedocumentpage_pagenumber; //numeric
     int i_ezsigntemplatesignature_x; //numeric
@@ -103,6 +114,7 @@ typedef struct ezsigntemplatesignature_request_t {
     int i_ezsigntemplatesignature_height; //numeric
     int i_ezsigntemplatesignature_step; //numeric
     field_e_ezsigntemplatesignature_type_t *e_ezsigntemplatesignature_type; // custom
+    field_e_ezsigntemplatesignature_consultationtrigger_t *e_ezsigntemplatesignature_consultationtrigger; // custom
     char *t_ezsigntemplatesignature_tooltip; // string
     field_e_ezsigntemplatesignature_tooltipposition_t *e_ezsigntemplatesignature_tooltipposition; // custom
     field_e_ezsigntemplatesignature_font_t *e_ezsigntemplatesignature_font; // custom
@@ -111,8 +123,10 @@ typedef struct ezsigntemplatesignature_request_t {
     char *s_ezsigntemplatesignature_attachmentdescription; // string
     int i_ezsigntemplatesignature_validationstep; //numeric
     int i_ezsigntemplatesignature_maxlength; //numeric
+    char *s_ezsigntemplatesignature_defaultvalue; // string
     char *s_ezsigntemplatesignature_regexp; // string
     enum_textvalidation_t *e_ezsigntemplatesignature_textvalidation; // custom
+    char *s_ezsigntemplatesignature_textvalidationcustommessage; // string
     field_e_ezsigntemplatesignature_dependencyrequirement_t *e_ezsigntemplatesignature_dependencyrequirement; // custom
     char *s_ezsigntemplatesignature_positioningpattern; // string
     int i_ezsigntemplatesignature_positioningoffsetx; //numeric
@@ -126,6 +140,8 @@ ezsigntemplatesignature_request_t *ezsigntemplatesignature_request_create(
     int fki_ezsigntemplatedocument_id,
     int fki_ezsigntemplatesigner_id,
     int fki_ezsigntemplatesigner_id_validation,
+    int b_ezsigntemplatesignature_handwritten,
+    int b_ezsigntemplatesignature_reason,
     field_e_ezsigntemplatesignature_positioning_t *e_ezsigntemplatesignature_positioning,
     int i_ezsigntemplatedocumentpage_pagenumber,
     int i_ezsigntemplatesignature_x,
@@ -134,6 +150,7 @@ ezsigntemplatesignature_request_t *ezsigntemplatesignature_request_create(
     int i_ezsigntemplatesignature_height,
     int i_ezsigntemplatesignature_step,
     field_e_ezsigntemplatesignature_type_t *e_ezsigntemplatesignature_type,
+    field_e_ezsigntemplatesignature_consultationtrigger_t *e_ezsigntemplatesignature_consultationtrigger,
     char *t_ezsigntemplatesignature_tooltip,
     field_e_ezsigntemplatesignature_tooltipposition_t *e_ezsigntemplatesignature_tooltipposition,
     field_e_ezsigntemplatesignature_font_t *e_ezsigntemplatesignature_font,
@@ -142,8 +159,10 @@ ezsigntemplatesignature_request_t *ezsigntemplatesignature_request_create(
     char *s_ezsigntemplatesignature_attachmentdescription,
     int i_ezsigntemplatesignature_validationstep,
     int i_ezsigntemplatesignature_maxlength,
+    char *s_ezsigntemplatesignature_defaultvalue,
     char *s_ezsigntemplatesignature_regexp,
     enum_textvalidation_t *e_ezsigntemplatesignature_textvalidation,
+    char *s_ezsigntemplatesignature_textvalidationcustommessage,
     field_e_ezsigntemplatesignature_dependencyrequirement_t *e_ezsigntemplatesignature_dependencyrequirement,
     char *s_ezsigntemplatesignature_positioningpattern,
     int i_ezsigntemplatesignature_positioningoffsetx,

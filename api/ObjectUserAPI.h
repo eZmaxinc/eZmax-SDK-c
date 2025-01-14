@@ -12,12 +12,15 @@
 #include "../model/user_create_object_v1_response.h"
 #include "../model/user_create_object_v2_request.h"
 #include "../model/user_create_object_v2_response.h"
+#include "../model/user_edit_colleagues_v2_request.h"
+#include "../model/user_edit_colleagues_v2_response.h"
 #include "../model/user_edit_object_v1_request.h"
 #include "../model/user_edit_object_v1_response.h"
 #include "../model/user_edit_permissions_v1_request.h"
 #include "../model/user_edit_permissions_v1_response.h"
 #include "../model/user_get_apikeys_v1_response.h"
 #include "../model/user_get_autocomplete_v2_response.h"
+#include "../model/user_get_colleagues_v2_response.h"
 #include "../model/user_get_effective_permissions_v1_response.h"
 #include "../model/user_get_list_v1_response.h"
 #include "../model/user_get_object_v2_response.h"
@@ -28,7 +31,7 @@
 #include "../model/user_send_password_reset_v1_response.h"
 
 // Enum SSELECTOR for ObjectUserAPI_userGetAutocompleteV2
-typedef enum  { ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_NULL = 0, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_AgentBrokerEmployeeEzsignUserNormal, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_AgentBrokerEmployeeNormalBuiltIn, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_AgentBrokerEzsignuserNormal, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_ClonableUsers, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_EzsignuserBuiltIn, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_Normal, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_UsergroupDelegated } ezmax_api_definition__full_userGetAutocompleteV2_sSelector_e;
+typedef enum  { ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_NULL = 0, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_AgentBrokerAssistant, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_AgentBrokerEmployeeEzsignUserNormal, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_AgentBrokerEmployeeNormalBuiltIn, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_AgentBrokerEzsignuserNormal, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_ClonableUsers, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_EzsignuserBuiltIn, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_Ezsignuser, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_Normal, ezmax_api_definition__full_userGetAutocompleteV2_SSELECTOR_UsergroupDelegated } ezmax_api_definition__full_userGetAutocompleteV2_sSelector_e;
 
 // Enum EFILTERACTIVE for ObjectUserAPI_userGetAutocompleteV2
 typedef enum  { ezmax_api_definition__full_userGetAutocompleteV2_EFILTERACTIVE_NULL = 0, ezmax_api_definition__full_userGetAutocompleteV2_EFILTERACTIVE_All, ezmax_api_definition__full_userGetAutocompleteV2_EFILTERACTIVE_Active, ezmax_api_definition__full_userGetAutocompleteV2_EFILTERACTIVE_Inactive } ezmax_api_definition__full_userGetAutocompleteV2_eFilterActive_e;
@@ -59,6 +62,14 @@ user_create_object_v2_response_t*
 ObjectUserAPI_userCreateObjectV2(apiClient_t *apiClient, user_create_object_v2_request_t *user_create_object_v2_request);
 
 
+// Edit multiple Colleagues
+//
+// Using this endpoint, you can edit multiple Colleagues at the same time.
+//
+user_edit_colleagues_v2_response_t*
+ObjectUserAPI_userEditColleaguesV2(apiClient_t *apiClient, int *pkiUserID, user_edit_colleagues_v2_request_t *user_edit_colleagues_v2_request);
+
+
 // Edit an existing User
 //
 // 
@@ -87,6 +98,12 @@ ObjectUserAPI_userGetApikeysV1(apiClient_t *apiClient, int *pkiUserID);
 //
 user_get_autocomplete_v2_response_t*
 ObjectUserAPI_userGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_userGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_userGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
+
+
+// Retrieve an existing User's Colleagues
+//
+user_get_colleagues_v2_response_t*
+ObjectUserAPI_userGetColleaguesV2(apiClient_t *apiClient, int *pkiUserID);
 
 
 // Retrieve an existing User's Effective Permissions

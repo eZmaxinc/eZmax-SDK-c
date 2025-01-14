@@ -37,6 +37,7 @@ ezsigndocument_response_t *ezsigndocument_response_create(
     int i_ezsigndocument_pagetotal,
     int i_ezsigndocument_signaturesigned,
     int i_ezsigndocument_signaturetotal,
+    int i_ezsigndocument_formfieldtotal,
     char *s_ezsigndocument_md5initial,
     char *t_ezsigndocument_declinedtosignreason,
     char *s_ezsigndocument_md5signed,
@@ -65,6 +66,7 @@ ezsigndocument_response_t *ezsigndocument_response_create(
     ezsigndocument_response_local_var->i_ezsigndocument_pagetotal = i_ezsigndocument_pagetotal;
     ezsigndocument_response_local_var->i_ezsigndocument_signaturesigned = i_ezsigndocument_signaturesigned;
     ezsigndocument_response_local_var->i_ezsigndocument_signaturetotal = i_ezsigndocument_signaturetotal;
+    ezsigndocument_response_local_var->i_ezsigndocument_formfieldtotal = i_ezsigndocument_formfieldtotal;
     ezsigndocument_response_local_var->s_ezsigndocument_md5initial = s_ezsigndocument_md5initial;
     ezsigndocument_response_local_var->t_ezsigndocument_declinedtosignreason = t_ezsigndocument_declinedtosignreason;
     ezsigndocument_response_local_var->s_ezsigndocument_md5signed = s_ezsigndocument_md5signed;
@@ -256,6 +258,15 @@ cJSON *ezsigndocument_response_convertToJSON(ezsigndocument_response_t *ezsigndo
         goto fail;
     }
     if(cJSON_AddNumberToObject(item, "iEzsigndocumentSignaturetotal", ezsigndocument_response->i_ezsigndocument_signaturetotal) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // ezsigndocument_response->i_ezsigndocument_formfieldtotal
+    if (!ezsigndocument_response->i_ezsigndocument_formfieldtotal) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iEzsigndocumentFormfieldtotal", ezsigndocument_response->i_ezsigndocument_formfieldtotal) == NULL) {
     goto fail; //Numeric
     }
 
@@ -506,6 +517,18 @@ ezsigndocument_response_t *ezsigndocument_response_parseFromJSON(cJSON *ezsigndo
     goto end; //Numeric
     }
 
+    // ezsigndocument_response->i_ezsigndocument_formfieldtotal
+    cJSON *i_ezsigndocument_formfieldtotal = cJSON_GetObjectItemCaseSensitive(ezsigndocument_responseJSON, "iEzsigndocumentFormfieldtotal");
+    if (!i_ezsigndocument_formfieldtotal) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_ezsigndocument_formfieldtotal))
+    {
+    goto end; //Numeric
+    }
+
     // ezsigndocument_response->s_ezsigndocument_md5initial
     cJSON *s_ezsigndocument_md5initial = cJSON_GetObjectItemCaseSensitive(ezsigndocument_responseJSON, "sEzsigndocumentMD5initial");
     if (s_ezsigndocument_md5initial) { 
@@ -606,6 +629,7 @@ ezsigndocument_response_t *ezsigndocument_response_parseFromJSON(cJSON *ezsigndo
         i_ezsigndocument_pagetotal->valuedouble,
         i_ezsigndocument_signaturesigned->valuedouble,
         i_ezsigndocument_signaturetotal->valuedouble,
+        i_ezsigndocument_formfieldtotal->valuedouble,
         s_ezsigndocument_md5initial && !cJSON_IsNull(s_ezsigndocument_md5initial) ? strdup(s_ezsigndocument_md5initial->valuestring) : NULL,
         t_ezsigndocument_declinedtosignreason && !cJSON_IsNull(t_ezsigndocument_declinedtosignreason) ? strdup(t_ezsigndocument_declinedtosignreason->valuestring) : NULL,
         s_ezsigndocument_md5signed && !cJSON_IsNull(s_ezsigndocument_md5signed) ? strdup(s_ezsigndocument_md5signed->valuestring) : NULL,

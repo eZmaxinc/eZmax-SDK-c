@@ -5,6 +5,8 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
+#include "../model/activesession_generate_federation_token_v1_request.h"
+#include "../model/activesession_generate_federation_token_v1_response.h"
 #include "../model/activesession_get_current_v1_response.h"
 #include "../model/activesession_get_list_v1_response.h"
 #include "../model/common_response_error.h"
@@ -16,6 +18,14 @@ typedef enum  { ezmax_api_definition__full_activesessionGetListV1_EORDERBY_NULL 
 
 // Enum  for ObjectActivesessionAPI_activesessionGetListV1
 typedef enum  { ezmax_api_definition__full_activesessionGetListV1__NULL = 0, ezmax_api_definition__full_activesessionGetListV1__*, ezmax_api_definition__full_activesessionGetListV1__en, ezmax_api_definition__full_activesessionGetListV1__fr } ezmax_api_definition__full_activesessionGetListV1_Accept-Language_e;
+
+
+// Generate a federation token
+//
+// 
+//
+activesession_generate_federation_token_v1_response_t*
+ObjectActivesessionAPI_activesessionGenerateFederationTokenV1(apiClient_t *apiClient, activesession_generate_federation_token_v1_request_t *activesession_generate_federation_token_v1_request);
 
 
 // Get Current Activesession

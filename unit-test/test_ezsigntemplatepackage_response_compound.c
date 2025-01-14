@@ -24,7 +24,9 @@ ezsigntemplatepackage_response_compound_t* instantiate_ezsigntemplatepackage_res
     ezsigntemplatepackage_response_compound = ezsigntemplatepackage_response_compound_create(
       99,
       5,
+      95,
       2,
+      "Standard Contract",
       "English",
       "Package for new clients",
       1,
@@ -39,7 +41,9 @@ ezsigntemplatepackage_response_compound_t* instantiate_ezsigntemplatepackage_res
     ezsigntemplatepackage_response_compound = ezsigntemplatepackage_response_compound_create(
       99,
       5,
+      95,
       2,
+      "Standard Contract",
       "English",
       "Package for new clients",
       1,

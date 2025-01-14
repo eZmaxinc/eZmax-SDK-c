@@ -47,6 +47,7 @@ ezmax_api_definition__full_webhook_request__e webhook_request_e_webhook_manageme
 
 typedef struct webhook_request_t {
     int pki_webhook_id; //numeric
+    int fki_authenticationexternal_id; //numeric
     int fki_ezsignfoldertype_id; //numeric
     char *s_webhook_description; // string
     field_e_webhook_module_t *e_webhook_module; // custom
@@ -62,6 +63,7 @@ typedef struct webhook_request_t {
 
 webhook_request_t *webhook_request_create(
     int pki_webhook_id,
+    int fki_authenticationexternal_id,
     int fki_ezsignfoldertype_id,
     char *s_webhook_description,
     field_e_webhook_module_t *e_webhook_module,

@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**s_franchisebroker_name** | **char \*** | The name of the Franchisebroker in the language of the requester | 
+**s_franchisebroker_name** | **char \*** | The name of the Franchisebroker | 
 **pki_franchisebroker_id** | **int** | The unique ID of the Franchisebroker | 
 **b_franchisebroker_isactive** | **int** | Whether the Franchisebroker is active or not | 
 

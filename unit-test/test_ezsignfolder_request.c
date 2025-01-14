@@ -24,6 +24,7 @@ ezsignfolder_request_t* instantiate_ezsignfolder_request(int include_optional) {
     ezsignfolder_request = ezsignfolder_request_create(
       33,
       5,
+      247,
       1,
       "Test eZsign Folder",
       "This is a note",
@@ -34,6 +35,7 @@ ezsignfolder_request_t* instantiate_ezsignfolder_request(int include_optional) {
     ezsignfolder_request = ezsignfolder_request_create(
       33,
       5,
+      247,
       1,
       "Test eZsign Folder",
       "This is a note",

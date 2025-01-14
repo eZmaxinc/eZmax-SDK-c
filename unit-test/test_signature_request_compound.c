@@ -23,11 +23,17 @@ signature_request_compound_t* instantiate_signature_request_compound(int include
   if (include_optional) {
     signature_request_compound = signature_request_compound_create(
       12,
+      1,
+      ezmax_api_definition__full_signature_request_compound__"Text",
+      "{"$ref":"#/components/examples/Svg/value"}",
       "{"$ref":"#/components/examples/Svg/value"}"
     );
   } else {
     signature_request_compound = signature_request_compound_create(
       12,
+      1,
+      ezmax_api_definition__full_signature_request_compound__"Text",
+      "{"$ref":"#/components/examples/Svg/value"}",
       "{"$ref":"#/components/examples/Svg/value"}"
     );
   }

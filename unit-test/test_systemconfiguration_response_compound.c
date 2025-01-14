@@ -16,6 +16,7 @@
 #include "../model/systemconfiguration_response_compound.h"
 systemconfiguration_response_compound_t* instantiate_systemconfiguration_response_compound(int include_optional);
 
+#include "test_custom_branding_response.c"
 
 
 systemconfiguration_response_compound_t* instantiate_systemconfiguration_response_compound(int include_optional) {
@@ -24,6 +25,7 @@ systemconfiguration_response_compound_t* instantiate_systemconfiguration_respons
     systemconfiguration_response_compound = systemconfiguration_response_compound_create(
       1,
       28,
+      78,
       "eZsign (Pro)",
       ezmax_api_definition__full_systemconfiguration_response_compound__"Stage",
       ezmax_api_definition__full_systemconfiguration_response_compound__"fr_QC",
@@ -33,14 +35,18 @@ systemconfiguration_response_compound_t* instantiate_systemconfiguration_respons
       true,
       true,
       1,
+      1,
       true,
       "2020-12-31",
-      "2021-12-31"
+      "2021-12-31",
+       // false, not to have infinite recursion
+      instantiate_custom_branding_response(0)
     );
   } else {
     systemconfiguration_response_compound = systemconfiguration_response_compound_create(
       1,
       28,
+      78,
       "eZsign (Pro)",
       ezmax_api_definition__full_systemconfiguration_response_compound__"Stage",
       ezmax_api_definition__full_systemconfiguration_response_compound__"fr_QC",
@@ -50,9 +56,11 @@ systemconfiguration_response_compound_t* instantiate_systemconfiguration_respons
       true,
       true,
       1,
+      1,
       true,
       "2020-12-31",
-      "2021-12-31"
+      "2021-12-31",
+      NULL
     );
   }
 

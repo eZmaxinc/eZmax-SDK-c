@@ -1,0 +1,32 @@
+/*
+ * field_e_activesession_realestateinprogress.h
+ *
+ * Clone rights for active real estate folders
+ */
+
+#ifndef _field_e_activesession_realestateinprogress_H_
+#define _field_e_activesession_realestateinprogress_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_activesession_realestateinprogress_t field_e_activesession_realestateinprogress_t;
+
+
+// Enum  for field_e_activesession_realestateinprogress
+
+typedef enum { ezmax_api_definition__full_field_e_activesession_realestateinprogress__NULL = 0, ezmax_api_definition__full_field_e_activesession_realestateinprogress__No, ezmax_api_definition__full_field_e_activesession_realestateinprogress__Read, ezmax_api_definition__full_field_e_activesession_realestateinprogress__Modify, ezmax_api_definition__full_field_e_activesession_realestateinprogress__Create } ezmax_api_definition__full_field_e_activesession_realestateinprogress__e;
+
+char* field_e_activesession_realestateinprogress_field_e_activesession_realestateinprogress_ToString(ezmax_api_definition__full_field_e_activesession_realestateinprogress__e field_e_activesession_realestateinprogress);
+
+ezmax_api_definition__full_field_e_activesession_realestateinprogress__e field_e_activesession_realestateinprogress_field_e_activesession_realestateinprogress_FromString(char* field_e_activesession_realestateinprogress);
+
+//cJSON *field_e_activesession_realestateinprogress_field_e_activesession_realestateinprogress_convertToJSON(ezmax_api_definition__full_field_e_activesession_realestateinprogress__e field_e_activesession_realestateinprogress);
+
+//ezmax_api_definition__full_field_e_activesession_realestateinprogress__e field_e_activesession_realestateinprogress_field_e_activesession_realestateinprogress_parseFromJSON(cJSON *field_e_activesession_realestateinprogressJSON);
+
+#endif /* _field_e_activesession_realestateinprogress_H_ */
+

@@ -7,8 +7,11 @@ Name | Type | Description | Notes
 **fki_ezsigntemplatedocument_id** | **int** | The unique ID of the Ezsigntemplatedocument | [optional] 
 **fki_ezsignfoldertype_id** | **int** | The unique ID of the Ezsignfoldertype. | [optional] 
 **fki_language_id** | **int** | The unique ID of the Language.  Valid values:  |Value|Description| |-|-| |1|French| |2|English| | 
+**fki_ezdoctemplatedocument_id** | **int** | The unique ID of the Ezdoctemplatedocument | [optional] 
 **s_language_name_x** | **char \*** | The Name of the Language in the language of the requester | 
 **s_ezsigntemplate_description** | **char \*** | The description of the Ezsigntemplate | 
+**s_ezsigntemplate_externaldescription** | **char \*** | The external description of the Ezsigntemplate | [optional] 
+**t_ezsigntemplate_comment** | **char \*** | The comment of the Ezsigntemplate | [optional] 
 **s_ezsigntemplate_filenamepattern** | **char \*** | The filename pattern of the Ezsigntemplate | [optional] 
 **b_ezsigntemplate_adminonly** | **int** | Whether the Ezsigntemplate can be accessed by admin users only (eUserType&#x3D;Normal) | 
 **s_ezsignfoldertype_name_x** | **char \*** | The name of the Ezsignfoldertype in the language of the requester | [optional] 

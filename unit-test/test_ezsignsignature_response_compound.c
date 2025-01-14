@@ -20,6 +20,7 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
 #include "test_custom_contact_name_response.c"
 #include "test_signature_response_compound.c"
 #include "test_custom_creditcardtransaction_response.c"
+#include "test_custom_timezone_with_code_response.c"
 
 
 ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compound(int include_optional) {
@@ -30,6 +31,7 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
       97,
       20,
       194,
+      1,
       "I approve this document",
       1,
       200,
@@ -45,6 +47,9 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
       1,
       "Attachment",
       ezmax_api_definition__full_ezsignsignature_response_compound__"Description",
+      ezmax_api_definition__full_ezsignsignature_response_compound__"Manual",
+      1,
+      1,
       1,
       20,
       "2020-12-31 23:59:59",
@@ -52,7 +57,9 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
       "Montreal",
       75,
       ezmax_api_definition__full_ezsignsignature_response_compound__"None",
+      "Phone number",
       ezmax_api_definition__full_ezsignsignature_response_compound__"AllOf",
+      "Foo",
       "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
        // false, not to have infinite recursion
       instantiate_custom_contact_name_response(0),
@@ -60,11 +67,14 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
       instantiate_custom_contact_name_response(0),
        // false, not to have infinite recursion
       instantiate_signature_response_compound(0),
+      "2020-12-31 23:59:59",
       1,
       list_createList(),
        // false, not to have infinite recursion
       instantiate_custom_creditcardtransaction_response(0),
-      list_createList()
+      list_createList(),
+       // false, not to have infinite recursion
+      instantiate_custom_timezone_with_code_response(0)
     );
   } else {
     ezsignsignature_response_compound = ezsignsignature_response_compound_create(
@@ -72,6 +82,7 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
       97,
       20,
       194,
+      1,
       "I approve this document",
       1,
       200,
@@ -87,6 +98,9 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
       1,
       "Attachment",
       ezmax_api_definition__full_ezsignsignature_response_compound__"Description",
+      ezmax_api_definition__full_ezsignsignature_response_compound__"Manual",
+      1,
+      1,
       1,
       20,
       "2020-12-31 23:59:59",
@@ -94,15 +108,19 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
       "Montreal",
       75,
       ezmax_api_definition__full_ezsignsignature_response_compound__"None",
+      "Phone number",
       ezmax_api_definition__full_ezsignsignature_response_compound__"AllOf",
+      "Foo",
       "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
       NULL,
       NULL,
       NULL,
+      "2020-12-31 23:59:59",
       1,
       list_createList(),
       NULL,
-      list_createList()
+      list_createList(),
+      NULL
     );
   }
 

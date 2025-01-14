@@ -29,8 +29,6 @@ creditcardclient_response_t* instantiate_creditcardclient_response(int include_o
       "Visa",
       true,
       true,
-      true,
-      true,
        // false, not to have infinite recursion
       instantiate_creditcarddetail_response_compound(0)
     );
@@ -40,8 +38,6 @@ creditcardclient_response_t* instantiate_creditcardclient_response(int include_o
       53,
       true,
       "Visa",
-      true,
-      true,
       true,
       true,
       NULL

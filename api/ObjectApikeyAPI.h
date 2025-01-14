@@ -11,6 +11,8 @@
 #include "../model/apikey_edit_object_v1_response.h"
 #include "../model/apikey_edit_permissions_v1_request.h"
 #include "../model/apikey_edit_permissions_v1_response.h"
+#include "../model/apikey_generate_delegated_credentials_v1_request.h"
+#include "../model/apikey_generate_delegated_credentials_v1_response.h"
 #include "../model/apikey_get_cors_v1_response.h"
 #include "../model/apikey_get_list_v1_response.h"
 #include "../model/apikey_get_object_v2_response.h"
@@ -50,6 +52,14 @@ ObjectApikeyAPI_apikeyEditObjectV1(apiClient_t *apiClient, int *pkiApikeyID, api
 //
 apikey_edit_permissions_v1_response_t*
 ObjectApikeyAPI_apikeyEditPermissionsV1(apiClient_t *apiClient, int *pkiApikeyID, apikey_edit_permissions_v1_request_t *apikey_edit_permissions_v1_request);
+
+
+// Generate a delegated credentials
+//
+// 
+//
+apikey_generate_delegated_credentials_v1_response_t*
+ObjectApikeyAPI_apikeyGenerateDelegatedCredentialsV1(apiClient_t *apiClient, apikey_generate_delegated_credentials_v1_request_t *apikey_generate_delegated_credentials_v1_request);
 
 
 // Retrieve an existing Apikey's cors

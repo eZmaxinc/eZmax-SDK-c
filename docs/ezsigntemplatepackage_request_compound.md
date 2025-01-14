@@ -5,6 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pki_ezsigntemplatepackage_id** | **int** | The unique ID of the Ezsigntemplatepackage | [optional] 
 **fki_ezsignfoldertype_id** | **int** | The unique ID of the Ezsignfoldertype. | 
+**fki_ezdoctemplatedocument_id** | **int** | The unique ID of the Ezdoctemplatedocument | [optional] 
 **fki_language_id** | **int** | The unique ID of the Language.  Valid values:  |Value|Description| |-|-| |1|French| |2|English| | 
 **s_ezsigntemplatepackage_description** | **char \*** | The description of the Ezsigntemplatepackage | 
 **b_ezsigntemplatepackage_adminonly** | **int** | Whether the Ezsigntemplatepackage can be accessed by admin users only (eUserType&#x3D;Normal) | 

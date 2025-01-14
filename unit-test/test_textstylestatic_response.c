@@ -24,6 +24,7 @@ textstylestatic_response_t* instantiate_textstylestatic_response(int include_opt
     textstylestatic_response = textstylestatic_response_create(
       216,
       1,
+      "Arial",
       true,
       true,
       true,
@@ -35,6 +36,7 @@ textstylestatic_response_t* instantiate_textstylestatic_response(int include_opt
     textstylestatic_response = textstylestatic_response_create(
       216,
       1,
+      "Arial",
       true,
       true,
       true,

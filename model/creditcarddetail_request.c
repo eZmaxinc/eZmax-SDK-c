@@ -68,26 +68,29 @@ cJSON *creditcarddetail_request_convertToJSON(creditcarddetail_request_t *credit
 
 
     // creditcarddetail_request->s_creditcarddetail_civic
-    if(creditcarddetail_request->s_creditcarddetail_civic) {
+    if (!creditcarddetail_request->s_creditcarddetail_civic) {
+        goto fail;
+    }
     if(cJSON_AddStringToObject(item, "sCreditcarddetailCivic", creditcarddetail_request->s_creditcarddetail_civic) == NULL) {
     goto fail; //String
-    }
     }
 
 
     // creditcarddetail_request->s_creditcarddetail_street
-    if(creditcarddetail_request->s_creditcarddetail_street) {
+    if (!creditcarddetail_request->s_creditcarddetail_street) {
+        goto fail;
+    }
     if(cJSON_AddStringToObject(item, "sCreditcarddetailStreet", creditcarddetail_request->s_creditcarddetail_street) == NULL) {
     goto fail; //String
-    }
     }
 
 
     // creditcarddetail_request->s_creditcarddetail_zip
-    if(creditcarddetail_request->s_creditcarddetail_zip) {
+    if (!creditcarddetail_request->s_creditcarddetail_zip) {
+        goto fail;
+    }
     if(cJSON_AddStringToObject(item, "sCreditcarddetailZip", creditcarddetail_request->s_creditcarddetail_zip) == NULL) {
     goto fail; //String
-    }
     }
 
     return item;
@@ -128,38 +131,47 @@ creditcarddetail_request_t *creditcarddetail_request_parseFromJSON(cJSON *credit
 
     // creditcarddetail_request->s_creditcarddetail_civic
     cJSON *s_creditcarddetail_civic = cJSON_GetObjectItemCaseSensitive(creditcarddetail_requestJSON, "sCreditcarddetailCivic");
-    if (s_creditcarddetail_civic) { 
-    if(!cJSON_IsString(s_creditcarddetail_civic) && !cJSON_IsNull(s_creditcarddetail_civic))
+    if (!s_creditcarddetail_civic) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_creditcarddetail_civic))
     {
     goto end; //String
-    }
     }
 
     // creditcarddetail_request->s_creditcarddetail_street
     cJSON *s_creditcarddetail_street = cJSON_GetObjectItemCaseSensitive(creditcarddetail_requestJSON, "sCreditcarddetailStreet");
-    if (s_creditcarddetail_street) { 
-    if(!cJSON_IsString(s_creditcarddetail_street) && !cJSON_IsNull(s_creditcarddetail_street))
+    if (!s_creditcarddetail_street) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_creditcarddetail_street))
     {
     goto end; //String
-    }
     }
 
     // creditcarddetail_request->s_creditcarddetail_zip
     cJSON *s_creditcarddetail_zip = cJSON_GetObjectItemCaseSensitive(creditcarddetail_requestJSON, "sCreditcarddetailZip");
-    if (s_creditcarddetail_zip) { 
-    if(!cJSON_IsString(s_creditcarddetail_zip) && !cJSON_IsNull(s_creditcarddetail_zip))
+    if (!s_creditcarddetail_zip) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_creditcarddetail_zip))
     {
     goto end; //String
-    }
     }
 
 
     creditcarddetail_request_local_var = creditcarddetail_request_create (
         i_creditcarddetail_expirationmonth->valuedouble,
         i_creditcarddetail_expirationyear->valuedouble,
-        s_creditcarddetail_civic && !cJSON_IsNull(s_creditcarddetail_civic) ? strdup(s_creditcarddetail_civic->valuestring) : NULL,
-        s_creditcarddetail_street && !cJSON_IsNull(s_creditcarddetail_street) ? strdup(s_creditcarddetail_street->valuestring) : NULL,
-        s_creditcarddetail_zip && !cJSON_IsNull(s_creditcarddetail_zip) ? strdup(s_creditcarddetail_zip->valuestring) : NULL
+        strdup(s_creditcarddetail_civic->valuestring),
+        strdup(s_creditcarddetail_street->valuestring),
+        strdup(s_creditcarddetail_zip->valuestring)
         );
 
     return creditcarddetail_request_local_var;

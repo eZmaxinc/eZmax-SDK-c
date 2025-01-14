@@ -23,11 +23,15 @@ signature_response_compound_t* instantiate_signature_response_compound(int inclu
   if (include_optional) {
     signature_response_compound = signature_response_compound_create(
       12,
+      1,
+      "https://www.example.com/signature.svg",
       "https://www.example.com/signature.svg"
     );
   } else {
     signature_response_compound = signature_response_compound_create(
       12,
+      1,
+      "https://www.example.com/signature.svg",
       "https://www.example.com/signature.svg"
     );
   }

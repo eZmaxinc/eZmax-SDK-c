@@ -23,6 +23,7 @@ ezsignsignature_sign_v1_request_t* instantiate_ezsignsignature_sign_v1_request(i
   if (include_optional) {
     ezsignsignature_sign_v1_request = ezsignsignature_sign_v1_request_create(
       194,
+      1,
       "0",
       ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_Accepted,
       "0",
@@ -33,6 +34,7 @@ ezsignsignature_sign_v1_request_t* instantiate_ezsignsignature_sign_v1_request(i
   } else {
     ezsignsignature_sign_v1_request = ezsignsignature_sign_v1_request_create(
       194,
+      1,
       "0",
       ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_Accepted,
       "0",

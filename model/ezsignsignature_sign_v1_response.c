@@ -7,7 +7,8 @@
 
 ezsignsignature_sign_v1_response_t *ezsignsignature_sign_v1_response_create(
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    ezsignsignature_sign_v1_response_m_payload_t *m_payload
     ) {
     ezsignsignature_sign_v1_response_t *ezsignsignature_sign_v1_response_local_var = malloc(sizeof(ezsignsignature_sign_v1_response_t));
     if (!ezsignsignature_sign_v1_response_local_var) {
@@ -15,6 +16,7 @@ ezsignsignature_sign_v1_response_t *ezsignsignature_sign_v1_response_create(
     }
     ezsignsignature_sign_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsignsignature_sign_v1_response_local_var->obj_debug = obj_debug;
+    ezsignsignature_sign_v1_response_local_var->m_payload = m_payload;
 
     return ezsignsignature_sign_v1_response_local_var;
 }
@@ -32,6 +34,10 @@ void ezsignsignature_sign_v1_response_free(ezsignsignature_sign_v1_response_t *e
     if (ezsignsignature_sign_v1_response->obj_debug) {
         common_response_obj_debug_free(ezsignsignature_sign_v1_response->obj_debug);
         ezsignsignature_sign_v1_response->obj_debug = NULL;
+    }
+    if (ezsignsignature_sign_v1_response->m_payload) {
+        ezsignsignature_sign_v1_response_m_payload_free(ezsignsignature_sign_v1_response->m_payload);
+        ezsignsignature_sign_v1_response->m_payload = NULL;
     }
     free(ezsignsignature_sign_v1_response);
 }
@@ -65,6 +71,20 @@ cJSON *ezsignsignature_sign_v1_response_convertToJSON(ezsignsignature_sign_v1_re
     }
     }
 
+
+    // ezsignsignature_sign_v1_response->m_payload
+    if (!ezsignsignature_sign_v1_response->m_payload) {
+        goto fail;
+    }
+    cJSON *m_payload_local_JSON = ezsignsignature_sign_v1_response_m_payload_convertToJSON(ezsignsignature_sign_v1_response->m_payload);
+    if(m_payload_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "mPayload", m_payload_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
     return item;
 fail:
     if (item) {
@@ -83,6 +103,9 @@ ezsignsignature_sign_v1_response_t *ezsignsignature_sign_v1_response_parseFromJS
     // define the local variable for ezsignsignature_sign_v1_response->obj_debug
     common_response_obj_debug_t *obj_debug_local_nonprim = NULL;
 
+    // define the local variable for ezsignsignature_sign_v1_response->m_payload
+    ezsignsignature_sign_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
+
     // ezsignsignature_sign_v1_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(ezsignsignature_sign_v1_responseJSON, "objDebugPayload");
     if (!obj_debug_payload) {
@@ -98,10 +121,20 @@ ezsignsignature_sign_v1_response_t *ezsignsignature_sign_v1_response_parseFromJS
     obj_debug_local_nonprim = common_response_obj_debug_parseFromJSON(obj_debug); //nonprimitive
     }
 
+    // ezsignsignature_sign_v1_response->m_payload
+    cJSON *m_payload = cJSON_GetObjectItemCaseSensitive(ezsignsignature_sign_v1_responseJSON, "mPayload");
+    if (!m_payload) {
+        goto end;
+    }
+
+    
+    m_payload_local_nonprim = ezsignsignature_sign_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
+
 
     ezsignsignature_sign_v1_response_local_var = ezsignsignature_sign_v1_response_create (
         obj_debug_payload_local_nonprim,
-        obj_debug ? obj_debug_local_nonprim : NULL
+        obj_debug ? obj_debug_local_nonprim : NULL,
+        m_payload_local_nonprim
         );
 
     return ezsignsignature_sign_v1_response_local_var;
@@ -113,6 +146,10 @@ end:
     if (obj_debug_local_nonprim) {
         common_response_obj_debug_free(obj_debug_local_nonprim);
         obj_debug_local_nonprim = NULL;
+    }
+    if (m_payload_local_nonprim) {
+        ezsignsignature_sign_v1_response_m_payload_free(m_payload_local_nonprim);
+        m_payload_local_nonprim = NULL;
     }
     return NULL;
 

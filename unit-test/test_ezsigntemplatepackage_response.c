@@ -24,7 +24,9 @@ ezsigntemplatepackage_response_t* instantiate_ezsigntemplatepackage_response(int
     ezsigntemplatepackage_response = ezsigntemplatepackage_response_create(
       99,
       5,
+      95,
       2,
+      "Standard Contract",
       "English",
       "Package for new clients",
       1,
@@ -37,7 +39,9 @@ ezsigntemplatepackage_response_t* instantiate_ezsigntemplatepackage_response(int
     ezsigntemplatepackage_response = ezsigntemplatepackage_response_create(
       99,
       5,
+      95,
       2,
+      "Standard Contract",
       "English",
       "Package for new clients",
       1,

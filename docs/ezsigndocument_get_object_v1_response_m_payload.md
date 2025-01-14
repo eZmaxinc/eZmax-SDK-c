@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **i_ezsigndocument_pagetotal** | **int** | The number of pages in the Ezsigndocument. | 
 **i_ezsigndocument_signaturesigned** | **int** | The number of signatures that were signed in the document. | 
 **i_ezsigndocument_signaturetotal** | **int** | The number of total signatures that were requested in the Ezsigndocument. | 
+**i_ezsigndocument_formfieldtotal** | **int** | The number of total Ezsignformfield that were requested in the Ezsigndocument. | 
 **s_ezsigndocument_md5initial** | **char \*** | MD5 Hash of the initial PDF Document before signatures were applied to it. | [optional] 
 **t_ezsigndocument_declinedtosignreason** | **char \*** | A custom text message that will contain the refusal message if the Ezsigndocument is declined to sign | [optional] 
 **s_ezsigndocument_md5signed** | **char \*** | MD5 Hash of the final PDF Document after all signatures were applied to it. | [optional] 
@@ -32,6 +33,7 @@ Name | Type | Description | Notes
 **i_ezsigndocument_stepsignaturetotal** | **int** | The total number of steps in the signature filling phase | 
 **i_ezsigndocument_stepsignature_current** | **int** | The current step in the signature phase | 
 **a_obj_ezsignfoldersignerassociationstatus** | [**list_t**](custom_ezsignfoldersignerassociationstatus_response.md) \* |  | 
+**a_obj_ezsigndocumentdependency** | [**list_t**](ezsigndocumentdependency_response.md) \* |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

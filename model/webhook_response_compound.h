@@ -49,6 +49,7 @@ ezmax_api_definition__full_webhook_response_compound__e webhook_response_compoun
 
 typedef struct webhook_response_compound_t {
     int pki_webhook_id; //numeric
+    int fki_authenticationexternal_id; //numeric
     char *s_webhook_description; // string
     int fki_ezsignfoldertype_id; //numeric
     char *s_ezsignfoldertype_name_x; // string
@@ -62,6 +63,7 @@ typedef struct webhook_response_compound_t {
     int b_webhook_isactive; //boolean
     int b_webhook_issigned; //boolean
     int b_webhook_skipsslvalidation; //boolean
+    char *s_authenticationexternal_description; // string
     struct common_audit_t *obj_audit; //model
     char *s_webhook_event; // string
     list_t *a_obj_webhookheader; //nonprimitive container
@@ -70,6 +72,7 @@ typedef struct webhook_response_compound_t {
 
 webhook_response_compound_t *webhook_response_compound_create(
     int pki_webhook_id,
+    int fki_authenticationexternal_id,
     char *s_webhook_description,
     int fki_ezsignfoldertype_id,
     char *s_ezsignfoldertype_name_x,
@@ -83,6 +86,7 @@ webhook_response_compound_t *webhook_response_compound_create(
     int b_webhook_isactive,
     int b_webhook_issigned,
     int b_webhook_skipsslvalidation,
+    char *s_authenticationexternal_description,
     common_audit_t *obj_audit,
     char *s_webhook_event,
     list_t *a_obj_webhookheader

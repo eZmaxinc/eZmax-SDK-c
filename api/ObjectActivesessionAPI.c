@@ -107,6 +107,88 @@ end:
 */
 
 
+// Generate a federation token
+//
+// 
+//
+activesession_generate_federation_token_v1_response_t*
+ObjectActivesessionAPI_activesessionGenerateFederationTokenV1(apiClient_t *apiClient, activesession_generate_federation_token_v1_request_t *activesession_generate_federation_token_v1_request)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/activesession/generateFederationToken")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/activesession/generateFederationToken");
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_activesession_generate_federation_token_v1_request = NULL;
+    if (activesession_generate_federation_token_v1_request != NULL)
+    {
+        //string
+        localVarSingleItemJSON_activesession_generate_federation_token_v1_request = activesession_generate_federation_token_v1_request_convertToJSON(activesession_generate_federation_token_v1_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_activesession_generate_federation_token_v1_request);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "POST");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectActivesessionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    activesession_generate_federation_token_v1_response_t *elementToReturn = activesession_generate_federation_token_v1_response_parseFromJSON(ObjectActivesessionAPIlocalVarJSON);
+    cJSON_Delete(ObjectActivesessionAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    if (localVarSingleItemJSON_activesession_generate_federation_token_v1_request) {
+        cJSON_Delete(localVarSingleItemJSON_activesession_generate_federation_token_v1_request);
+        localVarSingleItemJSON_activesession_generate_federation_token_v1_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Get Current Activesession
 //
 // Retrieve the details about the current activesession

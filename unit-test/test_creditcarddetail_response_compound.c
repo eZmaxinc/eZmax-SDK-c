@@ -24,7 +24,7 @@ creditcarddetail_response_compound_t* instantiate_creditcarddetail_response_comp
     creditcarddetail_response_compound = creditcarddetail_response_compound_create(
       53,
       2,
-      "XXXX XXXX XXXX 4242",
+      4242,
       10,
       2024,
       "2500",
@@ -35,7 +35,7 @@ creditcarddetail_response_compound_t* instantiate_creditcarddetail_response_comp
     creditcarddetail_response_compound = creditcarddetail_response_compound_create(
       53,
       2,
-      "XXXX XXXX XXXX 4242",
+      4242,
       10,
       2024,
       "2500",

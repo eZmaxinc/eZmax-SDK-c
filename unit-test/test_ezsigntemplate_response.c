@@ -27,15 +27,18 @@ ezsigntemplate_response_t* instantiate_ezsigntemplate_response(int include_optio
       133,
       5,
       2,
+      95,
       "English",
       "Standard Contract",
+      "Test eZsign Folder",
+      "0",
       "Contract",
       1,
       "Default",
        // false, not to have infinite recursion
       instantiate_common_audit(0),
       1,
-      ezmax_api_definition__full_ezsigntemplate_response__"Usergroup"
+      ezmax_api_definition__full_ezsigntemplate_response__"Ezsignfoldertype"
     );
   } else {
     ezsigntemplate_response = ezsigntemplate_response_create(
@@ -43,14 +46,17 @@ ezsigntemplate_response_t* instantiate_ezsigntemplate_response(int include_optio
       133,
       5,
       2,
+      95,
       "English",
       "Standard Contract",
+      "Test eZsign Folder",
+      "0",
       "Contract",
       1,
       "Default",
       NULL,
       1,
-      ezmax_api_definition__full_ezsigntemplate_response__"Usergroup"
+      ezmax_api_definition__full_ezsigntemplate_response__"Ezsignfoldertype"
     );
   }
 

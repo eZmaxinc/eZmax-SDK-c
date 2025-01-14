@@ -31,6 +31,7 @@ typedef struct custom_ezsignsignaturestatus_response_t {
     int i_ezsignsignaturestatus_step; //numeric
     int i_ezsignsignaturestatus_total; //numeric
     int i_ezsignsignaturestatus_signed; //numeric
+    int i_ezsignsignaturestatus_conditional; //numeric
 
 } custom_ezsignsignaturestatus_response_t;
 
@@ -38,7 +39,8 @@ custom_ezsignsignaturestatus_response_t *custom_ezsignsignaturestatus_response_c
     ezmax_api_definition__full_custom_ezsignsignaturestatus_response_EEZSIGNSIGNATURESTATUSSTEPTYPE_e e_ezsignsignaturestatus_steptype,
     int i_ezsignsignaturestatus_step,
     int i_ezsignsignaturestatus_total,
-    int i_ezsignsignaturestatus_signed
+    int i_ezsignsignaturestatus_signed,
+    int i_ezsignsignaturestatus_conditional
 );
 
 void custom_ezsignsignaturestatus_response_free(custom_ezsignsignaturestatus_response_t *custom_ezsignsignaturestatus_response);

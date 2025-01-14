@@ -14,13 +14,13 @@
 // Functions for enum SSELECTOR for ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV2
 
 static char* ezsigntemplatepackageGetAutocompleteV2_SSELECTOR_ToString(ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_sSelector_e SSELECTOR){
-    char *SSELECTORArray[] =  { "NULL", "All", "AllMultipleCopiesDisabled" };
+    char *SSELECTORArray[] =  { "NULL", "All", "AllMultipleCopiesDisabled", "Ezsigntemplatepublic" };
     return SSELECTORArray[SSELECTOR];
 }
 
 static ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_sSelector_e ezsigntemplatepackageGetAutocompleteV2_SSELECTOR_FromString(char* SSELECTOR){
     int stringToReturn = 0;
-    char *SSELECTORArray[] =  { "NULL", "All", "AllMultipleCopiesDisabled" };
+    char *SSELECTORArray[] =  { "NULL", "All", "AllMultipleCopiesDisabled", "Ezsigntemplatepublic" };
     size_t sizeofArray = sizeof(SSELECTORArray) / sizeof(SSELECTORArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(SSELECTOR, SSELECTORArray[stringToReturn]) == 0) {
@@ -621,7 +621,7 @@ end:
 // Get the list of Ezsigntemplatepackage to be used in a dropdown or autocomplete control.
 //
 ezsigntemplatepackage_get_autocomplete_v2_response_t*
-ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language)
+ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_ezsigntemplatepackageGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language, int *fkiEzsignfoldertypeID)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -684,6 +684,19 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV2(apiClient_
         keyPairQuery_sQuery = keyValuePair_create(keyQuery_sQuery, valueQuery_sQuery);
         list_addElement(localVarQueryParameters,keyPairQuery_sQuery);
     }
+
+    // query parameters
+    char *keyQuery_fkiEzsignfoldertypeID = NULL;
+    char * valueQuery_fkiEzsignfoldertypeID = NULL;
+    keyValuePair_t *keyPairQuery_fkiEzsignfoldertypeID = 0;
+    if (fkiEzsignfoldertypeID)
+    {
+        keyQuery_fkiEzsignfoldertypeID = strdup("fkiEzsignfoldertypeID");
+        valueQuery_fkiEzsignfoldertypeID = calloc(1,MAX_NUMBER_LENGTH);
+        snprintf(valueQuery_fkiEzsignfoldertypeID, MAX_NUMBER_LENGTH, "%d", *fkiEzsignfoldertypeID);
+        keyPairQuery_fkiEzsignfoldertypeID = keyValuePair_create(keyQuery_fkiEzsignfoldertypeID, valueQuery_fkiEzsignfoldertypeID);
+        list_addElement(localVarQueryParameters,keyPairQuery_fkiEzsignfoldertypeID);
+    }
     list_addElement(localVarHeaderType,"application/json"); //produces
     apiClient_invoke(apiClient,
                     localVarPath,
@@ -744,6 +757,18 @@ ObjectEzsigntemplatepackageAPI_ezsigntemplatepackageGetAutocompleteV2(apiClient_
     if(keyPairQuery_sQuery){
         keyValuePair_free(keyPairQuery_sQuery);
         keyPairQuery_sQuery = NULL;
+    }
+    if(keyQuery_fkiEzsignfoldertypeID){
+        free(keyQuery_fkiEzsignfoldertypeID);
+        keyQuery_fkiEzsignfoldertypeID = NULL;
+    }
+    if(valueQuery_fkiEzsignfoldertypeID){
+        free(valueQuery_fkiEzsignfoldertypeID);
+        valueQuery_fkiEzsignfoldertypeID = NULL;
+    }
+    if(keyPairQuery_fkiEzsignfoldertypeID){
+        keyValuePair_free(keyPairQuery_fkiEzsignfoldertypeID);
+        keyPairQuery_fkiEzsignfoldertypeID = NULL;
     }
     return elementToReturn;
 end:

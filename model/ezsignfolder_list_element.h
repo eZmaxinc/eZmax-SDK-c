@@ -55,6 +55,9 @@ typedef struct ezsignfolder_list_element_t {
     int i_ezsignformfieldgroup_completed; //numeric
     int b_ezsignform_hasdependencies; //boolean
     char *d_ezsignfolder_completedpercentage; // string
+    char *d_ezsignfolder_formcompletedpercentage; // string
+    char *d_ezsignfolder_signaturecompletedpercentage; // string
+    int b_ezsignfolder_signer; //boolean
 
 } ezsignfolder_list_element_t;
 
@@ -76,7 +79,10 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_create(
     int i_ezsignformfieldgroup,
     int i_ezsignformfieldgroup_completed,
     int b_ezsignform_hasdependencies,
-    char *d_ezsignfolder_completedpercentage
+    char *d_ezsignfolder_completedpercentage,
+    char *d_ezsignfolder_formcompletedpercentage,
+    char *d_ezsignfolder_signaturecompletedpercentage,
+    int b_ezsignfolder_signer
 );
 
 void ezsignfolder_list_element_free(ezsignfolder_list_element_t *ezsignfolder_list_element);

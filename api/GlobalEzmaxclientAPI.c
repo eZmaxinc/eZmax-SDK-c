@@ -14,13 +14,13 @@
 // Functions for enum  for GlobalEzmaxclientAPI_globalEzmaxclientVersionV1
 
 static char* globalEzmaxclientVersionV1__ToString(ezmax_api_definition__full_globalEzmaxclientVersionV1_pksEzmaxclientOs_e ){
-    char *Array[] =  { "NULL", "iOS", "iPadOS", "macOS", "Windows" };
+    char *Array[] =  { "NULL", "Android", "iOS", "iPadOS", "macOS", "Windows" };
     return Array[];
 }
 
 static ezmax_api_definition__full_globalEzmaxclientVersionV1_pksEzmaxclientOs_e globalEzmaxclientVersionV1__FromString(char* ){
     int stringToReturn = 0;
-    char *Array[] =  { "NULL", "iOS", "iPadOS", "macOS", "Windows" };
+    char *Array[] =  { "NULL", "Android", "iOS", "iPadOS", "macOS", "Windows" };
     size_t sizeofArray = sizeof(Array) / sizeof(Array[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(, Array[stringToReturn]) == 0) {

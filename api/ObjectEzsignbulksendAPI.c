@@ -161,8 +161,8 @@ end:
 
 // Create a new Ezsignbulksendtransmission in the Ezsignbulksend
 //
-ezsignbulksend_create_ezsignbulksendtransmission_v1_response_t*
-ObjectEzsignbulksendAPI_ezsignbulksendCreateEzsignbulksendtransmissionV1(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_create_ezsignbulksendtransmission_v1_request_t *ezsignbulksend_create_ezsignbulksendtransmission_v1_request)
+ezsignbulksend_create_ezsignbulksendtransmission_v2_response_t*
+ObjectEzsignbulksendAPI_ezsignbulksendCreateEzsignbulksendtransmissionV2(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_create_ezsignbulksendtransmission_v2_request_t *ezsignbulksend_create_ezsignbulksendtransmission_v2_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -172,9 +172,9 @@ ObjectEzsignbulksendAPI_ezsignbulksendCreateEzsignbulksendtransmissionV1(apiClie
     char      *localVarBodyParameters = NULL;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignbulksend/{pkiEzsignbulksendID}/createEzsignbulksendtransmission")+1;
+    long sizeOfPath = strlen("/2/object/ezsignbulksend/{pkiEzsignbulksendID}/createEzsignbulksendtransmission")+1;
     char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignbulksend/{pkiEzsignbulksendID}/createEzsignbulksendtransmission");
+    snprintf(localVarPath, sizeOfPath, "/2/object/ezsignbulksend/{pkiEzsignbulksendID}/createEzsignbulksendtransmission");
 
 
     // Path Params
@@ -194,12 +194,12 @@ ObjectEzsignbulksendAPI_ezsignbulksendCreateEzsignbulksendtransmissionV1(apiClie
 
 
     // Body Param
-    cJSON *localVarSingleItemJSON_ezsignbulksend_create_ezsignbulksendtransmission_v1_request = NULL;
-    if (ezsignbulksend_create_ezsignbulksendtransmission_v1_request != NULL)
+    cJSON *localVarSingleItemJSON_ezsignbulksend_create_ezsignbulksendtransmission_v2_request = NULL;
+    if (ezsignbulksend_create_ezsignbulksendtransmission_v2_request != NULL)
     {
         //string
-        localVarSingleItemJSON_ezsignbulksend_create_ezsignbulksendtransmission_v1_request = ezsignbulksend_create_ezsignbulksendtransmission_v1_request_convertToJSON(ezsignbulksend_create_ezsignbulksendtransmission_v1_request);
-        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignbulksend_create_ezsignbulksendtransmission_v1_request);
+        localVarSingleItemJSON_ezsignbulksend_create_ezsignbulksendtransmission_v2_request = ezsignbulksend_create_ezsignbulksendtransmission_v2_request_convertToJSON(ezsignbulksend_create_ezsignbulksendtransmission_v2_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignbulksend_create_ezsignbulksendtransmission_v2_request);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -227,7 +227,7 @@ ObjectEzsignbulksendAPI_ezsignbulksendCreateEzsignbulksendtransmissionV1(apiClie
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignbulksendAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignbulksend_create_ezsignbulksendtransmission_v1_response_t *elementToReturn = ezsignbulksend_create_ezsignbulksendtransmission_v1_response_parseFromJSON(ObjectEzsignbulksendAPIlocalVarJSON);
+    ezsignbulksend_create_ezsignbulksendtransmission_v2_response_t *elementToReturn = ezsignbulksend_create_ezsignbulksendtransmission_v2_response_parseFromJSON(ObjectEzsignbulksendAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignbulksendAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -246,9 +246,9 @@ ObjectEzsignbulksendAPI_ezsignbulksendCreateEzsignbulksendtransmissionV1(apiClie
     list_freeList(localVarContentType);
     free(localVarPath);
     free(localVarToReplace_pkiEzsignbulksendID);
-    if (localVarSingleItemJSON_ezsignbulksend_create_ezsignbulksendtransmission_v1_request) {
-        cJSON_Delete(localVarSingleItemJSON_ezsignbulksend_create_ezsignbulksendtransmission_v1_request);
-        localVarSingleItemJSON_ezsignbulksend_create_ezsignbulksendtransmission_v1_request = NULL;
+    if (localVarSingleItemJSON_ezsignbulksend_create_ezsignbulksendtransmission_v2_request) {
+        cJSON_Delete(localVarSingleItemJSON_ezsignbulksend_create_ezsignbulksendtransmission_v2_request);
+        localVarSingleItemJSON_ezsignbulksend_create_ezsignbulksendtransmission_v2_request = NULL;
     }
     free(localVarBodyParameters);
     return elementToReturn;

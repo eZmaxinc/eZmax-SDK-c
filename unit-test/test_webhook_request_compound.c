@@ -23,6 +23,7 @@ webhook_request_compound_t* instantiate_webhook_request_compound(int include_opt
   if (include_optional) {
     webhook_request_compound = webhook_request_compound_create(
       77,
+      56,
       5,
       "Import into our system",
       ezmax_api_definition__full_webhook_request_compound__"Ezsign",
@@ -38,6 +39,7 @@ webhook_request_compound_t* instantiate_webhook_request_compound(int include_opt
   } else {
     webhook_request_compound = webhook_request_compound_create(
       77,
+      56,
       5,
       "Import into our system",
       ezmax_api_definition__full_webhook_request_compound__"Ezsign",

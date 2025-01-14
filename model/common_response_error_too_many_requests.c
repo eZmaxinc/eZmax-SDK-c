@@ -24,7 +24,8 @@ ezmax_api_definition__full_common_response_error_too_many_requests__e common_res
 
 common_response_error_too_many_requests_t *common_response_error_too_many_requests_create(
     char *s_error_message,
-    field_e_error_code_t *e_error_code
+    field_e_error_code_t *e_error_code,
+    list_t *a_s_error_messagedetail
     ) {
     common_response_error_too_many_requests_t *common_response_error_too_many_requests_local_var = malloc(sizeof(common_response_error_too_many_requests_t));
     if (!common_response_error_too_many_requests_local_var) {
@@ -32,6 +33,7 @@ common_response_error_too_many_requests_t *common_response_error_too_many_reques
     }
     common_response_error_too_many_requests_local_var->s_error_message = s_error_message;
     common_response_error_too_many_requests_local_var->e_error_code = e_error_code;
+    common_response_error_too_many_requests_local_var->a_s_error_messagedetail = a_s_error_messagedetail;
 
     return common_response_error_too_many_requests_local_var;
 }
@@ -49,6 +51,13 @@ void common_response_error_too_many_requests_free(common_response_error_too_many
     if (common_response_error_too_many_requests->e_error_code) {
         field_e_error_code_free(common_response_error_too_many_requests->e_error_code);
         common_response_error_too_many_requests->e_error_code = NULL;
+    }
+    if (common_response_error_too_many_requests->a_s_error_messagedetail) {
+        list_ForEach(listEntry, common_response_error_too_many_requests->a_s_error_messagedetail) {
+            free(listEntry->data);
+        }
+        list_freeList(common_response_error_too_many_requests->a_s_error_messagedetail);
+        common_response_error_too_many_requests->a_s_error_messagedetail = NULL;
     }
     free(common_response_error_too_many_requests);
 }
@@ -78,6 +87,23 @@ cJSON *common_response_error_too_many_requests_convertToJSON(common_response_err
         goto fail;
     }
 
+
+    // common_response_error_too_many_requests->a_s_error_messagedetail
+    if(common_response_error_too_many_requests->a_s_error_messagedetail) {
+    cJSON *a_s_error_messagedetail = cJSON_AddArrayToObject(item, "a_sErrorMessagedetail");
+    if(a_s_error_messagedetail == NULL) {
+        goto fail; //primitive container
+    }
+
+    listEntry_t *a_s_error_messagedetailListEntry;
+    list_ForEach(a_s_error_messagedetailListEntry, common_response_error_too_many_requests->a_s_error_messagedetail) {
+    if(cJSON_AddStringToObject(a_s_error_messagedetail, "", (char*)a_s_error_messagedetailListEntry->data) == NULL)
+    {
+        goto fail;
+    }
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -92,6 +118,9 @@ common_response_error_too_many_requests_t *common_response_error_too_many_reques
 
     // define the local variable for common_response_error_too_many_requests->e_error_code
     field_e_error_code_t *e_error_code_local_nonprim = NULL;
+
+    // define the local list for common_response_error_too_many_requests->a_s_error_messagedetail
+    list_t *a_s_error_messagedetailList = NULL;
 
     // common_response_error_too_many_requests->s_error_message
     cJSON *s_error_message = cJSON_GetObjectItemCaseSensitive(common_response_error_too_many_requestsJSON, "sErrorMessage");
@@ -114,10 +143,30 @@ common_response_error_too_many_requests_t *common_response_error_too_many_reques
     
     e_error_code_local_nonprim = field_e_error_code_parseFromJSON(e_error_code); //custom
 
+    // common_response_error_too_many_requests->a_s_error_messagedetail
+    cJSON *a_s_error_messagedetail = cJSON_GetObjectItemCaseSensitive(common_response_error_too_many_requestsJSON, "a_sErrorMessagedetail");
+    if (a_s_error_messagedetail) { 
+    cJSON *a_s_error_messagedetail_local = NULL;
+    if(!cJSON_IsArray(a_s_error_messagedetail)) {
+        goto end;//primitive container
+    }
+    a_s_error_messagedetailList = list_createList();
+
+    cJSON_ArrayForEach(a_s_error_messagedetail_local, a_s_error_messagedetail)
+    {
+        if(!cJSON_IsString(a_s_error_messagedetail_local))
+        {
+            goto end;
+        }
+        list_addElement(a_s_error_messagedetailList , strdup(a_s_error_messagedetail_local->valuestring));
+    }
+    }
+
 
     common_response_error_too_many_requests_local_var = common_response_error_too_many_requests_create (
         strdup(s_error_message->valuestring),
-        e_error_code_local_nonprim
+        e_error_code_local_nonprim,
+        a_s_error_messagedetail ? a_s_error_messagedetailList : NULL
         );
 
     return common_response_error_too_many_requests_local_var;
@@ -125,6 +174,15 @@ end:
     if (e_error_code_local_nonprim) {
         field_e_error_code_free(e_error_code_local_nonprim);
         e_error_code_local_nonprim = NULL;
+    }
+    if (a_s_error_messagedetailList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_s_error_messagedetailList) {
+            free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_s_error_messagedetailList);
+        a_s_error_messagedetailList = NULL;
     }
     return NULL;
 

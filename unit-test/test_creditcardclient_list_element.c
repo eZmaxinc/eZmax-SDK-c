@@ -24,29 +24,27 @@ creditcardclient_list_element_t* instantiate_creditcardclient_list_element(int i
     creditcardclient_list_element = creditcardclient_list_element_create(
       114,
       53,
+      2,
       true,
       "Visa",
       true,
       true,
-      true,
-      true,
       10,
       2024,
-      "XXXX XXXX XXXX 4242"
+      4242
     );
   } else {
     creditcardclient_list_element = creditcardclient_list_element_create(
       114,
       53,
+      2,
       true,
       "Visa",
       true,
       true,
-      true,
-      true,
       10,
       2024,
-      "XXXX XXXX XXXX 4242"
+      4242
     );
   }
 

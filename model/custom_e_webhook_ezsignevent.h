@@ -1,0 +1,32 @@
+/*
+ * custom_e_webhook_ezsignevent.h
+ *
+ * This Ezsign Event. This property will be set only if the Module is \&quot;Ezsign\&quot;
+ */
+
+#ifndef _custom_e_webhook_ezsignevent_H_
+#define _custom_e_webhook_ezsignevent_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct custom_e_webhook_ezsignevent_t custom_e_webhook_ezsignevent_t;
+
+
+// Enum  for custom_e_webhook_ezsignevent
+
+typedef enum { ezmax_api_definition__full_custom_e_webhook_ezsignevent__NULL = 0, ezmax_api_definition__full_custom_e_webhook_ezsignevent__DocumentCompleted, ezmax_api_definition__full_custom_e_webhook_ezsignevent__DocumentFormCompleted, ezmax_api_definition__full_custom_e_webhook_ezsignevent__DocumentUnsent, ezmax_api_definition__full_custom_e_webhook_ezsignevent__EzsignsignerAcceptclause, ezmax_api_definition__full_custom_e_webhook_ezsignevent__EzsignsignerConnect, ezmax_api_definition__full_custom_e_webhook_ezsignevent__FolderCompleted, ezmax_api_definition__full_custom_e_webhook_ezsignevent__FolderDisposed, ezmax_api_definition__full_custom_e_webhook_ezsignevent__FolderSent, ezmax_api_definition__full_custom_e_webhook_ezsignevent__FolderUnsent } ezmax_api_definition__full_custom_e_webhook_ezsignevent__e;
+
+char* custom_e_webhook_ezsignevent_custom_e_webhook_ezsignevent_ToString(ezmax_api_definition__full_custom_e_webhook_ezsignevent__e custom_e_webhook_ezsignevent);
+
+ezmax_api_definition__full_custom_e_webhook_ezsignevent__e custom_e_webhook_ezsignevent_custom_e_webhook_ezsignevent_FromString(char* custom_e_webhook_ezsignevent);
+
+//cJSON *custom_e_webhook_ezsignevent_custom_e_webhook_ezsignevent_convertToJSON(ezmax_api_definition__full_custom_e_webhook_ezsignevent__e custom_e_webhook_ezsignevent);
+
+//ezmax_api_definition__full_custom_e_webhook_ezsignevent__e custom_e_webhook_ezsignevent_custom_e_webhook_ezsignevent_parseFromJSON(cJSON *custom_e_webhook_ezsigneventJSON);
+
+#endif /* _custom_e_webhook_ezsignevent_H_ */
+

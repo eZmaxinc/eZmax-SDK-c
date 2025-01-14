@@ -8,7 +8,9 @@
 ezsigntemplatepackage_response_t *ezsigntemplatepackage_response_create(
     int pki_ezsigntemplatepackage_id,
     int fki_ezsignfoldertype_id,
+    int fki_ezdoctemplatedocument_id,
     int fki_language_id,
+    char *s_ezdoctemplatedocument_name_x,
     char *s_language_name_x,
     char *s_ezsigntemplatepackage_description,
     int b_ezsigntemplatepackage_adminonly,
@@ -23,7 +25,9 @@ ezsigntemplatepackage_response_t *ezsigntemplatepackage_response_create(
     }
     ezsigntemplatepackage_response_local_var->pki_ezsigntemplatepackage_id = pki_ezsigntemplatepackage_id;
     ezsigntemplatepackage_response_local_var->fki_ezsignfoldertype_id = fki_ezsignfoldertype_id;
+    ezsigntemplatepackage_response_local_var->fki_ezdoctemplatedocument_id = fki_ezdoctemplatedocument_id;
     ezsigntemplatepackage_response_local_var->fki_language_id = fki_language_id;
+    ezsigntemplatepackage_response_local_var->s_ezdoctemplatedocument_name_x = s_ezdoctemplatedocument_name_x;
     ezsigntemplatepackage_response_local_var->s_language_name_x = s_language_name_x;
     ezsigntemplatepackage_response_local_var->s_ezsigntemplatepackage_description = s_ezsigntemplatepackage_description;
     ezsigntemplatepackage_response_local_var->b_ezsigntemplatepackage_adminonly = b_ezsigntemplatepackage_adminonly;
@@ -41,6 +45,10 @@ void ezsigntemplatepackage_response_free(ezsigntemplatepackage_response_t *ezsig
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsigntemplatepackage_response->s_ezdoctemplatedocument_name_x) {
+        free(ezsigntemplatepackage_response->s_ezdoctemplatedocument_name_x);
+        ezsigntemplatepackage_response->s_ezdoctemplatedocument_name_x = NULL;
+    }
     if (ezsigntemplatepackage_response->s_language_name_x) {
         free(ezsigntemplatepackage_response->s_language_name_x);
         ezsigntemplatepackage_response->s_language_name_x = NULL;
@@ -77,12 +85,28 @@ cJSON *ezsigntemplatepackage_response_convertToJSON(ezsigntemplatepackage_respon
     }
 
 
+    // ezsigntemplatepackage_response->fki_ezdoctemplatedocument_id
+    if(ezsigntemplatepackage_response->fki_ezdoctemplatedocument_id) {
+    if(cJSON_AddNumberToObject(item, "fkiEzdoctemplatedocumentID", ezsigntemplatepackage_response->fki_ezdoctemplatedocument_id) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
     // ezsigntemplatepackage_response->fki_language_id
     if (!ezsigntemplatepackage_response->fki_language_id) {
         goto fail;
     }
     if(cJSON_AddNumberToObject(item, "fkiLanguageID", ezsigntemplatepackage_response->fki_language_id) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // ezsigntemplatepackage_response->s_ezdoctemplatedocument_name_x
+    if(ezsigntemplatepackage_response->s_ezdoctemplatedocument_name_x) {
+    if(cJSON_AddStringToObject(item, "sEzdoctemplatedocumentNameX", ezsigntemplatepackage_response->s_ezdoctemplatedocument_name_x) == NULL) {
+    goto fail; //String
+    }
     }
 
 
@@ -184,6 +208,15 @@ ezsigntemplatepackage_response_t *ezsigntemplatepackage_response_parseFromJSON(c
     goto end; //Numeric
     }
 
+    // ezsigntemplatepackage_response->fki_ezdoctemplatedocument_id
+    cJSON *fki_ezdoctemplatedocument_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackage_responseJSON, "fkiEzdoctemplatedocumentID");
+    if (fki_ezdoctemplatedocument_id) { 
+    if(!cJSON_IsNumber(fki_ezdoctemplatedocument_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
     // ezsigntemplatepackage_response->fki_language_id
     cJSON *fki_language_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackage_responseJSON, "fkiLanguageID");
     if (!fki_language_id) {
@@ -194,6 +227,15 @@ ezsigntemplatepackage_response_t *ezsigntemplatepackage_response_parseFromJSON(c
     if(!cJSON_IsNumber(fki_language_id))
     {
     goto end; //Numeric
+    }
+
+    // ezsigntemplatepackage_response->s_ezdoctemplatedocument_name_x
+    cJSON *s_ezdoctemplatedocument_name_x = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackage_responseJSON, "sEzdoctemplatedocumentNameX");
+    if (s_ezdoctemplatedocument_name_x) { 
+    if(!cJSON_IsString(s_ezdoctemplatedocument_name_x) && !cJSON_IsNull(s_ezdoctemplatedocument_name_x))
+    {
+    goto end; //String
+    }
     }
 
     // ezsigntemplatepackage_response->s_language_name_x
@@ -284,7 +326,9 @@ ezsigntemplatepackage_response_t *ezsigntemplatepackage_response_parseFromJSON(c
     ezsigntemplatepackage_response_local_var = ezsigntemplatepackage_response_create (
         pki_ezsigntemplatepackage_id->valuedouble,
         fki_ezsignfoldertype_id->valuedouble,
+        fki_ezdoctemplatedocument_id ? fki_ezdoctemplatedocument_id->valuedouble : 0,
         fki_language_id->valuedouble,
+        s_ezdoctemplatedocument_name_x && !cJSON_IsNull(s_ezdoctemplatedocument_name_x) ? strdup(s_ezdoctemplatedocument_name_x->valuestring) : NULL,
         strdup(s_language_name_x->valuestring),
         strdup(s_ezsigntemplatepackage_description->valuestring),
         b_ezsigntemplatepackage_adminonly->valueint,

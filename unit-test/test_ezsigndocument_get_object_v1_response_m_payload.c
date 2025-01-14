@@ -37,6 +37,7 @@ ezsigndocument_get_object_v1_response_m_payload_t* instantiate_ezsigndocument_ge
       4,
       3,
       4,
+      4,
       "012345678901234567890123456789AB",
       "The conditions in the contract are different than those discuted",
       "012345678901234567890123456789AB",
@@ -52,6 +53,7 @@ ezsigndocument_get_object_v1_response_m_payload_t* instantiate_ezsigndocument_ge
       1,
       2,
       0,
+      list_createList(),
       list_createList()
     );
   } else {
@@ -70,6 +72,7 @@ ezsigndocument_get_object_v1_response_m_payload_t* instantiate_ezsigndocument_ge
       4,
       3,
       4,
+      4,
       "012345678901234567890123456789AB",
       "The conditions in the contract are different than those discuted",
       "012345678901234567890123456789AB",
@@ -84,6 +87,7 @@ ezsigndocument_get_object_v1_response_m_payload_t* instantiate_ezsigndocument_ge
       1,
       2,
       0,
+      list_createList(),
       list_createList()
     );
   }

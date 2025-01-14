@@ -20,13 +20,17 @@ typedef struct signature_response_compound_t signature_response_compound_t;
 
 typedef struct signature_response_compound_t {
     int pki_signature_id; //numeric
+    int fki_font_id; //numeric
     char *s_signature_url; // string
+    char *s_signature_urlinitials; // string
 
 } signature_response_compound_t;
 
 signature_response_compound_t *signature_response_compound_create(
     int pki_signature_id,
-    char *s_signature_url
+    int fki_font_id,
+    char *s_signature_url,
+    char *s_signature_urlinitials
 );
 
 void signature_response_compound_free(signature_response_compound_t *signature_response_compound);

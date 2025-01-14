@@ -17,18 +17,21 @@ typedef struct ezsignsignature_sign_v1_response_t ezsignsignature_sign_v1_respon
 
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload.h"
+#include "ezsignsignature_sign_v1_response_m_payload.h"
 
 
 
 typedef struct ezsignsignature_sign_v1_response_t {
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
+    struct ezsignsignature_sign_v1_response_m_payload_t *m_payload; //model
 
 } ezsignsignature_sign_v1_response_t;
 
 ezsignsignature_sign_v1_response_t *ezsignsignature_sign_v1_response_create(
     common_response_obj_debug_payload_t *obj_debug_payload,
-    common_response_obj_debug_t *obj_debug
+    common_response_obj_debug_t *obj_debug,
+    ezsignsignature_sign_v1_response_m_payload_t *m_payload
 );
 
 void ezsignsignature_sign_v1_response_free(ezsignsignature_sign_v1_response_t *ezsignsignature_sign_v1_response);

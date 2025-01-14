@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pki_systemconfiguration_id** | **int** | The unique ID of the Systemconfiguration | [optional] 
+**fki_branding_id** | **int** | The unique ID of the Branding | [optional] 
 **e_systemconfiguration_newexternaluseraction** | **field_e_systemconfiguration_newexternaluseraction_t \*** |  | 
 **e_systemconfiguration_language1** | **field_e_systemconfiguration_language1_t \*** |  | 
 **e_systemconfiguration_language2** | **field_e_systemconfiguration_language2_t \*** |  | 

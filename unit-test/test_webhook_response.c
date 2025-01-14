@@ -24,6 +24,7 @@ webhook_response_t* instantiate_webhook_response(int include_optional) {
   if (include_optional) {
     webhook_response = webhook_response_create(
       77,
+      56,
       "Import into our system",
       5,
       "Default",
@@ -37,12 +38,14 @@ webhook_response_t* instantiate_webhook_response(int include_optional) {
       true,
       true,
       false,
+      "Authentification",
        // false, not to have infinite recursion
       instantiate_common_audit(0)
     );
   } else {
     webhook_response = webhook_response_create(
       77,
+      56,
       "Import into our system",
       5,
       "Default",
@@ -56,6 +59,7 @@ webhook_response_t* instantiate_webhook_response(int include_optional) {
       true,
       true,
       false,
+      "Authentification",
       NULL
     );
   }

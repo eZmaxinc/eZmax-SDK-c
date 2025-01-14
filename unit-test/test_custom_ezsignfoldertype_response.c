@@ -23,26 +23,42 @@ custom_ezsignfoldertype_response_t* instantiate_custom_ezsignfoldertype_response
   if (include_optional) {
     custom_ezsignfoldertype_response = custom_ezsignfoldertype_response_create(
       5,
+      1,
+      1,
+      1,
       "Default",
       false,
       false,
       false,
+      false,
       true,
       true,
       true,
-      true
+      true,
+      true,
+      5,
+      10,
+      12
     );
   } else {
     custom_ezsignfoldertype_response = custom_ezsignfoldertype_response_create(
       5,
+      1,
+      1,
+      1,
       "Default",
       false,
       false,
       false,
+      false,
       true,
       true,
       true,
-      true
+      true,
+      true,
+      5,
+      10,
+      12
     );
   }
 

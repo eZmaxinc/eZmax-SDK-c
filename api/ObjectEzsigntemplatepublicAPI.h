@@ -1,0 +1,103 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include "../include/apiClient.h"
+#include "../include/list.h"
+#include "../external/cJSON.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+#include "../model/common_response_error.h"
+#include "../model/ezsigntemplatepublic_create_ezsignfolder_v1_request.h"
+#include "../model/ezsigntemplatepublic_create_ezsignfolder_v1_response.h"
+#include "../model/ezsigntemplatepublic_create_object_v1_request.h"
+#include "../model/ezsigntemplatepublic_create_object_v1_response.h"
+#include "../model/ezsigntemplatepublic_edit_object_v1_request.h"
+#include "../model/ezsigntemplatepublic_edit_object_v1_response.h"
+#include "../model/ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request.h"
+#include "../model/ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response.h"
+#include "../model/ezsigntemplatepublic_get_forms_data_v1_response.h"
+#include "../model/ezsigntemplatepublic_get_list_v1_response.h"
+#include "../model/ezsigntemplatepublic_get_object_v2_response.h"
+#include "../model/ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response.h"
+#include "../model/ezsigntemplatepublic_reset_url_v1_response.h"
+#include "../model/header_accept_language.h"
+#include "../model/object.h"
+
+// Enum EORDERBY for ObjectEzsigntemplatepublicAPI_ezsigntemplatepublicGetListV1
+typedef enum  { ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_NULL = 0, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_pkiEzsigntemplatepublicID_ASC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_pkiEzsigntemplatepublicID_DESC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_fkiEzsignfoldertypeID_ASC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_fkiEzsignfoldertypeID_DESC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_sEzsignfoldertypeNameX_ASC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_sEzsignfoldertypeNameX_DESC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_fkiUserlogintypeID_ASC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_fkiUserlogintypeID_DESC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_fkiEzsigntemplateID_ASC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_fkiEzsigntemplateID_DESC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_fkiEzsigntemplatepackageID_ASC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_fkiEzsigntemplatepackageID_DESC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_sEzsigntemplatepublicDescription_ASC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_sEzsigntemplatepublicDescription_DESC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_bEzsigntemplatepublicIsactive_ASC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_bEzsigntemplatepublicIsactive_DESC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_tEzsigntemplatepublicNote_ASC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_tEzsigntemplatepublicNote_DESC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_eEzsigntemplatepublicLimittype_ASC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_eEzsigntemplatepublicLimittype_DESC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_iEzsigntemplatepublicLimit_ASC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_iEzsigntemplatepublicLimit_DESC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_iEzsigntemplatepublicLimitexceeded_ASC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_iEzsigntemplatepublicLimitexceeded_DESC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_dtEzsigntemplatepublicLimitexceededsince_ASC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_dtEzsigntemplatepublicLimitexceededsince_DESC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_iEzsignfolder_ASC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_iEzsignfolder_DESC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_iEzsigndocument_ASC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_iEzsigndocument_DESC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_sEzsigntemplatepublicEzsigntemplatedescription_ASC, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_EORDERBY_sEzsigntemplatepublicEzsigntemplatedescription_DESC } ezmax_api_definition__full_ezsigntemplatepublicGetListV1_eOrderBy_e;
+
+// Enum  for ObjectEzsigntemplatepublicAPI_ezsigntemplatepublicGetListV1
+typedef enum  { ezmax_api_definition__full_ezsigntemplatepublicGetListV1__NULL = 0, ezmax_api_definition__full_ezsigntemplatepublicGetListV1__*, ezmax_api_definition__full_ezsigntemplatepublicGetListV1__en, ezmax_api_definition__full_ezsigntemplatepublicGetListV1__fr } ezmax_api_definition__full_ezsigntemplatepublicGetListV1_Accept-Language_e;
+
+
+// Create an Ezsignfolder
+//
+// Create an Ezsignfolder
+//
+ezsigntemplatepublic_create_ezsignfolder_v1_response_t*
+ObjectEzsigntemplatepublicAPI_ezsigntemplatepublicCreateEzsignfolderV1(apiClient_t *apiClient, ezsigntemplatepublic_create_ezsignfolder_v1_request_t *ezsigntemplatepublic_create_ezsignfolder_v1_request);
+
+
+// Create a new Ezsigntemplatepublic
+//
+// The endpoint allows to create one or many elements at once.
+//
+ezsigntemplatepublic_create_object_v1_response_t*
+ObjectEzsigntemplatepublicAPI_ezsigntemplatepublicCreateObjectV1(apiClient_t *apiClient, ezsigntemplatepublic_create_object_v1_request_t *ezsigntemplatepublic_create_object_v1_request);
+
+
+// Edit an existing Ezsigntemplatepublic
+//
+// 
+//
+ezsigntemplatepublic_edit_object_v1_response_t*
+ObjectEzsigntemplatepublicAPI_ezsigntemplatepublicEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatepublicID, ezsigntemplatepublic_edit_object_v1_request_t *ezsigntemplatepublic_edit_object_v1_request);
+
+
+// Retrieve the Ezsigntemplatepublic details
+//
+// Retrieve the Ezsigntemplatepublic details
+//
+ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_t*
+ObjectEzsigntemplatepublicAPI_ezsigntemplatepublicGetEzsigntemplatepublicDetailsV1(apiClient_t *apiClient, ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_t *ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request);
+
+
+// Retrieve an existing Ezsigntemplatepublic's forms data
+//
+// 
+//
+ezsigntemplatepublic_get_forms_data_v1_response_t*
+ObjectEzsigntemplatepublicAPI_ezsigntemplatepublicGetFormsDataV1(apiClient_t *apiClient, int *pkiEzsigntemplatepublicID);
+
+
+// Retrieve Ezsigntemplatepublic list
+//
+// Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eEzsigntemplatepublicLimittype | Hour<br>Day<br>Month<br>Total |
+//
+ezsigntemplatepublic_get_list_v1_response_t*
+ObjectEzsigntemplatepublicAPI_ezsigntemplatepublicGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplatepublicGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
+
+
+// Retrieve an existing Ezsigntemplatepublic
+//
+// 
+//
+ezsigntemplatepublic_get_object_v2_response_t*
+ObjectEzsigntemplatepublicAPI_ezsigntemplatepublicGetObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplatepublicID);
+
+
+// Reset the limit exceeded counter
+//
+// 
+//
+ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_t*
+ObjectEzsigntemplatepublicAPI_ezsigntemplatepublicResetLimitExceededCounterV1(apiClient_t *apiClient, int *pkiEzsigntemplatepublicID, object_t *body);
+
+
+// Reset the Ezsigntemplatepublic url
+//
+// 
+//
+ezsigntemplatepublic_reset_url_v1_response_t*
+ObjectEzsigntemplatepublicAPI_ezsigntemplatepublicResetUrlV1(apiClient_t *apiClient, int *pkiEzsigntemplatepublicID, object_t *body);
+
+

@@ -1,0 +1,32 @@
+/*
+ * field_e_ezsignfoldertype_signeraccess.h
+ *
+ * Indicates which documents the user has access to.
+ */
+
+#ifndef _field_e_ezsignfoldertype_signeraccess_H_
+#define _field_e_ezsignfoldertype_signeraccess_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_ezsignfoldertype_signeraccess_t field_e_ezsignfoldertype_signeraccess_t;
+
+
+// Enum  for field_e_ezsignfoldertype_signeraccess
+
+typedef enum { ezmax_api_definition__full_field_e_ezsignfoldertype_signeraccess__NULL = 0, ezmax_api_definition__full_field_e_ezsignfoldertype_signeraccess__No, ezmax_api_definition__full_field_e_ezsignfoldertype_signeraccess__SignerDocuments, ezmax_api_definition__full_field_e_ezsignfoldertype_signeraccess__AllDocuments } ezmax_api_definition__full_field_e_ezsignfoldertype_signeraccess__e;
+
+char* field_e_ezsignfoldertype_signeraccess_field_e_ezsignfoldertype_signeraccess_ToString(ezmax_api_definition__full_field_e_ezsignfoldertype_signeraccess__e field_e_ezsignfoldertype_signeraccess);
+
+ezmax_api_definition__full_field_e_ezsignfoldertype_signeraccess__e field_e_ezsignfoldertype_signeraccess_field_e_ezsignfoldertype_signeraccess_FromString(char* field_e_ezsignfoldertype_signeraccess);
+
+//cJSON *field_e_ezsignfoldertype_signeraccess_field_e_ezsignfoldertype_signeraccess_convertToJSON(ezmax_api_definition__full_field_e_ezsignfoldertype_signeraccess__e field_e_ezsignfoldertype_signeraccess);
+
+//ezmax_api_definition__full_field_e_ezsignfoldertype_signeraccess__e field_e_ezsignfoldertype_signeraccess_field_e_ezsignfoldertype_signeraccess_parseFromJSON(cJSON *field_e_ezsignfoldertype_signeraccessJSON);
+
+#endif /* _field_e_ezsignfoldertype_signeraccess_H_ */
+

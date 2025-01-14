@@ -18,6 +18,7 @@ ezsignfolder_get_object_v1_response_m_payload_t* instantiate_ezsignfolder_get_ob
 
 #include "test_custom_ezsignfoldertype_response.c"
 #include "test_common_audit.c"
+#include "test_custom_timezone_with_code_response.c"
 
 
 ezsignfolder_get_object_v1_response_m_payload_t* instantiate_ezsignfolder_get_object_v1_response_m_payload(int include_optional) {
@@ -28,6 +29,7 @@ ezsignfolder_get_object_v1_response_m_payload_t* instantiate_ezsignfolder_get_ob
       5,
        // false, not to have infinite recursion
       instantiate_custom_ezsignfoldertype_response(0),
+      247,
       ezmax_api_definition__full_ezsignfolder_get_object_v1_response_m_payload__"PerEzsigndocument",
       "0",
       1,
@@ -38,6 +40,8 @@ ezsignfolder_get_object_v1_response_m_payload_t* instantiate_ezsignfolder_get_ob
       "This is a note",
       false,
       ezmax_api_definition__full_ezsignfolder_get_object_v1_response_m_payload__"None",
+      30,
+      30,
       "2020-12-31T23:59:59.000Z",
       "2020-12-31 23:59:59",
       "2020-12-31T23:59:59.000Z",
@@ -56,13 +60,16 @@ Best Regards.
 Mary",
        // false, not to have infinite recursion
       instantiate_common_audit(0),
-      "{"ID": 1234, "TAGS": ["tag1", "tag2", "tag3"]}"
+      "{"ID": 1234, "TAGS": ["tag1", "tag2", "tag3"]}",
+       // false, not to have infinite recursion
+      instantiate_custom_timezone_with_code_response(0)
     );
   } else {
     ezsignfolder_get_object_v1_response_m_payload = ezsignfolder_get_object_v1_response_m_payload_create(
       33,
       5,
       NULL,
+      247,
       ezmax_api_definition__full_ezsignfolder_get_object_v1_response_m_payload__"PerEzsigndocument",
       "0",
       1,
@@ -73,6 +80,8 @@ Mary",
       "This is a note",
       false,
       ezmax_api_definition__full_ezsignfolder_get_object_v1_response_m_payload__"None",
+      30,
+      30,
       "2020-12-31T23:59:59.000Z",
       "2020-12-31 23:59:59",
       "2020-12-31T23:59:59.000Z",
@@ -90,7 +99,8 @@ Best Regards.
 
 Mary",
       NULL,
-      "{"ID": 1234, "TAGS": ["tag1", "tag2", "tag3"]}"
+      "{"ID": 1234, "TAGS": ["tag1", "tag2", "tag3"]}",
+      NULL
     );
   }
 

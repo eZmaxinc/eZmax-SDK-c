@@ -30,6 +30,7 @@ ezmax_api_definition__full_common_response_error_s_temporary_file_url__e common_
 typedef struct common_response_error_s_temporary_file_url_t {
     char *s_error_message; // string
     field_e_error_code_t *e_error_code; // custom
+    list_t *a_s_error_messagedetail; //primitive container
     char *s_temporary_file_url; // string
 
 } common_response_error_s_temporary_file_url_t;
@@ -37,6 +38,7 @@ typedef struct common_response_error_s_temporary_file_url_t {
 common_response_error_s_temporary_file_url_t *common_response_error_s_temporary_file_url_create(
     char *s_error_message,
     field_e_error_code_t *e_error_code,
+    list_t *a_s_error_messagedetail,
     char *s_temporary_file_url
 );
 

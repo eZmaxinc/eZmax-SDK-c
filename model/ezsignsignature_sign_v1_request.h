@@ -29,6 +29,7 @@ ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMAT
 
 typedef struct ezsignsignature_sign_v1_request_t {
     int fki_ezsignsigningreason_id; //numeric
+    int fki_font_id; //numeric
     char *s_value; // string
     ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_e e_attachments_confirmation_decision; //enum
     char *s_attachments_refusal_reason; // string
@@ -40,6 +41,7 @@ typedef struct ezsignsignature_sign_v1_request_t {
 
 ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_create(
     int fki_ezsignsigningreason_id,
+    int fki_font_id,
     char *s_value,
     ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_e e_attachments_confirmation_decision,
     char *s_attachments_refusal_reason,

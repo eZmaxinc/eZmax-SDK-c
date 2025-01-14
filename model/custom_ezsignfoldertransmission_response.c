@@ -27,6 +27,7 @@ custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_resp
     char *s_ezsignfolder_description,
     field_e_ezsignfolder_step_t *e_ezsignfolder_step,
     int i_ezsignfolder_signaturetotal,
+    int i_ezsignfolder_formfieldtotal,
     int i_ezsignfolder_signaturesigned,
     list_t *a_obj_ezsignfoldertransmission_signer
     ) {
@@ -38,6 +39,7 @@ custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_resp
     custom_ezsignfoldertransmission_response_local_var->s_ezsignfolder_description = s_ezsignfolder_description;
     custom_ezsignfoldertransmission_response_local_var->e_ezsignfolder_step = e_ezsignfolder_step;
     custom_ezsignfoldertransmission_response_local_var->i_ezsignfolder_signaturetotal = i_ezsignfolder_signaturetotal;
+    custom_ezsignfoldertransmission_response_local_var->i_ezsignfolder_formfieldtotal = i_ezsignfolder_formfieldtotal;
     custom_ezsignfoldertransmission_response_local_var->i_ezsignfolder_signaturesigned = i_ezsignfolder_signaturesigned;
     custom_ezsignfoldertransmission_response_local_var->a_obj_ezsignfoldertransmission_signer = a_obj_ezsignfoldertransmission_signer;
 
@@ -108,6 +110,15 @@ cJSON *custom_ezsignfoldertransmission_response_convertToJSON(custom_ezsignfolde
         goto fail;
     }
     if(cJSON_AddNumberToObject(item, "iEzsignfolderSignaturetotal", custom_ezsignfoldertransmission_response->i_ezsignfolder_signaturetotal) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // custom_ezsignfoldertransmission_response->i_ezsignfolder_formfieldtotal
+    if (!custom_ezsignfoldertransmission_response->i_ezsignfolder_formfieldtotal) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iEzsignfolderFormfieldtotal", custom_ezsignfoldertransmission_response->i_ezsignfolder_formfieldtotal) == NULL) {
     goto fail; //Numeric
     }
 
@@ -204,6 +215,18 @@ custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_resp
     goto end; //Numeric
     }
 
+    // custom_ezsignfoldertransmission_response->i_ezsignfolder_formfieldtotal
+    cJSON *i_ezsignfolder_formfieldtotal = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldertransmission_responseJSON, "iEzsignfolderFormfieldtotal");
+    if (!i_ezsignfolder_formfieldtotal) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_ezsignfolder_formfieldtotal))
+    {
+    goto end; //Numeric
+    }
+
     // custom_ezsignfoldertransmission_response->i_ezsignfolder_signaturesigned
     cJSON *i_ezsignfolder_signaturesigned = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldertransmission_responseJSON, "iEzsignfolderSignaturesigned");
     if (!i_ezsignfolder_signaturesigned) {
@@ -246,6 +269,7 @@ custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_resp
         strdup(s_ezsignfolder_description->valuestring),
         e_ezsignfolder_step_local_nonprim,
         i_ezsignfolder_signaturetotal->valuedouble,
+        i_ezsignfolder_formfieldtotal->valuedouble,
         i_ezsignfolder_signaturesigned->valuedouble,
         a_obj_ezsignfoldertransmission_signerList
         );

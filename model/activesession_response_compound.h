@@ -17,7 +17,11 @@ typedef struct activesession_response_compound_t activesession_response_compound
 
 #include "activesession_response_compound_apikey.h"
 #include "activesession_response_compound_user.h"
+#include "field_e_activesession_ezsign.h"
+#include "field_e_activesession_ezsignaccess.h"
+#include "field_e_activesession_ezsignprepaid.h"
 #include "field_e_activesession_origin.h"
+#include "field_e_activesession_realestateinprogress.h"
 #include "field_e_activesession_usertype.h"
 #include "field_e_activesession_weekdaystart.h"
 #include "field_e_systemconfiguration_ezsignofficeplan.h"
@@ -47,6 +51,38 @@ typedef enum  { ezmax_api_definition__full_activesession_response_compound__NULL
 char* activesession_response_compound_e_activesession_weekdaystart_ToString(ezmax_api_definition__full_activesession_response_compound__e e_activesession_weekdaystart);
 
 ezmax_api_definition__full_activesession_response_compound__e activesession_response_compound_e_activesession_weekdaystart_FromString(char* e_activesession_weekdaystart);
+
+// Enum  for activesession_response_compound
+
+typedef enum  { ezmax_api_definition__full_activesession_response_compound__NULL = 0, ezmax_api_definition__full_activesession_response_compound__No, ezmax_api_definition__full_activesession_response_compound__Read, ezmax_api_definition__full_activesession_response_compound__Modify, ezmax_api_definition__full_activesession_response_compound__Full } ezmax_api_definition__full_activesession_response_compound__e;
+
+char* activesession_response_compound_e_activesession_ezsign_ToString(ezmax_api_definition__full_activesession_response_compound__e e_activesession_ezsign);
+
+ezmax_api_definition__full_activesession_response_compound__e activesession_response_compound_e_activesession_ezsign_FromString(char* e_activesession_ezsign);
+
+// Enum  for activesession_response_compound
+
+typedef enum  { ezmax_api_definition__full_activesession_response_compound__NULL = 0, ezmax_api_definition__full_activesession_response_compound__No, ezmax_api_definition__full_activesession_response_compound__PaidByOffice, ezmax_api_definition__full_activesession_response_compound__PerDocument, ezmax_api_definition__full_activesession_response_compound__Prepaid } ezmax_api_definition__full_activesession_response_compound__e;
+
+char* activesession_response_compound_e_activesession_ezsignaccess_ToString(ezmax_api_definition__full_activesession_response_compound__e e_activesession_ezsignaccess);
+
+ezmax_api_definition__full_activesession_response_compound__e activesession_response_compound_e_activesession_ezsignaccess_FromString(char* e_activesession_ezsignaccess);
+
+// Enum  for activesession_response_compound
+
+typedef enum  { ezmax_api_definition__full_activesession_response_compound__NULL = 0, ezmax_api_definition__full_activesession_response_compound__No, ezmax_api_definition__full_activesession_response_compound__Basic, ezmax_api_definition__full_activesession_response_compound__Standard, ezmax_api_definition__full_activesession_response_compound__Pro } ezmax_api_definition__full_activesession_response_compound__e;
+
+char* activesession_response_compound_e_activesession_ezsignprepaid_ToString(ezmax_api_definition__full_activesession_response_compound__e e_activesession_ezsignprepaid);
+
+ezmax_api_definition__full_activesession_response_compound__e activesession_response_compound_e_activesession_ezsignprepaid_FromString(char* e_activesession_ezsignprepaid);
+
+// Enum  for activesession_response_compound
+
+typedef enum  { ezmax_api_definition__full_activesession_response_compound__NULL = 0, ezmax_api_definition__full_activesession_response_compound__No, ezmax_api_definition__full_activesession_response_compound__Read, ezmax_api_definition__full_activesession_response_compound__Modify, ezmax_api_definition__full_activesession_response_compound__Create } ezmax_api_definition__full_activesession_response_compound__e;
+
+char* activesession_response_compound_e_activesession_realestateinprogress_ToString(ezmax_api_definition__full_activesession_response_compound__e e_activesession_realestateinprogress);
+
+ezmax_api_definition__full_activesession_response_compound__e activesession_response_compound_e_activesession_realestateinprogress_FromString(char* e_activesession_realestateinprogress);
 
 // Enum  for activesession_response_compound
 
@@ -83,13 +119,23 @@ typedef struct activesession_response_compound_t {
     char *s_department_name_x; // string
     int b_activesession_debug; //boolean
     int b_activesession_issuperadmin; //boolean
+    int b_activesession_attachment; //boolean
+    int b_activesession_canafe; //boolean
+    int b_activesession_financial; //boolean
+    int b_activesession_realestatecompleted; //boolean
+    field_e_activesession_ezsign_t *e_activesession_ezsign; // custom
+    field_e_activesession_ezsignaccess_t *e_activesession_ezsignaccess; // custom
+    field_e_activesession_ezsignprepaid_t *e_activesession_ezsignprepaid; // custom
+    field_e_activesession_realestateinprogress_t *e_activesession_realestateinprogress; // custom
     char *pks_customer_code; // string
     int fki_systemconfigurationtype_id; //numeric
     int fki_signature_id; //numeric
+    int fki_ezsignuser_id; //numeric
     int b_systemconfiguration_ezsignpaidbyoffice; //boolean
     field_e_systemconfiguration_ezsignofficeplan_t *e_systemconfiguration_ezsignofficeplan; // custom
     field_e_user_ezsignaccess_t *e_user_ezsignaccess; // custom
     field_e_user_ezsignprepaid_t *e_user_ezsignprepaid; // custom
+    int b_user_ezsigntrial; //boolean
     char *dt_user_ezsignprepaidexpiration; // string
     list_t *a_pki_permission_id; //primitive container
     struct activesession_response_compound_user_t *obj_user_real; //model
@@ -108,13 +154,23 @@ activesession_response_compound_t *activesession_response_compound_create(
     char *s_department_name_x,
     int b_activesession_debug,
     int b_activesession_issuperadmin,
+    int b_activesession_attachment,
+    int b_activesession_canafe,
+    int b_activesession_financial,
+    int b_activesession_realestatecompleted,
+    field_e_activesession_ezsign_t *e_activesession_ezsign,
+    field_e_activesession_ezsignaccess_t *e_activesession_ezsignaccess,
+    field_e_activesession_ezsignprepaid_t *e_activesession_ezsignprepaid,
+    field_e_activesession_realestateinprogress_t *e_activesession_realestateinprogress,
     char *pks_customer_code,
     int fki_systemconfigurationtype_id,
     int fki_signature_id,
+    int fki_ezsignuser_id,
     int b_systemconfiguration_ezsignpaidbyoffice,
     field_e_systemconfiguration_ezsignofficeplan_t *e_systemconfiguration_ezsignofficeplan,
     field_e_user_ezsignaccess_t *e_user_ezsignaccess,
     field_e_user_ezsignprepaid_t *e_user_ezsignprepaid,
+    int b_user_ezsigntrial,
     char *dt_user_ezsignprepaidexpiration,
     list_t *a_pki_permission_id,
     activesession_response_compound_user_t *obj_user_real,

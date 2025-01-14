@@ -6,7 +6,6 @@
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
 #include "../model/attachment_get_attachmentlogs_v1_response.h"
-#include "../model/attachment_get_download_url_v1_response.h"
 #include "../model/common_response_error.h"
 
 
@@ -24,13 +23,5 @@ ObjectAttachmentAPI_attachmentDownloadV1(apiClient_t *apiClient, int *pkiAttachm
 //
 attachment_get_attachmentlogs_v1_response_t*
 ObjectAttachmentAPI_attachmentGetAttachmentlogsV1(apiClient_t *apiClient, int *pkiAttachmentID);
-
-
-// Retrieve a URL to download attachments.
-//
-// This endpoint returns an URL to download the attachment.  These links will expire after 5 minutes so the download of the file should be made soon after retrieving the link.
-//
-attachment_get_download_url_v1_response_t*
-ObjectAttachmentAPI_attachmentGetDownloadUrlV1(apiClient_t *apiClient, int *pkiAttachmentID);
 
 

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **s_ezsigntemplatedocument_name** | **char \*** | The name of the Ezsigntemplatedocument. | 
 **i_ezsigntemplatedocument_pagetotal** | **int** | The number of pages in the Ezsigntemplatedocument. | 
 **i_ezsigntemplatedocument_signaturetotal** | **int** | The number of total signatures in the Ezsigntemplate. | 
+**i_ezsigntemplatedocument_formfieldtotal** | **int** | The number of total form fields in the Ezsigntemplate. | 
 **b_ezsigntemplatedocument_hassignedsignatures** | **int** | If the Ezsigntemplatedocument contains signed signatures (From internal or external sources) | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -14,7 +14,7 @@
 
 // Creates an Url to allow embedded signing
 //
-// This endpoint creates an Url that can be used in a browser or embedded in an I-Frame to allow signing.  The signer Login type must be configured as Embedded.  There will be a list to retrieve informations after the signing happens in the embedded version. To do so, there is a list of parameter to add to your sReturnUrl.  In example: https://www.example.com/sReturl?sParameter1&sParameter2. The sParameter1 et sParameter2 will be replace when we will redirect on the url.
+// This endpoint creates an Url that can be used in a browser or embedded in an I-Frame to allow signing.  The signer Login type must be configured as Embedded.
 //
 ezsignfoldersignerassociation_create_embedded_url_v1_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateEmbeddedUrlV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_create_embedded_url_v1_request_t *ezsignfoldersignerassociation_create_embedded_url_v1_request)
@@ -925,6 +925,107 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationPatchObjectV
     if (localVarSingleItemJSON_ezsignfoldersignerassociation_patch_object_v1_request) {
         cJSON_Delete(localVarSingleItemJSON_ezsignfoldersignerassociation_patch_object_v1_request);
         localVarSingleItemJSON_ezsignfoldersignerassociation_patch_object_v1_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Reassign remaining unsigned signatures and forms
+//
+// Reassign remaining unsigned signatures and forms
+//
+ezsignfoldersignerassociation_reassign_v1_response_t*
+ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationReassignV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_reassign_v1_request_t *ezsignfoldersignerassociation_reassign_v1_request)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}/reassign")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}/reassign");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsignfoldersignerassociationID =  + strlen("{ pkiEzsignfoldersignerassociationID }");
+    if(pkiEzsignfoldersignerassociationID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsignfoldersignerassociationID = malloc(sizeOfPathParams_pkiEzsignfoldersignerassociationID);
+    snprintf(localVarToReplace_pkiEzsignfoldersignerassociationID, sizeOfPathParams_pkiEzsignfoldersignerassociationID, "{%s}", "pkiEzsignfoldersignerassociationID");
+
+    char localVarBuff_pkiEzsignfoldersignerassociationID[256];
+    intToStr(localVarBuff_pkiEzsignfoldersignerassociationID, *pkiEzsignfoldersignerassociationID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfoldersignerassociationID, localVarBuff_pkiEzsignfoldersignerassociationID);
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_ezsignfoldersignerassociation_reassign_v1_request = NULL;
+    if (ezsignfoldersignerassociation_reassign_v1_request != NULL)
+    {
+        //string
+        localVarSingleItemJSON_ezsignfoldersignerassociation_reassign_v1_request = ezsignfoldersignerassociation_reassign_v1_request_convertToJSON(ezsignfoldersignerassociation_reassign_v1_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignfoldersignerassociation_reassign_v1_request);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "POST");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    ezsignfoldersignerassociation_reassign_v1_response_t *elementToReturn = ezsignfoldersignerassociation_reassign_v1_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+    cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsignfoldersignerassociationID);
+    if (localVarSingleItemJSON_ezsignfoldersignerassociation_reassign_v1_request) {
+        cJSON_Delete(localVarSingleItemJSON_ezsignfoldersignerassociation_reassign_v1_request);
+        localVarSingleItemJSON_ezsignfoldersignerassociation_reassign_v1_request = NULL;
     }
     free(localVarBodyParameters);
     return elementToReturn;

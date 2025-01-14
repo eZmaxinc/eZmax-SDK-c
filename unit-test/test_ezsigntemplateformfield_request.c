@@ -16,6 +16,7 @@
 #include "../model/ezsigntemplateformfield_request.h"
 ezsigntemplateformfield_request_t* instantiate_ezsigntemplateformfield_request(int include_optional);
 
+#include "test_textstylestatic_request_compound.c"
 
 
 ezsigntemplateformfield_request_t* instantiate_ezsigntemplateformfield_request(int include_optional) {
@@ -37,7 +38,10 @@ ezsigntemplateformfield_request_t* instantiate_ezsigntemplateformfield_request(i
       "Signature",
       200,
       200,
-      ezmax_api_definition__full_ezsigntemplateformfield_request__"All"
+      ezmax_api_definition__full_ezsigntemplateformfield_request__"All",
+      ezmax_api_definition__full_ezsigntemplateformfield_request__"Center",
+       // false, not to have infinite recursion
+      instantiate_textstylestatic_request_compound(0)
     );
   } else {
     ezsigntemplateformfield_request = ezsigntemplateformfield_request_create(
@@ -56,7 +60,9 @@ ezsigntemplateformfield_request_t* instantiate_ezsigntemplateformfield_request(i
       "Signature",
       200,
       200,
-      ezmax_api_definition__full_ezsigntemplateformfield_request__"All"
+      ezmax_api_definition__full_ezsigntemplateformfield_request__"All",
+      ezmax_api_definition__full_ezsigntemplateformfield_request__"Center",
+      NULL
     );
   }
 

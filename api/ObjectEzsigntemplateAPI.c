@@ -14,13 +14,13 @@
 // Functions for enum SSELECTOR for ObjectEzsigntemplateAPI_ezsigntemplateGetAutocompleteV2
 
 static char* ezsigntemplateGetAutocompleteV2_SSELECTOR_ToString(ezmax_api_definition__full_ezsigntemplateGetAutocompleteV2_sSelector_e SSELECTOR){
-    char *SSELECTORArray[] =  { "NULL", "All" };
+    char *SSELECTORArray[] =  { "NULL", "All", "Ezsigntemplatepublic" };
     return SSELECTORArray[SSELECTOR];
 }
 
 static ezmax_api_definition__full_ezsigntemplateGetAutocompleteV2_sSelector_e ezsigntemplateGetAutocompleteV2_SSELECTOR_FromString(char* SSELECTOR){
     int stringToReturn = 0;
-    char *SSELECTORArray[] =  { "NULL", "All" };
+    char *SSELECTORArray[] =  { "NULL", "All", "Ezsigntemplatepublic" };
     size_t sizeofArray = sizeof(SSELECTORArray) / sizeof(SSELECTORArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(SSELECTOR, SSELECTORArray[stringToReturn]) == 0) {
@@ -355,8 +355,8 @@ end:
 //
 // The endpoint allows to create one or many elements at once.
 //
-ezsigntemplate_create_object_v1_response_t*
-ObjectEzsigntemplateAPI_ezsigntemplateCreateObjectV1(apiClient_t *apiClient, ezsigntemplate_create_object_v1_request_t *ezsigntemplate_create_object_v1_request)
+ezsigntemplate_create_object_v3_response_t*
+ObjectEzsigntemplateAPI_ezsigntemplateCreateObjectV3(apiClient_t *apiClient, ezsigntemplate_create_object_v3_request_t *ezsigntemplate_create_object_v3_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -366,20 +366,20 @@ ObjectEzsigntemplateAPI_ezsigntemplateCreateObjectV1(apiClient_t *apiClient, ezs
     char      *localVarBodyParameters = NULL;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsigntemplate")+1;
+    long sizeOfPath = strlen("/3/object/ezsigntemplate")+1;
     char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsigntemplate");
+    snprintf(localVarPath, sizeOfPath, "/3/object/ezsigntemplate");
 
 
 
 
     // Body Param
-    cJSON *localVarSingleItemJSON_ezsigntemplate_create_object_v1_request = NULL;
-    if (ezsigntemplate_create_object_v1_request != NULL)
+    cJSON *localVarSingleItemJSON_ezsigntemplate_create_object_v3_request = NULL;
+    if (ezsigntemplate_create_object_v3_request != NULL)
     {
         //string
-        localVarSingleItemJSON_ezsigntemplate_create_object_v1_request = ezsigntemplate_create_object_v1_request_convertToJSON(ezsigntemplate_create_object_v1_request);
-        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsigntemplate_create_object_v1_request);
+        localVarSingleItemJSON_ezsigntemplate_create_object_v3_request = ezsigntemplate_create_object_v3_request_convertToJSON(ezsigntemplate_create_object_v3_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsigntemplate_create_object_v3_request);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -399,7 +399,7 @@ ObjectEzsigntemplateAPI_ezsigntemplateCreateObjectV1(apiClient_t *apiClient, ezs
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigntemplateAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsigntemplate_create_object_v1_response_t *elementToReturn = ezsigntemplate_create_object_v1_response_parseFromJSON(ObjectEzsigntemplateAPIlocalVarJSON);
+    ezsigntemplate_create_object_v3_response_t *elementToReturn = ezsigntemplate_create_object_v3_response_parseFromJSON(ObjectEzsigntemplateAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsigntemplateAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -417,87 +417,9 @@ ObjectEzsigntemplateAPI_ezsigntemplateCreateObjectV1(apiClient_t *apiClient, ezs
     list_freeList(localVarHeaderType);
     list_freeList(localVarContentType);
     free(localVarPath);
-    if (localVarSingleItemJSON_ezsigntemplate_create_object_v1_request) {
-        cJSON_Delete(localVarSingleItemJSON_ezsigntemplate_create_object_v1_request);
-        localVarSingleItemJSON_ezsigntemplate_create_object_v1_request = NULL;
-    }
-    free(localVarBodyParameters);
-    return elementToReturn;
-end:
-    free(localVarPath);
-    return NULL;
-
-}
-
-// Create a new Ezsigntemplate
-//
-// The endpoint allows to create one or many elements at once.
-//
-ezsigntemplate_create_object_v2_response_t*
-ObjectEzsigntemplateAPI_ezsigntemplateCreateObjectV2(apiClient_t *apiClient, ezsigntemplate_create_object_v2_request_t *ezsigntemplate_create_object_v2_request)
-{
-    list_t    *localVarQueryParameters = NULL;
-    list_t    *localVarHeaderParameters = NULL;
-    list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_createList();
-    list_t *localVarContentType = list_createList();
-    char      *localVarBodyParameters = NULL;
-
-    // create the path
-    long sizeOfPath = strlen("/2/object/ezsigntemplate")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/ezsigntemplate");
-
-
-
-
-    // Body Param
-    cJSON *localVarSingleItemJSON_ezsigntemplate_create_object_v2_request = NULL;
-    if (ezsigntemplate_create_object_v2_request != NULL)
-    {
-        //string
-        localVarSingleItemJSON_ezsigntemplate_create_object_v2_request = ezsigntemplate_create_object_v2_request_convertToJSON(ezsigntemplate_create_object_v2_request);
-        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsigntemplate_create_object_v2_request);
-    }
-    list_addElement(localVarHeaderType,"application/json"); //produces
-    list_addElement(localVarContentType,"application/json"); //consumes
-    apiClient_invoke(apiClient,
-                    localVarPath,
-                    localVarQueryParameters,
-                    localVarHeaderParameters,
-                    localVarFormParameters,
-                    localVarHeaderType,
-                    localVarContentType,
-                    localVarBodyParameters,
-                    "POST");
-
-    // uncomment below to debug the error response
-    //if (apiClient->response_code == 201) {
-    //    printf("%s\n","Successful response");
-    //}
-    //nonprimitive not container
-    cJSON *ObjectEzsigntemplateAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsigntemplate_create_object_v2_response_t *elementToReturn = ezsigntemplate_create_object_v2_response_parseFromJSON(ObjectEzsigntemplateAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsigntemplateAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
-    }
-
-    //return type
-    if (apiClient->dataReceived) {
-        free(apiClient->dataReceived);
-        apiClient->dataReceived = NULL;
-        apiClient->dataReceivedLen = 0;
-    }
-    
-    
-    
-    list_freeList(localVarHeaderType);
-    list_freeList(localVarContentType);
-    free(localVarPath);
-    if (localVarSingleItemJSON_ezsigntemplate_create_object_v2_request) {
-        cJSON_Delete(localVarSingleItemJSON_ezsigntemplate_create_object_v2_request);
-        localVarSingleItemJSON_ezsigntemplate_create_object_v2_request = NULL;
+    if (localVarSingleItemJSON_ezsigntemplate_create_object_v3_request) {
+        cJSON_Delete(localVarSingleItemJSON_ezsigntemplate_create_object_v3_request);
+        localVarSingleItemJSON_ezsigntemplate_create_object_v3_request = NULL;
     }
     free(localVarBodyParameters);
     return elementToReturn;
@@ -593,8 +515,8 @@ end:
 //
 // 
 //
-ezsigntemplate_edit_object_v1_response_t*
-ObjectEzsigntemplateAPI_ezsigntemplateEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplateID, ezsigntemplate_edit_object_v1_request_t *ezsigntemplate_edit_object_v1_request)
+ezsigntemplate_edit_object_v3_response_t*
+ObjectEzsigntemplateAPI_ezsigntemplateEditObjectV3(apiClient_t *apiClient, int *pkiEzsigntemplateID, ezsigntemplate_edit_object_v3_request_t *ezsigntemplate_edit_object_v3_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -604,9 +526,9 @@ ObjectEzsigntemplateAPI_ezsigntemplateEditObjectV1(apiClient_t *apiClient, int *
     char      *localVarBodyParameters = NULL;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsigntemplate/{pkiEzsigntemplateID}")+1;
+    long sizeOfPath = strlen("/3/object/ezsigntemplate/{pkiEzsigntemplateID}")+1;
     char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsigntemplate/{pkiEzsigntemplateID}");
+    snprintf(localVarPath, sizeOfPath, "/3/object/ezsigntemplate/{pkiEzsigntemplateID}");
 
 
     // Path Params
@@ -626,12 +548,12 @@ ObjectEzsigntemplateAPI_ezsigntemplateEditObjectV1(apiClient_t *apiClient, int *
 
 
     // Body Param
-    cJSON *localVarSingleItemJSON_ezsigntemplate_edit_object_v1_request = NULL;
-    if (ezsigntemplate_edit_object_v1_request != NULL)
+    cJSON *localVarSingleItemJSON_ezsigntemplate_edit_object_v3_request = NULL;
+    if (ezsigntemplate_edit_object_v3_request != NULL)
     {
         //string
-        localVarSingleItemJSON_ezsigntemplate_edit_object_v1_request = ezsigntemplate_edit_object_v1_request_convertToJSON(ezsigntemplate_edit_object_v1_request);
-        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsigntemplate_edit_object_v1_request);
+        localVarSingleItemJSON_ezsigntemplate_edit_object_v3_request = ezsigntemplate_edit_object_v3_request_convertToJSON(ezsigntemplate_edit_object_v3_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsigntemplate_edit_object_v3_request);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -659,7 +581,7 @@ ObjectEzsigntemplateAPI_ezsigntemplateEditObjectV1(apiClient_t *apiClient, int *
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigntemplateAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsigntemplate_edit_object_v1_response_t *elementToReturn = ezsigntemplate_edit_object_v1_response_parseFromJSON(ObjectEzsigntemplateAPIlocalVarJSON);
+    ezsigntemplate_edit_object_v3_response_t *elementToReturn = ezsigntemplate_edit_object_v3_response_parseFromJSON(ObjectEzsigntemplateAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsigntemplateAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -678,110 +600,9 @@ ObjectEzsigntemplateAPI_ezsigntemplateEditObjectV1(apiClient_t *apiClient, int *
     list_freeList(localVarContentType);
     free(localVarPath);
     free(localVarToReplace_pkiEzsigntemplateID);
-    if (localVarSingleItemJSON_ezsigntemplate_edit_object_v1_request) {
-        cJSON_Delete(localVarSingleItemJSON_ezsigntemplate_edit_object_v1_request);
-        localVarSingleItemJSON_ezsigntemplate_edit_object_v1_request = NULL;
-    }
-    free(localVarBodyParameters);
-    return elementToReturn;
-end:
-    free(localVarPath);
-    return NULL;
-
-}
-
-// Edit an existing Ezsigntemplate
-//
-// 
-//
-ezsigntemplate_edit_object_v2_response_t*
-ObjectEzsigntemplateAPI_ezsigntemplateEditObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplateID, ezsigntemplate_edit_object_v2_request_t *ezsigntemplate_edit_object_v2_request)
-{
-    list_t    *localVarQueryParameters = NULL;
-    list_t    *localVarHeaderParameters = NULL;
-    list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_createList();
-    list_t *localVarContentType = list_createList();
-    char      *localVarBodyParameters = NULL;
-
-    // create the path
-    long sizeOfPath = strlen("/2/object/ezsigntemplate/{pkiEzsigntemplateID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/ezsigntemplate/{pkiEzsigntemplateID}");
-
-
-    // Path Params
-    long sizeOfPathParams_pkiEzsigntemplateID =  + strlen("{ pkiEzsigntemplateID }");
-    if(pkiEzsigntemplateID == 0){
-        goto end;
-    }
-    char* localVarToReplace_pkiEzsigntemplateID = malloc(sizeOfPathParams_pkiEzsigntemplateID);
-    snprintf(localVarToReplace_pkiEzsigntemplateID, sizeOfPathParams_pkiEzsigntemplateID, "{%s}", "pkiEzsigntemplateID");
-
-    char localVarBuff_pkiEzsigntemplateID[256];
-    intToStr(localVarBuff_pkiEzsigntemplateID, *pkiEzsigntemplateID);
-
-    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplateID, localVarBuff_pkiEzsigntemplateID);
-
-
-
-
-    // Body Param
-    cJSON *localVarSingleItemJSON_ezsigntemplate_edit_object_v2_request = NULL;
-    if (ezsigntemplate_edit_object_v2_request != NULL)
-    {
-        //string
-        localVarSingleItemJSON_ezsigntemplate_edit_object_v2_request = ezsigntemplate_edit_object_v2_request_convertToJSON(ezsigntemplate_edit_object_v2_request);
-        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsigntemplate_edit_object_v2_request);
-    }
-    list_addElement(localVarHeaderType,"application/json"); //produces
-    list_addElement(localVarContentType,"application/json"); //consumes
-    apiClient_invoke(apiClient,
-                    localVarPath,
-                    localVarQueryParameters,
-                    localVarHeaderParameters,
-                    localVarFormParameters,
-                    localVarHeaderType,
-                    localVarContentType,
-                    localVarBodyParameters,
-                    "PUT");
-
-    // uncomment below to debug the error response
-    //if (apiClient->response_code == 200) {
-    //    printf("%s\n","Successful response");
-    //}
-    // uncomment below to debug the error response
-    //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
-    //}
-    // uncomment below to debug the error response
-    //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
-    //}
-    //nonprimitive not container
-    cJSON *ObjectEzsigntemplateAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsigntemplate_edit_object_v2_response_t *elementToReturn = ezsigntemplate_edit_object_v2_response_parseFromJSON(ObjectEzsigntemplateAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsigntemplateAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
-    }
-
-    //return type
-    if (apiClient->dataReceived) {
-        free(apiClient->dataReceived);
-        apiClient->dataReceived = NULL;
-        apiClient->dataReceivedLen = 0;
-    }
-    
-    
-    
-    list_freeList(localVarHeaderType);
-    list_freeList(localVarContentType);
-    free(localVarPath);
-    free(localVarToReplace_pkiEzsigntemplateID);
-    if (localVarSingleItemJSON_ezsigntemplate_edit_object_v2_request) {
-        cJSON_Delete(localVarSingleItemJSON_ezsigntemplate_edit_object_v2_request);
-        localVarSingleItemJSON_ezsigntemplate_edit_object_v2_request = NULL;
+    if (localVarSingleItemJSON_ezsigntemplate_edit_object_v3_request) {
+        cJSON_Delete(localVarSingleItemJSON_ezsigntemplate_edit_object_v3_request);
+        localVarSingleItemJSON_ezsigntemplate_edit_object_v3_request = NULL;
     }
     free(localVarBodyParameters);
     return elementToReturn;
@@ -796,7 +617,7 @@ end:
 // Get the list of Ezsigntemplate to be used in a dropdown or autocomplete control.
 //
 ezsigntemplate_get_autocomplete_v2_response_t*
-ObjectEzsigntemplateAPI_ezsigntemplateGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplateGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_ezsigntemplateGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language)
+ObjectEzsigntemplateAPI_ezsigntemplateGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_ezsigntemplateGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_ezsigntemplateGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language, int *fkiEzsignfoldertypeID)
 {
     list_t    *localVarQueryParameters = list_createList();
     list_t    *localVarHeaderParameters = list_createList();
@@ -859,6 +680,19 @@ ObjectEzsigntemplateAPI_ezsigntemplateGetAutocompleteV2(apiClient_t *apiClient, 
         keyPairQuery_sQuery = keyValuePair_create(keyQuery_sQuery, valueQuery_sQuery);
         list_addElement(localVarQueryParameters,keyPairQuery_sQuery);
     }
+
+    // query parameters
+    char *keyQuery_fkiEzsignfoldertypeID = NULL;
+    char * valueQuery_fkiEzsignfoldertypeID = NULL;
+    keyValuePair_t *keyPairQuery_fkiEzsignfoldertypeID = 0;
+    if (fkiEzsignfoldertypeID)
+    {
+        keyQuery_fkiEzsignfoldertypeID = strdup("fkiEzsignfoldertypeID");
+        valueQuery_fkiEzsignfoldertypeID = calloc(1,MAX_NUMBER_LENGTH);
+        snprintf(valueQuery_fkiEzsignfoldertypeID, MAX_NUMBER_LENGTH, "%d", *fkiEzsignfoldertypeID);
+        keyPairQuery_fkiEzsignfoldertypeID = keyValuePair_create(keyQuery_fkiEzsignfoldertypeID, valueQuery_fkiEzsignfoldertypeID);
+        list_addElement(localVarQueryParameters,keyPairQuery_fkiEzsignfoldertypeID);
+    }
     list_addElement(localVarHeaderType,"application/json"); //produces
     apiClient_invoke(apiClient,
                     localVarPath,
@@ -919,6 +753,18 @@ ObjectEzsigntemplateAPI_ezsigntemplateGetAutocompleteV2(apiClient_t *apiClient, 
     if(keyPairQuery_sQuery){
         keyValuePair_free(keyPairQuery_sQuery);
         keyPairQuery_sQuery = NULL;
+    }
+    if(keyQuery_fkiEzsignfoldertypeID){
+        free(keyQuery_fkiEzsignfoldertypeID);
+        keyQuery_fkiEzsignfoldertypeID = NULL;
+    }
+    if(valueQuery_fkiEzsignfoldertypeID){
+        free(valueQuery_fkiEzsignfoldertypeID);
+        valueQuery_fkiEzsignfoldertypeID = NULL;
+    }
+    if(keyPairQuery_fkiEzsignfoldertypeID){
+        keyValuePair_free(keyPairQuery_fkiEzsignfoldertypeID);
+        keyPairQuery_fkiEzsignfoldertypeID = NULL;
     }
     return elementToReturn;
 end:
@@ -1111,8 +957,8 @@ end:
 //
 // 
 //
-ezsigntemplate_get_object_v1_response_t*
-ObjectEzsigntemplateAPI_ezsigntemplateGetObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplateID)
+ezsigntemplate_get_object_v3_response_t*
+ObjectEzsigntemplateAPI_ezsigntemplateGetObjectV3(apiClient_t *apiClient, int *pkiEzsigntemplateID)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -1122,9 +968,9 @@ ObjectEzsigntemplateAPI_ezsigntemplateGetObjectV1(apiClient_t *apiClient, int *p
     char      *localVarBodyParameters = NULL;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsigntemplate/{pkiEzsigntemplateID}")+1;
+    long sizeOfPath = strlen("/3/object/ezsigntemplate/{pkiEzsigntemplateID}")+1;
     char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsigntemplate/{pkiEzsigntemplateID}");
+    snprintf(localVarPath, sizeOfPath, "/3/object/ezsigntemplate/{pkiEzsigntemplateID}");
 
 
     // Path Params
@@ -1163,89 +1009,7 @@ ObjectEzsigntemplateAPI_ezsigntemplateGetObjectV1(apiClient_t *apiClient, int *p
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigntemplateAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsigntemplate_get_object_v1_response_t *elementToReturn = ezsigntemplate_get_object_v1_response_parseFromJSON(ObjectEzsigntemplateAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsigntemplateAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
-    }
-
-    //return type
-    if (apiClient->dataReceived) {
-        free(apiClient->dataReceived);
-        apiClient->dataReceived = NULL;
-        apiClient->dataReceivedLen = 0;
-    }
-    
-    
-    
-    list_freeList(localVarHeaderType);
-    
-    free(localVarPath);
-    free(localVarToReplace_pkiEzsigntemplateID);
-    return elementToReturn;
-end:
-    free(localVarPath);
-    return NULL;
-
-}
-
-// Retrieve an existing Ezsigntemplate
-//
-// 
-//
-ezsigntemplate_get_object_v2_response_t*
-ObjectEzsigntemplateAPI_ezsigntemplateGetObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplateID)
-{
-    list_t    *localVarQueryParameters = NULL;
-    list_t    *localVarHeaderParameters = NULL;
-    list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_createList();
-    list_t *localVarContentType = NULL;
-    char      *localVarBodyParameters = NULL;
-
-    // create the path
-    long sizeOfPath = strlen("/2/object/ezsigntemplate/{pkiEzsigntemplateID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/ezsigntemplate/{pkiEzsigntemplateID}");
-
-
-    // Path Params
-    long sizeOfPathParams_pkiEzsigntemplateID =  + strlen("{ pkiEzsigntemplateID }");
-    if(pkiEzsigntemplateID == 0){
-        goto end;
-    }
-    char* localVarToReplace_pkiEzsigntemplateID = malloc(sizeOfPathParams_pkiEzsigntemplateID);
-    snprintf(localVarToReplace_pkiEzsigntemplateID, sizeOfPathParams_pkiEzsigntemplateID, "{%s}", "pkiEzsigntemplateID");
-
-    char localVarBuff_pkiEzsigntemplateID[256];
-    intToStr(localVarBuff_pkiEzsigntemplateID, *pkiEzsigntemplateID);
-
-    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplateID, localVarBuff_pkiEzsigntemplateID);
-
-
-
-    list_addElement(localVarHeaderType,"application/json"); //produces
-    apiClient_invoke(apiClient,
-                    localVarPath,
-                    localVarQueryParameters,
-                    localVarHeaderParameters,
-                    localVarFormParameters,
-                    localVarHeaderType,
-                    localVarContentType,
-                    localVarBodyParameters,
-                    "GET");
-
-    // uncomment below to debug the error response
-    //if (apiClient->response_code == 200) {
-    //    printf("%s\n","Successful response");
-    //}
-    // uncomment below to debug the error response
-    //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
-    //}
-    //nonprimitive not container
-    cJSON *ObjectEzsigntemplateAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsigntemplate_get_object_v2_response_t *elementToReturn = ezsigntemplate_get_object_v2_response_parseFromJSON(ObjectEzsigntemplateAPIlocalVarJSON);
+    ezsigntemplate_get_object_v3_response_t *elementToReturn = ezsigntemplate_get_object_v3_response_parseFromJSON(ObjectEzsigntemplateAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsigntemplateAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

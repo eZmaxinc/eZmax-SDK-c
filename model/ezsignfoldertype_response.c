@@ -95,10 +95,12 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_create(
     field_e_ezsignfoldertype_completion_t *e_ezsignfoldertype_completion,
     int i_ezsignfoldertype_disposaldays,
     int i_ezsignfoldertype_deadlinedays,
+    int b_ezsignfoldertype_automaticsignature,
     int b_ezsignfoldertype_delegate,
     int b_ezsignfoldertype_discussion,
     int b_ezsignfoldertype_reassignezsignsigner,
     int b_ezsignfoldertype_reassignuser,
+    int b_ezsignfoldertype_reassigngroup,
     int b_ezsignfoldertype_sendsignedtoezsignsigner,
     int b_ezsignfoldertype_sendsignedtouser,
     int b_ezsignfoldertype_sendattachmentezsignsigner,
@@ -147,10 +149,12 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_create(
     ezsignfoldertype_response_local_var->e_ezsignfoldertype_completion = e_ezsignfoldertype_completion;
     ezsignfoldertype_response_local_var->i_ezsignfoldertype_disposaldays = i_ezsignfoldertype_disposaldays;
     ezsignfoldertype_response_local_var->i_ezsignfoldertype_deadlinedays = i_ezsignfoldertype_deadlinedays;
+    ezsignfoldertype_response_local_var->b_ezsignfoldertype_automaticsignature = b_ezsignfoldertype_automaticsignature;
     ezsignfoldertype_response_local_var->b_ezsignfoldertype_delegate = b_ezsignfoldertype_delegate;
     ezsignfoldertype_response_local_var->b_ezsignfoldertype_discussion = b_ezsignfoldertype_discussion;
     ezsignfoldertype_response_local_var->b_ezsignfoldertype_reassignezsignsigner = b_ezsignfoldertype_reassignezsignsigner;
     ezsignfoldertype_response_local_var->b_ezsignfoldertype_reassignuser = b_ezsignfoldertype_reassignuser;
+    ezsignfoldertype_response_local_var->b_ezsignfoldertype_reassigngroup = b_ezsignfoldertype_reassigngroup;
     ezsignfoldertype_response_local_var->b_ezsignfoldertype_sendsignedtoezsignsigner = b_ezsignfoldertype_sendsignedtoezsignsigner;
     ezsignfoldertype_response_local_var->b_ezsignfoldertype_sendsignedtouser = b_ezsignfoldertype_sendsignedtouser;
     ezsignfoldertype_response_local_var->b_ezsignfoldertype_sendattachmentezsignsigner = b_ezsignfoldertype_sendattachmentezsignsigner;
@@ -446,6 +450,14 @@ cJSON *ezsignfoldertype_response_convertToJSON(ezsignfoldertype_response_t *ezsi
     }
 
 
+    // ezsignfoldertype_response->b_ezsignfoldertype_automaticsignature
+    if(ezsignfoldertype_response->b_ezsignfoldertype_automaticsignature) {
+    if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeAutomaticsignature", ezsignfoldertype_response->b_ezsignfoldertype_automaticsignature) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
     // ezsignfoldertype_response->b_ezsignfoldertype_delegate
     if(ezsignfoldertype_response->b_ezsignfoldertype_delegate) {
     if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeDelegate", ezsignfoldertype_response->b_ezsignfoldertype_delegate) == NULL) {
@@ -473,6 +485,14 @@ cJSON *ezsignfoldertype_response_convertToJSON(ezsignfoldertype_response_t *ezsi
     // ezsignfoldertype_response->b_ezsignfoldertype_reassignuser
     if(ezsignfoldertype_response->b_ezsignfoldertype_reassignuser) {
     if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeReassignuser", ezsignfoldertype_response->b_ezsignfoldertype_reassignuser) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
+    // ezsignfoldertype_response->b_ezsignfoldertype_reassigngroup
+    if(ezsignfoldertype_response->b_ezsignfoldertype_reassigngroup) {
+    if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeReassigngroup", ezsignfoldertype_response->b_ezsignfoldertype_reassigngroup) == NULL) {
     goto fail; //Bool
     }
     }
@@ -904,6 +924,15 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
     goto end; //Numeric
     }
 
+    // ezsignfoldertype_response->b_ezsignfoldertype_automaticsignature
+    cJSON *b_ezsignfoldertype_automaticsignature = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeAutomaticsignature");
+    if (b_ezsignfoldertype_automaticsignature) { 
+    if(!cJSON_IsBool(b_ezsignfoldertype_automaticsignature))
+    {
+    goto end; //Bool
+    }
+    }
+
     // ezsignfoldertype_response->b_ezsignfoldertype_delegate
     cJSON *b_ezsignfoldertype_delegate = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeDelegate");
     if (b_ezsignfoldertype_delegate) { 
@@ -935,6 +964,15 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
     cJSON *b_ezsignfoldertype_reassignuser = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeReassignuser");
     if (b_ezsignfoldertype_reassignuser) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_reassignuser))
+    {
+    goto end; //Bool
+    }
+    }
+
+    // ezsignfoldertype_response->b_ezsignfoldertype_reassigngroup
+    cJSON *b_ezsignfoldertype_reassigngroup = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeReassigngroup");
+    if (b_ezsignfoldertype_reassigngroup) { 
+    if(!cJSON_IsBool(b_ezsignfoldertype_reassigngroup))
     {
     goto end; //Bool
     }
@@ -1197,10 +1235,12 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
         e_ezsignfoldertype_completion_local_nonprim,
         i_ezsignfoldertype_disposaldays ? i_ezsignfoldertype_disposaldays->valuedouble : 0,
         i_ezsignfoldertype_deadlinedays->valuedouble,
+        b_ezsignfoldertype_automaticsignature ? b_ezsignfoldertype_automaticsignature->valueint : 0,
         b_ezsignfoldertype_delegate ? b_ezsignfoldertype_delegate->valueint : 0,
         b_ezsignfoldertype_discussion ? b_ezsignfoldertype_discussion->valueint : 0,
         b_ezsignfoldertype_reassignezsignsigner ? b_ezsignfoldertype_reassignezsignsigner->valueint : 0,
         b_ezsignfoldertype_reassignuser ? b_ezsignfoldertype_reassignuser->valueint : 0,
+        b_ezsignfoldertype_reassigngroup ? b_ezsignfoldertype_reassigngroup->valueint : 0,
         b_ezsignfoldertype_sendsignedtoezsignsigner ? b_ezsignfoldertype_sendsignedtoezsignsigner->valueint : 0,
         b_ezsignfoldertype_sendsignedtouser ? b_ezsignfoldertype_sendsignedtouser->valueint : 0,
         b_ezsignfoldertype_sendattachmentezsignsigner ? b_ezsignfoldertype_sendattachmentezsignsigner->valueint : 0,

@@ -1,0 +1,58 @@
+#ifndef electronicfundstransfer_get_communicationsenders_v1_response_m_payload_TEST
+#define electronicfundstransfer_get_communicationsenders_v1_response_m_payload_TEST
+
+// the following is to include only the main from the first c file
+#ifndef TEST_MAIN
+#define TEST_MAIN
+#define electronicfundstransfer_get_communicationsenders_v1_response_m_payload_MAIN
+#endif // TEST_MAIN
+
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdbool.h>
+#include "../external/cJSON.h"
+
+#include "../model/electronicfundstransfer_get_communicationsenders_v1_response_m_payload.h"
+electronicfundstransfer_get_communicationsenders_v1_response_m_payload_t* instantiate_electronicfundstransfer_get_communicationsenders_v1_response_m_payload(int include_optional);
+
+
+
+electronicfundstransfer_get_communicationsenders_v1_response_m_payload_t* instantiate_electronicfundstransfer_get_communicationsenders_v1_response_m_payload(int include_optional) {
+  electronicfundstransfer_get_communicationsenders_v1_response_m_payload_t* electronicfundstransfer_get_communicationsenders_v1_response_m_payload = NULL;
+  if (include_optional) {
+    electronicfundstransfer_get_communicationsenders_v1_response_m_payload = electronicfundstransfer_get_communicationsenders_v1_response_m_payload_create(
+      list_createList()
+    );
+  } else {
+    electronicfundstransfer_get_communicationsenders_v1_response_m_payload = electronicfundstransfer_get_communicationsenders_v1_response_m_payload_create(
+      list_createList()
+    );
+  }
+
+  return electronicfundstransfer_get_communicationsenders_v1_response_m_payload;
+}
+
+
+#ifdef electronicfundstransfer_get_communicationsenders_v1_response_m_payload_MAIN
+
+void test_electronicfundstransfer_get_communicationsenders_v1_response_m_payload(int include_optional) {
+    electronicfundstransfer_get_communicationsenders_v1_response_m_payload_t* electronicfundstransfer_get_communicationsenders_v1_response_m_payload_1 = instantiate_electronicfundstransfer_get_communicationsenders_v1_response_m_payload(include_optional);
+
+	cJSON* jsonelectronicfundstransfer_get_communicationsenders_v1_response_m_payload_1 = electronicfundstransfer_get_communicationsenders_v1_response_m_payload_convertToJSON(electronicfundstransfer_get_communicationsenders_v1_response_m_payload_1);
+	printf("electronicfundstransfer_get_communicationsenders_v1_response_m_payload :\n%s\n", cJSON_Print(jsonelectronicfundstransfer_get_communicationsenders_v1_response_m_payload_1));
+	electronicfundstransfer_get_communicationsenders_v1_response_m_payload_t* electronicfundstransfer_get_communicationsenders_v1_response_m_payload_2 = electronicfundstransfer_get_communicationsenders_v1_response_m_payload_parseFromJSON(jsonelectronicfundstransfer_get_communicationsenders_v1_response_m_payload_1);
+	cJSON* jsonelectronicfundstransfer_get_communicationsenders_v1_response_m_payload_2 = electronicfundstransfer_get_communicationsenders_v1_response_m_payload_convertToJSON(electronicfundstransfer_get_communicationsenders_v1_response_m_payload_2);
+	printf("repeating electronicfundstransfer_get_communicationsenders_v1_response_m_payload:\n%s\n", cJSON_Print(jsonelectronicfundstransfer_get_communicationsenders_v1_response_m_payload_2));
+}
+
+int main() {
+  test_electronicfundstransfer_get_communicationsenders_v1_response_m_payload(1);
+  test_electronicfundstransfer_get_communicationsenders_v1_response_m_payload(0);
+
+  printf("Hello world \n");
+  return 0;
+}
+
+#endif // electronicfundstransfer_get_communicationsenders_v1_response_m_payload_MAIN
+#endif // electronicfundstransfer_get_communicationsenders_v1_response_m_payload_TEST

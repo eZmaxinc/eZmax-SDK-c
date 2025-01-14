@@ -355,3 +355,227 @@ end:
 
 }
 
+// Retrieve an existing Signature
+//
+// 
+//
+signature_get_object_v3_response_t*
+ObjectSignatureAPI_signatureGetObjectV3(apiClient_t *apiClient, int *pkiSignatureID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/3/object/signature/{pkiSignatureID}")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/3/object/signature/{pkiSignatureID}");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiSignatureID =  + strlen("{ pkiSignatureID }");
+    if(pkiSignatureID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiSignatureID = malloc(sizeOfPathParams_pkiSignatureID);
+    snprintf(localVarToReplace_pkiSignatureID, sizeOfPathParams_pkiSignatureID, "{%s}", "pkiSignatureID");
+
+    char localVarBuff_pkiSignatureID[256];
+    intToStr(localVarBuff_pkiSignatureID, *pkiSignatureID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiSignatureID, localVarBuff_pkiSignatureID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    cJSON *ObjectSignatureAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+    signature_get_object_v3_response_t *elementToReturn = signature_get_object_v3_response_parseFromJSON(ObjectSignatureAPIlocalVarJSON);
+    cJSON_Delete(ObjectSignatureAPIlocalVarJSON);
+    if(elementToReturn == NULL) {
+        // return 0;
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiSignatureID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve an existing Signature initial SVG
+//
+// 
+//
+void
+ObjectSignatureAPI_signatureGetSVGInitialsV1(apiClient_t *apiClient, int *pkiSignatureID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/signature/{pkiSignatureID}/getSVGInitials")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/signature/{pkiSignatureID}/getSVGInitials");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiSignatureID =  + strlen("{ pkiSignatureID }");
+    if(pkiSignatureID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiSignatureID = malloc(sizeOfPathParams_pkiSignatureID);
+    snprintf(localVarToReplace_pkiSignatureID, sizeOfPathParams_pkiSignatureID, "{%s}", "pkiSignatureID");
+
+    char localVarBuff_pkiSignatureID[256];
+    intToStr(localVarBuff_pkiSignatureID, *pkiSignatureID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiSignatureID, localVarBuff_pkiSignatureID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 302) {
+    //    printf("%s\n","The user has been redirected");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //No return type
+end:
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiSignatureID);
+
+}
+
+// Retrieve an existing Signature SVG
+//
+// 
+//
+void
+ObjectSignatureAPI_signatureGetSVGSignatureV1(apiClient_t *apiClient, int *pkiSignatureID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+
+    // create the path
+    long sizeOfPath = strlen("/1/object/signature/{pkiSignatureID}/getSVGSignature")+1;
+    char *localVarPath = malloc(sizeOfPath);
+    snprintf(localVarPath, sizeOfPath, "/1/object/signature/{pkiSignatureID}/getSVGSignature");
+
+
+    // Path Params
+    long sizeOfPathParams_pkiSignatureID =  + strlen("{ pkiSignatureID }");
+    if(pkiSignatureID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiSignatureID = malloc(sizeOfPathParams_pkiSignatureID);
+    snprintf(localVarToReplace_pkiSignatureID, sizeOfPathParams_pkiSignatureID, "{%s}", "pkiSignatureID");
+
+    char localVarBuff_pkiSignatureID[256];
+    intToStr(localVarBuff_pkiSignatureID, *pkiSignatureID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiSignatureID, localVarBuff_pkiSignatureID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 302) {
+    //    printf("%s\n","The user has been redirected");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //No return type
+end:
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiSignatureID);
+
+}
+

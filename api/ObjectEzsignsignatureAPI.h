@@ -10,12 +10,14 @@
 #include "../model/ezsignsignature_create_object_v1_response.h"
 #include "../model/ezsignsignature_create_object_v2_request.h"
 #include "../model/ezsignsignature_create_object_v2_response.h"
+#include "../model/ezsignsignature_create_object_v3_request.h"
+#include "../model/ezsignsignature_create_object_v3_response.h"
 #include "../model/ezsignsignature_delete_object_v1_response.h"
-#include "../model/ezsignsignature_edit_object_v1_request.h"
-#include "../model/ezsignsignature_edit_object_v1_response.h"
+#include "../model/ezsignsignature_edit_object_v2_request.h"
+#include "../model/ezsignsignature_edit_object_v2_response.h"
 #include "../model/ezsignsignature_get_ezsignsignatureattachment_v1_response.h"
 #include "../model/ezsignsignature_get_ezsignsignatures_automatic_v1_response.h"
-#include "../model/ezsignsignature_get_object_v2_response.h"
+#include "../model/ezsignsignature_get_object_v3_response.h"
 #include "../model/ezsignsignature_sign_v1_request.h"
 #include "../model/ezsignsignature_sign_v1_response.h"
 
@@ -36,6 +38,14 @@ ezsignsignature_create_object_v2_response_t*
 ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV2(apiClient_t *apiClient, ezsignsignature_create_object_v2_request_t *ezsignsignature_create_object_v2_request);
 
 
+// Create a new Ezsignsignature
+//
+// The endpoint allows to create one or many elements at once.
+//
+ezsignsignature_create_object_v3_response_t*
+ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV3(apiClient_t *apiClient, ezsignsignature_create_object_v3_request_t *ezsignsignature_create_object_v3_request);
+
+
 // Delete an existing Ezsignsignature
 //
 // 
@@ -48,8 +58,8 @@ ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1(apiClient_t *apiClient, i
 //
 // 
 //
-ezsignsignature_edit_object_v1_response_t*
-ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV1(apiClient_t *apiClient, int *pkiEzsignsignatureID, ezsignsignature_edit_object_v1_request_t *ezsignsignature_edit_object_v1_request);
+ezsignsignature_edit_object_v2_response_t*
+ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV2(apiClient_t *apiClient, int *pkiEzsignsignatureID, ezsignsignature_edit_object_v2_request_t *ezsignsignature_edit_object_v2_request);
 
 
 // Retrieve an existing Ezsignsignature's Ezsignsignatureattachments
@@ -70,8 +80,8 @@ ObjectEzsignsignatureAPI_ezsignsignatureGetEzsignsignaturesAutomaticV1(apiClient
 //
 // 
 //
-ezsignsignature_get_object_v2_response_t*
-ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV2(apiClient_t *apiClient, int *pkiEzsignsignatureID);
+ezsignsignature_get_object_v3_response_t*
+ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV3(apiClient_t *apiClient, int *pkiEzsignsignatureID);
 
 
 // Sign the Ezsignsignature

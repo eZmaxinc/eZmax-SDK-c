@@ -58,6 +58,10 @@ ObjectFranchisereferalincomeAPI_franchisereferalincomeCreateObjectV2(apiClient_t
     //if (apiClient->response_code == 201) {
     //    printf("%s\n","Successful response");
     //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of this Franchisebroker is not in this Franchiseoffice. fkiFranchiseofficeID contains the id of Franchiseoffice where the Franchisebroker is located on the dtFranchisereferalincomeDisbursed. ");
+    //}
     //nonprimitive not container
     cJSON *ObjectFranchisereferalincomeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
     franchisereferalincome_create_object_v2_response_t *elementToReturn = franchisereferalincome_create_object_v2_response_parseFromJSON(ObjectFranchisereferalincomeAPIlocalVarJSON);

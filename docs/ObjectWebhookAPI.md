@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**ObjectWebhookAPI_webhookGetListV1**](ObjectWebhookAPI.md#ObjectWebhookAPI_webhookGetListV1) | **GET** /1/object/webhook/getList | Retrieve Webhook list
 [**ObjectWebhookAPI_webhookGetObjectV2**](ObjectWebhookAPI.md#ObjectWebhookAPI_webhookGetObjectV2) | **GET** /2/object/webhook/{pkiWebhookID} | Retrieve an existing Webhook
 [**ObjectWebhookAPI_webhookRegenerateApikeyV1**](ObjectWebhookAPI.md#ObjectWebhookAPI_webhookRegenerateApikeyV1) | **POST** /1/object/webhook/{pkiWebhookID}/regenerateApikey | Regenerate the Apikey
+[**ObjectWebhookAPI_webhookSendWebhookV1**](ObjectWebhookAPI.md#ObjectWebhookAPI_webhookSendWebhookV1) | **POST** /1/object/webhook/sendWebhook | Emit a Webhook event
 [**ObjectWebhookAPI_webhookTestV1**](ObjectWebhookAPI.md#ObjectWebhookAPI_webhookTestV1) | **POST** /1/object/webhook/{pkiWebhookID}/test | Test the Webhook by calling the Url
 
 
@@ -225,6 +226,35 @@ Name | Type | Description  | Notes
 ### Return type
 
 [webhook_regenerate_apikey_v1_response_t](webhook_regenerate_apikey_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectWebhookAPI_webhookSendWebhookV1**
+```c
+// Emit a Webhook event
+//
+webhook_send_webhook_v1_response_t* ObjectWebhookAPI_webhookSendWebhookV1(apiClient_t *apiClient, webhook_send_webhook_v1_request_t *webhook_send_webhook_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**webhook_send_webhook_v1_request** | **[webhook_send_webhook_v1_request_t](webhook_send_webhook_v1_request.md) \*** |  | 
+
+### Return type
+
+[webhook_send_webhook_v1_response_t](webhook_send_webhook_v1_response.md) *
 
 
 ### Authorization

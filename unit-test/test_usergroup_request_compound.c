@@ -16,6 +16,7 @@
 #include "../model/usergroup_request_compound.h"
 usergroup_request_compound_t* instantiate_usergroup_request_compound(int include_optional);
 
+#include "test_email_request.c"
 #include "test_multilingual_usergroup_name.c"
 
 
@@ -25,11 +26,14 @@ usergroup_request_compound_t* instantiate_usergroup_request_compound(int include
     usergroup_request_compound = usergroup_request_compound_create(
       2,
        // false, not to have infinite recursion
+      instantiate_email_request(0),
+       // false, not to have infinite recursion
       instantiate_multilingual_usergroup_name(0)
     );
   } else {
     usergroup_request_compound = usergroup_request_compound_create(
       2,
+      NULL,
       NULL
     );
   }

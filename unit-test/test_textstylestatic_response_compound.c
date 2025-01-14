@@ -24,6 +24,7 @@ textstylestatic_response_compound_t* instantiate_textstylestatic_response_compou
     textstylestatic_response_compound = textstylestatic_response_compound_create(
       216,
       1,
+      "Arial",
       true,
       true,
       true,
@@ -35,6 +36,7 @@ textstylestatic_response_compound_t* instantiate_textstylestatic_response_compou
     textstylestatic_response_compound = textstylestatic_response_compound_create(
       216,
       1,
+      "Arial",
       true,
       true,
       true,
