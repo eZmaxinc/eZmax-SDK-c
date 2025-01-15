@@ -8,6 +8,7 @@
 #include "../model/activesession_generate_federation_token_v1_request.h"
 #include "../model/activesession_generate_federation_token_v1_response.h"
 #include "../model/activesession_get_current_v1_response.h"
+#include "../model/activesession_get_current_v2_response.h"
 #include "../model/activesession_get_list_v1_response.h"
 #include "../model/common_response_error.h"
 #include "../model/common_response_redirect_s_secretquestion_text_x.h"
@@ -34,6 +35,14 @@ ObjectActivesessionAPI_activesessionGenerateFederationTokenV1(apiClient_t *apiCl
 //
 activesession_get_current_v1_response_t*
 ObjectActivesessionAPI_activesessionGetCurrentV1(apiClient_t *apiClient);
+
+
+// Get Current Activesession
+//
+// Retrieve the details about the current activesession
+//
+activesession_get_current_v2_response_t*
+ObjectActivesessionAPI_activesessionGetCurrentV2(apiClient_t *apiClient);
 
 
 // Retrieve Activesession list

@@ -1,11 +1,11 @@
-# webhook_get_history_v1_response_t
+# activesession_get_current_v2_response_t
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **obj_debug_payload** | [**common_response_obj_debug_payload_t**](common_response_obj_debug_payload.md) \* |  | 
 **obj_debug** | [**common_response_obj_debug_t**](common_response_obj_debug.md) \* |  | [optional] 
-**m_payload** | [**webhook_get_history_v1_response_m_payload_t**](webhook_get_history_v1_response_m_payload.md) \* |  | 
+**m_payload** | [**activesession_get_current_v2_response_m_payload_t**](activesession_get_current_v2_response_m_payload.md) \* |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

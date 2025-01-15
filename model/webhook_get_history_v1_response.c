@@ -8,7 +8,7 @@
 webhook_get_history_v1_response_t *webhook_get_history_v1_response_create(
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug,
-    object_t *m_payload
+    webhook_get_history_v1_response_m_payload_t *m_payload
     ) {
     webhook_get_history_v1_response_t *webhook_get_history_v1_response_local_var = malloc(sizeof(webhook_get_history_v1_response_t));
     if (!webhook_get_history_v1_response_local_var) {
@@ -36,7 +36,7 @@ void webhook_get_history_v1_response_free(webhook_get_history_v1_response_t *web
         webhook_get_history_v1_response->obj_debug = NULL;
     }
     if (webhook_get_history_v1_response->m_payload) {
-        object_free(webhook_get_history_v1_response->m_payload);
+        webhook_get_history_v1_response_m_payload_free(webhook_get_history_v1_response->m_payload);
         webhook_get_history_v1_response->m_payload = NULL;
     }
     free(webhook_get_history_v1_response);
@@ -76,7 +76,7 @@ cJSON *webhook_get_history_v1_response_convertToJSON(webhook_get_history_v1_resp
     if (!webhook_get_history_v1_response->m_payload) {
         goto fail;
     }
-    cJSON *m_payload_local_JSON = object_convertToJSON(webhook_get_history_v1_response->m_payload);
+    cJSON *m_payload_local_JSON = webhook_get_history_v1_response_m_payload_convertToJSON(webhook_get_history_v1_response->m_payload);
     if(m_payload_local_JSON == NULL) {
     goto fail; //model
     }
@@ -104,7 +104,7 @@ webhook_get_history_v1_response_t *webhook_get_history_v1_response_parseFromJSON
     common_response_obj_debug_t *obj_debug_local_nonprim = NULL;
 
     // define the local variable for webhook_get_history_v1_response->m_payload
-    object_t *m_payload_local_nonprim = NULL;
+    webhook_get_history_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
 
     // webhook_get_history_v1_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(webhook_get_history_v1_responseJSON, "objDebugPayload");
@@ -128,7 +128,7 @@ webhook_get_history_v1_response_t *webhook_get_history_v1_response_parseFromJSON
     }
 
     
-    m_payload_local_nonprim = object_parseFromJSON(m_payload); //nonprimitive
+    m_payload_local_nonprim = webhook_get_history_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
     webhook_get_history_v1_response_local_var = webhook_get_history_v1_response_create (
@@ -148,7 +148,7 @@ end:
         obj_debug_local_nonprim = NULL;
     }
     if (m_payload_local_nonprim) {
-        object_free(m_payload_local_nonprim);
+        webhook_get_history_v1_response_m_payload_free(m_payload_local_nonprim);
         m_payload_local_nonprim = NULL;
     }
     return NULL;

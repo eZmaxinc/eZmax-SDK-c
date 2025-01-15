@@ -73,6 +73,7 @@ Category | Method | HTTP request | Description
 *ModuleUserAPI* | [**ModuleUserAPI_userCreateEzsignuserV1**](docs/ModuleUserAPI.md#ModuleUserAPI_userCreateEzsignuserV1) | **POST** /1/module/user/createezsignuser | Create a new User of type Ezsignuser
 *ObjectActivesessionAPI* | [**ObjectActivesessionAPI_activesessionGenerateFederationTokenV1**](docs/ObjectActivesessionAPI.md#ObjectActivesessionAPI_activesessionGenerateFederationTokenV1) | **POST** /1/object/activesession/generateFederationToken | Generate a federation token
 *ObjectActivesessionAPI* | [**ObjectActivesessionAPI_activesessionGetCurrentV1**](docs/ObjectActivesessionAPI.md#ObjectActivesessionAPI_activesessionGetCurrentV1) | **GET** /1/object/activesession/getCurrent | Get Current Activesession
+*ObjectActivesessionAPI* | [**ObjectActivesessionAPI_activesessionGetCurrentV2**](docs/ObjectActivesessionAPI.md#ObjectActivesessionAPI_activesessionGetCurrentV2) | **GET** /2/object/activesession/getCurrent | Get Current Activesession
 *ObjectActivesessionAPI* | [**ObjectActivesessionAPI_activesessionGetListV1**](docs/ObjectActivesessionAPI.md#ObjectActivesessionAPI_activesessionGetListV1) | **GET** /1/object/activesession/getList | Retrieve Activesession list
 *ObjectApikeyAPI* | [**ObjectApikeyAPI_apikeyCreateObjectV2**](docs/ObjectApikeyAPI.md#ObjectApikeyAPI_apikeyCreateObjectV2) | **POST** /2/object/apikey | Create a new Apikey
 *ObjectApikeyAPI* | [**ObjectApikeyAPI_apikeyEditObjectV1**](docs/ObjectApikeyAPI.md#ObjectApikeyAPI_apikeyEditObjectV1) | **PUT** /1/object/apikey/{pkiApikeyID} | Edit an existing Apikey
@@ -530,6 +531,8 @@ Category | Method | HTTP request | Description
  - [activesession_generate_federation_token_v1_response_m_payload_t](docs/activesession_generate_federation_token_v1_response_m_payload.md)
  - [activesession_get_current_v1_response_t](docs/activesession_get_current_v1_response.md)
  - [activesession_get_current_v1_response_m_payload_t](docs/activesession_get_current_v1_response_m_payload.md)
+ - [activesession_get_current_v2_response_t](docs/activesession_get_current_v2_response.md)
+ - [activesession_get_current_v2_response_m_payload_t](docs/activesession_get_current_v2_response_m_payload.md)
  - [activesession_get_list_v1_response_t](docs/activesession_get_list_v1_response.md)
  - [activesession_get_list_v1_response_m_payload_t](docs/activesession_get_list_v1_response_m_payload.md)
  - [activesession_list_element_t](docs/activesession_list_element.md)

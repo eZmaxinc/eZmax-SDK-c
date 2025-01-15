@@ -59,6 +59,8 @@ set(SRCS
     model/activesession_generate_federation_token_v1_response_m_payload.c
     model/activesession_get_current_v1_response.c
     model/activesession_get_current_v1_response_m_payload.c
+    model/activesession_get_current_v2_response.c
+    model/activesession_get_current_v2_response_m_payload.c
     model/activesession_get_list_v1_response.c
     model/activesession_get_list_v1_response_m_payload.c
     model/activesession_list_element.c
@@ -1813,6 +1815,8 @@ set(HDRS
     model/activesession_generate_federation_token_v1_response_m_payload.h
     model/activesession_get_current_v1_response.h
     model/activesession_get_current_v1_response_m_payload.h
+    model/activesession_get_current_v2_response.h
+    model/activesession_get_current_v2_response_m_payload.h
     model/activesession_get_list_v1_response.h
     model/activesession_get_list_v1_response_m_payload.h
     model/activesession_list_element.h

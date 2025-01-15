@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectActivesessionAPI_activesessionGenerateFederationTokenV1**](ObjectActivesessionAPI.md#ObjectActivesessionAPI_activesessionGenerateFederationTokenV1) | **POST** /1/object/activesession/generateFederationToken | Generate a federation token
 [**ObjectActivesessionAPI_activesessionGetCurrentV1**](ObjectActivesessionAPI.md#ObjectActivesessionAPI_activesessionGetCurrentV1) | **GET** /1/object/activesession/getCurrent | Get Current Activesession
+[**ObjectActivesessionAPI_activesessionGetCurrentV2**](ObjectActivesessionAPI.md#ObjectActivesessionAPI_activesessionGetCurrentV2) | **GET** /2/object/activesession/getCurrent | Get Current Activesession
 [**ObjectActivesessionAPI_activesessionGetListV1**](ObjectActivesessionAPI.md#ObjectActivesessionAPI_activesessionGetListV1) | **GET** /1/object/activesession/getList | Retrieve Activesession list
 
 
@@ -57,6 +58,36 @@ Name | Type | Description  | Notes
 ### Return type
 
 [activesession_get_current_v1_response_t](activesession_get_current_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectActivesessionAPI_activesessionGetCurrentV2**
+```c
+// Get Current Activesession
+//
+// Retrieve the details about the current activesession
+//
+activesession_get_current_v2_response_t* ObjectActivesessionAPI_activesessionGetCurrentV2(apiClient_t *apiClient);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+
+### Return type
+
+[activesession_get_current_v2_response_t](activesession_get_current_v2_response.md) *
 
 
 ### Authorization
