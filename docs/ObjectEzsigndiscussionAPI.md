@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsigndiscussion_delete_object_v1_response_t* ObjectEzsigndiscussionAPI_ezsigndiscussionDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigndiscussionID);
+common_response_t* ObjectEzsigndiscussionAPI_ezsigndiscussionDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigndiscussionID);
 ```
 
 ### Parameters
@@ -57,7 +57,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[ezsigndiscussion_delete_object_v1_response_t](ezsigndiscussion_delete_object_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization

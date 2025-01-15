@@ -5,15 +5,14 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
+#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/header_accept_language.h"
 #include "../model/object.h"
 #include "../model/userstaged_create_user_v1_response.h"
-#include "../model/userstaged_delete_object_v1_response.h"
 #include "../model/userstaged_get_list_v1_response.h"
 #include "../model/userstaged_get_object_v2_response.h"
 #include "../model/userstaged_map_v1_request.h"
-#include "../model/userstaged_map_v1_response.h"
 
 // Enum EORDERBY for ObjectUserstagedAPI_userstagedGetListV1
 typedef enum  { ezmax_api_definition__full_userstagedGetListV1_EORDERBY_NULL = 0, ezmax_api_definition__full_userstagedGetListV1_EORDERBY_pkiUserstagedID_ASC, ezmax_api_definition__full_userstagedGetListV1_EORDERBY_pkiUserstagedID_DESC, ezmax_api_definition__full_userstagedGetListV1_EORDERBY_sEmailAddress_ASC, ezmax_api_definition__full_userstagedGetListV1_EORDERBY_sEmailAddress_DESC, ezmax_api_definition__full_userstagedGetListV1_EORDERBY_sUserstagedFirstname_ASC, ezmax_api_definition__full_userstagedGetListV1_EORDERBY_sUserstagedFirstname_DESC, ezmax_api_definition__full_userstagedGetListV1_EORDERBY_sUserstagedLastname_ASC, ezmax_api_definition__full_userstagedGetListV1_EORDERBY_sUserstagedLastname_DESC, ezmax_api_definition__full_userstagedGetListV1_EORDERBY_sUserstagedExternalid_ASC, ezmax_api_definition__full_userstagedGetListV1_EORDERBY_sUserstagedExternalid_DESC } ezmax_api_definition__full_userstagedGetListV1_eOrderBy_e;
@@ -34,7 +33,7 @@ ObjectUserstagedAPI_userstagedCreateUserV1(apiClient_t *apiClient, int *pkiUsers
 //
 // 
 //
-userstaged_delete_object_v1_response_t*
+common_response_t*
 ObjectUserstagedAPI_userstagedDeleteObjectV1(apiClient_t *apiClient, int *pkiUserstagedID);
 
 
@@ -58,7 +57,7 @@ ObjectUserstagedAPI_userstagedGetObjectV2(apiClient_t *apiClient, int *pkiUserst
 //
 // 
 //
-userstaged_map_v1_response_t*
+common_response_t*
 ObjectUserstagedAPI_userstagedMapV1(apiClient_t *apiClient, int *pkiUserstagedID, userstaged_map_v1_request_t *userstaged_map_v1_request);
 
 

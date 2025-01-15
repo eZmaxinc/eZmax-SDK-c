@@ -27,7 +27,7 @@ void ezsigndocument_submit_ezsignform_v1_request_free(ezsigndocument_submit_ezsi
     listEntry_t *listEntry;
     if (ezsigndocument_submit_ezsignform_v1_request->a_obj_ezsignformfieldgroup) {
         list_ForEach(listEntry, ezsigndocument_submit_ezsignform_v1_request->a_obj_ezsignformfieldgroup) {
-            custom_ezsignformfieldgroup_request_free(listEntry->data);
+            object_free(listEntry->data);
         }
         list_freeList(ezsigndocument_submit_ezsignform_v1_request->a_obj_ezsignformfieldgroup);
         ezsigndocument_submit_ezsignform_v1_request->a_obj_ezsignformfieldgroup = NULL;
@@ -59,7 +59,7 @@ cJSON *ezsigndocument_submit_ezsignform_v1_request_convertToJSON(ezsigndocument_
     listEntry_t *a_obj_ezsignformfieldgroupListEntry;
     if (ezsigndocument_submit_ezsignform_v1_request->a_obj_ezsignformfieldgroup) {
     list_ForEach(a_obj_ezsignformfieldgroupListEntry, ezsigndocument_submit_ezsignform_v1_request->a_obj_ezsignformfieldgroup) {
-    cJSON *itemLocal = custom_ezsignformfieldgroup_request_convertToJSON(a_obj_ezsignformfieldgroupListEntry->data);
+    cJSON *itemLocal = object_convertToJSON(a_obj_ezsignformfieldgroupListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -113,7 +113,7 @@ ezsigndocument_submit_ezsignform_v1_request_t *ezsigndocument_submit_ezsignform_
         if(!cJSON_IsObject(a_obj_ezsignformfieldgroup_local_nonprimitive)){
             goto end;
         }
-        custom_ezsignformfieldgroup_request_t *a_obj_ezsignformfieldgroupItem = custom_ezsignformfieldgroup_request_parseFromJSON(a_obj_ezsignformfieldgroup_local_nonprimitive);
+        object_t *a_obj_ezsignformfieldgroupItem = object_parseFromJSON(a_obj_ezsignformfieldgroup_local_nonprimitive);
 
         list_addElement(a_obj_ezsignformfieldgroupList, a_obj_ezsignformfieldgroupItem);
     }
@@ -129,7 +129,7 @@ end:
     if (a_obj_ezsignformfieldgroupList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsignformfieldgroupList) {
-            custom_ezsignformfieldgroup_request_free(listEntry->data);
+            object_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_ezsignformfieldgroupList);

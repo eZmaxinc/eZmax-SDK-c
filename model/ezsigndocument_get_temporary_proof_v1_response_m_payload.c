@@ -25,7 +25,7 @@ void ezsigndocument_get_temporary_proof_v1_response_m_payload_free(ezsigndocumen
     listEntry_t *listEntry;
     if (ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog) {
         list_ForEach(listEntry, ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog) {
-            ezsigndocumentlog_response_compound_free(listEntry->data);
+            ezsigndocumentlog_response_free(listEntry->data);
         }
         list_freeList(ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog);
         ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog = NULL;
@@ -48,7 +48,7 @@ cJSON *ezsigndocument_get_temporary_proof_v1_response_m_payload_convertToJSON(ez
     listEntry_t *a_obj_ezsigndocumentlogListEntry;
     if (ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog) {
     list_ForEach(a_obj_ezsigndocumentlogListEntry, ezsigndocument_get_temporary_proof_v1_response_m_payload->a_obj_ezsigndocumentlog) {
-    cJSON *itemLocal = ezsigndocumentlog_response_compound_convertToJSON(a_obj_ezsigndocumentlogListEntry->data);
+    cJSON *itemLocal = ezsigndocumentlog_response_convertToJSON(a_obj_ezsigndocumentlogListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -90,7 +90,7 @@ ezsigndocument_get_temporary_proof_v1_response_m_payload_t *ezsigndocument_get_t
         if(!cJSON_IsObject(a_obj_ezsigndocumentlog_local_nonprimitive)){
             goto end;
         }
-        ezsigndocumentlog_response_compound_t *a_obj_ezsigndocumentlogItem = ezsigndocumentlog_response_compound_parseFromJSON(a_obj_ezsigndocumentlog_local_nonprimitive);
+        ezsigndocumentlog_response_t *a_obj_ezsigndocumentlogItem = ezsigndocumentlog_response_parseFromJSON(a_obj_ezsigndocumentlog_local_nonprimitive);
 
         list_addElement(a_obj_ezsigndocumentlogList, a_obj_ezsigndocumentlogItem);
     }
@@ -105,7 +105,7 @@ end:
     if (a_obj_ezsigndocumentlogList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsigndocumentlogList) {
-            ezsigndocumentlog_response_compound_free(listEntry->data);
+            ezsigndocumentlog_response_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_ezsigndocumentlogList);

@@ -16,7 +16,7 @@
 #include "../model/systemconfiguration_response.h"
 systemconfiguration_response_t* instantiate_systemconfiguration_response(int include_optional);
 
-#include "test_custom_branding_response.c"
+#include "test_object.c"
 
 
 systemconfiguration_response_t* instantiate_systemconfiguration_response(int include_optional) {
@@ -40,7 +40,7 @@ systemconfiguration_response_t* instantiate_systemconfiguration_response(int inc
       "2020-12-31",
       "2021-12-31",
        // false, not to have infinite recursion
-      instantiate_custom_branding_response(0)
+      instantiate_object(0)
     );
   } else {
     systemconfiguration_response = systemconfiguration_response_create(

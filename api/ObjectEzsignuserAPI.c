@@ -16,7 +16,7 @@
 //
 // 
 //
-ezsignuser_edit_object_v1_response_t*
+common_response_t*
 ObjectEzsignuserAPI_ezsignuserEditObjectV1(apiClient_t *apiClient, int *pkiEzsignuserID, ezsignuser_edit_object_v1_request_t *ezsignuser_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -82,7 +82,7 @@ ObjectEzsignuserAPI_ezsignuserEditObjectV1(apiClient_t *apiClient, int *pkiEzsig
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignuserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignuser_edit_object_v1_response_t *elementToReturn = ezsignuser_edit_object_v1_response_parseFromJSON(ObjectEzsignuserAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignuserAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignuserAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

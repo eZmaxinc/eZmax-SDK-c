@@ -5,13 +5,12 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
+#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/header_accept_language.h"
 #include "../model/usergroupexternal_create_object_v1_request.h"
 #include "../model/usergroupexternal_create_object_v1_response.h"
-#include "../model/usergroupexternal_delete_object_v1_response.h"
 #include "../model/usergroupexternal_edit_object_v1_request.h"
-#include "../model/usergroupexternal_edit_object_v1_response.h"
 #include "../model/usergroupexternal_get_autocomplete_v2_response.h"
 #include "../model/usergroupexternal_get_list_v1_response.h"
 #include "../model/usergroupexternal_get_object_v2_response.h"
@@ -46,7 +45,7 @@ ObjectUsergroupexternalAPI_usergroupexternalCreateObjectV1(apiClient_t *apiClien
 //
 // 
 //
-usergroupexternal_delete_object_v1_response_t*
+common_response_t*
 ObjectUsergroupexternalAPI_usergroupexternalDeleteObjectV1(apiClient_t *apiClient, int *pkiUsergroupexternalID);
 
 
@@ -54,7 +53,7 @@ ObjectUsergroupexternalAPI_usergroupexternalDeleteObjectV1(apiClient_t *apiClien
 //
 // 
 //
-usergroupexternal_edit_object_v1_response_t*
+common_response_t*
 ObjectUsergroupexternalAPI_usergroupexternalEditObjectV1(apiClient_t *apiClient, int *pkiUsergroupexternalID, usergroupexternal_edit_object_v1_request_t *usergroupexternal_edit_object_v1_request);
 
 

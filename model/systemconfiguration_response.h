@@ -15,12 +15,12 @@
 
 typedef struct systemconfiguration_response_t systemconfiguration_response_t;
 
-#include "custom_branding_response.h"
 #include "field_e_systemconfiguration_ezsign.h"
 #include "field_e_systemconfiguration_ezsignofficeplan.h"
 #include "field_e_systemconfiguration_language1.h"
 #include "field_e_systemconfiguration_language2.h"
 #include "field_e_systemconfiguration_newexternaluseraction.h"
+#include "object.h"
 
 // Enum  for systemconfiguration_response
 
@@ -81,7 +81,7 @@ typedef struct systemconfiguration_response_t {
     int b_systemconfiguration_sspr; //boolean
     char *dt_systemconfiguration_readonlyexpirationstart; // string
     char *dt_systemconfiguration_readonlyexpirationend; // string
-    struct custom_branding_response_t *obj_branding; //model
+    struct object_t *obj_branding; //model
 
 } systemconfiguration_response_t;
 
@@ -102,7 +102,7 @@ systemconfiguration_response_t *systemconfiguration_response_create(
     int b_systemconfiguration_sspr,
     char *dt_systemconfiguration_readonlyexpirationstart,
     char *dt_systemconfiguration_readonlyexpirationend,
-    custom_branding_response_t *obj_branding
+    object_t *obj_branding
 );
 
 void systemconfiguration_response_free(systemconfiguration_response_t *systemconfiguration_response);

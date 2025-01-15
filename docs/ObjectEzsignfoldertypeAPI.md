@@ -49,7 +49,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignfoldertype_edit_object_v3_response_t* ObjectEzsignfoldertypeAPI_ezsignfoldertypeEditObjectV3(apiClient_t *apiClient, int *pkiEzsignfoldertypeID, ezsignfoldertype_edit_object_v3_request_t *ezsignfoldertype_edit_object_v3_request);
+common_response_t* ObjectEzsignfoldertypeAPI_ezsignfoldertypeEditObjectV3(apiClient_t *apiClient, int *pkiEzsignfoldertypeID, ezsignfoldertype_edit_object_v3_request_t *ezsignfoldertype_edit_object_v3_request);
 ```
 
 ### Parameters
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[ezsignfoldertype_edit_object_v3_response_t](ezsignfoldertype_edit_object_v3_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization

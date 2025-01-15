@@ -15,7 +15,7 @@
 
 typedef struct ezsignfolder_create_object_v3_request_t ezsignfolder_create_object_v3_request_t;
 
-#include "ezsignfolder_request_compound_v3.h"
+#include "ezsignfolder_request_v3.h"
 
 
 

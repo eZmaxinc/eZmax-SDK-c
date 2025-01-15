@@ -27,7 +27,7 @@ void custom_ezsigndocument_request_free(custom_ezsigndocument_request_t *custom_
     listEntry_t *listEntry;
     if (custom_ezsigndocument_request->a_obj_ezsigndocumentdependency) {
         list_ForEach(listEntry, custom_ezsigndocument_request->a_obj_ezsigndocumentdependency) {
-            ezsigndocumentdependency_request_compound_free(listEntry->data);
+            ezsigndocumentdependency_request_free(listEntry->data);
         }
         list_freeList(custom_ezsigndocument_request->a_obj_ezsigndocumentdependency);
         custom_ezsigndocument_request->a_obj_ezsigndocumentdependency = NULL;
@@ -59,7 +59,7 @@ cJSON *custom_ezsigndocument_request_convertToJSON(custom_ezsigndocument_request
     listEntry_t *a_obj_ezsigndocumentdependencyListEntry;
     if (custom_ezsigndocument_request->a_obj_ezsigndocumentdependency) {
     list_ForEach(a_obj_ezsigndocumentdependencyListEntry, custom_ezsigndocument_request->a_obj_ezsigndocumentdependency) {
-    cJSON *itemLocal = ezsigndocumentdependency_request_compound_convertToJSON(a_obj_ezsigndocumentdependencyListEntry->data);
+    cJSON *itemLocal = ezsigndocumentdependency_request_convertToJSON(a_obj_ezsigndocumentdependencyListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -113,7 +113,7 @@ custom_ezsigndocument_request_t *custom_ezsigndocument_request_parseFromJSON(cJS
         if(!cJSON_IsObject(a_obj_ezsigndocumentdependency_local_nonprimitive)){
             goto end;
         }
-        ezsigndocumentdependency_request_compound_t *a_obj_ezsigndocumentdependencyItem = ezsigndocumentdependency_request_compound_parseFromJSON(a_obj_ezsigndocumentdependency_local_nonprimitive);
+        ezsigndocumentdependency_request_t *a_obj_ezsigndocumentdependencyItem = ezsigndocumentdependency_request_parseFromJSON(a_obj_ezsigndocumentdependency_local_nonprimitive);
 
         list_addElement(a_obj_ezsigndocumentdependencyList, a_obj_ezsigndocumentdependencyItem);
     }
@@ -129,7 +129,7 @@ end:
     if (a_obj_ezsigndocumentdependencyList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsigndocumentdependencyList) {
-            ezsigndocumentdependency_request_compound_free(listEntry->data);
+            ezsigndocumentdependency_request_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_ezsigndocumentdependencyList);

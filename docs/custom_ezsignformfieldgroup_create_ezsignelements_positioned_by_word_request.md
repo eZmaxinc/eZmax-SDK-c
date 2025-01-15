@@ -20,8 +20,8 @@ Name | Type | Description | Notes
 **t_ezsignformfieldgroup_tooltip** | **char \*** | A tooltip that will be presented to Ezsignsigner about the Ezsignformfieldgroup | [optional] 
 **e_ezsignformfieldgroup_tooltipposition** | **field_e_ezsignformfieldgroup_tooltipposition_t \*** |  | [optional] 
 **e_ezsignformfieldgroup_textvalidation** | **enum_textvalidation_t \*** |  | [optional] 
-**a_obj_ezsignformfieldgroupsigner** | [**list_t**](ezsignformfieldgroupsigner_request_compound.md) \* |  | 
-**a_obj_dropdown_element** | [**list_t**](custom_dropdown_element_request_compound.md) \* |  | [optional] 
+**a_obj_ezsignformfieldgroupsigner** | [**list_t**](ezsignformfieldgroupsigner_request.md) \* |  | 
+**a_obj_dropdown_element** | [**list_t**](custom_dropdown_element_request.md) \* |  | [optional] 
 **a_obj_ezsignformfield** | [**list_t**](ezsignformfield_request_compound.md) \* |  | 
 **obj_createezsignelementspositionedbyword** | [**custom_create_ezsignelements_positioned_by_word_request_t**](custom_create_ezsignelements_positioned_by_word_request.md) \* |  | 
 

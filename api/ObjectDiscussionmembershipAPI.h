@@ -5,10 +5,10 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
+#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/discussionmembership_create_object_v1_request.h"
 #include "../model/discussionmembership_create_object_v1_response.h"
-#include "../model/discussionmembership_delete_object_v1_response.h"
 
 
 // Create a new Discussionmembership
@@ -23,7 +23,7 @@ ObjectDiscussionmembershipAPI_discussionmembershipCreateObjectV1(apiClient_t *ap
 //
 // 
 //
-discussionmembership_delete_object_v1_response_t*
+common_response_t*
 ObjectDiscussionmembershipAPI_discussionmembershipDeleteObjectV1(apiClient_t *apiClient, int *pkiDiscussionmembershipID);
 
 

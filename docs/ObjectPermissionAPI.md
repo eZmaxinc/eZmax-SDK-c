@@ -47,7 +47,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-permission_delete_object_v1_response_t* ObjectPermissionAPI_permissionDeleteObjectV1(apiClient_t *apiClient, int *pkiPermissionID);
+common_response_t* ObjectPermissionAPI_permissionDeleteObjectV1(apiClient_t *apiClient, int *pkiPermissionID);
 ```
 
 ### Parameters
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[permission_delete_object_v1_response_t](permission_delete_object_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-permission_edit_object_v1_response_t* ObjectPermissionAPI_permissionEditObjectV1(apiClient_t *apiClient, int *pkiPermissionID, permission_edit_object_v1_request_t *permission_edit_object_v1_request);
+common_response_t* ObjectPermissionAPI_permissionEditObjectV1(apiClient_t *apiClient, int *pkiPermissionID, permission_edit_object_v1_request_t *permission_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[permission_edit_object_v1_response_t](permission_edit_object_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization

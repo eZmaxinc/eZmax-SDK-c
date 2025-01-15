@@ -16,7 +16,7 @@
 //
 // 
 //
-systemconfiguration_edit_object_v1_response_t*
+common_response_t*
 ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1(apiClient_t *apiClient, int *pkiSystemconfigurationID, systemconfiguration_edit_object_v1_request_t *systemconfiguration_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -82,7 +82,7 @@ ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1(apiClient_t *apiCli
     //}
     //nonprimitive not container
     cJSON *ObjectSystemconfigurationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    systemconfiguration_edit_object_v1_response_t *elementToReturn = systemconfiguration_edit_object_v1_response_parseFromJSON(ObjectSystemconfigurationAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectSystemconfigurationAPIlocalVarJSON);
     cJSON_Delete(ObjectSystemconfigurationAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

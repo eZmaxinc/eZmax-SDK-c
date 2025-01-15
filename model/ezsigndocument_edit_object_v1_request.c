@@ -6,7 +6,7 @@
 
 
 ezsigndocument_edit_object_v1_request_t *ezsigndocument_edit_object_v1_request_create(
-    ezsigndocument_request_compound_t *obj_ezsigndocument
+    ezsigndocument_request_t *obj_ezsigndocument
     ) {
     ezsigndocument_edit_object_v1_request_t *ezsigndocument_edit_object_v1_request_local_var = malloc(sizeof(ezsigndocument_edit_object_v1_request_t));
     if (!ezsigndocument_edit_object_v1_request_local_var) {
@@ -24,7 +24,7 @@ void ezsigndocument_edit_object_v1_request_free(ezsigndocument_edit_object_v1_re
     }
     listEntry_t *listEntry;
     if (ezsigndocument_edit_object_v1_request->obj_ezsigndocument) {
-        ezsigndocument_request_compound_free(ezsigndocument_edit_object_v1_request->obj_ezsigndocument);
+        ezsigndocument_request_free(ezsigndocument_edit_object_v1_request->obj_ezsigndocument);
         ezsigndocument_edit_object_v1_request->obj_ezsigndocument = NULL;
     }
     free(ezsigndocument_edit_object_v1_request);
@@ -37,7 +37,7 @@ cJSON *ezsigndocument_edit_object_v1_request_convertToJSON(ezsigndocument_edit_o
     if (!ezsigndocument_edit_object_v1_request->obj_ezsigndocument) {
         goto fail;
     }
-    cJSON *obj_ezsigndocument_local_JSON = ezsigndocument_request_compound_convertToJSON(ezsigndocument_edit_object_v1_request->obj_ezsigndocument);
+    cJSON *obj_ezsigndocument_local_JSON = ezsigndocument_request_convertToJSON(ezsigndocument_edit_object_v1_request->obj_ezsigndocument);
     if(obj_ezsigndocument_local_JSON == NULL) {
     goto fail; //model
     }
@@ -59,7 +59,7 @@ ezsigndocument_edit_object_v1_request_t *ezsigndocument_edit_object_v1_request_p
     ezsigndocument_edit_object_v1_request_t *ezsigndocument_edit_object_v1_request_local_var = NULL;
 
     // define the local variable for ezsigndocument_edit_object_v1_request->obj_ezsigndocument
-    ezsigndocument_request_compound_t *obj_ezsigndocument_local_nonprim = NULL;
+    ezsigndocument_request_t *obj_ezsigndocument_local_nonprim = NULL;
 
     // ezsigndocument_edit_object_v1_request->obj_ezsigndocument
     cJSON *obj_ezsigndocument = cJSON_GetObjectItemCaseSensitive(ezsigndocument_edit_object_v1_requestJSON, "objEzsigndocument");
@@ -68,7 +68,7 @@ ezsigndocument_edit_object_v1_request_t *ezsigndocument_edit_object_v1_request_p
     }
 
     
-    obj_ezsigndocument_local_nonprim = ezsigndocument_request_compound_parseFromJSON(obj_ezsigndocument); //nonprimitive
+    obj_ezsigndocument_local_nonprim = ezsigndocument_request_parseFromJSON(obj_ezsigndocument); //nonprimitive
 
 
     ezsigndocument_edit_object_v1_request_local_var = ezsigndocument_edit_object_v1_request_create (
@@ -78,7 +78,7 @@ ezsigndocument_edit_object_v1_request_t *ezsigndocument_edit_object_v1_request_p
     return ezsigndocument_edit_object_v1_request_local_var;
 end:
     if (obj_ezsigndocument_local_nonprim) {
-        ezsigndocument_request_compound_free(obj_ezsigndocument_local_nonprim);
+        ezsigndocument_request_free(obj_ezsigndocument_local_nonprim);
         obj_ezsigndocument_local_nonprim = NULL;
     }
     return NULL;

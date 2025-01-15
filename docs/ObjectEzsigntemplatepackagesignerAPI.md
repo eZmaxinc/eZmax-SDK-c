@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsigntemplatepackagesigner_edit_object_v1_response_t* ObjectEzsigntemplatepackagesignerAPI_ezsigntemplatepackagesignerEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatepackagesignerID, ezsigntemplatepackagesigner_edit_object_v1_request_t *ezsigntemplatepackagesigner_edit_object_v1_request);
+common_response_t* ObjectEzsigntemplatepackagesignerAPI_ezsigntemplatepackagesignerEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatepackagesignerID, ezsigntemplatepackagesigner_edit_object_v1_request_t *ezsigntemplatepackagesigner_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[ezsigntemplatepackagesigner_edit_object_v1_response_t](ezsigntemplatepackagesigner_edit_object_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization

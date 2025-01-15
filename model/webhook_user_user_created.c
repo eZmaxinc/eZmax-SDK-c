@@ -8,7 +8,7 @@
 webhook_user_user_created_t *webhook_user_user_created_create(
     custom_webhook_response_t *obj_webhook,
     list_t *a_obj_attempt,
-    user_response_compound_t *obj_user
+    user_response_t *obj_user
     ) {
     webhook_user_user_created_t *webhook_user_user_created_local_var = malloc(sizeof(webhook_user_user_created_t));
     if (!webhook_user_user_created_local_var) {
@@ -33,13 +33,13 @@ void webhook_user_user_created_free(webhook_user_user_created_t *webhook_user_us
     }
     if (webhook_user_user_created->a_obj_attempt) {
         list_ForEach(listEntry, webhook_user_user_created->a_obj_attempt) {
-            attempt_response_compound_free(listEntry->data);
+            attempt_response_free(listEntry->data);
         }
         list_freeList(webhook_user_user_created->a_obj_attempt);
         webhook_user_user_created->a_obj_attempt = NULL;
     }
     if (webhook_user_user_created->obj_user) {
-        user_response_compound_free(webhook_user_user_created->obj_user);
+        user_response_free(webhook_user_user_created->obj_user);
         webhook_user_user_created->obj_user = NULL;
     }
     free(webhook_user_user_created);
@@ -74,7 +74,7 @@ cJSON *webhook_user_user_created_convertToJSON(webhook_user_user_created_t *webh
     listEntry_t *a_obj_attemptListEntry;
     if (webhook_user_user_created->a_obj_attempt) {
     list_ForEach(a_obj_attemptListEntry, webhook_user_user_created->a_obj_attempt) {
-    cJSON *itemLocal = attempt_response_compound_convertToJSON(a_obj_attemptListEntry->data);
+    cJSON *itemLocal = attempt_response_convertToJSON(a_obj_attemptListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -87,7 +87,7 @@ cJSON *webhook_user_user_created_convertToJSON(webhook_user_user_created_t *webh
     if (!webhook_user_user_created->obj_user) {
         goto fail;
     }
-    cJSON *obj_user_local_JSON = user_response_compound_convertToJSON(webhook_user_user_created->obj_user);
+    cJSON *obj_user_local_JSON = user_response_convertToJSON(webhook_user_user_created->obj_user);
     if(obj_user_local_JSON == NULL) {
     goto fail; //model
     }
@@ -115,7 +115,7 @@ webhook_user_user_created_t *webhook_user_user_created_parseFromJSON(cJSON *webh
     list_t *a_obj_attemptList = NULL;
 
     // define the local variable for webhook_user_user_created->obj_user
-    user_response_compound_t *obj_user_local_nonprim = NULL;
+    user_response_t *obj_user_local_nonprim = NULL;
 
     // webhook_user_user_created->obj_webhook
     cJSON *obj_webhook = cJSON_GetObjectItemCaseSensitive(webhook_user_user_createdJSON, "objWebhook");
@@ -145,7 +145,7 @@ webhook_user_user_created_t *webhook_user_user_created_parseFromJSON(cJSON *webh
         if(!cJSON_IsObject(a_obj_attempt_local_nonprimitive)){
             goto end;
         }
-        attempt_response_compound_t *a_obj_attemptItem = attempt_response_compound_parseFromJSON(a_obj_attempt_local_nonprimitive);
+        attempt_response_t *a_obj_attemptItem = attempt_response_parseFromJSON(a_obj_attempt_local_nonprimitive);
 
         list_addElement(a_obj_attemptList, a_obj_attemptItem);
     }
@@ -157,7 +157,7 @@ webhook_user_user_created_t *webhook_user_user_created_parseFromJSON(cJSON *webh
     }
 
     
-    obj_user_local_nonprim = user_response_compound_parseFromJSON(obj_user); //nonprimitive
+    obj_user_local_nonprim = user_response_parseFromJSON(obj_user); //nonprimitive
 
 
     webhook_user_user_created_local_var = webhook_user_user_created_create (
@@ -175,14 +175,14 @@ end:
     if (a_obj_attemptList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_attemptList) {
-            attempt_response_compound_free(listEntry->data);
+            attempt_response_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_attemptList);
         a_obj_attemptList = NULL;
     }
     if (obj_user_local_nonprim) {
-        user_response_compound_free(obj_user_local_nonprim);
+        user_response_free(obj_user_local_nonprim);
         obj_user_local_nonprim = NULL;
     }
     return NULL;

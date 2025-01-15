@@ -17,7 +17,7 @@
 ezsignfolder_create_object_v1_request_t* instantiate_ezsignfolder_create_object_v1_request(int include_optional);
 
 #include "test_ezsignfolder_request.c"
-#include "test_ezsignfolder_request_compound.c"
+#include "test_ezsignfolder_request.c"
 
 
 ezsignfolder_create_object_v1_request_t* instantiate_ezsignfolder_create_object_v1_request(int include_optional) {
@@ -27,7 +27,7 @@ ezsignfolder_create_object_v1_request_t* instantiate_ezsignfolder_create_object_
        // false, not to have infinite recursion
       instantiate_ezsignfolder_request(0),
        // false, not to have infinite recursion
-      instantiate_ezsignfolder_request_compound(0)
+      instantiate_ezsignfolder_request(0)
     );
   } else {
     ezsignfolder_create_object_v1_request = ezsignfolder_create_object_v1_request_create(

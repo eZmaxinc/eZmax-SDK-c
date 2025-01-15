@@ -94,7 +94,7 @@ end:
 //
 // 
 //
-ezsigntemplatedocumentpagerecognition_delete_object_v1_response_t*
+common_response_t*
 ObjectEzsigntemplatedocumentpagerecognitionAPI_ezsigntemplatedocumentpagerecognitionDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentpagerecognitionID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -146,7 +146,7 @@ ObjectEzsigntemplatedocumentpagerecognitionAPI_ezsigntemplatedocumentpagerecogni
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigntemplatedocumentpagerecognitionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsigntemplatedocumentpagerecognition_delete_object_v1_response_t *elementToReturn = ezsigntemplatedocumentpagerecognition_delete_object_v1_response_parseFromJSON(ObjectEzsigntemplatedocumentpagerecognitionAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsigntemplatedocumentpagerecognitionAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsigntemplatedocumentpagerecognitionAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -176,7 +176,7 @@ end:
 //
 // 
 //
-ezsigntemplatedocumentpagerecognition_edit_object_v1_response_t*
+common_response_t*
 ObjectEzsigntemplatedocumentpagerecognitionAPI_ezsigntemplatedocumentpagerecognitionEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentpagerecognitionID, ezsigntemplatedocumentpagerecognition_edit_object_v1_request_t *ezsigntemplatedocumentpagerecognition_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -242,7 +242,7 @@ ObjectEzsigntemplatedocumentpagerecognitionAPI_ezsigntemplatedocumentpagerecogni
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigntemplatedocumentpagerecognitionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsigntemplatedocumentpagerecognition_edit_object_v1_response_t *elementToReturn = ezsigntemplatedocumentpagerecognition_edit_object_v1_response_parseFromJSON(ObjectEzsigntemplatedocumentpagerecognitionAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsigntemplatedocumentpagerecognitionAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsigntemplatedocumentpagerecognitionAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

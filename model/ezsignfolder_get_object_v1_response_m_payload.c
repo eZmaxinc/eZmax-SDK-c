@@ -59,7 +59,7 @@ ezmax_api_definition__full_ezsignfolder_get_object_v1_response_m_payload__e ezsi
 ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_response_m_payload_create(
     int pki_ezsignfolder_id,
     int fki_ezsignfoldertype_id,
-    custom_ezsignfoldertype_response_t *obj_ezsignfoldertype,
+    object_t *obj_ezsignfoldertype,
     int fki_timezone_id,
     field_e_ezsignfolder_completion_t *e_ezsignfolder_completion,
     char *s_ezsignfoldertype_name_x,
@@ -127,7 +127,7 @@ void ezsignfolder_get_object_v1_response_m_payload_free(ezsignfolder_get_object_
     }
     listEntry_t *listEntry;
     if (ezsignfolder_get_object_v1_response_m_payload->obj_ezsignfoldertype) {
-        custom_ezsignfoldertype_response_free(ezsignfolder_get_object_v1_response_m_payload->obj_ezsignfoldertype);
+        object_free(ezsignfolder_get_object_v1_response_m_payload->obj_ezsignfoldertype);
         ezsignfolder_get_object_v1_response_m_payload->obj_ezsignfoldertype = NULL;
     }
     if (ezsignfolder_get_object_v1_response_m_payload->e_ezsignfolder_completion) {
@@ -227,7 +227,7 @@ cJSON *ezsignfolder_get_object_v1_response_m_payload_convertToJSON(ezsignfolder_
 
     // ezsignfolder_get_object_v1_response_m_payload->obj_ezsignfoldertype
     if(ezsignfolder_get_object_v1_response_m_payload->obj_ezsignfoldertype) {
-    cJSON *obj_ezsignfoldertype_local_JSON = custom_ezsignfoldertype_response_convertToJSON(ezsignfolder_get_object_v1_response_m_payload->obj_ezsignfoldertype);
+    cJSON *obj_ezsignfoldertype_local_JSON = object_convertToJSON(ezsignfolder_get_object_v1_response_m_payload->obj_ezsignfoldertype);
     if(obj_ezsignfoldertype_local_JSON == NULL) {
     goto fail; //model
     }
@@ -469,7 +469,7 @@ ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_resp
     ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_response_m_payload_local_var = NULL;
 
     // define the local variable for ezsignfolder_get_object_v1_response_m_payload->obj_ezsignfoldertype
-    custom_ezsignfoldertype_response_t *obj_ezsignfoldertype_local_nonprim = NULL;
+    object_t *obj_ezsignfoldertype_local_nonprim = NULL;
 
     // define the local variable for ezsignfolder_get_object_v1_response_m_payload->e_ezsignfolder_completion
     field_e_ezsignfolder_completion_t *e_ezsignfolder_completion_local_nonprim = NULL;
@@ -510,7 +510,7 @@ ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_resp
     // ezsignfolder_get_object_v1_response_m_payload->obj_ezsignfoldertype
     cJSON *obj_ezsignfoldertype = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_object_v1_response_m_payloadJSON, "objEzsignfoldertype");
     if (obj_ezsignfoldertype) { 
-    obj_ezsignfoldertype_local_nonprim = custom_ezsignfoldertype_response_parseFromJSON(obj_ezsignfoldertype); //nonprimitive
+    obj_ezsignfoldertype_local_nonprim = object_parseFromJSON(obj_ezsignfoldertype); //nonprimitive
     }
 
     // ezsignfolder_get_object_v1_response_m_payload->fki_timezone_id
@@ -754,7 +754,7 @@ ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_resp
     return ezsignfolder_get_object_v1_response_m_payload_local_var;
 end:
     if (obj_ezsignfoldertype_local_nonprim) {
-        custom_ezsignfoldertype_response_free(obj_ezsignfoldertype_local_nonprim);
+        object_free(obj_ezsignfoldertype_local_nonprim);
         obj_ezsignfoldertype_local_nonprim = NULL;
     }
     if (e_ezsignfolder_completion_local_nonprim) {

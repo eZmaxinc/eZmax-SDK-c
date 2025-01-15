@@ -30,10 +30,10 @@ contactinformations_response_t *contactinformations_response_create(
     int fki_website_id_default,
     field_e_contactinformations_type_t *e_contactinformations_type,
     char *s_contactinformations_url,
-    address_response_compound_t *obj_address_default,
+    address_response_t *obj_address_default,
     phone_response_compound_t *obj_phone_default,
-    email_response_compound_t *obj_email_default,
-    website_response_compound_t *obj_website_default
+    email_response_t *obj_email_default,
+    website_response_t *obj_website_default
     ) {
     contactinformations_response_t *contactinformations_response_local_var = malloc(sizeof(contactinformations_response_t));
     if (!contactinformations_response_local_var) {
@@ -69,7 +69,7 @@ void contactinformations_response_free(contactinformations_response_t *contactin
         contactinformations_response->s_contactinformations_url = NULL;
     }
     if (contactinformations_response->obj_address_default) {
-        address_response_compound_free(contactinformations_response->obj_address_default);
+        address_response_free(contactinformations_response->obj_address_default);
         contactinformations_response->obj_address_default = NULL;
     }
     if (contactinformations_response->obj_phone_default) {
@@ -77,11 +77,11 @@ void contactinformations_response_free(contactinformations_response_t *contactin
         contactinformations_response->obj_phone_default = NULL;
     }
     if (contactinformations_response->obj_email_default) {
-        email_response_compound_free(contactinformations_response->obj_email_default);
+        email_response_free(contactinformations_response->obj_email_default);
         contactinformations_response->obj_email_default = NULL;
     }
     if (contactinformations_response->obj_website_default) {
-        website_response_compound_free(contactinformations_response->obj_website_default);
+        website_response_free(contactinformations_response->obj_website_default);
         contactinformations_response->obj_website_default = NULL;
     }
     free(contactinformations_response);
@@ -155,7 +155,7 @@ cJSON *contactinformations_response_convertToJSON(contactinformations_response_t
 
     // contactinformations_response->obj_address_default
     if(contactinformations_response->obj_address_default) {
-    cJSON *obj_address_default_local_JSON = address_response_compound_convertToJSON(contactinformations_response->obj_address_default);
+    cJSON *obj_address_default_local_JSON = address_response_convertToJSON(contactinformations_response->obj_address_default);
     if(obj_address_default_local_JSON == NULL) {
     goto fail; //model
     }
@@ -181,7 +181,7 @@ cJSON *contactinformations_response_convertToJSON(contactinformations_response_t
 
     // contactinformations_response->obj_email_default
     if(contactinformations_response->obj_email_default) {
-    cJSON *obj_email_default_local_JSON = email_response_compound_convertToJSON(contactinformations_response->obj_email_default);
+    cJSON *obj_email_default_local_JSON = email_response_convertToJSON(contactinformations_response->obj_email_default);
     if(obj_email_default_local_JSON == NULL) {
     goto fail; //model
     }
@@ -194,7 +194,7 @@ cJSON *contactinformations_response_convertToJSON(contactinformations_response_t
 
     // contactinformations_response->obj_website_default
     if(contactinformations_response->obj_website_default) {
-    cJSON *obj_website_default_local_JSON = website_response_compound_convertToJSON(contactinformations_response->obj_website_default);
+    cJSON *obj_website_default_local_JSON = website_response_convertToJSON(contactinformations_response->obj_website_default);
     if(obj_website_default_local_JSON == NULL) {
     goto fail; //model
     }
@@ -220,16 +220,16 @@ contactinformations_response_t *contactinformations_response_parseFromJSON(cJSON
     field_e_contactinformations_type_t *e_contactinformations_type_local_nonprim = NULL;
 
     // define the local variable for contactinformations_response->obj_address_default
-    address_response_compound_t *obj_address_default_local_nonprim = NULL;
+    address_response_t *obj_address_default_local_nonprim = NULL;
 
     // define the local variable for contactinformations_response->obj_phone_default
     phone_response_compound_t *obj_phone_default_local_nonprim = NULL;
 
     // define the local variable for contactinformations_response->obj_email_default
-    email_response_compound_t *obj_email_default_local_nonprim = NULL;
+    email_response_t *obj_email_default_local_nonprim = NULL;
 
     // define the local variable for contactinformations_response->obj_website_default
-    website_response_compound_t *obj_website_default_local_nonprim = NULL;
+    website_response_t *obj_website_default_local_nonprim = NULL;
 
     // contactinformations_response->pki_contactinformations_id
     cJSON *pki_contactinformations_id = cJSON_GetObjectItemCaseSensitive(contactinformations_responseJSON, "pkiContactinformationsID");
@@ -300,7 +300,7 @@ contactinformations_response_t *contactinformations_response_parseFromJSON(cJSON
     // contactinformations_response->obj_address_default
     cJSON *obj_address_default = cJSON_GetObjectItemCaseSensitive(contactinformations_responseJSON, "objAddressDefault");
     if (obj_address_default) { 
-    obj_address_default_local_nonprim = address_response_compound_parseFromJSON(obj_address_default); //nonprimitive
+    obj_address_default_local_nonprim = address_response_parseFromJSON(obj_address_default); //nonprimitive
     }
 
     // contactinformations_response->obj_phone_default
@@ -312,13 +312,13 @@ contactinformations_response_t *contactinformations_response_parseFromJSON(cJSON
     // contactinformations_response->obj_email_default
     cJSON *obj_email_default = cJSON_GetObjectItemCaseSensitive(contactinformations_responseJSON, "objEmailDefault");
     if (obj_email_default) { 
-    obj_email_default_local_nonprim = email_response_compound_parseFromJSON(obj_email_default); //nonprimitive
+    obj_email_default_local_nonprim = email_response_parseFromJSON(obj_email_default); //nonprimitive
     }
 
     // contactinformations_response->obj_website_default
     cJSON *obj_website_default = cJSON_GetObjectItemCaseSensitive(contactinformations_responseJSON, "objWebsiteDefault");
     if (obj_website_default) { 
-    obj_website_default_local_nonprim = website_response_compound_parseFromJSON(obj_website_default); //nonprimitive
+    obj_website_default_local_nonprim = website_response_parseFromJSON(obj_website_default); //nonprimitive
     }
 
 
@@ -343,7 +343,7 @@ end:
         e_contactinformations_type_local_nonprim = NULL;
     }
     if (obj_address_default_local_nonprim) {
-        address_response_compound_free(obj_address_default_local_nonprim);
+        address_response_free(obj_address_default_local_nonprim);
         obj_address_default_local_nonprim = NULL;
     }
     if (obj_phone_default_local_nonprim) {
@@ -351,11 +351,11 @@ end:
         obj_phone_default_local_nonprim = NULL;
     }
     if (obj_email_default_local_nonprim) {
-        email_response_compound_free(obj_email_default_local_nonprim);
+        email_response_free(obj_email_default_local_nonprim);
         obj_email_default_local_nonprim = NULL;
     }
     if (obj_website_default_local_nonprim) {
-        website_response_compound_free(obj_website_default_local_nonprim);
+        website_response_free(obj_website_default_local_nonprim);
         obj_website_default_local_nonprim = NULL;
     }
     return NULL;

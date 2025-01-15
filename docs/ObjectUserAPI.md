@@ -122,7 +122,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-user_edit_object_v1_response_t* ObjectUserAPI_userEditObjectV1(apiClient_t *apiClient, int *pkiUserID, user_edit_object_v1_request_t *user_edit_object_v1_request);
+common_response_t* ObjectUserAPI_userEditObjectV1(apiClient_t *apiClient, int *pkiUserID, user_edit_object_v1_request_t *user_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -134,7 +134,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[user_edit_object_v1_response_t](user_edit_object_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization
@@ -491,7 +491,7 @@ Name | Type | Description  | Notes
 //
 // Send the password reset email
 //
-user_send_password_reset_v1_response_t* ObjectUserAPI_userSendPasswordResetV1(apiClient_t *apiClient, int *pkiUserID, object_t *body);
+common_response_t* ObjectUserAPI_userSendPasswordResetV1(apiClient_t *apiClient, int *pkiUserID, object_t *body);
 ```
 
 ### Parameters
@@ -503,7 +503,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[user_send_password_reset_v1_response_t](user_send_password_reset_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization

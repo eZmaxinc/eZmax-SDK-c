@@ -15,7 +15,7 @@
 
 typedef struct discussion_response_t discussion_response_t;
 
-#include "custom_discussionconfiguration_response.h"
+#include "object.h"
 
 
 
@@ -26,7 +26,7 @@ typedef struct discussion_response_t {
     char *dt_discussion_lastread; // string
     int i_discussionmessage_count; //numeric
     int i_discussionmessage_countunread; //numeric
-    struct custom_discussionconfiguration_response_t *obj_discussionconfiguration; //model
+    struct object_t *obj_discussionconfiguration; //model
 
 } discussion_response_t;
 
@@ -37,7 +37,7 @@ discussion_response_t *discussion_response_create(
     char *dt_discussion_lastread,
     int i_discussionmessage_count,
     int i_discussionmessage_countunread,
-    custom_discussionconfiguration_response_t *obj_discussionconfiguration
+    object_t *obj_discussionconfiguration
 );
 
 void discussion_response_free(discussion_response_t *discussion_response);

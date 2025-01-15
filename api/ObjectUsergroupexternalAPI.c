@@ -336,7 +336,7 @@ end:
 //
 // 
 //
-usergroupexternal_delete_object_v1_response_t*
+common_response_t*
 ObjectUsergroupexternalAPI_usergroupexternalDeleteObjectV1(apiClient_t *apiClient, int *pkiUsergroupexternalID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -392,7 +392,7 @@ ObjectUsergroupexternalAPI_usergroupexternalDeleteObjectV1(apiClient_t *apiClien
     //}
     //nonprimitive not container
     cJSON *ObjectUsergroupexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    usergroupexternal_delete_object_v1_response_t *elementToReturn = usergroupexternal_delete_object_v1_response_parseFromJSON(ObjectUsergroupexternalAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectUsergroupexternalAPIlocalVarJSON);
     cJSON_Delete(ObjectUsergroupexternalAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -422,7 +422,7 @@ end:
 //
 // 
 //
-usergroupexternal_edit_object_v1_response_t*
+common_response_t*
 ObjectUsergroupexternalAPI_usergroupexternalEditObjectV1(apiClient_t *apiClient, int *pkiUsergroupexternalID, usergroupexternal_edit_object_v1_request_t *usergroupexternal_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -488,7 +488,7 @@ ObjectUsergroupexternalAPI_usergroupexternalEditObjectV1(apiClient_t *apiClient,
     //}
     //nonprimitive not container
     cJSON *ObjectUsergroupexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    usergroupexternal_edit_object_v1_response_t *elementToReturn = usergroupexternal_edit_object_v1_response_parseFromJSON(ObjectUsergroupexternalAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectUsergroupexternalAPIlocalVarJSON);
     cJSON_Delete(ObjectUsergroupexternalAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

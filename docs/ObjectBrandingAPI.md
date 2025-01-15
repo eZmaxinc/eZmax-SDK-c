@@ -48,7 +48,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-branding_edit_object_v2_response_t* ObjectBrandingAPI_brandingEditObjectV2(apiClient_t *apiClient, int *pkiBrandingID, branding_edit_object_v2_request_t *branding_edit_object_v2_request);
+common_response_t* ObjectBrandingAPI_brandingEditObjectV2(apiClient_t *apiClient, int *pkiBrandingID, branding_edit_object_v2_request_t *branding_edit_object_v2_request);
 ```
 
 ### Parameters
@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[branding_edit_object_v2_response_t](branding_edit_object_v2_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization

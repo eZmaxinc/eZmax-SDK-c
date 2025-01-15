@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsigntemplate_delete_object_v1_response_t* ObjectEzsigntemplateAPI_ezsigntemplateDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplateID);
+common_response_t* ObjectEzsigntemplateAPI_ezsigntemplateDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplateID);
 ```
 
 ### Parameters
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[ezsigntemplate_delete_object_v1_response_t](ezsigntemplate_delete_object_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization
@@ -113,7 +113,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsigntemplate_edit_object_v3_response_t* ObjectEzsigntemplateAPI_ezsigntemplateEditObjectV3(apiClient_t *apiClient, int *pkiEzsigntemplateID, ezsigntemplate_edit_object_v3_request_t *ezsigntemplate_edit_object_v3_request);
+common_response_t* ObjectEzsigntemplateAPI_ezsigntemplateEditObjectV3(apiClient_t *apiClient, int *pkiEzsigntemplateID, ezsigntemplate_edit_object_v3_request_t *ezsigntemplate_edit_object_v3_request);
 ```
 
 ### Parameters
@@ -125,7 +125,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[ezsigntemplate_edit_object_v3_response_t](ezsigntemplate_edit_object_v3_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization

@@ -47,7 +47,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsigntemplatedocumentpagerecognition_delete_object_v1_response_t* ObjectEzsigntemplatedocumentpagerecognitionAPI_ezsigntemplatedocumentpagerecognitionDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentpagerecognitionID);
+common_response_t* ObjectEzsigntemplatedocumentpagerecognitionAPI_ezsigntemplatedocumentpagerecognitionDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentpagerecognitionID);
 ```
 
 ### Parameters
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[ezsigntemplatedocumentpagerecognition_delete_object_v1_response_t](ezsigntemplatedocumentpagerecognition_delete_object_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsigntemplatedocumentpagerecognition_edit_object_v1_response_t* ObjectEzsigntemplatedocumentpagerecognitionAPI_ezsigntemplatedocumentpagerecognitionEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentpagerecognitionID, ezsigntemplatedocumentpagerecognition_edit_object_v1_request_t *ezsigntemplatedocumentpagerecognition_edit_object_v1_request);
+common_response_t* ObjectEzsigntemplatedocumentpagerecognitionAPI_ezsigntemplatedocumentpagerecognitionEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentpagerecognitionID, ezsigntemplatedocumentpagerecognition_edit_object_v1_request_t *ezsigntemplatedocumentpagerecognition_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[ezsigntemplatedocumentpagerecognition_edit_object_v1_response_t](ezsigntemplatedocumentpagerecognition_edit_object_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization

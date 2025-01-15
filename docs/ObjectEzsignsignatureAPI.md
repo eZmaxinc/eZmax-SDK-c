@@ -114,7 +114,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignsignature_delete_object_v1_response_t* ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignsignatureID);
+common_response_t* ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignsignatureID);
 ```
 
 ### Parameters
@@ -125,7 +125,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[ezsignsignature_delete_object_v1_response_t](ezsignsignature_delete_object_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization
@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignsignature_edit_object_v2_response_t* ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV2(apiClient_t *apiClient, int *pkiEzsignsignatureID, ezsignsignature_edit_object_v2_request_t *ezsignsignature_edit_object_v2_request);
+common_response_t* ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV2(apiClient_t *apiClient, int *pkiEzsignsignatureID, ezsignsignature_edit_object_v2_request_t *ezsignsignature_edit_object_v2_request);
 ```
 
 ### Parameters
@@ -157,7 +157,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[ezsignsignature_edit_object_v2_response_t](ezsignsignature_edit_object_v2_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization

@@ -16,7 +16,7 @@
 #include "../model/ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload.h"
 ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_t* instantiate_ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload(int include_optional);
 
-#include "test_custom_branding_response.c"
+#include "test_object.c"
 
 
 ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_t* instantiate_ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload(int include_optional) {
@@ -24,7 +24,7 @@ ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_t* i
   if (include_optional) {
     ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload = ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_create(
        // false, not to have infinite recursion
-      instantiate_custom_branding_response(0),
+      instantiate_object(0),
       2,
       list_createList()
     );

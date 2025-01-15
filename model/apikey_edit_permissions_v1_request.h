@@ -15,7 +15,7 @@
 
 typedef struct apikey_edit_permissions_v1_request_t apikey_edit_permissions_v1_request_t;
 
-#include "permission_request_compound.h"
+#include "permission_request.h"
 
 
 

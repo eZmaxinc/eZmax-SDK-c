@@ -14,7 +14,7 @@ Method | HTTP request | Description
 //
 // 
 //
-systemconfiguration_edit_object_v1_response_t* ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1(apiClient_t *apiClient, int *pkiSystemconfigurationID, systemconfiguration_edit_object_v1_request_t *systemconfiguration_edit_object_v1_request);
+common_response_t* ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1(apiClient_t *apiClient, int *pkiSystemconfigurationID, systemconfiguration_edit_object_v1_request_t *systemconfiguration_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -26,7 +26,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[systemconfiguration_edit_object_v1_response_t](systemconfiguration_edit_object_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization

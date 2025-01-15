@@ -15,7 +15,7 @@
 
 typedef struct common_webhook_t common_webhook_t;
 
-#include "attempt_response_compound.h"
+#include "attempt_response.h"
 #include "custom_webhook_response.h"
 
 

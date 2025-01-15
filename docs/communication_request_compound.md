@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **b_communication_readreceipt** | **int** | Whether we ask for a read receipt or not. | [optional] 
 **a_obj_communicationattachment** | [**list_t**](custom_communicationattachment_request.md) \* |  | 
 **a_obj_communicationrecipient** | [**list_t**](communicationrecipient_request_compound.md) \* |  | 
-**a_obj_communicationreference** | [**list_t**](communicationreference_request_compound.md) \* |  | 
+**a_obj_communicationreference** | [**list_t**](communicationreference_request.md) \* |  | 
 **a_obj_communicationexternalrecipient** | [**list_t**](communicationexternalrecipient_request_compound.md) \* |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

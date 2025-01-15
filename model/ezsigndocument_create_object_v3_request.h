@@ -15,7 +15,7 @@
 
 typedef struct ezsigndocument_create_object_v3_request_t ezsigndocument_create_object_v3_request_t;
 
-#include "ezsigndocument_request_compound.h"
+#include "ezsigndocument_request.h"
 
 
 

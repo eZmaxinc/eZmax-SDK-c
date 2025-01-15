@@ -5,12 +5,12 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
+#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/header_accept_language.h"
 #include "../model/variableexpense_create_object_v1_request.h"
 #include "../model/variableexpense_create_object_v1_response.h"
 #include "../model/variableexpense_edit_object_v1_request.h"
-#include "../model/variableexpense_edit_object_v1_response.h"
 #include "../model/variableexpense_get_autocomplete_v2_response.h"
 #include "../model/variableexpense_get_list_v1_response.h"
 #include "../model/variableexpense_get_object_v2_response.h"
@@ -43,7 +43,7 @@ ObjectVariableexpenseAPI_variableexpenseCreateObjectV1(apiClient_t *apiClient, v
 //
 // 
 //
-variableexpense_edit_object_v1_response_t*
+common_response_t*
 ObjectVariableexpenseAPI_variableexpenseEditObjectV1(apiClient_t *apiClient, int *pkiVariableexpenseID, variableexpense_edit_object_v1_request_t *variableexpense_edit_object_v1_request);
 
 

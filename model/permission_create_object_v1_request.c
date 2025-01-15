@@ -25,7 +25,7 @@ void permission_create_object_v1_request_free(permission_create_object_v1_reques
     listEntry_t *listEntry;
     if (permission_create_object_v1_request->a_obj_permission) {
         list_ForEach(listEntry, permission_create_object_v1_request->a_obj_permission) {
-            permission_request_compound_free(listEntry->data);
+            permission_request_free(listEntry->data);
         }
         list_freeList(permission_create_object_v1_request->a_obj_permission);
         permission_create_object_v1_request->a_obj_permission = NULL;
@@ -48,7 +48,7 @@ cJSON *permission_create_object_v1_request_convertToJSON(permission_create_objec
     listEntry_t *a_obj_permissionListEntry;
     if (permission_create_object_v1_request->a_obj_permission) {
     list_ForEach(a_obj_permissionListEntry, permission_create_object_v1_request->a_obj_permission) {
-    cJSON *itemLocal = permission_request_compound_convertToJSON(a_obj_permissionListEntry->data);
+    cJSON *itemLocal = permission_request_convertToJSON(a_obj_permissionListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -90,7 +90,7 @@ permission_create_object_v1_request_t *permission_create_object_v1_request_parse
         if(!cJSON_IsObject(a_obj_permission_local_nonprimitive)){
             goto end;
         }
-        permission_request_compound_t *a_obj_permissionItem = permission_request_compound_parseFromJSON(a_obj_permission_local_nonprimitive);
+        permission_request_t *a_obj_permissionItem = permission_request_parseFromJSON(a_obj_permission_local_nonprimitive);
 
         list_addElement(a_obj_permissionList, a_obj_permissionItem);
     }
@@ -105,7 +105,7 @@ end:
     if (a_obj_permissionList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_permissionList) {
-            permission_request_compound_free(listEntry->data);
+            permission_request_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_permissionList);

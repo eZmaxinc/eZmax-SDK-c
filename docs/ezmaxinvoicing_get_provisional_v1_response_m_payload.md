@@ -23,8 +23,8 @@ Name | Type | Description | Notes
 **a_obj_ezmaxinvoicingsummaryinternal** | [**list_t**](ezmaxinvoicingsummaryinternal_response_compound.md) \* |  | 
 **a_obj_ezmaxinvoicingagent** | [**list_t**](ezmaxinvoicingagent_response_compound.md) \* |  | 
 **a_obj_ezmaxinvoicinguser** | [**list_t**](ezmaxinvoicinguser_response_compound.md) \* |  | 
-**a_obj_ezmaxinvoicingezsignfolder** | [**list_t**](custom_ezmaxinvoicing_ezsignfolder_response.md) \* |  | 
-**a_obj_ezmaxinvoicingezsigndocument** | [**list_t**](custom_ezmaxinvoicing_ezsigndocument_response.md) \* |  | 
+**a_obj_ezmaxinvoicingezsignfolder** | [**list_t**](object.md) \* |  | 
+**a_obj_ezmaxinvoicingezsigndocument** | [**list_t**](object.md) \* |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

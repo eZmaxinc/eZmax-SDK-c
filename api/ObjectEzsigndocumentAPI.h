@@ -5,11 +5,11 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
+#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/common_response_error_ezsignform_validation.h"
 #include "../model/common_response_error_s_temporary_file_url.h"
 #include "../model/ezsigndocument_apply_ezsigntemplate_v1_request.h"
-#include "../model/ezsigndocument_apply_ezsigntemplate_v1_response.h"
 #include "../model/ezsigndocument_apply_ezsigntemplate_v2_request.h"
 #include "../model/ezsigndocument_apply_ezsigntemplate_v2_response.h"
 #include "../model/ezsigndocument_apply_ezsigntemplateglobal_v1_request.h"
@@ -23,8 +23,6 @@
 #include "../model/ezsigndocument_create_object_v3_request.h"
 #include "../model/ezsigndocument_create_object_v3_response.h"
 #include "../model/ezsigndocument_decline_to_sign_v1_request.h"
-#include "../model/ezsigndocument_decline_to_sign_v1_response.h"
-#include "../model/ezsigndocument_delete_object_v1_response.h"
 #include "../model/ezsigndocument_edit_ezsignannotations_v1_request.h"
 #include "../model/ezsigndocument_edit_ezsignannotations_v1_response.h"
 #include "../model/ezsigndocument_edit_ezsignformfieldgroups_v1_request.h"
@@ -33,10 +31,8 @@
 #include "../model/ezsigndocument_edit_ezsignsignatures_v1_response.h"
 #include "../model/ezsigndocument_edit_object_v1_request.h"
 #include "../model/ezsigndocument_edit_object_v1_response.h"
-#include "../model/ezsigndocument_end_prematurely_v1_response.h"
 #include "../model/ezsigndocument_extract_text_v1_request.h"
 #include "../model/ezsigndocument_extract_text_v1_response.h"
-#include "../model/ezsigndocument_flatten_v1_response.h"
 #include "../model/ezsigndocument_get_actionable_elements_v1_response.h"
 #include "../model/ezsigndocument_get_attachments_v1_response.h"
 #include "../model/ezsigndocument_get_completed_elements_v1_response.h"
@@ -54,10 +50,7 @@
 #include "../model/ezsigndocument_get_words_positions_v1_request.h"
 #include "../model/ezsigndocument_get_words_positions_v1_response.h"
 #include "../model/ezsigndocument_patch_object_v1_request.h"
-#include "../model/ezsigndocument_patch_object_v1_response.h"
 #include "../model/ezsigndocument_submit_ezsignform_v1_request.h"
-#include "../model/ezsigndocument_submit_ezsignform_v1_response.h"
-#include "../model/ezsigndocument_unsend_v1_response.h"
 #include "../model/object.h"
 
 // Enum EDOCUMENTTYPE for ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1
@@ -68,7 +61,7 @@ typedef enum  { ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_EDOCUM
 //
 // This function is deprecated. Please use *applyEzsigntemplate* instead which is doing the same thing but with a capital \"E\" to normalize the nomenclature.  This endpoint applies a predefined template to the ezsign document. This allows to automatically apply all the form and signature fields on a document in a single step.  The document must not already have fields otherwise an error will be returned.
 //
-ezsigndocument_apply_ezsigntemplate_v1_response_t*
+common_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_apply_ezsigntemplate_v1_request_t *ezsigndocument_apply_ezsigntemplate_v1_request);
 
 
@@ -124,7 +117,7 @@ ObjectEzsigndocumentAPI_ezsigndocumentCreateObjectV3(apiClient_t *apiClient, ezs
 //
 // Decline to sign
 //
-ezsigndocument_decline_to_sign_v1_response_t*
+common_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentDeclineToSignV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_decline_to_sign_v1_request_t *ezsigndocument_decline_to_sign_v1_request);
 
 
@@ -132,7 +125,7 @@ ObjectEzsigndocumentAPI_ezsigndocumentDeclineToSignV1(apiClient_t *apiClient, in
 //
 // 
 //
-ezsigndocument_delete_object_v1_response_t*
+common_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigndocumentID);
 
 
@@ -172,7 +165,7 @@ ObjectEzsigndocumentAPI_ezsigndocumentEditObjectV1(apiClient_t *apiClient, int *
 //
 // End prematurely an Ezsigndocument when some signatures are still required
 //
-ezsigndocument_end_prematurely_v1_response_t*
+common_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, object_t *body);
 
 
@@ -188,7 +181,7 @@ ObjectEzsigndocumentAPI_ezsigndocumentExtractTextV1(apiClient_t *apiClient, int 
 //
 // Flatten an Ezsigndocument signatures, forms and annotations. This process finalizes the PDF so that the forms and annotations become part of the document content and cannot be edited.
 //
-ezsigndocument_flatten_v1_response_t*
+common_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentFlattenV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, object_t *body);
 
 
@@ -314,7 +307,7 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1(apiClient_t *apiClient
 //
 // 
 //
-ezsigndocument_patch_object_v1_response_t*
+common_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_patch_object_v1_request_t *ezsigndocument_patch_object_v1_request);
 
 
@@ -322,7 +315,7 @@ ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1(apiClient_t *apiClient, int 
 //
 // 
 //
-ezsigndocument_submit_ezsignform_v1_response_t*
+common_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentSubmitEzsignformV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_submit_ezsignform_v1_request_t *ezsigndocument_submit_ezsignform_v1_request);
 
 
@@ -330,7 +323,7 @@ ObjectEzsigndocumentAPI_ezsigndocumentSubmitEzsignformV1(apiClient_t *apiClient,
 //
 // Once an Ezsigndocument has been sent to signatories, it cannot be modified.  Using this endpoint, you can unsend the Ezsigndocument and make it modifiable again.  Signatories will receive an email informing them the signature process was aborted and they might receive a new invitation to sign.  ⚠️ Warning: Any signature previously made by signatories on this Ezsigndocumentswill be lost.
 //
-ezsigndocument_unsend_v1_response_t*
+common_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentUnsendV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, object_t *body);
 
 

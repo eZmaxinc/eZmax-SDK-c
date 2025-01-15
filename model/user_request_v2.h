@@ -15,11 +15,11 @@
 
 typedef struct user_request_v2_t user_request_v2_t;
 
-#include "email_request_compound.h"
+#include "email_request.h"
 #include "field_e_user_ezsignaccess.h"
 #include "field_e_user_logintype.h"
 #include "field_e_user_type.h"
-#include "phone_request_compound_v2.h"
+#include "phone_request_v2.h"
 
 // Enum  for user_request_v2
 
@@ -57,10 +57,10 @@ typedef struct user_request_v2_t {
     int fki_department_id_default; //numeric
     int fki_timezone_id; //numeric
     int fki_language_id; //numeric
-    struct email_request_compound_t *obj_email; //model
+    struct email_request_t *obj_email; //model
     int fki_billingentityinternal_id; //numeric
-    struct phone_request_compound_v2_t *obj_phone_home; //model
-    struct phone_request_compound_v2_t *obj_phone_sms; //model
+    struct phone_request_v2_t *obj_phone_home; //model
+    struct phone_request_v2_t *obj_phone_sms; //model
     int fki_secretquestion_id; //numeric
     char *s_user_secretresponse; // string
     int fki_module_id_form; //numeric
@@ -89,10 +89,10 @@ user_request_v2_t *user_request_v2_create(
     int fki_department_id_default,
     int fki_timezone_id,
     int fki_language_id,
-    email_request_compound_t *obj_email,
+    email_request_t *obj_email,
     int fki_billingentityinternal_id,
-    phone_request_compound_v2_t *obj_phone_home,
-    phone_request_compound_v2_t *obj_phone_sms,
+    phone_request_v2_t *obj_phone_home,
+    phone_request_v2_t *obj_phone_sms,
     int fki_secretquestion_id,
     char *s_user_secretresponse,
     int fki_module_id_form,

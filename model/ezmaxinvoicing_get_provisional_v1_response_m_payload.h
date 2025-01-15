@@ -16,8 +16,6 @@
 typedef struct ezmaxinvoicing_get_provisional_v1_response_m_payload_t ezmaxinvoicing_get_provisional_v1_response_m_payload_t;
 
 #include "common_audit.h"
-#include "custom_ezmaxinvoicing_ezsigndocument_response.h"
-#include "custom_ezmaxinvoicing_ezsignfolder_response.h"
 #include "custom_ezmaxpricing_response.h"
 #include "ezmaxinvoicingagent_response_compound.h"
 #include "ezmaxinvoicingcontract_response_compound.h"
@@ -26,6 +24,7 @@ typedef struct ezmaxinvoicing_get_provisional_v1_response_m_payload_t ezmaxinvoi
 #include "ezmaxinvoicingsummaryinternal_response_compound.h"
 #include "ezmaxinvoicinguser_response_compound.h"
 #include "field_e_ezmaxinvoicing_paymenttype.h"
+#include "object.h"
 
 // Enum  for ezmaxinvoicing_get_provisional_v1_response_m_payload
 

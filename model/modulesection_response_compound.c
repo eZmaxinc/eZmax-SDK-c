@@ -41,7 +41,7 @@ void modulesection_response_compound_free(modulesection_response_compound_t *mod
     }
     if (modulesection_response_compound->a_obj_permission) {
         list_ForEach(listEntry, modulesection_response_compound->a_obj_permission) {
-            permission_response_compound_free(listEntry->data);
+            permission_response_free(listEntry->data);
         }
         list_freeList(modulesection_response_compound->a_obj_permission);
         modulesection_response_compound->a_obj_permission = NULL;
@@ -98,7 +98,7 @@ cJSON *modulesection_response_compound_convertToJSON(modulesection_response_comp
     listEntry_t *a_obj_permissionListEntry;
     if (modulesection_response_compound->a_obj_permission) {
     list_ForEach(a_obj_permissionListEntry, modulesection_response_compound->a_obj_permission) {
-    cJSON *itemLocal = permission_response_compound_convertToJSON(a_obj_permissionListEntry->data);
+    cJSON *itemLocal = permission_response_convertToJSON(a_obj_permissionListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -185,7 +185,7 @@ modulesection_response_compound_t *modulesection_response_compound_parseFromJSON
         if(!cJSON_IsObject(a_obj_permission_local_nonprimitive)){
             goto end;
         }
-        permission_response_compound_t *a_obj_permissionItem = permission_response_compound_parseFromJSON(a_obj_permission_local_nonprimitive);
+        permission_response_t *a_obj_permissionItem = permission_response_parseFromJSON(a_obj_permission_local_nonprimitive);
 
         list_addElement(a_obj_permissionList, a_obj_permissionItem);
     }
@@ -205,7 +205,7 @@ end:
     if (a_obj_permissionList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_permissionList) {
-            permission_response_compound_free(listEntry->data);
+            permission_response_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_permissionList);

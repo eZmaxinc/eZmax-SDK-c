@@ -16,7 +16,7 @@
 #include "../model/ezsignfolder_response_v3.h"
 ezsignfolder_response_v3_t* instantiate_ezsignfolder_response_v3(int include_optional);
 
-#include "test_custom_ezsignfoldertype_response.c"
+#include "test_object.c"
 #include "test_common_audit.c"
 
 
@@ -27,7 +27,7 @@ ezsignfolder_response_v3_t* instantiate_ezsignfolder_response_v3(int include_opt
       33,
       5,
        // false, not to have infinite recursion
-      instantiate_custom_ezsignfoldertype_response(0),
+      instantiate_object(0),
       247,
       ezmax_api_definition__full_ezsignfolder_response_v3__"PerEzsigndocument",
       ezmax_api_definition__full_ezsignfolder_response_v3__"All",

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **b_domain_validmailfrom** | **int** | Whether the mail from is valid or not | 
 **b_domain_validcustomer** | **int** | Whether the customer has access to it or not | 
 **obj_audit** | [**common_audit_t**](common_audit.md) \* |  | 
-**a_obj_dnsrecord** | [**list_t**](custom_dnsrecord_response.md) \* |  | 
+**a_obj_dnsrecord** | [**list_t**](object.md) \* |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

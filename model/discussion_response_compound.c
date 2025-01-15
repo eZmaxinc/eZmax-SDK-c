@@ -12,7 +12,7 @@ discussion_response_compound_t *discussion_response_compound_create(
     char *dt_discussion_lastread,
     int i_discussionmessage_count,
     int i_discussionmessage_countunread,
-    custom_discussionconfiguration_response_t *obj_discussionconfiguration,
+    object_t *obj_discussionconfiguration,
     list_t *a_obj_discussionmembership,
     list_t *a_obj_discussionmessage
     ) {
@@ -48,7 +48,7 @@ void discussion_response_compound_free(discussion_response_compound_t *discussio
         discussion_response_compound->dt_discussion_lastread = NULL;
     }
     if (discussion_response_compound->obj_discussionconfiguration) {
-        custom_discussionconfiguration_response_free(discussion_response_compound->obj_discussionconfiguration);
+        object_free(discussion_response_compound->obj_discussionconfiguration);
         discussion_response_compound->obj_discussionconfiguration = NULL;
     }
     if (discussion_response_compound->a_obj_discussionmembership) {
@@ -126,7 +126,7 @@ cJSON *discussion_response_compound_convertToJSON(discussion_response_compound_t
 
     // discussion_response_compound->obj_discussionconfiguration
     if(discussion_response_compound->obj_discussionconfiguration) {
-    cJSON *obj_discussionconfiguration_local_JSON = custom_discussionconfiguration_response_convertToJSON(discussion_response_compound->obj_discussionconfiguration);
+    cJSON *obj_discussionconfiguration_local_JSON = object_convertToJSON(discussion_response_compound->obj_discussionconfiguration);
     if(obj_discussionconfiguration_local_JSON == NULL) {
     goto fail; //model
     }
@@ -191,7 +191,7 @@ discussion_response_compound_t *discussion_response_compound_parseFromJSON(cJSON
     discussion_response_compound_t *discussion_response_compound_local_var = NULL;
 
     // define the local variable for discussion_response_compound->obj_discussionconfiguration
-    custom_discussionconfiguration_response_t *obj_discussionconfiguration_local_nonprim = NULL;
+    object_t *obj_discussionconfiguration_local_nonprim = NULL;
 
     // define the local list for discussion_response_compound->a_obj_discussionmembership
     list_t *a_obj_discussionmembershipList = NULL;
@@ -271,7 +271,7 @@ discussion_response_compound_t *discussion_response_compound_parseFromJSON(cJSON
     // discussion_response_compound->obj_discussionconfiguration
     cJSON *obj_discussionconfiguration = cJSON_GetObjectItemCaseSensitive(discussion_response_compoundJSON, "objDiscussionconfiguration");
     if (obj_discussionconfiguration) { 
-    obj_discussionconfiguration_local_nonprim = custom_discussionconfiguration_response_parseFromJSON(obj_discussionconfiguration); //nonprimitive
+    obj_discussionconfiguration_local_nonprim = object_parseFromJSON(obj_discussionconfiguration); //nonprimitive
     }
 
     // discussion_response_compound->a_obj_discussionmembership
@@ -338,7 +338,7 @@ discussion_response_compound_t *discussion_response_compound_parseFromJSON(cJSON
     return discussion_response_compound_local_var;
 end:
     if (obj_discussionconfiguration_local_nonprim) {
-        custom_discussionconfiguration_response_free(obj_discussionconfiguration_local_nonprim);
+        object_free(obj_discussionconfiguration_local_nonprim);
         obj_discussionconfiguration_local_nonprim = NULL;
     }
     if (a_obj_discussionmembershipList) {

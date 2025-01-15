@@ -47,7 +47,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-subnet_delete_object_v1_response_t* ObjectSubnetAPI_subnetDeleteObjectV1(apiClient_t *apiClient, int *pkiSubnetID);
+common_response_t* ObjectSubnetAPI_subnetDeleteObjectV1(apiClient_t *apiClient, int *pkiSubnetID);
 ```
 
 ### Parameters
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[subnet_delete_object_v1_response_t](subnet_delete_object_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-subnet_edit_object_v1_response_t* ObjectSubnetAPI_subnetEditObjectV1(apiClient_t *apiClient, int *pkiSubnetID, subnet_edit_object_v1_request_t *subnet_edit_object_v1_request);
+common_response_t* ObjectSubnetAPI_subnetEditObjectV1(apiClient_t *apiClient, int *pkiSubnetID, subnet_edit_object_v1_request_t *subnet_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[subnet_edit_object_v1_response_t](subnet_edit_object_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization
