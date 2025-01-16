@@ -15,9 +15,9 @@
 
 typedef struct discussion_response_compound_t discussion_response_compound_t;
 
+#include "custom_discussionconfiguration_response.h"
 #include "discussionmembership_response_compound.h"
 #include "discussionmessage_response_compound.h"
-#include "object.h"
 
 
 
@@ -28,7 +28,7 @@ typedef struct discussion_response_compound_t {
     char *dt_discussion_lastread; // string
     int i_discussionmessage_count; //numeric
     int i_discussionmessage_countunread; //numeric
-    struct object_t *obj_discussionconfiguration; //model
+    struct custom_discussionconfiguration_response_t *obj_discussionconfiguration; //model
     list_t *a_obj_discussionmembership; //nonprimitive container
     list_t *a_obj_discussionmessage; //nonprimitive container
 
@@ -41,7 +41,7 @@ discussion_response_compound_t *discussion_response_compound_create(
     char *dt_discussion_lastread,
     int i_discussionmessage_count,
     int i_discussionmessage_countunread,
-    object_t *obj_discussionconfiguration,
+    custom_discussionconfiguration_response_t *obj_discussionconfiguration,
     list_t *a_obj_discussionmembership,
     list_t *a_obj_discussionmessage
 );

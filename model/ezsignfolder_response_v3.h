@@ -17,10 +17,10 @@ typedef struct ezsignfolder_response_v3_t ezsignfolder_response_v3_t;
 
 #include "common_audit.h"
 #include "computed_e_ezsignfolder_access.h"
+#include "custom_ezsignfoldertype_response.h"
 #include "field_e_ezsignfolder_completion.h"
 #include "field_e_ezsignfolder_documentdependency.h"
 #include "field_e_ezsignfolder_step.h"
-#include "object.h"
 
 // Enum  for ezsignfolder_response_v3
 
@@ -59,7 +59,7 @@ ezmax_api_definition__full_ezsignfolder_response_v3__e ezsignfolder_response_v3_
 typedef struct ezsignfolder_response_v3_t {
     int pki_ezsignfolder_id; //numeric
     int fki_ezsignfoldertype_id; //numeric
-    struct object_t *obj_ezsignfoldertype; //model
+    struct custom_ezsignfoldertype_response_t *obj_ezsignfoldertype; //model
     int fki_timezone_id; //numeric
     field_e_ezsignfolder_completion_t *e_ezsignfolder_completion; // custom
     field_e_ezsignfolder_documentdependency_t *e_ezsignfolder_documentdependency; // custom
@@ -90,7 +90,7 @@ typedef struct ezsignfolder_response_v3_t {
 ezsignfolder_response_v3_t *ezsignfolder_response_v3_create(
     int pki_ezsignfolder_id,
     int fki_ezsignfoldertype_id,
-    object_t *obj_ezsignfoldertype,
+    custom_ezsignfoldertype_response_t *obj_ezsignfoldertype,
     int fki_timezone_id,
     field_e_ezsignfolder_completion_t *e_ezsignfolder_completion,
     field_e_ezsignfolder_documentdependency_t *e_ezsignfolder_documentdependency,

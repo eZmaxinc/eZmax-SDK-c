@@ -6,7 +6,7 @@
 
 
 ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_t *ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_create(
-    object_t *obj_branding,
+    custom_branding_response_t *obj_branding,
     int fki_userlogintype_id,
     list_t *a_s_ezsigntemplatesigner_description
     ) {
@@ -28,7 +28,7 @@ void ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload
     }
     listEntry_t *listEntry;
     if (ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload->obj_branding) {
-        object_free(ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload->obj_branding);
+        custom_branding_response_free(ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload->obj_branding);
         ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload->obj_branding = NULL;
     }
     if (ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload->a_s_ezsigntemplatesigner_description) {
@@ -46,7 +46,7 @@ cJSON *ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_paylo
 
     // ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload->obj_branding
     if(ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload->obj_branding) {
-    cJSON *obj_branding_local_JSON = object_convertToJSON(ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload->obj_branding);
+    cJSON *obj_branding_local_JSON = custom_branding_response_convertToJSON(ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload->obj_branding);
     if(obj_branding_local_JSON == NULL) {
     goto fail; //model
     }
@@ -96,7 +96,7 @@ ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_t *e
     ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_t *ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_local_var = NULL;
 
     // define the local variable for ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload->obj_branding
-    object_t *obj_branding_local_nonprim = NULL;
+    custom_branding_response_t *obj_branding_local_nonprim = NULL;
 
     // define the local list for ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload->a_s_ezsigntemplatesigner_description
     list_t *a_s_ezsigntemplatesigner_descriptionList = NULL;
@@ -104,7 +104,7 @@ ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_t *e
     // ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload->obj_branding
     cJSON *obj_branding = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payloadJSON, "objBranding");
     if (obj_branding) { 
-    obj_branding_local_nonprim = object_parseFromJSON(obj_branding); //nonprimitive
+    obj_branding_local_nonprim = custom_branding_response_parseFromJSON(obj_branding); //nonprimitive
     }
 
     // ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload->fki_userlogintype_id
@@ -151,7 +151,7 @@ ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_t *e
     return ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_local_var;
 end:
     if (obj_branding_local_nonprim) {
-        object_free(obj_branding_local_nonprim);
+        custom_branding_response_free(obj_branding_local_nonprim);
         obj_branding_local_nonprim = NULL;
     }
     if (a_s_ezsigntemplatesigner_descriptionList) {

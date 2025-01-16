@@ -16,7 +16,7 @@
 #include "../model/ezsignfolder_get_object_v1_response_m_payload.h"
 ezsignfolder_get_object_v1_response_m_payload_t* instantiate_ezsignfolder_get_object_v1_response_m_payload(int include_optional);
 
-#include "test_object.c"
+#include "test_custom_ezsignfoldertype_response.c"
 #include "test_common_audit.c"
 #include "test_custom_timezone_with_code_response.c"
 
@@ -28,7 +28,7 @@ ezsignfolder_get_object_v1_response_m_payload_t* instantiate_ezsignfolder_get_ob
       33,
       5,
        // false, not to have infinite recursion
-      instantiate_object(0),
+      instantiate_custom_ezsignfoldertype_response(0),
       247,
       ezmax_api_definition__full_ezsignfolder_get_object_v1_response_m_payload__"PerEzsigndocument",
       "0",

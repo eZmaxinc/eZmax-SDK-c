@@ -12,7 +12,7 @@ discussion_response_t *discussion_response_create(
     char *dt_discussion_lastread,
     int i_discussionmessage_count,
     int i_discussionmessage_countunread,
-    object_t *obj_discussionconfiguration
+    custom_discussionconfiguration_response_t *obj_discussionconfiguration
     ) {
     discussion_response_t *discussion_response_local_var = malloc(sizeof(discussion_response_t));
     if (!discussion_response_local_var) {
@@ -44,7 +44,7 @@ void discussion_response_free(discussion_response_t *discussion_response) {
         discussion_response->dt_discussion_lastread = NULL;
     }
     if (discussion_response->obj_discussionconfiguration) {
-        object_free(discussion_response->obj_discussionconfiguration);
+        custom_discussionconfiguration_response_free(discussion_response->obj_discussionconfiguration);
         discussion_response->obj_discussionconfiguration = NULL;
     }
     free(discussion_response);
@@ -108,7 +108,7 @@ cJSON *discussion_response_convertToJSON(discussion_response_t *discussion_respo
 
     // discussion_response->obj_discussionconfiguration
     if(discussion_response->obj_discussionconfiguration) {
-    cJSON *obj_discussionconfiguration_local_JSON = object_convertToJSON(discussion_response->obj_discussionconfiguration);
+    cJSON *obj_discussionconfiguration_local_JSON = custom_discussionconfiguration_response_convertToJSON(discussion_response->obj_discussionconfiguration);
     if(obj_discussionconfiguration_local_JSON == NULL) {
     goto fail; //model
     }
@@ -131,7 +131,7 @@ discussion_response_t *discussion_response_parseFromJSON(cJSON *discussion_respo
     discussion_response_t *discussion_response_local_var = NULL;
 
     // define the local variable for discussion_response->obj_discussionconfiguration
-    object_t *obj_discussionconfiguration_local_nonprim = NULL;
+    custom_discussionconfiguration_response_t *obj_discussionconfiguration_local_nonprim = NULL;
 
     // discussion_response->pki_discussion_id
     cJSON *pki_discussion_id = cJSON_GetObjectItemCaseSensitive(discussion_responseJSON, "pkiDiscussionID");
@@ -205,7 +205,7 @@ discussion_response_t *discussion_response_parseFromJSON(cJSON *discussion_respo
     // discussion_response->obj_discussionconfiguration
     cJSON *obj_discussionconfiguration = cJSON_GetObjectItemCaseSensitive(discussion_responseJSON, "objDiscussionconfiguration");
     if (obj_discussionconfiguration) { 
-    obj_discussionconfiguration_local_nonprim = object_parseFromJSON(obj_discussionconfiguration); //nonprimitive
+    obj_discussionconfiguration_local_nonprim = custom_discussionconfiguration_response_parseFromJSON(obj_discussionconfiguration); //nonprimitive
     }
 
 
@@ -222,7 +222,7 @@ discussion_response_t *discussion_response_parseFromJSON(cJSON *discussion_respo
     return discussion_response_local_var;
 end:
     if (obj_discussionconfiguration_local_nonprim) {
-        object_free(obj_discussionconfiguration_local_nonprim);
+        custom_discussionconfiguration_response_free(obj_discussionconfiguration_local_nonprim);
         obj_discussionconfiguration_local_nonprim = NULL;
     }
     return NULL;

@@ -16,7 +16,7 @@
 #include "../model/discussion_response.h"
 discussion_response_t* instantiate_discussion_response(int include_optional);
 
-#include "test_object.c"
+#include "test_custom_discussionconfiguration_response.c"
 
 
 discussion_response_t* instantiate_discussion_response(int include_optional) {
@@ -30,7 +30,7 @@ discussion_response_t* instantiate_discussion_response(int include_optional) {
       4,
       4,
        // false, not to have infinite recursion
-      instantiate_object(0)
+      instantiate_custom_discussionconfiguration_response(0)
     );
   } else {
     discussion_response = discussion_response_create(

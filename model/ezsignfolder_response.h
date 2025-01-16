@@ -16,10 +16,10 @@
 typedef struct ezsignfolder_response_t ezsignfolder_response_t;
 
 #include "common_audit.h"
+#include "custom_ezsignfoldertype_response.h"
 #include "field_e_ezsignfolder_completion.h"
 #include "field_e_ezsignfolder_sendreminderfrequency.h"
 #include "field_e_ezsignfolder_step.h"
-#include "object.h"
 
 // Enum  for ezsignfolder_response
 
@@ -50,7 +50,7 @@ ezmax_api_definition__full_ezsignfolder_response__e ezsignfolder_response_e_ezsi
 typedef struct ezsignfolder_response_t {
     int pki_ezsignfolder_id; //numeric
     int fki_ezsignfoldertype_id; //numeric
-    struct object_t *obj_ezsignfoldertype; //model
+    struct custom_ezsignfoldertype_response_t *obj_ezsignfoldertype; //model
     int fki_timezone_id; //numeric
     field_e_ezsignfolder_completion_t *e_ezsignfolder_completion; // custom
     char *s_ezsignfoldertype_name_x; // string
@@ -80,7 +80,7 @@ typedef struct ezsignfolder_response_t {
 ezsignfolder_response_t *ezsignfolder_response_create(
     int pki_ezsignfolder_id,
     int fki_ezsignfoldertype_id,
-    object_t *obj_ezsignfoldertype,
+    custom_ezsignfoldertype_response_t *obj_ezsignfoldertype,
     int fki_timezone_id,
     field_e_ezsignfolder_completion_t *e_ezsignfolder_completion,
     char *s_ezsignfoldertype_name_x,

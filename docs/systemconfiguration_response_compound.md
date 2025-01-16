@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **b_systemconfiguration_sspr** | **int** | Whether if we allow SSPR | 
 **dt_systemconfiguration_readonlyexpirationstart** | **char \*** | The start date where the system will be in read only | [optional] 
 **dt_systemconfiguration_readonlyexpirationend** | **char \*** | The end date where the system will be in read only | [optional] 
-**obj_branding** | [**object_t**](object.md) \* | A Custom Branding Object | [optional] 
+**obj_branding** | [**custom_branding_response_t**](custom_branding_response.md) \* |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

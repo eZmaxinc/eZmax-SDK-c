@@ -107,7 +107,7 @@ systemconfiguration_response_t *systemconfiguration_response_create(
     int b_systemconfiguration_sspr,
     char *dt_systemconfiguration_readonlyexpirationstart,
     char *dt_systemconfiguration_readonlyexpirationend,
-    object_t *obj_branding
+    custom_branding_response_t *obj_branding
     ) {
     systemconfiguration_response_t *systemconfiguration_response_local_var = malloc(sizeof(systemconfiguration_response_t));
     if (!systemconfiguration_response_local_var) {
@@ -173,7 +173,7 @@ void systemconfiguration_response_free(systemconfiguration_response_t *systemcon
         systemconfiguration_response->dt_systemconfiguration_readonlyexpirationend = NULL;
     }
     if (systemconfiguration_response->obj_branding) {
-        object_free(systemconfiguration_response->obj_branding);
+        custom_branding_response_free(systemconfiguration_response->obj_branding);
         systemconfiguration_response->obj_branding = NULL;
     }
     free(systemconfiguration_response);
@@ -345,7 +345,7 @@ cJSON *systemconfiguration_response_convertToJSON(systemconfiguration_response_t
 
     // systemconfiguration_response->obj_branding
     if(systemconfiguration_response->obj_branding) {
-    cJSON *obj_branding_local_JSON = object_convertToJSON(systemconfiguration_response->obj_branding);
+    cJSON *obj_branding_local_JSON = custom_branding_response_convertToJSON(systemconfiguration_response->obj_branding);
     if(obj_branding_local_JSON == NULL) {
     goto fail; //model
     }
@@ -383,7 +383,7 @@ systemconfiguration_response_t *systemconfiguration_response_parseFromJSON(cJSON
     field_e_systemconfiguration_ezsignofficeplan_t *e_systemconfiguration_ezsignofficeplan_local_nonprim = NULL;
 
     // define the local variable for systemconfiguration_response->obj_branding
-    object_t *obj_branding_local_nonprim = NULL;
+    custom_branding_response_t *obj_branding_local_nonprim = NULL;
 
     // systemconfiguration_response->pki_systemconfiguration_id
     cJSON *pki_systemconfiguration_id = cJSON_GetObjectItemCaseSensitive(systemconfiguration_responseJSON, "pkiSystemconfigurationID");
@@ -541,7 +541,7 @@ systemconfiguration_response_t *systemconfiguration_response_parseFromJSON(cJSON
     // systemconfiguration_response->obj_branding
     cJSON *obj_branding = cJSON_GetObjectItemCaseSensitive(systemconfiguration_responseJSON, "objBranding");
     if (obj_branding) { 
-    obj_branding_local_nonprim = object_parseFromJSON(obj_branding); //nonprimitive
+    obj_branding_local_nonprim = custom_branding_response_parseFromJSON(obj_branding); //nonprimitive
     }
 
 
@@ -588,7 +588,7 @@ end:
         e_systemconfiguration_ezsignofficeplan_local_nonprim = NULL;
     }
     if (obj_branding_local_nonprim) {
-        object_free(obj_branding_local_nonprim);
+        custom_branding_response_free(obj_branding_local_nonprim);
         obj_branding_local_nonprim = NULL;
     }
     return NULL;

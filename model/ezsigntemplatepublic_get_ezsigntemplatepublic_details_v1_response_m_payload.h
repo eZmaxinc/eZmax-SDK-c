@@ -15,19 +15,19 @@
 
 typedef struct ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_t ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_t;
 
-#include "object.h"
+#include "custom_branding_response.h"
 
 
 
 typedef struct ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_t {
-    struct object_t *obj_branding; //model
+    struct custom_branding_response_t *obj_branding; //model
     int fki_userlogintype_id; //numeric
     list_t *a_s_ezsigntemplatesigner_description; //primitive container
 
 } ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_t;
 
 ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_t *ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_create(
-    object_t *obj_branding,
+    custom_branding_response_t *obj_branding,
     int fki_userlogintype_id,
     list_t *a_s_ezsigntemplatesigner_description
 );
