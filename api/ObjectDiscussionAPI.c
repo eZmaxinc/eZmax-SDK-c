@@ -94,7 +94,7 @@ end:
 //
 // 
 //
-common_response_t*
+discussion_delete_object_v1_response_t*
 ObjectDiscussionAPI_discussionDeleteObjectV1(apiClient_t *apiClient, int *pkiDiscussionID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -146,7 +146,7 @@ ObjectDiscussionAPI_discussionDeleteObjectV1(apiClient_t *apiClient, int *pkiDis
     //}
     //nonprimitive not container
     cJSON *ObjectDiscussionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectDiscussionAPIlocalVarJSON);
+    discussion_delete_object_v1_response_t *elementToReturn = discussion_delete_object_v1_response_parseFromJSON(ObjectDiscussionAPIlocalVarJSON);
     cJSON_Delete(ObjectDiscussionAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -258,7 +258,7 @@ end:
 //
 // 
 //
-common_response_t*
+discussion_patch_object_v1_response_t*
 ObjectDiscussionAPI_discussionPatchObjectV1(apiClient_t *apiClient, int *pkiDiscussionID, discussion_patch_object_v1_request_t *discussion_patch_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -324,7 +324,7 @@ ObjectDiscussionAPI_discussionPatchObjectV1(apiClient_t *apiClient, int *pkiDisc
     //}
     //nonprimitive not container
     cJSON *ObjectDiscussionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectDiscussionAPIlocalVarJSON);
+    discussion_patch_object_v1_response_t *elementToReturn = discussion_patch_object_v1_response_parseFromJSON(ObjectDiscussionAPIlocalVarJSON);
     cJSON_Delete(ObjectDiscussionAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -357,7 +357,7 @@ end:
 
 // Update the read status of the discussion
 //
-common_response_t*
+discussion_update_discussionreadstatus_v1_response_t*
 ObjectDiscussionAPI_discussionUpdateDiscussionreadstatusV1(apiClient_t *apiClient, int *pkiDiscussionID, discussion_update_discussionreadstatus_v1_request_t *discussion_update_discussionreadstatus_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -423,7 +423,7 @@ ObjectDiscussionAPI_discussionUpdateDiscussionreadstatusV1(apiClient_t *apiClien
     //}
     //nonprimitive not container
     cJSON *ObjectDiscussionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectDiscussionAPIlocalVarJSON);
+    discussion_update_discussionreadstatus_v1_response_t *elementToReturn = discussion_update_discussionreadstatus_v1_response_parseFromJSON(ObjectDiscussionAPIlocalVarJSON);
     cJSON_Delete(ObjectDiscussionAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

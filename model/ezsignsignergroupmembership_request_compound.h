@@ -15,7 +15,6 @@
 
 typedef struct ezsignsignergroupmembership_request_compound_t ezsignsignergroupmembership_request_compound_t;
 
-#include "ezsignsignergroupmembership_request.h"
 
 
 

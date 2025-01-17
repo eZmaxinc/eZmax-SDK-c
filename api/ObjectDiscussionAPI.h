@@ -5,13 +5,15 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/discussion_create_object_v1_request.h"
 #include "../model/discussion_create_object_v1_response.h"
+#include "../model/discussion_delete_object_v1_response.h"
 #include "../model/discussion_get_object_v2_response.h"
 #include "../model/discussion_patch_object_v1_request.h"
+#include "../model/discussion_patch_object_v1_response.h"
 #include "../model/discussion_update_discussionreadstatus_v1_request.h"
+#include "../model/discussion_update_discussionreadstatus_v1_response.h"
 
 
 // Create a new Discussion
@@ -26,7 +28,7 @@ ObjectDiscussionAPI_discussionCreateObjectV1(apiClient_t *apiClient, discussion_
 //
 // 
 //
-common_response_t*
+discussion_delete_object_v1_response_t*
 ObjectDiscussionAPI_discussionDeleteObjectV1(apiClient_t *apiClient, int *pkiDiscussionID);
 
 
@@ -42,13 +44,13 @@ ObjectDiscussionAPI_discussionGetObjectV2(apiClient_t *apiClient, int *pkiDiscus
 //
 // 
 //
-common_response_t*
+discussion_patch_object_v1_response_t*
 ObjectDiscussionAPI_discussionPatchObjectV1(apiClient_t *apiClient, int *pkiDiscussionID, discussion_patch_object_v1_request_t *discussion_patch_object_v1_request);
 
 
 // Update the read status of the discussion
 //
-common_response_t*
+discussion_update_discussionreadstatus_v1_response_t*
 ObjectDiscussionAPI_discussionUpdateDiscussionreadstatusV1(apiClient_t *apiClient, int *pkiDiscussionID, discussion_update_discussionreadstatus_v1_request_t *discussion_update_discussionreadstatus_v1_request);
 
 

@@ -15,7 +15,6 @@
 
 typedef struct colleague_response_compound_v2_t colleague_response_compound_v2_t;
 
-#include "colleague_response_v2.h"
 #include "common_audit.h"
 #include "custom_user_name_response.h"
 #include "field_e_colleague_ezsign.h"

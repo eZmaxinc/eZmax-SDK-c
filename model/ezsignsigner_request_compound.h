@@ -15,7 +15,6 @@
 
 typedef struct ezsignsigner_request_compound_t ezsignsigner_request_compound_t;
 
-#include "ezsignsigner_request.h"
 #include "ezsignsigner_request_compound_contact.h"
 
 // Enum EEZSIGNSIGNERLOGINTYPE for ezsignsigner_request_compound

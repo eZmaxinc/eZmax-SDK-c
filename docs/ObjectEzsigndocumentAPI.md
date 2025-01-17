@@ -46,7 +46,7 @@ Method | HTTP request | Description
 //
 // This function is deprecated. Please use *applyEzsigntemplate* instead which is doing the same thing but with a capital \"E\" to normalize the nomenclature.  This endpoint applies a predefined template to the ezsign document. This allows to automatically apply all the form and signature fields on a document in a single step.  The document must not already have fields otherwise an error will be returned.
 //
-common_response_t* ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_apply_ezsigntemplate_v1_request_t *ezsigndocument_apply_ezsigntemplate_v1_request);
+ezsigndocument_apply_ezsigntemplate_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_apply_ezsigntemplate_v1_request_t *ezsigndocument_apply_ezsigntemplate_v1_request);
 ```
 
 ### Parameters
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsigndocument_apply_ezsigntemplate_v1_response_t](ezsigndocument_apply_ezsigntemplate_v1_response.md) *
 
 
 ### Authorization
@@ -267,7 +267,7 @@ Name | Type | Description  | Notes
 //
 // Decline to sign
 //
-common_response_t* ObjectEzsigndocumentAPI_ezsigndocumentDeclineToSignV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_decline_to_sign_v1_request_t *ezsigndocument_decline_to_sign_v1_request);
+ezsigndocument_decline_to_sign_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentDeclineToSignV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_decline_to_sign_v1_request_t *ezsigndocument_decline_to_sign_v1_request);
 ```
 
 ### Parameters
@@ -279,7 +279,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsigndocument_decline_to_sign_v1_response_t](ezsigndocument_decline_to_sign_v1_response.md) *
 
 
 ### Authorization
@@ -299,7 +299,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigndocumentID);
+ezsigndocument_delete_object_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigndocumentID);
 ```
 
 ### Parameters
@@ -310,7 +310,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsigndocument_delete_object_v1_response_t](ezsigndocument_delete_object_v1_response.md) *
 
 
 ### Authorization
@@ -458,7 +458,7 @@ Name | Type | Description  | Notes
 //
 // End prematurely an Ezsigndocument when some signatures are still required
 //
-common_response_t* ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, object_t *body);
+ezsigndocument_end_prematurely_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentEndPrematurelyV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, object_t *body);
 ```
 
 ### Parameters
@@ -470,7 +470,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsigndocument_end_prematurely_v1_response_t](ezsigndocument_end_prematurely_v1_response.md) *
 
 
 ### Authorization
@@ -522,7 +522,7 @@ Name | Type | Description  | Notes
 //
 // Flatten an Ezsigndocument signatures, forms and annotations. This process finalizes the PDF so that the forms and annotations become part of the document content and cannot be edited.
 //
-common_response_t* ObjectEzsigndocumentAPI_ezsigndocumentFlattenV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, object_t *body);
+ezsigndocument_flatten_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentFlattenV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, object_t *body);
 ```
 
 ### Parameters
@@ -534,7 +534,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsigndocument_flatten_v1_response_t](ezsigndocument_flatten_v1_response.md) *
 
 
 ### Authorization
@@ -1019,7 +1019,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_patch_object_v1_request_t *ezsigndocument_patch_object_v1_request);
+ezsigndocument_patch_object_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_patch_object_v1_request_t *ezsigndocument_patch_object_v1_request);
 ```
 
 ### Parameters
@@ -1031,7 +1031,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsigndocument_patch_object_v1_response_t](ezsigndocument_patch_object_v1_response.md) *
 
 
 ### Authorization
@@ -1051,7 +1051,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectEzsigndocumentAPI_ezsigndocumentSubmitEzsignformV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_submit_ezsignform_v1_request_t *ezsigndocument_submit_ezsignform_v1_request);
+ezsigndocument_submit_ezsignform_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentSubmitEzsignformV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_submit_ezsignform_v1_request_t *ezsigndocument_submit_ezsignform_v1_request);
 ```
 
 ### Parameters
@@ -1063,7 +1063,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsigndocument_submit_ezsignform_v1_response_t](ezsigndocument_submit_ezsignform_v1_response.md) *
 
 
 ### Authorization
@@ -1083,7 +1083,7 @@ Name | Type | Description  | Notes
 //
 // Once an Ezsigndocument has been sent to signatories, it cannot be modified.  Using this endpoint, you can unsend the Ezsigndocument and make it modifiable again.  Signatories will receive an email informing them the signature process was aborted and they might receive a new invitation to sign.  ⚠️ Warning: Any signature previously made by signatories on this Ezsigndocumentswill be lost.
 //
-common_response_t* ObjectEzsigndocumentAPI_ezsigndocumentUnsendV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, object_t *body);
+ezsigndocument_unsend_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentUnsendV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, object_t *body);
 ```
 
 ### Parameters
@@ -1095,7 +1095,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsigndocument_unsend_v1_response_t](ezsigndocument_unsend_v1_response.md) *
 
 
 ### Authorization

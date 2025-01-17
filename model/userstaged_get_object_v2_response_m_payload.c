@@ -6,7 +6,7 @@
 
 
 userstaged_get_object_v2_response_m_payload_t *userstaged_get_object_v2_response_m_payload_create(
-    userstaged_response_t *obj_userstaged
+    userstaged_response_compound_t *obj_userstaged
     ) {
     userstaged_get_object_v2_response_m_payload_t *userstaged_get_object_v2_response_m_payload_local_var = malloc(sizeof(userstaged_get_object_v2_response_m_payload_t));
     if (!userstaged_get_object_v2_response_m_payload_local_var) {
@@ -24,7 +24,7 @@ void userstaged_get_object_v2_response_m_payload_free(userstaged_get_object_v2_r
     }
     listEntry_t *listEntry;
     if (userstaged_get_object_v2_response_m_payload->obj_userstaged) {
-        userstaged_response_free(userstaged_get_object_v2_response_m_payload->obj_userstaged);
+        userstaged_response_compound_free(userstaged_get_object_v2_response_m_payload->obj_userstaged);
         userstaged_get_object_v2_response_m_payload->obj_userstaged = NULL;
     }
     free(userstaged_get_object_v2_response_m_payload);
@@ -37,7 +37,7 @@ cJSON *userstaged_get_object_v2_response_m_payload_convertToJSON(userstaged_get_
     if (!userstaged_get_object_v2_response_m_payload->obj_userstaged) {
         goto fail;
     }
-    cJSON *obj_userstaged_local_JSON = userstaged_response_convertToJSON(userstaged_get_object_v2_response_m_payload->obj_userstaged);
+    cJSON *obj_userstaged_local_JSON = userstaged_response_compound_convertToJSON(userstaged_get_object_v2_response_m_payload->obj_userstaged);
     if(obj_userstaged_local_JSON == NULL) {
     goto fail; //model
     }
@@ -59,7 +59,7 @@ userstaged_get_object_v2_response_m_payload_t *userstaged_get_object_v2_response
     userstaged_get_object_v2_response_m_payload_t *userstaged_get_object_v2_response_m_payload_local_var = NULL;
 
     // define the local variable for userstaged_get_object_v2_response_m_payload->obj_userstaged
-    userstaged_response_t *obj_userstaged_local_nonprim = NULL;
+    userstaged_response_compound_t *obj_userstaged_local_nonprim = NULL;
 
     // userstaged_get_object_v2_response_m_payload->obj_userstaged
     cJSON *obj_userstaged = cJSON_GetObjectItemCaseSensitive(userstaged_get_object_v2_response_m_payloadJSON, "objUserstaged");
@@ -68,7 +68,7 @@ userstaged_get_object_v2_response_m_payload_t *userstaged_get_object_v2_response
     }
 
     
-    obj_userstaged_local_nonprim = userstaged_response_parseFromJSON(obj_userstaged); //nonprimitive
+    obj_userstaged_local_nonprim = userstaged_response_compound_parseFromJSON(obj_userstaged); //nonprimitive
 
 
     userstaged_get_object_v2_response_m_payload_local_var = userstaged_get_object_v2_response_m_payload_create (
@@ -78,7 +78,7 @@ userstaged_get_object_v2_response_m_payload_t *userstaged_get_object_v2_response
     return userstaged_get_object_v2_response_m_payload_local_var;
 end:
     if (obj_userstaged_local_nonprim) {
-        userstaged_response_free(obj_userstaged_local_nonprim);
+        userstaged_response_compound_free(obj_userstaged_local_nonprim);
         obj_userstaged_local_nonprim = NULL;
     }
     return NULL;

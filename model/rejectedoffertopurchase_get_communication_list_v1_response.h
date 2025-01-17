@@ -15,7 +15,6 @@
 
 typedef struct rejectedoffertopurchase_get_communication_list_v1_response_t rejectedoffertopurchase_get_communication_list_v1_response_t;
 
-#include "common_response_get_list.h"
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload_get_list.h"
 #include "rejectedoffertopurchase_get_communication_list_v1_response_m_payload.h"

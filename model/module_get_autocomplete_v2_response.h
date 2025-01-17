@@ -15,7 +15,6 @@
 
 typedef struct module_get_autocomplete_v2_response_t module_get_autocomplete_v2_response_t;
 
-#include "common_response.h"
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload.h"
 #include "module_get_autocomplete_v2_response_m_payload.h"

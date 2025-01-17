@@ -15,7 +15,6 @@
 
 typedef struct activesession_response_compound_t activesession_response_compound_t;
 
-#include "activesession_response.h"
 #include "activesession_response_compound_apikey.h"
 #include "activesession_response_compound_user.h"
 #include "field_e_activesession_ezsign.h"

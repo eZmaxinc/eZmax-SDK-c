@@ -8,7 +8,7 @@
 activesession_get_current_v1_response_t *activesession_get_current_v1_response_create(
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug,
-    activesession_response_compound_t *m_payload
+    activesession_get_current_v1_response_m_payload_t *m_payload
     ) {
     activesession_get_current_v1_response_t *activesession_get_current_v1_response_local_var = malloc(sizeof(activesession_get_current_v1_response_t));
     if (!activesession_get_current_v1_response_local_var) {
@@ -36,7 +36,7 @@ void activesession_get_current_v1_response_free(activesession_get_current_v1_res
         activesession_get_current_v1_response->obj_debug = NULL;
     }
     if (activesession_get_current_v1_response->m_payload) {
-        activesession_response_compound_free(activesession_get_current_v1_response->m_payload);
+        activesession_get_current_v1_response_m_payload_free(activesession_get_current_v1_response->m_payload);
         activesession_get_current_v1_response->m_payload = NULL;
     }
     free(activesession_get_current_v1_response);
@@ -76,7 +76,7 @@ cJSON *activesession_get_current_v1_response_convertToJSON(activesession_get_cur
     if (!activesession_get_current_v1_response->m_payload) {
         goto fail;
     }
-    cJSON *m_payload_local_JSON = activesession_response_compound_convertToJSON(activesession_get_current_v1_response->m_payload);
+    cJSON *m_payload_local_JSON = activesession_get_current_v1_response_m_payload_convertToJSON(activesession_get_current_v1_response->m_payload);
     if(m_payload_local_JSON == NULL) {
     goto fail; //model
     }
@@ -104,7 +104,7 @@ activesession_get_current_v1_response_t *activesession_get_current_v1_response_p
     common_response_obj_debug_t *obj_debug_local_nonprim = NULL;
 
     // define the local variable for activesession_get_current_v1_response->m_payload
-    activesession_response_compound_t *m_payload_local_nonprim = NULL;
+    activesession_get_current_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
 
     // activesession_get_current_v1_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(activesession_get_current_v1_responseJSON, "objDebugPayload");
@@ -128,7 +128,7 @@ activesession_get_current_v1_response_t *activesession_get_current_v1_response_p
     }
 
     
-    m_payload_local_nonprim = activesession_response_compound_parseFromJSON(m_payload); //nonprimitive
+    m_payload_local_nonprim = activesession_get_current_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
     activesession_get_current_v1_response_local_var = activesession_get_current_v1_response_create (
@@ -148,7 +148,7 @@ end:
         obj_debug_local_nonprim = NULL;
     }
     if (m_payload_local_nonprim) {
-        activesession_response_compound_free(m_payload_local_nonprim);
+        activesession_get_current_v1_response_m_payload_free(m_payload_local_nonprim);
         m_payload_local_nonprim = NULL;
     }
     return NULL;

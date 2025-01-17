@@ -15,7 +15,6 @@
 
 typedef struct textstylestatic_request_compound_t textstylestatic_request_compound_t;
 
-#include "textstylestatic_request.h"
 
 
 

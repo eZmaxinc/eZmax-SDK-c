@@ -459,7 +459,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezdoctemplatedocument_edit_object_v1_response_t*
 ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentEditObjectV1(apiClient_t *apiClient, int *pkiEzdoctemplatedocumentID, ezdoctemplatedocument_edit_object_v1_request_t *ezdoctemplatedocument_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -525,7 +525,7 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentEditObjectV1(apiClient_t *ap
     //}
     //nonprimitive not container
     cJSON *ObjectEzdoctemplatedocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
+    ezdoctemplatedocument_edit_object_v1_response_t *elementToReturn = ezdoctemplatedocument_edit_object_v1_response_parseFromJSON(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
     cJSON_Delete(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -1003,7 +1003,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezdoctemplatedocument_patch_object_v1_response_t*
 ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentPatchObjectV1(apiClient_t *apiClient, int *pkiEzdoctemplatedocumentID, ezdoctemplatedocument_patch_object_v1_request_t *ezdoctemplatedocument_patch_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -1065,7 +1065,7 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentPatchObjectV1(apiClient_t *a
     //}
     //nonprimitive not container
     cJSON *ObjectEzdoctemplatedocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
+    ezdoctemplatedocument_patch_object_v1_response_t *elementToReturn = ezdoctemplatedocument_patch_object_v1_response_parseFromJSON(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
     cJSON_Delete(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

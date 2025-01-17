@@ -15,7 +15,6 @@
 
 typedef struct usergroupexternalmembership_response_compound_t usergroupexternalmembership_response_compound_t;
 
-#include "usergroupexternalmembership_response.h"
 
 
 

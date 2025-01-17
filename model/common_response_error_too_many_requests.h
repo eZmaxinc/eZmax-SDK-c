@@ -15,7 +15,6 @@
 
 typedef struct common_response_error_too_many_requests_t common_response_error_too_many_requests_t;
 
-#include "common_response_error.h"
 #include "field_e_error_code.h"
 
 // Enum  for common_response_error_too_many_requests

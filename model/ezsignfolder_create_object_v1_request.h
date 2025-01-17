@@ -16,18 +16,19 @@
 typedef struct ezsignfolder_create_object_v1_request_t ezsignfolder_create_object_v1_request_t;
 
 #include "ezsignfolder_request.h"
+#include "ezsignfolder_request_compound.h"
 
 
 
 typedef struct ezsignfolder_create_object_v1_request_t {
     struct ezsignfolder_request_t *obj_ezsignfolder; //model
-    struct ezsignfolder_request_t *obj_ezsignfolder_compound; //model
+    struct ezsignfolder_request_compound_t *obj_ezsignfolder_compound; //model
 
 } ezsignfolder_create_object_v1_request_t;
 
 ezsignfolder_create_object_v1_request_t *ezsignfolder_create_object_v1_request_create(
     ezsignfolder_request_t *obj_ezsignfolder,
-    ezsignfolder_request_t *obj_ezsignfolder_compound
+    ezsignfolder_request_compound_t *obj_ezsignfolder_compound
 );
 
 void ezsignfolder_create_object_v1_request_free(ezsignfolder_create_object_v1_request_t *ezsignfolder_create_object_v1_request);

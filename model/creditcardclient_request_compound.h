@@ -15,7 +15,6 @@
 
 typedef struct creditcardclient_request_compound_t creditcardclient_request_compound_t;
 
-#include "creditcardclient_request.h"
 #include "creditcarddetail_request.h"
 
 

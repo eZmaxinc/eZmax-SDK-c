@@ -176,7 +176,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsigntemplatepackagesigner_edit_object_v1_response_t*
 ObjectEzsigntemplatepackagesignerAPI_ezsigntemplatepackagesignerEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatepackagesignerID, ezsigntemplatepackagesigner_edit_object_v1_request_t *ezsigntemplatepackagesigner_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -242,7 +242,7 @@ ObjectEzsigntemplatepackagesignerAPI_ezsigntemplatepackagesignerEditObjectV1(api
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigntemplatepackagesignerAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsigntemplatepackagesignerAPIlocalVarJSON);
+    ezsigntemplatepackagesigner_edit_object_v1_response_t *elementToReturn = ezsigntemplatepackagesigner_edit_object_v1_response_parseFromJSON(ObjectEzsigntemplatepackagesignerAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsigntemplatepackagesignerAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

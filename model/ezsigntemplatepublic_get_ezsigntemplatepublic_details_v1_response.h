@@ -15,7 +15,6 @@
 
 typedef struct ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_t ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_t;
 
-#include "common_response.h"
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload.h"
 #include "ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload.h"

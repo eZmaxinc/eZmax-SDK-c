@@ -15,7 +15,6 @@
 
 typedef struct customer_request_compound_t customer_request_compound_t;
 
-#include "customer_request.h"
 #include "field_e_customer_marketingcorrespondence.h"
 #include "field_e_customer_type.h"
 

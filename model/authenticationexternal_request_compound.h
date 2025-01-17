@@ -15,7 +15,6 @@
 
 typedef struct authenticationexternal_request_compound_t authenticationexternal_request_compound_t;
 
-#include "authenticationexternal_request.h"
 #include "field_e_authenticationexternal_type.h"
 
 // Enum  for authenticationexternal_request_compound

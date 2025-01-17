@@ -45,7 +45,7 @@ void domain_response_compound_free(domain_response_compound_t *domain_response_c
     }
     if (domain_response_compound->a_obj_dnsrecord) {
         list_ForEach(listEntry, domain_response_compound->a_obj_dnsrecord) {
-            object_free(listEntry->data);
+            custom_dnsrecord_response_free(listEntry->data);
         }
         list_freeList(domain_response_compound->a_obj_dnsrecord);
         domain_response_compound->a_obj_dnsrecord = NULL;
@@ -127,7 +127,7 @@ cJSON *domain_response_compound_convertToJSON(domain_response_compound_t *domain
     listEntry_t *a_obj_dnsrecordListEntry;
     if (domain_response_compound->a_obj_dnsrecord) {
     list_ForEach(a_obj_dnsrecordListEntry, domain_response_compound->a_obj_dnsrecord) {
-    cJSON *itemLocal = object_convertToJSON(a_obj_dnsrecordListEntry->data);
+    cJSON *itemLocal = custom_dnsrecord_response_convertToJSON(a_obj_dnsrecordListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -241,7 +241,7 @@ domain_response_compound_t *domain_response_compound_parseFromJSON(cJSON *domain
         if(!cJSON_IsObject(a_obj_dnsrecord_local_nonprimitive)){
             goto end;
         }
-        object_t *a_obj_dnsrecordItem = object_parseFromJSON(a_obj_dnsrecord_local_nonprimitive);
+        custom_dnsrecord_response_t *a_obj_dnsrecordItem = custom_dnsrecord_response_parseFromJSON(a_obj_dnsrecord_local_nonprimitive);
 
         list_addElement(a_obj_dnsrecordList, a_obj_dnsrecordItem);
     }
@@ -266,7 +266,7 @@ end:
     if (a_obj_dnsrecordList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_dnsrecordList) {
-            object_free(listEntry->data);
+            custom_dnsrecord_response_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_dnsrecordList);

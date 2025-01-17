@@ -15,7 +15,6 @@
 
 typedef struct domain_request_compound_t domain_request_compound_t;
 
-#include "domain_request.h"
 
 
 

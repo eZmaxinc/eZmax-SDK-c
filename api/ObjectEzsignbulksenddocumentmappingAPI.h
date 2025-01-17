@@ -5,10 +5,10 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/ezsignbulksenddocumentmapping_create_object_v1_request.h"
 #include "../model/ezsignbulksenddocumentmapping_create_object_v1_response.h"
+#include "../model/ezsignbulksenddocumentmapping_delete_object_v1_response.h"
 #include "../model/ezsignbulksenddocumentmapping_get_object_v2_response.h"
 
 
@@ -24,7 +24,7 @@ ObjectEzsignbulksenddocumentmappingAPI_ezsignbulksenddocumentmappingCreateObject
 //
 // 
 //
-common_response_t*
+ezsignbulksenddocumentmapping_delete_object_v1_response_t*
 ObjectEzsignbulksenddocumentmappingAPI_ezsignbulksenddocumentmappingDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksenddocumentmappingID);
 
 

@@ -16,7 +16,6 @@
 typedef struct ezmaxinvoicinguser_response_compound_t ezmaxinvoicinguser_response_compound_t;
 
 #include "custom_contact_name_response.h"
-#include "ezmaxinvoicinguser_response.h"
 #include "field_e_ezmaxinvoicinguser_variationezsign.h"
 
 // Enum  for ezmaxinvoicinguser_response_compound

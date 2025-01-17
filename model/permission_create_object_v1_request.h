@@ -15,7 +15,7 @@
 
 typedef struct permission_create_object_v1_request_t permission_create_object_v1_request_t;
 
-#include "permission_request.h"
+#include "permission_request_compound.h"
 
 
 

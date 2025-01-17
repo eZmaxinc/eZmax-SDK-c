@@ -16,8 +16,9 @@
 typedef struct ezmaxinvoicing_response_compound_t ezmaxinvoicing_response_compound_t;
 
 #include "common_audit.h"
+#include "custom_ezmaxinvoicing_ezsigndocument_response.h"
+#include "custom_ezmaxinvoicing_ezsignfolder_response.h"
 #include "custom_ezmaxpricing_response.h"
-#include "ezmaxinvoicing_response.h"
 #include "ezmaxinvoicingagent_response_compound.h"
 #include "ezmaxinvoicingcontract_response_compound.h"
 #include "ezmaxinvoicingsummaryexternal_response_compound.h"
@@ -25,7 +26,6 @@ typedef struct ezmaxinvoicing_response_compound_t ezmaxinvoicing_response_compou
 #include "ezmaxinvoicingsummaryinternal_response_compound.h"
 #include "ezmaxinvoicinguser_response_compound.h"
 #include "field_e_ezmaxinvoicing_paymenttype.h"
-#include "object.h"
 
 // Enum  for ezmaxinvoicing_response_compound
 

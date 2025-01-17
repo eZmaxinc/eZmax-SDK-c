@@ -5,7 +5,6 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/ezsignfoldersignerassociation_create_embedded_url_v1_request.h"
 #include "../model/ezsignfoldersignerassociation_create_embedded_url_v1_response.h"
@@ -13,12 +12,17 @@
 #include "../model/ezsignfoldersignerassociation_create_object_v1_response.h"
 #include "../model/ezsignfoldersignerassociation_create_object_v2_request.h"
 #include "../model/ezsignfoldersignerassociation_create_object_v2_response.h"
+#include "../model/ezsignfoldersignerassociation_delete_object_v1_response.h"
 #include "../model/ezsignfoldersignerassociation_edit_object_v1_request.h"
+#include "../model/ezsignfoldersignerassociation_edit_object_v1_response.h"
+#include "../model/ezsignfoldersignerassociation_force_disconnect_v1_response.h"
 #include "../model/ezsignfoldersignerassociation_get_in_person_login_url_v1_response.h"
 #include "../model/ezsignfoldersignerassociation_get_object_v1_response.h"
 #include "../model/ezsignfoldersignerassociation_get_object_v2_response.h"
 #include "../model/ezsignfoldersignerassociation_patch_object_v1_request.h"
+#include "../model/ezsignfoldersignerassociation_patch_object_v1_response.h"
 #include "../model/ezsignfoldersignerassociation_reassign_v1_request.h"
+#include "../model/ezsignfoldersignerassociation_reassign_v1_response.h"
 #include "../model/object.h"
 
 
@@ -50,7 +54,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateObject
 //
 // 
 //
-common_response_t*
+ezsignfoldersignerassociation_delete_object_v1_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID);
 
 
@@ -58,7 +62,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationDeleteObject
 //
 // 
 //
-common_response_t*
+ezsignfoldersignerassociation_edit_object_v1_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationEditObjectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_edit_object_v1_request_t *ezsignfoldersignerassociation_edit_object_v1_request);
 
 
@@ -66,7 +70,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationEditObjectV1
 //
 // 
 //
-common_response_t*
+ezsignfoldersignerassociation_force_disconnect_v1_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationForceDisconnectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, object_t *body);
 
 
@@ -96,7 +100,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV2(
 
 // Patch an existing Ezsignfoldersignerassociation
 //
-common_response_t*
+ezsignfoldersignerassociation_patch_object_v1_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationPatchObjectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_patch_object_v1_request_t *ezsignfoldersignerassociation_patch_object_v1_request);
 
 
@@ -104,7 +108,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationPatchObjectV
 //
 // Reassign remaining unsigned signatures and forms
 //
-common_response_t*
+ezsignfoldersignerassociation_reassign_v1_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationReassignV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_reassign_v1_request_t *ezsignfoldersignerassociation_reassign_v1_request);
 
 

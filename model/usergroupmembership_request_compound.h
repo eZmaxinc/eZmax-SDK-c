@@ -15,7 +15,6 @@
 
 typedef struct usergroupmembership_request_compound_t usergroupmembership_request_compound_t;
 
-#include "usergroupmembership_request.h"
 
 
 

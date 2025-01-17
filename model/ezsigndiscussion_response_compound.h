@@ -16,7 +16,6 @@
 typedef struct ezsigndiscussion_response_compound_t ezsigndiscussion_response_compound_t;
 
 #include "discussion_response_compound.h"
-#include "ezsigndiscussion_response.h"
 
 
 

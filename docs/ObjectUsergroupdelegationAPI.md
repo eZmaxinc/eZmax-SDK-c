@@ -47,7 +47,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectUsergroupdelegationAPI_usergroupdelegationDeleteObjectV1(apiClient_t *apiClient, int *pkiUsergroupdelegationID);
+usergroupdelegation_delete_object_v1_response_t* ObjectUsergroupdelegationAPI_usergroupdelegationDeleteObjectV1(apiClient_t *apiClient, int *pkiUsergroupdelegationID);
 ```
 
 ### Parameters
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[usergroupdelegation_delete_object_v1_response_t](usergroupdelegation_delete_object_v1_response.md) *
 
 
 ### Authorization
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectUsergroupdelegationAPI_usergroupdelegationEditObjectV1(apiClient_t *apiClient, int *pkiUsergroupdelegationID, usergroupdelegation_edit_object_v1_request_t *usergroupdelegation_edit_object_v1_request);
+usergroupdelegation_edit_object_v1_response_t* ObjectUsergroupdelegationAPI_usergroupdelegationEditObjectV1(apiClient_t *apiClient, int *pkiUsergroupdelegationID, usergroupdelegation_edit_object_v1_request_t *usergroupdelegation_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[usergroupdelegation_edit_object_v1_response_t](usergroupdelegation_edit_object_v1_response.md) *
 
 
 ### Authorization

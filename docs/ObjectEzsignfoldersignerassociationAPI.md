@@ -117,7 +117,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID);
+ezsignfoldersignerassociation_delete_object_v1_response_t* ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID);
 ```
 
 ### Parameters
@@ -128,7 +128,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsignfoldersignerassociation_delete_object_v1_response_t](ezsignfoldersignerassociation_delete_object_v1_response.md) *
 
 
 ### Authorization
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationEditObjectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_edit_object_v1_request_t *ezsignfoldersignerassociation_edit_object_v1_request);
+ezsignfoldersignerassociation_edit_object_v1_response_t* ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationEditObjectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_edit_object_v1_request_t *ezsignfoldersignerassociation_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsignfoldersignerassociation_edit_object_v1_response_t](ezsignfoldersignerassociation_edit_object_v1_response.md) *
 
 
 ### Authorization
@@ -180,7 +180,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationForceDisconnectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, object_t *body);
+ezsignfoldersignerassociation_force_disconnect_v1_response_t* ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationForceDisconnectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, object_t *body);
 ```
 
 ### Parameters
@@ -192,7 +192,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsignfoldersignerassociation_force_disconnect_v1_response_t](ezsignfoldersignerassociation_force_disconnect_v1_response.md) *
 
 
 ### Authorization
@@ -303,7 +303,7 @@ Name | Type | Description  | Notes
 ```c
 // Patch an existing Ezsignfoldersignerassociation
 //
-common_response_t* ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationPatchObjectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_patch_object_v1_request_t *ezsignfoldersignerassociation_patch_object_v1_request);
+ezsignfoldersignerassociation_patch_object_v1_response_t* ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationPatchObjectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_patch_object_v1_request_t *ezsignfoldersignerassociation_patch_object_v1_request);
 ```
 
 ### Parameters
@@ -315,7 +315,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsignfoldersignerassociation_patch_object_v1_response_t](ezsignfoldersignerassociation_patch_object_v1_response.md) *
 
 
 ### Authorization
@@ -335,7 +335,7 @@ Name | Type | Description  | Notes
 //
 // Reassign remaining unsigned signatures and forms
 //
-common_response_t* ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationReassignV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_reassign_v1_request_t *ezsignfoldersignerassociation_reassign_v1_request);
+ezsignfoldersignerassociation_reassign_v1_response_t* ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationReassignV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_reassign_v1_request_t *ezsignfoldersignerassociation_reassign_v1_request);
 ```
 
 ### Parameters
@@ -347,7 +347,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsignfoldersignerassociation_reassign_v1_response_t](ezsignfoldersignerassociation_reassign_v1_response.md) *
 
 
 ### Authorization

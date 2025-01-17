@@ -15,7 +15,6 @@
 
 typedef struct ezsignsignature_get_ezsignsignatureattachment_v1_response_t ezsignsignature_get_ezsignsignatureattachment_v1_response_t;
 
-#include "common_response.h"
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload.h"
 #include "ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload.h"

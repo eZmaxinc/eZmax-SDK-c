@@ -15,7 +15,6 @@
 
 typedef struct sessionhistory_get_list_v1_response_m_payload_t sessionhistory_get_list_v1_response_m_payload_t;
 
-#include "common_get_list_v1_response_m_payload.h"
 #include "sessionhistory_list_element.h"
 
 

@@ -16,7 +16,6 @@
 typedef struct authenticationexternal_get_list_v1_response_m_payload_t authenticationexternal_get_list_v1_response_m_payload_t;
 
 #include "authenticationexternal_list_element.h"
-#include "common_get_list_v1_response_m_payload.h"
 
 
 

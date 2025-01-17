@@ -151,14 +151,14 @@ void ezmaxinvoicing_response_compound_free(ezmaxinvoicing_response_compound_t *e
     }
     if (ezmaxinvoicing_response_compound->a_obj_ezmaxinvoicingezsignfolder) {
         list_ForEach(listEntry, ezmaxinvoicing_response_compound->a_obj_ezmaxinvoicingezsignfolder) {
-            object_free(listEntry->data);
+            custom_ezmaxinvoicing_ezsignfolder_response_free(listEntry->data);
         }
         list_freeList(ezmaxinvoicing_response_compound->a_obj_ezmaxinvoicingezsignfolder);
         ezmaxinvoicing_response_compound->a_obj_ezmaxinvoicingezsignfolder = NULL;
     }
     if (ezmaxinvoicing_response_compound->a_obj_ezmaxinvoicingezsigndocument) {
         list_ForEach(listEntry, ezmaxinvoicing_response_compound->a_obj_ezmaxinvoicingezsigndocument) {
-            object_free(listEntry->data);
+            custom_ezmaxinvoicing_ezsigndocument_response_free(listEntry->data);
         }
         list_freeList(ezmaxinvoicing_response_compound->a_obj_ezmaxinvoicingezsigndocument);
         ezmaxinvoicing_response_compound->a_obj_ezmaxinvoicingezsigndocument = NULL;
@@ -439,7 +439,7 @@ cJSON *ezmaxinvoicing_response_compound_convertToJSON(ezmaxinvoicing_response_co
     listEntry_t *a_obj_ezmaxinvoicingezsignfolderListEntry;
     if (ezmaxinvoicing_response_compound->a_obj_ezmaxinvoicingezsignfolder) {
     list_ForEach(a_obj_ezmaxinvoicingezsignfolderListEntry, ezmaxinvoicing_response_compound->a_obj_ezmaxinvoicingezsignfolder) {
-    cJSON *itemLocal = object_convertToJSON(a_obj_ezmaxinvoicingezsignfolderListEntry->data);
+    cJSON *itemLocal = custom_ezmaxinvoicing_ezsignfolder_response_convertToJSON(a_obj_ezmaxinvoicingezsignfolderListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -460,7 +460,7 @@ cJSON *ezmaxinvoicing_response_compound_convertToJSON(ezmaxinvoicing_response_co
     listEntry_t *a_obj_ezmaxinvoicingezsigndocumentListEntry;
     if (ezmaxinvoicing_response_compound->a_obj_ezmaxinvoicingezsigndocument) {
     list_ForEach(a_obj_ezmaxinvoicingezsigndocumentListEntry, ezmaxinvoicing_response_compound->a_obj_ezmaxinvoicingezsigndocument) {
-    cJSON *itemLocal = object_convertToJSON(a_obj_ezmaxinvoicingezsigndocumentListEntry->data);
+    cJSON *itemLocal = custom_ezmaxinvoicing_ezsigndocument_response_convertToJSON(a_obj_ezmaxinvoicingezsigndocumentListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -814,7 +814,7 @@ ezmaxinvoicing_response_compound_t *ezmaxinvoicing_response_compound_parseFromJS
         if(!cJSON_IsObject(a_obj_ezmaxinvoicingezsignfolder_local_nonprimitive)){
             goto end;
         }
-        object_t *a_obj_ezmaxinvoicingezsignfolderItem = object_parseFromJSON(a_obj_ezmaxinvoicingezsignfolder_local_nonprimitive);
+        custom_ezmaxinvoicing_ezsignfolder_response_t *a_obj_ezmaxinvoicingezsignfolderItem = custom_ezmaxinvoicing_ezsignfolder_response_parseFromJSON(a_obj_ezmaxinvoicingezsignfolder_local_nonprimitive);
 
         list_addElement(a_obj_ezmaxinvoicingezsignfolderList, a_obj_ezmaxinvoicingezsignfolderItem);
     }
@@ -838,7 +838,7 @@ ezmaxinvoicing_response_compound_t *ezmaxinvoicing_response_compound_parseFromJS
         if(!cJSON_IsObject(a_obj_ezmaxinvoicingezsigndocument_local_nonprimitive)){
             goto end;
         }
-        object_t *a_obj_ezmaxinvoicingezsigndocumentItem = object_parseFromJSON(a_obj_ezmaxinvoicingezsigndocument_local_nonprimitive);
+        custom_ezmaxinvoicing_ezsigndocument_response_t *a_obj_ezmaxinvoicingezsigndocumentItem = custom_ezmaxinvoicing_ezsigndocument_response_parseFromJSON(a_obj_ezmaxinvoicingezsigndocument_local_nonprimitive);
 
         list_addElement(a_obj_ezmaxinvoicingezsigndocumentList, a_obj_ezmaxinvoicingezsigndocumentItem);
     }
@@ -935,7 +935,7 @@ end:
     if (a_obj_ezmaxinvoicingezsignfolderList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezmaxinvoicingezsignfolderList) {
-            object_free(listEntry->data);
+            custom_ezmaxinvoicing_ezsignfolder_response_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_ezmaxinvoicingezsignfolderList);
@@ -944,7 +944,7 @@ end:
     if (a_obj_ezmaxinvoicingezsigndocumentList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezmaxinvoicingezsigndocumentList) {
-            object_free(listEntry->data);
+            custom_ezmaxinvoicing_ezsigndocument_response_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_ezmaxinvoicingezsigndocumentList);

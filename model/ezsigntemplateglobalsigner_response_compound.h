@@ -15,7 +15,6 @@
 
 typedef struct ezsigntemplateglobalsigner_response_compound_t ezsigntemplateglobalsigner_response_compound_t;
 
-#include "ezsigntemplateglobalsigner_response.h"
 
 
 

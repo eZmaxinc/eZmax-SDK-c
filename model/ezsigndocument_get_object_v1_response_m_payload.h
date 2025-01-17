@@ -18,7 +18,6 @@ typedef struct ezsigndocument_get_object_v1_response_m_payload_t ezsigndocument_
 #include "common_audit.h"
 #include "computed_e_ezsigndocument_steptype.h"
 #include "custom_ezsignfoldersignerassociationstatus_response.h"
-#include "ezsigndocument_response_compound.h"
 #include "ezsigndocumentdependency_response.h"
 #include "field_e_ezsigndocument_step.h"
 

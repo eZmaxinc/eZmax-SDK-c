@@ -80,7 +80,7 @@ void
 //
 // 
 //
-common_response_t* ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentEditObjectV1(apiClient_t *apiClient, int *pkiEzdoctemplatedocumentID, ezdoctemplatedocument_edit_object_v1_request_t *ezdoctemplatedocument_edit_object_v1_request);
+ezdoctemplatedocument_edit_object_v1_response_t* ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentEditObjectV1(apiClient_t *apiClient, int *pkiEzdoctemplatedocumentID, ezdoctemplatedocument_edit_object_v1_request_t *ezdoctemplatedocument_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -92,7 +92,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezdoctemplatedocument_edit_object_v1_response_t](ezdoctemplatedocument_edit_object_v1_response.md) *
 
 
 ### Authorization
@@ -214,7 +214,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentPatchObjectV1(apiClient_t *apiClient, int *pkiEzdoctemplatedocumentID, ezdoctemplatedocument_patch_object_v1_request_t *ezdoctemplatedocument_patch_object_v1_request);
+ezdoctemplatedocument_patch_object_v1_response_t* ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentPatchObjectV1(apiClient_t *apiClient, int *pkiEzdoctemplatedocumentID, ezdoctemplatedocument_patch_object_v1_request_t *ezdoctemplatedocument_patch_object_v1_request);
 ```
 
 ### Parameters
@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezdoctemplatedocument_patch_object_v1_response_t](ezdoctemplatedocument_patch_object_v1_response.md) *
 
 
 ### Authorization

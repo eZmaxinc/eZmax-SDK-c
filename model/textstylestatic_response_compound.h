@@ -15,7 +15,6 @@
 
 typedef struct textstylestatic_response_compound_t textstylestatic_response_compound_t;
 
-#include "textstylestatic_response.h"
 
 
 

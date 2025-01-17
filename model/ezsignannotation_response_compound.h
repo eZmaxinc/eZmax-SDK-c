@@ -17,7 +17,6 @@ typedef struct ezsignannotation_response_compound_t ezsignannotation_response_co
 
 #include "enum_horizontalalignment.h"
 #include "enum_verticalalignment.h"
-#include "ezsignannotation_response.h"
 #include "field_e_ezsignannotation_type.h"
 #include "textstylestatic_response_compound.h"
 

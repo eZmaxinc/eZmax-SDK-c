@@ -15,7 +15,6 @@
 
 typedef struct ezsigntemplate_get_list_v1_response_m_payload_t ezsigntemplate_get_list_v1_response_m_payload_t;
 
-#include "common_get_list_v1_response_m_payload.h"
 #include "ezsigntemplate_list_element.h"
 
 

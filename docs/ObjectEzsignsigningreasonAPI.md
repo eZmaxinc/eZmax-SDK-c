@@ -48,7 +48,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectEzsignsigningreasonAPI_ezsignsigningreasonEditObjectV1(apiClient_t *apiClient, int *pkiEzsignsigningreasonID, ezsignsigningreason_edit_object_v1_request_t *ezsignsigningreason_edit_object_v1_request);
+ezsignsigningreason_edit_object_v1_response_t* ObjectEzsignsigningreasonAPI_ezsignsigningreasonEditObjectV1(apiClient_t *apiClient, int *pkiEzsignsigningreasonID, ezsignsigningreason_edit_object_v1_request_t *ezsignsigningreason_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsignsigningreason_edit_object_v1_response_t](ezsignsigningreason_edit_object_v1_response.md) *
 
 
 ### Authorization

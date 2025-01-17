@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **obj_ezsignfolder** | [**ezsignfolder_request_t**](ezsignfolder_request.md) \* |  | [optional] 
-**obj_ezsignfolder_compound** | [**ezsignfolder_request_t**](ezsignfolder_request.md) \* | An Ezsignfolder Object and children to create a complete structure | [optional] 
+**obj_ezsignfolder_compound** | [**ezsignfolder_request_compound_t**](ezsignfolder_request_compound.md) \* |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

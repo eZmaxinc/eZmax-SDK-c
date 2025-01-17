@@ -16,7 +16,6 @@
 typedef struct supply_response_compound_t supply_response_compound_t;
 
 #include "multilingual_supply_description.h"
-#include "supply_response.h"
 
 
 

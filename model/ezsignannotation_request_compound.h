@@ -17,7 +17,6 @@ typedef struct ezsignannotation_request_compound_t ezsignannotation_request_comp
 
 #include "enum_horizontalalignment.h"
 #include "enum_verticalalignment.h"
-#include "ezsignannotation_request.h"
 #include "field_e_ezsignannotation_type.h"
 #include "textstylestatic_request_compound.h"
 

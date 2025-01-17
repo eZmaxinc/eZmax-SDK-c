@@ -15,7 +15,6 @@
 
 typedef struct usergroupexternal_request_compound_t usergroupexternal_request_compound_t;
 
-#include "usergroupexternal_request.h"
 
 
 

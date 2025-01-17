@@ -15,24 +15,23 @@
 
 typedef struct webhook_user_user_created_t webhook_user_user_created_t;
 
-#include "attempt_response.h"
-#include "common_webhook.h"
+#include "attempt_response_compound.h"
 #include "custom_webhook_response.h"
-#include "user_response.h"
+#include "user_response_compound.h"
 
 
 
 typedef struct webhook_user_user_created_t {
     struct custom_webhook_response_t *obj_webhook; //model
     list_t *a_obj_attempt; //nonprimitive container
-    struct user_response_t *obj_user; //model
+    struct user_response_compound_t *obj_user; //model
 
 } webhook_user_user_created_t;
 
 webhook_user_user_created_t *webhook_user_user_created_create(
     custom_webhook_response_t *obj_webhook,
     list_t *a_obj_attempt,
-    user_response_t *obj_user
+    user_response_compound_t *obj_user
 );
 
 void webhook_user_user_created_free(webhook_user_user_created_t *webhook_user_user_created);

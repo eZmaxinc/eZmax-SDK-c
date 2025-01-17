@@ -16,7 +16,7 @@
 #include "../model/user_response.h"
 user_response_t* instantiate_user_response(int include_optional);
 
-#include "test_email_response.c"
+#include "test_email_response_compound.c"
 #include "test_phone_response_compound.c"
 #include "test_phone_response_compound.c"
 #include "test_common_audit.c"
@@ -40,7 +40,7 @@ user_response_t* instantiate_user_response(int include_optional) {
       2,
       "English",
        // false, not to have infinite recursion
-      instantiate_email_response(0),
+      instantiate_email_response_compound(0),
       1,
       "Default",
        // false, not to have infinite recursion

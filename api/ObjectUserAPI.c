@@ -515,7 +515,7 @@ end:
 //
 // 
 //
-common_response_t*
+user_edit_object_v1_response_t*
 ObjectUserAPI_userEditObjectV1(apiClient_t *apiClient, int *pkiUserID, user_edit_object_v1_request_t *user_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -581,7 +581,7 @@ ObjectUserAPI_userEditObjectV1(apiClient_t *apiClient, int *pkiUserID, user_edit
     //}
     //nonprimitive not container
     cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
+    user_edit_object_v1_response_t *elementToReturn = user_edit_object_v1_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
     cJSON_Delete(ObjectUserAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -1677,7 +1677,7 @@ end:
 //
 // Send the password reset email
 //
-common_response_t*
+user_send_password_reset_v1_response_t*
 ObjectUserAPI_userSendPasswordResetV1(apiClient_t *apiClient, int *pkiUserID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -1743,7 +1743,7 @@ ObjectUserAPI_userSendPasswordResetV1(apiClient_t *apiClient, int *pkiUserID, ob
     //}
     //nonprimitive not container
     cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
+    user_send_password_reset_v1_response_t *elementToReturn = user_send_password_reset_v1_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
     cJSON_Delete(ObjectUserAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

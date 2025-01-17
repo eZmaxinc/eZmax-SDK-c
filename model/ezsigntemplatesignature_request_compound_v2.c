@@ -306,14 +306,14 @@ void ezsigntemplatesignature_request_compound_v2_free(ezsigntemplatesignature_re
     }
     if (ezsigntemplatesignature_request_compound_v2->a_obj_ezsigntemplatesignaturecustomdate) {
         list_ForEach(listEntry, ezsigntemplatesignature_request_compound_v2->a_obj_ezsigntemplatesignaturecustomdate) {
-            ezsigntemplatesignaturecustomdate_request_v2_free(listEntry->data);
+            ezsigntemplatesignaturecustomdate_request_compound_v2_free(listEntry->data);
         }
         list_freeList(ezsigntemplatesignature_request_compound_v2->a_obj_ezsigntemplatesignaturecustomdate);
         ezsigntemplatesignature_request_compound_v2->a_obj_ezsigntemplatesignaturecustomdate = NULL;
     }
     if (ezsigntemplatesignature_request_compound_v2->a_obj_ezsigntemplateelementdependency) {
         list_ForEach(listEntry, ezsigntemplatesignature_request_compound_v2->a_obj_ezsigntemplateelementdependency) {
-            ezsigntemplateelementdependency_request_free(listEntry->data);
+            ezsigntemplateelementdependency_request_compound_free(listEntry->data);
         }
         list_freeList(ezsigntemplatesignature_request_compound_v2->a_obj_ezsigntemplateelementdependency);
         ezsigntemplatesignature_request_compound_v2->a_obj_ezsigntemplateelementdependency = NULL;
@@ -648,7 +648,7 @@ cJSON *ezsigntemplatesignature_request_compound_v2_convertToJSON(ezsigntemplates
     listEntry_t *a_obj_ezsigntemplatesignaturecustomdateListEntry;
     if (ezsigntemplatesignature_request_compound_v2->a_obj_ezsigntemplatesignaturecustomdate) {
     list_ForEach(a_obj_ezsigntemplatesignaturecustomdateListEntry, ezsigntemplatesignature_request_compound_v2->a_obj_ezsigntemplatesignaturecustomdate) {
-    cJSON *itemLocal = ezsigntemplatesignaturecustomdate_request_v2_convertToJSON(a_obj_ezsigntemplatesignaturecustomdateListEntry->data);
+    cJSON *itemLocal = ezsigntemplatesignaturecustomdate_request_compound_v2_convertToJSON(a_obj_ezsigntemplatesignaturecustomdateListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -668,7 +668,7 @@ cJSON *ezsigntemplatesignature_request_compound_v2_convertToJSON(ezsigntemplates
     listEntry_t *a_obj_ezsigntemplateelementdependencyListEntry;
     if (ezsigntemplatesignature_request_compound_v2->a_obj_ezsigntemplateelementdependency) {
     list_ForEach(a_obj_ezsigntemplateelementdependencyListEntry, ezsigntemplatesignature_request_compound_v2->a_obj_ezsigntemplateelementdependency) {
-    cJSON *itemLocal = ezsigntemplateelementdependency_request_convertToJSON(a_obj_ezsigntemplateelementdependencyListEntry->data);
+    cJSON *itemLocal = ezsigntemplateelementdependency_request_compound_convertToJSON(a_obj_ezsigntemplateelementdependencyListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -1022,7 +1022,7 @@ ezsigntemplatesignature_request_compound_v2_t *ezsigntemplatesignature_request_c
         if(!cJSON_IsObject(a_obj_ezsigntemplatesignaturecustomdate_local_nonprimitive)){
             goto end;
         }
-        ezsigntemplatesignaturecustomdate_request_v2_t *a_obj_ezsigntemplatesignaturecustomdateItem = ezsigntemplatesignaturecustomdate_request_v2_parseFromJSON(a_obj_ezsigntemplatesignaturecustomdate_local_nonprimitive);
+        ezsigntemplatesignaturecustomdate_request_compound_v2_t *a_obj_ezsigntemplatesignaturecustomdateItem = ezsigntemplatesignaturecustomdate_request_compound_v2_parseFromJSON(a_obj_ezsigntemplatesignaturecustomdate_local_nonprimitive);
 
         list_addElement(a_obj_ezsigntemplatesignaturecustomdateList, a_obj_ezsigntemplatesignaturecustomdateItem);
     }
@@ -1043,7 +1043,7 @@ ezsigntemplatesignature_request_compound_v2_t *ezsigntemplatesignature_request_c
         if(!cJSON_IsObject(a_obj_ezsigntemplateelementdependency_local_nonprimitive)){
             goto end;
         }
-        ezsigntemplateelementdependency_request_t *a_obj_ezsigntemplateelementdependencyItem = ezsigntemplateelementdependency_request_parseFromJSON(a_obj_ezsigntemplateelementdependency_local_nonprimitive);
+        ezsigntemplateelementdependency_request_compound_t *a_obj_ezsigntemplateelementdependencyItem = ezsigntemplateelementdependency_request_compound_parseFromJSON(a_obj_ezsigntemplateelementdependency_local_nonprimitive);
 
         list_addElement(a_obj_ezsigntemplateelementdependencyList, a_obj_ezsigntemplateelementdependencyItem);
     }
@@ -1129,7 +1129,7 @@ end:
     if (a_obj_ezsigntemplatesignaturecustomdateList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsigntemplatesignaturecustomdateList) {
-            ezsigntemplatesignaturecustomdate_request_v2_free(listEntry->data);
+            ezsigntemplatesignaturecustomdate_request_compound_v2_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_ezsigntemplatesignaturecustomdateList);
@@ -1138,7 +1138,7 @@ end:
     if (a_obj_ezsigntemplateelementdependencyList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsigntemplateelementdependencyList) {
-            ezsigntemplateelementdependency_request_free(listEntry->data);
+            ezsigntemplateelementdependency_request_compound_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_ezsigntemplateelementdependencyList);

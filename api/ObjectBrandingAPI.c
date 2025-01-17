@@ -336,7 +336,7 @@ end:
 //
 // 
 //
-common_response_t*
+branding_edit_object_v2_response_t*
 ObjectBrandingAPI_brandingEditObjectV2(apiClient_t *apiClient, int *pkiBrandingID, branding_edit_object_v2_request_t *branding_edit_object_v2_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -398,7 +398,7 @@ ObjectBrandingAPI_brandingEditObjectV2(apiClient_t *apiClient, int *pkiBrandingI
     //}
     //nonprimitive not container
     cJSON *ObjectBrandingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectBrandingAPIlocalVarJSON);
+    branding_edit_object_v2_response_t *elementToReturn = branding_edit_object_v2_response_parseFromJSON(ObjectBrandingAPIlocalVarJSON);
     cJSON_Delete(ObjectBrandingAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

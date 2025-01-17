@@ -16,7 +16,6 @@
 typedef struct signature_request_compound_t signature_request_compound_t;
 
 #include "field_e_signature_preference.h"
-#include "signature_request.h"
 
 // Enum  for signature_request_compound
 

@@ -5,11 +5,12 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/permission_create_object_v1_request.h"
 #include "../model/permission_create_object_v1_response.h"
+#include "../model/permission_delete_object_v1_response.h"
 #include "../model/permission_edit_object_v1_request.h"
+#include "../model/permission_edit_object_v1_response.h"
 #include "../model/permission_get_object_v2_response.h"
 
 
@@ -25,7 +26,7 @@ ObjectPermissionAPI_permissionCreateObjectV1(apiClient_t *apiClient, permission_
 //
 // 
 //
-common_response_t*
+permission_delete_object_v1_response_t*
 ObjectPermissionAPI_permissionDeleteObjectV1(apiClient_t *apiClient, int *pkiPermissionID);
 
 
@@ -33,7 +34,7 @@ ObjectPermissionAPI_permissionDeleteObjectV1(apiClient_t *apiClient, int *pkiPer
 //
 // 
 //
-common_response_t*
+permission_edit_object_v1_response_t*
 ObjectPermissionAPI_permissionEditObjectV1(apiClient_t *apiClient, int *pkiPermissionID, permission_edit_object_v1_request_t *permission_edit_object_v1_request);
 
 

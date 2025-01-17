@@ -15,7 +15,6 @@
 
 typedef struct discussionmembership_response_compound_t discussionmembership_response_compound_t;
 
-#include "discussionmembership_response.h"
 
 
 

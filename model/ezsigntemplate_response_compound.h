@@ -16,7 +16,6 @@
 typedef struct ezsigntemplate_response_compound_t ezsigntemplate_response_compound_t;
 
 #include "common_audit.h"
-#include "ezsigntemplate_response.h"
 #include "ezsigntemplatedocument_response.h"
 #include "ezsigntemplatesigner_response_compound.h"
 #include "field_e_ezsigntemplate_type.h"

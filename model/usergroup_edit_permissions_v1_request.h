@@ -15,7 +15,7 @@
 
 typedef struct usergroup_edit_permissions_v1_request_t usergroup_edit_permissions_v1_request_t;
 
-#include "permission_request.h"
+#include "permission_request_compound.h"
 
 
 

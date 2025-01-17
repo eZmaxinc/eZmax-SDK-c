@@ -98,7 +98,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsigntemplatepackagemembership_delete_object_v1_response_t*
 ObjectEzsigntemplatepackagemembershipAPI_ezsigntemplatepackagemembershipDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatepackagemembershipID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -150,7 +150,7 @@ ObjectEzsigntemplatepackagemembershipAPI_ezsigntemplatepackagemembershipDeleteOb
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigntemplatepackagemembershipAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsigntemplatepackagemembershipAPIlocalVarJSON);
+    ezsigntemplatepackagemembership_delete_object_v1_response_t *elementToReturn = ezsigntemplatepackagemembership_delete_object_v1_response_parseFromJSON(ObjectEzsigntemplatepackagemembershipAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsigntemplatepackagemembershipAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

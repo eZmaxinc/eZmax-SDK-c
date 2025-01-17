@@ -17,7 +17,6 @@ typedef struct usergroup_response_compound_t usergroup_response_compound_t;
 
 #include "email_request.h"
 #include "multilingual_usergroup_name.h"
-#include "usergroup_response.h"
 
 
 

@@ -15,7 +15,6 @@
 
 typedef struct ezdoctemplatedocument_get_list_v1_response_m_payload_t ezdoctemplatedocument_get_list_v1_response_m_payload_t;
 
-#include "common_get_list_v1_response_m_payload.h"
 #include "ezdoctemplatedocument_list_element.h"
 
 

@@ -15,7 +15,7 @@
 
 typedef struct custom_ezsigndocument_request_t custom_ezsigndocument_request_t;
 
-#include "ezsigndocumentdependency_request.h"
+#include "ezsigndocumentdependency_request_compound.h"
 
 
 

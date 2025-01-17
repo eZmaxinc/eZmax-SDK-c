@@ -15,7 +15,6 @@
 
 typedef struct customer_response_compound_t customer_response_compound_t;
 
-#include "customer_response.h"
 #include "field_e_customer_marketingcorrespondence.h"
 #include "field_e_customer_type.h"
 

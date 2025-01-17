@@ -15,7 +15,6 @@
 
 typedef struct ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_t ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_t;
 
-#include "common_response.h"
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload.h"
 #include "ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload.h"

@@ -16,7 +16,6 @@
 typedef struct modulegroup_response_compound_t modulegroup_response_compound_t;
 
 #include "module_response_compound.h"
-#include "modulegroup_response.h"
 
 
 

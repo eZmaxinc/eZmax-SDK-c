@@ -15,7 +15,6 @@
 
 typedef struct billingentityinternal_response_compound_t billingentityinternal_response_compound_t;
 
-#include "billingentityinternal_response.h"
 #include "billingentityinternalproduct_response_compound.h"
 #include "multilingual_billingentityinternal_description.h"
 

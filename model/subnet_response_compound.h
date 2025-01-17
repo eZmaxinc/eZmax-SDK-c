@@ -16,7 +16,6 @@
 typedef struct subnet_response_compound_t subnet_response_compound_t;
 
 #include "multilingual_subnet_description.h"
-#include "subnet_response.h"
 
 
 

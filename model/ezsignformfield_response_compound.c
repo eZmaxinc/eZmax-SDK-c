@@ -111,7 +111,7 @@ void ezsignformfield_response_compound_free(ezsignformfield_response_compound_t 
     }
     if (ezsignformfield_response_compound->a_obj_ezsignelementdependency) {
         list_ForEach(listEntry, ezsignformfield_response_compound->a_obj_ezsignelementdependency) {
-            ezsignelementdependency_response_free(listEntry->data);
+            ezsignelementdependency_response_compound_free(listEntry->data);
         }
         list_freeList(ezsignformfield_response_compound->a_obj_ezsignelementdependency);
         ezsignformfield_response_compound->a_obj_ezsignelementdependency = NULL;
@@ -266,7 +266,7 @@ cJSON *ezsignformfield_response_compound_convertToJSON(ezsignformfield_response_
     listEntry_t *a_obj_ezsignelementdependencyListEntry;
     if (ezsignformfield_response_compound->a_obj_ezsignelementdependency) {
     list_ForEach(a_obj_ezsignelementdependencyListEntry, ezsignformfield_response_compound->a_obj_ezsignelementdependency) {
-    cJSON *itemLocal = ezsignelementdependency_response_convertToJSON(a_obj_ezsignelementdependencyListEntry->data);
+    cJSON *itemLocal = ezsignelementdependency_response_compound_convertToJSON(a_obj_ezsignelementdependencyListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -452,7 +452,7 @@ ezsignformfield_response_compound_t *ezsignformfield_response_compound_parseFrom
         if(!cJSON_IsObject(a_obj_ezsignelementdependency_local_nonprimitive)){
             goto end;
         }
-        ezsignelementdependency_response_t *a_obj_ezsignelementdependencyItem = ezsignelementdependency_response_parseFromJSON(a_obj_ezsignelementdependency_local_nonprimitive);
+        ezsignelementdependency_response_compound_t *a_obj_ezsignelementdependencyItem = ezsignelementdependency_response_compound_parseFromJSON(a_obj_ezsignelementdependency_local_nonprimitive);
 
         list_addElement(a_obj_ezsignelementdependencyList, a_obj_ezsignelementdependencyItem);
     }
@@ -494,7 +494,7 @@ end:
     if (a_obj_ezsignelementdependencyList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsignelementdependencyList) {
-            ezsignelementdependency_response_free(listEntry->data);
+            ezsignelementdependency_response_compound_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_ezsignelementdependencyList);

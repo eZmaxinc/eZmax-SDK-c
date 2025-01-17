@@ -15,7 +15,6 @@
 
 typedef struct cors_response_compound_t cors_response_compound_t;
 
-#include "cors_response.h"
 
 
 

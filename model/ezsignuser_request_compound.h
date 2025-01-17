@@ -16,7 +16,6 @@
 typedef struct ezsignuser_request_compound_t ezsignuser_request_compound_t;
 
 #include "contact_request_compound_v2.h"
-#include "ezsignuser_request.h"
 
 
 

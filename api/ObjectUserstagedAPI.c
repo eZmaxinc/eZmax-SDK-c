@@ -208,7 +208,7 @@ end:
 //
 // 
 //
-common_response_t*
+userstaged_delete_object_v1_response_t*
 ObjectUserstagedAPI_userstagedDeleteObjectV1(apiClient_t *apiClient, int *pkiUserstagedID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -260,7 +260,7 @@ ObjectUserstagedAPI_userstagedDeleteObjectV1(apiClient_t *apiClient, int *pkiUse
     //}
     //nonprimitive not container
     cJSON *ObjectUserstagedAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectUserstagedAPIlocalVarJSON);
+    userstaged_delete_object_v1_response_t *elementToReturn = userstaged_delete_object_v1_response_parseFromJSON(ObjectUserstagedAPIlocalVarJSON);
     cJSON_Delete(ObjectUserstagedAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -552,7 +552,7 @@ end:
 //
 // 
 //
-common_response_t*
+userstaged_map_v1_response_t*
 ObjectUserstagedAPI_userstagedMapV1(apiClient_t *apiClient, int *pkiUserstagedID, userstaged_map_v1_request_t *userstaged_map_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -618,7 +618,7 @@ ObjectUserstagedAPI_userstagedMapV1(apiClient_t *apiClient, int *pkiUserstagedID
     //}
     //nonprimitive not container
     cJSON *ObjectUserstagedAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectUserstagedAPIlocalVarJSON);
+    userstaged_map_v1_response_t *elementToReturn = userstaged_map_v1_response_parseFromJSON(ObjectUserstagedAPIlocalVarJSON);
     cJSON_Delete(ObjectUserstagedAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

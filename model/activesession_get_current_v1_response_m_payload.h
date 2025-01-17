@@ -15,7 +15,6 @@
 
 typedef struct activesession_get_current_v1_response_m_payload_t activesession_get_current_v1_response_m_payload_t;
 
-#include "activesession_response_compound.h"
 #include "activesession_response_compound_apikey.h"
 #include "activesession_response_compound_user.h"
 #include "field_e_activesession_ezsign.h"

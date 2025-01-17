@@ -15,7 +15,6 @@
 
 typedef struct contact_request_compound_v2_t contact_request_compound_v2_t;
 
-#include "contact_request_v2.h"
 #include "contactinformations_request_compound_v2.h"
 #include "field_e_contact_type.h"
 

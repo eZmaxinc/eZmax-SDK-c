@@ -15,7 +15,6 @@
 
 typedef struct discussionmessage_request_compound_t discussionmessage_request_compound_t;
 
-#include "discussionmessage_request.h"
 
 
 

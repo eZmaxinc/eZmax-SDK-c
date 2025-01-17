@@ -63,7 +63,7 @@ void common_response_error_ezsignform_validation_free(common_response_error_ezsi
     }
     if (common_response_error_ezsignform_validation->a_obj_ezsignformfielderror) {
         list_ForEach(listEntry, common_response_error_ezsignform_validation->a_obj_ezsignformfielderror) {
-            object_free(listEntry->data);
+            custom_ezsignformfielderror_response_free(listEntry->data);
         }
         list_freeList(common_response_error_ezsignform_validation->a_obj_ezsignformfielderror);
         common_response_error_ezsignform_validation->a_obj_ezsignformfielderror = NULL;
@@ -126,7 +126,7 @@ cJSON *common_response_error_ezsignform_validation_convertToJSON(common_response
     listEntry_t *a_obj_ezsignformfielderrorListEntry;
     if (common_response_error_ezsignform_validation->a_obj_ezsignformfielderror) {
     list_ForEach(a_obj_ezsignformfielderrorListEntry, common_response_error_ezsignform_validation->a_obj_ezsignformfielderror) {
-    cJSON *itemLocal = object_convertToJSON(a_obj_ezsignformfielderrorListEntry->data);
+    cJSON *itemLocal = custom_ezsignformfielderror_response_convertToJSON(a_obj_ezsignformfielderrorListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -214,7 +214,7 @@ common_response_error_ezsignform_validation_t *common_response_error_ezsignform_
         if(!cJSON_IsObject(a_obj_ezsignformfielderror_local_nonprimitive)){
             goto end;
         }
-        object_t *a_obj_ezsignformfielderrorItem = object_parseFromJSON(a_obj_ezsignformfielderror_local_nonprimitive);
+        custom_ezsignformfielderror_response_t *a_obj_ezsignformfielderrorItem = custom_ezsignformfielderror_response_parseFromJSON(a_obj_ezsignformfielderror_local_nonprimitive);
 
         list_addElement(a_obj_ezsignformfielderrorList, a_obj_ezsignformfielderrorItem);
     }
@@ -245,7 +245,7 @@ end:
     if (a_obj_ezsignformfielderrorList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsignformfielderrorList) {
-            object_free(listEntry->data);
+            custom_ezsignformfielderror_response_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_ezsignformfielderrorList);

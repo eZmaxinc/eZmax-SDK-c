@@ -15,7 +15,7 @@
 
 typedef struct ezsigndocument_get_temporary_proof_v1_response_m_payload_t ezsigndocument_get_temporary_proof_v1_response_m_payload_t;
 
-#include "ezsigndocumentlog_response.h"
+#include "ezsigndocumentlog_response_compound.h"
 
 
 

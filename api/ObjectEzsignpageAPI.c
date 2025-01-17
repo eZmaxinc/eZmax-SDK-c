@@ -14,7 +14,7 @@
 
 // Consult an Ezsignpage
 //
-common_response_t*
+ezsignpage_consult_v1_response_t*
 ObjectEzsignpageAPI_ezsignpageConsultV1(apiClient_t *apiClient, int *pkiEzsignpageID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -80,7 +80,7 @@ ObjectEzsignpageAPI_ezsignpageConsultV1(apiClient_t *apiClient, int *pkiEzsignpa
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignpageAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignpageAPIlocalVarJSON);
+    ezsignpage_consult_v1_response_t *elementToReturn = ezsignpage_consult_v1_response_parseFromJSON(ObjectEzsignpageAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignpageAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

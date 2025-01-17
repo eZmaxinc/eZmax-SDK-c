@@ -336,7 +336,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignsigningreason_edit_object_v1_response_t*
 ObjectEzsignsigningreasonAPI_ezsignsigningreasonEditObjectV1(apiClient_t *apiClient, int *pkiEzsignsigningreasonID, ezsignsigningreason_edit_object_v1_request_t *ezsignsigningreason_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -402,7 +402,7 @@ ObjectEzsignsigningreasonAPI_ezsignsigningreasonEditObjectV1(apiClient_t *apiCli
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignsigningreasonAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignsigningreasonAPIlocalVarJSON);
+    ezsignsigningreason_edit_object_v1_response_t *elementToReturn = ezsignsigningreason_edit_object_v1_response_parseFromJSON(ObjectEzsignsigningreasonAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignsigningreasonAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

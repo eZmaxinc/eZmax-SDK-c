@@ -16,7 +16,6 @@
 typedef struct branding_create_object_v2_response_t branding_create_object_v2_response_t;
 
 #include "branding_create_object_v2_response_m_payload.h"
-#include "common_response.h"
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload.h"
 

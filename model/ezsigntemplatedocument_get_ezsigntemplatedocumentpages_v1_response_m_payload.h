@@ -15,7 +15,7 @@
 
 typedef struct ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response_m_payload_t ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response_m_payload_t;
 
-#include "ezsigntemplatedocumentpage_response.h"
+#include "ezsigntemplatedocumentpage_response_compound.h"
 
 
 

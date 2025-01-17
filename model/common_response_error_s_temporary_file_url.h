@@ -15,7 +15,6 @@
 
 typedef struct common_response_error_s_temporary_file_url_t common_response_error_s_temporary_file_url_t;
 
-#include "common_response_error.h"
 #include "field_e_error_code.h"
 
 // Enum  for common_response_error_s_temporary_file_url

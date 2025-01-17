@@ -51,7 +51,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectUsergroupexternalAPI_usergroupexternalDeleteObjectV1(apiClient_t *apiClient, int *pkiUsergroupexternalID);
+usergroupexternal_delete_object_v1_response_t* ObjectUsergroupexternalAPI_usergroupexternalDeleteObjectV1(apiClient_t *apiClient, int *pkiUsergroupexternalID);
 ```
 
 ### Parameters
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[usergroupexternal_delete_object_v1_response_t](usergroupexternal_delete_object_v1_response.md) *
 
 
 ### Authorization
@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectUsergroupexternalAPI_usergroupexternalEditObjectV1(apiClient_t *apiClient, int *pkiUsergroupexternalID, usergroupexternal_edit_object_v1_request_t *usergroupexternal_edit_object_v1_request);
+usergroupexternal_edit_object_v1_response_t* ObjectUsergroupexternalAPI_usergroupexternalEditObjectV1(apiClient_t *apiClient, int *pkiUsergroupexternalID, usergroupexternal_edit_object_v1_request_t *usergroupexternal_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -94,7 +94,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[usergroupexternal_edit_object_v1_response_t](usergroupexternal_edit_object_v1_response.md) *
 
 
 ### Authorization

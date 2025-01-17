@@ -18,7 +18,6 @@ typedef struct ezsignfolder_get_object_v1_response_m_payload_t ezsignfolder_get_
 #include "common_audit.h"
 #include "custom_ezsignfoldertype_response.h"
 #include "custom_timezone_with_code_response.h"
-#include "ezsignfolder_response_compound.h"
 #include "field_e_ezsignfolder_completion.h"
 #include "field_e_ezsignfolder_sendreminderfrequency.h"
 #include "field_e_ezsignfolder_step.h"

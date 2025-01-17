@@ -17,7 +17,6 @@ typedef struct franchisereferalincome_request_compound_t franchisereferalincome_
 
 #include "address_request.h"
 #include "contact_request_compound.h"
-#include "franchisereferalincome_request.h"
 
 
 

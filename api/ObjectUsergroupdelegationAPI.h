@@ -5,11 +5,12 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/usergroupdelegation_create_object_v1_request.h"
 #include "../model/usergroupdelegation_create_object_v1_response.h"
+#include "../model/usergroupdelegation_delete_object_v1_response.h"
 #include "../model/usergroupdelegation_edit_object_v1_request.h"
+#include "../model/usergroupdelegation_edit_object_v1_response.h"
 #include "../model/usergroupdelegation_get_object_v2_response.h"
 
 
@@ -25,7 +26,7 @@ ObjectUsergroupdelegationAPI_usergroupdelegationCreateObjectV1(apiClient_t *apiC
 //
 // 
 //
-common_response_t*
+usergroupdelegation_delete_object_v1_response_t*
 ObjectUsergroupdelegationAPI_usergroupdelegationDeleteObjectV1(apiClient_t *apiClient, int *pkiUsergroupdelegationID);
 
 
@@ -33,7 +34,7 @@ ObjectUsergroupdelegationAPI_usergroupdelegationDeleteObjectV1(apiClient_t *apiC
 //
 // 
 //
-common_response_t*
+usergroupdelegation_edit_object_v1_response_t*
 ObjectUsergroupdelegationAPI_usergroupdelegationEditObjectV1(apiClient_t *apiClient, int *pkiUsergroupdelegationID, usergroupdelegation_edit_object_v1_request_t *usergroupdelegation_edit_object_v1_request);
 
 

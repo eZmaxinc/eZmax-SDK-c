@@ -15,7 +15,6 @@
 
 typedef struct ezsigntemplatesigner_response_compound_t ezsigntemplatesigner_response_compound_t;
 
-#include "ezsigntemplatesigner_response.h"
 #include "field_e_ezsigntemplatesigner_mapping.h"
 
 // Enum  for ezsigntemplatesigner_response_compound

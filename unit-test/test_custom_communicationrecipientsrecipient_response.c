@@ -17,7 +17,7 @@
 custom_communicationrecipientsrecipient_response_t* instantiate_custom_communicationrecipientsrecipient_response(int include_optional);
 
 #include "test_custom_contact_name_response.c"
-#include "test_email_response.c"
+#include "test_email_response_compound.c"
 #include "test_phone_response_compound.c"
 #include "test_phone_response_compound.c"
 
@@ -45,7 +45,7 @@ custom_communicationrecipientsrecipient_response_t* instantiate_custom_communica
        // false, not to have infinite recursion
       instantiate_custom_contact_name_response(0),
        // false, not to have infinite recursion
-      instantiate_email_response(0),
+      instantiate_email_response_compound(0),
        // false, not to have infinite recursion
       instantiate_phone_response_compound(0),
        // false, not to have infinite recursion

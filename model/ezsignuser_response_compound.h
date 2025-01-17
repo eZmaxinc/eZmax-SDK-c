@@ -17,7 +17,6 @@ typedef struct ezsignuser_response_compound_t ezsignuser_response_compound_t;
 
 #include "common_audit.h"
 #include "contact_response_compound.h"
-#include "ezsignuser_response.h"
 
 
 

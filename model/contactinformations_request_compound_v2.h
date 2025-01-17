@@ -15,12 +15,11 @@
 
 typedef struct contactinformations_request_compound_v2_t contactinformations_request_compound_v2_t;
 
-#include "address_request.h"
-#include "contactinformations_request_v2.h"
-#include "email_request.h"
+#include "address_request_compound.h"
+#include "email_request_compound.h"
 #include "field_e_contactinformations_type.h"
-#include "phone_request.h"
-#include "website_request.h"
+#include "phone_request_compound.h"
+#include "website_request_compound.h"
 
 // Enum  for contactinformations_request_compound_v2
 

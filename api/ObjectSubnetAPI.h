@@ -5,11 +5,12 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/subnet_create_object_v1_request.h"
 #include "../model/subnet_create_object_v1_response.h"
+#include "../model/subnet_delete_object_v1_response.h"
 #include "../model/subnet_edit_object_v1_request.h"
+#include "../model/subnet_edit_object_v1_response.h"
 #include "../model/subnet_get_object_v2_response.h"
 
 
@@ -25,7 +26,7 @@ ObjectSubnetAPI_subnetCreateObjectV1(apiClient_t *apiClient, subnet_create_objec
 //
 // 
 //
-common_response_t*
+subnet_delete_object_v1_response_t*
 ObjectSubnetAPI_subnetDeleteObjectV1(apiClient_t *apiClient, int *pkiSubnetID);
 
 
@@ -33,7 +34,7 @@ ObjectSubnetAPI_subnetDeleteObjectV1(apiClient_t *apiClient, int *pkiSubnetID);
 //
 // 
 //
-common_response_t*
+subnet_edit_object_v1_response_t*
 ObjectSubnetAPI_subnetEditObjectV1(apiClient_t *apiClient, int *pkiSubnetID, subnet_edit_object_v1_request_t *subnet_edit_object_v1_request);
 
 

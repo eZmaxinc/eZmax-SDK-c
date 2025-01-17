@@ -15,11 +15,10 @@
 
 typedef struct ezsigntemplateformfieldgroup_response_compound_t ezsigntemplateformfieldgroup_response_compound_t;
 
-#include "custom_dropdown_element_response.h"
+#include "custom_dropdown_element_response_compound.h"
 #include "enum_textvalidation.h"
 #include "ezsigntemplateformfield_response_compound.h"
-#include "ezsigntemplateformfieldgroup_response.h"
-#include "ezsigntemplateformfieldgroupsigner_response.h"
+#include "ezsigntemplateformfieldgroupsigner_response_compound.h"
 #include "field_e_ezsigntemplateformfieldgroup_signerrequirement.h"
 #include "field_e_ezsigntemplateformfieldgroup_tooltipposition.h"
 #include "field_e_ezsigntemplateformfieldgroup_type.h"

@@ -15,7 +15,7 @@
 
 typedef struct custom_ezsignformfielderror_response_t custom_ezsignformfielderror_response_t;
 
-#include "object.h"
+#include "custom_ezsignformfielderrortest_response.h"
 
 
 

@@ -15,7 +15,6 @@
 
 typedef struct ezsignsigner_response_compound_t ezsignsigner_response_compound_t;
 
-#include "ezsignsigner_response.h"
 #include "ezsignsigner_response_compound_contact.h"
 
 

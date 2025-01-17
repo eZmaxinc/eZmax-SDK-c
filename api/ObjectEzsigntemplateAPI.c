@@ -433,7 +433,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsigntemplate_delete_object_v1_response_t*
 ObjectEzsigntemplateAPI_ezsigntemplateDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplateID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -485,7 +485,7 @@ ObjectEzsigntemplateAPI_ezsigntemplateDeleteObjectV1(apiClient_t *apiClient, int
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigntemplateAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsigntemplateAPIlocalVarJSON);
+    ezsigntemplate_delete_object_v1_response_t *elementToReturn = ezsigntemplate_delete_object_v1_response_parseFromJSON(ObjectEzsigntemplateAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsigntemplateAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -515,7 +515,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsigntemplate_edit_object_v3_response_t*
 ObjectEzsigntemplateAPI_ezsigntemplateEditObjectV3(apiClient_t *apiClient, int *pkiEzsigntemplateID, ezsigntemplate_edit_object_v3_request_t *ezsigntemplate_edit_object_v3_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -581,7 +581,7 @@ ObjectEzsigntemplateAPI_ezsigntemplateEditObjectV3(apiClient_t *apiClient, int *
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigntemplateAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsigntemplateAPIlocalVarJSON);
+    ezsigntemplate_edit_object_v3_response_t *elementToReturn = ezsigntemplate_edit_object_v3_response_parseFromJSON(ObjectEzsigntemplateAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsigntemplateAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

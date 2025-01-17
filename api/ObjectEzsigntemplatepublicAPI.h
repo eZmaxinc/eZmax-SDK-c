@@ -5,13 +5,13 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/ezsigntemplatepublic_create_ezsignfolder_v1_request.h"
 #include "../model/ezsigntemplatepublic_create_ezsignfolder_v1_response.h"
 #include "../model/ezsigntemplatepublic_create_object_v1_request.h"
 #include "../model/ezsigntemplatepublic_create_object_v1_response.h"
 #include "../model/ezsigntemplatepublic_edit_object_v1_request.h"
+#include "../model/ezsigntemplatepublic_edit_object_v1_response.h"
 #include "../model/ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request.h"
 #include "../model/ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response.h"
 #include "../model/ezsigntemplatepublic_get_forms_data_v1_response.h"
@@ -49,7 +49,7 @@ ObjectEzsigntemplatepublicAPI_ezsigntemplatepublicCreateObjectV1(apiClient_t *ap
 //
 // 
 //
-common_response_t*
+ezsigntemplatepublic_edit_object_v1_response_t*
 ObjectEzsigntemplatepublicAPI_ezsigntemplatepublicEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatepublicID, ezsigntemplatepublic_edit_object_v1_request_t *ezsigntemplatepublic_edit_object_v1_request);
 
 

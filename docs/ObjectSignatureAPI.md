@@ -50,7 +50,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectSignatureAPI_signatureDeleteObjectV1(apiClient_t *apiClient, int *pkiSignatureID);
+signature_delete_object_v1_response_t* ObjectSignatureAPI_signatureDeleteObjectV1(apiClient_t *apiClient, int *pkiSignatureID);
 ```
 
 ### Parameters
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[signature_delete_object_v1_response_t](signature_delete_object_v1_response.md) *
 
 
 ### Authorization
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectSignatureAPI_signatureEditObjectV1(apiClient_t *apiClient, int *pkiSignatureID, signature_edit_object_v1_request_t *signature_edit_object_v1_request);
+signature_edit_object_v1_response_t* ObjectSignatureAPI_signatureEditObjectV1(apiClient_t *apiClient, int *pkiSignatureID, signature_edit_object_v1_request_t *signature_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[signature_edit_object_v1_response_t](signature_edit_object_v1_response.md) *
 
 
 ### Authorization

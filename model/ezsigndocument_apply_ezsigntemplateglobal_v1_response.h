@@ -15,7 +15,6 @@
 
 typedef struct ezsigndocument_apply_ezsigntemplateglobal_v1_response_t ezsigndocument_apply_ezsigntemplateglobal_v1_response_t;
 
-#include "common_response.h"
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload.h"
 #include "common_response_warning.h"

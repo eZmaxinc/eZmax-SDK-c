@@ -25,7 +25,7 @@ void webhook_get_history_v1_response_m_payload_free(webhook_get_history_v1_respo
     listEntry_t *listEntry;
     if (webhook_get_history_v1_response_m_payload->a_obj_webhooklog) {
         list_ForEach(listEntry, webhook_get_history_v1_response_m_payload->a_obj_webhooklog) {
-            object_free(listEntry->data);
+            custom_webhooklog_response_free(listEntry->data);
         }
         list_freeList(webhook_get_history_v1_response_m_payload->a_obj_webhooklog);
         webhook_get_history_v1_response_m_payload->a_obj_webhooklog = NULL;
@@ -48,7 +48,7 @@ cJSON *webhook_get_history_v1_response_m_payload_convertToJSON(webhook_get_histo
     listEntry_t *a_obj_webhooklogListEntry;
     if (webhook_get_history_v1_response_m_payload->a_obj_webhooklog) {
     list_ForEach(a_obj_webhooklogListEntry, webhook_get_history_v1_response_m_payload->a_obj_webhooklog) {
-    cJSON *itemLocal = object_convertToJSON(a_obj_webhooklogListEntry->data);
+    cJSON *itemLocal = custom_webhooklog_response_convertToJSON(a_obj_webhooklogListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -90,7 +90,7 @@ webhook_get_history_v1_response_m_payload_t *webhook_get_history_v1_response_m_p
         if(!cJSON_IsObject(a_obj_webhooklog_local_nonprimitive)){
             goto end;
         }
-        object_t *a_obj_webhooklogItem = object_parseFromJSON(a_obj_webhooklog_local_nonprimitive);
+        custom_webhooklog_response_t *a_obj_webhooklogItem = custom_webhooklog_response_parseFromJSON(a_obj_webhooklog_local_nonprimitive);
 
         list_addElement(a_obj_webhooklogList, a_obj_webhooklogItem);
     }
@@ -105,7 +105,7 @@ end:
     if (a_obj_webhooklogList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_webhooklogList) {
-            object_free(listEntry->data);
+            custom_webhooklog_response_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_webhooklogList);

@@ -15,7 +15,6 @@
 
 typedef struct attachmentlog_response_compound_t attachmentlog_response_compound_t;
 
-#include "attachmentlog_response.h"
 #include "field_e_attachmentlog_type.h"
 
 // Enum  for attachmentlog_response_compound
