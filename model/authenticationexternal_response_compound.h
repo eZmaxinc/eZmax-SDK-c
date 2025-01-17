@@ -15,6 +15,7 @@
 
 typedef struct authenticationexternal_response_compound_t authenticationexternal_response_compound_t;
 
+#include "authenticationexternal_response.h"
 #include "common_audit.h"
 #include "field_e_authenticationexternal_type.h"
 

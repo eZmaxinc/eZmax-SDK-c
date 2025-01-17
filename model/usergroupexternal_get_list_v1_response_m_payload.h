@@ -15,6 +15,7 @@
 
 typedef struct usergroupexternal_get_list_v1_response_m_payload_t usergroupexternal_get_list_v1_response_m_payload_t;
 
+#include "common_get_list_v1_response_m_payload.h"
 #include "usergroupexternal_list_element.h"
 
 

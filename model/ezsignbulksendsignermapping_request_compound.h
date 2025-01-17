@@ -15,6 +15,7 @@
 
 typedef struct ezsignbulksendsignermapping_request_compound_t ezsignbulksendsignermapping_request_compound_t;
 
+#include "ezsignbulksendsignermapping_request.h"
 
 
 

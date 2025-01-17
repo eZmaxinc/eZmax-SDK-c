@@ -16,6 +16,7 @@
 typedef struct ezsigndiscussion_request_compound_t ezsigndiscussion_request_compound_t;
 
 #include "discussion_request.h"
+#include "ezsigndiscussion_request.h"
 
 
 

@@ -15,6 +15,7 @@
 
 typedef struct ezsignfoldersignerassociation_reassign_v1_response_t ezsignfoldersignerassociation_reassign_v1_response_t;
 
+#include "common_response.h"
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload.h"
 

@@ -15,6 +15,7 @@
 
 typedef struct ezsignfoldersignerassociation_create_object_v2_response_t ezsignfoldersignerassociation_create_object_v2_response_t;
 
+#include "common_response.h"
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload.h"
 #include "ezsignfoldersignerassociation_create_object_v2_response_m_payload.h"

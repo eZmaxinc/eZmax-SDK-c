@@ -15,6 +15,7 @@
 
 typedef struct ezsigntemplatedocument_response_compound_t ezsigntemplatedocument_response_compound_t;
 
+#include "ezsigntemplatedocument_response.h"
 
 
 

@@ -18,6 +18,7 @@ typedef struct ezsigntemplateformfieldgroup_request_compound_t ezsigntemplatefor
 #include "custom_dropdown_element_request.h"
 #include "enum_textvalidation.h"
 #include "ezsigntemplateformfield_request_compound.h"
+#include "ezsigntemplateformfieldgroup_request.h"
 #include "ezsigntemplateformfieldgroupsigner_request.h"
 #include "field_e_ezsigntemplateformfieldgroup_signerrequirement.h"
 #include "field_e_ezsigntemplateformfieldgroup_tooltipposition.h"

@@ -15,6 +15,7 @@
 
 typedef struct common_response_error_wrong_franchiseoffice_t common_response_error_wrong_franchiseoffice_t;
 
+#include "common_response_error.h"
 #include "field_e_error_code.h"
 
 // Enum  for common_response_error_wrong_franchiseoffice

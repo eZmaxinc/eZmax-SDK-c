@@ -15,6 +15,7 @@
 
 typedef struct ezmaxinvoicing_get_provisional_v1_response_t ezmaxinvoicing_get_provisional_v1_response_t;
 
+#include "common_response.h"
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload.h"
 #include "ezmaxinvoicing_response_compound.h"

@@ -20,6 +20,7 @@ typedef struct user_request_compound_v2_t user_request_compound_v2_t;
 #include "field_e_user_logintype.h"
 #include "field_e_user_type.h"
 #include "phone_request_v2.h"
+#include "user_request_v2.h"
 
 // Enum  for user_request_compound_v2
 

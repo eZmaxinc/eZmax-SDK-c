@@ -16,6 +16,7 @@
 typedef struct apikey_edit_permissions_v1_response_t apikey_edit_permissions_v1_response_t;
 
 #include "apikey_edit_permissions_v1_response_m_payload.h"
+#include "common_response.h"
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload.h"
 

@@ -15,6 +15,7 @@
 
 typedef struct signature_response_compound_t signature_response_compound_t;
 
+#include "signature_response.h"
 
 
 

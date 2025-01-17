@@ -15,6 +15,7 @@
 
 typedef struct ezsignsignergroup_request_compound_t ezsignsignergroup_request_compound_t;
 
+#include "ezsignsignergroup_request.h"
 #include "multilingual_ezsignsignergroup_description.h"
 
 

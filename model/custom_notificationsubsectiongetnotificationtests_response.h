@@ -17,6 +17,7 @@ typedef struct custom_notificationsubsectiongetnotificationtests_response_t cust
 
 #include "custom_notificationtestgetnotificationtests_response.h"
 #include "multilingual_notificationsubsection_name.h"
+#include "notificationsubsection_response.h"
 
 
 

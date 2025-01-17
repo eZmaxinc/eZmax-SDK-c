@@ -15,6 +15,7 @@
 
 typedef struct webhookheader_request_compound_t webhookheader_request_compound_t;
 
+#include "webhookheader_request.h"
 
 
 

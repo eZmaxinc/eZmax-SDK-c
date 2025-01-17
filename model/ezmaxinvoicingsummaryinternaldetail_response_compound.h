@@ -15,6 +15,7 @@
 
 typedef struct ezmaxinvoicingsummaryinternaldetail_response_compound_t ezmaxinvoicingsummaryinternaldetail_response_compound_t;
 
+#include "ezmaxinvoicingsummaryinternaldetail_response.h"
 
 
 

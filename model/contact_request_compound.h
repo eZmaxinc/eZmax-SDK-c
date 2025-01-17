@@ -15,6 +15,7 @@
 
 typedef struct contact_request_compound_t contact_request_compound_t;
 
+#include "contact_request.h"
 #include "contactinformations_request_compound.h"
 
 

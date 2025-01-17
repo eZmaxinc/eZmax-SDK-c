@@ -15,6 +15,7 @@
 
 typedef struct country_get_autocomplete_v2_response_t country_get_autocomplete_v2_response_t;
 
+#include "common_response.h"
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload.h"
 #include "country_get_autocomplete_v2_response_m_payload.h"

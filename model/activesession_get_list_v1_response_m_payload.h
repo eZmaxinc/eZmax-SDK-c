@@ -16,6 +16,7 @@
 typedef struct activesession_get_list_v1_response_m_payload_t activesession_get_list_v1_response_m_payload_t;
 
 #include "activesession_list_element.h"
+#include "common_get_list_v1_response_m_payload.h"
 
 
 

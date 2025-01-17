@@ -16,6 +16,7 @@
 typedef struct domain_response_compound_t domain_response_compound_t;
 
 #include "common_audit.h"
+#include "domain_response.h"
 #include "object.h"
 
 

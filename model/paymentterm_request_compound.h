@@ -17,6 +17,7 @@ typedef struct paymentterm_request_compound_t paymentterm_request_compound_t;
 
 #include "field_e_paymentterm_type.h"
 #include "multilingual_paymentterm_description.h"
+#include "paymentterm_request.h"
 
 // Enum  for paymentterm_request_compound
 

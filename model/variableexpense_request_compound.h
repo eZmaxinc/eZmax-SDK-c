@@ -17,6 +17,7 @@ typedef struct variableexpense_request_compound_t variableexpense_request_compou
 
 #include "field_e_variableexpense_taxable.h"
 #include "multilingual_variableexpense_description.h"
+#include "variableexpense_request.h"
 
 // Enum  for variableexpense_request_compound
 

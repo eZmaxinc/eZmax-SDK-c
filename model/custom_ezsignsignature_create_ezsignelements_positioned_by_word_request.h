@@ -18,6 +18,7 @@ typedef struct custom_ezsignsignature_create_ezsignelements_positioned_by_word_r
 #include "custom_create_ezsignelements_positioned_by_word_request.h"
 #include "enum_textvalidation.h"
 #include "ezsignelementdependency_request.h"
+#include "ezsignsignature_request_compound.h"
 #include "ezsignsignaturecustomdate_request.h"
 #include "field_e_ezsignsignature_attachmentnamesource.h"
 #include "field_e_ezsignsignature_consultationtrigger.h"

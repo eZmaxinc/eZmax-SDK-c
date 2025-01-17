@@ -15,6 +15,7 @@
 
 typedef struct usergroupdelegation_response_compound_t usergroupdelegation_response_compound_t;
 
+#include "usergroupdelegation_response.h"
 
 
 

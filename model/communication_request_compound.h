@@ -15,6 +15,7 @@
 
 typedef struct communication_request_compound_t communication_request_compound_t;
 
+#include "communication_request.h"
 #include "communicationexternalrecipient_request_compound.h"
 #include "communicationrecipient_request_compound.h"
 #include "communicationreference_request.h"

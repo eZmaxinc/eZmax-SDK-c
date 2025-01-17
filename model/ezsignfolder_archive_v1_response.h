@@ -15,6 +15,7 @@
 
 typedef struct ezsignfolder_archive_v1_response_t ezsignfolder_archive_v1_response_t;
 
+#include "common_response.h"
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload.h"
 

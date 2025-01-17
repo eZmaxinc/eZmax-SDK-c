@@ -15,6 +15,7 @@
 
 typedef struct ezsigntemplatepackagesignermembership_response_compound_t ezsigntemplatepackagesignermembership_response_compound_t;
 
+#include "ezsigntemplatepackagesignermembership_response.h"
 
 
 

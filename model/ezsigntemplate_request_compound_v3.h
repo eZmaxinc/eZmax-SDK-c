@@ -15,6 +15,7 @@
 
 typedef struct ezsigntemplate_request_compound_v3_t ezsigntemplate_request_compound_v3_t;
 
+#include "ezsigntemplate_request_v3.h"
 #include "field_e_ezsigntemplate_recognition.h"
 #include "field_e_ezsigntemplate_type.h"
 

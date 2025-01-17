@@ -16,6 +16,7 @@
 typedef struct supply_request_compound_t supply_request_compound_t;
 
 #include "multilingual_supply_description.h"
+#include "supply_request.h"
 
 
 

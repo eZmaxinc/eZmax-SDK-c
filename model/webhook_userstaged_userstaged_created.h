@@ -16,6 +16,7 @@
 typedef struct webhook_userstaged_userstaged_created_t webhook_userstaged_userstaged_created_t;
 
 #include "attempt_response.h"
+#include "common_webhook.h"
 #include "custom_webhook_response.h"
 #include "userstaged_response.h"
 

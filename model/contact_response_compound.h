@@ -15,6 +15,7 @@
 
 typedef struct contact_response_compound_t contact_response_compound_t;
 
+#include "contact_response.h"
 #include "contactinformations_response_compound.h"
 #include "field_e_contact_type.h"
 

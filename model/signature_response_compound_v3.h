@@ -16,6 +16,7 @@
 typedef struct signature_response_compound_v3_t signature_response_compound_v3_t;
 
 #include "field_e_signature_preference.h"
+#include "signature_response_v3.h"
 
 // Enum  for signature_response_compound_v3
 

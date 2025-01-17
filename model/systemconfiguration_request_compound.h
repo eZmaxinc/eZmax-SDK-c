@@ -20,6 +20,7 @@ typedef struct systemconfiguration_request_compound_t systemconfiguration_reques
 #include "field_e_systemconfiguration_language1.h"
 #include "field_e_systemconfiguration_language2.h"
 #include "field_e_systemconfiguration_newexternaluseraction.h"
+#include "systemconfiguration_request.h"
 
 // Enum  for systemconfiguration_request_compound
 

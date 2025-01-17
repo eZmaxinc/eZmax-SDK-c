@@ -19,6 +19,7 @@ typedef struct ezsignsignature_response_compound_v3_t ezsignsignature_response_c
 #include "custom_creditcardtransaction_response.h"
 #include "enum_textvalidation.h"
 #include "ezsignelementdependency_response.h"
+#include "ezsignsignature_response.h"
 #include "ezsignsignaturecustomdate_response_v2.h"
 #include "field_e_ezsignsignature_attachmentnamesource.h"
 #include "field_e_ezsignsignature_consultationtrigger.h"

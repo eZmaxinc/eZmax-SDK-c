@@ -16,6 +16,7 @@
 typedef struct discussion_response_compound_t discussion_response_compound_t;
 
 #include "custom_discussionconfiguration_response.h"
+#include "discussion_response.h"
 #include "discussionmembership_response_compound.h"
 #include "discussionmessage_response_compound.h"
 

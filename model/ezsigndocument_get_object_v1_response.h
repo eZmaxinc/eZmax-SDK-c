@@ -15,6 +15,7 @@
 
 typedef struct ezsigndocument_get_object_v1_response_t ezsigndocument_get_object_v1_response_t;
 
+#include "common_response.h"
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload.h"
 #include "ezsigndocument_response_compound.h"

@@ -15,6 +15,7 @@
 
 typedef struct custom_attachment_response_t custom_attachment_response_t;
 
+#include "attachment_response.h"
 #include "attachment_response_compound.h"
 #include "common_audit.h"
 #include "field_e_attachment_documenttype.h"

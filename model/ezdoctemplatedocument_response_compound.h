@@ -15,6 +15,7 @@
 
 typedef struct ezdoctemplatedocument_response_compound_t ezdoctemplatedocument_response_compound_t;
 
+#include "ezdoctemplatedocument_response.h"
 #include "field_e_ezdoctemplatedocument_privacylevel.h"
 #include "multilingual_ezdoctemplatedocument_name.h"
 

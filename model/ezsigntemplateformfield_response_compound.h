@@ -17,6 +17,7 @@ typedef struct ezsigntemplateformfield_response_compound_t ezsigntemplateformfie
 
 #include "enum_horizontalalignment.h"
 #include "ezsigntemplateelementdependency_response.h"
+#include "ezsigntemplateformfield_response.h"
 #include "field_e_ezsigntemplateformfield_dependencyrequirement.h"
 #include "field_e_ezsigntemplateformfield_positioning.h"
 #include "field_e_ezsigntemplateformfield_positioningoccurence.h"

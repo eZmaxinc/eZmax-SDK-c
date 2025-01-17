@@ -15,6 +15,7 @@
 
 typedef struct usergroupdelegation_request_compound_t usergroupdelegation_request_compound_t;
 
+#include "usergroupdelegation_request.h"
 
 
 

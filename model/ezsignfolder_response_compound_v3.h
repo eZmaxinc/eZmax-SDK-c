@@ -19,6 +19,7 @@ typedef struct ezsignfolder_response_compound_v3_t ezsignfolder_response_compoun
 #include "computed_e_ezsignfolder_access.h"
 #include "custom_ezsignfoldertype_response.h"
 #include "custom_timezone_with_code_response.h"
+#include "ezsignfolder_response_v3.h"
 #include "field_e_ezsignfolder_completion.h"
 #include "field_e_ezsignfolder_documentdependency.h"
 #include "field_e_ezsignfolder_step.h"

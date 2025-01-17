@@ -15,6 +15,7 @@
 
 typedef struct branding_response_compound_v3_t branding_response_compound_v3_t;
 
+#include "branding_response_v3.h"
 #include "field_e_branding_alignlogo.h"
 #include "field_e_branding_logo.h"
 #include "multilingual_branding_description.h"

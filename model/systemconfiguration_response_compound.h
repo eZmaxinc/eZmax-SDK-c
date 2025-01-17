@@ -21,6 +21,7 @@ typedef struct systemconfiguration_response_compound_t systemconfiguration_respo
 #include "field_e_systemconfiguration_language1.h"
 #include "field_e_systemconfiguration_language2.h"
 #include "field_e_systemconfiguration_newexternaluseraction.h"
+#include "systemconfiguration_response.h"
 
 // Enum  for systemconfiguration_response_compound
 

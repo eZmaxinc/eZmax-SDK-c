@@ -15,6 +15,7 @@
 
 typedef struct communicationexternalrecipient_request_compound_t communicationexternalrecipient_request_compound_t;
 
+#include "communicationexternalrecipient_request.h"
 #include "field_e_communicationexternalrecipient_type.h"
 
 // Enum  for communicationexternalrecipient_request_compound

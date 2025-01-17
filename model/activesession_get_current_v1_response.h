@@ -16,6 +16,7 @@
 typedef struct activesession_get_current_v1_response_t activesession_get_current_v1_response_t;
 
 #include "activesession_response_compound.h"
+#include "common_response.h"
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload.h"
 

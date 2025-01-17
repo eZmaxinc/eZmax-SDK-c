@@ -17,6 +17,7 @@ typedef struct variableexpense_response_compound_t variableexpense_response_comp
 
 #include "field_e_variableexpense_taxable.h"
 #include "multilingual_variableexpense_description.h"
+#include "variableexpense_response.h"
 
 // Enum  for variableexpense_response_compound
 

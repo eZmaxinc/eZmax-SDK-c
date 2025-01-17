@@ -17,6 +17,7 @@ typedef struct ezsigntemplatesignature_request_compound_v2_t ezsigntemplatesigna
 
 #include "enum_textvalidation.h"
 #include "ezsigntemplateelementdependency_request.h"
+#include "ezsigntemplatesignature_request.h"
 #include "ezsigntemplatesignaturecustomdate_request_v2.h"
 #include "field_e_ezsigntemplatesignature_attachmentnamesource.h"
 #include "field_e_ezsigntemplatesignature_consultationtrigger.h"

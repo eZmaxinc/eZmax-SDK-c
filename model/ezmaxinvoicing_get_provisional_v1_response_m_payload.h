@@ -17,6 +17,7 @@ typedef struct ezmaxinvoicing_get_provisional_v1_response_m_payload_t ezmaxinvoi
 
 #include "common_audit.h"
 #include "custom_ezmaxpricing_response.h"
+#include "ezmaxinvoicing_response_compound.h"
 #include "ezmaxinvoicingagent_response_compound.h"
 #include "ezmaxinvoicingcontract_response_compound.h"
 #include "ezmaxinvoicingsummaryexternal_response_compound.h"

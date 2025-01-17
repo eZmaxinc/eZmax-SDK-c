@@ -15,6 +15,7 @@
 
 typedef struct billingentityinternalproduct_request_compound_t billingentityinternalproduct_request_compound_t;
 
+#include "billingentityinternalproduct_request.h"
 
 
 

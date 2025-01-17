@@ -17,6 +17,7 @@ typedef struct usergroup_request_compound_t usergroup_request_compound_t;
 
 #include "email_request.h"
 #include "multilingual_usergroup_name.h"
+#include "usergroup_request.h"
 
 
 

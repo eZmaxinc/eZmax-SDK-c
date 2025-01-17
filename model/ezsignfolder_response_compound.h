@@ -18,6 +18,7 @@ typedef struct ezsignfolder_response_compound_t ezsignfolder_response_compound_t
 #include "common_audit.h"
 #include "custom_ezsignfoldertype_response.h"
 #include "custom_timezone_with_code_response.h"
+#include "ezsignfolder_response.h"
 #include "field_e_ezsignfolder_completion.h"
 #include "field_e_ezsignfolder_sendreminderfrequency.h"
 #include "field_e_ezsignfolder_step.h"

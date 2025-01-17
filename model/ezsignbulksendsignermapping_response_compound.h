@@ -15,6 +15,7 @@
 
 typedef struct ezsignbulksendsignermapping_response_compound_t ezsignbulksendsignermapping_response_compound_t;
 
+#include "ezsignbulksendsignermapping_response.h"
 
 
 

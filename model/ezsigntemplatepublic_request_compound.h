@@ -15,6 +15,7 @@
 
 typedef struct ezsigntemplatepublic_request_compound_t ezsigntemplatepublic_request_compound_t;
 
+#include "ezsigntemplatepublic_request.h"
 #include "field_e_ezsigntemplatepublic_limittype.h"
 
 // Enum  for ezsigntemplatepublic_request_compound

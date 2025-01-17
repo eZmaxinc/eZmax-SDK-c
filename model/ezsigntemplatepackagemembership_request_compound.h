@@ -15,6 +15,7 @@
 
 typedef struct ezsigntemplatepackagemembership_request_compound_t ezsigntemplatepackagemembership_request_compound_t;
 
+#include "ezsigntemplatepackagemembership_request.h"
 
 
 

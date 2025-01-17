@@ -15,6 +15,7 @@
 
 typedef struct ezsignbulksendsignermapping_get_object_v2_response_t ezsignbulksendsignermapping_get_object_v2_response_t;
 
+#include "common_response.h"
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload.h"
 #include "ezsignbulksendsignermapping_get_object_v2_response_m_payload.h"

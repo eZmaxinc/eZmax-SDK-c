@@ -16,6 +16,7 @@
 typedef struct ezmaxinvoicingcontract_response_compound_t ezmaxinvoicingcontract_response_compound_t;
 
 #include "common_audit.h"
+#include "ezmaxinvoicingcontract_response.h"
 #include "field_e_ezmaxinvoicingcontract_paymenttype.h"
 
 // Enum  for ezmaxinvoicingcontract_response_compound

@@ -16,6 +16,7 @@
 typedef struct webhook_user_user_created_t webhook_user_user_created_t;
 
 #include "attempt_response.h"
+#include "common_webhook.h"
 #include "custom_webhook_response.h"
 #include "user_response.h"
 

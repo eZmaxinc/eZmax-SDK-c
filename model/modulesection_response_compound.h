@@ -15,6 +15,7 @@
 
 typedef struct modulesection_response_compound_t modulesection_response_compound_t;
 
+#include "modulesection_response.h"
 #include "permission_response.h"
 
 

@@ -18,6 +18,7 @@ typedef struct paymentterm_response_compound_t paymentterm_response_compound_t;
 #include "common_audit.h"
 #include "field_e_paymentterm_type.h"
 #include "multilingual_paymentterm_description.h"
+#include "paymentterm_response.h"
 
 // Enum  for paymentterm_response_compound
 

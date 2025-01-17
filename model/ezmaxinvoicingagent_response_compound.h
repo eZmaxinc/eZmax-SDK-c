@@ -16,6 +16,7 @@
 typedef struct ezmaxinvoicingagent_response_compound_t ezmaxinvoicingagent_response_compound_t;
 
 #include "custom_contact_name_response.h"
+#include "ezmaxinvoicingagent_response.h"
 #include "field_e_ezmaxinvoicingagent_variationezmax.h"
 #include "field_e_ezmaxinvoicingagent_variationezsign.h"
 

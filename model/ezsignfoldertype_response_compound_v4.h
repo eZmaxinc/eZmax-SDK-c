@@ -16,6 +16,7 @@
 typedef struct ezsignfoldertype_response_compound_v4_t ezsignfoldertype_response_compound_v4_t;
 
 #include "common_audit.h"
+#include "ezsignfoldertype_response_v4.h"
 #include "field_e_ezsignfoldertype_completion.h"
 #include "field_e_ezsignfoldertype_disposal.h"
 #include "field_e_ezsignfoldertype_documentdependency.h"

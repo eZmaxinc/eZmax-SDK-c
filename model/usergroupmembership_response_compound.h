@@ -15,6 +15,7 @@
 
 typedef struct usergroupmembership_response_compound_t usergroupmembership_response_compound_t;
 
+#include "usergroupmembership_response.h"
 
 
 

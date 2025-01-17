@@ -15,6 +15,7 @@
 
 typedef struct branding_request_compound_v2_t branding_request_compound_v2_t;
 
+#include "branding_request_v2.h"
 #include "field_e_branding_alignlogo.h"
 #include "field_e_branding_logo.h"
 #include "multilingual_branding_description.h"

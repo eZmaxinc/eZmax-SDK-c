@@ -16,6 +16,7 @@
 typedef struct discussionmessage_response_compound_t discussionmessage_response_compound_t;
 
 #include "common_audit.h"
+#include "discussionmessage_response.h"
 #include "field_e_discussionmessage_status.h"
 
 // Enum  for discussionmessage_response_compound

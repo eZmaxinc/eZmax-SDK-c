@@ -15,6 +15,7 @@
 
 typedef struct communicationattachment_request_compound_t communicationattachment_request_compound_t;
 
+#include "communicationattachment_request.h"
 
 
 

@@ -16,6 +16,7 @@
 typedef struct contactinformations_response_compound_t contactinformations_response_compound_t;
 
 #include "address_response.h"
+#include "contactinformations_response.h"
 #include "email_response.h"
 #include "field_e_contactinformations_type.h"
 #include "phone_response_compound.h"

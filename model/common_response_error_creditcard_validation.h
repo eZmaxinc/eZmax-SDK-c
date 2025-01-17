@@ -15,6 +15,7 @@
 
 typedef struct common_response_error_creditcard_validation_t common_response_error_creditcard_validation_t;
 
+#include "common_response_error.h"
 #include "custom_creditcardtransactionresponse_response.h"
 #include "field_e_error_code.h"
 

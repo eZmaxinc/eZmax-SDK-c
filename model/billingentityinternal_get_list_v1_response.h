@@ -16,6 +16,7 @@
 typedef struct billingentityinternal_get_list_v1_response_t billingentityinternal_get_list_v1_response_t;
 
 #include "billingentityinternal_get_list_v1_response_m_payload.h"
+#include "common_response_get_list.h"
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload_get_list.h"
 

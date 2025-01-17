@@ -15,6 +15,7 @@
 
 typedef struct ezsignsignergroup_response_compound_t ezsignsignergroup_response_compound_t;
 
+#include "ezsignsignergroup_response.h"
 #include "multilingual_ezsignsignergroup_description.h"
 
 

@@ -15,6 +15,7 @@
 
 typedef struct permission_create_object_v1_response_t permission_create_object_v1_response_t;
 
+#include "common_response.h"
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload.h"
 #include "permission_create_object_v1_response_m_payload.h"

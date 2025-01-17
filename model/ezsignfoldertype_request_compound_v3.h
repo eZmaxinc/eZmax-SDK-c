@@ -15,6 +15,7 @@
 
 typedef struct ezsignfoldertype_request_compound_v3_t ezsignfoldertype_request_compound_v3_t;
 
+#include "ezsignfoldertype_request_v3.h"
 #include "field_e_ezsignfoldertype_completion.h"
 #include "field_e_ezsignfoldertype_disposal.h"
 #include "field_e_ezsignfoldertype_documentdependency.h"

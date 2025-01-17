@@ -17,6 +17,7 @@ typedef struct ezsigntemplatepublic_response_compound_t ezsigntemplatepublic_res
 
 #include "common_audit.h"
 #include "custom_ezsignfolderezsigntemplatepublic_response.h"
+#include "ezsigntemplatepublic_response.h"
 #include "field_e_ezsigntemplatepublic_limittype.h"
 
 // Enum  for ezsigntemplatepublic_response_compound

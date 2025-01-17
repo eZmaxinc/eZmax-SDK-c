@@ -16,6 +16,7 @@
 typedef struct webhook_ezsign_folder_disposed_t webhook_ezsign_folder_disposed_t;
 
 #include "attempt_response.h"
+#include "common_webhook.h"
 #include "custom_webhook_response.h"
 #include "ezsignfolder_response.h"
 

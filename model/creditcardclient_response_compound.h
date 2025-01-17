@@ -15,6 +15,7 @@
 
 typedef struct creditcardclient_response_compound_t creditcardclient_response_compound_t;
 
+#include "creditcardclient_response.h"
 #include "creditcarddetail_response_compound.h"
 
 

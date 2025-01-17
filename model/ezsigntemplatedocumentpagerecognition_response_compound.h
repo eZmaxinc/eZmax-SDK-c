@@ -15,6 +15,7 @@
 
 typedef struct ezsigntemplatedocumentpagerecognition_response_compound_t ezsigntemplatedocumentpagerecognition_response_compound_t;
 
+#include "ezsigntemplatedocumentpagerecognition_response.h"
 #include "field_e_ezsigntemplatedocumentpagerecognition_operator.h"
 #include "field_e_ezsigntemplatedocumentpagerecognition_section.h"
 

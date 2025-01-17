@@ -18,6 +18,7 @@ typedef struct versionhistory_response_compound_t versionhistory_response_compou
 #include "field_e_versionhistory_type.h"
 #include "field_e_versionhistory_usertype.h"
 #include "multilingual_versionhistory_detail.h"
+#include "versionhistory_response.h"
 
 // Enum  for versionhistory_response_compound
 
