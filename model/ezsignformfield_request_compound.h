@@ -16,7 +16,7 @@
 typedef struct ezsignformfield_request_compound_t ezsignformfield_request_compound_t;
 
 #include "enum_horizontalalignment.h"
-#include "ezsignelementdependency_request.h"
+#include "ezsignelementdependency_request_compound.h"
 #include "field_e_ezsignformfield_dependencyrequirement.h"
 #include "textstylestatic_request_compound.h"
 

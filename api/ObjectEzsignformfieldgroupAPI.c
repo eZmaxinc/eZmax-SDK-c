@@ -94,7 +94,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignformfieldgroup_delete_object_v1_response_t*
 ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignformfieldgroupID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -150,7 +150,7 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupDeleteObjectV1(apiClient_t *ap
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignformfieldgroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignformfieldgroupAPIlocalVarJSON);
+    ezsignformfieldgroup_delete_object_v1_response_t *elementToReturn = ezsignformfieldgroup_delete_object_v1_response_parseFromJSON(ObjectEzsignformfieldgroupAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignformfieldgroupAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -180,7 +180,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignformfieldgroup_edit_object_v1_response_t*
 ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupEditObjectV1(apiClient_t *apiClient, int *pkiEzsignformfieldgroupID, ezsignformfieldgroup_edit_object_v1_request_t *ezsignformfieldgroup_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -246,7 +246,7 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupEditObjectV1(apiClient_t *apiC
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignformfieldgroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignformfieldgroupAPIlocalVarJSON);
+    ezsignformfieldgroup_edit_object_v1_response_t *elementToReturn = ezsignformfieldgroup_edit_object_v1_response_parseFromJSON(ObjectEzsignformfieldgroupAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignformfieldgroupAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

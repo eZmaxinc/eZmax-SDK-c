@@ -16,10 +16,10 @@
 typedef struct custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request_t custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request_t;
 
 #include "custom_create_ezsignelements_positioned_by_word_request.h"
-#include "custom_dropdown_element_request.h"
+#include "custom_dropdown_element_request_compound.h"
 #include "enum_textvalidation.h"
 #include "ezsignformfield_request_compound.h"
-#include "ezsignformfieldgroupsigner_request.h"
+#include "ezsignformfieldgroupsigner_request_compound.h"
 #include "field_e_ezsignformfieldgroup_signerrequirement.h"
 #include "field_e_ezsignformfieldgroup_tooltipposition.h"
 #include "field_e_ezsignformfieldgroup_type.h"

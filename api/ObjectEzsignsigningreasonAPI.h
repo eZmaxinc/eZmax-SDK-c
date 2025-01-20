@@ -5,11 +5,11 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/ezsignsigningreason_create_object_v1_request.h"
 #include "../model/ezsignsigningreason_create_object_v1_response.h"
 #include "../model/ezsignsigningreason_edit_object_v1_request.h"
+#include "../model/ezsignsigningreason_edit_object_v1_response.h"
 #include "../model/ezsignsigningreason_get_autocomplete_v2_response.h"
 #include "../model/ezsignsigningreason_get_list_v1_response.h"
 #include "../model/ezsignsigningreason_get_object_v2_response.h"
@@ -43,7 +43,7 @@ ObjectEzsignsigningreasonAPI_ezsignsigningreasonCreateObjectV1(apiClient_t *apiC
 //
 // 
 //
-common_response_t*
+ezsignsigningreason_edit_object_v1_response_t*
 ObjectEzsignsigningreasonAPI_ezsignsigningreasonEditObjectV1(apiClient_t *apiClient, int *pkiEzsignsigningreasonID, ezsignsigningreason_edit_object_v1_request_t *ezsignsigningreason_edit_object_v1_request);
 
 

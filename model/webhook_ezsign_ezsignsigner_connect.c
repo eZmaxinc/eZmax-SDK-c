@@ -35,7 +35,7 @@ void webhook_ezsign_ezsignsigner_connect_free(webhook_ezsign_ezsignsigner_connec
     }
     if (webhook_ezsign_ezsignsigner_connect->a_obj_attempt) {
         list_ForEach(listEntry, webhook_ezsign_ezsignsigner_connect->a_obj_attempt) {
-            attempt_response_free(listEntry->data);
+            attempt_response_compound_free(listEntry->data);
         }
         list_freeList(webhook_ezsign_ezsignsigner_connect->a_obj_attempt);
         webhook_ezsign_ezsignsigner_connect->a_obj_attempt = NULL;
@@ -80,7 +80,7 @@ cJSON *webhook_ezsign_ezsignsigner_connect_convertToJSON(webhook_ezsign_ezsignsi
     listEntry_t *a_obj_attemptListEntry;
     if (webhook_ezsign_ezsignsigner_connect->a_obj_attempt) {
     list_ForEach(a_obj_attemptListEntry, webhook_ezsign_ezsignsigner_connect->a_obj_attempt) {
-    cJSON *itemLocal = attempt_response_convertToJSON(a_obj_attemptListEntry->data);
+    cJSON *itemLocal = attempt_response_compound_convertToJSON(a_obj_attemptListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -167,7 +167,7 @@ webhook_ezsign_ezsignsigner_connect_t *webhook_ezsign_ezsignsigner_connect_parse
         if(!cJSON_IsObject(a_obj_attempt_local_nonprimitive)){
             goto end;
         }
-        attempt_response_t *a_obj_attemptItem = attempt_response_parseFromJSON(a_obj_attempt_local_nonprimitive);
+        attempt_response_compound_t *a_obj_attemptItem = attempt_response_compound_parseFromJSON(a_obj_attempt_local_nonprimitive);
 
         list_addElement(a_obj_attemptList, a_obj_attemptItem);
     }
@@ -204,7 +204,7 @@ end:
     if (a_obj_attemptList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_attemptList) {
-            attempt_response_free(listEntry->data);
+            attempt_response_compound_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_attemptList);

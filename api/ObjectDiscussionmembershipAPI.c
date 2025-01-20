@@ -94,7 +94,7 @@ end:
 //
 // 
 //
-common_response_t*
+discussionmembership_delete_object_v1_response_t*
 ObjectDiscussionmembershipAPI_discussionmembershipDeleteObjectV1(apiClient_t *apiClient, int *pkiDiscussionmembershipID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -146,7 +146,7 @@ ObjectDiscussionmembershipAPI_discussionmembershipDeleteObjectV1(apiClient_t *ap
     //}
     //nonprimitive not container
     cJSON *ObjectDiscussionmembershipAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectDiscussionmembershipAPIlocalVarJSON);
+    discussionmembership_delete_object_v1_response_t *elementToReturn = discussionmembership_delete_object_v1_response_parseFromJSON(ObjectDiscussionmembershipAPIlocalVarJSON);
     cJSON_Delete(ObjectDiscussionmembershipAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

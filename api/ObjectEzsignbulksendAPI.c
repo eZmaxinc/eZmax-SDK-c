@@ -340,7 +340,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignbulksend_delete_object_v1_response_t*
 ObjectEzsignbulksendAPI_ezsignbulksendDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksendID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -396,7 +396,7 @@ ObjectEzsignbulksendAPI_ezsignbulksendDeleteObjectV1(apiClient_t *apiClient, int
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignbulksendAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignbulksendAPIlocalVarJSON);
+    ezsignbulksend_delete_object_v1_response_t *elementToReturn = ezsignbulksend_delete_object_v1_response_parseFromJSON(ObjectEzsignbulksendAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignbulksendAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -426,7 +426,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignbulksend_edit_object_v1_response_t*
 ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_edit_object_v1_request_t *ezsignbulksend_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -492,7 +492,7 @@ ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV1(apiClient_t *apiClient, int *
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignbulksendAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignbulksendAPIlocalVarJSON);
+    ezsignbulksend_edit_object_v1_response_t *elementToReturn = ezsignbulksend_edit_object_v1_response_parseFromJSON(ObjectEzsignbulksendAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignbulksendAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -1148,7 +1148,7 @@ end:
 
 // Reorder Ezsignbulksenddocumentmappings in the Ezsignbulksend
 //
-common_response_t*
+ezsignbulksend_reorder_v1_response_t*
 ObjectEzsignbulksendAPI_ezsignbulksendReorderV1(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_reorder_v1_request_t *ezsignbulksend_reorder_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -1214,7 +1214,7 @@ ObjectEzsignbulksendAPI_ezsignbulksendReorderV1(apiClient_t *apiClient, int *pki
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignbulksendAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignbulksendAPIlocalVarJSON);
+    ezsignbulksend_reorder_v1_response_t *elementToReturn = ezsignbulksend_reorder_v1_response_parseFromJSON(ObjectEzsignbulksendAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignbulksendAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

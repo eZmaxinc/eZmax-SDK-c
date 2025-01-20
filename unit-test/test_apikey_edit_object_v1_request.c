@@ -16,7 +16,7 @@
 #include "../model/apikey_edit_object_v1_request.h"
 apikey_edit_object_v1_request_t* instantiate_apikey_edit_object_v1_request(int include_optional);
 
-#include "test_apikey_request.c"
+#include "test_apikey_request_compound.c"
 
 
 apikey_edit_object_v1_request_t* instantiate_apikey_edit_object_v1_request(int include_optional) {
@@ -24,7 +24,7 @@ apikey_edit_object_v1_request_t* instantiate_apikey_edit_object_v1_request(int i
   if (include_optional) {
     apikey_edit_object_v1_request = apikey_edit_object_v1_request_create(
        // false, not to have infinite recursion
-      instantiate_apikey_request(0)
+      instantiate_apikey_request_compound(0)
     );
   } else {
     apikey_edit_object_v1_request = apikey_edit_object_v1_request_create(

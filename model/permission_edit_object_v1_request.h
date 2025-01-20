@@ -15,17 +15,17 @@
 
 typedef struct permission_edit_object_v1_request_t permission_edit_object_v1_request_t;
 
-#include "permission_request.h"
+#include "permission_request_compound.h"
 
 
 
 typedef struct permission_edit_object_v1_request_t {
-    struct permission_request_t *obj_permission; //model
+    struct permission_request_compound_t *obj_permission; //model
 
 } permission_edit_object_v1_request_t;
 
 permission_edit_object_v1_request_t *permission_edit_object_v1_request_create(
-    permission_request_t *obj_permission
+    permission_request_compound_t *obj_permission
 );
 
 void permission_edit_object_v1_request_free(permission_edit_object_v1_request_t *permission_edit_object_v1_request);

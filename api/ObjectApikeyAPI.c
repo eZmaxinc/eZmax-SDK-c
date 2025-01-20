@@ -189,7 +189,7 @@ end:
 //
 // 
 //
-common_response_t*
+apikey_edit_object_v1_response_t*
 ObjectApikeyAPI_apikeyEditObjectV1(apiClient_t *apiClient, int *pkiApikeyID, apikey_edit_object_v1_request_t *apikey_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -255,7 +255,7 @@ ObjectApikeyAPI_apikeyEditObjectV1(apiClient_t *apiClient, int *pkiApikeyID, api
     //}
     //nonprimitive not container
     cJSON *ObjectApikeyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectApikeyAPIlocalVarJSON);
+    apikey_edit_object_v1_response_t *elementToReturn = apikey_edit_object_v1_response_parseFromJSON(ObjectApikeyAPIlocalVarJSON);
     cJSON_Delete(ObjectApikeyAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

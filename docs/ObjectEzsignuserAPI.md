@@ -14,7 +14,7 @@ Method | HTTP request | Description
 //
 // 
 //
-common_response_t* ObjectEzsignuserAPI_ezsignuserEditObjectV1(apiClient_t *apiClient, int *pkiEzsignuserID, ezsignuser_edit_object_v1_request_t *ezsignuser_edit_object_v1_request);
+ezsignuser_edit_object_v1_response_t* ObjectEzsignuserAPI_ezsignuserEditObjectV1(apiClient_t *apiClient, int *pkiEzsignuserID, ezsignuser_edit_object_v1_request_t *ezsignuser_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -26,7 +26,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsignuser_edit_object_v1_response_t](ezsignuser_edit_object_v1_response.md) *
 
 
 ### Authorization

@@ -15,17 +15,17 @@
 
 typedef struct permission_get_object_v2_response_m_payload_t permission_get_object_v2_response_m_payload_t;
 
-#include "permission_response.h"
+#include "permission_response_compound.h"
 
 
 
 typedef struct permission_get_object_v2_response_m_payload_t {
-    struct permission_response_t *obj_permission; //model
+    struct permission_response_compound_t *obj_permission; //model
 
 } permission_get_object_v2_response_m_payload_t;
 
 permission_get_object_v2_response_m_payload_t *permission_get_object_v2_response_m_payload_create(
-    permission_response_t *obj_permission
+    permission_response_compound_t *obj_permission
 );
 
 void permission_get_object_v2_response_m_payload_free(permission_get_object_v2_response_m_payload_t *permission_get_object_v2_response_m_payload);

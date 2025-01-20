@@ -94,7 +94,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignsignergroupmembership_delete_object_v1_response_t*
 ObjectEzsignsignergroupmembershipAPI_ezsignsignergroupmembershipDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignsignergroupmembershipID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -146,7 +146,7 @@ ObjectEzsignsignergroupmembershipAPI_ezsignsignergroupmembershipDeleteObjectV1(a
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignsignergroupmembershipAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignsignergroupmembershipAPIlocalVarJSON);
+    ezsignsignergroupmembership_delete_object_v1_response_t *elementToReturn = ezsignsignergroupmembership_delete_object_v1_response_parseFromJSON(ObjectEzsignsignergroupmembershipAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignsignergroupmembershipAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

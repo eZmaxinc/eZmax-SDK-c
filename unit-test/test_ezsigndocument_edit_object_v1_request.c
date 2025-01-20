@@ -16,7 +16,7 @@
 #include "../model/ezsigndocument_edit_object_v1_request.h"
 ezsigndocument_edit_object_v1_request_t* instantiate_ezsigndocument_edit_object_v1_request(int include_optional);
 
-#include "test_ezsigndocument_request.c"
+#include "test_ezsigndocument_request_compound.c"
 
 
 ezsigndocument_edit_object_v1_request_t* instantiate_ezsigndocument_edit_object_v1_request(int include_optional) {
@@ -24,7 +24,7 @@ ezsigndocument_edit_object_v1_request_t* instantiate_ezsigndocument_edit_object_
   if (include_optional) {
     ezsigndocument_edit_object_v1_request = ezsigndocument_edit_object_v1_request_create(
        // false, not to have infinite recursion
-      instantiate_ezsigndocument_request(0)
+      instantiate_ezsigndocument_request_compound(0)
     );
   } else {
     ezsigndocument_edit_object_v1_request = ezsigndocument_edit_object_v1_request_create(

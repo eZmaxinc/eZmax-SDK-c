@@ -5,11 +5,12 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/ezsigntemplatesignature_create_object_v2_request.h"
 #include "../model/ezsigntemplatesignature_create_object_v2_response.h"
+#include "../model/ezsigntemplatesignature_delete_object_v1_response.h"
 #include "../model/ezsigntemplatesignature_edit_object_v2_request.h"
+#include "../model/ezsigntemplatesignature_edit_object_v2_response.h"
 #include "../model/ezsigntemplatesignature_get_object_v3_response.h"
 
 
@@ -25,7 +26,7 @@ ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureCreateObjectV2(apiClient
 //
 // 
 //
-common_response_t*
+ezsigntemplatesignature_delete_object_v1_response_t*
 ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatesignatureID);
 
 
@@ -33,7 +34,7 @@ ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureDeleteObjectV1(apiClient
 //
 // 
 //
-common_response_t*
+ezsigntemplatesignature_edit_object_v2_response_t*
 ObjectEzsigntemplatesignatureAPI_ezsigntemplatesignatureEditObjectV2(apiClient_t *apiClient, int *pkiEzsigntemplatesignatureID, ezsigntemplatesignature_edit_object_v2_request_t *ezsigntemplatesignature_edit_object_v2_request);
 
 

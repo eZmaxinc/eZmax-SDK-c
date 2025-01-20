@@ -340,7 +340,7 @@ end:
 //
 // 
 //
-common_response_t*
+paymentterm_edit_object_v1_response_t*
 ObjectPaymenttermAPI_paymenttermEditObjectV1(apiClient_t *apiClient, int *pkiPaymenttermID, paymentterm_edit_object_v1_request_t *paymentterm_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -406,7 +406,7 @@ ObjectPaymenttermAPI_paymenttermEditObjectV1(apiClient_t *apiClient, int *pkiPay
     //}
     //nonprimitive not container
     cJSON *ObjectPaymenttermAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectPaymenttermAPIlocalVarJSON);
+    paymentterm_edit_object_v1_response_t *elementToReturn = paymentterm_edit_object_v1_response_parseFromJSON(ObjectPaymenttermAPIlocalVarJSON);
     cJSON_Delete(ObjectPaymenttermAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

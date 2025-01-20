@@ -5,19 +5,21 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/ezsignbulksend_create_ezsignbulksendtransmission_v2_request.h"
 #include "../model/ezsignbulksend_create_ezsignbulksendtransmission_v2_response.h"
 #include "../model/ezsignbulksend_create_object_v1_request.h"
 #include "../model/ezsignbulksend_create_object_v1_response.h"
+#include "../model/ezsignbulksend_delete_object_v1_response.h"
 #include "../model/ezsignbulksend_edit_object_v1_request.h"
+#include "../model/ezsignbulksend_edit_object_v1_response.h"
 #include "../model/ezsignbulksend_get_ezsignbulksendtransmissions_v1_response.h"
 #include "../model/ezsignbulksend_get_ezsignsignatures_automatic_v1_response.h"
 #include "../model/ezsignbulksend_get_forms_data_v1_response.h"
 #include "../model/ezsignbulksend_get_list_v1_response.h"
 #include "../model/ezsignbulksend_get_object_v2_response.h"
 #include "../model/ezsignbulksend_reorder_v1_request.h"
+#include "../model/ezsignbulksend_reorder_v1_response.h"
 #include "../model/header_accept_language.h"
 
 // Enum ECSVSEPARATOR for ObjectEzsignbulksendAPI_ezsignbulksendGetCsvTemplateV1
@@ -48,7 +50,7 @@ ObjectEzsignbulksendAPI_ezsignbulksendCreateObjectV1(apiClient_t *apiClient, ezs
 //
 // 
 //
-common_response_t*
+ezsignbulksend_delete_object_v1_response_t*
 ObjectEzsignbulksendAPI_ezsignbulksendDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksendID);
 
 
@@ -56,7 +58,7 @@ ObjectEzsignbulksendAPI_ezsignbulksendDeleteObjectV1(apiClient_t *apiClient, int
 //
 // 
 //
-common_response_t*
+ezsignbulksend_edit_object_v1_response_t*
 ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_edit_object_v1_request_t *ezsignbulksend_edit_object_v1_request);
 
 
@@ -110,7 +112,7 @@ ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV2(apiClient_t *apiClient, int *p
 
 // Reorder Ezsignbulksenddocumentmappings in the Ezsignbulksend
 //
-common_response_t*
+ezsignbulksend_reorder_v1_response_t*
 ObjectEzsignbulksendAPI_ezsignbulksendReorderV1(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_reorder_v1_request_t *ezsignbulksend_reorder_v1_request);
 
 

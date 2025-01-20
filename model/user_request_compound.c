@@ -66,10 +66,10 @@ user_request_compound_t *user_request_compound_create(
     int fki_department_id_default,
     int fki_timezone_id,
     int fki_language_id,
-    email_request_t *obj_email,
+    email_request_compound_t *obj_email,
     int fki_billingentityinternal_id,
-    phone_request_t *obj_phone_home,
-    phone_request_t *obj_phone_sms,
+    phone_request_compound_t *obj_phone_home,
+    phone_request_compound_t *obj_phone_sms,
     int fki_secretquestion_id,
     char *s_user_secretresponse,
     int fki_module_id_form,
@@ -129,15 +129,15 @@ void user_request_compound_free(user_request_compound_t *user_request_compound) 
     }
     listEntry_t *listEntry;
     if (user_request_compound->obj_email) {
-        email_request_free(user_request_compound->obj_email);
+        email_request_compound_free(user_request_compound->obj_email);
         user_request_compound->obj_email = NULL;
     }
     if (user_request_compound->obj_phone_home) {
-        phone_request_free(user_request_compound->obj_phone_home);
+        phone_request_compound_free(user_request_compound->obj_phone_home);
         user_request_compound->obj_phone_home = NULL;
     }
     if (user_request_compound->obj_phone_sms) {
-        phone_request_free(user_request_compound->obj_phone_sms);
+        phone_request_compound_free(user_request_compound->obj_phone_sms);
         user_request_compound->obj_phone_sms = NULL;
     }
     if (user_request_compound->s_user_secretresponse) {
@@ -258,7 +258,7 @@ cJSON *user_request_compound_convertToJSON(user_request_compound_t *user_request
     if (!user_request_compound->obj_email) {
         goto fail;
     }
-    cJSON *obj_email_local_JSON = email_request_convertToJSON(user_request_compound->obj_email);
+    cJSON *obj_email_local_JSON = email_request_compound_convertToJSON(user_request_compound->obj_email);
     if(obj_email_local_JSON == NULL) {
     goto fail; //model
     }
@@ -279,7 +279,7 @@ cJSON *user_request_compound_convertToJSON(user_request_compound_t *user_request
 
     // user_request_compound->obj_phone_home
     if(user_request_compound->obj_phone_home) {
-    cJSON *obj_phone_home_local_JSON = phone_request_convertToJSON(user_request_compound->obj_phone_home);
+    cJSON *obj_phone_home_local_JSON = phone_request_compound_convertToJSON(user_request_compound->obj_phone_home);
     if(obj_phone_home_local_JSON == NULL) {
     goto fail; //model
     }
@@ -292,7 +292,7 @@ cJSON *user_request_compound_convertToJSON(user_request_compound_t *user_request
 
     // user_request_compound->obj_phone_sms
     if(user_request_compound->obj_phone_sms) {
-    cJSON *obj_phone_sms_local_JSON = phone_request_convertToJSON(user_request_compound->obj_phone_sms);
+    cJSON *obj_phone_sms_local_JSON = phone_request_compound_convertToJSON(user_request_compound->obj_phone_sms);
     if(obj_phone_sms_local_JSON == NULL) {
     goto fail; //model
     }
@@ -457,13 +457,13 @@ user_request_compound_t *user_request_compound_parseFromJSON(cJSON *user_request
     user_request_compound_t *user_request_compound_local_var = NULL;
 
     // define the local variable for user_request_compound->obj_email
-    email_request_t *obj_email_local_nonprim = NULL;
+    email_request_compound_t *obj_email_local_nonprim = NULL;
 
     // define the local variable for user_request_compound->obj_phone_home
-    phone_request_t *obj_phone_home_local_nonprim = NULL;
+    phone_request_compound_t *obj_phone_home_local_nonprim = NULL;
 
     // define the local variable for user_request_compound->obj_phone_sms
-    phone_request_t *obj_phone_sms_local_nonprim = NULL;
+    phone_request_compound_t *obj_phone_sms_local_nonprim = NULL;
 
     // define the local variable for user_request_compound->e_user_type
     field_e_user_type_t *e_user_type_local_nonprim = NULL;
@@ -574,7 +574,7 @@ user_request_compound_t *user_request_compound_parseFromJSON(cJSON *user_request
     }
 
     
-    obj_email_local_nonprim = email_request_parseFromJSON(obj_email); //nonprimitive
+    obj_email_local_nonprim = email_request_compound_parseFromJSON(obj_email); //nonprimitive
 
     // user_request_compound->fki_billingentityinternal_id
     cJSON *fki_billingentityinternal_id = cJSON_GetObjectItemCaseSensitive(user_request_compoundJSON, "fkiBillingentityinternalID");
@@ -591,13 +591,13 @@ user_request_compound_t *user_request_compound_parseFromJSON(cJSON *user_request
     // user_request_compound->obj_phone_home
     cJSON *obj_phone_home = cJSON_GetObjectItemCaseSensitive(user_request_compoundJSON, "objPhoneHome");
     if (obj_phone_home) { 
-    obj_phone_home_local_nonprim = phone_request_parseFromJSON(obj_phone_home); //nonprimitive
+    obj_phone_home_local_nonprim = phone_request_compound_parseFromJSON(obj_phone_home); //nonprimitive
     }
 
     // user_request_compound->obj_phone_sms
     cJSON *obj_phone_sms = cJSON_GetObjectItemCaseSensitive(user_request_compoundJSON, "objPhoneSMS");
     if (obj_phone_sms) { 
-    obj_phone_sms_local_nonprim = phone_request_parseFromJSON(obj_phone_sms); //nonprimitive
+    obj_phone_sms_local_nonprim = phone_request_compound_parseFromJSON(obj_phone_sms); //nonprimitive
     }
 
     // user_request_compound->fki_secretquestion_id
@@ -782,15 +782,15 @@ user_request_compound_t *user_request_compound_parseFromJSON(cJSON *user_request
     return user_request_compound_local_var;
 end:
     if (obj_email_local_nonprim) {
-        email_request_free(obj_email_local_nonprim);
+        email_request_compound_free(obj_email_local_nonprim);
         obj_email_local_nonprim = NULL;
     }
     if (obj_phone_home_local_nonprim) {
-        phone_request_free(obj_phone_home_local_nonprim);
+        phone_request_compound_free(obj_phone_home_local_nonprim);
         obj_phone_home_local_nonprim = NULL;
     }
     if (obj_phone_sms_local_nonprim) {
-        phone_request_free(obj_phone_sms_local_nonprim);
+        phone_request_compound_free(obj_phone_sms_local_nonprim);
         obj_phone_sms_local_nonprim = NULL;
     }
     if (e_user_type_local_nonprim) {

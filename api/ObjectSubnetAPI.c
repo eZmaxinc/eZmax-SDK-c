@@ -98,7 +98,7 @@ end:
 //
 // 
 //
-common_response_t*
+subnet_delete_object_v1_response_t*
 ObjectSubnetAPI_subnetDeleteObjectV1(apiClient_t *apiClient, int *pkiSubnetID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -154,7 +154,7 @@ ObjectSubnetAPI_subnetDeleteObjectV1(apiClient_t *apiClient, int *pkiSubnetID)
     //}
     //nonprimitive not container
     cJSON *ObjectSubnetAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectSubnetAPIlocalVarJSON);
+    subnet_delete_object_v1_response_t *elementToReturn = subnet_delete_object_v1_response_parseFromJSON(ObjectSubnetAPIlocalVarJSON);
     cJSON_Delete(ObjectSubnetAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -184,7 +184,7 @@ end:
 //
 // 
 //
-common_response_t*
+subnet_edit_object_v1_response_t*
 ObjectSubnetAPI_subnetEditObjectV1(apiClient_t *apiClient, int *pkiSubnetID, subnet_edit_object_v1_request_t *subnet_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -250,7 +250,7 @@ ObjectSubnetAPI_subnetEditObjectV1(apiClient_t *apiClient, int *pkiSubnetID, sub
     //}
     //nonprimitive not container
     cJSON *ObjectSubnetAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectSubnetAPIlocalVarJSON);
+    subnet_edit_object_v1_response_t *elementToReturn = subnet_edit_object_v1_response_parseFromJSON(ObjectSubnetAPIlocalVarJSON);
     cJSON_Delete(ObjectSubnetAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

@@ -8,7 +8,7 @@
 ezmaxinvoicing_get_provisional_v1_response_t *ezmaxinvoicing_get_provisional_v1_response_create(
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug,
-    ezmaxinvoicing_response_compound_t *m_payload
+    ezmaxinvoicing_get_provisional_v1_response_m_payload_t *m_payload
     ) {
     ezmaxinvoicing_get_provisional_v1_response_t *ezmaxinvoicing_get_provisional_v1_response_local_var = malloc(sizeof(ezmaxinvoicing_get_provisional_v1_response_t));
     if (!ezmaxinvoicing_get_provisional_v1_response_local_var) {
@@ -36,7 +36,7 @@ void ezmaxinvoicing_get_provisional_v1_response_free(ezmaxinvoicing_get_provisio
         ezmaxinvoicing_get_provisional_v1_response->obj_debug = NULL;
     }
     if (ezmaxinvoicing_get_provisional_v1_response->m_payload) {
-        ezmaxinvoicing_response_compound_free(ezmaxinvoicing_get_provisional_v1_response->m_payload);
+        ezmaxinvoicing_get_provisional_v1_response_m_payload_free(ezmaxinvoicing_get_provisional_v1_response->m_payload);
         ezmaxinvoicing_get_provisional_v1_response->m_payload = NULL;
     }
     free(ezmaxinvoicing_get_provisional_v1_response);
@@ -76,7 +76,7 @@ cJSON *ezmaxinvoicing_get_provisional_v1_response_convertToJSON(ezmaxinvoicing_g
     if (!ezmaxinvoicing_get_provisional_v1_response->m_payload) {
         goto fail;
     }
-    cJSON *m_payload_local_JSON = ezmaxinvoicing_response_compound_convertToJSON(ezmaxinvoicing_get_provisional_v1_response->m_payload);
+    cJSON *m_payload_local_JSON = ezmaxinvoicing_get_provisional_v1_response_m_payload_convertToJSON(ezmaxinvoicing_get_provisional_v1_response->m_payload);
     if(m_payload_local_JSON == NULL) {
     goto fail; //model
     }
@@ -104,7 +104,7 @@ ezmaxinvoicing_get_provisional_v1_response_t *ezmaxinvoicing_get_provisional_v1_
     common_response_obj_debug_t *obj_debug_local_nonprim = NULL;
 
     // define the local variable for ezmaxinvoicing_get_provisional_v1_response->m_payload
-    ezmaxinvoicing_response_compound_t *m_payload_local_nonprim = NULL;
+    ezmaxinvoicing_get_provisional_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
 
     // ezmaxinvoicing_get_provisional_v1_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicing_get_provisional_v1_responseJSON, "objDebugPayload");
@@ -128,7 +128,7 @@ ezmaxinvoicing_get_provisional_v1_response_t *ezmaxinvoicing_get_provisional_v1_
     }
 
     
-    m_payload_local_nonprim = ezmaxinvoicing_response_compound_parseFromJSON(m_payload); //nonprimitive
+    m_payload_local_nonprim = ezmaxinvoicing_get_provisional_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
     ezmaxinvoicing_get_provisional_v1_response_local_var = ezmaxinvoicing_get_provisional_v1_response_create (
@@ -148,7 +148,7 @@ end:
         obj_debug_local_nonprim = NULL;
     }
     if (m_payload_local_nonprim) {
-        ezmaxinvoicing_response_compound_free(m_payload_local_nonprim);
+        ezmaxinvoicing_get_provisional_v1_response_m_payload_free(m_payload_local_nonprim);
         m_payload_local_nonprim = NULL;
     }
     return NULL;

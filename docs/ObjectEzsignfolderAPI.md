@@ -44,7 +44,7 @@ Method | HTTP request | Description
 //
 // 
 //
-common_response_t* ObjectEzsignfolderAPI_ezsignfolderArchiveV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body);
+ezsignfolder_archive_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderArchiveV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body);
 ```
 
 ### Parameters
@@ -56,7 +56,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsignfolder_archive_v1_response_t](ezsignfolder_archive_v1_response.md) *
 
 
 ### Authorization
@@ -198,7 +198,7 @@ Name | Type | Description  | Notes
 ```c
 // Delete an existing Ezsignfolder
 //
-common_response_t* ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignfolderID);
+ezsignfolder_delete_object_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignfolderID);
 ```
 
 ### Parameters
@@ -209,7 +209,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsignfolder_delete_object_v1_response_t](ezsignfolder_delete_object_v1_response.md) *
 
 
 ### Authorization
@@ -229,7 +229,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectEzsignfolderAPI_ezsignfolderDisposeEzsignfoldersV1(apiClient_t *apiClient, ezsignfolder_dispose_ezsignfolders_v1_request_t *ezsignfolder_dispose_ezsignfolders_v1_request);
+ezsignfolder_dispose_ezsignfolders_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderDisposeEzsignfoldersV1(apiClient_t *apiClient, ezsignfolder_dispose_ezsignfolders_v1_request_t *ezsignfolder_dispose_ezsignfolders_v1_request);
 ```
 
 ### Parameters
@@ -240,7 +240,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsignfolder_dispose_ezsignfolders_v1_response_t](ezsignfolder_dispose_ezsignfolders_v1_response.md) *
 
 
 ### Authorization
@@ -260,7 +260,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectEzsignfolderAPI_ezsignfolderDisposeV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body);
+ezsignfolder_dispose_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderDisposeV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body);
 ```
 
 ### Parameters
@@ -272,7 +272,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsignfolder_dispose_v1_response_t](ezsignfolder_dispose_v1_response.md) *
 
 
 ### Authorization
@@ -292,7 +292,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectEzsignfolderAPI_ezsignfolderEditObjectV3(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_edit_object_v3_request_t *ezsignfolder_edit_object_v3_request);
+ezsignfolder_edit_object_v3_response_t* ObjectEzsignfolderAPI_ezsignfolderEditObjectV3(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_edit_object_v3_request_t *ezsignfolder_edit_object_v3_request);
 ```
 
 ### Parameters
@@ -304,7 +304,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsignfolder_edit_object_v3_response_t](ezsignfolder_edit_object_v3_response.md) *
 
 
 ### Authorization
@@ -324,7 +324,7 @@ Name | Type | Description  | Notes
 //
 // End prematurely all Ezsigndocument of Ezsignfolder when some signatures are still required
 //
-common_response_t* ObjectEzsignfolderAPI_ezsignfolderEndPrematurelyV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body);
+ezsignfolder_end_prematurely_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderEndPrematurelyV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body);
 ```
 
 ### Parameters
@@ -336,7 +336,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsignfolder_end_prematurely_v1_response_t](ezsignfolder_end_prematurely_v1_response.md) *
 
 
 ### Authorization
@@ -885,7 +885,7 @@ Name | Type | Description  | Notes
 ```c
 // Reorder Ezsigndocuments in the Ezsignfolder
 //
-common_response_t* ObjectEzsignfolderAPI_ezsignfolderReorderV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_reorder_v1_request_t *ezsignfolder_reorder_v1_request);
+ezsignfolder_reorder_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderReorderV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_reorder_v1_request_t *ezsignfolder_reorder_v1_request);
 ```
 
 ### Parameters
@@ -897,7 +897,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsignfolder_reorder_v1_response_t](ezsignfolder_reorder_v1_response.md) *
 
 
 ### Authorization
@@ -915,7 +915,7 @@ Name | Type | Description  | Notes
 ```c
 // Reorder Ezsigndocuments in the Ezsignfolder
 //
-common_response_t* ObjectEzsignfolderAPI_ezsignfolderReorderV2(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_reorder_v2_request_t *ezsignfolder_reorder_v2_request);
+ezsignfolder_reorder_v2_response_t* ObjectEzsignfolderAPI_ezsignfolderReorderV2(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_reorder_v2_request_t *ezsignfolder_reorder_v2_request);
 ```
 
 ### Parameters
@@ -927,7 +927,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsignfolder_reorder_v2_response_t](ezsignfolder_reorder_v2_response.md) *
 
 
 ### Authorization
@@ -947,7 +947,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectEzsignfolderAPI_ezsignfolderSendV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_send_v1_request_t *ezsignfolder_send_v1_request);
+ezsignfolder_send_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderSendV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_send_v1_request_t *ezsignfolder_send_v1_request);
 ```
 
 ### Parameters
@@ -959,7 +959,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsignfolder_send_v1_response_t](ezsignfolder_send_v1_response.md) *
 
 
 ### Authorization
@@ -979,7 +979,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectEzsignfolderAPI_ezsignfolderSendV3(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_send_v3_request_t *ezsignfolder_send_v3_request);
+ezsignfolder_send_v3_response_t* ObjectEzsignfolderAPI_ezsignfolderSendV3(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_send_v3_request_t *ezsignfolder_send_v3_request);
 ```
 
 ### Parameters
@@ -991,7 +991,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsignfolder_send_v3_response_t](ezsignfolder_send_v3_response.md) *
 
 
 ### Authorization
@@ -1011,7 +1011,7 @@ Name | Type | Description  | Notes
 //
 // Once an Ezsignfolder has been sent to signatories, it cannot be modified.  Using this endpoint, you can unsend the Ezsignfolder and make it modifiable again.  Signatories will receive an email informing them the signature process was aborted and they might receive a new invitation to sign.  ⚠️ Warning: Any signature previously made by signatories on \"Non-completed\" Ezsigndocuments will be lost.
 //
-common_response_t* ObjectEzsignfolderAPI_ezsignfolderUnsendV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body);
+ezsignfolder_unsend_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderUnsendV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body);
 ```
 
 ### Parameters
@@ -1023,7 +1023,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsignfolder_unsend_v1_response_t](ezsignfolder_unsend_v1_response.md) *
 
 
 ### Authorization

@@ -33,7 +33,7 @@ void custom_ezsignformfieldgroup_request_free(custom_ezsignformfieldgroup_reques
     }
     if (custom_ezsignformfieldgroup_request->a_obj_ezsignformfield) {
         list_ForEach(listEntry, custom_ezsignformfieldgroup_request->a_obj_ezsignformfield) {
-            object_free(listEntry->data);
+            custom_ezsignformfield_request_free(listEntry->data);
         }
         list_freeList(custom_ezsignformfieldgroup_request->a_obj_ezsignformfield);
         custom_ezsignformfieldgroup_request->a_obj_ezsignformfield = NULL;
@@ -72,7 +72,7 @@ cJSON *custom_ezsignformfieldgroup_request_convertToJSON(custom_ezsignformfieldg
     listEntry_t *a_obj_ezsignformfieldListEntry;
     if (custom_ezsignformfieldgroup_request->a_obj_ezsignformfield) {
     list_ForEach(a_obj_ezsignformfieldListEntry, custom_ezsignformfieldgroup_request->a_obj_ezsignformfield) {
-    cJSON *itemLocal = object_convertToJSON(a_obj_ezsignformfieldListEntry->data);
+    cJSON *itemLocal = custom_ezsignformfield_request_convertToJSON(a_obj_ezsignformfieldListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -132,7 +132,7 @@ custom_ezsignformfieldgroup_request_t *custom_ezsignformfieldgroup_request_parse
         if(!cJSON_IsObject(a_obj_ezsignformfield_local_nonprimitive)){
             goto end;
         }
-        object_t *a_obj_ezsignformfieldItem = object_parseFromJSON(a_obj_ezsignformfield_local_nonprimitive);
+        custom_ezsignformfield_request_t *a_obj_ezsignformfieldItem = custom_ezsignformfield_request_parseFromJSON(a_obj_ezsignformfield_local_nonprimitive);
 
         list_addElement(a_obj_ezsignformfieldList, a_obj_ezsignformfieldItem);
     }
@@ -149,7 +149,7 @@ end:
     if (a_obj_ezsignformfieldList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsignformfieldList) {
-            object_free(listEntry->data);
+            custom_ezsignformfield_request_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_ezsignformfieldList);

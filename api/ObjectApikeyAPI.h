@@ -8,6 +8,7 @@
 #include "../model/apikey_create_object_v2_request.h"
 #include "../model/apikey_create_object_v2_response.h"
 #include "../model/apikey_edit_object_v1_request.h"
+#include "../model/apikey_edit_object_v1_response.h"
 #include "../model/apikey_edit_permissions_v1_request.h"
 #include "../model/apikey_edit_permissions_v1_response.h"
 #include "../model/apikey_generate_delegated_credentials_v1_request.h"
@@ -19,7 +20,6 @@
 #include "../model/apikey_get_subnets_v1_response.h"
 #include "../model/apikey_regenerate_v1_request.h"
 #include "../model/apikey_regenerate_v1_response.h"
-#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/header_accept_language.h"
 
@@ -42,7 +42,7 @@ ObjectApikeyAPI_apikeyCreateObjectV2(apiClient_t *apiClient, apikey_create_objec
 //
 // 
 //
-common_response_t*
+apikey_edit_object_v1_response_t*
 ObjectApikeyAPI_apikeyEditObjectV1(apiClient_t *apiClient, int *pkiApikeyID, apikey_edit_object_v1_request_t *apikey_edit_object_v1_request);
 
 

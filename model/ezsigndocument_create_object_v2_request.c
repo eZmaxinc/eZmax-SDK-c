@@ -25,7 +25,7 @@ void ezsigndocument_create_object_v2_request_free(ezsigndocument_create_object_v
     listEntry_t *listEntry;
     if (ezsigndocument_create_object_v2_request->a_obj_ezsigndocument) {
         list_ForEach(listEntry, ezsigndocument_create_object_v2_request->a_obj_ezsigndocument) {
-            ezsigndocument_request_free(listEntry->data);
+            ezsigndocument_request_compound_free(listEntry->data);
         }
         list_freeList(ezsigndocument_create_object_v2_request->a_obj_ezsigndocument);
         ezsigndocument_create_object_v2_request->a_obj_ezsigndocument = NULL;
@@ -48,7 +48,7 @@ cJSON *ezsigndocument_create_object_v2_request_convertToJSON(ezsigndocument_crea
     listEntry_t *a_obj_ezsigndocumentListEntry;
     if (ezsigndocument_create_object_v2_request->a_obj_ezsigndocument) {
     list_ForEach(a_obj_ezsigndocumentListEntry, ezsigndocument_create_object_v2_request->a_obj_ezsigndocument) {
-    cJSON *itemLocal = ezsigndocument_request_convertToJSON(a_obj_ezsigndocumentListEntry->data);
+    cJSON *itemLocal = ezsigndocument_request_compound_convertToJSON(a_obj_ezsigndocumentListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -90,7 +90,7 @@ ezsigndocument_create_object_v2_request_t *ezsigndocument_create_object_v2_reque
         if(!cJSON_IsObject(a_obj_ezsigndocument_local_nonprimitive)){
             goto end;
         }
-        ezsigndocument_request_t *a_obj_ezsigndocumentItem = ezsigndocument_request_parseFromJSON(a_obj_ezsigndocument_local_nonprimitive);
+        ezsigndocument_request_compound_t *a_obj_ezsigndocumentItem = ezsigndocument_request_compound_parseFromJSON(a_obj_ezsigndocument_local_nonprimitive);
 
         list_addElement(a_obj_ezsigndocumentList, a_obj_ezsigndocumentItem);
     }
@@ -105,7 +105,7 @@ end:
     if (a_obj_ezsigndocumentList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsigndocumentList) {
-            ezsigndocument_request_free(listEntry->data);
+            ezsigndocument_request_compound_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_ezsigndocumentList);

@@ -111,7 +111,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignfolder_archive_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderArchiveV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -177,7 +177,7 @@ ObjectEzsignfolderAPI_ezsignfolderArchiveV1(apiClient_t *apiClient, int *pkiEzsi
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+    ezsignfolder_archive_v1_response_t *elementToReturn = ezsignfolder_archive_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -570,7 +570,7 @@ end:
 
 // Delete an existing Ezsignfolder
 //
-common_response_t*
+ezsignfolder_delete_object_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignfolderID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -626,7 +626,7 @@ ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1(apiClient_t *apiClient, int *pk
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+    ezsignfolder_delete_object_v1_response_t *elementToReturn = ezsignfolder_delete_object_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -656,7 +656,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignfolder_dispose_ezsignfolders_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderDisposeEzsignfoldersV1(apiClient_t *apiClient, ezsignfolder_dispose_ezsignfolders_v1_request_t *ezsignfolder_dispose_ezsignfolders_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -708,7 +708,7 @@ ObjectEzsignfolderAPI_ezsignfolderDisposeEzsignfoldersV1(apiClient_t *apiClient,
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+    ezsignfolder_dispose_ezsignfolders_v1_response_t *elementToReturn = ezsignfolder_dispose_ezsignfolders_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -742,7 +742,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignfolder_dispose_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderDisposeV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -808,7 +808,7 @@ ObjectEzsignfolderAPI_ezsignfolderDisposeV1(apiClient_t *apiClient, int *pkiEzsi
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+    ezsignfolder_dispose_v1_response_t *elementToReturn = ezsignfolder_dispose_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -843,7 +843,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignfolder_edit_object_v3_response_t*
 ObjectEzsignfolderAPI_ezsignfolderEditObjectV3(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_edit_object_v3_request_t *ezsignfolder_edit_object_v3_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -909,7 +909,7 @@ ObjectEzsignfolderAPI_ezsignfolderEditObjectV3(apiClient_t *apiClient, int *pkiE
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+    ezsignfolder_edit_object_v3_response_t *elementToReturn = ezsignfolder_edit_object_v3_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -944,7 +944,7 @@ end:
 //
 // End prematurely all Ezsigndocument of Ezsignfolder when some signatures are still required
 //
-common_response_t*
+ezsignfolder_end_prematurely_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderEndPrematurelyV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -1010,7 +1010,7 @@ ObjectEzsignfolderAPI_ezsignfolderEndPrematurelyV1(apiClient_t *apiClient, int *
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+    ezsignfolder_end_prematurely_v1_response_t *elementToReturn = ezsignfolder_end_prematurely_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -2588,7 +2588,7 @@ end:
 
 // Reorder Ezsigndocuments in the Ezsignfolder
 //
-common_response_t*
+ezsignfolder_reorder_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderReorderV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_reorder_v1_request_t *ezsignfolder_reorder_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -2654,7 +2654,7 @@ ObjectEzsignfolderAPI_ezsignfolderReorderV1(apiClient_t *apiClient, int *pkiEzsi
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+    ezsignfolder_reorder_v1_response_t *elementToReturn = ezsignfolder_reorder_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -2687,7 +2687,7 @@ end:
 
 // Reorder Ezsigndocuments in the Ezsignfolder
 //
-common_response_t*
+ezsignfolder_reorder_v2_response_t*
 ObjectEzsignfolderAPI_ezsignfolderReorderV2(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_reorder_v2_request_t *ezsignfolder_reorder_v2_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -2753,7 +2753,7 @@ ObjectEzsignfolderAPI_ezsignfolderReorderV2(apiClient_t *apiClient, int *pkiEzsi
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+    ezsignfolder_reorder_v2_response_t *elementToReturn = ezsignfolder_reorder_v2_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -2788,7 +2788,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignfolder_send_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderSendV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_send_v1_request_t *ezsignfolder_send_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -2854,7 +2854,7 @@ ObjectEzsignfolderAPI_ezsignfolderSendV1(apiClient_t *apiClient, int *pkiEzsignf
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+    ezsignfolder_send_v1_response_t *elementToReturn = ezsignfolder_send_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -2889,7 +2889,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignfolder_send_v3_response_t*
 ObjectEzsignfolderAPI_ezsignfolderSendV3(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_send_v3_request_t *ezsignfolder_send_v3_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -2955,7 +2955,7 @@ ObjectEzsignfolderAPI_ezsignfolderSendV3(apiClient_t *apiClient, int *pkiEzsignf
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+    ezsignfolder_send_v3_response_t *elementToReturn = ezsignfolder_send_v3_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -2990,7 +2990,7 @@ end:
 //
 // Once an Ezsignfolder has been sent to signatories, it cannot be modified.  Using this endpoint, you can unsend the Ezsignfolder and make it modifiable again.  Signatories will receive an email informing them the signature process was aborted and they might receive a new invitation to sign.  ⚠️ Warning: Any signature previously made by signatories on \"Non-completed\" Ezsigndocuments will be lost.
 //
-common_response_t*
+ezsignfolder_unsend_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderUnsendV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -3056,7 +3056,7 @@ ObjectEzsignfolderAPI_ezsignfolderUnsendV1(apiClient_t *apiClient, int *pkiEzsig
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+    ezsignfolder_unsend_v1_response_t *elementToReturn = ezsignfolder_unsend_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

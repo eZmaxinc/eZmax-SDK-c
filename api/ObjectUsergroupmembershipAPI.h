@@ -5,11 +5,12 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/usergroupmembership_create_object_v1_request.h"
 #include "../model/usergroupmembership_create_object_v1_response.h"
+#include "../model/usergroupmembership_delete_object_v1_response.h"
 #include "../model/usergroupmembership_edit_object_v1_request.h"
+#include "../model/usergroupmembership_edit_object_v1_response.h"
 #include "../model/usergroupmembership_get_object_v2_response.h"
 
 
@@ -25,7 +26,7 @@ ObjectUsergroupmembershipAPI_usergroupmembershipCreateObjectV1(apiClient_t *apiC
 //
 // 
 //
-common_response_t*
+usergroupmembership_delete_object_v1_response_t*
 ObjectUsergroupmembershipAPI_usergroupmembershipDeleteObjectV1(apiClient_t *apiClient, int *pkiUsergroupmembershipID);
 
 
@@ -33,7 +34,7 @@ ObjectUsergroupmembershipAPI_usergroupmembershipDeleteObjectV1(apiClient_t *apiC
 //
 // 
 //
-common_response_t*
+usergroupmembership_edit_object_v1_response_t*
 ObjectUsergroupmembershipAPI_usergroupmembershipEditObjectV1(apiClient_t *apiClient, int *pkiUsergroupmembershipID, usergroupmembership_edit_object_v1_request_t *usergroupmembership_edit_object_v1_request);
 
 

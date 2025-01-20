@@ -8,10 +8,10 @@
 #include "../model/branding_create_object_v2_request.h"
 #include "../model/branding_create_object_v2_response.h"
 #include "../model/branding_edit_object_v2_request.h"
+#include "../model/branding_edit_object_v2_response.h"
 #include "../model/branding_get_autocomplete_v2_response.h"
 #include "../model/branding_get_list_v1_response.h"
 #include "../model/branding_get_object_v3_response.h"
-#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/header_accept_language.h"
 
@@ -43,7 +43,7 @@ ObjectBrandingAPI_brandingCreateObjectV2(apiClient_t *apiClient, branding_create
 //
 // 
 //
-common_response_t*
+branding_edit_object_v2_response_t*
 ObjectBrandingAPI_brandingEditObjectV2(apiClient_t *apiClient, int *pkiBrandingID, branding_edit_object_v2_request_t *branding_edit_object_v2_request);
 
 

@@ -5,9 +5,9 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/ezsignuser_edit_object_v1_request.h"
+#include "../model/ezsignuser_edit_object_v1_response.h"
 #include "../model/ezsignuser_get_object_v2_response.h"
 
 
@@ -15,7 +15,7 @@
 //
 // 
 //
-common_response_t*
+ezsignuser_edit_object_v1_response_t*
 ObjectEzsignuserAPI_ezsignuserEditObjectV1(apiClient_t *apiClient, int *pkiEzsignuserID, ezsignuser_edit_object_v1_request_t *ezsignuser_edit_object_v1_request);
 
 

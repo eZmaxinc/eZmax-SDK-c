@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**obj_permission** | [**permission_request_t**](permission_request.md) \* | A Permission Object and children to create a complete structure | 
+**obj_permission** | [**permission_request_compound_t**](permission_request_compound.md) \* |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

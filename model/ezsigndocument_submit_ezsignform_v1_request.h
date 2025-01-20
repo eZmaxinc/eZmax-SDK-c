@@ -15,7 +15,7 @@
 
 typedef struct ezsigndocument_submit_ezsignform_v1_request_t ezsigndocument_submit_ezsignform_v1_request_t;
 
-#include "object.h"
+#include "custom_ezsignformfieldgroup_request.h"
 
 
 

@@ -94,7 +94,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsigntemplateformfieldgroup_delete_object_v1_response_t*
 ObjectEzsigntemplateformfieldgroupAPI_ezsigntemplateformfieldgroupDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplateformfieldgroupID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -146,7 +146,7 @@ ObjectEzsigntemplateformfieldgroupAPI_ezsigntemplateformfieldgroupDeleteObjectV1
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigntemplateformfieldgroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsigntemplateformfieldgroupAPIlocalVarJSON);
+    ezsigntemplateformfieldgroup_delete_object_v1_response_t *elementToReturn = ezsigntemplateformfieldgroup_delete_object_v1_response_parseFromJSON(ObjectEzsigntemplateformfieldgroupAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsigntemplateformfieldgroupAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -176,7 +176,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsigntemplateformfieldgroup_edit_object_v1_response_t*
 ObjectEzsigntemplateformfieldgroupAPI_ezsigntemplateformfieldgroupEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplateformfieldgroupID, ezsigntemplateformfieldgroup_edit_object_v1_request_t *ezsigntemplateformfieldgroup_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -242,7 +242,7 @@ ObjectEzsigntemplateformfieldgroupAPI_ezsigntemplateformfieldgroupEditObjectV1(a
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigntemplateformfieldgroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsigntemplateformfieldgroupAPIlocalVarJSON);
+    ezsigntemplateformfieldgroup_edit_object_v1_response_t *elementToReturn = ezsigntemplateformfieldgroup_edit_object_v1_response_parseFromJSON(ObjectEzsigntemplateformfieldgroupAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsigntemplateformfieldgroupAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

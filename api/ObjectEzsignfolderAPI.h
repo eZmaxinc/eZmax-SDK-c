@@ -5,8 +5,8 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/common_response.h"
 #include "../model/common_response_error.h"
+#include "../model/ezsignfolder_archive_v1_response.h"
 #include "../model/ezsignfolder_batch_download_v1_request.h"
 #include "../model/ezsignfolder_create_object_v1_request.h"
 #include "../model/ezsignfolder_create_object_v1_response.h"
@@ -14,8 +14,13 @@
 #include "../model/ezsignfolder_create_object_v2_response.h"
 #include "../model/ezsignfolder_create_object_v3_request.h"
 #include "../model/ezsignfolder_create_object_v3_response.h"
+#include "../model/ezsignfolder_delete_object_v1_response.h"
 #include "../model/ezsignfolder_dispose_ezsignfolders_v1_request.h"
+#include "../model/ezsignfolder_dispose_ezsignfolders_v1_response.h"
+#include "../model/ezsignfolder_dispose_v1_response.h"
 #include "../model/ezsignfolder_edit_object_v3_request.h"
+#include "../model/ezsignfolder_edit_object_v3_response.h"
+#include "../model/ezsignfolder_end_prematurely_v1_response.h"
 #include "../model/ezsignfolder_get_actionable_elements_v1_response.h"
 #include "../model/ezsignfolder_get_attachment_count_v1_response.h"
 #include "../model/ezsignfolder_get_attachments_v1_response.h"
@@ -36,9 +41,14 @@
 #include "../model/ezsignfolder_import_ezsigntemplatepackage_v1_request.h"
 #include "../model/ezsignfolder_import_ezsigntemplatepackage_v1_response.h"
 #include "../model/ezsignfolder_reorder_v1_request.h"
+#include "../model/ezsignfolder_reorder_v1_response.h"
 #include "../model/ezsignfolder_reorder_v2_request.h"
+#include "../model/ezsignfolder_reorder_v2_response.h"
 #include "../model/ezsignfolder_send_v1_request.h"
+#include "../model/ezsignfolder_send_v1_response.h"
 #include "../model/ezsignfolder_send_v3_request.h"
+#include "../model/ezsignfolder_send_v3_response.h"
+#include "../model/ezsignfolder_unsend_v1_response.h"
 #include "../model/header_accept_language.h"
 #include "../model/object.h"
 
@@ -53,7 +63,7 @@ typedef enum  { ezmax_api_definition__full_ezsignfolderGetListV1__NULL = 0, ezma
 //
 // 
 //
-common_response_t*
+ezsignfolder_archive_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderArchiveV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body);
 
 
@@ -89,7 +99,7 @@ ObjectEzsignfolderAPI_ezsignfolderCreateObjectV3(apiClient_t *apiClient, ezsignf
 
 // Delete an existing Ezsignfolder
 //
-common_response_t*
+ezsignfolder_delete_object_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignfolderID);
 
 
@@ -97,7 +107,7 @@ ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1(apiClient_t *apiClient, int *pk
 //
 // 
 //
-common_response_t*
+ezsignfolder_dispose_ezsignfolders_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderDisposeEzsignfoldersV1(apiClient_t *apiClient, ezsignfolder_dispose_ezsignfolders_v1_request_t *ezsignfolder_dispose_ezsignfolders_v1_request);
 
 
@@ -105,7 +115,7 @@ ObjectEzsignfolderAPI_ezsignfolderDisposeEzsignfoldersV1(apiClient_t *apiClient,
 //
 // 
 //
-common_response_t*
+ezsignfolder_dispose_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderDisposeV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body);
 
 
@@ -113,7 +123,7 @@ ObjectEzsignfolderAPI_ezsignfolderDisposeV1(apiClient_t *apiClient, int *pkiEzsi
 //
 // 
 //
-common_response_t*
+ezsignfolder_edit_object_v3_response_t*
 ObjectEzsignfolderAPI_ezsignfolderEditObjectV3(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_edit_object_v3_request_t *ezsignfolder_edit_object_v3_request);
 
 
@@ -121,7 +131,7 @@ ObjectEzsignfolderAPI_ezsignfolderEditObjectV3(apiClient_t *apiClient, int *pkiE
 //
 // End prematurely all Ezsigndocument of Ezsignfolder when some signatures are still required
 //
-common_response_t*
+ezsignfolder_end_prematurely_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderEndPrematurelyV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body);
 
 
@@ -261,13 +271,13 @@ ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV1(apiClient_t *api
 
 // Reorder Ezsigndocuments in the Ezsignfolder
 //
-common_response_t*
+ezsignfolder_reorder_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderReorderV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_reorder_v1_request_t *ezsignfolder_reorder_v1_request);
 
 
 // Reorder Ezsigndocuments in the Ezsignfolder
 //
-common_response_t*
+ezsignfolder_reorder_v2_response_t*
 ObjectEzsignfolderAPI_ezsignfolderReorderV2(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_reorder_v2_request_t *ezsignfolder_reorder_v2_request);
 
 
@@ -275,7 +285,7 @@ ObjectEzsignfolderAPI_ezsignfolderReorderV2(apiClient_t *apiClient, int *pkiEzsi
 //
 // 
 //
-common_response_t*
+ezsignfolder_send_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderSendV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_send_v1_request_t *ezsignfolder_send_v1_request);
 
 
@@ -283,7 +293,7 @@ ObjectEzsignfolderAPI_ezsignfolderSendV1(apiClient_t *apiClient, int *pkiEzsignf
 //
 // 
 //
-common_response_t*
+ezsignfolder_send_v3_response_t*
 ObjectEzsignfolderAPI_ezsignfolderSendV3(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_send_v3_request_t *ezsignfolder_send_v3_request);
 
 
@@ -291,7 +301,7 @@ ObjectEzsignfolderAPI_ezsignfolderSendV3(apiClient_t *apiClient, int *pkiEzsignf
 //
 // Once an Ezsignfolder has been sent to signatories, it cannot be modified.  Using this endpoint, you can unsend the Ezsignfolder and make it modifiable again.  Signatories will receive an email informing them the signature process was aborted and they might receive a new invitation to sign.  ⚠️ Warning: Any signature previously made by signatories on \"Non-completed\" Ezsigndocuments will be lost.
 //
-common_response_t*
+ezsignfolder_unsend_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderUnsendV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body);
 
 

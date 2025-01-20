@@ -15,7 +15,7 @@
 
 typedef struct activesession_get_current_v1_response_t activesession_get_current_v1_response_t;
 
-#include "activesession_response_compound.h"
+#include "activesession_get_current_v1_response_m_payload.h"
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload.h"
 
@@ -24,14 +24,14 @@ typedef struct activesession_get_current_v1_response_t activesession_get_current
 typedef struct activesession_get_current_v1_response_t {
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
-    struct activesession_response_compound_t *m_payload; //model
+    struct activesession_get_current_v1_response_m_payload_t *m_payload; //model
 
 } activesession_get_current_v1_response_t;
 
 activesession_get_current_v1_response_t *activesession_get_current_v1_response_create(
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug,
-    activesession_response_compound_t *m_payload
+    activesession_get_current_v1_response_m_payload_t *m_payload
 );
 
 void activesession_get_current_v1_response_free(activesession_get_current_v1_response_t *activesession_get_current_v1_response);

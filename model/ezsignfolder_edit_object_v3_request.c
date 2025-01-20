@@ -6,7 +6,7 @@
 
 
 ezsignfolder_edit_object_v3_request_t *ezsignfolder_edit_object_v3_request_create(
-    ezsignfolder_request_v3_t *obj_ezsignfolder
+    ezsignfolder_request_compound_v3_t *obj_ezsignfolder
     ) {
     ezsignfolder_edit_object_v3_request_t *ezsignfolder_edit_object_v3_request_local_var = malloc(sizeof(ezsignfolder_edit_object_v3_request_t));
     if (!ezsignfolder_edit_object_v3_request_local_var) {
@@ -24,7 +24,7 @@ void ezsignfolder_edit_object_v3_request_free(ezsignfolder_edit_object_v3_reques
     }
     listEntry_t *listEntry;
     if (ezsignfolder_edit_object_v3_request->obj_ezsignfolder) {
-        ezsignfolder_request_v3_free(ezsignfolder_edit_object_v3_request->obj_ezsignfolder);
+        ezsignfolder_request_compound_v3_free(ezsignfolder_edit_object_v3_request->obj_ezsignfolder);
         ezsignfolder_edit_object_v3_request->obj_ezsignfolder = NULL;
     }
     free(ezsignfolder_edit_object_v3_request);
@@ -37,7 +37,7 @@ cJSON *ezsignfolder_edit_object_v3_request_convertToJSON(ezsignfolder_edit_objec
     if (!ezsignfolder_edit_object_v3_request->obj_ezsignfolder) {
         goto fail;
     }
-    cJSON *obj_ezsignfolder_local_JSON = ezsignfolder_request_v3_convertToJSON(ezsignfolder_edit_object_v3_request->obj_ezsignfolder);
+    cJSON *obj_ezsignfolder_local_JSON = ezsignfolder_request_compound_v3_convertToJSON(ezsignfolder_edit_object_v3_request->obj_ezsignfolder);
     if(obj_ezsignfolder_local_JSON == NULL) {
     goto fail; //model
     }
@@ -59,7 +59,7 @@ ezsignfolder_edit_object_v3_request_t *ezsignfolder_edit_object_v3_request_parse
     ezsignfolder_edit_object_v3_request_t *ezsignfolder_edit_object_v3_request_local_var = NULL;
 
     // define the local variable for ezsignfolder_edit_object_v3_request->obj_ezsignfolder
-    ezsignfolder_request_v3_t *obj_ezsignfolder_local_nonprim = NULL;
+    ezsignfolder_request_compound_v3_t *obj_ezsignfolder_local_nonprim = NULL;
 
     // ezsignfolder_edit_object_v3_request->obj_ezsignfolder
     cJSON *obj_ezsignfolder = cJSON_GetObjectItemCaseSensitive(ezsignfolder_edit_object_v3_requestJSON, "objEzsignfolder");
@@ -68,7 +68,7 @@ ezsignfolder_edit_object_v3_request_t *ezsignfolder_edit_object_v3_request_parse
     }
 
     
-    obj_ezsignfolder_local_nonprim = ezsignfolder_request_v3_parseFromJSON(obj_ezsignfolder); //nonprimitive
+    obj_ezsignfolder_local_nonprim = ezsignfolder_request_compound_v3_parseFromJSON(obj_ezsignfolder); //nonprimitive
 
 
     ezsignfolder_edit_object_v3_request_local_var = ezsignfolder_edit_object_v3_request_create (
@@ -78,7 +78,7 @@ ezsignfolder_edit_object_v3_request_t *ezsignfolder_edit_object_v3_request_parse
     return ezsignfolder_edit_object_v3_request_local_var;
 end:
     if (obj_ezsignfolder_local_nonprim) {
-        ezsignfolder_request_v3_free(obj_ezsignfolder_local_nonprim);
+        ezsignfolder_request_compound_v3_free(obj_ezsignfolder_local_nonprim);
         obj_ezsignfolder_local_nonprim = NULL;
     }
     return NULL;

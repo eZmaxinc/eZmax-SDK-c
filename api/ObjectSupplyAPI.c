@@ -336,7 +336,7 @@ end:
 //
 // 
 //
-common_response_t*
+supply_delete_object_v1_response_t*
 ObjectSupplyAPI_supplyDeleteObjectV1(apiClient_t *apiClient, int *pkiSupplyID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -388,7 +388,7 @@ ObjectSupplyAPI_supplyDeleteObjectV1(apiClient_t *apiClient, int *pkiSupplyID)
     //}
     //nonprimitive not container
     cJSON *ObjectSupplyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectSupplyAPIlocalVarJSON);
+    supply_delete_object_v1_response_t *elementToReturn = supply_delete_object_v1_response_parseFromJSON(ObjectSupplyAPIlocalVarJSON);
     cJSON_Delete(ObjectSupplyAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -418,7 +418,7 @@ end:
 //
 // 
 //
-common_response_t*
+supply_edit_object_v1_response_t*
 ObjectSupplyAPI_supplyEditObjectV1(apiClient_t *apiClient, int *pkiSupplyID, supply_edit_object_v1_request_t *supply_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -484,7 +484,7 @@ ObjectSupplyAPI_supplyEditObjectV1(apiClient_t *apiClient, int *pkiSupplyID, sup
     //}
     //nonprimitive not container
     cJSON *ObjectSupplyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectSupplyAPIlocalVarJSON);
+    supply_edit_object_v1_response_t *elementToReturn = supply_edit_object_v1_response_parseFromJSON(ObjectSupplyAPIlocalVarJSON);
     cJSON_Delete(ObjectSupplyAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

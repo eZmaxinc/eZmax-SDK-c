@@ -16,10 +16,10 @@
 #include "../model/contactinformations_response.h"
 contactinformations_response_t* instantiate_contactinformations_response(int include_optional);
 
-#include "test_address_response.c"
+#include "test_address_response_compound.c"
 #include "test_phone_response_compound.c"
-#include "test_email_response.c"
-#include "test_website_response.c"
+#include "test_email_response_compound.c"
+#include "test_website_response_compound.c"
 
 
 contactinformations_response_t* instantiate_contactinformations_response(int include_optional) {
@@ -34,13 +34,13 @@ contactinformations_response_t* instantiate_contactinformations_response(int inc
       ezmax_api_definition__full_contactinformations_response__"BankAccount",
       "https://www.example.com",
        // false, not to have infinite recursion
-      instantiate_address_response(0),
+      instantiate_address_response_compound(0),
        // false, not to have infinite recursion
       instantiate_phone_response_compound(0),
        // false, not to have infinite recursion
-      instantiate_email_response(0),
+      instantiate_email_response_compound(0),
        // false, not to have infinite recursion
-      instantiate_website_response(0)
+      instantiate_website_response_compound(0)
     );
   } else {
     contactinformations_response = contactinformations_response_create(
