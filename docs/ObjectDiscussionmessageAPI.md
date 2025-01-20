@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-discussionmessage_delete_object_v1_response_t* ObjectDiscussionmessageAPI_discussionmessageDeleteObjectV1(apiClient_t *apiClient, int *pkiDiscussionmessageID);
+common_response_t* ObjectDiscussionmessageAPI_discussionmessageDeleteObjectV1(apiClient_t *apiClient, int *pkiDiscussionmessageID);
 ```
 
 ### Parameters
@@ -57,7 +57,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[discussionmessage_delete_object_v1_response_t](discussionmessage_delete_object_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-discussionmessage_patch_object_v1_response_t* ObjectDiscussionmessageAPI_discussionmessagePatchObjectV1(apiClient_t *apiClient, int *pkiDiscussionmessageID, discussionmessage_patch_object_v1_request_t *discussionmessage_patch_object_v1_request);
+common_response_t* ObjectDiscussionmessageAPI_discussionmessagePatchObjectV1(apiClient_t *apiClient, int *pkiDiscussionmessageID, discussionmessage_patch_object_v1_request_t *discussionmessage_patch_object_v1_request);
 ```
 
 ### Parameters
@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[discussionmessage_patch_object_v1_response_t](discussionmessage_patch_object_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization

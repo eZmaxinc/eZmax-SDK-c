@@ -15,7 +15,7 @@
 
 typedef struct custom_ezsignformfieldgroup_request_t custom_ezsignformfieldgroup_request_t;
 
-#include "custom_ezsignformfield_request.h"
+#include "object.h"
 
 
 

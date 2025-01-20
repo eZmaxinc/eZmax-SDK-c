@@ -49,7 +49,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-supply_delete_object_v1_response_t* ObjectSupplyAPI_supplyDeleteObjectV1(apiClient_t *apiClient, int *pkiSupplyID);
+common_response_t* ObjectSupplyAPI_supplyDeleteObjectV1(apiClient_t *apiClient, int *pkiSupplyID);
 ```
 
 ### Parameters
@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[supply_delete_object_v1_response_t](supply_delete_object_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-supply_edit_object_v1_response_t* ObjectSupplyAPI_supplyEditObjectV1(apiClient_t *apiClient, int *pkiSupplyID, supply_edit_object_v1_request_t *supply_edit_object_v1_request);
+common_response_t* ObjectSupplyAPI_supplyEditObjectV1(apiClient_t *apiClient, int *pkiSupplyID, supply_edit_object_v1_request_t *supply_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -92,7 +92,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[supply_edit_object_v1_response_t](supply_edit_object_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization

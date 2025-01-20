@@ -17,7 +17,7 @@
 ezsigndocument_create_object_v1_request_t* instantiate_ezsigndocument_create_object_v1_request(int include_optional);
 
 #include "test_ezsigndocument_request.c"
-#include "test_ezsigndocument_request_compound.c"
+#include "test_ezsigndocument_request.c"
 
 
 ezsigndocument_create_object_v1_request_t* instantiate_ezsigndocument_create_object_v1_request(int include_optional) {
@@ -27,7 +27,7 @@ ezsigndocument_create_object_v1_request_t* instantiate_ezsigndocument_create_obj
        // false, not to have infinite recursion
       instantiate_ezsigndocument_request(0),
        // false, not to have infinite recursion
-      instantiate_ezsigndocument_request_compound(0)
+      instantiate_ezsigndocument_request(0)
     );
   } else {
     ezsigndocument_create_object_v1_request = ezsigndocument_create_object_v1_request_create(

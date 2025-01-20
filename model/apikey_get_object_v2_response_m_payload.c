@@ -6,7 +6,7 @@
 
 
 apikey_get_object_v2_response_m_payload_t *apikey_get_object_v2_response_m_payload_create(
-    apikey_response_compound_t *obj_apikey
+    apikey_response_t *obj_apikey
     ) {
     apikey_get_object_v2_response_m_payload_t *apikey_get_object_v2_response_m_payload_local_var = malloc(sizeof(apikey_get_object_v2_response_m_payload_t));
     if (!apikey_get_object_v2_response_m_payload_local_var) {
@@ -24,7 +24,7 @@ void apikey_get_object_v2_response_m_payload_free(apikey_get_object_v2_response_
     }
     listEntry_t *listEntry;
     if (apikey_get_object_v2_response_m_payload->obj_apikey) {
-        apikey_response_compound_free(apikey_get_object_v2_response_m_payload->obj_apikey);
+        apikey_response_free(apikey_get_object_v2_response_m_payload->obj_apikey);
         apikey_get_object_v2_response_m_payload->obj_apikey = NULL;
     }
     free(apikey_get_object_v2_response_m_payload);
@@ -37,7 +37,7 @@ cJSON *apikey_get_object_v2_response_m_payload_convertToJSON(apikey_get_object_v
     if (!apikey_get_object_v2_response_m_payload->obj_apikey) {
         goto fail;
     }
-    cJSON *obj_apikey_local_JSON = apikey_response_compound_convertToJSON(apikey_get_object_v2_response_m_payload->obj_apikey);
+    cJSON *obj_apikey_local_JSON = apikey_response_convertToJSON(apikey_get_object_v2_response_m_payload->obj_apikey);
     if(obj_apikey_local_JSON == NULL) {
     goto fail; //model
     }
@@ -59,7 +59,7 @@ apikey_get_object_v2_response_m_payload_t *apikey_get_object_v2_response_m_paylo
     apikey_get_object_v2_response_m_payload_t *apikey_get_object_v2_response_m_payload_local_var = NULL;
 
     // define the local variable for apikey_get_object_v2_response_m_payload->obj_apikey
-    apikey_response_compound_t *obj_apikey_local_nonprim = NULL;
+    apikey_response_t *obj_apikey_local_nonprim = NULL;
 
     // apikey_get_object_v2_response_m_payload->obj_apikey
     cJSON *obj_apikey = cJSON_GetObjectItemCaseSensitive(apikey_get_object_v2_response_m_payloadJSON, "objApikey");
@@ -68,7 +68,7 @@ apikey_get_object_v2_response_m_payload_t *apikey_get_object_v2_response_m_paylo
     }
 
     
-    obj_apikey_local_nonprim = apikey_response_compound_parseFromJSON(obj_apikey); //nonprimitive
+    obj_apikey_local_nonprim = apikey_response_parseFromJSON(obj_apikey); //nonprimitive
 
 
     apikey_get_object_v2_response_m_payload_local_var = apikey_get_object_v2_response_m_payload_create (
@@ -78,7 +78,7 @@ apikey_get_object_v2_response_m_payload_t *apikey_get_object_v2_response_m_paylo
     return apikey_get_object_v2_response_m_payload_local_var;
 end:
     if (obj_apikey_local_nonprim) {
-        apikey_response_compound_free(obj_apikey_local_nonprim);
+        apikey_response_free(obj_apikey_local_nonprim);
         obj_apikey_local_nonprim = NULL;
     }
     return NULL;

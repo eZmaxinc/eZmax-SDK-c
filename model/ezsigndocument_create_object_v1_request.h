@@ -16,19 +16,18 @@
 typedef struct ezsigndocument_create_object_v1_request_t ezsigndocument_create_object_v1_request_t;
 
 #include "ezsigndocument_request.h"
-#include "ezsigndocument_request_compound.h"
 
 
 
 typedef struct ezsigndocument_create_object_v1_request_t {
     struct ezsigndocument_request_t *obj_ezsigndocument; //model
-    struct ezsigndocument_request_compound_t *obj_ezsigndocument_compound; //model
+    struct ezsigndocument_request_t *obj_ezsigndocument_compound; //model
 
 } ezsigndocument_create_object_v1_request_t;
 
 ezsigndocument_create_object_v1_request_t *ezsigndocument_create_object_v1_request_create(
     ezsigndocument_request_t *obj_ezsigndocument,
-    ezsigndocument_request_compound_t *obj_ezsigndocument_compound
+    ezsigndocument_request_t *obj_ezsigndocument_compound
 );
 
 void ezsigndocument_create_object_v1_request_free(ezsigndocument_create_object_v1_request_t *ezsigndocument_create_object_v1_request);

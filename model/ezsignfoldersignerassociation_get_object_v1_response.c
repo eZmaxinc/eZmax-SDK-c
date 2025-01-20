@@ -8,7 +8,7 @@
 ezsignfoldersignerassociation_get_object_v1_response_t *ezsignfoldersignerassociation_get_object_v1_response_create(
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug,
-    ezsignfoldersignerassociation_get_object_v1_response_m_payload_t *m_payload
+    ezsignfoldersignerassociation_response_compound_t *m_payload
     ) {
     ezsignfoldersignerassociation_get_object_v1_response_t *ezsignfoldersignerassociation_get_object_v1_response_local_var = malloc(sizeof(ezsignfoldersignerassociation_get_object_v1_response_t));
     if (!ezsignfoldersignerassociation_get_object_v1_response_local_var) {
@@ -36,7 +36,7 @@ void ezsignfoldersignerassociation_get_object_v1_response_free(ezsignfoldersigne
         ezsignfoldersignerassociation_get_object_v1_response->obj_debug = NULL;
     }
     if (ezsignfoldersignerassociation_get_object_v1_response->m_payload) {
-        ezsignfoldersignerassociation_get_object_v1_response_m_payload_free(ezsignfoldersignerassociation_get_object_v1_response->m_payload);
+        ezsignfoldersignerassociation_response_compound_free(ezsignfoldersignerassociation_get_object_v1_response->m_payload);
         ezsignfoldersignerassociation_get_object_v1_response->m_payload = NULL;
     }
     free(ezsignfoldersignerassociation_get_object_v1_response);
@@ -76,7 +76,7 @@ cJSON *ezsignfoldersignerassociation_get_object_v1_response_convertToJSON(ezsign
     if (!ezsignfoldersignerassociation_get_object_v1_response->m_payload) {
         goto fail;
     }
-    cJSON *m_payload_local_JSON = ezsignfoldersignerassociation_get_object_v1_response_m_payload_convertToJSON(ezsignfoldersignerassociation_get_object_v1_response->m_payload);
+    cJSON *m_payload_local_JSON = ezsignfoldersignerassociation_response_compound_convertToJSON(ezsignfoldersignerassociation_get_object_v1_response->m_payload);
     if(m_payload_local_JSON == NULL) {
     goto fail; //model
     }
@@ -104,7 +104,7 @@ ezsignfoldersignerassociation_get_object_v1_response_t *ezsignfoldersignerassoci
     common_response_obj_debug_t *obj_debug_local_nonprim = NULL;
 
     // define the local variable for ezsignfoldersignerassociation_get_object_v1_response->m_payload
-    ezsignfoldersignerassociation_get_object_v1_response_m_payload_t *m_payload_local_nonprim = NULL;
+    ezsignfoldersignerassociation_response_compound_t *m_payload_local_nonprim = NULL;
 
     // ezsignfoldersignerassociation_get_object_v1_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_get_object_v1_responseJSON, "objDebugPayload");
@@ -128,7 +128,7 @@ ezsignfoldersignerassociation_get_object_v1_response_t *ezsignfoldersignerassoci
     }
 
     
-    m_payload_local_nonprim = ezsignfoldersignerassociation_get_object_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
+    m_payload_local_nonprim = ezsignfoldersignerassociation_response_compound_parseFromJSON(m_payload); //nonprimitive
 
 
     ezsignfoldersignerassociation_get_object_v1_response_local_var = ezsignfoldersignerassociation_get_object_v1_response_create (
@@ -148,7 +148,7 @@ end:
         obj_debug_local_nonprim = NULL;
     }
     if (m_payload_local_nonprim) {
-        ezsignfoldersignerassociation_get_object_v1_response_m_payload_free(m_payload_local_nonprim);
+        ezsignfoldersignerassociation_response_compound_free(m_payload_local_nonprim);
         m_payload_local_nonprim = NULL;
     }
     return NULL;

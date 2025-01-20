@@ -340,7 +340,7 @@ end:
 //
 // 
 //
-creditcardclient_delete_object_v1_response_t*
+common_response_t*
 ObjectCreditcardclientAPI_creditcardclientDeleteObjectV1(apiClient_t *apiClient, int *pkiCreditcardclientID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -392,7 +392,7 @@ ObjectCreditcardclientAPI_creditcardclientDeleteObjectV1(apiClient_t *apiClient,
     //}
     //nonprimitive not container
     cJSON *ObjectCreditcardclientAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    creditcardclient_delete_object_v1_response_t *elementToReturn = creditcardclient_delete_object_v1_response_parseFromJSON(ObjectCreditcardclientAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectCreditcardclientAPIlocalVarJSON);
     cJSON_Delete(ObjectCreditcardclientAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -422,7 +422,7 @@ end:
 //
 // 
 //
-creditcardclient_edit_object_v1_response_t*
+common_response_t*
 ObjectCreditcardclientAPI_creditcardclientEditObjectV1(apiClient_t *apiClient, int *pkiCreditcardclientID, creditcardclient_edit_object_v1_request_t *creditcardclient_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -488,7 +488,7 @@ ObjectCreditcardclientAPI_creditcardclientEditObjectV1(apiClient_t *apiClient, i
     //}
     //nonprimitive not container
     cJSON *ObjectCreditcardclientAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    creditcardclient_edit_object_v1_response_t *elementToReturn = creditcardclient_edit_object_v1_response_parseFromJSON(ObjectCreditcardclientAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectCreditcardclientAPIlocalVarJSON);
     cJSON_Delete(ObjectCreditcardclientAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -921,7 +921,7 @@ end:
 //
 // 
 //
-creditcardclient_patch_object_v1_response_t*
+common_response_t*
 ObjectCreditcardclientAPI_creditcardclientPatchObjectV1(apiClient_t *apiClient, int *pkiCreditcardclientID, creditcardclient_patch_object_v1_request_t *creditcardclient_patch_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -987,7 +987,7 @@ ObjectCreditcardclientAPI_creditcardclientPatchObjectV1(apiClient_t *apiClient, 
     //}
     //nonprimitive not container
     cJSON *ObjectCreditcardclientAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    creditcardclient_patch_object_v1_response_t *elementToReturn = creditcardclient_patch_object_v1_response_parseFromJSON(ObjectCreditcardclientAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectCreditcardclientAPIlocalVarJSON);
     cJSON_Delete(ObjectCreditcardclientAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

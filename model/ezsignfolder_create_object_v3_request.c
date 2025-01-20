@@ -25,7 +25,7 @@ void ezsignfolder_create_object_v3_request_free(ezsignfolder_create_object_v3_re
     listEntry_t *listEntry;
     if (ezsignfolder_create_object_v3_request->a_obj_ezsignfolder) {
         list_ForEach(listEntry, ezsignfolder_create_object_v3_request->a_obj_ezsignfolder) {
-            ezsignfolder_request_compound_v3_free(listEntry->data);
+            ezsignfolder_request_v3_free(listEntry->data);
         }
         list_freeList(ezsignfolder_create_object_v3_request->a_obj_ezsignfolder);
         ezsignfolder_create_object_v3_request->a_obj_ezsignfolder = NULL;
@@ -48,7 +48,7 @@ cJSON *ezsignfolder_create_object_v3_request_convertToJSON(ezsignfolder_create_o
     listEntry_t *a_obj_ezsignfolderListEntry;
     if (ezsignfolder_create_object_v3_request->a_obj_ezsignfolder) {
     list_ForEach(a_obj_ezsignfolderListEntry, ezsignfolder_create_object_v3_request->a_obj_ezsignfolder) {
-    cJSON *itemLocal = ezsignfolder_request_compound_v3_convertToJSON(a_obj_ezsignfolderListEntry->data);
+    cJSON *itemLocal = ezsignfolder_request_v3_convertToJSON(a_obj_ezsignfolderListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -90,7 +90,7 @@ ezsignfolder_create_object_v3_request_t *ezsignfolder_create_object_v3_request_p
         if(!cJSON_IsObject(a_obj_ezsignfolder_local_nonprimitive)){
             goto end;
         }
-        ezsignfolder_request_compound_v3_t *a_obj_ezsignfolderItem = ezsignfolder_request_compound_v3_parseFromJSON(a_obj_ezsignfolder_local_nonprimitive);
+        ezsignfolder_request_v3_t *a_obj_ezsignfolderItem = ezsignfolder_request_v3_parseFromJSON(a_obj_ezsignfolder_local_nonprimitive);
 
         list_addElement(a_obj_ezsignfolderList, a_obj_ezsignfolderItem);
     }
@@ -105,7 +105,7 @@ end:
     if (a_obj_ezsignfolderList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsignfolderList) {
-            ezsignfolder_request_compound_v3_free(listEntry->data);
+            ezsignfolder_request_v3_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_ezsignfolderList);

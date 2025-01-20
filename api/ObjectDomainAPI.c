@@ -189,7 +189,7 @@ end:
 //
 // 
 //
-domain_delete_object_v1_response_t*
+common_response_t*
 ObjectDomainAPI_domainDeleteObjectV1(apiClient_t *apiClient, int *pkiDomainID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -241,7 +241,7 @@ ObjectDomainAPI_domainDeleteObjectV1(apiClient_t *apiClient, int *pkiDomainID)
     //}
     //nonprimitive not container
     cJSON *ObjectDomainAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    domain_delete_object_v1_response_t *elementToReturn = domain_delete_object_v1_response_parseFromJSON(ObjectDomainAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectDomainAPIlocalVarJSON);
     cJSON_Delete(ObjectDomainAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

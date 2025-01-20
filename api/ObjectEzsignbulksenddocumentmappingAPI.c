@@ -98,7 +98,7 @@ end:
 //
 // 
 //
-ezsignbulksenddocumentmapping_delete_object_v1_response_t*
+common_response_t*
 ObjectEzsignbulksenddocumentmappingAPI_ezsignbulksenddocumentmappingDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksenddocumentmappingID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -150,7 +150,7 @@ ObjectEzsignbulksenddocumentmappingAPI_ezsignbulksenddocumentmappingDeleteObject
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignbulksenddocumentmappingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignbulksenddocumentmapping_delete_object_v1_response_t *elementToReturn = ezsignbulksenddocumentmapping_delete_object_v1_response_parseFromJSON(ObjectEzsignbulksenddocumentmappingAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignbulksenddocumentmappingAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignbulksenddocumentmappingAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

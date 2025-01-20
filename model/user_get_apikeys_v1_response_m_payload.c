@@ -25,7 +25,7 @@ void user_get_apikeys_v1_response_m_payload_free(user_get_apikeys_v1_response_m_
     listEntry_t *listEntry;
     if (user_get_apikeys_v1_response_m_payload->a_obj_apikey) {
         list_ForEach(listEntry, user_get_apikeys_v1_response_m_payload->a_obj_apikey) {
-            apikey_response_compound_free(listEntry->data);
+            apikey_response_free(listEntry->data);
         }
         list_freeList(user_get_apikeys_v1_response_m_payload->a_obj_apikey);
         user_get_apikeys_v1_response_m_payload->a_obj_apikey = NULL;
@@ -48,7 +48,7 @@ cJSON *user_get_apikeys_v1_response_m_payload_convertToJSON(user_get_apikeys_v1_
     listEntry_t *a_obj_apikeyListEntry;
     if (user_get_apikeys_v1_response_m_payload->a_obj_apikey) {
     list_ForEach(a_obj_apikeyListEntry, user_get_apikeys_v1_response_m_payload->a_obj_apikey) {
-    cJSON *itemLocal = apikey_response_compound_convertToJSON(a_obj_apikeyListEntry->data);
+    cJSON *itemLocal = apikey_response_convertToJSON(a_obj_apikeyListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -90,7 +90,7 @@ user_get_apikeys_v1_response_m_payload_t *user_get_apikeys_v1_response_m_payload
         if(!cJSON_IsObject(a_obj_apikey_local_nonprimitive)){
             goto end;
         }
-        apikey_response_compound_t *a_obj_apikeyItem = apikey_response_compound_parseFromJSON(a_obj_apikey_local_nonprimitive);
+        apikey_response_t *a_obj_apikeyItem = apikey_response_parseFromJSON(a_obj_apikey_local_nonprimitive);
 
         list_addElement(a_obj_apikeyList, a_obj_apikeyItem);
     }
@@ -105,7 +105,7 @@ end:
     if (a_obj_apikeyList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_apikeyList) {
-            apikey_response_compound_free(listEntry->data);
+            apikey_response_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_apikeyList);

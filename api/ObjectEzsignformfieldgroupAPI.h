@@ -5,12 +5,11 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
+#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/ezsignformfieldgroup_create_object_v1_request.h"
 #include "../model/ezsignformfieldgroup_create_object_v1_response.h"
-#include "../model/ezsignformfieldgroup_delete_object_v1_response.h"
 #include "../model/ezsignformfieldgroup_edit_object_v1_request.h"
-#include "../model/ezsignformfieldgroup_edit_object_v1_response.h"
 #include "../model/ezsignformfieldgroup_get_object_v2_response.h"
 
 
@@ -26,7 +25,7 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupCreateObjectV1(apiClient_t *ap
 //
 // 
 //
-ezsignformfieldgroup_delete_object_v1_response_t*
+common_response_t*
 ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignformfieldgroupID);
 
 
@@ -34,7 +33,7 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupDeleteObjectV1(apiClient_t *ap
 //
 // 
 //
-ezsignformfieldgroup_edit_object_v1_response_t*
+common_response_t*
 ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupEditObjectV1(apiClient_t *apiClient, int *pkiEzsignformfieldgroupID, ezsignformfieldgroup_edit_object_v1_request_t *ezsignformfieldgroup_edit_object_v1_request);
 
 

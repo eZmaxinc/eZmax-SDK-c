@@ -16,7 +16,7 @@
 typedef struct custom_communicationsender_response_t custom_communicationsender_response_t;
 
 #include "custom_contact_name_response.h"
-#include "email_response_compound.h"
+#include "email_response.h"
 #include "phone_response_compound.h"
 
 // Enum ECOMMUNICATIONSENDEROBJECTTYPE for custom_communicationsender_response
@@ -37,7 +37,7 @@ typedef struct custom_communicationsender_response_t {
     int fki_phonelineshared_id; //numeric
     ezmax_api_definition__full_custom_communicationsender_response_ECOMMUNICATIONSENDEROBJECTTYPE_e e_communicationsender_objecttype; //enum
     struct custom_contact_name_response_t *obj_contact_name; //model
-    struct email_response_compound_t *obj_email; //model
+    struct email_response_t *obj_email; //model
     struct phone_response_compound_t *obj_phone_fax; //model
     struct phone_response_compound_t *obj_phone_sms; //model
 
@@ -51,7 +51,7 @@ custom_communicationsender_response_t *custom_communicationsender_response_creat
     int fki_phonelineshared_id,
     ezmax_api_definition__full_custom_communicationsender_response_ECOMMUNICATIONSENDEROBJECTTYPE_e e_communicationsender_objecttype,
     custom_contact_name_response_t *obj_contact_name,
-    email_response_compound_t *obj_email,
+    email_response_t *obj_email,
     phone_response_compound_t *obj_phone_fax,
     phone_response_compound_t *obj_phone_sms
 );

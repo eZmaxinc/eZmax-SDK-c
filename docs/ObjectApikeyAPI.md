@@ -53,7 +53,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-apikey_edit_object_v1_response_t* ObjectApikeyAPI_apikeyEditObjectV1(apiClient_t *apiClient, int *pkiApikeyID, apikey_edit_object_v1_request_t *apikey_edit_object_v1_request);
+common_response_t* ObjectApikeyAPI_apikeyEditObjectV1(apiClient_t *apiClient, int *pkiApikeyID, apikey_edit_object_v1_request_t *apikey_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[apikey_edit_object_v1_response_t](apikey_edit_object_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization

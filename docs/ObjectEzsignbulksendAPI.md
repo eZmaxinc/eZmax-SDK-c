@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignbulksend_delete_object_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulksendDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksendID);
+common_response_t* ObjectEzsignbulksendAPI_ezsignbulksendDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksendID);
 ```
 
 ### Parameters
@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[ezsignbulksend_delete_object_v1_response_t](ezsignbulksend_delete_object_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization
@@ -115,7 +115,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignbulksend_edit_object_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_edit_object_v1_request_t *ezsignbulksend_edit_object_v1_request);
+common_response_t* ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_edit_object_v1_request_t *ezsignbulksend_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -127,7 +127,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[ezsignbulksend_edit_object_v1_response_t](ezsignbulksend_edit_object_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization
@@ -337,7 +337,7 @@ Name | Type | Description  | Notes
 ```c
 // Reorder Ezsignbulksenddocumentmappings in the Ezsignbulksend
 //
-ezsignbulksend_reorder_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulksendReorderV1(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_reorder_v1_request_t *ezsignbulksend_reorder_v1_request);
+common_response_t* ObjectEzsignbulksendAPI_ezsignbulksendReorderV1(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_reorder_v1_request_t *ezsignbulksend_reorder_v1_request);
 ```
 
 ### Parameters
@@ -349,7 +349,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[ezsignbulksend_reorder_v1_response_t](ezsignbulksend_reorder_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization

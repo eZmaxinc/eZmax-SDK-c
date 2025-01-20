@@ -15,17 +15,17 @@
 
 typedef struct user_get_object_v2_response_m_payload_t user_get_object_v2_response_m_payload_t;
 
-#include "user_response_compound.h"
+#include "user_response.h"
 
 
 
 typedef struct user_get_object_v2_response_m_payload_t {
-    struct user_response_compound_t *obj_user; //model
+    struct user_response_t *obj_user; //model
 
 } user_get_object_v2_response_m_payload_t;
 
 user_get_object_v2_response_m_payload_t *user_get_object_v2_response_m_payload_create(
-    user_response_compound_t *obj_user
+    user_response_t *obj_user
 );
 
 void user_get_object_v2_response_m_payload_free(user_get_object_v2_response_m_payload_t *user_get_object_v2_response_m_payload);

@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **obj_debug_payload** | [**common_response_obj_debug_payload_t**](common_response_obj_debug_payload.md) \* |  | 
 **obj_debug** | [**common_response_obj_debug_t**](common_response_obj_debug.md) \* |  | [optional] 
-**m_payload** | [**ezmaxinvoicing_get_provisional_v1_response_m_payload_t**](ezmaxinvoicing_get_provisional_v1_response_m_payload.md) \* |  | 
+**m_payload** | [**ezmaxinvoicing_response_compound_t**](ezmaxinvoicing_response_compound.md) \* | Payload for GET /1/object/ezmaxinvoicing/getProvisional | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

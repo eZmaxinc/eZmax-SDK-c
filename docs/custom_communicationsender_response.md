@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **fki_phonelineshared_id** | **int** | The unique ID of the Phonelineshared | [optional] 
 **e_communicationsender_objecttype** | **ezmax_api_definition__full_custom_communicationsender_response_ECOMMUNICATIONSENDEROBJECTTYPE_e** |  | 
 **obj_contact_name** | [**custom_contact_name_response_t**](custom_contact_name_response.md) \* |  | 
-**obj_email** | [**email_response_compound_t**](email_response_compound.md) \* |  | [optional] 
+**obj_email** | [**email_response_t**](email_response.md) \* | An Email Object and children to create a complete structure | [optional] 
 **obj_phone_fax** | [**phone_response_compound_t**](phone_response_compound.md) \* |  | [optional] 
 **obj_phone_sms** | [**phone_response_compound_t**](phone_response_compound.md) \* |  | [optional] 
 

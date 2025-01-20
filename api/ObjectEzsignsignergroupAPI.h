@@ -5,14 +5,13 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
+#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/ezsignsignergroup_create_object_v1_request.h"
 #include "../model/ezsignsignergroup_create_object_v1_response.h"
-#include "../model/ezsignsignergroup_delete_object_v1_response.h"
 #include "../model/ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_request.h"
 #include "../model/ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response.h"
 #include "../model/ezsignsignergroup_edit_object_v1_request.h"
-#include "../model/ezsignsignergroup_edit_object_v1_response.h"
 #include "../model/ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response.h"
 #include "../model/ezsignsignergroup_get_object_v2_response.h"
 
@@ -29,7 +28,7 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupCreateObjectV1(apiClient_t *apiClien
 //
 // 
 //
-ezsignsignergroup_delete_object_v1_response_t*
+common_response_t*
 ObjectEzsignsignergroupAPI_ezsignsignergroupDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignsignergroupID);
 
 
@@ -45,7 +44,7 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupEditEzsignsignergroupmembershipsV1(a
 //
 // 
 //
-ezsignsignergroup_edit_object_v1_response_t*
+common_response_t*
 ObjectEzsignsignergroupAPI_ezsignsignergroupEditObjectV1(apiClient_t *apiClient, int *pkiEzsignsignergroupID, ezsignsignergroup_edit_object_v1_request_t *ezsignsignergroup_edit_object_v1_request);
 
 

@@ -94,7 +94,7 @@ end:
 //
 // 
 //
-usergroupdelegation_delete_object_v1_response_t*
+common_response_t*
 ObjectUsergroupdelegationAPI_usergroupdelegationDeleteObjectV1(apiClient_t *apiClient, int *pkiUsergroupdelegationID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -146,7 +146,7 @@ ObjectUsergroupdelegationAPI_usergroupdelegationDeleteObjectV1(apiClient_t *apiC
     //}
     //nonprimitive not container
     cJSON *ObjectUsergroupdelegationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    usergroupdelegation_delete_object_v1_response_t *elementToReturn = usergroupdelegation_delete_object_v1_response_parseFromJSON(ObjectUsergroupdelegationAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectUsergroupdelegationAPIlocalVarJSON);
     cJSON_Delete(ObjectUsergroupdelegationAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -176,7 +176,7 @@ end:
 //
 // 
 //
-usergroupdelegation_edit_object_v1_response_t*
+common_response_t*
 ObjectUsergroupdelegationAPI_usergroupdelegationEditObjectV1(apiClient_t *apiClient, int *pkiUsergroupdelegationID, usergroupdelegation_edit_object_v1_request_t *usergroupdelegation_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -242,7 +242,7 @@ ObjectUsergroupdelegationAPI_usergroupdelegationEditObjectV1(apiClient_t *apiCli
     //}
     //nonprimitive not container
     cJSON *ObjectUsergroupdelegationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    usergroupdelegation_edit_object_v1_response_t *elementToReturn = usergroupdelegation_edit_object_v1_response_parseFromJSON(ObjectUsergroupdelegationAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectUsergroupdelegationAPIlocalVarJSON);
     cJSON_Delete(ObjectUsergroupdelegationAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

@@ -31,7 +31,7 @@ void custom_ezsignformfielderror_response_free(custom_ezsignformfielderror_respo
     }
     if (custom_ezsignformfielderror_response->a_obj_ezsignformfielderrortest) {
         list_ForEach(listEntry, custom_ezsignformfielderror_response->a_obj_ezsignformfielderrortest) {
-            custom_ezsignformfielderrortest_response_free(listEntry->data);
+            object_free(listEntry->data);
         }
         list_freeList(custom_ezsignformfielderror_response->a_obj_ezsignformfielderrortest);
         custom_ezsignformfielderror_response->a_obj_ezsignformfielderrortest = NULL;
@@ -63,7 +63,7 @@ cJSON *custom_ezsignformfielderror_response_convertToJSON(custom_ezsignformfield
     listEntry_t *a_obj_ezsignformfielderrortestListEntry;
     if (custom_ezsignformfielderror_response->a_obj_ezsignformfielderrortest) {
     list_ForEach(a_obj_ezsignformfielderrortestListEntry, custom_ezsignformfielderror_response->a_obj_ezsignformfielderrortest) {
-    cJSON *itemLocal = custom_ezsignformfielderrortest_response_convertToJSON(a_obj_ezsignformfielderrortestListEntry->data);
+    cJSON *itemLocal = object_convertToJSON(a_obj_ezsignformfielderrortestListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -117,7 +117,7 @@ custom_ezsignformfielderror_response_t *custom_ezsignformfielderror_response_par
         if(!cJSON_IsObject(a_obj_ezsignformfielderrortest_local_nonprimitive)){
             goto end;
         }
-        custom_ezsignformfielderrortest_response_t *a_obj_ezsignformfielderrortestItem = custom_ezsignformfielderrortest_response_parseFromJSON(a_obj_ezsignformfielderrortest_local_nonprimitive);
+        object_t *a_obj_ezsignformfielderrortestItem = object_parseFromJSON(a_obj_ezsignformfielderrortest_local_nonprimitive);
 
         list_addElement(a_obj_ezsignformfielderrortestList, a_obj_ezsignformfielderrortestItem);
     }
@@ -133,7 +133,7 @@ end:
     if (a_obj_ezsignformfielderrortestList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsignformfielderrortestList) {
-            custom_ezsignformfielderrortest_response_free(listEntry->data);
+            object_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_ezsignformfielderrortestList);

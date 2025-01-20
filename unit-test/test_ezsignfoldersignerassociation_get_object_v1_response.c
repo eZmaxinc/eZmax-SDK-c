@@ -18,7 +18,7 @@ ezsignfoldersignerassociation_get_object_v1_response_t* instantiate_ezsignfolder
 
 #include "test_common_response_obj_debug_payload.c"
 #include "test_common_response_obj_debug.c"
-#include "test_ezsignfoldersignerassociation_get_object_v1_response_m_payload.c"
+#include "test_ezsignfoldersignerassociation_response_compound.c"
 
 
 ezsignfoldersignerassociation_get_object_v1_response_t* instantiate_ezsignfoldersignerassociation_get_object_v1_response(int include_optional) {
@@ -29,7 +29,7 @@ ezsignfoldersignerassociation_get_object_v1_response_t* instantiate_ezsignfolder
       instantiate_common_response_obj_debug_payload(0),
       {"sMemoryUsage":"11,923MB","sRunTime":"0.6084s","iSQLSelects":3,"iSQLQueries":6,"a_objSQLQuery":[{"sQuery":"SELECT * FROM table","fDuration":1.0E-4},{"sQuery":"SELECT * FROM table","fDuration":1.0E-4}]},
        // false, not to have infinite recursion
-      instantiate_ezsignfoldersignerassociation_get_object_v1_response_m_payload(0)
+      instantiate_ezsignfoldersignerassociation_response_compound(0)
     );
   } else {
     ezsignfoldersignerassociation_get_object_v1_response = ezsignfoldersignerassociation_get_object_v1_response_create(

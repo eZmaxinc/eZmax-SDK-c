@@ -336,7 +336,7 @@ end:
 //
 // 
 //
-variableexpense_edit_object_v1_response_t*
+common_response_t*
 ObjectVariableexpenseAPI_variableexpenseEditObjectV1(apiClient_t *apiClient, int *pkiVariableexpenseID, variableexpense_edit_object_v1_request_t *variableexpense_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -402,7 +402,7 @@ ObjectVariableexpenseAPI_variableexpenseEditObjectV1(apiClient_t *apiClient, int
     //}
     //nonprimitive not container
     cJSON *ObjectVariableexpenseAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    variableexpense_edit_object_v1_response_t *elementToReturn = variableexpense_edit_object_v1_response_parseFromJSON(ObjectVariableexpenseAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectVariableexpenseAPIlocalVarJSON);
     cJSON_Delete(ObjectVariableexpenseAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

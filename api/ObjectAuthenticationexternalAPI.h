@@ -7,13 +7,11 @@
 #include "../include/binary.h"
 #include "../model/authenticationexternal_create_object_v1_request.h"
 #include "../model/authenticationexternal_create_object_v1_response.h"
-#include "../model/authenticationexternal_delete_object_v1_response.h"
 #include "../model/authenticationexternal_edit_object_v1_request.h"
-#include "../model/authenticationexternal_edit_object_v1_response.h"
 #include "../model/authenticationexternal_get_autocomplete_v2_response.h"
 #include "../model/authenticationexternal_get_list_v1_response.h"
 #include "../model/authenticationexternal_get_object_v2_response.h"
-#include "../model/authenticationexternal_reset_authorization_v1_response.h"
+#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/header_accept_language.h"
 #include "../model/object.h"
@@ -46,7 +44,7 @@ ObjectAuthenticationexternalAPI_authenticationexternalCreateObjectV1(apiClient_t
 //
 // 
 //
-authenticationexternal_delete_object_v1_response_t*
+common_response_t*
 ObjectAuthenticationexternalAPI_authenticationexternalDeleteObjectV1(apiClient_t *apiClient, int *pkiAuthenticationexternalID);
 
 
@@ -54,7 +52,7 @@ ObjectAuthenticationexternalAPI_authenticationexternalDeleteObjectV1(apiClient_t
 //
 // 
 //
-authenticationexternal_edit_object_v1_response_t*
+common_response_t*
 ObjectAuthenticationexternalAPI_authenticationexternalEditObjectV1(apiClient_t *apiClient, int *pkiAuthenticationexternalID, authenticationexternal_edit_object_v1_request_t *authenticationexternal_edit_object_v1_request);
 
 
@@ -86,7 +84,7 @@ ObjectAuthenticationexternalAPI_authenticationexternalGetObjectV2(apiClient_t *a
 //
 // 
 //
-authenticationexternal_reset_authorization_v1_response_t*
+common_response_t*
 ObjectAuthenticationexternalAPI_authenticationexternalResetAuthorizationV1(apiClient_t *apiClient, int *pkiAuthenticationexternalID, object_t *body);
 
 

@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsigntemplatepackagemembership_delete_object_v1_response_t* ObjectEzsigntemplatepackagemembershipAPI_ezsigntemplatepackagemembershipDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatepackagemembershipID);
+common_response_t* ObjectEzsigntemplatepackagemembershipAPI_ezsigntemplatepackagemembershipDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatepackagemembershipID);
 ```
 
 ### Parameters
@@ -57,7 +57,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[ezsigntemplatepackagemembership_delete_object_v1_response_t](ezsigntemplatepackagemembership_delete_object_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization

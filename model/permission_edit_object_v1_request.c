@@ -6,7 +6,7 @@
 
 
 permission_edit_object_v1_request_t *permission_edit_object_v1_request_create(
-    permission_request_compound_t *obj_permission
+    permission_request_t *obj_permission
     ) {
     permission_edit_object_v1_request_t *permission_edit_object_v1_request_local_var = malloc(sizeof(permission_edit_object_v1_request_t));
     if (!permission_edit_object_v1_request_local_var) {
@@ -24,7 +24,7 @@ void permission_edit_object_v1_request_free(permission_edit_object_v1_request_t 
     }
     listEntry_t *listEntry;
     if (permission_edit_object_v1_request->obj_permission) {
-        permission_request_compound_free(permission_edit_object_v1_request->obj_permission);
+        permission_request_free(permission_edit_object_v1_request->obj_permission);
         permission_edit_object_v1_request->obj_permission = NULL;
     }
     free(permission_edit_object_v1_request);
@@ -37,7 +37,7 @@ cJSON *permission_edit_object_v1_request_convertToJSON(permission_edit_object_v1
     if (!permission_edit_object_v1_request->obj_permission) {
         goto fail;
     }
-    cJSON *obj_permission_local_JSON = permission_request_compound_convertToJSON(permission_edit_object_v1_request->obj_permission);
+    cJSON *obj_permission_local_JSON = permission_request_convertToJSON(permission_edit_object_v1_request->obj_permission);
     if(obj_permission_local_JSON == NULL) {
     goto fail; //model
     }
@@ -59,7 +59,7 @@ permission_edit_object_v1_request_t *permission_edit_object_v1_request_parseFrom
     permission_edit_object_v1_request_t *permission_edit_object_v1_request_local_var = NULL;
 
     // define the local variable for permission_edit_object_v1_request->obj_permission
-    permission_request_compound_t *obj_permission_local_nonprim = NULL;
+    permission_request_t *obj_permission_local_nonprim = NULL;
 
     // permission_edit_object_v1_request->obj_permission
     cJSON *obj_permission = cJSON_GetObjectItemCaseSensitive(permission_edit_object_v1_requestJSON, "objPermission");
@@ -68,7 +68,7 @@ permission_edit_object_v1_request_t *permission_edit_object_v1_request_parseFrom
     }
 
     
-    obj_permission_local_nonprim = permission_request_compound_parseFromJSON(obj_permission); //nonprimitive
+    obj_permission_local_nonprim = permission_request_parseFromJSON(obj_permission); //nonprimitive
 
 
     permission_edit_object_v1_request_local_var = permission_edit_object_v1_request_create (
@@ -78,7 +78,7 @@ permission_edit_object_v1_request_t *permission_edit_object_v1_request_parseFrom
     return permission_edit_object_v1_request_local_var;
 end:
     if (obj_permission_local_nonprim) {
-        permission_request_compound_free(obj_permission_local_nonprim);
+        permission_request_free(obj_permission_local_nonprim);
         obj_permission_local_nonprim = NULL;
     }
     return NULL;

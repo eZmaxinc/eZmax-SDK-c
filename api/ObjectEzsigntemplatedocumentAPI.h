@@ -5,6 +5,7 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
+#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/common_response_error_s_temporary_file_url.h"
 #include "../model/ezsigntemplatedocument_create_object_v1_request.h"
@@ -19,7 +20,6 @@
 #include "../model/ezsigntemplatedocument_edit_object_v1_response.h"
 #include "../model/ezsigntemplatedocument_extract_text_v1_request.h"
 #include "../model/ezsigntemplatedocument_extract_text_v1_response.h"
-#include "../model/ezsigntemplatedocument_flatten_v1_response.h"
 #include "../model/ezsigntemplatedocument_get_ezsigntemplatedocumentpagerecognitions_v1_response.h"
 #include "../model/ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response.h"
 #include "../model/ezsigntemplatedocument_get_ezsigntemplateformfieldgroups_v1_response.h"
@@ -28,7 +28,6 @@
 #include "../model/ezsigntemplatedocument_get_words_positions_v1_request.h"
 #include "../model/ezsigntemplatedocument_get_words_positions_v1_response.h"
 #include "../model/ezsigntemplatedocument_patch_object_v1_request.h"
-#include "../model/ezsigntemplatedocument_patch_object_v1_response.h"
 #include "../model/object.h"
 
 
@@ -84,7 +83,7 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentExtractTextV1(apiClient_t 
 //
 // Flatten an Ezsigntemplatedocument signatures, forms and annotations. This process finalizes the PDF so that the forms and annotations become part of the document content and cannot be edited.
 //
-ezsigntemplatedocument_flatten_v1_response_t*
+common_response_t*
 ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentFlattenV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, object_t *body);
 
 
@@ -140,7 +139,7 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetWordsPositionsV1(apiCli
 //
 // 
 //
-ezsigntemplatedocument_patch_object_v1_response_t*
+common_response_t*
 ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentPatchObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, ezsigntemplatedocument_patch_object_v1_request_t *ezsigntemplatedocument_patch_object_v1_request);
 
 

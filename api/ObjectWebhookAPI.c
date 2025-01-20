@@ -241,7 +241,7 @@ end:
 //
 // 
 //
-webhook_delete_object_v1_response_t*
+common_response_t*
 ObjectWebhookAPI_webhookDeleteObjectV1(apiClient_t *apiClient, int *pkiWebhookID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -293,7 +293,7 @@ ObjectWebhookAPI_webhookDeleteObjectV1(apiClient_t *apiClient, int *pkiWebhookID
     //}
     //nonprimitive not container
     cJSON *ObjectWebhookAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    webhook_delete_object_v1_response_t *elementToReturn = webhook_delete_object_v1_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
     cJSON_Delete(ObjectWebhookAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -323,7 +323,7 @@ end:
 //
 // 
 //
-webhook_edit_object_v1_response_t*
+common_response_t*
 ObjectWebhookAPI_webhookEditObjectV1(apiClient_t *apiClient, int *pkiWebhookID, webhook_edit_object_v1_request_t *webhook_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -385,7 +385,7 @@ ObjectWebhookAPI_webhookEditObjectV1(apiClient_t *apiClient, int *pkiWebhookID, 
     //}
     //nonprimitive not container
     cJSON *ObjectWebhookAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    webhook_edit_object_v1_response_t *elementToReturn = webhook_edit_object_v1_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
     cJSON_Delete(ObjectWebhookAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -884,7 +884,7 @@ end:
 
 // Emit a Webhook event
 //
-webhook_send_webhook_v1_response_t*
+common_response_t*
 ObjectWebhookAPI_webhookSendWebhookV1(apiClient_t *apiClient, webhook_send_webhook_v1_request_t *webhook_send_webhook_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -932,7 +932,7 @@ ObjectWebhookAPI_webhookSendWebhookV1(apiClient_t *apiClient, webhook_send_webho
     //}
     //nonprimitive not container
     cJSON *ObjectWebhookAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    webhook_send_webhook_v1_response_t *elementToReturn = webhook_send_webhook_v1_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
     cJSON_Delete(ObjectWebhookAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -966,7 +966,7 @@ end:
 //
 // 
 //
-webhook_test_v1_response_t*
+common_response_t*
 ObjectWebhookAPI_webhookTestV1(apiClient_t *apiClient, int *pkiWebhookID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -1028,7 +1028,7 @@ ObjectWebhookAPI_webhookTestV1(apiClient_t *apiClient, int *pkiWebhookID, object
     //}
     //nonprimitive not container
     cJSON *ObjectWebhookAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    webhook_test_v1_response_t *elementToReturn = webhook_test_v1_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
     cJSON_Delete(ObjectWebhookAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

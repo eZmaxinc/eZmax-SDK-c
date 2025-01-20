@@ -94,7 +94,7 @@ end:
 //
 // 
 //
-ezsignannotation_delete_object_v1_response_t*
+common_response_t*
 ObjectEzsignannotationAPI_ezsignannotationDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignannotationID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -146,7 +146,7 @@ ObjectEzsignannotationAPI_ezsignannotationDeleteObjectV1(apiClient_t *apiClient,
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignannotationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignannotation_delete_object_v1_response_t *elementToReturn = ezsignannotation_delete_object_v1_response_parseFromJSON(ObjectEzsignannotationAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignannotationAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignannotationAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -176,7 +176,7 @@ end:
 //
 // 
 //
-ezsignannotation_edit_object_v1_response_t*
+common_response_t*
 ObjectEzsignannotationAPI_ezsignannotationEditObjectV1(apiClient_t *apiClient, int *pkiEzsignannotationID, ezsignannotation_edit_object_v1_request_t *ezsignannotation_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -242,7 +242,7 @@ ObjectEzsignannotationAPI_ezsignannotationEditObjectV1(apiClient_t *apiClient, i
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignannotationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignannotation_edit_object_v1_response_t *elementToReturn = ezsignannotation_edit_object_v1_response_parseFromJSON(ObjectEzsignannotationAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignannotationAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignannotationAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

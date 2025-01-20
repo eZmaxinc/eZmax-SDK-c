@@ -15,7 +15,7 @@
 
 typedef struct user_get_apikeys_v1_response_m_payload_t user_get_apikeys_v1_response_m_payload_t;
 
-#include "apikey_response_compound.h"
+#include "apikey_response.h"
 
 
 

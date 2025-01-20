@@ -16,7 +16,7 @@
 #include "../model/userstaged_get_object_v2_response_m_payload.h"
 userstaged_get_object_v2_response_m_payload_t* instantiate_userstaged_get_object_v2_response_m_payload(int include_optional);
 
-#include "test_userstaged_response_compound.c"
+#include "test_userstaged_response.c"
 
 
 userstaged_get_object_v2_response_m_payload_t* instantiate_userstaged_get_object_v2_response_m_payload(int include_optional) {
@@ -24,7 +24,7 @@ userstaged_get_object_v2_response_m_payload_t* instantiate_userstaged_get_object
   if (include_optional) {
     userstaged_get_object_v2_response_m_payload = userstaged_get_object_v2_response_m_payload_create(
        // false, not to have infinite recursion
-      instantiate_userstaged_response_compound(0)
+      instantiate_userstaged_response(0)
     );
   } else {
     userstaged_get_object_v2_response_m_payload = userstaged_get_object_v2_response_m_payload_create(

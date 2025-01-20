@@ -336,7 +336,7 @@ end:
 //
 // 
 //
-authenticationexternal_delete_object_v1_response_t*
+common_response_t*
 ObjectAuthenticationexternalAPI_authenticationexternalDeleteObjectV1(apiClient_t *apiClient, int *pkiAuthenticationexternalID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -388,7 +388,7 @@ ObjectAuthenticationexternalAPI_authenticationexternalDeleteObjectV1(apiClient_t
     //}
     //nonprimitive not container
     cJSON *ObjectAuthenticationexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    authenticationexternal_delete_object_v1_response_t *elementToReturn = authenticationexternal_delete_object_v1_response_parseFromJSON(ObjectAuthenticationexternalAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectAuthenticationexternalAPIlocalVarJSON);
     cJSON_Delete(ObjectAuthenticationexternalAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -418,7 +418,7 @@ end:
 //
 // 
 //
-authenticationexternal_edit_object_v1_response_t*
+common_response_t*
 ObjectAuthenticationexternalAPI_authenticationexternalEditObjectV1(apiClient_t *apiClient, int *pkiAuthenticationexternalID, authenticationexternal_edit_object_v1_request_t *authenticationexternal_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -484,7 +484,7 @@ ObjectAuthenticationexternalAPI_authenticationexternalEditObjectV1(apiClient_t *
     //}
     //nonprimitive not container
     cJSON *ObjectAuthenticationexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    authenticationexternal_edit_object_v1_response_t *elementToReturn = authenticationexternal_edit_object_v1_response_parseFromJSON(ObjectAuthenticationexternalAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectAuthenticationexternalAPIlocalVarJSON);
     cJSON_Delete(ObjectAuthenticationexternalAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -917,7 +917,7 @@ end:
 //
 // 
 //
-authenticationexternal_reset_authorization_v1_response_t*
+common_response_t*
 ObjectAuthenticationexternalAPI_authenticationexternalResetAuthorizationV1(apiClient_t *apiClient, int *pkiAuthenticationexternalID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -979,7 +979,7 @@ ObjectAuthenticationexternalAPI_authenticationexternalResetAuthorizationV1(apiCl
     //}
     //nonprimitive not container
     cJSON *ObjectAuthenticationexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    authenticationexternal_reset_authorization_v1_response_t *elementToReturn = authenticationexternal_reset_authorization_v1_response_parseFromJSON(ObjectAuthenticationexternalAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectAuthenticationexternalAPIlocalVarJSON);
     cJSON_Delete(ObjectAuthenticationexternalAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

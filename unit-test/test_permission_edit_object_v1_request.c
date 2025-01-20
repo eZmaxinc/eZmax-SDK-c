@@ -16,7 +16,7 @@
 #include "../model/permission_edit_object_v1_request.h"
 permission_edit_object_v1_request_t* instantiate_permission_edit_object_v1_request(int include_optional);
 
-#include "test_permission_request_compound.c"
+#include "test_permission_request.c"
 
 
 permission_edit_object_v1_request_t* instantiate_permission_edit_object_v1_request(int include_optional) {
@@ -24,7 +24,7 @@ permission_edit_object_v1_request_t* instantiate_permission_edit_object_v1_reque
   if (include_optional) {
     permission_edit_object_v1_request = permission_edit_object_v1_request_create(
        // false, not to have infinite recursion
-      instantiate_permission_request_compound(0)
+      instantiate_permission_request(0)
     );
   } else {
     permission_edit_object_v1_request = permission_edit_object_v1_request_create(

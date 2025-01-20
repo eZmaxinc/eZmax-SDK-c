@@ -301,7 +301,7 @@ end:
 //
 // 
 //
-ezsignfoldersignerassociation_delete_object_v1_response_t*
+common_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -357,7 +357,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationDeleteObject
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfoldersignerassociation_delete_object_v1_response_t *elementToReturn = ezsignfoldersignerassociation_delete_object_v1_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -387,7 +387,7 @@ end:
 //
 // 
 //
-ezsignfoldersignerassociation_edit_object_v1_response_t*
+common_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationEditObjectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_edit_object_v1_request_t *ezsignfoldersignerassociation_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -453,7 +453,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationEditObjectV1
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfoldersignerassociation_edit_object_v1_response_t *elementToReturn = ezsignfoldersignerassociation_edit_object_v1_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -488,7 +488,7 @@ end:
 //
 // 
 //
-ezsignfoldersignerassociation_force_disconnect_v1_response_t*
+common_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationForceDisconnectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -554,7 +554,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationForceDisconn
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfoldersignerassociation_force_disconnect_v1_response_t *elementToReturn = ezsignfoldersignerassociation_force_disconnect_v1_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -837,7 +837,7 @@ end:
 
 // Patch an existing Ezsignfoldersignerassociation
 //
-ezsignfoldersignerassociation_patch_object_v1_response_t*
+common_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationPatchObjectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_patch_object_v1_request_t *ezsignfoldersignerassociation_patch_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -903,7 +903,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationPatchObjectV
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfoldersignerassociation_patch_object_v1_response_t *elementToReturn = ezsignfoldersignerassociation_patch_object_v1_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -938,7 +938,7 @@ end:
 //
 // Reassign remaining unsigned signatures and forms
 //
-ezsignfoldersignerassociation_reassign_v1_response_t*
+common_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationReassignV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_reassign_v1_request_t *ezsignfoldersignerassociation_reassign_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -1004,7 +1004,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationReassignV1(a
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfoldersignerassociation_reassign_v1_response_t *elementToReturn = ezsignfoldersignerassociation_reassign_v1_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

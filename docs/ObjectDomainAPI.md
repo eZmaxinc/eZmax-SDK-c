@@ -47,7 +47,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-domain_delete_object_v1_response_t* ObjectDomainAPI_domainDeleteObjectV1(apiClient_t *apiClient, int *pkiDomainID);
+common_response_t* ObjectDomainAPI_domainDeleteObjectV1(apiClient_t *apiClient, int *pkiDomainID);
 ```
 
 ### Parameters
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[domain_delete_object_v1_response_t](domain_delete_object_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization

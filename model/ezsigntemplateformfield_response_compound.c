@@ -161,7 +161,7 @@ void ezsigntemplateformfield_response_compound_free(ezsigntemplateformfield_resp
     }
     if (ezsigntemplateformfield_response_compound->a_obj_ezsigntemplateelementdependency) {
         list_ForEach(listEntry, ezsigntemplateformfield_response_compound->a_obj_ezsigntemplateelementdependency) {
-            ezsigntemplateelementdependency_response_compound_free(listEntry->data);
+            ezsigntemplateelementdependency_response_free(listEntry->data);
         }
         list_freeList(ezsigntemplateformfield_response_compound->a_obj_ezsigntemplateelementdependency);
         ezsigntemplateformfield_response_compound->a_obj_ezsigntemplateelementdependency = NULL;
@@ -356,7 +356,7 @@ cJSON *ezsigntemplateformfield_response_compound_convertToJSON(ezsigntemplatefor
     listEntry_t *a_obj_ezsigntemplateelementdependencyListEntry;
     if (ezsigntemplateformfield_response_compound->a_obj_ezsigntemplateelementdependency) {
     list_ForEach(a_obj_ezsigntemplateelementdependencyListEntry, ezsigntemplateformfield_response_compound->a_obj_ezsigntemplateelementdependency) {
-    cJSON *itemLocal = ezsigntemplateelementdependency_response_compound_convertToJSON(a_obj_ezsigntemplateelementdependencyListEntry->data);
+    cJSON *itemLocal = ezsigntemplateelementdependency_response_convertToJSON(a_obj_ezsigntemplateelementdependencyListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -572,7 +572,7 @@ ezsigntemplateformfield_response_compound_t *ezsigntemplateformfield_response_co
         if(!cJSON_IsObject(a_obj_ezsigntemplateelementdependency_local_nonprimitive)){
             goto end;
         }
-        ezsigntemplateelementdependency_response_compound_t *a_obj_ezsigntemplateelementdependencyItem = ezsigntemplateelementdependency_response_compound_parseFromJSON(a_obj_ezsigntemplateelementdependency_local_nonprimitive);
+        ezsigntemplateelementdependency_response_t *a_obj_ezsigntemplateelementdependencyItem = ezsigntemplateelementdependency_response_parseFromJSON(a_obj_ezsigntemplateelementdependency_local_nonprimitive);
 
         list_addElement(a_obj_ezsigntemplateelementdependencyList, a_obj_ezsigntemplateelementdependencyItem);
     }
@@ -626,7 +626,7 @@ end:
     if (a_obj_ezsigntemplateelementdependencyList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsigntemplateelementdependencyList) {
-            ezsigntemplateelementdependency_response_compound_free(listEntry->data);
+            ezsigntemplateelementdependency_response_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_ezsigntemplateelementdependencyList);
