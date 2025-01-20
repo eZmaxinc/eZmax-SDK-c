@@ -45,7 +45,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-discussionmembership_delete_object_v1_response_t* ObjectDiscussionmembershipAPI_discussionmembershipDeleteObjectV1(apiClient_t *apiClient, int *pkiDiscussionmembershipID);
+common_response_t* ObjectDiscussionmembershipAPI_discussionmembershipDeleteObjectV1(apiClient_t *apiClient, int *pkiDiscussionmembershipID);
 ```
 
 ### Parameters
@@ -56,7 +56,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[discussionmembership_delete_object_v1_response_t](discussionmembership_delete_object_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization

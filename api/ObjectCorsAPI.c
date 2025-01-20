@@ -94,7 +94,7 @@ end:
 //
 // 
 //
-cors_delete_object_v1_response_t*
+common_response_t*
 ObjectCorsAPI_corsDeleteObjectV1(apiClient_t *apiClient, int *pkiCorsID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -146,7 +146,7 @@ ObjectCorsAPI_corsDeleteObjectV1(apiClient_t *apiClient, int *pkiCorsID)
     //}
     //nonprimitive not container
     cJSON *ObjectCorsAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    cors_delete_object_v1_response_t *elementToReturn = cors_delete_object_v1_response_parseFromJSON(ObjectCorsAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectCorsAPIlocalVarJSON);
     cJSON_Delete(ObjectCorsAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -176,7 +176,7 @@ end:
 //
 // 
 //
-cors_edit_object_v1_response_t*
+common_response_t*
 ObjectCorsAPI_corsEditObjectV1(apiClient_t *apiClient, int *pkiCorsID, cors_edit_object_v1_request_t *cors_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -242,7 +242,7 @@ ObjectCorsAPI_corsEditObjectV1(apiClient_t *apiClient, int *pkiCorsID, cors_edit
     //}
     //nonprimitive not container
     cJSON *ObjectCorsAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    cors_edit_object_v1_response_t *elementToReturn = cors_edit_object_v1_response_parseFromJSON(ObjectCorsAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectCorsAPIlocalVarJSON);
     cJSON_Delete(ObjectCorsAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

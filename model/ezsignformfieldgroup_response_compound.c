@@ -174,14 +174,14 @@ void ezsignformfieldgroup_response_compound_free(ezsignformfieldgroup_response_c
     }
     if (ezsignformfieldgroup_response_compound->a_obj_dropdown_element) {
         list_ForEach(listEntry, ezsignformfieldgroup_response_compound->a_obj_dropdown_element) {
-            custom_dropdown_element_response_compound_free(listEntry->data);
+            custom_dropdown_element_response_free(listEntry->data);
         }
         list_freeList(ezsignformfieldgroup_response_compound->a_obj_dropdown_element);
         ezsignformfieldgroup_response_compound->a_obj_dropdown_element = NULL;
     }
     if (ezsignformfieldgroup_response_compound->a_obj_ezsignformfieldgroupsigner) {
         list_ForEach(listEntry, ezsignformfieldgroup_response_compound->a_obj_ezsignformfieldgroupsigner) {
-            ezsignformfieldgroupsigner_response_compound_free(listEntry->data);
+            ezsignformfieldgroupsigner_response_free(listEntry->data);
         }
         list_freeList(ezsignformfieldgroup_response_compound->a_obj_ezsignformfieldgroupsigner);
         ezsignformfieldgroup_response_compound->a_obj_ezsignformfieldgroupsigner = NULL;
@@ -387,7 +387,7 @@ cJSON *ezsignformfieldgroup_response_compound_convertToJSON(ezsignformfieldgroup
     listEntry_t *a_obj_dropdown_elementListEntry;
     if (ezsignformfieldgroup_response_compound->a_obj_dropdown_element) {
     list_ForEach(a_obj_dropdown_elementListEntry, ezsignformfieldgroup_response_compound->a_obj_dropdown_element) {
-    cJSON *itemLocal = custom_dropdown_element_response_compound_convertToJSON(a_obj_dropdown_elementListEntry->data);
+    cJSON *itemLocal = custom_dropdown_element_response_convertToJSON(a_obj_dropdown_elementListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -409,7 +409,7 @@ cJSON *ezsignformfieldgroup_response_compound_convertToJSON(ezsignformfieldgroup
     listEntry_t *a_obj_ezsignformfieldgroupsignerListEntry;
     if (ezsignformfieldgroup_response_compound->a_obj_ezsignformfieldgroupsigner) {
     list_ForEach(a_obj_ezsignformfieldgroupsignerListEntry, ezsignformfieldgroup_response_compound->a_obj_ezsignformfieldgroupsigner) {
-    cJSON *itemLocal = ezsignformfieldgroupsigner_response_compound_convertToJSON(a_obj_ezsignformfieldgroupsignerListEntry->data);
+    cJSON *itemLocal = ezsignformfieldgroupsigner_response_convertToJSON(a_obj_ezsignformfieldgroupsignerListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -654,7 +654,7 @@ ezsignformfieldgroup_response_compound_t *ezsignformfieldgroup_response_compound
         if(!cJSON_IsObject(a_obj_dropdown_element_local_nonprimitive)){
             goto end;
         }
-        custom_dropdown_element_response_compound_t *a_obj_dropdown_elementItem = custom_dropdown_element_response_compound_parseFromJSON(a_obj_dropdown_element_local_nonprimitive);
+        custom_dropdown_element_response_t *a_obj_dropdown_elementItem = custom_dropdown_element_response_parseFromJSON(a_obj_dropdown_element_local_nonprimitive);
 
         list_addElement(a_obj_dropdown_elementList, a_obj_dropdown_elementItem);
     }
@@ -679,7 +679,7 @@ ezsignformfieldgroup_response_compound_t *ezsignformfieldgroup_response_compound
         if(!cJSON_IsObject(a_obj_ezsignformfieldgroupsigner_local_nonprimitive)){
             goto end;
         }
-        ezsignformfieldgroupsigner_response_compound_t *a_obj_ezsignformfieldgroupsignerItem = ezsignformfieldgroupsigner_response_compound_parseFromJSON(a_obj_ezsignformfieldgroupsigner_local_nonprimitive);
+        ezsignformfieldgroupsigner_response_t *a_obj_ezsignformfieldgroupsignerItem = ezsignformfieldgroupsigner_response_parseFromJSON(a_obj_ezsignformfieldgroupsigner_local_nonprimitive);
 
         list_addElement(a_obj_ezsignformfieldgroupsignerList, a_obj_ezsignformfieldgroupsignerItem);
     }
@@ -738,7 +738,7 @@ end:
     if (a_obj_dropdown_elementList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_dropdown_elementList) {
-            custom_dropdown_element_response_compound_free(listEntry->data);
+            custom_dropdown_element_response_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_dropdown_elementList);
@@ -747,7 +747,7 @@ end:
     if (a_obj_ezsignformfieldgroupsignerList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsignformfieldgroupsignerList) {
-            ezsignformfieldgroupsigner_response_compound_free(listEntry->data);
+            ezsignformfieldgroupsigner_response_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_ezsignformfieldgroupsignerList);

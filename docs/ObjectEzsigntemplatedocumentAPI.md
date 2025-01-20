@@ -217,7 +217,7 @@ Name | Type | Description  | Notes
 //
 // Flatten an Ezsigntemplatedocument signatures, forms and annotations. This process finalizes the PDF so that the forms and annotations become part of the document content and cannot be edited.
 //
-ezsigntemplatedocument_flatten_v1_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentFlattenV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, object_t *body);
+common_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentFlattenV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, object_t *body);
 ```
 
 ### Parameters
@@ -229,7 +229,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[ezsigntemplatedocument_flatten_v1_response_t](ezsigntemplatedocument_flatten_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization
@@ -436,7 +436,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsigntemplatedocument_patch_object_v1_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentPatchObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, ezsigntemplatedocument_patch_object_v1_request_t *ezsigntemplatedocument_patch_object_v1_request);
+common_response_t* ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentPatchObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, ezsigntemplatedocument_patch_object_v1_request_t *ezsigntemplatedocument_patch_object_v1_request);
 ```
 
 ### Parameters
@@ -448,7 +448,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[ezsigntemplatedocument_patch_object_v1_response_t](ezsigntemplatedocument_patch_object_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization

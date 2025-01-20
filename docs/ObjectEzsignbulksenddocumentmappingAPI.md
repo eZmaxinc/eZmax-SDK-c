@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-ezsignbulksenddocumentmapping_delete_object_v1_response_t* ObjectEzsignbulksenddocumentmappingAPI_ezsignbulksenddocumentmappingDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksenddocumentmappingID);
+common_response_t* ObjectEzsignbulksenddocumentmappingAPI_ezsignbulksenddocumentmappingDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksenddocumentmappingID);
 ```
 
 ### Parameters
@@ -57,7 +57,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[ezsignbulksenddocumentmapping_delete_object_v1_response_t](ezsignbulksenddocumentmapping_delete_object_v1_response.md) *
+[common_response_t](common_response.md) *
 
 
 ### Authorization

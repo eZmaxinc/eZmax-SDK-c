@@ -336,7 +336,7 @@ end:
 //
 // 
 //
-ezsignfoldertype_edit_object_v3_response_t*
+common_response_t*
 ObjectEzsignfoldertypeAPI_ezsignfoldertypeEditObjectV3(apiClient_t *apiClient, int *pkiEzsignfoldertypeID, ezsignfoldertype_edit_object_v3_request_t *ezsignfoldertype_edit_object_v3_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -402,7 +402,7 @@ ObjectEzsignfoldertypeAPI_ezsignfoldertypeEditObjectV3(apiClient_t *apiClient, i
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignfoldertypeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfoldertype_edit_object_v3_response_t *elementToReturn = ezsignfoldertype_edit_object_v3_response_parseFromJSON(ObjectEzsignfoldertypeAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfoldertypeAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignfoldertypeAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

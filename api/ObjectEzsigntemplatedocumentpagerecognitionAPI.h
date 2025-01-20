@@ -5,12 +5,11 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
+#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/ezsigntemplatedocumentpagerecognition_create_object_v1_request.h"
 #include "../model/ezsigntemplatedocumentpagerecognition_create_object_v1_response.h"
-#include "../model/ezsigntemplatedocumentpagerecognition_delete_object_v1_response.h"
 #include "../model/ezsigntemplatedocumentpagerecognition_edit_object_v1_request.h"
-#include "../model/ezsigntemplatedocumentpagerecognition_edit_object_v1_response.h"
 #include "../model/ezsigntemplatedocumentpagerecognition_get_object_v2_response.h"
 
 
@@ -26,7 +25,7 @@ ObjectEzsigntemplatedocumentpagerecognitionAPI_ezsigntemplatedocumentpagerecogni
 //
 // 
 //
-ezsigntemplatedocumentpagerecognition_delete_object_v1_response_t*
+common_response_t*
 ObjectEzsigntemplatedocumentpagerecognitionAPI_ezsigntemplatedocumentpagerecognitionDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentpagerecognitionID);
 
 
@@ -34,7 +33,7 @@ ObjectEzsigntemplatedocumentpagerecognitionAPI_ezsigntemplatedocumentpagerecogni
 //
 // 
 //
-ezsigntemplatedocumentpagerecognition_edit_object_v1_response_t*
+common_response_t*
 ObjectEzsigntemplatedocumentpagerecognitionAPI_ezsigntemplatedocumentpagerecognitionEditObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentpagerecognitionID, ezsigntemplatedocumentpagerecognition_edit_object_v1_request_t *ezsigntemplatedocumentpagerecognition_edit_object_v1_request);
 
 

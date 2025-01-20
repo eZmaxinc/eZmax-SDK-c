@@ -87,7 +87,7 @@ user_response_t *user_response_create(
     char *s_timezone_name,
     int fki_language_id,
     char *s_language_name_x,
-    email_response_compound_t *obj_email,
+    email_response_t *obj_email,
     int fki_billingentityinternal_id,
     char *s_billingentityinternal_description_x,
     phone_response_compound_t *obj_phone_home,
@@ -182,7 +182,7 @@ void user_response_free(user_response_t *user_response) {
         user_response->s_language_name_x = NULL;
     }
     if (user_response->obj_email) {
-        email_response_compound_free(user_response->obj_email);
+        email_response_free(user_response->obj_email);
         user_response->obj_email = NULL;
     }
     if (user_response->s_billingentityinternal_description_x) {
@@ -372,7 +372,7 @@ cJSON *user_response_convertToJSON(user_response_t *user_response) {
     if (!user_response->obj_email) {
         goto fail;
     }
-    cJSON *obj_email_local_JSON = email_response_compound_convertToJSON(user_response->obj_email);
+    cJSON *obj_email_local_JSON = email_response_convertToJSON(user_response->obj_email);
     if(obj_email_local_JSON == NULL) {
     goto fail; //model
     }
@@ -633,7 +633,7 @@ user_response_t *user_response_parseFromJSON(cJSON *user_responseJSON){
     user_response_t *user_response_local_var = NULL;
 
     // define the local variable for user_response->obj_email
-    email_response_compound_t *obj_email_local_nonprim = NULL;
+    email_response_t *obj_email_local_nonprim = NULL;
 
     // define the local variable for user_response->obj_phone_home
     phone_response_compound_t *obj_phone_home_local_nonprim = NULL;
@@ -807,7 +807,7 @@ user_response_t *user_response_parseFromJSON(cJSON *user_responseJSON){
     }
 
     
-    obj_email_local_nonprim = email_response_compound_parseFromJSON(obj_email); //nonprimitive
+    obj_email_local_nonprim = email_response_parseFromJSON(obj_email); //nonprimitive
 
     // user_response->fki_billingentityinternal_id
     cJSON *fki_billingentityinternal_id = cJSON_GetObjectItemCaseSensitive(user_responseJSON, "fkiBillingentityinternalID");
@@ -1085,7 +1085,7 @@ user_response_t *user_response_parseFromJSON(cJSON *user_responseJSON){
     return user_response_local_var;
 end:
     if (obj_email_local_nonprim) {
-        email_response_compound_free(obj_email_local_nonprim);
+        email_response_free(obj_email_local_nonprim);
         obj_email_local_nonprim = NULL;
     }
     if (obj_phone_home_local_nonprim) {

@@ -98,7 +98,7 @@ end:
 //
 // 
 //
-permission_delete_object_v1_response_t*
+common_response_t*
 ObjectPermissionAPI_permissionDeleteObjectV1(apiClient_t *apiClient, int *pkiPermissionID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -150,7 +150,7 @@ ObjectPermissionAPI_permissionDeleteObjectV1(apiClient_t *apiClient, int *pkiPer
     //}
     //nonprimitive not container
     cJSON *ObjectPermissionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    permission_delete_object_v1_response_t *elementToReturn = permission_delete_object_v1_response_parseFromJSON(ObjectPermissionAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectPermissionAPIlocalVarJSON);
     cJSON_Delete(ObjectPermissionAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -180,7 +180,7 @@ end:
 //
 // 
 //
-permission_edit_object_v1_response_t*
+common_response_t*
 ObjectPermissionAPI_permissionEditObjectV1(apiClient_t *apiClient, int *pkiPermissionID, permission_edit_object_v1_request_t *permission_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -246,7 +246,7 @@ ObjectPermissionAPI_permissionEditObjectV1(apiClient_t *apiClient, int *pkiPermi
     //}
     //nonprimitive not container
     cJSON *ObjectPermissionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    permission_edit_object_v1_response_t *elementToReturn = permission_edit_object_v1_response_parseFromJSON(ObjectPermissionAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectPermissionAPIlocalVarJSON);
     cJSON_Delete(ObjectPermissionAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

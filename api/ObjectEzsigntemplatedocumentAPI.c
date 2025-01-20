@@ -607,7 +607,7 @@ end:
 //
 // Flatten an Ezsigntemplatedocument signatures, forms and annotations. This process finalizes the PDF so that the forms and annotations become part of the document content and cannot be edited.
 //
-ezsigntemplatedocument_flatten_v1_response_t*
+common_response_t*
 ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentFlattenV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -673,7 +673,7 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentFlattenV1(apiClient_t *api
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigntemplatedocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsigntemplatedocument_flatten_v1_response_t *elementToReturn = ezsigntemplatedocument_flatten_v1_response_parseFromJSON(ObjectEzsigntemplatedocumentAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsigntemplatedocumentAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsigntemplatedocumentAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -1227,7 +1227,7 @@ end:
 //
 // 
 //
-ezsigntemplatedocument_patch_object_v1_response_t*
+common_response_t*
 ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentPatchObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, ezsigntemplatedocument_patch_object_v1_request_t *ezsigntemplatedocument_patch_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -1289,7 +1289,7 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentPatchObjectV1(apiClient_t 
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigntemplatedocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsigntemplatedocument_patch_object_v1_response_t *elementToReturn = ezsigntemplatedocument_patch_object_v1_response_parseFromJSON(ObjectEzsigntemplatedocumentAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsigntemplatedocumentAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsigntemplatedocumentAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

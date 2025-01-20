@@ -40,7 +40,7 @@ custom_communicationrecipientsrecipient_response_t *custom_communicationrecipien
     int fki_supplier_id,
     ezmax_api_definition__full_custom_communicationrecipientsrecipient_response_ECOMMUNICATIONRECIPIENTSRECIPIENTOBJECTTYPE_e e_communicationrecipientsrecipient_objecttype,
     custom_contact_name_response_t *obj_contact_name,
-    email_response_compound_t *obj_email,
+    email_response_t *obj_email,
     phone_response_compound_t *obj_phone_fax,
     phone_response_compound_t *obj_phone_sms
     ) {
@@ -83,7 +83,7 @@ void custom_communicationrecipientsrecipient_response_free(custom_communicationr
         custom_communicationrecipientsrecipient_response->obj_contact_name = NULL;
     }
     if (custom_communicationrecipientsrecipient_response->obj_email) {
-        email_response_compound_free(custom_communicationrecipientsrecipient_response->obj_email);
+        email_response_free(custom_communicationrecipientsrecipient_response->obj_email);
         custom_communicationrecipientsrecipient_response->obj_email = NULL;
     }
     if (custom_communicationrecipientsrecipient_response->obj_phone_fax) {
@@ -246,7 +246,7 @@ cJSON *custom_communicationrecipientsrecipient_response_convertToJSON(custom_com
 
     // custom_communicationrecipientsrecipient_response->obj_email
     if(custom_communicationrecipientsrecipient_response->obj_email) {
-    cJSON *obj_email_local_JSON = email_response_compound_convertToJSON(custom_communicationrecipientsrecipient_response->obj_email);
+    cJSON *obj_email_local_JSON = email_response_convertToJSON(custom_communicationrecipientsrecipient_response->obj_email);
     if(obj_email_local_JSON == NULL) {
     goto fail; //model
     }
@@ -298,7 +298,7 @@ custom_communicationrecipientsrecipient_response_t *custom_communicationrecipien
     custom_contact_name_response_t *obj_contact_name_local_nonprim = NULL;
 
     // define the local variable for custom_communicationrecipientsrecipient_response->obj_email
-    email_response_compound_t *obj_email_local_nonprim = NULL;
+    email_response_t *obj_email_local_nonprim = NULL;
 
     // define the local variable for custom_communicationrecipientsrecipient_response->obj_phone_fax
     phone_response_compound_t *obj_phone_fax_local_nonprim = NULL;
@@ -467,7 +467,7 @@ custom_communicationrecipientsrecipient_response_t *custom_communicationrecipien
     // custom_communicationrecipientsrecipient_response->obj_email
     cJSON *obj_email = cJSON_GetObjectItemCaseSensitive(custom_communicationrecipientsrecipient_responseJSON, "objEmail");
     if (obj_email) { 
-    obj_email_local_nonprim = email_response_compound_parseFromJSON(obj_email); //nonprimitive
+    obj_email_local_nonprim = email_response_parseFromJSON(obj_email); //nonprimitive
     }
 
     // custom_communicationrecipientsrecipient_response->obj_phone_fax
@@ -513,7 +513,7 @@ end:
         obj_contact_name_local_nonprim = NULL;
     }
     if (obj_email_local_nonprim) {
-        email_response_compound_free(obj_email_local_nonprim);
+        email_response_free(obj_email_local_nonprim);
         obj_email_local_nonprim = NULL;
     }
     if (obj_phone_fax_local_nonprim) {

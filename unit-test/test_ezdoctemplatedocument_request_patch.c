@@ -24,13 +24,13 @@ ezdoctemplatedocument_request_patch_t* instantiate_ezdoctemplatedocument_request
     ezdoctemplatedocument_request_patch = ezdoctemplatedocument_request_patch_create(
       ezmax_api_definition__full_ezdoctemplatedocument_request_patch_EEZDOCTEMPLATEDOCUMENTFORMAT_Docx,
       "a",
-      "[B@58359ebd"
+      "[B@2fea7088"
     );
   } else {
     ezdoctemplatedocument_request_patch = ezdoctemplatedocument_request_patch_create(
       ezmax_api_definition__full_ezdoctemplatedocument_request_patch_EEZDOCTEMPLATEDOCUMENTFORMAT_Docx,
       "a",
-      "[B@58359ebd"
+      "[B@2fea7088"
     );
   }
 

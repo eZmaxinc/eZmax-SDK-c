@@ -94,7 +94,7 @@ end:
 //
 // 
 //
-ezsignbulksendsignermapping_delete_object_v1_response_t*
+common_response_t*
 ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksendsignermappingID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -146,7 +146,7 @@ ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingDeleteObjectV1(a
     //}
     //nonprimitive not container
     cJSON *ObjectEzsignbulksendsignermappingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignbulksendsignermapping_delete_object_v1_response_t *elementToReturn = ezsignbulksendsignermapping_delete_object_v1_response_parseFromJSON(ObjectEzsignbulksendsignermappingAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignbulksendsignermappingAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsignbulksendsignermappingAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

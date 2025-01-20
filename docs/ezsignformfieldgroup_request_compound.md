@@ -20,8 +20,8 @@ Name | Type | Description | Notes
 **t_ezsignformfieldgroup_tooltip** | **char \*** | A tooltip that will be presented to Ezsignsigner about the Ezsignformfieldgroup | [optional] 
 **e_ezsignformfieldgroup_tooltipposition** | **field_e_ezsignformfieldgroup_tooltipposition_t \*** |  | [optional] 
 **e_ezsignformfieldgroup_textvalidation** | **enum_textvalidation_t \*** |  | [optional] 
-**a_obj_ezsignformfieldgroupsigner** | [**list_t**](ezsignformfieldgroupsigner_request_compound.md) \* |  | 
-**a_obj_dropdown_element** | [**list_t**](custom_dropdown_element_request_compound.md) \* |  | [optional] 
+**a_obj_ezsignformfieldgroupsigner** | [**list_t**](ezsignformfieldgroupsigner_request.md) \* |  | 
+**a_obj_dropdown_element** | [**list_t**](custom_dropdown_element_request.md) \* |  | [optional] 
 **a_obj_ezsignformfield** | [**list_t**](ezsignformfield_request_compound.md) \* |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

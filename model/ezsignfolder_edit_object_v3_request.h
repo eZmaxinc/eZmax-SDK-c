@@ -15,17 +15,17 @@
 
 typedef struct ezsignfolder_edit_object_v3_request_t ezsignfolder_edit_object_v3_request_t;
 
-#include "ezsignfolder_request_compound_v3.h"
+#include "ezsignfolder_request_v3.h"
 
 
 
 typedef struct ezsignfolder_edit_object_v3_request_t {
-    struct ezsignfolder_request_compound_v3_t *obj_ezsignfolder; //model
+    struct ezsignfolder_request_v3_t *obj_ezsignfolder; //model
 
 } ezsignfolder_edit_object_v3_request_t;
 
 ezsignfolder_edit_object_v3_request_t *ezsignfolder_edit_object_v3_request_create(
-    ezsignfolder_request_compound_v3_t *obj_ezsignfolder
+    ezsignfolder_request_v3_t *obj_ezsignfolder
 );
 
 void ezsignfolder_edit_object_v3_request_free(ezsignfolder_edit_object_v3_request_t *ezsignfolder_edit_object_v3_request);

@@ -16,7 +16,7 @@
 typedef struct user_response_compound_t user_response_compound_t;
 
 #include "common_audit.h"
-#include "email_response_compound.h"
+#include "email_response.h"
 #include "field_e_user_ezsignaccess.h"
 #include "field_e_user_logintype.h"
 #include "field_e_user_origin.h"
@@ -71,7 +71,7 @@ typedef struct user_response_compound_t {
     char *s_timezone_name; // string
     int fki_language_id; //numeric
     char *s_language_name_x; // string
-    struct email_response_compound_t *obj_email; //model
+    struct email_response_t *obj_email; //model
     int fki_billingentityinternal_id; //numeric
     char *s_billingentityinternal_description_x; // string
     struct phone_response_compound_t *obj_phone_home; //model
@@ -113,7 +113,7 @@ user_response_compound_t *user_response_compound_create(
     char *s_timezone_name,
     int fki_language_id,
     char *s_language_name_x,
-    email_response_compound_t *obj_email,
+    email_response_t *obj_email,
     int fki_billingentityinternal_id,
     char *s_billingentityinternal_description_x,
     phone_response_compound_t *obj_phone_home,

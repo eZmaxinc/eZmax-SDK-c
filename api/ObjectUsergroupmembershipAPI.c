@@ -94,7 +94,7 @@ end:
 //
 // 
 //
-usergroupmembership_delete_object_v1_response_t*
+common_response_t*
 ObjectUsergroupmembershipAPI_usergroupmembershipDeleteObjectV1(apiClient_t *apiClient, int *pkiUsergroupmembershipID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -146,7 +146,7 @@ ObjectUsergroupmembershipAPI_usergroupmembershipDeleteObjectV1(apiClient_t *apiC
     //}
     //nonprimitive not container
     cJSON *ObjectUsergroupmembershipAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    usergroupmembership_delete_object_v1_response_t *elementToReturn = usergroupmembership_delete_object_v1_response_parseFromJSON(ObjectUsergroupmembershipAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectUsergroupmembershipAPIlocalVarJSON);
     cJSON_Delete(ObjectUsergroupmembershipAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -176,7 +176,7 @@ end:
 //
 // 
 //
-usergroupmembership_edit_object_v1_response_t*
+common_response_t*
 ObjectUsergroupmembershipAPI_usergroupmembershipEditObjectV1(apiClient_t *apiClient, int *pkiUsergroupmembershipID, usergroupmembership_edit_object_v1_request_t *usergroupmembership_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -242,7 +242,7 @@ ObjectUsergroupmembershipAPI_usergroupmembershipEditObjectV1(apiClient_t *apiCli
     //}
     //nonprimitive not container
     cJSON *ObjectUsergroupmembershipAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    usergroupmembership_edit_object_v1_response_t *elementToReturn = usergroupmembership_edit_object_v1_response_parseFromJSON(ObjectUsergroupmembershipAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectUsergroupmembershipAPIlocalVarJSON);
     cJSON_Delete(ObjectUsergroupmembershipAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

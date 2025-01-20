@@ -15,17 +15,17 @@
 
 typedef struct apikey_regenerate_v1_response_m_payload_t apikey_regenerate_v1_response_m_payload_t;
 
-#include "apikey_response_compound.h"
+#include "apikey_response.h"
 
 
 
 typedef struct apikey_regenerate_v1_response_m_payload_t {
-    struct apikey_response_compound_t *obj_apikey; //model
+    struct apikey_response_t *obj_apikey; //model
 
 } apikey_regenerate_v1_response_m_payload_t;
 
 apikey_regenerate_v1_response_m_payload_t *apikey_regenerate_v1_response_m_payload_create(
-    apikey_response_compound_t *obj_apikey
+    apikey_response_t *obj_apikey
 );
 
 void apikey_regenerate_v1_response_m_payload_free(apikey_regenerate_v1_response_m_payload_t *apikey_regenerate_v1_response_m_payload);

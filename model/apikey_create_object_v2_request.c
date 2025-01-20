@@ -25,7 +25,7 @@ void apikey_create_object_v2_request_free(apikey_create_object_v2_request_t *api
     listEntry_t *listEntry;
     if (apikey_create_object_v2_request->a_obj_apikey) {
         list_ForEach(listEntry, apikey_create_object_v2_request->a_obj_apikey) {
-            apikey_request_compound_free(listEntry->data);
+            apikey_request_free(listEntry->data);
         }
         list_freeList(apikey_create_object_v2_request->a_obj_apikey);
         apikey_create_object_v2_request->a_obj_apikey = NULL;
@@ -48,7 +48,7 @@ cJSON *apikey_create_object_v2_request_convertToJSON(apikey_create_object_v2_req
     listEntry_t *a_obj_apikeyListEntry;
     if (apikey_create_object_v2_request->a_obj_apikey) {
     list_ForEach(a_obj_apikeyListEntry, apikey_create_object_v2_request->a_obj_apikey) {
-    cJSON *itemLocal = apikey_request_compound_convertToJSON(a_obj_apikeyListEntry->data);
+    cJSON *itemLocal = apikey_request_convertToJSON(a_obj_apikeyListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -90,7 +90,7 @@ apikey_create_object_v2_request_t *apikey_create_object_v2_request_parseFromJSON
         if(!cJSON_IsObject(a_obj_apikey_local_nonprimitive)){
             goto end;
         }
-        apikey_request_compound_t *a_obj_apikeyItem = apikey_request_compound_parseFromJSON(a_obj_apikey_local_nonprimitive);
+        apikey_request_t *a_obj_apikeyItem = apikey_request_parseFromJSON(a_obj_apikey_local_nonprimitive);
 
         list_addElement(a_obj_apikeyList, a_obj_apikeyItem);
     }
@@ -105,7 +105,7 @@ end:
     if (a_obj_apikeyList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_apikeyList) {
-            apikey_request_compound_free(listEntry->data);
+            apikey_request_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_apikeyList);

@@ -336,7 +336,7 @@ end:
 //
 // 
 //
-billingentityinternal_edit_object_v1_response_t*
+common_response_t*
 ObjectBillingentityinternalAPI_billingentityinternalEditObjectV1(apiClient_t *apiClient, int *pkiBillingentityinternalID, billingentityinternal_edit_object_v1_request_t *billingentityinternal_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -402,7 +402,7 @@ ObjectBillingentityinternalAPI_billingentityinternalEditObjectV1(apiClient_t *ap
     //}
     //nonprimitive not container
     cJSON *ObjectBillingentityinternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    billingentityinternal_edit_object_v1_response_t *elementToReturn = billingentityinternal_edit_object_v1_response_parseFromJSON(ObjectBillingentityinternalAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectBillingentityinternalAPIlocalVarJSON);
     cJSON_Delete(ObjectBillingentityinternalAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

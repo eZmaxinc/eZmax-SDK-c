@@ -5,18 +5,16 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
+#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/common_response_error_creditcard_validation.h"
 #include "../model/creditcardclient_create_object_v1_request.h"
 #include "../model/creditcardclient_create_object_v1_response.h"
-#include "../model/creditcardclient_delete_object_v1_response.h"
 #include "../model/creditcardclient_edit_object_v1_request.h"
-#include "../model/creditcardclient_edit_object_v1_response.h"
 #include "../model/creditcardclient_get_autocomplete_v2_response.h"
 #include "../model/creditcardclient_get_list_v1_response.h"
 #include "../model/creditcardclient_get_object_v2_response.h"
 #include "../model/creditcardclient_patch_object_v1_request.h"
-#include "../model/creditcardclient_patch_object_v1_response.h"
 #include "../model/header_accept_language.h"
 
 // Enum SSELECTOR for ObjectCreditcardclientAPI_creditcardclientGetAutocompleteV2
@@ -47,7 +45,7 @@ ObjectCreditcardclientAPI_creditcardclientCreateObjectV1(apiClient_t *apiClient,
 //
 // 
 //
-creditcardclient_delete_object_v1_response_t*
+common_response_t*
 ObjectCreditcardclientAPI_creditcardclientDeleteObjectV1(apiClient_t *apiClient, int *pkiCreditcardclientID);
 
 
@@ -55,7 +53,7 @@ ObjectCreditcardclientAPI_creditcardclientDeleteObjectV1(apiClient_t *apiClient,
 //
 // 
 //
-creditcardclient_edit_object_v1_response_t*
+common_response_t*
 ObjectCreditcardclientAPI_creditcardclientEditObjectV1(apiClient_t *apiClient, int *pkiCreditcardclientID, creditcardclient_edit_object_v1_request_t *creditcardclient_edit_object_v1_request);
 
 
@@ -87,7 +85,7 @@ ObjectCreditcardclientAPI_creditcardclientGetObjectV2(apiClient_t *apiClient, in
 //
 // 
 //
-creditcardclient_patch_object_v1_response_t*
+common_response_t*
 ObjectCreditcardclientAPI_creditcardclientPatchObjectV1(apiClient_t *apiClient, int *pkiCreditcardclientID, creditcardclient_patch_object_v1_request_t *creditcardclient_patch_object_v1_request);
 
 

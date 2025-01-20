@@ -94,7 +94,7 @@ end:
 //
 // 
 //
-discussionmessage_delete_object_v1_response_t*
+common_response_t*
 ObjectDiscussionmessageAPI_discussionmessageDeleteObjectV1(apiClient_t *apiClient, int *pkiDiscussionmessageID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -150,7 +150,7 @@ ObjectDiscussionmessageAPI_discussionmessageDeleteObjectV1(apiClient_t *apiClien
     //}
     //nonprimitive not container
     cJSON *ObjectDiscussionmessageAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    discussionmessage_delete_object_v1_response_t *elementToReturn = discussionmessage_delete_object_v1_response_parseFromJSON(ObjectDiscussionmessageAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectDiscussionmessageAPIlocalVarJSON);
     cJSON_Delete(ObjectDiscussionmessageAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -180,7 +180,7 @@ end:
 //
 // 
 //
-discussionmessage_patch_object_v1_response_t*
+common_response_t*
 ObjectDiscussionmessageAPI_discussionmessagePatchObjectV1(apiClient_t *apiClient, int *pkiDiscussionmessageID, discussionmessage_patch_object_v1_request_t *discussionmessage_patch_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -246,7 +246,7 @@ ObjectDiscussionmessageAPI_discussionmessagePatchObjectV1(apiClient_t *apiClient
     //}
     //nonprimitive not container
     cJSON *ObjectDiscussionmessageAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    discussionmessage_patch_object_v1_response_t *elementToReturn = discussionmessage_patch_object_v1_response_parseFromJSON(ObjectDiscussionmessageAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectDiscussionmessageAPIlocalVarJSON);
     cJSON_Delete(ObjectDiscussionmessageAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

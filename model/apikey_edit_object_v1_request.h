@@ -15,17 +15,17 @@
 
 typedef struct apikey_edit_object_v1_request_t apikey_edit_object_v1_request_t;
 
-#include "apikey_request_compound.h"
+#include "apikey_request.h"
 
 
 
 typedef struct apikey_edit_object_v1_request_t {
-    struct apikey_request_compound_t *obj_apikey; //model
+    struct apikey_request_t *obj_apikey; //model
 
 } apikey_edit_object_v1_request_t;
 
 apikey_edit_object_v1_request_t *apikey_edit_object_v1_request_create(
-    apikey_request_compound_t *obj_apikey
+    apikey_request_t *obj_apikey
 );
 
 void apikey_edit_object_v1_request_free(apikey_edit_object_v1_request_t *apikey_edit_object_v1_request);

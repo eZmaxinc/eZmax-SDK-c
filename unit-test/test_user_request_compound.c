@@ -16,9 +16,9 @@
 #include "../model/user_request_compound.h"
 user_request_compound_t* instantiate_user_request_compound(int include_optional);
 
-#include "test_email_request_compound.c"
-#include "test_phone_request_compound.c"
-#include "test_phone_request_compound.c"
+#include "test_email_request.c"
+#include "test_phone_request.c"
+#include "test_phone_request.c"
 
 
 user_request_compound_t* instantiate_user_request_compound(int include_optional) {
@@ -35,12 +35,12 @@ user_request_compound_t* instantiate_user_request_compound(int include_optional)
       247,
       2,
        // false, not to have infinite recursion
-      instantiate_email_request_compound(0),
+      instantiate_email_request(0),
       1,
        // false, not to have infinite recursion
-      instantiate_phone_request_compound(0),
+      instantiate_phone_request(0),
        // false, not to have infinite recursion
-      instantiate_phone_request_compound(0),
+      instantiate_phone_request(0),
       7,
       "Montreal General Hospital",
       40,

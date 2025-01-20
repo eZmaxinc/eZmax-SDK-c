@@ -336,7 +336,7 @@ end:
 //
 // 
 //
-usergroup_edit_object_v1_response_t*
+common_response_t*
 ObjectUsergroupAPI_usergroupEditObjectV1(apiClient_t *apiClient, int *pkiUsergroupID, usergroup_edit_object_v1_request_t *usergroup_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -402,7 +402,7 @@ ObjectUsergroupAPI_usergroupEditObjectV1(apiClient_t *apiClient, int *pkiUsergro
     //}
     //nonprimitive not container
     cJSON *ObjectUsergroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    usergroup_edit_object_v1_response_t *elementToReturn = usergroup_edit_object_v1_response_parseFromJSON(ObjectUsergroupAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectUsergroupAPIlocalVarJSON);
     cJSON_Delete(ObjectUsergroupAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

@@ -16,7 +16,7 @@
 #include "../model/apikey_get_object_v2_response_m_payload.h"
 apikey_get_object_v2_response_m_payload_t* instantiate_apikey_get_object_v2_response_m_payload(int include_optional);
 
-#include "test_apikey_response_compound.c"
+#include "test_apikey_response.c"
 
 
 apikey_get_object_v2_response_m_payload_t* instantiate_apikey_get_object_v2_response_m_payload(int include_optional) {
@@ -24,7 +24,7 @@ apikey_get_object_v2_response_m_payload_t* instantiate_apikey_get_object_v2_resp
   if (include_optional) {
     apikey_get_object_v2_response_m_payload = apikey_get_object_v2_response_m_payload_create(
        // false, not to have infinite recursion
-      instantiate_apikey_response_compound(0)
+      instantiate_apikey_response(0)
     );
   } else {
     apikey_get_object_v2_response_m_payload = apikey_get_object_v2_response_m_payload_create(

@@ -136,7 +136,7 @@ void communication_request_compound_free(communication_request_compound_t *commu
     }
     if (communication_request_compound->a_obj_communicationreference) {
         list_ForEach(listEntry, communication_request_compound->a_obj_communicationreference) {
-            communicationreference_request_compound_free(listEntry->data);
+            communicationreference_request_free(listEntry->data);
         }
         list_freeList(communication_request_compound->a_obj_communicationreference);
         communication_request_compound->a_obj_communicationreference = NULL;
@@ -307,7 +307,7 @@ cJSON *communication_request_compound_convertToJSON(communication_request_compou
     listEntry_t *a_obj_communicationreferenceListEntry;
     if (communication_request_compound->a_obj_communicationreference) {
     list_ForEach(a_obj_communicationreferenceListEntry, communication_request_compound->a_obj_communicationreference) {
-    cJSON *itemLocal = communicationreference_request_compound_convertToJSON(a_obj_communicationreferenceListEntry->data);
+    cJSON *itemLocal = communicationreference_request_convertToJSON(a_obj_communicationreferenceListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -528,7 +528,7 @@ communication_request_compound_t *communication_request_compound_parseFromJSON(c
         if(!cJSON_IsObject(a_obj_communicationreference_local_nonprimitive)){
             goto end;
         }
-        communicationreference_request_compound_t *a_obj_communicationreferenceItem = communicationreference_request_compound_parseFromJSON(a_obj_communicationreference_local_nonprimitive);
+        communicationreference_request_t *a_obj_communicationreferenceItem = communicationreference_request_parseFromJSON(a_obj_communicationreference_local_nonprimitive);
 
         list_addElement(a_obj_communicationreferenceList, a_obj_communicationreferenceItem);
     }
@@ -610,7 +610,7 @@ end:
     if (a_obj_communicationreferenceList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_communicationreferenceList) {
-            communicationreference_request_compound_free(listEntry->data);
+            communicationreference_request_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_communicationreferenceList);

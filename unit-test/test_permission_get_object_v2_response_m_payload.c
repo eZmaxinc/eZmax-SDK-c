@@ -16,7 +16,7 @@
 #include "../model/permission_get_object_v2_response_m_payload.h"
 permission_get_object_v2_response_m_payload_t* instantiate_permission_get_object_v2_response_m_payload(int include_optional);
 
-#include "test_permission_response_compound.c"
+#include "test_permission_response.c"
 
 
 permission_get_object_v2_response_m_payload_t* instantiate_permission_get_object_v2_response_m_payload(int include_optional) {
@@ -24,7 +24,7 @@ permission_get_object_v2_response_m_payload_t* instantiate_permission_get_object
   if (include_optional) {
     permission_get_object_v2_response_m_payload = permission_get_object_v2_response_m_payload_create(
        // false, not to have infinite recursion
-      instantiate_permission_response_compound(0)
+      instantiate_permission_response(0)
     );
   } else {
     permission_get_object_v2_response_m_payload = permission_get_object_v2_response_m_payload_create(

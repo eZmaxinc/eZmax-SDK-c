@@ -94,7 +94,7 @@ end:
 //
 // 
 //
-signature_delete_object_v1_response_t*
+common_response_t*
 ObjectSignatureAPI_signatureDeleteObjectV1(apiClient_t *apiClient, int *pkiSignatureID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -146,7 +146,7 @@ ObjectSignatureAPI_signatureDeleteObjectV1(apiClient_t *apiClient, int *pkiSigna
     //}
     //nonprimitive not container
     cJSON *ObjectSignatureAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    signature_delete_object_v1_response_t *elementToReturn = signature_delete_object_v1_response_parseFromJSON(ObjectSignatureAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectSignatureAPIlocalVarJSON);
     cJSON_Delete(ObjectSignatureAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
@@ -176,7 +176,7 @@ end:
 //
 // 
 //
-signature_edit_object_v1_response_t*
+common_response_t*
 ObjectSignatureAPI_signatureEditObjectV1(apiClient_t *apiClient, int *pkiSignatureID, signature_edit_object_v1_request_t *signature_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -242,7 +242,7 @@ ObjectSignatureAPI_signatureEditObjectV1(apiClient_t *apiClient, int *pkiSignatu
     //}
     //nonprimitive not container
     cJSON *ObjectSignatureAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    signature_edit_object_v1_response_t *elementToReturn = signature_edit_object_v1_response_parseFromJSON(ObjectSignatureAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectSignatureAPIlocalVarJSON);
     cJSON_Delete(ObjectSignatureAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;

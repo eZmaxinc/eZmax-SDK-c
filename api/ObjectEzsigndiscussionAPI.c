@@ -94,7 +94,7 @@ end:
 //
 // 
 //
-ezsigndiscussion_delete_object_v1_response_t*
+common_response_t*
 ObjectEzsigndiscussionAPI_ezsigndiscussionDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigndiscussionID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -146,7 +146,7 @@ ObjectEzsigndiscussionAPI_ezsigndiscussionDeleteObjectV1(apiClient_t *apiClient,
     //}
     //nonprimitive not container
     cJSON *ObjectEzsigndiscussionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsigndiscussion_delete_object_v1_response_t *elementToReturn = ezsigndiscussion_delete_object_v1_response_parseFromJSON(ObjectEzsigndiscussionAPIlocalVarJSON);
+    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsigndiscussionAPIlocalVarJSON);
     cJSON_Delete(ObjectEzsigndiscussionAPIlocalVarJSON);
     if(elementToReturn == NULL) {
         // return 0;
