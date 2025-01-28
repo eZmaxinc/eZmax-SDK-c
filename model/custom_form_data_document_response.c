@@ -5,7 +5,7 @@
 
 
 
-custom_form_data_document_response_t *custom_form_data_document_response_create(
+static custom_form_data_document_response_t *custom_form_data_document_response_create_internal(
     int pki_ezsigndocument_id,
     int fki_ezsignfolder_id,
     char *s_ezsigndocument_name,
@@ -22,12 +22,32 @@ custom_form_data_document_response_t *custom_form_data_document_response_create(
     custom_form_data_document_response_local_var->dt_modified_date = dt_modified_date;
     custom_form_data_document_response_local_var->a_obj_form_data_signer = a_obj_form_data_signer;
 
+    custom_form_data_document_response_local_var->_library_owned = 1;
     return custom_form_data_document_response_local_var;
 }
 
+__attribute__((deprecated)) custom_form_data_document_response_t *custom_form_data_document_response_create(
+    int pki_ezsigndocument_id,
+    int fki_ezsignfolder_id,
+    char *s_ezsigndocument_name,
+    char *dt_modified_date,
+    list_t *a_obj_form_data_signer
+    ) {
+    return custom_form_data_document_response_create_internal (
+        pki_ezsigndocument_id,
+        fki_ezsignfolder_id,
+        s_ezsigndocument_name,
+        dt_modified_date,
+        a_obj_form_data_signer
+        );
+}
 
 void custom_form_data_document_response_free(custom_form_data_document_response_t *custom_form_data_document_response) {
     if(NULL == custom_form_data_document_response){
+        return ;
+    }
+    if(custom_form_data_document_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "custom_form_data_document_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -125,6 +145,9 @@ custom_form_data_document_response_t *custom_form_data_document_response_parseFr
 
     // custom_form_data_document_response->pki_ezsigndocument_id
     cJSON *pki_ezsigndocument_id = cJSON_GetObjectItemCaseSensitive(custom_form_data_document_responseJSON, "pkiEzsigndocumentID");
+    if (cJSON_IsNull(pki_ezsigndocument_id)) {
+        pki_ezsigndocument_id = NULL;
+    }
     if (!pki_ezsigndocument_id) {
         goto end;
     }
@@ -137,6 +160,9 @@ custom_form_data_document_response_t *custom_form_data_document_response_parseFr
 
     // custom_form_data_document_response->fki_ezsignfolder_id
     cJSON *fki_ezsignfolder_id = cJSON_GetObjectItemCaseSensitive(custom_form_data_document_responseJSON, "fkiEzsignfolderID");
+    if (cJSON_IsNull(fki_ezsignfolder_id)) {
+        fki_ezsignfolder_id = NULL;
+    }
     if (!fki_ezsignfolder_id) {
         goto end;
     }
@@ -149,6 +175,9 @@ custom_form_data_document_response_t *custom_form_data_document_response_parseFr
 
     // custom_form_data_document_response->s_ezsigndocument_name
     cJSON *s_ezsigndocument_name = cJSON_GetObjectItemCaseSensitive(custom_form_data_document_responseJSON, "sEzsigndocumentName");
+    if (cJSON_IsNull(s_ezsigndocument_name)) {
+        s_ezsigndocument_name = NULL;
+    }
     if (!s_ezsigndocument_name) {
         goto end;
     }
@@ -161,6 +190,9 @@ custom_form_data_document_response_t *custom_form_data_document_response_parseFr
 
     // custom_form_data_document_response->dt_modified_date
     cJSON *dt_modified_date = cJSON_GetObjectItemCaseSensitive(custom_form_data_document_responseJSON, "dtModifiedDate");
+    if (cJSON_IsNull(dt_modified_date)) {
+        dt_modified_date = NULL;
+    }
     if (!dt_modified_date) {
         goto end;
     }
@@ -173,6 +205,9 @@ custom_form_data_document_response_t *custom_form_data_document_response_parseFr
 
     // custom_form_data_document_response->a_obj_form_data_signer
     cJSON *a_obj_form_data_signer = cJSON_GetObjectItemCaseSensitive(custom_form_data_document_responseJSON, "a_objFormDataSigner");
+    if (cJSON_IsNull(a_obj_form_data_signer)) {
+        a_obj_form_data_signer = NULL;
+    }
     if (!a_obj_form_data_signer) {
         goto end;
     }
@@ -196,7 +231,7 @@ custom_form_data_document_response_t *custom_form_data_document_response_parseFr
     }
 
 
-    custom_form_data_document_response_local_var = custom_form_data_document_response_create (
+    custom_form_data_document_response_local_var = custom_form_data_document_response_create_internal (
         pki_ezsigndocument_id->valuedouble,
         fki_ezsignfolder_id->valuedouble,
         strdup(s_ezsigndocument_name->valuestring),

@@ -22,9 +22,10 @@ typedef struct ezdoctemplatedocument_edit_object_v1_request_t ezdoctemplatedocum
 typedef struct ezdoctemplatedocument_edit_object_v1_request_t {
     struct ezdoctemplatedocument_request_compound_t *obj_ezdoctemplatedocument; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezdoctemplatedocument_edit_object_v1_request_t;
 
-ezdoctemplatedocument_edit_object_v1_request_t *ezdoctemplatedocument_edit_object_v1_request_create(
+__attribute__((deprecated)) ezdoctemplatedocument_edit_object_v1_request_t *ezdoctemplatedocument_edit_object_v1_request_create(
     ezdoctemplatedocument_request_compound_t *obj_ezdoctemplatedocument
 );
 

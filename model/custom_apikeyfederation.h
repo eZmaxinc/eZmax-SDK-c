@@ -22,9 +22,10 @@ typedef struct custom_apikeyfederation_t {
     char *s_apikeyfederation_key; // string
     char *s_apikeyfederation_secret; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_apikeyfederation_t;
 
-custom_apikeyfederation_t *custom_apikeyfederation_create(
+__attribute__((deprecated)) custom_apikeyfederation_t *custom_apikeyfederation_create(
     char *s_apikeyfederation_key,
     char *s_apikeyfederation_secret
 );

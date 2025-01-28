@@ -22,7 +22,7 @@ ezmax_api_definition__full_ezsigntemplatedocument_extract_text_v1_request_ESECTI
     return 0;
 }
 
-ezsigntemplatedocument_extract_text_v1_request_t *ezsigntemplatedocument_extract_text_v1_request_create(
+static ezsigntemplatedocument_extract_text_v1_request_t *ezsigntemplatedocument_extract_text_v1_request_create_internal(
     int i_page,
     ezmax_api_definition__full_ezsigntemplatedocument_extract_text_v1_request_ESECTION_e e_section,
     int i_x,
@@ -41,12 +41,34 @@ ezsigntemplatedocument_extract_text_v1_request_t *ezsigntemplatedocument_extract
     ezsigntemplatedocument_extract_text_v1_request_local_var->i_width = i_width;
     ezsigntemplatedocument_extract_text_v1_request_local_var->i_height = i_height;
 
+    ezsigntemplatedocument_extract_text_v1_request_local_var->_library_owned = 1;
     return ezsigntemplatedocument_extract_text_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezsigntemplatedocument_extract_text_v1_request_t *ezsigntemplatedocument_extract_text_v1_request_create(
+    int i_page,
+    ezmax_api_definition__full_ezsigntemplatedocument_extract_text_v1_request_ESECTION_e e_section,
+    int i_x,
+    int i_y,
+    int i_width,
+    int i_height
+    ) {
+    return ezsigntemplatedocument_extract_text_v1_request_create_internal (
+        i_page,
+        e_section,
+        i_x,
+        i_y,
+        i_width,
+        i_height
+        );
+}
 
 void ezsigntemplatedocument_extract_text_v1_request_free(ezsigntemplatedocument_extract_text_v1_request_t *ezsigntemplatedocument_extract_text_v1_request) {
     if(NULL == ezsigntemplatedocument_extract_text_v1_request){
+        return ;
+    }
+    if(ezsigntemplatedocument_extract_text_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigntemplatedocument_extract_text_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -67,7 +89,7 @@ cJSON *ezsigntemplatedocument_extract_text_v1_request_convertToJSON(ezsigntempla
 
     // ezsigntemplatedocument_extract_text_v1_request->e_section
     if(ezsigntemplatedocument_extract_text_v1_request->e_section != ezmax_api_definition__full_ezsigntemplatedocument_extract_text_v1_request_ESECTION_NULL) {
-    if(cJSON_AddStringToObject(item, "eSection", e_sectionezsigntemplatedocument_extract_text_v1_request_ToString(ezsigntemplatedocument_extract_text_v1_request->e_section)) == NULL)
+    if(cJSON_AddStringToObject(item, "eSection", ezsigntemplatedocument_extract_text_v1_request_e_section_ToString(ezsigntemplatedocument_extract_text_v1_request->e_section)) == NULL)
     {
     goto fail; //Enum
     }
@@ -119,6 +141,9 @@ ezsigntemplatedocument_extract_text_v1_request_t *ezsigntemplatedocument_extract
 
     // ezsigntemplatedocument_extract_text_v1_request->i_page
     cJSON *i_page = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocument_extract_text_v1_requestJSON, "iPage");
+    if (cJSON_IsNull(i_page)) {
+        i_page = NULL;
+    }
     if (!i_page) {
         goto end;
     }
@@ -131,6 +156,9 @@ ezsigntemplatedocument_extract_text_v1_request_t *ezsigntemplatedocument_extract
 
     // ezsigntemplatedocument_extract_text_v1_request->e_section
     cJSON *e_section = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocument_extract_text_v1_requestJSON, "eSection");
+    if (cJSON_IsNull(e_section)) {
+        e_section = NULL;
+    }
     ezmax_api_definition__full_ezsigntemplatedocument_extract_text_v1_request_ESECTION_e e_sectionVariable;
     if (e_section) { 
     if(!cJSON_IsString(e_section))
@@ -142,6 +170,9 @@ ezsigntemplatedocument_extract_text_v1_request_t *ezsigntemplatedocument_extract
 
     // ezsigntemplatedocument_extract_text_v1_request->i_x
     cJSON *i_x = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocument_extract_text_v1_requestJSON, "iX");
+    if (cJSON_IsNull(i_x)) {
+        i_x = NULL;
+    }
     if (i_x) { 
     if(!cJSON_IsNumber(i_x))
     {
@@ -151,6 +182,9 @@ ezsigntemplatedocument_extract_text_v1_request_t *ezsigntemplatedocument_extract
 
     // ezsigntemplatedocument_extract_text_v1_request->i_y
     cJSON *i_y = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocument_extract_text_v1_requestJSON, "iY");
+    if (cJSON_IsNull(i_y)) {
+        i_y = NULL;
+    }
     if (i_y) { 
     if(!cJSON_IsNumber(i_y))
     {
@@ -160,6 +194,9 @@ ezsigntemplatedocument_extract_text_v1_request_t *ezsigntemplatedocument_extract
 
     // ezsigntemplatedocument_extract_text_v1_request->i_width
     cJSON *i_width = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocument_extract_text_v1_requestJSON, "iWidth");
+    if (cJSON_IsNull(i_width)) {
+        i_width = NULL;
+    }
     if (i_width) { 
     if(!cJSON_IsNumber(i_width))
     {
@@ -169,6 +206,9 @@ ezsigntemplatedocument_extract_text_v1_request_t *ezsigntemplatedocument_extract
 
     // ezsigntemplatedocument_extract_text_v1_request->i_height
     cJSON *i_height = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocument_extract_text_v1_requestJSON, "iHeight");
+    if (cJSON_IsNull(i_height)) {
+        i_height = NULL;
+    }
     if (i_height) { 
     if(!cJSON_IsNumber(i_height))
     {
@@ -177,7 +217,7 @@ ezsigntemplatedocument_extract_text_v1_request_t *ezsigntemplatedocument_extract
     }
 
 
-    ezsigntemplatedocument_extract_text_v1_request_local_var = ezsigntemplatedocument_extract_text_v1_request_create (
+    ezsigntemplatedocument_extract_text_v1_request_local_var = ezsigntemplatedocument_extract_text_v1_request_create_internal (
         i_page->valuedouble,
         e_section ? e_sectionVariable : ezmax_api_definition__full_ezsigntemplatedocument_extract_text_v1_request_ESECTION_NULL,
         i_x ? i_x->valuedouble : 0,

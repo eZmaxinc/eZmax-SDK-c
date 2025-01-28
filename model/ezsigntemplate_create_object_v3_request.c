@@ -5,7 +5,7 @@
 
 
 
-ezsigntemplate_create_object_v3_request_t *ezsigntemplate_create_object_v3_request_create(
+static ezsigntemplate_create_object_v3_request_t *ezsigntemplate_create_object_v3_request_create_internal(
     list_t *a_obj_ezsigntemplate
     ) {
     ezsigntemplate_create_object_v3_request_t *ezsigntemplate_create_object_v3_request_local_var = malloc(sizeof(ezsigntemplate_create_object_v3_request_t));
@@ -14,12 +14,24 @@ ezsigntemplate_create_object_v3_request_t *ezsigntemplate_create_object_v3_reque
     }
     ezsigntemplate_create_object_v3_request_local_var->a_obj_ezsigntemplate = a_obj_ezsigntemplate;
 
+    ezsigntemplate_create_object_v3_request_local_var->_library_owned = 1;
     return ezsigntemplate_create_object_v3_request_local_var;
 }
 
+__attribute__((deprecated)) ezsigntemplate_create_object_v3_request_t *ezsigntemplate_create_object_v3_request_create(
+    list_t *a_obj_ezsigntemplate
+    ) {
+    return ezsigntemplate_create_object_v3_request_create_internal (
+        a_obj_ezsigntemplate
+        );
+}
 
 void ezsigntemplate_create_object_v3_request_free(ezsigntemplate_create_object_v3_request_t *ezsigntemplate_create_object_v3_request) {
     if(NULL == ezsigntemplate_create_object_v3_request){
+        return ;
+    }
+    if(ezsigntemplate_create_object_v3_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigntemplate_create_object_v3_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ ezsigntemplate_create_object_v3_request_t *ezsigntemplate_create_object_v3_reque
 
     // ezsigntemplate_create_object_v3_request->a_obj_ezsigntemplate
     cJSON *a_obj_ezsigntemplate = cJSON_GetObjectItemCaseSensitive(ezsigntemplate_create_object_v3_requestJSON, "a_objEzsigntemplate");
+    if (cJSON_IsNull(a_obj_ezsigntemplate)) {
+        a_obj_ezsigntemplate = NULL;
+    }
     if (!a_obj_ezsigntemplate) {
         goto end;
     }
@@ -96,7 +111,7 @@ ezsigntemplate_create_object_v3_request_t *ezsigntemplate_create_object_v3_reque
     }
 
 
-    ezsigntemplate_create_object_v3_request_local_var = ezsigntemplate_create_object_v3_request_create (
+    ezsigntemplate_create_object_v3_request_local_var = ezsigntemplate_create_object_v3_request_create_internal (
         a_obj_ezsigntemplateList
         );
 

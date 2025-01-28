@@ -5,7 +5,7 @@
 
 
 
-user_edit_permissions_v1_request_t *user_edit_permissions_v1_request_create(
+static user_edit_permissions_v1_request_t *user_edit_permissions_v1_request_create_internal(
     list_t *a_obj_permission
     ) {
     user_edit_permissions_v1_request_t *user_edit_permissions_v1_request_local_var = malloc(sizeof(user_edit_permissions_v1_request_t));
@@ -14,18 +14,30 @@ user_edit_permissions_v1_request_t *user_edit_permissions_v1_request_create(
     }
     user_edit_permissions_v1_request_local_var->a_obj_permission = a_obj_permission;
 
+    user_edit_permissions_v1_request_local_var->_library_owned = 1;
     return user_edit_permissions_v1_request_local_var;
 }
 
+__attribute__((deprecated)) user_edit_permissions_v1_request_t *user_edit_permissions_v1_request_create(
+    list_t *a_obj_permission
+    ) {
+    return user_edit_permissions_v1_request_create_internal (
+        a_obj_permission
+        );
+}
 
 void user_edit_permissions_v1_request_free(user_edit_permissions_v1_request_t *user_edit_permissions_v1_request) {
     if(NULL == user_edit_permissions_v1_request){
         return ;
     }
+    if(user_edit_permissions_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "user_edit_permissions_v1_request_free");
+        return ;
+    }
     listEntry_t *listEntry;
     if (user_edit_permissions_v1_request->a_obj_permission) {
         list_ForEach(listEntry, user_edit_permissions_v1_request->a_obj_permission) {
-            permission_request_free(listEntry->data);
+            permission_request_compound_free(listEntry->data);
         }
         list_freeList(user_edit_permissions_v1_request->a_obj_permission);
         user_edit_permissions_v1_request->a_obj_permission = NULL;
@@ -48,7 +60,7 @@ cJSON *user_edit_permissions_v1_request_convertToJSON(user_edit_permissions_v1_r
     listEntry_t *a_obj_permissionListEntry;
     if (user_edit_permissions_v1_request->a_obj_permission) {
     list_ForEach(a_obj_permissionListEntry, user_edit_permissions_v1_request->a_obj_permission) {
-    cJSON *itemLocal = permission_request_convertToJSON(a_obj_permissionListEntry->data);
+    cJSON *itemLocal = permission_request_compound_convertToJSON(a_obj_permissionListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -73,6 +85,9 @@ user_edit_permissions_v1_request_t *user_edit_permissions_v1_request_parseFromJS
 
     // user_edit_permissions_v1_request->a_obj_permission
     cJSON *a_obj_permission = cJSON_GetObjectItemCaseSensitive(user_edit_permissions_v1_requestJSON, "a_objPermission");
+    if (cJSON_IsNull(a_obj_permission)) {
+        a_obj_permission = NULL;
+    }
     if (!a_obj_permission) {
         goto end;
     }
@@ -90,13 +105,13 @@ user_edit_permissions_v1_request_t *user_edit_permissions_v1_request_parseFromJS
         if(!cJSON_IsObject(a_obj_permission_local_nonprimitive)){
             goto end;
         }
-        permission_request_t *a_obj_permissionItem = permission_request_parseFromJSON(a_obj_permission_local_nonprimitive);
+        permission_request_compound_t *a_obj_permissionItem = permission_request_compound_parseFromJSON(a_obj_permission_local_nonprimitive);
 
         list_addElement(a_obj_permissionList, a_obj_permissionItem);
     }
 
 
-    user_edit_permissions_v1_request_local_var = user_edit_permissions_v1_request_create (
+    user_edit_permissions_v1_request_local_var = user_edit_permissions_v1_request_create_internal (
         a_obj_permissionList
         );
 
@@ -105,7 +120,7 @@ end:
     if (a_obj_permissionList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_permissionList) {
-            permission_request_free(listEntry->data);
+            permission_request_compound_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_permissionList);

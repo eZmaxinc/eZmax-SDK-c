@@ -21,9 +21,10 @@ typedef struct variableexpense_create_object_v1_response_m_payload_t variableexp
 typedef struct variableexpense_create_object_v1_response_m_payload_t {
     list_t *a_pki_variableexpense_id; //primitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } variableexpense_create_object_v1_response_m_payload_t;
 
-variableexpense_create_object_v1_response_m_payload_t *variableexpense_create_object_v1_response_m_payload_create(
+__attribute__((deprecated)) variableexpense_create_object_v1_response_m_payload_t *variableexpense_create_object_v1_response_m_payload_create(
     list_t *a_pki_variableexpense_id
 );
 

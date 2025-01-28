@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Creates an Url to allow embedded signing
@@ -25,15 +20,18 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateEmbedd
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}/createEmbeddedUrl")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}/createEmbeddedUrl");
+    char *localVarPath = strdup("/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}/createEmbeddedUrl");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfoldersignerassociationID =  + strlen("{ pkiEzsignfoldersignerassociationID }");
+    long sizeOfPathParams_pkiEzsignfoldersignerassociationID =  + sizeof("{ pkiEzsignfoldersignerassociationID }") - 1;
     if(pkiEzsignfoldersignerassociationID == 0){
         goto end;
     }
@@ -41,7 +39,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateEmbedd
     snprintf(localVarToReplace_pkiEzsignfoldersignerassociationID, sizeOfPathParams_pkiEzsignfoldersignerassociationID, "{%s}", "pkiEzsignfoldersignerassociationID");
 
     char localVarBuff_pkiEzsignfoldersignerassociationID[256];
-    intToStr(localVarBuff_pkiEzsignfoldersignerassociationID, *pkiEzsignfoldersignerassociationID);
+    snprintf(localVarBuff_pkiEzsignfoldersignerassociationID, sizeof localVarBuff_pkiEzsignfoldersignerassociationID, "%ld", (long)*pkiEzsignfoldersignerassociationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfoldersignerassociationID, localVarBuff_pkiEzsignfoldersignerassociationID);
 
@@ -52,9 +50,10 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateEmbedd
     cJSON *localVarSingleItemJSON_ezsignfoldersignerassociation_create_embedded_url_v1_request = NULL;
     if (ezsignfoldersignerassociation_create_embedded_url_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignfoldersignerassociation_create_embedded_url_v1_request = ezsignfoldersignerassociation_create_embedded_url_v1_request_convertToJSON(ezsignfoldersignerassociation_create_embedded_url_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignfoldersignerassociation_create_embedded_url_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -66,6 +65,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateEmbedd
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -81,11 +81,14 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateEmbedd
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfoldersignerassociation_create_embedded_url_v1_response_t *elementToReturn = ezsignfoldersignerassociation_create_embedded_url_v1_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfoldersignerassociation_create_embedded_url_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfoldersignerassociation_create_embedded_url_v1_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -126,11 +129,14 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateObject
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfoldersignerassociation")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfoldersignerassociation");
+    char *localVarPath = strdup("/1/object/ezsignfoldersignerassociation");
+
 
 
 
@@ -162,6 +168,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateObject
         }
         cJSON_AddItemToArray(localVarSingleItemJSON_ezsignfoldersignerassociation_create_object_v1_request, localVar_ezsignfoldersignerassociation_create_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarItemJSON_ezsignfoldersignerassociation_create_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -173,6 +180,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateObject
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -180,11 +188,14 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateObject
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfoldersignerassociation_create_object_v1_response_t *elementToReturn = ezsignfoldersignerassociation_create_object_v1_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfoldersignerassociation_create_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfoldersignerassociation_create_object_v1_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -232,11 +243,14 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateObject
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/ezsignfoldersignerassociation")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/ezsignfoldersignerassociation");
+    char *localVarPath = strdup("/2/object/ezsignfoldersignerassociation");
+
 
 
 
@@ -245,9 +259,10 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateObject
     cJSON *localVarSingleItemJSON_ezsignfoldersignerassociation_create_object_v2_request = NULL;
     if (ezsignfoldersignerassociation_create_object_v2_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignfoldersignerassociation_create_object_v2_request = ezsignfoldersignerassociation_create_object_v2_request_convertToJSON(ezsignfoldersignerassociation_create_object_v2_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignfoldersignerassociation_create_object_v2_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -259,6 +274,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateObject
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -266,11 +282,14 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateObject
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfoldersignerassociation_create_object_v2_response_t *elementToReturn = ezsignfoldersignerassociation_create_object_v2_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfoldersignerassociation_create_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfoldersignerassociation_create_object_v2_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -301,7 +320,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignfoldersignerassociation_delete_object_v1_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -310,15 +329,18 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationDeleteObject
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}");
+    char *localVarPath = strdup("/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfoldersignerassociationID =  + strlen("{ pkiEzsignfoldersignerassociationID }");
+    long sizeOfPathParams_pkiEzsignfoldersignerassociationID =  + sizeof("{ pkiEzsignfoldersignerassociationID }") - 1;
     if(pkiEzsignfoldersignerassociationID == 0){
         goto end;
     }
@@ -326,7 +348,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationDeleteObject
     snprintf(localVarToReplace_pkiEzsignfoldersignerassociationID, sizeOfPathParams_pkiEzsignfoldersignerassociationID, "{%s}", "pkiEzsignfoldersignerassociationID");
 
     char localVarBuff_pkiEzsignfoldersignerassociationID[256];
-    intToStr(localVarBuff_pkiEzsignfoldersignerassociationID, *pkiEzsignfoldersignerassociationID);
+    snprintf(localVarBuff_pkiEzsignfoldersignerassociationID, sizeof localVarBuff_pkiEzsignfoldersignerassociationID, "%ld", (long)*pkiEzsignfoldersignerassociationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfoldersignerassociationID, localVarBuff_pkiEzsignfoldersignerassociationID);
 
@@ -341,6 +363,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationDeleteObject
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "DELETE");
 
     // uncomment below to debug the error response
@@ -356,11 +379,14 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationDeleteObject
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfoldersignerassociation_delete_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfoldersignerassociation_delete_object_v1_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -387,7 +413,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignfoldersignerassociation_edit_object_v1_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationEditObjectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_edit_object_v1_request_t *ezsignfoldersignerassociation_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -396,15 +422,18 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationEditObjectV1
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}");
+    char *localVarPath = strdup("/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfoldersignerassociationID =  + strlen("{ pkiEzsignfoldersignerassociationID }");
+    long sizeOfPathParams_pkiEzsignfoldersignerassociationID =  + sizeof("{ pkiEzsignfoldersignerassociationID }") - 1;
     if(pkiEzsignfoldersignerassociationID == 0){
         goto end;
     }
@@ -412,7 +441,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationEditObjectV1
     snprintf(localVarToReplace_pkiEzsignfoldersignerassociationID, sizeOfPathParams_pkiEzsignfoldersignerassociationID, "{%s}", "pkiEzsignfoldersignerassociationID");
 
     char localVarBuff_pkiEzsignfoldersignerassociationID[256];
-    intToStr(localVarBuff_pkiEzsignfoldersignerassociationID, *pkiEzsignfoldersignerassociationID);
+    snprintf(localVarBuff_pkiEzsignfoldersignerassociationID, sizeof localVarBuff_pkiEzsignfoldersignerassociationID, "%ld", (long)*pkiEzsignfoldersignerassociationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfoldersignerassociationID, localVarBuff_pkiEzsignfoldersignerassociationID);
 
@@ -423,9 +452,10 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationEditObjectV1
     cJSON *localVarSingleItemJSON_ezsignfoldersignerassociation_edit_object_v1_request = NULL;
     if (ezsignfoldersignerassociation_edit_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignfoldersignerassociation_edit_object_v1_request = ezsignfoldersignerassociation_edit_object_v1_request_convertToJSON(ezsignfoldersignerassociation_edit_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignfoldersignerassociation_edit_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -437,6 +467,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationEditObjectV1
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -452,11 +483,14 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationEditObjectV1
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfoldersignerassociation_edit_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfoldersignerassociation_edit_object_v1_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -488,7 +522,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignfoldersignerassociation_force_disconnect_v1_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationForceDisconnectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -497,15 +531,18 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationForceDisconn
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}/forceDisconnect")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}/forceDisconnect");
+    char *localVarPath = strdup("/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}/forceDisconnect");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfoldersignerassociationID =  + strlen("{ pkiEzsignfoldersignerassociationID }");
+    long sizeOfPathParams_pkiEzsignfoldersignerassociationID =  + sizeof("{ pkiEzsignfoldersignerassociationID }") - 1;
     if(pkiEzsignfoldersignerassociationID == 0){
         goto end;
     }
@@ -513,7 +550,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationForceDisconn
     snprintf(localVarToReplace_pkiEzsignfoldersignerassociationID, sizeOfPathParams_pkiEzsignfoldersignerassociationID, "{%s}", "pkiEzsignfoldersignerassociationID");
 
     char localVarBuff_pkiEzsignfoldersignerassociationID[256];
-    intToStr(localVarBuff_pkiEzsignfoldersignerassociationID, *pkiEzsignfoldersignerassociationID);
+    snprintf(localVarBuff_pkiEzsignfoldersignerassociationID, sizeof localVarBuff_pkiEzsignfoldersignerassociationID, "%ld", (long)*pkiEzsignfoldersignerassociationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfoldersignerassociationID, localVarBuff_pkiEzsignfoldersignerassociationID);
 
@@ -524,9 +561,10 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationForceDisconn
     cJSON *localVarSingleItemJSON_body = NULL;
     if (body != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_body = object_convertToJSON(body);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_body);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -538,6 +576,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationForceDisconn
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -553,11 +592,14 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationForceDisconn
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfoldersignerassociation_force_disconnect_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfoldersignerassociation_force_disconnect_v1_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -598,15 +640,18 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetInPersonL
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}/getInPersonLoginUrl")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}/getInPersonLoginUrl");
+    char *localVarPath = strdup("/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}/getInPersonLoginUrl");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfoldersignerassociationID =  + strlen("{ pkiEzsignfoldersignerassociationID }");
+    long sizeOfPathParams_pkiEzsignfoldersignerassociationID =  + sizeof("{ pkiEzsignfoldersignerassociationID }") - 1;
     if(pkiEzsignfoldersignerassociationID == 0){
         goto end;
     }
@@ -614,7 +659,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetInPersonL
     snprintf(localVarToReplace_pkiEzsignfoldersignerassociationID, sizeOfPathParams_pkiEzsignfoldersignerassociationID, "{%s}", "pkiEzsignfoldersignerassociationID");
 
     char localVarBuff_pkiEzsignfoldersignerassociationID[256];
-    intToStr(localVarBuff_pkiEzsignfoldersignerassociationID, *pkiEzsignfoldersignerassociationID);
+    snprintf(localVarBuff_pkiEzsignfoldersignerassociationID, sizeof localVarBuff_pkiEzsignfoldersignerassociationID, "%ld", (long)*pkiEzsignfoldersignerassociationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfoldersignerassociationID, localVarBuff_pkiEzsignfoldersignerassociationID);
 
@@ -629,6 +674,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetInPersonL
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -644,11 +690,14 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetInPersonL
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfoldersignerassociation_get_in_person_login_url_v1_response_t *elementToReturn = ezsignfoldersignerassociation_get_in_person_login_url_v1_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfoldersignerassociation_get_in_person_login_url_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfoldersignerassociation_get_in_person_login_url_v1_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -684,15 +733,18 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV1(
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}");
+    char *localVarPath = strdup("/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfoldersignerassociationID =  + strlen("{ pkiEzsignfoldersignerassociationID }");
+    long sizeOfPathParams_pkiEzsignfoldersignerassociationID =  + sizeof("{ pkiEzsignfoldersignerassociationID }") - 1;
     if(pkiEzsignfoldersignerassociationID == 0){
         goto end;
     }
@@ -700,7 +752,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV1(
     snprintf(localVarToReplace_pkiEzsignfoldersignerassociationID, sizeOfPathParams_pkiEzsignfoldersignerassociationID, "{%s}", "pkiEzsignfoldersignerassociationID");
 
     char localVarBuff_pkiEzsignfoldersignerassociationID[256];
-    intToStr(localVarBuff_pkiEzsignfoldersignerassociationID, *pkiEzsignfoldersignerassociationID);
+    snprintf(localVarBuff_pkiEzsignfoldersignerassociationID, sizeof localVarBuff_pkiEzsignfoldersignerassociationID, "%ld", (long)*pkiEzsignfoldersignerassociationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfoldersignerassociationID, localVarBuff_pkiEzsignfoldersignerassociationID);
 
@@ -715,6 +767,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV1(
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -726,11 +779,14 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV1(
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfoldersignerassociation_get_object_v1_response_t *elementToReturn = ezsignfoldersignerassociation_get_object_v1_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfoldersignerassociation_get_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfoldersignerassociation_get_object_v1_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -766,15 +822,18 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV2(
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}");
+    char *localVarPath = strdup("/2/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfoldersignerassociationID =  + strlen("{ pkiEzsignfoldersignerassociationID }");
+    long sizeOfPathParams_pkiEzsignfoldersignerassociationID =  + sizeof("{ pkiEzsignfoldersignerassociationID }") - 1;
     if(pkiEzsignfoldersignerassociationID == 0){
         goto end;
     }
@@ -782,7 +841,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV2(
     snprintf(localVarToReplace_pkiEzsignfoldersignerassociationID, sizeOfPathParams_pkiEzsignfoldersignerassociationID, "{%s}", "pkiEzsignfoldersignerassociationID");
 
     char localVarBuff_pkiEzsignfoldersignerassociationID[256];
-    intToStr(localVarBuff_pkiEzsignfoldersignerassociationID, *pkiEzsignfoldersignerassociationID);
+    snprintf(localVarBuff_pkiEzsignfoldersignerassociationID, sizeof localVarBuff_pkiEzsignfoldersignerassociationID, "%ld", (long)*pkiEzsignfoldersignerassociationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfoldersignerassociationID, localVarBuff_pkiEzsignfoldersignerassociationID);
 
@@ -797,6 +856,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV2(
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -808,11 +868,14 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationGetObjectV2(
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfoldersignerassociation_get_object_v2_response_t *elementToReturn = ezsignfoldersignerassociation_get_object_v2_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfoldersignerassociation_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfoldersignerassociation_get_object_v2_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -837,7 +900,7 @@ end:
 
 // Patch an existing Ezsignfoldersignerassociation
 //
-common_response_t*
+ezsignfoldersignerassociation_patch_object_v1_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationPatchObjectV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_patch_object_v1_request_t *ezsignfoldersignerassociation_patch_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -846,15 +909,18 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationPatchObjectV
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}");
+    char *localVarPath = strdup("/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfoldersignerassociationID =  + strlen("{ pkiEzsignfoldersignerassociationID }");
+    long sizeOfPathParams_pkiEzsignfoldersignerassociationID =  + sizeof("{ pkiEzsignfoldersignerassociationID }") - 1;
     if(pkiEzsignfoldersignerassociationID == 0){
         goto end;
     }
@@ -862,7 +928,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationPatchObjectV
     snprintf(localVarToReplace_pkiEzsignfoldersignerassociationID, sizeOfPathParams_pkiEzsignfoldersignerassociationID, "{%s}", "pkiEzsignfoldersignerassociationID");
 
     char localVarBuff_pkiEzsignfoldersignerassociationID[256];
-    intToStr(localVarBuff_pkiEzsignfoldersignerassociationID, *pkiEzsignfoldersignerassociationID);
+    snprintf(localVarBuff_pkiEzsignfoldersignerassociationID, sizeof localVarBuff_pkiEzsignfoldersignerassociationID, "%ld", (long)*pkiEzsignfoldersignerassociationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfoldersignerassociationID, localVarBuff_pkiEzsignfoldersignerassociationID);
 
@@ -873,9 +939,10 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationPatchObjectV
     cJSON *localVarSingleItemJSON_ezsignfoldersignerassociation_patch_object_v1_request = NULL;
     if (ezsignfoldersignerassociation_patch_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignfoldersignerassociation_patch_object_v1_request = ezsignfoldersignerassociation_patch_object_v1_request_convertToJSON(ezsignfoldersignerassociation_patch_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignfoldersignerassociation_patch_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -887,6 +954,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationPatchObjectV
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PATCH");
 
     // uncomment below to debug the error response
@@ -902,11 +970,14 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationPatchObjectV
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfoldersignerassociation_patch_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfoldersignerassociation_patch_object_v1_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -938,7 +1009,7 @@ end:
 //
 // Reassign remaining unsigned signatures and forms
 //
-common_response_t*
+ezsignfoldersignerassociation_reassign_v1_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationReassignV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_reassign_v1_request_t *ezsignfoldersignerassociation_reassign_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -947,15 +1018,18 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationReassignV1(a
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}/reassign")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}/reassign");
+    char *localVarPath = strdup("/1/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}/reassign");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfoldersignerassociationID =  + strlen("{ pkiEzsignfoldersignerassociationID }");
+    long sizeOfPathParams_pkiEzsignfoldersignerassociationID =  + sizeof("{ pkiEzsignfoldersignerassociationID }") - 1;
     if(pkiEzsignfoldersignerassociationID == 0){
         goto end;
     }
@@ -963,7 +1037,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationReassignV1(a
     snprintf(localVarToReplace_pkiEzsignfoldersignerassociationID, sizeOfPathParams_pkiEzsignfoldersignerassociationID, "{%s}", "pkiEzsignfoldersignerassociationID");
 
     char localVarBuff_pkiEzsignfoldersignerassociationID[256];
-    intToStr(localVarBuff_pkiEzsignfoldersignerassociationID, *pkiEzsignfoldersignerassociationID);
+    snprintf(localVarBuff_pkiEzsignfoldersignerassociationID, sizeof localVarBuff_pkiEzsignfoldersignerassociationID, "%ld", (long)*pkiEzsignfoldersignerassociationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfoldersignerassociationID, localVarBuff_pkiEzsignfoldersignerassociationID);
 
@@ -974,9 +1048,10 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationReassignV1(a
     cJSON *localVarSingleItemJSON_ezsignfoldersignerassociation_reassign_v1_request = NULL;
     if (ezsignfoldersignerassociation_reassign_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignfoldersignerassociation_reassign_v1_request = ezsignfoldersignerassociation_reassign_v1_request_convertToJSON(ezsignfoldersignerassociation_reassign_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignfoldersignerassociation_reassign_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -988,6 +1063,7 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationReassignV1(a
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -1003,11 +1079,14 @@ ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationReassignV1(a
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfoldersignerassociation_reassign_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfoldersignerassociation_reassign_v1_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

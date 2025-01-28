@@ -25,9 +25,10 @@ typedef struct scim_user_t {
     char *display_name; // string
     list_t *emails; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } scim_user_t;
 
-scim_user_t *scim_user_create(
+__attribute__((deprecated)) scim_user_t *scim_user_create(
     char *id,
     char *user_name,
     char *display_name,

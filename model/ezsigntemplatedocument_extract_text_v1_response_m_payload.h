@@ -21,9 +21,10 @@ typedef struct ezsigntemplatedocument_extract_text_v1_response_m_payload_t ezsig
 typedef struct ezsigntemplatedocument_extract_text_v1_response_m_payload_t {
     char *s_text; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatedocument_extract_text_v1_response_m_payload_t;
 
-ezsigntemplatedocument_extract_text_v1_response_m_payload_t *ezsigntemplatedocument_extract_text_v1_response_m_payload_create(
+__attribute__((deprecated)) ezsigntemplatedocument_extract_text_v1_response_m_payload_t *ezsigntemplatedocument_extract_text_v1_response_m_payload_create(
     char *s_text
 );
 

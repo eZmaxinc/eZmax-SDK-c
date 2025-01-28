@@ -26,9 +26,10 @@ typedef struct ezsignbulksendtransmission_response_t {
     int i_ezsignbulksendtransmission_errors; //numeric
     struct common_audit_t *obj_audit; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignbulksendtransmission_response_t;
 
-ezsignbulksendtransmission_response_t *ezsignbulksendtransmission_response_create(
+__attribute__((deprecated)) ezsignbulksendtransmission_response_t *ezsignbulksendtransmission_response_create(
     int pki_ezsignbulksendtransmission_id,
     int fki_ezsignbulksend_id,
     char *s_ezsignbulksendtransmission_description,

@@ -5,7 +5,7 @@
 
 
 
-domain_list_element_t *domain_list_element_create(
+static domain_list_element_t *domain_list_element_create_internal(
     int pki_domain_id,
     char *s_domain_name
     ) {
@@ -16,12 +16,26 @@ domain_list_element_t *domain_list_element_create(
     domain_list_element_local_var->pki_domain_id = pki_domain_id;
     domain_list_element_local_var->s_domain_name = s_domain_name;
 
+    domain_list_element_local_var->_library_owned = 1;
     return domain_list_element_local_var;
 }
 
+__attribute__((deprecated)) domain_list_element_t *domain_list_element_create(
+    int pki_domain_id,
+    char *s_domain_name
+    ) {
+    return domain_list_element_create_internal (
+        pki_domain_id,
+        s_domain_name
+        );
+}
 
 void domain_list_element_free(domain_list_element_t *domain_list_element) {
     if(NULL == domain_list_element){
+        return ;
+    }
+    if(domain_list_element->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "domain_list_element_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -66,6 +80,9 @@ domain_list_element_t *domain_list_element_parseFromJSON(cJSON *domain_list_elem
 
     // domain_list_element->pki_domain_id
     cJSON *pki_domain_id = cJSON_GetObjectItemCaseSensitive(domain_list_elementJSON, "pkiDomainID");
+    if (cJSON_IsNull(pki_domain_id)) {
+        pki_domain_id = NULL;
+    }
     if (!pki_domain_id) {
         goto end;
     }
@@ -78,6 +95,9 @@ domain_list_element_t *domain_list_element_parseFromJSON(cJSON *domain_list_elem
 
     // domain_list_element->s_domain_name
     cJSON *s_domain_name = cJSON_GetObjectItemCaseSensitive(domain_list_elementJSON, "sDomainName");
+    if (cJSON_IsNull(s_domain_name)) {
+        s_domain_name = NULL;
+    }
     if (!s_domain_name) {
         goto end;
     }
@@ -89,7 +109,7 @@ domain_list_element_t *domain_list_element_parseFromJSON(cJSON *domain_list_elem
     }
 
 
-    domain_list_element_local_var = domain_list_element_create (
+    domain_list_element_local_var = domain_list_element_create_internal (
         pki_domain_id->valuedouble,
         strdup(s_domain_name->valuestring)
         );

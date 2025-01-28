@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 // Functions for enum SSELECTOR for ObjectUserlogintypeAPI_userlogintypeGetAutocompleteV2
 
@@ -172,22 +167,27 @@ ObjectUserlogintypeAPI_userlogintypeGetAutocompleteV2(apiClient_t *apiClient, ez
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/userlogintype/getAutocomplete/{sSelector}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/userlogintype/getAutocomplete/{sSelector}");
+    char *localVarPath = strdup("/2/object/userlogintype/getAutocomplete/{sSelector}");
+
+    if(!sSelector)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_sSelector = strlen(sSelector)+3 + strlen("{ sSelector }");
-    if(sSelector == NULL) {
+    long sizeOfPathParams_sSelector = strlen(userlogintypeGetAutocompleteV2_SSELECTOR_ToString(sSelector))+3 + sizeof("{ sSelector }") - 1;
+    if(sSelector == 0) {
         goto end;
     }
     char* localVarToReplace_sSelector = malloc(sizeOfPathParams_sSelector);
     sprintf(localVarToReplace_sSelector, "{%s}", "sSelector");
 
-    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, sSelector);
+    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, userlogintypeGetAutocompleteV2_SSELECTOR_ToString(sSelector));
 
 
 
@@ -224,7 +224,7 @@ ObjectUserlogintypeAPI_userlogintypeGetAutocompleteV2(apiClient_t *apiClient, ez
     {
         keyQuery_eFilterActive = strdup("eFilterActive");
         valueQuery_eFilterActive = (eFilterActive);
-        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(userlogintypeGetAutocompleteV2_EFILTERACTIVE_ToString(
+        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, strdup(userlogintypeGetAutocompleteV2_EFILTERACTIVE_ToString(
         valueQuery_eFilterActive)));
         list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
     }
@@ -249,6 +249,7 @@ ObjectUserlogintypeAPI_userlogintypeGetAutocompleteV2(apiClient_t *apiClient, ez
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -256,11 +257,14 @@ ObjectUserlogintypeAPI_userlogintypeGetAutocompleteV2(apiClient_t *apiClient, ez
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectUserlogintypeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    userlogintype_get_autocomplete_v2_response_t *elementToReturn = userlogintype_get_autocomplete_v2_response_parseFromJSON(ObjectUserlogintypeAPIlocalVarJSON);
-    cJSON_Delete(ObjectUserlogintypeAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    userlogintype_get_autocomplete_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUserlogintypeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = userlogintype_get_autocomplete_v2_response_parseFromJSON(ObjectUserlogintypeAPIlocalVarJSON);
+        cJSON_Delete(ObjectUserlogintypeAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

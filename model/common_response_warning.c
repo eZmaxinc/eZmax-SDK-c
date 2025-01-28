@@ -5,7 +5,7 @@
 
 
 
-common_response_warning_t *common_response_warning_create(
+static common_response_warning_t *common_response_warning_create_internal(
     char *s_warning_message,
     char *e_warning_code
     ) {
@@ -16,12 +16,26 @@ common_response_warning_t *common_response_warning_create(
     common_response_warning_local_var->s_warning_message = s_warning_message;
     common_response_warning_local_var->e_warning_code = e_warning_code;
 
+    common_response_warning_local_var->_library_owned = 1;
     return common_response_warning_local_var;
 }
 
+__attribute__((deprecated)) common_response_warning_t *common_response_warning_create(
+    char *s_warning_message,
+    char *e_warning_code
+    ) {
+    return common_response_warning_create_internal (
+        s_warning_message,
+        e_warning_code
+        );
+}
 
 void common_response_warning_free(common_response_warning_t *common_response_warning) {
     if(NULL == common_response_warning){
+        return ;
+    }
+    if(common_response_warning->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "common_response_warning_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +84,9 @@ common_response_warning_t *common_response_warning_parseFromJSON(cJSON *common_r
 
     // common_response_warning->s_warning_message
     cJSON *s_warning_message = cJSON_GetObjectItemCaseSensitive(common_response_warningJSON, "sWarningMessage");
+    if (cJSON_IsNull(s_warning_message)) {
+        s_warning_message = NULL;
+    }
     if (!s_warning_message) {
         goto end;
     }
@@ -82,6 +99,9 @@ common_response_warning_t *common_response_warning_parseFromJSON(cJSON *common_r
 
     // common_response_warning->e_warning_code
     cJSON *e_warning_code = cJSON_GetObjectItemCaseSensitive(common_response_warningJSON, "eWarningCode");
+    if (cJSON_IsNull(e_warning_code)) {
+        e_warning_code = NULL;
+    }
     if (!e_warning_code) {
         goto end;
     }
@@ -93,7 +113,7 @@ common_response_warning_t *common_response_warning_parseFromJSON(cJSON *common_r
     }
 
 
-    common_response_warning_local_var = common_response_warning_create (
+    common_response_warning_local_var = common_response_warning_create_internal (
         strdup(s_warning_message->valuestring),
         strdup(e_warning_code->valuestring)
         );

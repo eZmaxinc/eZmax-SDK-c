@@ -23,9 +23,10 @@ typedef struct ezsigndocument_apply_ezsigntemplateglobal_v1_request_t {
     list_t *a_s_ezsigntemplateglobalsigner; //primitive container
     list_t *a_pki_ezsignfoldersignerassociation_id; //primitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigndocument_apply_ezsigntemplateglobal_v1_request_t;
 
-ezsigndocument_apply_ezsigntemplateglobal_v1_request_t *ezsigndocument_apply_ezsigntemplateglobal_v1_request_create(
+__attribute__((deprecated)) ezsigndocument_apply_ezsigntemplateglobal_v1_request_t *ezsigndocument_apply_ezsigntemplateglobal_v1_request_create(
     int fki_ezsigntemplateglobal_id,
     list_t *a_s_ezsigntemplateglobalsigner,
     list_t *a_pki_ezsignfoldersignerassociation_id

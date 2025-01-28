@@ -5,7 +5,7 @@
 
 
 
-webhook_create_object_v2_request_t *webhook_create_object_v2_request_create(
+static webhook_create_object_v2_request_t *webhook_create_object_v2_request_create_internal(
     list_t *a_obj_webhook
     ) {
     webhook_create_object_v2_request_t *webhook_create_object_v2_request_local_var = malloc(sizeof(webhook_create_object_v2_request_t));
@@ -14,12 +14,24 @@ webhook_create_object_v2_request_t *webhook_create_object_v2_request_create(
     }
     webhook_create_object_v2_request_local_var->a_obj_webhook = a_obj_webhook;
 
+    webhook_create_object_v2_request_local_var->_library_owned = 1;
     return webhook_create_object_v2_request_local_var;
 }
 
+__attribute__((deprecated)) webhook_create_object_v2_request_t *webhook_create_object_v2_request_create(
+    list_t *a_obj_webhook
+    ) {
+    return webhook_create_object_v2_request_create_internal (
+        a_obj_webhook
+        );
+}
 
 void webhook_create_object_v2_request_free(webhook_create_object_v2_request_t *webhook_create_object_v2_request) {
     if(NULL == webhook_create_object_v2_request){
+        return ;
+    }
+    if(webhook_create_object_v2_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "webhook_create_object_v2_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ webhook_create_object_v2_request_t *webhook_create_object_v2_request_parseFromJS
 
     // webhook_create_object_v2_request->a_obj_webhook
     cJSON *a_obj_webhook = cJSON_GetObjectItemCaseSensitive(webhook_create_object_v2_requestJSON, "a_objWebhook");
+    if (cJSON_IsNull(a_obj_webhook)) {
+        a_obj_webhook = NULL;
+    }
     if (!a_obj_webhook) {
         goto end;
     }
@@ -96,7 +111,7 @@ webhook_create_object_v2_request_t *webhook_create_object_v2_request_parseFromJS
     }
 
 
-    webhook_create_object_v2_request_local_var = webhook_create_object_v2_request_create (
+    webhook_create_object_v2_request_local_var = webhook_create_object_v2_request_create_internal (
         a_obj_webhookList
         );
 

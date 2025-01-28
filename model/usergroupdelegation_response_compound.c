@@ -5,7 +5,7 @@
 
 
 
-usergroupdelegation_response_compound_t *usergroupdelegation_response_compound_create(
+static usergroupdelegation_response_compound_t *usergroupdelegation_response_compound_create_internal(
     int pki_usergroupdelegation_id,
     int fki_usergroup_id,
     int fki_user_id,
@@ -28,12 +28,38 @@ usergroupdelegation_response_compound_t *usergroupdelegation_response_compound_c
     usergroupdelegation_response_compound_local_var->s_email_address = s_email_address;
     usergroupdelegation_response_compound_local_var->s_usergroup_name_x = s_usergroup_name_x;
 
+    usergroupdelegation_response_compound_local_var->_library_owned = 1;
     return usergroupdelegation_response_compound_local_var;
 }
 
+__attribute__((deprecated)) usergroupdelegation_response_compound_t *usergroupdelegation_response_compound_create(
+    int pki_usergroupdelegation_id,
+    int fki_usergroup_id,
+    int fki_user_id,
+    char *s_user_firstname,
+    char *s_user_lastname,
+    char *s_user_loginname,
+    char *s_email_address,
+    char *s_usergroup_name_x
+    ) {
+    return usergroupdelegation_response_compound_create_internal (
+        pki_usergroupdelegation_id,
+        fki_usergroup_id,
+        fki_user_id,
+        s_user_firstname,
+        s_user_lastname,
+        s_user_loginname,
+        s_email_address,
+        s_usergroup_name_x
+        );
+}
 
 void usergroupdelegation_response_compound_free(usergroupdelegation_response_compound_t *usergroupdelegation_response_compound) {
     if(NULL == usergroupdelegation_response_compound){
+        return ;
+    }
+    if(usergroupdelegation_response_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroupdelegation_response_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -147,6 +173,9 @@ usergroupdelegation_response_compound_t *usergroupdelegation_response_compound_p
 
     // usergroupdelegation_response_compound->pki_usergroupdelegation_id
     cJSON *pki_usergroupdelegation_id = cJSON_GetObjectItemCaseSensitive(usergroupdelegation_response_compoundJSON, "pkiUsergroupdelegationID");
+    if (cJSON_IsNull(pki_usergroupdelegation_id)) {
+        pki_usergroupdelegation_id = NULL;
+    }
     if (!pki_usergroupdelegation_id) {
         goto end;
     }
@@ -159,6 +188,9 @@ usergroupdelegation_response_compound_t *usergroupdelegation_response_compound_p
 
     // usergroupdelegation_response_compound->fki_usergroup_id
     cJSON *fki_usergroup_id = cJSON_GetObjectItemCaseSensitive(usergroupdelegation_response_compoundJSON, "fkiUsergroupID");
+    if (cJSON_IsNull(fki_usergroup_id)) {
+        fki_usergroup_id = NULL;
+    }
     if (!fki_usergroup_id) {
         goto end;
     }
@@ -171,6 +203,9 @@ usergroupdelegation_response_compound_t *usergroupdelegation_response_compound_p
 
     // usergroupdelegation_response_compound->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(usergroupdelegation_response_compoundJSON, "fkiUserID");
+    if (cJSON_IsNull(fki_user_id)) {
+        fki_user_id = NULL;
+    }
     if (!fki_user_id) {
         goto end;
     }
@@ -183,6 +218,9 @@ usergroupdelegation_response_compound_t *usergroupdelegation_response_compound_p
 
     // usergroupdelegation_response_compound->s_user_firstname
     cJSON *s_user_firstname = cJSON_GetObjectItemCaseSensitive(usergroupdelegation_response_compoundJSON, "sUserFirstname");
+    if (cJSON_IsNull(s_user_firstname)) {
+        s_user_firstname = NULL;
+    }
     if (!s_user_firstname) {
         goto end;
     }
@@ -195,6 +233,9 @@ usergroupdelegation_response_compound_t *usergroupdelegation_response_compound_p
 
     // usergroupdelegation_response_compound->s_user_lastname
     cJSON *s_user_lastname = cJSON_GetObjectItemCaseSensitive(usergroupdelegation_response_compoundJSON, "sUserLastname");
+    if (cJSON_IsNull(s_user_lastname)) {
+        s_user_lastname = NULL;
+    }
     if (!s_user_lastname) {
         goto end;
     }
@@ -207,6 +248,9 @@ usergroupdelegation_response_compound_t *usergroupdelegation_response_compound_p
 
     // usergroupdelegation_response_compound->s_user_loginname
     cJSON *s_user_loginname = cJSON_GetObjectItemCaseSensitive(usergroupdelegation_response_compoundJSON, "sUserLoginname");
+    if (cJSON_IsNull(s_user_loginname)) {
+        s_user_loginname = NULL;
+    }
     if (!s_user_loginname) {
         goto end;
     }
@@ -219,6 +263,9 @@ usergroupdelegation_response_compound_t *usergroupdelegation_response_compound_p
 
     // usergroupdelegation_response_compound->s_email_address
     cJSON *s_email_address = cJSON_GetObjectItemCaseSensitive(usergroupdelegation_response_compoundJSON, "sEmailAddress");
+    if (cJSON_IsNull(s_email_address)) {
+        s_email_address = NULL;
+    }
     if (s_email_address) { 
     if(!cJSON_IsString(s_email_address) && !cJSON_IsNull(s_email_address))
     {
@@ -228,6 +275,9 @@ usergroupdelegation_response_compound_t *usergroupdelegation_response_compound_p
 
     // usergroupdelegation_response_compound->s_usergroup_name_x
     cJSON *s_usergroup_name_x = cJSON_GetObjectItemCaseSensitive(usergroupdelegation_response_compoundJSON, "sUsergroupNameX");
+    if (cJSON_IsNull(s_usergroup_name_x)) {
+        s_usergroup_name_x = NULL;
+    }
     if (!s_usergroup_name_x) {
         goto end;
     }
@@ -239,7 +289,7 @@ usergroupdelegation_response_compound_t *usergroupdelegation_response_compound_p
     }
 
 
-    usergroupdelegation_response_compound_local_var = usergroupdelegation_response_compound_create (
+    usergroupdelegation_response_compound_local_var = usergroupdelegation_response_compound_create_internal (
         pki_usergroupdelegation_id->valuedouble,
         fki_usergroup_id->valuedouble,
         fki_user_id->valuedouble,

@@ -24,9 +24,9 @@ char* field_e_phone_type_field_e_phone_type_ToString(ezmax_api_definition__full_
 
 ezmax_api_definition__full_field_e_phone_type__e field_e_phone_type_field_e_phone_type_FromString(char* field_e_phone_type);
 
-//cJSON *field_e_phone_type_field_e_phone_type_convertToJSON(ezmax_api_definition__full_field_e_phone_type__e field_e_phone_type);
+cJSON *field_e_phone_type_convertToJSON(ezmax_api_definition__full_field_e_phone_type__e field_e_phone_type);
 
-//ezmax_api_definition__full_field_e_phone_type__e field_e_phone_type_field_e_phone_type_parseFromJSON(cJSON *field_e_phone_typeJSON);
+ezmax_api_definition__full_field_e_phone_type__e field_e_phone_type_parseFromJSON(cJSON *field_e_phone_typeJSON);
 
 #endif /* _field_e_phone_type_H_ */
 

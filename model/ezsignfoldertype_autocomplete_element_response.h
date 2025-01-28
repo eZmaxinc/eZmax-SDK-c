@@ -17,26 +17,19 @@ typedef struct ezsignfoldertype_autocomplete_element_response_t ezsignfoldertype
 
 #include "field_e_ezsignfoldertype_privacylevel.h"
 
-// Enum  for ezsignfoldertype_autocomplete_element_response
-
-typedef enum  { ezmax_api_definition__full_ezsignfoldertype_autocomplete_element_response__NULL = 0, ezmax_api_definition__full_ezsignfoldertype_autocomplete_element_response__User, ezmax_api_definition__full_ezsignfoldertype_autocomplete_element_response__Usergroup } ezmax_api_definition__full_ezsignfoldertype_autocomplete_element_response__e;
-
-char* ezsignfoldertype_autocomplete_element_response_e_ezsignfoldertype_privacylevel_ToString(ezmax_api_definition__full_ezsignfoldertype_autocomplete_element_response__e e_ezsignfoldertype_privacylevel);
-
-ezmax_api_definition__full_ezsignfoldertype_autocomplete_element_response__e ezsignfoldertype_autocomplete_element_response_e_ezsignfoldertype_privacylevel_FromString(char* e_ezsignfoldertype_privacylevel);
-
 
 
 typedef struct ezsignfoldertype_autocomplete_element_response_t {
-    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel; // custom
+    ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel; //referenced enum
     char *s_ezsignfoldertype_name_x; // string
     int pki_ezsignfoldertype_id; //numeric
     int b_ezsignfoldertype_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfoldertype_autocomplete_element_response_t;
 
-ezsignfoldertype_autocomplete_element_response_t *ezsignfoldertype_autocomplete_element_response_create(
-    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel,
+__attribute__((deprecated)) ezsignfoldertype_autocomplete_element_response_t *ezsignfoldertype_autocomplete_element_response_create(
+    ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel,
     char *s_ezsignfoldertype_name_x,
     int pki_ezsignfoldertype_id,
     int b_ezsignfoldertype_isactive

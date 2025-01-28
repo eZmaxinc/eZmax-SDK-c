@@ -5,7 +5,7 @@
 
 
 
-usergroupexternal_autocomplete_element_response_t *usergroupexternal_autocomplete_element_response_create(
+static usergroupexternal_autocomplete_element_response_t *usergroupexternal_autocomplete_element_response_create_internal(
     int pki_usergroupexternal_id,
     char *s_usergroupexternal_name,
     int b_usergroupexternal_isactive
@@ -18,12 +18,28 @@ usergroupexternal_autocomplete_element_response_t *usergroupexternal_autocomplet
     usergroupexternal_autocomplete_element_response_local_var->s_usergroupexternal_name = s_usergroupexternal_name;
     usergroupexternal_autocomplete_element_response_local_var->b_usergroupexternal_isactive = b_usergroupexternal_isactive;
 
+    usergroupexternal_autocomplete_element_response_local_var->_library_owned = 1;
     return usergroupexternal_autocomplete_element_response_local_var;
 }
 
+__attribute__((deprecated)) usergroupexternal_autocomplete_element_response_t *usergroupexternal_autocomplete_element_response_create(
+    int pki_usergroupexternal_id,
+    char *s_usergroupexternal_name,
+    int b_usergroupexternal_isactive
+    ) {
+    return usergroupexternal_autocomplete_element_response_create_internal (
+        pki_usergroupexternal_id,
+        s_usergroupexternal_name,
+        b_usergroupexternal_isactive
+        );
+}
 
 void usergroupexternal_autocomplete_element_response_free(usergroupexternal_autocomplete_element_response_t *usergroupexternal_autocomplete_element_response) {
     if(NULL == usergroupexternal_autocomplete_element_response){
+        return ;
+    }
+    if(usergroupexternal_autocomplete_element_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroupexternal_autocomplete_element_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -77,6 +93,9 @@ usergroupexternal_autocomplete_element_response_t *usergroupexternal_autocomplet
 
     // usergroupexternal_autocomplete_element_response->pki_usergroupexternal_id
     cJSON *pki_usergroupexternal_id = cJSON_GetObjectItemCaseSensitive(usergroupexternal_autocomplete_element_responseJSON, "pkiUsergroupexternalID");
+    if (cJSON_IsNull(pki_usergroupexternal_id)) {
+        pki_usergroupexternal_id = NULL;
+    }
     if (!pki_usergroupexternal_id) {
         goto end;
     }
@@ -89,6 +108,9 @@ usergroupexternal_autocomplete_element_response_t *usergroupexternal_autocomplet
 
     // usergroupexternal_autocomplete_element_response->s_usergroupexternal_name
     cJSON *s_usergroupexternal_name = cJSON_GetObjectItemCaseSensitive(usergroupexternal_autocomplete_element_responseJSON, "sUsergroupexternalName");
+    if (cJSON_IsNull(s_usergroupexternal_name)) {
+        s_usergroupexternal_name = NULL;
+    }
     if (!s_usergroupexternal_name) {
         goto end;
     }
@@ -101,6 +123,9 @@ usergroupexternal_autocomplete_element_response_t *usergroupexternal_autocomplet
 
     // usergroupexternal_autocomplete_element_response->b_usergroupexternal_isactive
     cJSON *b_usergroupexternal_isactive = cJSON_GetObjectItemCaseSensitive(usergroupexternal_autocomplete_element_responseJSON, "bUsergroupexternalIsactive");
+    if (cJSON_IsNull(b_usergroupexternal_isactive)) {
+        b_usergroupexternal_isactive = NULL;
+    }
     if (!b_usergroupexternal_isactive) {
         goto end;
     }
@@ -112,7 +137,7 @@ usergroupexternal_autocomplete_element_response_t *usergroupexternal_autocomplet
     }
 
 
-    usergroupexternal_autocomplete_element_response_local_var = usergroupexternal_autocomplete_element_response_create (
+    usergroupexternal_autocomplete_element_response_local_var = usergroupexternal_autocomplete_element_response_create_internal (
         pki_usergroupexternal_id->valuedouble,
         strdup(s_usergroupexternal_name->valuestring),
         b_usergroupexternal_isactive->valueint

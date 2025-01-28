@@ -22,9 +22,10 @@ typedef struct ezsignbulksend_create_ezsignbulksendtransmission_v2_response_m_pa
 typedef struct ezsignbulksend_create_ezsignbulksendtransmission_v2_response_m_payload_t {
     struct ezsignbulksendtransmission_response_t *obj_ezsignbulksendtransmission; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignbulksend_create_ezsignbulksendtransmission_v2_response_m_payload_t;
 
-ezsignbulksend_create_ezsignbulksendtransmission_v2_response_m_payload_t *ezsignbulksend_create_ezsignbulksendtransmission_v2_response_m_payload_create(
+__attribute__((deprecated)) ezsignbulksend_create_ezsignbulksendtransmission_v2_response_m_payload_t *ezsignbulksend_create_ezsignbulksendtransmission_v2_response_m_payload_create(
     ezsignbulksendtransmission_response_t *obj_ezsignbulksendtransmission
 );
 

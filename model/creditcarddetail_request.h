@@ -25,9 +25,10 @@ typedef struct creditcarddetail_request_t {
     char *s_creditcarddetail_street; // string
     char *s_creditcarddetail_zip; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } creditcarddetail_request_t;
 
-creditcarddetail_request_t *creditcarddetail_request_create(
+__attribute__((deprecated)) creditcarddetail_request_t *creditcarddetail_request_create(
     int i_creditcarddetail_expirationmonth,
     int i_creditcarddetail_expirationyear,
     char *s_creditcarddetail_civic,

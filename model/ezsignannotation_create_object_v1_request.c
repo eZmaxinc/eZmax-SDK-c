@@ -5,7 +5,7 @@
 
 
 
-ezsignannotation_create_object_v1_request_t *ezsignannotation_create_object_v1_request_create(
+static ezsignannotation_create_object_v1_request_t *ezsignannotation_create_object_v1_request_create_internal(
     list_t *a_obj_ezsignannotation
     ) {
     ezsignannotation_create_object_v1_request_t *ezsignannotation_create_object_v1_request_local_var = malloc(sizeof(ezsignannotation_create_object_v1_request_t));
@@ -14,12 +14,24 @@ ezsignannotation_create_object_v1_request_t *ezsignannotation_create_object_v1_r
     }
     ezsignannotation_create_object_v1_request_local_var->a_obj_ezsignannotation = a_obj_ezsignannotation;
 
+    ezsignannotation_create_object_v1_request_local_var->_library_owned = 1;
     return ezsignannotation_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezsignannotation_create_object_v1_request_t *ezsignannotation_create_object_v1_request_create(
+    list_t *a_obj_ezsignannotation
+    ) {
+    return ezsignannotation_create_object_v1_request_create_internal (
+        a_obj_ezsignannotation
+        );
+}
 
 void ezsignannotation_create_object_v1_request_free(ezsignannotation_create_object_v1_request_t *ezsignannotation_create_object_v1_request) {
     if(NULL == ezsignannotation_create_object_v1_request){
+        return ;
+    }
+    if(ezsignannotation_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignannotation_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ ezsignannotation_create_object_v1_request_t *ezsignannotation_create_object_v1_r
 
     // ezsignannotation_create_object_v1_request->a_obj_ezsignannotation
     cJSON *a_obj_ezsignannotation = cJSON_GetObjectItemCaseSensitive(ezsignannotation_create_object_v1_requestJSON, "a_objEzsignannotation");
+    if (cJSON_IsNull(a_obj_ezsignannotation)) {
+        a_obj_ezsignannotation = NULL;
+    }
     if (!a_obj_ezsignannotation) {
         goto end;
     }
@@ -96,7 +111,7 @@ ezsignannotation_create_object_v1_request_t *ezsignannotation_create_object_v1_r
     }
 
 
-    ezsignannotation_create_object_v1_request_local_var = ezsignannotation_create_object_v1_request_create (
+    ezsignannotation_create_object_v1_request_local_var = ezsignannotation_create_object_v1_request_create_internal (
         a_obj_ezsignannotationList
         );
 

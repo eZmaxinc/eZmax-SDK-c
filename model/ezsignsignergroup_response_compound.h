@@ -24,9 +24,10 @@ typedef struct ezsignsignergroup_response_compound_t {
     struct multilingual_ezsignsignergroup_description_t *obj_ezsignsignergroup_description; //model
     char *s_ezsignsignergroup_description_x; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsignergroup_response_compound_t;
 
-ezsignsignergroup_response_compound_t *ezsignsignergroup_response_compound_create(
+__attribute__((deprecated)) ezsignsignergroup_response_compound_t *ezsignsignergroup_response_compound_create(
     int pki_ezsignsignergroup_id,
     multilingual_ezsignsignergroup_description_t *obj_ezsignsignergroup_description,
     char *s_ezsignsignergroup_description_x

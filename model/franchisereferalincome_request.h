@@ -32,9 +32,10 @@ typedef struct franchisereferalincome_request_t {
     int fki_franchiseoffice_id; //numeric
     char *s_franchisereferalincome_remoteid; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } franchisereferalincome_request_t;
 
-franchisereferalincome_request_t *franchisereferalincome_request_create(
+__attribute__((deprecated)) franchisereferalincome_request_t *franchisereferalincome_request_create(
     int pki_franchisereferalincome_id,
     int fki_franchisebroker_id,
     int fki_franchisereferalincomeprogram_id,

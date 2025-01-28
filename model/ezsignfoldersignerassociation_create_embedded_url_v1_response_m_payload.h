@@ -21,9 +21,10 @@ typedef struct ezsignfoldersignerassociation_create_embedded_url_v1_response_m_p
 typedef struct ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload_t {
     char *s_embedded_url; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload_t;
 
-ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload_t *ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload_create(
+__attribute__((deprecated)) ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload_t *ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload_create(
     char *s_embedded_url
 );
 

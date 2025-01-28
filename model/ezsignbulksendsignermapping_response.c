@@ -5,7 +5,7 @@
 
 
 
-ezsignbulksendsignermapping_response_t *ezsignbulksendsignermapping_response_create(
+static ezsignbulksendsignermapping_response_t *ezsignbulksendsignermapping_response_create_internal(
     int pki_ezsignbulksendsignermapping_id,
     int fki_ezsignbulksend_id,
     int fki_user_id,
@@ -20,12 +20,30 @@ ezsignbulksendsignermapping_response_t *ezsignbulksendsignermapping_response_cre
     ezsignbulksendsignermapping_response_local_var->fki_user_id = fki_user_id;
     ezsignbulksendsignermapping_response_local_var->s_ezsignbulksendsignermapping_description = s_ezsignbulksendsignermapping_description;
 
+    ezsignbulksendsignermapping_response_local_var->_library_owned = 1;
     return ezsignbulksendsignermapping_response_local_var;
 }
 
+__attribute__((deprecated)) ezsignbulksendsignermapping_response_t *ezsignbulksendsignermapping_response_create(
+    int pki_ezsignbulksendsignermapping_id,
+    int fki_ezsignbulksend_id,
+    int fki_user_id,
+    char *s_ezsignbulksendsignermapping_description
+    ) {
+    return ezsignbulksendsignermapping_response_create_internal (
+        pki_ezsignbulksendsignermapping_id,
+        fki_ezsignbulksend_id,
+        fki_user_id,
+        s_ezsignbulksendsignermapping_description
+        );
+}
 
 void ezsignbulksendsignermapping_response_free(ezsignbulksendsignermapping_response_t *ezsignbulksendsignermapping_response) {
     if(NULL == ezsignbulksendsignermapping_response){
+        return ;
+    }
+    if(ezsignbulksendsignermapping_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignbulksendsignermapping_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -87,6 +105,9 @@ ezsignbulksendsignermapping_response_t *ezsignbulksendsignermapping_response_par
 
     // ezsignbulksendsignermapping_response->pki_ezsignbulksendsignermapping_id
     cJSON *pki_ezsignbulksendsignermapping_id = cJSON_GetObjectItemCaseSensitive(ezsignbulksendsignermapping_responseJSON, "pkiEzsignbulksendsignermappingID");
+    if (cJSON_IsNull(pki_ezsignbulksendsignermapping_id)) {
+        pki_ezsignbulksendsignermapping_id = NULL;
+    }
     if (!pki_ezsignbulksendsignermapping_id) {
         goto end;
     }
@@ -99,6 +120,9 @@ ezsignbulksendsignermapping_response_t *ezsignbulksendsignermapping_response_par
 
     // ezsignbulksendsignermapping_response->fki_ezsignbulksend_id
     cJSON *fki_ezsignbulksend_id = cJSON_GetObjectItemCaseSensitive(ezsignbulksendsignermapping_responseJSON, "fkiEzsignbulksendID");
+    if (cJSON_IsNull(fki_ezsignbulksend_id)) {
+        fki_ezsignbulksend_id = NULL;
+    }
     if (!fki_ezsignbulksend_id) {
         goto end;
     }
@@ -111,6 +135,9 @@ ezsignbulksendsignermapping_response_t *ezsignbulksendsignermapping_response_par
 
     // ezsignbulksendsignermapping_response->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(ezsignbulksendsignermapping_responseJSON, "fkiUserID");
+    if (cJSON_IsNull(fki_user_id)) {
+        fki_user_id = NULL;
+    }
     if (fki_user_id) { 
     if(!cJSON_IsNumber(fki_user_id))
     {
@@ -120,6 +147,9 @@ ezsignbulksendsignermapping_response_t *ezsignbulksendsignermapping_response_par
 
     // ezsignbulksendsignermapping_response->s_ezsignbulksendsignermapping_description
     cJSON *s_ezsignbulksendsignermapping_description = cJSON_GetObjectItemCaseSensitive(ezsignbulksendsignermapping_responseJSON, "sEzsignbulksendsignermappingDescription");
+    if (cJSON_IsNull(s_ezsignbulksendsignermapping_description)) {
+        s_ezsignbulksendsignermapping_description = NULL;
+    }
     if (!s_ezsignbulksendsignermapping_description) {
         goto end;
     }
@@ -131,7 +161,7 @@ ezsignbulksendsignermapping_response_t *ezsignbulksendsignermapping_response_par
     }
 
 
-    ezsignbulksendsignermapping_response_local_var = ezsignbulksendsignermapping_response_create (
+    ezsignbulksendsignermapping_response_local_var = ezsignbulksendsignermapping_response_create_internal (
         pki_ezsignbulksendsignermapping_id->valuedouble,
         fki_ezsignbulksend_id->valuedouble,
         fki_user_id ? fki_user_id->valuedouble : 0,

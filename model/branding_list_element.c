@@ -5,7 +5,7 @@
 
 
 
-branding_list_element_t *branding_list_element_create(
+static branding_list_element_t *branding_list_element_create_internal(
     int pki_branding_id,
     char *s_branding_description_x,
     int i_branding_colortext,
@@ -30,12 +30,40 @@ branding_list_element_t *branding_list_element_create(
     branding_list_element_local_var->i_branding_colorbackgroundsmallbox = i_branding_colorbackgroundsmallbox;
     branding_list_element_local_var->b_branding_isactive = b_branding_isactive;
 
+    branding_list_element_local_var->_library_owned = 1;
     return branding_list_element_local_var;
 }
 
+__attribute__((deprecated)) branding_list_element_t *branding_list_element_create(
+    int pki_branding_id,
+    char *s_branding_description_x,
+    int i_branding_colortext,
+    int i_branding_colortextlinkbox,
+    int i_branding_colortextbutton,
+    int i_branding_colorbackground,
+    int i_branding_colorbackgroundbutton,
+    int i_branding_colorbackgroundsmallbox,
+    int b_branding_isactive
+    ) {
+    return branding_list_element_create_internal (
+        pki_branding_id,
+        s_branding_description_x,
+        i_branding_colortext,
+        i_branding_colortextlinkbox,
+        i_branding_colortextbutton,
+        i_branding_colorbackground,
+        i_branding_colorbackgroundbutton,
+        i_branding_colorbackgroundsmallbox,
+        b_branding_isactive
+        );
+}
 
 void branding_list_element_free(branding_list_element_t *branding_list_element) {
     if(NULL == branding_list_element){
+        return ;
+    }
+    if(branding_list_element->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "branding_list_element_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -143,6 +171,9 @@ branding_list_element_t *branding_list_element_parseFromJSON(cJSON *branding_lis
 
     // branding_list_element->pki_branding_id
     cJSON *pki_branding_id = cJSON_GetObjectItemCaseSensitive(branding_list_elementJSON, "pkiBrandingID");
+    if (cJSON_IsNull(pki_branding_id)) {
+        pki_branding_id = NULL;
+    }
     if (!pki_branding_id) {
         goto end;
     }
@@ -155,6 +186,9 @@ branding_list_element_t *branding_list_element_parseFromJSON(cJSON *branding_lis
 
     // branding_list_element->s_branding_description_x
     cJSON *s_branding_description_x = cJSON_GetObjectItemCaseSensitive(branding_list_elementJSON, "sBrandingDescriptionX");
+    if (cJSON_IsNull(s_branding_description_x)) {
+        s_branding_description_x = NULL;
+    }
     if (!s_branding_description_x) {
         goto end;
     }
@@ -167,6 +201,9 @@ branding_list_element_t *branding_list_element_parseFromJSON(cJSON *branding_lis
 
     // branding_list_element->i_branding_colortext
     cJSON *i_branding_colortext = cJSON_GetObjectItemCaseSensitive(branding_list_elementJSON, "iBrandingColortext");
+    if (cJSON_IsNull(i_branding_colortext)) {
+        i_branding_colortext = NULL;
+    }
     if (!i_branding_colortext) {
         goto end;
     }
@@ -179,6 +216,9 @@ branding_list_element_t *branding_list_element_parseFromJSON(cJSON *branding_lis
 
     // branding_list_element->i_branding_colortextlinkbox
     cJSON *i_branding_colortextlinkbox = cJSON_GetObjectItemCaseSensitive(branding_list_elementJSON, "iBrandingColortextlinkbox");
+    if (cJSON_IsNull(i_branding_colortextlinkbox)) {
+        i_branding_colortextlinkbox = NULL;
+    }
     if (!i_branding_colortextlinkbox) {
         goto end;
     }
@@ -191,6 +231,9 @@ branding_list_element_t *branding_list_element_parseFromJSON(cJSON *branding_lis
 
     // branding_list_element->i_branding_colortextbutton
     cJSON *i_branding_colortextbutton = cJSON_GetObjectItemCaseSensitive(branding_list_elementJSON, "iBrandingColortextbutton");
+    if (cJSON_IsNull(i_branding_colortextbutton)) {
+        i_branding_colortextbutton = NULL;
+    }
     if (!i_branding_colortextbutton) {
         goto end;
     }
@@ -203,6 +246,9 @@ branding_list_element_t *branding_list_element_parseFromJSON(cJSON *branding_lis
 
     // branding_list_element->i_branding_colorbackground
     cJSON *i_branding_colorbackground = cJSON_GetObjectItemCaseSensitive(branding_list_elementJSON, "iBrandingColorbackground");
+    if (cJSON_IsNull(i_branding_colorbackground)) {
+        i_branding_colorbackground = NULL;
+    }
     if (!i_branding_colorbackground) {
         goto end;
     }
@@ -215,6 +261,9 @@ branding_list_element_t *branding_list_element_parseFromJSON(cJSON *branding_lis
 
     // branding_list_element->i_branding_colorbackgroundbutton
     cJSON *i_branding_colorbackgroundbutton = cJSON_GetObjectItemCaseSensitive(branding_list_elementJSON, "iBrandingColorbackgroundbutton");
+    if (cJSON_IsNull(i_branding_colorbackgroundbutton)) {
+        i_branding_colorbackgroundbutton = NULL;
+    }
     if (!i_branding_colorbackgroundbutton) {
         goto end;
     }
@@ -227,6 +276,9 @@ branding_list_element_t *branding_list_element_parseFromJSON(cJSON *branding_lis
 
     // branding_list_element->i_branding_colorbackgroundsmallbox
     cJSON *i_branding_colorbackgroundsmallbox = cJSON_GetObjectItemCaseSensitive(branding_list_elementJSON, "iBrandingColorbackgroundsmallbox");
+    if (cJSON_IsNull(i_branding_colorbackgroundsmallbox)) {
+        i_branding_colorbackgroundsmallbox = NULL;
+    }
     if (!i_branding_colorbackgroundsmallbox) {
         goto end;
     }
@@ -239,6 +291,9 @@ branding_list_element_t *branding_list_element_parseFromJSON(cJSON *branding_lis
 
     // branding_list_element->b_branding_isactive
     cJSON *b_branding_isactive = cJSON_GetObjectItemCaseSensitive(branding_list_elementJSON, "bBrandingIsactive");
+    if (cJSON_IsNull(b_branding_isactive)) {
+        b_branding_isactive = NULL;
+    }
     if (!b_branding_isactive) {
         goto end;
     }
@@ -250,7 +305,7 @@ branding_list_element_t *branding_list_element_parseFromJSON(cJSON *branding_lis
     }
 
 
-    branding_list_element_local_var = branding_list_element_create (
+    branding_list_element_local_var = branding_list_element_create_internal (
         pki_branding_id->valuedouble,
         strdup(s_branding_description_x->valuestring),
         i_branding_colortext->valuedouble,

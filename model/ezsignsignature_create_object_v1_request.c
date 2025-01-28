@@ -5,7 +5,7 @@
 
 
 
-ezsignsignature_create_object_v1_request_t *ezsignsignature_create_object_v1_request_create(
+static ezsignsignature_create_object_v1_request_t *ezsignsignature_create_object_v1_request_create_internal(
     ezsignsignature_request_t *obj_ezsignsignature,
     ezsignsignature_request_compound_t *obj_ezsignsignature_compound
     ) {
@@ -16,12 +16,26 @@ ezsignsignature_create_object_v1_request_t *ezsignsignature_create_object_v1_req
     ezsignsignature_create_object_v1_request_local_var->obj_ezsignsignature = obj_ezsignsignature;
     ezsignsignature_create_object_v1_request_local_var->obj_ezsignsignature_compound = obj_ezsignsignature_compound;
 
+    ezsignsignature_create_object_v1_request_local_var->_library_owned = 1;
     return ezsignsignature_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezsignsignature_create_object_v1_request_t *ezsignsignature_create_object_v1_request_create(
+    ezsignsignature_request_t *obj_ezsignsignature,
+    ezsignsignature_request_compound_t *obj_ezsignsignature_compound
+    ) {
+    return ezsignsignature_create_object_v1_request_create_internal (
+        obj_ezsignsignature,
+        obj_ezsignsignature_compound
+        );
+}
 
 void ezsignsignature_create_object_v1_request_free(ezsignsignature_create_object_v1_request_t *ezsignsignature_create_object_v1_request) {
     if(NULL == ezsignsignature_create_object_v1_request){
+        return ;
+    }
+    if(ezsignsignature_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignsignature_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -84,18 +98,24 @@ ezsignsignature_create_object_v1_request_t *ezsignsignature_create_object_v1_req
 
     // ezsignsignature_create_object_v1_request->obj_ezsignsignature
     cJSON *obj_ezsignsignature = cJSON_GetObjectItemCaseSensitive(ezsignsignature_create_object_v1_requestJSON, "objEzsignsignature");
+    if (cJSON_IsNull(obj_ezsignsignature)) {
+        obj_ezsignsignature = NULL;
+    }
     if (obj_ezsignsignature) { 
     obj_ezsignsignature_local_nonprim = ezsignsignature_request_parseFromJSON(obj_ezsignsignature); //nonprimitive
     }
 
     // ezsignsignature_create_object_v1_request->obj_ezsignsignature_compound
     cJSON *obj_ezsignsignature_compound = cJSON_GetObjectItemCaseSensitive(ezsignsignature_create_object_v1_requestJSON, "objEzsignsignatureCompound");
+    if (cJSON_IsNull(obj_ezsignsignature_compound)) {
+        obj_ezsignsignature_compound = NULL;
+    }
     if (obj_ezsignsignature_compound) { 
     obj_ezsignsignature_compound_local_nonprim = ezsignsignature_request_compound_parseFromJSON(obj_ezsignsignature_compound); //nonprimitive
     }
 
 
-    ezsignsignature_create_object_v1_request_local_var = ezsignsignature_create_object_v1_request_create (
+    ezsignsignature_create_object_v1_request_local_var = ezsignsignature_create_object_v1_request_create_internal (
         obj_ezsignsignature ? obj_ezsignsignature_local_nonprim : NULL,
         obj_ezsignsignature_compound ? obj_ezsignsignature_compound_local_nonprim : NULL
         );

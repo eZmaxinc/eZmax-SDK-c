@@ -5,7 +5,7 @@
 
 
 
-domain_get_object_v2_response_m_payload_t *domain_get_object_v2_response_m_payload_create(
+static domain_get_object_v2_response_m_payload_t *domain_get_object_v2_response_m_payload_create_internal(
     domain_response_compound_t *obj_domain
     ) {
     domain_get_object_v2_response_m_payload_t *domain_get_object_v2_response_m_payload_local_var = malloc(sizeof(domain_get_object_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ domain_get_object_v2_response_m_payload_t *domain_get_object_v2_response_m_paylo
     }
     domain_get_object_v2_response_m_payload_local_var->obj_domain = obj_domain;
 
+    domain_get_object_v2_response_m_payload_local_var->_library_owned = 1;
     return domain_get_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) domain_get_object_v2_response_m_payload_t *domain_get_object_v2_response_m_payload_create(
+    domain_response_compound_t *obj_domain
+    ) {
+    return domain_get_object_v2_response_m_payload_create_internal (
+        obj_domain
+        );
+}
 
 void domain_get_object_v2_response_m_payload_free(domain_get_object_v2_response_m_payload_t *domain_get_object_v2_response_m_payload) {
     if(NULL == domain_get_object_v2_response_m_payload){
+        return ;
+    }
+    if(domain_get_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "domain_get_object_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ domain_get_object_v2_response_m_payload_t *domain_get_object_v2_response_m_paylo
 
     // domain_get_object_v2_response_m_payload->obj_domain
     cJSON *obj_domain = cJSON_GetObjectItemCaseSensitive(domain_get_object_v2_response_m_payloadJSON, "objDomain");
+    if (cJSON_IsNull(obj_domain)) {
+        obj_domain = NULL;
+    }
     if (!obj_domain) {
         goto end;
     }
@@ -71,7 +86,7 @@ domain_get_object_v2_response_m_payload_t *domain_get_object_v2_response_m_paylo
     obj_domain_local_nonprim = domain_response_compound_parseFromJSON(obj_domain); //nonprimitive
 
 
-    domain_get_object_v2_response_m_payload_local_var = domain_get_object_v2_response_m_payload_create (
+    domain_get_object_v2_response_m_payload_local_var = domain_get_object_v2_response_m_payload_create_internal (
         obj_domain_local_nonprim
         );
 

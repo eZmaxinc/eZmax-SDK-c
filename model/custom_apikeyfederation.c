@@ -5,7 +5,7 @@
 
 
 
-custom_apikeyfederation_t *custom_apikeyfederation_create(
+static custom_apikeyfederation_t *custom_apikeyfederation_create_internal(
     char *s_apikeyfederation_key,
     char *s_apikeyfederation_secret
     ) {
@@ -16,12 +16,26 @@ custom_apikeyfederation_t *custom_apikeyfederation_create(
     custom_apikeyfederation_local_var->s_apikeyfederation_key = s_apikeyfederation_key;
     custom_apikeyfederation_local_var->s_apikeyfederation_secret = s_apikeyfederation_secret;
 
+    custom_apikeyfederation_local_var->_library_owned = 1;
     return custom_apikeyfederation_local_var;
 }
 
+__attribute__((deprecated)) custom_apikeyfederation_t *custom_apikeyfederation_create(
+    char *s_apikeyfederation_key,
+    char *s_apikeyfederation_secret
+    ) {
+    return custom_apikeyfederation_create_internal (
+        s_apikeyfederation_key,
+        s_apikeyfederation_secret
+        );
+}
 
 void custom_apikeyfederation_free(custom_apikeyfederation_t *custom_apikeyfederation) {
     if(NULL == custom_apikeyfederation){
+        return ;
+    }
+    if(custom_apikeyfederation->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "custom_apikeyfederation_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +84,9 @@ custom_apikeyfederation_t *custom_apikeyfederation_parseFromJSON(cJSON *custom_a
 
     // custom_apikeyfederation->s_apikeyfederation_key
     cJSON *s_apikeyfederation_key = cJSON_GetObjectItemCaseSensitive(custom_apikeyfederationJSON, "sApikeyfederationKey");
+    if (cJSON_IsNull(s_apikeyfederation_key)) {
+        s_apikeyfederation_key = NULL;
+    }
     if (!s_apikeyfederation_key) {
         goto end;
     }
@@ -82,6 +99,9 @@ custom_apikeyfederation_t *custom_apikeyfederation_parseFromJSON(cJSON *custom_a
 
     // custom_apikeyfederation->s_apikeyfederation_secret
     cJSON *s_apikeyfederation_secret = cJSON_GetObjectItemCaseSensitive(custom_apikeyfederationJSON, "sApikeyfederationSecret");
+    if (cJSON_IsNull(s_apikeyfederation_secret)) {
+        s_apikeyfederation_secret = NULL;
+    }
     if (!s_apikeyfederation_secret) {
         goto end;
     }
@@ -93,7 +113,7 @@ custom_apikeyfederation_t *custom_apikeyfederation_parseFromJSON(cJSON *custom_a
     }
 
 
-    custom_apikeyfederation_local_var = custom_apikeyfederation_create (
+    custom_apikeyfederation_local_var = custom_apikeyfederation_create_internal (
         strdup(s_apikeyfederation_key->valuestring),
         strdup(s_apikeyfederation_secret->valuestring)
         );

@@ -18,22 +18,6 @@ typedef struct customer_response_t customer_response_t;
 #include "field_e_customer_marketingcorrespondence.h"
 #include "field_e_customer_type.h"
 
-// Enum  for customer_response
-
-typedef enum  { ezmax_api_definition__full_customer_response__NULL = 0, ezmax_api_definition__full_customer_response__Normal, ezmax_api_definition__full_customer_response__Vetrx_Server, ezmax_api_definition__full_customer_response__Reward_Administration, ezmax_api_definition__full_customer_response__Reward_Representative, ezmax_api_definition__full_customer_response__Reward_Server } ezmax_api_definition__full_customer_response__e;
-
-char* customer_response_e_customer_type_ToString(ezmax_api_definition__full_customer_response__e e_customer_type);
-
-ezmax_api_definition__full_customer_response__e customer_response_e_customer_type_FromString(char* e_customer_type);
-
-// Enum  for customer_response
-
-typedef enum  { ezmax_api_definition__full_customer_response__NULL = 0, ezmax_api_definition__full_customer_response__No, ezmax_api_definition__full_customer_response__Email, ezmax_api_definition__full_customer_response__Mail, ezmax_api_definition__full_customer_response__Any } ezmax_api_definition__full_customer_response__e;
-
-char* customer_response_e_customer_marketingcorrespondence_ToString(ezmax_api_definition__full_customer_response__e e_customer_marketingcorrespondence);
-
-ezmax_api_definition__full_customer_response__e customer_response_e_customer_marketingcorrespondence_FromString(char* e_customer_marketingcorrespondence);
-
 
 
 typedef struct customer_response_t {
@@ -82,16 +66,17 @@ typedef struct customer_response_t {
     int b_customer_supplychargefinanced; //boolean
     int b_customer_supplychargefinancedtaxes; //boolean
     int b_customer_attendance; //boolean
-    field_e_customer_type_t *e_customer_type; // custom
-    field_e_customer_marketingcorrespondence_t *e_customer_marketingcorrespondence; // custom
+    ezmax_api_definition__full_field_e_customer_type__e e_customer_type; //referenced enum
+    ezmax_api_definition__full_field_e_customer_marketingcorrespondence__e e_customer_marketingcorrespondence; //referenced enum
     int b_customer_blackcopycarbon; //boolean
     int b_customer_unsubscribeinfo; //boolean
     char *t_customer_comment; // string
     char *importid; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } customer_response_t;
 
-customer_response_t *customer_response_create(
+__attribute__((deprecated)) customer_response_t *customer_response_create(
     int pki_customer_id,
     int fki_company_id,
     int fki_customergroup_id,
@@ -137,8 +122,8 @@ customer_response_t *customer_response_create(
     int b_customer_supplychargefinanced,
     int b_customer_supplychargefinancedtaxes,
     int b_customer_attendance,
-    field_e_customer_type_t *e_customer_type,
-    field_e_customer_marketingcorrespondence_t *e_customer_marketingcorrespondence,
+    ezmax_api_definition__full_field_e_customer_type__e e_customer_type,
+    ezmax_api_definition__full_field_e_customer_marketingcorrespondence__e e_customer_marketingcorrespondence,
     int b_customer_blackcopycarbon,
     int b_customer_unsubscribeinfo,
     char *t_customer_comment,

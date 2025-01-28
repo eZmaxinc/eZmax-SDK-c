@@ -27,9 +27,10 @@ typedef struct domain_response_t {
     int b_domain_validcustomer; //boolean
     struct common_audit_t *obj_audit; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } domain_response_t;
 
-domain_response_t *domain_response_create(
+__attribute__((deprecated)) domain_response_t *domain_response_create(
     int pki_domain_id,
     char *s_domain_name,
     int b_domain_validdkim,

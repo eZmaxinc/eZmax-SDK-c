@@ -5,7 +5,7 @@
 
 
 
-ezsigntemplatesignaturecustomdate_response_t *ezsigntemplatesignaturecustomdate_response_create(
+static ezsigntemplatesignaturecustomdate_response_t *ezsigntemplatesignaturecustomdate_response_create_internal(
     int pki_ezsigntemplatesignaturecustomdate_id,
     int i_ezsigntemplatesignaturecustomdate_x,
     int i_ezsigntemplatesignaturecustomdate_y,
@@ -24,12 +24,34 @@ ezsigntemplatesignaturecustomdate_response_t *ezsigntemplatesignaturecustomdate_
     ezsigntemplatesignaturecustomdate_response_local_var->i_ezsigntemplatesignaturecustomdate_offsety = i_ezsigntemplatesignaturecustomdate_offsety;
     ezsigntemplatesignaturecustomdate_response_local_var->s_ezsigntemplatesignaturecustomdate_format = s_ezsigntemplatesignaturecustomdate_format;
 
+    ezsigntemplatesignaturecustomdate_response_local_var->_library_owned = 1;
     return ezsigntemplatesignaturecustomdate_response_local_var;
 }
 
+__attribute__((deprecated)) ezsigntemplatesignaturecustomdate_response_t *ezsigntemplatesignaturecustomdate_response_create(
+    int pki_ezsigntemplatesignaturecustomdate_id,
+    int i_ezsigntemplatesignaturecustomdate_x,
+    int i_ezsigntemplatesignaturecustomdate_y,
+    int i_ezsigntemplatesignaturecustomdate_offsetx,
+    int i_ezsigntemplatesignaturecustomdate_offsety,
+    char *s_ezsigntemplatesignaturecustomdate_format
+    ) {
+    return ezsigntemplatesignaturecustomdate_response_create_internal (
+        pki_ezsigntemplatesignaturecustomdate_id,
+        i_ezsigntemplatesignaturecustomdate_x,
+        i_ezsigntemplatesignaturecustomdate_y,
+        i_ezsigntemplatesignaturecustomdate_offsetx,
+        i_ezsigntemplatesignaturecustomdate_offsety,
+        s_ezsigntemplatesignaturecustomdate_format
+        );
+}
 
 void ezsigntemplatesignaturecustomdate_response_free(ezsigntemplatesignaturecustomdate_response_t *ezsigntemplatesignaturecustomdate_response) {
     if(NULL == ezsigntemplatesignaturecustomdate_response){
+        return ;
+    }
+    if(ezsigntemplatesignaturecustomdate_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigntemplatesignaturecustomdate_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -106,6 +128,9 @@ ezsigntemplatesignaturecustomdate_response_t *ezsigntemplatesignaturecustomdate_
 
     // ezsigntemplatesignaturecustomdate_response->pki_ezsigntemplatesignaturecustomdate_id
     cJSON *pki_ezsigntemplatesignaturecustomdate_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatesignaturecustomdate_responseJSON, "pkiEzsigntemplatesignaturecustomdateID");
+    if (cJSON_IsNull(pki_ezsigntemplatesignaturecustomdate_id)) {
+        pki_ezsigntemplatesignaturecustomdate_id = NULL;
+    }
     if (!pki_ezsigntemplatesignaturecustomdate_id) {
         goto end;
     }
@@ -118,6 +143,9 @@ ezsigntemplatesignaturecustomdate_response_t *ezsigntemplatesignaturecustomdate_
 
     // ezsigntemplatesignaturecustomdate_response->i_ezsigntemplatesignaturecustomdate_x
     cJSON *i_ezsigntemplatesignaturecustomdate_x = cJSON_GetObjectItemCaseSensitive(ezsigntemplatesignaturecustomdate_responseJSON, "iEzsigntemplatesignaturecustomdateX");
+    if (cJSON_IsNull(i_ezsigntemplatesignaturecustomdate_x)) {
+        i_ezsigntemplatesignaturecustomdate_x = NULL;
+    }
     if (i_ezsigntemplatesignaturecustomdate_x) { 
     if(!cJSON_IsNumber(i_ezsigntemplatesignaturecustomdate_x))
     {
@@ -127,6 +155,9 @@ ezsigntemplatesignaturecustomdate_response_t *ezsigntemplatesignaturecustomdate_
 
     // ezsigntemplatesignaturecustomdate_response->i_ezsigntemplatesignaturecustomdate_y
     cJSON *i_ezsigntemplatesignaturecustomdate_y = cJSON_GetObjectItemCaseSensitive(ezsigntemplatesignaturecustomdate_responseJSON, "iEzsigntemplatesignaturecustomdateY");
+    if (cJSON_IsNull(i_ezsigntemplatesignaturecustomdate_y)) {
+        i_ezsigntemplatesignaturecustomdate_y = NULL;
+    }
     if (i_ezsigntemplatesignaturecustomdate_y) { 
     if(!cJSON_IsNumber(i_ezsigntemplatesignaturecustomdate_y))
     {
@@ -136,6 +167,9 @@ ezsigntemplatesignaturecustomdate_response_t *ezsigntemplatesignaturecustomdate_
 
     // ezsigntemplatesignaturecustomdate_response->i_ezsigntemplatesignaturecustomdate_offsetx
     cJSON *i_ezsigntemplatesignaturecustomdate_offsetx = cJSON_GetObjectItemCaseSensitive(ezsigntemplatesignaturecustomdate_responseJSON, "iEzsigntemplatesignaturecustomdateOffsetx");
+    if (cJSON_IsNull(i_ezsigntemplatesignaturecustomdate_offsetx)) {
+        i_ezsigntemplatesignaturecustomdate_offsetx = NULL;
+    }
     if (i_ezsigntemplatesignaturecustomdate_offsetx) { 
     if(!cJSON_IsNumber(i_ezsigntemplatesignaturecustomdate_offsetx))
     {
@@ -145,6 +179,9 @@ ezsigntemplatesignaturecustomdate_response_t *ezsigntemplatesignaturecustomdate_
 
     // ezsigntemplatesignaturecustomdate_response->i_ezsigntemplatesignaturecustomdate_offsety
     cJSON *i_ezsigntemplatesignaturecustomdate_offsety = cJSON_GetObjectItemCaseSensitive(ezsigntemplatesignaturecustomdate_responseJSON, "iEzsigntemplatesignaturecustomdateOffsety");
+    if (cJSON_IsNull(i_ezsigntemplatesignaturecustomdate_offsety)) {
+        i_ezsigntemplatesignaturecustomdate_offsety = NULL;
+    }
     if (i_ezsigntemplatesignaturecustomdate_offsety) { 
     if(!cJSON_IsNumber(i_ezsigntemplatesignaturecustomdate_offsety))
     {
@@ -154,6 +191,9 @@ ezsigntemplatesignaturecustomdate_response_t *ezsigntemplatesignaturecustomdate_
 
     // ezsigntemplatesignaturecustomdate_response->s_ezsigntemplatesignaturecustomdate_format
     cJSON *s_ezsigntemplatesignaturecustomdate_format = cJSON_GetObjectItemCaseSensitive(ezsigntemplatesignaturecustomdate_responseJSON, "sEzsigntemplatesignaturecustomdateFormat");
+    if (cJSON_IsNull(s_ezsigntemplatesignaturecustomdate_format)) {
+        s_ezsigntemplatesignaturecustomdate_format = NULL;
+    }
     if (!s_ezsigntemplatesignaturecustomdate_format) {
         goto end;
     }
@@ -165,7 +205,7 @@ ezsigntemplatesignaturecustomdate_response_t *ezsigntemplatesignaturecustomdate_
     }
 
 
-    ezsigntemplatesignaturecustomdate_response_local_var = ezsigntemplatesignaturecustomdate_response_create (
+    ezsigntemplatesignaturecustomdate_response_local_var = ezsigntemplatesignaturecustomdate_response_create_internal (
         pki_ezsigntemplatesignaturecustomdate_id->valuedouble,
         i_ezsigntemplatesignaturecustomdate_x ? i_ezsigntemplatesignaturecustomdate_x->valuedouble : 0,
         i_ezsigntemplatesignaturecustomdate_y ? i_ezsigntemplatesignaturecustomdate_y->valuedouble : 0,

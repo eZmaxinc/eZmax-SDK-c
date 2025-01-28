@@ -22,9 +22,10 @@ typedef struct ezsigntemplatesignature_create_object_v2_request_t ezsigntemplate
 typedef struct ezsigntemplatesignature_create_object_v2_request_t {
     list_t *a_obj_ezsigntemplatesignature; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatesignature_create_object_v2_request_t;
 
-ezsigntemplatesignature_create_object_v2_request_t *ezsigntemplatesignature_create_object_v2_request_create(
+__attribute__((deprecated)) ezsigntemplatesignature_create_object_v2_request_t *ezsigntemplatesignature_create_object_v2_request_create(
     list_t *a_obj_ezsigntemplatesignature
 );
 

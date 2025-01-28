@@ -5,7 +5,7 @@
 
 
 
-activesession_response_compound_apikey_t *activesession_response_compound_apikey_create(
+static activesession_response_compound_apikey_t *activesession_response_compound_apikey_create_internal(
     int pki_apikey_id,
     char *s_apikey_description_x
     ) {
@@ -16,12 +16,26 @@ activesession_response_compound_apikey_t *activesession_response_compound_apikey
     activesession_response_compound_apikey_local_var->pki_apikey_id = pki_apikey_id;
     activesession_response_compound_apikey_local_var->s_apikey_description_x = s_apikey_description_x;
 
+    activesession_response_compound_apikey_local_var->_library_owned = 1;
     return activesession_response_compound_apikey_local_var;
 }
 
+__attribute__((deprecated)) activesession_response_compound_apikey_t *activesession_response_compound_apikey_create(
+    int pki_apikey_id,
+    char *s_apikey_description_x
+    ) {
+    return activesession_response_compound_apikey_create_internal (
+        pki_apikey_id,
+        s_apikey_description_x
+        );
+}
 
 void activesession_response_compound_apikey_free(activesession_response_compound_apikey_t *activesession_response_compound_apikey) {
     if(NULL == activesession_response_compound_apikey){
+        return ;
+    }
+    if(activesession_response_compound_apikey->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "activesession_response_compound_apikey_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -66,6 +80,9 @@ activesession_response_compound_apikey_t *activesession_response_compound_apikey
 
     // activesession_response_compound_apikey->pki_apikey_id
     cJSON *pki_apikey_id = cJSON_GetObjectItemCaseSensitive(activesession_response_compound_apikeyJSON, "pkiApikeyID");
+    if (cJSON_IsNull(pki_apikey_id)) {
+        pki_apikey_id = NULL;
+    }
     if (!pki_apikey_id) {
         goto end;
     }
@@ -78,6 +95,9 @@ activesession_response_compound_apikey_t *activesession_response_compound_apikey
 
     // activesession_response_compound_apikey->s_apikey_description_x
     cJSON *s_apikey_description_x = cJSON_GetObjectItemCaseSensitive(activesession_response_compound_apikeyJSON, "sApikeyDescriptionX");
+    if (cJSON_IsNull(s_apikey_description_x)) {
+        s_apikey_description_x = NULL;
+    }
     if (!s_apikey_description_x) {
         goto end;
     }
@@ -89,7 +109,7 @@ activesession_response_compound_apikey_t *activesession_response_compound_apikey
     }
 
 
-    activesession_response_compound_apikey_local_var = activesession_response_compound_apikey_create (
+    activesession_response_compound_apikey_local_var = activesession_response_compound_apikey_create_internal (
         pki_apikey_id->valuedouble,
         strdup(s_apikey_description_x->valuestring)
         );

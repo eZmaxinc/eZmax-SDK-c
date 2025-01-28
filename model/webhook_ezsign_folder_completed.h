@@ -15,7 +15,7 @@
 
 typedef struct webhook_ezsign_folder_completed_t webhook_ezsign_folder_completed_t;
 
-#include "attempt_response.h"
+#include "attempt_response_compound.h"
 #include "custom_webhook_response.h"
 #include "ezsignfolder_response.h"
 
@@ -26,9 +26,10 @@ typedef struct webhook_ezsign_folder_completed_t {
     list_t *a_obj_attempt; //nonprimitive container
     struct ezsignfolder_response_t *obj_ezsignfolder; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } webhook_ezsign_folder_completed_t;
 
-webhook_ezsign_folder_completed_t *webhook_ezsign_folder_completed_create(
+__attribute__((deprecated)) webhook_ezsign_folder_completed_t *webhook_ezsign_folder_completed_create(
     custom_webhook_response_t *obj_webhook,
     list_t *a_obj_attempt,
     ezsignfolder_response_t *obj_ezsignfolder

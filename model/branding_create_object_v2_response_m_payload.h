@@ -21,9 +21,10 @@ typedef struct branding_create_object_v2_response_m_payload_t branding_create_ob
 typedef struct branding_create_object_v2_response_m_payload_t {
     list_t *a_pki_branding_id; //primitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } branding_create_object_v2_response_m_payload_t;
 
-branding_create_object_v2_response_m_payload_t *branding_create_object_v2_response_m_payload_create(
+__attribute__((deprecated)) branding_create_object_v2_response_m_payload_t *branding_create_object_v2_response_m_payload_create(
     list_t *a_pki_branding_id
 );
 

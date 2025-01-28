@@ -23,9 +23,10 @@ typedef struct common_reportcolumn_t {
     struct common_reportcellstyle_t *obj_reportcellstyle_default; //model
     int i_reportcolumn_width; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } common_reportcolumn_t;
 
-common_reportcolumn_t *common_reportcolumn_create(
+__attribute__((deprecated)) common_reportcolumn_t *common_reportcolumn_create(
     common_reportcellstyle_t *obj_reportcellstyle_default,
     int i_reportcolumn_width
 );

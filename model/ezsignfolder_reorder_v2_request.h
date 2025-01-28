@@ -18,24 +18,17 @@ typedef struct ezsignfolder_reorder_v2_request_t ezsignfolder_reorder_v2_request
 #include "custom_ezsigndocument_request.h"
 #include "field_e_ezsignfolder_documentdependency.h"
 
-// Enum  for ezsignfolder_reorder_v2_request
-
-typedef enum  { ezmax_api_definition__full_ezsignfolder_reorder_v2_request__NULL = 0, ezmax_api_definition__full_ezsignfolder_reorder_v2_request__All, ezmax_api_definition__full_ezsignfolder_reorder_v2_request__EzsignsignerOnly } ezmax_api_definition__full_ezsignfolder_reorder_v2_request__e;
-
-char* ezsignfolder_reorder_v2_request_e_ezsignfolder_documentdependency_ToString(ezmax_api_definition__full_ezsignfolder_reorder_v2_request__e e_ezsignfolder_documentdependency);
-
-ezmax_api_definition__full_ezsignfolder_reorder_v2_request__e ezsignfolder_reorder_v2_request_e_ezsignfolder_documentdependency_FromString(char* e_ezsignfolder_documentdependency);
-
 
 
 typedef struct ezsignfolder_reorder_v2_request_t {
-    field_e_ezsignfolder_documentdependency_t *e_ezsignfolder_documentdependency; // custom
+    ezmax_api_definition__full_field_e_ezsignfolder_documentdependency__e e_ezsignfolder_documentdependency; //referenced enum
     list_t *a_obj_ezsigndocument; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfolder_reorder_v2_request_t;
 
-ezsignfolder_reorder_v2_request_t *ezsignfolder_reorder_v2_request_create(
-    field_e_ezsignfolder_documentdependency_t *e_ezsignfolder_documentdependency,
+__attribute__((deprecated)) ezsignfolder_reorder_v2_request_t *ezsignfolder_reorder_v2_request_create(
+    ezmax_api_definition__full_field_e_ezsignfolder_documentdependency__e e_ezsignfolder_documentdependency,
     list_t *a_obj_ezsigndocument
 );
 

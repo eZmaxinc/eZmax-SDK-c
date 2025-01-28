@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsigndocument_step__e field_e_ezsigndocument
     return 0;
 }
 
-cJSON *field_e_ezsigndocument_step_field_e_ezsigndocument_step_convertToJSON(ezmax_api_definition__full_field_e_ezsigndocument_step__e field_e_ezsigndocument_step) {
+cJSON *field_e_ezsigndocument_step_convertToJSON(ezmax_api_definition__full_field_e_ezsigndocument_step__e field_e_ezsigndocument_step) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsigndocument_step", field_e_ezsigndocument_step_field_e_ezsigndocument_step_ToString(field_e_ezsigndocument_step)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsigndocument_step__e field_e_ezsigndocument_step_field_e_ezsigndocument_step_parseFromJSON(cJSON *field_e_ezsigndocument_stepJSON) {
-    ezmax_api_definition__full_field_e_ezsigndocument_step__e *field_e_ezsigndocument_step = NULL;
-    ezmax_api_definition__full_field_e_ezsigndocument_step__e field_e_ezsigndocument_stepVariable;
-    cJSON *field_e_ezsigndocument_stepVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsigndocument_stepJSON, "field_e_ezsigndocument_step");
-    if(!cJSON_IsString(field_e_ezsigndocument_stepVar) || (field_e_ezsigndocument_stepVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsigndocument_step__e field_e_ezsigndocument_step_parseFromJSON(cJSON *field_e_ezsigndocument_stepJSON) {
+    if(!cJSON_IsString(field_e_ezsigndocument_stepJSON) || (field_e_ezsigndocument_stepJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsigndocument_stepVariable = field_e_ezsigndocument_step_field_e_ezsigndocument_step_FromString(field_e_ezsigndocument_stepVar->valuestring);
-    return field_e_ezsigndocument_stepVariable;
-end:
-    return 0;
+    return field_e_ezsigndocument_step_field_e_ezsigndocument_step_FromString(field_e_ezsigndocument_stepJSON->valuestring);
 }

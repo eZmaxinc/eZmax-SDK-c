@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Create a new Usergroupmembership
@@ -25,11 +20,14 @@ ObjectUsergroupmembershipAPI_usergroupmembershipCreateObjectV1(apiClient_t *apiC
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/usergroupmembership")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/usergroupmembership");
+    char *localVarPath = strdup("/1/object/usergroupmembership");
+
 
 
 
@@ -38,9 +36,10 @@ ObjectUsergroupmembershipAPI_usergroupmembershipCreateObjectV1(apiClient_t *apiC
     cJSON *localVarSingleItemJSON_usergroupmembership_create_object_v1_request = NULL;
     if (usergroupmembership_create_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_usergroupmembership_create_object_v1_request = usergroupmembership_create_object_v1_request_convertToJSON(usergroupmembership_create_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_usergroupmembership_create_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -52,6 +51,7 @@ ObjectUsergroupmembershipAPI_usergroupmembershipCreateObjectV1(apiClient_t *apiC
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -59,11 +59,14 @@ ObjectUsergroupmembershipAPI_usergroupmembershipCreateObjectV1(apiClient_t *apiC
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectUsergroupmembershipAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    usergroupmembership_create_object_v1_response_t *elementToReturn = usergroupmembership_create_object_v1_response_parseFromJSON(ObjectUsergroupmembershipAPIlocalVarJSON);
-    cJSON_Delete(ObjectUsergroupmembershipAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    usergroupmembership_create_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUsergroupmembershipAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = usergroupmembership_create_object_v1_response_parseFromJSON(ObjectUsergroupmembershipAPIlocalVarJSON);
+        cJSON_Delete(ObjectUsergroupmembershipAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -94,7 +97,7 @@ end:
 //
 // 
 //
-common_response_t*
+usergroupmembership_delete_object_v1_response_t*
 ObjectUsergroupmembershipAPI_usergroupmembershipDeleteObjectV1(apiClient_t *apiClient, int *pkiUsergroupmembershipID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -103,15 +106,18 @@ ObjectUsergroupmembershipAPI_usergroupmembershipDeleteObjectV1(apiClient_t *apiC
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/usergroupmembership/{pkiUsergroupmembershipID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/usergroupmembership/{pkiUsergroupmembershipID}");
+    char *localVarPath = strdup("/1/object/usergroupmembership/{pkiUsergroupmembershipID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiUsergroupmembershipID =  + strlen("{ pkiUsergroupmembershipID }");
+    long sizeOfPathParams_pkiUsergroupmembershipID =  + sizeof("{ pkiUsergroupmembershipID }") - 1;
     if(pkiUsergroupmembershipID == 0){
         goto end;
     }
@@ -119,7 +125,7 @@ ObjectUsergroupmembershipAPI_usergroupmembershipDeleteObjectV1(apiClient_t *apiC
     snprintf(localVarToReplace_pkiUsergroupmembershipID, sizeOfPathParams_pkiUsergroupmembershipID, "{%s}", "pkiUsergroupmembershipID");
 
     char localVarBuff_pkiUsergroupmembershipID[256];
-    intToStr(localVarBuff_pkiUsergroupmembershipID, *pkiUsergroupmembershipID);
+    snprintf(localVarBuff_pkiUsergroupmembershipID, sizeof localVarBuff_pkiUsergroupmembershipID, "%ld", (long)*pkiUsergroupmembershipID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUsergroupmembershipID, localVarBuff_pkiUsergroupmembershipID);
 
@@ -134,6 +140,7 @@ ObjectUsergroupmembershipAPI_usergroupmembershipDeleteObjectV1(apiClient_t *apiC
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "DELETE");
 
     // uncomment below to debug the error response
@@ -145,11 +152,14 @@ ObjectUsergroupmembershipAPI_usergroupmembershipDeleteObjectV1(apiClient_t *apiC
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectUsergroupmembershipAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectUsergroupmembershipAPIlocalVarJSON);
-    cJSON_Delete(ObjectUsergroupmembershipAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    usergroupmembership_delete_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUsergroupmembershipAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = usergroupmembership_delete_object_v1_response_parseFromJSON(ObjectUsergroupmembershipAPIlocalVarJSON);
+        cJSON_Delete(ObjectUsergroupmembershipAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -176,7 +186,7 @@ end:
 //
 // 
 //
-common_response_t*
+usergroupmembership_edit_object_v1_response_t*
 ObjectUsergroupmembershipAPI_usergroupmembershipEditObjectV1(apiClient_t *apiClient, int *pkiUsergroupmembershipID, usergroupmembership_edit_object_v1_request_t *usergroupmembership_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -185,15 +195,18 @@ ObjectUsergroupmembershipAPI_usergroupmembershipEditObjectV1(apiClient_t *apiCli
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/usergroupmembership/{pkiUsergroupmembershipID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/usergroupmembership/{pkiUsergroupmembershipID}");
+    char *localVarPath = strdup("/1/object/usergroupmembership/{pkiUsergroupmembershipID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiUsergroupmembershipID =  + strlen("{ pkiUsergroupmembershipID }");
+    long sizeOfPathParams_pkiUsergroupmembershipID =  + sizeof("{ pkiUsergroupmembershipID }") - 1;
     if(pkiUsergroupmembershipID == 0){
         goto end;
     }
@@ -201,7 +214,7 @@ ObjectUsergroupmembershipAPI_usergroupmembershipEditObjectV1(apiClient_t *apiCli
     snprintf(localVarToReplace_pkiUsergroupmembershipID, sizeOfPathParams_pkiUsergroupmembershipID, "{%s}", "pkiUsergroupmembershipID");
 
     char localVarBuff_pkiUsergroupmembershipID[256];
-    intToStr(localVarBuff_pkiUsergroupmembershipID, *pkiUsergroupmembershipID);
+    snprintf(localVarBuff_pkiUsergroupmembershipID, sizeof localVarBuff_pkiUsergroupmembershipID, "%ld", (long)*pkiUsergroupmembershipID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUsergroupmembershipID, localVarBuff_pkiUsergroupmembershipID);
 
@@ -212,9 +225,10 @@ ObjectUsergroupmembershipAPI_usergroupmembershipEditObjectV1(apiClient_t *apiCli
     cJSON *localVarSingleItemJSON_usergroupmembership_edit_object_v1_request = NULL;
     if (usergroupmembership_edit_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_usergroupmembership_edit_object_v1_request = usergroupmembership_edit_object_v1_request_convertToJSON(usergroupmembership_edit_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_usergroupmembership_edit_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -226,6 +240,7 @@ ObjectUsergroupmembershipAPI_usergroupmembershipEditObjectV1(apiClient_t *apiCli
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -241,11 +256,14 @@ ObjectUsergroupmembershipAPI_usergroupmembershipEditObjectV1(apiClient_t *apiCli
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectUsergroupmembershipAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectUsergroupmembershipAPIlocalVarJSON);
-    cJSON_Delete(ObjectUsergroupmembershipAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    usergroupmembership_edit_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUsergroupmembershipAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = usergroupmembership_edit_object_v1_response_parseFromJSON(ObjectUsergroupmembershipAPIlocalVarJSON);
+        cJSON_Delete(ObjectUsergroupmembershipAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -286,15 +304,18 @@ ObjectUsergroupmembershipAPI_usergroupmembershipGetObjectV2(apiClient_t *apiClie
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/usergroupmembership/{pkiUsergroupmembershipID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/usergroupmembership/{pkiUsergroupmembershipID}");
+    char *localVarPath = strdup("/2/object/usergroupmembership/{pkiUsergroupmembershipID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiUsergroupmembershipID =  + strlen("{ pkiUsergroupmembershipID }");
+    long sizeOfPathParams_pkiUsergroupmembershipID =  + sizeof("{ pkiUsergroupmembershipID }") - 1;
     if(pkiUsergroupmembershipID == 0){
         goto end;
     }
@@ -302,7 +323,7 @@ ObjectUsergroupmembershipAPI_usergroupmembershipGetObjectV2(apiClient_t *apiClie
     snprintf(localVarToReplace_pkiUsergroupmembershipID, sizeOfPathParams_pkiUsergroupmembershipID, "{%s}", "pkiUsergroupmembershipID");
 
     char localVarBuff_pkiUsergroupmembershipID[256];
-    intToStr(localVarBuff_pkiUsergroupmembershipID, *pkiUsergroupmembershipID);
+    snprintf(localVarBuff_pkiUsergroupmembershipID, sizeof localVarBuff_pkiUsergroupmembershipID, "%ld", (long)*pkiUsergroupmembershipID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUsergroupmembershipID, localVarBuff_pkiUsergroupmembershipID);
 
@@ -317,6 +338,7 @@ ObjectUsergroupmembershipAPI_usergroupmembershipGetObjectV2(apiClient_t *apiClie
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -328,11 +350,14 @@ ObjectUsergroupmembershipAPI_usergroupmembershipGetObjectV2(apiClient_t *apiClie
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectUsergroupmembershipAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    usergroupmembership_get_object_v2_response_t *elementToReturn = usergroupmembership_get_object_v2_response_parseFromJSON(ObjectUsergroupmembershipAPIlocalVarJSON);
-    cJSON_Delete(ObjectUsergroupmembershipAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    usergroupmembership_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUsergroupmembershipAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = usergroupmembership_get_object_v2_response_parseFromJSON(ObjectUsergroupmembershipAPIlocalVarJSON);
+        cJSON_Delete(ObjectUsergroupmembershipAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

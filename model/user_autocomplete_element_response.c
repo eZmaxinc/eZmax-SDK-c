@@ -4,26 +4,9 @@
 #include "user_autocomplete_element_response.h"
 
 
-char* user_autocomplete_element_response_e_user_type_ToString(ezmax_api_definition__full_user_autocomplete_element_response__e e_user_type) {
-    char* e_user_typeArray[] =  { "NULL", "AgentBroker", "Assistant", "Employee", "EzsignUser", "Normal" };
-    return e_user_typeArray[e_user_type];
-}
 
-ezmax_api_definition__full_user_autocomplete_element_response__e user_autocomplete_element_response_e_user_type_FromString(char* e_user_type){
-    int stringToReturn = 0;
-    char *e_user_typeArray[] =  { "NULL", "AgentBroker", "Assistant", "Employee", "EzsignUser", "Normal" };
-    size_t sizeofArray = sizeof(e_user_typeArray) / sizeof(e_user_typeArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_user_type, e_user_typeArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-user_autocomplete_element_response_t *user_autocomplete_element_response_create(
-    field_e_user_type_t *e_user_type,
+static user_autocomplete_element_response_t *user_autocomplete_element_response_create_internal(
+    ezmax_api_definition__full_field_e_user_type__e e_user_type,
     char *s_user_name,
     int pki_user_id,
     int b_user_isactive
@@ -37,19 +20,33 @@ user_autocomplete_element_response_t *user_autocomplete_element_response_create(
     user_autocomplete_element_response_local_var->pki_user_id = pki_user_id;
     user_autocomplete_element_response_local_var->b_user_isactive = b_user_isactive;
 
+    user_autocomplete_element_response_local_var->_library_owned = 1;
     return user_autocomplete_element_response_local_var;
 }
 
+__attribute__((deprecated)) user_autocomplete_element_response_t *user_autocomplete_element_response_create(
+    ezmax_api_definition__full_field_e_user_type__e e_user_type,
+    char *s_user_name,
+    int pki_user_id,
+    int b_user_isactive
+    ) {
+    return user_autocomplete_element_response_create_internal (
+        e_user_type,
+        s_user_name,
+        pki_user_id,
+        b_user_isactive
+        );
+}
 
 void user_autocomplete_element_response_free(user_autocomplete_element_response_t *user_autocomplete_element_response) {
     if(NULL == user_autocomplete_element_response){
         return ;
     }
-    listEntry_t *listEntry;
-    if (user_autocomplete_element_response->e_user_type) {
-        field_e_user_type_free(user_autocomplete_element_response->e_user_type);
-        user_autocomplete_element_response->e_user_type = NULL;
+    if(user_autocomplete_element_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "user_autocomplete_element_response_free");
+        return ;
     }
+    listEntry_t *listEntry;
     if (user_autocomplete_element_response->s_user_name) {
         free(user_autocomplete_element_response->s_user_name);
         user_autocomplete_element_response->s_user_name = NULL;
@@ -61,7 +58,7 @@ cJSON *user_autocomplete_element_response_convertToJSON(user_autocomplete_elemen
     cJSON *item = cJSON_CreateObject();
 
     // user_autocomplete_element_response->e_user_type
-    if (ezmax_api_definition__full_user_autocomplete_element_response__NULL == user_autocomplete_element_response->e_user_type) {
+    if (ezmax_api_definition__full_field_e_user_type__NULL == user_autocomplete_element_response->e_user_type) {
         goto fail;
     }
     cJSON *e_user_type_local_JSON = field_e_user_type_convertToJSON(user_autocomplete_element_response->e_user_type);
@@ -113,10 +110,13 @@ user_autocomplete_element_response_t *user_autocomplete_element_response_parseFr
     user_autocomplete_element_response_t *user_autocomplete_element_response_local_var = NULL;
 
     // define the local variable for user_autocomplete_element_response->e_user_type
-    field_e_user_type_t *e_user_type_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_user_type__e e_user_type_local_nonprim = 0;
 
     // user_autocomplete_element_response->e_user_type
     cJSON *e_user_type = cJSON_GetObjectItemCaseSensitive(user_autocomplete_element_responseJSON, "eUserType");
+    if (cJSON_IsNull(e_user_type)) {
+        e_user_type = NULL;
+    }
     if (!e_user_type) {
         goto end;
     }
@@ -126,6 +126,9 @@ user_autocomplete_element_response_t *user_autocomplete_element_response_parseFr
 
     // user_autocomplete_element_response->s_user_name
     cJSON *s_user_name = cJSON_GetObjectItemCaseSensitive(user_autocomplete_element_responseJSON, "sUserName");
+    if (cJSON_IsNull(s_user_name)) {
+        s_user_name = NULL;
+    }
     if (!s_user_name) {
         goto end;
     }
@@ -138,6 +141,9 @@ user_autocomplete_element_response_t *user_autocomplete_element_response_parseFr
 
     // user_autocomplete_element_response->pki_user_id
     cJSON *pki_user_id = cJSON_GetObjectItemCaseSensitive(user_autocomplete_element_responseJSON, "pkiUserID");
+    if (cJSON_IsNull(pki_user_id)) {
+        pki_user_id = NULL;
+    }
     if (!pki_user_id) {
         goto end;
     }
@@ -150,6 +156,9 @@ user_autocomplete_element_response_t *user_autocomplete_element_response_parseFr
 
     // user_autocomplete_element_response->b_user_isactive
     cJSON *b_user_isactive = cJSON_GetObjectItemCaseSensitive(user_autocomplete_element_responseJSON, "bUserIsactive");
+    if (cJSON_IsNull(b_user_isactive)) {
+        b_user_isactive = NULL;
+    }
     if (!b_user_isactive) {
         goto end;
     }
@@ -161,7 +170,7 @@ user_autocomplete_element_response_t *user_autocomplete_element_response_parseFr
     }
 
 
-    user_autocomplete_element_response_local_var = user_autocomplete_element_response_create (
+    user_autocomplete_element_response_local_var = user_autocomplete_element_response_create_internal (
         e_user_type_local_nonprim,
         strdup(s_user_name->valuestring),
         pki_user_id->valuedouble,
@@ -171,8 +180,7 @@ user_autocomplete_element_response_t *user_autocomplete_element_response_parseFr
     return user_autocomplete_element_response_local_var;
 end:
     if (e_user_type_local_nonprim) {
-        field_e_user_type_free(e_user_type_local_nonprim);
-        e_user_type_local_nonprim = NULL;
+        e_user_type_local_nonprim = 0;
     }
     return NULL;
 

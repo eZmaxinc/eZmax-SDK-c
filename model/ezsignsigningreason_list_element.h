@@ -23,9 +23,10 @@ typedef struct ezsignsigningreason_list_element_t {
     char *s_ezsignsigningreason_description_x; // string
     int b_ezsignsigningreason_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsigningreason_list_element_t;
 
-ezsignsigningreason_list_element_t *ezsignsigningreason_list_element_create(
+__attribute__((deprecated)) ezsignsigningreason_list_element_t *ezsignsigningreason_list_element_create(
     int pki_ezsignsigningreason_id,
     char *s_ezsignsigningreason_description_x,
     int b_ezsignsigningreason_isactive

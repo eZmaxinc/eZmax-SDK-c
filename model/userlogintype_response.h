@@ -24,9 +24,10 @@ typedef struct userlogintype_response_t {
     struct multilingual_userlogintype_description_t *obj_userlogintype_description; //model
     char *s_userlogintype_description_x; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } userlogintype_response_t;
 
-userlogintype_response_t *userlogintype_response_create(
+__attribute__((deprecated)) userlogintype_response_t *userlogintype_response_create(
     int pki_userlogintype_id,
     multilingual_userlogintype_description_t *obj_userlogintype_description,
     char *s_userlogintype_description_x

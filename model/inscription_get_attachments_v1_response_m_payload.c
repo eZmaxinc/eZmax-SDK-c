@@ -5,7 +5,7 @@
 
 
 
-inscription_get_attachments_v1_response_m_payload_t *inscription_get_attachments_v1_response_m_payload_create(
+static inscription_get_attachments_v1_response_m_payload_t *inscription_get_attachments_v1_response_m_payload_create_internal(
     list_t *a_obj_attachmentdocumenttype
     ) {
     inscription_get_attachments_v1_response_m_payload_t *inscription_get_attachments_v1_response_m_payload_local_var = malloc(sizeof(inscription_get_attachments_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ inscription_get_attachments_v1_response_m_payload_t *inscription_get_attachments
     }
     inscription_get_attachments_v1_response_m_payload_local_var->a_obj_attachmentdocumenttype = a_obj_attachmentdocumenttype;
 
+    inscription_get_attachments_v1_response_m_payload_local_var->_library_owned = 1;
     return inscription_get_attachments_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) inscription_get_attachments_v1_response_m_payload_t *inscription_get_attachments_v1_response_m_payload_create(
+    list_t *a_obj_attachmentdocumenttype
+    ) {
+    return inscription_get_attachments_v1_response_m_payload_create_internal (
+        a_obj_attachmentdocumenttype
+        );
+}
 
 void inscription_get_attachments_v1_response_m_payload_free(inscription_get_attachments_v1_response_m_payload_t *inscription_get_attachments_v1_response_m_payload) {
     if(NULL == inscription_get_attachments_v1_response_m_payload){
+        return ;
+    }
+    if(inscription_get_attachments_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "inscription_get_attachments_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ inscription_get_attachments_v1_response_m_payload_t *inscription_get_attachments
 
     // inscription_get_attachments_v1_response_m_payload->a_obj_attachmentdocumenttype
     cJSON *a_obj_attachmentdocumenttype = cJSON_GetObjectItemCaseSensitive(inscription_get_attachments_v1_response_m_payloadJSON, "a_objAttachmentdocumenttype");
+    if (cJSON_IsNull(a_obj_attachmentdocumenttype)) {
+        a_obj_attachmentdocumenttype = NULL;
+    }
     if (!a_obj_attachmentdocumenttype) {
         goto end;
     }
@@ -96,7 +111,7 @@ inscription_get_attachments_v1_response_m_payload_t *inscription_get_attachments
     }
 
 
-    inscription_get_attachments_v1_response_m_payload_local_var = inscription_get_attachments_v1_response_m_payload_create (
+    inscription_get_attachments_v1_response_m_payload_local_var = inscription_get_attachments_v1_response_m_payload_create_internal (
         a_obj_attachmentdocumenttypeList
         );
 

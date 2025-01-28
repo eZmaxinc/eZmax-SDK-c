@@ -21,9 +21,10 @@ typedef struct ezdoctemplatedocument_create_object_v1_response_m_payload_t ezdoc
 typedef struct ezdoctemplatedocument_create_object_v1_response_m_payload_t {
     list_t *a_pki_ezdoctemplatedocument_id; //primitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezdoctemplatedocument_create_object_v1_response_m_payload_t;
 
-ezdoctemplatedocument_create_object_v1_response_m_payload_t *ezdoctemplatedocument_create_object_v1_response_m_payload_create(
+__attribute__((deprecated)) ezdoctemplatedocument_create_object_v1_response_m_payload_t *ezdoctemplatedocument_create_object_v1_response_m_payload_create(
     list_t *a_pki_ezdoctemplatedocument_id
 );
 

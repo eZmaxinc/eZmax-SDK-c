@@ -29,9 +29,10 @@ typedef struct textstylestatic_response_compound_t {
     int i_textstylestatic_fontcolor; //numeric
     int i_textstylestatic_size; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } textstylestatic_response_compound_t;
 
-textstylestatic_response_compound_t *textstylestatic_response_compound_create(
+__attribute__((deprecated)) textstylestatic_response_compound_t *textstylestatic_response_compound_create(
     int pki_textstylestatic_id,
     int fki_font_id,
     char *s_font_name,

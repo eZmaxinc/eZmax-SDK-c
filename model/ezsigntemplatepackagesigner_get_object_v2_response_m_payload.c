@@ -5,7 +5,7 @@
 
 
 
-ezsigntemplatepackagesigner_get_object_v2_response_m_payload_t *ezsigntemplatepackagesigner_get_object_v2_response_m_payload_create(
+static ezsigntemplatepackagesigner_get_object_v2_response_m_payload_t *ezsigntemplatepackagesigner_get_object_v2_response_m_payload_create_internal(
     ezsigntemplatepackagesigner_response_compound_t *obj_ezsigntemplatepackagesigner
     ) {
     ezsigntemplatepackagesigner_get_object_v2_response_m_payload_t *ezsigntemplatepackagesigner_get_object_v2_response_m_payload_local_var = malloc(sizeof(ezsigntemplatepackagesigner_get_object_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ ezsigntemplatepackagesigner_get_object_v2_response_m_payload_t *ezsigntemplatepa
     }
     ezsigntemplatepackagesigner_get_object_v2_response_m_payload_local_var->obj_ezsigntemplatepackagesigner = obj_ezsigntemplatepackagesigner;
 
+    ezsigntemplatepackagesigner_get_object_v2_response_m_payload_local_var->_library_owned = 1;
     return ezsigntemplatepackagesigner_get_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezsigntemplatepackagesigner_get_object_v2_response_m_payload_t *ezsigntemplatepackagesigner_get_object_v2_response_m_payload_create(
+    ezsigntemplatepackagesigner_response_compound_t *obj_ezsigntemplatepackagesigner
+    ) {
+    return ezsigntemplatepackagesigner_get_object_v2_response_m_payload_create_internal (
+        obj_ezsigntemplatepackagesigner
+        );
+}
 
 void ezsigntemplatepackagesigner_get_object_v2_response_m_payload_free(ezsigntemplatepackagesigner_get_object_v2_response_m_payload_t *ezsigntemplatepackagesigner_get_object_v2_response_m_payload) {
     if(NULL == ezsigntemplatepackagesigner_get_object_v2_response_m_payload){
+        return ;
+    }
+    if(ezsigntemplatepackagesigner_get_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigntemplatepackagesigner_get_object_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ ezsigntemplatepackagesigner_get_object_v2_response_m_payload_t *ezsigntemplatepa
 
     // ezsigntemplatepackagesigner_get_object_v2_response_m_payload->obj_ezsigntemplatepackagesigner
     cJSON *obj_ezsigntemplatepackagesigner = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackagesigner_get_object_v2_response_m_payloadJSON, "objEzsigntemplatepackagesigner");
+    if (cJSON_IsNull(obj_ezsigntemplatepackagesigner)) {
+        obj_ezsigntemplatepackagesigner = NULL;
+    }
     if (!obj_ezsigntemplatepackagesigner) {
         goto end;
     }
@@ -71,7 +86,7 @@ ezsigntemplatepackagesigner_get_object_v2_response_m_payload_t *ezsigntemplatepa
     obj_ezsigntemplatepackagesigner_local_nonprim = ezsigntemplatepackagesigner_response_compound_parseFromJSON(obj_ezsigntemplatepackagesigner); //nonprimitive
 
 
-    ezsigntemplatepackagesigner_get_object_v2_response_m_payload_local_var = ezsigntemplatepackagesigner_get_object_v2_response_m_payload_create (
+    ezsigntemplatepackagesigner_get_object_v2_response_m_payload_local_var = ezsigntemplatepackagesigner_get_object_v2_response_m_payload_create_internal (
         obj_ezsigntemplatepackagesigner_local_nonprim
         );
 

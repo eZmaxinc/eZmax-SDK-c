@@ -28,9 +28,10 @@ typedef struct creditcardclient_response_compound_t {
     int b_creditcardclient_allowedtranquillit; //boolean
     struct creditcarddetail_response_compound_t *obj_creditcarddetail; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } creditcardclient_response_compound_t;
 
-creditcardclient_response_compound_t *creditcardclient_response_compound_create(
+__attribute__((deprecated)) creditcardclient_response_compound_t *creditcardclient_response_compound_create(
     int pki_creditcardclient_id,
     int fki_creditcarddetail_id,
     int b_creditcardclientrelation_isdefault,

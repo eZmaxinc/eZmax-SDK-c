@@ -5,7 +5,7 @@
 
 
 
-subnet_edit_object_v1_request_t *subnet_edit_object_v1_request_create(
+static subnet_edit_object_v1_request_t *subnet_edit_object_v1_request_create_internal(
     subnet_request_compound_t *obj_subnet
     ) {
     subnet_edit_object_v1_request_t *subnet_edit_object_v1_request_local_var = malloc(sizeof(subnet_edit_object_v1_request_t));
@@ -14,12 +14,24 @@ subnet_edit_object_v1_request_t *subnet_edit_object_v1_request_create(
     }
     subnet_edit_object_v1_request_local_var->obj_subnet = obj_subnet;
 
+    subnet_edit_object_v1_request_local_var->_library_owned = 1;
     return subnet_edit_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) subnet_edit_object_v1_request_t *subnet_edit_object_v1_request_create(
+    subnet_request_compound_t *obj_subnet
+    ) {
+    return subnet_edit_object_v1_request_create_internal (
+        obj_subnet
+        );
+}
 
 void subnet_edit_object_v1_request_free(subnet_edit_object_v1_request_t *subnet_edit_object_v1_request) {
     if(NULL == subnet_edit_object_v1_request){
+        return ;
+    }
+    if(subnet_edit_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "subnet_edit_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ subnet_edit_object_v1_request_t *subnet_edit_object_v1_request_parseFromJSON(cJS
 
     // subnet_edit_object_v1_request->obj_subnet
     cJSON *obj_subnet = cJSON_GetObjectItemCaseSensitive(subnet_edit_object_v1_requestJSON, "objSubnet");
+    if (cJSON_IsNull(obj_subnet)) {
+        obj_subnet = NULL;
+    }
     if (!obj_subnet) {
         goto end;
     }
@@ -71,7 +86,7 @@ subnet_edit_object_v1_request_t *subnet_edit_object_v1_request_parseFromJSON(cJS
     obj_subnet_local_nonprim = subnet_request_compound_parseFromJSON(obj_subnet); //nonprimitive
 
 
-    subnet_edit_object_v1_request_local_var = subnet_edit_object_v1_request_create (
+    subnet_edit_object_v1_request_local_var = subnet_edit_object_v1_request_create_internal (
         obj_subnet_local_nonprim
         );
 

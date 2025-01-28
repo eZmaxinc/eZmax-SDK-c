@@ -23,9 +23,10 @@ typedef struct ezsigntemplateglobalsigner_response_compound_t {
     int fki_ezsigntemplateglobal_id; //numeric
     char *s_ezsigntemplateglobalsigner_description; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplateglobalsigner_response_compound_t;
 
-ezsigntemplateglobalsigner_response_compound_t *ezsigntemplateglobalsigner_response_compound_create(
+__attribute__((deprecated)) ezsigntemplateglobalsigner_response_compound_t *ezsigntemplateglobalsigner_response_compound_create(
     int pki_ezsigntemplateglobalsigner_id,
     int fki_ezsigntemplateglobal_id,
     char *s_ezsigntemplateglobalsigner_description

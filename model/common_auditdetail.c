@@ -5,7 +5,7 @@
 
 
 
-common_auditdetail_t *common_auditdetail_create(
+static common_auditdetail_t *common_auditdetail_create_internal(
     int fki_user_id,
     int fki_apikey_id,
     char *s_user_loginname,
@@ -26,12 +26,36 @@ common_auditdetail_t *common_auditdetail_create(
     common_auditdetail_local_var->s_apikey_description_x = s_apikey_description_x;
     common_auditdetail_local_var->dt_auditdetail_date = dt_auditdetail_date;
 
+    common_auditdetail_local_var->_library_owned = 1;
     return common_auditdetail_local_var;
 }
 
+__attribute__((deprecated)) common_auditdetail_t *common_auditdetail_create(
+    int fki_user_id,
+    int fki_apikey_id,
+    char *s_user_loginname,
+    char *s_user_lastname,
+    char *s_user_firstname,
+    char *s_apikey_description_x,
+    char *dt_auditdetail_date
+    ) {
+    return common_auditdetail_create_internal (
+        fki_user_id,
+        fki_apikey_id,
+        s_user_loginname,
+        s_user_lastname,
+        s_user_firstname,
+        s_apikey_description_x,
+        dt_auditdetail_date
+        );
+}
 
 void common_auditdetail_free(common_auditdetail_t *common_auditdetail) {
     if(NULL == common_auditdetail){
+        return ;
+    }
+    if(common_auditdetail->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "common_auditdetail_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -135,6 +159,9 @@ common_auditdetail_t *common_auditdetail_parseFromJSON(cJSON *common_auditdetail
 
     // common_auditdetail->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(common_auditdetailJSON, "fkiUserID");
+    if (cJSON_IsNull(fki_user_id)) {
+        fki_user_id = NULL;
+    }
     if (!fki_user_id) {
         goto end;
     }
@@ -147,6 +174,9 @@ common_auditdetail_t *common_auditdetail_parseFromJSON(cJSON *common_auditdetail
 
     // common_auditdetail->fki_apikey_id
     cJSON *fki_apikey_id = cJSON_GetObjectItemCaseSensitive(common_auditdetailJSON, "fkiApikeyID");
+    if (cJSON_IsNull(fki_apikey_id)) {
+        fki_apikey_id = NULL;
+    }
     if (fki_apikey_id) { 
     if(!cJSON_IsNumber(fki_apikey_id))
     {
@@ -156,6 +186,9 @@ common_auditdetail_t *common_auditdetail_parseFromJSON(cJSON *common_auditdetail
 
     // common_auditdetail->s_user_loginname
     cJSON *s_user_loginname = cJSON_GetObjectItemCaseSensitive(common_auditdetailJSON, "sUserLoginname");
+    if (cJSON_IsNull(s_user_loginname)) {
+        s_user_loginname = NULL;
+    }
     if (!s_user_loginname) {
         goto end;
     }
@@ -168,6 +201,9 @@ common_auditdetail_t *common_auditdetail_parseFromJSON(cJSON *common_auditdetail
 
     // common_auditdetail->s_user_lastname
     cJSON *s_user_lastname = cJSON_GetObjectItemCaseSensitive(common_auditdetailJSON, "sUserLastname");
+    if (cJSON_IsNull(s_user_lastname)) {
+        s_user_lastname = NULL;
+    }
     if (!s_user_lastname) {
         goto end;
     }
@@ -180,6 +216,9 @@ common_auditdetail_t *common_auditdetail_parseFromJSON(cJSON *common_auditdetail
 
     // common_auditdetail->s_user_firstname
     cJSON *s_user_firstname = cJSON_GetObjectItemCaseSensitive(common_auditdetailJSON, "sUserFirstname");
+    if (cJSON_IsNull(s_user_firstname)) {
+        s_user_firstname = NULL;
+    }
     if (!s_user_firstname) {
         goto end;
     }
@@ -192,6 +231,9 @@ common_auditdetail_t *common_auditdetail_parseFromJSON(cJSON *common_auditdetail
 
     // common_auditdetail->s_apikey_description_x
     cJSON *s_apikey_description_x = cJSON_GetObjectItemCaseSensitive(common_auditdetailJSON, "sApikeyDescriptionX");
+    if (cJSON_IsNull(s_apikey_description_x)) {
+        s_apikey_description_x = NULL;
+    }
     if (s_apikey_description_x) { 
     if(!cJSON_IsString(s_apikey_description_x) && !cJSON_IsNull(s_apikey_description_x))
     {
@@ -201,6 +243,9 @@ common_auditdetail_t *common_auditdetail_parseFromJSON(cJSON *common_auditdetail
 
     // common_auditdetail->dt_auditdetail_date
     cJSON *dt_auditdetail_date = cJSON_GetObjectItemCaseSensitive(common_auditdetailJSON, "dtAuditdetailDate");
+    if (cJSON_IsNull(dt_auditdetail_date)) {
+        dt_auditdetail_date = NULL;
+    }
     if (!dt_auditdetail_date) {
         goto end;
     }
@@ -212,7 +257,7 @@ common_auditdetail_t *common_auditdetail_parseFromJSON(cJSON *common_auditdetail
     }
 
 
-    common_auditdetail_local_var = common_auditdetail_create (
+    common_auditdetail_local_var = common_auditdetail_create_internal (
         fki_user_id->valuedouble,
         fki_apikey_id ? fki_apikey_id->valuedouble : 0,
         strdup(s_user_loginname->valuestring),

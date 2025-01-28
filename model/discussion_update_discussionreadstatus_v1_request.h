@@ -21,9 +21,10 @@ typedef struct discussion_update_discussionreadstatus_v1_request_t discussion_up
 typedef struct discussion_update_discussionreadstatus_v1_request_t {
     char *dt_discussionreadstatus_date; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } discussion_update_discussionreadstatus_v1_request_t;
 
-discussion_update_discussionreadstatus_v1_request_t *discussion_update_discussionreadstatus_v1_request_create(
+__attribute__((deprecated)) discussion_update_discussionreadstatus_v1_request_t *discussion_update_discussionreadstatus_v1_request_create(
     char *dt_discussionreadstatus_date
 );
 

@@ -15,7 +15,7 @@
 
 typedef struct ezsigndocument_submit_ezsignform_v1_request_t ezsigndocument_submit_ezsignform_v1_request_t;
 
-#include "object.h"
+#include "custom_ezsignformfieldgroup_request.h"
 
 
 
@@ -23,9 +23,10 @@ typedef struct ezsigndocument_submit_ezsignform_v1_request_t {
     int b_ezsignform_isdraft; //boolean
     list_t *a_obj_ezsignformfieldgroup; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigndocument_submit_ezsignform_v1_request_t;
 
-ezsigndocument_submit_ezsignform_v1_request_t *ezsigndocument_submit_ezsignform_v1_request_create(
+__attribute__((deprecated)) ezsigndocument_submit_ezsignform_v1_request_t *ezsigndocument_submit_ezsignform_v1_request_create(
     int b_ezsignform_isdraft,
     list_t *a_obj_ezsignformfieldgroup
 );

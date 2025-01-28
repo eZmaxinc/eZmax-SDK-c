@@ -24,14 +24,14 @@ websocket_response_information_v1_t* instantiate_websocket_response_information_
   if (include_optional) {
     websocket_response_information_v1 = websocket_response_information_v1_create(
       ezmax_api_definition__full_websocket_response_information_v1_EWEBSOCKETMESSAGETYPE_Response-Information-V1,
-      "Ch@nnel_1.0",
+      "Ch@nnel_1.0_124547_3453_4563_567",
        // false, not to have infinite recursion
       instantiate_websocket_response_information_v1_m_payload(0)
     );
   } else {
     websocket_response_information_v1 = websocket_response_information_v1_create(
       ezmax_api_definition__full_websocket_response_information_v1_EWEBSOCKETMESSAGETYPE_Response-Information-V1,
-      "Ch@nnel_1.0",
+      "Ch@nnel_1.0_124547_3453_4563_567",
       NULL
     );
   }

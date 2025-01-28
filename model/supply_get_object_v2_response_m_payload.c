@@ -5,7 +5,7 @@
 
 
 
-supply_get_object_v2_response_m_payload_t *supply_get_object_v2_response_m_payload_create(
+static supply_get_object_v2_response_m_payload_t *supply_get_object_v2_response_m_payload_create_internal(
     supply_response_compound_t *obj_supply
     ) {
     supply_get_object_v2_response_m_payload_t *supply_get_object_v2_response_m_payload_local_var = malloc(sizeof(supply_get_object_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ supply_get_object_v2_response_m_payload_t *supply_get_object_v2_response_m_paylo
     }
     supply_get_object_v2_response_m_payload_local_var->obj_supply = obj_supply;
 
+    supply_get_object_v2_response_m_payload_local_var->_library_owned = 1;
     return supply_get_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) supply_get_object_v2_response_m_payload_t *supply_get_object_v2_response_m_payload_create(
+    supply_response_compound_t *obj_supply
+    ) {
+    return supply_get_object_v2_response_m_payload_create_internal (
+        obj_supply
+        );
+}
 
 void supply_get_object_v2_response_m_payload_free(supply_get_object_v2_response_m_payload_t *supply_get_object_v2_response_m_payload) {
     if(NULL == supply_get_object_v2_response_m_payload){
+        return ;
+    }
+    if(supply_get_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "supply_get_object_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ supply_get_object_v2_response_m_payload_t *supply_get_object_v2_response_m_paylo
 
     // supply_get_object_v2_response_m_payload->obj_supply
     cJSON *obj_supply = cJSON_GetObjectItemCaseSensitive(supply_get_object_v2_response_m_payloadJSON, "objSupply");
+    if (cJSON_IsNull(obj_supply)) {
+        obj_supply = NULL;
+    }
     if (!obj_supply) {
         goto end;
     }
@@ -71,7 +86,7 @@ supply_get_object_v2_response_m_payload_t *supply_get_object_v2_response_m_paylo
     obj_supply_local_nonprim = supply_response_compound_parseFromJSON(obj_supply); //nonprimitive
 
 
-    supply_get_object_v2_response_m_payload_local_var = supply_get_object_v2_response_m_payload_create (
+    supply_get_object_v2_response_m_payload_local_var = supply_get_object_v2_response_m_payload_create_internal (
         obj_supply_local_nonprim
         );
 

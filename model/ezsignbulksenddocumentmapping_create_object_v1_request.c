@@ -5,7 +5,7 @@
 
 
 
-ezsignbulksenddocumentmapping_create_object_v1_request_t *ezsignbulksenddocumentmapping_create_object_v1_request_create(
+static ezsignbulksenddocumentmapping_create_object_v1_request_t *ezsignbulksenddocumentmapping_create_object_v1_request_create_internal(
     list_t *a_obj_ezsignbulksenddocumentmapping
     ) {
     ezsignbulksenddocumentmapping_create_object_v1_request_t *ezsignbulksenddocumentmapping_create_object_v1_request_local_var = malloc(sizeof(ezsignbulksenddocumentmapping_create_object_v1_request_t));
@@ -14,12 +14,24 @@ ezsignbulksenddocumentmapping_create_object_v1_request_t *ezsignbulksenddocument
     }
     ezsignbulksenddocumentmapping_create_object_v1_request_local_var->a_obj_ezsignbulksenddocumentmapping = a_obj_ezsignbulksenddocumentmapping;
 
+    ezsignbulksenddocumentmapping_create_object_v1_request_local_var->_library_owned = 1;
     return ezsignbulksenddocumentmapping_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezsignbulksenddocumentmapping_create_object_v1_request_t *ezsignbulksenddocumentmapping_create_object_v1_request_create(
+    list_t *a_obj_ezsignbulksenddocumentmapping
+    ) {
+    return ezsignbulksenddocumentmapping_create_object_v1_request_create_internal (
+        a_obj_ezsignbulksenddocumentmapping
+        );
+}
 
 void ezsignbulksenddocumentmapping_create_object_v1_request_free(ezsignbulksenddocumentmapping_create_object_v1_request_t *ezsignbulksenddocumentmapping_create_object_v1_request) {
     if(NULL == ezsignbulksenddocumentmapping_create_object_v1_request){
+        return ;
+    }
+    if(ezsignbulksenddocumentmapping_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignbulksenddocumentmapping_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ ezsignbulksenddocumentmapping_create_object_v1_request_t *ezsignbulksenddocument
 
     // ezsignbulksenddocumentmapping_create_object_v1_request->a_obj_ezsignbulksenddocumentmapping
     cJSON *a_obj_ezsignbulksenddocumentmapping = cJSON_GetObjectItemCaseSensitive(ezsignbulksenddocumentmapping_create_object_v1_requestJSON, "a_objEzsignbulksenddocumentmapping");
+    if (cJSON_IsNull(a_obj_ezsignbulksenddocumentmapping)) {
+        a_obj_ezsignbulksenddocumentmapping = NULL;
+    }
     if (!a_obj_ezsignbulksenddocumentmapping) {
         goto end;
     }
@@ -96,7 +111,7 @@ ezsignbulksenddocumentmapping_create_object_v1_request_t *ezsignbulksenddocument
     }
 
 
-    ezsignbulksenddocumentmapping_create_object_v1_request_local_var = ezsignbulksenddocumentmapping_create_object_v1_request_create (
+    ezsignbulksenddocumentmapping_create_object_v1_request_local_var = ezsignbulksenddocumentmapping_create_object_v1_request_create_internal (
         a_obj_ezsignbulksenddocumentmappingList
         );
 

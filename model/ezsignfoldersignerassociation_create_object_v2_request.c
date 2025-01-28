@@ -5,7 +5,7 @@
 
 
 
-ezsignfoldersignerassociation_create_object_v2_request_t *ezsignfoldersignerassociation_create_object_v2_request_create(
+static ezsignfoldersignerassociation_create_object_v2_request_t *ezsignfoldersignerassociation_create_object_v2_request_create_internal(
     list_t *a_obj_ezsignfoldersignerassociation
     ) {
     ezsignfoldersignerassociation_create_object_v2_request_t *ezsignfoldersignerassociation_create_object_v2_request_local_var = malloc(sizeof(ezsignfoldersignerassociation_create_object_v2_request_t));
@@ -14,12 +14,24 @@ ezsignfoldersignerassociation_create_object_v2_request_t *ezsignfoldersignerasso
     }
     ezsignfoldersignerassociation_create_object_v2_request_local_var->a_obj_ezsignfoldersignerassociation = a_obj_ezsignfoldersignerassociation;
 
+    ezsignfoldersignerassociation_create_object_v2_request_local_var->_library_owned = 1;
     return ezsignfoldersignerassociation_create_object_v2_request_local_var;
 }
 
+__attribute__((deprecated)) ezsignfoldersignerassociation_create_object_v2_request_t *ezsignfoldersignerassociation_create_object_v2_request_create(
+    list_t *a_obj_ezsignfoldersignerassociation
+    ) {
+    return ezsignfoldersignerassociation_create_object_v2_request_create_internal (
+        a_obj_ezsignfoldersignerassociation
+        );
+}
 
 void ezsignfoldersignerassociation_create_object_v2_request_free(ezsignfoldersignerassociation_create_object_v2_request_t *ezsignfoldersignerassociation_create_object_v2_request) {
     if(NULL == ezsignfoldersignerassociation_create_object_v2_request){
+        return ;
+    }
+    if(ezsignfoldersignerassociation_create_object_v2_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignfoldersignerassociation_create_object_v2_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ ezsignfoldersignerassociation_create_object_v2_request_t *ezsignfoldersignerasso
 
     // ezsignfoldersignerassociation_create_object_v2_request->a_obj_ezsignfoldersignerassociation
     cJSON *a_obj_ezsignfoldersignerassociation = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_create_object_v2_requestJSON, "a_objEzsignfoldersignerassociation");
+    if (cJSON_IsNull(a_obj_ezsignfoldersignerassociation)) {
+        a_obj_ezsignfoldersignerassociation = NULL;
+    }
     if (!a_obj_ezsignfoldersignerassociation) {
         goto end;
     }
@@ -96,7 +111,7 @@ ezsignfoldersignerassociation_create_object_v2_request_t *ezsignfoldersignerasso
     }
 
 
-    ezsignfoldersignerassociation_create_object_v2_request_local_var = ezsignfoldersignerassociation_create_object_v2_request_create (
+    ezsignfoldersignerassociation_create_object_v2_request_local_var = ezsignfoldersignerassociation_create_object_v2_request_create_internal (
         a_obj_ezsignfoldersignerassociationList
         );
 

@@ -22,9 +22,10 @@ typedef struct usergroupmembership_create_object_v1_request_t usergroupmembershi
 typedef struct usergroupmembership_create_object_v1_request_t {
     list_t *a_obj_usergroupmembership; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } usergroupmembership_create_object_v1_request_t;
 
-usergroupmembership_create_object_v1_request_t *usergroupmembership_create_object_v1_request_create(
+__attribute__((deprecated)) usergroupmembership_create_object_v1_request_t *usergroupmembership_create_object_v1_request_create(
     list_t *a_obj_usergroupmembership
 );
 

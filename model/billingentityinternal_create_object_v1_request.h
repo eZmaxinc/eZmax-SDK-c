@@ -22,9 +22,10 @@ typedef struct billingentityinternal_create_object_v1_request_t billingentityint
 typedef struct billingentityinternal_create_object_v1_request_t {
     list_t *a_obj_billingentityinternal; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } billingentityinternal_create_object_v1_request_t;
 
-billingentityinternal_create_object_v1_request_t *billingentityinternal_create_object_v1_request_create(
+__attribute__((deprecated)) billingentityinternal_create_object_v1_request_t *billingentityinternal_create_object_v1_request_create(
     list_t *a_obj_billingentityinternal
 );
 

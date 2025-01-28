@@ -25,9 +25,10 @@ typedef struct custom_discussionconfiguration_response_t {
     int b_discussionconfiguration_deletediscussionmessageallowed; //boolean
     int b_discussionconfiguration_editdiscussionmessageallowed; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_discussionconfiguration_response_t;
 
-custom_discussionconfiguration_response_t *custom_discussionconfiguration_response_create(
+__attribute__((deprecated)) custom_discussionconfiguration_response_t *custom_discussionconfiguration_response_create(
     int b_discussionconfiguration_completehistorywhenadded,
     int b_discussionconfiguration_createallowed,
     int b_discussionconfiguration_deleteallowed,

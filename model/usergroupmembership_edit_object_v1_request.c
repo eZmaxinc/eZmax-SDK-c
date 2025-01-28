@@ -5,7 +5,7 @@
 
 
 
-usergroupmembership_edit_object_v1_request_t *usergroupmembership_edit_object_v1_request_create(
+static usergroupmembership_edit_object_v1_request_t *usergroupmembership_edit_object_v1_request_create_internal(
     usergroupmembership_request_compound_t *obj_usergroupmembership
     ) {
     usergroupmembership_edit_object_v1_request_t *usergroupmembership_edit_object_v1_request_local_var = malloc(sizeof(usergroupmembership_edit_object_v1_request_t));
@@ -14,12 +14,24 @@ usergroupmembership_edit_object_v1_request_t *usergroupmembership_edit_object_v1
     }
     usergroupmembership_edit_object_v1_request_local_var->obj_usergroupmembership = obj_usergroupmembership;
 
+    usergroupmembership_edit_object_v1_request_local_var->_library_owned = 1;
     return usergroupmembership_edit_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) usergroupmembership_edit_object_v1_request_t *usergroupmembership_edit_object_v1_request_create(
+    usergroupmembership_request_compound_t *obj_usergroupmembership
+    ) {
+    return usergroupmembership_edit_object_v1_request_create_internal (
+        obj_usergroupmembership
+        );
+}
 
 void usergroupmembership_edit_object_v1_request_free(usergroupmembership_edit_object_v1_request_t *usergroupmembership_edit_object_v1_request) {
     if(NULL == usergroupmembership_edit_object_v1_request){
+        return ;
+    }
+    if(usergroupmembership_edit_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroupmembership_edit_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ usergroupmembership_edit_object_v1_request_t *usergroupmembership_edit_object_v1
 
     // usergroupmembership_edit_object_v1_request->obj_usergroupmembership
     cJSON *obj_usergroupmembership = cJSON_GetObjectItemCaseSensitive(usergroupmembership_edit_object_v1_requestJSON, "objUsergroupmembership");
+    if (cJSON_IsNull(obj_usergroupmembership)) {
+        obj_usergroupmembership = NULL;
+    }
     if (!obj_usergroupmembership) {
         goto end;
     }
@@ -71,7 +86,7 @@ usergroupmembership_edit_object_v1_request_t *usergroupmembership_edit_object_v1
     obj_usergroupmembership_local_nonprim = usergroupmembership_request_compound_parseFromJSON(obj_usergroupmembership); //nonprimitive
 
 
-    usergroupmembership_edit_object_v1_request_local_var = usergroupmembership_edit_object_v1_request_create (
+    usergroupmembership_edit_object_v1_request_local_var = usergroupmembership_edit_object_v1_request_create_internal (
         obj_usergroupmembership_local_nonprim
         );
 

@@ -28,9 +28,10 @@ typedef struct contact_request_compound_t {
     char *dt_contact_birthdate; // string
     struct contactinformations_request_compound_t *obj_contactinformations; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } contact_request_compound_t;
 
-contact_request_compound_t *contact_request_compound_create(
+__attribute__((deprecated)) contact_request_compound_t *contact_request_compound_create(
     int fki_contacttitle_id,
     int fki_language_id,
     char *s_contact_firstname,

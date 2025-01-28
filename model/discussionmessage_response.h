@@ -18,14 +18,6 @@ typedef struct discussionmessage_response_t discussionmessage_response_t;
 #include "common_audit.h"
 #include "field_e_discussionmessage_status.h"
 
-// Enum  for discussionmessage_response
-
-typedef enum  { ezmax_api_definition__full_discussionmessage_response__NULL = 0, ezmax_api_definition__full_discussionmessage_response___New, ezmax_api_definition__full_discussionmessage_response__Edited, ezmax_api_definition__full_discussionmessage_response__Deleted } ezmax_api_definition__full_discussionmessage_response__e;
-
-char* discussionmessage_response_e_discussionmessage_status_ToString(ezmax_api_definition__full_discussionmessage_response__e e_discussionmessage_status);
-
-ezmax_api_definition__full_discussionmessage_response__e discussionmessage_response_e_discussionmessage_status_FromString(char* e_discussionmessage_status);
-
 
 
 typedef struct discussionmessage_response_t {
@@ -33,20 +25,21 @@ typedef struct discussionmessage_response_t {
     int fki_discussion_id; //numeric
     int fki_discussionmembership_id; //numeric
     int fki_discussionmembership_id_actionrequired; //numeric
-    field_e_discussionmessage_status_t *e_discussionmessage_status; // custom
+    ezmax_api_definition__full_field_e_discussionmessage_status__e e_discussionmessage_status; //referenced enum
     char *t_discussionmessage_content; // string
     char *s_discussionmessage_creatorname; // string
     char *s_discussionmessage_actionrequiredname; // string
     struct common_audit_t *obj_audit; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } discussionmessage_response_t;
 
-discussionmessage_response_t *discussionmessage_response_create(
+__attribute__((deprecated)) discussionmessage_response_t *discussionmessage_response_create(
     int pki_discussionmessage_id,
     int fki_discussion_id,
     int fki_discussionmembership_id,
     int fki_discussionmembership_id_actionrequired,
-    field_e_discussionmessage_status_t *e_discussionmessage_status,
+    ezmax_api_definition__full_field_e_discussionmessage_status__e e_discussionmessage_status,
     char *t_discussionmessage_content,
     char *s_discussionmessage_creatorname,
     char *s_discussionmessage_actionrequiredname,

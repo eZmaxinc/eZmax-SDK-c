@@ -22,9 +22,10 @@ typedef struct multilingual_notificationsubsection_name_t {
     char *s_notificationsubsection_name1; // string
     char *s_notificationsubsection_name2; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } multilingual_notificationsubsection_name_t;
 
-multilingual_notificationsubsection_name_t *multilingual_notificationsubsection_name_create(
+__attribute__((deprecated)) multilingual_notificationsubsection_name_t *multilingual_notificationsubsection_name_create(
     char *s_notificationsubsection_name1,
     char *s_notificationsubsection_name2
 );

@@ -22,9 +22,10 @@ typedef struct scim_service_provider_config_filter_t {
     int supported; //boolean
     int max_results; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } scim_service_provider_config_filter_t;
 
-scim_service_provider_config_filter_t *scim_service_provider_config_filter_create(
+__attribute__((deprecated)) scim_service_provider_config_filter_t *scim_service_provider_config_filter_create(
     int supported,
     int max_results
 );

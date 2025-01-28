@@ -22,13 +22,13 @@ ezsignfoldersignerassociation_create_embedded_url_v1_request_t* instantiate_ezsi
   ezsignfoldersignerassociation_create_embedded_url_v1_request_t* ezsignfoldersignerassociation_create_embedded_url_v1_request = NULL;
   if (include_optional) {
     ezsignfoldersignerassociation_create_embedded_url_v1_request = ezsignfoldersignerassociation_create_embedded_url_v1_request_create(
-      "Https://www.example.com",
+      "https://www.example.com",
       "*.example.com",
       1
     );
   } else {
     ezsignfoldersignerassociation_create_embedded_url_v1_request = ezsignfoldersignerassociation_create_embedded_url_v1_request_create(
-      "Https://www.example.com",
+      "https://www.example.com",
       "*.example.com",
       1
     );

@@ -22,9 +22,10 @@ typedef struct paymentterm_edit_object_v1_request_t paymentterm_edit_object_v1_r
 typedef struct paymentterm_edit_object_v1_request_t {
     struct paymentterm_request_compound_t *obj_paymentterm; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } paymentterm_edit_object_v1_request_t;
 
-paymentterm_edit_object_v1_request_t *paymentterm_edit_object_v1_request_create(
+__attribute__((deprecated)) paymentterm_edit_object_v1_request_t *paymentterm_edit_object_v1_request_create(
     paymentterm_request_compound_t *obj_paymentterm
 );
 

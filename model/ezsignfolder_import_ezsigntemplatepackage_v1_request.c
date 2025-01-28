@@ -5,7 +5,7 @@
 
 
 
-ezsignfolder_import_ezsigntemplatepackage_v1_request_t *ezsignfolder_import_ezsigntemplatepackage_v1_request_create(
+static ezsignfolder_import_ezsigntemplatepackage_v1_request_t *ezsignfolder_import_ezsigntemplatepackage_v1_request_create_internal(
     int fki_ezsigntemplatepackage_id,
     char *dt_ezsigndocument_duedate,
     list_t *a_obj_import_ezsigntemplatepackage_relation
@@ -18,12 +18,28 @@ ezsignfolder_import_ezsigntemplatepackage_v1_request_t *ezsignfolder_import_ezsi
     ezsignfolder_import_ezsigntemplatepackage_v1_request_local_var->dt_ezsigndocument_duedate = dt_ezsigndocument_duedate;
     ezsignfolder_import_ezsigntemplatepackage_v1_request_local_var->a_obj_import_ezsigntemplatepackage_relation = a_obj_import_ezsigntemplatepackage_relation;
 
+    ezsignfolder_import_ezsigntemplatepackage_v1_request_local_var->_library_owned = 1;
     return ezsignfolder_import_ezsigntemplatepackage_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezsignfolder_import_ezsigntemplatepackage_v1_request_t *ezsignfolder_import_ezsigntemplatepackage_v1_request_create(
+    int fki_ezsigntemplatepackage_id,
+    char *dt_ezsigndocument_duedate,
+    list_t *a_obj_import_ezsigntemplatepackage_relation
+    ) {
+    return ezsignfolder_import_ezsigntemplatepackage_v1_request_create_internal (
+        fki_ezsigntemplatepackage_id,
+        dt_ezsigndocument_duedate,
+        a_obj_import_ezsigntemplatepackage_relation
+        );
+}
 
 void ezsignfolder_import_ezsigntemplatepackage_v1_request_free(ezsignfolder_import_ezsigntemplatepackage_v1_request_t *ezsignfolder_import_ezsigntemplatepackage_v1_request) {
     if(NULL == ezsignfolder_import_ezsigntemplatepackage_v1_request){
+        return ;
+    }
+    if(ezsignfolder_import_ezsigntemplatepackage_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignfolder_import_ezsigntemplatepackage_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -99,6 +115,9 @@ ezsignfolder_import_ezsigntemplatepackage_v1_request_t *ezsignfolder_import_ezsi
 
     // ezsignfolder_import_ezsigntemplatepackage_v1_request->fki_ezsigntemplatepackage_id
     cJSON *fki_ezsigntemplatepackage_id = cJSON_GetObjectItemCaseSensitive(ezsignfolder_import_ezsigntemplatepackage_v1_requestJSON, "fkiEzsigntemplatepackageID");
+    if (cJSON_IsNull(fki_ezsigntemplatepackage_id)) {
+        fki_ezsigntemplatepackage_id = NULL;
+    }
     if (!fki_ezsigntemplatepackage_id) {
         goto end;
     }
@@ -111,6 +130,9 @@ ezsignfolder_import_ezsigntemplatepackage_v1_request_t *ezsignfolder_import_ezsi
 
     // ezsignfolder_import_ezsigntemplatepackage_v1_request->dt_ezsigndocument_duedate
     cJSON *dt_ezsigndocument_duedate = cJSON_GetObjectItemCaseSensitive(ezsignfolder_import_ezsigntemplatepackage_v1_requestJSON, "dtEzsigndocumentDuedate");
+    if (cJSON_IsNull(dt_ezsigndocument_duedate)) {
+        dt_ezsigndocument_duedate = NULL;
+    }
     if (!dt_ezsigndocument_duedate) {
         goto end;
     }
@@ -123,6 +145,9 @@ ezsignfolder_import_ezsigntemplatepackage_v1_request_t *ezsignfolder_import_ezsi
 
     // ezsignfolder_import_ezsigntemplatepackage_v1_request->a_obj_import_ezsigntemplatepackage_relation
     cJSON *a_obj_import_ezsigntemplatepackage_relation = cJSON_GetObjectItemCaseSensitive(ezsignfolder_import_ezsigntemplatepackage_v1_requestJSON, "a_objImportEzsigntemplatepackageRelation");
+    if (cJSON_IsNull(a_obj_import_ezsigntemplatepackage_relation)) {
+        a_obj_import_ezsigntemplatepackage_relation = NULL;
+    }
     if (!a_obj_import_ezsigntemplatepackage_relation) {
         goto end;
     }
@@ -146,7 +171,7 @@ ezsignfolder_import_ezsigntemplatepackage_v1_request_t *ezsignfolder_import_ezsi
     }
 
 
-    ezsignfolder_import_ezsigntemplatepackage_v1_request_local_var = ezsignfolder_import_ezsigntemplatepackage_v1_request_create (
+    ezsignfolder_import_ezsigntemplatepackage_v1_request_local_var = ezsignfolder_import_ezsigntemplatepackage_v1_request_create_internal (
         fki_ezsigntemplatepackage_id->valuedouble,
         strdup(dt_ezsigndocument_duedate->valuestring),
         a_obj_import_ezsigntemplatepackage_relationList

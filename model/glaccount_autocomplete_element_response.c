@@ -5,7 +5,7 @@
 
 
 
-glaccount_autocomplete_element_response_t *glaccount_autocomplete_element_response_create(
+static glaccount_autocomplete_element_response_t *glaccount_autocomplete_element_response_create_internal(
     int pki_glaccount_id,
     int i_glaccount_code,
     char *s_glaccount_description_x,
@@ -20,12 +20,30 @@ glaccount_autocomplete_element_response_t *glaccount_autocomplete_element_respon
     glaccount_autocomplete_element_response_local_var->s_glaccount_description_x = s_glaccount_description_x;
     glaccount_autocomplete_element_response_local_var->b_glaccount_isactive = b_glaccount_isactive;
 
+    glaccount_autocomplete_element_response_local_var->_library_owned = 1;
     return glaccount_autocomplete_element_response_local_var;
 }
 
+__attribute__((deprecated)) glaccount_autocomplete_element_response_t *glaccount_autocomplete_element_response_create(
+    int pki_glaccount_id,
+    int i_glaccount_code,
+    char *s_glaccount_description_x,
+    int b_glaccount_isactive
+    ) {
+    return glaccount_autocomplete_element_response_create_internal (
+        pki_glaccount_id,
+        i_glaccount_code,
+        s_glaccount_description_x,
+        b_glaccount_isactive
+        );
+}
 
 void glaccount_autocomplete_element_response_free(glaccount_autocomplete_element_response_t *glaccount_autocomplete_element_response) {
     if(NULL == glaccount_autocomplete_element_response){
+        return ;
+    }
+    if(glaccount_autocomplete_element_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "glaccount_autocomplete_element_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -88,6 +106,9 @@ glaccount_autocomplete_element_response_t *glaccount_autocomplete_element_respon
 
     // glaccount_autocomplete_element_response->pki_glaccount_id
     cJSON *pki_glaccount_id = cJSON_GetObjectItemCaseSensitive(glaccount_autocomplete_element_responseJSON, "pkiGlaccountID");
+    if (cJSON_IsNull(pki_glaccount_id)) {
+        pki_glaccount_id = NULL;
+    }
     if (!pki_glaccount_id) {
         goto end;
     }
@@ -100,6 +121,9 @@ glaccount_autocomplete_element_response_t *glaccount_autocomplete_element_respon
 
     // glaccount_autocomplete_element_response->i_glaccount_code
     cJSON *i_glaccount_code = cJSON_GetObjectItemCaseSensitive(glaccount_autocomplete_element_responseJSON, "iGlaccountCode");
+    if (cJSON_IsNull(i_glaccount_code)) {
+        i_glaccount_code = NULL;
+    }
     if (!i_glaccount_code) {
         goto end;
     }
@@ -112,6 +136,9 @@ glaccount_autocomplete_element_response_t *glaccount_autocomplete_element_respon
 
     // glaccount_autocomplete_element_response->s_glaccount_description_x
     cJSON *s_glaccount_description_x = cJSON_GetObjectItemCaseSensitive(glaccount_autocomplete_element_responseJSON, "sGlaccountDescriptionX");
+    if (cJSON_IsNull(s_glaccount_description_x)) {
+        s_glaccount_description_x = NULL;
+    }
     if (!s_glaccount_description_x) {
         goto end;
     }
@@ -124,6 +151,9 @@ glaccount_autocomplete_element_response_t *glaccount_autocomplete_element_respon
 
     // glaccount_autocomplete_element_response->b_glaccount_isactive
     cJSON *b_glaccount_isactive = cJSON_GetObjectItemCaseSensitive(glaccount_autocomplete_element_responseJSON, "bGlaccountIsactive");
+    if (cJSON_IsNull(b_glaccount_isactive)) {
+        b_glaccount_isactive = NULL;
+    }
     if (!b_glaccount_isactive) {
         goto end;
     }
@@ -135,7 +165,7 @@ glaccount_autocomplete_element_response_t *glaccount_autocomplete_element_respon
     }
 
 
-    glaccount_autocomplete_element_response_local_var = glaccount_autocomplete_element_response_create (
+    glaccount_autocomplete_element_response_local_var = glaccount_autocomplete_element_response_create_internal (
         pki_glaccount_id->valuedouble,
         i_glaccount_code->valuedouble,
         strdup(s_glaccount_description_x->valuestring),

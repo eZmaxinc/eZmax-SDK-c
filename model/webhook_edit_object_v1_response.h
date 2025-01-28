@@ -24,9 +24,10 @@ typedef struct webhook_edit_object_v1_response_t {
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } webhook_edit_object_v1_response_t;
 
-webhook_edit_object_v1_response_t *webhook_edit_object_v1_response_create(
+__attribute__((deprecated)) webhook_edit_object_v1_response_t *webhook_edit_object_v1_response_create(
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
 );

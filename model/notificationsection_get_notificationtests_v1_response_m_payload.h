@@ -22,9 +22,10 @@ typedef struct notificationsection_get_notificationtests_v1_response_m_payload_t
 typedef struct notificationsection_get_notificationtests_v1_response_m_payload_t {
     list_t *a_obj_notificationsubsection; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } notificationsection_get_notificationtests_v1_response_m_payload_t;
 
-notificationsection_get_notificationtests_v1_response_m_payload_t *notificationsection_get_notificationtests_v1_response_m_payload_create(
+__attribute__((deprecated)) notificationsection_get_notificationtests_v1_response_m_payload_t *notificationsection_get_notificationtests_v1_response_m_payload_create(
     list_t *a_obj_notificationsubsection
 );
 

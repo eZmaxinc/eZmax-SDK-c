@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_systemconfiguration_language2__e field_e_syst
     return 0;
 }
 
-cJSON *field_e_systemconfiguration_language2_field_e_systemconfiguration_language2_convertToJSON(ezmax_api_definition__full_field_e_systemconfiguration_language2__e field_e_systemconfiguration_language2) {
+cJSON *field_e_systemconfiguration_language2_convertToJSON(ezmax_api_definition__full_field_e_systemconfiguration_language2__e field_e_systemconfiguration_language2) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_systemconfiguration_language2", field_e_systemconfiguration_language2_field_e_systemconfiguration_language2_ToString(field_e_systemconfiguration_language2)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_systemconfiguration_language2__e field_e_systemconfiguration_language2_field_e_systemconfiguration_language2_parseFromJSON(cJSON *field_e_systemconfiguration_language2JSON) {
-    ezmax_api_definition__full_field_e_systemconfiguration_language2__e *field_e_systemconfiguration_language2 = NULL;
-    ezmax_api_definition__full_field_e_systemconfiguration_language2__e field_e_systemconfiguration_language2Variable;
-    cJSON *field_e_systemconfiguration_language2Var = cJSON_GetObjectItemCaseSensitive(field_e_systemconfiguration_language2JSON, "field_e_systemconfiguration_language2");
-    if(!cJSON_IsString(field_e_systemconfiguration_language2Var) || (field_e_systemconfiguration_language2Var->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_systemconfiguration_language2__e field_e_systemconfiguration_language2_parseFromJSON(cJSON *field_e_systemconfiguration_language2JSON) {
+    if(!cJSON_IsString(field_e_systemconfiguration_language2JSON) || (field_e_systemconfiguration_language2JSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_systemconfiguration_language2Variable = field_e_systemconfiguration_language2_field_e_systemconfiguration_language2_FromString(field_e_systemconfiguration_language2Var->valuestring);
-    return field_e_systemconfiguration_language2Variable;
-end:
-    return 0;
+    return field_e_systemconfiguration_language2_field_e_systemconfiguration_language2_FromString(field_e_systemconfiguration_language2JSON->valuestring);
 }

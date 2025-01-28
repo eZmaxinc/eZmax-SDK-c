@@ -15,17 +15,18 @@
 
 typedef struct apikey_get_object_v2_response_m_payload_t apikey_get_object_v2_response_m_payload_t;
 
-#include "apikey_response.h"
+#include "apikey_response_compound.h"
 
 
 
 typedef struct apikey_get_object_v2_response_m_payload_t {
-    struct apikey_response_t *obj_apikey; //model
+    struct apikey_response_compound_t *obj_apikey; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } apikey_get_object_v2_response_m_payload_t;
 
-apikey_get_object_v2_response_m_payload_t *apikey_get_object_v2_response_m_payload_create(
-    apikey_response_t *obj_apikey
+__attribute__((deprecated)) apikey_get_object_v2_response_m_payload_t *apikey_get_object_v2_response_m_payload_create(
+    apikey_response_compound_t *obj_apikey
 );
 
 void apikey_get_object_v2_response_m_payload_free(apikey_get_object_v2_response_m_payload_t *apikey_get_object_v2_response_m_payload);

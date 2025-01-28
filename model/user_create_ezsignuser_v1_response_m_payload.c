@@ -5,7 +5,7 @@
 
 
 
-user_create_ezsignuser_v1_response_m_payload_t *user_create_ezsignuser_v1_response_m_payload_create(
+static user_create_ezsignuser_v1_response_m_payload_t *user_create_ezsignuser_v1_response_m_payload_create_internal(
     list_t *a_s_email_address_success,
     list_t *a_s_email_address_failure
     ) {
@@ -16,12 +16,26 @@ user_create_ezsignuser_v1_response_m_payload_t *user_create_ezsignuser_v1_respon
     user_create_ezsignuser_v1_response_m_payload_local_var->a_s_email_address_success = a_s_email_address_success;
     user_create_ezsignuser_v1_response_m_payload_local_var->a_s_email_address_failure = a_s_email_address_failure;
 
+    user_create_ezsignuser_v1_response_m_payload_local_var->_library_owned = 1;
     return user_create_ezsignuser_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) user_create_ezsignuser_v1_response_m_payload_t *user_create_ezsignuser_v1_response_m_payload_create(
+    list_t *a_s_email_address_success,
+    list_t *a_s_email_address_failure
+    ) {
+    return user_create_ezsignuser_v1_response_m_payload_create_internal (
+        a_s_email_address_success,
+        a_s_email_address_failure
+        );
+}
 
 void user_create_ezsignuser_v1_response_m_payload_free(user_create_ezsignuser_v1_response_m_payload_t *user_create_ezsignuser_v1_response_m_payload) {
     if(NULL == user_create_ezsignuser_v1_response_m_payload){
+        return ;
+    }
+    if(user_create_ezsignuser_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "user_create_ezsignuser_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -56,7 +70,7 @@ cJSON *user_create_ezsignuser_v1_response_m_payload_convertToJSON(user_create_ez
 
     listEntry_t *a_s_email_address_successListEntry;
     list_ForEach(a_s_email_address_successListEntry, user_create_ezsignuser_v1_response_m_payload->a_s_email_address_success) {
-    if(cJSON_AddStringToObject(a_s_email_address_success, "", (char*)a_s_email_address_successListEntry->data) == NULL)
+    if(cJSON_AddStringToObject(a_s_email_address_success, "", a_s_email_address_successListEntry->data) == NULL)
     {
         goto fail;
     }
@@ -74,7 +88,7 @@ cJSON *user_create_ezsignuser_v1_response_m_payload_convertToJSON(user_create_ez
 
     listEntry_t *a_s_email_address_failureListEntry;
     list_ForEach(a_s_email_address_failureListEntry, user_create_ezsignuser_v1_response_m_payload->a_s_email_address_failure) {
-    if(cJSON_AddStringToObject(a_s_email_address_failure, "", (char*)a_s_email_address_failureListEntry->data) == NULL)
+    if(cJSON_AddStringToObject(a_s_email_address_failure, "", a_s_email_address_failureListEntry->data) == NULL)
     {
         goto fail;
     }
@@ -100,6 +114,9 @@ user_create_ezsignuser_v1_response_m_payload_t *user_create_ezsignuser_v1_respon
 
     // user_create_ezsignuser_v1_response_m_payload->a_s_email_address_success
     cJSON *a_s_email_address_success = cJSON_GetObjectItemCaseSensitive(user_create_ezsignuser_v1_response_m_payloadJSON, "a_sEmailAddressSuccess");
+    if (cJSON_IsNull(a_s_email_address_success)) {
+        a_s_email_address_success = NULL;
+    }
     if (!a_s_email_address_success) {
         goto end;
     }
@@ -122,6 +139,9 @@ user_create_ezsignuser_v1_response_m_payload_t *user_create_ezsignuser_v1_respon
 
     // user_create_ezsignuser_v1_response_m_payload->a_s_email_address_failure
     cJSON *a_s_email_address_failure = cJSON_GetObjectItemCaseSensitive(user_create_ezsignuser_v1_response_m_payloadJSON, "a_sEmailAddressFailure");
+    if (cJSON_IsNull(a_s_email_address_failure)) {
+        a_s_email_address_failure = NULL;
+    }
     if (!a_s_email_address_failure) {
         goto end;
     }
@@ -143,7 +163,7 @@ user_create_ezsignuser_v1_response_m_payload_t *user_create_ezsignuser_v1_respon
     }
 
 
-    user_create_ezsignuser_v1_response_m_payload_local_var = user_create_ezsignuser_v1_response_m_payload_create (
+    user_create_ezsignuser_v1_response_m_payload_local_var = user_create_ezsignuser_v1_response_m_payload_create_internal (
         a_s_email_address_successList,
         a_s_email_address_failureList
         );

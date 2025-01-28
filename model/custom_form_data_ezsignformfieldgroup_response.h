@@ -23,9 +23,10 @@ typedef struct custom_form_data_ezsignformfieldgroup_response_t {
     char *s_ezsignformfieldgroup_label; // string
     list_t *a_obj_ezsignformfield; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_form_data_ezsignformfieldgroup_response_t;
 
-custom_form_data_ezsignformfieldgroup_response_t *custom_form_data_ezsignformfieldgroup_response_create(
+__attribute__((deprecated)) custom_form_data_ezsignformfieldgroup_response_t *custom_form_data_ezsignformfieldgroup_response_create(
     char *s_ezsignformfieldgroup_label,
     list_t *a_obj_ezsignformfield
 );

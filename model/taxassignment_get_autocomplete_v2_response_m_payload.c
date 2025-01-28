@@ -5,7 +5,7 @@
 
 
 
-taxassignment_get_autocomplete_v2_response_m_payload_t *taxassignment_get_autocomplete_v2_response_m_payload_create(
+static taxassignment_get_autocomplete_v2_response_m_payload_t *taxassignment_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_taxassignment
     ) {
     taxassignment_get_autocomplete_v2_response_m_payload_t *taxassignment_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(taxassignment_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ taxassignment_get_autocomplete_v2_response_m_payload_t *taxassignment_get_autoco
     }
     taxassignment_get_autocomplete_v2_response_m_payload_local_var->a_obj_taxassignment = a_obj_taxassignment;
 
+    taxassignment_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return taxassignment_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) taxassignment_get_autocomplete_v2_response_m_payload_t *taxassignment_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_taxassignment
+    ) {
+    return taxassignment_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_taxassignment
+        );
+}
 
 void taxassignment_get_autocomplete_v2_response_m_payload_free(taxassignment_get_autocomplete_v2_response_m_payload_t *taxassignment_get_autocomplete_v2_response_m_payload) {
     if(NULL == taxassignment_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(taxassignment_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "taxassignment_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ taxassignment_get_autocomplete_v2_response_m_payload_t *taxassignment_get_autoco
 
     // taxassignment_get_autocomplete_v2_response_m_payload->a_obj_taxassignment
     cJSON *a_obj_taxassignment = cJSON_GetObjectItemCaseSensitive(taxassignment_get_autocomplete_v2_response_m_payloadJSON, "a_objTaxassignment");
+    if (cJSON_IsNull(a_obj_taxassignment)) {
+        a_obj_taxassignment = NULL;
+    }
     if (!a_obj_taxassignment) {
         goto end;
     }
@@ -96,7 +111,7 @@ taxassignment_get_autocomplete_v2_response_m_payload_t *taxassignment_get_autoco
     }
 
 
-    taxassignment_get_autocomplete_v2_response_m_payload_local_var = taxassignment_get_autocomplete_v2_response_m_payload_create (
+    taxassignment_get_autocomplete_v2_response_m_payload_local_var = taxassignment_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_taxassignmentList
         );
 

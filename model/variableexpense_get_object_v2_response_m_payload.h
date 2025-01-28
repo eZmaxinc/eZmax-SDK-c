@@ -22,9 +22,10 @@ typedef struct variableexpense_get_object_v2_response_m_payload_t variableexpens
 typedef struct variableexpense_get_object_v2_response_m_payload_t {
     struct variableexpense_response_compound_t *obj_variableexpense; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } variableexpense_get_object_v2_response_m_payload_t;
 
-variableexpense_get_object_v2_response_m_payload_t *variableexpense_get_object_v2_response_m_payload_create(
+__attribute__((deprecated)) variableexpense_get_object_v2_response_m_payload_t *variableexpense_get_object_v2_response_m_payload_create(
     variableexpense_response_compound_t *obj_variableexpense
 );
 

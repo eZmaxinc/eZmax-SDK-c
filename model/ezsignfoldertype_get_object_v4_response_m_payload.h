@@ -22,9 +22,10 @@ typedef struct ezsignfoldertype_get_object_v4_response_m_payload_t ezsignfoldert
 typedef struct ezsignfoldertype_get_object_v4_response_m_payload_t {
     struct ezsignfoldertype_response_compound_v4_t *obj_ezsignfoldertype; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfoldertype_get_object_v4_response_m_payload_t;
 
-ezsignfoldertype_get_object_v4_response_m_payload_t *ezsignfoldertype_get_object_v4_response_m_payload_create(
+__attribute__((deprecated)) ezsignfoldertype_get_object_v4_response_m_payload_t *ezsignfoldertype_get_object_v4_response_m_payload_create(
     ezsignfoldertype_response_compound_v4_t *obj_ezsignfoldertype
 );
 

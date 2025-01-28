@@ -17,14 +17,6 @@ typedef struct ezdoctemplatedocument_list_element_t ezdoctemplatedocument_list_e
 
 #include "field_e_ezdoctemplatedocument_privacylevel.h"
 
-// Enum  for ezdoctemplatedocument_list_element
-
-typedef enum  { ezmax_api_definition__full_ezdoctemplatedocument_list_element__NULL = 0, ezmax_api_definition__full_ezdoctemplatedocument_list_element__Company, ezmax_api_definition__full_ezdoctemplatedocument_list_element__Ezsignfoldertype, ezmax_api_definition__full_ezdoctemplatedocument_list_element__User } ezmax_api_definition__full_ezdoctemplatedocument_list_element__e;
-
-char* ezdoctemplatedocument_list_element_e_ezdoctemplatedocument_privacylevel_ToString(ezmax_api_definition__full_ezdoctemplatedocument_list_element__e e_ezdoctemplatedocument_privacylevel);
-
-ezmax_api_definition__full_ezdoctemplatedocument_list_element__e ezdoctemplatedocument_list_element_e_ezdoctemplatedocument_privacylevel_FromString(char* e_ezdoctemplatedocument_privacylevel);
-
 
 
 typedef struct ezdoctemplatedocument_list_element_t {
@@ -36,13 +28,14 @@ typedef struct ezdoctemplatedocument_list_element_t {
     char *s_ezsignfoldertype_name_x; // string
     char *s_ezdoctemplatetype_description_x; // string
     char *s_ezdoctemplatefieldtypecategory_description_x; // string
-    field_e_ezdoctemplatedocument_privacylevel_t *e_ezdoctemplatedocument_privacylevel; // custom
+    ezmax_api_definition__full_field_e_ezdoctemplatedocument_privacylevel__e e_ezdoctemplatedocument_privacylevel; //referenced enum
     int b_ezdoctemplatedocument_isactive; //boolean
     char *s_ezdoctemplatedocument_name_x; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezdoctemplatedocument_list_element_t;
 
-ezdoctemplatedocument_list_element_t *ezdoctemplatedocument_list_element_create(
+__attribute__((deprecated)) ezdoctemplatedocument_list_element_t *ezdoctemplatedocument_list_element_create(
     int pki_ezdoctemplatedocument_id,
     int fki_language_id,
     int fki_ezsignfoldertype_id,
@@ -51,7 +44,7 @@ ezdoctemplatedocument_list_element_t *ezdoctemplatedocument_list_element_create(
     char *s_ezsignfoldertype_name_x,
     char *s_ezdoctemplatetype_description_x,
     char *s_ezdoctemplatefieldtypecategory_description_x,
-    field_e_ezdoctemplatedocument_privacylevel_t *e_ezdoctemplatedocument_privacylevel,
+    ezmax_api_definition__full_field_e_ezdoctemplatedocument_privacylevel__e e_ezdoctemplatedocument_privacylevel,
     int b_ezdoctemplatedocument_isactive,
     char *s_ezdoctemplatedocument_name_x
 );

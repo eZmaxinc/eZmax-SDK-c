@@ -5,7 +5,7 @@
 
 
 
-ezsigndocument_get_ezsignpages_v1_response_m_payload_t *ezsigndocument_get_ezsignpages_v1_response_m_payload_create(
+static ezsigndocument_get_ezsignpages_v1_response_m_payload_t *ezsigndocument_get_ezsignpages_v1_response_m_payload_create_internal(
     list_t *a_obj_ezsignpage
     ) {
     ezsigndocument_get_ezsignpages_v1_response_m_payload_t *ezsigndocument_get_ezsignpages_v1_response_m_payload_local_var = malloc(sizeof(ezsigndocument_get_ezsignpages_v1_response_m_payload_t));
@@ -14,18 +14,30 @@ ezsigndocument_get_ezsignpages_v1_response_m_payload_t *ezsigndocument_get_ezsig
     }
     ezsigndocument_get_ezsignpages_v1_response_m_payload_local_var->a_obj_ezsignpage = a_obj_ezsignpage;
 
+    ezsigndocument_get_ezsignpages_v1_response_m_payload_local_var->_library_owned = 1;
     return ezsigndocument_get_ezsignpages_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezsigndocument_get_ezsignpages_v1_response_m_payload_t *ezsigndocument_get_ezsignpages_v1_response_m_payload_create(
+    list_t *a_obj_ezsignpage
+    ) {
+    return ezsigndocument_get_ezsignpages_v1_response_m_payload_create_internal (
+        a_obj_ezsignpage
+        );
+}
 
 void ezsigndocument_get_ezsignpages_v1_response_m_payload_free(ezsigndocument_get_ezsignpages_v1_response_m_payload_t *ezsigndocument_get_ezsignpages_v1_response_m_payload) {
     if(NULL == ezsigndocument_get_ezsignpages_v1_response_m_payload){
         return ;
     }
+    if(ezsigndocument_get_ezsignpages_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigndocument_get_ezsignpages_v1_response_m_payload_free");
+        return ;
+    }
     listEntry_t *listEntry;
     if (ezsigndocument_get_ezsignpages_v1_response_m_payload->a_obj_ezsignpage) {
         list_ForEach(listEntry, ezsigndocument_get_ezsignpages_v1_response_m_payload->a_obj_ezsignpage) {
-            ezsignpage_response_free(listEntry->data);
+            ezsignpage_response_compound_free(listEntry->data);
         }
         list_freeList(ezsigndocument_get_ezsignpages_v1_response_m_payload->a_obj_ezsignpage);
         ezsigndocument_get_ezsignpages_v1_response_m_payload->a_obj_ezsignpage = NULL;
@@ -48,7 +60,7 @@ cJSON *ezsigndocument_get_ezsignpages_v1_response_m_payload_convertToJSON(ezsign
     listEntry_t *a_obj_ezsignpageListEntry;
     if (ezsigndocument_get_ezsignpages_v1_response_m_payload->a_obj_ezsignpage) {
     list_ForEach(a_obj_ezsignpageListEntry, ezsigndocument_get_ezsignpages_v1_response_m_payload->a_obj_ezsignpage) {
-    cJSON *itemLocal = ezsignpage_response_convertToJSON(a_obj_ezsignpageListEntry->data);
+    cJSON *itemLocal = ezsignpage_response_compound_convertToJSON(a_obj_ezsignpageListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -73,6 +85,9 @@ ezsigndocument_get_ezsignpages_v1_response_m_payload_t *ezsigndocument_get_ezsig
 
     // ezsigndocument_get_ezsignpages_v1_response_m_payload->a_obj_ezsignpage
     cJSON *a_obj_ezsignpage = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_ezsignpages_v1_response_m_payloadJSON, "a_objEzsignpage");
+    if (cJSON_IsNull(a_obj_ezsignpage)) {
+        a_obj_ezsignpage = NULL;
+    }
     if (!a_obj_ezsignpage) {
         goto end;
     }
@@ -90,13 +105,13 @@ ezsigndocument_get_ezsignpages_v1_response_m_payload_t *ezsigndocument_get_ezsig
         if(!cJSON_IsObject(a_obj_ezsignpage_local_nonprimitive)){
             goto end;
         }
-        ezsignpage_response_t *a_obj_ezsignpageItem = ezsignpage_response_parseFromJSON(a_obj_ezsignpage_local_nonprimitive);
+        ezsignpage_response_compound_t *a_obj_ezsignpageItem = ezsignpage_response_compound_parseFromJSON(a_obj_ezsignpage_local_nonprimitive);
 
         list_addElement(a_obj_ezsignpageList, a_obj_ezsignpageItem);
     }
 
 
-    ezsigndocument_get_ezsignpages_v1_response_m_payload_local_var = ezsigndocument_get_ezsignpages_v1_response_m_payload_create (
+    ezsigndocument_get_ezsignpages_v1_response_m_payload_local_var = ezsigndocument_get_ezsignpages_v1_response_m_payload_create_internal (
         a_obj_ezsignpageList
         );
 
@@ -105,7 +120,7 @@ end:
     if (a_obj_ezsignpageList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsignpageList) {
-            ezsignpage_response_free(listEntry->data);
+            ezsignpage_response_compound_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_ezsignpageList);

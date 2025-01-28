@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsignfoldertype_pdfarequirement__e field_e_e
     return 0;
 }
 
-cJSON *field_e_ezsignfoldertype_pdfarequirement_field_e_ezsignfoldertype_pdfarequirement_convertToJSON(ezmax_api_definition__full_field_e_ezsignfoldertype_pdfarequirement__e field_e_ezsignfoldertype_pdfarequirement) {
+cJSON *field_e_ezsignfoldertype_pdfarequirement_convertToJSON(ezmax_api_definition__full_field_e_ezsignfoldertype_pdfarequirement__e field_e_ezsignfoldertype_pdfarequirement) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsignfoldertype_pdfarequirement", field_e_ezsignfoldertype_pdfarequirement_field_e_ezsignfoldertype_pdfarequirement_ToString(field_e_ezsignfoldertype_pdfarequirement)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsignfoldertype_pdfarequirement__e field_e_ezsignfoldertype_pdfarequirement_field_e_ezsignfoldertype_pdfarequirement_parseFromJSON(cJSON *field_e_ezsignfoldertype_pdfarequirementJSON) {
-    ezmax_api_definition__full_field_e_ezsignfoldertype_pdfarequirement__e *field_e_ezsignfoldertype_pdfarequirement = NULL;
-    ezmax_api_definition__full_field_e_ezsignfoldertype_pdfarequirement__e field_e_ezsignfoldertype_pdfarequirementVariable;
-    cJSON *field_e_ezsignfoldertype_pdfarequirementVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsignfoldertype_pdfarequirementJSON, "field_e_ezsignfoldertype_pdfarequirement");
-    if(!cJSON_IsString(field_e_ezsignfoldertype_pdfarequirementVar) || (field_e_ezsignfoldertype_pdfarequirementVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsignfoldertype_pdfarequirement__e field_e_ezsignfoldertype_pdfarequirement_parseFromJSON(cJSON *field_e_ezsignfoldertype_pdfarequirementJSON) {
+    if(!cJSON_IsString(field_e_ezsignfoldertype_pdfarequirementJSON) || (field_e_ezsignfoldertype_pdfarequirementJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsignfoldertype_pdfarequirementVariable = field_e_ezsignfoldertype_pdfarequirement_field_e_ezsignfoldertype_pdfarequirement_FromString(field_e_ezsignfoldertype_pdfarequirementVar->valuestring);
-    return field_e_ezsignfoldertype_pdfarequirementVariable;
-end:
-    return 0;
+    return field_e_ezsignfoldertype_pdfarequirement_field_e_ezsignfoldertype_pdfarequirement_FromString(field_e_ezsignfoldertype_pdfarequirementJSON->valuestring);
 }

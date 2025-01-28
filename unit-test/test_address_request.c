@@ -31,8 +31,8 @@ address_request_t* instantiate_address_request(int include_optional) {
       11,
       1,
       "H7T2S3",
-      "doej",
-      "doej"
+      "73.5674",
+      "45.5019"
     );
   } else {
     address_request = address_request_create(
@@ -45,8 +45,8 @@ address_request_t* instantiate_address_request(int include_optional) {
       11,
       1,
       "H7T2S3",
-      "doej",
-      "doej"
+      "73.5674",
+      "45.5019"
     );
   }
 

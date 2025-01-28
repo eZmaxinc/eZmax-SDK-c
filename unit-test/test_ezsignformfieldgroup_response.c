@@ -35,7 +35,7 @@ ezsignformfieldgroup_response_t* instantiate_ezsignformfieldgroup_response(int i
       75,
       1,
       ezmax_api_definition__full_ezsignformfieldgroup_response__"None",
-      "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
+      "^[0-9]{9}$",
       "Phone number",
       "Please enter a valid email address",
       ezmax_api_definition__full_ezsignformfieldgroup_response__"TopLeft"
@@ -55,7 +55,7 @@ ezsignformfieldgroup_response_t* instantiate_ezsignformfieldgroup_response(int i
       75,
       1,
       ezmax_api_definition__full_ezsignformfieldgroup_response__"None",
-      "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
+      "^[0-9]{9}$",
       "Phone number",
       "Please enter a valid email address",
       ezmax_api_definition__full_ezsignformfieldgroup_response__"TopLeft"

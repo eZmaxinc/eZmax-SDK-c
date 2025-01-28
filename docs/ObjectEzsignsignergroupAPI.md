@@ -49,7 +49,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectEzsignsignergroupAPI_ezsignsignergroupDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignsignergroupID);
+ezsignsignergroup_delete_object_v1_response_t* ObjectEzsignsignergroupAPI_ezsignsignergroupDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignsignergroupID);
 ```
 
 ### Parameters
@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsignsignergroup_delete_object_v1_response_t](ezsignsignergroup_delete_object_v1_response.md) *
 
 
 ### Authorization
@@ -112,7 +112,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectEzsignsignergroupAPI_ezsignsignergroupEditObjectV1(apiClient_t *apiClient, int *pkiEzsignsignergroupID, ezsignsignergroup_edit_object_v1_request_t *ezsignsignergroup_edit_object_v1_request);
+ezsignsignergroup_edit_object_v1_response_t* ObjectEzsignsignergroupAPI_ezsignsignergroupEditObjectV1(apiClient_t *apiClient, int *pkiEzsignsignergroupID, ezsignsignergroup_edit_object_v1_request_t *ezsignsignergroup_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -124,7 +124,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsignsignergroup_edit_object_v1_response_t](ezsignsignergroup_edit_object_v1_response.md) *
 
 
 ### Authorization

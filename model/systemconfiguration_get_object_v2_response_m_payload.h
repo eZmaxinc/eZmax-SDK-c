@@ -22,9 +22,10 @@ typedef struct systemconfiguration_get_object_v2_response_m_payload_t systemconf
 typedef struct systemconfiguration_get_object_v2_response_m_payload_t {
     struct systemconfiguration_response_compound_t *obj_systemconfiguration; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } systemconfiguration_get_object_v2_response_m_payload_t;
 
-systemconfiguration_get_object_v2_response_m_payload_t *systemconfiguration_get_object_v2_response_m_payload_create(
+__attribute__((deprecated)) systemconfiguration_get_object_v2_response_m_payload_t *systemconfiguration_get_object_v2_response_m_payload_create(
     systemconfiguration_response_compound_t *obj_systemconfiguration
 );
 

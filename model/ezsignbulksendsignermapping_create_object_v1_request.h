@@ -22,9 +22,10 @@ typedef struct ezsignbulksendsignermapping_create_object_v1_request_t ezsignbulk
 typedef struct ezsignbulksendsignermapping_create_object_v1_request_t {
     list_t *a_obj_ezsignbulksendsignermapping; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignbulksendsignermapping_create_object_v1_request_t;
 
-ezsignbulksendsignermapping_create_object_v1_request_t *ezsignbulksendsignermapping_create_object_v1_request_create(
+__attribute__((deprecated)) ezsignbulksendsignermapping_create_object_v1_request_t *ezsignbulksendsignermapping_create_object_v1_request_create(
     list_t *a_obj_ezsignbulksendsignermapping
 );
 

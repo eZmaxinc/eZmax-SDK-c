@@ -21,9 +21,10 @@ typedef struct discussionmessage_create_object_v1_response_m_payload_t discussio
 typedef struct discussionmessage_create_object_v1_response_m_payload_t {
     list_t *a_pki_discussionmessage_id; //primitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } discussionmessage_create_object_v1_response_m_payload_t;
 
-discussionmessage_create_object_v1_response_m_payload_t *discussionmessage_create_object_v1_response_m_payload_create(
+__attribute__((deprecated)) discussionmessage_create_object_v1_response_m_payload_t *discussionmessage_create_object_v1_response_m_payload_create(
     list_t *a_pki_discussionmessage_id
 );
 

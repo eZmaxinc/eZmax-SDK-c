@@ -5,12 +5,13 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/header_accept_language.h"
 #include "../model/supply_create_object_v1_request.h"
 #include "../model/supply_create_object_v1_response.h"
+#include "../model/supply_delete_object_v1_response.h"
 #include "../model/supply_edit_object_v1_request.h"
+#include "../model/supply_edit_object_v1_response.h"
 #include "../model/supply_get_autocomplete_v2_response.h"
 #include "../model/supply_get_list_v1_response.h"
 #include "../model/supply_get_object_v2_response.h"
@@ -43,7 +44,7 @@ ObjectSupplyAPI_supplyCreateObjectV1(apiClient_t *apiClient, supply_create_objec
 //
 // 
 //
-common_response_t*
+supply_delete_object_v1_response_t*
 ObjectSupplyAPI_supplyDeleteObjectV1(apiClient_t *apiClient, int *pkiSupplyID);
 
 
@@ -51,7 +52,7 @@ ObjectSupplyAPI_supplyDeleteObjectV1(apiClient_t *apiClient, int *pkiSupplyID);
 //
 // 
 //
-common_response_t*
+supply_edit_object_v1_response_t*
 ObjectSupplyAPI_supplyEditObjectV1(apiClient_t *apiClient, int *pkiSupplyID, supply_edit_object_v1_request_t *supply_edit_object_v1_request);
 
 

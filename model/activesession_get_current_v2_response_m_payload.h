@@ -22,9 +22,10 @@ typedef struct activesession_get_current_v2_response_m_payload_t activesession_g
 typedef struct activesession_get_current_v2_response_m_payload_t {
     struct activesession_response_compound_t *obj_activesession; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } activesession_get_current_v2_response_m_payload_t;
 
-activesession_get_current_v2_response_m_payload_t *activesession_get_current_v2_response_m_payload_create(
+__attribute__((deprecated)) activesession_get_current_v2_response_m_payload_t *activesession_get_current_v2_response_m_payload_create(
     activesession_response_compound_t *obj_activesession
 );
 

@@ -22,9 +22,10 @@ typedef struct department_get_autocomplete_v2_response_m_payload_t department_ge
 typedef struct department_get_autocomplete_v2_response_m_payload_t {
     list_t *a_obj_department; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } department_get_autocomplete_v2_response_m_payload_t;
 
-department_get_autocomplete_v2_response_m_payload_t *department_get_autocomplete_v2_response_m_payload_create(
+__attribute__((deprecated)) department_get_autocomplete_v2_response_m_payload_t *department_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_department
 );
 

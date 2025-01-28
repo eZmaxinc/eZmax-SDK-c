@@ -5,7 +5,7 @@
 
 
 
-webhook_get_list_v1_response_m_payload_t *webhook_get_list_v1_response_m_payload_create(
+static webhook_get_list_v1_response_m_payload_t *webhook_get_list_v1_response_m_payload_create_internal(
     int i_row_returned,
     int i_row_filtered,
     list_t *a_obj_webhook
@@ -18,12 +18,28 @@ webhook_get_list_v1_response_m_payload_t *webhook_get_list_v1_response_m_payload
     webhook_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
     webhook_get_list_v1_response_m_payload_local_var->a_obj_webhook = a_obj_webhook;
 
+    webhook_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     return webhook_get_list_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) webhook_get_list_v1_response_m_payload_t *webhook_get_list_v1_response_m_payload_create(
+    int i_row_returned,
+    int i_row_filtered,
+    list_t *a_obj_webhook
+    ) {
+    return webhook_get_list_v1_response_m_payload_create_internal (
+        i_row_returned,
+        i_row_filtered,
+        a_obj_webhook
+        );
+}
 
 void webhook_get_list_v1_response_m_payload_free(webhook_get_list_v1_response_m_payload_t *webhook_get_list_v1_response_m_payload) {
     if(NULL == webhook_get_list_v1_response_m_payload){
+        return ;
+    }
+    if(webhook_get_list_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "webhook_get_list_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -95,6 +111,9 @@ webhook_get_list_v1_response_m_payload_t *webhook_get_list_v1_response_m_payload
 
     // webhook_get_list_v1_response_m_payload->i_row_returned
     cJSON *i_row_returned = cJSON_GetObjectItemCaseSensitive(webhook_get_list_v1_response_m_payloadJSON, "iRowReturned");
+    if (cJSON_IsNull(i_row_returned)) {
+        i_row_returned = NULL;
+    }
     if (!i_row_returned) {
         goto end;
     }
@@ -107,6 +126,9 @@ webhook_get_list_v1_response_m_payload_t *webhook_get_list_v1_response_m_payload
 
     // webhook_get_list_v1_response_m_payload->i_row_filtered
     cJSON *i_row_filtered = cJSON_GetObjectItemCaseSensitive(webhook_get_list_v1_response_m_payloadJSON, "iRowFiltered");
+    if (cJSON_IsNull(i_row_filtered)) {
+        i_row_filtered = NULL;
+    }
     if (!i_row_filtered) {
         goto end;
     }
@@ -119,6 +141,9 @@ webhook_get_list_v1_response_m_payload_t *webhook_get_list_v1_response_m_payload
 
     // webhook_get_list_v1_response_m_payload->a_obj_webhook
     cJSON *a_obj_webhook = cJSON_GetObjectItemCaseSensitive(webhook_get_list_v1_response_m_payloadJSON, "a_objWebhook");
+    if (cJSON_IsNull(a_obj_webhook)) {
+        a_obj_webhook = NULL;
+    }
     if (!a_obj_webhook) {
         goto end;
     }
@@ -142,7 +167,7 @@ webhook_get_list_v1_response_m_payload_t *webhook_get_list_v1_response_m_payload
     }
 
 
-    webhook_get_list_v1_response_m_payload_local_var = webhook_get_list_v1_response_m_payload_create (
+    webhook_get_list_v1_response_m_payload_local_var = webhook_get_list_v1_response_m_payload_create_internal (
         i_row_returned->valuedouble,
         i_row_filtered->valuedouble,
         a_obj_webhookList

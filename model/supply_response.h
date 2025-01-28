@@ -33,9 +33,10 @@ typedef struct supply_response_t {
     char *s_glaccountcontainer_longdescription_x; // string
     char *s_variableexpense_description_x; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } supply_response_t;
 
-supply_response_t *supply_response_create(
+__attribute__((deprecated)) supply_response_t *supply_response_create(
     int pki_supply_id,
     int fki_glaccount_id,
     int fki_glaccountcontainer_id,

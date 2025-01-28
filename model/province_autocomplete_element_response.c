@@ -5,7 +5,7 @@
 
 
 
-province_autocomplete_element_response_t *province_autocomplete_element_response_create(
+static province_autocomplete_element_response_t *province_autocomplete_element_response_create_internal(
     int pki_province_id,
     int fki_country_id,
     char *s_province_name_x,
@@ -22,12 +22,32 @@ province_autocomplete_element_response_t *province_autocomplete_element_response
     province_autocomplete_element_response_local_var->s_province_shortname = s_province_shortname;
     province_autocomplete_element_response_local_var->b_province_isactive = b_province_isactive;
 
+    province_autocomplete_element_response_local_var->_library_owned = 1;
     return province_autocomplete_element_response_local_var;
 }
 
+__attribute__((deprecated)) province_autocomplete_element_response_t *province_autocomplete_element_response_create(
+    int pki_province_id,
+    int fki_country_id,
+    char *s_province_name_x,
+    char *s_province_shortname,
+    int b_province_isactive
+    ) {
+    return province_autocomplete_element_response_create_internal (
+        pki_province_id,
+        fki_country_id,
+        s_province_name_x,
+        s_province_shortname,
+        b_province_isactive
+        );
+}
 
 void province_autocomplete_element_response_free(province_autocomplete_element_response_t *province_autocomplete_element_response) {
     if(NULL == province_autocomplete_element_response){
+        return ;
+    }
+    if(province_autocomplete_element_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "province_autocomplete_element_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -103,6 +123,9 @@ province_autocomplete_element_response_t *province_autocomplete_element_response
 
     // province_autocomplete_element_response->pki_province_id
     cJSON *pki_province_id = cJSON_GetObjectItemCaseSensitive(province_autocomplete_element_responseJSON, "pkiProvinceID");
+    if (cJSON_IsNull(pki_province_id)) {
+        pki_province_id = NULL;
+    }
     if (!pki_province_id) {
         goto end;
     }
@@ -115,6 +138,9 @@ province_autocomplete_element_response_t *province_autocomplete_element_response
 
     // province_autocomplete_element_response->fki_country_id
     cJSON *fki_country_id = cJSON_GetObjectItemCaseSensitive(province_autocomplete_element_responseJSON, "fkiCountryID");
+    if (cJSON_IsNull(fki_country_id)) {
+        fki_country_id = NULL;
+    }
     if (!fki_country_id) {
         goto end;
     }
@@ -127,6 +153,9 @@ province_autocomplete_element_response_t *province_autocomplete_element_response
 
     // province_autocomplete_element_response->s_province_name_x
     cJSON *s_province_name_x = cJSON_GetObjectItemCaseSensitive(province_autocomplete_element_responseJSON, "sProvinceNameX");
+    if (cJSON_IsNull(s_province_name_x)) {
+        s_province_name_x = NULL;
+    }
     if (!s_province_name_x) {
         goto end;
     }
@@ -139,6 +168,9 @@ province_autocomplete_element_response_t *province_autocomplete_element_response
 
     // province_autocomplete_element_response->s_province_shortname
     cJSON *s_province_shortname = cJSON_GetObjectItemCaseSensitive(province_autocomplete_element_responseJSON, "sProvinceShortname");
+    if (cJSON_IsNull(s_province_shortname)) {
+        s_province_shortname = NULL;
+    }
     if (!s_province_shortname) {
         goto end;
     }
@@ -151,6 +183,9 @@ province_autocomplete_element_response_t *province_autocomplete_element_response
 
     // province_autocomplete_element_response->b_province_isactive
     cJSON *b_province_isactive = cJSON_GetObjectItemCaseSensitive(province_autocomplete_element_responseJSON, "bProvinceIsactive");
+    if (cJSON_IsNull(b_province_isactive)) {
+        b_province_isactive = NULL;
+    }
     if (!b_province_isactive) {
         goto end;
     }
@@ -162,7 +197,7 @@ province_autocomplete_element_response_t *province_autocomplete_element_response
     }
 
 
-    province_autocomplete_element_response_local_var = province_autocomplete_element_response_create (
+    province_autocomplete_element_response_local_var = province_autocomplete_element_response_create_internal (
         pki_province_id->valuedouble,
         fki_country_id->valuedouble,
         strdup(s_province_name_x->valuestring),

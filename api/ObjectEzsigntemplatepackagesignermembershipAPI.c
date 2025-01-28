@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Create a new Ezsigntemplatepackagesignermembership
@@ -25,11 +20,14 @@ ObjectEzsigntemplatepackagesignermembershipAPI_ezsigntemplatepackagesignermember
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsigntemplatepackagesignermembership")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsigntemplatepackagesignermembership");
+    char *localVarPath = strdup("/1/object/ezsigntemplatepackagesignermembership");
+
 
 
 
@@ -38,9 +36,10 @@ ObjectEzsigntemplatepackagesignermembershipAPI_ezsigntemplatepackagesignermember
     cJSON *localVarSingleItemJSON_ezsigntemplatepackagesignermembership_create_object_v1_request = NULL;
     if (ezsigntemplatepackagesignermembership_create_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsigntemplatepackagesignermembership_create_object_v1_request = ezsigntemplatepackagesignermembership_create_object_v1_request_convertToJSON(ezsigntemplatepackagesignermembership_create_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsigntemplatepackagesignermembership_create_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -52,6 +51,7 @@ ObjectEzsigntemplatepackagesignermembershipAPI_ezsigntemplatepackagesignermember
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -63,11 +63,14 @@ ObjectEzsigntemplatepackagesignermembershipAPI_ezsigntemplatepackagesignermember
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsigntemplatepackagesignermembershipAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsigntemplatepackagesignermembership_create_object_v1_response_t *elementToReturn = ezsigntemplatepackagesignermembership_create_object_v1_response_parseFromJSON(ObjectEzsigntemplatepackagesignermembershipAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsigntemplatepackagesignermembershipAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsigntemplatepackagesignermembership_create_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsigntemplatepackagesignermembershipAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsigntemplatepackagesignermembership_create_object_v1_response_parseFromJSON(ObjectEzsigntemplatepackagesignermembershipAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsigntemplatepackagesignermembershipAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -107,15 +110,18 @@ ObjectEzsigntemplatepackagesignermembershipAPI_ezsigntemplatepackagesignermember
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsigntemplatepackagesignermembership/{pkiEzsigntemplatepackagesignermembershipID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsigntemplatepackagesignermembership/{pkiEzsigntemplatepackagesignermembershipID}");
+    char *localVarPath = strdup("/1/object/ezsigntemplatepackagesignermembership/{pkiEzsigntemplatepackagesignermembershipID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsigntemplatepackagesignermembershipID =  + strlen("{ pkiEzsigntemplatepackagesignermembershipID }");
+    long sizeOfPathParams_pkiEzsigntemplatepackagesignermembershipID =  + sizeof("{ pkiEzsigntemplatepackagesignermembershipID }") - 1;
     if(pkiEzsigntemplatepackagesignermembershipID == 0){
         goto end;
     }
@@ -123,7 +129,7 @@ ObjectEzsigntemplatepackagesignermembershipAPI_ezsigntemplatepackagesignermember
     snprintf(localVarToReplace_pkiEzsigntemplatepackagesignermembershipID, sizeOfPathParams_pkiEzsigntemplatepackagesignermembershipID, "{%s}", "pkiEzsigntemplatepackagesignermembershipID");
 
     char localVarBuff_pkiEzsigntemplatepackagesignermembershipID[256];
-    intToStr(localVarBuff_pkiEzsigntemplatepackagesignermembershipID, *pkiEzsigntemplatepackagesignermembershipID);
+    snprintf(localVarBuff_pkiEzsigntemplatepackagesignermembershipID, sizeof localVarBuff_pkiEzsigntemplatepackagesignermembershipID, "%ld", (long)*pkiEzsigntemplatepackagesignermembershipID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatepackagesignermembershipID, localVarBuff_pkiEzsigntemplatepackagesignermembershipID);
 
@@ -138,6 +144,7 @@ ObjectEzsigntemplatepackagesignermembershipAPI_ezsigntemplatepackagesignermember
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "DELETE");
 
     // uncomment below to debug the error response
@@ -149,11 +156,14 @@ ObjectEzsigntemplatepackagesignermembershipAPI_ezsigntemplatepackagesignermember
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsigntemplatepackagesignermembershipAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsigntemplatepackagesignermembership_delete_object_v1_response_t *elementToReturn = ezsigntemplatepackagesignermembership_delete_object_v1_response_parseFromJSON(ObjectEzsigntemplatepackagesignermembershipAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsigntemplatepackagesignermembershipAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsigntemplatepackagesignermembership_delete_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsigntemplatepackagesignermembershipAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsigntemplatepackagesignermembership_delete_object_v1_response_parseFromJSON(ObjectEzsigntemplatepackagesignermembershipAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsigntemplatepackagesignermembershipAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -189,15 +199,18 @@ ObjectEzsigntemplatepackagesignermembershipAPI_ezsigntemplatepackagesignermember
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/ezsigntemplatepackagesignermembership/{pkiEzsigntemplatepackagesignermembershipID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/ezsigntemplatepackagesignermembership/{pkiEzsigntemplatepackagesignermembershipID}");
+    char *localVarPath = strdup("/2/object/ezsigntemplatepackagesignermembership/{pkiEzsigntemplatepackagesignermembershipID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsigntemplatepackagesignermembershipID =  + strlen("{ pkiEzsigntemplatepackagesignermembershipID }");
+    long sizeOfPathParams_pkiEzsigntemplatepackagesignermembershipID =  + sizeof("{ pkiEzsigntemplatepackagesignermembershipID }") - 1;
     if(pkiEzsigntemplatepackagesignermembershipID == 0){
         goto end;
     }
@@ -205,7 +218,7 @@ ObjectEzsigntemplatepackagesignermembershipAPI_ezsigntemplatepackagesignermember
     snprintf(localVarToReplace_pkiEzsigntemplatepackagesignermembershipID, sizeOfPathParams_pkiEzsigntemplatepackagesignermembershipID, "{%s}", "pkiEzsigntemplatepackagesignermembershipID");
 
     char localVarBuff_pkiEzsigntemplatepackagesignermembershipID[256];
-    intToStr(localVarBuff_pkiEzsigntemplatepackagesignermembershipID, *pkiEzsigntemplatepackagesignermembershipID);
+    snprintf(localVarBuff_pkiEzsigntemplatepackagesignermembershipID, sizeof localVarBuff_pkiEzsigntemplatepackagesignermembershipID, "%ld", (long)*pkiEzsigntemplatepackagesignermembershipID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatepackagesignermembershipID, localVarBuff_pkiEzsigntemplatepackagesignermembershipID);
 
@@ -220,6 +233,7 @@ ObjectEzsigntemplatepackagesignermembershipAPI_ezsigntemplatepackagesignermember
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -231,11 +245,14 @@ ObjectEzsigntemplatepackagesignermembershipAPI_ezsigntemplatepackagesignermember
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsigntemplatepackagesignermembershipAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsigntemplatepackagesignermembership_get_object_v2_response_t *elementToReturn = ezsigntemplatepackagesignermembership_get_object_v2_response_parseFromJSON(ObjectEzsigntemplatepackagesignermembershipAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsigntemplatepackagesignermembershipAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsigntemplatepackagesignermembership_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsigntemplatepackagesignermembershipAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsigntemplatepackagesignermembership_get_object_v2_response_parseFromJSON(ObjectEzsigntemplatepackagesignermembershipAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsigntemplatepackagesignermembershipAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

@@ -22,9 +22,10 @@ typedef struct systemconfiguration_edit_object_v1_request_t systemconfiguration_
 typedef struct systemconfiguration_edit_object_v1_request_t {
     struct systemconfiguration_request_compound_t *obj_systemconfiguration; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } systemconfiguration_edit_object_v1_request_t;
 
-systemconfiguration_edit_object_v1_request_t *systemconfiguration_edit_object_v1_request_create(
+__attribute__((deprecated)) systemconfiguration_edit_object_v1_request_t *systemconfiguration_edit_object_v1_request_create(
     systemconfiguration_request_compound_t *obj_systemconfiguration
 );
 

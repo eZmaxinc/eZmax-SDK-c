@@ -32,9 +32,10 @@ typedef struct common_file_t {
     char *s_file_base64; //ByteArray
     ezmax_api_definition__full_common_file_EFILESOURCE_e e_file_source; //enum
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } common_file_t;
 
-common_file_t *common_file_create(
+__attribute__((deprecated)) common_file_t *common_file_create(
     char *s_file_name,
     char *s_file_url,
     char *s_file_base64,

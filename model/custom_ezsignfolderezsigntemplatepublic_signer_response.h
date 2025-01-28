@@ -25,9 +25,10 @@ typedef struct custom_ezsignfolderezsigntemplatepublic_signer_response_t {
     char *s_contact_lastname; // string
     char *s_ezsignsignergroup_description_x; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_ezsignfolderezsigntemplatepublic_signer_response_t;
 
-custom_ezsignfolderezsigntemplatepublic_signer_response_t *custom_ezsignfolderezsigntemplatepublic_signer_response_create(
+__attribute__((deprecated)) custom_ezsignfolderezsigntemplatepublic_signer_response_t *custom_ezsignfolderezsigntemplatepublic_signer_response_create(
     int fki_user_id,
     int fki_ezsignsignergroup_id,
     char *s_contact_firstname,

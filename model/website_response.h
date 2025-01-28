@@ -23,9 +23,10 @@ typedef struct website_response_t {
     int fki_websitetype_id; //numeric
     char *s_website_address; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } website_response_t;
 
-website_response_t *website_response_create(
+__attribute__((deprecated)) website_response_t *website_response_create(
     int pki_website_id,
     int fki_websitetype_id,
     char *s_website_address

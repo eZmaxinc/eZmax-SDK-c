@@ -5,7 +5,7 @@
 
 
 
-usergroup_autocomplete_element_response_t *usergroup_autocomplete_element_response_create(
+static usergroup_autocomplete_element_response_t *usergroup_autocomplete_element_response_create_internal(
     char *s_usergroup_name_x,
     int pki_usergroup_id,
     int b_usergroup_isactive
@@ -18,12 +18,28 @@ usergroup_autocomplete_element_response_t *usergroup_autocomplete_element_respon
     usergroup_autocomplete_element_response_local_var->pki_usergroup_id = pki_usergroup_id;
     usergroup_autocomplete_element_response_local_var->b_usergroup_isactive = b_usergroup_isactive;
 
+    usergroup_autocomplete_element_response_local_var->_library_owned = 1;
     return usergroup_autocomplete_element_response_local_var;
 }
 
+__attribute__((deprecated)) usergroup_autocomplete_element_response_t *usergroup_autocomplete_element_response_create(
+    char *s_usergroup_name_x,
+    int pki_usergroup_id,
+    int b_usergroup_isactive
+    ) {
+    return usergroup_autocomplete_element_response_create_internal (
+        s_usergroup_name_x,
+        pki_usergroup_id,
+        b_usergroup_isactive
+        );
+}
 
 void usergroup_autocomplete_element_response_free(usergroup_autocomplete_element_response_t *usergroup_autocomplete_element_response) {
     if(NULL == usergroup_autocomplete_element_response){
+        return ;
+    }
+    if(usergroup_autocomplete_element_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroup_autocomplete_element_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -77,6 +93,9 @@ usergroup_autocomplete_element_response_t *usergroup_autocomplete_element_respon
 
     // usergroup_autocomplete_element_response->s_usergroup_name_x
     cJSON *s_usergroup_name_x = cJSON_GetObjectItemCaseSensitive(usergroup_autocomplete_element_responseJSON, "sUsergroupNameX");
+    if (cJSON_IsNull(s_usergroup_name_x)) {
+        s_usergroup_name_x = NULL;
+    }
     if (!s_usergroup_name_x) {
         goto end;
     }
@@ -89,6 +108,9 @@ usergroup_autocomplete_element_response_t *usergroup_autocomplete_element_respon
 
     // usergroup_autocomplete_element_response->pki_usergroup_id
     cJSON *pki_usergroup_id = cJSON_GetObjectItemCaseSensitive(usergroup_autocomplete_element_responseJSON, "pkiUsergroupID");
+    if (cJSON_IsNull(pki_usergroup_id)) {
+        pki_usergroup_id = NULL;
+    }
     if (!pki_usergroup_id) {
         goto end;
     }
@@ -101,6 +123,9 @@ usergroup_autocomplete_element_response_t *usergroup_autocomplete_element_respon
 
     // usergroup_autocomplete_element_response->b_usergroup_isactive
     cJSON *b_usergroup_isactive = cJSON_GetObjectItemCaseSensitive(usergroup_autocomplete_element_responseJSON, "bUsergroupIsactive");
+    if (cJSON_IsNull(b_usergroup_isactive)) {
+        b_usergroup_isactive = NULL;
+    }
     if (!b_usergroup_isactive) {
         goto end;
     }
@@ -112,7 +137,7 @@ usergroup_autocomplete_element_response_t *usergroup_autocomplete_element_respon
     }
 
 
-    usergroup_autocomplete_element_response_local_var = usergroup_autocomplete_element_response_create (
+    usergroup_autocomplete_element_response_local_var = usergroup_autocomplete_element_response_create_internal (
         strdup(s_usergroup_name_x->valuestring),
         pki_usergroup_id->valuedouble,
         b_usergroup_isactive->valueint

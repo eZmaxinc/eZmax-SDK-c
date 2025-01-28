@@ -5,7 +5,7 @@
 
 
 
-userstaged_list_element_t *userstaged_list_element_create(
+static userstaged_list_element_t *userstaged_list_element_create_internal(
     int pki_userstaged_id,
     char *s_email_address,
     char *s_userstaged_firstname,
@@ -22,12 +22,32 @@ userstaged_list_element_t *userstaged_list_element_create(
     userstaged_list_element_local_var->s_userstaged_lastname = s_userstaged_lastname;
     userstaged_list_element_local_var->s_userstaged_externalid = s_userstaged_externalid;
 
+    userstaged_list_element_local_var->_library_owned = 1;
     return userstaged_list_element_local_var;
 }
 
+__attribute__((deprecated)) userstaged_list_element_t *userstaged_list_element_create(
+    int pki_userstaged_id,
+    char *s_email_address,
+    char *s_userstaged_firstname,
+    char *s_userstaged_lastname,
+    char *s_userstaged_externalid
+    ) {
+    return userstaged_list_element_create_internal (
+        pki_userstaged_id,
+        s_email_address,
+        s_userstaged_firstname,
+        s_userstaged_lastname,
+        s_userstaged_externalid
+        );
+}
 
 void userstaged_list_element_free(userstaged_list_element_t *userstaged_list_element) {
     if(NULL == userstaged_list_element){
+        return ;
+    }
+    if(userstaged_list_element->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "userstaged_list_element_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -111,6 +131,9 @@ userstaged_list_element_t *userstaged_list_element_parseFromJSON(cJSON *userstag
 
     // userstaged_list_element->pki_userstaged_id
     cJSON *pki_userstaged_id = cJSON_GetObjectItemCaseSensitive(userstaged_list_elementJSON, "pkiUserstagedID");
+    if (cJSON_IsNull(pki_userstaged_id)) {
+        pki_userstaged_id = NULL;
+    }
     if (!pki_userstaged_id) {
         goto end;
     }
@@ -123,6 +146,9 @@ userstaged_list_element_t *userstaged_list_element_parseFromJSON(cJSON *userstag
 
     // userstaged_list_element->s_email_address
     cJSON *s_email_address = cJSON_GetObjectItemCaseSensitive(userstaged_list_elementJSON, "sEmailAddress");
+    if (cJSON_IsNull(s_email_address)) {
+        s_email_address = NULL;
+    }
     if (!s_email_address) {
         goto end;
     }
@@ -135,6 +161,9 @@ userstaged_list_element_t *userstaged_list_element_parseFromJSON(cJSON *userstag
 
     // userstaged_list_element->s_userstaged_firstname
     cJSON *s_userstaged_firstname = cJSON_GetObjectItemCaseSensitive(userstaged_list_elementJSON, "sUserstagedFirstname");
+    if (cJSON_IsNull(s_userstaged_firstname)) {
+        s_userstaged_firstname = NULL;
+    }
     if (!s_userstaged_firstname) {
         goto end;
     }
@@ -147,6 +176,9 @@ userstaged_list_element_t *userstaged_list_element_parseFromJSON(cJSON *userstag
 
     // userstaged_list_element->s_userstaged_lastname
     cJSON *s_userstaged_lastname = cJSON_GetObjectItemCaseSensitive(userstaged_list_elementJSON, "sUserstagedLastname");
+    if (cJSON_IsNull(s_userstaged_lastname)) {
+        s_userstaged_lastname = NULL;
+    }
     if (!s_userstaged_lastname) {
         goto end;
     }
@@ -159,6 +191,9 @@ userstaged_list_element_t *userstaged_list_element_parseFromJSON(cJSON *userstag
 
     // userstaged_list_element->s_userstaged_externalid
     cJSON *s_userstaged_externalid = cJSON_GetObjectItemCaseSensitive(userstaged_list_elementJSON, "sUserstagedExternalid");
+    if (cJSON_IsNull(s_userstaged_externalid)) {
+        s_userstaged_externalid = NULL;
+    }
     if (!s_userstaged_externalid) {
         goto end;
     }
@@ -170,7 +205,7 @@ userstaged_list_element_t *userstaged_list_element_parseFromJSON(cJSON *userstag
     }
 
 
-    userstaged_list_element_local_var = userstaged_list_element_create (
+    userstaged_list_element_local_var = userstaged_list_element_create_internal (
         pki_userstaged_id->valuedouble,
         strdup(s_email_address->valuestring),
         strdup(s_userstaged_firstname->valuestring),

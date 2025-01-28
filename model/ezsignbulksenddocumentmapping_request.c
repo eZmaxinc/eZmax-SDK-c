@@ -5,7 +5,7 @@
 
 
 
-ezsignbulksenddocumentmapping_request_t *ezsignbulksenddocumentmapping_request_create(
+static ezsignbulksenddocumentmapping_request_t *ezsignbulksenddocumentmapping_request_create_internal(
     int pki_ezsignbulksenddocumentmapping_id,
     int fki_ezsignbulksend_id,
     int fki_ezsigntemplatepackage_id,
@@ -20,12 +20,30 @@ ezsignbulksenddocumentmapping_request_t *ezsignbulksenddocumentmapping_request_c
     ezsignbulksenddocumentmapping_request_local_var->fki_ezsigntemplatepackage_id = fki_ezsigntemplatepackage_id;
     ezsignbulksenddocumentmapping_request_local_var->fki_ezsigntemplate_id = fki_ezsigntemplate_id;
 
+    ezsignbulksenddocumentmapping_request_local_var->_library_owned = 1;
     return ezsignbulksenddocumentmapping_request_local_var;
 }
 
+__attribute__((deprecated)) ezsignbulksenddocumentmapping_request_t *ezsignbulksenddocumentmapping_request_create(
+    int pki_ezsignbulksenddocumentmapping_id,
+    int fki_ezsignbulksend_id,
+    int fki_ezsigntemplatepackage_id,
+    int fki_ezsigntemplate_id
+    ) {
+    return ezsignbulksenddocumentmapping_request_create_internal (
+        pki_ezsignbulksenddocumentmapping_id,
+        fki_ezsignbulksend_id,
+        fki_ezsigntemplatepackage_id,
+        fki_ezsigntemplate_id
+        );
+}
 
 void ezsignbulksenddocumentmapping_request_free(ezsignbulksenddocumentmapping_request_t *ezsignbulksenddocumentmapping_request) {
     if(NULL == ezsignbulksenddocumentmapping_request){
+        return ;
+    }
+    if(ezsignbulksenddocumentmapping_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignbulksenddocumentmapping_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -81,6 +99,9 @@ ezsignbulksenddocumentmapping_request_t *ezsignbulksenddocumentmapping_request_p
 
     // ezsignbulksenddocumentmapping_request->pki_ezsignbulksenddocumentmapping_id
     cJSON *pki_ezsignbulksenddocumentmapping_id = cJSON_GetObjectItemCaseSensitive(ezsignbulksenddocumentmapping_requestJSON, "pkiEzsignbulksenddocumentmappingID");
+    if (cJSON_IsNull(pki_ezsignbulksenddocumentmapping_id)) {
+        pki_ezsignbulksenddocumentmapping_id = NULL;
+    }
     if (pki_ezsignbulksenddocumentmapping_id) { 
     if(!cJSON_IsNumber(pki_ezsignbulksenddocumentmapping_id))
     {
@@ -90,6 +111,9 @@ ezsignbulksenddocumentmapping_request_t *ezsignbulksenddocumentmapping_request_p
 
     // ezsignbulksenddocumentmapping_request->fki_ezsignbulksend_id
     cJSON *fki_ezsignbulksend_id = cJSON_GetObjectItemCaseSensitive(ezsignbulksenddocumentmapping_requestJSON, "fkiEzsignbulksendID");
+    if (cJSON_IsNull(fki_ezsignbulksend_id)) {
+        fki_ezsignbulksend_id = NULL;
+    }
     if (!fki_ezsignbulksend_id) {
         goto end;
     }
@@ -102,6 +126,9 @@ ezsignbulksenddocumentmapping_request_t *ezsignbulksenddocumentmapping_request_p
 
     // ezsignbulksenddocumentmapping_request->fki_ezsigntemplatepackage_id
     cJSON *fki_ezsigntemplatepackage_id = cJSON_GetObjectItemCaseSensitive(ezsignbulksenddocumentmapping_requestJSON, "fkiEzsigntemplatepackageID");
+    if (cJSON_IsNull(fki_ezsigntemplatepackage_id)) {
+        fki_ezsigntemplatepackage_id = NULL;
+    }
     if (fki_ezsigntemplatepackage_id) { 
     if(!cJSON_IsNumber(fki_ezsigntemplatepackage_id))
     {
@@ -111,6 +138,9 @@ ezsignbulksenddocumentmapping_request_t *ezsignbulksenddocumentmapping_request_p
 
     // ezsignbulksenddocumentmapping_request->fki_ezsigntemplate_id
     cJSON *fki_ezsigntemplate_id = cJSON_GetObjectItemCaseSensitive(ezsignbulksenddocumentmapping_requestJSON, "fkiEzsigntemplateID");
+    if (cJSON_IsNull(fki_ezsigntemplate_id)) {
+        fki_ezsigntemplate_id = NULL;
+    }
     if (fki_ezsigntemplate_id) { 
     if(!cJSON_IsNumber(fki_ezsigntemplate_id))
     {
@@ -119,7 +149,7 @@ ezsignbulksenddocumentmapping_request_t *ezsignbulksenddocumentmapping_request_p
     }
 
 
-    ezsignbulksenddocumentmapping_request_local_var = ezsignbulksenddocumentmapping_request_create (
+    ezsignbulksenddocumentmapping_request_local_var = ezsignbulksenddocumentmapping_request_create_internal (
         pki_ezsignbulksenddocumentmapping_id ? pki_ezsignbulksenddocumentmapping_id->valuedouble : 0,
         fki_ezsignbulksend_id->valuedouble,
         fki_ezsigntemplatepackage_id ? fki_ezsigntemplatepackage_id->valuedouble : 0,

@@ -29,9 +29,10 @@ ezmax_api_definition__full_websocket_request_server_get_websocket_id_v1_EWEBSOCK
 typedef struct websocket_request_server_get_websocket_id_v1_t {
     ezmax_api_definition__full_websocket_request_server_get_websocket_id_v1_EWEBSOCKETMESSAGETYPE_e e_websocket_messagetype; //enum
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } websocket_request_server_get_websocket_id_v1_t;
 
-websocket_request_server_get_websocket_id_v1_t *websocket_request_server_get_websocket_id_v1_create(
+__attribute__((deprecated)) websocket_request_server_get_websocket_id_v1_t *websocket_request_server_get_websocket_id_v1_create(
     ezmax_api_definition__full_websocket_request_server_get_websocket_id_v1_EWEBSOCKETMESSAGETYPE_e e_websocket_messagetype
 );
 

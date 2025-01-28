@@ -22,9 +22,10 @@ typedef struct cors_edit_object_v1_request_t cors_edit_object_v1_request_t;
 typedef struct cors_edit_object_v1_request_t {
     struct cors_request_compound_t *obj_cors; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } cors_edit_object_v1_request_t;
 
-cors_edit_object_v1_request_t *cors_edit_object_v1_request_create(
+__attribute__((deprecated)) cors_edit_object_v1_request_t *cors_edit_object_v1_request_create(
     cors_request_compound_t *obj_cors
 );
 

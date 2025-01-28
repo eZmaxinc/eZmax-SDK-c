@@ -5,7 +5,7 @@
 
 
 
-authenticationexternal_autocomplete_element_response_t *authenticationexternal_autocomplete_element_response_create(
+static authenticationexternal_autocomplete_element_response_t *authenticationexternal_autocomplete_element_response_create_internal(
     int pki_authenticationexternal_id,
     char *s_authenticationexternal_description,
     int b_authenticationexternal_isactive
@@ -18,12 +18,28 @@ authenticationexternal_autocomplete_element_response_t *authenticationexternal_a
     authenticationexternal_autocomplete_element_response_local_var->s_authenticationexternal_description = s_authenticationexternal_description;
     authenticationexternal_autocomplete_element_response_local_var->b_authenticationexternal_isactive = b_authenticationexternal_isactive;
 
+    authenticationexternal_autocomplete_element_response_local_var->_library_owned = 1;
     return authenticationexternal_autocomplete_element_response_local_var;
 }
 
+__attribute__((deprecated)) authenticationexternal_autocomplete_element_response_t *authenticationexternal_autocomplete_element_response_create(
+    int pki_authenticationexternal_id,
+    char *s_authenticationexternal_description,
+    int b_authenticationexternal_isactive
+    ) {
+    return authenticationexternal_autocomplete_element_response_create_internal (
+        pki_authenticationexternal_id,
+        s_authenticationexternal_description,
+        b_authenticationexternal_isactive
+        );
+}
 
 void authenticationexternal_autocomplete_element_response_free(authenticationexternal_autocomplete_element_response_t *authenticationexternal_autocomplete_element_response) {
     if(NULL == authenticationexternal_autocomplete_element_response){
+        return ;
+    }
+    if(authenticationexternal_autocomplete_element_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "authenticationexternal_autocomplete_element_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -77,6 +93,9 @@ authenticationexternal_autocomplete_element_response_t *authenticationexternal_a
 
     // authenticationexternal_autocomplete_element_response->pki_authenticationexternal_id
     cJSON *pki_authenticationexternal_id = cJSON_GetObjectItemCaseSensitive(authenticationexternal_autocomplete_element_responseJSON, "pkiAuthenticationexternalID");
+    if (cJSON_IsNull(pki_authenticationexternal_id)) {
+        pki_authenticationexternal_id = NULL;
+    }
     if (!pki_authenticationexternal_id) {
         goto end;
     }
@@ -89,6 +108,9 @@ authenticationexternal_autocomplete_element_response_t *authenticationexternal_a
 
     // authenticationexternal_autocomplete_element_response->s_authenticationexternal_description
     cJSON *s_authenticationexternal_description = cJSON_GetObjectItemCaseSensitive(authenticationexternal_autocomplete_element_responseJSON, "sAuthenticationexternalDescription");
+    if (cJSON_IsNull(s_authenticationexternal_description)) {
+        s_authenticationexternal_description = NULL;
+    }
     if (!s_authenticationexternal_description) {
         goto end;
     }
@@ -101,6 +123,9 @@ authenticationexternal_autocomplete_element_response_t *authenticationexternal_a
 
     // authenticationexternal_autocomplete_element_response->b_authenticationexternal_isactive
     cJSON *b_authenticationexternal_isactive = cJSON_GetObjectItemCaseSensitive(authenticationexternal_autocomplete_element_responseJSON, "bAuthenticationexternalIsactive");
+    if (cJSON_IsNull(b_authenticationexternal_isactive)) {
+        b_authenticationexternal_isactive = NULL;
+    }
     if (!b_authenticationexternal_isactive) {
         goto end;
     }
@@ -112,7 +137,7 @@ authenticationexternal_autocomplete_element_response_t *authenticationexternal_a
     }
 
 
-    authenticationexternal_autocomplete_element_response_local_var = authenticationexternal_autocomplete_element_response_create (
+    authenticationexternal_autocomplete_element_response_local_var = authenticationexternal_autocomplete_element_response_create_internal (
         pki_authenticationexternal_id->valuedouble,
         strdup(s_authenticationexternal_description->valuestring),
         b_authenticationexternal_isactive->valueint

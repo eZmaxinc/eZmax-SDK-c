@@ -22,9 +22,10 @@ typedef struct ezsignbulksend_edit_object_v1_request_t ezsignbulksend_edit_objec
 typedef struct ezsignbulksend_edit_object_v1_request_t {
     struct ezsignbulksend_request_compound_t *obj_ezsignbulksend; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignbulksend_edit_object_v1_request_t;
 
-ezsignbulksend_edit_object_v1_request_t *ezsignbulksend_edit_object_v1_request_create(
+__attribute__((deprecated)) ezsignbulksend_edit_object_v1_request_t *ezsignbulksend_edit_object_v1_request_create(
     ezsignbulksend_request_compound_t *obj_ezsignbulksend
 );
 

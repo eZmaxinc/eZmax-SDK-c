@@ -21,9 +21,10 @@ typedef struct creditcardclient_create_object_v1_response_m_payload_t creditcard
 typedef struct creditcardclient_create_object_v1_response_m_payload_t {
     list_t *a_pki_creditcardclient_id; //primitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } creditcardclient_create_object_v1_response_m_payload_t;
 
-creditcardclient_create_object_v1_response_m_payload_t *creditcardclient_create_object_v1_response_m_payload_create(
+__attribute__((deprecated)) creditcardclient_create_object_v1_response_m_payload_t *creditcardclient_create_object_v1_response_m_payload_create(
     list_t *a_pki_creditcardclient_id
 );
 

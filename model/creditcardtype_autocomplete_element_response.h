@@ -17,27 +17,20 @@ typedef struct creditcardtype_autocomplete_element_response_t creditcardtype_aut
 
 #include "field_e_creditcardtype_codename.h"
 
-// Enum  for creditcardtype_autocomplete_element_response
-
-typedef enum  { ezmax_api_definition__full_creditcardtype_autocomplete_element_response__NULL = 0, ezmax_api_definition__full_creditcardtype_autocomplete_element_response__Amex, ezmax_api_definition__full_creditcardtype_autocomplete_element_response__Mastercard, ezmax_api_definition__full_creditcardtype_autocomplete_element_response__Visa } ezmax_api_definition__full_creditcardtype_autocomplete_element_response__e;
-
-char* creditcardtype_autocomplete_element_response_e_creditcardtype_codename_ToString(ezmax_api_definition__full_creditcardtype_autocomplete_element_response__e e_creditcardtype_codename);
-
-ezmax_api_definition__full_creditcardtype_autocomplete_element_response__e creditcardtype_autocomplete_element_response_e_creditcardtype_codename_FromString(char* e_creditcardtype_codename);
-
 
 
 typedef struct creditcardtype_autocomplete_element_response_t {
     char *s_creditcardtype_name; // string
     int pki_creditcardtype_id; //numeric
-    field_e_creditcardtype_codename_t *e_creditcardtype_codename; // custom
+    ezmax_api_definition__full_field_e_creditcardtype_codename__e e_creditcardtype_codename; //referenced enum
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } creditcardtype_autocomplete_element_response_t;
 
-creditcardtype_autocomplete_element_response_t *creditcardtype_autocomplete_element_response_create(
+__attribute__((deprecated)) creditcardtype_autocomplete_element_response_t *creditcardtype_autocomplete_element_response_create(
     char *s_creditcardtype_name,
     int pki_creditcardtype_id,
-    field_e_creditcardtype_codename_t *e_creditcardtype_codename
+    ezmax_api_definition__full_field_e_creditcardtype_codename__e e_creditcardtype_codename
 );
 
 void creditcardtype_autocomplete_element_response_free(creditcardtype_autocomplete_element_response_t *creditcardtype_autocomplete_element_response);

@@ -5,7 +5,7 @@
 
 
 
-ezsignsigningreason_get_autocomplete_v2_response_m_payload_t *ezsignsigningreason_get_autocomplete_v2_response_m_payload_create(
+static ezsignsigningreason_get_autocomplete_v2_response_m_payload_t *ezsignsigningreason_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_ezsignsigningreason
     ) {
     ezsignsigningreason_get_autocomplete_v2_response_m_payload_t *ezsignsigningreason_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(ezsignsigningreason_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ ezsignsigningreason_get_autocomplete_v2_response_m_payload_t *ezsignsigningreaso
     }
     ezsignsigningreason_get_autocomplete_v2_response_m_payload_local_var->a_obj_ezsignsigningreason = a_obj_ezsignsigningreason;
 
+    ezsignsigningreason_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return ezsignsigningreason_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezsignsigningreason_get_autocomplete_v2_response_m_payload_t *ezsignsigningreason_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_ezsignsigningreason
+    ) {
+    return ezsignsigningreason_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_ezsignsigningreason
+        );
+}
 
 void ezsignsigningreason_get_autocomplete_v2_response_m_payload_free(ezsignsigningreason_get_autocomplete_v2_response_m_payload_t *ezsignsigningreason_get_autocomplete_v2_response_m_payload) {
     if(NULL == ezsignsigningreason_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(ezsignsigningreason_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignsigningreason_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ ezsignsigningreason_get_autocomplete_v2_response_m_payload_t *ezsignsigningreaso
 
     // ezsignsigningreason_get_autocomplete_v2_response_m_payload->a_obj_ezsignsigningreason
     cJSON *a_obj_ezsignsigningreason = cJSON_GetObjectItemCaseSensitive(ezsignsigningreason_get_autocomplete_v2_response_m_payloadJSON, "a_objEzsignsigningreason");
+    if (cJSON_IsNull(a_obj_ezsignsigningreason)) {
+        a_obj_ezsignsigningreason = NULL;
+    }
     if (!a_obj_ezsignsigningreason) {
         goto end;
     }
@@ -96,7 +111,7 @@ ezsignsigningreason_get_autocomplete_v2_response_m_payload_t *ezsignsigningreaso
     }
 
 
-    ezsignsigningreason_get_autocomplete_v2_response_m_payload_local_var = ezsignsigningreason_get_autocomplete_v2_response_m_payload_create (
+    ezsignsigningreason_get_autocomplete_v2_response_m_payload_local_var = ezsignsigningreason_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_ezsignsigningreasonList
         );
 

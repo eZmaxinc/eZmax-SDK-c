@@ -4,29 +4,12 @@
 #include "variableexpense_list_element.h"
 
 
-char* variableexpense_list_element_e_variableexpense_taxable_ToString(ezmax_api_definition__full_variableexpense_list_element__e e_variableexpense_taxable) {
-    char* e_variableexpense_taxableArray[] =  { "NULL", "Yes", "No", "Included" };
-    return e_variableexpense_taxableArray[e_variableexpense_taxable];
-}
 
-ezmax_api_definition__full_variableexpense_list_element__e variableexpense_list_element_e_variableexpense_taxable_FromString(char* e_variableexpense_taxable){
-    int stringToReturn = 0;
-    char *e_variableexpense_taxableArray[] =  { "NULL", "Yes", "No", "Included" };
-    size_t sizeofArray = sizeof(e_variableexpense_taxableArray) / sizeof(e_variableexpense_taxableArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_variableexpense_taxable, e_variableexpense_taxableArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-variableexpense_list_element_t *variableexpense_list_element_create(
+static variableexpense_list_element_t *variableexpense_list_element_create_internal(
     int pki_variableexpense_id,
     char *s_variableexpense_code,
     char *s_variableexpense_description_x,
-    field_e_variableexpense_taxable_t *e_variableexpense_taxable,
+    ezmax_api_definition__full_field_e_variableexpense_taxable__e e_variableexpense_taxable,
     int b_variableexpense_isactive
     ) {
     variableexpense_list_element_t *variableexpense_list_element_local_var = malloc(sizeof(variableexpense_list_element_t));
@@ -39,12 +22,32 @@ variableexpense_list_element_t *variableexpense_list_element_create(
     variableexpense_list_element_local_var->e_variableexpense_taxable = e_variableexpense_taxable;
     variableexpense_list_element_local_var->b_variableexpense_isactive = b_variableexpense_isactive;
 
+    variableexpense_list_element_local_var->_library_owned = 1;
     return variableexpense_list_element_local_var;
 }
 
+__attribute__((deprecated)) variableexpense_list_element_t *variableexpense_list_element_create(
+    int pki_variableexpense_id,
+    char *s_variableexpense_code,
+    char *s_variableexpense_description_x,
+    ezmax_api_definition__full_field_e_variableexpense_taxable__e e_variableexpense_taxable,
+    int b_variableexpense_isactive
+    ) {
+    return variableexpense_list_element_create_internal (
+        pki_variableexpense_id,
+        s_variableexpense_code,
+        s_variableexpense_description_x,
+        e_variableexpense_taxable,
+        b_variableexpense_isactive
+        );
+}
 
 void variableexpense_list_element_free(variableexpense_list_element_t *variableexpense_list_element) {
     if(NULL == variableexpense_list_element){
+        return ;
+    }
+    if(variableexpense_list_element->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "variableexpense_list_element_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -55,10 +58,6 @@ void variableexpense_list_element_free(variableexpense_list_element_t *variablee
     if (variableexpense_list_element->s_variableexpense_description_x) {
         free(variableexpense_list_element->s_variableexpense_description_x);
         variableexpense_list_element->s_variableexpense_description_x = NULL;
-    }
-    if (variableexpense_list_element->e_variableexpense_taxable) {
-        field_e_variableexpense_taxable_free(variableexpense_list_element->e_variableexpense_taxable);
-        variableexpense_list_element->e_variableexpense_taxable = NULL;
     }
     free(variableexpense_list_element);
 }
@@ -92,7 +91,7 @@ cJSON *variableexpense_list_element_convertToJSON(variableexpense_list_element_t
 
 
     // variableexpense_list_element->e_variableexpense_taxable
-    if(variableexpense_list_element->e_variableexpense_taxable != ezmax_api_definition__full_variableexpense_list_element__NULL) {
+    if(variableexpense_list_element->e_variableexpense_taxable != ezmax_api_definition__full_field_e_variableexpense_taxable__NULL) {
     cJSON *e_variableexpense_taxable_local_JSON = field_e_variableexpense_taxable_convertToJSON(variableexpense_list_element->e_variableexpense_taxable);
     if(e_variableexpense_taxable_local_JSON == NULL) {
         goto fail; // custom
@@ -124,10 +123,13 @@ variableexpense_list_element_t *variableexpense_list_element_parseFromJSON(cJSON
     variableexpense_list_element_t *variableexpense_list_element_local_var = NULL;
 
     // define the local variable for variableexpense_list_element->e_variableexpense_taxable
-    field_e_variableexpense_taxable_t *e_variableexpense_taxable_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_variableexpense_taxable__e e_variableexpense_taxable_local_nonprim = 0;
 
     // variableexpense_list_element->pki_variableexpense_id
     cJSON *pki_variableexpense_id = cJSON_GetObjectItemCaseSensitive(variableexpense_list_elementJSON, "pkiVariableexpenseID");
+    if (cJSON_IsNull(pki_variableexpense_id)) {
+        pki_variableexpense_id = NULL;
+    }
     if (!pki_variableexpense_id) {
         goto end;
     }
@@ -140,6 +142,9 @@ variableexpense_list_element_t *variableexpense_list_element_parseFromJSON(cJSON
 
     // variableexpense_list_element->s_variableexpense_code
     cJSON *s_variableexpense_code = cJSON_GetObjectItemCaseSensitive(variableexpense_list_elementJSON, "sVariableexpenseCode");
+    if (cJSON_IsNull(s_variableexpense_code)) {
+        s_variableexpense_code = NULL;
+    }
     if (s_variableexpense_code) { 
     if(!cJSON_IsString(s_variableexpense_code) && !cJSON_IsNull(s_variableexpense_code))
     {
@@ -149,6 +154,9 @@ variableexpense_list_element_t *variableexpense_list_element_parseFromJSON(cJSON
 
     // variableexpense_list_element->s_variableexpense_description_x
     cJSON *s_variableexpense_description_x = cJSON_GetObjectItemCaseSensitive(variableexpense_list_elementJSON, "sVariableexpenseDescriptionX");
+    if (cJSON_IsNull(s_variableexpense_description_x)) {
+        s_variableexpense_description_x = NULL;
+    }
     if (s_variableexpense_description_x) { 
     if(!cJSON_IsString(s_variableexpense_description_x) && !cJSON_IsNull(s_variableexpense_description_x))
     {
@@ -158,12 +166,18 @@ variableexpense_list_element_t *variableexpense_list_element_parseFromJSON(cJSON
 
     // variableexpense_list_element->e_variableexpense_taxable
     cJSON *e_variableexpense_taxable = cJSON_GetObjectItemCaseSensitive(variableexpense_list_elementJSON, "eVariableexpenseTaxable");
+    if (cJSON_IsNull(e_variableexpense_taxable)) {
+        e_variableexpense_taxable = NULL;
+    }
     if (e_variableexpense_taxable) { 
     e_variableexpense_taxable_local_nonprim = field_e_variableexpense_taxable_parseFromJSON(e_variableexpense_taxable); //custom
     }
 
     // variableexpense_list_element->b_variableexpense_isactive
     cJSON *b_variableexpense_isactive = cJSON_GetObjectItemCaseSensitive(variableexpense_list_elementJSON, "bVariableexpenseIsactive");
+    if (cJSON_IsNull(b_variableexpense_isactive)) {
+        b_variableexpense_isactive = NULL;
+    }
     if (b_variableexpense_isactive) { 
     if(!cJSON_IsBool(b_variableexpense_isactive))
     {
@@ -172,19 +186,18 @@ variableexpense_list_element_t *variableexpense_list_element_parseFromJSON(cJSON
     }
 
 
-    variableexpense_list_element_local_var = variableexpense_list_element_create (
+    variableexpense_list_element_local_var = variableexpense_list_element_create_internal (
         pki_variableexpense_id->valuedouble,
         s_variableexpense_code && !cJSON_IsNull(s_variableexpense_code) ? strdup(s_variableexpense_code->valuestring) : NULL,
         s_variableexpense_description_x && !cJSON_IsNull(s_variableexpense_description_x) ? strdup(s_variableexpense_description_x->valuestring) : NULL,
-        e_variableexpense_taxable ? e_variableexpense_taxable_local_nonprim : NULL,
+        e_variableexpense_taxable ? e_variableexpense_taxable_local_nonprim : 0,
         b_variableexpense_isactive ? b_variableexpense_isactive->valueint : 0
         );
 
     return variableexpense_list_element_local_var;
 end:
     if (e_variableexpense_taxable_local_nonprim) {
-        field_e_variableexpense_taxable_free(e_variableexpense_taxable_local_nonprim);
-        e_variableexpense_taxable_local_nonprim = NULL;
+        e_variableexpense_taxable_local_nonprim = 0;
     }
     return NULL;
 

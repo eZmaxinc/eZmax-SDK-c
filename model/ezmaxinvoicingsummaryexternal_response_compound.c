@@ -5,7 +5,7 @@
 
 
 
-ezmaxinvoicingsummaryexternal_response_compound_t *ezmaxinvoicingsummaryexternal_response_compound_create(
+static ezmaxinvoicingsummaryexternal_response_compound_t *ezmaxinvoicingsummaryexternal_response_compound_create_internal(
     int pki_ezmaxinvoicingsummaryexternal_id,
     int fki_ezmaxinvoicing_id,
     int fki_billingentityexternal_id,
@@ -24,12 +24,34 @@ ezmaxinvoicingsummaryexternal_response_compound_t *ezmaxinvoicingsummaryexternal
     ezmaxinvoicingsummaryexternal_response_compound_local_var->s_ezmaxinvoicingsummaryexternal_description = s_ezmaxinvoicingsummaryexternal_description;
     ezmaxinvoicingsummaryexternal_response_compound_local_var->a_obj_ezmaxinvoicingsummaryexternaldetail = a_obj_ezmaxinvoicingsummaryexternaldetail;
 
+    ezmaxinvoicingsummaryexternal_response_compound_local_var->_library_owned = 1;
     return ezmaxinvoicingsummaryexternal_response_compound_local_var;
 }
 
+__attribute__((deprecated)) ezmaxinvoicingsummaryexternal_response_compound_t *ezmaxinvoicingsummaryexternal_response_compound_create(
+    int pki_ezmaxinvoicingsummaryexternal_id,
+    int fki_ezmaxinvoicing_id,
+    int fki_billingentityexternal_id,
+    char *s_billingentityexternal_description,
+    char *s_ezmaxinvoicingsummaryexternal_description,
+    list_t *a_obj_ezmaxinvoicingsummaryexternaldetail
+    ) {
+    return ezmaxinvoicingsummaryexternal_response_compound_create_internal (
+        pki_ezmaxinvoicingsummaryexternal_id,
+        fki_ezmaxinvoicing_id,
+        fki_billingentityexternal_id,
+        s_billingentityexternal_description,
+        s_ezmaxinvoicingsummaryexternal_description,
+        a_obj_ezmaxinvoicingsummaryexternaldetail
+        );
+}
 
 void ezmaxinvoicingsummaryexternal_response_compound_free(ezmaxinvoicingsummaryexternal_response_compound_t *ezmaxinvoicingsummaryexternal_response_compound) {
     if(NULL == ezmaxinvoicingsummaryexternal_response_compound){
+        return ;
+    }
+    if(ezmaxinvoicingsummaryexternal_response_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezmaxinvoicingsummaryexternal_response_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -134,6 +156,9 @@ ezmaxinvoicingsummaryexternal_response_compound_t *ezmaxinvoicingsummaryexternal
 
     // ezmaxinvoicingsummaryexternal_response_compound->pki_ezmaxinvoicingsummaryexternal_id
     cJSON *pki_ezmaxinvoicingsummaryexternal_id = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryexternal_response_compoundJSON, "pkiEzmaxinvoicingsummaryexternalID");
+    if (cJSON_IsNull(pki_ezmaxinvoicingsummaryexternal_id)) {
+        pki_ezmaxinvoicingsummaryexternal_id = NULL;
+    }
     if (pki_ezmaxinvoicingsummaryexternal_id) { 
     if(!cJSON_IsNumber(pki_ezmaxinvoicingsummaryexternal_id))
     {
@@ -143,6 +168,9 @@ ezmaxinvoicingsummaryexternal_response_compound_t *ezmaxinvoicingsummaryexternal
 
     // ezmaxinvoicingsummaryexternal_response_compound->fki_ezmaxinvoicing_id
     cJSON *fki_ezmaxinvoicing_id = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryexternal_response_compoundJSON, "fkiEzmaxinvoicingID");
+    if (cJSON_IsNull(fki_ezmaxinvoicing_id)) {
+        fki_ezmaxinvoicing_id = NULL;
+    }
     if (fki_ezmaxinvoicing_id) { 
     if(!cJSON_IsNumber(fki_ezmaxinvoicing_id))
     {
@@ -152,6 +180,9 @@ ezmaxinvoicingsummaryexternal_response_compound_t *ezmaxinvoicingsummaryexternal
 
     // ezmaxinvoicingsummaryexternal_response_compound->fki_billingentityexternal_id
     cJSON *fki_billingentityexternal_id = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryexternal_response_compoundJSON, "fkiBillingentityexternalID");
+    if (cJSON_IsNull(fki_billingentityexternal_id)) {
+        fki_billingentityexternal_id = NULL;
+    }
     if (!fki_billingentityexternal_id) {
         goto end;
     }
@@ -164,6 +195,9 @@ ezmaxinvoicingsummaryexternal_response_compound_t *ezmaxinvoicingsummaryexternal
 
     // ezmaxinvoicingsummaryexternal_response_compound->s_billingentityexternal_description
     cJSON *s_billingentityexternal_description = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryexternal_response_compoundJSON, "sBillingentityexternalDescription");
+    if (cJSON_IsNull(s_billingentityexternal_description)) {
+        s_billingentityexternal_description = NULL;
+    }
     if (!s_billingentityexternal_description) {
         goto end;
     }
@@ -176,6 +210,9 @@ ezmaxinvoicingsummaryexternal_response_compound_t *ezmaxinvoicingsummaryexternal
 
     // ezmaxinvoicingsummaryexternal_response_compound->s_ezmaxinvoicingsummaryexternal_description
     cJSON *s_ezmaxinvoicingsummaryexternal_description = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryexternal_response_compoundJSON, "sEzmaxinvoicingsummaryexternalDescription");
+    if (cJSON_IsNull(s_ezmaxinvoicingsummaryexternal_description)) {
+        s_ezmaxinvoicingsummaryexternal_description = NULL;
+    }
     if (!s_ezmaxinvoicingsummaryexternal_description) {
         goto end;
     }
@@ -188,6 +225,9 @@ ezmaxinvoicingsummaryexternal_response_compound_t *ezmaxinvoicingsummaryexternal
 
     // ezmaxinvoicingsummaryexternal_response_compound->a_obj_ezmaxinvoicingsummaryexternaldetail
     cJSON *a_obj_ezmaxinvoicingsummaryexternaldetail = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryexternal_response_compoundJSON, "a_objEzmaxinvoicingsummaryexternaldetail");
+    if (cJSON_IsNull(a_obj_ezmaxinvoicingsummaryexternaldetail)) {
+        a_obj_ezmaxinvoicingsummaryexternaldetail = NULL;
+    }
     if (!a_obj_ezmaxinvoicingsummaryexternaldetail) {
         goto end;
     }
@@ -211,7 +251,7 @@ ezmaxinvoicingsummaryexternal_response_compound_t *ezmaxinvoicingsummaryexternal
     }
 
 
-    ezmaxinvoicingsummaryexternal_response_compound_local_var = ezmaxinvoicingsummaryexternal_response_compound_create (
+    ezmaxinvoicingsummaryexternal_response_compound_local_var = ezmaxinvoicingsummaryexternal_response_compound_create_internal (
         pki_ezmaxinvoicingsummaryexternal_id ? pki_ezmaxinvoicingsummaryexternal_id->valuedouble : 0,
         fki_ezmaxinvoicing_id ? fki_ezmaxinvoicing_id->valuedouble : 0,
         fki_billingentityexternal_id->valuedouble,

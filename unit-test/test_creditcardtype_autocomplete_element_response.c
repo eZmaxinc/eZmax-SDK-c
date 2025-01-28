@@ -24,13 +24,13 @@ creditcardtype_autocomplete_element_response_t* instantiate_creditcardtype_autoc
     creditcardtype_autocomplete_element_response = creditcardtype_autocomplete_element_response_create(
       "Visa",
       2,
-      ezmax_api_definition__full_creditcardtype_autocomplete_element_response__"visa"
+      ezmax_api_definition__full_creditcardtype_autocomplete_element_response__"Visa"
     );
   } else {
     creditcardtype_autocomplete_element_response = creditcardtype_autocomplete_element_response_create(
       "Visa",
       2,
-      ezmax_api_definition__full_creditcardtype_autocomplete_element_response__"visa"
+      ezmax_api_definition__full_creditcardtype_autocomplete_element_response__"Visa"
     );
   }
 

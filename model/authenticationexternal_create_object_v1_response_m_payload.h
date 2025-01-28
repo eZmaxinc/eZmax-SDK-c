@@ -21,9 +21,10 @@ typedef struct authenticationexternal_create_object_v1_response_m_payload_t auth
 typedef struct authenticationexternal_create_object_v1_response_m_payload_t {
     list_t *a_pki_authenticationexternal_id; //primitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } authenticationexternal_create_object_v1_response_m_payload_t;
 
-authenticationexternal_create_object_v1_response_m_payload_t *authenticationexternal_create_object_v1_response_m_payload_create(
+__attribute__((deprecated)) authenticationexternal_create_object_v1_response_m_payload_t *authenticationexternal_create_object_v1_response_m_payload_create(
     list_t *a_pki_authenticationexternal_id
 );
 

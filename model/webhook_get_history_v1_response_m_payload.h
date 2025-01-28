@@ -15,16 +15,17 @@
 
 typedef struct webhook_get_history_v1_response_m_payload_t webhook_get_history_v1_response_m_payload_t;
 
-#include "object.h"
+#include "custom_webhooklog_response.h"
 
 
 
 typedef struct webhook_get_history_v1_response_m_payload_t {
     list_t *a_obj_webhooklog; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } webhook_get_history_v1_response_m_payload_t;
 
-webhook_get_history_v1_response_m_payload_t *webhook_get_history_v1_response_m_payload_create(
+__attribute__((deprecated)) webhook_get_history_v1_response_m_payload_t *webhook_get_history_v1_response_m_payload_create(
     list_t *a_obj_webhooklog
 );
 

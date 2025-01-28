@@ -21,9 +21,10 @@ typedef struct apikey_regenerate_v1_request_t apikey_regenerate_v1_request_t;
 typedef struct apikey_regenerate_v1_request_t {
     int b_apikey_issigned; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } apikey_regenerate_v1_request_t;
 
-apikey_regenerate_v1_request_t *apikey_regenerate_v1_request_create(
+__attribute__((deprecated)) apikey_regenerate_v1_request_t *apikey_regenerate_v1_request_create(
     int b_apikey_issigned
 );
 

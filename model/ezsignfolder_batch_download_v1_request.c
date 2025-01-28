@@ -22,7 +22,7 @@ ezmax_api_definition__full_ezsignfolder_batch_download_v1_request_AEDOCUMENTTYPE
     return 0;
 }
 
-ezsignfolder_batch_download_v1_request_t *ezsignfolder_batch_download_v1_request_create(
+static ezsignfolder_batch_download_v1_request_t *ezsignfolder_batch_download_v1_request_create_internal(
     list_t *a_pki_ezsigndocument_id,
     list_t *a_e_document_type
     ) {
@@ -33,12 +33,26 @@ ezsignfolder_batch_download_v1_request_t *ezsignfolder_batch_download_v1_request
     ezsignfolder_batch_download_v1_request_local_var->a_pki_ezsigndocument_id = a_pki_ezsigndocument_id;
     ezsignfolder_batch_download_v1_request_local_var->a_e_document_type = a_e_document_type;
 
+    ezsignfolder_batch_download_v1_request_local_var->_library_owned = 1;
     return ezsignfolder_batch_download_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezsignfolder_batch_download_v1_request_t *ezsignfolder_batch_download_v1_request_create(
+    list_t *a_pki_ezsigndocument_id,
+    list_t *a_e_document_type
+    ) {
+    return ezsignfolder_batch_download_v1_request_create_internal (
+        a_pki_ezsigndocument_id,
+        a_e_document_type
+        );
+}
 
 void ezsignfolder_batch_download_v1_request_free(ezsignfolder_batch_download_v1_request_t *ezsignfolder_batch_download_v1_request) {
     if(NULL == ezsignfolder_batch_download_v1_request){
+        return ;
+    }
+    if(ezsignfolder_batch_download_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignfolder_batch_download_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -91,7 +105,7 @@ cJSON *ezsignfolder_batch_download_v1_request_convertToJSON(ezsignfolder_batch_d
 
     listEntry_t *a_e_document_typeListEntry;
     list_ForEach(a_e_document_typeListEntry, ezsignfolder_batch_download_v1_request->a_e_document_type) {
-    if(cJSON_AddStringToObject(a_e_document_type, "", (char*)a_e_document_typeListEntry->data) == NULL)
+    if(cJSON_AddStringToObject(a_e_document_type, "", a_e_document_typeListEntry->data) == NULL)
     {
         goto fail;
     }
@@ -117,6 +131,9 @@ ezsignfolder_batch_download_v1_request_t *ezsignfolder_batch_download_v1_request
 
     // ezsignfolder_batch_download_v1_request->a_pki_ezsigndocument_id
     cJSON *a_pki_ezsigndocument_id = cJSON_GetObjectItemCaseSensitive(ezsignfolder_batch_download_v1_requestJSON, "a_pkiEzsigndocumentID");
+    if (cJSON_IsNull(a_pki_ezsigndocument_id)) {
+        a_pki_ezsigndocument_id = NULL;
+    }
     if (!a_pki_ezsigndocument_id) {
         goto end;
     }
@@ -134,7 +151,7 @@ ezsignfolder_batch_download_v1_request_t *ezsignfolder_batch_download_v1_request
         {
             goto end;
         }
-        double *a_pki_ezsigndocument_id_local_value = (double *)calloc(1, sizeof(double));
+        double *a_pki_ezsigndocument_id_local_value = calloc(1, sizeof(double));
         if(!a_pki_ezsigndocument_id_local_value)
         {
             goto end;
@@ -145,6 +162,9 @@ ezsignfolder_batch_download_v1_request_t *ezsignfolder_batch_download_v1_request
 
     // ezsignfolder_batch_download_v1_request->a_e_document_type
     cJSON *a_e_document_type = cJSON_GetObjectItemCaseSensitive(ezsignfolder_batch_download_v1_requestJSON, "a_eDocumentType");
+    if (cJSON_IsNull(a_e_document_type)) {
+        a_e_document_type = NULL;
+    }
     if (!a_e_document_type) {
         goto end;
     }
@@ -166,7 +186,7 @@ ezsignfolder_batch_download_v1_request_t *ezsignfolder_batch_download_v1_request
     }
 
 
-    ezsignfolder_batch_download_v1_request_local_var = ezsignfolder_batch_download_v1_request_create (
+    ezsignfolder_batch_download_v1_request_local_var = ezsignfolder_batch_download_v1_request_create_internal (
         a_pki_ezsigndocument_idList,
         a_e_document_typeList
         );

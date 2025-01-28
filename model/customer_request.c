@@ -4,42 +4,8 @@
 #include "customer_request.h"
 
 
-char* customer_request_e_customer_type_ToString(ezmax_api_definition__full_customer_request__e e_customer_type) {
-    char* e_customer_typeArray[] =  { "NULL", "Normal", "Vetrx-Server", "Reward-Administration", "Reward-Representative", "Reward-Server" };
-    return e_customer_typeArray[e_customer_type];
-}
 
-ezmax_api_definition__full_customer_request__e customer_request_e_customer_type_FromString(char* e_customer_type){
-    int stringToReturn = 0;
-    char *e_customer_typeArray[] =  { "NULL", "Normal", "Vetrx-Server", "Reward-Administration", "Reward-Representative", "Reward-Server" };
-    size_t sizeofArray = sizeof(e_customer_typeArray) / sizeof(e_customer_typeArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_customer_type, e_customer_typeArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-char* customer_request_e_customer_marketingcorrespondence_ToString(ezmax_api_definition__full_customer_request__e e_customer_marketingcorrespondence) {
-    char* e_customer_marketingcorrespondenceArray[] =  { "NULL", "No", "Email", "Mail", "Any" };
-    return e_customer_marketingcorrespondenceArray[e_customer_marketingcorrespondence];
-}
-
-ezmax_api_definition__full_customer_request__e customer_request_e_customer_marketingcorrespondence_FromString(char* e_customer_marketingcorrespondence){
-    int stringToReturn = 0;
-    char *e_customer_marketingcorrespondenceArray[] =  { "NULL", "No", "Email", "Mail", "Any" };
-    size_t sizeofArray = sizeof(e_customer_marketingcorrespondenceArray) / sizeof(e_customer_marketingcorrespondenceArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_customer_marketingcorrespondence, e_customer_marketingcorrespondenceArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-customer_request_t *customer_request_create(
+static customer_request_t *customer_request_create_internal(
     int pki_customer_id,
     int fki_company_id,
     int fki_customergroup_id,
@@ -85,8 +51,8 @@ customer_request_t *customer_request_create(
     int b_customer_supplychargefinanced,
     int b_customer_supplychargefinancedtaxes,
     int b_customer_attendance,
-    field_e_customer_type_t *e_customer_type,
-    field_e_customer_marketingcorrespondence_t *e_customer_marketingcorrespondence,
+    ezmax_api_definition__full_field_e_customer_type__e e_customer_type,
+    ezmax_api_definition__full_field_e_customer_marketingcorrespondence__e e_customer_marketingcorrespondence,
     int b_customer_blackcopycarbon,
     int b_customer_unsubscribeinfo,
     char *t_customer_comment,
@@ -148,12 +114,124 @@ customer_request_t *customer_request_create(
     customer_request_local_var->t_customer_comment = t_customer_comment;
     customer_request_local_var->importid = importid;
 
+    customer_request_local_var->_library_owned = 1;
     return customer_request_local_var;
 }
 
+__attribute__((deprecated)) customer_request_t *customer_request_create(
+    int pki_customer_id,
+    int fki_company_id,
+    int fki_customergroup_id,
+    char *s_customer_name,
+    int fki_contactinformations_id,
+    int fki_contactcontainer_id,
+    int fki_image_id,
+    int fki_glaccountcontainer_id,
+    int fki_language_id,
+    int fki_department_id,
+    int fki_paymentmethod_id,
+    int fki_electronicfundstransferbankaccount_id,
+    int fki_electronicfundstransferbankaccount_id_directdebit,
+    int fki_sendingmethod_id,
+    int fki_taxassignment_id,
+    int fki_attendancestatus_id,
+    int fki_agent_id_variableexpensechargeto,
+    int fki_broker_id_variableexpensechargeto,
+    int fki_customer_id_variableexpensechargeto,
+    int fki_glaccountcontainer_id_variableexpensechargeto,
+    int fki_agent_id_supplychargechargeto,
+    int fki_broker_id_supplychargechargeto,
+    int fki_customer_id_supplychargechargeto,
+    int fki_glaccountcontainer_id_supplychargechargeto,
+    int fki_invoicealternatelogo_id,
+    int fki_synchronizationlinkserver_id,
+    int efki_user_id,
+    char *efks_customer_code,
+    char *s_customer_code,
+    char *d_customer_fulltimeequivalent,
+    int i_customer_photocopiercode,
+    int i_customer_longdistancecode,
+    int i_customer_timewindowstart,
+    int i_customer_timewindowend,
+    char *d_customer_minimumchargeableinterests,
+    char *dt_customer_birthdate,
+    char *dt_customer_transfer,
+    char *dt_customer_transferappointment,
+    char *dt_customer_transfersurvey,
+    int b_customer_isactive,
+    int b_customer_variableexpensefinanced,
+    int b_customer_variableexpensefinancedtaxes,
+    int b_customer_supplychargefinanced,
+    int b_customer_supplychargefinancedtaxes,
+    int b_customer_attendance,
+    ezmax_api_definition__full_field_e_customer_type__e e_customer_type,
+    ezmax_api_definition__full_field_e_customer_marketingcorrespondence__e e_customer_marketingcorrespondence,
+    int b_customer_blackcopycarbon,
+    int b_customer_unsubscribeinfo,
+    char *t_customer_comment,
+    char *importid
+    ) {
+    return customer_request_create_internal (
+        pki_customer_id,
+        fki_company_id,
+        fki_customergroup_id,
+        s_customer_name,
+        fki_contactinformations_id,
+        fki_contactcontainer_id,
+        fki_image_id,
+        fki_glaccountcontainer_id,
+        fki_language_id,
+        fki_department_id,
+        fki_paymentmethod_id,
+        fki_electronicfundstransferbankaccount_id,
+        fki_electronicfundstransferbankaccount_id_directdebit,
+        fki_sendingmethod_id,
+        fki_taxassignment_id,
+        fki_attendancestatus_id,
+        fki_agent_id_variableexpensechargeto,
+        fki_broker_id_variableexpensechargeto,
+        fki_customer_id_variableexpensechargeto,
+        fki_glaccountcontainer_id_variableexpensechargeto,
+        fki_agent_id_supplychargechargeto,
+        fki_broker_id_supplychargechargeto,
+        fki_customer_id_supplychargechargeto,
+        fki_glaccountcontainer_id_supplychargechargeto,
+        fki_invoicealternatelogo_id,
+        fki_synchronizationlinkserver_id,
+        efki_user_id,
+        efks_customer_code,
+        s_customer_code,
+        d_customer_fulltimeequivalent,
+        i_customer_photocopiercode,
+        i_customer_longdistancecode,
+        i_customer_timewindowstart,
+        i_customer_timewindowend,
+        d_customer_minimumchargeableinterests,
+        dt_customer_birthdate,
+        dt_customer_transfer,
+        dt_customer_transferappointment,
+        dt_customer_transfersurvey,
+        b_customer_isactive,
+        b_customer_variableexpensefinanced,
+        b_customer_variableexpensefinancedtaxes,
+        b_customer_supplychargefinanced,
+        b_customer_supplychargefinancedtaxes,
+        b_customer_attendance,
+        e_customer_type,
+        e_customer_marketingcorrespondence,
+        b_customer_blackcopycarbon,
+        b_customer_unsubscribeinfo,
+        t_customer_comment,
+        importid
+        );
+}
 
 void customer_request_free(customer_request_t *customer_request) {
     if(NULL == customer_request){
+        return ;
+    }
+    if(customer_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "customer_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -192,14 +270,6 @@ void customer_request_free(customer_request_t *customer_request) {
     if (customer_request->dt_customer_transfersurvey) {
         free(customer_request->dt_customer_transfersurvey);
         customer_request->dt_customer_transfersurvey = NULL;
-    }
-    if (customer_request->e_customer_type) {
-        field_e_customer_type_free(customer_request->e_customer_type);
-        customer_request->e_customer_type = NULL;
-    }
-    if (customer_request->e_customer_marketingcorrespondence) {
-        field_e_customer_marketingcorrespondence_free(customer_request->e_customer_marketingcorrespondence);
-        customer_request->e_customer_marketingcorrespondence = NULL;
     }
     if (customer_request->t_customer_comment) {
         free(customer_request->t_customer_comment);
@@ -618,7 +688,7 @@ cJSON *customer_request_convertToJSON(customer_request_t *customer_request) {
 
 
     // customer_request->e_customer_type
-    if (ezmax_api_definition__full_customer_request__NULL == customer_request->e_customer_type) {
+    if (ezmax_api_definition__full_field_e_customer_type__NULL == customer_request->e_customer_type) {
         goto fail;
     }
     cJSON *e_customer_type_local_JSON = field_e_customer_type_convertToJSON(customer_request->e_customer_type);
@@ -632,7 +702,7 @@ cJSON *customer_request_convertToJSON(customer_request_t *customer_request) {
 
 
     // customer_request->e_customer_marketingcorrespondence
-    if (ezmax_api_definition__full_customer_request__NULL == customer_request->e_customer_marketingcorrespondence) {
+    if (ezmax_api_definition__full_field_e_customer_marketingcorrespondence__NULL == customer_request->e_customer_marketingcorrespondence) {
         goto fail;
     }
     cJSON *e_customer_marketingcorrespondence_local_JSON = field_e_customer_marketingcorrespondence_convertToJSON(customer_request->e_customer_marketingcorrespondence);
@@ -692,13 +762,16 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
     customer_request_t *customer_request_local_var = NULL;
 
     // define the local variable for customer_request->e_customer_type
-    field_e_customer_type_t *e_customer_type_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_customer_type__e e_customer_type_local_nonprim = 0;
 
     // define the local variable for customer_request->e_customer_marketingcorrespondence
-    field_e_customer_marketingcorrespondence_t *e_customer_marketingcorrespondence_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_customer_marketingcorrespondence__e e_customer_marketingcorrespondence_local_nonprim = 0;
 
     // customer_request->pki_customer_id
     cJSON *pki_customer_id = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "pkiCustomerID");
+    if (cJSON_IsNull(pki_customer_id)) {
+        pki_customer_id = NULL;
+    }
     if (pki_customer_id) { 
     if(!cJSON_IsNumber(pki_customer_id))
     {
@@ -708,6 +781,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->fki_company_id
     cJSON *fki_company_id = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "fkiCompanyID");
+    if (cJSON_IsNull(fki_company_id)) {
+        fki_company_id = NULL;
+    }
     if (!fki_company_id) {
         goto end;
     }
@@ -720,6 +796,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->fki_customergroup_id
     cJSON *fki_customergroup_id = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "fkiCustomergroupID");
+    if (cJSON_IsNull(fki_customergroup_id)) {
+        fki_customergroup_id = NULL;
+    }
     if (!fki_customergroup_id) {
         goto end;
     }
@@ -732,6 +811,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->s_customer_name
     cJSON *s_customer_name = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "sCustomerName");
+    if (cJSON_IsNull(s_customer_name)) {
+        s_customer_name = NULL;
+    }
     if (!s_customer_name) {
         goto end;
     }
@@ -744,6 +826,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->fki_contactinformations_id
     cJSON *fki_contactinformations_id = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "fkiContactinformationsID");
+    if (cJSON_IsNull(fki_contactinformations_id)) {
+        fki_contactinformations_id = NULL;
+    }
     if (!fki_contactinformations_id) {
         goto end;
     }
@@ -756,6 +841,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->fki_contactcontainer_id
     cJSON *fki_contactcontainer_id = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "fkiContactcontainerID");
+    if (cJSON_IsNull(fki_contactcontainer_id)) {
+        fki_contactcontainer_id = NULL;
+    }
     if (!fki_contactcontainer_id) {
         goto end;
     }
@@ -768,6 +856,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->fki_image_id
     cJSON *fki_image_id = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "fkiImageID");
+    if (cJSON_IsNull(fki_image_id)) {
+        fki_image_id = NULL;
+    }
     if (!fki_image_id) {
         goto end;
     }
@@ -780,6 +871,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->fki_glaccountcontainer_id
     cJSON *fki_glaccountcontainer_id = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "fkiGlaccountcontainerID");
+    if (cJSON_IsNull(fki_glaccountcontainer_id)) {
+        fki_glaccountcontainer_id = NULL;
+    }
     if (!fki_glaccountcontainer_id) {
         goto end;
     }
@@ -792,6 +886,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->fki_language_id
     cJSON *fki_language_id = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "fkiLanguageID");
+    if (cJSON_IsNull(fki_language_id)) {
+        fki_language_id = NULL;
+    }
     if (!fki_language_id) {
         goto end;
     }
@@ -804,6 +901,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->fki_department_id
     cJSON *fki_department_id = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "fkiDepartmentID");
+    if (cJSON_IsNull(fki_department_id)) {
+        fki_department_id = NULL;
+    }
     if (!fki_department_id) {
         goto end;
     }
@@ -816,6 +916,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->fki_paymentmethod_id
     cJSON *fki_paymentmethod_id = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "fkiPaymentmethodID");
+    if (cJSON_IsNull(fki_paymentmethod_id)) {
+        fki_paymentmethod_id = NULL;
+    }
     if (!fki_paymentmethod_id) {
         goto end;
     }
@@ -828,6 +931,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->fki_electronicfundstransferbankaccount_id
     cJSON *fki_electronicfundstransferbankaccount_id = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "fkiElectronicfundstransferbankaccountID");
+    if (cJSON_IsNull(fki_electronicfundstransferbankaccount_id)) {
+        fki_electronicfundstransferbankaccount_id = NULL;
+    }
     if (!fki_electronicfundstransferbankaccount_id) {
         goto end;
     }
@@ -840,6 +946,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->fki_electronicfundstransferbankaccount_id_directdebit
     cJSON *fki_electronicfundstransferbankaccount_id_directdebit = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "fkiElectronicfundstransferbankaccountIDDirectdebit");
+    if (cJSON_IsNull(fki_electronicfundstransferbankaccount_id_directdebit)) {
+        fki_electronicfundstransferbankaccount_id_directdebit = NULL;
+    }
     if (!fki_electronicfundstransferbankaccount_id_directdebit) {
         goto end;
     }
@@ -852,6 +961,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->fki_sendingmethod_id
     cJSON *fki_sendingmethod_id = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "fkiSendingmethodID");
+    if (cJSON_IsNull(fki_sendingmethod_id)) {
+        fki_sendingmethod_id = NULL;
+    }
     if (!fki_sendingmethod_id) {
         goto end;
     }
@@ -864,6 +976,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->fki_taxassignment_id
     cJSON *fki_taxassignment_id = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "fkiTaxassignmentID");
+    if (cJSON_IsNull(fki_taxassignment_id)) {
+        fki_taxassignment_id = NULL;
+    }
     if (!fki_taxassignment_id) {
         goto end;
     }
@@ -876,6 +991,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->fki_attendancestatus_id
     cJSON *fki_attendancestatus_id = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "fkiAttendancestatusID");
+    if (cJSON_IsNull(fki_attendancestatus_id)) {
+        fki_attendancestatus_id = NULL;
+    }
     if (!fki_attendancestatus_id) {
         goto end;
     }
@@ -888,6 +1006,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->fki_agent_id_variableexpensechargeto
     cJSON *fki_agent_id_variableexpensechargeto = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "fkiAgentIDVariableexpensechargeto");
+    if (cJSON_IsNull(fki_agent_id_variableexpensechargeto)) {
+        fki_agent_id_variableexpensechargeto = NULL;
+    }
     if (!fki_agent_id_variableexpensechargeto) {
         goto end;
     }
@@ -900,6 +1021,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->fki_broker_id_variableexpensechargeto
     cJSON *fki_broker_id_variableexpensechargeto = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "fkiBrokerIDVariableexpensechargeto");
+    if (cJSON_IsNull(fki_broker_id_variableexpensechargeto)) {
+        fki_broker_id_variableexpensechargeto = NULL;
+    }
     if (!fki_broker_id_variableexpensechargeto) {
         goto end;
     }
@@ -912,6 +1036,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->fki_customer_id_variableexpensechargeto
     cJSON *fki_customer_id_variableexpensechargeto = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "fkiCustomerIDVariableexpensechargeto");
+    if (cJSON_IsNull(fki_customer_id_variableexpensechargeto)) {
+        fki_customer_id_variableexpensechargeto = NULL;
+    }
     if (!fki_customer_id_variableexpensechargeto) {
         goto end;
     }
@@ -924,6 +1051,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->fki_glaccountcontainer_id_variableexpensechargeto
     cJSON *fki_glaccountcontainer_id_variableexpensechargeto = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "fkiGlaccountcontainerIDVariableexpensechargeto");
+    if (cJSON_IsNull(fki_glaccountcontainer_id_variableexpensechargeto)) {
+        fki_glaccountcontainer_id_variableexpensechargeto = NULL;
+    }
     if (!fki_glaccountcontainer_id_variableexpensechargeto) {
         goto end;
     }
@@ -936,6 +1066,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->fki_agent_id_supplychargechargeto
     cJSON *fki_agent_id_supplychargechargeto = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "fkiAgentIDSupplychargechargeto");
+    if (cJSON_IsNull(fki_agent_id_supplychargechargeto)) {
+        fki_agent_id_supplychargechargeto = NULL;
+    }
     if (!fki_agent_id_supplychargechargeto) {
         goto end;
     }
@@ -948,6 +1081,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->fki_broker_id_supplychargechargeto
     cJSON *fki_broker_id_supplychargechargeto = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "fkiBrokerIDSupplychargechargeto");
+    if (cJSON_IsNull(fki_broker_id_supplychargechargeto)) {
+        fki_broker_id_supplychargechargeto = NULL;
+    }
     if (!fki_broker_id_supplychargechargeto) {
         goto end;
     }
@@ -960,6 +1096,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->fki_customer_id_supplychargechargeto
     cJSON *fki_customer_id_supplychargechargeto = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "fkiCustomerIDSupplychargechargeto");
+    if (cJSON_IsNull(fki_customer_id_supplychargechargeto)) {
+        fki_customer_id_supplychargechargeto = NULL;
+    }
     if (!fki_customer_id_supplychargechargeto) {
         goto end;
     }
@@ -972,6 +1111,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->fki_glaccountcontainer_id_supplychargechargeto
     cJSON *fki_glaccountcontainer_id_supplychargechargeto = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "fkiGlaccountcontainerIDSupplychargechargeto");
+    if (cJSON_IsNull(fki_glaccountcontainer_id_supplychargechargeto)) {
+        fki_glaccountcontainer_id_supplychargechargeto = NULL;
+    }
     if (!fki_glaccountcontainer_id_supplychargechargeto) {
         goto end;
     }
@@ -984,6 +1126,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->fki_invoicealternatelogo_id
     cJSON *fki_invoicealternatelogo_id = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "fkiInvoicealternatelogoID");
+    if (cJSON_IsNull(fki_invoicealternatelogo_id)) {
+        fki_invoicealternatelogo_id = NULL;
+    }
     if (!fki_invoicealternatelogo_id) {
         goto end;
     }
@@ -996,6 +1141,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->fki_synchronizationlinkserver_id
     cJSON *fki_synchronizationlinkserver_id = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "fkiSynchronizationlinkserverID");
+    if (cJSON_IsNull(fki_synchronizationlinkserver_id)) {
+        fki_synchronizationlinkserver_id = NULL;
+    }
     if (!fki_synchronizationlinkserver_id) {
         goto end;
     }
@@ -1008,6 +1156,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->efki_user_id
     cJSON *efki_user_id = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "efkiUserID");
+    if (cJSON_IsNull(efki_user_id)) {
+        efki_user_id = NULL;
+    }
     if (efki_user_id) { 
     if(!cJSON_IsNumber(efki_user_id))
     {
@@ -1017,6 +1168,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->efks_customer_code
     cJSON *efks_customer_code = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "efksCustomerCode");
+    if (cJSON_IsNull(efks_customer_code)) {
+        efks_customer_code = NULL;
+    }
     if (efks_customer_code) { 
     if(!cJSON_IsString(efks_customer_code) && !cJSON_IsNull(efks_customer_code))
     {
@@ -1026,6 +1180,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->s_customer_code
     cJSON *s_customer_code = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "sCustomerCode");
+    if (cJSON_IsNull(s_customer_code)) {
+        s_customer_code = NULL;
+    }
     if (!s_customer_code) {
         goto end;
     }
@@ -1038,6 +1195,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->d_customer_fulltimeequivalent
     cJSON *d_customer_fulltimeequivalent = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "dCustomerFulltimeequivalent");
+    if (cJSON_IsNull(d_customer_fulltimeequivalent)) {
+        d_customer_fulltimeequivalent = NULL;
+    }
     if (!d_customer_fulltimeequivalent) {
         goto end;
     }
@@ -1050,6 +1210,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->i_customer_photocopiercode
     cJSON *i_customer_photocopiercode = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "iCustomerPhotocopiercode");
+    if (cJSON_IsNull(i_customer_photocopiercode)) {
+        i_customer_photocopiercode = NULL;
+    }
     if (!i_customer_photocopiercode) {
         goto end;
     }
@@ -1062,6 +1225,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->i_customer_longdistancecode
     cJSON *i_customer_longdistancecode = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "iCustomerLongdistancecode");
+    if (cJSON_IsNull(i_customer_longdistancecode)) {
+        i_customer_longdistancecode = NULL;
+    }
     if (!i_customer_longdistancecode) {
         goto end;
     }
@@ -1074,6 +1240,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->i_customer_timewindowstart
     cJSON *i_customer_timewindowstart = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "iCustomerTimewindowstart");
+    if (cJSON_IsNull(i_customer_timewindowstart)) {
+        i_customer_timewindowstart = NULL;
+    }
     if (!i_customer_timewindowstart) {
         goto end;
     }
@@ -1086,6 +1255,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->i_customer_timewindowend
     cJSON *i_customer_timewindowend = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "iCustomerTimewindowend");
+    if (cJSON_IsNull(i_customer_timewindowend)) {
+        i_customer_timewindowend = NULL;
+    }
     if (!i_customer_timewindowend) {
         goto end;
     }
@@ -1098,6 +1270,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->d_customer_minimumchargeableinterests
     cJSON *d_customer_minimumchargeableinterests = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "dCustomerMinimumchargeableinterests");
+    if (cJSON_IsNull(d_customer_minimumchargeableinterests)) {
+        d_customer_minimumchargeableinterests = NULL;
+    }
     if (!d_customer_minimumchargeableinterests) {
         goto end;
     }
@@ -1110,6 +1285,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->dt_customer_birthdate
     cJSON *dt_customer_birthdate = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "dtCustomerBirthdate");
+    if (cJSON_IsNull(dt_customer_birthdate)) {
+        dt_customer_birthdate = NULL;
+    }
     if (!dt_customer_birthdate) {
         goto end;
     }
@@ -1122,6 +1300,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->dt_customer_transfer
     cJSON *dt_customer_transfer = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "dtCustomerTransfer");
+    if (cJSON_IsNull(dt_customer_transfer)) {
+        dt_customer_transfer = NULL;
+    }
     if (!dt_customer_transfer) {
         goto end;
     }
@@ -1134,6 +1315,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->dt_customer_transferappointment
     cJSON *dt_customer_transferappointment = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "dtCustomerTransferappointment");
+    if (cJSON_IsNull(dt_customer_transferappointment)) {
+        dt_customer_transferappointment = NULL;
+    }
     if (!dt_customer_transferappointment) {
         goto end;
     }
@@ -1146,6 +1330,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->dt_customer_transfersurvey
     cJSON *dt_customer_transfersurvey = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "dtCustomerTransfersurvey");
+    if (cJSON_IsNull(dt_customer_transfersurvey)) {
+        dt_customer_transfersurvey = NULL;
+    }
     if (!dt_customer_transfersurvey) {
         goto end;
     }
@@ -1158,6 +1345,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->b_customer_isactive
     cJSON *b_customer_isactive = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "bCustomerIsactive");
+    if (cJSON_IsNull(b_customer_isactive)) {
+        b_customer_isactive = NULL;
+    }
     if (!b_customer_isactive) {
         goto end;
     }
@@ -1170,6 +1360,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->b_customer_variableexpensefinanced
     cJSON *b_customer_variableexpensefinanced = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "bCustomerVariableexpensefinanced");
+    if (cJSON_IsNull(b_customer_variableexpensefinanced)) {
+        b_customer_variableexpensefinanced = NULL;
+    }
     if (!b_customer_variableexpensefinanced) {
         goto end;
     }
@@ -1182,6 +1375,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->b_customer_variableexpensefinancedtaxes
     cJSON *b_customer_variableexpensefinancedtaxes = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "bCustomerVariableexpensefinancedtaxes");
+    if (cJSON_IsNull(b_customer_variableexpensefinancedtaxes)) {
+        b_customer_variableexpensefinancedtaxes = NULL;
+    }
     if (!b_customer_variableexpensefinancedtaxes) {
         goto end;
     }
@@ -1194,6 +1390,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->b_customer_supplychargefinanced
     cJSON *b_customer_supplychargefinanced = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "bCustomerSupplychargefinanced");
+    if (cJSON_IsNull(b_customer_supplychargefinanced)) {
+        b_customer_supplychargefinanced = NULL;
+    }
     if (!b_customer_supplychargefinanced) {
         goto end;
     }
@@ -1206,6 +1405,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->b_customer_supplychargefinancedtaxes
     cJSON *b_customer_supplychargefinancedtaxes = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "bCustomerSupplychargefinancedtaxes");
+    if (cJSON_IsNull(b_customer_supplychargefinancedtaxes)) {
+        b_customer_supplychargefinancedtaxes = NULL;
+    }
     if (!b_customer_supplychargefinancedtaxes) {
         goto end;
     }
@@ -1218,6 +1420,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->b_customer_attendance
     cJSON *b_customer_attendance = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "bCustomerAttendance");
+    if (cJSON_IsNull(b_customer_attendance)) {
+        b_customer_attendance = NULL;
+    }
     if (!b_customer_attendance) {
         goto end;
     }
@@ -1230,6 +1435,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->e_customer_type
     cJSON *e_customer_type = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "eCustomerType");
+    if (cJSON_IsNull(e_customer_type)) {
+        e_customer_type = NULL;
+    }
     if (!e_customer_type) {
         goto end;
     }
@@ -1239,6 +1447,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->e_customer_marketingcorrespondence
     cJSON *e_customer_marketingcorrespondence = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "eCustomerMarketingcorrespondence");
+    if (cJSON_IsNull(e_customer_marketingcorrespondence)) {
+        e_customer_marketingcorrespondence = NULL;
+    }
     if (!e_customer_marketingcorrespondence) {
         goto end;
     }
@@ -1248,6 +1459,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->b_customer_blackcopycarbon
     cJSON *b_customer_blackcopycarbon = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "bCustomerBlackcopycarbon");
+    if (cJSON_IsNull(b_customer_blackcopycarbon)) {
+        b_customer_blackcopycarbon = NULL;
+    }
     if (!b_customer_blackcopycarbon) {
         goto end;
     }
@@ -1260,6 +1474,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->b_customer_unsubscribeinfo
     cJSON *b_customer_unsubscribeinfo = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "bCustomerUnsubscribeinfo");
+    if (cJSON_IsNull(b_customer_unsubscribeinfo)) {
+        b_customer_unsubscribeinfo = NULL;
+    }
     if (!b_customer_unsubscribeinfo) {
         goto end;
     }
@@ -1272,6 +1489,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->t_customer_comment
     cJSON *t_customer_comment = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "tCustomerComment");
+    if (cJSON_IsNull(t_customer_comment)) {
+        t_customer_comment = NULL;
+    }
     if (!t_customer_comment) {
         goto end;
     }
@@ -1284,6 +1504,9 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
 
     // customer_request->importid
     cJSON *importid = cJSON_GetObjectItemCaseSensitive(customer_requestJSON, "IMPORTID");
+    if (cJSON_IsNull(importid)) {
+        importid = NULL;
+    }
     if (importid) { 
     if(!cJSON_IsString(importid) && !cJSON_IsNull(importid))
     {
@@ -1292,7 +1515,7 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
     }
 
 
-    customer_request_local_var = customer_request_create (
+    customer_request_local_var = customer_request_create_internal (
         pki_customer_id ? pki_customer_id->valuedouble : 0,
         fki_company_id->valuedouble,
         fki_customergroup_id->valuedouble,
@@ -1349,12 +1572,10 @@ customer_request_t *customer_request_parseFromJSON(cJSON *customer_requestJSON){
     return customer_request_local_var;
 end:
     if (e_customer_type_local_nonprim) {
-        field_e_customer_type_free(e_customer_type_local_nonprim);
-        e_customer_type_local_nonprim = NULL;
+        e_customer_type_local_nonprim = 0;
     }
     if (e_customer_marketingcorrespondence_local_nonprim) {
-        field_e_customer_marketingcorrespondence_free(e_customer_marketingcorrespondence_local_nonprim);
-        e_customer_marketingcorrespondence_local_nonprim = NULL;
+        e_customer_marketingcorrespondence_local_nonprim = 0;
     }
     return NULL;
 

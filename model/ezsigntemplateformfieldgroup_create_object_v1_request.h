@@ -22,9 +22,10 @@ typedef struct ezsigntemplateformfieldgroup_create_object_v1_request_t ezsigntem
 typedef struct ezsigntemplateformfieldgroup_create_object_v1_request_t {
     list_t *a_obj_ezsigntemplateformfieldgroup; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplateformfieldgroup_create_object_v1_request_t;
 
-ezsigntemplateformfieldgroup_create_object_v1_request_t *ezsigntemplateformfieldgroup_create_object_v1_request_create(
+__attribute__((deprecated)) ezsigntemplateformfieldgroup_create_object_v1_request_t *ezsigntemplateformfieldgroup_create_object_v1_request_create(
     list_t *a_obj_ezsigntemplateformfieldgroup
 );
 

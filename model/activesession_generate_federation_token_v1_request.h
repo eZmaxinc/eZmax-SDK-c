@@ -21,9 +21,10 @@ typedef struct activesession_generate_federation_token_v1_request_t activesessio
 typedef struct activesession_generate_federation_token_v1_request_t {
     char *fks_ezmaxcustomer_code; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } activesession_generate_federation_token_v1_request_t;
 
-activesession_generate_federation_token_v1_request_t *activesession_generate_federation_token_v1_request_create(
+__attribute__((deprecated)) activesession_generate_federation_token_v1_request_t *activesession_generate_federation_token_v1_request_create(
     char *fks_ezmaxcustomer_code
 );
 

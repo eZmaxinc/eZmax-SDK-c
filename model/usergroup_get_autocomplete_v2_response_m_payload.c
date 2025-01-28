@@ -5,7 +5,7 @@
 
 
 
-usergroup_get_autocomplete_v2_response_m_payload_t *usergroup_get_autocomplete_v2_response_m_payload_create(
+static usergroup_get_autocomplete_v2_response_m_payload_t *usergroup_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_usergroup
     ) {
     usergroup_get_autocomplete_v2_response_m_payload_t *usergroup_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(usergroup_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ usergroup_get_autocomplete_v2_response_m_payload_t *usergroup_get_autocomplete_v
     }
     usergroup_get_autocomplete_v2_response_m_payload_local_var->a_obj_usergroup = a_obj_usergroup;
 
+    usergroup_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return usergroup_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) usergroup_get_autocomplete_v2_response_m_payload_t *usergroup_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_usergroup
+    ) {
+    return usergroup_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_usergroup
+        );
+}
 
 void usergroup_get_autocomplete_v2_response_m_payload_free(usergroup_get_autocomplete_v2_response_m_payload_t *usergroup_get_autocomplete_v2_response_m_payload) {
     if(NULL == usergroup_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(usergroup_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroup_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ usergroup_get_autocomplete_v2_response_m_payload_t *usergroup_get_autocomplete_v
 
     // usergroup_get_autocomplete_v2_response_m_payload->a_obj_usergroup
     cJSON *a_obj_usergroup = cJSON_GetObjectItemCaseSensitive(usergroup_get_autocomplete_v2_response_m_payloadJSON, "a_objUsergroup");
+    if (cJSON_IsNull(a_obj_usergroup)) {
+        a_obj_usergroup = NULL;
+    }
     if (!a_obj_usergroup) {
         goto end;
     }
@@ -96,7 +111,7 @@ usergroup_get_autocomplete_v2_response_m_payload_t *usergroup_get_autocomplete_v
     }
 
 
-    usergroup_get_autocomplete_v2_response_m_payload_local_var = usergroup_get_autocomplete_v2_response_m_payload_create (
+    usergroup_get_autocomplete_v2_response_m_payload_local_var = usergroup_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_usergroupList
         );
 

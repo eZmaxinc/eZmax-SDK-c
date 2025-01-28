@@ -21,9 +21,10 @@ typedef struct ezsignbulksenddocumentmapping_create_object_v1_response_m_payload
 typedef struct ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_t {
     list_t *a_pki_ezsignbulksenddocumentmapping_id; //primitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_t;
 
-ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_t *ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_create(
+__attribute__((deprecated)) ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_t *ezsignbulksenddocumentmapping_create_object_v1_response_m_payload_create(
     list_t *a_pki_ezsignbulksenddocumentmapping_id
 );
 

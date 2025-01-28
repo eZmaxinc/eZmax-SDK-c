@@ -5,7 +5,7 @@
 
 
 
-multilingual_userlogintype_description_t *multilingual_userlogintype_description_create(
+static multilingual_userlogintype_description_t *multilingual_userlogintype_description_create_internal(
     char *s_userlogintype_description1,
     char *s_userlogintype_description2
     ) {
@@ -16,12 +16,26 @@ multilingual_userlogintype_description_t *multilingual_userlogintype_description
     multilingual_userlogintype_description_local_var->s_userlogintype_description1 = s_userlogintype_description1;
     multilingual_userlogintype_description_local_var->s_userlogintype_description2 = s_userlogintype_description2;
 
+    multilingual_userlogintype_description_local_var->_library_owned = 1;
     return multilingual_userlogintype_description_local_var;
 }
 
+__attribute__((deprecated)) multilingual_userlogintype_description_t *multilingual_userlogintype_description_create(
+    char *s_userlogintype_description1,
+    char *s_userlogintype_description2
+    ) {
+    return multilingual_userlogintype_description_create_internal (
+        s_userlogintype_description1,
+        s_userlogintype_description2
+        );
+}
 
 void multilingual_userlogintype_description_free(multilingual_userlogintype_description_t *multilingual_userlogintype_description) {
     if(NULL == multilingual_userlogintype_description){
+        return ;
+    }
+    if(multilingual_userlogintype_description->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "multilingual_userlogintype_description_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -68,6 +82,9 @@ multilingual_userlogintype_description_t *multilingual_userlogintype_description
 
     // multilingual_userlogintype_description->s_userlogintype_description1
     cJSON *s_userlogintype_description1 = cJSON_GetObjectItemCaseSensitive(multilingual_userlogintype_descriptionJSON, "sUserlogintypeDescription1");
+    if (cJSON_IsNull(s_userlogintype_description1)) {
+        s_userlogintype_description1 = NULL;
+    }
     if (s_userlogintype_description1) { 
     if(!cJSON_IsString(s_userlogintype_description1) && !cJSON_IsNull(s_userlogintype_description1))
     {
@@ -77,6 +94,9 @@ multilingual_userlogintype_description_t *multilingual_userlogintype_description
 
     // multilingual_userlogintype_description->s_userlogintype_description2
     cJSON *s_userlogintype_description2 = cJSON_GetObjectItemCaseSensitive(multilingual_userlogintype_descriptionJSON, "sUserlogintypeDescription2");
+    if (cJSON_IsNull(s_userlogintype_description2)) {
+        s_userlogintype_description2 = NULL;
+    }
     if (s_userlogintype_description2) { 
     if(!cJSON_IsString(s_userlogintype_description2) && !cJSON_IsNull(s_userlogintype_description2))
     {
@@ -85,7 +105,7 @@ multilingual_userlogintype_description_t *multilingual_userlogintype_description
     }
 
 
-    multilingual_userlogintype_description_local_var = multilingual_userlogintype_description_create (
+    multilingual_userlogintype_description_local_var = multilingual_userlogintype_description_create_internal (
         s_userlogintype_description1 && !cJSON_IsNull(s_userlogintype_description1) ? strdup(s_userlogintype_description1->valuestring) : NULL,
         s_userlogintype_description2 && !cJSON_IsNull(s_userlogintype_description2) ? strdup(s_userlogintype_description2->valuestring) : NULL
         );

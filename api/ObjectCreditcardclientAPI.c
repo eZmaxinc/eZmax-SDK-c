@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 // Functions for enum SSELECTOR for ObjectCreditcardclientAPI_creditcardclientGetAutocompleteV2
 
@@ -267,11 +262,14 @@ ObjectCreditcardclientAPI_creditcardclientCreateObjectV1(apiClient_t *apiClient,
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/creditcardclient")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/creditcardclient");
+    char *localVarPath = strdup("/1/object/creditcardclient");
+
 
 
 
@@ -280,9 +278,10 @@ ObjectCreditcardclientAPI_creditcardclientCreateObjectV1(apiClient_t *apiClient,
     cJSON *localVarSingleItemJSON_creditcardclient_create_object_v1_request = NULL;
     if (creditcardclient_create_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_creditcardclient_create_object_v1_request = creditcardclient_create_object_v1_request_convertToJSON(creditcardclient_create_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_creditcardclient_create_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -294,6 +293,7 @@ ObjectCreditcardclientAPI_creditcardclientCreateObjectV1(apiClient_t *apiClient,
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -305,11 +305,14 @@ ObjectCreditcardclientAPI_creditcardclientCreateObjectV1(apiClient_t *apiClient,
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
-    cJSON *ObjectCreditcardclientAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    creditcardclient_create_object_v1_response_t *elementToReturn = creditcardclient_create_object_v1_response_parseFromJSON(ObjectCreditcardclientAPIlocalVarJSON);
-    cJSON_Delete(ObjectCreditcardclientAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    creditcardclient_create_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectCreditcardclientAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = creditcardclient_create_object_v1_response_parseFromJSON(ObjectCreditcardclientAPIlocalVarJSON);
+        cJSON_Delete(ObjectCreditcardclientAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -340,7 +343,7 @@ end:
 //
 // 
 //
-common_response_t*
+creditcardclient_delete_object_v1_response_t*
 ObjectCreditcardclientAPI_creditcardclientDeleteObjectV1(apiClient_t *apiClient, int *pkiCreditcardclientID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -349,15 +352,18 @@ ObjectCreditcardclientAPI_creditcardclientDeleteObjectV1(apiClient_t *apiClient,
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/creditcardclient/{pkiCreditcardclientID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/creditcardclient/{pkiCreditcardclientID}");
+    char *localVarPath = strdup("/1/object/creditcardclient/{pkiCreditcardclientID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiCreditcardclientID =  + strlen("{ pkiCreditcardclientID }");
+    long sizeOfPathParams_pkiCreditcardclientID =  + sizeof("{ pkiCreditcardclientID }") - 1;
     if(pkiCreditcardclientID == 0){
         goto end;
     }
@@ -365,7 +371,7 @@ ObjectCreditcardclientAPI_creditcardclientDeleteObjectV1(apiClient_t *apiClient,
     snprintf(localVarToReplace_pkiCreditcardclientID, sizeOfPathParams_pkiCreditcardclientID, "{%s}", "pkiCreditcardclientID");
 
     char localVarBuff_pkiCreditcardclientID[256];
-    intToStr(localVarBuff_pkiCreditcardclientID, *pkiCreditcardclientID);
+    snprintf(localVarBuff_pkiCreditcardclientID, sizeof localVarBuff_pkiCreditcardclientID, "%ld", (long)*pkiCreditcardclientID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiCreditcardclientID, localVarBuff_pkiCreditcardclientID);
 
@@ -380,6 +386,7 @@ ObjectCreditcardclientAPI_creditcardclientDeleteObjectV1(apiClient_t *apiClient,
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "DELETE");
 
     // uncomment below to debug the error response
@@ -391,11 +398,14 @@ ObjectCreditcardclientAPI_creditcardclientDeleteObjectV1(apiClient_t *apiClient,
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectCreditcardclientAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectCreditcardclientAPIlocalVarJSON);
-    cJSON_Delete(ObjectCreditcardclientAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    creditcardclient_delete_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectCreditcardclientAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = creditcardclient_delete_object_v1_response_parseFromJSON(ObjectCreditcardclientAPIlocalVarJSON);
+        cJSON_Delete(ObjectCreditcardclientAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -422,7 +432,7 @@ end:
 //
 // 
 //
-common_response_t*
+creditcardclient_edit_object_v1_response_t*
 ObjectCreditcardclientAPI_creditcardclientEditObjectV1(apiClient_t *apiClient, int *pkiCreditcardclientID, creditcardclient_edit_object_v1_request_t *creditcardclient_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -431,15 +441,18 @@ ObjectCreditcardclientAPI_creditcardclientEditObjectV1(apiClient_t *apiClient, i
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/creditcardclient/{pkiCreditcardclientID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/creditcardclient/{pkiCreditcardclientID}");
+    char *localVarPath = strdup("/1/object/creditcardclient/{pkiCreditcardclientID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiCreditcardclientID =  + strlen("{ pkiCreditcardclientID }");
+    long sizeOfPathParams_pkiCreditcardclientID =  + sizeof("{ pkiCreditcardclientID }") - 1;
     if(pkiCreditcardclientID == 0){
         goto end;
     }
@@ -447,7 +460,7 @@ ObjectCreditcardclientAPI_creditcardclientEditObjectV1(apiClient_t *apiClient, i
     snprintf(localVarToReplace_pkiCreditcardclientID, sizeOfPathParams_pkiCreditcardclientID, "{%s}", "pkiCreditcardclientID");
 
     char localVarBuff_pkiCreditcardclientID[256];
-    intToStr(localVarBuff_pkiCreditcardclientID, *pkiCreditcardclientID);
+    snprintf(localVarBuff_pkiCreditcardclientID, sizeof localVarBuff_pkiCreditcardclientID, "%ld", (long)*pkiCreditcardclientID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiCreditcardclientID, localVarBuff_pkiCreditcardclientID);
 
@@ -458,9 +471,10 @@ ObjectCreditcardclientAPI_creditcardclientEditObjectV1(apiClient_t *apiClient, i
     cJSON *localVarSingleItemJSON_creditcardclient_edit_object_v1_request = NULL;
     if (creditcardclient_edit_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_creditcardclient_edit_object_v1_request = creditcardclient_edit_object_v1_request_convertToJSON(creditcardclient_edit_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_creditcardclient_edit_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -472,6 +486,7 @@ ObjectCreditcardclientAPI_creditcardclientEditObjectV1(apiClient_t *apiClient, i
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -487,11 +502,14 @@ ObjectCreditcardclientAPI_creditcardclientEditObjectV1(apiClient_t *apiClient, i
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body.");
     //}
     //nonprimitive not container
-    cJSON *ObjectCreditcardclientAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectCreditcardclientAPIlocalVarJSON);
-    cJSON_Delete(ObjectCreditcardclientAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    creditcardclient_edit_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectCreditcardclientAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = creditcardclient_edit_object_v1_response_parseFromJSON(ObjectCreditcardclientAPIlocalVarJSON);
+        cJSON_Delete(ObjectCreditcardclientAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -532,22 +550,27 @@ ObjectCreditcardclientAPI_creditcardclientGetAutocompleteV2(apiClient_t *apiClie
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/creditcardclient/getAutocomplete/{sSelector}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/creditcardclient/getAutocomplete/{sSelector}");
+    char *localVarPath = strdup("/2/object/creditcardclient/getAutocomplete/{sSelector}");
+
+    if(!sSelector)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_sSelector = strlen(sSelector)+3 + strlen("{ sSelector }");
-    if(sSelector == NULL) {
+    long sizeOfPathParams_sSelector = strlen(creditcardclientGetAutocompleteV2_SSELECTOR_ToString(sSelector))+3 + sizeof("{ sSelector }") - 1;
+    if(sSelector == 0) {
         goto end;
     }
     char* localVarToReplace_sSelector = malloc(sizeOfPathParams_sSelector);
     sprintf(localVarToReplace_sSelector, "{%s}", "sSelector");
 
-    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, sSelector);
+    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, creditcardclientGetAutocompleteV2_SSELECTOR_ToString(sSelector));
 
 
 
@@ -571,7 +594,7 @@ ObjectCreditcardclientAPI_creditcardclientGetAutocompleteV2(apiClient_t *apiClie
     {
         keyQuery_eFilterActive = strdup("eFilterActive");
         valueQuery_eFilterActive = (eFilterActive);
-        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(creditcardclientGetAutocompleteV2_EFILTERACTIVE_ToString(
+        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, strdup(creditcardclientGetAutocompleteV2_EFILTERACTIVE_ToString(
         valueQuery_eFilterActive)));
         list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
     }
@@ -596,6 +619,7 @@ ObjectCreditcardclientAPI_creditcardclientGetAutocompleteV2(apiClient_t *apiClie
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -603,11 +627,14 @@ ObjectCreditcardclientAPI_creditcardclientGetAutocompleteV2(apiClient_t *apiClie
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectCreditcardclientAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    creditcardclient_get_autocomplete_v2_response_t *elementToReturn = creditcardclient_get_autocomplete_v2_response_parseFromJSON(ObjectCreditcardclientAPIlocalVarJSON);
-    cJSON_Delete(ObjectCreditcardclientAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    creditcardclient_get_autocomplete_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectCreditcardclientAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = creditcardclient_get_autocomplete_v2_response_parseFromJSON(ObjectCreditcardclientAPIlocalVarJSON);
+        cJSON_Delete(ObjectCreditcardclientAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -668,11 +695,14 @@ ObjectCreditcardclientAPI_creditcardclientGetListV1(apiClient_t *apiClient, ezma
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/creditcardclient/getList")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/creditcardclient/getList");
+    char *localVarPath = strdup("/1/object/creditcardclient/getList");
+
 
 
 
@@ -697,7 +727,7 @@ ObjectCreditcardclientAPI_creditcardclientGetListV1(apiClient_t *apiClient, ezma
     {
         keyQuery_eOrderBy = strdup("eOrderBy");
         valueQuery_eOrderBy = (eOrderBy);
-        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, (void *)strdup(creditcardclientGetListV1_EORDERBY_ToString(
+        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, strdup(creditcardclientGetListV1_EORDERBY_ToString(
         valueQuery_eOrderBy)));
         list_addElement(localVarQueryParameters,keyPairQuery_eOrderBy);
     }
@@ -749,6 +779,7 @@ ObjectCreditcardclientAPI_creditcardclientGetListV1(apiClient_t *apiClient, ezma
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -760,11 +791,14 @@ ObjectCreditcardclientAPI_creditcardclientGetListV1(apiClient_t *apiClient, ezma
     //    printf("%s\n","The URL is valid, but one of the Accept header is not defined or invalid. For example, you set the header \&quot;Accept: application/json\&quot; but the function can only return \&quot;Content-type: image/png\&quot;");
     //}
     //nonprimitive not container
-    cJSON *ObjectCreditcardclientAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    creditcardclient_get_list_v1_response_t *elementToReturn = creditcardclient_get_list_v1_response_parseFromJSON(ObjectCreditcardclientAPIlocalVarJSON);
-    cJSON_Delete(ObjectCreditcardclientAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    creditcardclient_get_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectCreditcardclientAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = creditcardclient_get_list_v1_response_parseFromJSON(ObjectCreditcardclientAPIlocalVarJSON);
+        cJSON_Delete(ObjectCreditcardclientAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -848,15 +882,18 @@ ObjectCreditcardclientAPI_creditcardclientGetObjectV2(apiClient_t *apiClient, in
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/creditcardclient/{pkiCreditcardclientID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/creditcardclient/{pkiCreditcardclientID}");
+    char *localVarPath = strdup("/2/object/creditcardclient/{pkiCreditcardclientID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiCreditcardclientID =  + strlen("{ pkiCreditcardclientID }");
+    long sizeOfPathParams_pkiCreditcardclientID =  + sizeof("{ pkiCreditcardclientID }") - 1;
     if(pkiCreditcardclientID == 0){
         goto end;
     }
@@ -864,7 +901,7 @@ ObjectCreditcardclientAPI_creditcardclientGetObjectV2(apiClient_t *apiClient, in
     snprintf(localVarToReplace_pkiCreditcardclientID, sizeOfPathParams_pkiCreditcardclientID, "{%s}", "pkiCreditcardclientID");
 
     char localVarBuff_pkiCreditcardclientID[256];
-    intToStr(localVarBuff_pkiCreditcardclientID, *pkiCreditcardclientID);
+    snprintf(localVarBuff_pkiCreditcardclientID, sizeof localVarBuff_pkiCreditcardclientID, "%ld", (long)*pkiCreditcardclientID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiCreditcardclientID, localVarBuff_pkiCreditcardclientID);
 
@@ -879,6 +916,7 @@ ObjectCreditcardclientAPI_creditcardclientGetObjectV2(apiClient_t *apiClient, in
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -890,11 +928,14 @@ ObjectCreditcardclientAPI_creditcardclientGetObjectV2(apiClient_t *apiClient, in
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectCreditcardclientAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    creditcardclient_get_object_v2_response_t *elementToReturn = creditcardclient_get_object_v2_response_parseFromJSON(ObjectCreditcardclientAPIlocalVarJSON);
-    cJSON_Delete(ObjectCreditcardclientAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    creditcardclient_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectCreditcardclientAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = creditcardclient_get_object_v2_response_parseFromJSON(ObjectCreditcardclientAPIlocalVarJSON);
+        cJSON_Delete(ObjectCreditcardclientAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -921,7 +962,7 @@ end:
 //
 // 
 //
-common_response_t*
+creditcardclient_patch_object_v1_response_t*
 ObjectCreditcardclientAPI_creditcardclientPatchObjectV1(apiClient_t *apiClient, int *pkiCreditcardclientID, creditcardclient_patch_object_v1_request_t *creditcardclient_patch_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -930,15 +971,18 @@ ObjectCreditcardclientAPI_creditcardclientPatchObjectV1(apiClient_t *apiClient, 
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/creditcardclient/{pkiCreditcardclientID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/creditcardclient/{pkiCreditcardclientID}");
+    char *localVarPath = strdup("/1/object/creditcardclient/{pkiCreditcardclientID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiCreditcardclientID =  + strlen("{ pkiCreditcardclientID }");
+    long sizeOfPathParams_pkiCreditcardclientID =  + sizeof("{ pkiCreditcardclientID }") - 1;
     if(pkiCreditcardclientID == 0){
         goto end;
     }
@@ -946,7 +990,7 @@ ObjectCreditcardclientAPI_creditcardclientPatchObjectV1(apiClient_t *apiClient, 
     snprintf(localVarToReplace_pkiCreditcardclientID, sizeOfPathParams_pkiCreditcardclientID, "{%s}", "pkiCreditcardclientID");
 
     char localVarBuff_pkiCreditcardclientID[256];
-    intToStr(localVarBuff_pkiCreditcardclientID, *pkiCreditcardclientID);
+    snprintf(localVarBuff_pkiCreditcardclientID, sizeof localVarBuff_pkiCreditcardclientID, "%ld", (long)*pkiCreditcardclientID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiCreditcardclientID, localVarBuff_pkiCreditcardclientID);
 
@@ -957,9 +1001,10 @@ ObjectCreditcardclientAPI_creditcardclientPatchObjectV1(apiClient_t *apiClient, 
     cJSON *localVarSingleItemJSON_creditcardclient_patch_object_v1_request = NULL;
     if (creditcardclient_patch_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_creditcardclient_patch_object_v1_request = creditcardclient_patch_object_v1_request_convertToJSON(creditcardclient_patch_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_creditcardclient_patch_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -971,6 +1016,7 @@ ObjectCreditcardclientAPI_creditcardclientPatchObjectV1(apiClient_t *apiClient, 
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PATCH");
 
     // uncomment below to debug the error response
@@ -986,11 +1032,14 @@ ObjectCreditcardclientAPI_creditcardclientPatchObjectV1(apiClient_t *apiClient, 
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectCreditcardclientAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectCreditcardclientAPIlocalVarJSON);
-    cJSON_Delete(ObjectCreditcardclientAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    creditcardclient_patch_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectCreditcardclientAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = creditcardclient_patch_object_v1_response_parseFromJSON(ObjectCreditcardclientAPIlocalVarJSON);
+        cJSON_Delete(ObjectCreditcardclientAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

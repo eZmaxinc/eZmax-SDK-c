@@ -5,7 +5,7 @@
 
 
 
-supply_request_t *supply_request_create(
+static supply_request_t *supply_request_create_internal(
     int pki_supply_id,
     int fki_glaccount_id,
     int fki_glaccountcontainer_id,
@@ -30,12 +30,40 @@ supply_request_t *supply_request_create(
     supply_request_local_var->b_supply_isactive = b_supply_isactive;
     supply_request_local_var->b_supply_variableprice = b_supply_variableprice;
 
+    supply_request_local_var->_library_owned = 1;
     return supply_request_local_var;
 }
 
+__attribute__((deprecated)) supply_request_t *supply_request_create(
+    int pki_supply_id,
+    int fki_glaccount_id,
+    int fki_glaccountcontainer_id,
+    int fki_variableexpense_id,
+    char *s_supply_code,
+    multilingual_supply_description_t *obj_supply_description,
+    char *d_supply_unitprice,
+    int b_supply_isactive,
+    int b_supply_variableprice
+    ) {
+    return supply_request_create_internal (
+        pki_supply_id,
+        fki_glaccount_id,
+        fki_glaccountcontainer_id,
+        fki_variableexpense_id,
+        s_supply_code,
+        obj_supply_description,
+        d_supply_unitprice,
+        b_supply_isactive,
+        b_supply_variableprice
+        );
+}
 
 void supply_request_free(supply_request_t *supply_request) {
     if(NULL == supply_request){
+        return ;
+    }
+    if(supply_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "supply_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -156,6 +184,9 @@ supply_request_t *supply_request_parseFromJSON(cJSON *supply_requestJSON){
 
     // supply_request->pki_supply_id
     cJSON *pki_supply_id = cJSON_GetObjectItemCaseSensitive(supply_requestJSON, "pkiSupplyID");
+    if (cJSON_IsNull(pki_supply_id)) {
+        pki_supply_id = NULL;
+    }
     if (pki_supply_id) { 
     if(!cJSON_IsNumber(pki_supply_id))
     {
@@ -165,6 +196,9 @@ supply_request_t *supply_request_parseFromJSON(cJSON *supply_requestJSON){
 
     // supply_request->fki_glaccount_id
     cJSON *fki_glaccount_id = cJSON_GetObjectItemCaseSensitive(supply_requestJSON, "fkiGlaccountID");
+    if (cJSON_IsNull(fki_glaccount_id)) {
+        fki_glaccount_id = NULL;
+    }
     if (fki_glaccount_id) { 
     if(!cJSON_IsNumber(fki_glaccount_id))
     {
@@ -174,6 +208,9 @@ supply_request_t *supply_request_parseFromJSON(cJSON *supply_requestJSON){
 
     // supply_request->fki_glaccountcontainer_id
     cJSON *fki_glaccountcontainer_id = cJSON_GetObjectItemCaseSensitive(supply_requestJSON, "fkiGlaccountcontainerID");
+    if (cJSON_IsNull(fki_glaccountcontainer_id)) {
+        fki_glaccountcontainer_id = NULL;
+    }
     if (fki_glaccountcontainer_id) { 
     if(!cJSON_IsNumber(fki_glaccountcontainer_id))
     {
@@ -183,6 +220,9 @@ supply_request_t *supply_request_parseFromJSON(cJSON *supply_requestJSON){
 
     // supply_request->fki_variableexpense_id
     cJSON *fki_variableexpense_id = cJSON_GetObjectItemCaseSensitive(supply_requestJSON, "fkiVariableexpenseID");
+    if (cJSON_IsNull(fki_variableexpense_id)) {
+        fki_variableexpense_id = NULL;
+    }
     if (!fki_variableexpense_id) {
         goto end;
     }
@@ -195,6 +235,9 @@ supply_request_t *supply_request_parseFromJSON(cJSON *supply_requestJSON){
 
     // supply_request->s_supply_code
     cJSON *s_supply_code = cJSON_GetObjectItemCaseSensitive(supply_requestJSON, "sSupplyCode");
+    if (cJSON_IsNull(s_supply_code)) {
+        s_supply_code = NULL;
+    }
     if (!s_supply_code) {
         goto end;
     }
@@ -207,6 +250,9 @@ supply_request_t *supply_request_parseFromJSON(cJSON *supply_requestJSON){
 
     // supply_request->obj_supply_description
     cJSON *obj_supply_description = cJSON_GetObjectItemCaseSensitive(supply_requestJSON, "objSupplyDescription");
+    if (cJSON_IsNull(obj_supply_description)) {
+        obj_supply_description = NULL;
+    }
     if (!obj_supply_description) {
         goto end;
     }
@@ -216,6 +262,9 @@ supply_request_t *supply_request_parseFromJSON(cJSON *supply_requestJSON){
 
     // supply_request->d_supply_unitprice
     cJSON *d_supply_unitprice = cJSON_GetObjectItemCaseSensitive(supply_requestJSON, "dSupplyUnitprice");
+    if (cJSON_IsNull(d_supply_unitprice)) {
+        d_supply_unitprice = NULL;
+    }
     if (!d_supply_unitprice) {
         goto end;
     }
@@ -228,6 +277,9 @@ supply_request_t *supply_request_parseFromJSON(cJSON *supply_requestJSON){
 
     // supply_request->b_supply_isactive
     cJSON *b_supply_isactive = cJSON_GetObjectItemCaseSensitive(supply_requestJSON, "bSupplyIsactive");
+    if (cJSON_IsNull(b_supply_isactive)) {
+        b_supply_isactive = NULL;
+    }
     if (!b_supply_isactive) {
         goto end;
     }
@@ -240,6 +292,9 @@ supply_request_t *supply_request_parseFromJSON(cJSON *supply_requestJSON){
 
     // supply_request->b_supply_variableprice
     cJSON *b_supply_variableprice = cJSON_GetObjectItemCaseSensitive(supply_requestJSON, "bSupplyVariableprice");
+    if (cJSON_IsNull(b_supply_variableprice)) {
+        b_supply_variableprice = NULL;
+    }
     if (!b_supply_variableprice) {
         goto end;
     }
@@ -251,7 +306,7 @@ supply_request_t *supply_request_parseFromJSON(cJSON *supply_requestJSON){
     }
 
 
-    supply_request_local_var = supply_request_create (
+    supply_request_local_var = supply_request_create_internal (
         pki_supply_id ? pki_supply_id->valuedouble : 0,
         fki_glaccount_id ? fki_glaccount_id->valuedouble : 0,
         fki_glaccountcontainer_id ? fki_glaccountcontainer_id->valuedouble : 0,

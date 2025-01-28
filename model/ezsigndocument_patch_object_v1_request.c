@@ -5,7 +5,7 @@
 
 
 
-ezsigndocument_patch_object_v1_request_t *ezsigndocument_patch_object_v1_request_create(
+static ezsigndocument_patch_object_v1_request_t *ezsigndocument_patch_object_v1_request_create_internal(
     ezsigndocument_request_patch_t *obj_ezsigndocument
     ) {
     ezsigndocument_patch_object_v1_request_t *ezsigndocument_patch_object_v1_request_local_var = malloc(sizeof(ezsigndocument_patch_object_v1_request_t));
@@ -14,12 +14,24 @@ ezsigndocument_patch_object_v1_request_t *ezsigndocument_patch_object_v1_request
     }
     ezsigndocument_patch_object_v1_request_local_var->obj_ezsigndocument = obj_ezsigndocument;
 
+    ezsigndocument_patch_object_v1_request_local_var->_library_owned = 1;
     return ezsigndocument_patch_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezsigndocument_patch_object_v1_request_t *ezsigndocument_patch_object_v1_request_create(
+    ezsigndocument_request_patch_t *obj_ezsigndocument
+    ) {
+    return ezsigndocument_patch_object_v1_request_create_internal (
+        obj_ezsigndocument
+        );
+}
 
 void ezsigndocument_patch_object_v1_request_free(ezsigndocument_patch_object_v1_request_t *ezsigndocument_patch_object_v1_request) {
     if(NULL == ezsigndocument_patch_object_v1_request){
+        return ;
+    }
+    if(ezsigndocument_patch_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigndocument_patch_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ ezsigndocument_patch_object_v1_request_t *ezsigndocument_patch_object_v1_request
 
     // ezsigndocument_patch_object_v1_request->obj_ezsigndocument
     cJSON *obj_ezsigndocument = cJSON_GetObjectItemCaseSensitive(ezsigndocument_patch_object_v1_requestJSON, "objEzsigndocument");
+    if (cJSON_IsNull(obj_ezsigndocument)) {
+        obj_ezsigndocument = NULL;
+    }
     if (!obj_ezsigndocument) {
         goto end;
     }
@@ -71,7 +86,7 @@ ezsigndocument_patch_object_v1_request_t *ezsigndocument_patch_object_v1_request
     obj_ezsigndocument_local_nonprim = ezsigndocument_request_patch_parseFromJSON(obj_ezsigndocument); //nonprimitive
 
 
-    ezsigndocument_patch_object_v1_request_local_var = ezsigndocument_patch_object_v1_request_create (
+    ezsigndocument_patch_object_v1_request_local_var = ezsigndocument_patch_object_v1_request_create_internal (
         obj_ezsigndocument_local_nonprim
         );
 

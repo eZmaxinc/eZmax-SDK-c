@@ -30,9 +30,10 @@ typedef struct creditcardclient_list_element_t {
     int i_creditcarddetail_expirationyear; //numeric
     int i_creditcarddetail_lastdigits; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } creditcardclient_list_element_t;
 
-creditcardclient_list_element_t *creditcardclient_list_element_create(
+__attribute__((deprecated)) creditcardclient_list_element_t *creditcardclient_list_element_create(
     int pki_creditcardclient_id,
     int fki_creditcarddetail_id,
     int fki_creditcardtype_id,

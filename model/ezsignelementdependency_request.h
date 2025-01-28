@@ -18,22 +18,6 @@ typedef struct ezsignelementdependency_request_t ezsignelementdependency_request
 #include "field_e_ezsignelementdependency_operator.h"
 #include "field_e_ezsignelementdependency_validation.h"
 
-// Enum  for ezsignelementdependency_request
-
-typedef enum  { ezmax_api_definition__full_ezsignelementdependency_request__NULL = 0, ezmax_api_definition__full_ezsignelementdependency_request__Value, ezmax_api_definition__full_ezsignelementdependency_request__Selected, ezmax_api_definition__full_ezsignelementdependency_request__Filled } ezmax_api_definition__full_ezsignelementdependency_request__e;
-
-char* ezsignelementdependency_request_e_ezsignelementdependency_validation_ToString(ezmax_api_definition__full_ezsignelementdependency_request__e e_ezsignelementdependency_validation);
-
-ezmax_api_definition__full_ezsignelementdependency_request__e ezsignelementdependency_request_e_ezsignelementdependency_validation_FromString(char* e_ezsignelementdependency_validation);
-
-// Enum  for ezsignelementdependency_request
-
-typedef enum  { ezmax_api_definition__full_ezsignelementdependency_request__NULL = 0, ezmax_api_definition__full_ezsignelementdependency_request__eq, ezmax_api_definition__full_ezsignelementdependency_request__neq, ezmax_api_definition__full_ezsignelementdependency_request__gt, ezmax_api_definition__full_ezsignelementdependency_request__gte, ezmax_api_definition__full_ezsignelementdependency_request__lt, ezmax_api_definition__full_ezsignelementdependency_request__lte, ezmax_api_definition__full_ezsignelementdependency_request__in, ezmax_api_definition__full_ezsignelementdependency_request__nin, ezmax_api_definition__full_ezsignelementdependency_request__rg, ezmax_api_definition__full_ezsignelementdependency_request__like, ezmax_api_definition__full_ezsignelementdependency_request__between } ezmax_api_definition__full_ezsignelementdependency_request__e;
-
-char* ezsignelementdependency_request_e_ezsignelementdependency_operator_ToString(ezmax_api_definition__full_ezsignelementdependency_request__e e_ezsignelementdependency_operator);
-
-ezmax_api_definition__full_ezsignelementdependency_request__e ezsignelementdependency_request_e_ezsignelementdependency_operator_FromString(char* e_ezsignelementdependency_operator);
-
 
 
 typedef struct ezsignelementdependency_request_t {
@@ -42,22 +26,23 @@ typedef struct ezsignelementdependency_request_t {
     int fki_ezsignformfieldgroup_id_validation; //numeric
     char *s_ezsignelementdependency_ezsignformfieldgrouplabel; // string
     char *s_ezsignelementdependency_ezsignformfieldlabel; // string
-    field_e_ezsignelementdependency_validation_t *e_ezsignelementdependency_validation; // custom
+    ezmax_api_definition__full_field_e_ezsignelementdependency_validation__e e_ezsignelementdependency_validation; //referenced enum
     int b_ezsignelementdependency_selected; //boolean
-    field_e_ezsignelementdependency_operator_t *e_ezsignelementdependency_operator; // custom
+    ezmax_api_definition__full_field_e_ezsignelementdependency_operator__e e_ezsignelementdependency_operator; //referenced enum
     char *s_ezsignelementdependency_value; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignelementdependency_request_t;
 
-ezsignelementdependency_request_t *ezsignelementdependency_request_create(
+__attribute__((deprecated)) ezsignelementdependency_request_t *ezsignelementdependency_request_create(
     int pki_ezsignelementdependency_id,
     int fki_ezsignformfield_id_validation,
     int fki_ezsignformfieldgroup_id_validation,
     char *s_ezsignelementdependency_ezsignformfieldgrouplabel,
     char *s_ezsignelementdependency_ezsignformfieldlabel,
-    field_e_ezsignelementdependency_validation_t *e_ezsignelementdependency_validation,
+    ezmax_api_definition__full_field_e_ezsignelementdependency_validation__e e_ezsignelementdependency_validation,
     int b_ezsignelementdependency_selected,
-    field_e_ezsignelementdependency_operator_t *e_ezsignelementdependency_operator,
+    ezmax_api_definition__full_field_e_ezsignelementdependency_operator__e e_ezsignelementdependency_operator,
     char *s_ezsignelementdependency_value
 );
 

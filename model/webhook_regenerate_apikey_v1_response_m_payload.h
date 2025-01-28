@@ -22,9 +22,10 @@ typedef struct webhook_regenerate_apikey_v1_response_m_payload_t webhook_regener
 typedef struct webhook_regenerate_apikey_v1_response_m_payload_t {
     struct webhook_response_compound_t *obj_webhook; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } webhook_regenerate_apikey_v1_response_m_payload_t;
 
-webhook_regenerate_apikey_v1_response_m_payload_t *webhook_regenerate_apikey_v1_response_m_payload_create(
+__attribute__((deprecated)) webhook_regenerate_apikey_v1_response_m_payload_t *webhook_regenerate_apikey_v1_response_m_payload_create(
     webhook_response_compound_t *obj_webhook
 );
 

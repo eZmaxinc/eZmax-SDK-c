@@ -5,7 +5,7 @@
 
 
 
-variableexpense_get_object_v2_response_m_payload_t *variableexpense_get_object_v2_response_m_payload_create(
+static variableexpense_get_object_v2_response_m_payload_t *variableexpense_get_object_v2_response_m_payload_create_internal(
     variableexpense_response_compound_t *obj_variableexpense
     ) {
     variableexpense_get_object_v2_response_m_payload_t *variableexpense_get_object_v2_response_m_payload_local_var = malloc(sizeof(variableexpense_get_object_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ variableexpense_get_object_v2_response_m_payload_t *variableexpense_get_object_v
     }
     variableexpense_get_object_v2_response_m_payload_local_var->obj_variableexpense = obj_variableexpense;
 
+    variableexpense_get_object_v2_response_m_payload_local_var->_library_owned = 1;
     return variableexpense_get_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) variableexpense_get_object_v2_response_m_payload_t *variableexpense_get_object_v2_response_m_payload_create(
+    variableexpense_response_compound_t *obj_variableexpense
+    ) {
+    return variableexpense_get_object_v2_response_m_payload_create_internal (
+        obj_variableexpense
+        );
+}
 
 void variableexpense_get_object_v2_response_m_payload_free(variableexpense_get_object_v2_response_m_payload_t *variableexpense_get_object_v2_response_m_payload) {
     if(NULL == variableexpense_get_object_v2_response_m_payload){
+        return ;
+    }
+    if(variableexpense_get_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "variableexpense_get_object_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ variableexpense_get_object_v2_response_m_payload_t *variableexpense_get_object_v
 
     // variableexpense_get_object_v2_response_m_payload->obj_variableexpense
     cJSON *obj_variableexpense = cJSON_GetObjectItemCaseSensitive(variableexpense_get_object_v2_response_m_payloadJSON, "objVariableexpense");
+    if (cJSON_IsNull(obj_variableexpense)) {
+        obj_variableexpense = NULL;
+    }
     if (!obj_variableexpense) {
         goto end;
     }
@@ -71,7 +86,7 @@ variableexpense_get_object_v2_response_m_payload_t *variableexpense_get_object_v
     obj_variableexpense_local_nonprim = variableexpense_response_compound_parseFromJSON(obj_variableexpense); //nonprimitive
 
 
-    variableexpense_get_object_v2_response_m_payload_local_var = variableexpense_get_object_v2_response_m_payload_create (
+    variableexpense_get_object_v2_response_m_payload_local_var = variableexpense_get_object_v2_response_m_payload_create_internal (
         obj_variableexpense_local_nonprim
         );
 

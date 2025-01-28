@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**obj_ezsigndocument** | [**ezsigndocument_request_t**](ezsigndocument_request.md) \* | An Ezsigndocument Object and children to create a complete structure | 
+**obj_ezsigndocument** | [**ezsigndocument_request_compound_t**](ezsigndocument_request_compound.md) \* |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

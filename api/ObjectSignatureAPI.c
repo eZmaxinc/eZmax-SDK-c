@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Create a new Signature
@@ -25,11 +20,14 @@ ObjectSignatureAPI_signatureCreateObjectV1(apiClient_t *apiClient, signature_cre
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/signature")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/signature");
+    char *localVarPath = strdup("/1/object/signature");
+
 
 
 
@@ -38,9 +36,10 @@ ObjectSignatureAPI_signatureCreateObjectV1(apiClient_t *apiClient, signature_cre
     cJSON *localVarSingleItemJSON_signature_create_object_v1_request = NULL;
     if (signature_create_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_signature_create_object_v1_request = signature_create_object_v1_request_convertToJSON(signature_create_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_signature_create_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -52,6 +51,7 @@ ObjectSignatureAPI_signatureCreateObjectV1(apiClient_t *apiClient, signature_cre
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -59,11 +59,14 @@ ObjectSignatureAPI_signatureCreateObjectV1(apiClient_t *apiClient, signature_cre
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectSignatureAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    signature_create_object_v1_response_t *elementToReturn = signature_create_object_v1_response_parseFromJSON(ObjectSignatureAPIlocalVarJSON);
-    cJSON_Delete(ObjectSignatureAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    signature_create_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectSignatureAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = signature_create_object_v1_response_parseFromJSON(ObjectSignatureAPIlocalVarJSON);
+        cJSON_Delete(ObjectSignatureAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -94,7 +97,7 @@ end:
 //
 // 
 //
-common_response_t*
+signature_delete_object_v1_response_t*
 ObjectSignatureAPI_signatureDeleteObjectV1(apiClient_t *apiClient, int *pkiSignatureID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -103,15 +106,18 @@ ObjectSignatureAPI_signatureDeleteObjectV1(apiClient_t *apiClient, int *pkiSigna
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/signature/{pkiSignatureID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/signature/{pkiSignatureID}");
+    char *localVarPath = strdup("/1/object/signature/{pkiSignatureID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiSignatureID =  + strlen("{ pkiSignatureID }");
+    long sizeOfPathParams_pkiSignatureID =  + sizeof("{ pkiSignatureID }") - 1;
     if(pkiSignatureID == 0){
         goto end;
     }
@@ -119,7 +125,7 @@ ObjectSignatureAPI_signatureDeleteObjectV1(apiClient_t *apiClient, int *pkiSigna
     snprintf(localVarToReplace_pkiSignatureID, sizeOfPathParams_pkiSignatureID, "{%s}", "pkiSignatureID");
 
     char localVarBuff_pkiSignatureID[256];
-    intToStr(localVarBuff_pkiSignatureID, *pkiSignatureID);
+    snprintf(localVarBuff_pkiSignatureID, sizeof localVarBuff_pkiSignatureID, "%ld", (long)*pkiSignatureID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiSignatureID, localVarBuff_pkiSignatureID);
 
@@ -134,6 +140,7 @@ ObjectSignatureAPI_signatureDeleteObjectV1(apiClient_t *apiClient, int *pkiSigna
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "DELETE");
 
     // uncomment below to debug the error response
@@ -145,11 +152,14 @@ ObjectSignatureAPI_signatureDeleteObjectV1(apiClient_t *apiClient, int *pkiSigna
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectSignatureAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectSignatureAPIlocalVarJSON);
-    cJSON_Delete(ObjectSignatureAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    signature_delete_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectSignatureAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = signature_delete_object_v1_response_parseFromJSON(ObjectSignatureAPIlocalVarJSON);
+        cJSON_Delete(ObjectSignatureAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -176,7 +186,7 @@ end:
 //
 // 
 //
-common_response_t*
+signature_edit_object_v1_response_t*
 ObjectSignatureAPI_signatureEditObjectV1(apiClient_t *apiClient, int *pkiSignatureID, signature_edit_object_v1_request_t *signature_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -185,15 +195,18 @@ ObjectSignatureAPI_signatureEditObjectV1(apiClient_t *apiClient, int *pkiSignatu
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/signature/{pkiSignatureID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/signature/{pkiSignatureID}");
+    char *localVarPath = strdup("/1/object/signature/{pkiSignatureID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiSignatureID =  + strlen("{ pkiSignatureID }");
+    long sizeOfPathParams_pkiSignatureID =  + sizeof("{ pkiSignatureID }") - 1;
     if(pkiSignatureID == 0){
         goto end;
     }
@@ -201,7 +214,7 @@ ObjectSignatureAPI_signatureEditObjectV1(apiClient_t *apiClient, int *pkiSignatu
     snprintf(localVarToReplace_pkiSignatureID, sizeOfPathParams_pkiSignatureID, "{%s}", "pkiSignatureID");
 
     char localVarBuff_pkiSignatureID[256];
-    intToStr(localVarBuff_pkiSignatureID, *pkiSignatureID);
+    snprintf(localVarBuff_pkiSignatureID, sizeof localVarBuff_pkiSignatureID, "%ld", (long)*pkiSignatureID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiSignatureID, localVarBuff_pkiSignatureID);
 
@@ -212,9 +225,10 @@ ObjectSignatureAPI_signatureEditObjectV1(apiClient_t *apiClient, int *pkiSignatu
     cJSON *localVarSingleItemJSON_signature_edit_object_v1_request = NULL;
     if (signature_edit_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_signature_edit_object_v1_request = signature_edit_object_v1_request_convertToJSON(signature_edit_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_signature_edit_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -226,6 +240,7 @@ ObjectSignatureAPI_signatureEditObjectV1(apiClient_t *apiClient, int *pkiSignatu
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -241,11 +256,14 @@ ObjectSignatureAPI_signatureEditObjectV1(apiClient_t *apiClient, int *pkiSignatu
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectSignatureAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectSignatureAPIlocalVarJSON);
-    cJSON_Delete(ObjectSignatureAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    signature_edit_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectSignatureAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = signature_edit_object_v1_response_parseFromJSON(ObjectSignatureAPIlocalVarJSON);
+        cJSON_Delete(ObjectSignatureAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -286,15 +304,18 @@ ObjectSignatureAPI_signatureGetObjectV2(apiClient_t *apiClient, int *pkiSignatur
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/signature/{pkiSignatureID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/signature/{pkiSignatureID}");
+    char *localVarPath = strdup("/2/object/signature/{pkiSignatureID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiSignatureID =  + strlen("{ pkiSignatureID }");
+    long sizeOfPathParams_pkiSignatureID =  + sizeof("{ pkiSignatureID }") - 1;
     if(pkiSignatureID == 0){
         goto end;
     }
@@ -302,7 +323,7 @@ ObjectSignatureAPI_signatureGetObjectV2(apiClient_t *apiClient, int *pkiSignatur
     snprintf(localVarToReplace_pkiSignatureID, sizeOfPathParams_pkiSignatureID, "{%s}", "pkiSignatureID");
 
     char localVarBuff_pkiSignatureID[256];
-    intToStr(localVarBuff_pkiSignatureID, *pkiSignatureID);
+    snprintf(localVarBuff_pkiSignatureID, sizeof localVarBuff_pkiSignatureID, "%ld", (long)*pkiSignatureID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiSignatureID, localVarBuff_pkiSignatureID);
 
@@ -317,6 +338,7 @@ ObjectSignatureAPI_signatureGetObjectV2(apiClient_t *apiClient, int *pkiSignatur
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -328,11 +350,14 @@ ObjectSignatureAPI_signatureGetObjectV2(apiClient_t *apiClient, int *pkiSignatur
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectSignatureAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    signature_get_object_v2_response_t *elementToReturn = signature_get_object_v2_response_parseFromJSON(ObjectSignatureAPIlocalVarJSON);
-    cJSON_Delete(ObjectSignatureAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    signature_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectSignatureAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = signature_get_object_v2_response_parseFromJSON(ObjectSignatureAPIlocalVarJSON);
+        cJSON_Delete(ObjectSignatureAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -368,15 +393,18 @@ ObjectSignatureAPI_signatureGetObjectV3(apiClient_t *apiClient, int *pkiSignatur
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/3/object/signature/{pkiSignatureID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/3/object/signature/{pkiSignatureID}");
+    char *localVarPath = strdup("/3/object/signature/{pkiSignatureID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiSignatureID =  + strlen("{ pkiSignatureID }");
+    long sizeOfPathParams_pkiSignatureID =  + sizeof("{ pkiSignatureID }") - 1;
     if(pkiSignatureID == 0){
         goto end;
     }
@@ -384,7 +412,7 @@ ObjectSignatureAPI_signatureGetObjectV3(apiClient_t *apiClient, int *pkiSignatur
     snprintf(localVarToReplace_pkiSignatureID, sizeOfPathParams_pkiSignatureID, "{%s}", "pkiSignatureID");
 
     char localVarBuff_pkiSignatureID[256];
-    intToStr(localVarBuff_pkiSignatureID, *pkiSignatureID);
+    snprintf(localVarBuff_pkiSignatureID, sizeof localVarBuff_pkiSignatureID, "%ld", (long)*pkiSignatureID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiSignatureID, localVarBuff_pkiSignatureID);
 
@@ -399,6 +427,7 @@ ObjectSignatureAPI_signatureGetObjectV3(apiClient_t *apiClient, int *pkiSignatur
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -410,11 +439,14 @@ ObjectSignatureAPI_signatureGetObjectV3(apiClient_t *apiClient, int *pkiSignatur
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectSignatureAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    signature_get_object_v3_response_t *elementToReturn = signature_get_object_v3_response_parseFromJSON(ObjectSignatureAPIlocalVarJSON);
-    cJSON_Delete(ObjectSignatureAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    signature_get_object_v3_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectSignatureAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = signature_get_object_v3_response_parseFromJSON(ObjectSignatureAPIlocalVarJSON);
+        cJSON_Delete(ObjectSignatureAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -450,15 +482,18 @@ ObjectSignatureAPI_signatureGetSVGInitialsV1(apiClient_t *apiClient, int *pkiSig
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/signature/{pkiSignatureID}/getSVGInitials")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/signature/{pkiSignatureID}/getSVGInitials");
+    char *localVarPath = strdup("/1/object/signature/{pkiSignatureID}/getSVGInitials");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiSignatureID =  + strlen("{ pkiSignatureID }");
+    long sizeOfPathParams_pkiSignatureID =  + sizeof("{ pkiSignatureID }") - 1;
     if(pkiSignatureID == 0){
         goto end;
     }
@@ -466,7 +501,7 @@ ObjectSignatureAPI_signatureGetSVGInitialsV1(apiClient_t *apiClient, int *pkiSig
     snprintf(localVarToReplace_pkiSignatureID, sizeOfPathParams_pkiSignatureID, "{%s}", "pkiSignatureID");
 
     char localVarBuff_pkiSignatureID[256];
-    intToStr(localVarBuff_pkiSignatureID, *pkiSignatureID);
+    snprintf(localVarBuff_pkiSignatureID, sizeof localVarBuff_pkiSignatureID, "%ld", (long)*pkiSignatureID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiSignatureID, localVarBuff_pkiSignatureID);
 
@@ -481,6 +516,7 @@ ObjectSignatureAPI_signatureGetSVGInitialsV1(apiClient_t *apiClient, int *pkiSig
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -521,15 +557,18 @@ ObjectSignatureAPI_signatureGetSVGSignatureV1(apiClient_t *apiClient, int *pkiSi
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/signature/{pkiSignatureID}/getSVGSignature")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/signature/{pkiSignatureID}/getSVGSignature");
+    char *localVarPath = strdup("/1/object/signature/{pkiSignatureID}/getSVGSignature");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiSignatureID =  + strlen("{ pkiSignatureID }");
+    long sizeOfPathParams_pkiSignatureID =  + sizeof("{ pkiSignatureID }") - 1;
     if(pkiSignatureID == 0){
         goto end;
     }
@@ -537,7 +576,7 @@ ObjectSignatureAPI_signatureGetSVGSignatureV1(apiClient_t *apiClient, int *pkiSi
     snprintf(localVarToReplace_pkiSignatureID, sizeOfPathParams_pkiSignatureID, "{%s}", "pkiSignatureID");
 
     char localVarBuff_pkiSignatureID[256];
-    intToStr(localVarBuff_pkiSignatureID, *pkiSignatureID);
+    snprintf(localVarBuff_pkiSignatureID, sizeof localVarBuff_pkiSignatureID, "%ld", (long)*pkiSignatureID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiSignatureID, localVarBuff_pkiSignatureID);
 
@@ -552,6 +591,7 @@ ObjectSignatureAPI_signatureGetSVGSignatureV1(apiClient_t *apiClient, int *pkiSi
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response

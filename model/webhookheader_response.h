@@ -24,9 +24,10 @@ typedef struct webhookheader_response_t {
     char *s_webhookheader_name; // string
     char *s_webhookheader_value; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } webhookheader_response_t;
 
-webhookheader_response_t *webhookheader_response_create(
+__attribute__((deprecated)) webhookheader_response_t *webhookheader_response_create(
     int pki_webhookheader_id,
     int fki_webhook_id,
     char *s_webhookheader_name,

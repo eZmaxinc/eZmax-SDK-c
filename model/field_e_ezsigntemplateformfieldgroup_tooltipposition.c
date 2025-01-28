@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsigntemplateformfieldgroup_tooltipposition_
     return 0;
 }
 
-cJSON *field_e_ezsigntemplateformfieldgroup_tooltipposition_field_e_ezsigntemplateformfieldgroup_tooltipposition_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplateformfieldgroup_tooltipposition__e field_e_ezsigntemplateformfieldgroup_tooltipposition) {
+cJSON *field_e_ezsigntemplateformfieldgroup_tooltipposition_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplateformfieldgroup_tooltipposition__e field_e_ezsigntemplateformfieldgroup_tooltipposition) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsigntemplateformfieldgroup_tooltipposition", field_e_ezsigntemplateformfieldgroup_tooltipposition_field_e_ezsigntemplateformfieldgroup_tooltipposition_ToString(field_e_ezsigntemplateformfieldgroup_tooltipposition)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsigntemplateformfieldgroup_tooltipposition__e field_e_ezsigntemplateformfieldgroup_tooltipposition_field_e_ezsigntemplateformfieldgroup_tooltipposition_parseFromJSON(cJSON *field_e_ezsigntemplateformfieldgroup_tooltippositionJSON) {
-    ezmax_api_definition__full_field_e_ezsigntemplateformfieldgroup_tooltipposition__e *field_e_ezsigntemplateformfieldgroup_tooltipposition = NULL;
-    ezmax_api_definition__full_field_e_ezsigntemplateformfieldgroup_tooltipposition__e field_e_ezsigntemplateformfieldgroup_tooltippositionVariable;
-    cJSON *field_e_ezsigntemplateformfieldgroup_tooltippositionVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsigntemplateformfieldgroup_tooltippositionJSON, "field_e_ezsigntemplateformfieldgroup_tooltipposition");
-    if(!cJSON_IsString(field_e_ezsigntemplateformfieldgroup_tooltippositionVar) || (field_e_ezsigntemplateformfieldgroup_tooltippositionVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsigntemplateformfieldgroup_tooltipposition__e field_e_ezsigntemplateformfieldgroup_tooltipposition_parseFromJSON(cJSON *field_e_ezsigntemplateformfieldgroup_tooltippositionJSON) {
+    if(!cJSON_IsString(field_e_ezsigntemplateformfieldgroup_tooltippositionJSON) || (field_e_ezsigntemplateformfieldgroup_tooltippositionJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsigntemplateformfieldgroup_tooltippositionVariable = field_e_ezsigntemplateformfieldgroup_tooltipposition_field_e_ezsigntemplateformfieldgroup_tooltipposition_FromString(field_e_ezsigntemplateformfieldgroup_tooltippositionVar->valuestring);
-    return field_e_ezsigntemplateformfieldgroup_tooltippositionVariable;
-end:
-    return 0;
+    return field_e_ezsigntemplateformfieldgroup_tooltipposition_field_e_ezsigntemplateformfieldgroup_tooltipposition_FromString(field_e_ezsigntemplateformfieldgroup_tooltippositionJSON->valuestring);
 }

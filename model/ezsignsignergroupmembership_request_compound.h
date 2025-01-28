@@ -25,9 +25,10 @@ typedef struct ezsignsignergroupmembership_request_compound_t {
     int fki_user_id; //numeric
     int fki_usergroup_id; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsignergroupmembership_request_compound_t;
 
-ezsignsignergroupmembership_request_compound_t *ezsignsignergroupmembership_request_compound_create(
+__attribute__((deprecated)) ezsignsignergroupmembership_request_compound_t *ezsignsignergroupmembership_request_compound_create(
     int pki_ezsignsignergroupmembership_id,
     int fki_ezsignsignergroup_id,
     int fki_ezsignsigner_id,

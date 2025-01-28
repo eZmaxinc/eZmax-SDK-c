@@ -23,9 +23,10 @@ typedef struct usergroupexternal_response_t {
     char *s_usergroupexternal_name; // string
     char *s_usergroupexternal_id; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } usergroupexternal_response_t;
 
-usergroupexternal_response_t *usergroupexternal_response_create(
+__attribute__((deprecated)) usergroupexternal_response_t *usergroupexternal_response_create(
     int pki_usergroupexternal_id,
     char *s_usergroupexternal_name,
     char *s_usergroupexternal_id

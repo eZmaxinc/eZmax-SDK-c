@@ -26,9 +26,10 @@ typedef struct ezsignuser_response_compound_t {
     struct contact_response_compound_t *obj_contact; //model
     struct common_audit_t *obj_audit; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignuser_response_compound_t;
 
-ezsignuser_response_compound_t *ezsignuser_response_compound_create(
+__attribute__((deprecated)) ezsignuser_response_compound_t *ezsignuser_response_compound_create(
     int pki_ezsignuser_id,
     int fki_contact_id,
     contact_response_compound_t *obj_contact,

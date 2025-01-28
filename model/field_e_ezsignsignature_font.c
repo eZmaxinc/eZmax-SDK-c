@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsignsignature_font__e field_e_ezsignsignatu
     return 0;
 }
 
-cJSON *field_e_ezsignsignature_font_field_e_ezsignsignature_font_convertToJSON(ezmax_api_definition__full_field_e_ezsignsignature_font__e field_e_ezsignsignature_font) {
+cJSON *field_e_ezsignsignature_font_convertToJSON(ezmax_api_definition__full_field_e_ezsignsignature_font__e field_e_ezsignsignature_font) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsignsignature_font", field_e_ezsignsignature_font_field_e_ezsignsignature_font_ToString(field_e_ezsignsignature_font)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsignsignature_font__e field_e_ezsignsignature_font_field_e_ezsignsignature_font_parseFromJSON(cJSON *field_e_ezsignsignature_fontJSON) {
-    ezmax_api_definition__full_field_e_ezsignsignature_font__e *field_e_ezsignsignature_font = NULL;
-    ezmax_api_definition__full_field_e_ezsignsignature_font__e field_e_ezsignsignature_fontVariable;
-    cJSON *field_e_ezsignsignature_fontVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsignsignature_fontJSON, "field_e_ezsignsignature_font");
-    if(!cJSON_IsString(field_e_ezsignsignature_fontVar) || (field_e_ezsignsignature_fontVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsignsignature_font__e field_e_ezsignsignature_font_parseFromJSON(cJSON *field_e_ezsignsignature_fontJSON) {
+    if(!cJSON_IsString(field_e_ezsignsignature_fontJSON) || (field_e_ezsignsignature_fontJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsignsignature_fontVariable = field_e_ezsignsignature_font_field_e_ezsignsignature_font_FromString(field_e_ezsignsignature_fontVar->valuestring);
-    return field_e_ezsignsignature_fontVariable;
-end:
-    return 0;
+    return field_e_ezsignsignature_font_field_e_ezsignsignature_font_FromString(field_e_ezsignsignature_fontJSON->valuestring);
 }

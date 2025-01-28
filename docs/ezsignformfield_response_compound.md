@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **e_ezsignformfield_dependencyrequirement** | **field_e_ezsignformfield_dependencyrequirement_t \*** |  | [optional] 
 **e_ezsignformfield_horizontalalignment** | **enum_horizontalalignment_t \*** |  | [optional] 
 **obj_textstylestatic** | [**textstylestatic_response_compound_t**](textstylestatic_response_compound.md) \* |  | [optional] 
-**a_obj_ezsignelementdependency** | [**list_t**](ezsignelementdependency_response.md) \* |  | [optional] 
+**a_obj_ezsignelementdependency** | [**list_t**](ezsignelementdependency_response_compound.md) \* |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

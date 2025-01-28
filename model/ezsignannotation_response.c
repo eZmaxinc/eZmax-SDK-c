@@ -4,64 +4,13 @@
 #include "ezsignannotation_response.h"
 
 
-char* ezsignannotation_response_e_ezsignannotation_horizontalalignment_ToString(ezmax_api_definition__full_ezsignannotation_response__e e_ezsignannotation_horizontalalignment) {
-    char* e_ezsignannotation_horizontalalignmentArray[] =  { "NULL", "Center", "Left", "Right" };
-    return e_ezsignannotation_horizontalalignmentArray[e_ezsignannotation_horizontalalignment];
-}
 
-ezmax_api_definition__full_ezsignannotation_response__e ezsignannotation_response_e_ezsignannotation_horizontalalignment_FromString(char* e_ezsignannotation_horizontalalignment){
-    int stringToReturn = 0;
-    char *e_ezsignannotation_horizontalalignmentArray[] =  { "NULL", "Center", "Left", "Right" };
-    size_t sizeofArray = sizeof(e_ezsignannotation_horizontalalignmentArray) / sizeof(e_ezsignannotation_horizontalalignmentArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_ezsignannotation_horizontalalignment, e_ezsignannotation_horizontalalignmentArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-char* ezsignannotation_response_e_ezsignannotation_verticalalignment_ToString(ezmax_api_definition__full_ezsignannotation_response__e e_ezsignannotation_verticalalignment) {
-    char* e_ezsignannotation_verticalalignmentArray[] =  { "NULL", "Bottom", "Middle", "Top" };
-    return e_ezsignannotation_verticalalignmentArray[e_ezsignannotation_verticalalignment];
-}
-
-ezmax_api_definition__full_ezsignannotation_response__e ezsignannotation_response_e_ezsignannotation_verticalalignment_FromString(char* e_ezsignannotation_verticalalignment){
-    int stringToReturn = 0;
-    char *e_ezsignannotation_verticalalignmentArray[] =  { "NULL", "Bottom", "Middle", "Top" };
-    size_t sizeofArray = sizeof(e_ezsignannotation_verticalalignmentArray) / sizeof(e_ezsignannotation_verticalalignmentArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_ezsignannotation_verticalalignment, e_ezsignannotation_verticalalignmentArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-char* ezsignannotation_response_e_ezsignannotation_type_ToString(ezmax_api_definition__full_ezsignannotation_response__e e_ezsignannotation_type) {
-    char* e_ezsignannotation_typeArray[] =  { "NULL", "StrikethroughBlock", "StrikethroughLine", "Text" };
-    return e_ezsignannotation_typeArray[e_ezsignannotation_type];
-}
-
-ezmax_api_definition__full_ezsignannotation_response__e ezsignannotation_response_e_ezsignannotation_type_FromString(char* e_ezsignannotation_type){
-    int stringToReturn = 0;
-    char *e_ezsignannotation_typeArray[] =  { "NULL", "StrikethroughBlock", "StrikethroughLine", "Text" };
-    size_t sizeofArray = sizeof(e_ezsignannotation_typeArray) / sizeof(e_ezsignannotation_typeArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_ezsignannotation_type, e_ezsignannotation_typeArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-ezsignannotation_response_t *ezsignannotation_response_create(
+static ezsignannotation_response_t *ezsignannotation_response_create_internal(
     int pki_ezsignannotation_id,
     int fki_ezsigndocument_id,
-    enum_horizontalalignment_t *e_ezsignannotation_horizontalalignment,
-    enum_verticalalignment_t *e_ezsignannotation_verticalalignment,
-    field_e_ezsignannotation_type_t *e_ezsignannotation_type,
+    ezmax_api_definition__full_enum_horizontalalignment__e e_ezsignannotation_horizontalalignment,
+    ezmax_api_definition__full_enum_verticalalignment__e e_ezsignannotation_verticalalignment,
+    ezmax_api_definition__full_field_e_ezsignannotation_type__e e_ezsignannotation_type,
     int i_ezsignannotation_x,
     int i_ezsignannotation_y,
     int i_ezsignannotation_width,
@@ -85,27 +34,47 @@ ezsignannotation_response_t *ezsignannotation_response_create(
     ezsignannotation_response_local_var->s_ezsignannotation_text = s_ezsignannotation_text;
     ezsignannotation_response_local_var->i_ezsignpage_pagenumber = i_ezsignpage_pagenumber;
 
+    ezsignannotation_response_local_var->_library_owned = 1;
     return ezsignannotation_response_local_var;
 }
 
+__attribute__((deprecated)) ezsignannotation_response_t *ezsignannotation_response_create(
+    int pki_ezsignannotation_id,
+    int fki_ezsigndocument_id,
+    ezmax_api_definition__full_enum_horizontalalignment__e e_ezsignannotation_horizontalalignment,
+    ezmax_api_definition__full_enum_verticalalignment__e e_ezsignannotation_verticalalignment,
+    ezmax_api_definition__full_field_e_ezsignannotation_type__e e_ezsignannotation_type,
+    int i_ezsignannotation_x,
+    int i_ezsignannotation_y,
+    int i_ezsignannotation_width,
+    int i_ezsignannotation_height,
+    char *s_ezsignannotation_text,
+    int i_ezsignpage_pagenumber
+    ) {
+    return ezsignannotation_response_create_internal (
+        pki_ezsignannotation_id,
+        fki_ezsigndocument_id,
+        e_ezsignannotation_horizontalalignment,
+        e_ezsignannotation_verticalalignment,
+        e_ezsignannotation_type,
+        i_ezsignannotation_x,
+        i_ezsignannotation_y,
+        i_ezsignannotation_width,
+        i_ezsignannotation_height,
+        s_ezsignannotation_text,
+        i_ezsignpage_pagenumber
+        );
+}
 
 void ezsignannotation_response_free(ezsignannotation_response_t *ezsignannotation_response) {
     if(NULL == ezsignannotation_response){
         return ;
     }
+    if(ezsignannotation_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignannotation_response_free");
+        return ;
+    }
     listEntry_t *listEntry;
-    if (ezsignannotation_response->e_ezsignannotation_horizontalalignment) {
-        enum_horizontalalignment_free(ezsignannotation_response->e_ezsignannotation_horizontalalignment);
-        ezsignannotation_response->e_ezsignannotation_horizontalalignment = NULL;
-    }
-    if (ezsignannotation_response->e_ezsignannotation_verticalalignment) {
-        enum_verticalalignment_free(ezsignannotation_response->e_ezsignannotation_verticalalignment);
-        ezsignannotation_response->e_ezsignannotation_verticalalignment = NULL;
-    }
-    if (ezsignannotation_response->e_ezsignannotation_type) {
-        field_e_ezsignannotation_type_free(ezsignannotation_response->e_ezsignannotation_type);
-        ezsignannotation_response->e_ezsignannotation_type = NULL;
-    }
     if (ezsignannotation_response->s_ezsignannotation_text) {
         free(ezsignannotation_response->s_ezsignannotation_text);
         ezsignannotation_response->s_ezsignannotation_text = NULL;
@@ -135,7 +104,7 @@ cJSON *ezsignannotation_response_convertToJSON(ezsignannotation_response_t *ezsi
 
 
     // ezsignannotation_response->e_ezsignannotation_horizontalalignment
-    if(ezsignannotation_response->e_ezsignannotation_horizontalalignment != ezmax_api_definition__full_ezsignannotation_response__NULL) {
+    if(ezsignannotation_response->e_ezsignannotation_horizontalalignment != ezmax_api_definition__full_enum_horizontalalignment__NULL) {
     cJSON *e_ezsignannotation_horizontalalignment_local_JSON = enum_horizontalalignment_convertToJSON(ezsignannotation_response->e_ezsignannotation_horizontalalignment);
     if(e_ezsignannotation_horizontalalignment_local_JSON == NULL) {
         goto fail; // custom
@@ -148,7 +117,7 @@ cJSON *ezsignannotation_response_convertToJSON(ezsignannotation_response_t *ezsi
 
 
     // ezsignannotation_response->e_ezsignannotation_verticalalignment
-    if(ezsignannotation_response->e_ezsignannotation_verticalalignment != ezmax_api_definition__full_ezsignannotation_response__NULL) {
+    if(ezsignannotation_response->e_ezsignannotation_verticalalignment != ezmax_api_definition__full_enum_verticalalignment__NULL) {
     cJSON *e_ezsignannotation_verticalalignment_local_JSON = enum_verticalalignment_convertToJSON(ezsignannotation_response->e_ezsignannotation_verticalalignment);
     if(e_ezsignannotation_verticalalignment_local_JSON == NULL) {
         goto fail; // custom
@@ -161,7 +130,7 @@ cJSON *ezsignannotation_response_convertToJSON(ezsignannotation_response_t *ezsi
 
 
     // ezsignannotation_response->e_ezsignannotation_type
-    if (ezmax_api_definition__full_ezsignannotation_response__NULL == ezsignannotation_response->e_ezsignannotation_type) {
+    if (ezmax_api_definition__full_field_e_ezsignannotation_type__NULL == ezsignannotation_response->e_ezsignannotation_type) {
         goto fail;
     }
     cJSON *e_ezsignannotation_type_local_JSON = field_e_ezsignannotation_type_convertToJSON(ezsignannotation_response->e_ezsignannotation_type);
@@ -237,16 +206,19 @@ ezsignannotation_response_t *ezsignannotation_response_parseFromJSON(cJSON *ezsi
     ezsignannotation_response_t *ezsignannotation_response_local_var = NULL;
 
     // define the local variable for ezsignannotation_response->e_ezsignannotation_horizontalalignment
-    enum_horizontalalignment_t *e_ezsignannotation_horizontalalignment_local_nonprim = NULL;
+    ezmax_api_definition__full_enum_horizontalalignment__e e_ezsignannotation_horizontalalignment_local_nonprim = 0;
 
     // define the local variable for ezsignannotation_response->e_ezsignannotation_verticalalignment
-    enum_verticalalignment_t *e_ezsignannotation_verticalalignment_local_nonprim = NULL;
+    ezmax_api_definition__full_enum_verticalalignment__e e_ezsignannotation_verticalalignment_local_nonprim = 0;
 
     // define the local variable for ezsignannotation_response->e_ezsignannotation_type
-    field_e_ezsignannotation_type_t *e_ezsignannotation_type_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_ezsignannotation_type__e e_ezsignannotation_type_local_nonprim = 0;
 
     // ezsignannotation_response->pki_ezsignannotation_id
     cJSON *pki_ezsignannotation_id = cJSON_GetObjectItemCaseSensitive(ezsignannotation_responseJSON, "pkiEzsignannotationID");
+    if (cJSON_IsNull(pki_ezsignannotation_id)) {
+        pki_ezsignannotation_id = NULL;
+    }
     if (!pki_ezsignannotation_id) {
         goto end;
     }
@@ -259,6 +231,9 @@ ezsignannotation_response_t *ezsignannotation_response_parseFromJSON(cJSON *ezsi
 
     // ezsignannotation_response->fki_ezsigndocument_id
     cJSON *fki_ezsigndocument_id = cJSON_GetObjectItemCaseSensitive(ezsignannotation_responseJSON, "fkiEzsigndocumentID");
+    if (cJSON_IsNull(fki_ezsigndocument_id)) {
+        fki_ezsigndocument_id = NULL;
+    }
     if (!fki_ezsigndocument_id) {
         goto end;
     }
@@ -271,18 +246,27 @@ ezsignannotation_response_t *ezsignannotation_response_parseFromJSON(cJSON *ezsi
 
     // ezsignannotation_response->e_ezsignannotation_horizontalalignment
     cJSON *e_ezsignannotation_horizontalalignment = cJSON_GetObjectItemCaseSensitive(ezsignannotation_responseJSON, "eEzsignannotationHorizontalalignment");
+    if (cJSON_IsNull(e_ezsignannotation_horizontalalignment)) {
+        e_ezsignannotation_horizontalalignment = NULL;
+    }
     if (e_ezsignannotation_horizontalalignment) { 
     e_ezsignannotation_horizontalalignment_local_nonprim = enum_horizontalalignment_parseFromJSON(e_ezsignannotation_horizontalalignment); //custom
     }
 
     // ezsignannotation_response->e_ezsignannotation_verticalalignment
     cJSON *e_ezsignannotation_verticalalignment = cJSON_GetObjectItemCaseSensitive(ezsignannotation_responseJSON, "eEzsignannotationVerticalalignment");
+    if (cJSON_IsNull(e_ezsignannotation_verticalalignment)) {
+        e_ezsignannotation_verticalalignment = NULL;
+    }
     if (e_ezsignannotation_verticalalignment) { 
     e_ezsignannotation_verticalalignment_local_nonprim = enum_verticalalignment_parseFromJSON(e_ezsignannotation_verticalalignment); //custom
     }
 
     // ezsignannotation_response->e_ezsignannotation_type
     cJSON *e_ezsignannotation_type = cJSON_GetObjectItemCaseSensitive(ezsignannotation_responseJSON, "eEzsignannotationType");
+    if (cJSON_IsNull(e_ezsignannotation_type)) {
+        e_ezsignannotation_type = NULL;
+    }
     if (!e_ezsignannotation_type) {
         goto end;
     }
@@ -292,6 +276,9 @@ ezsignannotation_response_t *ezsignannotation_response_parseFromJSON(cJSON *ezsi
 
     // ezsignannotation_response->i_ezsignannotation_x
     cJSON *i_ezsignannotation_x = cJSON_GetObjectItemCaseSensitive(ezsignannotation_responseJSON, "iEzsignannotationX");
+    if (cJSON_IsNull(i_ezsignannotation_x)) {
+        i_ezsignannotation_x = NULL;
+    }
     if (!i_ezsignannotation_x) {
         goto end;
     }
@@ -304,6 +291,9 @@ ezsignannotation_response_t *ezsignannotation_response_parseFromJSON(cJSON *ezsi
 
     // ezsignannotation_response->i_ezsignannotation_y
     cJSON *i_ezsignannotation_y = cJSON_GetObjectItemCaseSensitive(ezsignannotation_responseJSON, "iEzsignannotationY");
+    if (cJSON_IsNull(i_ezsignannotation_y)) {
+        i_ezsignannotation_y = NULL;
+    }
     if (!i_ezsignannotation_y) {
         goto end;
     }
@@ -316,6 +306,9 @@ ezsignannotation_response_t *ezsignannotation_response_parseFromJSON(cJSON *ezsi
 
     // ezsignannotation_response->i_ezsignannotation_width
     cJSON *i_ezsignannotation_width = cJSON_GetObjectItemCaseSensitive(ezsignannotation_responseJSON, "iEzsignannotationWidth");
+    if (cJSON_IsNull(i_ezsignannotation_width)) {
+        i_ezsignannotation_width = NULL;
+    }
     if (i_ezsignannotation_width) { 
     if(!cJSON_IsNumber(i_ezsignannotation_width))
     {
@@ -325,6 +318,9 @@ ezsignannotation_response_t *ezsignannotation_response_parseFromJSON(cJSON *ezsi
 
     // ezsignannotation_response->i_ezsignannotation_height
     cJSON *i_ezsignannotation_height = cJSON_GetObjectItemCaseSensitive(ezsignannotation_responseJSON, "iEzsignannotationHeight");
+    if (cJSON_IsNull(i_ezsignannotation_height)) {
+        i_ezsignannotation_height = NULL;
+    }
     if (i_ezsignannotation_height) { 
     if(!cJSON_IsNumber(i_ezsignannotation_height))
     {
@@ -334,6 +330,9 @@ ezsignannotation_response_t *ezsignannotation_response_parseFromJSON(cJSON *ezsi
 
     // ezsignannotation_response->s_ezsignannotation_text
     cJSON *s_ezsignannotation_text = cJSON_GetObjectItemCaseSensitive(ezsignannotation_responseJSON, "sEzsignannotationText");
+    if (cJSON_IsNull(s_ezsignannotation_text)) {
+        s_ezsignannotation_text = NULL;
+    }
     if (s_ezsignannotation_text) { 
     if(!cJSON_IsString(s_ezsignannotation_text) && !cJSON_IsNull(s_ezsignannotation_text))
     {
@@ -343,6 +342,9 @@ ezsignannotation_response_t *ezsignannotation_response_parseFromJSON(cJSON *ezsi
 
     // ezsignannotation_response->i_ezsignpage_pagenumber
     cJSON *i_ezsignpage_pagenumber = cJSON_GetObjectItemCaseSensitive(ezsignannotation_responseJSON, "iEzsignpagePagenumber");
+    if (cJSON_IsNull(i_ezsignpage_pagenumber)) {
+        i_ezsignpage_pagenumber = NULL;
+    }
     if (!i_ezsignpage_pagenumber) {
         goto end;
     }
@@ -354,11 +356,11 @@ ezsignannotation_response_t *ezsignannotation_response_parseFromJSON(cJSON *ezsi
     }
 
 
-    ezsignannotation_response_local_var = ezsignannotation_response_create (
+    ezsignannotation_response_local_var = ezsignannotation_response_create_internal (
         pki_ezsignannotation_id->valuedouble,
         fki_ezsigndocument_id->valuedouble,
-        e_ezsignannotation_horizontalalignment ? e_ezsignannotation_horizontalalignment_local_nonprim : NULL,
-        e_ezsignannotation_verticalalignment ? e_ezsignannotation_verticalalignment_local_nonprim : NULL,
+        e_ezsignannotation_horizontalalignment ? e_ezsignannotation_horizontalalignment_local_nonprim : 0,
+        e_ezsignannotation_verticalalignment ? e_ezsignannotation_verticalalignment_local_nonprim : 0,
         e_ezsignannotation_type_local_nonprim,
         i_ezsignannotation_x->valuedouble,
         i_ezsignannotation_y->valuedouble,
@@ -371,16 +373,13 @@ ezsignannotation_response_t *ezsignannotation_response_parseFromJSON(cJSON *ezsi
     return ezsignannotation_response_local_var;
 end:
     if (e_ezsignannotation_horizontalalignment_local_nonprim) {
-        enum_horizontalalignment_free(e_ezsignannotation_horizontalalignment_local_nonprim);
-        e_ezsignannotation_horizontalalignment_local_nonprim = NULL;
+        e_ezsignannotation_horizontalalignment_local_nonprim = 0;
     }
     if (e_ezsignannotation_verticalalignment_local_nonprim) {
-        enum_verticalalignment_free(e_ezsignannotation_verticalalignment_local_nonprim);
-        e_ezsignannotation_verticalalignment_local_nonprim = NULL;
+        e_ezsignannotation_verticalalignment_local_nonprim = 0;
     }
     if (e_ezsignannotation_type_local_nonprim) {
-        field_e_ezsignannotation_type_free(e_ezsignannotation_type_local_nonprim);
-        e_ezsignannotation_type_local_nonprim = NULL;
+        e_ezsignannotation_type_local_nonprim = 0;
     }
     return NULL;
 

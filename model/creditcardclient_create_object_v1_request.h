@@ -22,9 +22,10 @@ typedef struct creditcardclient_create_object_v1_request_t creditcardclient_crea
 typedef struct creditcardclient_create_object_v1_request_t {
     list_t *a_obj_creditcardclient; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } creditcardclient_create_object_v1_request_t;
 
-creditcardclient_create_object_v1_request_t *creditcardclient_create_object_v1_request_create(
+__attribute__((deprecated)) creditcardclient_create_object_v1_request_t *creditcardclient_create_object_v1_request_create(
     list_t *a_obj_creditcardclient
 );
 

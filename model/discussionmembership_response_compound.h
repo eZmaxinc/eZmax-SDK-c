@@ -27,9 +27,10 @@ typedef struct discussionmembership_response_compound_t {
     char *s_discussionmembership_description; // string
     char *dt_discussionmembership_joined; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } discussionmembership_response_compound_t;
 
-discussionmembership_response_compound_t *discussionmembership_response_compound_create(
+__attribute__((deprecated)) discussionmembership_response_compound_t *discussionmembership_response_compound_create(
     int pki_discussionmembership_id,
     int fki_discussion_id,
     int fki_user_id,

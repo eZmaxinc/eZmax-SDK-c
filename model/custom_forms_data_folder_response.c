@@ -5,7 +5,7 @@
 
 
 
-custom_forms_data_folder_response_t *custom_forms_data_folder_response_create(
+static custom_forms_data_folder_response_t *custom_forms_data_folder_response_create_internal(
     int pki_ezsignfolder_id,
     char *s_ezsignfolder_description,
     list_t *a_obj_form_data_document
@@ -18,12 +18,28 @@ custom_forms_data_folder_response_t *custom_forms_data_folder_response_create(
     custom_forms_data_folder_response_local_var->s_ezsignfolder_description = s_ezsignfolder_description;
     custom_forms_data_folder_response_local_var->a_obj_form_data_document = a_obj_form_data_document;
 
+    custom_forms_data_folder_response_local_var->_library_owned = 1;
     return custom_forms_data_folder_response_local_var;
 }
 
+__attribute__((deprecated)) custom_forms_data_folder_response_t *custom_forms_data_folder_response_create(
+    int pki_ezsignfolder_id,
+    char *s_ezsignfolder_description,
+    list_t *a_obj_form_data_document
+    ) {
+    return custom_forms_data_folder_response_create_internal (
+        pki_ezsignfolder_id,
+        s_ezsignfolder_description,
+        a_obj_form_data_document
+        );
+}
 
 void custom_forms_data_folder_response_free(custom_forms_data_folder_response_t *custom_forms_data_folder_response) {
     if(NULL == custom_forms_data_folder_response){
+        return ;
+    }
+    if(custom_forms_data_folder_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "custom_forms_data_folder_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -99,6 +115,9 @@ custom_forms_data_folder_response_t *custom_forms_data_folder_response_parseFrom
 
     // custom_forms_data_folder_response->pki_ezsignfolder_id
     cJSON *pki_ezsignfolder_id = cJSON_GetObjectItemCaseSensitive(custom_forms_data_folder_responseJSON, "pkiEzsignfolderID");
+    if (cJSON_IsNull(pki_ezsignfolder_id)) {
+        pki_ezsignfolder_id = NULL;
+    }
     if (!pki_ezsignfolder_id) {
         goto end;
     }
@@ -111,6 +130,9 @@ custom_forms_data_folder_response_t *custom_forms_data_folder_response_parseFrom
 
     // custom_forms_data_folder_response->s_ezsignfolder_description
     cJSON *s_ezsignfolder_description = cJSON_GetObjectItemCaseSensitive(custom_forms_data_folder_responseJSON, "sEzsignfolderDescription");
+    if (cJSON_IsNull(s_ezsignfolder_description)) {
+        s_ezsignfolder_description = NULL;
+    }
     if (!s_ezsignfolder_description) {
         goto end;
     }
@@ -123,6 +145,9 @@ custom_forms_data_folder_response_t *custom_forms_data_folder_response_parseFrom
 
     // custom_forms_data_folder_response->a_obj_form_data_document
     cJSON *a_obj_form_data_document = cJSON_GetObjectItemCaseSensitive(custom_forms_data_folder_responseJSON, "a_objFormDataDocument");
+    if (cJSON_IsNull(a_obj_form_data_document)) {
+        a_obj_form_data_document = NULL;
+    }
     if (!a_obj_form_data_document) {
         goto end;
     }
@@ -146,7 +171,7 @@ custom_forms_data_folder_response_t *custom_forms_data_folder_response_parseFrom
     }
 
 
-    custom_forms_data_folder_response_local_var = custom_forms_data_folder_response_create (
+    custom_forms_data_folder_response_local_var = custom_forms_data_folder_response_create_internal (
         pki_ezsignfolder_id->valuedouble,
         strdup(s_ezsignfolder_description->valuestring),
         a_obj_form_data_documentList

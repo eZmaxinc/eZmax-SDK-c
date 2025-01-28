@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_sessionhistory_endby__e field_e_sessionhistor
     return 0;
 }
 
-cJSON *field_e_sessionhistory_endby_field_e_sessionhistory_endby_convertToJSON(ezmax_api_definition__full_field_e_sessionhistory_endby__e field_e_sessionhistory_endby) {
+cJSON *field_e_sessionhistory_endby_convertToJSON(ezmax_api_definition__full_field_e_sessionhistory_endby__e field_e_sessionhistory_endby) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_sessionhistory_endby", field_e_sessionhistory_endby_field_e_sessionhistory_endby_ToString(field_e_sessionhistory_endby)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_sessionhistory_endby__e field_e_sessionhistory_endby_field_e_sessionhistory_endby_parseFromJSON(cJSON *field_e_sessionhistory_endbyJSON) {
-    ezmax_api_definition__full_field_e_sessionhistory_endby__e *field_e_sessionhistory_endby = NULL;
-    ezmax_api_definition__full_field_e_sessionhistory_endby__e field_e_sessionhistory_endbyVariable;
-    cJSON *field_e_sessionhistory_endbyVar = cJSON_GetObjectItemCaseSensitive(field_e_sessionhistory_endbyJSON, "field_e_sessionhistory_endby");
-    if(!cJSON_IsString(field_e_sessionhistory_endbyVar) || (field_e_sessionhistory_endbyVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_sessionhistory_endby__e field_e_sessionhistory_endby_parseFromJSON(cJSON *field_e_sessionhistory_endbyJSON) {
+    if(!cJSON_IsString(field_e_sessionhistory_endbyJSON) || (field_e_sessionhistory_endbyJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_sessionhistory_endbyVariable = field_e_sessionhistory_endby_field_e_sessionhistory_endby_FromString(field_e_sessionhistory_endbyVar->valuestring);
-    return field_e_sessionhistory_endbyVariable;
-end:
-    return 0;
+    return field_e_sessionhistory_endby_field_e_sessionhistory_endby_FromString(field_e_sessionhistory_endbyJSON->valuestring);
 }

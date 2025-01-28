@@ -27,9 +27,10 @@ typedef struct textstylestatic_request_t {
     int i_textstylestatic_fontcolor; //numeric
     int i_textstylestatic_size; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } textstylestatic_request_t;
 
-textstylestatic_request_t *textstylestatic_request_create(
+__attribute__((deprecated)) textstylestatic_request_t *textstylestatic_request_create(
     int fki_font_id,
     int b_textstylestatic_bold,
     int b_textstylestatic_underline,

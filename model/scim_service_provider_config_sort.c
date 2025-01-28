@@ -5,7 +5,7 @@
 
 
 
-scim_service_provider_config_sort_t *scim_service_provider_config_sort_create(
+static scim_service_provider_config_sort_t *scim_service_provider_config_sort_create_internal(
     int supported
     ) {
     scim_service_provider_config_sort_t *scim_service_provider_config_sort_local_var = malloc(sizeof(scim_service_provider_config_sort_t));
@@ -14,12 +14,24 @@ scim_service_provider_config_sort_t *scim_service_provider_config_sort_create(
     }
     scim_service_provider_config_sort_local_var->supported = supported;
 
+    scim_service_provider_config_sort_local_var->_library_owned = 1;
     return scim_service_provider_config_sort_local_var;
 }
 
+__attribute__((deprecated)) scim_service_provider_config_sort_t *scim_service_provider_config_sort_create(
+    int supported
+    ) {
+    return scim_service_provider_config_sort_create_internal (
+        supported
+        );
+}
 
 void scim_service_provider_config_sort_free(scim_service_provider_config_sort_t *scim_service_provider_config_sort) {
     if(NULL == scim_service_provider_config_sort){
+        return ;
+    }
+    if(scim_service_provider_config_sort->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "scim_service_provider_config_sort_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -51,6 +63,9 @@ scim_service_provider_config_sort_t *scim_service_provider_config_sort_parseFrom
 
     // scim_service_provider_config_sort->supported
     cJSON *supported = cJSON_GetObjectItemCaseSensitive(scim_service_provider_config_sortJSON, "supported");
+    if (cJSON_IsNull(supported)) {
+        supported = NULL;
+    }
     if (!supported) {
         goto end;
     }
@@ -62,7 +77,7 @@ scim_service_provider_config_sort_t *scim_service_provider_config_sort_parseFrom
     }
 
 
-    scim_service_provider_config_sort_local_var = scim_service_provider_config_sort_create (
+    scim_service_provider_config_sort_local_var = scim_service_provider_config_sort_create_internal (
         supported->valueint
         );
 

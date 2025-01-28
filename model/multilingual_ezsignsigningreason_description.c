@@ -5,7 +5,7 @@
 
 
 
-multilingual_ezsignsigningreason_description_t *multilingual_ezsignsigningreason_description_create(
+static multilingual_ezsignsigningreason_description_t *multilingual_ezsignsigningreason_description_create_internal(
     char *s_ezsignsigningreason_description1,
     char *s_ezsignsigningreason_description2
     ) {
@@ -16,12 +16,26 @@ multilingual_ezsignsigningreason_description_t *multilingual_ezsignsigningreason
     multilingual_ezsignsigningreason_description_local_var->s_ezsignsigningreason_description1 = s_ezsignsigningreason_description1;
     multilingual_ezsignsigningreason_description_local_var->s_ezsignsigningreason_description2 = s_ezsignsigningreason_description2;
 
+    multilingual_ezsignsigningreason_description_local_var->_library_owned = 1;
     return multilingual_ezsignsigningreason_description_local_var;
 }
 
+__attribute__((deprecated)) multilingual_ezsignsigningreason_description_t *multilingual_ezsignsigningreason_description_create(
+    char *s_ezsignsigningreason_description1,
+    char *s_ezsignsigningreason_description2
+    ) {
+    return multilingual_ezsignsigningreason_description_create_internal (
+        s_ezsignsigningreason_description1,
+        s_ezsignsigningreason_description2
+        );
+}
 
 void multilingual_ezsignsigningreason_description_free(multilingual_ezsignsigningreason_description_t *multilingual_ezsignsigningreason_description) {
     if(NULL == multilingual_ezsignsigningreason_description){
+        return ;
+    }
+    if(multilingual_ezsignsigningreason_description->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "multilingual_ezsignsigningreason_description_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -68,6 +82,9 @@ multilingual_ezsignsigningreason_description_t *multilingual_ezsignsigningreason
 
     // multilingual_ezsignsigningreason_description->s_ezsignsigningreason_description1
     cJSON *s_ezsignsigningreason_description1 = cJSON_GetObjectItemCaseSensitive(multilingual_ezsignsigningreason_descriptionJSON, "sEzsignsigningreasonDescription1");
+    if (cJSON_IsNull(s_ezsignsigningreason_description1)) {
+        s_ezsignsigningreason_description1 = NULL;
+    }
     if (s_ezsignsigningreason_description1) { 
     if(!cJSON_IsString(s_ezsignsigningreason_description1) && !cJSON_IsNull(s_ezsignsigningreason_description1))
     {
@@ -77,6 +94,9 @@ multilingual_ezsignsigningreason_description_t *multilingual_ezsignsigningreason
 
     // multilingual_ezsignsigningreason_description->s_ezsignsigningreason_description2
     cJSON *s_ezsignsigningreason_description2 = cJSON_GetObjectItemCaseSensitive(multilingual_ezsignsigningreason_descriptionJSON, "sEzsignsigningreasonDescription2");
+    if (cJSON_IsNull(s_ezsignsigningreason_description2)) {
+        s_ezsignsigningreason_description2 = NULL;
+    }
     if (s_ezsignsigningreason_description2) { 
     if(!cJSON_IsString(s_ezsignsigningreason_description2) && !cJSON_IsNull(s_ezsignsigningreason_description2))
     {
@@ -85,7 +105,7 @@ multilingual_ezsignsigningreason_description_t *multilingual_ezsignsigningreason
     }
 
 
-    multilingual_ezsignsigningreason_description_local_var = multilingual_ezsignsigningreason_description_create (
+    multilingual_ezsignsigningreason_description_local_var = multilingual_ezsignsigningreason_description_create_internal (
         s_ezsignsigningreason_description1 && !cJSON_IsNull(s_ezsignsigningreason_description1) ? strdup(s_ezsignsigningreason_description1->valuestring) : NULL,
         s_ezsignsigningreason_description2 && !cJSON_IsNull(s_ezsignsigningreason_description2) ? strdup(s_ezsignsigningreason_description2->valuestring) : NULL
         );

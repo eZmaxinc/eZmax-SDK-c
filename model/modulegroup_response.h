@@ -22,9 +22,10 @@ typedef struct modulegroup_response_t {
     int pki_modulegroup_id; //numeric
     char *s_modulegroup_name_x; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } modulegroup_response_t;
 
-modulegroup_response_t *modulegroup_response_create(
+__attribute__((deprecated)) modulegroup_response_t *modulegroup_response_create(
     int pki_modulegroup_id,
     char *s_modulegroup_name_x
 );

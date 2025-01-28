@@ -24,13 +24,13 @@ cors_request_compound_t* instantiate_cors_request_compound(int include_optional)
     cors_request_compound = cors_request_compound_create(
       228,
       99,
-      "Https://www.example.com"
+      "https://www.example.com"
     );
   } else {
     cors_request_compound = cors_request_compound_create(
       228,
       99,
-      "Https://www.example.com"
+      "https://www.example.com"
     );
   }
 

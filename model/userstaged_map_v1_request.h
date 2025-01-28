@@ -21,9 +21,10 @@ typedef struct userstaged_map_v1_request_t userstaged_map_v1_request_t;
 typedef struct userstaged_map_v1_request_t {
     int fki_user_id; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } userstaged_map_v1_request_t;
 
-userstaged_map_v1_request_t *userstaged_map_v1_request_create(
+__attribute__((deprecated)) userstaged_map_v1_request_t *userstaged_map_v1_request_create(
     int fki_user_id
 );
 

@@ -5,7 +5,7 @@
 
 
 
-attempt_response_compound_t *attempt_response_compound_create(
+static attempt_response_compound_t *attempt_response_compound_create_internal(
     char *dt_attempt_start,
     char *s_attempt_result,
     int i_attempt_duration
@@ -18,12 +18,28 @@ attempt_response_compound_t *attempt_response_compound_create(
     attempt_response_compound_local_var->s_attempt_result = s_attempt_result;
     attempt_response_compound_local_var->i_attempt_duration = i_attempt_duration;
 
+    attempt_response_compound_local_var->_library_owned = 1;
     return attempt_response_compound_local_var;
 }
 
+__attribute__((deprecated)) attempt_response_compound_t *attempt_response_compound_create(
+    char *dt_attempt_start,
+    char *s_attempt_result,
+    int i_attempt_duration
+    ) {
+    return attempt_response_compound_create_internal (
+        dt_attempt_start,
+        s_attempt_result,
+        i_attempt_duration
+        );
+}
 
 void attempt_response_compound_free(attempt_response_compound_t *attempt_response_compound) {
     if(NULL == attempt_response_compound){
+        return ;
+    }
+    if(attempt_response_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "attempt_response_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -81,6 +97,9 @@ attempt_response_compound_t *attempt_response_compound_parseFromJSON(cJSON *atte
 
     // attempt_response_compound->dt_attempt_start
     cJSON *dt_attempt_start = cJSON_GetObjectItemCaseSensitive(attempt_response_compoundJSON, "dtAttemptStart");
+    if (cJSON_IsNull(dt_attempt_start)) {
+        dt_attempt_start = NULL;
+    }
     if (!dt_attempt_start) {
         goto end;
     }
@@ -93,6 +112,9 @@ attempt_response_compound_t *attempt_response_compound_parseFromJSON(cJSON *atte
 
     // attempt_response_compound->s_attempt_result
     cJSON *s_attempt_result = cJSON_GetObjectItemCaseSensitive(attempt_response_compoundJSON, "sAttemptResult");
+    if (cJSON_IsNull(s_attempt_result)) {
+        s_attempt_result = NULL;
+    }
     if (!s_attempt_result) {
         goto end;
     }
@@ -105,6 +127,9 @@ attempt_response_compound_t *attempt_response_compound_parseFromJSON(cJSON *atte
 
     // attempt_response_compound->i_attempt_duration
     cJSON *i_attempt_duration = cJSON_GetObjectItemCaseSensitive(attempt_response_compoundJSON, "iAttemptDuration");
+    if (cJSON_IsNull(i_attempt_duration)) {
+        i_attempt_duration = NULL;
+    }
     if (!i_attempt_duration) {
         goto end;
     }
@@ -116,7 +141,7 @@ attempt_response_compound_t *attempt_response_compound_parseFromJSON(cJSON *atte
     }
 
 
-    attempt_response_compound_local_var = attempt_response_compound_create (
+    attempt_response_compound_local_var = attempt_response_compound_create_internal (
         strdup(dt_attempt_start->valuestring),
         strdup(s_attempt_result->valuestring),
         i_attempt_duration->valuedouble

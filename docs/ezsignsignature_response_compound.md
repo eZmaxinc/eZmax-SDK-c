@@ -42,9 +42,9 @@ Name | Type | Description | Notes
 **obj_signature** | [**signature_response_compound_t**](signature_response_compound.md) \* |  | [optional] 
 **dt_ezsignsignature_date_in_folder_timezone** | **char \*** | The date the Ezsignsignature was signed in folder&#39;s timezone | [optional] 
 **b_ezsignsignature_customdate** | **int** | Whether the Ezsignsignature has a custom date format or not. (Only possible when eEzsignsignatureType is **Name** or **Handwritten**) | [optional] 
-**a_obj_ezsignsignaturecustomdate** | [**list_t**](ezsignsignaturecustomdate_response.md) \* | An array of custom date blocks that will be filled at the time of signature.  Can only be used if bEzsignsignatureCustomdate is true.  Use an empty array if you don&#39;t want to have a date at all. | [optional] 
+**a_obj_ezsignsignaturecustomdate** | [**list_t**](ezsignsignaturecustomdate_response_compound.md) \* | An array of custom date blocks that will be filled at the time of signature.  Can only be used if bEzsignsignatureCustomdate is true.  Use an empty array if you don&#39;t want to have a date at all. | [optional] 
 **obj_creditcardtransaction** | [**custom_creditcardtransaction_response_t**](custom_creditcardtransaction_response.md) \* |  | [optional] 
-**a_obj_ezsignelementdependency** | [**list_t**](ezsignelementdependency_response.md) \* |  | [optional] 
+**a_obj_ezsignelementdependency** | [**list_t**](ezsignelementdependency_response_compound.md) \* |  | [optional] 
 **obj_timezone** | [**custom_timezone_with_code_response_t**](custom_timezone_with_code_response.md) \* |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

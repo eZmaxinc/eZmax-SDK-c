@@ -5,7 +5,7 @@
 
 
 
-creditcardclient_request_patch_t *creditcardclient_request_patch_create(
+static creditcardclient_request_patch_t *creditcardclient_request_patch_create_internal(
     int b_creditcardclientrelation_isdefault
     ) {
     creditcardclient_request_patch_t *creditcardclient_request_patch_local_var = malloc(sizeof(creditcardclient_request_patch_t));
@@ -14,12 +14,24 @@ creditcardclient_request_patch_t *creditcardclient_request_patch_create(
     }
     creditcardclient_request_patch_local_var->b_creditcardclientrelation_isdefault = b_creditcardclientrelation_isdefault;
 
+    creditcardclient_request_patch_local_var->_library_owned = 1;
     return creditcardclient_request_patch_local_var;
 }
 
+__attribute__((deprecated)) creditcardclient_request_patch_t *creditcardclient_request_patch_create(
+    int b_creditcardclientrelation_isdefault
+    ) {
+    return creditcardclient_request_patch_create_internal (
+        b_creditcardclientrelation_isdefault
+        );
+}
 
 void creditcardclient_request_patch_free(creditcardclient_request_patch_t *creditcardclient_request_patch) {
     if(NULL == creditcardclient_request_patch){
+        return ;
+    }
+    if(creditcardclient_request_patch->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "creditcardclient_request_patch_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -50,6 +62,9 @@ creditcardclient_request_patch_t *creditcardclient_request_patch_parseFromJSON(c
 
     // creditcardclient_request_patch->b_creditcardclientrelation_isdefault
     cJSON *b_creditcardclientrelation_isdefault = cJSON_GetObjectItemCaseSensitive(creditcardclient_request_patchJSON, "bCreditcardclientrelationIsdefault");
+    if (cJSON_IsNull(b_creditcardclientrelation_isdefault)) {
+        b_creditcardclientrelation_isdefault = NULL;
+    }
     if (b_creditcardclientrelation_isdefault) { 
     if(!cJSON_IsBool(b_creditcardclientrelation_isdefault))
     {
@@ -58,7 +73,7 @@ creditcardclient_request_patch_t *creditcardclient_request_patch_parseFromJSON(c
     }
 
 
-    creditcardclient_request_patch_local_var = creditcardclient_request_patch_create (
+    creditcardclient_request_patch_local_var = creditcardclient_request_patch_create_internal (
         b_creditcardclientrelation_isdefault ? b_creditcardclientrelation_isdefault->valueint : 0
         );
 

@@ -5,11 +5,11 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/ezsignfoldertype_create_object_v3_request.h"
 #include "../model/ezsignfoldertype_create_object_v3_response.h"
 #include "../model/ezsignfoldertype_edit_object_v3_request.h"
+#include "../model/ezsignfoldertype_edit_object_v3_response.h"
 #include "../model/ezsignfoldertype_get_autocomplete_v2_response.h"
 #include "../model/ezsignfoldertype_get_list_v1_response.h"
 #include "../model/ezsignfoldertype_get_object_v2_response.h"
@@ -44,7 +44,7 @@ ObjectEzsignfoldertypeAPI_ezsignfoldertypeCreateObjectV3(apiClient_t *apiClient,
 //
 // 
 //
-common_response_t*
+ezsignfoldertype_edit_object_v3_response_t*
 ObjectEzsignfoldertypeAPI_ezsignfoldertypeEditObjectV3(apiClient_t *apiClient, int *pkiEzsignfoldertypeID, ezsignfoldertype_edit_object_v3_request_t *ezsignfoldertype_edit_object_v3_request);
 
 

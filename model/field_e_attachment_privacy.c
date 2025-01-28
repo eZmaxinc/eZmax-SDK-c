@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_attachment_privacy__e field_e_attachment_priv
     return 0;
 }
 
-cJSON *field_e_attachment_privacy_field_e_attachment_privacy_convertToJSON(ezmax_api_definition__full_field_e_attachment_privacy__e field_e_attachment_privacy) {
+cJSON *field_e_attachment_privacy_convertToJSON(ezmax_api_definition__full_field_e_attachment_privacy__e field_e_attachment_privacy) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_attachment_privacy", field_e_attachment_privacy_field_e_attachment_privacy_ToString(field_e_attachment_privacy)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_attachment_privacy__e field_e_attachment_privacy_field_e_attachment_privacy_parseFromJSON(cJSON *field_e_attachment_privacyJSON) {
-    ezmax_api_definition__full_field_e_attachment_privacy__e *field_e_attachment_privacy = NULL;
-    ezmax_api_definition__full_field_e_attachment_privacy__e field_e_attachment_privacyVariable;
-    cJSON *field_e_attachment_privacyVar = cJSON_GetObjectItemCaseSensitive(field_e_attachment_privacyJSON, "field_e_attachment_privacy");
-    if(!cJSON_IsString(field_e_attachment_privacyVar) || (field_e_attachment_privacyVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_attachment_privacy__e field_e_attachment_privacy_parseFromJSON(cJSON *field_e_attachment_privacyJSON) {
+    if(!cJSON_IsString(field_e_attachment_privacyJSON) || (field_e_attachment_privacyJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_attachment_privacyVariable = field_e_attachment_privacy_field_e_attachment_privacy_FromString(field_e_attachment_privacyVar->valuestring);
-    return field_e_attachment_privacyVariable;
-end:
-    return 0;
+    return field_e_attachment_privacy_field_e_attachment_privacy_FromString(field_e_attachment_privacyJSON->valuestring);
 }

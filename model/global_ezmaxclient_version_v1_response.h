@@ -22,9 +22,10 @@ typedef struct global_ezmaxclient_version_v1_response_t {
     char *s_ezmaxclient_version; // string
     char *s_ezmaxclient_oslatestversion; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } global_ezmaxclient_version_v1_response_t;
 
-global_ezmaxclient_version_v1_response_t *global_ezmaxclient_version_v1_response_create(
+__attribute__((deprecated)) global_ezmaxclient_version_v1_response_t *global_ezmaxclient_version_v1_response_create(
     char *s_ezmaxclient_version,
     char *s_ezmaxclient_oslatestversion
 );

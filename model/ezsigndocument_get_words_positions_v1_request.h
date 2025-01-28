@@ -31,9 +31,10 @@ typedef struct ezsigndocument_get_words_positions_v1_request_t {
     int b_word_case_sensitive; //boolean
     list_t *a_s_word; //primitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigndocument_get_words_positions_v1_request_t;
 
-ezsigndocument_get_words_positions_v1_request_t *ezsigndocument_get_words_positions_v1_request_create(
+__attribute__((deprecated)) ezsigndocument_get_words_positions_v1_request_t *ezsigndocument_get_words_positions_v1_request_create(
     ezmax_api_definition__full_ezsigndocument_get_words_positions_v1_request_EGET_e e_get,
     int b_word_case_sensitive,
     list_t *a_s_word

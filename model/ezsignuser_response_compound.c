@@ -5,7 +5,7 @@
 
 
 
-ezsignuser_response_compound_t *ezsignuser_response_compound_create(
+static ezsignuser_response_compound_t *ezsignuser_response_compound_create_internal(
     int pki_ezsignuser_id,
     int fki_contact_id,
     contact_response_compound_t *obj_contact,
@@ -20,12 +20,30 @@ ezsignuser_response_compound_t *ezsignuser_response_compound_create(
     ezsignuser_response_compound_local_var->obj_contact = obj_contact;
     ezsignuser_response_compound_local_var->obj_audit = obj_audit;
 
+    ezsignuser_response_compound_local_var->_library_owned = 1;
     return ezsignuser_response_compound_local_var;
 }
 
+__attribute__((deprecated)) ezsignuser_response_compound_t *ezsignuser_response_compound_create(
+    int pki_ezsignuser_id,
+    int fki_contact_id,
+    contact_response_compound_t *obj_contact,
+    common_audit_t *obj_audit
+    ) {
+    return ezsignuser_response_compound_create_internal (
+        pki_ezsignuser_id,
+        fki_contact_id,
+        obj_contact,
+        obj_audit
+        );
+}
 
 void ezsignuser_response_compound_free(ezsignuser_response_compound_t *ezsignuser_response_compound) {
     if(NULL == ezsignuser_response_compound){
+        return ;
+    }
+    if(ezsignuser_response_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignuser_response_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -108,6 +126,9 @@ ezsignuser_response_compound_t *ezsignuser_response_compound_parseFromJSON(cJSON
 
     // ezsignuser_response_compound->pki_ezsignuser_id
     cJSON *pki_ezsignuser_id = cJSON_GetObjectItemCaseSensitive(ezsignuser_response_compoundJSON, "pkiEzsignuserID");
+    if (cJSON_IsNull(pki_ezsignuser_id)) {
+        pki_ezsignuser_id = NULL;
+    }
     if (!pki_ezsignuser_id) {
         goto end;
     }
@@ -120,6 +141,9 @@ ezsignuser_response_compound_t *ezsignuser_response_compound_parseFromJSON(cJSON
 
     // ezsignuser_response_compound->fki_contact_id
     cJSON *fki_contact_id = cJSON_GetObjectItemCaseSensitive(ezsignuser_response_compoundJSON, "fkiContactID");
+    if (cJSON_IsNull(fki_contact_id)) {
+        fki_contact_id = NULL;
+    }
     if (!fki_contact_id) {
         goto end;
     }
@@ -132,6 +156,9 @@ ezsignuser_response_compound_t *ezsignuser_response_compound_parseFromJSON(cJSON
 
     // ezsignuser_response_compound->obj_contact
     cJSON *obj_contact = cJSON_GetObjectItemCaseSensitive(ezsignuser_response_compoundJSON, "objContact");
+    if (cJSON_IsNull(obj_contact)) {
+        obj_contact = NULL;
+    }
     if (!obj_contact) {
         goto end;
     }
@@ -141,6 +168,9 @@ ezsignuser_response_compound_t *ezsignuser_response_compound_parseFromJSON(cJSON
 
     // ezsignuser_response_compound->obj_audit
     cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(ezsignuser_response_compoundJSON, "objAudit");
+    if (cJSON_IsNull(obj_audit)) {
+        obj_audit = NULL;
+    }
     if (!obj_audit) {
         goto end;
     }
@@ -149,7 +179,7 @@ ezsignuser_response_compound_t *ezsignuser_response_compound_parseFromJSON(cJSON
     obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
 
 
-    ezsignuser_response_compound_local_var = ezsignuser_response_compound_create (
+    ezsignuser_response_compound_local_var = ezsignuser_response_compound_create_internal (
         pki_ezsignuser_id->valuedouble,
         fki_contact_id->valuedouble,
         obj_contact_local_nonprim,

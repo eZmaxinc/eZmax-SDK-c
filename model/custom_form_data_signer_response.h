@@ -26,9 +26,10 @@ typedef struct custom_form_data_signer_response_t {
     char *s_contact_lastname; // string
     list_t *a_obj_ezsignformfieldgroup; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_form_data_signer_response_t;
 
-custom_form_data_signer_response_t *custom_form_data_signer_response_create(
+__attribute__((deprecated)) custom_form_data_signer_response_t *custom_form_data_signer_response_create(
     int fki_ezsignfoldersignerassociation_id,
     int fki_user_id,
     char *s_contact_firstname,

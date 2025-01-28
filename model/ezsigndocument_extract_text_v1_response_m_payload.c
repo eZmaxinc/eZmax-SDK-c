@@ -5,7 +5,7 @@
 
 
 
-ezsigndocument_extract_text_v1_response_m_payload_t *ezsigndocument_extract_text_v1_response_m_payload_create(
+static ezsigndocument_extract_text_v1_response_m_payload_t *ezsigndocument_extract_text_v1_response_m_payload_create_internal(
     char *s_text
     ) {
     ezsigndocument_extract_text_v1_response_m_payload_t *ezsigndocument_extract_text_v1_response_m_payload_local_var = malloc(sizeof(ezsigndocument_extract_text_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ ezsigndocument_extract_text_v1_response_m_payload_t *ezsigndocument_extract_text
     }
     ezsigndocument_extract_text_v1_response_m_payload_local_var->s_text = s_text;
 
+    ezsigndocument_extract_text_v1_response_m_payload_local_var->_library_owned = 1;
     return ezsigndocument_extract_text_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezsigndocument_extract_text_v1_response_m_payload_t *ezsigndocument_extract_text_v1_response_m_payload_create(
+    char *s_text
+    ) {
+    return ezsigndocument_extract_text_v1_response_m_payload_create_internal (
+        s_text
+        );
+}
 
 void ezsigndocument_extract_text_v1_response_m_payload_free(ezsigndocument_extract_text_v1_response_m_payload_t *ezsigndocument_extract_text_v1_response_m_payload) {
     if(NULL == ezsigndocument_extract_text_v1_response_m_payload){
+        return ;
+    }
+    if(ezsigndocument_extract_text_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigndocument_extract_text_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -55,6 +67,9 @@ ezsigndocument_extract_text_v1_response_m_payload_t *ezsigndocument_extract_text
 
     // ezsigndocument_extract_text_v1_response_m_payload->s_text
     cJSON *s_text = cJSON_GetObjectItemCaseSensitive(ezsigndocument_extract_text_v1_response_m_payloadJSON, "sText");
+    if (cJSON_IsNull(s_text)) {
+        s_text = NULL;
+    }
     if (!s_text) {
         goto end;
     }
@@ -66,7 +81,7 @@ ezsigndocument_extract_text_v1_response_m_payload_t *ezsigndocument_extract_text
     }
 
 
-    ezsigndocument_extract_text_v1_response_m_payload_local_var = ezsigndocument_extract_text_v1_response_m_payload_create (
+    ezsigndocument_extract_text_v1_response_m_payload_local_var = ezsigndocument_extract_text_v1_response_m_payload_create_internal (
         strdup(s_text->valuestring)
         );
 

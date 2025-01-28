@@ -4,28 +4,11 @@
 #include "custom_ezsignfoldertransmission_response.h"
 
 
-char* custom_ezsignfoldertransmission_response_e_ezsignfolder_step_ToString(ezmax_api_definition__full_custom_ezsignfoldertransmission_response__e e_ezsignfolder_step) {
-    char* e_ezsignfolder_stepArray[] =  { "NULL", "Unsent", "PendingSend", "Sent", "PartiallySigned", "Expired", "Completed", "Archived", "Disposed" };
-    return e_ezsignfolder_stepArray[e_ezsignfolder_step];
-}
 
-ezmax_api_definition__full_custom_ezsignfoldertransmission_response__e custom_ezsignfoldertransmission_response_e_ezsignfolder_step_FromString(char* e_ezsignfolder_step){
-    int stringToReturn = 0;
-    char *e_ezsignfolder_stepArray[] =  { "NULL", "Unsent", "PendingSend", "Sent", "PartiallySigned", "Expired", "Completed", "Archived", "Disposed" };
-    size_t sizeofArray = sizeof(e_ezsignfolder_stepArray) / sizeof(e_ezsignfolder_stepArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_ezsignfolder_step, e_ezsignfolder_stepArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_response_create(
+static custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_response_create_internal(
     int pki_ezsignfolder_id,
     char *s_ezsignfolder_description,
-    field_e_ezsignfolder_step_t *e_ezsignfolder_step,
+    ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step,
     int i_ezsignfolder_signaturetotal,
     int i_ezsignfolder_formfieldtotal,
     int i_ezsignfolder_signaturesigned,
@@ -43,22 +26,42 @@ custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_resp
     custom_ezsignfoldertransmission_response_local_var->i_ezsignfolder_signaturesigned = i_ezsignfolder_signaturesigned;
     custom_ezsignfoldertransmission_response_local_var->a_obj_ezsignfoldertransmission_signer = a_obj_ezsignfoldertransmission_signer;
 
+    custom_ezsignfoldertransmission_response_local_var->_library_owned = 1;
     return custom_ezsignfoldertransmission_response_local_var;
 }
 
+__attribute__((deprecated)) custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_response_create(
+    int pki_ezsignfolder_id,
+    char *s_ezsignfolder_description,
+    ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step,
+    int i_ezsignfolder_signaturetotal,
+    int i_ezsignfolder_formfieldtotal,
+    int i_ezsignfolder_signaturesigned,
+    list_t *a_obj_ezsignfoldertransmission_signer
+    ) {
+    return custom_ezsignfoldertransmission_response_create_internal (
+        pki_ezsignfolder_id,
+        s_ezsignfolder_description,
+        e_ezsignfolder_step,
+        i_ezsignfolder_signaturetotal,
+        i_ezsignfolder_formfieldtotal,
+        i_ezsignfolder_signaturesigned,
+        a_obj_ezsignfoldertransmission_signer
+        );
+}
 
 void custom_ezsignfoldertransmission_response_free(custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_response) {
     if(NULL == custom_ezsignfoldertransmission_response){
+        return ;
+    }
+    if(custom_ezsignfoldertransmission_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "custom_ezsignfoldertransmission_response_free");
         return ;
     }
     listEntry_t *listEntry;
     if (custom_ezsignfoldertransmission_response->s_ezsignfolder_description) {
         free(custom_ezsignfoldertransmission_response->s_ezsignfolder_description);
         custom_ezsignfoldertransmission_response->s_ezsignfolder_description = NULL;
-    }
-    if (custom_ezsignfoldertransmission_response->e_ezsignfolder_step) {
-        field_e_ezsignfolder_step_free(custom_ezsignfoldertransmission_response->e_ezsignfolder_step);
-        custom_ezsignfoldertransmission_response->e_ezsignfolder_step = NULL;
     }
     if (custom_ezsignfoldertransmission_response->a_obj_ezsignfoldertransmission_signer) {
         list_ForEach(listEntry, custom_ezsignfoldertransmission_response->a_obj_ezsignfoldertransmission_signer) {
@@ -92,7 +95,7 @@ cJSON *custom_ezsignfoldertransmission_response_convertToJSON(custom_ezsignfolde
 
 
     // custom_ezsignfoldertransmission_response->e_ezsignfolder_step
-    if (ezmax_api_definition__full_custom_ezsignfoldertransmission_response__NULL == custom_ezsignfoldertransmission_response->e_ezsignfolder_step) {
+    if (ezmax_api_definition__full_field_e_ezsignfolder_step__NULL == custom_ezsignfoldertransmission_response->e_ezsignfolder_step) {
         goto fail;
     }
     cJSON *e_ezsignfolder_step_local_JSON = field_e_ezsignfolder_step_convertToJSON(custom_ezsignfoldertransmission_response->e_ezsignfolder_step);
@@ -165,13 +168,16 @@ custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_resp
     custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_response_local_var = NULL;
 
     // define the local variable for custom_ezsignfoldertransmission_response->e_ezsignfolder_step
-    field_e_ezsignfolder_step_t *e_ezsignfolder_step_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step_local_nonprim = 0;
 
     // define the local list for custom_ezsignfoldertransmission_response->a_obj_ezsignfoldertransmission_signer
     list_t *a_obj_ezsignfoldertransmission_signerList = NULL;
 
     // custom_ezsignfoldertransmission_response->pki_ezsignfolder_id
     cJSON *pki_ezsignfolder_id = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldertransmission_responseJSON, "pkiEzsignfolderID");
+    if (cJSON_IsNull(pki_ezsignfolder_id)) {
+        pki_ezsignfolder_id = NULL;
+    }
     if (!pki_ezsignfolder_id) {
         goto end;
     }
@@ -184,6 +190,9 @@ custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_resp
 
     // custom_ezsignfoldertransmission_response->s_ezsignfolder_description
     cJSON *s_ezsignfolder_description = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldertransmission_responseJSON, "sEzsignfolderDescription");
+    if (cJSON_IsNull(s_ezsignfolder_description)) {
+        s_ezsignfolder_description = NULL;
+    }
     if (!s_ezsignfolder_description) {
         goto end;
     }
@@ -196,6 +205,9 @@ custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_resp
 
     // custom_ezsignfoldertransmission_response->e_ezsignfolder_step
     cJSON *e_ezsignfolder_step = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldertransmission_responseJSON, "eEzsignfolderStep");
+    if (cJSON_IsNull(e_ezsignfolder_step)) {
+        e_ezsignfolder_step = NULL;
+    }
     if (!e_ezsignfolder_step) {
         goto end;
     }
@@ -205,6 +217,9 @@ custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_resp
 
     // custom_ezsignfoldertransmission_response->i_ezsignfolder_signaturetotal
     cJSON *i_ezsignfolder_signaturetotal = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldertransmission_responseJSON, "iEzsignfolderSignaturetotal");
+    if (cJSON_IsNull(i_ezsignfolder_signaturetotal)) {
+        i_ezsignfolder_signaturetotal = NULL;
+    }
     if (!i_ezsignfolder_signaturetotal) {
         goto end;
     }
@@ -217,6 +232,9 @@ custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_resp
 
     // custom_ezsignfoldertransmission_response->i_ezsignfolder_formfieldtotal
     cJSON *i_ezsignfolder_formfieldtotal = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldertransmission_responseJSON, "iEzsignfolderFormfieldtotal");
+    if (cJSON_IsNull(i_ezsignfolder_formfieldtotal)) {
+        i_ezsignfolder_formfieldtotal = NULL;
+    }
     if (!i_ezsignfolder_formfieldtotal) {
         goto end;
     }
@@ -229,6 +247,9 @@ custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_resp
 
     // custom_ezsignfoldertransmission_response->i_ezsignfolder_signaturesigned
     cJSON *i_ezsignfolder_signaturesigned = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldertransmission_responseJSON, "iEzsignfolderSignaturesigned");
+    if (cJSON_IsNull(i_ezsignfolder_signaturesigned)) {
+        i_ezsignfolder_signaturesigned = NULL;
+    }
     if (!i_ezsignfolder_signaturesigned) {
         goto end;
     }
@@ -241,6 +262,9 @@ custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_resp
 
     // custom_ezsignfoldertransmission_response->a_obj_ezsignfoldertransmission_signer
     cJSON *a_obj_ezsignfoldertransmission_signer = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldertransmission_responseJSON, "a_objEzsignfoldertransmissionSigner");
+    if (cJSON_IsNull(a_obj_ezsignfoldertransmission_signer)) {
+        a_obj_ezsignfoldertransmission_signer = NULL;
+    }
     if (!a_obj_ezsignfoldertransmission_signer) {
         goto end;
     }
@@ -264,7 +288,7 @@ custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_resp
     }
 
 
-    custom_ezsignfoldertransmission_response_local_var = custom_ezsignfoldertransmission_response_create (
+    custom_ezsignfoldertransmission_response_local_var = custom_ezsignfoldertransmission_response_create_internal (
         pki_ezsignfolder_id->valuedouble,
         strdup(s_ezsignfolder_description->valuestring),
         e_ezsignfolder_step_local_nonprim,
@@ -277,8 +301,7 @@ custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_resp
     return custom_ezsignfoldertransmission_response_local_var;
 end:
     if (e_ezsignfolder_step_local_nonprim) {
-        field_e_ezsignfolder_step_free(e_ezsignfolder_step_local_nonprim);
-        e_ezsignfolder_step_local_nonprim = NULL;
+        e_ezsignfolder_step_local_nonprim = 0;
     }
     if (a_obj_ezsignfoldertransmission_signerList) {
         listEntry_t *listEntry = NULL;

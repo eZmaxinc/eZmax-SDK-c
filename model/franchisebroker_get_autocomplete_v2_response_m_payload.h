@@ -22,9 +22,10 @@ typedef struct franchisebroker_get_autocomplete_v2_response_m_payload_t franchis
 typedef struct franchisebroker_get_autocomplete_v2_response_m_payload_t {
     list_t *a_obj_franchisebroker; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } franchisebroker_get_autocomplete_v2_response_m_payload_t;
 
-franchisebroker_get_autocomplete_v2_response_m_payload_t *franchisebroker_get_autocomplete_v2_response_m_payload_create(
+__attribute__((deprecated)) franchisebroker_get_autocomplete_v2_response_m_payload_t *franchisebroker_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_franchisebroker
 );
 

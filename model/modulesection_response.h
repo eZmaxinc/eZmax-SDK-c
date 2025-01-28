@@ -24,9 +24,10 @@ typedef struct modulesection_response_t {
     char *s_modulesection_internalname; // string
     char *s_modulesection_name_x; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } modulesection_response_t;
 
-modulesection_response_t *modulesection_response_create(
+__attribute__((deprecated)) modulesection_response_t *modulesection_response_create(
     int pki_modulesection_id,
     int fki_module_id,
     char *s_modulesection_internalname,

@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezdoctemplatedocument_privacylevel__e field_e
     return 0;
 }
 
-cJSON *field_e_ezdoctemplatedocument_privacylevel_field_e_ezdoctemplatedocument_privacylevel_convertToJSON(ezmax_api_definition__full_field_e_ezdoctemplatedocument_privacylevel__e field_e_ezdoctemplatedocument_privacylevel) {
+cJSON *field_e_ezdoctemplatedocument_privacylevel_convertToJSON(ezmax_api_definition__full_field_e_ezdoctemplatedocument_privacylevel__e field_e_ezdoctemplatedocument_privacylevel) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezdoctemplatedocument_privacylevel", field_e_ezdoctemplatedocument_privacylevel_field_e_ezdoctemplatedocument_privacylevel_ToString(field_e_ezdoctemplatedocument_privacylevel)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezdoctemplatedocument_privacylevel__e field_e_ezdoctemplatedocument_privacylevel_field_e_ezdoctemplatedocument_privacylevel_parseFromJSON(cJSON *field_e_ezdoctemplatedocument_privacylevelJSON) {
-    ezmax_api_definition__full_field_e_ezdoctemplatedocument_privacylevel__e *field_e_ezdoctemplatedocument_privacylevel = NULL;
-    ezmax_api_definition__full_field_e_ezdoctemplatedocument_privacylevel__e field_e_ezdoctemplatedocument_privacylevelVariable;
-    cJSON *field_e_ezdoctemplatedocument_privacylevelVar = cJSON_GetObjectItemCaseSensitive(field_e_ezdoctemplatedocument_privacylevelJSON, "field_e_ezdoctemplatedocument_privacylevel");
-    if(!cJSON_IsString(field_e_ezdoctemplatedocument_privacylevelVar) || (field_e_ezdoctemplatedocument_privacylevelVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezdoctemplatedocument_privacylevel__e field_e_ezdoctemplatedocument_privacylevel_parseFromJSON(cJSON *field_e_ezdoctemplatedocument_privacylevelJSON) {
+    if(!cJSON_IsString(field_e_ezdoctemplatedocument_privacylevelJSON) || (field_e_ezdoctemplatedocument_privacylevelJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezdoctemplatedocument_privacylevelVariable = field_e_ezdoctemplatedocument_privacylevel_field_e_ezdoctemplatedocument_privacylevel_FromString(field_e_ezdoctemplatedocument_privacylevelVar->valuestring);
-    return field_e_ezdoctemplatedocument_privacylevelVariable;
-end:
-    return 0;
+    return field_e_ezdoctemplatedocument_privacylevel_field_e_ezdoctemplatedocument_privacylevel_FromString(field_e_ezdoctemplatedocument_privacylevelJSON->valuestring);
 }

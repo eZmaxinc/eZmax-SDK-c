@@ -5,7 +5,7 @@
 
 
 
-common_reportsubsection_t *common_reportsubsection_create(
+static common_reportsubsection_t *common_reportsubsection_create_internal(
     common_reportsubsectionpart_t *obj_reportsubsectionpart_header,
     common_reportsubsectionpart_t *obj_reportsubsectionpart_body,
     common_reportsubsectionpart_t *obj_reportsubsectionpart_footer
@@ -18,12 +18,28 @@ common_reportsubsection_t *common_reportsubsection_create(
     common_reportsubsection_local_var->obj_reportsubsectionpart_body = obj_reportsubsectionpart_body;
     common_reportsubsection_local_var->obj_reportsubsectionpart_footer = obj_reportsubsectionpart_footer;
 
+    common_reportsubsection_local_var->_library_owned = 1;
     return common_reportsubsection_local_var;
 }
 
+__attribute__((deprecated)) common_reportsubsection_t *common_reportsubsection_create(
+    common_reportsubsectionpart_t *obj_reportsubsectionpart_header,
+    common_reportsubsectionpart_t *obj_reportsubsectionpart_body,
+    common_reportsubsectionpart_t *obj_reportsubsectionpart_footer
+    ) {
+    return common_reportsubsection_create_internal (
+        obj_reportsubsectionpart_header,
+        obj_reportsubsectionpart_body,
+        obj_reportsubsectionpart_footer
+        );
+}
 
 void common_reportsubsection_free(common_reportsubsection_t *common_reportsubsection) {
     if(NULL == common_reportsubsection){
+        return ;
+    }
+    if(common_reportsubsection->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "common_reportsubsection_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -109,6 +125,9 @@ common_reportsubsection_t *common_reportsubsection_parseFromJSON(cJSON *common_r
 
     // common_reportsubsection->obj_reportsubsectionpart_header
     cJSON *obj_reportsubsectionpart_header = cJSON_GetObjectItemCaseSensitive(common_reportsubsectionJSON, "objReportsubsectionpartHeader");
+    if (cJSON_IsNull(obj_reportsubsectionpart_header)) {
+        obj_reportsubsectionpart_header = NULL;
+    }
     if (!obj_reportsubsectionpart_header) {
         goto end;
     }
@@ -118,6 +137,9 @@ common_reportsubsection_t *common_reportsubsection_parseFromJSON(cJSON *common_r
 
     // common_reportsubsection->obj_reportsubsectionpart_body
     cJSON *obj_reportsubsectionpart_body = cJSON_GetObjectItemCaseSensitive(common_reportsubsectionJSON, "objReportsubsectionpartBody");
+    if (cJSON_IsNull(obj_reportsubsectionpart_body)) {
+        obj_reportsubsectionpart_body = NULL;
+    }
     if (!obj_reportsubsectionpart_body) {
         goto end;
     }
@@ -127,6 +149,9 @@ common_reportsubsection_t *common_reportsubsection_parseFromJSON(cJSON *common_r
 
     // common_reportsubsection->obj_reportsubsectionpart_footer
     cJSON *obj_reportsubsectionpart_footer = cJSON_GetObjectItemCaseSensitive(common_reportsubsectionJSON, "objReportsubsectionpartFooter");
+    if (cJSON_IsNull(obj_reportsubsectionpart_footer)) {
+        obj_reportsubsectionpart_footer = NULL;
+    }
     if (!obj_reportsubsectionpart_footer) {
         goto end;
     }
@@ -135,7 +160,7 @@ common_reportsubsection_t *common_reportsubsection_parseFromJSON(cJSON *common_r
     obj_reportsubsectionpart_footer_local_nonprim = common_reportsubsectionpart_parseFromJSON(obj_reportsubsectionpart_footer); //nonprimitive
 
 
-    common_reportsubsection_local_var = common_reportsubsection_create (
+    common_reportsubsection_local_var = common_reportsubsection_create_internal (
         obj_reportsubsectionpart_header_local_nonprim,
         obj_reportsubsectionpart_body_local_nonprim,
         obj_reportsubsectionpart_footer_local_nonprim

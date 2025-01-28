@@ -30,9 +30,10 @@ typedef struct ezmaxinvoicingcommission_response_compound_t {
     char *d_ezmaxinvoicingcommission_amount; // string
     struct custom_contact_name_response_t *obj_contact_name; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezmaxinvoicingcommission_response_compound_t;
 
-ezmaxinvoicingcommission_response_compound_t *ezmaxinvoicingcommission_response_compound_create(
+__attribute__((deprecated)) ezmaxinvoicingcommission_response_compound_t *ezmaxinvoicingcommission_response_compound_create(
     int pki_ezmaxinvoicingcommission_id,
     int fki_ezmaxinvoicingsummaryglobal_id,
     int fki_ezmaxpartner_id,

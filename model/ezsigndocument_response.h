@@ -18,14 +18,6 @@ typedef struct ezsigndocument_response_t ezsigndocument_response_t;
 #include "common_audit.h"
 #include "field_e_ezsigndocument_step.h"
 
-// Enum  for ezsigndocument_response
-
-typedef enum  { ezmax_api_definition__full_ezsigndocument_response__NULL = 0, ezmax_api_definition__full_ezsigndocument_response__Unsent, ezmax_api_definition__full_ezsigndocument_response___Unsigned, ezmax_api_definition__full_ezsigndocument_response__PartiallySigned, ezmax_api_definition__full_ezsigndocument_response__DeclinedToSign, ezmax_api_definition__full_ezsigndocument_response__PrematurelyEnded, ezmax_api_definition__full_ezsigndocument_response__PendingCompletion, ezmax_api_definition__full_ezsigndocument_response__Completed, ezmax_api_definition__full_ezsigndocument_response__Disposed } ezmax_api_definition__full_ezsigndocument_response__e;
-
-char* ezsigndocument_response_e_ezsigndocument_step_ToString(ezmax_api_definition__full_ezsigndocument_response__e e_ezsigndocument_step);
-
-ezmax_api_definition__full_ezsigndocument_response__e ezsigndocument_response_e_ezsigndocument_step_FromString(char* e_ezsigndocument_step);
-
 
 
 typedef struct ezsigndocument_response_t {
@@ -36,7 +28,7 @@ typedef struct ezsigndocument_response_t {
     char *dt_ezsignform_completed; // string
     int fki_language_id; //numeric
     char *s_ezsigndocument_name; // string
-    field_e_ezsigndocument_step_t *e_ezsigndocument_step; // custom
+    ezmax_api_definition__full_field_e_ezsigndocument_step__e e_ezsigndocument_step; //referenced enum
     char *dt_ezsigndocument_firstsend; // string
     char *dt_ezsigndocument_lastsend; // string
     int i_ezsigndocument_order; //numeric
@@ -54,9 +46,10 @@ typedef struct ezsigndocument_response_t {
     int i_ezsigndocument_ezsignsignatureattachmenttotal; //numeric
     int i_ezsigndocument_ezsigndiscussiontotal; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigndocument_response_t;
 
-ezsigndocument_response_t *ezsigndocument_response_create(
+__attribute__((deprecated)) ezsigndocument_response_t *ezsigndocument_response_create(
     int pki_ezsigndocument_id,
     int fki_ezsignfolder_id,
     int fki_ezsignfoldersignerassociation_id_declinedtosign,
@@ -64,7 +57,7 @@ ezsigndocument_response_t *ezsigndocument_response_create(
     char *dt_ezsignform_completed,
     int fki_language_id,
     char *s_ezsigndocument_name,
-    field_e_ezsigndocument_step_t *e_ezsigndocument_step,
+    ezmax_api_definition__full_field_e_ezsigndocument_step__e e_ezsigndocument_step,
     char *dt_ezsigndocument_firstsend,
     char *dt_ezsigndocument_lastsend,
     int i_ezsigndocument_order,

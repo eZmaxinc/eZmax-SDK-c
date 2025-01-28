@@ -22,9 +22,10 @@ typedef struct usergroupexternal_get_usergroups_v1_response_m_payload_t usergrou
 typedef struct usergroupexternal_get_usergroups_v1_response_m_payload_t {
     list_t *a_obj_usergroup; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } usergroupexternal_get_usergroups_v1_response_m_payload_t;
 
-usergroupexternal_get_usergroups_v1_response_m_payload_t *usergroupexternal_get_usergroups_v1_response_m_payload_create(
+__attribute__((deprecated)) usergroupexternal_get_usergroups_v1_response_m_payload_t *usergroupexternal_get_usergroups_v1_response_m_payload_create(
     list_t *a_obj_usergroup
 );
 

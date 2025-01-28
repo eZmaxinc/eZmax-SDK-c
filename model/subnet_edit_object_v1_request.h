@@ -22,9 +22,10 @@ typedef struct subnet_edit_object_v1_request_t subnet_edit_object_v1_request_t;
 typedef struct subnet_edit_object_v1_request_t {
     struct subnet_request_compound_t *obj_subnet; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } subnet_edit_object_v1_request_t;
 
-subnet_edit_object_v1_request_t *subnet_edit_object_v1_request_create(
+__attribute__((deprecated)) subnet_edit_object_v1_request_t *subnet_edit_object_v1_request_create(
     subnet_request_compound_t *obj_subnet
 );
 

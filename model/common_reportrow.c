@@ -5,7 +5,7 @@
 
 
 
-common_reportrow_t *common_reportrow_create(
+static common_reportrow_t *common_reportrow_create_internal(
     list_t *a_obj_reportcell,
     int i_reportrow_height
     ) {
@@ -16,12 +16,26 @@ common_reportrow_t *common_reportrow_create(
     common_reportrow_local_var->a_obj_reportcell = a_obj_reportcell;
     common_reportrow_local_var->i_reportrow_height = i_reportrow_height;
 
+    common_reportrow_local_var->_library_owned = 1;
     return common_reportrow_local_var;
 }
 
+__attribute__((deprecated)) common_reportrow_t *common_reportrow_create(
+    list_t *a_obj_reportcell,
+    int i_reportrow_height
+    ) {
+    return common_reportrow_create_internal (
+        a_obj_reportcell,
+        i_reportrow_height
+        );
+}
 
 void common_reportrow_free(common_reportrow_t *common_reportrow) {
     if(NULL == common_reportrow){
+        return ;
+    }
+    if(common_reportrow->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "common_reportrow_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -84,6 +98,9 @@ common_reportrow_t *common_reportrow_parseFromJSON(cJSON *common_reportrowJSON){
 
     // common_reportrow->a_obj_reportcell
     cJSON *a_obj_reportcell = cJSON_GetObjectItemCaseSensitive(common_reportrowJSON, "a_objReportcell");
+    if (cJSON_IsNull(a_obj_reportcell)) {
+        a_obj_reportcell = NULL;
+    }
     if (!a_obj_reportcell) {
         goto end;
     }
@@ -108,6 +125,9 @@ common_reportrow_t *common_reportrow_parseFromJSON(cJSON *common_reportrowJSON){
 
     // common_reportrow->i_reportrow_height
     cJSON *i_reportrow_height = cJSON_GetObjectItemCaseSensitive(common_reportrowJSON, "iReportrowHeight");
+    if (cJSON_IsNull(i_reportrow_height)) {
+        i_reportrow_height = NULL;
+    }
     if (!i_reportrow_height) {
         goto end;
     }
@@ -119,7 +139,7 @@ common_reportrow_t *common_reportrow_parseFromJSON(cJSON *common_reportrowJSON){
     }
 
 
-    common_reportrow_local_var = common_reportrow_create (
+    common_reportrow_local_var = common_reportrow_create_internal (
         a_obj_reportcellList,
         i_reportrow_height->valuedouble
         );

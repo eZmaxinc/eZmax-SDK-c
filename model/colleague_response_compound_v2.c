@@ -4,42 +4,8 @@
 #include "colleague_response_compound_v2.h"
 
 
-char* colleague_response_compound_v2_e_colleague_ezsign_ToString(ezmax_api_definition__full_colleague_response_compound_v2__e e_colleague_ezsign) {
-    char* e_colleague_ezsignArray[] =  { "NULL", "No", "Read", "Modify", "Full" };
-    return e_colleague_ezsignArray[e_colleague_ezsign];
-}
 
-ezmax_api_definition__full_colleague_response_compound_v2__e colleague_response_compound_v2_e_colleague_ezsign_FromString(char* e_colleague_ezsign){
-    int stringToReturn = 0;
-    char *e_colleague_ezsignArray[] =  { "NULL", "No", "Read", "Modify", "Full" };
-    size_t sizeofArray = sizeof(e_colleague_ezsignArray) / sizeof(e_colleague_ezsignArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_colleague_ezsign, e_colleague_ezsignArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-char* colleague_response_compound_v2_e_colleague_realestateinprogress_ToString(ezmax_api_definition__full_colleague_response_compound_v2__e e_colleague_realestateinprogress) {
-    char* e_colleague_realestateinprogressArray[] =  { "NULL", "No", "Read", "Modify", "Create" };
-    return e_colleague_realestateinprogressArray[e_colleague_realestateinprogress];
-}
-
-ezmax_api_definition__full_colleague_response_compound_v2__e colleague_response_compound_v2_e_colleague_realestateinprogress_FromString(char* e_colleague_realestateinprogress){
-    int stringToReturn = 0;
-    char *e_colleague_realestateinprogressArray[] =  { "NULL", "No", "Read", "Modify", "Create" };
-    size_t sizeofArray = sizeof(e_colleague_realestateinprogressArray) / sizeof(e_colleague_realestateinprogressArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_colleague_realestateinprogress, e_colleague_realestateinprogressArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-colleague_response_compound_v2_t *colleague_response_compound_v2_create(
+static colleague_response_compound_v2_t *colleague_response_compound_v2_create_internal(
     int pki_colleague_id,
     int fki_user_id,
     int fki_user_id_colleague,
@@ -52,8 +18,8 @@ colleague_response_compound_v2_t *colleague_response_compound_v2_create(
     int b_colleague_realestatecompleted,
     char *dt_colleague_from,
     char *dt_colleague_to,
-    field_e_colleague_ezsign_t *e_colleague_ezsign,
-    field_e_colleague_realestateinprogess_t *e_colleague_realestateinprogress,
+    ezmax_api_definition__full_field_e_colleague_ezsign__e e_colleague_ezsign,
+    ezmax_api_definition__full_field_e_colleague_realestateinprogess__e e_colleague_realestateinprogress,
     custom_user_name_response_t *obj_user_name,
     common_audit_t *obj_audit
     ) {
@@ -78,12 +44,54 @@ colleague_response_compound_v2_t *colleague_response_compound_v2_create(
     colleague_response_compound_v2_local_var->obj_user_name = obj_user_name;
     colleague_response_compound_v2_local_var->obj_audit = obj_audit;
 
+    colleague_response_compound_v2_local_var->_library_owned = 1;
     return colleague_response_compound_v2_local_var;
 }
 
+__attribute__((deprecated)) colleague_response_compound_v2_t *colleague_response_compound_v2_create(
+    int pki_colleague_id,
+    int fki_user_id,
+    int fki_user_id_colleague,
+    int b_colleague_ezsignemail,
+    int b_colleague_financial,
+    int b_colleague_usecloneemail,
+    int b_colleague_attachment,
+    int b_colleague_canafe,
+    int b_colleague_permission,
+    int b_colleague_realestatecompleted,
+    char *dt_colleague_from,
+    char *dt_colleague_to,
+    ezmax_api_definition__full_field_e_colleague_ezsign__e e_colleague_ezsign,
+    ezmax_api_definition__full_field_e_colleague_realestateinprogess__e e_colleague_realestateinprogress,
+    custom_user_name_response_t *obj_user_name,
+    common_audit_t *obj_audit
+    ) {
+    return colleague_response_compound_v2_create_internal (
+        pki_colleague_id,
+        fki_user_id,
+        fki_user_id_colleague,
+        b_colleague_ezsignemail,
+        b_colleague_financial,
+        b_colleague_usecloneemail,
+        b_colleague_attachment,
+        b_colleague_canafe,
+        b_colleague_permission,
+        b_colleague_realestatecompleted,
+        dt_colleague_from,
+        dt_colleague_to,
+        e_colleague_ezsign,
+        e_colleague_realestateinprogress,
+        obj_user_name,
+        obj_audit
+        );
+}
 
 void colleague_response_compound_v2_free(colleague_response_compound_v2_t *colleague_response_compound_v2) {
     if(NULL == colleague_response_compound_v2){
+        return ;
+    }
+    if(colleague_response_compound_v2->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "colleague_response_compound_v2_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -94,14 +102,6 @@ void colleague_response_compound_v2_free(colleague_response_compound_v2_t *colle
     if (colleague_response_compound_v2->dt_colleague_to) {
         free(colleague_response_compound_v2->dt_colleague_to);
         colleague_response_compound_v2->dt_colleague_to = NULL;
-    }
-    if (colleague_response_compound_v2->e_colleague_ezsign) {
-        field_e_colleague_ezsign_free(colleague_response_compound_v2->e_colleague_ezsign);
-        colleague_response_compound_v2->e_colleague_ezsign = NULL;
-    }
-    if (colleague_response_compound_v2->e_colleague_realestateinprogress) {
-        field_e_colleague_realestateinprogess_free(colleague_response_compound_v2->e_colleague_realestateinprogress);
-        colleague_response_compound_v2->e_colleague_realestateinprogress = NULL;
     }
     if (colleague_response_compound_v2->obj_user_name) {
         custom_user_name_response_free(colleague_response_compound_v2->obj_user_name);
@@ -224,7 +224,7 @@ cJSON *colleague_response_compound_v2_convertToJSON(colleague_response_compound_
 
 
     // colleague_response_compound_v2->e_colleague_ezsign
-    if (ezmax_api_definition__full_colleague_response_compound_v2__NULL == colleague_response_compound_v2->e_colleague_ezsign) {
+    if (ezmax_api_definition__full_field_e_colleague_ezsign__NULL == colleague_response_compound_v2->e_colleague_ezsign) {
         goto fail;
     }
     cJSON *e_colleague_ezsign_local_JSON = field_e_colleague_ezsign_convertToJSON(colleague_response_compound_v2->e_colleague_ezsign);
@@ -238,7 +238,7 @@ cJSON *colleague_response_compound_v2_convertToJSON(colleague_response_compound_
 
 
     // colleague_response_compound_v2->e_colleague_realestateinprogress
-    if (ezmax_api_definition__full_colleague_response_compound_v2__NULL == colleague_response_compound_v2->e_colleague_realestateinprogress) {
+    if (ezmax_api_definition__full_field_e_colleague_realestateinprogess__NULL == colleague_response_compound_v2->e_colleague_realestateinprogress) {
         goto fail;
     }
     cJSON *e_colleague_realestateinprogress_local_JSON = field_e_colleague_realestateinprogess_convertToJSON(colleague_response_compound_v2->e_colleague_realestateinprogress);
@@ -291,10 +291,10 @@ colleague_response_compound_v2_t *colleague_response_compound_v2_parseFromJSON(c
     colleague_response_compound_v2_t *colleague_response_compound_v2_local_var = NULL;
 
     // define the local variable for colleague_response_compound_v2->e_colleague_ezsign
-    field_e_colleague_ezsign_t *e_colleague_ezsign_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_colleague_ezsign__e e_colleague_ezsign_local_nonprim = 0;
 
     // define the local variable for colleague_response_compound_v2->e_colleague_realestateinprogress
-    field_e_colleague_realestateinprogess_t *e_colleague_realestateinprogress_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_colleague_realestateinprogess__e e_colleague_realestateinprogress_local_nonprim = 0;
 
     // define the local variable for colleague_response_compound_v2->obj_user_name
     custom_user_name_response_t *obj_user_name_local_nonprim = NULL;
@@ -304,6 +304,9 @@ colleague_response_compound_v2_t *colleague_response_compound_v2_parseFromJSON(c
 
     // colleague_response_compound_v2->pki_colleague_id
     cJSON *pki_colleague_id = cJSON_GetObjectItemCaseSensitive(colleague_response_compound_v2JSON, "pkiColleagueID");
+    if (cJSON_IsNull(pki_colleague_id)) {
+        pki_colleague_id = NULL;
+    }
     if (!pki_colleague_id) {
         goto end;
     }
@@ -316,6 +319,9 @@ colleague_response_compound_v2_t *colleague_response_compound_v2_parseFromJSON(c
 
     // colleague_response_compound_v2->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(colleague_response_compound_v2JSON, "fkiUserID");
+    if (cJSON_IsNull(fki_user_id)) {
+        fki_user_id = NULL;
+    }
     if (!fki_user_id) {
         goto end;
     }
@@ -328,6 +334,9 @@ colleague_response_compound_v2_t *colleague_response_compound_v2_parseFromJSON(c
 
     // colleague_response_compound_v2->fki_user_id_colleague
     cJSON *fki_user_id_colleague = cJSON_GetObjectItemCaseSensitive(colleague_response_compound_v2JSON, "fkiUserIDColleague");
+    if (cJSON_IsNull(fki_user_id_colleague)) {
+        fki_user_id_colleague = NULL;
+    }
     if (!fki_user_id_colleague) {
         goto end;
     }
@@ -340,6 +349,9 @@ colleague_response_compound_v2_t *colleague_response_compound_v2_parseFromJSON(c
 
     // colleague_response_compound_v2->b_colleague_ezsignemail
     cJSON *b_colleague_ezsignemail = cJSON_GetObjectItemCaseSensitive(colleague_response_compound_v2JSON, "bColleagueEzsignemail");
+    if (cJSON_IsNull(b_colleague_ezsignemail)) {
+        b_colleague_ezsignemail = NULL;
+    }
     if (!b_colleague_ezsignemail) {
         goto end;
     }
@@ -352,6 +364,9 @@ colleague_response_compound_v2_t *colleague_response_compound_v2_parseFromJSON(c
 
     // colleague_response_compound_v2->b_colleague_financial
     cJSON *b_colleague_financial = cJSON_GetObjectItemCaseSensitive(colleague_response_compound_v2JSON, "bColleagueFinancial");
+    if (cJSON_IsNull(b_colleague_financial)) {
+        b_colleague_financial = NULL;
+    }
     if (!b_colleague_financial) {
         goto end;
     }
@@ -364,6 +379,9 @@ colleague_response_compound_v2_t *colleague_response_compound_v2_parseFromJSON(c
 
     // colleague_response_compound_v2->b_colleague_usecloneemail
     cJSON *b_colleague_usecloneemail = cJSON_GetObjectItemCaseSensitive(colleague_response_compound_v2JSON, "bColleagueUsecloneemail");
+    if (cJSON_IsNull(b_colleague_usecloneemail)) {
+        b_colleague_usecloneemail = NULL;
+    }
     if (!b_colleague_usecloneemail) {
         goto end;
     }
@@ -376,6 +394,9 @@ colleague_response_compound_v2_t *colleague_response_compound_v2_parseFromJSON(c
 
     // colleague_response_compound_v2->b_colleague_attachment
     cJSON *b_colleague_attachment = cJSON_GetObjectItemCaseSensitive(colleague_response_compound_v2JSON, "bColleagueAttachment");
+    if (cJSON_IsNull(b_colleague_attachment)) {
+        b_colleague_attachment = NULL;
+    }
     if (!b_colleague_attachment) {
         goto end;
     }
@@ -388,6 +409,9 @@ colleague_response_compound_v2_t *colleague_response_compound_v2_parseFromJSON(c
 
     // colleague_response_compound_v2->b_colleague_canafe
     cJSON *b_colleague_canafe = cJSON_GetObjectItemCaseSensitive(colleague_response_compound_v2JSON, "bColleagueCanafe");
+    if (cJSON_IsNull(b_colleague_canafe)) {
+        b_colleague_canafe = NULL;
+    }
     if (!b_colleague_canafe) {
         goto end;
     }
@@ -400,6 +424,9 @@ colleague_response_compound_v2_t *colleague_response_compound_v2_parseFromJSON(c
 
     // colleague_response_compound_v2->b_colleague_permission
     cJSON *b_colleague_permission = cJSON_GetObjectItemCaseSensitive(colleague_response_compound_v2JSON, "bColleaguePermission");
+    if (cJSON_IsNull(b_colleague_permission)) {
+        b_colleague_permission = NULL;
+    }
     if (!b_colleague_permission) {
         goto end;
     }
@@ -412,6 +439,9 @@ colleague_response_compound_v2_t *colleague_response_compound_v2_parseFromJSON(c
 
     // colleague_response_compound_v2->b_colleague_realestatecompleted
     cJSON *b_colleague_realestatecompleted = cJSON_GetObjectItemCaseSensitive(colleague_response_compound_v2JSON, "bColleagueRealestatecompleted");
+    if (cJSON_IsNull(b_colleague_realestatecompleted)) {
+        b_colleague_realestatecompleted = NULL;
+    }
     if (!b_colleague_realestatecompleted) {
         goto end;
     }
@@ -424,6 +454,9 @@ colleague_response_compound_v2_t *colleague_response_compound_v2_parseFromJSON(c
 
     // colleague_response_compound_v2->dt_colleague_from
     cJSON *dt_colleague_from = cJSON_GetObjectItemCaseSensitive(colleague_response_compound_v2JSON, "dtColleagueFrom");
+    if (cJSON_IsNull(dt_colleague_from)) {
+        dt_colleague_from = NULL;
+    }
     if (dt_colleague_from) { 
     if(!cJSON_IsString(dt_colleague_from) && !cJSON_IsNull(dt_colleague_from))
     {
@@ -433,6 +466,9 @@ colleague_response_compound_v2_t *colleague_response_compound_v2_parseFromJSON(c
 
     // colleague_response_compound_v2->dt_colleague_to
     cJSON *dt_colleague_to = cJSON_GetObjectItemCaseSensitive(colleague_response_compound_v2JSON, "dtColleagueTo");
+    if (cJSON_IsNull(dt_colleague_to)) {
+        dt_colleague_to = NULL;
+    }
     if (dt_colleague_to) { 
     if(!cJSON_IsString(dt_colleague_to) && !cJSON_IsNull(dt_colleague_to))
     {
@@ -442,6 +478,9 @@ colleague_response_compound_v2_t *colleague_response_compound_v2_parseFromJSON(c
 
     // colleague_response_compound_v2->e_colleague_ezsign
     cJSON *e_colleague_ezsign = cJSON_GetObjectItemCaseSensitive(colleague_response_compound_v2JSON, "eColleagueEzsign");
+    if (cJSON_IsNull(e_colleague_ezsign)) {
+        e_colleague_ezsign = NULL;
+    }
     if (!e_colleague_ezsign) {
         goto end;
     }
@@ -451,6 +490,9 @@ colleague_response_compound_v2_t *colleague_response_compound_v2_parseFromJSON(c
 
     // colleague_response_compound_v2->e_colleague_realestateinprogress
     cJSON *e_colleague_realestateinprogress = cJSON_GetObjectItemCaseSensitive(colleague_response_compound_v2JSON, "eColleagueRealestateinprogress");
+    if (cJSON_IsNull(e_colleague_realestateinprogress)) {
+        e_colleague_realestateinprogress = NULL;
+    }
     if (!e_colleague_realestateinprogress) {
         goto end;
     }
@@ -460,6 +502,9 @@ colleague_response_compound_v2_t *colleague_response_compound_v2_parseFromJSON(c
 
     // colleague_response_compound_v2->obj_user_name
     cJSON *obj_user_name = cJSON_GetObjectItemCaseSensitive(colleague_response_compound_v2JSON, "objUserName");
+    if (cJSON_IsNull(obj_user_name)) {
+        obj_user_name = NULL;
+    }
     if (!obj_user_name) {
         goto end;
     }
@@ -469,6 +514,9 @@ colleague_response_compound_v2_t *colleague_response_compound_v2_parseFromJSON(c
 
     // colleague_response_compound_v2->obj_audit
     cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(colleague_response_compound_v2JSON, "objAudit");
+    if (cJSON_IsNull(obj_audit)) {
+        obj_audit = NULL;
+    }
     if (!obj_audit) {
         goto end;
     }
@@ -477,7 +525,7 @@ colleague_response_compound_v2_t *colleague_response_compound_v2_parseFromJSON(c
     obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
 
 
-    colleague_response_compound_v2_local_var = colleague_response_compound_v2_create (
+    colleague_response_compound_v2_local_var = colleague_response_compound_v2_create_internal (
         pki_colleague_id->valuedouble,
         fki_user_id->valuedouble,
         fki_user_id_colleague->valuedouble,
@@ -499,12 +547,10 @@ colleague_response_compound_v2_t *colleague_response_compound_v2_parseFromJSON(c
     return colleague_response_compound_v2_local_var;
 end:
     if (e_colleague_ezsign_local_nonprim) {
-        field_e_colleague_ezsign_free(e_colleague_ezsign_local_nonprim);
-        e_colleague_ezsign_local_nonprim = NULL;
+        e_colleague_ezsign_local_nonprim = 0;
     }
     if (e_colleague_realestateinprogress_local_nonprim) {
-        field_e_colleague_realestateinprogess_free(e_colleague_realestateinprogress_local_nonprim);
-        e_colleague_realestateinprogress_local_nonprim = NULL;
+        e_colleague_realestateinprogress_local_nonprim = 0;
     }
     if (obj_user_name_local_nonprim) {
         custom_user_name_response_free(obj_user_name_local_nonprim);

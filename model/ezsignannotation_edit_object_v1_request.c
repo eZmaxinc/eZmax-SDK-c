@@ -5,7 +5,7 @@
 
 
 
-ezsignannotation_edit_object_v1_request_t *ezsignannotation_edit_object_v1_request_create(
+static ezsignannotation_edit_object_v1_request_t *ezsignannotation_edit_object_v1_request_create_internal(
     ezsignannotation_request_compound_t *obj_ezsignannotation
     ) {
     ezsignannotation_edit_object_v1_request_t *ezsignannotation_edit_object_v1_request_local_var = malloc(sizeof(ezsignannotation_edit_object_v1_request_t));
@@ -14,12 +14,24 @@ ezsignannotation_edit_object_v1_request_t *ezsignannotation_edit_object_v1_reque
     }
     ezsignannotation_edit_object_v1_request_local_var->obj_ezsignannotation = obj_ezsignannotation;
 
+    ezsignannotation_edit_object_v1_request_local_var->_library_owned = 1;
     return ezsignannotation_edit_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezsignannotation_edit_object_v1_request_t *ezsignannotation_edit_object_v1_request_create(
+    ezsignannotation_request_compound_t *obj_ezsignannotation
+    ) {
+    return ezsignannotation_edit_object_v1_request_create_internal (
+        obj_ezsignannotation
+        );
+}
 
 void ezsignannotation_edit_object_v1_request_free(ezsignannotation_edit_object_v1_request_t *ezsignannotation_edit_object_v1_request) {
     if(NULL == ezsignannotation_edit_object_v1_request){
+        return ;
+    }
+    if(ezsignannotation_edit_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignannotation_edit_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ ezsignannotation_edit_object_v1_request_t *ezsignannotation_edit_object_v1_reque
 
     // ezsignannotation_edit_object_v1_request->obj_ezsignannotation
     cJSON *obj_ezsignannotation = cJSON_GetObjectItemCaseSensitive(ezsignannotation_edit_object_v1_requestJSON, "objEzsignannotation");
+    if (cJSON_IsNull(obj_ezsignannotation)) {
+        obj_ezsignannotation = NULL;
+    }
     if (!obj_ezsignannotation) {
         goto end;
     }
@@ -71,7 +86,7 @@ ezsignannotation_edit_object_v1_request_t *ezsignannotation_edit_object_v1_reque
     obj_ezsignannotation_local_nonprim = ezsignannotation_request_compound_parseFromJSON(obj_ezsignannotation); //nonprimitive
 
 
-    ezsignannotation_edit_object_v1_request_local_var = ezsignannotation_edit_object_v1_request_create (
+    ezsignannotation_edit_object_v1_request_local_var = ezsignannotation_edit_object_v1_request_create_internal (
         obj_ezsignannotation_local_nonprim
         );
 

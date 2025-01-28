@@ -5,7 +5,7 @@
 
 
 
-supply_autocomplete_element_response_t *supply_autocomplete_element_response_create(
+static supply_autocomplete_element_response_t *supply_autocomplete_element_response_create_internal(
     int pki_supply_id,
     char *s_supply_description_x,
     int b_supply_isactive
@@ -18,12 +18,28 @@ supply_autocomplete_element_response_t *supply_autocomplete_element_response_cre
     supply_autocomplete_element_response_local_var->s_supply_description_x = s_supply_description_x;
     supply_autocomplete_element_response_local_var->b_supply_isactive = b_supply_isactive;
 
+    supply_autocomplete_element_response_local_var->_library_owned = 1;
     return supply_autocomplete_element_response_local_var;
 }
 
+__attribute__((deprecated)) supply_autocomplete_element_response_t *supply_autocomplete_element_response_create(
+    int pki_supply_id,
+    char *s_supply_description_x,
+    int b_supply_isactive
+    ) {
+    return supply_autocomplete_element_response_create_internal (
+        pki_supply_id,
+        s_supply_description_x,
+        b_supply_isactive
+        );
+}
 
 void supply_autocomplete_element_response_free(supply_autocomplete_element_response_t *supply_autocomplete_element_response) {
     if(NULL == supply_autocomplete_element_response){
+        return ;
+    }
+    if(supply_autocomplete_element_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "supply_autocomplete_element_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -77,6 +93,9 @@ supply_autocomplete_element_response_t *supply_autocomplete_element_response_par
 
     // supply_autocomplete_element_response->pki_supply_id
     cJSON *pki_supply_id = cJSON_GetObjectItemCaseSensitive(supply_autocomplete_element_responseJSON, "pkiSupplyID");
+    if (cJSON_IsNull(pki_supply_id)) {
+        pki_supply_id = NULL;
+    }
     if (!pki_supply_id) {
         goto end;
     }
@@ -89,6 +108,9 @@ supply_autocomplete_element_response_t *supply_autocomplete_element_response_par
 
     // supply_autocomplete_element_response->s_supply_description_x
     cJSON *s_supply_description_x = cJSON_GetObjectItemCaseSensitive(supply_autocomplete_element_responseJSON, "sSupplyDescriptionX");
+    if (cJSON_IsNull(s_supply_description_x)) {
+        s_supply_description_x = NULL;
+    }
     if (!s_supply_description_x) {
         goto end;
     }
@@ -101,6 +123,9 @@ supply_autocomplete_element_response_t *supply_autocomplete_element_response_par
 
     // supply_autocomplete_element_response->b_supply_isactive
     cJSON *b_supply_isactive = cJSON_GetObjectItemCaseSensitive(supply_autocomplete_element_responseJSON, "bSupplyIsactive");
+    if (cJSON_IsNull(b_supply_isactive)) {
+        b_supply_isactive = NULL;
+    }
     if (!b_supply_isactive) {
         goto end;
     }
@@ -112,7 +137,7 @@ supply_autocomplete_element_response_t *supply_autocomplete_element_response_par
     }
 
 
-    supply_autocomplete_element_response_local_var = supply_autocomplete_element_response_create (
+    supply_autocomplete_element_response_local_var = supply_autocomplete_element_response_create_internal (
         pki_supply_id->valuedouble,
         strdup(s_supply_description_x->valuestring),
         b_supply_isactive->valueint

@@ -15,16 +15,17 @@
 
 typedef struct ezsigndocument_create_object_v3_request_t ezsigndocument_create_object_v3_request_t;
 
-#include "ezsigndocument_request.h"
+#include "ezsigndocument_request_compound.h"
 
 
 
 typedef struct ezsigndocument_create_object_v3_request_t {
     list_t *a_obj_ezsigndocument; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigndocument_create_object_v3_request_t;
 
-ezsigndocument_create_object_v3_request_t *ezsigndocument_create_object_v3_request_create(
+__attribute__((deprecated)) ezsigndocument_create_object_v3_request_t *ezsigndocument_create_object_v3_request_create(
     list_t *a_obj_ezsigndocument
 );
 

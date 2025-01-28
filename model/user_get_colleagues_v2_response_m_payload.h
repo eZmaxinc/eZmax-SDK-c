@@ -23,9 +23,10 @@ typedef struct user_get_colleagues_v2_response_m_payload_t {
     list_t *a_obj_colleague; //nonprimitive container
     list_t *a_obj_colleague_clonable; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } user_get_colleagues_v2_response_m_payload_t;
 
-user_get_colleagues_v2_response_m_payload_t *user_get_colleagues_v2_response_m_payload_create(
+__attribute__((deprecated)) user_get_colleagues_v2_response_m_payload_t *user_get_colleagues_v2_response_m_payload_create(
     list_t *a_obj_colleague,
     list_t *a_obj_colleague_clonable
 );

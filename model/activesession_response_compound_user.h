@@ -17,14 +17,6 @@ typedef struct activesession_response_compound_user_t activesession_response_com
 
 #include "field_e_user_ezsignsendreminderfrequency.h"
 
-// Enum  for activesession_response_compound_user
-
-typedef enum  { ezmax_api_definition__full_activesession_response_compound_user__NULL = 0, ezmax_api_definition__full_activesession_response_compound_user__None, ezmax_api_definition__full_activesession_response_compound_user__Daily, ezmax_api_definition__full_activesession_response_compound_user__Weekly } ezmax_api_definition__full_activesession_response_compound_user__e;
-
-char* activesession_response_compound_user_e_user_ezsignsendreminderfrequency_ToString(ezmax_api_definition__full_activesession_response_compound_user__e e_user_ezsignsendreminderfrequency);
-
-ezmax_api_definition__full_activesession_response_compound_user__e activesession_response_compound_user_e_user_ezsignsendreminderfrequency_FromString(char* e_user_ezsignsendreminderfrequency);
-
 
 
 typedef struct activesession_response_compound_user_t {
@@ -34,21 +26,22 @@ typedef struct activesession_response_compound_user_t {
     char *s_user_firstname; // string
     char *s_user_lastname; // string
     char *s_email_address; // string
-    field_e_user_ezsignsendreminderfrequency_t *e_user_ezsignsendreminderfrequency; // custom
+    ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__e e_user_ezsignsendreminderfrequency; //referenced enum
     int i_user_interfacecolor; //numeric
     int b_user_interfacedark; //boolean
     int i_user_listresult; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } activesession_response_compound_user_t;
 
-activesession_response_compound_user_t *activesession_response_compound_user_create(
+__attribute__((deprecated)) activesession_response_compound_user_t *activesession_response_compound_user_create(
     int pki_user_id,
     int fki_timezone_id,
     char *s_avatar_url,
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_email_address,
-    field_e_user_ezsignsendreminderfrequency_t *e_user_ezsignsendreminderfrequency,
+    ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__e e_user_ezsignsendreminderfrequency,
     int i_user_interfacecolor,
     int b_user_interfacedark,
     int i_user_listresult

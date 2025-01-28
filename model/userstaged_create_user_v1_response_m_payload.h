@@ -21,9 +21,10 @@ typedef struct userstaged_create_user_v1_response_m_payload_t userstaged_create_
 typedef struct userstaged_create_user_v1_response_m_payload_t {
     int pki_user_id; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } userstaged_create_user_v1_response_m_payload_t;
 
-userstaged_create_user_v1_response_m_payload_t *userstaged_create_user_v1_response_m_payload_create(
+__attribute__((deprecated)) userstaged_create_user_v1_response_m_payload_t *userstaged_create_user_v1_response_m_payload_create(
     int pki_user_id
 );
 

@@ -31,9 +31,10 @@ typedef struct ezsignbulksend_list_element_t {
     int i_ezsignsignature_signed; //numeric
     int b_ezsignbulksend_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignbulksend_list_element_t;
 
-ezsignbulksend_list_element_t *ezsignbulksend_list_element_create(
+__attribute__((deprecated)) ezsignbulksend_list_element_t *ezsignbulksend_list_element_create(
     int pki_ezsignbulksend_id,
     int fki_ezsignfoldertype_id,
     char *s_ezsignbulksend_description,

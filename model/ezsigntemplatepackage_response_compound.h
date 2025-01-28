@@ -36,9 +36,10 @@ typedef struct ezsigntemplatepackage_response_compound_t {
     list_t *a_obj_ezsigntemplatepackagesigner; //nonprimitive container
     list_t *a_obj_ezsigntemplatepackagemembership; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatepackage_response_compound_t;
 
-ezsigntemplatepackage_response_compound_t *ezsigntemplatepackage_response_compound_create(
+__attribute__((deprecated)) ezsigntemplatepackage_response_compound_t *ezsigntemplatepackage_response_compound_create(
     int pki_ezsigntemplatepackage_id,
     int fki_ezsignfoldertype_id,
     int fki_ezdoctemplatedocument_id,

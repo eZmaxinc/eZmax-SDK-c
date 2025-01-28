@@ -5,7 +5,7 @@
 
 
 
-activesession_generate_federation_token_v1_request_t *activesession_generate_federation_token_v1_request_create(
+static activesession_generate_federation_token_v1_request_t *activesession_generate_federation_token_v1_request_create_internal(
     char *fks_ezmaxcustomer_code
     ) {
     activesession_generate_federation_token_v1_request_t *activesession_generate_federation_token_v1_request_local_var = malloc(sizeof(activesession_generate_federation_token_v1_request_t));
@@ -14,12 +14,24 @@ activesession_generate_federation_token_v1_request_t *activesession_generate_fed
     }
     activesession_generate_federation_token_v1_request_local_var->fks_ezmaxcustomer_code = fks_ezmaxcustomer_code;
 
+    activesession_generate_federation_token_v1_request_local_var->_library_owned = 1;
     return activesession_generate_federation_token_v1_request_local_var;
 }
 
+__attribute__((deprecated)) activesession_generate_federation_token_v1_request_t *activesession_generate_federation_token_v1_request_create(
+    char *fks_ezmaxcustomer_code
+    ) {
+    return activesession_generate_federation_token_v1_request_create_internal (
+        fks_ezmaxcustomer_code
+        );
+}
 
 void activesession_generate_federation_token_v1_request_free(activesession_generate_federation_token_v1_request_t *activesession_generate_federation_token_v1_request) {
     if(NULL == activesession_generate_federation_token_v1_request){
+        return ;
+    }
+    if(activesession_generate_federation_token_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "activesession_generate_federation_token_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -55,6 +67,9 @@ activesession_generate_federation_token_v1_request_t *activesession_generate_fed
 
     // activesession_generate_federation_token_v1_request->fks_ezmaxcustomer_code
     cJSON *fks_ezmaxcustomer_code = cJSON_GetObjectItemCaseSensitive(activesession_generate_federation_token_v1_requestJSON, "fksEzmaxcustomerCode");
+    if (cJSON_IsNull(fks_ezmaxcustomer_code)) {
+        fks_ezmaxcustomer_code = NULL;
+    }
     if (!fks_ezmaxcustomer_code) {
         goto end;
     }
@@ -66,7 +81,7 @@ activesession_generate_federation_token_v1_request_t *activesession_generate_fed
     }
 
 
-    activesession_generate_federation_token_v1_request_local_var = activesession_generate_federation_token_v1_request_create (
+    activesession_generate_federation_token_v1_request_local_var = activesession_generate_federation_token_v1_request_create_internal (
         strdup(fks_ezmaxcustomer_code->valuestring)
         );
 

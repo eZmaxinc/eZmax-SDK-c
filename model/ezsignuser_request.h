@@ -24,9 +24,10 @@ typedef struct ezsignuser_request_t {
     int fki_contact_id; //numeric
     struct contact_request_compound_v2_t *obj_contact; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignuser_request_t;
 
-ezsignuser_request_t *ezsignuser_request_create(
+__attribute__((deprecated)) ezsignuser_request_t *ezsignuser_request_create(
     int pki_ezsignuser_id,
     int fki_contact_id,
     contact_request_compound_v2_t *obj_contact

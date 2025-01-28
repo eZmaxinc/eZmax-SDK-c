@@ -15,7 +15,7 @@
 
 typedef struct custom_ezsigndocument_request_t custom_ezsigndocument_request_t;
 
-#include "ezsigndocumentdependency_request.h"
+#include "ezsigndocumentdependency_request_compound.h"
 
 
 
@@ -23,9 +23,10 @@ typedef struct custom_ezsigndocument_request_t {
     int pki_ezsigndocument_id; //numeric
     list_t *a_obj_ezsigndocumentdependency; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_ezsigndocument_request_t;
 
-custom_ezsigndocument_request_t *custom_ezsigndocument_request_create(
+__attribute__((deprecated)) custom_ezsigndocument_request_t *custom_ezsigndocument_request_create(
     int pki_ezsigndocument_id,
     list_t *a_obj_ezsigndocumentdependency
 );

@@ -19,22 +19,6 @@ typedef struct ezsigntemplate_response_v3_t ezsigntemplate_response_v3_t;
 #include "field_e_ezsigntemplate_recognition.h"
 #include "field_e_ezsigntemplate_type.h"
 
-// Enum  for ezsigntemplate_response_v3
-
-typedef enum  { ezmax_api_definition__full_ezsigntemplate_response_v3__NULL = 0, ezmax_api_definition__full_ezsigntemplate_response_v3__No, ezmax_api_definition__full_ezsigntemplate_response_v3__Filename, ezmax_api_definition__full_ezsigntemplate_response_v3__Content } ezmax_api_definition__full_ezsigntemplate_response_v3__e;
-
-char* ezsigntemplate_response_v3_e_ezsigntemplate_recognition_ToString(ezmax_api_definition__full_ezsigntemplate_response_v3__e e_ezsigntemplate_recognition);
-
-ezmax_api_definition__full_ezsigntemplate_response_v3__e ezsigntemplate_response_v3_e_ezsigntemplate_recognition_FromString(char* e_ezsigntemplate_recognition);
-
-// Enum  for ezsigntemplate_response_v3
-
-typedef enum  { ezmax_api_definition__full_ezsigntemplate_response_v3__NULL = 0, ezmax_api_definition__full_ezsigntemplate_response_v3__User, ezmax_api_definition__full_ezsigntemplate_response_v3__Usergroup, ezmax_api_definition__full_ezsigntemplate_response_v3__Company, ezmax_api_definition__full_ezsigntemplate_response_v3__Ezsignfoldertype } ezmax_api_definition__full_ezsigntemplate_response_v3__e;
-
-char* ezsigntemplate_response_v3_e_ezsigntemplate_type_ToString(ezmax_api_definition__full_ezsigntemplate_response_v3__e e_ezsigntemplate_type);
-
-ezmax_api_definition__full_ezsigntemplate_response_v3__e ezsigntemplate_response_v3_e_ezsigntemplate_type_FromString(char* e_ezsigntemplate_type);
-
 
 
 typedef struct ezsigntemplate_response_v3_t {
@@ -48,17 +32,18 @@ typedef struct ezsigntemplate_response_v3_t {
     char *s_ezsigntemplate_description; // string
     char *s_ezsigntemplate_externaldescription; // string
     char *t_ezsigntemplate_comment; // string
-    field_e_ezsigntemplate_recognition_t *e_ezsigntemplate_recognition; // custom
+    ezmax_api_definition__full_field_e_ezsigntemplate_recognition__e e_ezsigntemplate_recognition; //referenced enum
     char *s_ezsigntemplate_filenameregexp; // string
     int b_ezsigntemplate_adminonly; //boolean
     char *s_ezsignfoldertype_name_x; // string
     struct common_audit_t *obj_audit; //model
     int b_ezsigntemplate_editallowed; //boolean
-    field_e_ezsigntemplate_type_t *e_ezsigntemplate_type; // custom
+    ezmax_api_definition__full_field_e_ezsigntemplate_type__e e_ezsigntemplate_type; //referenced enum
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplate_response_v3_t;
 
-ezsigntemplate_response_v3_t *ezsigntemplate_response_v3_create(
+__attribute__((deprecated)) ezsigntemplate_response_v3_t *ezsigntemplate_response_v3_create(
     int pki_ezsigntemplate_id,
     int fki_ezsigntemplatedocument_id,
     int fki_ezsignfoldertype_id,
@@ -69,13 +54,13 @@ ezsigntemplate_response_v3_t *ezsigntemplate_response_v3_create(
     char *s_ezsigntemplate_description,
     char *s_ezsigntemplate_externaldescription,
     char *t_ezsigntemplate_comment,
-    field_e_ezsigntemplate_recognition_t *e_ezsigntemplate_recognition,
+    ezmax_api_definition__full_field_e_ezsigntemplate_recognition__e e_ezsigntemplate_recognition,
     char *s_ezsigntemplate_filenameregexp,
     int b_ezsigntemplate_adminonly,
     char *s_ezsignfoldertype_name_x,
     common_audit_t *obj_audit,
     int b_ezsigntemplate_editallowed,
-    field_e_ezsigntemplate_type_t *e_ezsigntemplate_type
+    ezmax_api_definition__full_field_e_ezsigntemplate_type__e e_ezsigntemplate_type
 );
 
 void ezsigntemplate_response_v3_free(ezsigntemplate_response_v3_t *ezsigntemplate_response_v3);

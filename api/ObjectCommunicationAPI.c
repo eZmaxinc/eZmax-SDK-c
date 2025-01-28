@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Retrieve the communication body.
@@ -25,15 +20,18 @@ ObjectCommunicationAPI_communicationGetCommunicationBodyV1(apiClient_t *apiClien
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/communication/{pkiCommunicationID}/getCommunicationBody")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/communication/{pkiCommunicationID}/getCommunicationBody");
+    char *localVarPath = strdup("/1/object/communication/{pkiCommunicationID}/getCommunicationBody");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiCommunicationID =  + strlen("{ pkiCommunicationID }");
+    long sizeOfPathParams_pkiCommunicationID =  + sizeof("{ pkiCommunicationID }") - 1;
     if(pkiCommunicationID == 0){
         goto end;
     }
@@ -41,7 +39,7 @@ ObjectCommunicationAPI_communicationGetCommunicationBodyV1(apiClient_t *apiClien
     snprintf(localVarToReplace_pkiCommunicationID, sizeOfPathParams_pkiCommunicationID, "{%s}", "pkiCommunicationID");
 
     char localVarBuff_pkiCommunicationID[256];
-    intToStr(localVarBuff_pkiCommunicationID, *pkiCommunicationID);
+    snprintf(localVarBuff_pkiCommunicationID, sizeof localVarBuff_pkiCommunicationID, "%ld", (long)*pkiCommunicationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiCommunicationID, localVarBuff_pkiCommunicationID);
 
@@ -56,6 +54,7 @@ ObjectCommunicationAPI_communicationGetCommunicationBodyV1(apiClient_t *apiClien
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -96,11 +95,14 @@ ObjectCommunicationAPI_communicationSendV1(apiClient_t *apiClient, communication
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/communication/send")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/communication/send");
+    char *localVarPath = strdup("/1/object/communication/send");
+
 
 
 
@@ -109,9 +111,10 @@ ObjectCommunicationAPI_communicationSendV1(apiClient_t *apiClient, communication
     cJSON *localVarSingleItemJSON_communication_send_v1_request = NULL;
     if (communication_send_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_communication_send_v1_request = communication_send_v1_request_convertToJSON(communication_send_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_communication_send_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -123,6 +126,7 @@ ObjectCommunicationAPI_communicationSendV1(apiClient_t *apiClient, communication
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -130,11 +134,14 @@ ObjectCommunicationAPI_communicationSendV1(apiClient_t *apiClient, communication
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectCommunicationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    communication_send_v1_response_t *elementToReturn = communication_send_v1_response_parseFromJSON(ObjectCommunicationAPIlocalVarJSON);
-    cJSON_Delete(ObjectCommunicationAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    communication_send_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectCommunicationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = communication_send_v1_response_parseFromJSON(ObjectCommunicationAPIlocalVarJSON);
+        cJSON_Delete(ObjectCommunicationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

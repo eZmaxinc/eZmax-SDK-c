@@ -5,7 +5,7 @@
 
 
 
-ezsignfoldertype_edit_object_v3_request_t *ezsignfoldertype_edit_object_v3_request_create(
+static ezsignfoldertype_edit_object_v3_request_t *ezsignfoldertype_edit_object_v3_request_create_internal(
     ezsignfoldertype_request_compound_v3_t *obj_ezsignfoldertype
     ) {
     ezsignfoldertype_edit_object_v3_request_t *ezsignfoldertype_edit_object_v3_request_local_var = malloc(sizeof(ezsignfoldertype_edit_object_v3_request_t));
@@ -14,12 +14,24 @@ ezsignfoldertype_edit_object_v3_request_t *ezsignfoldertype_edit_object_v3_reque
     }
     ezsignfoldertype_edit_object_v3_request_local_var->obj_ezsignfoldertype = obj_ezsignfoldertype;
 
+    ezsignfoldertype_edit_object_v3_request_local_var->_library_owned = 1;
     return ezsignfoldertype_edit_object_v3_request_local_var;
 }
 
+__attribute__((deprecated)) ezsignfoldertype_edit_object_v3_request_t *ezsignfoldertype_edit_object_v3_request_create(
+    ezsignfoldertype_request_compound_v3_t *obj_ezsignfoldertype
+    ) {
+    return ezsignfoldertype_edit_object_v3_request_create_internal (
+        obj_ezsignfoldertype
+        );
+}
 
 void ezsignfoldertype_edit_object_v3_request_free(ezsignfoldertype_edit_object_v3_request_t *ezsignfoldertype_edit_object_v3_request) {
     if(NULL == ezsignfoldertype_edit_object_v3_request){
+        return ;
+    }
+    if(ezsignfoldertype_edit_object_v3_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignfoldertype_edit_object_v3_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ ezsignfoldertype_edit_object_v3_request_t *ezsignfoldertype_edit_object_v3_reque
 
     // ezsignfoldertype_edit_object_v3_request->obj_ezsignfoldertype
     cJSON *obj_ezsignfoldertype = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_edit_object_v3_requestJSON, "objEzsignfoldertype");
+    if (cJSON_IsNull(obj_ezsignfoldertype)) {
+        obj_ezsignfoldertype = NULL;
+    }
     if (!obj_ezsignfoldertype) {
         goto end;
     }
@@ -71,7 +86,7 @@ ezsignfoldertype_edit_object_v3_request_t *ezsignfoldertype_edit_object_v3_reque
     obj_ezsignfoldertype_local_nonprim = ezsignfoldertype_request_compound_v3_parseFromJSON(obj_ezsignfoldertype); //nonprimitive
 
 
-    ezsignfoldertype_edit_object_v3_request_local_var = ezsignfoldertype_edit_object_v3_request_create (
+    ezsignfoldertype_edit_object_v3_request_local_var = ezsignfoldertype_edit_object_v3_request_create_internal (
         obj_ezsignfoldertype_local_nonprim
         );
 

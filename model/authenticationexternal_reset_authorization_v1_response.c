@@ -5,7 +5,7 @@
 
 
 
-authenticationexternal_reset_authorization_v1_response_t *authenticationexternal_reset_authorization_v1_response_create(
+static authenticationexternal_reset_authorization_v1_response_t *authenticationexternal_reset_authorization_v1_response_create_internal(
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
@@ -16,12 +16,26 @@ authenticationexternal_reset_authorization_v1_response_t *authenticationexternal
     authenticationexternal_reset_authorization_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     authenticationexternal_reset_authorization_v1_response_local_var->obj_debug = obj_debug;
 
+    authenticationexternal_reset_authorization_v1_response_local_var->_library_owned = 1;
     return authenticationexternal_reset_authorization_v1_response_local_var;
 }
 
+__attribute__((deprecated)) authenticationexternal_reset_authorization_v1_response_t *authenticationexternal_reset_authorization_v1_response_create(
+    common_response_obj_debug_payload_t *obj_debug_payload,
+    common_response_obj_debug_t *obj_debug
+    ) {
+    return authenticationexternal_reset_authorization_v1_response_create_internal (
+        obj_debug_payload,
+        obj_debug
+        );
+}
 
 void authenticationexternal_reset_authorization_v1_response_free(authenticationexternal_reset_authorization_v1_response_t *authenticationexternal_reset_authorization_v1_response) {
     if(NULL == authenticationexternal_reset_authorization_v1_response){
+        return ;
+    }
+    if(authenticationexternal_reset_authorization_v1_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "authenticationexternal_reset_authorization_v1_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -85,6 +99,9 @@ authenticationexternal_reset_authorization_v1_response_t *authenticationexternal
 
     // authenticationexternal_reset_authorization_v1_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(authenticationexternal_reset_authorization_v1_responseJSON, "objDebugPayload");
+    if (cJSON_IsNull(obj_debug_payload)) {
+        obj_debug_payload = NULL;
+    }
     if (!obj_debug_payload) {
         goto end;
     }
@@ -94,12 +111,15 @@ authenticationexternal_reset_authorization_v1_response_t *authenticationexternal
 
     // authenticationexternal_reset_authorization_v1_response->obj_debug
     cJSON *obj_debug = cJSON_GetObjectItemCaseSensitive(authenticationexternal_reset_authorization_v1_responseJSON, "objDebug");
+    if (cJSON_IsNull(obj_debug)) {
+        obj_debug = NULL;
+    }
     if (obj_debug) { 
     obj_debug_local_nonprim = common_response_obj_debug_parseFromJSON(obj_debug); //nonprimitive
     }
 
 
-    authenticationexternal_reset_authorization_v1_response_local_var = authenticationexternal_reset_authorization_v1_response_create (
+    authenticationexternal_reset_authorization_v1_response_local_var = authenticationexternal_reset_authorization_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );

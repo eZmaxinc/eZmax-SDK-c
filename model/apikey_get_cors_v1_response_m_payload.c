@@ -5,7 +5,7 @@
 
 
 
-apikey_get_cors_v1_response_m_payload_t *apikey_get_cors_v1_response_m_payload_create(
+static apikey_get_cors_v1_response_m_payload_t *apikey_get_cors_v1_response_m_payload_create_internal(
     list_t *a_obj_cors
     ) {
     apikey_get_cors_v1_response_m_payload_t *apikey_get_cors_v1_response_m_payload_local_var = malloc(sizeof(apikey_get_cors_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ apikey_get_cors_v1_response_m_payload_t *apikey_get_cors_v1_response_m_payload_c
     }
     apikey_get_cors_v1_response_m_payload_local_var->a_obj_cors = a_obj_cors;
 
+    apikey_get_cors_v1_response_m_payload_local_var->_library_owned = 1;
     return apikey_get_cors_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) apikey_get_cors_v1_response_m_payload_t *apikey_get_cors_v1_response_m_payload_create(
+    list_t *a_obj_cors
+    ) {
+    return apikey_get_cors_v1_response_m_payload_create_internal (
+        a_obj_cors
+        );
+}
 
 void apikey_get_cors_v1_response_m_payload_free(apikey_get_cors_v1_response_m_payload_t *apikey_get_cors_v1_response_m_payload) {
     if(NULL == apikey_get_cors_v1_response_m_payload){
+        return ;
+    }
+    if(apikey_get_cors_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "apikey_get_cors_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ apikey_get_cors_v1_response_m_payload_t *apikey_get_cors_v1_response_m_payload_p
 
     // apikey_get_cors_v1_response_m_payload->a_obj_cors
     cJSON *a_obj_cors = cJSON_GetObjectItemCaseSensitive(apikey_get_cors_v1_response_m_payloadJSON, "a_objCors");
+    if (cJSON_IsNull(a_obj_cors)) {
+        a_obj_cors = NULL;
+    }
     if (!a_obj_cors) {
         goto end;
     }
@@ -96,7 +111,7 @@ apikey_get_cors_v1_response_m_payload_t *apikey_get_cors_v1_response_m_payload_p
     }
 
 
-    apikey_get_cors_v1_response_m_payload_local_var = apikey_get_cors_v1_response_m_payload_create (
+    apikey_get_cors_v1_response_m_payload_local_var = apikey_get_cors_v1_response_m_payload_create_internal (
         a_obj_corsList
         );
 

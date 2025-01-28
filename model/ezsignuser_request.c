@@ -5,7 +5,7 @@
 
 
 
-ezsignuser_request_t *ezsignuser_request_create(
+static ezsignuser_request_t *ezsignuser_request_create_internal(
     int pki_ezsignuser_id,
     int fki_contact_id,
     contact_request_compound_v2_t *obj_contact
@@ -18,12 +18,28 @@ ezsignuser_request_t *ezsignuser_request_create(
     ezsignuser_request_local_var->fki_contact_id = fki_contact_id;
     ezsignuser_request_local_var->obj_contact = obj_contact;
 
+    ezsignuser_request_local_var->_library_owned = 1;
     return ezsignuser_request_local_var;
 }
 
+__attribute__((deprecated)) ezsignuser_request_t *ezsignuser_request_create(
+    int pki_ezsignuser_id,
+    int fki_contact_id,
+    contact_request_compound_v2_t *obj_contact
+    ) {
+    return ezsignuser_request_create_internal (
+        pki_ezsignuser_id,
+        fki_contact_id,
+        obj_contact
+        );
+}
 
 void ezsignuser_request_free(ezsignuser_request_t *ezsignuser_request) {
     if(NULL == ezsignuser_request){
+        return ;
+    }
+    if(ezsignuser_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignuser_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -84,6 +100,9 @@ ezsignuser_request_t *ezsignuser_request_parseFromJSON(cJSON *ezsignuser_request
 
     // ezsignuser_request->pki_ezsignuser_id
     cJSON *pki_ezsignuser_id = cJSON_GetObjectItemCaseSensitive(ezsignuser_requestJSON, "pkiEzsignuserID");
+    if (cJSON_IsNull(pki_ezsignuser_id)) {
+        pki_ezsignuser_id = NULL;
+    }
     if (pki_ezsignuser_id) { 
     if(!cJSON_IsNumber(pki_ezsignuser_id))
     {
@@ -93,6 +112,9 @@ ezsignuser_request_t *ezsignuser_request_parseFromJSON(cJSON *ezsignuser_request
 
     // ezsignuser_request->fki_contact_id
     cJSON *fki_contact_id = cJSON_GetObjectItemCaseSensitive(ezsignuser_requestJSON, "fkiContactID");
+    if (cJSON_IsNull(fki_contact_id)) {
+        fki_contact_id = NULL;
+    }
     if (!fki_contact_id) {
         goto end;
     }
@@ -105,6 +127,9 @@ ezsignuser_request_t *ezsignuser_request_parseFromJSON(cJSON *ezsignuser_request
 
     // ezsignuser_request->obj_contact
     cJSON *obj_contact = cJSON_GetObjectItemCaseSensitive(ezsignuser_requestJSON, "objContact");
+    if (cJSON_IsNull(obj_contact)) {
+        obj_contact = NULL;
+    }
     if (!obj_contact) {
         goto end;
     }
@@ -113,7 +138,7 @@ ezsignuser_request_t *ezsignuser_request_parseFromJSON(cJSON *ezsignuser_request
     obj_contact_local_nonprim = contact_request_compound_v2_parseFromJSON(obj_contact); //nonprimitive
 
 
-    ezsignuser_request_local_var = ezsignuser_request_create (
+    ezsignuser_request_local_var = ezsignuser_request_create_internal (
         pki_ezsignuser_id ? pki_ezsignuser_id->valuedouble : 0,
         fki_contact_id->valuedouble,
         obj_contact_local_nonprim

@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 // Functions for enum SSELECTOR for ObjectCountryAPI_countryGetAutocompleteV2
 
@@ -172,22 +167,27 @@ ObjectCountryAPI_countryGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_defi
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/country/getAutocomplete/{sSelector}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/country/getAutocomplete/{sSelector}");
+    char *localVarPath = strdup("/2/object/country/getAutocomplete/{sSelector}");
+
+    if(!sSelector)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_sSelector = strlen(sSelector)+3 + strlen("{ sSelector }");
-    if(sSelector == NULL) {
+    long sizeOfPathParams_sSelector = strlen(countryGetAutocompleteV2_SSELECTOR_ToString(sSelector))+3 + sizeof("{ sSelector }") - 1;
+    if(sSelector == 0) {
         goto end;
     }
     char* localVarToReplace_sSelector = malloc(sizeOfPathParams_sSelector);
     sprintf(localVarToReplace_sSelector, "{%s}", "sSelector");
 
-    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, sSelector);
+    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, countryGetAutocompleteV2_SSELECTOR_ToString(sSelector));
 
 
 
@@ -211,7 +211,7 @@ ObjectCountryAPI_countryGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_defi
     {
         keyQuery_eFilterActive = strdup("eFilterActive");
         valueQuery_eFilterActive = (eFilterActive);
-        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(countryGetAutocompleteV2_EFILTERACTIVE_ToString(
+        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, strdup(countryGetAutocompleteV2_EFILTERACTIVE_ToString(
         valueQuery_eFilterActive)));
         list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
     }
@@ -236,6 +236,7 @@ ObjectCountryAPI_countryGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_defi
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -243,11 +244,14 @@ ObjectCountryAPI_countryGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_defi
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectCountryAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    country_get_autocomplete_v2_response_t *elementToReturn = country_get_autocomplete_v2_response_parseFromJSON(ObjectCountryAPIlocalVarJSON);
-    cJSON_Delete(ObjectCountryAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    country_get_autocomplete_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectCountryAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = country_get_autocomplete_v2_response_parseFromJSON(ObjectCountryAPIlocalVarJSON);
+        cJSON_Delete(ObjectCountryAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

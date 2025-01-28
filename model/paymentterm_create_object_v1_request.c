@@ -5,7 +5,7 @@
 
 
 
-paymentterm_create_object_v1_request_t *paymentterm_create_object_v1_request_create(
+static paymentterm_create_object_v1_request_t *paymentterm_create_object_v1_request_create_internal(
     list_t *a_obj_paymentterm
     ) {
     paymentterm_create_object_v1_request_t *paymentterm_create_object_v1_request_local_var = malloc(sizeof(paymentterm_create_object_v1_request_t));
@@ -14,12 +14,24 @@ paymentterm_create_object_v1_request_t *paymentterm_create_object_v1_request_cre
     }
     paymentterm_create_object_v1_request_local_var->a_obj_paymentterm = a_obj_paymentterm;
 
+    paymentterm_create_object_v1_request_local_var->_library_owned = 1;
     return paymentterm_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) paymentterm_create_object_v1_request_t *paymentterm_create_object_v1_request_create(
+    list_t *a_obj_paymentterm
+    ) {
+    return paymentterm_create_object_v1_request_create_internal (
+        a_obj_paymentterm
+        );
+}
 
 void paymentterm_create_object_v1_request_free(paymentterm_create_object_v1_request_t *paymentterm_create_object_v1_request) {
     if(NULL == paymentterm_create_object_v1_request){
+        return ;
+    }
+    if(paymentterm_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "paymentterm_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ paymentterm_create_object_v1_request_t *paymentterm_create_object_v1_request_par
 
     // paymentterm_create_object_v1_request->a_obj_paymentterm
     cJSON *a_obj_paymentterm = cJSON_GetObjectItemCaseSensitive(paymentterm_create_object_v1_requestJSON, "a_objPaymentterm");
+    if (cJSON_IsNull(a_obj_paymentterm)) {
+        a_obj_paymentterm = NULL;
+    }
     if (!a_obj_paymentterm) {
         goto end;
     }
@@ -96,7 +111,7 @@ paymentterm_create_object_v1_request_t *paymentterm_create_object_v1_request_par
     }
 
 
-    paymentterm_create_object_v1_request_local_var = paymentterm_create_object_v1_request_create (
+    paymentterm_create_object_v1_request_local_var = paymentterm_create_object_v1_request_create_internal (
         a_obj_paymenttermList
         );
 

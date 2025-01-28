@@ -24,9 +24,10 @@ typedef struct user_get_list_v1_response_m_payload_t {
     int i_row_filtered; //numeric
     list_t *a_obj_user; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } user_get_list_v1_response_m_payload_t;
 
-user_get_list_v1_response_m_payload_t *user_get_list_v1_response_m_payload_create(
+__attribute__((deprecated)) user_get_list_v1_response_m_payload_t *user_get_list_v1_response_m_payload_create(
     int i_row_returned,
     int i_row_filtered,
     list_t *a_obj_user

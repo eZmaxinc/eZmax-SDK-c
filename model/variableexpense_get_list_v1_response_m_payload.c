@@ -5,7 +5,7 @@
 
 
 
-variableexpense_get_list_v1_response_m_payload_t *variableexpense_get_list_v1_response_m_payload_create(
+static variableexpense_get_list_v1_response_m_payload_t *variableexpense_get_list_v1_response_m_payload_create_internal(
     int i_row_returned,
     int i_row_filtered,
     list_t *a_obj_variableexpense
@@ -18,12 +18,28 @@ variableexpense_get_list_v1_response_m_payload_t *variableexpense_get_list_v1_re
     variableexpense_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
     variableexpense_get_list_v1_response_m_payload_local_var->a_obj_variableexpense = a_obj_variableexpense;
 
+    variableexpense_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     return variableexpense_get_list_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) variableexpense_get_list_v1_response_m_payload_t *variableexpense_get_list_v1_response_m_payload_create(
+    int i_row_returned,
+    int i_row_filtered,
+    list_t *a_obj_variableexpense
+    ) {
+    return variableexpense_get_list_v1_response_m_payload_create_internal (
+        i_row_returned,
+        i_row_filtered,
+        a_obj_variableexpense
+        );
+}
 
 void variableexpense_get_list_v1_response_m_payload_free(variableexpense_get_list_v1_response_m_payload_t *variableexpense_get_list_v1_response_m_payload) {
     if(NULL == variableexpense_get_list_v1_response_m_payload){
+        return ;
+    }
+    if(variableexpense_get_list_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "variableexpense_get_list_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -95,6 +111,9 @@ variableexpense_get_list_v1_response_m_payload_t *variableexpense_get_list_v1_re
 
     // variableexpense_get_list_v1_response_m_payload->i_row_returned
     cJSON *i_row_returned = cJSON_GetObjectItemCaseSensitive(variableexpense_get_list_v1_response_m_payloadJSON, "iRowReturned");
+    if (cJSON_IsNull(i_row_returned)) {
+        i_row_returned = NULL;
+    }
     if (!i_row_returned) {
         goto end;
     }
@@ -107,6 +126,9 @@ variableexpense_get_list_v1_response_m_payload_t *variableexpense_get_list_v1_re
 
     // variableexpense_get_list_v1_response_m_payload->i_row_filtered
     cJSON *i_row_filtered = cJSON_GetObjectItemCaseSensitive(variableexpense_get_list_v1_response_m_payloadJSON, "iRowFiltered");
+    if (cJSON_IsNull(i_row_filtered)) {
+        i_row_filtered = NULL;
+    }
     if (!i_row_filtered) {
         goto end;
     }
@@ -119,6 +141,9 @@ variableexpense_get_list_v1_response_m_payload_t *variableexpense_get_list_v1_re
 
     // variableexpense_get_list_v1_response_m_payload->a_obj_variableexpense
     cJSON *a_obj_variableexpense = cJSON_GetObjectItemCaseSensitive(variableexpense_get_list_v1_response_m_payloadJSON, "a_objVariableexpense");
+    if (cJSON_IsNull(a_obj_variableexpense)) {
+        a_obj_variableexpense = NULL;
+    }
     if (!a_obj_variableexpense) {
         goto end;
     }
@@ -142,7 +167,7 @@ variableexpense_get_list_v1_response_m_payload_t *variableexpense_get_list_v1_re
     }
 
 
-    variableexpense_get_list_v1_response_m_payload_local_var = variableexpense_get_list_v1_response_m_payload_create (
+    variableexpense_get_list_v1_response_m_payload_local_var = variableexpense_get_list_v1_response_m_payload_create_internal (
         i_row_returned->valuedouble,
         i_row_filtered->valuedouble,
         a_obj_variableexpenseList

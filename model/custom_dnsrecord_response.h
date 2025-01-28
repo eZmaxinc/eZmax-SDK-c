@@ -42,9 +42,10 @@ typedef struct custom_dnsrecord_response_t {
     char *s_dnsrecord_expectedvalue; // string
     int b_dnsrecord_must_match; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_dnsrecord_response_t;
 
-custom_dnsrecord_response_t *custom_dnsrecord_response_create(
+__attribute__((deprecated)) custom_dnsrecord_response_t *custom_dnsrecord_response_create(
     ezmax_api_definition__full_custom_dnsrecord_response_EDNSRECORDTYPE_e e_dnsrecord_type,
     ezmax_api_definition__full_custom_dnsrecord_response_EDNSRECORDVALIDATION_e e_dnsrecord_validation,
     char *s_dnsrecord_name,

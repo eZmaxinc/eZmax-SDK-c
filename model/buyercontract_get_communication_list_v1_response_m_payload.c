@@ -5,7 +5,7 @@
 
 
 
-buyercontract_get_communication_list_v1_response_m_payload_t *buyercontract_get_communication_list_v1_response_m_payload_create(
+static buyercontract_get_communication_list_v1_response_m_payload_t *buyercontract_get_communication_list_v1_response_m_payload_create_internal(
     list_t *a_obj_communication
     ) {
     buyercontract_get_communication_list_v1_response_m_payload_t *buyercontract_get_communication_list_v1_response_m_payload_local_var = malloc(sizeof(buyercontract_get_communication_list_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ buyercontract_get_communication_list_v1_response_m_payload_t *buyercontract_get_
     }
     buyercontract_get_communication_list_v1_response_m_payload_local_var->a_obj_communication = a_obj_communication;
 
+    buyercontract_get_communication_list_v1_response_m_payload_local_var->_library_owned = 1;
     return buyercontract_get_communication_list_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) buyercontract_get_communication_list_v1_response_m_payload_t *buyercontract_get_communication_list_v1_response_m_payload_create(
+    list_t *a_obj_communication
+    ) {
+    return buyercontract_get_communication_list_v1_response_m_payload_create_internal (
+        a_obj_communication
+        );
+}
 
 void buyercontract_get_communication_list_v1_response_m_payload_free(buyercontract_get_communication_list_v1_response_m_payload_t *buyercontract_get_communication_list_v1_response_m_payload) {
     if(NULL == buyercontract_get_communication_list_v1_response_m_payload){
+        return ;
+    }
+    if(buyercontract_get_communication_list_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "buyercontract_get_communication_list_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ buyercontract_get_communication_list_v1_response_m_payload_t *buyercontract_get_
 
     // buyercontract_get_communication_list_v1_response_m_payload->a_obj_communication
     cJSON *a_obj_communication = cJSON_GetObjectItemCaseSensitive(buyercontract_get_communication_list_v1_response_m_payloadJSON, "a_objCommunication");
+    if (cJSON_IsNull(a_obj_communication)) {
+        a_obj_communication = NULL;
+    }
     if (!a_obj_communication) {
         goto end;
     }
@@ -96,7 +111,7 @@ buyercontract_get_communication_list_v1_response_m_payload_t *buyercontract_get_
     }
 
 
-    buyercontract_get_communication_list_v1_response_m_payload_local_var = buyercontract_get_communication_list_v1_response_m_payload_create (
+    buyercontract_get_communication_list_v1_response_m_payload_local_var = buyercontract_get_communication_list_v1_response_m_payload_create_internal (
         a_obj_communicationList
         );
 

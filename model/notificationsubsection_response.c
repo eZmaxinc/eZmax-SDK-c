@@ -5,7 +5,7 @@
 
 
 
-notificationsubsection_response_t *notificationsubsection_response_create(
+static notificationsubsection_response_t *notificationsubsection_response_create_internal(
     int pki_notificationsubsection_id,
     int fki_notificationsection_id,
     multilingual_notificationsubsection_name_t *obj_notificationsubsection_name,
@@ -22,12 +22,32 @@ notificationsubsection_response_t *notificationsubsection_response_create(
     notificationsubsection_response_local_var->s_notificationsection_name_x = s_notificationsection_name_x;
     notificationsubsection_response_local_var->s_notificationsubsection_name_x = s_notificationsubsection_name_x;
 
+    notificationsubsection_response_local_var->_library_owned = 1;
     return notificationsubsection_response_local_var;
 }
 
+__attribute__((deprecated)) notificationsubsection_response_t *notificationsubsection_response_create(
+    int pki_notificationsubsection_id,
+    int fki_notificationsection_id,
+    multilingual_notificationsubsection_name_t *obj_notificationsubsection_name,
+    char *s_notificationsection_name_x,
+    char *s_notificationsubsection_name_x
+    ) {
+    return notificationsubsection_response_create_internal (
+        pki_notificationsubsection_id,
+        fki_notificationsection_id,
+        obj_notificationsubsection_name,
+        s_notificationsection_name_x,
+        s_notificationsubsection_name_x
+        );
+}
 
 void notificationsubsection_response_free(notificationsubsection_response_t *notificationsubsection_response) {
     if(NULL == notificationsubsection_response){
+        return ;
+    }
+    if(notificationsubsection_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "notificationsubsection_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -113,6 +133,9 @@ notificationsubsection_response_t *notificationsubsection_response_parseFromJSON
 
     // notificationsubsection_response->pki_notificationsubsection_id
     cJSON *pki_notificationsubsection_id = cJSON_GetObjectItemCaseSensitive(notificationsubsection_responseJSON, "pkiNotificationsubsectionID");
+    if (cJSON_IsNull(pki_notificationsubsection_id)) {
+        pki_notificationsubsection_id = NULL;
+    }
     if (!pki_notificationsubsection_id) {
         goto end;
     }
@@ -125,6 +148,9 @@ notificationsubsection_response_t *notificationsubsection_response_parseFromJSON
 
     // notificationsubsection_response->fki_notificationsection_id
     cJSON *fki_notificationsection_id = cJSON_GetObjectItemCaseSensitive(notificationsubsection_responseJSON, "fkiNotificationsectionID");
+    if (cJSON_IsNull(fki_notificationsection_id)) {
+        fki_notificationsection_id = NULL;
+    }
     if (!fki_notificationsection_id) {
         goto end;
     }
@@ -137,12 +163,18 @@ notificationsubsection_response_t *notificationsubsection_response_parseFromJSON
 
     // notificationsubsection_response->obj_notificationsubsection_name
     cJSON *obj_notificationsubsection_name = cJSON_GetObjectItemCaseSensitive(notificationsubsection_responseJSON, "objNotificationsubsectionName");
+    if (cJSON_IsNull(obj_notificationsubsection_name)) {
+        obj_notificationsubsection_name = NULL;
+    }
     if (obj_notificationsubsection_name) { 
     obj_notificationsubsection_name_local_nonprim = multilingual_notificationsubsection_name_parseFromJSON(obj_notificationsubsection_name); //nonprimitive
     }
 
     // notificationsubsection_response->s_notificationsection_name_x
     cJSON *s_notificationsection_name_x = cJSON_GetObjectItemCaseSensitive(notificationsubsection_responseJSON, "sNotificationsectionNameX");
+    if (cJSON_IsNull(s_notificationsection_name_x)) {
+        s_notificationsection_name_x = NULL;
+    }
     if (s_notificationsection_name_x) { 
     if(!cJSON_IsString(s_notificationsection_name_x) && !cJSON_IsNull(s_notificationsection_name_x))
     {
@@ -152,6 +184,9 @@ notificationsubsection_response_t *notificationsubsection_response_parseFromJSON
 
     // notificationsubsection_response->s_notificationsubsection_name_x
     cJSON *s_notificationsubsection_name_x = cJSON_GetObjectItemCaseSensitive(notificationsubsection_responseJSON, "sNotificationsubsectionNameX");
+    if (cJSON_IsNull(s_notificationsubsection_name_x)) {
+        s_notificationsubsection_name_x = NULL;
+    }
     if (!s_notificationsubsection_name_x) {
         goto end;
     }
@@ -163,7 +198,7 @@ notificationsubsection_response_t *notificationsubsection_response_parseFromJSON
     }
 
 
-    notificationsubsection_response_local_var = notificationsubsection_response_create (
+    notificationsubsection_response_local_var = notificationsubsection_response_create_internal (
         pki_notificationsubsection_id->valuedouble,
         fki_notificationsection_id->valuedouble,
         obj_notificationsubsection_name ? obj_notificationsubsection_name_local_nonprim : NULL,

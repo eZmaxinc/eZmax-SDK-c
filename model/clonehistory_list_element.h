@@ -31,9 +31,10 @@ typedef struct clonehistory_list_element_t {
     char *s_user_firstname_cloned; // string
     char *s_user_lastname_cloned; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } clonehistory_list_element_t;
 
-clonehistory_list_element_t *clonehistory_list_element_create(
+__attribute__((deprecated)) clonehistory_list_element_t *clonehistory_list_element_create(
     int pki_clonehistory_id,
     int fki_user_id_cloning,
     int fki_user_id_cloned,

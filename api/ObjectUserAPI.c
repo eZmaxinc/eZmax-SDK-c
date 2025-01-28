@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 // Functions for enum SSELECTOR for ObjectUserAPI_userGetAutocompleteV2
 
@@ -267,11 +262,14 @@ ObjectUserAPI_userCreateObjectV1(apiClient_t *apiClient, user_create_object_v1_r
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/user")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/user");
+    char *localVarPath = strdup("/1/object/user");
+
 
 
 
@@ -280,9 +278,10 @@ ObjectUserAPI_userCreateObjectV1(apiClient_t *apiClient, user_create_object_v1_r
     cJSON *localVarSingleItemJSON_user_create_object_v1_request = NULL;
     if (user_create_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_user_create_object_v1_request = user_create_object_v1_request_convertToJSON(user_create_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_user_create_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -294,6 +293,7 @@ ObjectUserAPI_userCreateObjectV1(apiClient_t *apiClient, user_create_object_v1_r
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -301,11 +301,14 @@ ObjectUserAPI_userCreateObjectV1(apiClient_t *apiClient, user_create_object_v1_r
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    user_create_object_v1_response_t *elementToReturn = user_create_object_v1_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
-    cJSON_Delete(ObjectUserAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    user_create_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = user_create_object_v1_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
+        cJSON_Delete(ObjectUserAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -345,11 +348,14 @@ ObjectUserAPI_userCreateObjectV2(apiClient_t *apiClient, user_create_object_v2_r
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/user")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/user");
+    char *localVarPath = strdup("/2/object/user");
+
 
 
 
@@ -358,9 +364,10 @@ ObjectUserAPI_userCreateObjectV2(apiClient_t *apiClient, user_create_object_v2_r
     cJSON *localVarSingleItemJSON_user_create_object_v2_request = NULL;
     if (user_create_object_v2_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_user_create_object_v2_request = user_create_object_v2_request_convertToJSON(user_create_object_v2_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_user_create_object_v2_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -372,6 +379,7 @@ ObjectUserAPI_userCreateObjectV2(apiClient_t *apiClient, user_create_object_v2_r
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -379,11 +387,14 @@ ObjectUserAPI_userCreateObjectV2(apiClient_t *apiClient, user_create_object_v2_r
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    user_create_object_v2_response_t *elementToReturn = user_create_object_v2_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
-    cJSON_Delete(ObjectUserAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    user_create_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = user_create_object_v2_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
+        cJSON_Delete(ObjectUserAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -423,15 +434,18 @@ ObjectUserAPI_userEditColleaguesV2(apiClient_t *apiClient, int *pkiUserID, user_
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/user/{pkiUserID}/editColleagues")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/user/{pkiUserID}/editColleagues");
+    char *localVarPath = strdup("/2/object/user/{pkiUserID}/editColleagues");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiUserID =  + strlen("{ pkiUserID }");
+    long sizeOfPathParams_pkiUserID =  + sizeof("{ pkiUserID }") - 1;
     if(pkiUserID == 0){
         goto end;
     }
@@ -439,7 +453,7 @@ ObjectUserAPI_userEditColleaguesV2(apiClient_t *apiClient, int *pkiUserID, user_
     snprintf(localVarToReplace_pkiUserID, sizeOfPathParams_pkiUserID, "{%s}", "pkiUserID");
 
     char localVarBuff_pkiUserID[256];
-    intToStr(localVarBuff_pkiUserID, *pkiUserID);
+    snprintf(localVarBuff_pkiUserID, sizeof localVarBuff_pkiUserID, "%ld", (long)*pkiUserID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUserID, localVarBuff_pkiUserID);
 
@@ -450,9 +464,10 @@ ObjectUserAPI_userEditColleaguesV2(apiClient_t *apiClient, int *pkiUserID, user_
     cJSON *localVarSingleItemJSON_user_edit_colleagues_v2_request = NULL;
     if (user_edit_colleagues_v2_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_user_edit_colleagues_v2_request = user_edit_colleagues_v2_request_convertToJSON(user_edit_colleagues_v2_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_user_edit_colleagues_v2_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -464,6 +479,7 @@ ObjectUserAPI_userEditColleaguesV2(apiClient_t *apiClient, int *pkiUserID, user_
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -479,11 +495,14 @@ ObjectUserAPI_userEditColleaguesV2(apiClient_t *apiClient, int *pkiUserID, user_
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    user_edit_colleagues_v2_response_t *elementToReturn = user_edit_colleagues_v2_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
-    cJSON_Delete(ObjectUserAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    user_edit_colleagues_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = user_edit_colleagues_v2_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
+        cJSON_Delete(ObjectUserAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -515,7 +534,7 @@ end:
 //
 // 
 //
-common_response_t*
+user_edit_object_v1_response_t*
 ObjectUserAPI_userEditObjectV1(apiClient_t *apiClient, int *pkiUserID, user_edit_object_v1_request_t *user_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -524,15 +543,18 @@ ObjectUserAPI_userEditObjectV1(apiClient_t *apiClient, int *pkiUserID, user_edit
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/user/{pkiUserID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/user/{pkiUserID}");
+    char *localVarPath = strdup("/1/object/user/{pkiUserID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiUserID =  + strlen("{ pkiUserID }");
+    long sizeOfPathParams_pkiUserID =  + sizeof("{ pkiUserID }") - 1;
     if(pkiUserID == 0){
         goto end;
     }
@@ -540,7 +562,7 @@ ObjectUserAPI_userEditObjectV1(apiClient_t *apiClient, int *pkiUserID, user_edit
     snprintf(localVarToReplace_pkiUserID, sizeOfPathParams_pkiUserID, "{%s}", "pkiUserID");
 
     char localVarBuff_pkiUserID[256];
-    intToStr(localVarBuff_pkiUserID, *pkiUserID);
+    snprintf(localVarBuff_pkiUserID, sizeof localVarBuff_pkiUserID, "%ld", (long)*pkiUserID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUserID, localVarBuff_pkiUserID);
 
@@ -551,9 +573,10 @@ ObjectUserAPI_userEditObjectV1(apiClient_t *apiClient, int *pkiUserID, user_edit
     cJSON *localVarSingleItemJSON_user_edit_object_v1_request = NULL;
     if (user_edit_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_user_edit_object_v1_request = user_edit_object_v1_request_convertToJSON(user_edit_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_user_edit_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -565,6 +588,7 @@ ObjectUserAPI_userEditObjectV1(apiClient_t *apiClient, int *pkiUserID, user_edit
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -580,11 +604,14 @@ ObjectUserAPI_userEditObjectV1(apiClient_t *apiClient, int *pkiUserID, user_edit
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
-    cJSON_Delete(ObjectUserAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    user_edit_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = user_edit_object_v1_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
+        cJSON_Delete(ObjectUserAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -625,15 +652,18 @@ ObjectUserAPI_userEditPermissionsV1(apiClient_t *apiClient, int *pkiUserID, user
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/user/{pkiUserID}/editPermissions")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/user/{pkiUserID}/editPermissions");
+    char *localVarPath = strdup("/1/object/user/{pkiUserID}/editPermissions");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiUserID =  + strlen("{ pkiUserID }");
+    long sizeOfPathParams_pkiUserID =  + sizeof("{ pkiUserID }") - 1;
     if(pkiUserID == 0){
         goto end;
     }
@@ -641,7 +671,7 @@ ObjectUserAPI_userEditPermissionsV1(apiClient_t *apiClient, int *pkiUserID, user
     snprintf(localVarToReplace_pkiUserID, sizeOfPathParams_pkiUserID, "{%s}", "pkiUserID");
 
     char localVarBuff_pkiUserID[256];
-    intToStr(localVarBuff_pkiUserID, *pkiUserID);
+    snprintf(localVarBuff_pkiUserID, sizeof localVarBuff_pkiUserID, "%ld", (long)*pkiUserID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUserID, localVarBuff_pkiUserID);
 
@@ -652,9 +682,10 @@ ObjectUserAPI_userEditPermissionsV1(apiClient_t *apiClient, int *pkiUserID, user
     cJSON *localVarSingleItemJSON_user_edit_permissions_v1_request = NULL;
     if (user_edit_permissions_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_user_edit_permissions_v1_request = user_edit_permissions_v1_request_convertToJSON(user_edit_permissions_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_user_edit_permissions_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -666,6 +697,7 @@ ObjectUserAPI_userEditPermissionsV1(apiClient_t *apiClient, int *pkiUserID, user
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -681,11 +713,14 @@ ObjectUserAPI_userEditPermissionsV1(apiClient_t *apiClient, int *pkiUserID, user
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    user_edit_permissions_v1_response_t *elementToReturn = user_edit_permissions_v1_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
-    cJSON_Delete(ObjectUserAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    user_edit_permissions_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = user_edit_permissions_v1_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
+        cJSON_Delete(ObjectUserAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -724,15 +759,18 @@ ObjectUserAPI_userGetApikeysV1(apiClient_t *apiClient, int *pkiUserID)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/user/{pkiUserID}/getApikeys")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/user/{pkiUserID}/getApikeys");
+    char *localVarPath = strdup("/1/object/user/{pkiUserID}/getApikeys");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiUserID =  + strlen("{ pkiUserID }");
+    long sizeOfPathParams_pkiUserID =  + sizeof("{ pkiUserID }") - 1;
     if(pkiUserID == 0){
         goto end;
     }
@@ -740,7 +778,7 @@ ObjectUserAPI_userGetApikeysV1(apiClient_t *apiClient, int *pkiUserID)
     snprintf(localVarToReplace_pkiUserID, sizeOfPathParams_pkiUserID, "{%s}", "pkiUserID");
 
     char localVarBuff_pkiUserID[256];
-    intToStr(localVarBuff_pkiUserID, *pkiUserID);
+    snprintf(localVarBuff_pkiUserID, sizeof localVarBuff_pkiUserID, "%ld", (long)*pkiUserID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUserID, localVarBuff_pkiUserID);
 
@@ -755,6 +793,7 @@ ObjectUserAPI_userGetApikeysV1(apiClient_t *apiClient, int *pkiUserID)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -766,11 +805,14 @@ ObjectUserAPI_userGetApikeysV1(apiClient_t *apiClient, int *pkiUserID)
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    user_get_apikeys_v1_response_t *elementToReturn = user_get_apikeys_v1_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
-    cJSON_Delete(ObjectUserAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    user_get_apikeys_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = user_get_apikeys_v1_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
+        cJSON_Delete(ObjectUserAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -806,22 +848,27 @@ ObjectUserAPI_userGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/user/getAutocomplete/{sSelector}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/user/getAutocomplete/{sSelector}");
+    char *localVarPath = strdup("/2/object/user/getAutocomplete/{sSelector}");
+
+    if(!sSelector)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_sSelector = strlen(sSelector)+3 + strlen("{ sSelector }");
-    if(sSelector == NULL) {
+    long sizeOfPathParams_sSelector = strlen(userGetAutocompleteV2_SSELECTOR_ToString(sSelector))+3 + sizeof("{ sSelector }") - 1;
+    if(sSelector == 0) {
         goto end;
     }
     char* localVarToReplace_sSelector = malloc(sizeOfPathParams_sSelector);
     sprintf(localVarToReplace_sSelector, "{%s}", "sSelector");
 
-    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, sSelector);
+    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, userGetAutocompleteV2_SSELECTOR_ToString(sSelector));
 
 
 
@@ -845,7 +892,7 @@ ObjectUserAPI_userGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition
     {
         keyQuery_eFilterActive = strdup("eFilterActive");
         valueQuery_eFilterActive = (eFilterActive);
-        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(userGetAutocompleteV2_EFILTERACTIVE_ToString(
+        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, strdup(userGetAutocompleteV2_EFILTERACTIVE_ToString(
         valueQuery_eFilterActive)));
         list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
     }
@@ -870,6 +917,7 @@ ObjectUserAPI_userGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -877,11 +925,14 @@ ObjectUserAPI_userGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    user_get_autocomplete_v2_response_t *elementToReturn = user_get_autocomplete_v2_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
-    cJSON_Delete(ObjectUserAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    user_get_autocomplete_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = user_get_autocomplete_v2_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
+        cJSON_Delete(ObjectUserAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -940,15 +991,18 @@ ObjectUserAPI_userGetColleaguesV2(apiClient_t *apiClient, int *pkiUserID)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/user/{pkiUserID}/getColleagues")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/user/{pkiUserID}/getColleagues");
+    char *localVarPath = strdup("/2/object/user/{pkiUserID}/getColleagues");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiUserID =  + strlen("{ pkiUserID }");
+    long sizeOfPathParams_pkiUserID =  + sizeof("{ pkiUserID }") - 1;
     if(pkiUserID == 0){
         goto end;
     }
@@ -956,7 +1010,7 @@ ObjectUserAPI_userGetColleaguesV2(apiClient_t *apiClient, int *pkiUserID)
     snprintf(localVarToReplace_pkiUserID, sizeOfPathParams_pkiUserID, "{%s}", "pkiUserID");
 
     char localVarBuff_pkiUserID[256];
-    intToStr(localVarBuff_pkiUserID, *pkiUserID);
+    snprintf(localVarBuff_pkiUserID, sizeof localVarBuff_pkiUserID, "%ld", (long)*pkiUserID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUserID, localVarBuff_pkiUserID);
 
@@ -971,6 +1025,7 @@ ObjectUserAPI_userGetColleaguesV2(apiClient_t *apiClient, int *pkiUserID)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -982,11 +1037,14 @@ ObjectUserAPI_userGetColleaguesV2(apiClient_t *apiClient, int *pkiUserID)
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    user_get_colleagues_v2_response_t *elementToReturn = user_get_colleagues_v2_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
-    cJSON_Delete(ObjectUserAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    user_get_colleagues_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = user_get_colleagues_v2_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
+        cJSON_Delete(ObjectUserAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1022,15 +1080,18 @@ ObjectUserAPI_userGetEffectivePermissionsV1(apiClient_t *apiClient, int *pkiUser
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/user/{pkiUserID}/getEffectivePermissions")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/user/{pkiUserID}/getEffectivePermissions");
+    char *localVarPath = strdup("/1/object/user/{pkiUserID}/getEffectivePermissions");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiUserID =  + strlen("{ pkiUserID }");
+    long sizeOfPathParams_pkiUserID =  + sizeof("{ pkiUserID }") - 1;
     if(pkiUserID == 0){
         goto end;
     }
@@ -1038,7 +1099,7 @@ ObjectUserAPI_userGetEffectivePermissionsV1(apiClient_t *apiClient, int *pkiUser
     snprintf(localVarToReplace_pkiUserID, sizeOfPathParams_pkiUserID, "{%s}", "pkiUserID");
 
     char localVarBuff_pkiUserID[256];
-    intToStr(localVarBuff_pkiUserID, *pkiUserID);
+    snprintf(localVarBuff_pkiUserID, sizeof localVarBuff_pkiUserID, "%ld", (long)*pkiUserID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUserID, localVarBuff_pkiUserID);
 
@@ -1053,6 +1114,7 @@ ObjectUserAPI_userGetEffectivePermissionsV1(apiClient_t *apiClient, int *pkiUser
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1064,11 +1126,14 @@ ObjectUserAPI_userGetEffectivePermissionsV1(apiClient_t *apiClient, int *pkiUser
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    user_get_effective_permissions_v1_response_t *elementToReturn = user_get_effective_permissions_v1_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
-    cJSON_Delete(ObjectUserAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    user_get_effective_permissions_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = user_get_effective_permissions_v1_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
+        cJSON_Delete(ObjectUserAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1104,11 +1169,14 @@ ObjectUserAPI_userGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_u
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/user/getList")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/user/getList");
+    char *localVarPath = strdup("/1/object/user/getList");
+
 
 
 
@@ -1133,7 +1201,7 @@ ObjectUserAPI_userGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_u
     {
         keyQuery_eOrderBy = strdup("eOrderBy");
         valueQuery_eOrderBy = (eOrderBy);
-        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, (void *)strdup(userGetListV1_EORDERBY_ToString(
+        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, strdup(userGetListV1_EORDERBY_ToString(
         valueQuery_eOrderBy)));
         list_addElement(localVarQueryParameters,keyPairQuery_eOrderBy);
     }
@@ -1185,6 +1253,7 @@ ObjectUserAPI_userGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_u
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1196,11 +1265,14 @@ ObjectUserAPI_userGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_u
     //    printf("%s\n","The URL is valid, but one of the Accept header is not defined or invalid. For example, you set the header \&quot;Accept: application/json\&quot; but the function can only return \&quot;Content-type: image/png\&quot;");
     //}
     //nonprimitive not container
-    cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    user_get_list_v1_response_t *elementToReturn = user_get_list_v1_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
-    cJSON_Delete(ObjectUserAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    user_get_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = user_get_list_v1_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
+        cJSON_Delete(ObjectUserAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1284,15 +1356,18 @@ ObjectUserAPI_userGetObjectV2(apiClient_t *apiClient, int *pkiUserID)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/user/{pkiUserID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/user/{pkiUserID}");
+    char *localVarPath = strdup("/2/object/user/{pkiUserID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiUserID =  + strlen("{ pkiUserID }");
+    long sizeOfPathParams_pkiUserID =  + sizeof("{ pkiUserID }") - 1;
     if(pkiUserID == 0){
         goto end;
     }
@@ -1300,7 +1375,7 @@ ObjectUserAPI_userGetObjectV2(apiClient_t *apiClient, int *pkiUserID)
     snprintf(localVarToReplace_pkiUserID, sizeOfPathParams_pkiUserID, "{%s}", "pkiUserID");
 
     char localVarBuff_pkiUserID[256];
-    intToStr(localVarBuff_pkiUserID, *pkiUserID);
+    snprintf(localVarBuff_pkiUserID, sizeof localVarBuff_pkiUserID, "%ld", (long)*pkiUserID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUserID, localVarBuff_pkiUserID);
 
@@ -1315,6 +1390,7 @@ ObjectUserAPI_userGetObjectV2(apiClient_t *apiClient, int *pkiUserID)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1326,11 +1402,14 @@ ObjectUserAPI_userGetObjectV2(apiClient_t *apiClient, int *pkiUserID)
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    user_get_object_v2_response_t *elementToReturn = user_get_object_v2_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
-    cJSON_Delete(ObjectUserAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    user_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = user_get_object_v2_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
+        cJSON_Delete(ObjectUserAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1364,15 +1443,18 @@ ObjectUserAPI_userGetPermissionsV1(apiClient_t *apiClient, int *pkiUserID)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/user/{pkiUserID}/getPermissions")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/user/{pkiUserID}/getPermissions");
+    char *localVarPath = strdup("/1/object/user/{pkiUserID}/getPermissions");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiUserID =  + strlen("{ pkiUserID }");
+    long sizeOfPathParams_pkiUserID =  + sizeof("{ pkiUserID }") - 1;
     if(pkiUserID == 0){
         goto end;
     }
@@ -1380,7 +1462,7 @@ ObjectUserAPI_userGetPermissionsV1(apiClient_t *apiClient, int *pkiUserID)
     snprintf(localVarToReplace_pkiUserID, sizeOfPathParams_pkiUserID, "{%s}", "pkiUserID");
 
     char localVarBuff_pkiUserID[256];
-    intToStr(localVarBuff_pkiUserID, *pkiUserID);
+    snprintf(localVarBuff_pkiUserID, sizeof localVarBuff_pkiUserID, "%ld", (long)*pkiUserID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUserID, localVarBuff_pkiUserID);
 
@@ -1395,6 +1477,7 @@ ObjectUserAPI_userGetPermissionsV1(apiClient_t *apiClient, int *pkiUserID)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1406,11 +1489,14 @@ ObjectUserAPI_userGetPermissionsV1(apiClient_t *apiClient, int *pkiUserID)
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    user_get_permissions_v1_response_t *elementToReturn = user_get_permissions_v1_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
-    cJSON_Delete(ObjectUserAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    user_get_permissions_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = user_get_permissions_v1_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
+        cJSON_Delete(ObjectUserAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1444,15 +1530,18 @@ ObjectUserAPI_userGetSubnetsV1(apiClient_t *apiClient, int *pkiUserID)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/user/{pkiUserID}/getSubnets")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/user/{pkiUserID}/getSubnets");
+    char *localVarPath = strdup("/1/object/user/{pkiUserID}/getSubnets");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiUserID =  + strlen("{ pkiUserID }");
+    long sizeOfPathParams_pkiUserID =  + sizeof("{ pkiUserID }") - 1;
     if(pkiUserID == 0){
         goto end;
     }
@@ -1460,7 +1549,7 @@ ObjectUserAPI_userGetSubnetsV1(apiClient_t *apiClient, int *pkiUserID)
     snprintf(localVarToReplace_pkiUserID, sizeOfPathParams_pkiUserID, "{%s}", "pkiUserID");
 
     char localVarBuff_pkiUserID[256];
-    intToStr(localVarBuff_pkiUserID, *pkiUserID);
+    snprintf(localVarBuff_pkiUserID, sizeof localVarBuff_pkiUserID, "%ld", (long)*pkiUserID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUserID, localVarBuff_pkiUserID);
 
@@ -1475,6 +1564,7 @@ ObjectUserAPI_userGetSubnetsV1(apiClient_t *apiClient, int *pkiUserID)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1486,11 +1576,14 @@ ObjectUserAPI_userGetSubnetsV1(apiClient_t *apiClient, int *pkiUserID)
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    user_get_subnets_v1_response_t *elementToReturn = user_get_subnets_v1_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
-    cJSON_Delete(ObjectUserAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    user_get_subnets_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = user_get_subnets_v1_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
+        cJSON_Delete(ObjectUserAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1524,15 +1617,18 @@ ObjectUserAPI_userGetUsergroupexternalsV1(apiClient_t *apiClient, int *pkiUserID
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/user/{pkiUserID}/getUsergroupexternals")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/user/{pkiUserID}/getUsergroupexternals");
+    char *localVarPath = strdup("/1/object/user/{pkiUserID}/getUsergroupexternals");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiUserID =  + strlen("{ pkiUserID }");
+    long sizeOfPathParams_pkiUserID =  + sizeof("{ pkiUserID }") - 1;
     if(pkiUserID == 0){
         goto end;
     }
@@ -1540,7 +1636,7 @@ ObjectUserAPI_userGetUsergroupexternalsV1(apiClient_t *apiClient, int *pkiUserID
     snprintf(localVarToReplace_pkiUserID, sizeOfPathParams_pkiUserID, "{%s}", "pkiUserID");
 
     char localVarBuff_pkiUserID[256];
-    intToStr(localVarBuff_pkiUserID, *pkiUserID);
+    snprintf(localVarBuff_pkiUserID, sizeof localVarBuff_pkiUserID, "%ld", (long)*pkiUserID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUserID, localVarBuff_pkiUserID);
 
@@ -1555,6 +1651,7 @@ ObjectUserAPI_userGetUsergroupexternalsV1(apiClient_t *apiClient, int *pkiUserID
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1566,11 +1663,14 @@ ObjectUserAPI_userGetUsergroupexternalsV1(apiClient_t *apiClient, int *pkiUserID
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    user_get_usergroupexternals_v1_response_t *elementToReturn = user_get_usergroupexternals_v1_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
-    cJSON_Delete(ObjectUserAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    user_get_usergroupexternals_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = user_get_usergroupexternals_v1_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
+        cJSON_Delete(ObjectUserAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1604,15 +1704,18 @@ ObjectUserAPI_userGetUsergroupsV1(apiClient_t *apiClient, int *pkiUserID)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/user/{pkiUserID}/getUsergroups")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/user/{pkiUserID}/getUsergroups");
+    char *localVarPath = strdup("/1/object/user/{pkiUserID}/getUsergroups");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiUserID =  + strlen("{ pkiUserID }");
+    long sizeOfPathParams_pkiUserID =  + sizeof("{ pkiUserID }") - 1;
     if(pkiUserID == 0){
         goto end;
     }
@@ -1620,7 +1723,7 @@ ObjectUserAPI_userGetUsergroupsV1(apiClient_t *apiClient, int *pkiUserID)
     snprintf(localVarToReplace_pkiUserID, sizeOfPathParams_pkiUserID, "{%s}", "pkiUserID");
 
     char localVarBuff_pkiUserID[256];
-    intToStr(localVarBuff_pkiUserID, *pkiUserID);
+    snprintf(localVarBuff_pkiUserID, sizeof localVarBuff_pkiUserID, "%ld", (long)*pkiUserID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUserID, localVarBuff_pkiUserID);
 
@@ -1635,6 +1738,7 @@ ObjectUserAPI_userGetUsergroupsV1(apiClient_t *apiClient, int *pkiUserID)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1646,11 +1750,14 @@ ObjectUserAPI_userGetUsergroupsV1(apiClient_t *apiClient, int *pkiUserID)
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    user_get_usergroups_v1_response_t *elementToReturn = user_get_usergroups_v1_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
-    cJSON_Delete(ObjectUserAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    user_get_usergroups_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = user_get_usergroups_v1_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
+        cJSON_Delete(ObjectUserAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1677,7 +1784,7 @@ end:
 //
 // Send the password reset email
 //
-common_response_t*
+user_send_password_reset_v1_response_t*
 ObjectUserAPI_userSendPasswordResetV1(apiClient_t *apiClient, int *pkiUserID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -1686,15 +1793,18 @@ ObjectUserAPI_userSendPasswordResetV1(apiClient_t *apiClient, int *pkiUserID, ob
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/user/{pkiUserID}/sendPasswordReset")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/user/{pkiUserID}/sendPasswordReset");
+    char *localVarPath = strdup("/1/object/user/{pkiUserID}/sendPasswordReset");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiUserID =  + strlen("{ pkiUserID }");
+    long sizeOfPathParams_pkiUserID =  + sizeof("{ pkiUserID }") - 1;
     if(pkiUserID == 0){
         goto end;
     }
@@ -1702,7 +1812,7 @@ ObjectUserAPI_userSendPasswordResetV1(apiClient_t *apiClient, int *pkiUserID, ob
     snprintf(localVarToReplace_pkiUserID, sizeOfPathParams_pkiUserID, "{%s}", "pkiUserID");
 
     char localVarBuff_pkiUserID[256];
-    intToStr(localVarBuff_pkiUserID, *pkiUserID);
+    snprintf(localVarBuff_pkiUserID, sizeof localVarBuff_pkiUserID, "%ld", (long)*pkiUserID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUserID, localVarBuff_pkiUserID);
 
@@ -1713,9 +1823,10 @@ ObjectUserAPI_userSendPasswordResetV1(apiClient_t *apiClient, int *pkiUserID, ob
     cJSON *localVarSingleItemJSON_body = NULL;
     if (body != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_body = object_convertToJSON(body);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_body);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -1727,6 +1838,7 @@ ObjectUserAPI_userSendPasswordResetV1(apiClient_t *apiClient, int *pkiUserID, ob
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -1742,11 +1854,14 @@ ObjectUserAPI_userSendPasswordResetV1(apiClient_t *apiClient, int *pkiUserID, ob
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
-    cJSON_Delete(ObjectUserAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    user_send_password_reset_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = user_send_password_reset_v1_response_parseFromJSON(ObjectUserAPIlocalVarJSON);
+        cJSON_Delete(ObjectUserAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

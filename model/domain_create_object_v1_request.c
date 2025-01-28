@@ -5,7 +5,7 @@
 
 
 
-domain_create_object_v1_request_t *domain_create_object_v1_request_create(
+static domain_create_object_v1_request_t *domain_create_object_v1_request_create_internal(
     list_t *a_obj_domain
     ) {
     domain_create_object_v1_request_t *domain_create_object_v1_request_local_var = malloc(sizeof(domain_create_object_v1_request_t));
@@ -14,12 +14,24 @@ domain_create_object_v1_request_t *domain_create_object_v1_request_create(
     }
     domain_create_object_v1_request_local_var->a_obj_domain = a_obj_domain;
 
+    domain_create_object_v1_request_local_var->_library_owned = 1;
     return domain_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) domain_create_object_v1_request_t *domain_create_object_v1_request_create(
+    list_t *a_obj_domain
+    ) {
+    return domain_create_object_v1_request_create_internal (
+        a_obj_domain
+        );
+}
 
 void domain_create_object_v1_request_free(domain_create_object_v1_request_t *domain_create_object_v1_request) {
     if(NULL == domain_create_object_v1_request){
+        return ;
+    }
+    if(domain_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "domain_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ domain_create_object_v1_request_t *domain_create_object_v1_request_parseFromJSON
 
     // domain_create_object_v1_request->a_obj_domain
     cJSON *a_obj_domain = cJSON_GetObjectItemCaseSensitive(domain_create_object_v1_requestJSON, "a_objDomain");
+    if (cJSON_IsNull(a_obj_domain)) {
+        a_obj_domain = NULL;
+    }
     if (!a_obj_domain) {
         goto end;
     }
@@ -96,7 +111,7 @@ domain_create_object_v1_request_t *domain_create_object_v1_request_parseFromJSON
     }
 
 
-    domain_create_object_v1_request_local_var = domain_create_object_v1_request_create (
+    domain_create_object_v1_request_local_var = domain_create_object_v1_request_create_internal (
         a_obj_domainList
         );
 

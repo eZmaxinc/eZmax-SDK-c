@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_webhook_managementevent__e field_e_webhook_ma
     return 0;
 }
 
-cJSON *field_e_webhook_managementevent_field_e_webhook_managementevent_convertToJSON(ezmax_api_definition__full_field_e_webhook_managementevent__e field_e_webhook_managementevent) {
+cJSON *field_e_webhook_managementevent_convertToJSON(ezmax_api_definition__full_field_e_webhook_managementevent__e field_e_webhook_managementevent) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_webhook_managementevent", field_e_webhook_managementevent_field_e_webhook_managementevent_ToString(field_e_webhook_managementevent)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_webhook_managementevent__e field_e_webhook_managementevent_field_e_webhook_managementevent_parseFromJSON(cJSON *field_e_webhook_managementeventJSON) {
-    ezmax_api_definition__full_field_e_webhook_managementevent__e *field_e_webhook_managementevent = NULL;
-    ezmax_api_definition__full_field_e_webhook_managementevent__e field_e_webhook_managementeventVariable;
-    cJSON *field_e_webhook_managementeventVar = cJSON_GetObjectItemCaseSensitive(field_e_webhook_managementeventJSON, "field_e_webhook_managementevent");
-    if(!cJSON_IsString(field_e_webhook_managementeventVar) || (field_e_webhook_managementeventVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_webhook_managementevent__e field_e_webhook_managementevent_parseFromJSON(cJSON *field_e_webhook_managementeventJSON) {
+    if(!cJSON_IsString(field_e_webhook_managementeventJSON) || (field_e_webhook_managementeventJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_webhook_managementeventVariable = field_e_webhook_managementevent_field_e_webhook_managementevent_FromString(field_e_webhook_managementeventVar->valuestring);
-    return field_e_webhook_managementeventVariable;
-end:
-    return 0;
+    return field_e_webhook_managementevent_field_e_webhook_managementevent_FromString(field_e_webhook_managementeventJSON->valuestring);
 }

@@ -25,9 +25,10 @@ typedef struct common_response_obj_debug_payload_t {
     int b_version_deprecated; //boolean
     char *dt_response_date; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } common_response_obj_debug_payload_t;
 
-common_response_obj_debug_payload_t *common_response_obj_debug_payload_create(
+__attribute__((deprecated)) common_response_obj_debug_payload_t *common_response_obj_debug_payload_create(
     int i_version_min,
     int i_version_max,
     list_t *a_required_permission,

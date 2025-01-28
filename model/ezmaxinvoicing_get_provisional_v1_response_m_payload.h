@@ -16,6 +16,8 @@
 typedef struct ezmaxinvoicing_get_provisional_v1_response_m_payload_t ezmaxinvoicing_get_provisional_v1_response_m_payload_t;
 
 #include "common_audit.h"
+#include "custom_ezmaxinvoicing_ezsigndocument_response.h"
+#include "custom_ezmaxinvoicing_ezsignfolder_response.h"
 #include "custom_ezmaxpricing_response.h"
 #include "ezmaxinvoicingagent_response_compound.h"
 #include "ezmaxinvoicingcontract_response_compound.h"
@@ -24,15 +26,6 @@ typedef struct ezmaxinvoicing_get_provisional_v1_response_m_payload_t ezmaxinvoi
 #include "ezmaxinvoicingsummaryinternal_response_compound.h"
 #include "ezmaxinvoicinguser_response_compound.h"
 #include "field_e_ezmaxinvoicing_paymenttype.h"
-#include "object.h"
-
-// Enum  for ezmaxinvoicing_get_provisional_v1_response_m_payload
-
-typedef enum  { ezmax_api_definition__full_ezmaxinvoicing_get_provisional_v1_response_m_payload__NULL = 0, ezmax_api_definition__full_ezmaxinvoicing_get_provisional_v1_response_m_payload__Cheque, ezmax_api_definition__full_ezmaxinvoicing_get_provisional_v1_response_m_payload__CreditCard, ezmax_api_definition__full_ezmaxinvoicing_get_provisional_v1_response_m_payload__DirectDebit } ezmax_api_definition__full_ezmaxinvoicing_get_provisional_v1_response_m_payload__e;
-
-char* ezmaxinvoicing_get_provisional_v1_response_m_payload_e_ezmaxinvoicing_paymenttype_ToString(ezmax_api_definition__full_ezmaxinvoicing_get_provisional_v1_response_m_payload__e e_ezmaxinvoicing_paymenttype);
-
-ezmax_api_definition__full_ezmaxinvoicing_get_provisional_v1_response_m_payload__e ezmaxinvoicing_get_provisional_v1_response_m_payload_e_ezmaxinvoicing_paymenttype_FromString(char* e_ezmaxinvoicing_paymenttype);
 
 
 
@@ -44,7 +37,7 @@ typedef struct ezmaxinvoicing_get_provisional_v1_response_m_payload_t {
     char *s_systemconfigurationtype_description_x; // string
     char *yyyymm_ezmaxinvoicing; // string
     int i_ezmaxinvoicing_days; //numeric
-    field_e_ezmaxinvoicing_paymenttype_t *e_ezmaxinvoicing_paymenttype; // custom
+    ezmax_api_definition__full_field_e_ezmaxinvoicing_paymenttype__e e_ezmaxinvoicing_paymenttype; //referenced enum
     char *d_ezmaxinvoicing_rebatepaymenttype; // string
     int i_ezmaxinvoicing_contractlength; //numeric
     char *d_ezmaxinvoicing_rebatecontractlength; // string
@@ -60,9 +53,10 @@ typedef struct ezmaxinvoicing_get_provisional_v1_response_m_payload_t {
     list_t *a_obj_ezmaxinvoicingezsignfolder; //nonprimitive container
     list_t *a_obj_ezmaxinvoicingezsigndocument; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezmaxinvoicing_get_provisional_v1_response_m_payload_t;
 
-ezmaxinvoicing_get_provisional_v1_response_m_payload_t *ezmaxinvoicing_get_provisional_v1_response_m_payload_create(
+__attribute__((deprecated)) ezmaxinvoicing_get_provisional_v1_response_m_payload_t *ezmaxinvoicing_get_provisional_v1_response_m_payload_create(
     int pki_ezmaxinvoicing_id,
     int fki_ezmaxinvoicingcontract_id,
     int fki_ezmaxpricing_id,
@@ -70,7 +64,7 @@ ezmaxinvoicing_get_provisional_v1_response_m_payload_t *ezmaxinvoicing_get_provi
     char *s_systemconfigurationtype_description_x,
     char *yyyymm_ezmaxinvoicing,
     int i_ezmaxinvoicing_days,
-    field_e_ezmaxinvoicing_paymenttype_t *e_ezmaxinvoicing_paymenttype,
+    ezmax_api_definition__full_field_e_ezmaxinvoicing_paymenttype__e e_ezmaxinvoicing_paymenttype,
     char *d_ezmaxinvoicing_rebatepaymenttype,
     int i_ezmaxinvoicing_contractlength,
     char *d_ezmaxinvoicing_rebatecontractlength,

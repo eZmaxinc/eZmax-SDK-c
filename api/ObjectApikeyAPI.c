@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 // Functions for enum EORDERBY for ObjectApikeyAPI_apikeyGetListV1
 
@@ -120,11 +115,14 @@ ObjectApikeyAPI_apikeyCreateObjectV2(apiClient_t *apiClient, apikey_create_objec
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/apikey")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/apikey");
+    char *localVarPath = strdup("/2/object/apikey");
+
 
 
 
@@ -133,9 +131,10 @@ ObjectApikeyAPI_apikeyCreateObjectV2(apiClient_t *apiClient, apikey_create_objec
     cJSON *localVarSingleItemJSON_apikey_create_object_v2_request = NULL;
     if (apikey_create_object_v2_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_apikey_create_object_v2_request = apikey_create_object_v2_request_convertToJSON(apikey_create_object_v2_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_apikey_create_object_v2_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -147,6 +146,7 @@ ObjectApikeyAPI_apikeyCreateObjectV2(apiClient_t *apiClient, apikey_create_objec
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -154,11 +154,14 @@ ObjectApikeyAPI_apikeyCreateObjectV2(apiClient_t *apiClient, apikey_create_objec
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectApikeyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    apikey_create_object_v2_response_t *elementToReturn = apikey_create_object_v2_response_parseFromJSON(ObjectApikeyAPIlocalVarJSON);
-    cJSON_Delete(ObjectApikeyAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    apikey_create_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectApikeyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = apikey_create_object_v2_response_parseFromJSON(ObjectApikeyAPIlocalVarJSON);
+        cJSON_Delete(ObjectApikeyAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -189,7 +192,7 @@ end:
 //
 // 
 //
-common_response_t*
+apikey_edit_object_v1_response_t*
 ObjectApikeyAPI_apikeyEditObjectV1(apiClient_t *apiClient, int *pkiApikeyID, apikey_edit_object_v1_request_t *apikey_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -198,15 +201,18 @@ ObjectApikeyAPI_apikeyEditObjectV1(apiClient_t *apiClient, int *pkiApikeyID, api
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/apikey/{pkiApikeyID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/apikey/{pkiApikeyID}");
+    char *localVarPath = strdup("/1/object/apikey/{pkiApikeyID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiApikeyID =  + strlen("{ pkiApikeyID }");
+    long sizeOfPathParams_pkiApikeyID =  + sizeof("{ pkiApikeyID }") - 1;
     if(pkiApikeyID == 0){
         goto end;
     }
@@ -214,7 +220,7 @@ ObjectApikeyAPI_apikeyEditObjectV1(apiClient_t *apiClient, int *pkiApikeyID, api
     snprintf(localVarToReplace_pkiApikeyID, sizeOfPathParams_pkiApikeyID, "{%s}", "pkiApikeyID");
 
     char localVarBuff_pkiApikeyID[256];
-    intToStr(localVarBuff_pkiApikeyID, *pkiApikeyID);
+    snprintf(localVarBuff_pkiApikeyID, sizeof localVarBuff_pkiApikeyID, "%ld", (long)*pkiApikeyID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiApikeyID, localVarBuff_pkiApikeyID);
 
@@ -225,9 +231,10 @@ ObjectApikeyAPI_apikeyEditObjectV1(apiClient_t *apiClient, int *pkiApikeyID, api
     cJSON *localVarSingleItemJSON_apikey_edit_object_v1_request = NULL;
     if (apikey_edit_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_apikey_edit_object_v1_request = apikey_edit_object_v1_request_convertToJSON(apikey_edit_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_apikey_edit_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -239,6 +246,7 @@ ObjectApikeyAPI_apikeyEditObjectV1(apiClient_t *apiClient, int *pkiApikeyID, api
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -254,11 +262,14 @@ ObjectApikeyAPI_apikeyEditObjectV1(apiClient_t *apiClient, int *pkiApikeyID, api
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectApikeyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectApikeyAPIlocalVarJSON);
-    cJSON_Delete(ObjectApikeyAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    apikey_edit_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectApikeyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = apikey_edit_object_v1_response_parseFromJSON(ObjectApikeyAPIlocalVarJSON);
+        cJSON_Delete(ObjectApikeyAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -299,15 +310,18 @@ ObjectApikeyAPI_apikeyEditPermissionsV1(apiClient_t *apiClient, int *pkiApikeyID
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/apikey/{pkiApikeyID}/editPermissions")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/apikey/{pkiApikeyID}/editPermissions");
+    char *localVarPath = strdup("/1/object/apikey/{pkiApikeyID}/editPermissions");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiApikeyID =  + strlen("{ pkiApikeyID }");
+    long sizeOfPathParams_pkiApikeyID =  + sizeof("{ pkiApikeyID }") - 1;
     if(pkiApikeyID == 0){
         goto end;
     }
@@ -315,7 +329,7 @@ ObjectApikeyAPI_apikeyEditPermissionsV1(apiClient_t *apiClient, int *pkiApikeyID
     snprintf(localVarToReplace_pkiApikeyID, sizeOfPathParams_pkiApikeyID, "{%s}", "pkiApikeyID");
 
     char localVarBuff_pkiApikeyID[256];
-    intToStr(localVarBuff_pkiApikeyID, *pkiApikeyID);
+    snprintf(localVarBuff_pkiApikeyID, sizeof localVarBuff_pkiApikeyID, "%ld", (long)*pkiApikeyID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiApikeyID, localVarBuff_pkiApikeyID);
 
@@ -326,9 +340,10 @@ ObjectApikeyAPI_apikeyEditPermissionsV1(apiClient_t *apiClient, int *pkiApikeyID
     cJSON *localVarSingleItemJSON_apikey_edit_permissions_v1_request = NULL;
     if (apikey_edit_permissions_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_apikey_edit_permissions_v1_request = apikey_edit_permissions_v1_request_convertToJSON(apikey_edit_permissions_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_apikey_edit_permissions_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -340,6 +355,7 @@ ObjectApikeyAPI_apikeyEditPermissionsV1(apiClient_t *apiClient, int *pkiApikeyID
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -355,11 +371,14 @@ ObjectApikeyAPI_apikeyEditPermissionsV1(apiClient_t *apiClient, int *pkiApikeyID
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectApikeyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    apikey_edit_permissions_v1_response_t *elementToReturn = apikey_edit_permissions_v1_response_parseFromJSON(ObjectApikeyAPIlocalVarJSON);
-    cJSON_Delete(ObjectApikeyAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    apikey_edit_permissions_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectApikeyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = apikey_edit_permissions_v1_response_parseFromJSON(ObjectApikeyAPIlocalVarJSON);
+        cJSON_Delete(ObjectApikeyAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -400,11 +419,14 @@ ObjectApikeyAPI_apikeyGenerateDelegatedCredentialsV1(apiClient_t *apiClient, api
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/apikey/generateDelegatedCredentials")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/apikey/generateDelegatedCredentials");
+    char *localVarPath = strdup("/1/object/apikey/generateDelegatedCredentials");
+
 
 
 
@@ -413,9 +435,10 @@ ObjectApikeyAPI_apikeyGenerateDelegatedCredentialsV1(apiClient_t *apiClient, api
     cJSON *localVarSingleItemJSON_apikey_generate_delegated_credentials_v1_request = NULL;
     if (apikey_generate_delegated_credentials_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_apikey_generate_delegated_credentials_v1_request = apikey_generate_delegated_credentials_v1_request_convertToJSON(apikey_generate_delegated_credentials_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_apikey_generate_delegated_credentials_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -427,6 +450,7 @@ ObjectApikeyAPI_apikeyGenerateDelegatedCredentialsV1(apiClient_t *apiClient, api
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -438,11 +462,14 @@ ObjectApikeyAPI_apikeyGenerateDelegatedCredentialsV1(apiClient_t *apiClient, api
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectApikeyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    apikey_generate_delegated_credentials_v1_response_t *elementToReturn = apikey_generate_delegated_credentials_v1_response_parseFromJSON(ObjectApikeyAPIlocalVarJSON);
-    cJSON_Delete(ObjectApikeyAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    apikey_generate_delegated_credentials_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectApikeyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = apikey_generate_delegated_credentials_v1_response_parseFromJSON(ObjectApikeyAPIlocalVarJSON);
+        cJSON_Delete(ObjectApikeyAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -480,15 +507,18 @@ ObjectApikeyAPI_apikeyGetCorsV1(apiClient_t *apiClient, int *pkiApikeyID)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/apikey/{pkiApikeyID}/getCors")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/apikey/{pkiApikeyID}/getCors");
+    char *localVarPath = strdup("/1/object/apikey/{pkiApikeyID}/getCors");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiApikeyID =  + strlen("{ pkiApikeyID }");
+    long sizeOfPathParams_pkiApikeyID =  + sizeof("{ pkiApikeyID }") - 1;
     if(pkiApikeyID == 0){
         goto end;
     }
@@ -496,7 +526,7 @@ ObjectApikeyAPI_apikeyGetCorsV1(apiClient_t *apiClient, int *pkiApikeyID)
     snprintf(localVarToReplace_pkiApikeyID, sizeOfPathParams_pkiApikeyID, "{%s}", "pkiApikeyID");
 
     char localVarBuff_pkiApikeyID[256];
-    intToStr(localVarBuff_pkiApikeyID, *pkiApikeyID);
+    snprintf(localVarBuff_pkiApikeyID, sizeof localVarBuff_pkiApikeyID, "%ld", (long)*pkiApikeyID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiApikeyID, localVarBuff_pkiApikeyID);
 
@@ -511,6 +541,7 @@ ObjectApikeyAPI_apikeyGetCorsV1(apiClient_t *apiClient, int *pkiApikeyID)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -522,11 +553,14 @@ ObjectApikeyAPI_apikeyGetCorsV1(apiClient_t *apiClient, int *pkiApikeyID)
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectApikeyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    apikey_get_cors_v1_response_t *elementToReturn = apikey_get_cors_v1_response_parseFromJSON(ObjectApikeyAPIlocalVarJSON);
-    cJSON_Delete(ObjectApikeyAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    apikey_get_cors_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectApikeyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = apikey_get_cors_v1_response_parseFromJSON(ObjectApikeyAPIlocalVarJSON);
+        cJSON_Delete(ObjectApikeyAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -562,11 +596,14 @@ ObjectApikeyAPI_apikeyGetListV1(apiClient_t *apiClient, ezmax_api_definition__fu
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/apikey/getList")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/apikey/getList");
+    char *localVarPath = strdup("/1/object/apikey/getList");
+
 
 
 
@@ -591,7 +628,7 @@ ObjectApikeyAPI_apikeyGetListV1(apiClient_t *apiClient, ezmax_api_definition__fu
     {
         keyQuery_eOrderBy = strdup("eOrderBy");
         valueQuery_eOrderBy = (eOrderBy);
-        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, (void *)strdup(apikeyGetListV1_EORDERBY_ToString(
+        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, strdup(apikeyGetListV1_EORDERBY_ToString(
         valueQuery_eOrderBy)));
         list_addElement(localVarQueryParameters,keyPairQuery_eOrderBy);
     }
@@ -643,6 +680,7 @@ ObjectApikeyAPI_apikeyGetListV1(apiClient_t *apiClient, ezmax_api_definition__fu
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -654,11 +692,14 @@ ObjectApikeyAPI_apikeyGetListV1(apiClient_t *apiClient, ezmax_api_definition__fu
     //    printf("%s\n","The URL is valid, but one of the Accept header is not defined or invalid. For example, you set the header \&quot;Accept: application/json\&quot; but the function can only return \&quot;Content-type: image/png\&quot;");
     //}
     //nonprimitive not container
-    cJSON *ObjectApikeyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    apikey_get_list_v1_response_t *elementToReturn = apikey_get_list_v1_response_parseFromJSON(ObjectApikeyAPIlocalVarJSON);
-    cJSON_Delete(ObjectApikeyAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    apikey_get_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectApikeyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = apikey_get_list_v1_response_parseFromJSON(ObjectApikeyAPIlocalVarJSON);
+        cJSON_Delete(ObjectApikeyAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -742,15 +783,18 @@ ObjectApikeyAPI_apikeyGetObjectV2(apiClient_t *apiClient, int *pkiApikeyID)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/apikey/{pkiApikeyID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/apikey/{pkiApikeyID}");
+    char *localVarPath = strdup("/2/object/apikey/{pkiApikeyID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiApikeyID =  + strlen("{ pkiApikeyID }");
+    long sizeOfPathParams_pkiApikeyID =  + sizeof("{ pkiApikeyID }") - 1;
     if(pkiApikeyID == 0){
         goto end;
     }
@@ -758,7 +802,7 @@ ObjectApikeyAPI_apikeyGetObjectV2(apiClient_t *apiClient, int *pkiApikeyID)
     snprintf(localVarToReplace_pkiApikeyID, sizeOfPathParams_pkiApikeyID, "{%s}", "pkiApikeyID");
 
     char localVarBuff_pkiApikeyID[256];
-    intToStr(localVarBuff_pkiApikeyID, *pkiApikeyID);
+    snprintf(localVarBuff_pkiApikeyID, sizeof localVarBuff_pkiApikeyID, "%ld", (long)*pkiApikeyID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiApikeyID, localVarBuff_pkiApikeyID);
 
@@ -773,6 +817,7 @@ ObjectApikeyAPI_apikeyGetObjectV2(apiClient_t *apiClient, int *pkiApikeyID)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -784,11 +829,14 @@ ObjectApikeyAPI_apikeyGetObjectV2(apiClient_t *apiClient, int *pkiApikeyID)
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectApikeyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    apikey_get_object_v2_response_t *elementToReturn = apikey_get_object_v2_response_parseFromJSON(ObjectApikeyAPIlocalVarJSON);
-    cJSON_Delete(ObjectApikeyAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    apikey_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectApikeyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = apikey_get_object_v2_response_parseFromJSON(ObjectApikeyAPIlocalVarJSON);
+        cJSON_Delete(ObjectApikeyAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -822,15 +870,18 @@ ObjectApikeyAPI_apikeyGetPermissionsV1(apiClient_t *apiClient, int *pkiApikeyID)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/apikey/{pkiApikeyID}/getPermissions")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/apikey/{pkiApikeyID}/getPermissions");
+    char *localVarPath = strdup("/1/object/apikey/{pkiApikeyID}/getPermissions");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiApikeyID =  + strlen("{ pkiApikeyID }");
+    long sizeOfPathParams_pkiApikeyID =  + sizeof("{ pkiApikeyID }") - 1;
     if(pkiApikeyID == 0){
         goto end;
     }
@@ -838,7 +889,7 @@ ObjectApikeyAPI_apikeyGetPermissionsV1(apiClient_t *apiClient, int *pkiApikeyID)
     snprintf(localVarToReplace_pkiApikeyID, sizeOfPathParams_pkiApikeyID, "{%s}", "pkiApikeyID");
 
     char localVarBuff_pkiApikeyID[256];
-    intToStr(localVarBuff_pkiApikeyID, *pkiApikeyID);
+    snprintf(localVarBuff_pkiApikeyID, sizeof localVarBuff_pkiApikeyID, "%ld", (long)*pkiApikeyID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiApikeyID, localVarBuff_pkiApikeyID);
 
@@ -853,6 +904,7 @@ ObjectApikeyAPI_apikeyGetPermissionsV1(apiClient_t *apiClient, int *pkiApikeyID)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -864,11 +916,14 @@ ObjectApikeyAPI_apikeyGetPermissionsV1(apiClient_t *apiClient, int *pkiApikeyID)
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectApikeyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    apikey_get_permissions_v1_response_t *elementToReturn = apikey_get_permissions_v1_response_parseFromJSON(ObjectApikeyAPIlocalVarJSON);
-    cJSON_Delete(ObjectApikeyAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    apikey_get_permissions_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectApikeyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = apikey_get_permissions_v1_response_parseFromJSON(ObjectApikeyAPIlocalVarJSON);
+        cJSON_Delete(ObjectApikeyAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -902,15 +957,18 @@ ObjectApikeyAPI_apikeyGetSubnetsV1(apiClient_t *apiClient, int *pkiApikeyID)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/apikey/{pkiApikeyID}/getSubnets")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/apikey/{pkiApikeyID}/getSubnets");
+    char *localVarPath = strdup("/1/object/apikey/{pkiApikeyID}/getSubnets");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiApikeyID =  + strlen("{ pkiApikeyID }");
+    long sizeOfPathParams_pkiApikeyID =  + sizeof("{ pkiApikeyID }") - 1;
     if(pkiApikeyID == 0){
         goto end;
     }
@@ -918,7 +976,7 @@ ObjectApikeyAPI_apikeyGetSubnetsV1(apiClient_t *apiClient, int *pkiApikeyID)
     snprintf(localVarToReplace_pkiApikeyID, sizeOfPathParams_pkiApikeyID, "{%s}", "pkiApikeyID");
 
     char localVarBuff_pkiApikeyID[256];
-    intToStr(localVarBuff_pkiApikeyID, *pkiApikeyID);
+    snprintf(localVarBuff_pkiApikeyID, sizeof localVarBuff_pkiApikeyID, "%ld", (long)*pkiApikeyID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiApikeyID, localVarBuff_pkiApikeyID);
 
@@ -933,6 +991,7 @@ ObjectApikeyAPI_apikeyGetSubnetsV1(apiClient_t *apiClient, int *pkiApikeyID)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -944,11 +1003,14 @@ ObjectApikeyAPI_apikeyGetSubnetsV1(apiClient_t *apiClient, int *pkiApikeyID)
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectApikeyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    apikey_get_subnets_v1_response_t *elementToReturn = apikey_get_subnets_v1_response_parseFromJSON(ObjectApikeyAPIlocalVarJSON);
-    cJSON_Delete(ObjectApikeyAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    apikey_get_subnets_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectApikeyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = apikey_get_subnets_v1_response_parseFromJSON(ObjectApikeyAPIlocalVarJSON);
+        cJSON_Delete(ObjectApikeyAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -984,15 +1046,18 @@ ObjectApikeyAPI_apikeyRegenerateV1(apiClient_t *apiClient, int *pkiApikeyID, api
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/apikey/{pkiApikeyID}/regenerate")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/apikey/{pkiApikeyID}/regenerate");
+    char *localVarPath = strdup("/1/object/apikey/{pkiApikeyID}/regenerate");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiApikeyID =  + strlen("{ pkiApikeyID }");
+    long sizeOfPathParams_pkiApikeyID =  + sizeof("{ pkiApikeyID }") - 1;
     if(pkiApikeyID == 0){
         goto end;
     }
@@ -1000,7 +1065,7 @@ ObjectApikeyAPI_apikeyRegenerateV1(apiClient_t *apiClient, int *pkiApikeyID, api
     snprintf(localVarToReplace_pkiApikeyID, sizeOfPathParams_pkiApikeyID, "{%s}", "pkiApikeyID");
 
     char localVarBuff_pkiApikeyID[256];
-    intToStr(localVarBuff_pkiApikeyID, *pkiApikeyID);
+    snprintf(localVarBuff_pkiApikeyID, sizeof localVarBuff_pkiApikeyID, "%ld", (long)*pkiApikeyID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiApikeyID, localVarBuff_pkiApikeyID);
 
@@ -1011,9 +1076,10 @@ ObjectApikeyAPI_apikeyRegenerateV1(apiClient_t *apiClient, int *pkiApikeyID, api
     cJSON *localVarSingleItemJSON_apikey_regenerate_v1_request = NULL;
     if (apikey_regenerate_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_apikey_regenerate_v1_request = apikey_regenerate_v1_request_convertToJSON(apikey_regenerate_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_apikey_regenerate_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -1025,6 +1091,7 @@ ObjectApikeyAPI_apikeyRegenerateV1(apiClient_t *apiClient, int *pkiApikeyID, api
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -1036,11 +1103,14 @@ ObjectApikeyAPI_apikeyRegenerateV1(apiClient_t *apiClient, int *pkiApikeyID, api
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectApikeyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    apikey_regenerate_v1_response_t *elementToReturn = apikey_regenerate_v1_response_parseFromJSON(ObjectApikeyAPIlocalVarJSON);
-    cJSON_Delete(ObjectApikeyAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    apikey_regenerate_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectApikeyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = apikey_regenerate_v1_response_parseFromJSON(ObjectApikeyAPIlocalVarJSON);
+        cJSON_Delete(ObjectApikeyAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

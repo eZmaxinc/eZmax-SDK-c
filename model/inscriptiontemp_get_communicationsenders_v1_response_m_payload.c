@@ -5,7 +5,7 @@
 
 
 
-inscriptiontemp_get_communicationsenders_v1_response_m_payload_t *inscriptiontemp_get_communicationsenders_v1_response_m_payload_create(
+static inscriptiontemp_get_communicationsenders_v1_response_m_payload_t *inscriptiontemp_get_communicationsenders_v1_response_m_payload_create_internal(
     list_t *a_obj_communicationsenders
     ) {
     inscriptiontemp_get_communicationsenders_v1_response_m_payload_t *inscriptiontemp_get_communicationsenders_v1_response_m_payload_local_var = malloc(sizeof(inscriptiontemp_get_communicationsenders_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ inscriptiontemp_get_communicationsenders_v1_response_m_payload_t *inscriptiontem
     }
     inscriptiontemp_get_communicationsenders_v1_response_m_payload_local_var->a_obj_communicationsenders = a_obj_communicationsenders;
 
+    inscriptiontemp_get_communicationsenders_v1_response_m_payload_local_var->_library_owned = 1;
     return inscriptiontemp_get_communicationsenders_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) inscriptiontemp_get_communicationsenders_v1_response_m_payload_t *inscriptiontemp_get_communicationsenders_v1_response_m_payload_create(
+    list_t *a_obj_communicationsenders
+    ) {
+    return inscriptiontemp_get_communicationsenders_v1_response_m_payload_create_internal (
+        a_obj_communicationsenders
+        );
+}
 
 void inscriptiontemp_get_communicationsenders_v1_response_m_payload_free(inscriptiontemp_get_communicationsenders_v1_response_m_payload_t *inscriptiontemp_get_communicationsenders_v1_response_m_payload) {
     if(NULL == inscriptiontemp_get_communicationsenders_v1_response_m_payload){
+        return ;
+    }
+    if(inscriptiontemp_get_communicationsenders_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "inscriptiontemp_get_communicationsenders_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ inscriptiontemp_get_communicationsenders_v1_response_m_payload_t *inscriptiontem
 
     // inscriptiontemp_get_communicationsenders_v1_response_m_payload->a_obj_communicationsenders
     cJSON *a_obj_communicationsenders = cJSON_GetObjectItemCaseSensitive(inscriptiontemp_get_communicationsenders_v1_response_m_payloadJSON, "a_objCommunicationsenders");
+    if (cJSON_IsNull(a_obj_communicationsenders)) {
+        a_obj_communicationsenders = NULL;
+    }
     if (!a_obj_communicationsenders) {
         goto end;
     }
@@ -96,7 +111,7 @@ inscriptiontemp_get_communicationsenders_v1_response_m_payload_t *inscriptiontem
     }
 
 
-    inscriptiontemp_get_communicationsenders_v1_response_m_payload_local_var = inscriptiontemp_get_communicationsenders_v1_response_m_payload_create (
+    inscriptiontemp_get_communicationsenders_v1_response_m_payload_local_var = inscriptiontemp_get_communicationsenders_v1_response_m_payload_create_internal (
         a_obj_communicationsendersList
         );
 

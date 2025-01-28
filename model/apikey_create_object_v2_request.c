@@ -5,7 +5,7 @@
 
 
 
-apikey_create_object_v2_request_t *apikey_create_object_v2_request_create(
+static apikey_create_object_v2_request_t *apikey_create_object_v2_request_create_internal(
     list_t *a_obj_apikey
     ) {
     apikey_create_object_v2_request_t *apikey_create_object_v2_request_local_var = malloc(sizeof(apikey_create_object_v2_request_t));
@@ -14,18 +14,30 @@ apikey_create_object_v2_request_t *apikey_create_object_v2_request_create(
     }
     apikey_create_object_v2_request_local_var->a_obj_apikey = a_obj_apikey;
 
+    apikey_create_object_v2_request_local_var->_library_owned = 1;
     return apikey_create_object_v2_request_local_var;
 }
 
+__attribute__((deprecated)) apikey_create_object_v2_request_t *apikey_create_object_v2_request_create(
+    list_t *a_obj_apikey
+    ) {
+    return apikey_create_object_v2_request_create_internal (
+        a_obj_apikey
+        );
+}
 
 void apikey_create_object_v2_request_free(apikey_create_object_v2_request_t *apikey_create_object_v2_request) {
     if(NULL == apikey_create_object_v2_request){
         return ;
     }
+    if(apikey_create_object_v2_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "apikey_create_object_v2_request_free");
+        return ;
+    }
     listEntry_t *listEntry;
     if (apikey_create_object_v2_request->a_obj_apikey) {
         list_ForEach(listEntry, apikey_create_object_v2_request->a_obj_apikey) {
-            apikey_request_free(listEntry->data);
+            apikey_request_compound_free(listEntry->data);
         }
         list_freeList(apikey_create_object_v2_request->a_obj_apikey);
         apikey_create_object_v2_request->a_obj_apikey = NULL;
@@ -48,7 +60,7 @@ cJSON *apikey_create_object_v2_request_convertToJSON(apikey_create_object_v2_req
     listEntry_t *a_obj_apikeyListEntry;
     if (apikey_create_object_v2_request->a_obj_apikey) {
     list_ForEach(a_obj_apikeyListEntry, apikey_create_object_v2_request->a_obj_apikey) {
-    cJSON *itemLocal = apikey_request_convertToJSON(a_obj_apikeyListEntry->data);
+    cJSON *itemLocal = apikey_request_compound_convertToJSON(a_obj_apikeyListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -73,6 +85,9 @@ apikey_create_object_v2_request_t *apikey_create_object_v2_request_parseFromJSON
 
     // apikey_create_object_v2_request->a_obj_apikey
     cJSON *a_obj_apikey = cJSON_GetObjectItemCaseSensitive(apikey_create_object_v2_requestJSON, "a_objApikey");
+    if (cJSON_IsNull(a_obj_apikey)) {
+        a_obj_apikey = NULL;
+    }
     if (!a_obj_apikey) {
         goto end;
     }
@@ -90,13 +105,13 @@ apikey_create_object_v2_request_t *apikey_create_object_v2_request_parseFromJSON
         if(!cJSON_IsObject(a_obj_apikey_local_nonprimitive)){
             goto end;
         }
-        apikey_request_t *a_obj_apikeyItem = apikey_request_parseFromJSON(a_obj_apikey_local_nonprimitive);
+        apikey_request_compound_t *a_obj_apikeyItem = apikey_request_compound_parseFromJSON(a_obj_apikey_local_nonprimitive);
 
         list_addElement(a_obj_apikeyList, a_obj_apikeyItem);
     }
 
 
-    apikey_create_object_v2_request_local_var = apikey_create_object_v2_request_create (
+    apikey_create_object_v2_request_local_var = apikey_create_object_v2_request_create_internal (
         a_obj_apikeyList
         );
 
@@ -105,7 +120,7 @@ end:
     if (a_obj_apikeyList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_apikeyList) {
-            apikey_request_free(listEntry->data);
+            apikey_request_compound_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_apikeyList);

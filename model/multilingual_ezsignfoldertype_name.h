@@ -22,9 +22,10 @@ typedef struct multilingual_ezsignfoldertype_name_t {
     char *s_ezsignfoldertype_name1; // string
     char *s_ezsignfoldertype_name2; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } multilingual_ezsignfoldertype_name_t;
 
-multilingual_ezsignfoldertype_name_t *multilingual_ezsignfoldertype_name_create(
+__attribute__((deprecated)) multilingual_ezsignfoldertype_name_t *multilingual_ezsignfoldertype_name_create(
     char *s_ezsignfoldertype_name1,
     char *s_ezsignfoldertype_name2
 );

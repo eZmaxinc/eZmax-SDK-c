@@ -23,9 +23,10 @@ typedef struct ezsignsignature_sign_v1_response_m_payload_t {
     char *dt_ezsignsignature_date_in_folder_timezone; // string
     struct custom_timezone_with_code_response_t *obj_timezone; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsignature_sign_v1_response_m_payload_t;
 
-ezsignsignature_sign_v1_response_m_payload_t *ezsignsignature_sign_v1_response_m_payload_create(
+__attribute__((deprecated)) ezsignsignature_sign_v1_response_m_payload_t *ezsignsignature_sign_v1_response_m_payload_create(
     char *dt_ezsignsignature_date_in_folder_timezone,
     custom_timezone_with_code_response_t *obj_timezone
 );

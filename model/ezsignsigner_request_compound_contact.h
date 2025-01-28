@@ -29,9 +29,10 @@ typedef struct ezsignsigner_request_compound_contact_t {
     char *s_phone_number; // string
     char *s_phone_number_cell; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsigner_request_compound_contact_t;
 
-ezsignsigner_request_compound_contact_t *ezsignsigner_request_compound_contact_create(
+__attribute__((deprecated)) ezsignsigner_request_compound_contact_t *ezsignsigner_request_compound_contact_create(
     char *s_contact_firstname,
     char *s_contact_lastname,
     int fki_language_id,

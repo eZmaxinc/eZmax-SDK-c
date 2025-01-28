@@ -28,9 +28,10 @@ typedef struct ezsigntemplatepackage_list_element_t {
     char *s_ezsignfoldertype_name_x; // string
     int b_ezsigntemplatepackage_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatepackage_list_element_t;
 
-ezsigntemplatepackage_list_element_t *ezsigntemplatepackage_list_element_create(
+__attribute__((deprecated)) ezsigntemplatepackage_list_element_t *ezsigntemplatepackage_list_element_create(
     int pki_ezsigntemplatepackage_id,
     int fki_ezsignfoldertype_id,
     int fki_language_id,

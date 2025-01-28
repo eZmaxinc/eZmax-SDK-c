@@ -5,7 +5,7 @@
 
 
 
-creditcardclient_list_element_t *creditcardclient_list_element_create(
+static creditcardclient_list_element_t *creditcardclient_list_element_create_internal(
     int pki_creditcardclient_id,
     int fki_creditcarddetail_id,
     int fki_creditcardtype_id,
@@ -32,12 +32,42 @@ creditcardclient_list_element_t *creditcardclient_list_element_create(
     creditcardclient_list_element_local_var->i_creditcarddetail_expirationyear = i_creditcarddetail_expirationyear;
     creditcardclient_list_element_local_var->i_creditcarddetail_lastdigits = i_creditcarddetail_lastdigits;
 
+    creditcardclient_list_element_local_var->_library_owned = 1;
     return creditcardclient_list_element_local_var;
 }
 
+__attribute__((deprecated)) creditcardclient_list_element_t *creditcardclient_list_element_create(
+    int pki_creditcardclient_id,
+    int fki_creditcarddetail_id,
+    int fki_creditcardtype_id,
+    int b_creditcardclientrelation_isdefault,
+    char *s_creditcardclient_description,
+    int b_creditcardclient_allowedcompanypayment,
+    int b_creditcardclient_allowedtranquillit,
+    int i_creditcarddetail_expirationmonth,
+    int i_creditcarddetail_expirationyear,
+    int i_creditcarddetail_lastdigits
+    ) {
+    return creditcardclient_list_element_create_internal (
+        pki_creditcardclient_id,
+        fki_creditcarddetail_id,
+        fki_creditcardtype_id,
+        b_creditcardclientrelation_isdefault,
+        s_creditcardclient_description,
+        b_creditcardclient_allowedcompanypayment,
+        b_creditcardclient_allowedtranquillit,
+        i_creditcarddetail_expirationmonth,
+        i_creditcarddetail_expirationyear,
+        i_creditcarddetail_lastdigits
+        );
+}
 
 void creditcardclient_list_element_free(creditcardclient_list_element_t *creditcardclient_list_element) {
     if(NULL == creditcardclient_list_element){
+        return ;
+    }
+    if(creditcardclient_list_element->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "creditcardclient_list_element_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -154,6 +184,9 @@ creditcardclient_list_element_t *creditcardclient_list_element_parseFromJSON(cJS
 
     // creditcardclient_list_element->pki_creditcardclient_id
     cJSON *pki_creditcardclient_id = cJSON_GetObjectItemCaseSensitive(creditcardclient_list_elementJSON, "pkiCreditcardclientID");
+    if (cJSON_IsNull(pki_creditcardclient_id)) {
+        pki_creditcardclient_id = NULL;
+    }
     if (!pki_creditcardclient_id) {
         goto end;
     }
@@ -166,6 +199,9 @@ creditcardclient_list_element_t *creditcardclient_list_element_parseFromJSON(cJS
 
     // creditcardclient_list_element->fki_creditcarddetail_id
     cJSON *fki_creditcarddetail_id = cJSON_GetObjectItemCaseSensitive(creditcardclient_list_elementJSON, "fkiCreditcarddetailID");
+    if (cJSON_IsNull(fki_creditcarddetail_id)) {
+        fki_creditcarddetail_id = NULL;
+    }
     if (!fki_creditcarddetail_id) {
         goto end;
     }
@@ -178,6 +214,9 @@ creditcardclient_list_element_t *creditcardclient_list_element_parseFromJSON(cJS
 
     // creditcardclient_list_element->fki_creditcardtype_id
     cJSON *fki_creditcardtype_id = cJSON_GetObjectItemCaseSensitive(creditcardclient_list_elementJSON, "fkiCreditcardtypeID");
+    if (cJSON_IsNull(fki_creditcardtype_id)) {
+        fki_creditcardtype_id = NULL;
+    }
     if (!fki_creditcardtype_id) {
         goto end;
     }
@@ -190,6 +229,9 @@ creditcardclient_list_element_t *creditcardclient_list_element_parseFromJSON(cJS
 
     // creditcardclient_list_element->b_creditcardclientrelation_isdefault
     cJSON *b_creditcardclientrelation_isdefault = cJSON_GetObjectItemCaseSensitive(creditcardclient_list_elementJSON, "bCreditcardclientrelationIsdefault");
+    if (cJSON_IsNull(b_creditcardclientrelation_isdefault)) {
+        b_creditcardclientrelation_isdefault = NULL;
+    }
     if (!b_creditcardclientrelation_isdefault) {
         goto end;
     }
@@ -202,6 +244,9 @@ creditcardclient_list_element_t *creditcardclient_list_element_parseFromJSON(cJS
 
     // creditcardclient_list_element->s_creditcardclient_description
     cJSON *s_creditcardclient_description = cJSON_GetObjectItemCaseSensitive(creditcardclient_list_elementJSON, "sCreditcardclientDescription");
+    if (cJSON_IsNull(s_creditcardclient_description)) {
+        s_creditcardclient_description = NULL;
+    }
     if (!s_creditcardclient_description) {
         goto end;
     }
@@ -214,6 +259,9 @@ creditcardclient_list_element_t *creditcardclient_list_element_parseFromJSON(cJS
 
     // creditcardclient_list_element->b_creditcardclient_allowedcompanypayment
     cJSON *b_creditcardclient_allowedcompanypayment = cJSON_GetObjectItemCaseSensitive(creditcardclient_list_elementJSON, "bCreditcardclientAllowedcompanypayment");
+    if (cJSON_IsNull(b_creditcardclient_allowedcompanypayment)) {
+        b_creditcardclient_allowedcompanypayment = NULL;
+    }
     if (!b_creditcardclient_allowedcompanypayment) {
         goto end;
     }
@@ -226,6 +274,9 @@ creditcardclient_list_element_t *creditcardclient_list_element_parseFromJSON(cJS
 
     // creditcardclient_list_element->b_creditcardclient_allowedtranquillit
     cJSON *b_creditcardclient_allowedtranquillit = cJSON_GetObjectItemCaseSensitive(creditcardclient_list_elementJSON, "bCreditcardclientAllowedtranquillit");
+    if (cJSON_IsNull(b_creditcardclient_allowedtranquillit)) {
+        b_creditcardclient_allowedtranquillit = NULL;
+    }
     if (!b_creditcardclient_allowedtranquillit) {
         goto end;
     }
@@ -238,6 +289,9 @@ creditcardclient_list_element_t *creditcardclient_list_element_parseFromJSON(cJS
 
     // creditcardclient_list_element->i_creditcarddetail_expirationmonth
     cJSON *i_creditcarddetail_expirationmonth = cJSON_GetObjectItemCaseSensitive(creditcardclient_list_elementJSON, "iCreditcarddetailExpirationmonth");
+    if (cJSON_IsNull(i_creditcarddetail_expirationmonth)) {
+        i_creditcarddetail_expirationmonth = NULL;
+    }
     if (!i_creditcarddetail_expirationmonth) {
         goto end;
     }
@@ -250,6 +304,9 @@ creditcardclient_list_element_t *creditcardclient_list_element_parseFromJSON(cJS
 
     // creditcardclient_list_element->i_creditcarddetail_expirationyear
     cJSON *i_creditcarddetail_expirationyear = cJSON_GetObjectItemCaseSensitive(creditcardclient_list_elementJSON, "iCreditcarddetailExpirationyear");
+    if (cJSON_IsNull(i_creditcarddetail_expirationyear)) {
+        i_creditcarddetail_expirationyear = NULL;
+    }
     if (!i_creditcarddetail_expirationyear) {
         goto end;
     }
@@ -262,6 +319,9 @@ creditcardclient_list_element_t *creditcardclient_list_element_parseFromJSON(cJS
 
     // creditcardclient_list_element->i_creditcarddetail_lastdigits
     cJSON *i_creditcarddetail_lastdigits = cJSON_GetObjectItemCaseSensitive(creditcardclient_list_elementJSON, "iCreditcarddetailLastdigits");
+    if (cJSON_IsNull(i_creditcarddetail_lastdigits)) {
+        i_creditcarddetail_lastdigits = NULL;
+    }
     if (!i_creditcarddetail_lastdigits) {
         goto end;
     }
@@ -273,7 +333,7 @@ creditcardclient_list_element_t *creditcardclient_list_element_parseFromJSON(cJS
     }
 
 
-    creditcardclient_list_element_local_var = creditcardclient_list_element_create (
+    creditcardclient_list_element_local_var = creditcardclient_list_element_create_internal (
         pki_creditcardclient_id->valuedouble,
         fki_creditcarddetail_id->valuedouble,
         fki_creditcardtype_id->valuedouble,

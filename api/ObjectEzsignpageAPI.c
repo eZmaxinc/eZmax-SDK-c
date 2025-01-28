@@ -5,16 +5,11 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Consult an Ezsignpage
 //
-common_response_t*
+ezsignpage_consult_v1_response_t*
 ObjectEzsignpageAPI_ezsignpageConsultV1(apiClient_t *apiClient, int *pkiEzsignpageID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -23,15 +18,18 @@ ObjectEzsignpageAPI_ezsignpageConsultV1(apiClient_t *apiClient, int *pkiEzsignpa
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignpage/{pkiEzsignpageID}/consult")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignpage/{pkiEzsignpageID}/consult");
+    char *localVarPath = strdup("/1/object/ezsignpage/{pkiEzsignpageID}/consult");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignpageID =  + strlen("{ pkiEzsignpageID }");
+    long sizeOfPathParams_pkiEzsignpageID =  + sizeof("{ pkiEzsignpageID }") - 1;
     if(pkiEzsignpageID == 0){
         goto end;
     }
@@ -39,7 +37,7 @@ ObjectEzsignpageAPI_ezsignpageConsultV1(apiClient_t *apiClient, int *pkiEzsignpa
     snprintf(localVarToReplace_pkiEzsignpageID, sizeOfPathParams_pkiEzsignpageID, "{%s}", "pkiEzsignpageID");
 
     char localVarBuff_pkiEzsignpageID[256];
-    intToStr(localVarBuff_pkiEzsignpageID, *pkiEzsignpageID);
+    snprintf(localVarBuff_pkiEzsignpageID, sizeof localVarBuff_pkiEzsignpageID, "%ld", (long)*pkiEzsignpageID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignpageID, localVarBuff_pkiEzsignpageID);
 
@@ -50,9 +48,10 @@ ObjectEzsignpageAPI_ezsignpageConsultV1(apiClient_t *apiClient, int *pkiEzsignpa
     cJSON *localVarSingleItemJSON_body = NULL;
     if (body != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_body = object_convertToJSON(body);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_body);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -64,6 +63,7 @@ ObjectEzsignpageAPI_ezsignpageConsultV1(apiClient_t *apiClient, int *pkiEzsignpa
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -79,11 +79,14 @@ ObjectEzsignpageAPI_ezsignpageConsultV1(apiClient_t *apiClient, int *pkiEzsignpa
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignpageAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignpageAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignpageAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignpage_consult_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignpageAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignpage_consult_v1_response_parseFromJSON(ObjectEzsignpageAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignpageAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

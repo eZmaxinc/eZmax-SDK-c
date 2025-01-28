@@ -4,32 +4,15 @@
 #include "activesession_response_compound_user.h"
 
 
-char* activesession_response_compound_user_e_user_ezsignsendreminderfrequency_ToString(ezmax_api_definition__full_activesession_response_compound_user__e e_user_ezsignsendreminderfrequency) {
-    char* e_user_ezsignsendreminderfrequencyArray[] =  { "NULL", "None", "Daily", "Weekly" };
-    return e_user_ezsignsendreminderfrequencyArray[e_user_ezsignsendreminderfrequency];
-}
 
-ezmax_api_definition__full_activesession_response_compound_user__e activesession_response_compound_user_e_user_ezsignsendreminderfrequency_FromString(char* e_user_ezsignsendreminderfrequency){
-    int stringToReturn = 0;
-    char *e_user_ezsignsendreminderfrequencyArray[] =  { "NULL", "None", "Daily", "Weekly" };
-    size_t sizeofArray = sizeof(e_user_ezsignsendreminderfrequencyArray) / sizeof(e_user_ezsignsendreminderfrequencyArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_user_ezsignsendreminderfrequency, e_user_ezsignsendreminderfrequencyArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-activesession_response_compound_user_t *activesession_response_compound_user_create(
+static activesession_response_compound_user_t *activesession_response_compound_user_create_internal(
     int pki_user_id,
     int fki_timezone_id,
     char *s_avatar_url,
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_email_address,
-    field_e_user_ezsignsendreminderfrequency_t *e_user_ezsignsendreminderfrequency,
+    ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__e e_user_ezsignsendreminderfrequency,
     int i_user_interfacecolor,
     int b_user_interfacedark,
     int i_user_listresult
@@ -49,12 +32,42 @@ activesession_response_compound_user_t *activesession_response_compound_user_cre
     activesession_response_compound_user_local_var->b_user_interfacedark = b_user_interfacedark;
     activesession_response_compound_user_local_var->i_user_listresult = i_user_listresult;
 
+    activesession_response_compound_user_local_var->_library_owned = 1;
     return activesession_response_compound_user_local_var;
 }
 
+__attribute__((deprecated)) activesession_response_compound_user_t *activesession_response_compound_user_create(
+    int pki_user_id,
+    int fki_timezone_id,
+    char *s_avatar_url,
+    char *s_user_firstname,
+    char *s_user_lastname,
+    char *s_email_address,
+    ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__e e_user_ezsignsendreminderfrequency,
+    int i_user_interfacecolor,
+    int b_user_interfacedark,
+    int i_user_listresult
+    ) {
+    return activesession_response_compound_user_create_internal (
+        pki_user_id,
+        fki_timezone_id,
+        s_avatar_url,
+        s_user_firstname,
+        s_user_lastname,
+        s_email_address,
+        e_user_ezsignsendreminderfrequency,
+        i_user_interfacecolor,
+        b_user_interfacedark,
+        i_user_listresult
+        );
+}
 
 void activesession_response_compound_user_free(activesession_response_compound_user_t *activesession_response_compound_user) {
     if(NULL == activesession_response_compound_user){
+        return ;
+    }
+    if(activesession_response_compound_user->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "activesession_response_compound_user_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,10 +86,6 @@ void activesession_response_compound_user_free(activesession_response_compound_u
     if (activesession_response_compound_user->s_email_address) {
         free(activesession_response_compound_user->s_email_address);
         activesession_response_compound_user->s_email_address = NULL;
-    }
-    if (activesession_response_compound_user->e_user_ezsignsendreminderfrequency) {
-        field_e_user_ezsignsendreminderfrequency_free(activesession_response_compound_user->e_user_ezsignsendreminderfrequency);
-        activesession_response_compound_user->e_user_ezsignsendreminderfrequency = NULL;
     }
     free(activesession_response_compound_user);
 }
@@ -137,7 +146,7 @@ cJSON *activesession_response_compound_user_convertToJSON(activesession_response
 
 
     // activesession_response_compound_user->e_user_ezsignsendreminderfrequency
-    if (ezmax_api_definition__full_activesession_response_compound_user__NULL == activesession_response_compound_user->e_user_ezsignsendreminderfrequency) {
+    if (ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__NULL == activesession_response_compound_user->e_user_ezsignsendreminderfrequency) {
         goto fail;
     }
     cJSON *e_user_ezsignsendreminderfrequency_local_JSON = field_e_user_ezsignsendreminderfrequency_convertToJSON(activesession_response_compound_user->e_user_ezsignsendreminderfrequency);
@@ -189,10 +198,13 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
     activesession_response_compound_user_t *activesession_response_compound_user_local_var = NULL;
 
     // define the local variable for activesession_response_compound_user->e_user_ezsignsendreminderfrequency
-    field_e_user_ezsignsendreminderfrequency_t *e_user_ezsignsendreminderfrequency_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__e e_user_ezsignsendreminderfrequency_local_nonprim = 0;
 
     // activesession_response_compound_user->pki_user_id
     cJSON *pki_user_id = cJSON_GetObjectItemCaseSensitive(activesession_response_compound_userJSON, "pkiUserID");
+    if (cJSON_IsNull(pki_user_id)) {
+        pki_user_id = NULL;
+    }
     if (!pki_user_id) {
         goto end;
     }
@@ -205,6 +217,9 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
 
     // activesession_response_compound_user->fki_timezone_id
     cJSON *fki_timezone_id = cJSON_GetObjectItemCaseSensitive(activesession_response_compound_userJSON, "fkiTimezoneID");
+    if (cJSON_IsNull(fki_timezone_id)) {
+        fki_timezone_id = NULL;
+    }
     if (!fki_timezone_id) {
         goto end;
     }
@@ -217,6 +232,9 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
 
     // activesession_response_compound_user->s_avatar_url
     cJSON *s_avatar_url = cJSON_GetObjectItemCaseSensitive(activesession_response_compound_userJSON, "sAvatarUrl");
+    if (cJSON_IsNull(s_avatar_url)) {
+        s_avatar_url = NULL;
+    }
     if (s_avatar_url) { 
     if(!cJSON_IsString(s_avatar_url) && !cJSON_IsNull(s_avatar_url))
     {
@@ -226,6 +244,9 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
 
     // activesession_response_compound_user->s_user_firstname
     cJSON *s_user_firstname = cJSON_GetObjectItemCaseSensitive(activesession_response_compound_userJSON, "sUserFirstname");
+    if (cJSON_IsNull(s_user_firstname)) {
+        s_user_firstname = NULL;
+    }
     if (!s_user_firstname) {
         goto end;
     }
@@ -238,6 +259,9 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
 
     // activesession_response_compound_user->s_user_lastname
     cJSON *s_user_lastname = cJSON_GetObjectItemCaseSensitive(activesession_response_compound_userJSON, "sUserLastname");
+    if (cJSON_IsNull(s_user_lastname)) {
+        s_user_lastname = NULL;
+    }
     if (!s_user_lastname) {
         goto end;
     }
@@ -250,6 +274,9 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
 
     // activesession_response_compound_user->s_email_address
     cJSON *s_email_address = cJSON_GetObjectItemCaseSensitive(activesession_response_compound_userJSON, "sEmailAddress");
+    if (cJSON_IsNull(s_email_address)) {
+        s_email_address = NULL;
+    }
     if (s_email_address) { 
     if(!cJSON_IsString(s_email_address) && !cJSON_IsNull(s_email_address))
     {
@@ -259,6 +286,9 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
 
     // activesession_response_compound_user->e_user_ezsignsendreminderfrequency
     cJSON *e_user_ezsignsendreminderfrequency = cJSON_GetObjectItemCaseSensitive(activesession_response_compound_userJSON, "eUserEzsignsendreminderfrequency");
+    if (cJSON_IsNull(e_user_ezsignsendreminderfrequency)) {
+        e_user_ezsignsendreminderfrequency = NULL;
+    }
     if (!e_user_ezsignsendreminderfrequency) {
         goto end;
     }
@@ -268,6 +298,9 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
 
     // activesession_response_compound_user->i_user_interfacecolor
     cJSON *i_user_interfacecolor = cJSON_GetObjectItemCaseSensitive(activesession_response_compound_userJSON, "iUserInterfacecolor");
+    if (cJSON_IsNull(i_user_interfacecolor)) {
+        i_user_interfacecolor = NULL;
+    }
     if (!i_user_interfacecolor) {
         goto end;
     }
@@ -280,6 +313,9 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
 
     // activesession_response_compound_user->b_user_interfacedark
     cJSON *b_user_interfacedark = cJSON_GetObjectItemCaseSensitive(activesession_response_compound_userJSON, "bUserInterfacedark");
+    if (cJSON_IsNull(b_user_interfacedark)) {
+        b_user_interfacedark = NULL;
+    }
     if (!b_user_interfacedark) {
         goto end;
     }
@@ -292,6 +328,9 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
 
     // activesession_response_compound_user->i_user_listresult
     cJSON *i_user_listresult = cJSON_GetObjectItemCaseSensitive(activesession_response_compound_userJSON, "iUserListresult");
+    if (cJSON_IsNull(i_user_listresult)) {
+        i_user_listresult = NULL;
+    }
     if (!i_user_listresult) {
         goto end;
     }
@@ -303,7 +342,7 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
     }
 
 
-    activesession_response_compound_user_local_var = activesession_response_compound_user_create (
+    activesession_response_compound_user_local_var = activesession_response_compound_user_create_internal (
         pki_user_id->valuedouble,
         fki_timezone_id->valuedouble,
         s_avatar_url && !cJSON_IsNull(s_avatar_url) ? strdup(s_avatar_url->valuestring) : NULL,
@@ -319,8 +358,7 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
     return activesession_response_compound_user_local_var;
 end:
     if (e_user_ezsignsendreminderfrequency_local_nonprim) {
-        field_e_user_ezsignsendreminderfrequency_free(e_user_ezsignsendreminderfrequency_local_nonprim);
-        e_user_ezsignsendreminderfrequency_local_nonprim = NULL;
+        e_user_ezsignsendreminderfrequency_local_nonprim = 0;
     }
     return NULL;
 

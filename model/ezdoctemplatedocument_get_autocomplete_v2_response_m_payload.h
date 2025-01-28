@@ -22,9 +22,10 @@ typedef struct ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_t ez
 typedef struct ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_t {
     list_t *a_obj_ezdoctemplatedocument; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_t;
 
-ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_t *ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_create(
+__attribute__((deprecated)) ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_t *ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_ezdoctemplatedocument
 );
 

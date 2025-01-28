@@ -5,7 +5,7 @@
 
 
 
-phone_request_compound_v2_t *phone_request_compound_v2_create(
+static phone_request_compound_v2_t *phone_request_compound_v2_create_internal(
     int pki_phone_id,
     int fki_phonetype_id,
     char *s_phone_extension,
@@ -20,12 +20,30 @@ phone_request_compound_v2_t *phone_request_compound_v2_create(
     phone_request_compound_v2_local_var->s_phone_extension = s_phone_extension;
     phone_request_compound_v2_local_var->s_phone_e164 = s_phone_e164;
 
+    phone_request_compound_v2_local_var->_library_owned = 1;
     return phone_request_compound_v2_local_var;
 }
 
+__attribute__((deprecated)) phone_request_compound_v2_t *phone_request_compound_v2_create(
+    int pki_phone_id,
+    int fki_phonetype_id,
+    char *s_phone_extension,
+    char *s_phone_e164
+    ) {
+    return phone_request_compound_v2_create_internal (
+        pki_phone_id,
+        fki_phonetype_id,
+        s_phone_extension,
+        s_phone_e164
+        );
+}
 
 void phone_request_compound_v2_free(phone_request_compound_v2_t *phone_request_compound_v2) {
     if(NULL == phone_request_compound_v2){
+        return ;
+    }
+    if(phone_request_compound_v2->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "phone_request_compound_v2_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -89,6 +107,9 @@ phone_request_compound_v2_t *phone_request_compound_v2_parseFromJSON(cJSON *phon
 
     // phone_request_compound_v2->pki_phone_id
     cJSON *pki_phone_id = cJSON_GetObjectItemCaseSensitive(phone_request_compound_v2JSON, "pkiPhoneID");
+    if (cJSON_IsNull(pki_phone_id)) {
+        pki_phone_id = NULL;
+    }
     if (pki_phone_id) { 
     if(!cJSON_IsNumber(pki_phone_id))
     {
@@ -98,6 +119,9 @@ phone_request_compound_v2_t *phone_request_compound_v2_parseFromJSON(cJSON *phon
 
     // phone_request_compound_v2->fki_phonetype_id
     cJSON *fki_phonetype_id = cJSON_GetObjectItemCaseSensitive(phone_request_compound_v2JSON, "fkiPhonetypeID");
+    if (cJSON_IsNull(fki_phonetype_id)) {
+        fki_phonetype_id = NULL;
+    }
     if (!fki_phonetype_id) {
         goto end;
     }
@@ -110,6 +134,9 @@ phone_request_compound_v2_t *phone_request_compound_v2_parseFromJSON(cJSON *phon
 
     // phone_request_compound_v2->s_phone_extension
     cJSON *s_phone_extension = cJSON_GetObjectItemCaseSensitive(phone_request_compound_v2JSON, "sPhoneExtension");
+    if (cJSON_IsNull(s_phone_extension)) {
+        s_phone_extension = NULL;
+    }
     if (s_phone_extension) { 
     if(!cJSON_IsString(s_phone_extension) && !cJSON_IsNull(s_phone_extension))
     {
@@ -119,6 +146,9 @@ phone_request_compound_v2_t *phone_request_compound_v2_parseFromJSON(cJSON *phon
 
     // phone_request_compound_v2->s_phone_e164
     cJSON *s_phone_e164 = cJSON_GetObjectItemCaseSensitive(phone_request_compound_v2JSON, "sPhoneE164");
+    if (cJSON_IsNull(s_phone_e164)) {
+        s_phone_e164 = NULL;
+    }
     if (s_phone_e164) { 
     if(!cJSON_IsString(s_phone_e164) && !cJSON_IsNull(s_phone_e164))
     {
@@ -127,7 +157,7 @@ phone_request_compound_v2_t *phone_request_compound_v2_parseFromJSON(cJSON *phon
     }
 
 
-    phone_request_compound_v2_local_var = phone_request_compound_v2_create (
+    phone_request_compound_v2_local_var = phone_request_compound_v2_create_internal (
         pki_phone_id ? pki_phone_id->valuedouble : 0,
         fki_phonetype_id->valuedouble,
         s_phone_extension && !cJSON_IsNull(s_phone_extension) ? strdup(s_phone_extension->valuestring) : NULL,

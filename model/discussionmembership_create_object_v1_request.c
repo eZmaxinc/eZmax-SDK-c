@@ -5,7 +5,7 @@
 
 
 
-discussionmembership_create_object_v1_request_t *discussionmembership_create_object_v1_request_create(
+static discussionmembership_create_object_v1_request_t *discussionmembership_create_object_v1_request_create_internal(
     list_t *a_obj_discussionmembership
     ) {
     discussionmembership_create_object_v1_request_t *discussionmembership_create_object_v1_request_local_var = malloc(sizeof(discussionmembership_create_object_v1_request_t));
@@ -14,12 +14,24 @@ discussionmembership_create_object_v1_request_t *discussionmembership_create_obj
     }
     discussionmembership_create_object_v1_request_local_var->a_obj_discussionmembership = a_obj_discussionmembership;
 
+    discussionmembership_create_object_v1_request_local_var->_library_owned = 1;
     return discussionmembership_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) discussionmembership_create_object_v1_request_t *discussionmembership_create_object_v1_request_create(
+    list_t *a_obj_discussionmembership
+    ) {
+    return discussionmembership_create_object_v1_request_create_internal (
+        a_obj_discussionmembership
+        );
+}
 
 void discussionmembership_create_object_v1_request_free(discussionmembership_create_object_v1_request_t *discussionmembership_create_object_v1_request) {
     if(NULL == discussionmembership_create_object_v1_request){
+        return ;
+    }
+    if(discussionmembership_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "discussionmembership_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ discussionmembership_create_object_v1_request_t *discussionmembership_create_obj
 
     // discussionmembership_create_object_v1_request->a_obj_discussionmembership
     cJSON *a_obj_discussionmembership = cJSON_GetObjectItemCaseSensitive(discussionmembership_create_object_v1_requestJSON, "a_objDiscussionmembership");
+    if (cJSON_IsNull(a_obj_discussionmembership)) {
+        a_obj_discussionmembership = NULL;
+    }
     if (!a_obj_discussionmembership) {
         goto end;
     }
@@ -96,7 +111,7 @@ discussionmembership_create_object_v1_request_t *discussionmembership_create_obj
     }
 
 
-    discussionmembership_create_object_v1_request_local_var = discussionmembership_create_object_v1_request_create (
+    discussionmembership_create_object_v1_request_local_var = discussionmembership_create_object_v1_request_create_internal (
         a_obj_discussionmembershipList
         );
 

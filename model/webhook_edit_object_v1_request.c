@@ -5,7 +5,7 @@
 
 
 
-webhook_edit_object_v1_request_t *webhook_edit_object_v1_request_create(
+static webhook_edit_object_v1_request_t *webhook_edit_object_v1_request_create_internal(
     webhook_request_compound_t *obj_webhook
     ) {
     webhook_edit_object_v1_request_t *webhook_edit_object_v1_request_local_var = malloc(sizeof(webhook_edit_object_v1_request_t));
@@ -14,12 +14,24 @@ webhook_edit_object_v1_request_t *webhook_edit_object_v1_request_create(
     }
     webhook_edit_object_v1_request_local_var->obj_webhook = obj_webhook;
 
+    webhook_edit_object_v1_request_local_var->_library_owned = 1;
     return webhook_edit_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) webhook_edit_object_v1_request_t *webhook_edit_object_v1_request_create(
+    webhook_request_compound_t *obj_webhook
+    ) {
+    return webhook_edit_object_v1_request_create_internal (
+        obj_webhook
+        );
+}
 
 void webhook_edit_object_v1_request_free(webhook_edit_object_v1_request_t *webhook_edit_object_v1_request) {
     if(NULL == webhook_edit_object_v1_request){
+        return ;
+    }
+    if(webhook_edit_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "webhook_edit_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ webhook_edit_object_v1_request_t *webhook_edit_object_v1_request_parseFromJSON(c
 
     // webhook_edit_object_v1_request->obj_webhook
     cJSON *obj_webhook = cJSON_GetObjectItemCaseSensitive(webhook_edit_object_v1_requestJSON, "objWebhook");
+    if (cJSON_IsNull(obj_webhook)) {
+        obj_webhook = NULL;
+    }
     if (!obj_webhook) {
         goto end;
     }
@@ -71,7 +86,7 @@ webhook_edit_object_v1_request_t *webhook_edit_object_v1_request_parseFromJSON(c
     obj_webhook_local_nonprim = webhook_request_compound_parseFromJSON(obj_webhook); //nonprimitive
 
 
-    webhook_edit_object_v1_request_local_var = webhook_edit_object_v1_request_create (
+    webhook_edit_object_v1_request_local_var = webhook_edit_object_v1_request_create_internal (
         obj_webhook_local_nonprim
         );
 

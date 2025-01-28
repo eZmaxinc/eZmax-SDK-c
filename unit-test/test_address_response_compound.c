@@ -33,8 +33,8 @@ address_response_compound_t* instantiate_address_response_compound(int include_o
       1,
       "Canada",
       "H7T2S3",
-      "doej",
-      "doej"
+      "73.5674",
+      "45.5019"
     );
   } else {
     address_response_compound = address_response_compound_create(
@@ -49,8 +49,8 @@ address_response_compound_t* instantiate_address_response_compound(int include_o
       1,
       "Canada",
       "H7T2S3",
-      "doej",
-      "doej"
+      "73.5674",
+      "45.5019"
     );
   }
 

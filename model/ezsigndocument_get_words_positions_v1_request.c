@@ -22,7 +22,7 @@ ezmax_api_definition__full_ezsigndocument_get_words_positions_v1_request_EGET_e 
     return 0;
 }
 
-ezsigndocument_get_words_positions_v1_request_t *ezsigndocument_get_words_positions_v1_request_create(
+static ezsigndocument_get_words_positions_v1_request_t *ezsigndocument_get_words_positions_v1_request_create_internal(
     ezmax_api_definition__full_ezsigndocument_get_words_positions_v1_request_EGET_e e_get,
     int b_word_case_sensitive,
     list_t *a_s_word
@@ -35,12 +35,28 @@ ezsigndocument_get_words_positions_v1_request_t *ezsigndocument_get_words_positi
     ezsigndocument_get_words_positions_v1_request_local_var->b_word_case_sensitive = b_word_case_sensitive;
     ezsigndocument_get_words_positions_v1_request_local_var->a_s_word = a_s_word;
 
+    ezsigndocument_get_words_positions_v1_request_local_var->_library_owned = 1;
     return ezsigndocument_get_words_positions_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezsigndocument_get_words_positions_v1_request_t *ezsigndocument_get_words_positions_v1_request_create(
+    ezmax_api_definition__full_ezsigndocument_get_words_positions_v1_request_EGET_e e_get,
+    int b_word_case_sensitive,
+    list_t *a_s_word
+    ) {
+    return ezsigndocument_get_words_positions_v1_request_create_internal (
+        e_get,
+        b_word_case_sensitive,
+        a_s_word
+        );
+}
 
 void ezsigndocument_get_words_positions_v1_request_free(ezsigndocument_get_words_positions_v1_request_t *ezsigndocument_get_words_positions_v1_request) {
     if(NULL == ezsigndocument_get_words_positions_v1_request){
+        return ;
+    }
+    if(ezsigndocument_get_words_positions_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigndocument_get_words_positions_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -61,7 +77,7 @@ cJSON *ezsigndocument_get_words_positions_v1_request_convertToJSON(ezsigndocumen
     if (ezmax_api_definition__full_ezsigndocument_get_words_positions_v1_request_EGET_NULL == ezsigndocument_get_words_positions_v1_request->e_get) {
         goto fail;
     }
-    if(cJSON_AddStringToObject(item, "eGet", e_getezsigndocument_get_words_positions_v1_request_ToString(ezsigndocument_get_words_positions_v1_request->e_get)) == NULL)
+    if(cJSON_AddStringToObject(item, "eGet", ezsigndocument_get_words_positions_v1_request_e_get_ToString(ezsigndocument_get_words_positions_v1_request->e_get)) == NULL)
     {
     goto fail; //Enum
     }
@@ -85,7 +101,7 @@ cJSON *ezsigndocument_get_words_positions_v1_request_convertToJSON(ezsigndocumen
 
     listEntry_t *a_s_wordListEntry;
     list_ForEach(a_s_wordListEntry, ezsigndocument_get_words_positions_v1_request->a_s_word) {
-    if(cJSON_AddStringToObject(a_s_word, "", (char*)a_s_wordListEntry->data) == NULL)
+    if(cJSON_AddStringToObject(a_s_word, "", a_s_wordListEntry->data) == NULL)
     {
         goto fail;
     }
@@ -109,6 +125,9 @@ ezsigndocument_get_words_positions_v1_request_t *ezsigndocument_get_words_positi
 
     // ezsigndocument_get_words_positions_v1_request->e_get
     cJSON *e_get = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_words_positions_v1_requestJSON, "eGet");
+    if (cJSON_IsNull(e_get)) {
+        e_get = NULL;
+    }
     if (!e_get) {
         goto end;
     }
@@ -123,6 +142,9 @@ ezsigndocument_get_words_positions_v1_request_t *ezsigndocument_get_words_positi
 
     // ezsigndocument_get_words_positions_v1_request->b_word_case_sensitive
     cJSON *b_word_case_sensitive = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_words_positions_v1_requestJSON, "bWordCaseSensitive");
+    if (cJSON_IsNull(b_word_case_sensitive)) {
+        b_word_case_sensitive = NULL;
+    }
     if (!b_word_case_sensitive) {
         goto end;
     }
@@ -135,6 +157,9 @@ ezsigndocument_get_words_positions_v1_request_t *ezsigndocument_get_words_positi
 
     // ezsigndocument_get_words_positions_v1_request->a_s_word
     cJSON *a_s_word = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_words_positions_v1_requestJSON, "a_sWord");
+    if (cJSON_IsNull(a_s_word)) {
+        a_s_word = NULL;
+    }
     if (a_s_word) { 
     cJSON *a_s_word_local = NULL;
     if(!cJSON_IsArray(a_s_word)) {
@@ -153,7 +178,7 @@ ezsigndocument_get_words_positions_v1_request_t *ezsigndocument_get_words_positi
     }
 
 
-    ezsigndocument_get_words_positions_v1_request_local_var = ezsigndocument_get_words_positions_v1_request_create (
+    ezsigndocument_get_words_positions_v1_request_local_var = ezsigndocument_get_words_positions_v1_request_create_internal (
         e_getVariable,
         b_word_case_sensitive->valueint,
         a_s_word ? a_s_wordList : NULL

@@ -5,7 +5,7 @@
 
 
 
-systemconfiguration_get_object_v2_response_m_payload_t *systemconfiguration_get_object_v2_response_m_payload_create(
+static systemconfiguration_get_object_v2_response_m_payload_t *systemconfiguration_get_object_v2_response_m_payload_create_internal(
     systemconfiguration_response_compound_t *obj_systemconfiguration
     ) {
     systemconfiguration_get_object_v2_response_m_payload_t *systemconfiguration_get_object_v2_response_m_payload_local_var = malloc(sizeof(systemconfiguration_get_object_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ systemconfiguration_get_object_v2_response_m_payload_t *systemconfiguration_get_
     }
     systemconfiguration_get_object_v2_response_m_payload_local_var->obj_systemconfiguration = obj_systemconfiguration;
 
+    systemconfiguration_get_object_v2_response_m_payload_local_var->_library_owned = 1;
     return systemconfiguration_get_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) systemconfiguration_get_object_v2_response_m_payload_t *systemconfiguration_get_object_v2_response_m_payload_create(
+    systemconfiguration_response_compound_t *obj_systemconfiguration
+    ) {
+    return systemconfiguration_get_object_v2_response_m_payload_create_internal (
+        obj_systemconfiguration
+        );
+}
 
 void systemconfiguration_get_object_v2_response_m_payload_free(systemconfiguration_get_object_v2_response_m_payload_t *systemconfiguration_get_object_v2_response_m_payload) {
     if(NULL == systemconfiguration_get_object_v2_response_m_payload){
+        return ;
+    }
+    if(systemconfiguration_get_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "systemconfiguration_get_object_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ systemconfiguration_get_object_v2_response_m_payload_t *systemconfiguration_get_
 
     // systemconfiguration_get_object_v2_response_m_payload->obj_systemconfiguration
     cJSON *obj_systemconfiguration = cJSON_GetObjectItemCaseSensitive(systemconfiguration_get_object_v2_response_m_payloadJSON, "objSystemconfiguration");
+    if (cJSON_IsNull(obj_systemconfiguration)) {
+        obj_systemconfiguration = NULL;
+    }
     if (!obj_systemconfiguration) {
         goto end;
     }
@@ -71,7 +86,7 @@ systemconfiguration_get_object_v2_response_m_payload_t *systemconfiguration_get_
     obj_systemconfiguration_local_nonprim = systemconfiguration_response_compound_parseFromJSON(obj_systemconfiguration); //nonprimitive
 
 
-    systemconfiguration_get_object_v2_response_m_payload_local_var = systemconfiguration_get_object_v2_response_m_payload_create (
+    systemconfiguration_get_object_v2_response_m_payload_local_var = systemconfiguration_get_object_v2_response_m_payload_create_internal (
         obj_systemconfiguration_local_nonprim
         );
 

@@ -25,9 +25,10 @@ typedef struct ezsignsignatureattachment_response_t {
     char *s_ezsignsignatureattachment_name; // string
     char *s_download_url; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsignatureattachment_response_t;
 
-ezsignsignatureattachment_response_t *ezsignsignatureattachment_response_create(
+__attribute__((deprecated)) ezsignsignatureattachment_response_t *ezsignsignatureattachment_response_create(
     int pki_ezsignsignatureattachment_id,
     int fki_ezsignsignature_id,
     char *bin_ezsignsignatureattachment_md5,

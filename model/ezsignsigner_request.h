@@ -33,9 +33,10 @@ typedef struct ezsignsigner_request_t {
     ezmax_api_definition__full_ezsignsigner_request_EEZSIGNSIGNERLOGINTYPE_e e_ezsignsigner_logintype; //enum
     char *s_ezsignsigner_secretanswer; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsigner_request_t;
 
-ezsignsigner_request_t *ezsignsigner_request_create(
+__attribute__((deprecated)) ezsignsigner_request_t *ezsignsigner_request_create(
     int fki_userlogintype_id,
     int fki_taxassignment_id,
     int fki_secretquestion_id,

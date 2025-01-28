@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_systemconfiguration_ezsignofficeplan__e field
     return 0;
 }
 
-cJSON *field_e_systemconfiguration_ezsignofficeplan_field_e_systemconfiguration_ezsignofficeplan_convertToJSON(ezmax_api_definition__full_field_e_systemconfiguration_ezsignofficeplan__e field_e_systemconfiguration_ezsignofficeplan) {
+cJSON *field_e_systemconfiguration_ezsignofficeplan_convertToJSON(ezmax_api_definition__full_field_e_systemconfiguration_ezsignofficeplan__e field_e_systemconfiguration_ezsignofficeplan) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_systemconfiguration_ezsignofficeplan", field_e_systemconfiguration_ezsignofficeplan_field_e_systemconfiguration_ezsignofficeplan_ToString(field_e_systemconfiguration_ezsignofficeplan)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_systemconfiguration_ezsignofficeplan__e field_e_systemconfiguration_ezsignofficeplan_field_e_systemconfiguration_ezsignofficeplan_parseFromJSON(cJSON *field_e_systemconfiguration_ezsignofficeplanJSON) {
-    ezmax_api_definition__full_field_e_systemconfiguration_ezsignofficeplan__e *field_e_systemconfiguration_ezsignofficeplan = NULL;
-    ezmax_api_definition__full_field_e_systemconfiguration_ezsignofficeplan__e field_e_systemconfiguration_ezsignofficeplanVariable;
-    cJSON *field_e_systemconfiguration_ezsignofficeplanVar = cJSON_GetObjectItemCaseSensitive(field_e_systemconfiguration_ezsignofficeplanJSON, "field_e_systemconfiguration_ezsignofficeplan");
-    if(!cJSON_IsString(field_e_systemconfiguration_ezsignofficeplanVar) || (field_e_systemconfiguration_ezsignofficeplanVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_systemconfiguration_ezsignofficeplan__e field_e_systemconfiguration_ezsignofficeplan_parseFromJSON(cJSON *field_e_systemconfiguration_ezsignofficeplanJSON) {
+    if(!cJSON_IsString(field_e_systemconfiguration_ezsignofficeplanJSON) || (field_e_systemconfiguration_ezsignofficeplanJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_systemconfiguration_ezsignofficeplanVariable = field_e_systemconfiguration_ezsignofficeplan_field_e_systemconfiguration_ezsignofficeplan_FromString(field_e_systemconfiguration_ezsignofficeplanVar->valuestring);
-    return field_e_systemconfiguration_ezsignofficeplanVariable;
-end:
-    return 0;
+    return field_e_systemconfiguration_ezsignofficeplan_field_e_systemconfiguration_ezsignofficeplan_FromString(field_e_systemconfiguration_ezsignofficeplanJSON->valuestring);
 }

@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioning__e field_
     return 0;
 }
 
-cJSON *field_e_ezsigntemplatesignature_positioning_field_e_ezsigntemplatesignature_positioning_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioning__e field_e_ezsigntemplatesignature_positioning) {
+cJSON *field_e_ezsigntemplatesignature_positioning_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioning__e field_e_ezsigntemplatesignature_positioning) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsigntemplatesignature_positioning", field_e_ezsigntemplatesignature_positioning_field_e_ezsigntemplatesignature_positioning_ToString(field_e_ezsigntemplatesignature_positioning)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioning__e field_e_ezsigntemplatesignature_positioning_field_e_ezsigntemplatesignature_positioning_parseFromJSON(cJSON *field_e_ezsigntemplatesignature_positioningJSON) {
-    ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioning__e *field_e_ezsigntemplatesignature_positioning = NULL;
-    ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioning__e field_e_ezsigntemplatesignature_positioningVariable;
-    cJSON *field_e_ezsigntemplatesignature_positioningVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsigntemplatesignature_positioningJSON, "field_e_ezsigntemplatesignature_positioning");
-    if(!cJSON_IsString(field_e_ezsigntemplatesignature_positioningVar) || (field_e_ezsigntemplatesignature_positioningVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioning__e field_e_ezsigntemplatesignature_positioning_parseFromJSON(cJSON *field_e_ezsigntemplatesignature_positioningJSON) {
+    if(!cJSON_IsString(field_e_ezsigntemplatesignature_positioningJSON) || (field_e_ezsigntemplatesignature_positioningJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsigntemplatesignature_positioningVariable = field_e_ezsigntemplatesignature_positioning_field_e_ezsigntemplatesignature_positioning_FromString(field_e_ezsigntemplatesignature_positioningVar->valuestring);
-    return field_e_ezsigntemplatesignature_positioningVariable;
-end:
-    return 0;
+    return field_e_ezsigntemplatesignature_positioning_field_e_ezsigntemplatesignature_positioning_FromString(field_e_ezsigntemplatesignature_positioningJSON->valuestring);
 }

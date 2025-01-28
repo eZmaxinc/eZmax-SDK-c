@@ -5,7 +5,7 @@
 
 
 
-billingentityinternal_create_object_v1_response_m_payload_t *billingentityinternal_create_object_v1_response_m_payload_create(
+static billingentityinternal_create_object_v1_response_m_payload_t *billingentityinternal_create_object_v1_response_m_payload_create_internal(
     list_t *a_pki_billingentityinternal_id
     ) {
     billingentityinternal_create_object_v1_response_m_payload_t *billingentityinternal_create_object_v1_response_m_payload_local_var = malloc(sizeof(billingentityinternal_create_object_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ billingentityinternal_create_object_v1_response_m_payload_t *billingentityintern
     }
     billingentityinternal_create_object_v1_response_m_payload_local_var->a_pki_billingentityinternal_id = a_pki_billingentityinternal_id;
 
+    billingentityinternal_create_object_v1_response_m_payload_local_var->_library_owned = 1;
     return billingentityinternal_create_object_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) billingentityinternal_create_object_v1_response_m_payload_t *billingentityinternal_create_object_v1_response_m_payload_create(
+    list_t *a_pki_billingentityinternal_id
+    ) {
+    return billingentityinternal_create_object_v1_response_m_payload_create_internal (
+        a_pki_billingentityinternal_id
+        );
+}
 
 void billingentityinternal_create_object_v1_response_m_payload_free(billingentityinternal_create_object_v1_response_m_payload_t *billingentityinternal_create_object_v1_response_m_payload) {
     if(NULL == billingentityinternal_create_object_v1_response_m_payload){
+        return ;
+    }
+    if(billingentityinternal_create_object_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "billingentityinternal_create_object_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +82,9 @@ billingentityinternal_create_object_v1_response_m_payload_t *billingentityintern
 
     // billingentityinternal_create_object_v1_response_m_payload->a_pki_billingentityinternal_id
     cJSON *a_pki_billingentityinternal_id = cJSON_GetObjectItemCaseSensitive(billingentityinternal_create_object_v1_response_m_payloadJSON, "a_pkiBillingentityinternalID");
+    if (cJSON_IsNull(a_pki_billingentityinternal_id)) {
+        a_pki_billingentityinternal_id = NULL;
+    }
     if (!a_pki_billingentityinternal_id) {
         goto end;
     }
@@ -87,7 +102,7 @@ billingentityinternal_create_object_v1_response_m_payload_t *billingentityintern
         {
             goto end;
         }
-        double *a_pki_billingentityinternal_id_local_value = (double *)calloc(1, sizeof(double));
+        double *a_pki_billingentityinternal_id_local_value = calloc(1, sizeof(double));
         if(!a_pki_billingentityinternal_id_local_value)
         {
             goto end;
@@ -97,7 +112,7 @@ billingentityinternal_create_object_v1_response_m_payload_t *billingentityintern
     }
 
 
-    billingentityinternal_create_object_v1_response_m_payload_local_var = billingentityinternal_create_object_v1_response_m_payload_create (
+    billingentityinternal_create_object_v1_response_m_payload_local_var = billingentityinternal_create_object_v1_response_m_payload_create_internal (
         a_pki_billingentityinternal_idList
         );
 

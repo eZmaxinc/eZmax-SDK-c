@@ -15,7 +15,7 @@
 
 typedef struct webhook_ezsign_signature_signed_t webhook_ezsign_signature_signed_t;
 
-#include "attempt_response.h"
+#include "attempt_response_compound.h"
 #include "custom_webhook_response.h"
 #include "ezsignsignature_response.h"
 
@@ -26,9 +26,10 @@ typedef struct webhook_ezsign_signature_signed_t {
     list_t *a_obj_attempt; //nonprimitive container
     struct ezsignsignature_response_t *obj_ezsignsignature; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } webhook_ezsign_signature_signed_t;
 
-webhook_ezsign_signature_signed_t *webhook_ezsign_signature_signed_create(
+__attribute__((deprecated)) webhook_ezsign_signature_signed_t *webhook_ezsign_signature_signed_create(
     custom_webhook_response_t *obj_webhook,
     list_t *a_obj_attempt,
     ezsignsignature_response_t *obj_ezsignsignature

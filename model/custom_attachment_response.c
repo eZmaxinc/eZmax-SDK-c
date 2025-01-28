@@ -4,76 +4,8 @@
 #include "custom_attachment_response.h"
 
 
-char* custom_attachment_response_e_attachment_documenttype_ToString(ezmax_api_definition__full_custom_attachment_response__e e_attachment_documenttype) {
-    char* e_attachment_documenttypeArray[] =  { "NULL", "Adjustment", "Agent", "Bankaccount", "Broker", "Buyercontract", "Commissionadvance", "Communication", "Customer", "Customertemplate", "Deposit", "Deposittransitcheque", "Disclosure", "Electronicfundstransfer", "Employee", "Externalbroker", "Ezcomadvanceserver", "Ezcomcompany", "Ezsigndocument", "EzsigndocumentProof", "EzsigndocumentProofdocument", "Ezsigndocumentgroup", "EzsigndocumentgroupProof", "EzsigndocumentgroupProofdocument", "EzsigndocumentAttachment", "Folder", "Franchiseagence", "Franchisebroker", "Franchisecomplaint", "Franchisefranchise", "Franchiseoffice", "Ghacqcontract", "Inscription", "Inscriptionnotauthenticated", "Inscriptiontemp", "Invoice", "Lead", "Marketingfollow", "Marketingprogram", "Notary", "Officetaxreport", "Otherincome", "Paymentpreparation", "Purchase", "Reconciliation", "Rejectedoffertopurchase", "Salary", "Supplier", "Template", "Tranqcontract" };
-    return e_attachment_documenttypeArray[e_attachment_documenttype];
-}
 
-ezmax_api_definition__full_custom_attachment_response__e custom_attachment_response_e_attachment_documenttype_FromString(char* e_attachment_documenttype){
-    int stringToReturn = 0;
-    char *e_attachment_documenttypeArray[] =  { "NULL", "Adjustment", "Agent", "Bankaccount", "Broker", "Buyercontract", "Commissionadvance", "Communication", "Customer", "Customertemplate", "Deposit", "Deposittransitcheque", "Disclosure", "Electronicfundstransfer", "Employee", "Externalbroker", "Ezcomadvanceserver", "Ezcomcompany", "Ezsigndocument", "EzsigndocumentProof", "EzsigndocumentProofdocument", "Ezsigndocumentgroup", "EzsigndocumentgroupProof", "EzsigndocumentgroupProofdocument", "EzsigndocumentAttachment", "Folder", "Franchiseagence", "Franchisebroker", "Franchisecomplaint", "Franchisefranchise", "Franchiseoffice", "Ghacqcontract", "Inscription", "Inscriptionnotauthenticated", "Inscriptiontemp", "Invoice", "Lead", "Marketingfollow", "Marketingprogram", "Notary", "Officetaxreport", "Otherincome", "Paymentpreparation", "Purchase", "Reconciliation", "Rejectedoffertopurchase", "Salary", "Supplier", "Template", "Tranqcontract" };
-    size_t sizeofArray = sizeof(e_attachment_documenttypeArray) / sizeof(e_attachment_documenttypeArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_attachment_documenttype, e_attachment_documenttypeArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-char* custom_attachment_response_e_attachment_privacy_ToString(ezmax_api_definition__full_custom_attachment_response__e e_attachment_privacy) {
-    char* e_attachment_privacyArray[] =  { "NULL", "All", "Inscriptor", "Seller", "Administration", "Creator", "Specificuser" };
-    return e_attachment_privacyArray[e_attachment_privacy];
-}
-
-ezmax_api_definition__full_custom_attachment_response__e custom_attachment_response_e_attachment_privacy_FromString(char* e_attachment_privacy){
-    int stringToReturn = 0;
-    char *e_attachment_privacyArray[] =  { "NULL", "All", "Inscriptor", "Seller", "Administration", "Creator", "Specificuser" };
-    size_t sizeofArray = sizeof(e_attachment_privacyArray) / sizeof(e_attachment_privacyArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_attachment_privacy, e_attachment_privacyArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-char* custom_attachment_response_e_attachment_type_ToString(ezmax_api_definition__full_custom_attachment_response__e e_attachment_type) {
-    char* e_attachment_typeArray[] =  { "NULL", "Other", "Pdf", "PdfGenerated", "PdfScanned", "Ezsign" };
-    return e_attachment_typeArray[e_attachment_type];
-}
-
-ezmax_api_definition__full_custom_attachment_response__e custom_attachment_response_e_attachment_type_FromString(char* e_attachment_type){
-    int stringToReturn = 0;
-    char *e_attachment_typeArray[] =  { "NULL", "Other", "Pdf", "PdfGenerated", "PdfScanned", "Ezsign" };
-    size_t sizeofArray = sizeof(e_attachment_typeArray) / sizeof(e_attachment_typeArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_attachment_type, e_attachment_typeArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-char* custom_attachment_response_e_attachment_verified_ToString(ezmax_api_definition__full_custom_attachment_response__e e_attachment_verified) {
-    char* e_attachment_verifiedArray[] =  { "NULL", "No", "Yes", "Rejected" };
-    return e_attachment_verifiedArray[e_attachment_verified];
-}
-
-ezmax_api_definition__full_custom_attachment_response__e custom_attachment_response_e_attachment_verified_FromString(char* e_attachment_verified){
-    int stringToReturn = 0;
-    char *e_attachment_verifiedArray[] =  { "NULL", "No", "Yes", "Rejected" };
-    size_t sizeofArray = sizeof(e_attachment_verifiedArray) / sizeof(e_attachment_verifiedArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_attachment_verified, e_attachment_verifiedArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-custom_attachment_response_t *custom_attachment_response_create(
+static custom_attachment_response_t *custom_attachment_response_create_internal(
     int pki_attachment_id,
     int fki_computer_id,
     int fki_adjustment_id,
@@ -121,17 +53,17 @@ custom_attachment_response_t *custom_attachment_response_create(
     int fki_disclosure_id,
     int fki_reconciliation_id,
     int fki_ezsigndocument_id_reference,
-    field_e_attachment_documenttype_t *e_attachment_documenttype,
+    ezmax_api_definition__full_field_e_attachment_documenttype__e e_attachment_documenttype,
     char *s_attachment_name,
-    field_e_attachment_privacy_t *e_attachment_privacy,
+    ezmax_api_definition__full_field_e_attachment_privacy__e e_attachment_privacy,
     int fki_user_id_specific,
-    field_e_attachment_type_t *e_attachment_type,
+    ezmax_api_definition__full_field_e_attachment_type__e e_attachment_type,
     int i_attachment_size,
     int i_attachment_ed_mmoduleflag,
     char *s_attachment_md5,
     int b_attachment_deleted,
     int b_attachment_valid,
-    field_e_attachment_verified_t *e_attachment_verified,
+    ezmax_api_definition__full_field_e_attachment_verified__e e_attachment_verified,
     char *t_attachment_rejectioncomment,
     int fki_user_id_owner,
     common_audit_t *obj_audit,
@@ -210,38 +142,162 @@ custom_attachment_response_t *custom_attachment_response_create(
     custom_attachment_response_local_var->a_obj_attachment_attachment = a_obj_attachment_attachment;
     custom_attachment_response_local_var->a_obj_attachment_version = a_obj_attachment_version;
 
+    custom_attachment_response_local_var->_library_owned = 1;
     return custom_attachment_response_local_var;
 }
 
+__attribute__((deprecated)) custom_attachment_response_t *custom_attachment_response_create(
+    int pki_attachment_id,
+    int fki_computer_id,
+    int fki_adjustment_id,
+    int fki_agent_id,
+    int fki_bankaccount_id,
+    int fki_broker_id,
+    int fki_commissionadvance_id,
+    int fki_communication_id,
+    int fki_customer_id,
+    int fki_customertemplate_id,
+    int fki_deposit_id,
+    int fki_deposittransitcheque_id,
+    int fki_electronicfundstransfer_id,
+    int fki_employee_id,
+    int fki_externalbroker_id,
+    int fki_ezcomadvanceserver_id,
+    int fki_ezcomcompany_id,
+    int fki_ezsigndocument_id,
+    int fki_ghacqcontract_id,
+    int fki_inscription_id,
+    int fki_inscriptiontemp_id,
+    int fki_inscriptionnotauthenticated_id,
+    int fki_invoice_id,
+    int fki_buyercontract_id,
+    int fki_franchisebroker_id,
+    int fki_franchiseagence_id,
+    int fki_franchiseoffice_id,
+    int fki_franchisefranchise_id,
+    int fki_franchisecomplaint_id,
+    int fki_lead_id,
+    int fki_marketingprogram_id,
+    int fki_marketingfollow_id,
+    int fki_notary_id,
+    int fki_officetaxreport_id,
+    int fki_otherincome_id,
+    int fki_paymentpreparation_id,
+    int fki_purchase_id,
+    int fki_salary_id,
+    int fki_supplier_id,
+    int fki_tranqcontract_id,
+    int fki_template_id,
+    int fki_inscriptionchecklist_id,
+    int fki_folder_id,
+    int fki_rejectedoffertopurchase_id,
+    int fki_disclosure_id,
+    int fki_reconciliation_id,
+    int fki_ezsigndocument_id_reference,
+    ezmax_api_definition__full_field_e_attachment_documenttype__e e_attachment_documenttype,
+    char *s_attachment_name,
+    ezmax_api_definition__full_field_e_attachment_privacy__e e_attachment_privacy,
+    int fki_user_id_specific,
+    ezmax_api_definition__full_field_e_attachment_type__e e_attachment_type,
+    int i_attachment_size,
+    int i_attachment_ed_mmoduleflag,
+    char *s_attachment_md5,
+    int b_attachment_deleted,
+    int b_attachment_valid,
+    ezmax_api_definition__full_field_e_attachment_verified__e e_attachment_verified,
+    char *t_attachment_rejectioncomment,
+    int fki_user_id_owner,
+    common_audit_t *obj_audit,
+    attachment_response_compound_t *obj_attachment_proof,
+    attachment_response_compound_t *obj_attachment_proofdocument,
+    list_t *a_obj_attachment_attachment,
+    list_t *a_obj_attachment_version
+    ) {
+    return custom_attachment_response_create_internal (
+        pki_attachment_id,
+        fki_computer_id,
+        fki_adjustment_id,
+        fki_agent_id,
+        fki_bankaccount_id,
+        fki_broker_id,
+        fki_commissionadvance_id,
+        fki_communication_id,
+        fki_customer_id,
+        fki_customertemplate_id,
+        fki_deposit_id,
+        fki_deposittransitcheque_id,
+        fki_electronicfundstransfer_id,
+        fki_employee_id,
+        fki_externalbroker_id,
+        fki_ezcomadvanceserver_id,
+        fki_ezcomcompany_id,
+        fki_ezsigndocument_id,
+        fki_ghacqcontract_id,
+        fki_inscription_id,
+        fki_inscriptiontemp_id,
+        fki_inscriptionnotauthenticated_id,
+        fki_invoice_id,
+        fki_buyercontract_id,
+        fki_franchisebroker_id,
+        fki_franchiseagence_id,
+        fki_franchiseoffice_id,
+        fki_franchisefranchise_id,
+        fki_franchisecomplaint_id,
+        fki_lead_id,
+        fki_marketingprogram_id,
+        fki_marketingfollow_id,
+        fki_notary_id,
+        fki_officetaxreport_id,
+        fki_otherincome_id,
+        fki_paymentpreparation_id,
+        fki_purchase_id,
+        fki_salary_id,
+        fki_supplier_id,
+        fki_tranqcontract_id,
+        fki_template_id,
+        fki_inscriptionchecklist_id,
+        fki_folder_id,
+        fki_rejectedoffertopurchase_id,
+        fki_disclosure_id,
+        fki_reconciliation_id,
+        fki_ezsigndocument_id_reference,
+        e_attachment_documenttype,
+        s_attachment_name,
+        e_attachment_privacy,
+        fki_user_id_specific,
+        e_attachment_type,
+        i_attachment_size,
+        i_attachment_ed_mmoduleflag,
+        s_attachment_md5,
+        b_attachment_deleted,
+        b_attachment_valid,
+        e_attachment_verified,
+        t_attachment_rejectioncomment,
+        fki_user_id_owner,
+        obj_audit,
+        obj_attachment_proof,
+        obj_attachment_proofdocument,
+        a_obj_attachment_attachment,
+        a_obj_attachment_version
+        );
+}
 
 void custom_attachment_response_free(custom_attachment_response_t *custom_attachment_response) {
     if(NULL == custom_attachment_response){
         return ;
     }
-    listEntry_t *listEntry;
-    if (custom_attachment_response->e_attachment_documenttype) {
-        field_e_attachment_documenttype_free(custom_attachment_response->e_attachment_documenttype);
-        custom_attachment_response->e_attachment_documenttype = NULL;
+    if(custom_attachment_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "custom_attachment_response_free");
+        return ;
     }
+    listEntry_t *listEntry;
     if (custom_attachment_response->s_attachment_name) {
         free(custom_attachment_response->s_attachment_name);
         custom_attachment_response->s_attachment_name = NULL;
     }
-    if (custom_attachment_response->e_attachment_privacy) {
-        field_e_attachment_privacy_free(custom_attachment_response->e_attachment_privacy);
-        custom_attachment_response->e_attachment_privacy = NULL;
-    }
-    if (custom_attachment_response->e_attachment_type) {
-        field_e_attachment_type_free(custom_attachment_response->e_attachment_type);
-        custom_attachment_response->e_attachment_type = NULL;
-    }
     if (custom_attachment_response->s_attachment_md5) {
         free(custom_attachment_response->s_attachment_md5);
         custom_attachment_response->s_attachment_md5 = NULL;
-    }
-    if (custom_attachment_response->e_attachment_verified) {
-        field_e_attachment_verified_free(custom_attachment_response->e_attachment_verified);
-        custom_attachment_response->e_attachment_verified = NULL;
     }
     if (custom_attachment_response->t_attachment_rejectioncomment) {
         free(custom_attachment_response->t_attachment_rejectioncomment);
@@ -657,7 +713,7 @@ cJSON *custom_attachment_response_convertToJSON(custom_attachment_response_t *cu
 
 
     // custom_attachment_response->e_attachment_documenttype
-    if (ezmax_api_definition__full_custom_attachment_response__NULL == custom_attachment_response->e_attachment_documenttype) {
+    if (ezmax_api_definition__full_field_e_attachment_documenttype__NULL == custom_attachment_response->e_attachment_documenttype) {
         goto fail;
     }
     cJSON *e_attachment_documenttype_local_JSON = field_e_attachment_documenttype_convertToJSON(custom_attachment_response->e_attachment_documenttype);
@@ -680,7 +736,7 @@ cJSON *custom_attachment_response_convertToJSON(custom_attachment_response_t *cu
 
 
     // custom_attachment_response->e_attachment_privacy
-    if (ezmax_api_definition__full_custom_attachment_response__NULL == custom_attachment_response->e_attachment_privacy) {
+    if (ezmax_api_definition__full_field_e_attachment_privacy__NULL == custom_attachment_response->e_attachment_privacy) {
         goto fail;
     }
     cJSON *e_attachment_privacy_local_JSON = field_e_attachment_privacy_convertToJSON(custom_attachment_response->e_attachment_privacy);
@@ -702,7 +758,7 @@ cJSON *custom_attachment_response_convertToJSON(custom_attachment_response_t *cu
 
 
     // custom_attachment_response->e_attachment_type
-    if (ezmax_api_definition__full_custom_attachment_response__NULL == custom_attachment_response->e_attachment_type) {
+    if (ezmax_api_definition__full_field_e_attachment_type__NULL == custom_attachment_response->e_attachment_type) {
         goto fail;
     }
     cJSON *e_attachment_type_local_JSON = field_e_attachment_type_convertToJSON(custom_attachment_response->e_attachment_type);
@@ -760,7 +816,7 @@ cJSON *custom_attachment_response_convertToJSON(custom_attachment_response_t *cu
 
 
     // custom_attachment_response->e_attachment_verified
-    if (ezmax_api_definition__full_custom_attachment_response__NULL == custom_attachment_response->e_attachment_verified) {
+    if (ezmax_api_definition__full_field_e_attachment_verified__NULL == custom_attachment_response->e_attachment_verified) {
         goto fail;
     }
     cJSON *e_attachment_verified_local_JSON = field_e_attachment_verified_convertToJSON(custom_attachment_response->e_attachment_verified);
@@ -880,16 +936,16 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
     custom_attachment_response_t *custom_attachment_response_local_var = NULL;
 
     // define the local variable for custom_attachment_response->e_attachment_documenttype
-    field_e_attachment_documenttype_t *e_attachment_documenttype_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_attachment_documenttype__e e_attachment_documenttype_local_nonprim = 0;
 
     // define the local variable for custom_attachment_response->e_attachment_privacy
-    field_e_attachment_privacy_t *e_attachment_privacy_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_attachment_privacy__e e_attachment_privacy_local_nonprim = 0;
 
     // define the local variable for custom_attachment_response->e_attachment_type
-    field_e_attachment_type_t *e_attachment_type_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_attachment_type__e e_attachment_type_local_nonprim = 0;
 
     // define the local variable for custom_attachment_response->e_attachment_verified
-    field_e_attachment_verified_t *e_attachment_verified_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_attachment_verified__e e_attachment_verified_local_nonprim = 0;
 
     // define the local variable for custom_attachment_response->obj_audit
     common_audit_t *obj_audit_local_nonprim = NULL;
@@ -908,6 +964,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->pki_attachment_id
     cJSON *pki_attachment_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "pkiAttachmentID");
+    if (cJSON_IsNull(pki_attachment_id)) {
+        pki_attachment_id = NULL;
+    }
     if (!pki_attachment_id) {
         goto end;
     }
@@ -920,6 +979,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_computer_id
     cJSON *fki_computer_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiComputerID");
+    if (cJSON_IsNull(fki_computer_id)) {
+        fki_computer_id = NULL;
+    }
     if (fki_computer_id) { 
     if(!cJSON_IsNumber(fki_computer_id))
     {
@@ -929,6 +991,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_adjustment_id
     cJSON *fki_adjustment_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiAdjustmentID");
+    if (cJSON_IsNull(fki_adjustment_id)) {
+        fki_adjustment_id = NULL;
+    }
     if (fki_adjustment_id) { 
     if(!cJSON_IsNumber(fki_adjustment_id))
     {
@@ -938,6 +1003,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_agent_id
     cJSON *fki_agent_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiAgentID");
+    if (cJSON_IsNull(fki_agent_id)) {
+        fki_agent_id = NULL;
+    }
     if (fki_agent_id) { 
     if(!cJSON_IsNumber(fki_agent_id))
     {
@@ -947,6 +1015,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_bankaccount_id
     cJSON *fki_bankaccount_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiBankaccountID");
+    if (cJSON_IsNull(fki_bankaccount_id)) {
+        fki_bankaccount_id = NULL;
+    }
     if (fki_bankaccount_id) { 
     if(!cJSON_IsNumber(fki_bankaccount_id))
     {
@@ -956,6 +1027,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_broker_id
     cJSON *fki_broker_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiBrokerID");
+    if (cJSON_IsNull(fki_broker_id)) {
+        fki_broker_id = NULL;
+    }
     if (fki_broker_id) { 
     if(!cJSON_IsNumber(fki_broker_id))
     {
@@ -965,6 +1039,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_commissionadvance_id
     cJSON *fki_commissionadvance_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiCommissionadvanceID");
+    if (cJSON_IsNull(fki_commissionadvance_id)) {
+        fki_commissionadvance_id = NULL;
+    }
     if (fki_commissionadvance_id) { 
     if(!cJSON_IsNumber(fki_commissionadvance_id))
     {
@@ -974,6 +1051,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_communication_id
     cJSON *fki_communication_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiCommunicationID");
+    if (cJSON_IsNull(fki_communication_id)) {
+        fki_communication_id = NULL;
+    }
     if (fki_communication_id) { 
     if(!cJSON_IsNumber(fki_communication_id))
     {
@@ -983,6 +1063,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_customer_id
     cJSON *fki_customer_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiCustomerID");
+    if (cJSON_IsNull(fki_customer_id)) {
+        fki_customer_id = NULL;
+    }
     if (fki_customer_id) { 
     if(!cJSON_IsNumber(fki_customer_id))
     {
@@ -992,6 +1075,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_customertemplate_id
     cJSON *fki_customertemplate_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiCustomertemplateID");
+    if (cJSON_IsNull(fki_customertemplate_id)) {
+        fki_customertemplate_id = NULL;
+    }
     if (fki_customertemplate_id) { 
     if(!cJSON_IsNumber(fki_customertemplate_id))
     {
@@ -1001,6 +1087,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_deposit_id
     cJSON *fki_deposit_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiDepositID");
+    if (cJSON_IsNull(fki_deposit_id)) {
+        fki_deposit_id = NULL;
+    }
     if (fki_deposit_id) { 
     if(!cJSON_IsNumber(fki_deposit_id))
     {
@@ -1010,6 +1099,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_deposittransitcheque_id
     cJSON *fki_deposittransitcheque_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiDeposittransitchequeID");
+    if (cJSON_IsNull(fki_deposittransitcheque_id)) {
+        fki_deposittransitcheque_id = NULL;
+    }
     if (fki_deposittransitcheque_id) { 
     if(!cJSON_IsNumber(fki_deposittransitcheque_id))
     {
@@ -1019,6 +1111,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_electronicfundstransfer_id
     cJSON *fki_electronicfundstransfer_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiElectronicfundstransferID");
+    if (cJSON_IsNull(fki_electronicfundstransfer_id)) {
+        fki_electronicfundstransfer_id = NULL;
+    }
     if (fki_electronicfundstransfer_id) { 
     if(!cJSON_IsNumber(fki_electronicfundstransfer_id))
     {
@@ -1028,6 +1123,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_employee_id
     cJSON *fki_employee_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiEmployeeID");
+    if (cJSON_IsNull(fki_employee_id)) {
+        fki_employee_id = NULL;
+    }
     if (fki_employee_id) { 
     if(!cJSON_IsNumber(fki_employee_id))
     {
@@ -1037,6 +1135,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_externalbroker_id
     cJSON *fki_externalbroker_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiExternalbrokerID");
+    if (cJSON_IsNull(fki_externalbroker_id)) {
+        fki_externalbroker_id = NULL;
+    }
     if (fki_externalbroker_id) { 
     if(!cJSON_IsNumber(fki_externalbroker_id))
     {
@@ -1046,6 +1147,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_ezcomadvanceserver_id
     cJSON *fki_ezcomadvanceserver_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiEzcomadvanceserverID");
+    if (cJSON_IsNull(fki_ezcomadvanceserver_id)) {
+        fki_ezcomadvanceserver_id = NULL;
+    }
     if (fki_ezcomadvanceserver_id) { 
     if(!cJSON_IsNumber(fki_ezcomadvanceserver_id))
     {
@@ -1055,6 +1159,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_ezcomcompany_id
     cJSON *fki_ezcomcompany_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiEzcomcompanyID");
+    if (cJSON_IsNull(fki_ezcomcompany_id)) {
+        fki_ezcomcompany_id = NULL;
+    }
     if (fki_ezcomcompany_id) { 
     if(!cJSON_IsNumber(fki_ezcomcompany_id))
     {
@@ -1064,6 +1171,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_ezsigndocument_id
     cJSON *fki_ezsigndocument_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiEzsigndocumentID");
+    if (cJSON_IsNull(fki_ezsigndocument_id)) {
+        fki_ezsigndocument_id = NULL;
+    }
     if (fki_ezsigndocument_id) { 
     if(!cJSON_IsNumber(fki_ezsigndocument_id))
     {
@@ -1073,6 +1183,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_ghacqcontract_id
     cJSON *fki_ghacqcontract_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiGhacqcontractID");
+    if (cJSON_IsNull(fki_ghacqcontract_id)) {
+        fki_ghacqcontract_id = NULL;
+    }
     if (fki_ghacqcontract_id) { 
     if(!cJSON_IsNumber(fki_ghacqcontract_id))
     {
@@ -1082,6 +1195,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_inscription_id
     cJSON *fki_inscription_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiInscriptionID");
+    if (cJSON_IsNull(fki_inscription_id)) {
+        fki_inscription_id = NULL;
+    }
     if (fki_inscription_id) { 
     if(!cJSON_IsNumber(fki_inscription_id))
     {
@@ -1091,6 +1207,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_inscriptiontemp_id
     cJSON *fki_inscriptiontemp_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiInscriptiontempID");
+    if (cJSON_IsNull(fki_inscriptiontemp_id)) {
+        fki_inscriptiontemp_id = NULL;
+    }
     if (fki_inscriptiontemp_id) { 
     if(!cJSON_IsNumber(fki_inscriptiontemp_id))
     {
@@ -1100,6 +1219,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_inscriptionnotauthenticated_id
     cJSON *fki_inscriptionnotauthenticated_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiInscriptionnotauthenticatedID");
+    if (cJSON_IsNull(fki_inscriptionnotauthenticated_id)) {
+        fki_inscriptionnotauthenticated_id = NULL;
+    }
     if (fki_inscriptionnotauthenticated_id) { 
     if(!cJSON_IsNumber(fki_inscriptionnotauthenticated_id))
     {
@@ -1109,6 +1231,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_invoice_id
     cJSON *fki_invoice_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiInvoiceID");
+    if (cJSON_IsNull(fki_invoice_id)) {
+        fki_invoice_id = NULL;
+    }
     if (fki_invoice_id) { 
     if(!cJSON_IsNumber(fki_invoice_id))
     {
@@ -1118,6 +1243,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_buyercontract_id
     cJSON *fki_buyercontract_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiBuyercontractID");
+    if (cJSON_IsNull(fki_buyercontract_id)) {
+        fki_buyercontract_id = NULL;
+    }
     if (fki_buyercontract_id) { 
     if(!cJSON_IsNumber(fki_buyercontract_id))
     {
@@ -1127,6 +1255,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_franchisebroker_id
     cJSON *fki_franchisebroker_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiFranchisebrokerID");
+    if (cJSON_IsNull(fki_franchisebroker_id)) {
+        fki_franchisebroker_id = NULL;
+    }
     if (fki_franchisebroker_id) { 
     if(!cJSON_IsNumber(fki_franchisebroker_id))
     {
@@ -1136,6 +1267,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_franchiseagence_id
     cJSON *fki_franchiseagence_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiFranchiseagenceID");
+    if (cJSON_IsNull(fki_franchiseagence_id)) {
+        fki_franchiseagence_id = NULL;
+    }
     if (fki_franchiseagence_id) { 
     if(!cJSON_IsNumber(fki_franchiseagence_id))
     {
@@ -1145,6 +1279,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_franchiseoffice_id
     cJSON *fki_franchiseoffice_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiFranchiseofficeID");
+    if (cJSON_IsNull(fki_franchiseoffice_id)) {
+        fki_franchiseoffice_id = NULL;
+    }
     if (fki_franchiseoffice_id) { 
     if(!cJSON_IsNumber(fki_franchiseoffice_id))
     {
@@ -1154,6 +1291,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_franchisefranchise_id
     cJSON *fki_franchisefranchise_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiFranchisefranchiseID");
+    if (cJSON_IsNull(fki_franchisefranchise_id)) {
+        fki_franchisefranchise_id = NULL;
+    }
     if (fki_franchisefranchise_id) { 
     if(!cJSON_IsNumber(fki_franchisefranchise_id))
     {
@@ -1163,6 +1303,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_franchisecomplaint_id
     cJSON *fki_franchisecomplaint_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiFranchisecomplaintID");
+    if (cJSON_IsNull(fki_franchisecomplaint_id)) {
+        fki_franchisecomplaint_id = NULL;
+    }
     if (fki_franchisecomplaint_id) { 
     if(!cJSON_IsNumber(fki_franchisecomplaint_id))
     {
@@ -1172,6 +1315,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_lead_id
     cJSON *fki_lead_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiLeadID");
+    if (cJSON_IsNull(fki_lead_id)) {
+        fki_lead_id = NULL;
+    }
     if (fki_lead_id) { 
     if(!cJSON_IsNumber(fki_lead_id))
     {
@@ -1181,6 +1327,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_marketingprogram_id
     cJSON *fki_marketingprogram_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiMarketingprogramID");
+    if (cJSON_IsNull(fki_marketingprogram_id)) {
+        fki_marketingprogram_id = NULL;
+    }
     if (fki_marketingprogram_id) { 
     if(!cJSON_IsNumber(fki_marketingprogram_id))
     {
@@ -1190,6 +1339,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_marketingfollow_id
     cJSON *fki_marketingfollow_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiMarketingfollowID");
+    if (cJSON_IsNull(fki_marketingfollow_id)) {
+        fki_marketingfollow_id = NULL;
+    }
     if (fki_marketingfollow_id) { 
     if(!cJSON_IsNumber(fki_marketingfollow_id))
     {
@@ -1199,6 +1351,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_notary_id
     cJSON *fki_notary_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiNotaryID");
+    if (cJSON_IsNull(fki_notary_id)) {
+        fki_notary_id = NULL;
+    }
     if (fki_notary_id) { 
     if(!cJSON_IsNumber(fki_notary_id))
     {
@@ -1208,6 +1363,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_officetaxreport_id
     cJSON *fki_officetaxreport_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiOfficetaxreportID");
+    if (cJSON_IsNull(fki_officetaxreport_id)) {
+        fki_officetaxreport_id = NULL;
+    }
     if (fki_officetaxreport_id) { 
     if(!cJSON_IsNumber(fki_officetaxreport_id))
     {
@@ -1217,6 +1375,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_otherincome_id
     cJSON *fki_otherincome_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiOtherincomeID");
+    if (cJSON_IsNull(fki_otherincome_id)) {
+        fki_otherincome_id = NULL;
+    }
     if (fki_otherincome_id) { 
     if(!cJSON_IsNumber(fki_otherincome_id))
     {
@@ -1226,6 +1387,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_paymentpreparation_id
     cJSON *fki_paymentpreparation_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiPaymentpreparationID");
+    if (cJSON_IsNull(fki_paymentpreparation_id)) {
+        fki_paymentpreparation_id = NULL;
+    }
     if (fki_paymentpreparation_id) { 
     if(!cJSON_IsNumber(fki_paymentpreparation_id))
     {
@@ -1235,6 +1399,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_purchase_id
     cJSON *fki_purchase_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiPurchaseID");
+    if (cJSON_IsNull(fki_purchase_id)) {
+        fki_purchase_id = NULL;
+    }
     if (fki_purchase_id) { 
     if(!cJSON_IsNumber(fki_purchase_id))
     {
@@ -1244,6 +1411,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_salary_id
     cJSON *fki_salary_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiSalaryID");
+    if (cJSON_IsNull(fki_salary_id)) {
+        fki_salary_id = NULL;
+    }
     if (fki_salary_id) { 
     if(!cJSON_IsNumber(fki_salary_id))
     {
@@ -1253,6 +1423,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_supplier_id
     cJSON *fki_supplier_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiSupplierID");
+    if (cJSON_IsNull(fki_supplier_id)) {
+        fki_supplier_id = NULL;
+    }
     if (fki_supplier_id) { 
     if(!cJSON_IsNumber(fki_supplier_id))
     {
@@ -1262,6 +1435,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_tranqcontract_id
     cJSON *fki_tranqcontract_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiTranqcontractID");
+    if (cJSON_IsNull(fki_tranqcontract_id)) {
+        fki_tranqcontract_id = NULL;
+    }
     if (fki_tranqcontract_id) { 
     if(!cJSON_IsNumber(fki_tranqcontract_id))
     {
@@ -1271,6 +1447,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_template_id
     cJSON *fki_template_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiTemplateID");
+    if (cJSON_IsNull(fki_template_id)) {
+        fki_template_id = NULL;
+    }
     if (fki_template_id) { 
     if(!cJSON_IsNumber(fki_template_id))
     {
@@ -1280,6 +1459,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_inscriptionchecklist_id
     cJSON *fki_inscriptionchecklist_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiInscriptionchecklistID");
+    if (cJSON_IsNull(fki_inscriptionchecklist_id)) {
+        fki_inscriptionchecklist_id = NULL;
+    }
     if (fki_inscriptionchecklist_id) { 
     if(!cJSON_IsNumber(fki_inscriptionchecklist_id))
     {
@@ -1289,6 +1471,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_folder_id
     cJSON *fki_folder_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiFolderID");
+    if (cJSON_IsNull(fki_folder_id)) {
+        fki_folder_id = NULL;
+    }
     if (fki_folder_id) { 
     if(!cJSON_IsNumber(fki_folder_id))
     {
@@ -1298,6 +1483,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_rejectedoffertopurchase_id
     cJSON *fki_rejectedoffertopurchase_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiRejectedoffertopurchaseID");
+    if (cJSON_IsNull(fki_rejectedoffertopurchase_id)) {
+        fki_rejectedoffertopurchase_id = NULL;
+    }
     if (fki_rejectedoffertopurchase_id) { 
     if(!cJSON_IsNumber(fki_rejectedoffertopurchase_id))
     {
@@ -1307,6 +1495,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_disclosure_id
     cJSON *fki_disclosure_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiDisclosureID");
+    if (cJSON_IsNull(fki_disclosure_id)) {
+        fki_disclosure_id = NULL;
+    }
     if (fki_disclosure_id) { 
     if(!cJSON_IsNumber(fki_disclosure_id))
     {
@@ -1316,6 +1507,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_reconciliation_id
     cJSON *fki_reconciliation_id = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiReconciliationID");
+    if (cJSON_IsNull(fki_reconciliation_id)) {
+        fki_reconciliation_id = NULL;
+    }
     if (fki_reconciliation_id) { 
     if(!cJSON_IsNumber(fki_reconciliation_id))
     {
@@ -1325,6 +1519,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_ezsigndocument_id_reference
     cJSON *fki_ezsigndocument_id_reference = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiEzsigndocumentIDReference");
+    if (cJSON_IsNull(fki_ezsigndocument_id_reference)) {
+        fki_ezsigndocument_id_reference = NULL;
+    }
     if (fki_ezsigndocument_id_reference) { 
     if(!cJSON_IsNumber(fki_ezsigndocument_id_reference))
     {
@@ -1334,6 +1531,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->e_attachment_documenttype
     cJSON *e_attachment_documenttype = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "eAttachmentDocumenttype");
+    if (cJSON_IsNull(e_attachment_documenttype)) {
+        e_attachment_documenttype = NULL;
+    }
     if (!e_attachment_documenttype) {
         goto end;
     }
@@ -1343,6 +1543,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->s_attachment_name
     cJSON *s_attachment_name = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "sAttachmentName");
+    if (cJSON_IsNull(s_attachment_name)) {
+        s_attachment_name = NULL;
+    }
     if (!s_attachment_name) {
         goto end;
     }
@@ -1355,6 +1558,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->e_attachment_privacy
     cJSON *e_attachment_privacy = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "eAttachmentPrivacy");
+    if (cJSON_IsNull(e_attachment_privacy)) {
+        e_attachment_privacy = NULL;
+    }
     if (!e_attachment_privacy) {
         goto end;
     }
@@ -1364,6 +1570,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_user_id_specific
     cJSON *fki_user_id_specific = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiUserIDSpecific");
+    if (cJSON_IsNull(fki_user_id_specific)) {
+        fki_user_id_specific = NULL;
+    }
     if (fki_user_id_specific) { 
     if(!cJSON_IsNumber(fki_user_id_specific))
     {
@@ -1373,6 +1582,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->e_attachment_type
     cJSON *e_attachment_type = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "eAttachmentType");
+    if (cJSON_IsNull(e_attachment_type)) {
+        e_attachment_type = NULL;
+    }
     if (!e_attachment_type) {
         goto end;
     }
@@ -1382,6 +1594,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->i_attachment_size
     cJSON *i_attachment_size = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "iAttachmentSize");
+    if (cJSON_IsNull(i_attachment_size)) {
+        i_attachment_size = NULL;
+    }
     if (!i_attachment_size) {
         goto end;
     }
@@ -1394,6 +1609,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->i_attachment_ed_mmoduleflag
     cJSON *i_attachment_ed_mmoduleflag = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "iAttachmentEDMmoduleflag");
+    if (cJSON_IsNull(i_attachment_ed_mmoduleflag)) {
+        i_attachment_ed_mmoduleflag = NULL;
+    }
     if (i_attachment_ed_mmoduleflag) { 
     if(!cJSON_IsNumber(i_attachment_ed_mmoduleflag))
     {
@@ -1403,6 +1621,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->s_attachment_md5
     cJSON *s_attachment_md5 = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "sAttachmentMD5");
+    if (cJSON_IsNull(s_attachment_md5)) {
+        s_attachment_md5 = NULL;
+    }
     if (!s_attachment_md5) {
         goto end;
     }
@@ -1415,6 +1636,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->b_attachment_deleted
     cJSON *b_attachment_deleted = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "bAttachmentDeleted");
+    if (cJSON_IsNull(b_attachment_deleted)) {
+        b_attachment_deleted = NULL;
+    }
     if (!b_attachment_deleted) {
         goto end;
     }
@@ -1427,6 +1651,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->b_attachment_valid
     cJSON *b_attachment_valid = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "bAttachmentValid");
+    if (cJSON_IsNull(b_attachment_valid)) {
+        b_attachment_valid = NULL;
+    }
     if (!b_attachment_valid) {
         goto end;
     }
@@ -1439,6 +1666,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->e_attachment_verified
     cJSON *e_attachment_verified = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "eAttachmentVerified");
+    if (cJSON_IsNull(e_attachment_verified)) {
+        e_attachment_verified = NULL;
+    }
     if (!e_attachment_verified) {
         goto end;
     }
@@ -1448,6 +1678,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->t_attachment_rejectioncomment
     cJSON *t_attachment_rejectioncomment = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "tAttachmentRejectioncomment");
+    if (cJSON_IsNull(t_attachment_rejectioncomment)) {
+        t_attachment_rejectioncomment = NULL;
+    }
     if (t_attachment_rejectioncomment) { 
     if(!cJSON_IsString(t_attachment_rejectioncomment) && !cJSON_IsNull(t_attachment_rejectioncomment))
     {
@@ -1457,6 +1690,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->fki_user_id_owner
     cJSON *fki_user_id_owner = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "fkiUserIDOwner");
+    if (cJSON_IsNull(fki_user_id_owner)) {
+        fki_user_id_owner = NULL;
+    }
     if (fki_user_id_owner) { 
     if(!cJSON_IsNumber(fki_user_id_owner))
     {
@@ -1466,24 +1702,36 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->obj_audit
     cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "objAudit");
+    if (cJSON_IsNull(obj_audit)) {
+        obj_audit = NULL;
+    }
     if (obj_audit) { 
     obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
     }
 
     // custom_attachment_response->obj_attachment_proof
     cJSON *obj_attachment_proof = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "objAttachmentProof");
+    if (cJSON_IsNull(obj_attachment_proof)) {
+        obj_attachment_proof = NULL;
+    }
     if (obj_attachment_proof) { 
     obj_attachment_proof_local_nonprim = attachment_response_compound_parseFromJSON(obj_attachment_proof); //nonprimitive
     }
 
     // custom_attachment_response->obj_attachment_proofdocument
     cJSON *obj_attachment_proofdocument = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "objAttachmentProofdocument");
+    if (cJSON_IsNull(obj_attachment_proofdocument)) {
+        obj_attachment_proofdocument = NULL;
+    }
     if (obj_attachment_proofdocument) { 
     obj_attachment_proofdocument_local_nonprim = attachment_response_compound_parseFromJSON(obj_attachment_proofdocument); //nonprimitive
     }
 
     // custom_attachment_response->a_obj_attachment_attachment
     cJSON *a_obj_attachment_attachment = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "a_objAttachmentAttachment");
+    if (cJSON_IsNull(a_obj_attachment_attachment)) {
+        a_obj_attachment_attachment = NULL;
+    }
     if (a_obj_attachment_attachment) { 
     cJSON *a_obj_attachment_attachment_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_attachment_attachment)){
@@ -1505,6 +1753,9 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
 
     // custom_attachment_response->a_obj_attachment_version
     cJSON *a_obj_attachment_version = cJSON_GetObjectItemCaseSensitive(custom_attachment_responseJSON, "a_objAttachmentVersion");
+    if (cJSON_IsNull(a_obj_attachment_version)) {
+        a_obj_attachment_version = NULL;
+    }
     if (a_obj_attachment_version) { 
     cJSON *a_obj_attachment_version_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_attachment_version)){
@@ -1525,7 +1776,7 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
     }
 
 
-    custom_attachment_response_local_var = custom_attachment_response_create (
+    custom_attachment_response_local_var = custom_attachment_response_create_internal (
         pki_attachment_id->valuedouble,
         fki_computer_id ? fki_computer_id->valuedouble : 0,
         fki_adjustment_id ? fki_adjustment_id->valuedouble : 0,
@@ -1596,20 +1847,16 @@ custom_attachment_response_t *custom_attachment_response_parseFromJSON(cJSON *cu
     return custom_attachment_response_local_var;
 end:
     if (e_attachment_documenttype_local_nonprim) {
-        field_e_attachment_documenttype_free(e_attachment_documenttype_local_nonprim);
-        e_attachment_documenttype_local_nonprim = NULL;
+        e_attachment_documenttype_local_nonprim = 0;
     }
     if (e_attachment_privacy_local_nonprim) {
-        field_e_attachment_privacy_free(e_attachment_privacy_local_nonprim);
-        e_attachment_privacy_local_nonprim = NULL;
+        e_attachment_privacy_local_nonprim = 0;
     }
     if (e_attachment_type_local_nonprim) {
-        field_e_attachment_type_free(e_attachment_type_local_nonprim);
-        e_attachment_type_local_nonprim = NULL;
+        e_attachment_type_local_nonprim = 0;
     }
     if (e_attachment_verified_local_nonprim) {
-        field_e_attachment_verified_free(e_attachment_verified_local_nonprim);
-        e_attachment_verified_local_nonprim = NULL;
+        e_attachment_verified_local_nonprim = 0;
     }
     if (obj_audit_local_nonprim) {
         common_audit_free(obj_audit_local_nonprim);

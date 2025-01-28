@@ -5,7 +5,7 @@
 
 
 
-ezsignbulksend_create_object_v1_request_t *ezsignbulksend_create_object_v1_request_create(
+static ezsignbulksend_create_object_v1_request_t *ezsignbulksend_create_object_v1_request_create_internal(
     list_t *a_obj_ezsignbulksend
     ) {
     ezsignbulksend_create_object_v1_request_t *ezsignbulksend_create_object_v1_request_local_var = malloc(sizeof(ezsignbulksend_create_object_v1_request_t));
@@ -14,12 +14,24 @@ ezsignbulksend_create_object_v1_request_t *ezsignbulksend_create_object_v1_reque
     }
     ezsignbulksend_create_object_v1_request_local_var->a_obj_ezsignbulksend = a_obj_ezsignbulksend;
 
+    ezsignbulksend_create_object_v1_request_local_var->_library_owned = 1;
     return ezsignbulksend_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezsignbulksend_create_object_v1_request_t *ezsignbulksend_create_object_v1_request_create(
+    list_t *a_obj_ezsignbulksend
+    ) {
+    return ezsignbulksend_create_object_v1_request_create_internal (
+        a_obj_ezsignbulksend
+        );
+}
 
 void ezsignbulksend_create_object_v1_request_free(ezsignbulksend_create_object_v1_request_t *ezsignbulksend_create_object_v1_request) {
     if(NULL == ezsignbulksend_create_object_v1_request){
+        return ;
+    }
+    if(ezsignbulksend_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignbulksend_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ ezsignbulksend_create_object_v1_request_t *ezsignbulksend_create_object_v1_reque
 
     // ezsignbulksend_create_object_v1_request->a_obj_ezsignbulksend
     cJSON *a_obj_ezsignbulksend = cJSON_GetObjectItemCaseSensitive(ezsignbulksend_create_object_v1_requestJSON, "a_objEzsignbulksend");
+    if (cJSON_IsNull(a_obj_ezsignbulksend)) {
+        a_obj_ezsignbulksend = NULL;
+    }
     if (!a_obj_ezsignbulksend) {
         goto end;
     }
@@ -96,7 +111,7 @@ ezsignbulksend_create_object_v1_request_t *ezsignbulksend_create_object_v1_reque
     }
 
 
-    ezsignbulksend_create_object_v1_request_local_var = ezsignbulksend_create_object_v1_request_create (
+    ezsignbulksend_create_object_v1_request_local_var = ezsignbulksend_create_object_v1_request_create_internal (
         a_obj_ezsignbulksendList
         );
 

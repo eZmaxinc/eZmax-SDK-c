@@ -21,9 +21,10 @@ typedef struct websocket_response_get_websocket_id_v1_m_payload_t websocket_resp
 typedef struct websocket_response_get_websocket_id_v1_m_payload_t {
     char *s_websocket_id; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } websocket_response_get_websocket_id_v1_m_payload_t;
 
-websocket_response_get_websocket_id_v1_m_payload_t *websocket_response_get_websocket_id_v1_m_payload_create(
+__attribute__((deprecated)) websocket_response_get_websocket_id_v1_m_payload_t *websocket_response_get_websocket_id_v1_m_payload_create(
     char *s_websocket_id
 );
 

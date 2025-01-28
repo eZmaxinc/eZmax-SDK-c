@@ -5,7 +5,7 @@
 
 
 
-common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_get_list_create(
+static common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_get_list_create_internal(
     int i_version_min,
     int i_version_max,
     list_t *a_required_permission,
@@ -30,12 +30,40 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
     common_response_obj_debug_payload_get_list_local_var->i_row_max = i_row_max;
     common_response_obj_debug_payload_get_list_local_var->i_row_offset = i_row_offset;
 
+    common_response_obj_debug_payload_get_list_local_var->_library_owned = 1;
     return common_response_obj_debug_payload_get_list_local_var;
 }
 
+__attribute__((deprecated)) common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_get_list_create(
+    int i_version_min,
+    int i_version_max,
+    list_t *a_required_permission,
+    int b_version_deprecated,
+    char *dt_response_date,
+    common_response_filter_t *a_filter,
+    list_t* a_order_by,
+    int i_row_max,
+    int i_row_offset
+    ) {
+    return common_response_obj_debug_payload_get_list_create_internal (
+        i_version_min,
+        i_version_max,
+        a_required_permission,
+        b_version_deprecated,
+        dt_response_date,
+        a_filter,
+        a_order_by,
+        i_row_max,
+        i_row_offset
+        );
+}
 
 void common_response_obj_debug_payload_get_list_free(common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_get_list) {
     if(NULL == common_response_obj_debug_payload_get_list){
+        return ;
+    }
+    if(common_response_obj_debug_payload_get_list->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "common_response_obj_debug_payload_get_list_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -56,7 +84,7 @@ void common_response_obj_debug_payload_get_list_free(common_response_obj_debug_p
     }
     if (common_response_obj_debug_payload_get_list->a_order_by) {
         list_ForEach(listEntry, common_response_obj_debug_payload_get_list->a_order_by) {
-            keyValuePair_t *localKeyValue = (keyValuePair_t*) listEntry->data;
+            keyValuePair_t *localKeyValue = listEntry->data;
             free (localKeyValue->key);
             free (localKeyValue->value);
             keyValuePair_free(localKeyValue);
@@ -150,8 +178,8 @@ cJSON *common_response_obj_debug_payload_get_list_convertToJSON(common_response_
     listEntry_t *a_order_byListEntry;
     if (common_response_obj_debug_payload_get_list->a_order_by) {
     list_ForEach(a_order_byListEntry, common_response_obj_debug_payload_get_list->a_order_by) {
-        keyValuePair_t *localKeyValue = (keyValuePair_t*)a_order_byListEntry->data;
-        if(cJSON_AddStringToObject(localMapObject, localKeyValue->key, (char*)localKeyValue->value) == NULL)
+        keyValuePair_t *localKeyValue = a_order_byListEntry->data;
+        if(cJSON_AddStringToObject(localMapObject, localKeyValue->key, localKeyValue->value) == NULL)
         {
             goto fail;
         }
@@ -199,6 +227,9 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
 
     // common_response_obj_debug_payload_get_list->i_version_min
     cJSON *i_version_min = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payload_get_listJSON, "iVersionMin");
+    if (cJSON_IsNull(i_version_min)) {
+        i_version_min = NULL;
+    }
     if (!i_version_min) {
         goto end;
     }
@@ -211,6 +242,9 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
 
     // common_response_obj_debug_payload_get_list->i_version_max
     cJSON *i_version_max = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payload_get_listJSON, "iVersionMax");
+    if (cJSON_IsNull(i_version_max)) {
+        i_version_max = NULL;
+    }
     if (!i_version_max) {
         goto end;
     }
@@ -223,6 +257,9 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
 
     // common_response_obj_debug_payload_get_list->a_required_permission
     cJSON *a_required_permission = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payload_get_listJSON, "a_RequiredPermission");
+    if (cJSON_IsNull(a_required_permission)) {
+        a_required_permission = NULL;
+    }
     if (!a_required_permission) {
         goto end;
     }
@@ -240,7 +277,7 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
         {
             goto end;
         }
-        double *a_required_permission_local_value = (double *)calloc(1, sizeof(double));
+        double *a_required_permission_local_value = calloc(1, sizeof(double));
         if(!a_required_permission_local_value)
         {
             goto end;
@@ -251,6 +288,9 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
 
     // common_response_obj_debug_payload_get_list->b_version_deprecated
     cJSON *b_version_deprecated = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payload_get_listJSON, "bVersionDeprecated");
+    if (cJSON_IsNull(b_version_deprecated)) {
+        b_version_deprecated = NULL;
+    }
     if (!b_version_deprecated) {
         goto end;
     }
@@ -263,6 +303,9 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
 
     // common_response_obj_debug_payload_get_list->dt_response_date
     cJSON *dt_response_date = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payload_get_listJSON, "dtResponseDate");
+    if (cJSON_IsNull(dt_response_date)) {
+        dt_response_date = NULL;
+    }
     if (!dt_response_date) {
         goto end;
     }
@@ -275,6 +318,9 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
 
     // common_response_obj_debug_payload_get_list->a_filter
     cJSON *a_filter = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payload_get_listJSON, "a_Filter");
+    if (cJSON_IsNull(a_filter)) {
+        a_filter = NULL;
+    }
     if (!a_filter) {
         goto end;
     }
@@ -284,6 +330,9 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
 
     // common_response_obj_debug_payload_get_list->a_order_by
     cJSON *a_order_by = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payload_get_listJSON, "a_OrderBy");
+    if (cJSON_IsNull(a_order_by)) {
+        a_order_by = NULL;
+    }
     if (!a_order_by) {
         goto end;
     }
@@ -312,6 +361,9 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
 
     // common_response_obj_debug_payload_get_list->i_row_max
     cJSON *i_row_max = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payload_get_listJSON, "iRowMax");
+    if (cJSON_IsNull(i_row_max)) {
+        i_row_max = NULL;
+    }
     if (!i_row_max) {
         goto end;
     }
@@ -324,6 +376,9 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
 
     // common_response_obj_debug_payload_get_list->i_row_offset
     cJSON *i_row_offset = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payload_get_listJSON, "iRowOffset");
+    if (cJSON_IsNull(i_row_offset)) {
+        i_row_offset = NULL;
+    }
     if (!i_row_offset) {
         goto end;
     }
@@ -335,7 +390,7 @@ common_response_obj_debug_payload_get_list_t *common_response_obj_debug_payload_
     }
 
 
-    common_response_obj_debug_payload_get_list_local_var = common_response_obj_debug_payload_get_list_create (
+    common_response_obj_debug_payload_get_list_local_var = common_response_obj_debug_payload_get_list_create_internal (
         i_version_min->valuedouble,
         i_version_max->valuedouble,
         a_required_permissionList,
@@ -365,7 +420,7 @@ end:
     if (a_order_byList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_order_byList) {
-            keyValuePair_t *localKeyValue = (keyValuePair_t*) listEntry->data;
+            keyValuePair_t *localKeyValue = listEntry->data;
             free(localKeyValue->key);
             localKeyValue->key = NULL;
             free(localKeyValue->value);

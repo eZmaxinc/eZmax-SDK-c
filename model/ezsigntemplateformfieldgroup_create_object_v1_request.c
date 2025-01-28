@@ -5,7 +5,7 @@
 
 
 
-ezsigntemplateformfieldgroup_create_object_v1_request_t *ezsigntemplateformfieldgroup_create_object_v1_request_create(
+static ezsigntemplateformfieldgroup_create_object_v1_request_t *ezsigntemplateformfieldgroup_create_object_v1_request_create_internal(
     list_t *a_obj_ezsigntemplateformfieldgroup
     ) {
     ezsigntemplateformfieldgroup_create_object_v1_request_t *ezsigntemplateformfieldgroup_create_object_v1_request_local_var = malloc(sizeof(ezsigntemplateformfieldgroup_create_object_v1_request_t));
@@ -14,12 +14,24 @@ ezsigntemplateformfieldgroup_create_object_v1_request_t *ezsigntemplateformfield
     }
     ezsigntemplateformfieldgroup_create_object_v1_request_local_var->a_obj_ezsigntemplateformfieldgroup = a_obj_ezsigntemplateformfieldgroup;
 
+    ezsigntemplateformfieldgroup_create_object_v1_request_local_var->_library_owned = 1;
     return ezsigntemplateformfieldgroup_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezsigntemplateformfieldgroup_create_object_v1_request_t *ezsigntemplateformfieldgroup_create_object_v1_request_create(
+    list_t *a_obj_ezsigntemplateformfieldgroup
+    ) {
+    return ezsigntemplateformfieldgroup_create_object_v1_request_create_internal (
+        a_obj_ezsigntemplateformfieldgroup
+        );
+}
 
 void ezsigntemplateformfieldgroup_create_object_v1_request_free(ezsigntemplateformfieldgroup_create_object_v1_request_t *ezsigntemplateformfieldgroup_create_object_v1_request) {
     if(NULL == ezsigntemplateformfieldgroup_create_object_v1_request){
+        return ;
+    }
+    if(ezsigntemplateformfieldgroup_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigntemplateformfieldgroup_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ ezsigntemplateformfieldgroup_create_object_v1_request_t *ezsigntemplateformfield
 
     // ezsigntemplateformfieldgroup_create_object_v1_request->a_obj_ezsigntemplateformfieldgroup
     cJSON *a_obj_ezsigntemplateformfieldgroup = cJSON_GetObjectItemCaseSensitive(ezsigntemplateformfieldgroup_create_object_v1_requestJSON, "a_objEzsigntemplateformfieldgroup");
+    if (cJSON_IsNull(a_obj_ezsigntemplateformfieldgroup)) {
+        a_obj_ezsigntemplateformfieldgroup = NULL;
+    }
     if (!a_obj_ezsigntemplateformfieldgroup) {
         goto end;
     }
@@ -96,7 +111,7 @@ ezsigntemplateformfieldgroup_create_object_v1_request_t *ezsigntemplateformfield
     }
 
 
-    ezsigntemplateformfieldgroup_create_object_v1_request_local_var = ezsigntemplateformfieldgroup_create_object_v1_request_create (
+    ezsigntemplateformfieldgroup_create_object_v1_request_local_var = ezsigntemplateformfieldgroup_create_object_v1_request_create_internal (
         a_obj_ezsigntemplateformfieldgroupList
         );
 

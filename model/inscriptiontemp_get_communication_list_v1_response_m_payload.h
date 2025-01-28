@@ -22,9 +22,10 @@ typedef struct inscriptiontemp_get_communication_list_v1_response_m_payload_t in
 typedef struct inscriptiontemp_get_communication_list_v1_response_m_payload_t {
     list_t *a_obj_communication; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } inscriptiontemp_get_communication_list_v1_response_m_payload_t;
 
-inscriptiontemp_get_communication_list_v1_response_m_payload_t *inscriptiontemp_get_communication_list_v1_response_m_payload_create(
+__attribute__((deprecated)) inscriptiontemp_get_communication_list_v1_response_m_payload_t *inscriptiontemp_get_communication_list_v1_response_m_payload_create(
     list_t *a_obj_communication
 );
 

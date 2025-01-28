@@ -5,7 +5,7 @@
 
 
 
-usergroupmembership_create_object_v1_request_t *usergroupmembership_create_object_v1_request_create(
+static usergroupmembership_create_object_v1_request_t *usergroupmembership_create_object_v1_request_create_internal(
     list_t *a_obj_usergroupmembership
     ) {
     usergroupmembership_create_object_v1_request_t *usergroupmembership_create_object_v1_request_local_var = malloc(sizeof(usergroupmembership_create_object_v1_request_t));
@@ -14,12 +14,24 @@ usergroupmembership_create_object_v1_request_t *usergroupmembership_create_objec
     }
     usergroupmembership_create_object_v1_request_local_var->a_obj_usergroupmembership = a_obj_usergroupmembership;
 
+    usergroupmembership_create_object_v1_request_local_var->_library_owned = 1;
     return usergroupmembership_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) usergroupmembership_create_object_v1_request_t *usergroupmembership_create_object_v1_request_create(
+    list_t *a_obj_usergroupmembership
+    ) {
+    return usergroupmembership_create_object_v1_request_create_internal (
+        a_obj_usergroupmembership
+        );
+}
 
 void usergroupmembership_create_object_v1_request_free(usergroupmembership_create_object_v1_request_t *usergroupmembership_create_object_v1_request) {
     if(NULL == usergroupmembership_create_object_v1_request){
+        return ;
+    }
+    if(usergroupmembership_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroupmembership_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ usergroupmembership_create_object_v1_request_t *usergroupmembership_create_objec
 
     // usergroupmembership_create_object_v1_request->a_obj_usergroupmembership
     cJSON *a_obj_usergroupmembership = cJSON_GetObjectItemCaseSensitive(usergroupmembership_create_object_v1_requestJSON, "a_objUsergroupmembership");
+    if (cJSON_IsNull(a_obj_usergroupmembership)) {
+        a_obj_usergroupmembership = NULL;
+    }
     if (!a_obj_usergroupmembership) {
         goto end;
     }
@@ -96,7 +111,7 @@ usergroupmembership_create_object_v1_request_t *usergroupmembership_create_objec
     }
 
 
-    usergroupmembership_create_object_v1_request_local_var = usergroupmembership_create_object_v1_request_create (
+    usergroupmembership_create_object_v1_request_local_var = usergroupmembership_create_object_v1_request_create_internal (
         a_obj_usergroupmembershipList
         );
 

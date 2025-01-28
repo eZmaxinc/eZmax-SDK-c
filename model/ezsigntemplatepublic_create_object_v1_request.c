@@ -5,7 +5,7 @@
 
 
 
-ezsigntemplatepublic_create_object_v1_request_t *ezsigntemplatepublic_create_object_v1_request_create(
+static ezsigntemplatepublic_create_object_v1_request_t *ezsigntemplatepublic_create_object_v1_request_create_internal(
     list_t *a_obj_ezsigntemplatepublic
     ) {
     ezsigntemplatepublic_create_object_v1_request_t *ezsigntemplatepublic_create_object_v1_request_local_var = malloc(sizeof(ezsigntemplatepublic_create_object_v1_request_t));
@@ -14,12 +14,24 @@ ezsigntemplatepublic_create_object_v1_request_t *ezsigntemplatepublic_create_obj
     }
     ezsigntemplatepublic_create_object_v1_request_local_var->a_obj_ezsigntemplatepublic = a_obj_ezsigntemplatepublic;
 
+    ezsigntemplatepublic_create_object_v1_request_local_var->_library_owned = 1;
     return ezsigntemplatepublic_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezsigntemplatepublic_create_object_v1_request_t *ezsigntemplatepublic_create_object_v1_request_create(
+    list_t *a_obj_ezsigntemplatepublic
+    ) {
+    return ezsigntemplatepublic_create_object_v1_request_create_internal (
+        a_obj_ezsigntemplatepublic
+        );
+}
 
 void ezsigntemplatepublic_create_object_v1_request_free(ezsigntemplatepublic_create_object_v1_request_t *ezsigntemplatepublic_create_object_v1_request) {
     if(NULL == ezsigntemplatepublic_create_object_v1_request){
+        return ;
+    }
+    if(ezsigntemplatepublic_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigntemplatepublic_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ ezsigntemplatepublic_create_object_v1_request_t *ezsigntemplatepublic_create_obj
 
     // ezsigntemplatepublic_create_object_v1_request->a_obj_ezsigntemplatepublic
     cJSON *a_obj_ezsigntemplatepublic = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_create_object_v1_requestJSON, "a_objEzsigntemplatepublic");
+    if (cJSON_IsNull(a_obj_ezsigntemplatepublic)) {
+        a_obj_ezsigntemplatepublic = NULL;
+    }
     if (!a_obj_ezsigntemplatepublic) {
         goto end;
     }
@@ -96,7 +111,7 @@ ezsigntemplatepublic_create_object_v1_request_t *ezsigntemplatepublic_create_obj
     }
 
 
-    ezsigntemplatepublic_create_object_v1_request_local_var = ezsigntemplatepublic_create_object_v1_request_create (
+    ezsigntemplatepublic_create_object_v1_request_local_var = ezsigntemplatepublic_create_object_v1_request_create_internal (
         a_obj_ezsigntemplatepublicList
         );
 

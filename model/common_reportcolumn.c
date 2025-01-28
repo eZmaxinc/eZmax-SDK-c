@@ -5,7 +5,7 @@
 
 
 
-common_reportcolumn_t *common_reportcolumn_create(
+static common_reportcolumn_t *common_reportcolumn_create_internal(
     common_reportcellstyle_t *obj_reportcellstyle_default,
     int i_reportcolumn_width
     ) {
@@ -16,12 +16,26 @@ common_reportcolumn_t *common_reportcolumn_create(
     common_reportcolumn_local_var->obj_reportcellstyle_default = obj_reportcellstyle_default;
     common_reportcolumn_local_var->i_reportcolumn_width = i_reportcolumn_width;
 
+    common_reportcolumn_local_var->_library_owned = 1;
     return common_reportcolumn_local_var;
 }
 
+__attribute__((deprecated)) common_reportcolumn_t *common_reportcolumn_create(
+    common_reportcellstyle_t *obj_reportcellstyle_default,
+    int i_reportcolumn_width
+    ) {
+    return common_reportcolumn_create_internal (
+        obj_reportcellstyle_default,
+        i_reportcolumn_width
+        );
+}
 
 void common_reportcolumn_free(common_reportcolumn_t *common_reportcolumn) {
     if(NULL == common_reportcolumn){
+        return ;
+    }
+    if(common_reportcolumn->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "common_reportcolumn_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -74,6 +88,9 @@ common_reportcolumn_t *common_reportcolumn_parseFromJSON(cJSON *common_reportcol
 
     // common_reportcolumn->obj_reportcellstyle_default
     cJSON *obj_reportcellstyle_default = cJSON_GetObjectItemCaseSensitive(common_reportcolumnJSON, "objReportcellstyleDefault");
+    if (cJSON_IsNull(obj_reportcellstyle_default)) {
+        obj_reportcellstyle_default = NULL;
+    }
     if (!obj_reportcellstyle_default) {
         goto end;
     }
@@ -83,6 +100,9 @@ common_reportcolumn_t *common_reportcolumn_parseFromJSON(cJSON *common_reportcol
 
     // common_reportcolumn->i_reportcolumn_width
     cJSON *i_reportcolumn_width = cJSON_GetObjectItemCaseSensitive(common_reportcolumnJSON, "iReportcolumnWidth");
+    if (cJSON_IsNull(i_reportcolumn_width)) {
+        i_reportcolumn_width = NULL;
+    }
     if (!i_reportcolumn_width) {
         goto end;
     }
@@ -94,7 +114,7 @@ common_reportcolumn_t *common_reportcolumn_parseFromJSON(cJSON *common_reportcol
     }
 
 
-    common_reportcolumn_local_var = common_reportcolumn_create (
+    common_reportcolumn_local_var = common_reportcolumn_create_internal (
         obj_reportcellstyle_default_local_nonprim,
         i_reportcolumn_width->valuedouble
         );

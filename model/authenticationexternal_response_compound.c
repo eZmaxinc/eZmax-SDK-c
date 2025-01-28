@@ -4,28 +4,11 @@
 #include "authenticationexternal_response_compound.h"
 
 
-char* authenticationexternal_response_compound_e_authenticationexternal_type_ToString(ezmax_api_definition__full_authenticationexternal_response_compound__e e_authenticationexternal_type) {
-    char* e_authenticationexternal_typeArray[] =  { "NULL", "Salesforce", "SalesforceSandbox" };
-    return e_authenticationexternal_typeArray[e_authenticationexternal_type];
-}
 
-ezmax_api_definition__full_authenticationexternal_response_compound__e authenticationexternal_response_compound_e_authenticationexternal_type_FromString(char* e_authenticationexternal_type){
-    int stringToReturn = 0;
-    char *e_authenticationexternal_typeArray[] =  { "NULL", "Salesforce", "SalesforceSandbox" };
-    size_t sizeofArray = sizeof(e_authenticationexternal_typeArray) / sizeof(e_authenticationexternal_typeArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_authenticationexternal_type, e_authenticationexternal_typeArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-authenticationexternal_response_compound_t *authenticationexternal_response_compound_create(
+static authenticationexternal_response_compound_t *authenticationexternal_response_compound_create_internal(
     int pki_authenticationexternal_id,
     char *s_authenticationexternal_description,
-    field_e_authenticationexternal_type_t *e_authenticationexternal_type,
+    ezmax_api_definition__full_field_e_authenticationexternal_type__e e_authenticationexternal_type,
     int b_authenticationexternal_connected,
     char *s_authenticationexternal_authorizationurl,
     common_audit_t *obj_audit
@@ -41,22 +24,40 @@ authenticationexternal_response_compound_t *authenticationexternal_response_comp
     authenticationexternal_response_compound_local_var->s_authenticationexternal_authorizationurl = s_authenticationexternal_authorizationurl;
     authenticationexternal_response_compound_local_var->obj_audit = obj_audit;
 
+    authenticationexternal_response_compound_local_var->_library_owned = 1;
     return authenticationexternal_response_compound_local_var;
 }
 
+__attribute__((deprecated)) authenticationexternal_response_compound_t *authenticationexternal_response_compound_create(
+    int pki_authenticationexternal_id,
+    char *s_authenticationexternal_description,
+    ezmax_api_definition__full_field_e_authenticationexternal_type__e e_authenticationexternal_type,
+    int b_authenticationexternal_connected,
+    char *s_authenticationexternal_authorizationurl,
+    common_audit_t *obj_audit
+    ) {
+    return authenticationexternal_response_compound_create_internal (
+        pki_authenticationexternal_id,
+        s_authenticationexternal_description,
+        e_authenticationexternal_type,
+        b_authenticationexternal_connected,
+        s_authenticationexternal_authorizationurl,
+        obj_audit
+        );
+}
 
 void authenticationexternal_response_compound_free(authenticationexternal_response_compound_t *authenticationexternal_response_compound) {
     if(NULL == authenticationexternal_response_compound){
+        return ;
+    }
+    if(authenticationexternal_response_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "authenticationexternal_response_compound_free");
         return ;
     }
     listEntry_t *listEntry;
     if (authenticationexternal_response_compound->s_authenticationexternal_description) {
         free(authenticationexternal_response_compound->s_authenticationexternal_description);
         authenticationexternal_response_compound->s_authenticationexternal_description = NULL;
-    }
-    if (authenticationexternal_response_compound->e_authenticationexternal_type) {
-        field_e_authenticationexternal_type_free(authenticationexternal_response_compound->e_authenticationexternal_type);
-        authenticationexternal_response_compound->e_authenticationexternal_type = NULL;
     }
     if (authenticationexternal_response_compound->s_authenticationexternal_authorizationurl) {
         free(authenticationexternal_response_compound->s_authenticationexternal_authorizationurl);
@@ -91,7 +92,7 @@ cJSON *authenticationexternal_response_compound_convertToJSON(authenticationexte
 
 
     // authenticationexternal_response_compound->e_authenticationexternal_type
-    if (ezmax_api_definition__full_authenticationexternal_response_compound__NULL == authenticationexternal_response_compound->e_authenticationexternal_type) {
+    if (ezmax_api_definition__full_field_e_authenticationexternal_type__NULL == authenticationexternal_response_compound->e_authenticationexternal_type) {
         goto fail;
     }
     cJSON *e_authenticationexternal_type_local_JSON = field_e_authenticationexternal_type_convertToJSON(authenticationexternal_response_compound->e_authenticationexternal_type);
@@ -146,13 +147,16 @@ authenticationexternal_response_compound_t *authenticationexternal_response_comp
     authenticationexternal_response_compound_t *authenticationexternal_response_compound_local_var = NULL;
 
     // define the local variable for authenticationexternal_response_compound->e_authenticationexternal_type
-    field_e_authenticationexternal_type_t *e_authenticationexternal_type_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_authenticationexternal_type__e e_authenticationexternal_type_local_nonprim = 0;
 
     // define the local variable for authenticationexternal_response_compound->obj_audit
     common_audit_t *obj_audit_local_nonprim = NULL;
 
     // authenticationexternal_response_compound->pki_authenticationexternal_id
     cJSON *pki_authenticationexternal_id = cJSON_GetObjectItemCaseSensitive(authenticationexternal_response_compoundJSON, "pkiAuthenticationexternalID");
+    if (cJSON_IsNull(pki_authenticationexternal_id)) {
+        pki_authenticationexternal_id = NULL;
+    }
     if (!pki_authenticationexternal_id) {
         goto end;
     }
@@ -165,6 +169,9 @@ authenticationexternal_response_compound_t *authenticationexternal_response_comp
 
     // authenticationexternal_response_compound->s_authenticationexternal_description
     cJSON *s_authenticationexternal_description = cJSON_GetObjectItemCaseSensitive(authenticationexternal_response_compoundJSON, "sAuthenticationexternalDescription");
+    if (cJSON_IsNull(s_authenticationexternal_description)) {
+        s_authenticationexternal_description = NULL;
+    }
     if (!s_authenticationexternal_description) {
         goto end;
     }
@@ -177,6 +184,9 @@ authenticationexternal_response_compound_t *authenticationexternal_response_comp
 
     // authenticationexternal_response_compound->e_authenticationexternal_type
     cJSON *e_authenticationexternal_type = cJSON_GetObjectItemCaseSensitive(authenticationexternal_response_compoundJSON, "eAuthenticationexternalType");
+    if (cJSON_IsNull(e_authenticationexternal_type)) {
+        e_authenticationexternal_type = NULL;
+    }
     if (!e_authenticationexternal_type) {
         goto end;
     }
@@ -186,6 +196,9 @@ authenticationexternal_response_compound_t *authenticationexternal_response_comp
 
     // authenticationexternal_response_compound->b_authenticationexternal_connected
     cJSON *b_authenticationexternal_connected = cJSON_GetObjectItemCaseSensitive(authenticationexternal_response_compoundJSON, "bAuthenticationexternalConnected");
+    if (cJSON_IsNull(b_authenticationexternal_connected)) {
+        b_authenticationexternal_connected = NULL;
+    }
     if (b_authenticationexternal_connected) { 
     if(!cJSON_IsBool(b_authenticationexternal_connected))
     {
@@ -195,6 +208,9 @@ authenticationexternal_response_compound_t *authenticationexternal_response_comp
 
     // authenticationexternal_response_compound->s_authenticationexternal_authorizationurl
     cJSON *s_authenticationexternal_authorizationurl = cJSON_GetObjectItemCaseSensitive(authenticationexternal_response_compoundJSON, "sAuthenticationexternalAuthorizationurl");
+    if (cJSON_IsNull(s_authenticationexternal_authorizationurl)) {
+        s_authenticationexternal_authorizationurl = NULL;
+    }
     if (s_authenticationexternal_authorizationurl) { 
     if(!cJSON_IsString(s_authenticationexternal_authorizationurl) && !cJSON_IsNull(s_authenticationexternal_authorizationurl))
     {
@@ -204,6 +220,9 @@ authenticationexternal_response_compound_t *authenticationexternal_response_comp
 
     // authenticationexternal_response_compound->obj_audit
     cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(authenticationexternal_response_compoundJSON, "objAudit");
+    if (cJSON_IsNull(obj_audit)) {
+        obj_audit = NULL;
+    }
     if (!obj_audit) {
         goto end;
     }
@@ -212,7 +231,7 @@ authenticationexternal_response_compound_t *authenticationexternal_response_comp
     obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
 
 
-    authenticationexternal_response_compound_local_var = authenticationexternal_response_compound_create (
+    authenticationexternal_response_compound_local_var = authenticationexternal_response_compound_create_internal (
         pki_authenticationexternal_id->valuedouble,
         strdup(s_authenticationexternal_description->valuestring),
         e_authenticationexternal_type_local_nonprim,
@@ -224,8 +243,7 @@ authenticationexternal_response_compound_t *authenticationexternal_response_comp
     return authenticationexternal_response_compound_local_var;
 end:
     if (e_authenticationexternal_type_local_nonprim) {
-        field_e_authenticationexternal_type_free(e_authenticationexternal_type_local_nonprim);
-        e_authenticationexternal_type_local_nonprim = NULL;
+        e_authenticationexternal_type_local_nonprim = 0;
     }
     if (obj_audit_local_nonprim) {
         common_audit_free(obj_audit_local_nonprim);

@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 // Functions for enum EWEBHOOKHISTORYINTERVAL for ObjectWebhookAPI_webhookGetHistoryV1
 
@@ -172,11 +167,14 @@ ObjectWebhookAPI_webhookCreateObjectV2(apiClient_t *apiClient, webhook_create_ob
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/webhook")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/webhook");
+    char *localVarPath = strdup("/2/object/webhook");
+
 
 
 
@@ -185,9 +183,10 @@ ObjectWebhookAPI_webhookCreateObjectV2(apiClient_t *apiClient, webhook_create_ob
     cJSON *localVarSingleItemJSON_webhook_create_object_v2_request = NULL;
     if (webhook_create_object_v2_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_webhook_create_object_v2_request = webhook_create_object_v2_request_convertToJSON(webhook_create_object_v2_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_webhook_create_object_v2_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -199,6 +198,7 @@ ObjectWebhookAPI_webhookCreateObjectV2(apiClient_t *apiClient, webhook_create_ob
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -206,11 +206,14 @@ ObjectWebhookAPI_webhookCreateObjectV2(apiClient_t *apiClient, webhook_create_ob
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectWebhookAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    webhook_create_object_v2_response_t *elementToReturn = webhook_create_object_v2_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
-    cJSON_Delete(ObjectWebhookAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    webhook_create_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectWebhookAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = webhook_create_object_v2_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
+        cJSON_Delete(ObjectWebhookAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -241,7 +244,7 @@ end:
 //
 // 
 //
-common_response_t*
+webhook_delete_object_v1_response_t*
 ObjectWebhookAPI_webhookDeleteObjectV1(apiClient_t *apiClient, int *pkiWebhookID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -250,15 +253,18 @@ ObjectWebhookAPI_webhookDeleteObjectV1(apiClient_t *apiClient, int *pkiWebhookID
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/webhook/{pkiWebhookID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/webhook/{pkiWebhookID}");
+    char *localVarPath = strdup("/1/object/webhook/{pkiWebhookID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiWebhookID =  + strlen("{ pkiWebhookID }");
+    long sizeOfPathParams_pkiWebhookID =  + sizeof("{ pkiWebhookID }") - 1;
     if(pkiWebhookID == 0){
         goto end;
     }
@@ -266,7 +272,7 @@ ObjectWebhookAPI_webhookDeleteObjectV1(apiClient_t *apiClient, int *pkiWebhookID
     snprintf(localVarToReplace_pkiWebhookID, sizeOfPathParams_pkiWebhookID, "{%s}", "pkiWebhookID");
 
     char localVarBuff_pkiWebhookID[256];
-    intToStr(localVarBuff_pkiWebhookID, *pkiWebhookID);
+    snprintf(localVarBuff_pkiWebhookID, sizeof localVarBuff_pkiWebhookID, "%ld", (long)*pkiWebhookID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiWebhookID, localVarBuff_pkiWebhookID);
 
@@ -281,6 +287,7 @@ ObjectWebhookAPI_webhookDeleteObjectV1(apiClient_t *apiClient, int *pkiWebhookID
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "DELETE");
 
     // uncomment below to debug the error response
@@ -292,11 +299,14 @@ ObjectWebhookAPI_webhookDeleteObjectV1(apiClient_t *apiClient, int *pkiWebhookID
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectWebhookAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
-    cJSON_Delete(ObjectWebhookAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    webhook_delete_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectWebhookAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = webhook_delete_object_v1_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
+        cJSON_Delete(ObjectWebhookAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -323,7 +333,7 @@ end:
 //
 // 
 //
-common_response_t*
+webhook_edit_object_v1_response_t*
 ObjectWebhookAPI_webhookEditObjectV1(apiClient_t *apiClient, int *pkiWebhookID, webhook_edit_object_v1_request_t *webhook_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -332,15 +342,18 @@ ObjectWebhookAPI_webhookEditObjectV1(apiClient_t *apiClient, int *pkiWebhookID, 
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/webhook/{pkiWebhookID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/webhook/{pkiWebhookID}");
+    char *localVarPath = strdup("/1/object/webhook/{pkiWebhookID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiWebhookID =  + strlen("{ pkiWebhookID }");
+    long sizeOfPathParams_pkiWebhookID =  + sizeof("{ pkiWebhookID }") - 1;
     if(pkiWebhookID == 0){
         goto end;
     }
@@ -348,7 +361,7 @@ ObjectWebhookAPI_webhookEditObjectV1(apiClient_t *apiClient, int *pkiWebhookID, 
     snprintf(localVarToReplace_pkiWebhookID, sizeOfPathParams_pkiWebhookID, "{%s}", "pkiWebhookID");
 
     char localVarBuff_pkiWebhookID[256];
-    intToStr(localVarBuff_pkiWebhookID, *pkiWebhookID);
+    snprintf(localVarBuff_pkiWebhookID, sizeof localVarBuff_pkiWebhookID, "%ld", (long)*pkiWebhookID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiWebhookID, localVarBuff_pkiWebhookID);
 
@@ -359,9 +372,10 @@ ObjectWebhookAPI_webhookEditObjectV1(apiClient_t *apiClient, int *pkiWebhookID, 
     cJSON *localVarSingleItemJSON_webhook_edit_object_v1_request = NULL;
     if (webhook_edit_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_webhook_edit_object_v1_request = webhook_edit_object_v1_request_convertToJSON(webhook_edit_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_webhook_edit_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -373,6 +387,7 @@ ObjectWebhookAPI_webhookEditObjectV1(apiClient_t *apiClient, int *pkiWebhookID, 
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -384,11 +399,14 @@ ObjectWebhookAPI_webhookEditObjectV1(apiClient_t *apiClient, int *pkiWebhookID, 
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectWebhookAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
-    cJSON_Delete(ObjectWebhookAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    webhook_edit_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectWebhookAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = webhook_edit_object_v1_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
+        cJSON_Delete(ObjectWebhookAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -429,15 +447,18 @@ ObjectWebhookAPI_webhookGetHistoryV1(apiClient_t *apiClient, int *pkiWebhookID, 
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/webhook/{pkiWebhookID}/getHistory")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/webhook/{pkiWebhookID}/getHistory");
+    char *localVarPath = strdup("/1/object/webhook/{pkiWebhookID}/getHistory");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiWebhookID =  + strlen("{ pkiWebhookID }");
+    long sizeOfPathParams_pkiWebhookID =  + sizeof("{ pkiWebhookID }") - 1;
     if(pkiWebhookID == 0){
         goto end;
     }
@@ -445,7 +466,7 @@ ObjectWebhookAPI_webhookGetHistoryV1(apiClient_t *apiClient, int *pkiWebhookID, 
     snprintf(localVarToReplace_pkiWebhookID, sizeOfPathParams_pkiWebhookID, "{%s}", "pkiWebhookID");
 
     char localVarBuff_pkiWebhookID[256];
-    intToStr(localVarBuff_pkiWebhookID, *pkiWebhookID);
+    snprintf(localVarBuff_pkiWebhookID, sizeof localVarBuff_pkiWebhookID, "%ld", (long)*pkiWebhookID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiWebhookID, localVarBuff_pkiWebhookID);
 
@@ -460,7 +481,7 @@ ObjectWebhookAPI_webhookGetHistoryV1(apiClient_t *apiClient, int *pkiWebhookID, 
     {
         keyQuery_eWebhookHistoryinterval = strdup("eWebhookHistoryinterval");
         valueQuery_eWebhookHistoryinterval = (eWebhookHistoryinterval);
-        keyPairQuery_eWebhookHistoryinterval = keyValuePair_create(keyQuery_eWebhookHistoryinterval, (void *)strdup(webhookGetHistoryV1_EWEBHOOKHISTORYINTERVAL_ToString(
+        keyPairQuery_eWebhookHistoryinterval = keyValuePair_create(keyQuery_eWebhookHistoryinterval, strdup(webhookGetHistoryV1_EWEBHOOKHISTORYINTERVAL_ToString(
         valueQuery_eWebhookHistoryinterval)));
         list_addElement(localVarQueryParameters,keyPairQuery_eWebhookHistoryinterval);
     }
@@ -473,6 +494,7 @@ ObjectWebhookAPI_webhookGetHistoryV1(apiClient_t *apiClient, int *pkiWebhookID, 
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -488,11 +510,14 @@ ObjectWebhookAPI_webhookGetHistoryV1(apiClient_t *apiClient, int *pkiWebhookID, 
     //    printf("%s\n","Too Many Requests");
     //}
     //nonprimitive not container
-    cJSON *ObjectWebhookAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    webhook_get_history_v1_response_t *elementToReturn = webhook_get_history_v1_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
-    cJSON_Delete(ObjectWebhookAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    webhook_get_history_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectWebhookAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = webhook_get_history_v1_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
+        cJSON_Delete(ObjectWebhookAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -536,11 +561,14 @@ ObjectWebhookAPI_webhookGetListV1(apiClient_t *apiClient, ezmax_api_definition__
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/webhook/getList")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/webhook/getList");
+    char *localVarPath = strdup("/1/object/webhook/getList");
+
 
 
 
@@ -565,7 +593,7 @@ ObjectWebhookAPI_webhookGetListV1(apiClient_t *apiClient, ezmax_api_definition__
     {
         keyQuery_eOrderBy = strdup("eOrderBy");
         valueQuery_eOrderBy = (eOrderBy);
-        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, (void *)strdup(webhookGetListV1_EORDERBY_ToString(
+        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, strdup(webhookGetListV1_EORDERBY_ToString(
         valueQuery_eOrderBy)));
         list_addElement(localVarQueryParameters,keyPairQuery_eOrderBy);
     }
@@ -617,6 +645,7 @@ ObjectWebhookAPI_webhookGetListV1(apiClient_t *apiClient, ezmax_api_definition__
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -628,11 +657,14 @@ ObjectWebhookAPI_webhookGetListV1(apiClient_t *apiClient, ezmax_api_definition__
     //    printf("%s\n","The URL is valid, but one of the Accept header is not defined or invalid. For example, you set the header \&quot;Accept: application/json\&quot; but the function can only return \&quot;Content-type: image/png\&quot;");
     //}
     //nonprimitive not container
-    cJSON *ObjectWebhookAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    webhook_get_list_v1_response_t *elementToReturn = webhook_get_list_v1_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
-    cJSON_Delete(ObjectWebhookAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    webhook_get_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectWebhookAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = webhook_get_list_v1_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
+        cJSON_Delete(ObjectWebhookAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -716,15 +748,18 @@ ObjectWebhookAPI_webhookGetObjectV2(apiClient_t *apiClient, int *pkiWebhookID)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/webhook/{pkiWebhookID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/webhook/{pkiWebhookID}");
+    char *localVarPath = strdup("/2/object/webhook/{pkiWebhookID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiWebhookID =  + strlen("{ pkiWebhookID }");
+    long sizeOfPathParams_pkiWebhookID =  + sizeof("{ pkiWebhookID }") - 1;
     if(pkiWebhookID == 0){
         goto end;
     }
@@ -732,7 +767,7 @@ ObjectWebhookAPI_webhookGetObjectV2(apiClient_t *apiClient, int *pkiWebhookID)
     snprintf(localVarToReplace_pkiWebhookID, sizeOfPathParams_pkiWebhookID, "{%s}", "pkiWebhookID");
 
     char localVarBuff_pkiWebhookID[256];
-    intToStr(localVarBuff_pkiWebhookID, *pkiWebhookID);
+    snprintf(localVarBuff_pkiWebhookID, sizeof localVarBuff_pkiWebhookID, "%ld", (long)*pkiWebhookID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiWebhookID, localVarBuff_pkiWebhookID);
 
@@ -747,6 +782,7 @@ ObjectWebhookAPI_webhookGetObjectV2(apiClient_t *apiClient, int *pkiWebhookID)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -758,11 +794,14 @@ ObjectWebhookAPI_webhookGetObjectV2(apiClient_t *apiClient, int *pkiWebhookID)
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectWebhookAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    webhook_get_object_v2_response_t *elementToReturn = webhook_get_object_v2_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
-    cJSON_Delete(ObjectWebhookAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    webhook_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectWebhookAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = webhook_get_object_v2_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
+        cJSON_Delete(ObjectWebhookAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -798,15 +837,18 @@ ObjectWebhookAPI_webhookRegenerateApikeyV1(apiClient_t *apiClient, int *pkiWebho
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/webhook/{pkiWebhookID}/regenerateApikey")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/webhook/{pkiWebhookID}/regenerateApikey");
+    char *localVarPath = strdup("/1/object/webhook/{pkiWebhookID}/regenerateApikey");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiWebhookID =  + strlen("{ pkiWebhookID }");
+    long sizeOfPathParams_pkiWebhookID =  + sizeof("{ pkiWebhookID }") - 1;
     if(pkiWebhookID == 0){
         goto end;
     }
@@ -814,7 +856,7 @@ ObjectWebhookAPI_webhookRegenerateApikeyV1(apiClient_t *apiClient, int *pkiWebho
     snprintf(localVarToReplace_pkiWebhookID, sizeOfPathParams_pkiWebhookID, "{%s}", "pkiWebhookID");
 
     char localVarBuff_pkiWebhookID[256];
-    intToStr(localVarBuff_pkiWebhookID, *pkiWebhookID);
+    snprintf(localVarBuff_pkiWebhookID, sizeof localVarBuff_pkiWebhookID, "%ld", (long)*pkiWebhookID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiWebhookID, localVarBuff_pkiWebhookID);
 
@@ -825,9 +867,10 @@ ObjectWebhookAPI_webhookRegenerateApikeyV1(apiClient_t *apiClient, int *pkiWebho
     cJSON *localVarSingleItemJSON_webhook_regenerate_apikey_v1_request = NULL;
     if (webhook_regenerate_apikey_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_webhook_regenerate_apikey_v1_request = webhook_regenerate_apikey_v1_request_convertToJSON(webhook_regenerate_apikey_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_webhook_regenerate_apikey_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -839,6 +882,7 @@ ObjectWebhookAPI_webhookRegenerateApikeyV1(apiClient_t *apiClient, int *pkiWebho
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -850,11 +894,14 @@ ObjectWebhookAPI_webhookRegenerateApikeyV1(apiClient_t *apiClient, int *pkiWebho
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectWebhookAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    webhook_regenerate_apikey_v1_response_t *elementToReturn = webhook_regenerate_apikey_v1_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
-    cJSON_Delete(ObjectWebhookAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    webhook_regenerate_apikey_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectWebhookAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = webhook_regenerate_apikey_v1_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
+        cJSON_Delete(ObjectWebhookAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -884,7 +931,7 @@ end:
 
 // Emit a Webhook event
 //
-common_response_t*
+webhook_send_webhook_v1_response_t*
 ObjectWebhookAPI_webhookSendWebhookV1(apiClient_t *apiClient, webhook_send_webhook_v1_request_t *webhook_send_webhook_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -893,11 +940,14 @@ ObjectWebhookAPI_webhookSendWebhookV1(apiClient_t *apiClient, webhook_send_webho
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/webhook/sendWebhook")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/webhook/sendWebhook");
+    char *localVarPath = strdup("/1/object/webhook/sendWebhook");
+
 
 
 
@@ -906,9 +956,10 @@ ObjectWebhookAPI_webhookSendWebhookV1(apiClient_t *apiClient, webhook_send_webho
     cJSON *localVarSingleItemJSON_webhook_send_webhook_v1_request = NULL;
     if (webhook_send_webhook_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_webhook_send_webhook_v1_request = webhook_send_webhook_v1_request_convertToJSON(webhook_send_webhook_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_webhook_send_webhook_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -920,6 +971,7 @@ ObjectWebhookAPI_webhookSendWebhookV1(apiClient_t *apiClient, webhook_send_webho
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -931,11 +983,14 @@ ObjectWebhookAPI_webhookSendWebhookV1(apiClient_t *apiClient, webhook_send_webho
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectWebhookAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
-    cJSON_Delete(ObjectWebhookAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    webhook_send_webhook_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectWebhookAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = webhook_send_webhook_v1_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
+        cJSON_Delete(ObjectWebhookAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -966,7 +1021,7 @@ end:
 //
 // 
 //
-common_response_t*
+webhook_test_v1_response_t*
 ObjectWebhookAPI_webhookTestV1(apiClient_t *apiClient, int *pkiWebhookID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -975,15 +1030,18 @@ ObjectWebhookAPI_webhookTestV1(apiClient_t *apiClient, int *pkiWebhookID, object
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/webhook/{pkiWebhookID}/test")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/webhook/{pkiWebhookID}/test");
+    char *localVarPath = strdup("/1/object/webhook/{pkiWebhookID}/test");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiWebhookID =  + strlen("{ pkiWebhookID }");
+    long sizeOfPathParams_pkiWebhookID =  + sizeof("{ pkiWebhookID }") - 1;
     if(pkiWebhookID == 0){
         goto end;
     }
@@ -991,7 +1049,7 @@ ObjectWebhookAPI_webhookTestV1(apiClient_t *apiClient, int *pkiWebhookID, object
     snprintf(localVarToReplace_pkiWebhookID, sizeOfPathParams_pkiWebhookID, "{%s}", "pkiWebhookID");
 
     char localVarBuff_pkiWebhookID[256];
-    intToStr(localVarBuff_pkiWebhookID, *pkiWebhookID);
+    snprintf(localVarBuff_pkiWebhookID, sizeof localVarBuff_pkiWebhookID, "%ld", (long)*pkiWebhookID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiWebhookID, localVarBuff_pkiWebhookID);
 
@@ -1002,9 +1060,10 @@ ObjectWebhookAPI_webhookTestV1(apiClient_t *apiClient, int *pkiWebhookID, object
     cJSON *localVarSingleItemJSON_body = NULL;
     if (body != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_body = object_convertToJSON(body);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_body);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -1016,6 +1075,7 @@ ObjectWebhookAPI_webhookTestV1(apiClient_t *apiClient, int *pkiWebhookID, object
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -1027,11 +1087,14 @@ ObjectWebhookAPI_webhookTestV1(apiClient_t *apiClient, int *pkiWebhookID, object
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectWebhookAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
-    cJSON_Delete(ObjectWebhookAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    webhook_test_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectWebhookAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = webhook_test_v1_response_parseFromJSON(ObjectWebhookAPIlocalVarJSON);
+        cJSON_Delete(ObjectWebhookAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

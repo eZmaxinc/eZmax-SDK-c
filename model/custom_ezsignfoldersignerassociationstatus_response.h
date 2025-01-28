@@ -26,9 +26,10 @@ typedef struct custom_ezsignfoldersignerassociationstatus_response_t {
     char *s_ezsignfoldersignerassociationstatus_description_x; // string
     list_t *a_obj_ezsignsignaturestatus; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_ezsignfoldersignerassociationstatus_response_t;
 
-custom_ezsignfoldersignerassociationstatus_response_t *custom_ezsignfoldersignerassociationstatus_response_create(
+__attribute__((deprecated)) custom_ezsignfoldersignerassociationstatus_response_t *custom_ezsignfoldersignerassociationstatus_response_create(
     int fki_ezsignfoldersignerassociation_id,
     char *s_ezsignfoldersignerassociationstatus_lastname,
     char *s_ezsignfoldersignerassociationstatus_firstname,

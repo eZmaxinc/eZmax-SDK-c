@@ -22,9 +22,10 @@ typedef struct common_response_warning_t {
     char *s_warning_message; // string
     char *e_warning_code; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } common_response_warning_t;
 
-common_response_warning_t *common_response_warning_create(
+__attribute__((deprecated)) common_response_warning_t *common_response_warning_create(
     char *s_warning_message,
     char *e_warning_code
 );

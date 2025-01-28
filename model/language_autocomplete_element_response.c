@@ -5,7 +5,7 @@
 
 
 
-language_autocomplete_element_response_t *language_autocomplete_element_response_create(
+static language_autocomplete_element_response_t *language_autocomplete_element_response_create_internal(
     int pki_language_id,
     char *s_language_name_x,
     int b_language_isactive
@@ -18,12 +18,28 @@ language_autocomplete_element_response_t *language_autocomplete_element_response
     language_autocomplete_element_response_local_var->s_language_name_x = s_language_name_x;
     language_autocomplete_element_response_local_var->b_language_isactive = b_language_isactive;
 
+    language_autocomplete_element_response_local_var->_library_owned = 1;
     return language_autocomplete_element_response_local_var;
 }
 
+__attribute__((deprecated)) language_autocomplete_element_response_t *language_autocomplete_element_response_create(
+    int pki_language_id,
+    char *s_language_name_x,
+    int b_language_isactive
+    ) {
+    return language_autocomplete_element_response_create_internal (
+        pki_language_id,
+        s_language_name_x,
+        b_language_isactive
+        );
+}
 
 void language_autocomplete_element_response_free(language_autocomplete_element_response_t *language_autocomplete_element_response) {
     if(NULL == language_autocomplete_element_response){
+        return ;
+    }
+    if(language_autocomplete_element_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "language_autocomplete_element_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -77,6 +93,9 @@ language_autocomplete_element_response_t *language_autocomplete_element_response
 
     // language_autocomplete_element_response->pki_language_id
     cJSON *pki_language_id = cJSON_GetObjectItemCaseSensitive(language_autocomplete_element_responseJSON, "pkiLanguageID");
+    if (cJSON_IsNull(pki_language_id)) {
+        pki_language_id = NULL;
+    }
     if (!pki_language_id) {
         goto end;
     }
@@ -89,6 +108,9 @@ language_autocomplete_element_response_t *language_autocomplete_element_response
 
     // language_autocomplete_element_response->s_language_name_x
     cJSON *s_language_name_x = cJSON_GetObjectItemCaseSensitive(language_autocomplete_element_responseJSON, "sLanguageNameX");
+    if (cJSON_IsNull(s_language_name_x)) {
+        s_language_name_x = NULL;
+    }
     if (!s_language_name_x) {
         goto end;
     }
@@ -101,6 +123,9 @@ language_autocomplete_element_response_t *language_autocomplete_element_response
 
     // language_autocomplete_element_response->b_language_isactive
     cJSON *b_language_isactive = cJSON_GetObjectItemCaseSensitive(language_autocomplete_element_responseJSON, "bLanguageIsactive");
+    if (cJSON_IsNull(b_language_isactive)) {
+        b_language_isactive = NULL;
+    }
     if (!b_language_isactive) {
         goto end;
     }
@@ -112,7 +137,7 @@ language_autocomplete_element_response_t *language_autocomplete_element_response
     }
 
 
-    language_autocomplete_element_response_local_var = language_autocomplete_element_response_create (
+    language_autocomplete_element_response_local_var = language_autocomplete_element_response_create_internal (
         pki_language_id->valuedouble,
         strdup(s_language_name_x->valuestring),
         b_language_isactive->valueint

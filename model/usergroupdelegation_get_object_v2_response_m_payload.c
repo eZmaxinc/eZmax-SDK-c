@@ -5,7 +5,7 @@
 
 
 
-usergroupdelegation_get_object_v2_response_m_payload_t *usergroupdelegation_get_object_v2_response_m_payload_create(
+static usergroupdelegation_get_object_v2_response_m_payload_t *usergroupdelegation_get_object_v2_response_m_payload_create_internal(
     usergroupdelegation_response_compound_t *obj_usergroupdelegation
     ) {
     usergroupdelegation_get_object_v2_response_m_payload_t *usergroupdelegation_get_object_v2_response_m_payload_local_var = malloc(sizeof(usergroupdelegation_get_object_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ usergroupdelegation_get_object_v2_response_m_payload_t *usergroupdelegation_get_
     }
     usergroupdelegation_get_object_v2_response_m_payload_local_var->obj_usergroupdelegation = obj_usergroupdelegation;
 
+    usergroupdelegation_get_object_v2_response_m_payload_local_var->_library_owned = 1;
     return usergroupdelegation_get_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) usergroupdelegation_get_object_v2_response_m_payload_t *usergroupdelegation_get_object_v2_response_m_payload_create(
+    usergroupdelegation_response_compound_t *obj_usergroupdelegation
+    ) {
+    return usergroupdelegation_get_object_v2_response_m_payload_create_internal (
+        obj_usergroupdelegation
+        );
+}
 
 void usergroupdelegation_get_object_v2_response_m_payload_free(usergroupdelegation_get_object_v2_response_m_payload_t *usergroupdelegation_get_object_v2_response_m_payload) {
     if(NULL == usergroupdelegation_get_object_v2_response_m_payload){
+        return ;
+    }
+    if(usergroupdelegation_get_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroupdelegation_get_object_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ usergroupdelegation_get_object_v2_response_m_payload_t *usergroupdelegation_get_
 
     // usergroupdelegation_get_object_v2_response_m_payload->obj_usergroupdelegation
     cJSON *obj_usergroupdelegation = cJSON_GetObjectItemCaseSensitive(usergroupdelegation_get_object_v2_response_m_payloadJSON, "objUsergroupdelegation");
+    if (cJSON_IsNull(obj_usergroupdelegation)) {
+        obj_usergroupdelegation = NULL;
+    }
     if (!obj_usergroupdelegation) {
         goto end;
     }
@@ -71,7 +86,7 @@ usergroupdelegation_get_object_v2_response_m_payload_t *usergroupdelegation_get_
     obj_usergroupdelegation_local_nonprim = usergroupdelegation_response_compound_parseFromJSON(obj_usergroupdelegation); //nonprimitive
 
 
-    usergroupdelegation_get_object_v2_response_m_payload_local_var = usergroupdelegation_get_object_v2_response_m_payload_create (
+    usergroupdelegation_get_object_v2_response_m_payload_local_var = usergroupdelegation_get_object_v2_response_m_payload_create_internal (
         obj_usergroupdelegation_local_nonprim
         );
 

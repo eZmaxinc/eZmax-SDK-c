@@ -23,9 +23,10 @@ typedef struct authenticationexternal_autocomplete_element_response_t {
     char *s_authenticationexternal_description; // string
     int b_authenticationexternal_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } authenticationexternal_autocomplete_element_response_t;
 
-authenticationexternal_autocomplete_element_response_t *authenticationexternal_autocomplete_element_response_create(
+__attribute__((deprecated)) authenticationexternal_autocomplete_element_response_t *authenticationexternal_autocomplete_element_response_create(
     int pki_authenticationexternal_id,
     char *s_authenticationexternal_description,
     int b_authenticationexternal_isactive

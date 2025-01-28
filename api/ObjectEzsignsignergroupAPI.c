@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Create a new Ezsignsignergroup
@@ -25,11 +20,14 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupCreateObjectV1(apiClient_t *apiClien
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignsignergroup")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignsignergroup");
+    char *localVarPath = strdup("/1/object/ezsignsignergroup");
+
 
 
 
@@ -38,9 +36,10 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupCreateObjectV1(apiClient_t *apiClien
     cJSON *localVarSingleItemJSON_ezsignsignergroup_create_object_v1_request = NULL;
     if (ezsignsignergroup_create_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignsignergroup_create_object_v1_request = ezsignsignergroup_create_object_v1_request_convertToJSON(ezsignsignergroup_create_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignsignergroup_create_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -52,6 +51,7 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupCreateObjectV1(apiClient_t *apiClien
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -59,11 +59,14 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupCreateObjectV1(apiClient_t *apiClien
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignsignergroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignsignergroup_create_object_v1_response_t *elementToReturn = ezsignsignergroup_create_object_v1_response_parseFromJSON(ObjectEzsignsignergroupAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignsignergroupAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignsignergroup_create_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignsignergroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignsignergroup_create_object_v1_response_parseFromJSON(ObjectEzsignsignergroupAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignsignergroupAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -94,7 +97,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignsignergroup_delete_object_v1_response_t*
 ObjectEzsignsignergroupAPI_ezsignsignergroupDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignsignergroupID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -103,15 +106,18 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupDeleteObjectV1(apiClient_t *apiClien
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignsignergroup/{pkiEzsignsignergroupID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignsignergroup/{pkiEzsignsignergroupID}");
+    char *localVarPath = strdup("/1/object/ezsignsignergroup/{pkiEzsignsignergroupID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignsignergroupID =  + strlen("{ pkiEzsignsignergroupID }");
+    long sizeOfPathParams_pkiEzsignsignergroupID =  + sizeof("{ pkiEzsignsignergroupID }") - 1;
     if(pkiEzsignsignergroupID == 0){
         goto end;
     }
@@ -119,7 +125,7 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupDeleteObjectV1(apiClient_t *apiClien
     snprintf(localVarToReplace_pkiEzsignsignergroupID, sizeOfPathParams_pkiEzsignsignergroupID, "{%s}", "pkiEzsignsignergroupID");
 
     char localVarBuff_pkiEzsignsignergroupID[256];
-    intToStr(localVarBuff_pkiEzsignsignergroupID, *pkiEzsignsignergroupID);
+    snprintf(localVarBuff_pkiEzsignsignergroupID, sizeof localVarBuff_pkiEzsignsignergroupID, "%ld", (long)*pkiEzsignsignergroupID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignsignergroupID, localVarBuff_pkiEzsignsignergroupID);
 
@@ -134,6 +140,7 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupDeleteObjectV1(apiClient_t *apiClien
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "DELETE");
 
     // uncomment below to debug the error response
@@ -145,11 +152,14 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupDeleteObjectV1(apiClient_t *apiClien
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignsignergroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignsignergroupAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignsignergroupAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignsignergroup_delete_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignsignergroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignsignergroup_delete_object_v1_response_parseFromJSON(ObjectEzsignsignergroupAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignsignergroupAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -185,15 +195,18 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupEditEzsignsignergroupmembershipsV1(a
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignsignergroup/{pkiEzsignsignergroupID}/editEzsignsignergroupmemberships")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignsignergroup/{pkiEzsignsignergroupID}/editEzsignsignergroupmemberships");
+    char *localVarPath = strdup("/1/object/ezsignsignergroup/{pkiEzsignsignergroupID}/editEzsignsignergroupmemberships");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignsignergroupID =  + strlen("{ pkiEzsignsignergroupID }");
+    long sizeOfPathParams_pkiEzsignsignergroupID =  + sizeof("{ pkiEzsignsignergroupID }") - 1;
     if(pkiEzsignsignergroupID == 0){
         goto end;
     }
@@ -201,7 +214,7 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupEditEzsignsignergroupmembershipsV1(a
     snprintf(localVarToReplace_pkiEzsignsignergroupID, sizeOfPathParams_pkiEzsignsignergroupID, "{%s}", "pkiEzsignsignergroupID");
 
     char localVarBuff_pkiEzsignsignergroupID[256];
-    intToStr(localVarBuff_pkiEzsignsignergroupID, *pkiEzsignsignergroupID);
+    snprintf(localVarBuff_pkiEzsignsignergroupID, sizeof localVarBuff_pkiEzsignsignergroupID, "%ld", (long)*pkiEzsignsignergroupID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignsignergroupID, localVarBuff_pkiEzsignsignergroupID);
 
@@ -212,9 +225,10 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupEditEzsignsignergroupmembershipsV1(a
     cJSON *localVarSingleItemJSON_ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_request = NULL;
     if (ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_request = ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_request_convertToJSON(ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -226,6 +240,7 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupEditEzsignsignergroupmembershipsV1(a
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -241,11 +256,14 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupEditEzsignsignergroupmembershipsV1(a
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignsignergroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_t *elementToReturn = ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_parseFromJSON(ObjectEzsignsignergroupAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignsignergroupAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignsignergroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignsignergroup_edit_ezsignsignergroupmemberships_v1_response_parseFromJSON(ObjectEzsignsignergroupAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignsignergroupAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -277,7 +295,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignsignergroup_edit_object_v1_response_t*
 ObjectEzsignsignergroupAPI_ezsignsignergroupEditObjectV1(apiClient_t *apiClient, int *pkiEzsignsignergroupID, ezsignsignergroup_edit_object_v1_request_t *ezsignsignergroup_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -286,15 +304,18 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupEditObjectV1(apiClient_t *apiClient,
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignsignergroup/{pkiEzsignsignergroupID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignsignergroup/{pkiEzsignsignergroupID}");
+    char *localVarPath = strdup("/1/object/ezsignsignergroup/{pkiEzsignsignergroupID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignsignergroupID =  + strlen("{ pkiEzsignsignergroupID }");
+    long sizeOfPathParams_pkiEzsignsignergroupID =  + sizeof("{ pkiEzsignsignergroupID }") - 1;
     if(pkiEzsignsignergroupID == 0){
         goto end;
     }
@@ -302,7 +323,7 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupEditObjectV1(apiClient_t *apiClient,
     snprintf(localVarToReplace_pkiEzsignsignergroupID, sizeOfPathParams_pkiEzsignsignergroupID, "{%s}", "pkiEzsignsignergroupID");
 
     char localVarBuff_pkiEzsignsignergroupID[256];
-    intToStr(localVarBuff_pkiEzsignsignergroupID, *pkiEzsignsignergroupID);
+    snprintf(localVarBuff_pkiEzsignsignergroupID, sizeof localVarBuff_pkiEzsignsignergroupID, "%ld", (long)*pkiEzsignsignergroupID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignsignergroupID, localVarBuff_pkiEzsignsignergroupID);
 
@@ -313,9 +334,10 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupEditObjectV1(apiClient_t *apiClient,
     cJSON *localVarSingleItemJSON_ezsignsignergroup_edit_object_v1_request = NULL;
     if (ezsignsignergroup_edit_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignsignergroup_edit_object_v1_request = ezsignsignergroup_edit_object_v1_request_convertToJSON(ezsignsignergroup_edit_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignsignergroup_edit_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -327,6 +349,7 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupEditObjectV1(apiClient_t *apiClient,
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -338,11 +361,14 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupEditObjectV1(apiClient_t *apiClient,
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignsignergroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignsignergroupAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignsignergroupAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignsignergroup_edit_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignsignergroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignsignergroup_edit_object_v1_response_parseFromJSON(ObjectEzsignsignergroupAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignsignergroupAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -381,15 +407,18 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupGetEzsignsignergroupmembershipsV1(ap
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignsignergroup/{pkiEzsignsignergroupID}/getEzsignsignergroupmemberships")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignsignergroup/{pkiEzsignsignergroupID}/getEzsignsignergroupmemberships");
+    char *localVarPath = strdup("/1/object/ezsignsignergroup/{pkiEzsignsignergroupID}/getEzsignsignergroupmemberships");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignsignergroupID =  + strlen("{ pkiEzsignsignergroupID }");
+    long sizeOfPathParams_pkiEzsignsignergroupID =  + sizeof("{ pkiEzsignsignergroupID }") - 1;
     if(pkiEzsignsignergroupID == 0){
         goto end;
     }
@@ -397,7 +426,7 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupGetEzsignsignergroupmembershipsV1(ap
     snprintf(localVarToReplace_pkiEzsignsignergroupID, sizeOfPathParams_pkiEzsignsignergroupID, "{%s}", "pkiEzsignsignergroupID");
 
     char localVarBuff_pkiEzsignsignergroupID[256];
-    intToStr(localVarBuff_pkiEzsignsignergroupID, *pkiEzsignsignergroupID);
+    snprintf(localVarBuff_pkiEzsignsignergroupID, sizeof localVarBuff_pkiEzsignsignergroupID, "%ld", (long)*pkiEzsignsignergroupID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignsignergroupID, localVarBuff_pkiEzsignsignergroupID);
 
@@ -412,6 +441,7 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupGetEzsignsignergroupmembershipsV1(ap
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -423,11 +453,14 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupGetEzsignsignergroupmembershipsV1(ap
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignsignergroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_t *elementToReturn = ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_parseFromJSON(ObjectEzsignsignergroupAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignsignergroupAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignsignergroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignsignergroup_get_ezsignsignergroupmemberships_v1_response_parseFromJSON(ObjectEzsignsignergroupAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignsignergroupAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -463,15 +496,18 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupGetObjectV2(apiClient_t *apiClient, 
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/ezsignsignergroup/{pkiEzsignsignergroupID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/ezsignsignergroup/{pkiEzsignsignergroupID}");
+    char *localVarPath = strdup("/2/object/ezsignsignergroup/{pkiEzsignsignergroupID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignsignergroupID =  + strlen("{ pkiEzsignsignergroupID }");
+    long sizeOfPathParams_pkiEzsignsignergroupID =  + sizeof("{ pkiEzsignsignergroupID }") - 1;
     if(pkiEzsignsignergroupID == 0){
         goto end;
     }
@@ -479,7 +515,7 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupGetObjectV2(apiClient_t *apiClient, 
     snprintf(localVarToReplace_pkiEzsignsignergroupID, sizeOfPathParams_pkiEzsignsignergroupID, "{%s}", "pkiEzsignsignergroupID");
 
     char localVarBuff_pkiEzsignsignergroupID[256];
-    intToStr(localVarBuff_pkiEzsignsignergroupID, *pkiEzsignsignergroupID);
+    snprintf(localVarBuff_pkiEzsignsignergroupID, sizeof localVarBuff_pkiEzsignsignergroupID, "%ld", (long)*pkiEzsignsignergroupID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignsignergroupID, localVarBuff_pkiEzsignsignergroupID);
 
@@ -494,6 +530,7 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupGetObjectV2(apiClient_t *apiClient, 
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -505,11 +542,14 @@ ObjectEzsignsignergroupAPI_ezsignsignergroupGetObjectV2(apiClient_t *apiClient, 
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignsignergroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignsignergroup_get_object_v2_response_t *elementToReturn = ezsignsignergroup_get_object_v2_response_parseFromJSON(ObjectEzsignsignergroupAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignsignergroupAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignsignergroup_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignsignergroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignsignergroup_get_object_v2_response_parseFromJSON(ObjectEzsignsignergroupAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignsignergroupAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

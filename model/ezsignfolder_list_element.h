@@ -18,31 +18,15 @@ typedef struct ezsignfolder_list_element_t ezsignfolder_list_element_t;
 #include "field_e_ezsignfolder_step.h"
 #include "field_e_ezsignfoldertype_privacylevel.h"
 
-// Enum  for ezsignfolder_list_element
-
-typedef enum  { ezmax_api_definition__full_ezsignfolder_list_element__NULL = 0, ezmax_api_definition__full_ezsignfolder_list_element__User, ezmax_api_definition__full_ezsignfolder_list_element__Usergroup } ezmax_api_definition__full_ezsignfolder_list_element__e;
-
-char* ezsignfolder_list_element_e_ezsignfoldertype_privacylevel_ToString(ezmax_api_definition__full_ezsignfolder_list_element__e e_ezsignfoldertype_privacylevel);
-
-ezmax_api_definition__full_ezsignfolder_list_element__e ezsignfolder_list_element_e_ezsignfoldertype_privacylevel_FromString(char* e_ezsignfoldertype_privacylevel);
-
-// Enum  for ezsignfolder_list_element
-
-typedef enum  { ezmax_api_definition__full_ezsignfolder_list_element__NULL = 0, ezmax_api_definition__full_ezsignfolder_list_element__Unsent, ezmax_api_definition__full_ezsignfolder_list_element__PendingSend, ezmax_api_definition__full_ezsignfolder_list_element__Sent, ezmax_api_definition__full_ezsignfolder_list_element__PartiallySigned, ezmax_api_definition__full_ezsignfolder_list_element__Expired, ezmax_api_definition__full_ezsignfolder_list_element__Completed, ezmax_api_definition__full_ezsignfolder_list_element__Archived, ezmax_api_definition__full_ezsignfolder_list_element__Disposed } ezmax_api_definition__full_ezsignfolder_list_element__e;
-
-char* ezsignfolder_list_element_e_ezsignfolder_step_ToString(ezmax_api_definition__full_ezsignfolder_list_element__e e_ezsignfolder_step);
-
-ezmax_api_definition__full_ezsignfolder_list_element__e ezsignfolder_list_element_e_ezsignfolder_step_FromString(char* e_ezsignfolder_step);
-
 
 
 typedef struct ezsignfolder_list_element_t {
     int pki_ezsignfolder_id; //numeric
     int fki_ezsignfoldertype_id; //numeric
-    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel; // custom
+    ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel; //referenced enum
     char *s_ezsignfoldertype_name_x; // string
     char *s_ezsignfolder_description; // string
-    field_e_ezsignfolder_step_t *e_ezsignfolder_step; // custom
+    ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step; //referenced enum
     char *dt_created_date; // string
     char *dt_ezsignfolder_delayedsenddate; // string
     char *dt_ezsignfolder_sentdate; // string
@@ -59,15 +43,16 @@ typedef struct ezsignfolder_list_element_t {
     char *d_ezsignfolder_signaturecompletedpercentage; // string
     int b_ezsignfolder_signer; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfolder_list_element_t;
 
-ezsignfolder_list_element_t *ezsignfolder_list_element_create(
+__attribute__((deprecated)) ezsignfolder_list_element_t *ezsignfolder_list_element_create(
     int pki_ezsignfolder_id,
     int fki_ezsignfoldertype_id,
-    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel,
     char *s_ezsignfoldertype_name_x,
     char *s_ezsignfolder_description,
-    field_e_ezsignfolder_step_t *e_ezsignfolder_step,
+    ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step,
     char *dt_created_date,
     char *dt_ezsignfolder_delayedsenddate,
     char *dt_ezsignfolder_sentdate,

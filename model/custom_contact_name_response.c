@@ -5,7 +5,7 @@
 
 
 
-custom_contact_name_response_t *custom_contact_name_response_create(
+static custom_contact_name_response_t *custom_contact_name_response_create_internal(
     char *s_contact_firstname,
     char *s_contact_lastname,
     char *s_contact_company
@@ -18,12 +18,28 @@ custom_contact_name_response_t *custom_contact_name_response_create(
     custom_contact_name_response_local_var->s_contact_lastname = s_contact_lastname;
     custom_contact_name_response_local_var->s_contact_company = s_contact_company;
 
+    custom_contact_name_response_local_var->_library_owned = 1;
     return custom_contact_name_response_local_var;
 }
 
+__attribute__((deprecated)) custom_contact_name_response_t *custom_contact_name_response_create(
+    char *s_contact_firstname,
+    char *s_contact_lastname,
+    char *s_contact_company
+    ) {
+    return custom_contact_name_response_create_internal (
+        s_contact_firstname,
+        s_contact_lastname,
+        s_contact_company
+        );
+}
 
 void custom_contact_name_response_free(custom_contact_name_response_t *custom_contact_name_response) {
     if(NULL == custom_contact_name_response){
+        return ;
+    }
+    if(custom_contact_name_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "custom_contact_name_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -82,6 +98,9 @@ custom_contact_name_response_t *custom_contact_name_response_parseFromJSON(cJSON
 
     // custom_contact_name_response->s_contact_firstname
     cJSON *s_contact_firstname = cJSON_GetObjectItemCaseSensitive(custom_contact_name_responseJSON, "sContactFirstname");
+    if (cJSON_IsNull(s_contact_firstname)) {
+        s_contact_firstname = NULL;
+    }
     if (s_contact_firstname) { 
     if(!cJSON_IsString(s_contact_firstname) && !cJSON_IsNull(s_contact_firstname))
     {
@@ -91,6 +110,9 @@ custom_contact_name_response_t *custom_contact_name_response_parseFromJSON(cJSON
 
     // custom_contact_name_response->s_contact_lastname
     cJSON *s_contact_lastname = cJSON_GetObjectItemCaseSensitive(custom_contact_name_responseJSON, "sContactLastname");
+    if (cJSON_IsNull(s_contact_lastname)) {
+        s_contact_lastname = NULL;
+    }
     if (s_contact_lastname) { 
     if(!cJSON_IsString(s_contact_lastname) && !cJSON_IsNull(s_contact_lastname))
     {
@@ -100,6 +122,9 @@ custom_contact_name_response_t *custom_contact_name_response_parseFromJSON(cJSON
 
     // custom_contact_name_response->s_contact_company
     cJSON *s_contact_company = cJSON_GetObjectItemCaseSensitive(custom_contact_name_responseJSON, "sContactCompany");
+    if (cJSON_IsNull(s_contact_company)) {
+        s_contact_company = NULL;
+    }
     if (s_contact_company) { 
     if(!cJSON_IsString(s_contact_company) && !cJSON_IsNull(s_contact_company))
     {
@@ -108,7 +133,7 @@ custom_contact_name_response_t *custom_contact_name_response_parseFromJSON(cJSON
     }
 
 
-    custom_contact_name_response_local_var = custom_contact_name_response_create (
+    custom_contact_name_response_local_var = custom_contact_name_response_create_internal (
         s_contact_firstname && !cJSON_IsNull(s_contact_firstname) ? strdup(s_contact_firstname->valuestring) : NULL,
         s_contact_lastname && !cJSON_IsNull(s_contact_lastname) ? strdup(s_contact_lastname->valuestring) : NULL,
         s_contact_company && !cJSON_IsNull(s_contact_company) ? strdup(s_contact_company->valuestring) : NULL

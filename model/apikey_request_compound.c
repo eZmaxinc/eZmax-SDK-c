@@ -5,7 +5,7 @@
 
 
 
-apikey_request_compound_t *apikey_request_compound_create(
+static apikey_request_compound_t *apikey_request_compound_create_internal(
     int pki_apikey_id,
     int fki_user_id,
     multilingual_apikey_description_t *obj_apikey_description,
@@ -22,12 +22,32 @@ apikey_request_compound_t *apikey_request_compound_create(
     apikey_request_compound_local_var->b_apikey_isactive = b_apikey_isactive;
     apikey_request_compound_local_var->b_apikey_issigned = b_apikey_issigned;
 
+    apikey_request_compound_local_var->_library_owned = 1;
     return apikey_request_compound_local_var;
 }
 
+__attribute__((deprecated)) apikey_request_compound_t *apikey_request_compound_create(
+    int pki_apikey_id,
+    int fki_user_id,
+    multilingual_apikey_description_t *obj_apikey_description,
+    int b_apikey_isactive,
+    int b_apikey_issigned
+    ) {
+    return apikey_request_compound_create_internal (
+        pki_apikey_id,
+        fki_user_id,
+        obj_apikey_description,
+        b_apikey_isactive,
+        b_apikey_issigned
+        );
+}
 
 void apikey_request_compound_free(apikey_request_compound_t *apikey_request_compound) {
     if(NULL == apikey_request_compound){
+        return ;
+    }
+    if(apikey_request_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "apikey_request_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -104,6 +124,9 @@ apikey_request_compound_t *apikey_request_compound_parseFromJSON(cJSON *apikey_r
 
     // apikey_request_compound->pki_apikey_id
     cJSON *pki_apikey_id = cJSON_GetObjectItemCaseSensitive(apikey_request_compoundJSON, "pkiApikeyID");
+    if (cJSON_IsNull(pki_apikey_id)) {
+        pki_apikey_id = NULL;
+    }
     if (pki_apikey_id) { 
     if(!cJSON_IsNumber(pki_apikey_id))
     {
@@ -113,6 +136,9 @@ apikey_request_compound_t *apikey_request_compound_parseFromJSON(cJSON *apikey_r
 
     // apikey_request_compound->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(apikey_request_compoundJSON, "fkiUserID");
+    if (cJSON_IsNull(fki_user_id)) {
+        fki_user_id = NULL;
+    }
     if (!fki_user_id) {
         goto end;
     }
@@ -125,6 +151,9 @@ apikey_request_compound_t *apikey_request_compound_parseFromJSON(cJSON *apikey_r
 
     // apikey_request_compound->obj_apikey_description
     cJSON *obj_apikey_description = cJSON_GetObjectItemCaseSensitive(apikey_request_compoundJSON, "objApikeyDescription");
+    if (cJSON_IsNull(obj_apikey_description)) {
+        obj_apikey_description = NULL;
+    }
     if (!obj_apikey_description) {
         goto end;
     }
@@ -134,6 +163,9 @@ apikey_request_compound_t *apikey_request_compound_parseFromJSON(cJSON *apikey_r
 
     // apikey_request_compound->b_apikey_isactive
     cJSON *b_apikey_isactive = cJSON_GetObjectItemCaseSensitive(apikey_request_compoundJSON, "bApikeyIsactive");
+    if (cJSON_IsNull(b_apikey_isactive)) {
+        b_apikey_isactive = NULL;
+    }
     if (b_apikey_isactive) { 
     if(!cJSON_IsBool(b_apikey_isactive))
     {
@@ -143,6 +175,9 @@ apikey_request_compound_t *apikey_request_compound_parseFromJSON(cJSON *apikey_r
 
     // apikey_request_compound->b_apikey_issigned
     cJSON *b_apikey_issigned = cJSON_GetObjectItemCaseSensitive(apikey_request_compoundJSON, "bApikeyIssigned");
+    if (cJSON_IsNull(b_apikey_issigned)) {
+        b_apikey_issigned = NULL;
+    }
     if (b_apikey_issigned) { 
     if(!cJSON_IsBool(b_apikey_issigned))
     {
@@ -151,7 +186,7 @@ apikey_request_compound_t *apikey_request_compound_parseFromJSON(cJSON *apikey_r
     }
 
 
-    apikey_request_compound_local_var = apikey_request_compound_create (
+    apikey_request_compound_local_var = apikey_request_compound_create_internal (
         pki_apikey_id ? pki_apikey_id->valuedouble : 0,
         fki_user_id->valuedouble,
         obj_apikey_description_local_nonprim,

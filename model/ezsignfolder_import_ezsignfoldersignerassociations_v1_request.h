@@ -21,9 +21,10 @@ typedef struct ezsignfolder_import_ezsignfoldersignerassociations_v1_request_t e
 typedef struct ezsignfolder_import_ezsignfoldersignerassociations_v1_request_t {
     list_t *a_fki_ezsignfoldersignerassociation_id; //primitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfolder_import_ezsignfoldersignerassociations_v1_request_t;
 
-ezsignfolder_import_ezsignfoldersignerassociations_v1_request_t *ezsignfolder_import_ezsignfoldersignerassociations_v1_request_create(
+__attribute__((deprecated)) ezsignfolder_import_ezsignfoldersignerassociations_v1_request_t *ezsignfolder_import_ezsignfoldersignerassociations_v1_request_create(
     list_t *a_fki_ezsignfoldersignerassociation_id
 );
 

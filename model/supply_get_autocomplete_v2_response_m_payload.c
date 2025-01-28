@@ -5,7 +5,7 @@
 
 
 
-supply_get_autocomplete_v2_response_m_payload_t *supply_get_autocomplete_v2_response_m_payload_create(
+static supply_get_autocomplete_v2_response_m_payload_t *supply_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_supply
     ) {
     supply_get_autocomplete_v2_response_m_payload_t *supply_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(supply_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ supply_get_autocomplete_v2_response_m_payload_t *supply_get_autocomplete_v2_resp
     }
     supply_get_autocomplete_v2_response_m_payload_local_var->a_obj_supply = a_obj_supply;
 
+    supply_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return supply_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) supply_get_autocomplete_v2_response_m_payload_t *supply_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_supply
+    ) {
+    return supply_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_supply
+        );
+}
 
 void supply_get_autocomplete_v2_response_m_payload_free(supply_get_autocomplete_v2_response_m_payload_t *supply_get_autocomplete_v2_response_m_payload) {
     if(NULL == supply_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(supply_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "supply_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ supply_get_autocomplete_v2_response_m_payload_t *supply_get_autocomplete_v2_resp
 
     // supply_get_autocomplete_v2_response_m_payload->a_obj_supply
     cJSON *a_obj_supply = cJSON_GetObjectItemCaseSensitive(supply_get_autocomplete_v2_response_m_payloadJSON, "a_objSupply");
+    if (cJSON_IsNull(a_obj_supply)) {
+        a_obj_supply = NULL;
+    }
     if (!a_obj_supply) {
         goto end;
     }
@@ -96,7 +111,7 @@ supply_get_autocomplete_v2_response_m_payload_t *supply_get_autocomplete_v2_resp
     }
 
 
-    supply_get_autocomplete_v2_response_m_payload_local_var = supply_get_autocomplete_v2_response_m_payload_create (
+    supply_get_autocomplete_v2_response_m_payload_local_var = supply_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_supplyList
         );
 

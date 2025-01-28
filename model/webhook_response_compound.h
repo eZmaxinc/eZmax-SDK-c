@@ -21,30 +21,6 @@ typedef struct webhook_response_compound_t webhook_response_compound_t;
 #include "field_e_webhook_module.h"
 #include "webhookheader_response_compound.h"
 
-// Enum  for webhook_response_compound
-
-typedef enum  { ezmax_api_definition__full_webhook_response_compound__NULL = 0, ezmax_api_definition__full_webhook_response_compound__Ezsign, ezmax_api_definition__full_webhook_response_compound__Management } ezmax_api_definition__full_webhook_response_compound__e;
-
-char* webhook_response_compound_e_webhook_module_ToString(ezmax_api_definition__full_webhook_response_compound__e e_webhook_module);
-
-ezmax_api_definition__full_webhook_response_compound__e webhook_response_compound_e_webhook_module_FromString(char* e_webhook_module);
-
-// Enum  for webhook_response_compound
-
-typedef enum  { ezmax_api_definition__full_webhook_response_compound__NULL = 0, ezmax_api_definition__full_webhook_response_compound__DocumentCompleted, ezmax_api_definition__full_webhook_response_compound__DocumentFormCompleted, ezmax_api_definition__full_webhook_response_compound__DocumentUnsent, ezmax_api_definition__full_webhook_response_compound__EzsignsignerAcceptclause, ezmax_api_definition__full_webhook_response_compound__EzsignsignerConnect, ezmax_api_definition__full_webhook_response_compound__FolderCompleted, ezmax_api_definition__full_webhook_response_compound__FolderDisposed, ezmax_api_definition__full_webhook_response_compound__FolderSent, ezmax_api_definition__full_webhook_response_compound__FolderUnsent, ezmax_api_definition__full_webhook_response_compound__SignatureSigned } ezmax_api_definition__full_webhook_response_compound__e;
-
-char* webhook_response_compound_e_webhook_ezsignevent_ToString(ezmax_api_definition__full_webhook_response_compound__e e_webhook_ezsignevent);
-
-ezmax_api_definition__full_webhook_response_compound__e webhook_response_compound_e_webhook_ezsignevent_FromString(char* e_webhook_ezsignevent);
-
-// Enum  for webhook_response_compound
-
-typedef enum  { ezmax_api_definition__full_webhook_response_compound__NULL = 0, ezmax_api_definition__full_webhook_response_compound__UserCreated, ezmax_api_definition__full_webhook_response_compound__UserstagedCreated } ezmax_api_definition__full_webhook_response_compound__e;
-
-char* webhook_response_compound_e_webhook_managementevent_ToString(ezmax_api_definition__full_webhook_response_compound__e e_webhook_managementevent);
-
-ezmax_api_definition__full_webhook_response_compound__e webhook_response_compound_e_webhook_managementevent_FromString(char* e_webhook_managementevent);
-
 
 
 typedef struct webhook_response_compound_t {
@@ -53,9 +29,9 @@ typedef struct webhook_response_compound_t {
     char *s_webhook_description; // string
     int fki_ezsignfoldertype_id; //numeric
     char *s_ezsignfoldertype_name_x; // string
-    field_e_webhook_module_t *e_webhook_module; // custom
-    field_e_webhook_ezsignevent_t *e_webhook_ezsignevent; // custom
-    field_e_webhook_managementevent_t *e_webhook_managementevent; // custom
+    ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module; //referenced enum
+    ezmax_api_definition__full_field_e_webhook_ezsignevent__e e_webhook_ezsignevent; //referenced enum
+    ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent; //referenced enum
     char *s_webhook_url; // string
     char *s_webhook_emailfailed; // string
     char *s_webhook_apikey; // string
@@ -68,17 +44,18 @@ typedef struct webhook_response_compound_t {
     char *s_webhook_event; // string
     list_t *a_obj_webhookheader; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } webhook_response_compound_t;
 
-webhook_response_compound_t *webhook_response_compound_create(
+__attribute__((deprecated)) webhook_response_compound_t *webhook_response_compound_create(
     int pki_webhook_id,
     int fki_authenticationexternal_id,
     char *s_webhook_description,
     int fki_ezsignfoldertype_id,
     char *s_ezsignfoldertype_name_x,
-    field_e_webhook_module_t *e_webhook_module,
-    field_e_webhook_ezsignevent_t *e_webhook_ezsignevent,
-    field_e_webhook_managementevent_t *e_webhook_managementevent,
+    ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module,
+    ezmax_api_definition__full_field_e_webhook_ezsignevent__e e_webhook_ezsignevent,
+    ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent,
     char *s_webhook_url,
     char *s_webhook_emailfailed,
     char *s_webhook_apikey,

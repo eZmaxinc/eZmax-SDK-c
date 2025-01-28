@@ -5,7 +5,7 @@
 
 
 
-ezsignbulksend_get_forms_data_v1_response_m_payload_t *ezsignbulksend_get_forms_data_v1_response_m_payload_create(
+static ezsignbulksend_get_forms_data_v1_response_m_payload_t *ezsignbulksend_get_forms_data_v1_response_m_payload_create_internal(
     list_t *a_obj_forms_data_folder
     ) {
     ezsignbulksend_get_forms_data_v1_response_m_payload_t *ezsignbulksend_get_forms_data_v1_response_m_payload_local_var = malloc(sizeof(ezsignbulksend_get_forms_data_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ ezsignbulksend_get_forms_data_v1_response_m_payload_t *ezsignbulksend_get_forms_
     }
     ezsignbulksend_get_forms_data_v1_response_m_payload_local_var->a_obj_forms_data_folder = a_obj_forms_data_folder;
 
+    ezsignbulksend_get_forms_data_v1_response_m_payload_local_var->_library_owned = 1;
     return ezsignbulksend_get_forms_data_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezsignbulksend_get_forms_data_v1_response_m_payload_t *ezsignbulksend_get_forms_data_v1_response_m_payload_create(
+    list_t *a_obj_forms_data_folder
+    ) {
+    return ezsignbulksend_get_forms_data_v1_response_m_payload_create_internal (
+        a_obj_forms_data_folder
+        );
+}
 
 void ezsignbulksend_get_forms_data_v1_response_m_payload_free(ezsignbulksend_get_forms_data_v1_response_m_payload_t *ezsignbulksend_get_forms_data_v1_response_m_payload) {
     if(NULL == ezsignbulksend_get_forms_data_v1_response_m_payload){
+        return ;
+    }
+    if(ezsignbulksend_get_forms_data_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignbulksend_get_forms_data_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ ezsignbulksend_get_forms_data_v1_response_m_payload_t *ezsignbulksend_get_forms_
 
     // ezsignbulksend_get_forms_data_v1_response_m_payload->a_obj_forms_data_folder
     cJSON *a_obj_forms_data_folder = cJSON_GetObjectItemCaseSensitive(ezsignbulksend_get_forms_data_v1_response_m_payloadJSON, "a_objFormsDataFolder");
+    if (cJSON_IsNull(a_obj_forms_data_folder)) {
+        a_obj_forms_data_folder = NULL;
+    }
     if (!a_obj_forms_data_folder) {
         goto end;
     }
@@ -96,7 +111,7 @@ ezsignbulksend_get_forms_data_v1_response_m_payload_t *ezsignbulksend_get_forms_
     }
 
 
-    ezsignbulksend_get_forms_data_v1_response_m_payload_local_var = ezsignbulksend_get_forms_data_v1_response_m_payload_create (
+    ezsignbulksend_get_forms_data_v1_response_m_payload_local_var = ezsignbulksend_get_forms_data_v1_response_m_payload_create_internal (
         a_obj_forms_data_folderList
         );
 

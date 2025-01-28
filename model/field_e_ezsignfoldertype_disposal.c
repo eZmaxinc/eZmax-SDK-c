@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsignfoldertype_disposal__e field_e_ezsignfo
     return 0;
 }
 
-cJSON *field_e_ezsignfoldertype_disposal_field_e_ezsignfoldertype_disposal_convertToJSON(ezmax_api_definition__full_field_e_ezsignfoldertype_disposal__e field_e_ezsignfoldertype_disposal) {
+cJSON *field_e_ezsignfoldertype_disposal_convertToJSON(ezmax_api_definition__full_field_e_ezsignfoldertype_disposal__e field_e_ezsignfoldertype_disposal) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsignfoldertype_disposal", field_e_ezsignfoldertype_disposal_field_e_ezsignfoldertype_disposal_ToString(field_e_ezsignfoldertype_disposal)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsignfoldertype_disposal__e field_e_ezsignfoldertype_disposal_field_e_ezsignfoldertype_disposal_parseFromJSON(cJSON *field_e_ezsignfoldertype_disposalJSON) {
-    ezmax_api_definition__full_field_e_ezsignfoldertype_disposal__e *field_e_ezsignfoldertype_disposal = NULL;
-    ezmax_api_definition__full_field_e_ezsignfoldertype_disposal__e field_e_ezsignfoldertype_disposalVariable;
-    cJSON *field_e_ezsignfoldertype_disposalVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsignfoldertype_disposalJSON, "field_e_ezsignfoldertype_disposal");
-    if(!cJSON_IsString(field_e_ezsignfoldertype_disposalVar) || (field_e_ezsignfoldertype_disposalVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsignfoldertype_disposal__e field_e_ezsignfoldertype_disposal_parseFromJSON(cJSON *field_e_ezsignfoldertype_disposalJSON) {
+    if(!cJSON_IsString(field_e_ezsignfoldertype_disposalJSON) || (field_e_ezsignfoldertype_disposalJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsignfoldertype_disposalVariable = field_e_ezsignfoldertype_disposal_field_e_ezsignfoldertype_disposal_FromString(field_e_ezsignfoldertype_disposalVar->valuestring);
-    return field_e_ezsignfoldertype_disposalVariable;
-end:
-    return 0;
+    return field_e_ezsignfoldertype_disposal_field_e_ezsignfoldertype_disposal_FromString(field_e_ezsignfoldertype_disposalJSON->valuestring);
 }

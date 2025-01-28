@@ -5,7 +5,7 @@
 
 
 
-usergroupexternal_response_compound_t *usergroupexternal_response_compound_create(
+static usergroupexternal_response_compound_t *usergroupexternal_response_compound_create_internal(
     int pki_usergroupexternal_id,
     char *s_usergroupexternal_name,
     char *s_usergroupexternal_id
@@ -18,12 +18,28 @@ usergroupexternal_response_compound_t *usergroupexternal_response_compound_creat
     usergroupexternal_response_compound_local_var->s_usergroupexternal_name = s_usergroupexternal_name;
     usergroupexternal_response_compound_local_var->s_usergroupexternal_id = s_usergroupexternal_id;
 
+    usergroupexternal_response_compound_local_var->_library_owned = 1;
     return usergroupexternal_response_compound_local_var;
 }
 
+__attribute__((deprecated)) usergroupexternal_response_compound_t *usergroupexternal_response_compound_create(
+    int pki_usergroupexternal_id,
+    char *s_usergroupexternal_name,
+    char *s_usergroupexternal_id
+    ) {
+    return usergroupexternal_response_compound_create_internal (
+        pki_usergroupexternal_id,
+        s_usergroupexternal_name,
+        s_usergroupexternal_id
+        );
+}
 
 void usergroupexternal_response_compound_free(usergroupexternal_response_compound_t *usergroupexternal_response_compound) {
     if(NULL == usergroupexternal_response_compound){
+        return ;
+    }
+    if(usergroupexternal_response_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroupexternal_response_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -81,6 +97,9 @@ usergroupexternal_response_compound_t *usergroupexternal_response_compound_parse
 
     // usergroupexternal_response_compound->pki_usergroupexternal_id
     cJSON *pki_usergroupexternal_id = cJSON_GetObjectItemCaseSensitive(usergroupexternal_response_compoundJSON, "pkiUsergroupexternalID");
+    if (cJSON_IsNull(pki_usergroupexternal_id)) {
+        pki_usergroupexternal_id = NULL;
+    }
     if (!pki_usergroupexternal_id) {
         goto end;
     }
@@ -93,6 +112,9 @@ usergroupexternal_response_compound_t *usergroupexternal_response_compound_parse
 
     // usergroupexternal_response_compound->s_usergroupexternal_name
     cJSON *s_usergroupexternal_name = cJSON_GetObjectItemCaseSensitive(usergroupexternal_response_compoundJSON, "sUsergroupexternalName");
+    if (cJSON_IsNull(s_usergroupexternal_name)) {
+        s_usergroupexternal_name = NULL;
+    }
     if (!s_usergroupexternal_name) {
         goto end;
     }
@@ -105,6 +127,9 @@ usergroupexternal_response_compound_t *usergroupexternal_response_compound_parse
 
     // usergroupexternal_response_compound->s_usergroupexternal_id
     cJSON *s_usergroupexternal_id = cJSON_GetObjectItemCaseSensitive(usergroupexternal_response_compoundJSON, "sUsergroupexternalID");
+    if (cJSON_IsNull(s_usergroupexternal_id)) {
+        s_usergroupexternal_id = NULL;
+    }
     if (!s_usergroupexternal_id) {
         goto end;
     }
@@ -116,7 +141,7 @@ usergroupexternal_response_compound_t *usergroupexternal_response_compound_parse
     }
 
 
-    usergroupexternal_response_compound_local_var = usergroupexternal_response_compound_create (
+    usergroupexternal_response_compound_local_var = usergroupexternal_response_compound_create_internal (
         pki_usergroupexternal_id->valuedouble,
         strdup(s_usergroupexternal_name->valuestring),
         strdup(s_usergroupexternal_id->valuestring)

@@ -48,7 +48,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectDiscussionAPI_discussionDeleteObjectV1(apiClient_t *apiClient, int *pkiDiscussionID);
+discussion_delete_object_v1_response_t* ObjectDiscussionAPI_discussionDeleteObjectV1(apiClient_t *apiClient, int *pkiDiscussionID);
 ```
 
 ### Parameters
@@ -59,7 +59,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[discussion_delete_object_v1_response_t](discussion_delete_object_v1_response.md) *
 
 
 ### Authorization
@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectDiscussionAPI_discussionPatchObjectV1(apiClient_t *apiClient, int *pkiDiscussionID, discussion_patch_object_v1_request_t *discussion_patch_object_v1_request);
+discussion_patch_object_v1_response_t* ObjectDiscussionAPI_discussionPatchObjectV1(apiClient_t *apiClient, int *pkiDiscussionID, discussion_patch_object_v1_request_t *discussion_patch_object_v1_request);
 ```
 
 ### Parameters
@@ -122,7 +122,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[discussion_patch_object_v1_response_t](discussion_patch_object_v1_response.md) *
 
 
 ### Authorization
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 ```c
 // Update the read status of the discussion
 //
-common_response_t* ObjectDiscussionAPI_discussionUpdateDiscussionreadstatusV1(apiClient_t *apiClient, int *pkiDiscussionID, discussion_update_discussionreadstatus_v1_request_t *discussion_update_discussionreadstatus_v1_request);
+discussion_update_discussionreadstatus_v1_response_t* ObjectDiscussionAPI_discussionUpdateDiscussionreadstatusV1(apiClient_t *apiClient, int *pkiDiscussionID, discussion_update_discussionreadstatus_v1_request_t *discussion_update_discussionreadstatus_v1_request);
 ```
 
 ### Parameters
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[discussion_update_discussionreadstatus_v1_response_t](discussion_update_discussionreadstatus_v1_response.md) *
 
 
 ### Authorization

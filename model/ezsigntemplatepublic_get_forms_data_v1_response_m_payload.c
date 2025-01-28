@@ -5,7 +5,7 @@
 
 
 
-ezsigntemplatepublic_get_forms_data_v1_response_m_payload_t *ezsigntemplatepublic_get_forms_data_v1_response_m_payload_create(
+static ezsigntemplatepublic_get_forms_data_v1_response_m_payload_t *ezsigntemplatepublic_get_forms_data_v1_response_m_payload_create_internal(
     list_t *a_obj_forms_data_folder
     ) {
     ezsigntemplatepublic_get_forms_data_v1_response_m_payload_t *ezsigntemplatepublic_get_forms_data_v1_response_m_payload_local_var = malloc(sizeof(ezsigntemplatepublic_get_forms_data_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ ezsigntemplatepublic_get_forms_data_v1_response_m_payload_t *ezsigntemplatepubli
     }
     ezsigntemplatepublic_get_forms_data_v1_response_m_payload_local_var->a_obj_forms_data_folder = a_obj_forms_data_folder;
 
+    ezsigntemplatepublic_get_forms_data_v1_response_m_payload_local_var->_library_owned = 1;
     return ezsigntemplatepublic_get_forms_data_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezsigntemplatepublic_get_forms_data_v1_response_m_payload_t *ezsigntemplatepublic_get_forms_data_v1_response_m_payload_create(
+    list_t *a_obj_forms_data_folder
+    ) {
+    return ezsigntemplatepublic_get_forms_data_v1_response_m_payload_create_internal (
+        a_obj_forms_data_folder
+        );
+}
 
 void ezsigntemplatepublic_get_forms_data_v1_response_m_payload_free(ezsigntemplatepublic_get_forms_data_v1_response_m_payload_t *ezsigntemplatepublic_get_forms_data_v1_response_m_payload) {
     if(NULL == ezsigntemplatepublic_get_forms_data_v1_response_m_payload){
+        return ;
+    }
+    if(ezsigntemplatepublic_get_forms_data_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigntemplatepublic_get_forms_data_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ ezsigntemplatepublic_get_forms_data_v1_response_m_payload_t *ezsigntemplatepubli
 
     // ezsigntemplatepublic_get_forms_data_v1_response_m_payload->a_obj_forms_data_folder
     cJSON *a_obj_forms_data_folder = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_get_forms_data_v1_response_m_payloadJSON, "a_objFormsDataFolder");
+    if (cJSON_IsNull(a_obj_forms_data_folder)) {
+        a_obj_forms_data_folder = NULL;
+    }
     if (!a_obj_forms_data_folder) {
         goto end;
     }
@@ -96,7 +111,7 @@ ezsigntemplatepublic_get_forms_data_v1_response_m_payload_t *ezsigntemplatepubli
     }
 
 
-    ezsigntemplatepublic_get_forms_data_v1_response_m_payload_local_var = ezsigntemplatepublic_get_forms_data_v1_response_m_payload_create (
+    ezsigntemplatepublic_get_forms_data_v1_response_m_payload_local_var = ezsigntemplatepublic_get_forms_data_v1_response_m_payload_create_internal (
         a_obj_forms_data_folderList
         );
 

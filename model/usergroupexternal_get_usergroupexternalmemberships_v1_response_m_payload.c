@@ -5,7 +5,7 @@
 
 
 
-usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload_t *usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload_create(
+static usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload_t *usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload_create_internal(
     list_t *a_obj_usergroupexternalmembership
     ) {
     usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload_t *usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload_local_var = malloc(sizeof(usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload_t *user
     }
     usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload_local_var->a_obj_usergroupexternalmembership = a_obj_usergroupexternalmembership;
 
+    usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload_local_var->_library_owned = 1;
     return usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload_t *usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload_create(
+    list_t *a_obj_usergroupexternalmembership
+    ) {
+    return usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload_create_internal (
+        a_obj_usergroupexternalmembership
+        );
+}
 
 void usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload_free(usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload_t *usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload) {
     if(NULL == usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload){
+        return ;
+    }
+    if(usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload_t *user
 
     // usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload->a_obj_usergroupexternalmembership
     cJSON *a_obj_usergroupexternalmembership = cJSON_GetObjectItemCaseSensitive(usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payloadJSON, "a_objUsergroupexternalmembership");
+    if (cJSON_IsNull(a_obj_usergroupexternalmembership)) {
+        a_obj_usergroupexternalmembership = NULL;
+    }
     if (!a_obj_usergroupexternalmembership) {
         goto end;
     }
@@ -96,7 +111,7 @@ usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload_t *user
     }
 
 
-    usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload_local_var = usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload_create (
+    usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload_local_var = usergroupexternal_get_usergroupexternalmemberships_v1_response_m_payload_create_internal (
         a_obj_usergroupexternalmembershipList
         );
 

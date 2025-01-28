@@ -23,9 +23,10 @@ typedef struct usergroupexternal_request_t {
     char *s_usergroupexternal_name; // string
     char *s_usergroupexternal_id; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } usergroupexternal_request_t;
 
-usergroupexternal_request_t *usergroupexternal_request_create(
+__attribute__((deprecated)) usergroupexternal_request_t *usergroupexternal_request_create(
     int pki_usergroupexternal_id,
     char *s_usergroupexternal_name,
     char *s_usergroupexternal_id

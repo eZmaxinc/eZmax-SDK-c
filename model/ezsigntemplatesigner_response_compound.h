@@ -17,14 +17,6 @@ typedef struct ezsigntemplatesigner_response_compound_t ezsigntemplatesigner_res
 
 #include "field_e_ezsigntemplatesigner_mapping.h"
 
-// Enum  for ezsigntemplatesigner_response_compound
-
-typedef enum  { ezmax_api_definition__full_ezsigntemplatesigner_response_compound__NULL = 0, ezmax_api_definition__full_ezsigntemplatesigner_response_compound__Manual, ezmax_api_definition__full_ezsigntemplatesigner_response_compound__Creator, ezmax_api_definition__full_ezsigntemplatesigner_response_compound__User, ezmax_api_definition__full_ezsigntemplatesigner_response_compound__Usergroup } ezmax_api_definition__full_ezsigntemplatesigner_response_compound__e;
-
-char* ezsigntemplatesigner_response_compound_e_ezsigntemplatesigner_mapping_ToString(ezmax_api_definition__full_ezsigntemplatesigner_response_compound__e e_ezsigntemplatesigner_mapping);
-
-ezmax_api_definition__full_ezsigntemplatesigner_response_compound__e ezsigntemplatesigner_response_compound_e_ezsigntemplatesigner_mapping_FromString(char* e_ezsigntemplatesigner_mapping);
-
 
 
 typedef struct ezsigntemplatesigner_response_compound_t {
@@ -34,21 +26,22 @@ typedef struct ezsigntemplatesigner_response_compound_t {
     int fki_usergroup_id; //numeric
     int fki_ezdoctemplatedocument_id; //numeric
     int b_ezsigntemplatesigner_receivecopy; //boolean
-    field_e_ezsigntemplatesigner_mapping_t *e_ezsigntemplatesigner_mapping; // custom
+    ezmax_api_definition__full_field_e_ezsigntemplatesigner_mapping__e e_ezsigntemplatesigner_mapping; //referenced enum
     char *s_ezsigntemplatesigner_description; // string
     char *s_user_name; // string
     char *s_usergroup_name_x; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatesigner_response_compound_t;
 
-ezsigntemplatesigner_response_compound_t *ezsigntemplatesigner_response_compound_create(
+__attribute__((deprecated)) ezsigntemplatesigner_response_compound_t *ezsigntemplatesigner_response_compound_create(
     int pki_ezsigntemplatesigner_id,
     int fki_ezsigntemplate_id,
     int fki_user_id,
     int fki_usergroup_id,
     int fki_ezdoctemplatedocument_id,
     int b_ezsigntemplatesigner_receivecopy,
-    field_e_ezsigntemplatesigner_mapping_t *e_ezsigntemplatesigner_mapping,
+    ezmax_api_definition__full_field_e_ezsigntemplatesigner_mapping__e e_ezsigntemplatesigner_mapping,
     char *s_ezsigntemplatesigner_description,
     char *s_user_name,
     char *s_usergroup_name_x

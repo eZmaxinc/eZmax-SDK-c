@@ -5,7 +5,7 @@
 
 
 
-branding_create_object_v2_response_m_payload_t *branding_create_object_v2_response_m_payload_create(
+static branding_create_object_v2_response_m_payload_t *branding_create_object_v2_response_m_payload_create_internal(
     list_t *a_pki_branding_id
     ) {
     branding_create_object_v2_response_m_payload_t *branding_create_object_v2_response_m_payload_local_var = malloc(sizeof(branding_create_object_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ branding_create_object_v2_response_m_payload_t *branding_create_object_v2_respon
     }
     branding_create_object_v2_response_m_payload_local_var->a_pki_branding_id = a_pki_branding_id;
 
+    branding_create_object_v2_response_m_payload_local_var->_library_owned = 1;
     return branding_create_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) branding_create_object_v2_response_m_payload_t *branding_create_object_v2_response_m_payload_create(
+    list_t *a_pki_branding_id
+    ) {
+    return branding_create_object_v2_response_m_payload_create_internal (
+        a_pki_branding_id
+        );
+}
 
 void branding_create_object_v2_response_m_payload_free(branding_create_object_v2_response_m_payload_t *branding_create_object_v2_response_m_payload) {
     if(NULL == branding_create_object_v2_response_m_payload){
+        return ;
+    }
+    if(branding_create_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "branding_create_object_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +82,9 @@ branding_create_object_v2_response_m_payload_t *branding_create_object_v2_respon
 
     // branding_create_object_v2_response_m_payload->a_pki_branding_id
     cJSON *a_pki_branding_id = cJSON_GetObjectItemCaseSensitive(branding_create_object_v2_response_m_payloadJSON, "a_pkiBrandingID");
+    if (cJSON_IsNull(a_pki_branding_id)) {
+        a_pki_branding_id = NULL;
+    }
     if (!a_pki_branding_id) {
         goto end;
     }
@@ -87,7 +102,7 @@ branding_create_object_v2_response_m_payload_t *branding_create_object_v2_respon
         {
             goto end;
         }
-        double *a_pki_branding_id_local_value = (double *)calloc(1, sizeof(double));
+        double *a_pki_branding_id_local_value = calloc(1, sizeof(double));
         if(!a_pki_branding_id_local_value)
         {
             goto end;
@@ -97,7 +112,7 @@ branding_create_object_v2_response_m_payload_t *branding_create_object_v2_respon
     }
 
 
-    branding_create_object_v2_response_m_payload_local_var = branding_create_object_v2_response_m_payload_create (
+    branding_create_object_v2_response_m_payload_local_var = branding_create_object_v2_response_m_payload_create_internal (
         a_pki_branding_idList
         );
 

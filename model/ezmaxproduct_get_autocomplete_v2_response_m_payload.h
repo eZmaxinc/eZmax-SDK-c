@@ -22,9 +22,10 @@ typedef struct ezmaxproduct_get_autocomplete_v2_response_m_payload_t ezmaxproduc
 typedef struct ezmaxproduct_get_autocomplete_v2_response_m_payload_t {
     list_t *a_obj_ezmaxproduct; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezmaxproduct_get_autocomplete_v2_response_m_payload_t;
 
-ezmaxproduct_get_autocomplete_v2_response_m_payload_t *ezmaxproduct_get_autocomplete_v2_response_m_payload_create(
+__attribute__((deprecated)) ezmaxproduct_get_autocomplete_v2_response_m_payload_t *ezmaxproduct_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_ezmaxproduct
 );
 

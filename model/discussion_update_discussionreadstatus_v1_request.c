@@ -5,7 +5,7 @@
 
 
 
-discussion_update_discussionreadstatus_v1_request_t *discussion_update_discussionreadstatus_v1_request_create(
+static discussion_update_discussionreadstatus_v1_request_t *discussion_update_discussionreadstatus_v1_request_create_internal(
     char *dt_discussionreadstatus_date
     ) {
     discussion_update_discussionreadstatus_v1_request_t *discussion_update_discussionreadstatus_v1_request_local_var = malloc(sizeof(discussion_update_discussionreadstatus_v1_request_t));
@@ -14,12 +14,24 @@ discussion_update_discussionreadstatus_v1_request_t *discussion_update_discussio
     }
     discussion_update_discussionreadstatus_v1_request_local_var->dt_discussionreadstatus_date = dt_discussionreadstatus_date;
 
+    discussion_update_discussionreadstatus_v1_request_local_var->_library_owned = 1;
     return discussion_update_discussionreadstatus_v1_request_local_var;
 }
 
+__attribute__((deprecated)) discussion_update_discussionreadstatus_v1_request_t *discussion_update_discussionreadstatus_v1_request_create(
+    char *dt_discussionreadstatus_date
+    ) {
+    return discussion_update_discussionreadstatus_v1_request_create_internal (
+        dt_discussionreadstatus_date
+        );
+}
 
 void discussion_update_discussionreadstatus_v1_request_free(discussion_update_discussionreadstatus_v1_request_t *discussion_update_discussionreadstatus_v1_request) {
     if(NULL == discussion_update_discussionreadstatus_v1_request){
+        return ;
+    }
+    if(discussion_update_discussionreadstatus_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "discussion_update_discussionreadstatus_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -54,6 +66,9 @@ discussion_update_discussionreadstatus_v1_request_t *discussion_update_discussio
 
     // discussion_update_discussionreadstatus_v1_request->dt_discussionreadstatus_date
     cJSON *dt_discussionreadstatus_date = cJSON_GetObjectItemCaseSensitive(discussion_update_discussionreadstatus_v1_requestJSON, "dtDiscussionreadstatusDate");
+    if (cJSON_IsNull(dt_discussionreadstatus_date)) {
+        dt_discussionreadstatus_date = NULL;
+    }
     if (dt_discussionreadstatus_date) { 
     if(!cJSON_IsString(dt_discussionreadstatus_date) && !cJSON_IsNull(dt_discussionreadstatus_date))
     {
@@ -62,7 +77,7 @@ discussion_update_discussionreadstatus_v1_request_t *discussion_update_discussio
     }
 
 
-    discussion_update_discussionreadstatus_v1_request_local_var = discussion_update_discussionreadstatus_v1_request_create (
+    discussion_update_discussionreadstatus_v1_request_local_var = discussion_update_discussionreadstatus_v1_request_create_internal (
         dt_discussionreadstatus_date && !cJSON_IsNull(dt_discussionreadstatus_date) ? strdup(dt_discussionreadstatus_date->valuestring) : NULL
         );
 

@@ -15,17 +15,18 @@
 
 typedef struct permission_get_object_v2_response_m_payload_t permission_get_object_v2_response_m_payload_t;
 
-#include "permission_response.h"
+#include "permission_response_compound.h"
 
 
 
 typedef struct permission_get_object_v2_response_m_payload_t {
-    struct permission_response_t *obj_permission; //model
+    struct permission_response_compound_t *obj_permission; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } permission_get_object_v2_response_m_payload_t;
 
-permission_get_object_v2_response_m_payload_t *permission_get_object_v2_response_m_payload_create(
-    permission_response_t *obj_permission
+__attribute__((deprecated)) permission_get_object_v2_response_m_payload_t *permission_get_object_v2_response_m_payload_create(
+    permission_response_compound_t *obj_permission
 );
 
 void permission_get_object_v2_response_m_payload_free(permission_get_object_v2_response_m_payload_t *permission_get_object_v2_response_m_payload);

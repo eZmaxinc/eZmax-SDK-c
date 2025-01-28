@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 // Functions for enum SSELECTOR for ObjectBrandingAPI_brandingGetAutocompleteV2
 
@@ -267,11 +262,14 @@ ObjectBrandingAPI_brandingCreateObjectV2(apiClient_t *apiClient, branding_create
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/branding")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/branding");
+    char *localVarPath = strdup("/2/object/branding");
+
 
 
 
@@ -280,9 +278,10 @@ ObjectBrandingAPI_brandingCreateObjectV2(apiClient_t *apiClient, branding_create
     cJSON *localVarSingleItemJSON_branding_create_object_v2_request = NULL;
     if (branding_create_object_v2_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_branding_create_object_v2_request = branding_create_object_v2_request_convertToJSON(branding_create_object_v2_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_branding_create_object_v2_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -294,6 +293,7 @@ ObjectBrandingAPI_brandingCreateObjectV2(apiClient_t *apiClient, branding_create
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -301,11 +301,14 @@ ObjectBrandingAPI_brandingCreateObjectV2(apiClient_t *apiClient, branding_create
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectBrandingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    branding_create_object_v2_response_t *elementToReturn = branding_create_object_v2_response_parseFromJSON(ObjectBrandingAPIlocalVarJSON);
-    cJSON_Delete(ObjectBrandingAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    branding_create_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectBrandingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = branding_create_object_v2_response_parseFromJSON(ObjectBrandingAPIlocalVarJSON);
+        cJSON_Delete(ObjectBrandingAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -336,7 +339,7 @@ end:
 //
 // 
 //
-common_response_t*
+branding_edit_object_v2_response_t*
 ObjectBrandingAPI_brandingEditObjectV2(apiClient_t *apiClient, int *pkiBrandingID, branding_edit_object_v2_request_t *branding_edit_object_v2_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -345,15 +348,18 @@ ObjectBrandingAPI_brandingEditObjectV2(apiClient_t *apiClient, int *pkiBrandingI
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/branding/{pkiBrandingID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/branding/{pkiBrandingID}");
+    char *localVarPath = strdup("/2/object/branding/{pkiBrandingID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiBrandingID =  + strlen("{ pkiBrandingID }");
+    long sizeOfPathParams_pkiBrandingID =  + sizeof("{ pkiBrandingID }") - 1;
     if(pkiBrandingID == 0){
         goto end;
     }
@@ -361,7 +367,7 @@ ObjectBrandingAPI_brandingEditObjectV2(apiClient_t *apiClient, int *pkiBrandingI
     snprintf(localVarToReplace_pkiBrandingID, sizeOfPathParams_pkiBrandingID, "{%s}", "pkiBrandingID");
 
     char localVarBuff_pkiBrandingID[256];
-    intToStr(localVarBuff_pkiBrandingID, *pkiBrandingID);
+    snprintf(localVarBuff_pkiBrandingID, sizeof localVarBuff_pkiBrandingID, "%ld", (long)*pkiBrandingID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiBrandingID, localVarBuff_pkiBrandingID);
 
@@ -372,9 +378,10 @@ ObjectBrandingAPI_brandingEditObjectV2(apiClient_t *apiClient, int *pkiBrandingI
     cJSON *localVarSingleItemJSON_branding_edit_object_v2_request = NULL;
     if (branding_edit_object_v2_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_branding_edit_object_v2_request = branding_edit_object_v2_request_convertToJSON(branding_edit_object_v2_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_branding_edit_object_v2_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -386,6 +393,7 @@ ObjectBrandingAPI_brandingEditObjectV2(apiClient_t *apiClient, int *pkiBrandingI
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -397,11 +405,14 @@ ObjectBrandingAPI_brandingEditObjectV2(apiClient_t *apiClient, int *pkiBrandingI
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectBrandingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectBrandingAPIlocalVarJSON);
-    cJSON_Delete(ObjectBrandingAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    branding_edit_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectBrandingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = branding_edit_object_v2_response_parseFromJSON(ObjectBrandingAPIlocalVarJSON);
+        cJSON_Delete(ObjectBrandingAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -442,22 +453,27 @@ ObjectBrandingAPI_brandingGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_de
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/branding/getAutocomplete/{sSelector}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/branding/getAutocomplete/{sSelector}");
+    char *localVarPath = strdup("/2/object/branding/getAutocomplete/{sSelector}");
+
+    if(!sSelector)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_sSelector = strlen(sSelector)+3 + strlen("{ sSelector }");
-    if(sSelector == NULL) {
+    long sizeOfPathParams_sSelector = strlen(brandingGetAutocompleteV2_SSELECTOR_ToString(sSelector))+3 + sizeof("{ sSelector }") - 1;
+    if(sSelector == 0) {
         goto end;
     }
     char* localVarToReplace_sSelector = malloc(sizeOfPathParams_sSelector);
     sprintf(localVarToReplace_sSelector, "{%s}", "sSelector");
 
-    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, sSelector);
+    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, brandingGetAutocompleteV2_SSELECTOR_ToString(sSelector));
 
 
 
@@ -481,7 +497,7 @@ ObjectBrandingAPI_brandingGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_de
     {
         keyQuery_eFilterActive = strdup("eFilterActive");
         valueQuery_eFilterActive = (eFilterActive);
-        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(brandingGetAutocompleteV2_EFILTERACTIVE_ToString(
+        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, strdup(brandingGetAutocompleteV2_EFILTERACTIVE_ToString(
         valueQuery_eFilterActive)));
         list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
     }
@@ -506,6 +522,7 @@ ObjectBrandingAPI_brandingGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_de
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -513,11 +530,14 @@ ObjectBrandingAPI_brandingGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_de
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectBrandingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    branding_get_autocomplete_v2_response_t *elementToReturn = branding_get_autocomplete_v2_response_parseFromJSON(ObjectBrandingAPIlocalVarJSON);
-    cJSON_Delete(ObjectBrandingAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    branding_get_autocomplete_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectBrandingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = branding_get_autocomplete_v2_response_parseFromJSON(ObjectBrandingAPIlocalVarJSON);
+        cJSON_Delete(ObjectBrandingAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -578,11 +598,14 @@ ObjectBrandingAPI_brandingGetListV1(apiClient_t *apiClient, ezmax_api_definition
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/branding/getList")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/branding/getList");
+    char *localVarPath = strdup("/1/object/branding/getList");
+
 
 
 
@@ -607,7 +630,7 @@ ObjectBrandingAPI_brandingGetListV1(apiClient_t *apiClient, ezmax_api_definition
     {
         keyQuery_eOrderBy = strdup("eOrderBy");
         valueQuery_eOrderBy = (eOrderBy);
-        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, (void *)strdup(brandingGetListV1_EORDERBY_ToString(
+        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, strdup(brandingGetListV1_EORDERBY_ToString(
         valueQuery_eOrderBy)));
         list_addElement(localVarQueryParameters,keyPairQuery_eOrderBy);
     }
@@ -659,6 +682,7 @@ ObjectBrandingAPI_brandingGetListV1(apiClient_t *apiClient, ezmax_api_definition
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -670,11 +694,14 @@ ObjectBrandingAPI_brandingGetListV1(apiClient_t *apiClient, ezmax_api_definition
     //    printf("%s\n","The URL is valid, but one of the Accept header is not defined or invalid. For example, you set the header \&quot;Accept: application/json\&quot; but the function can only return \&quot;Content-type: image/png\&quot;");
     //}
     //nonprimitive not container
-    cJSON *ObjectBrandingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    branding_get_list_v1_response_t *elementToReturn = branding_get_list_v1_response_parseFromJSON(ObjectBrandingAPIlocalVarJSON);
-    cJSON_Delete(ObjectBrandingAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    branding_get_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectBrandingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = branding_get_list_v1_response_parseFromJSON(ObjectBrandingAPIlocalVarJSON);
+        cJSON_Delete(ObjectBrandingAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -758,15 +785,18 @@ ObjectBrandingAPI_brandingGetObjectV3(apiClient_t *apiClient, int *pkiBrandingID
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/3/object/branding/{pkiBrandingID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/3/object/branding/{pkiBrandingID}");
+    char *localVarPath = strdup("/3/object/branding/{pkiBrandingID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiBrandingID =  + strlen("{ pkiBrandingID }");
+    long sizeOfPathParams_pkiBrandingID =  + sizeof("{ pkiBrandingID }") - 1;
     if(pkiBrandingID == 0){
         goto end;
     }
@@ -774,7 +804,7 @@ ObjectBrandingAPI_brandingGetObjectV3(apiClient_t *apiClient, int *pkiBrandingID
     snprintf(localVarToReplace_pkiBrandingID, sizeOfPathParams_pkiBrandingID, "{%s}", "pkiBrandingID");
 
     char localVarBuff_pkiBrandingID[256];
-    intToStr(localVarBuff_pkiBrandingID, *pkiBrandingID);
+    snprintf(localVarBuff_pkiBrandingID, sizeof localVarBuff_pkiBrandingID, "%ld", (long)*pkiBrandingID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiBrandingID, localVarBuff_pkiBrandingID);
 
@@ -789,6 +819,7 @@ ObjectBrandingAPI_brandingGetObjectV3(apiClient_t *apiClient, int *pkiBrandingID
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -800,11 +831,14 @@ ObjectBrandingAPI_brandingGetObjectV3(apiClient_t *apiClient, int *pkiBrandingID
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectBrandingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    branding_get_object_v3_response_t *elementToReturn = branding_get_object_v3_response_parseFromJSON(ObjectBrandingAPIlocalVarJSON);
-    cJSON_Delete(ObjectBrandingAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    branding_get_object_v3_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectBrandingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = branding_get_object_v3_response_parseFromJSON(ObjectBrandingAPIlocalVarJSON);
+        cJSON_Delete(ObjectBrandingAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

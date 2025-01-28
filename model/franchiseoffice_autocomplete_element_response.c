@@ -5,7 +5,7 @@
 
 
 
-franchiseoffice_autocomplete_element_response_t *franchiseoffice_autocomplete_element_response_create(
+static franchiseoffice_autocomplete_element_response_t *franchiseoffice_autocomplete_element_response_create_internal(
     char *s_franchiseoffice_description,
     int pki_franchiseoffice_id,
     int b_franchiseoffice_isactive
@@ -18,12 +18,28 @@ franchiseoffice_autocomplete_element_response_t *franchiseoffice_autocomplete_el
     franchiseoffice_autocomplete_element_response_local_var->pki_franchiseoffice_id = pki_franchiseoffice_id;
     franchiseoffice_autocomplete_element_response_local_var->b_franchiseoffice_isactive = b_franchiseoffice_isactive;
 
+    franchiseoffice_autocomplete_element_response_local_var->_library_owned = 1;
     return franchiseoffice_autocomplete_element_response_local_var;
 }
 
+__attribute__((deprecated)) franchiseoffice_autocomplete_element_response_t *franchiseoffice_autocomplete_element_response_create(
+    char *s_franchiseoffice_description,
+    int pki_franchiseoffice_id,
+    int b_franchiseoffice_isactive
+    ) {
+    return franchiseoffice_autocomplete_element_response_create_internal (
+        s_franchiseoffice_description,
+        pki_franchiseoffice_id,
+        b_franchiseoffice_isactive
+        );
+}
 
 void franchiseoffice_autocomplete_element_response_free(franchiseoffice_autocomplete_element_response_t *franchiseoffice_autocomplete_element_response) {
     if(NULL == franchiseoffice_autocomplete_element_response){
+        return ;
+    }
+    if(franchiseoffice_autocomplete_element_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "franchiseoffice_autocomplete_element_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -77,6 +93,9 @@ franchiseoffice_autocomplete_element_response_t *franchiseoffice_autocomplete_el
 
     // franchiseoffice_autocomplete_element_response->s_franchiseoffice_description
     cJSON *s_franchiseoffice_description = cJSON_GetObjectItemCaseSensitive(franchiseoffice_autocomplete_element_responseJSON, "sFranchiseofficeDescription");
+    if (cJSON_IsNull(s_franchiseoffice_description)) {
+        s_franchiseoffice_description = NULL;
+    }
     if (!s_franchiseoffice_description) {
         goto end;
     }
@@ -89,6 +108,9 @@ franchiseoffice_autocomplete_element_response_t *franchiseoffice_autocomplete_el
 
     // franchiseoffice_autocomplete_element_response->pki_franchiseoffice_id
     cJSON *pki_franchiseoffice_id = cJSON_GetObjectItemCaseSensitive(franchiseoffice_autocomplete_element_responseJSON, "pkiFranchiseofficeID");
+    if (cJSON_IsNull(pki_franchiseoffice_id)) {
+        pki_franchiseoffice_id = NULL;
+    }
     if (!pki_franchiseoffice_id) {
         goto end;
     }
@@ -101,6 +123,9 @@ franchiseoffice_autocomplete_element_response_t *franchiseoffice_autocomplete_el
 
     // franchiseoffice_autocomplete_element_response->b_franchiseoffice_isactive
     cJSON *b_franchiseoffice_isactive = cJSON_GetObjectItemCaseSensitive(franchiseoffice_autocomplete_element_responseJSON, "bFranchiseofficeIsactive");
+    if (cJSON_IsNull(b_franchiseoffice_isactive)) {
+        b_franchiseoffice_isactive = NULL;
+    }
     if (!b_franchiseoffice_isactive) {
         goto end;
     }
@@ -112,7 +137,7 @@ franchiseoffice_autocomplete_element_response_t *franchiseoffice_autocomplete_el
     }
 
 
-    franchiseoffice_autocomplete_element_response_local_var = franchiseoffice_autocomplete_element_response_create (
+    franchiseoffice_autocomplete_element_response_local_var = franchiseoffice_autocomplete_element_response_create_internal (
         strdup(s_franchiseoffice_description->valuestring),
         pki_franchiseoffice_id->valuedouble,
         b_franchiseoffice_isactive->valueint

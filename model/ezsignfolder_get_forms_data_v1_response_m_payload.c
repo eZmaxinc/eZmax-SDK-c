@@ -5,7 +5,7 @@
 
 
 
-ezsignfolder_get_forms_data_v1_response_m_payload_t *ezsignfolder_get_forms_data_v1_response_m_payload_create(
+static ezsignfolder_get_forms_data_v1_response_m_payload_t *ezsignfolder_get_forms_data_v1_response_m_payload_create_internal(
     custom_forms_data_folder_response_t *obj_forms_data_folder
     ) {
     ezsignfolder_get_forms_data_v1_response_m_payload_t *ezsignfolder_get_forms_data_v1_response_m_payload_local_var = malloc(sizeof(ezsignfolder_get_forms_data_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ ezsignfolder_get_forms_data_v1_response_m_payload_t *ezsignfolder_get_forms_data
     }
     ezsignfolder_get_forms_data_v1_response_m_payload_local_var->obj_forms_data_folder = obj_forms_data_folder;
 
+    ezsignfolder_get_forms_data_v1_response_m_payload_local_var->_library_owned = 1;
     return ezsignfolder_get_forms_data_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezsignfolder_get_forms_data_v1_response_m_payload_t *ezsignfolder_get_forms_data_v1_response_m_payload_create(
+    custom_forms_data_folder_response_t *obj_forms_data_folder
+    ) {
+    return ezsignfolder_get_forms_data_v1_response_m_payload_create_internal (
+        obj_forms_data_folder
+        );
+}
 
 void ezsignfolder_get_forms_data_v1_response_m_payload_free(ezsignfolder_get_forms_data_v1_response_m_payload_t *ezsignfolder_get_forms_data_v1_response_m_payload) {
     if(NULL == ezsignfolder_get_forms_data_v1_response_m_payload){
+        return ;
+    }
+    if(ezsignfolder_get_forms_data_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignfolder_get_forms_data_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ ezsignfolder_get_forms_data_v1_response_m_payload_t *ezsignfolder_get_forms_data
 
     // ezsignfolder_get_forms_data_v1_response_m_payload->obj_forms_data_folder
     cJSON *obj_forms_data_folder = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_forms_data_v1_response_m_payloadJSON, "objFormsDataFolder");
+    if (cJSON_IsNull(obj_forms_data_folder)) {
+        obj_forms_data_folder = NULL;
+    }
     if (!obj_forms_data_folder) {
         goto end;
     }
@@ -71,7 +86,7 @@ ezsignfolder_get_forms_data_v1_response_m_payload_t *ezsignfolder_get_forms_data
     obj_forms_data_folder_local_nonprim = custom_forms_data_folder_response_parseFromJSON(obj_forms_data_folder); //nonprimitive
 
 
-    ezsignfolder_get_forms_data_v1_response_m_payload_local_var = ezsignfolder_get_forms_data_v1_response_m_payload_create (
+    ezsignfolder_get_forms_data_v1_response_m_payload_local_var = ezsignfolder_get_forms_data_v1_response_m_payload_create_internal (
         obj_forms_data_folder_local_nonprim
         );
 

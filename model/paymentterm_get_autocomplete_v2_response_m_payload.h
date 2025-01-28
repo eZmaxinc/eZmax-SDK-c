@@ -22,9 +22,10 @@ typedef struct paymentterm_get_autocomplete_v2_response_m_payload_t paymentterm_
 typedef struct paymentterm_get_autocomplete_v2_response_m_payload_t {
     list_t *a_obj_paymentterm; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } paymentterm_get_autocomplete_v2_response_m_payload_t;
 
-paymentterm_get_autocomplete_v2_response_m_payload_t *paymentterm_get_autocomplete_v2_response_m_payload_create(
+__attribute__((deprecated)) paymentterm_get_autocomplete_v2_response_m_payload_t *paymentterm_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_paymentterm
 );
 

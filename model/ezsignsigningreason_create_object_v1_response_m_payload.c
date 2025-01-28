@@ -5,7 +5,7 @@
 
 
 
-ezsignsigningreason_create_object_v1_response_m_payload_t *ezsignsigningreason_create_object_v1_response_m_payload_create(
+static ezsignsigningreason_create_object_v1_response_m_payload_t *ezsignsigningreason_create_object_v1_response_m_payload_create_internal(
     list_t *a_pki_ezsignsigningreason_id
     ) {
     ezsignsigningreason_create_object_v1_response_m_payload_t *ezsignsigningreason_create_object_v1_response_m_payload_local_var = malloc(sizeof(ezsignsigningreason_create_object_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ ezsignsigningreason_create_object_v1_response_m_payload_t *ezsignsigningreason_c
     }
     ezsignsigningreason_create_object_v1_response_m_payload_local_var->a_pki_ezsignsigningreason_id = a_pki_ezsignsigningreason_id;
 
+    ezsignsigningreason_create_object_v1_response_m_payload_local_var->_library_owned = 1;
     return ezsignsigningreason_create_object_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezsignsigningreason_create_object_v1_response_m_payload_t *ezsignsigningreason_create_object_v1_response_m_payload_create(
+    list_t *a_pki_ezsignsigningreason_id
+    ) {
+    return ezsignsigningreason_create_object_v1_response_m_payload_create_internal (
+        a_pki_ezsignsigningreason_id
+        );
+}
 
 void ezsignsigningreason_create_object_v1_response_m_payload_free(ezsignsigningreason_create_object_v1_response_m_payload_t *ezsignsigningreason_create_object_v1_response_m_payload) {
     if(NULL == ezsignsigningreason_create_object_v1_response_m_payload){
+        return ;
+    }
+    if(ezsignsigningreason_create_object_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignsigningreason_create_object_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +82,9 @@ ezsignsigningreason_create_object_v1_response_m_payload_t *ezsignsigningreason_c
 
     // ezsignsigningreason_create_object_v1_response_m_payload->a_pki_ezsignsigningreason_id
     cJSON *a_pki_ezsignsigningreason_id = cJSON_GetObjectItemCaseSensitive(ezsignsigningreason_create_object_v1_response_m_payloadJSON, "a_pkiEzsignsigningreasonID");
+    if (cJSON_IsNull(a_pki_ezsignsigningreason_id)) {
+        a_pki_ezsignsigningreason_id = NULL;
+    }
     if (!a_pki_ezsignsigningreason_id) {
         goto end;
     }
@@ -87,7 +102,7 @@ ezsignsigningreason_create_object_v1_response_m_payload_t *ezsignsigningreason_c
         {
             goto end;
         }
-        double *a_pki_ezsignsigningreason_id_local_value = (double *)calloc(1, sizeof(double));
+        double *a_pki_ezsignsigningreason_id_local_value = calloc(1, sizeof(double));
         if(!a_pki_ezsignsigningreason_id_local_value)
         {
             goto end;
@@ -97,7 +112,7 @@ ezsignsigningreason_create_object_v1_response_m_payload_t *ezsignsigningreason_c
     }
 
 
-    ezsignsigningreason_create_object_v1_response_m_payload_local_var = ezsignsigningreason_create_object_v1_response_m_payload_create (
+    ezsignsigningreason_create_object_v1_response_m_payload_local_var = ezsignsigningreason_create_object_v1_response_m_payload_create_internal (
         a_pki_ezsignsigningreason_idList
         );
 

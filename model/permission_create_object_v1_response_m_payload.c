@@ -5,7 +5,7 @@
 
 
 
-permission_create_object_v1_response_m_payload_t *permission_create_object_v1_response_m_payload_create(
+static permission_create_object_v1_response_m_payload_t *permission_create_object_v1_response_m_payload_create_internal(
     list_t *a_pki_permission_id
     ) {
     permission_create_object_v1_response_m_payload_t *permission_create_object_v1_response_m_payload_local_var = malloc(sizeof(permission_create_object_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ permission_create_object_v1_response_m_payload_t *permission_create_object_v1_re
     }
     permission_create_object_v1_response_m_payload_local_var->a_pki_permission_id = a_pki_permission_id;
 
+    permission_create_object_v1_response_m_payload_local_var->_library_owned = 1;
     return permission_create_object_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) permission_create_object_v1_response_m_payload_t *permission_create_object_v1_response_m_payload_create(
+    list_t *a_pki_permission_id
+    ) {
+    return permission_create_object_v1_response_m_payload_create_internal (
+        a_pki_permission_id
+        );
+}
 
 void permission_create_object_v1_response_m_payload_free(permission_create_object_v1_response_m_payload_t *permission_create_object_v1_response_m_payload) {
     if(NULL == permission_create_object_v1_response_m_payload){
+        return ;
+    }
+    if(permission_create_object_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "permission_create_object_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +82,9 @@ permission_create_object_v1_response_m_payload_t *permission_create_object_v1_re
 
     // permission_create_object_v1_response_m_payload->a_pki_permission_id
     cJSON *a_pki_permission_id = cJSON_GetObjectItemCaseSensitive(permission_create_object_v1_response_m_payloadJSON, "a_pkiPermissionID");
+    if (cJSON_IsNull(a_pki_permission_id)) {
+        a_pki_permission_id = NULL;
+    }
     if (!a_pki_permission_id) {
         goto end;
     }
@@ -87,7 +102,7 @@ permission_create_object_v1_response_m_payload_t *permission_create_object_v1_re
         {
             goto end;
         }
-        double *a_pki_permission_id_local_value = (double *)calloc(1, sizeof(double));
+        double *a_pki_permission_id_local_value = calloc(1, sizeof(double));
         if(!a_pki_permission_id_local_value)
         {
             goto end;
@@ -97,7 +112,7 @@ permission_create_object_v1_response_m_payload_t *permission_create_object_v1_re
     }
 
 
-    permission_create_object_v1_response_m_payload_local_var = permission_create_object_v1_response_m_payload_create (
+    permission_create_object_v1_response_m_payload_local_var = permission_create_object_v1_response_m_payload_create_internal (
         a_pki_permission_idList
         );
 

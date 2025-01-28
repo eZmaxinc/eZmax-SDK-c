@@ -5,7 +5,7 @@
 
 
 
-ezsigndocument_get_object_v2_response_m_payload_t *ezsigndocument_get_object_v2_response_m_payload_create(
+static ezsigndocument_get_object_v2_response_m_payload_t *ezsigndocument_get_object_v2_response_m_payload_create_internal(
     ezsigndocument_response_compound_t *obj_ezsigndocument
     ) {
     ezsigndocument_get_object_v2_response_m_payload_t *ezsigndocument_get_object_v2_response_m_payload_local_var = malloc(sizeof(ezsigndocument_get_object_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ ezsigndocument_get_object_v2_response_m_payload_t *ezsigndocument_get_object_v2_
     }
     ezsigndocument_get_object_v2_response_m_payload_local_var->obj_ezsigndocument = obj_ezsigndocument;
 
+    ezsigndocument_get_object_v2_response_m_payload_local_var->_library_owned = 1;
     return ezsigndocument_get_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezsigndocument_get_object_v2_response_m_payload_t *ezsigndocument_get_object_v2_response_m_payload_create(
+    ezsigndocument_response_compound_t *obj_ezsigndocument
+    ) {
+    return ezsigndocument_get_object_v2_response_m_payload_create_internal (
+        obj_ezsigndocument
+        );
+}
 
 void ezsigndocument_get_object_v2_response_m_payload_free(ezsigndocument_get_object_v2_response_m_payload_t *ezsigndocument_get_object_v2_response_m_payload) {
     if(NULL == ezsigndocument_get_object_v2_response_m_payload){
+        return ;
+    }
+    if(ezsigndocument_get_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigndocument_get_object_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ ezsigndocument_get_object_v2_response_m_payload_t *ezsigndocument_get_object_v2_
 
     // ezsigndocument_get_object_v2_response_m_payload->obj_ezsigndocument
     cJSON *obj_ezsigndocument = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_object_v2_response_m_payloadJSON, "objEzsigndocument");
+    if (cJSON_IsNull(obj_ezsigndocument)) {
+        obj_ezsigndocument = NULL;
+    }
     if (!obj_ezsigndocument) {
         goto end;
     }
@@ -71,7 +86,7 @@ ezsigndocument_get_object_v2_response_m_payload_t *ezsigndocument_get_object_v2_
     obj_ezsigndocument_local_nonprim = ezsigndocument_response_compound_parseFromJSON(obj_ezsigndocument); //nonprimitive
 
 
-    ezsigndocument_get_object_v2_response_m_payload_local_var = ezsigndocument_get_object_v2_response_m_payload_create (
+    ezsigndocument_get_object_v2_response_m_payload_local_var = ezsigndocument_get_object_v2_response_m_payload_create_internal (
         obj_ezsigndocument_local_nonprim
         );
 

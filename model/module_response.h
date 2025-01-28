@@ -26,9 +26,10 @@ typedef struct module_response_t {
     int b_module_registered; //boolean
     int b_module_registeredapi; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } module_response_t;
 
-module_response_t *module_response_create(
+__attribute__((deprecated)) module_response_t *module_response_create(
     int pki_module_id,
     int fki_modulegroup_id,
     char *e_module_internalname,

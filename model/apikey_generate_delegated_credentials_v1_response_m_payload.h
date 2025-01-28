@@ -22,9 +22,10 @@ typedef struct apikey_generate_delegated_credentials_v1_response_m_payload_t api
 typedef struct apikey_generate_delegated_credentials_v1_response_m_payload_t {
     struct custom_apikey_t *obj_apikey; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } apikey_generate_delegated_credentials_v1_response_m_payload_t;
 
-apikey_generate_delegated_credentials_v1_response_m_payload_t *apikey_generate_delegated_credentials_v1_response_m_payload_create(
+__attribute__((deprecated)) apikey_generate_delegated_credentials_v1_response_m_payload_t *apikey_generate_delegated_credentials_v1_response_m_payload_create(
     custom_apikey_t *obj_apikey
 );
 

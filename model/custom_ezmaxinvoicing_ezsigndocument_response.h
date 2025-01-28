@@ -26,9 +26,10 @@ typedef struct custom_ezmaxinvoicing_ezsigndocument_response_t {
     char *s_ezsigndocument_name; // string
     int b_ezsignfolder_allowed; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_ezmaxinvoicing_ezsigndocument_response_t;
 
-custom_ezmaxinvoicing_ezsigndocument_response_t *custom_ezmaxinvoicing_ezsigndocument_response_create(
+__attribute__((deprecated)) custom_ezmaxinvoicing_ezsigndocument_response_t *custom_ezmaxinvoicing_ezsigndocument_response_create(
     int fki_ezsignfolder_id,
     int fki_billingentityinternal_id,
     char *s_name,

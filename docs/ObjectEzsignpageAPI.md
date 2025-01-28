@@ -11,7 +11,7 @@ Method | HTTP request | Description
 ```c
 // Consult an Ezsignpage
 //
-common_response_t* ObjectEzsignpageAPI_ezsignpageConsultV1(apiClient_t *apiClient, int *pkiEzsignpageID, object_t *body);
+ezsignpage_consult_v1_response_t* ObjectEzsignpageAPI_ezsignpageConsultV1(apiClient_t *apiClient, int *pkiEzsignpageID, object_t *body);
 ```
 
 ### Parameters
@@ -23,7 +23,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[ezsignpage_consult_v1_response_t](ezsignpage_consult_v1_response.md) *
 
 
 ### Authorization

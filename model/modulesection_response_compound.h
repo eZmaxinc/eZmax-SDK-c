@@ -15,7 +15,7 @@
 
 typedef struct modulesection_response_compound_t modulesection_response_compound_t;
 
-#include "permission_response.h"
+#include "permission_response_compound.h"
 
 
 
@@ -26,9 +26,10 @@ typedef struct modulesection_response_compound_t {
     char *s_modulesection_name_x; // string
     list_t *a_obj_permission; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } modulesection_response_compound_t;
 
-modulesection_response_compound_t *modulesection_response_compound_create(
+__attribute__((deprecated)) modulesection_response_compound_t *modulesection_response_compound_create(
     int pki_modulesection_id,
     int fki_module_id,
     char *s_modulesection_internalname,

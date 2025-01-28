@@ -5,7 +5,7 @@
 
 
 
-user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_create(
+static user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_create_internal(
     int fki_language_id,
     char *s_user_firstname,
     char *s_user_lastname,
@@ -28,12 +28,38 @@ user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_create(
     user_create_ezsignuser_v1_request_local_var->s_phone_number = s_phone_number;
     user_create_ezsignuser_v1_request_local_var->s_phone_extension = s_phone_extension;
 
+    user_create_ezsignuser_v1_request_local_var->_library_owned = 1;
     return user_create_ezsignuser_v1_request_local_var;
 }
 
+__attribute__((deprecated)) user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_create(
+    int fki_language_id,
+    char *s_user_firstname,
+    char *s_user_lastname,
+    char *s_email_address,
+    char *s_phone_region,
+    char *s_phone_exchange,
+    char *s_phone_number,
+    char *s_phone_extension
+    ) {
+    return user_create_ezsignuser_v1_request_create_internal (
+        fki_language_id,
+        s_user_firstname,
+        s_user_lastname,
+        s_email_address,
+        s_phone_region,
+        s_phone_exchange,
+        s_phone_number,
+        s_phone_extension
+        );
+}
 
 void user_create_ezsignuser_v1_request_free(user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request) {
     if(NULL == user_create_ezsignuser_v1_request){
+        return ;
+    }
+    if(user_create_ezsignuser_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "user_create_ezsignuser_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -155,6 +181,9 @@ user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_parseFrom
 
     // user_create_ezsignuser_v1_request->fki_language_id
     cJSON *fki_language_id = cJSON_GetObjectItemCaseSensitive(user_create_ezsignuser_v1_requestJSON, "fkiLanguageID");
+    if (cJSON_IsNull(fki_language_id)) {
+        fki_language_id = NULL;
+    }
     if (!fki_language_id) {
         goto end;
     }
@@ -167,6 +196,9 @@ user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_parseFrom
 
     // user_create_ezsignuser_v1_request->s_user_firstname
     cJSON *s_user_firstname = cJSON_GetObjectItemCaseSensitive(user_create_ezsignuser_v1_requestJSON, "sUserFirstname");
+    if (cJSON_IsNull(s_user_firstname)) {
+        s_user_firstname = NULL;
+    }
     if (!s_user_firstname) {
         goto end;
     }
@@ -179,6 +211,9 @@ user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_parseFrom
 
     // user_create_ezsignuser_v1_request->s_user_lastname
     cJSON *s_user_lastname = cJSON_GetObjectItemCaseSensitive(user_create_ezsignuser_v1_requestJSON, "sUserLastname");
+    if (cJSON_IsNull(s_user_lastname)) {
+        s_user_lastname = NULL;
+    }
     if (!s_user_lastname) {
         goto end;
     }
@@ -191,6 +226,9 @@ user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_parseFrom
 
     // user_create_ezsignuser_v1_request->s_email_address
     cJSON *s_email_address = cJSON_GetObjectItemCaseSensitive(user_create_ezsignuser_v1_requestJSON, "sEmailAddress");
+    if (cJSON_IsNull(s_email_address)) {
+        s_email_address = NULL;
+    }
     if (!s_email_address) {
         goto end;
     }
@@ -203,6 +241,9 @@ user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_parseFrom
 
     // user_create_ezsignuser_v1_request->s_phone_region
     cJSON *s_phone_region = cJSON_GetObjectItemCaseSensitive(user_create_ezsignuser_v1_requestJSON, "sPhoneRegion");
+    if (cJSON_IsNull(s_phone_region)) {
+        s_phone_region = NULL;
+    }
     if (!s_phone_region) {
         goto end;
     }
@@ -215,6 +256,9 @@ user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_parseFrom
 
     // user_create_ezsignuser_v1_request->s_phone_exchange
     cJSON *s_phone_exchange = cJSON_GetObjectItemCaseSensitive(user_create_ezsignuser_v1_requestJSON, "sPhoneExchange");
+    if (cJSON_IsNull(s_phone_exchange)) {
+        s_phone_exchange = NULL;
+    }
     if (!s_phone_exchange) {
         goto end;
     }
@@ -227,6 +271,9 @@ user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_parseFrom
 
     // user_create_ezsignuser_v1_request->s_phone_number
     cJSON *s_phone_number = cJSON_GetObjectItemCaseSensitive(user_create_ezsignuser_v1_requestJSON, "sPhoneNumber");
+    if (cJSON_IsNull(s_phone_number)) {
+        s_phone_number = NULL;
+    }
     if (!s_phone_number) {
         goto end;
     }
@@ -239,6 +286,9 @@ user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_parseFrom
 
     // user_create_ezsignuser_v1_request->s_phone_extension
     cJSON *s_phone_extension = cJSON_GetObjectItemCaseSensitive(user_create_ezsignuser_v1_requestJSON, "sPhoneExtension");
+    if (cJSON_IsNull(s_phone_extension)) {
+        s_phone_extension = NULL;
+    }
     if (s_phone_extension) { 
     if(!cJSON_IsString(s_phone_extension) && !cJSON_IsNull(s_phone_extension))
     {
@@ -247,7 +297,7 @@ user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_parseFrom
     }
 
 
-    user_create_ezsignuser_v1_request_local_var = user_create_ezsignuser_v1_request_create (
+    user_create_ezsignuser_v1_request_local_var = user_create_ezsignuser_v1_request_create_internal (
         fki_language_id->valuedouble,
         strdup(s_user_firstname->valuestring),
         strdup(s_user_lastname->valuestring),

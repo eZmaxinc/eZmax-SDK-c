@@ -5,7 +5,7 @@
 
 
 
-ezdoctemplatedocument_autocomplete_element_response_t *ezdoctemplatedocument_autocomplete_element_response_create(
+static ezdoctemplatedocument_autocomplete_element_response_t *ezdoctemplatedocument_autocomplete_element_response_create_internal(
     int pki_ezdoctemplatedocument_id,
     char *s_ezdoctemplatedocument_name_x,
     int b_ezdoctemplatedocument_isactive
@@ -18,12 +18,28 @@ ezdoctemplatedocument_autocomplete_element_response_t *ezdoctemplatedocument_aut
     ezdoctemplatedocument_autocomplete_element_response_local_var->s_ezdoctemplatedocument_name_x = s_ezdoctemplatedocument_name_x;
     ezdoctemplatedocument_autocomplete_element_response_local_var->b_ezdoctemplatedocument_isactive = b_ezdoctemplatedocument_isactive;
 
+    ezdoctemplatedocument_autocomplete_element_response_local_var->_library_owned = 1;
     return ezdoctemplatedocument_autocomplete_element_response_local_var;
 }
 
+__attribute__((deprecated)) ezdoctemplatedocument_autocomplete_element_response_t *ezdoctemplatedocument_autocomplete_element_response_create(
+    int pki_ezdoctemplatedocument_id,
+    char *s_ezdoctemplatedocument_name_x,
+    int b_ezdoctemplatedocument_isactive
+    ) {
+    return ezdoctemplatedocument_autocomplete_element_response_create_internal (
+        pki_ezdoctemplatedocument_id,
+        s_ezdoctemplatedocument_name_x,
+        b_ezdoctemplatedocument_isactive
+        );
+}
 
 void ezdoctemplatedocument_autocomplete_element_response_free(ezdoctemplatedocument_autocomplete_element_response_t *ezdoctemplatedocument_autocomplete_element_response) {
     if(NULL == ezdoctemplatedocument_autocomplete_element_response){
+        return ;
+    }
+    if(ezdoctemplatedocument_autocomplete_element_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezdoctemplatedocument_autocomplete_element_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -77,6 +93,9 @@ ezdoctemplatedocument_autocomplete_element_response_t *ezdoctemplatedocument_aut
 
     // ezdoctemplatedocument_autocomplete_element_response->pki_ezdoctemplatedocument_id
     cJSON *pki_ezdoctemplatedocument_id = cJSON_GetObjectItemCaseSensitive(ezdoctemplatedocument_autocomplete_element_responseJSON, "pkiEzdoctemplatedocumentID");
+    if (cJSON_IsNull(pki_ezdoctemplatedocument_id)) {
+        pki_ezdoctemplatedocument_id = NULL;
+    }
     if (!pki_ezdoctemplatedocument_id) {
         goto end;
     }
@@ -89,6 +108,9 @@ ezdoctemplatedocument_autocomplete_element_response_t *ezdoctemplatedocument_aut
 
     // ezdoctemplatedocument_autocomplete_element_response->s_ezdoctemplatedocument_name_x
     cJSON *s_ezdoctemplatedocument_name_x = cJSON_GetObjectItemCaseSensitive(ezdoctemplatedocument_autocomplete_element_responseJSON, "sEzdoctemplatedocumentNameX");
+    if (cJSON_IsNull(s_ezdoctemplatedocument_name_x)) {
+        s_ezdoctemplatedocument_name_x = NULL;
+    }
     if (!s_ezdoctemplatedocument_name_x) {
         goto end;
     }
@@ -101,6 +123,9 @@ ezdoctemplatedocument_autocomplete_element_response_t *ezdoctemplatedocument_aut
 
     // ezdoctemplatedocument_autocomplete_element_response->b_ezdoctemplatedocument_isactive
     cJSON *b_ezdoctemplatedocument_isactive = cJSON_GetObjectItemCaseSensitive(ezdoctemplatedocument_autocomplete_element_responseJSON, "bEzdoctemplatedocumentIsactive");
+    if (cJSON_IsNull(b_ezdoctemplatedocument_isactive)) {
+        b_ezdoctemplatedocument_isactive = NULL;
+    }
     if (!b_ezdoctemplatedocument_isactive) {
         goto end;
     }
@@ -112,7 +137,7 @@ ezdoctemplatedocument_autocomplete_element_response_t *ezdoctemplatedocument_aut
     }
 
 
-    ezdoctemplatedocument_autocomplete_element_response_local_var = ezdoctemplatedocument_autocomplete_element_response_create (
+    ezdoctemplatedocument_autocomplete_element_response_local_var = ezdoctemplatedocument_autocomplete_element_response_create_internal (
         pki_ezdoctemplatedocument_id->valuedouble,
         strdup(s_ezdoctemplatedocument_name_x->valuestring),
         b_ezdoctemplatedocument_isactive->valueint

@@ -5,7 +5,7 @@
 
 
 
-contacttitle_get_autocomplete_v2_response_m_payload_t *contacttitle_get_autocomplete_v2_response_m_payload_create(
+static contacttitle_get_autocomplete_v2_response_m_payload_t *contacttitle_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_contacttitle
     ) {
     contacttitle_get_autocomplete_v2_response_m_payload_t *contacttitle_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(contacttitle_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ contacttitle_get_autocomplete_v2_response_m_payload_t *contacttitle_get_autocomp
     }
     contacttitle_get_autocomplete_v2_response_m_payload_local_var->a_obj_contacttitle = a_obj_contacttitle;
 
+    contacttitle_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return contacttitle_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) contacttitle_get_autocomplete_v2_response_m_payload_t *contacttitle_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_contacttitle
+    ) {
+    return contacttitle_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_contacttitle
+        );
+}
 
 void contacttitle_get_autocomplete_v2_response_m_payload_free(contacttitle_get_autocomplete_v2_response_m_payload_t *contacttitle_get_autocomplete_v2_response_m_payload) {
     if(NULL == contacttitle_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(contacttitle_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "contacttitle_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ contacttitle_get_autocomplete_v2_response_m_payload_t *contacttitle_get_autocomp
 
     // contacttitle_get_autocomplete_v2_response_m_payload->a_obj_contacttitle
     cJSON *a_obj_contacttitle = cJSON_GetObjectItemCaseSensitive(contacttitle_get_autocomplete_v2_response_m_payloadJSON, "a_objContacttitle");
+    if (cJSON_IsNull(a_obj_contacttitle)) {
+        a_obj_contacttitle = NULL;
+    }
     if (!a_obj_contacttitle) {
         goto end;
     }
@@ -96,7 +111,7 @@ contacttitle_get_autocomplete_v2_response_m_payload_t *contacttitle_get_autocomp
     }
 
 
-    contacttitle_get_autocomplete_v2_response_m_payload_local_var = contacttitle_get_autocomplete_v2_response_m_payload_create (
+    contacttitle_get_autocomplete_v2_response_m_payload_local_var = contacttitle_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_contacttitleList
         );
 

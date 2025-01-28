@@ -22,9 +22,10 @@ typedef struct custom_user_name_response_t {
     char *s_user_lastname; // string
     char *s_user_firstname; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_user_name_response_t;
 
-custom_user_name_response_t *custom_user_name_response_create(
+__attribute__((deprecated)) custom_user_name_response_t *custom_user_name_response_create(
     char *s_user_lastname,
     char *s_user_firstname
 );

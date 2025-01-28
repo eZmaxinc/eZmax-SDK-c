@@ -33,9 +33,10 @@ typedef struct address_response_t {
     char *f_address_longitude; // string
     char *f_address_latitude; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } address_response_t;
 
-address_response_t *address_response_create(
+__attribute__((deprecated)) address_response_t *address_response_create(
     int pki_address_id,
     int fki_addresstype_id,
     char *s_address_civic,

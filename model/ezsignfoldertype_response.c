@@ -4,76 +4,8 @@
 #include "ezsignfoldertype_response.h"
 
 
-char* ezsignfoldertype_response_e_ezsignfoldertype_privacylevel_ToString(ezmax_api_definition__full_ezsignfoldertype_response__e e_ezsignfoldertype_privacylevel) {
-    char* e_ezsignfoldertype_privacylevelArray[] =  { "NULL", "User", "Usergroup" };
-    return e_ezsignfoldertype_privacylevelArray[e_ezsignfoldertype_privacylevel];
-}
 
-ezmax_api_definition__full_ezsignfoldertype_response__e ezsignfoldertype_response_e_ezsignfoldertype_privacylevel_FromString(char* e_ezsignfoldertype_privacylevel){
-    int stringToReturn = 0;
-    char *e_ezsignfoldertype_privacylevelArray[] =  { "NULL", "User", "Usergroup" };
-    size_t sizeofArray = sizeof(e_ezsignfoldertype_privacylevelArray) / sizeof(e_ezsignfoldertype_privacylevelArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_ezsignfoldertype_privacylevel, e_ezsignfoldertype_privacylevelArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-char* ezsignfoldertype_response_e_ezsignfoldertype_sendreminderfrequency_ToString(ezmax_api_definition__full_ezsignfoldertype_response__e e_ezsignfoldertype_sendreminderfrequency) {
-    char* e_ezsignfoldertype_sendreminderfrequencyArray[] =  { "NULL", "None", "Daily", "Weekly" };
-    return e_ezsignfoldertype_sendreminderfrequencyArray[e_ezsignfoldertype_sendreminderfrequency];
-}
-
-ezmax_api_definition__full_ezsignfoldertype_response__e ezsignfoldertype_response_e_ezsignfoldertype_sendreminderfrequency_FromString(char* e_ezsignfoldertype_sendreminderfrequency){
-    int stringToReturn = 0;
-    char *e_ezsignfoldertype_sendreminderfrequencyArray[] =  { "NULL", "None", "Daily", "Weekly" };
-    size_t sizeofArray = sizeof(e_ezsignfoldertype_sendreminderfrequencyArray) / sizeof(e_ezsignfoldertype_sendreminderfrequencyArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_ezsignfoldertype_sendreminderfrequency, e_ezsignfoldertype_sendreminderfrequencyArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-char* ezsignfoldertype_response_e_ezsignfoldertype_disposal_ToString(ezmax_api_definition__full_ezsignfoldertype_response__e e_ezsignfoldertype_disposal) {
-    char* e_ezsignfoldertype_disposalArray[] =  { "NULL", "No", "Manual", "Automatic" };
-    return e_ezsignfoldertype_disposalArray[e_ezsignfoldertype_disposal];
-}
-
-ezmax_api_definition__full_ezsignfoldertype_response__e ezsignfoldertype_response_e_ezsignfoldertype_disposal_FromString(char* e_ezsignfoldertype_disposal){
-    int stringToReturn = 0;
-    char *e_ezsignfoldertype_disposalArray[] =  { "NULL", "No", "Manual", "Automatic" };
-    size_t sizeofArray = sizeof(e_ezsignfoldertype_disposalArray) / sizeof(e_ezsignfoldertype_disposalArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_ezsignfoldertype_disposal, e_ezsignfoldertype_disposalArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-char* ezsignfoldertype_response_e_ezsignfoldertype_completion_ToString(ezmax_api_definition__full_ezsignfoldertype_response__e e_ezsignfoldertype_completion) {
-    char* e_ezsignfoldertype_completionArray[] =  { "NULL", "PerEzsigndocument", "PerEzsignfolder" };
-    return e_ezsignfoldertype_completionArray[e_ezsignfoldertype_completion];
-}
-
-ezmax_api_definition__full_ezsignfoldertype_response__e ezsignfoldertype_response_e_ezsignfoldertype_completion_FromString(char* e_ezsignfoldertype_completion){
-    int stringToReturn = 0;
-    char *e_ezsignfoldertype_completionArray[] =  { "NULL", "PerEzsigndocument", "PerEzsignfolder" };
-    size_t sizeofArray = sizeof(e_ezsignfoldertype_completionArray) / sizeof(e_ezsignfoldertype_completionArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_ezsignfoldertype_completion, e_ezsignfoldertype_completionArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-ezsignfoldertype_response_t *ezsignfoldertype_response_create(
+static ezsignfoldertype_response_t *ezsignfoldertype_response_create_internal(
     int pki_ezsignfoldertype_id,
     multilingual_ezsignfoldertype_name_t *obj_ezsignfoldertype_name,
     int fki_branding_id,
@@ -88,11 +20,11 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_create(
     char *s_email_address_summary,
     char *s_usergroup_name_x,
     char *s_usergroup_name_x_restricted,
-    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel,
-    field_e_ezsignfoldertype_sendreminderfrequency_t *e_ezsignfoldertype_sendreminderfrequency,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_sendreminderfrequency__e e_ezsignfoldertype_sendreminderfrequency,
     int i_ezsignfoldertype_archivaldays,
-    field_e_ezsignfoldertype_disposal_t *e_ezsignfoldertype_disposal,
-    field_e_ezsignfoldertype_completion_t *e_ezsignfoldertype_completion,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_disposal__e e_ezsignfoldertype_disposal,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_completion__e e_ezsignfoldertype_completion,
     int i_ezsignfoldertype_disposaldays,
     int i_ezsignfoldertype_deadlinedays,
     int b_ezsignfoldertype_automaticsignature,
@@ -178,12 +110,120 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_create(
     ezsignfoldertype_response_local_var->b_ezsignfoldertype_isactive = b_ezsignfoldertype_isactive;
     ezsignfoldertype_response_local_var->a_obj_userlogintype = a_obj_userlogintype;
 
+    ezsignfoldertype_response_local_var->_library_owned = 1;
     return ezsignfoldertype_response_local_var;
 }
 
+__attribute__((deprecated)) ezsignfoldertype_response_t *ezsignfoldertype_response_create(
+    int pki_ezsignfoldertype_id,
+    multilingual_ezsignfoldertype_name_t *obj_ezsignfoldertype_name,
+    int fki_branding_id,
+    int fki_billingentityinternal_id,
+    int fki_usergroup_id,
+    int fki_usergroup_id_restricted,
+    int fki_ezsigntsarequirement_id,
+    char *s_branding_description_x,
+    char *s_billingentityinternal_description_x,
+    char *s_ezsigntsarequirement_description_x,
+    char *s_email_address_signed,
+    char *s_email_address_summary,
+    char *s_usergroup_name_x,
+    char *s_usergroup_name_x_restricted,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_sendreminderfrequency__e e_ezsignfoldertype_sendreminderfrequency,
+    int i_ezsignfoldertype_archivaldays,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_disposal__e e_ezsignfoldertype_disposal,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_completion__e e_ezsignfoldertype_completion,
+    int i_ezsignfoldertype_disposaldays,
+    int i_ezsignfoldertype_deadlinedays,
+    int b_ezsignfoldertype_automaticsignature,
+    int b_ezsignfoldertype_delegate,
+    int b_ezsignfoldertype_discussion,
+    int b_ezsignfoldertype_reassignezsignsigner,
+    int b_ezsignfoldertype_reassignuser,
+    int b_ezsignfoldertype_reassigngroup,
+    int b_ezsignfoldertype_sendsignedtoezsignsigner,
+    int b_ezsignfoldertype_sendsignedtouser,
+    int b_ezsignfoldertype_sendattachmentezsignsigner,
+    int b_ezsignfoldertype_sendproofezsignsigner,
+    int b_ezsignfoldertype_sendattachmentuser,
+    int b_ezsignfoldertype_sendproofuser,
+    int b_ezsignfoldertype_sendproofemail,
+    int b_ezsignfoldertype_allowdownloadattachmentezsignsigner,
+    int b_ezsignfoldertype_allowdownloadproofezsignsigner,
+    int b_ezsignfoldertype_sendproofreceivealldocument,
+    int b_ezsignfoldertype_sendsignedtodocumentowner,
+    int b_ezsignfoldertype_sendsignedtofolderowner,
+    int b_ezsignfoldertype_sendsignedtofullgroup,
+    int b_ezsignfoldertype_sendsignedtolimitedgroup,
+    int b_ezsignfoldertype_sendsignedtocolleague,
+    int b_ezsignfoldertype_sendsummarytodocumentowner,
+    int b_ezsignfoldertype_sendsummarytofolderowner,
+    int b_ezsignfoldertype_sendsummarytofullgroup,
+    int b_ezsignfoldertype_sendsummarytolimitedgroup,
+    int b_ezsignfoldertype_sendsummarytocolleague,
+    int b_ezsignfoldertype_isactive,
+    list_t *a_obj_userlogintype
+    ) {
+    return ezsignfoldertype_response_create_internal (
+        pki_ezsignfoldertype_id,
+        obj_ezsignfoldertype_name,
+        fki_branding_id,
+        fki_billingentityinternal_id,
+        fki_usergroup_id,
+        fki_usergroup_id_restricted,
+        fki_ezsigntsarequirement_id,
+        s_branding_description_x,
+        s_billingentityinternal_description_x,
+        s_ezsigntsarequirement_description_x,
+        s_email_address_signed,
+        s_email_address_summary,
+        s_usergroup_name_x,
+        s_usergroup_name_x_restricted,
+        e_ezsignfoldertype_privacylevel,
+        e_ezsignfoldertype_sendreminderfrequency,
+        i_ezsignfoldertype_archivaldays,
+        e_ezsignfoldertype_disposal,
+        e_ezsignfoldertype_completion,
+        i_ezsignfoldertype_disposaldays,
+        i_ezsignfoldertype_deadlinedays,
+        b_ezsignfoldertype_automaticsignature,
+        b_ezsignfoldertype_delegate,
+        b_ezsignfoldertype_discussion,
+        b_ezsignfoldertype_reassignezsignsigner,
+        b_ezsignfoldertype_reassignuser,
+        b_ezsignfoldertype_reassigngroup,
+        b_ezsignfoldertype_sendsignedtoezsignsigner,
+        b_ezsignfoldertype_sendsignedtouser,
+        b_ezsignfoldertype_sendattachmentezsignsigner,
+        b_ezsignfoldertype_sendproofezsignsigner,
+        b_ezsignfoldertype_sendattachmentuser,
+        b_ezsignfoldertype_sendproofuser,
+        b_ezsignfoldertype_sendproofemail,
+        b_ezsignfoldertype_allowdownloadattachmentezsignsigner,
+        b_ezsignfoldertype_allowdownloadproofezsignsigner,
+        b_ezsignfoldertype_sendproofreceivealldocument,
+        b_ezsignfoldertype_sendsignedtodocumentowner,
+        b_ezsignfoldertype_sendsignedtofolderowner,
+        b_ezsignfoldertype_sendsignedtofullgroup,
+        b_ezsignfoldertype_sendsignedtolimitedgroup,
+        b_ezsignfoldertype_sendsignedtocolleague,
+        b_ezsignfoldertype_sendsummarytodocumentowner,
+        b_ezsignfoldertype_sendsummarytofolderowner,
+        b_ezsignfoldertype_sendsummarytofullgroup,
+        b_ezsignfoldertype_sendsummarytolimitedgroup,
+        b_ezsignfoldertype_sendsummarytocolleague,
+        b_ezsignfoldertype_isactive,
+        a_obj_userlogintype
+        );
+}
 
 void ezsignfoldertype_response_free(ezsignfoldertype_response_t *ezsignfoldertype_response) {
     if(NULL == ezsignfoldertype_response){
+        return ;
+    }
+    if(ezsignfoldertype_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignfoldertype_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -218,22 +258,6 @@ void ezsignfoldertype_response_free(ezsignfoldertype_response_t *ezsignfoldertyp
     if (ezsignfoldertype_response->s_usergroup_name_x_restricted) {
         free(ezsignfoldertype_response->s_usergroup_name_x_restricted);
         ezsignfoldertype_response->s_usergroup_name_x_restricted = NULL;
-    }
-    if (ezsignfoldertype_response->e_ezsignfoldertype_privacylevel) {
-        field_e_ezsignfoldertype_privacylevel_free(ezsignfoldertype_response->e_ezsignfoldertype_privacylevel);
-        ezsignfoldertype_response->e_ezsignfoldertype_privacylevel = NULL;
-    }
-    if (ezsignfoldertype_response->e_ezsignfoldertype_sendreminderfrequency) {
-        field_e_ezsignfoldertype_sendreminderfrequency_free(ezsignfoldertype_response->e_ezsignfoldertype_sendreminderfrequency);
-        ezsignfoldertype_response->e_ezsignfoldertype_sendreminderfrequency = NULL;
-    }
-    if (ezsignfoldertype_response->e_ezsignfoldertype_disposal) {
-        field_e_ezsignfoldertype_disposal_free(ezsignfoldertype_response->e_ezsignfoldertype_disposal);
-        ezsignfoldertype_response->e_ezsignfoldertype_disposal = NULL;
-    }
-    if (ezsignfoldertype_response->e_ezsignfoldertype_completion) {
-        field_e_ezsignfoldertype_completion_free(ezsignfoldertype_response->e_ezsignfoldertype_completion);
-        ezsignfoldertype_response->e_ezsignfoldertype_completion = NULL;
     }
     if (ezsignfoldertype_response->a_obj_userlogintype) {
         list_ForEach(listEntry, ezsignfoldertype_response->a_obj_userlogintype) {
@@ -370,7 +394,7 @@ cJSON *ezsignfoldertype_response_convertToJSON(ezsignfoldertype_response_t *ezsi
 
 
     // ezsignfoldertype_response->e_ezsignfoldertype_privacylevel
-    if (ezmax_api_definition__full_ezsignfoldertype_response__NULL == ezsignfoldertype_response->e_ezsignfoldertype_privacylevel) {
+    if (ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__NULL == ezsignfoldertype_response->e_ezsignfoldertype_privacylevel) {
         goto fail;
     }
     cJSON *e_ezsignfoldertype_privacylevel_local_JSON = field_e_ezsignfoldertype_privacylevel_convertToJSON(ezsignfoldertype_response->e_ezsignfoldertype_privacylevel);
@@ -384,7 +408,7 @@ cJSON *ezsignfoldertype_response_convertToJSON(ezsignfoldertype_response_t *ezsi
 
 
     // ezsignfoldertype_response->e_ezsignfoldertype_sendreminderfrequency
-    if(ezsignfoldertype_response->e_ezsignfoldertype_sendreminderfrequency != ezmax_api_definition__full_ezsignfoldertype_response__NULL) {
+    if(ezsignfoldertype_response->e_ezsignfoldertype_sendreminderfrequency != ezmax_api_definition__full_field_e_ezsignfoldertype_sendreminderfrequency__NULL) {
     cJSON *e_ezsignfoldertype_sendreminderfrequency_local_JSON = field_e_ezsignfoldertype_sendreminderfrequency_convertToJSON(ezsignfoldertype_response->e_ezsignfoldertype_sendreminderfrequency);
     if(e_ezsignfoldertype_sendreminderfrequency_local_JSON == NULL) {
         goto fail; // custom
@@ -406,7 +430,7 @@ cJSON *ezsignfoldertype_response_convertToJSON(ezsignfoldertype_response_t *ezsi
 
 
     // ezsignfoldertype_response->e_ezsignfoldertype_disposal
-    if (ezmax_api_definition__full_ezsignfoldertype_response__NULL == ezsignfoldertype_response->e_ezsignfoldertype_disposal) {
+    if (ezmax_api_definition__full_field_e_ezsignfoldertype_disposal__NULL == ezsignfoldertype_response->e_ezsignfoldertype_disposal) {
         goto fail;
     }
     cJSON *e_ezsignfoldertype_disposal_local_JSON = field_e_ezsignfoldertype_disposal_convertToJSON(ezsignfoldertype_response->e_ezsignfoldertype_disposal);
@@ -420,7 +444,7 @@ cJSON *ezsignfoldertype_response_convertToJSON(ezsignfoldertype_response_t *ezsi
 
 
     // ezsignfoldertype_response->e_ezsignfoldertype_completion
-    if (ezmax_api_definition__full_ezsignfoldertype_response__NULL == ezsignfoldertype_response->e_ezsignfoldertype_completion) {
+    if (ezmax_api_definition__full_field_e_ezsignfoldertype_completion__NULL == ezsignfoldertype_response->e_ezsignfoldertype_completion) {
         goto fail;
     }
     cJSON *e_ezsignfoldertype_completion_local_JSON = field_e_ezsignfoldertype_completion_convertToJSON(ezsignfoldertype_response->e_ezsignfoldertype_completion);
@@ -709,22 +733,25 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
     multilingual_ezsignfoldertype_name_t *obj_ezsignfoldertype_name_local_nonprim = NULL;
 
     // define the local variable for ezsignfoldertype_response->e_ezsignfoldertype_privacylevel
-    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel_local_nonprim = 0;
 
     // define the local variable for ezsignfoldertype_response->e_ezsignfoldertype_sendreminderfrequency
-    field_e_ezsignfoldertype_sendreminderfrequency_t *e_ezsignfoldertype_sendreminderfrequency_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_ezsignfoldertype_sendreminderfrequency__e e_ezsignfoldertype_sendreminderfrequency_local_nonprim = 0;
 
     // define the local variable for ezsignfoldertype_response->e_ezsignfoldertype_disposal
-    field_e_ezsignfoldertype_disposal_t *e_ezsignfoldertype_disposal_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_ezsignfoldertype_disposal__e e_ezsignfoldertype_disposal_local_nonprim = 0;
 
     // define the local variable for ezsignfoldertype_response->e_ezsignfoldertype_completion
-    field_e_ezsignfoldertype_completion_t *e_ezsignfoldertype_completion_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_ezsignfoldertype_completion__e e_ezsignfoldertype_completion_local_nonprim = 0;
 
     // define the local list for ezsignfoldertype_response->a_obj_userlogintype
     list_t *a_obj_userlogintypeList = NULL;
 
     // ezsignfoldertype_response->pki_ezsignfoldertype_id
     cJSON *pki_ezsignfoldertype_id = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "pkiEzsignfoldertypeID");
+    if (cJSON_IsNull(pki_ezsignfoldertype_id)) {
+        pki_ezsignfoldertype_id = NULL;
+    }
     if (!pki_ezsignfoldertype_id) {
         goto end;
     }
@@ -737,6 +764,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->obj_ezsignfoldertype_name
     cJSON *obj_ezsignfoldertype_name = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "objEzsignfoldertypeName");
+    if (cJSON_IsNull(obj_ezsignfoldertype_name)) {
+        obj_ezsignfoldertype_name = NULL;
+    }
     if (!obj_ezsignfoldertype_name) {
         goto end;
     }
@@ -746,6 +776,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->fki_branding_id
     cJSON *fki_branding_id = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "fkiBrandingID");
+    if (cJSON_IsNull(fki_branding_id)) {
+        fki_branding_id = NULL;
+    }
     if (!fki_branding_id) {
         goto end;
     }
@@ -758,6 +791,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->fki_billingentityinternal_id
     cJSON *fki_billingentityinternal_id = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "fkiBillingentityinternalID");
+    if (cJSON_IsNull(fki_billingentityinternal_id)) {
+        fki_billingentityinternal_id = NULL;
+    }
     if (fki_billingentityinternal_id) { 
     if(!cJSON_IsNumber(fki_billingentityinternal_id))
     {
@@ -767,6 +803,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->fki_usergroup_id
     cJSON *fki_usergroup_id = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "fkiUsergroupID");
+    if (cJSON_IsNull(fki_usergroup_id)) {
+        fki_usergroup_id = NULL;
+    }
     if (fki_usergroup_id) { 
     if(!cJSON_IsNumber(fki_usergroup_id))
     {
@@ -776,6 +815,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->fki_usergroup_id_restricted
     cJSON *fki_usergroup_id_restricted = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "fkiUsergroupIDRestricted");
+    if (cJSON_IsNull(fki_usergroup_id_restricted)) {
+        fki_usergroup_id_restricted = NULL;
+    }
     if (fki_usergroup_id_restricted) { 
     if(!cJSON_IsNumber(fki_usergroup_id_restricted))
     {
@@ -785,6 +827,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->fki_ezsigntsarequirement_id
     cJSON *fki_ezsigntsarequirement_id = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "fkiEzsigntsarequirementID");
+    if (cJSON_IsNull(fki_ezsigntsarequirement_id)) {
+        fki_ezsigntsarequirement_id = NULL;
+    }
     if (fki_ezsigntsarequirement_id) { 
     if(!cJSON_IsNumber(fki_ezsigntsarequirement_id))
     {
@@ -794,6 +839,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->s_branding_description_x
     cJSON *s_branding_description_x = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "sBrandingDescriptionX");
+    if (cJSON_IsNull(s_branding_description_x)) {
+        s_branding_description_x = NULL;
+    }
     if (!s_branding_description_x) {
         goto end;
     }
@@ -806,6 +854,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->s_billingentityinternal_description_x
     cJSON *s_billingentityinternal_description_x = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "sBillingentityinternalDescriptionX");
+    if (cJSON_IsNull(s_billingentityinternal_description_x)) {
+        s_billingentityinternal_description_x = NULL;
+    }
     if (s_billingentityinternal_description_x) { 
     if(!cJSON_IsString(s_billingentityinternal_description_x) && !cJSON_IsNull(s_billingentityinternal_description_x))
     {
@@ -815,6 +866,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->s_ezsigntsarequirement_description_x
     cJSON *s_ezsigntsarequirement_description_x = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "sEzsigntsarequirementDescriptionX");
+    if (cJSON_IsNull(s_ezsigntsarequirement_description_x)) {
+        s_ezsigntsarequirement_description_x = NULL;
+    }
     if (s_ezsigntsarequirement_description_x) { 
     if(!cJSON_IsString(s_ezsigntsarequirement_description_x) && !cJSON_IsNull(s_ezsigntsarequirement_description_x))
     {
@@ -824,6 +878,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->s_email_address_signed
     cJSON *s_email_address_signed = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "sEmailAddressSigned");
+    if (cJSON_IsNull(s_email_address_signed)) {
+        s_email_address_signed = NULL;
+    }
     if (s_email_address_signed) { 
     if(!cJSON_IsString(s_email_address_signed) && !cJSON_IsNull(s_email_address_signed))
     {
@@ -833,6 +890,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->s_email_address_summary
     cJSON *s_email_address_summary = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "sEmailAddressSummary");
+    if (cJSON_IsNull(s_email_address_summary)) {
+        s_email_address_summary = NULL;
+    }
     if (s_email_address_summary) { 
     if(!cJSON_IsString(s_email_address_summary) && !cJSON_IsNull(s_email_address_summary))
     {
@@ -842,6 +902,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->s_usergroup_name_x
     cJSON *s_usergroup_name_x = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "sUsergroupNameX");
+    if (cJSON_IsNull(s_usergroup_name_x)) {
+        s_usergroup_name_x = NULL;
+    }
     if (s_usergroup_name_x) { 
     if(!cJSON_IsString(s_usergroup_name_x) && !cJSON_IsNull(s_usergroup_name_x))
     {
@@ -851,6 +914,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->s_usergroup_name_x_restricted
     cJSON *s_usergroup_name_x_restricted = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "sUsergroupNameXRestricted");
+    if (cJSON_IsNull(s_usergroup_name_x_restricted)) {
+        s_usergroup_name_x_restricted = NULL;
+    }
     if (s_usergroup_name_x_restricted) { 
     if(!cJSON_IsString(s_usergroup_name_x_restricted) && !cJSON_IsNull(s_usergroup_name_x_restricted))
     {
@@ -860,6 +926,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->e_ezsignfoldertype_privacylevel
     cJSON *e_ezsignfoldertype_privacylevel = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "eEzsignfoldertypePrivacylevel");
+    if (cJSON_IsNull(e_ezsignfoldertype_privacylevel)) {
+        e_ezsignfoldertype_privacylevel = NULL;
+    }
     if (!e_ezsignfoldertype_privacylevel) {
         goto end;
     }
@@ -869,12 +938,18 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->e_ezsignfoldertype_sendreminderfrequency
     cJSON *e_ezsignfoldertype_sendreminderfrequency = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "eEzsignfoldertypeSendreminderfrequency");
+    if (cJSON_IsNull(e_ezsignfoldertype_sendreminderfrequency)) {
+        e_ezsignfoldertype_sendreminderfrequency = NULL;
+    }
     if (e_ezsignfoldertype_sendreminderfrequency) { 
     e_ezsignfoldertype_sendreminderfrequency_local_nonprim = field_e_ezsignfoldertype_sendreminderfrequency_parseFromJSON(e_ezsignfoldertype_sendreminderfrequency); //custom
     }
 
     // ezsignfoldertype_response->i_ezsignfoldertype_archivaldays
     cJSON *i_ezsignfoldertype_archivaldays = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "iEzsignfoldertypeArchivaldays");
+    if (cJSON_IsNull(i_ezsignfoldertype_archivaldays)) {
+        i_ezsignfoldertype_archivaldays = NULL;
+    }
     if (!i_ezsignfoldertype_archivaldays) {
         goto end;
     }
@@ -887,6 +962,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->e_ezsignfoldertype_disposal
     cJSON *e_ezsignfoldertype_disposal = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "eEzsignfoldertypeDisposal");
+    if (cJSON_IsNull(e_ezsignfoldertype_disposal)) {
+        e_ezsignfoldertype_disposal = NULL;
+    }
     if (!e_ezsignfoldertype_disposal) {
         goto end;
     }
@@ -896,6 +974,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->e_ezsignfoldertype_completion
     cJSON *e_ezsignfoldertype_completion = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "eEzsignfoldertypeCompletion");
+    if (cJSON_IsNull(e_ezsignfoldertype_completion)) {
+        e_ezsignfoldertype_completion = NULL;
+    }
     if (!e_ezsignfoldertype_completion) {
         goto end;
     }
@@ -905,6 +986,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->i_ezsignfoldertype_disposaldays
     cJSON *i_ezsignfoldertype_disposaldays = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "iEzsignfoldertypeDisposaldays");
+    if (cJSON_IsNull(i_ezsignfoldertype_disposaldays)) {
+        i_ezsignfoldertype_disposaldays = NULL;
+    }
     if (i_ezsignfoldertype_disposaldays) { 
     if(!cJSON_IsNumber(i_ezsignfoldertype_disposaldays))
     {
@@ -914,6 +998,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->i_ezsignfoldertype_deadlinedays
     cJSON *i_ezsignfoldertype_deadlinedays = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "iEzsignfoldertypeDeadlinedays");
+    if (cJSON_IsNull(i_ezsignfoldertype_deadlinedays)) {
+        i_ezsignfoldertype_deadlinedays = NULL;
+    }
     if (!i_ezsignfoldertype_deadlinedays) {
         goto end;
     }
@@ -926,6 +1013,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_automaticsignature
     cJSON *b_ezsignfoldertype_automaticsignature = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeAutomaticsignature");
+    if (cJSON_IsNull(b_ezsignfoldertype_automaticsignature)) {
+        b_ezsignfoldertype_automaticsignature = NULL;
+    }
     if (b_ezsignfoldertype_automaticsignature) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_automaticsignature))
     {
@@ -935,6 +1025,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_delegate
     cJSON *b_ezsignfoldertype_delegate = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeDelegate");
+    if (cJSON_IsNull(b_ezsignfoldertype_delegate)) {
+        b_ezsignfoldertype_delegate = NULL;
+    }
     if (b_ezsignfoldertype_delegate) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_delegate))
     {
@@ -944,6 +1037,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_discussion
     cJSON *b_ezsignfoldertype_discussion = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeDiscussion");
+    if (cJSON_IsNull(b_ezsignfoldertype_discussion)) {
+        b_ezsignfoldertype_discussion = NULL;
+    }
     if (b_ezsignfoldertype_discussion) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_discussion))
     {
@@ -953,6 +1049,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_reassignezsignsigner
     cJSON *b_ezsignfoldertype_reassignezsignsigner = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeReassignezsignsigner");
+    if (cJSON_IsNull(b_ezsignfoldertype_reassignezsignsigner)) {
+        b_ezsignfoldertype_reassignezsignsigner = NULL;
+    }
     if (b_ezsignfoldertype_reassignezsignsigner) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_reassignezsignsigner))
     {
@@ -962,6 +1061,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_reassignuser
     cJSON *b_ezsignfoldertype_reassignuser = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeReassignuser");
+    if (cJSON_IsNull(b_ezsignfoldertype_reassignuser)) {
+        b_ezsignfoldertype_reassignuser = NULL;
+    }
     if (b_ezsignfoldertype_reassignuser) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_reassignuser))
     {
@@ -971,6 +1073,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_reassigngroup
     cJSON *b_ezsignfoldertype_reassigngroup = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeReassigngroup");
+    if (cJSON_IsNull(b_ezsignfoldertype_reassigngroup)) {
+        b_ezsignfoldertype_reassigngroup = NULL;
+    }
     if (b_ezsignfoldertype_reassigngroup) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_reassigngroup))
     {
@@ -980,6 +1085,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_sendsignedtoezsignsigner
     cJSON *b_ezsignfoldertype_sendsignedtoezsignsigner = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeSendsignedtoezsignsigner");
+    if (cJSON_IsNull(b_ezsignfoldertype_sendsignedtoezsignsigner)) {
+        b_ezsignfoldertype_sendsignedtoezsignsigner = NULL;
+    }
     if (b_ezsignfoldertype_sendsignedtoezsignsigner) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_sendsignedtoezsignsigner))
     {
@@ -989,6 +1097,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_sendsignedtouser
     cJSON *b_ezsignfoldertype_sendsignedtouser = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeSendsignedtouser");
+    if (cJSON_IsNull(b_ezsignfoldertype_sendsignedtouser)) {
+        b_ezsignfoldertype_sendsignedtouser = NULL;
+    }
     if (b_ezsignfoldertype_sendsignedtouser) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_sendsignedtouser))
     {
@@ -998,6 +1109,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_sendattachmentezsignsigner
     cJSON *b_ezsignfoldertype_sendattachmentezsignsigner = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeSendattachmentezsignsigner");
+    if (cJSON_IsNull(b_ezsignfoldertype_sendattachmentezsignsigner)) {
+        b_ezsignfoldertype_sendattachmentezsignsigner = NULL;
+    }
     if (b_ezsignfoldertype_sendattachmentezsignsigner) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_sendattachmentezsignsigner))
     {
@@ -1007,6 +1121,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_sendproofezsignsigner
     cJSON *b_ezsignfoldertype_sendproofezsignsigner = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeSendproofezsignsigner");
+    if (cJSON_IsNull(b_ezsignfoldertype_sendproofezsignsigner)) {
+        b_ezsignfoldertype_sendproofezsignsigner = NULL;
+    }
     if (b_ezsignfoldertype_sendproofezsignsigner) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_sendproofezsignsigner))
     {
@@ -1016,6 +1133,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_sendattachmentuser
     cJSON *b_ezsignfoldertype_sendattachmentuser = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeSendattachmentuser");
+    if (cJSON_IsNull(b_ezsignfoldertype_sendattachmentuser)) {
+        b_ezsignfoldertype_sendattachmentuser = NULL;
+    }
     if (b_ezsignfoldertype_sendattachmentuser) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_sendattachmentuser))
     {
@@ -1025,6 +1145,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_sendproofuser
     cJSON *b_ezsignfoldertype_sendproofuser = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeSendproofuser");
+    if (cJSON_IsNull(b_ezsignfoldertype_sendproofuser)) {
+        b_ezsignfoldertype_sendproofuser = NULL;
+    }
     if (b_ezsignfoldertype_sendproofuser) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_sendproofuser))
     {
@@ -1034,6 +1157,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_sendproofemail
     cJSON *b_ezsignfoldertype_sendproofemail = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeSendproofemail");
+    if (cJSON_IsNull(b_ezsignfoldertype_sendproofemail)) {
+        b_ezsignfoldertype_sendproofemail = NULL;
+    }
     if (b_ezsignfoldertype_sendproofemail) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_sendproofemail))
     {
@@ -1043,6 +1169,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_allowdownloadattachmentezsignsigner
     cJSON *b_ezsignfoldertype_allowdownloadattachmentezsignsigner = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeAllowdownloadattachmentezsignsigner");
+    if (cJSON_IsNull(b_ezsignfoldertype_allowdownloadattachmentezsignsigner)) {
+        b_ezsignfoldertype_allowdownloadattachmentezsignsigner = NULL;
+    }
     if (b_ezsignfoldertype_allowdownloadattachmentezsignsigner) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_allowdownloadattachmentezsignsigner))
     {
@@ -1052,6 +1181,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_allowdownloadproofezsignsigner
     cJSON *b_ezsignfoldertype_allowdownloadproofezsignsigner = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeAllowdownloadproofezsignsigner");
+    if (cJSON_IsNull(b_ezsignfoldertype_allowdownloadproofezsignsigner)) {
+        b_ezsignfoldertype_allowdownloadproofezsignsigner = NULL;
+    }
     if (b_ezsignfoldertype_allowdownloadproofezsignsigner) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_allowdownloadproofezsignsigner))
     {
@@ -1061,6 +1193,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_sendproofreceivealldocument
     cJSON *b_ezsignfoldertype_sendproofreceivealldocument = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeSendproofreceivealldocument");
+    if (cJSON_IsNull(b_ezsignfoldertype_sendproofreceivealldocument)) {
+        b_ezsignfoldertype_sendproofreceivealldocument = NULL;
+    }
     if (b_ezsignfoldertype_sendproofreceivealldocument) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_sendproofreceivealldocument))
     {
@@ -1070,6 +1205,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_sendsignedtodocumentowner
     cJSON *b_ezsignfoldertype_sendsignedtodocumentowner = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeSendsignedtodocumentowner");
+    if (cJSON_IsNull(b_ezsignfoldertype_sendsignedtodocumentowner)) {
+        b_ezsignfoldertype_sendsignedtodocumentowner = NULL;
+    }
     if (!b_ezsignfoldertype_sendsignedtodocumentowner) {
         goto end;
     }
@@ -1082,6 +1220,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_sendsignedtofolderowner
     cJSON *b_ezsignfoldertype_sendsignedtofolderowner = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeSendsignedtofolderowner");
+    if (cJSON_IsNull(b_ezsignfoldertype_sendsignedtofolderowner)) {
+        b_ezsignfoldertype_sendsignedtofolderowner = NULL;
+    }
     if (!b_ezsignfoldertype_sendsignedtofolderowner) {
         goto end;
     }
@@ -1094,6 +1235,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_sendsignedtofullgroup
     cJSON *b_ezsignfoldertype_sendsignedtofullgroup = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeSendsignedtofullgroup");
+    if (cJSON_IsNull(b_ezsignfoldertype_sendsignedtofullgroup)) {
+        b_ezsignfoldertype_sendsignedtofullgroup = NULL;
+    }
     if (b_ezsignfoldertype_sendsignedtofullgroup) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_sendsignedtofullgroup))
     {
@@ -1103,6 +1247,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_sendsignedtolimitedgroup
     cJSON *b_ezsignfoldertype_sendsignedtolimitedgroup = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeSendsignedtolimitedgroup");
+    if (cJSON_IsNull(b_ezsignfoldertype_sendsignedtolimitedgroup)) {
+        b_ezsignfoldertype_sendsignedtolimitedgroup = NULL;
+    }
     if (b_ezsignfoldertype_sendsignedtolimitedgroup) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_sendsignedtolimitedgroup))
     {
@@ -1112,6 +1259,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_sendsignedtocolleague
     cJSON *b_ezsignfoldertype_sendsignedtocolleague = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeSendsignedtocolleague");
+    if (cJSON_IsNull(b_ezsignfoldertype_sendsignedtocolleague)) {
+        b_ezsignfoldertype_sendsignedtocolleague = NULL;
+    }
     if (!b_ezsignfoldertype_sendsignedtocolleague) {
         goto end;
     }
@@ -1124,6 +1274,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_sendsummarytodocumentowner
     cJSON *b_ezsignfoldertype_sendsummarytodocumentowner = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeSendsummarytodocumentowner");
+    if (cJSON_IsNull(b_ezsignfoldertype_sendsummarytodocumentowner)) {
+        b_ezsignfoldertype_sendsummarytodocumentowner = NULL;
+    }
     if (!b_ezsignfoldertype_sendsummarytodocumentowner) {
         goto end;
     }
@@ -1136,6 +1289,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_sendsummarytofolderowner
     cJSON *b_ezsignfoldertype_sendsummarytofolderowner = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeSendsummarytofolderowner");
+    if (cJSON_IsNull(b_ezsignfoldertype_sendsummarytofolderowner)) {
+        b_ezsignfoldertype_sendsummarytofolderowner = NULL;
+    }
     if (!b_ezsignfoldertype_sendsummarytofolderowner) {
         goto end;
     }
@@ -1148,6 +1304,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_sendsummarytofullgroup
     cJSON *b_ezsignfoldertype_sendsummarytofullgroup = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeSendsummarytofullgroup");
+    if (cJSON_IsNull(b_ezsignfoldertype_sendsummarytofullgroup)) {
+        b_ezsignfoldertype_sendsummarytofullgroup = NULL;
+    }
     if (b_ezsignfoldertype_sendsummarytofullgroup) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_sendsummarytofullgroup))
     {
@@ -1157,6 +1316,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_sendsummarytolimitedgroup
     cJSON *b_ezsignfoldertype_sendsummarytolimitedgroup = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeSendsummarytolimitedgroup");
+    if (cJSON_IsNull(b_ezsignfoldertype_sendsummarytolimitedgroup)) {
+        b_ezsignfoldertype_sendsummarytolimitedgroup = NULL;
+    }
     if (b_ezsignfoldertype_sendsummarytolimitedgroup) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_sendsummarytolimitedgroup))
     {
@@ -1166,6 +1328,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_sendsummarytocolleague
     cJSON *b_ezsignfoldertype_sendsummarytocolleague = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeSendsummarytocolleague");
+    if (cJSON_IsNull(b_ezsignfoldertype_sendsummarytocolleague)) {
+        b_ezsignfoldertype_sendsummarytocolleague = NULL;
+    }
     if (!b_ezsignfoldertype_sendsummarytocolleague) {
         goto end;
     }
@@ -1178,6 +1343,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->b_ezsignfoldertype_isactive
     cJSON *b_ezsignfoldertype_isactive = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeIsactive");
+    if (cJSON_IsNull(b_ezsignfoldertype_isactive)) {
+        b_ezsignfoldertype_isactive = NULL;
+    }
     if (!b_ezsignfoldertype_isactive) {
         goto end;
     }
@@ -1190,6 +1358,9 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
 
     // ezsignfoldertype_response->a_obj_userlogintype
     cJSON *a_obj_userlogintype = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "a_objUserlogintype");
+    if (cJSON_IsNull(a_obj_userlogintype)) {
+        a_obj_userlogintype = NULL;
+    }
     if (!a_obj_userlogintype) {
         goto end;
     }
@@ -1213,7 +1384,7 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
     }
 
 
-    ezsignfoldertype_response_local_var = ezsignfoldertype_response_create (
+    ezsignfoldertype_response_local_var = ezsignfoldertype_response_create_internal (
         pki_ezsignfoldertype_id->valuedouble,
         obj_ezsignfoldertype_name_local_nonprim,
         fki_branding_id->valuedouble,
@@ -1229,7 +1400,7 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
         s_usergroup_name_x && !cJSON_IsNull(s_usergroup_name_x) ? strdup(s_usergroup_name_x->valuestring) : NULL,
         s_usergroup_name_x_restricted && !cJSON_IsNull(s_usergroup_name_x_restricted) ? strdup(s_usergroup_name_x_restricted->valuestring) : NULL,
         e_ezsignfoldertype_privacylevel_local_nonprim,
-        e_ezsignfoldertype_sendreminderfrequency ? e_ezsignfoldertype_sendreminderfrequency_local_nonprim : NULL,
+        e_ezsignfoldertype_sendreminderfrequency ? e_ezsignfoldertype_sendreminderfrequency_local_nonprim : 0,
         i_ezsignfoldertype_archivaldays->valuedouble,
         e_ezsignfoldertype_disposal_local_nonprim,
         e_ezsignfoldertype_completion_local_nonprim,
@@ -1272,20 +1443,16 @@ end:
         obj_ezsignfoldertype_name_local_nonprim = NULL;
     }
     if (e_ezsignfoldertype_privacylevel_local_nonprim) {
-        field_e_ezsignfoldertype_privacylevel_free(e_ezsignfoldertype_privacylevel_local_nonprim);
-        e_ezsignfoldertype_privacylevel_local_nonprim = NULL;
+        e_ezsignfoldertype_privacylevel_local_nonprim = 0;
     }
     if (e_ezsignfoldertype_sendreminderfrequency_local_nonprim) {
-        field_e_ezsignfoldertype_sendreminderfrequency_free(e_ezsignfoldertype_sendreminderfrequency_local_nonprim);
-        e_ezsignfoldertype_sendreminderfrequency_local_nonprim = NULL;
+        e_ezsignfoldertype_sendreminderfrequency_local_nonprim = 0;
     }
     if (e_ezsignfoldertype_disposal_local_nonprim) {
-        field_e_ezsignfoldertype_disposal_free(e_ezsignfoldertype_disposal_local_nonprim);
-        e_ezsignfoldertype_disposal_local_nonprim = NULL;
+        e_ezsignfoldertype_disposal_local_nonprim = 0;
     }
     if (e_ezsignfoldertype_completion_local_nonprim) {
-        field_e_ezsignfoldertype_completion_free(e_ezsignfoldertype_completion_local_nonprim);
-        e_ezsignfoldertype_completion_local_nonprim = NULL;
+        e_ezsignfoldertype_completion_local_nonprim = 0;
     }
     if (a_obj_userlogintypeList) {
         listEntry_t *listEntry = NULL;

@@ -5,7 +5,7 @@
 
 
 
-ezdoctemplatedocument_edit_object_v1_request_t *ezdoctemplatedocument_edit_object_v1_request_create(
+static ezdoctemplatedocument_edit_object_v1_request_t *ezdoctemplatedocument_edit_object_v1_request_create_internal(
     ezdoctemplatedocument_request_compound_t *obj_ezdoctemplatedocument
     ) {
     ezdoctemplatedocument_edit_object_v1_request_t *ezdoctemplatedocument_edit_object_v1_request_local_var = malloc(sizeof(ezdoctemplatedocument_edit_object_v1_request_t));
@@ -14,12 +14,24 @@ ezdoctemplatedocument_edit_object_v1_request_t *ezdoctemplatedocument_edit_objec
     }
     ezdoctemplatedocument_edit_object_v1_request_local_var->obj_ezdoctemplatedocument = obj_ezdoctemplatedocument;
 
+    ezdoctemplatedocument_edit_object_v1_request_local_var->_library_owned = 1;
     return ezdoctemplatedocument_edit_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezdoctemplatedocument_edit_object_v1_request_t *ezdoctemplatedocument_edit_object_v1_request_create(
+    ezdoctemplatedocument_request_compound_t *obj_ezdoctemplatedocument
+    ) {
+    return ezdoctemplatedocument_edit_object_v1_request_create_internal (
+        obj_ezdoctemplatedocument
+        );
+}
 
 void ezdoctemplatedocument_edit_object_v1_request_free(ezdoctemplatedocument_edit_object_v1_request_t *ezdoctemplatedocument_edit_object_v1_request) {
     if(NULL == ezdoctemplatedocument_edit_object_v1_request){
+        return ;
+    }
+    if(ezdoctemplatedocument_edit_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezdoctemplatedocument_edit_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ ezdoctemplatedocument_edit_object_v1_request_t *ezdoctemplatedocument_edit_objec
 
     // ezdoctemplatedocument_edit_object_v1_request->obj_ezdoctemplatedocument
     cJSON *obj_ezdoctemplatedocument = cJSON_GetObjectItemCaseSensitive(ezdoctemplatedocument_edit_object_v1_requestJSON, "objEzdoctemplatedocument");
+    if (cJSON_IsNull(obj_ezdoctemplatedocument)) {
+        obj_ezdoctemplatedocument = NULL;
+    }
     if (!obj_ezdoctemplatedocument) {
         goto end;
     }
@@ -71,7 +86,7 @@ ezdoctemplatedocument_edit_object_v1_request_t *ezdoctemplatedocument_edit_objec
     obj_ezdoctemplatedocument_local_nonprim = ezdoctemplatedocument_request_compound_parseFromJSON(obj_ezdoctemplatedocument); //nonprimitive
 
 
-    ezdoctemplatedocument_edit_object_v1_request_local_var = ezdoctemplatedocument_edit_object_v1_request_create (
+    ezdoctemplatedocument_edit_object_v1_request_local_var = ezdoctemplatedocument_edit_object_v1_request_create_internal (
         obj_ezdoctemplatedocument_local_nonprim
         );
 

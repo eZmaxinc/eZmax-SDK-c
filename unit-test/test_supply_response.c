@@ -30,7 +30,7 @@ supply_response_t* instantiate_supply_response(int include_optional) {
       "PPLET",
        // false, not to have infinite recursion
       instantiate_multilingual_supply_description(0),
-      "8",
+      "8.00",
       true,
       true,
       "Supplies income",
@@ -45,7 +45,7 @@ supply_response_t* instantiate_supply_response(int include_optional) {
       2,
       "PPLET",
       NULL,
-      "8",
+      "8.00",
       true,
       true,
       "Supplies income",

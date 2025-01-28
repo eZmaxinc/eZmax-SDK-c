@@ -5,7 +5,7 @@
 
 
 
-pdfalevel_get_autocomplete_v2_response_m_payload_t *pdfalevel_get_autocomplete_v2_response_m_payload_create(
+static pdfalevel_get_autocomplete_v2_response_m_payload_t *pdfalevel_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_pdfalevel
     ) {
     pdfalevel_get_autocomplete_v2_response_m_payload_t *pdfalevel_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(pdfalevel_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ pdfalevel_get_autocomplete_v2_response_m_payload_t *pdfalevel_get_autocomplete_v
     }
     pdfalevel_get_autocomplete_v2_response_m_payload_local_var->a_obj_pdfalevel = a_obj_pdfalevel;
 
+    pdfalevel_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return pdfalevel_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) pdfalevel_get_autocomplete_v2_response_m_payload_t *pdfalevel_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_pdfalevel
+    ) {
+    return pdfalevel_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_pdfalevel
+        );
+}
 
 void pdfalevel_get_autocomplete_v2_response_m_payload_free(pdfalevel_get_autocomplete_v2_response_m_payload_t *pdfalevel_get_autocomplete_v2_response_m_payload) {
     if(NULL == pdfalevel_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(pdfalevel_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "pdfalevel_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ pdfalevel_get_autocomplete_v2_response_m_payload_t *pdfalevel_get_autocomplete_v
 
     // pdfalevel_get_autocomplete_v2_response_m_payload->a_obj_pdfalevel
     cJSON *a_obj_pdfalevel = cJSON_GetObjectItemCaseSensitive(pdfalevel_get_autocomplete_v2_response_m_payloadJSON, "a_objPdfalevel");
+    if (cJSON_IsNull(a_obj_pdfalevel)) {
+        a_obj_pdfalevel = NULL;
+    }
     if (!a_obj_pdfalevel) {
         goto end;
     }
@@ -96,7 +111,7 @@ pdfalevel_get_autocomplete_v2_response_m_payload_t *pdfalevel_get_autocomplete_v
     }
 
 
-    pdfalevel_get_autocomplete_v2_response_m_payload_local_var = pdfalevel_get_autocomplete_v2_response_m_payload_create (
+    pdfalevel_get_autocomplete_v2_response_m_payload_local_var = pdfalevel_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_pdfalevelList
         );
 

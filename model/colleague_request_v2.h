@@ -18,22 +18,6 @@ typedef struct colleague_request_v2_t colleague_request_v2_t;
 #include "field_e_colleague_ezsign.h"
 #include "field_e_colleague_realestateinprogess.h"
 
-// Enum  for colleague_request_v2
-
-typedef enum  { ezmax_api_definition__full_colleague_request_v2__NULL = 0, ezmax_api_definition__full_colleague_request_v2__No, ezmax_api_definition__full_colleague_request_v2__Read, ezmax_api_definition__full_colleague_request_v2__Modify, ezmax_api_definition__full_colleague_request_v2__Full } ezmax_api_definition__full_colleague_request_v2__e;
-
-char* colleague_request_v2_e_colleague_ezsign_ToString(ezmax_api_definition__full_colleague_request_v2__e e_colleague_ezsign);
-
-ezmax_api_definition__full_colleague_request_v2__e colleague_request_v2_e_colleague_ezsign_FromString(char* e_colleague_ezsign);
-
-// Enum  for colleague_request_v2
-
-typedef enum  { ezmax_api_definition__full_colleague_request_v2__NULL = 0, ezmax_api_definition__full_colleague_request_v2__No, ezmax_api_definition__full_colleague_request_v2__Read, ezmax_api_definition__full_colleague_request_v2__Modify, ezmax_api_definition__full_colleague_request_v2__Create } ezmax_api_definition__full_colleague_request_v2__e;
-
-char* colleague_request_v2_e_colleague_realestateinprogress_ToString(ezmax_api_definition__full_colleague_request_v2__e e_colleague_realestateinprogress);
-
-ezmax_api_definition__full_colleague_request_v2__e colleague_request_v2_e_colleague_realestateinprogress_FromString(char* e_colleague_realestateinprogress);
-
 
 
 typedef struct colleague_request_v2_t {
@@ -49,12 +33,13 @@ typedef struct colleague_request_v2_t {
     int b_colleague_realestatecompleted; //boolean
     char *dt_colleague_from; // string
     char *dt_colleague_to; // string
-    field_e_colleague_ezsign_t *e_colleague_ezsign; // custom
-    field_e_colleague_realestateinprogess_t *e_colleague_realestateinprogress; // custom
+    ezmax_api_definition__full_field_e_colleague_ezsign__e e_colleague_ezsign; //referenced enum
+    ezmax_api_definition__full_field_e_colleague_realestateinprogess__e e_colleague_realestateinprogress; //referenced enum
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } colleague_request_v2_t;
 
-colleague_request_v2_t *colleague_request_v2_create(
+__attribute__((deprecated)) colleague_request_v2_t *colleague_request_v2_create(
     int pki_colleague_id,
     int fki_user_id,
     int fki_user_id_colleague,
@@ -67,8 +52,8 @@ colleague_request_v2_t *colleague_request_v2_create(
     int b_colleague_realestatecompleted,
     char *dt_colleague_from,
     char *dt_colleague_to,
-    field_e_colleague_ezsign_t *e_colleague_ezsign,
-    field_e_colleague_realestateinprogess_t *e_colleague_realestateinprogress
+    ezmax_api_definition__full_field_e_colleague_ezsign__e e_colleague_ezsign,
+    ezmax_api_definition__full_field_e_colleague_realestateinprogess__e e_colleague_realestateinprogress
 );
 
 void colleague_request_v2_free(colleague_request_v2_t *colleague_request_v2);

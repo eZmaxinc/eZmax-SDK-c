@@ -5,7 +5,7 @@
 
 
 
-billingentityexternal_autocomplete_element_response_t *billingentityexternal_autocomplete_element_response_create(
+static billingentityexternal_autocomplete_element_response_t *billingentityexternal_autocomplete_element_response_create_internal(
     int pki_billingentityexternal_id,
     char *s_billingentityexternal_description,
     int b_billingentityexternal_isactive
@@ -18,12 +18,28 @@ billingentityexternal_autocomplete_element_response_t *billingentityexternal_aut
     billingentityexternal_autocomplete_element_response_local_var->s_billingentityexternal_description = s_billingentityexternal_description;
     billingentityexternal_autocomplete_element_response_local_var->b_billingentityexternal_isactive = b_billingentityexternal_isactive;
 
+    billingentityexternal_autocomplete_element_response_local_var->_library_owned = 1;
     return billingentityexternal_autocomplete_element_response_local_var;
 }
 
+__attribute__((deprecated)) billingentityexternal_autocomplete_element_response_t *billingentityexternal_autocomplete_element_response_create(
+    int pki_billingentityexternal_id,
+    char *s_billingentityexternal_description,
+    int b_billingentityexternal_isactive
+    ) {
+    return billingentityexternal_autocomplete_element_response_create_internal (
+        pki_billingentityexternal_id,
+        s_billingentityexternal_description,
+        b_billingentityexternal_isactive
+        );
+}
 
 void billingentityexternal_autocomplete_element_response_free(billingentityexternal_autocomplete_element_response_t *billingentityexternal_autocomplete_element_response) {
     if(NULL == billingentityexternal_autocomplete_element_response){
+        return ;
+    }
+    if(billingentityexternal_autocomplete_element_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "billingentityexternal_autocomplete_element_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -77,6 +93,9 @@ billingentityexternal_autocomplete_element_response_t *billingentityexternal_aut
 
     // billingentityexternal_autocomplete_element_response->pki_billingentityexternal_id
     cJSON *pki_billingentityexternal_id = cJSON_GetObjectItemCaseSensitive(billingentityexternal_autocomplete_element_responseJSON, "pkiBillingentityexternalID");
+    if (cJSON_IsNull(pki_billingentityexternal_id)) {
+        pki_billingentityexternal_id = NULL;
+    }
     if (!pki_billingentityexternal_id) {
         goto end;
     }
@@ -89,6 +108,9 @@ billingentityexternal_autocomplete_element_response_t *billingentityexternal_aut
 
     // billingentityexternal_autocomplete_element_response->s_billingentityexternal_description
     cJSON *s_billingentityexternal_description = cJSON_GetObjectItemCaseSensitive(billingentityexternal_autocomplete_element_responseJSON, "sBillingentityexternalDescription");
+    if (cJSON_IsNull(s_billingentityexternal_description)) {
+        s_billingentityexternal_description = NULL;
+    }
     if (!s_billingentityexternal_description) {
         goto end;
     }
@@ -101,6 +123,9 @@ billingentityexternal_autocomplete_element_response_t *billingentityexternal_aut
 
     // billingentityexternal_autocomplete_element_response->b_billingentityexternal_isactive
     cJSON *b_billingentityexternal_isactive = cJSON_GetObjectItemCaseSensitive(billingentityexternal_autocomplete_element_responseJSON, "bBillingentityexternalIsactive");
+    if (cJSON_IsNull(b_billingentityexternal_isactive)) {
+        b_billingentityexternal_isactive = NULL;
+    }
     if (!b_billingentityexternal_isactive) {
         goto end;
     }
@@ -112,7 +137,7 @@ billingentityexternal_autocomplete_element_response_t *billingentityexternal_aut
     }
 
 
-    billingentityexternal_autocomplete_element_response_local_var = billingentityexternal_autocomplete_element_response_create (
+    billingentityexternal_autocomplete_element_response_local_var = billingentityexternal_autocomplete_element_response_create_internal (
         pki_billingentityexternal_id->valuedouble,
         strdup(s_billingentityexternal_description->valuestring),
         b_billingentityexternal_isactive->valueint

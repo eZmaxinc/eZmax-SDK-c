@@ -22,9 +22,10 @@ typedef struct common_report_t common_report_t;
 typedef struct common_report_t {
     list_t *a_obj_reportsection; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } common_report_t;
 
-common_report_t *common_report_create(
+__attribute__((deprecated)) common_report_t *common_report_create(
     list_t *a_obj_reportsection
 );
 

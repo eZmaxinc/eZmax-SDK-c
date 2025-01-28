@@ -15,7 +15,7 @@
 
 typedef struct custom_ezsignformfielderror_response_t custom_ezsignformfielderror_response_t;
 
-#include "object.h"
+#include "custom_ezsignformfielderrortest_response.h"
 
 
 
@@ -23,9 +23,10 @@ typedef struct custom_ezsignformfielderror_response_t {
     char *s_ezsignformfield_label; // string
     list_t *a_obj_ezsignformfielderrortest; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_ezsignformfielderror_response_t;
 
-custom_ezsignformfielderror_response_t *custom_ezsignformfielderror_response_create(
+__attribute__((deprecated)) custom_ezsignformfielderror_response_t *custom_ezsignformfielderror_response_create(
     char *s_ezsignformfield_label,
     list_t *a_obj_ezsignformfielderrortest
 );

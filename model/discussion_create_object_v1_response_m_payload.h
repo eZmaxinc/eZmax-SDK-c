@@ -21,9 +21,10 @@ typedef struct discussion_create_object_v1_response_m_payload_t discussion_creat
 typedef struct discussion_create_object_v1_response_m_payload_t {
     list_t *a_pki_discussion_id; //primitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } discussion_create_object_v1_response_m_payload_t;
 
-discussion_create_object_v1_response_m_payload_t *discussion_create_object_v1_response_m_payload_create(
+__attribute__((deprecated)) discussion_create_object_v1_response_m_payload_t *discussion_create_object_v1_response_m_payload_create(
     list_t *a_pki_discussion_id
 );
 

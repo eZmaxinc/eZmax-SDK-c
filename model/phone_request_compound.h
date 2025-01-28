@@ -17,20 +17,12 @@ typedef struct phone_request_compound_t phone_request_compound_t;
 
 #include "field_e_phone_type.h"
 
-// Enum  for phone_request_compound
-
-typedef enum  { ezmax_api_definition__full_phone_request_compound__NULL = 0, ezmax_api_definition__full_phone_request_compound__Local, ezmax_api_definition__full_phone_request_compound__International } ezmax_api_definition__full_phone_request_compound__e;
-
-char* phone_request_compound_e_phone_type_ToString(ezmax_api_definition__full_phone_request_compound__e e_phone_type);
-
-ezmax_api_definition__full_phone_request_compound__e phone_request_compound_e_phone_type_FromString(char* e_phone_type);
-
 
 
 typedef struct phone_request_compound_t {
     int pki_phone_id; //numeric
     int fki_phonetype_id; //numeric
-    field_e_phone_type_t *e_phone_type; // custom
+    ezmax_api_definition__full_field_e_phone_type__e e_phone_type; //referenced enum
     char *s_phone_region; // string
     char *s_phone_exchange; // string
     char *s_phone_number; // string
@@ -38,12 +30,13 @@ typedef struct phone_request_compound_t {
     char *s_phone_extension; // string
     char *s_phone_e164; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } phone_request_compound_t;
 
-phone_request_compound_t *phone_request_compound_create(
+__attribute__((deprecated)) phone_request_compound_t *phone_request_compound_create(
     int pki_phone_id,
     int fki_phonetype_id,
-    field_e_phone_type_t *e_phone_type,
+    ezmax_api_definition__full_field_e_phone_type__e e_phone_type,
     char *s_phone_region,
     char *s_phone_exchange,
     char *s_phone_number,

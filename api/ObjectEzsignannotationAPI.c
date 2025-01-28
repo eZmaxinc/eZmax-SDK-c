@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Create a new Ezsignannotation
@@ -25,11 +20,14 @@ ObjectEzsignannotationAPI_ezsignannotationCreateObjectV1(apiClient_t *apiClient,
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignannotation")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignannotation");
+    char *localVarPath = strdup("/1/object/ezsignannotation");
+
 
 
 
@@ -38,9 +36,10 @@ ObjectEzsignannotationAPI_ezsignannotationCreateObjectV1(apiClient_t *apiClient,
     cJSON *localVarSingleItemJSON_ezsignannotation_create_object_v1_request = NULL;
     if (ezsignannotation_create_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignannotation_create_object_v1_request = ezsignannotation_create_object_v1_request_convertToJSON(ezsignannotation_create_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignannotation_create_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -52,6 +51,7 @@ ObjectEzsignannotationAPI_ezsignannotationCreateObjectV1(apiClient_t *apiClient,
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -59,11 +59,14 @@ ObjectEzsignannotationAPI_ezsignannotationCreateObjectV1(apiClient_t *apiClient,
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignannotationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignannotation_create_object_v1_response_t *elementToReturn = ezsignannotation_create_object_v1_response_parseFromJSON(ObjectEzsignannotationAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignannotationAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignannotation_create_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignannotationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignannotation_create_object_v1_response_parseFromJSON(ObjectEzsignannotationAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignannotationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -94,7 +97,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignannotation_delete_object_v1_response_t*
 ObjectEzsignannotationAPI_ezsignannotationDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignannotationID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -103,15 +106,18 @@ ObjectEzsignannotationAPI_ezsignannotationDeleteObjectV1(apiClient_t *apiClient,
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignannotation/{pkiEzsignannotationID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignannotation/{pkiEzsignannotationID}");
+    char *localVarPath = strdup("/1/object/ezsignannotation/{pkiEzsignannotationID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignannotationID =  + strlen("{ pkiEzsignannotationID }");
+    long sizeOfPathParams_pkiEzsignannotationID =  + sizeof("{ pkiEzsignannotationID }") - 1;
     if(pkiEzsignannotationID == 0){
         goto end;
     }
@@ -119,7 +125,7 @@ ObjectEzsignannotationAPI_ezsignannotationDeleteObjectV1(apiClient_t *apiClient,
     snprintf(localVarToReplace_pkiEzsignannotationID, sizeOfPathParams_pkiEzsignannotationID, "{%s}", "pkiEzsignannotationID");
 
     char localVarBuff_pkiEzsignannotationID[256];
-    intToStr(localVarBuff_pkiEzsignannotationID, *pkiEzsignannotationID);
+    snprintf(localVarBuff_pkiEzsignannotationID, sizeof localVarBuff_pkiEzsignannotationID, "%ld", (long)*pkiEzsignannotationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignannotationID, localVarBuff_pkiEzsignannotationID);
 
@@ -134,6 +140,7 @@ ObjectEzsignannotationAPI_ezsignannotationDeleteObjectV1(apiClient_t *apiClient,
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "DELETE");
 
     // uncomment below to debug the error response
@@ -145,11 +152,14 @@ ObjectEzsignannotationAPI_ezsignannotationDeleteObjectV1(apiClient_t *apiClient,
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignannotationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignannotationAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignannotationAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignannotation_delete_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignannotationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignannotation_delete_object_v1_response_parseFromJSON(ObjectEzsignannotationAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignannotationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -176,7 +186,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignannotation_edit_object_v1_response_t*
 ObjectEzsignannotationAPI_ezsignannotationEditObjectV1(apiClient_t *apiClient, int *pkiEzsignannotationID, ezsignannotation_edit_object_v1_request_t *ezsignannotation_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -185,15 +195,18 @@ ObjectEzsignannotationAPI_ezsignannotationEditObjectV1(apiClient_t *apiClient, i
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignannotation/{pkiEzsignannotationID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignannotation/{pkiEzsignannotationID}");
+    char *localVarPath = strdup("/1/object/ezsignannotation/{pkiEzsignannotationID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignannotationID =  + strlen("{ pkiEzsignannotationID }");
+    long sizeOfPathParams_pkiEzsignannotationID =  + sizeof("{ pkiEzsignannotationID }") - 1;
     if(pkiEzsignannotationID == 0){
         goto end;
     }
@@ -201,7 +214,7 @@ ObjectEzsignannotationAPI_ezsignannotationEditObjectV1(apiClient_t *apiClient, i
     snprintf(localVarToReplace_pkiEzsignannotationID, sizeOfPathParams_pkiEzsignannotationID, "{%s}", "pkiEzsignannotationID");
 
     char localVarBuff_pkiEzsignannotationID[256];
-    intToStr(localVarBuff_pkiEzsignannotationID, *pkiEzsignannotationID);
+    snprintf(localVarBuff_pkiEzsignannotationID, sizeof localVarBuff_pkiEzsignannotationID, "%ld", (long)*pkiEzsignannotationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignannotationID, localVarBuff_pkiEzsignannotationID);
 
@@ -212,9 +225,10 @@ ObjectEzsignannotationAPI_ezsignannotationEditObjectV1(apiClient_t *apiClient, i
     cJSON *localVarSingleItemJSON_ezsignannotation_edit_object_v1_request = NULL;
     if (ezsignannotation_edit_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignannotation_edit_object_v1_request = ezsignannotation_edit_object_v1_request_convertToJSON(ezsignannotation_edit_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignannotation_edit_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -226,6 +240,7 @@ ObjectEzsignannotationAPI_ezsignannotationEditObjectV1(apiClient_t *apiClient, i
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -241,11 +256,14 @@ ObjectEzsignannotationAPI_ezsignannotationEditObjectV1(apiClient_t *apiClient, i
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignannotationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignannotationAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignannotationAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignannotation_edit_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignannotationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignannotation_edit_object_v1_response_parseFromJSON(ObjectEzsignannotationAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignannotationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -286,15 +304,18 @@ ObjectEzsignannotationAPI_ezsignannotationGetObjectV2(apiClient_t *apiClient, in
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/ezsignannotation/{pkiEzsignannotationID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/ezsignannotation/{pkiEzsignannotationID}");
+    char *localVarPath = strdup("/2/object/ezsignannotation/{pkiEzsignannotationID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignannotationID =  + strlen("{ pkiEzsignannotationID }");
+    long sizeOfPathParams_pkiEzsignannotationID =  + sizeof("{ pkiEzsignannotationID }") - 1;
     if(pkiEzsignannotationID == 0){
         goto end;
     }
@@ -302,7 +323,7 @@ ObjectEzsignannotationAPI_ezsignannotationGetObjectV2(apiClient_t *apiClient, in
     snprintf(localVarToReplace_pkiEzsignannotationID, sizeOfPathParams_pkiEzsignannotationID, "{%s}", "pkiEzsignannotationID");
 
     char localVarBuff_pkiEzsignannotationID[256];
-    intToStr(localVarBuff_pkiEzsignannotationID, *pkiEzsignannotationID);
+    snprintf(localVarBuff_pkiEzsignannotationID, sizeof localVarBuff_pkiEzsignannotationID, "%ld", (long)*pkiEzsignannotationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignannotationID, localVarBuff_pkiEzsignannotationID);
 
@@ -317,6 +338,7 @@ ObjectEzsignannotationAPI_ezsignannotationGetObjectV2(apiClient_t *apiClient, in
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -328,11 +350,14 @@ ObjectEzsignannotationAPI_ezsignannotationGetObjectV2(apiClient_t *apiClient, in
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignannotationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignannotation_get_object_v2_response_t *elementToReturn = ezsignannotation_get_object_v2_response_parseFromJSON(ObjectEzsignannotationAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignannotationAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignannotation_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignannotationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignannotation_get_object_v2_response_parseFromJSON(ObjectEzsignannotationAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignannotationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

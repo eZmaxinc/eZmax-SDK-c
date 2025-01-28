@@ -22,9 +22,10 @@ typedef struct customer_get_object_v2_response_m_payload_t customer_get_object_v
 typedef struct customer_get_object_v2_response_m_payload_t {
     struct customer_response_compound_t *obj_customer; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } customer_get_object_v2_response_m_payload_t;
 
-customer_get_object_v2_response_m_payload_t *customer_get_object_v2_response_m_payload_create(
+__attribute__((deprecated)) customer_get_object_v2_response_m_payload_t *customer_get_object_v2_response_m_payload_create(
     customer_response_compound_t *obj_customer
 );
 

@@ -28,9 +28,10 @@ typedef struct ezmaxinvoicingcommission_response_t {
     int i_ezmaxinvoicingcommission_days; //numeric
     char *d_ezmaxinvoicingcommission_amount; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezmaxinvoicingcommission_response_t;
 
-ezmaxinvoicingcommission_response_t *ezmaxinvoicingcommission_response_create(
+__attribute__((deprecated)) ezmaxinvoicingcommission_response_t *ezmaxinvoicingcommission_response_create(
     int pki_ezmaxinvoicingcommission_id,
     int fki_ezmaxinvoicingsummaryglobal_id,
     int fki_ezmaxpartner_id,

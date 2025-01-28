@@ -5,7 +5,7 @@
 
 
 
-ezsignsigningreason_response_compound_t *ezsignsigningreason_response_compound_create(
+static ezsignsigningreason_response_compound_t *ezsignsigningreason_response_compound_create_internal(
     int pki_ezsignsigningreason_id,
     multilingual_ezsignsigningreason_description_t *obj_ezsignsigningreason_description,
     int b_ezsignsigningreason_isactive
@@ -18,12 +18,28 @@ ezsignsigningreason_response_compound_t *ezsignsigningreason_response_compound_c
     ezsignsigningreason_response_compound_local_var->obj_ezsignsigningreason_description = obj_ezsignsigningreason_description;
     ezsignsigningreason_response_compound_local_var->b_ezsignsigningreason_isactive = b_ezsignsigningreason_isactive;
 
+    ezsignsigningreason_response_compound_local_var->_library_owned = 1;
     return ezsignsigningreason_response_compound_local_var;
 }
 
+__attribute__((deprecated)) ezsignsigningreason_response_compound_t *ezsignsigningreason_response_compound_create(
+    int pki_ezsignsigningreason_id,
+    multilingual_ezsignsigningreason_description_t *obj_ezsignsigningreason_description,
+    int b_ezsignsigningreason_isactive
+    ) {
+    return ezsignsigningreason_response_compound_create_internal (
+        pki_ezsignsigningreason_id,
+        obj_ezsignsigningreason_description,
+        b_ezsignsigningreason_isactive
+        );
+}
 
 void ezsignsigningreason_response_compound_free(ezsignsigningreason_response_compound_t *ezsignsigningreason_response_compound) {
     if(NULL == ezsignsigningreason_response_compound){
+        return ;
+    }
+    if(ezsignsigningreason_response_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignsigningreason_response_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -85,6 +101,9 @@ ezsignsigningreason_response_compound_t *ezsignsigningreason_response_compound_p
 
     // ezsignsigningreason_response_compound->pki_ezsignsigningreason_id
     cJSON *pki_ezsignsigningreason_id = cJSON_GetObjectItemCaseSensitive(ezsignsigningreason_response_compoundJSON, "pkiEzsignsigningreasonID");
+    if (cJSON_IsNull(pki_ezsignsigningreason_id)) {
+        pki_ezsignsigningreason_id = NULL;
+    }
     if (!pki_ezsignsigningreason_id) {
         goto end;
     }
@@ -97,6 +116,9 @@ ezsignsigningreason_response_compound_t *ezsignsigningreason_response_compound_p
 
     // ezsignsigningreason_response_compound->obj_ezsignsigningreason_description
     cJSON *obj_ezsignsigningreason_description = cJSON_GetObjectItemCaseSensitive(ezsignsigningreason_response_compoundJSON, "objEzsignsigningreasonDescription");
+    if (cJSON_IsNull(obj_ezsignsigningreason_description)) {
+        obj_ezsignsigningreason_description = NULL;
+    }
     if (!obj_ezsignsigningreason_description) {
         goto end;
     }
@@ -106,6 +128,9 @@ ezsignsigningreason_response_compound_t *ezsignsigningreason_response_compound_p
 
     // ezsignsigningreason_response_compound->b_ezsignsigningreason_isactive
     cJSON *b_ezsignsigningreason_isactive = cJSON_GetObjectItemCaseSensitive(ezsignsigningreason_response_compoundJSON, "bEzsignsigningreasonIsactive");
+    if (cJSON_IsNull(b_ezsignsigningreason_isactive)) {
+        b_ezsignsigningreason_isactive = NULL;
+    }
     if (!b_ezsignsigningreason_isactive) {
         goto end;
     }
@@ -117,7 +142,7 @@ ezsignsigningreason_response_compound_t *ezsignsigningreason_response_compound_p
     }
 
 
-    ezsignsigningreason_response_compound_local_var = ezsignsigningreason_response_compound_create (
+    ezsignsigningreason_response_compound_local_var = ezsignsigningreason_response_compound_create_internal (
         pki_ezsignsigningreason_id->valuedouble,
         obj_ezsignsigningreason_description_local_nonprim,
         b_ezsignsigningreason_isactive->valueint

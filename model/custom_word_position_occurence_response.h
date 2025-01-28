@@ -23,9 +23,10 @@ typedef struct custom_word_position_occurence_response_t {
     int i_x; //numeric
     int i_y; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_word_position_occurence_response_t;
 
-custom_word_position_occurence_response_t *custom_word_position_occurence_response_create(
+__attribute__((deprecated)) custom_word_position_occurence_response_t *custom_word_position_occurence_response_create(
     int i_page,
     int i_x,
     int i_y

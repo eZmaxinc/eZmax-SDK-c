@@ -5,7 +5,7 @@
 
 
 
-domain_create_object_v1_response_m_payload_t *domain_create_object_v1_response_m_payload_create(
+static domain_create_object_v1_response_m_payload_t *domain_create_object_v1_response_m_payload_create_internal(
     list_t *a_pki_domain_id
     ) {
     domain_create_object_v1_response_m_payload_t *domain_create_object_v1_response_m_payload_local_var = malloc(sizeof(domain_create_object_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ domain_create_object_v1_response_m_payload_t *domain_create_object_v1_response_m
     }
     domain_create_object_v1_response_m_payload_local_var->a_pki_domain_id = a_pki_domain_id;
 
+    domain_create_object_v1_response_m_payload_local_var->_library_owned = 1;
     return domain_create_object_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) domain_create_object_v1_response_m_payload_t *domain_create_object_v1_response_m_payload_create(
+    list_t *a_pki_domain_id
+    ) {
+    return domain_create_object_v1_response_m_payload_create_internal (
+        a_pki_domain_id
+        );
+}
 
 void domain_create_object_v1_response_m_payload_free(domain_create_object_v1_response_m_payload_t *domain_create_object_v1_response_m_payload) {
     if(NULL == domain_create_object_v1_response_m_payload){
+        return ;
+    }
+    if(domain_create_object_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "domain_create_object_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +82,9 @@ domain_create_object_v1_response_m_payload_t *domain_create_object_v1_response_m
 
     // domain_create_object_v1_response_m_payload->a_pki_domain_id
     cJSON *a_pki_domain_id = cJSON_GetObjectItemCaseSensitive(domain_create_object_v1_response_m_payloadJSON, "a_pkiDomainID");
+    if (cJSON_IsNull(a_pki_domain_id)) {
+        a_pki_domain_id = NULL;
+    }
     if (!a_pki_domain_id) {
         goto end;
     }
@@ -87,7 +102,7 @@ domain_create_object_v1_response_m_payload_t *domain_create_object_v1_response_m
         {
             goto end;
         }
-        double *a_pki_domain_id_local_value = (double *)calloc(1, sizeof(double));
+        double *a_pki_domain_id_local_value = calloc(1, sizeof(double));
         if(!a_pki_domain_id_local_value)
         {
             goto end;
@@ -97,7 +112,7 @@ domain_create_object_v1_response_m_payload_t *domain_create_object_v1_response_m
     }
 
 
-    domain_create_object_v1_response_m_payload_local_var = domain_create_object_v1_response_m_payload_create (
+    domain_create_object_v1_response_m_payload_local_var = domain_create_object_v1_response_m_payload_create_internal (
         a_pki_domain_idList
         );
 

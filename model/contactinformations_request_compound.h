@@ -15,10 +15,10 @@
 
 typedef struct contactinformations_request_compound_t contactinformations_request_compound_t;
 
-#include "address_request.h"
-#include "email_request.h"
-#include "phone_request.h"
-#include "website_request.h"
+#include "address_request_compound.h"
+#include "email_request_compound.h"
+#include "phone_request_compound.h"
+#include "website_request_compound.h"
 
 
 
@@ -32,9 +32,10 @@ typedef struct contactinformations_request_compound_t {
     list_t *a_obj_email; //nonprimitive container
     list_t *a_obj_website; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } contactinformations_request_compound_t;
 
-contactinformations_request_compound_t *contactinformations_request_compound_create(
+__attribute__((deprecated)) contactinformations_request_compound_t *contactinformations_request_compound_create(
     int i_address_default,
     int i_phone_default,
     int i_email_default,

@@ -26,9 +26,10 @@ typedef struct ezsigntemplatedocument_edit_object_v1_response_t {
     struct common_response_obj_debug_t *obj_debug; //model
     list_t *a_obj_warning; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatedocument_edit_object_v1_response_t;
 
-ezsigntemplatedocument_edit_object_v1_response_t *ezsigntemplatedocument_edit_object_v1_response_create(
+__attribute__((deprecated)) ezsigntemplatedocument_edit_object_v1_response_t *ezsigntemplatedocument_edit_object_v1_response_create(
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug,
     list_t *a_obj_warning

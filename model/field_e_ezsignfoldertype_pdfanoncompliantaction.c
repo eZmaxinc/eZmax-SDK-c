@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsignfoldertype_pdfanoncompliantaction__e fi
     return 0;
 }
 
-cJSON *field_e_ezsignfoldertype_pdfanoncompliantaction_field_e_ezsignfoldertype_pdfanoncompliantaction_convertToJSON(ezmax_api_definition__full_field_e_ezsignfoldertype_pdfanoncompliantaction__e field_e_ezsignfoldertype_pdfanoncompliantaction) {
+cJSON *field_e_ezsignfoldertype_pdfanoncompliantaction_convertToJSON(ezmax_api_definition__full_field_e_ezsignfoldertype_pdfanoncompliantaction__e field_e_ezsignfoldertype_pdfanoncompliantaction) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsignfoldertype_pdfanoncompliantaction", field_e_ezsignfoldertype_pdfanoncompliantaction_field_e_ezsignfoldertype_pdfanoncompliantaction_ToString(field_e_ezsignfoldertype_pdfanoncompliantaction)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsignfoldertype_pdfanoncompliantaction__e field_e_ezsignfoldertype_pdfanoncompliantaction_field_e_ezsignfoldertype_pdfanoncompliantaction_parseFromJSON(cJSON *field_e_ezsignfoldertype_pdfanoncompliantactionJSON) {
-    ezmax_api_definition__full_field_e_ezsignfoldertype_pdfanoncompliantaction__e *field_e_ezsignfoldertype_pdfanoncompliantaction = NULL;
-    ezmax_api_definition__full_field_e_ezsignfoldertype_pdfanoncompliantaction__e field_e_ezsignfoldertype_pdfanoncompliantactionVariable;
-    cJSON *field_e_ezsignfoldertype_pdfanoncompliantactionVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsignfoldertype_pdfanoncompliantactionJSON, "field_e_ezsignfoldertype_pdfanoncompliantaction");
-    if(!cJSON_IsString(field_e_ezsignfoldertype_pdfanoncompliantactionVar) || (field_e_ezsignfoldertype_pdfanoncompliantactionVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsignfoldertype_pdfanoncompliantaction__e field_e_ezsignfoldertype_pdfanoncompliantaction_parseFromJSON(cJSON *field_e_ezsignfoldertype_pdfanoncompliantactionJSON) {
+    if(!cJSON_IsString(field_e_ezsignfoldertype_pdfanoncompliantactionJSON) || (field_e_ezsignfoldertype_pdfanoncompliantactionJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsignfoldertype_pdfanoncompliantactionVariable = field_e_ezsignfoldertype_pdfanoncompliantaction_field_e_ezsignfoldertype_pdfanoncompliantaction_FromString(field_e_ezsignfoldertype_pdfanoncompliantactionVar->valuestring);
-    return field_e_ezsignfoldertype_pdfanoncompliantactionVariable;
-end:
-    return 0;
+    return field_e_ezsignfoldertype_pdfanoncompliantaction_field_e_ezsignfoldertype_pdfanoncompliantaction_FromString(field_e_ezsignfoldertype_pdfanoncompliantactionJSON->valuestring);
 }

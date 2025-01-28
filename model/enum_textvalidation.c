@@ -22,7 +22,7 @@ ezmax_api_definition__full_enum_textvalidation__e enum_textvalidation_enum_textv
     return 0;
 }
 
-cJSON *enum_textvalidation_enum_textvalidation_convertToJSON(ezmax_api_definition__full_enum_textvalidation__e enum_textvalidation) {
+cJSON *enum_textvalidation_convertToJSON(ezmax_api_definition__full_enum_textvalidation__e enum_textvalidation) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "enum_textvalidation", enum_textvalidation_enum_textvalidation_ToString(enum_textvalidation)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_enum_textvalidation__e enum_textvalidation_enum_textvalidation_parseFromJSON(cJSON *enum_textvalidationJSON) {
-    ezmax_api_definition__full_enum_textvalidation__e *enum_textvalidation = NULL;
-    ezmax_api_definition__full_enum_textvalidation__e enum_textvalidationVariable;
-    cJSON *enum_textvalidationVar = cJSON_GetObjectItemCaseSensitive(enum_textvalidationJSON, "enum_textvalidation");
-    if(!cJSON_IsString(enum_textvalidationVar) || (enum_textvalidationVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_enum_textvalidation__e enum_textvalidation_parseFromJSON(cJSON *enum_textvalidationJSON) {
+    if(!cJSON_IsString(enum_textvalidationJSON) || (enum_textvalidationJSON->valuestring == NULL)) {
+        return 0;
     }
-    enum_textvalidationVariable = enum_textvalidation_enum_textvalidation_FromString(enum_textvalidationVar->valuestring);
-    return enum_textvalidationVariable;
-end:
-    return 0;
+    return enum_textvalidation_enum_textvalidation_FromString(enum_textvalidationJSON->valuestring);
 }

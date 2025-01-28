@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_pks_ezmaxclient_os__e field_pks_ezmaxclient_os_
     return 0;
 }
 
-cJSON *field_pks_ezmaxclient_os_field_pks_ezmaxclient_os_convertToJSON(ezmax_api_definition__full_field_pks_ezmaxclient_os__e field_pks_ezmaxclient_os) {
+cJSON *field_pks_ezmaxclient_os_convertToJSON(ezmax_api_definition__full_field_pks_ezmaxclient_os__e field_pks_ezmaxclient_os) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_pks_ezmaxclient_os", field_pks_ezmaxclient_os_field_pks_ezmaxclient_os_ToString(field_pks_ezmaxclient_os)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_pks_ezmaxclient_os__e field_pks_ezmaxclient_os_field_pks_ezmaxclient_os_parseFromJSON(cJSON *field_pks_ezmaxclient_osJSON) {
-    ezmax_api_definition__full_field_pks_ezmaxclient_os__e *field_pks_ezmaxclient_os = NULL;
-    ezmax_api_definition__full_field_pks_ezmaxclient_os__e field_pks_ezmaxclient_osVariable;
-    cJSON *field_pks_ezmaxclient_osVar = cJSON_GetObjectItemCaseSensitive(field_pks_ezmaxclient_osJSON, "field_pks_ezmaxclient_os");
-    if(!cJSON_IsString(field_pks_ezmaxclient_osVar) || (field_pks_ezmaxclient_osVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_pks_ezmaxclient_os__e field_pks_ezmaxclient_os_parseFromJSON(cJSON *field_pks_ezmaxclient_osJSON) {
+    if(!cJSON_IsString(field_pks_ezmaxclient_osJSON) || (field_pks_ezmaxclient_osJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_pks_ezmaxclient_osVariable = field_pks_ezmaxclient_os_field_pks_ezmaxclient_os_FromString(field_pks_ezmaxclient_osVar->valuestring);
-    return field_pks_ezmaxclient_osVariable;
-end:
-    return 0;
+    return field_pks_ezmaxclient_os_field_pks_ezmaxclient_os_FromString(field_pks_ezmaxclient_osJSON->valuestring);
 }

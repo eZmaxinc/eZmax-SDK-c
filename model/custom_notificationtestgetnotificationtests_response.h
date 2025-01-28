@@ -18,14 +18,6 @@ typedef struct custom_notificationtestgetnotificationtests_response_t custom_not
 #include "field_e_notificationpreference_status.h"
 #include "multilingual_notificationtest_name.h"
 
-// Enum  for custom_notificationtestgetnotificationtests_response
-
-typedef enum  { ezmax_api_definition__full_custom_notificationtestgetnotificationtests_response__NULL = 0, ezmax_api_definition__full_custom_notificationtestgetnotificationtests_response__Show, ezmax_api_definition__full_custom_notificationtestgetnotificationtests_response__Hide, ezmax_api_definition__full_custom_notificationtestgetnotificationtests_response__Pin } ezmax_api_definition__full_custom_notificationtestgetnotificationtests_response__e;
-
-char* custom_notificationtestgetnotificationtests_response_e_notificationpreference_status_ToString(ezmax_api_definition__full_custom_notificationtestgetnotificationtests_response__e e_notificationpreference_status);
-
-ezmax_api_definition__full_custom_notificationtestgetnotificationtests_response__e custom_notificationtestgetnotificationtests_response_e_notificationpreference_status_FromString(char* e_notificationpreference_status);
-
 
 
 typedef struct custom_notificationtestgetnotificationtests_response_t {
@@ -34,18 +26,19 @@ typedef struct custom_notificationtestgetnotificationtests_response_t {
     int fki_notificationsubsection_id; //numeric
     char *s_notificationtest_function; // string
     char *s_notificationtest_name_x; // string
-    field_e_notificationpreference_status_t *e_notificationpreference_status; // custom
+    ezmax_api_definition__full_field_e_notificationpreference_status__e e_notificationpreference_status; //referenced enum
     int i_notificationtest; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_notificationtestgetnotificationtests_response_t;
 
-custom_notificationtestgetnotificationtests_response_t *custom_notificationtestgetnotificationtests_response_create(
+__attribute__((deprecated)) custom_notificationtestgetnotificationtests_response_t *custom_notificationtestgetnotificationtests_response_create(
     int pki_notificationtest_id,
     multilingual_notificationtest_name_t *obj_notificationtest_name,
     int fki_notificationsubsection_id,
     char *s_notificationtest_function,
     char *s_notificationtest_name_x,
-    field_e_notificationpreference_status_t *e_notificationpreference_status,
+    ezmax_api_definition__full_field_e_notificationpreference_status__e e_notificationpreference_status,
     int i_notificationtest
 );
 

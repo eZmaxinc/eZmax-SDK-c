@@ -5,7 +5,7 @@
 
 
 
-custom_communicationsender_request_t *custom_communicationsender_request_create(
+static custom_communicationsender_request_t *custom_communicationsender_request_create_internal(
     int fki_agent_id,
     int fki_broker_id,
     int fki_mailboxshared_id,
@@ -22,12 +22,32 @@ custom_communicationsender_request_t *custom_communicationsender_request_create(
     custom_communicationsender_request_local_var->fki_phonelineshared_id = fki_phonelineshared_id;
     custom_communicationsender_request_local_var->fki_user_id = fki_user_id;
 
+    custom_communicationsender_request_local_var->_library_owned = 1;
     return custom_communicationsender_request_local_var;
 }
 
+__attribute__((deprecated)) custom_communicationsender_request_t *custom_communicationsender_request_create(
+    int fki_agent_id,
+    int fki_broker_id,
+    int fki_mailboxshared_id,
+    int fki_phonelineshared_id,
+    int fki_user_id
+    ) {
+    return custom_communicationsender_request_create_internal (
+        fki_agent_id,
+        fki_broker_id,
+        fki_mailboxshared_id,
+        fki_phonelineshared_id,
+        fki_user_id
+        );
+}
 
 void custom_communicationsender_request_free(custom_communicationsender_request_t *custom_communicationsender_request) {
     if(NULL == custom_communicationsender_request){
+        return ;
+    }
+    if(custom_communicationsender_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "custom_communicationsender_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -90,6 +110,9 @@ custom_communicationsender_request_t *custom_communicationsender_request_parseFr
 
     // custom_communicationsender_request->fki_agent_id
     cJSON *fki_agent_id = cJSON_GetObjectItemCaseSensitive(custom_communicationsender_requestJSON, "fkiAgentID");
+    if (cJSON_IsNull(fki_agent_id)) {
+        fki_agent_id = NULL;
+    }
     if (fki_agent_id) { 
     if(!cJSON_IsNumber(fki_agent_id))
     {
@@ -99,6 +122,9 @@ custom_communicationsender_request_t *custom_communicationsender_request_parseFr
 
     // custom_communicationsender_request->fki_broker_id
     cJSON *fki_broker_id = cJSON_GetObjectItemCaseSensitive(custom_communicationsender_requestJSON, "fkiBrokerID");
+    if (cJSON_IsNull(fki_broker_id)) {
+        fki_broker_id = NULL;
+    }
     if (fki_broker_id) { 
     if(!cJSON_IsNumber(fki_broker_id))
     {
@@ -108,6 +134,9 @@ custom_communicationsender_request_t *custom_communicationsender_request_parseFr
 
     // custom_communicationsender_request->fki_mailboxshared_id
     cJSON *fki_mailboxshared_id = cJSON_GetObjectItemCaseSensitive(custom_communicationsender_requestJSON, "fkiMailboxsharedID");
+    if (cJSON_IsNull(fki_mailboxshared_id)) {
+        fki_mailboxshared_id = NULL;
+    }
     if (fki_mailboxshared_id) { 
     if(!cJSON_IsNumber(fki_mailboxshared_id))
     {
@@ -117,6 +146,9 @@ custom_communicationsender_request_t *custom_communicationsender_request_parseFr
 
     // custom_communicationsender_request->fki_phonelineshared_id
     cJSON *fki_phonelineshared_id = cJSON_GetObjectItemCaseSensitive(custom_communicationsender_requestJSON, "fkiPhonelinesharedID");
+    if (cJSON_IsNull(fki_phonelineshared_id)) {
+        fki_phonelineshared_id = NULL;
+    }
     if (fki_phonelineshared_id) { 
     if(!cJSON_IsNumber(fki_phonelineshared_id))
     {
@@ -126,6 +158,9 @@ custom_communicationsender_request_t *custom_communicationsender_request_parseFr
 
     // custom_communicationsender_request->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(custom_communicationsender_requestJSON, "fkiUserID");
+    if (cJSON_IsNull(fki_user_id)) {
+        fki_user_id = NULL;
+    }
     if (fki_user_id) { 
     if(!cJSON_IsNumber(fki_user_id))
     {
@@ -134,7 +169,7 @@ custom_communicationsender_request_t *custom_communicationsender_request_parseFr
     }
 
 
-    custom_communicationsender_request_local_var = custom_communicationsender_request_create (
+    custom_communicationsender_request_local_var = custom_communicationsender_request_create_internal (
         fki_agent_id ? fki_agent_id->valuedouble : 0,
         fki_broker_id ? fki_broker_id->valuedouble : 0,
         fki_mailboxshared_id ? fki_mailboxshared_id->valuedouble : 0,

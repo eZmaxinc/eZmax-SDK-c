@@ -5,7 +5,7 @@
 
 
 
-address_response_t *address_response_create(
+static address_response_t *address_response_create_internal(
     int pki_address_id,
     int fki_addresstype_id,
     char *s_address_civic,
@@ -38,12 +38,48 @@ address_response_t *address_response_create(
     address_response_local_var->f_address_longitude = f_address_longitude;
     address_response_local_var->f_address_latitude = f_address_latitude;
 
+    address_response_local_var->_library_owned = 1;
     return address_response_local_var;
 }
 
+__attribute__((deprecated)) address_response_t *address_response_create(
+    int pki_address_id,
+    int fki_addresstype_id,
+    char *s_address_civic,
+    char *s_address_street,
+    char *s_address_suite,
+    char *s_address_city,
+    int fki_province_id,
+    char *s_province_name_x,
+    int fki_country_id,
+    char *s_country_name_x,
+    char *s_address_zip,
+    char *f_address_longitude,
+    char *f_address_latitude
+    ) {
+    return address_response_create_internal (
+        pki_address_id,
+        fki_addresstype_id,
+        s_address_civic,
+        s_address_street,
+        s_address_suite,
+        s_address_city,
+        fki_province_id,
+        s_province_name_x,
+        fki_country_id,
+        s_country_name_x,
+        s_address_zip,
+        f_address_longitude,
+        f_address_latitude
+        );
+}
 
 void address_response_free(address_response_t *address_response) {
     if(NULL == address_response){
+        return ;
+    }
+    if(address_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "address_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -216,6 +252,9 @@ address_response_t *address_response_parseFromJSON(cJSON *address_responseJSON){
 
     // address_response->pki_address_id
     cJSON *pki_address_id = cJSON_GetObjectItemCaseSensitive(address_responseJSON, "pkiAddressID");
+    if (cJSON_IsNull(pki_address_id)) {
+        pki_address_id = NULL;
+    }
     if (!pki_address_id) {
         goto end;
     }
@@ -228,6 +267,9 @@ address_response_t *address_response_parseFromJSON(cJSON *address_responseJSON){
 
     // address_response->fki_addresstype_id
     cJSON *fki_addresstype_id = cJSON_GetObjectItemCaseSensitive(address_responseJSON, "fkiAddresstypeID");
+    if (cJSON_IsNull(fki_addresstype_id)) {
+        fki_addresstype_id = NULL;
+    }
     if (!fki_addresstype_id) {
         goto end;
     }
@@ -240,6 +282,9 @@ address_response_t *address_response_parseFromJSON(cJSON *address_responseJSON){
 
     // address_response->s_address_civic
     cJSON *s_address_civic = cJSON_GetObjectItemCaseSensitive(address_responseJSON, "sAddressCivic");
+    if (cJSON_IsNull(s_address_civic)) {
+        s_address_civic = NULL;
+    }
     if (!s_address_civic) {
         goto end;
     }
@@ -252,6 +297,9 @@ address_response_t *address_response_parseFromJSON(cJSON *address_responseJSON){
 
     // address_response->s_address_street
     cJSON *s_address_street = cJSON_GetObjectItemCaseSensitive(address_responseJSON, "sAddressStreet");
+    if (cJSON_IsNull(s_address_street)) {
+        s_address_street = NULL;
+    }
     if (!s_address_street) {
         goto end;
     }
@@ -264,6 +312,9 @@ address_response_t *address_response_parseFromJSON(cJSON *address_responseJSON){
 
     // address_response->s_address_suite
     cJSON *s_address_suite = cJSON_GetObjectItemCaseSensitive(address_responseJSON, "sAddressSuite");
+    if (cJSON_IsNull(s_address_suite)) {
+        s_address_suite = NULL;
+    }
     if (s_address_suite) { 
     if(!cJSON_IsString(s_address_suite) && !cJSON_IsNull(s_address_suite))
     {
@@ -273,6 +324,9 @@ address_response_t *address_response_parseFromJSON(cJSON *address_responseJSON){
 
     // address_response->s_address_city
     cJSON *s_address_city = cJSON_GetObjectItemCaseSensitive(address_responseJSON, "sAddressCity");
+    if (cJSON_IsNull(s_address_city)) {
+        s_address_city = NULL;
+    }
     if (!s_address_city) {
         goto end;
     }
@@ -285,6 +339,9 @@ address_response_t *address_response_parseFromJSON(cJSON *address_responseJSON){
 
     // address_response->fki_province_id
     cJSON *fki_province_id = cJSON_GetObjectItemCaseSensitive(address_responseJSON, "fkiProvinceID");
+    if (cJSON_IsNull(fki_province_id)) {
+        fki_province_id = NULL;
+    }
     if (!fki_province_id) {
         goto end;
     }
@@ -297,6 +354,9 @@ address_response_t *address_response_parseFromJSON(cJSON *address_responseJSON){
 
     // address_response->s_province_name_x
     cJSON *s_province_name_x = cJSON_GetObjectItemCaseSensitive(address_responseJSON, "sProvinceNameX");
+    if (cJSON_IsNull(s_province_name_x)) {
+        s_province_name_x = NULL;
+    }
     if (!s_province_name_x) {
         goto end;
     }
@@ -309,6 +369,9 @@ address_response_t *address_response_parseFromJSON(cJSON *address_responseJSON){
 
     // address_response->fki_country_id
     cJSON *fki_country_id = cJSON_GetObjectItemCaseSensitive(address_responseJSON, "fkiCountryID");
+    if (cJSON_IsNull(fki_country_id)) {
+        fki_country_id = NULL;
+    }
     if (!fki_country_id) {
         goto end;
     }
@@ -321,6 +384,9 @@ address_response_t *address_response_parseFromJSON(cJSON *address_responseJSON){
 
     // address_response->s_country_name_x
     cJSON *s_country_name_x = cJSON_GetObjectItemCaseSensitive(address_responseJSON, "sCountryNameX");
+    if (cJSON_IsNull(s_country_name_x)) {
+        s_country_name_x = NULL;
+    }
     if (!s_country_name_x) {
         goto end;
     }
@@ -333,6 +399,9 @@ address_response_t *address_response_parseFromJSON(cJSON *address_responseJSON){
 
     // address_response->s_address_zip
     cJSON *s_address_zip = cJSON_GetObjectItemCaseSensitive(address_responseJSON, "sAddressZip");
+    if (cJSON_IsNull(s_address_zip)) {
+        s_address_zip = NULL;
+    }
     if (!s_address_zip) {
         goto end;
     }
@@ -345,6 +414,9 @@ address_response_t *address_response_parseFromJSON(cJSON *address_responseJSON){
 
     // address_response->f_address_longitude
     cJSON *f_address_longitude = cJSON_GetObjectItemCaseSensitive(address_responseJSON, "fAddressLongitude");
+    if (cJSON_IsNull(f_address_longitude)) {
+        f_address_longitude = NULL;
+    }
     if (f_address_longitude) { 
     if(!cJSON_IsString(f_address_longitude) && !cJSON_IsNull(f_address_longitude))
     {
@@ -354,6 +426,9 @@ address_response_t *address_response_parseFromJSON(cJSON *address_responseJSON){
 
     // address_response->f_address_latitude
     cJSON *f_address_latitude = cJSON_GetObjectItemCaseSensitive(address_responseJSON, "fAddressLatitude");
+    if (cJSON_IsNull(f_address_latitude)) {
+        f_address_latitude = NULL;
+    }
     if (f_address_latitude) { 
     if(!cJSON_IsString(f_address_latitude) && !cJSON_IsNull(f_address_latitude))
     {
@@ -362,7 +437,7 @@ address_response_t *address_response_parseFromJSON(cJSON *address_responseJSON){
     }
 
 
-    address_response_local_var = address_response_create (
+    address_response_local_var = address_response_create_internal (
         pki_address_id->valuedouble,
         fki_addresstype_id->valuedouble,
         strdup(s_address_civic->valuestring),

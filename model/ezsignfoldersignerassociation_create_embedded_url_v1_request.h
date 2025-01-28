@@ -23,9 +23,10 @@ typedef struct ezsignfoldersignerassociation_create_embedded_url_v1_request_t {
     char *s_iframedomain; // string
     int b_is_iframe; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfoldersignerassociation_create_embedded_url_v1_request_t;
 
-ezsignfoldersignerassociation_create_embedded_url_v1_request_t *ezsignfoldersignerassociation_create_embedded_url_v1_request_create(
+__attribute__((deprecated)) ezsignfoldersignerassociation_create_embedded_url_v1_request_t *ezsignfoldersignerassociation_create_embedded_url_v1_request_create(
     char *s_return_url,
     char *s_iframedomain,
     int b_is_iframe

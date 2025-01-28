@@ -5,7 +5,7 @@
 
 
 
-notificationsection_get_notificationtests_v1_response_m_payload_t *notificationsection_get_notificationtests_v1_response_m_payload_create(
+static notificationsection_get_notificationtests_v1_response_m_payload_t *notificationsection_get_notificationtests_v1_response_m_payload_create_internal(
     list_t *a_obj_notificationsubsection
     ) {
     notificationsection_get_notificationtests_v1_response_m_payload_t *notificationsection_get_notificationtests_v1_response_m_payload_local_var = malloc(sizeof(notificationsection_get_notificationtests_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ notificationsection_get_notificationtests_v1_response_m_payload_t *notifications
     }
     notificationsection_get_notificationtests_v1_response_m_payload_local_var->a_obj_notificationsubsection = a_obj_notificationsubsection;
 
+    notificationsection_get_notificationtests_v1_response_m_payload_local_var->_library_owned = 1;
     return notificationsection_get_notificationtests_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) notificationsection_get_notificationtests_v1_response_m_payload_t *notificationsection_get_notificationtests_v1_response_m_payload_create(
+    list_t *a_obj_notificationsubsection
+    ) {
+    return notificationsection_get_notificationtests_v1_response_m_payload_create_internal (
+        a_obj_notificationsubsection
+        );
+}
 
 void notificationsection_get_notificationtests_v1_response_m_payload_free(notificationsection_get_notificationtests_v1_response_m_payload_t *notificationsection_get_notificationtests_v1_response_m_payload) {
     if(NULL == notificationsection_get_notificationtests_v1_response_m_payload){
+        return ;
+    }
+    if(notificationsection_get_notificationtests_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "notificationsection_get_notificationtests_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ notificationsection_get_notificationtests_v1_response_m_payload_t *notifications
 
     // notificationsection_get_notificationtests_v1_response_m_payload->a_obj_notificationsubsection
     cJSON *a_obj_notificationsubsection = cJSON_GetObjectItemCaseSensitive(notificationsection_get_notificationtests_v1_response_m_payloadJSON, "a_objNotificationsubsection");
+    if (cJSON_IsNull(a_obj_notificationsubsection)) {
+        a_obj_notificationsubsection = NULL;
+    }
     if (!a_obj_notificationsubsection) {
         goto end;
     }
@@ -96,7 +111,7 @@ notificationsection_get_notificationtests_v1_response_m_payload_t *notifications
     }
 
 
-    notificationsection_get_notificationtests_v1_response_m_payload_local_var = notificationsection_get_notificationtests_v1_response_m_payload_create (
+    notificationsection_get_notificationtests_v1_response_m_payload_local_var = notificationsection_get_notificationtests_v1_response_m_payload_create_internal (
         a_obj_notificationsubsectionList
         );
 

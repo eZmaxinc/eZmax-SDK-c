@@ -5,7 +5,7 @@
 
 
 
-tranqcontract_get_communication_count_v1_response_m_payload_t *tranqcontract_get_communication_count_v1_response_m_payload_create(
+static tranqcontract_get_communication_count_v1_response_m_payload_t *tranqcontract_get_communication_count_v1_response_m_payload_create_internal(
     int i_communication_count
     ) {
     tranqcontract_get_communication_count_v1_response_m_payload_t *tranqcontract_get_communication_count_v1_response_m_payload_local_var = malloc(sizeof(tranqcontract_get_communication_count_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ tranqcontract_get_communication_count_v1_response_m_payload_t *tranqcontract_get
     }
     tranqcontract_get_communication_count_v1_response_m_payload_local_var->i_communication_count = i_communication_count;
 
+    tranqcontract_get_communication_count_v1_response_m_payload_local_var->_library_owned = 1;
     return tranqcontract_get_communication_count_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) tranqcontract_get_communication_count_v1_response_m_payload_t *tranqcontract_get_communication_count_v1_response_m_payload_create(
+    int i_communication_count
+    ) {
+    return tranqcontract_get_communication_count_v1_response_m_payload_create_internal (
+        i_communication_count
+        );
+}
 
 void tranqcontract_get_communication_count_v1_response_m_payload_free(tranqcontract_get_communication_count_v1_response_m_payload_t *tranqcontract_get_communication_count_v1_response_m_payload) {
     if(NULL == tranqcontract_get_communication_count_v1_response_m_payload){
+        return ;
+    }
+    if(tranqcontract_get_communication_count_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "tranqcontract_get_communication_count_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -51,6 +63,9 @@ tranqcontract_get_communication_count_v1_response_m_payload_t *tranqcontract_get
 
     // tranqcontract_get_communication_count_v1_response_m_payload->i_communication_count
     cJSON *i_communication_count = cJSON_GetObjectItemCaseSensitive(tranqcontract_get_communication_count_v1_response_m_payloadJSON, "iCommunicationCount");
+    if (cJSON_IsNull(i_communication_count)) {
+        i_communication_count = NULL;
+    }
     if (!i_communication_count) {
         goto end;
     }
@@ -62,7 +77,7 @@ tranqcontract_get_communication_count_v1_response_m_payload_t *tranqcontract_get
     }
 
 
-    tranqcontract_get_communication_count_v1_response_m_payload_local_var = tranqcontract_get_communication_count_v1_response_m_payload_create (
+    tranqcontract_get_communication_count_v1_response_m_payload_local_var = tranqcontract_get_communication_count_v1_response_m_payload_create_internal (
         i_communication_count->valuedouble
         );
 

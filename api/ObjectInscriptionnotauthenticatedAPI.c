@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Retrieve Communication count
@@ -25,15 +20,18 @@ ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunication
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/inscriptionnotauthenticated/{pkiInscriptionnotauthenticatedID}/getCommunicationCount")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/inscriptionnotauthenticated/{pkiInscriptionnotauthenticatedID}/getCommunicationCount");
+    char *localVarPath = strdup("/1/object/inscriptionnotauthenticated/{pkiInscriptionnotauthenticatedID}/getCommunicationCount");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiInscriptionnotauthenticatedID =  + strlen("{ pkiInscriptionnotauthenticatedID }");
+    long sizeOfPathParams_pkiInscriptionnotauthenticatedID =  + sizeof("{ pkiInscriptionnotauthenticatedID }") - 1;
     if(pkiInscriptionnotauthenticatedID == 0){
         goto end;
     }
@@ -41,7 +39,7 @@ ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunication
     snprintf(localVarToReplace_pkiInscriptionnotauthenticatedID, sizeOfPathParams_pkiInscriptionnotauthenticatedID, "{%s}", "pkiInscriptionnotauthenticatedID");
 
     char localVarBuff_pkiInscriptionnotauthenticatedID[256];
-    intToStr(localVarBuff_pkiInscriptionnotauthenticatedID, *pkiInscriptionnotauthenticatedID);
+    snprintf(localVarBuff_pkiInscriptionnotauthenticatedID, sizeof localVarBuff_pkiInscriptionnotauthenticatedID, "%ld", (long)*pkiInscriptionnotauthenticatedID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiInscriptionnotauthenticatedID, localVarBuff_pkiInscriptionnotauthenticatedID);
 
@@ -56,6 +54,7 @@ ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunication
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -67,11 +66,14 @@ ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunication
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectInscriptionnotauthenticatedAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    inscriptionnotauthenticated_get_communication_count_v1_response_t *elementToReturn = inscriptionnotauthenticated_get_communication_count_v1_response_parseFromJSON(ObjectInscriptionnotauthenticatedAPIlocalVarJSON);
-    cJSON_Delete(ObjectInscriptionnotauthenticatedAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    inscriptionnotauthenticated_get_communication_count_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectInscriptionnotauthenticatedAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = inscriptionnotauthenticated_get_communication_count_v1_response_parseFromJSON(ObjectInscriptionnotauthenticatedAPIlocalVarJSON);
+        cJSON_Delete(ObjectInscriptionnotauthenticatedAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -107,15 +109,18 @@ ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunication
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/inscriptionnotauthenticated/{pkiInscriptionnotauthenticatedID}/getCommunicationList")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/inscriptionnotauthenticated/{pkiInscriptionnotauthenticatedID}/getCommunicationList");
+    char *localVarPath = strdup("/1/object/inscriptionnotauthenticated/{pkiInscriptionnotauthenticatedID}/getCommunicationList");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiInscriptionnotauthenticatedID =  + strlen("{ pkiInscriptionnotauthenticatedID }");
+    long sizeOfPathParams_pkiInscriptionnotauthenticatedID =  + sizeof("{ pkiInscriptionnotauthenticatedID }") - 1;
     if(pkiInscriptionnotauthenticatedID == 0){
         goto end;
     }
@@ -123,7 +128,7 @@ ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunication
     snprintf(localVarToReplace_pkiInscriptionnotauthenticatedID, sizeOfPathParams_pkiInscriptionnotauthenticatedID, "{%s}", "pkiInscriptionnotauthenticatedID");
 
     char localVarBuff_pkiInscriptionnotauthenticatedID[256];
-    intToStr(localVarBuff_pkiInscriptionnotauthenticatedID, *pkiInscriptionnotauthenticatedID);
+    snprintf(localVarBuff_pkiInscriptionnotauthenticatedID, sizeof localVarBuff_pkiInscriptionnotauthenticatedID, "%ld", (long)*pkiInscriptionnotauthenticatedID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiInscriptionnotauthenticatedID, localVarBuff_pkiInscriptionnotauthenticatedID);
 
@@ -138,6 +143,7 @@ ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunication
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -149,11 +155,14 @@ ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunication
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectInscriptionnotauthenticatedAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    inscriptionnotauthenticated_get_communication_list_v1_response_t *elementToReturn = inscriptionnotauthenticated_get_communication_list_v1_response_parseFromJSON(ObjectInscriptionnotauthenticatedAPIlocalVarJSON);
-    cJSON_Delete(ObjectInscriptionnotauthenticatedAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    inscriptionnotauthenticated_get_communication_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectInscriptionnotauthenticatedAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = inscriptionnotauthenticated_get_communication_list_v1_response_parseFromJSON(ObjectInscriptionnotauthenticatedAPIlocalVarJSON);
+        cJSON_Delete(ObjectInscriptionnotauthenticatedAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -189,15 +198,18 @@ ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunication
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/inscriptionnotauthenticated/{pkiInscriptionnotauthenticatedID}/getCommunicationrecipients")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/inscriptionnotauthenticated/{pkiInscriptionnotauthenticatedID}/getCommunicationrecipients");
+    char *localVarPath = strdup("/1/object/inscriptionnotauthenticated/{pkiInscriptionnotauthenticatedID}/getCommunicationrecipients");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiInscriptionnotauthenticatedID =  + strlen("{ pkiInscriptionnotauthenticatedID }");
+    long sizeOfPathParams_pkiInscriptionnotauthenticatedID =  + sizeof("{ pkiInscriptionnotauthenticatedID }") - 1;
     if(pkiInscriptionnotauthenticatedID == 0){
         goto end;
     }
@@ -205,7 +217,7 @@ ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunication
     snprintf(localVarToReplace_pkiInscriptionnotauthenticatedID, sizeOfPathParams_pkiInscriptionnotauthenticatedID, "{%s}", "pkiInscriptionnotauthenticatedID");
 
     char localVarBuff_pkiInscriptionnotauthenticatedID[256];
-    intToStr(localVarBuff_pkiInscriptionnotauthenticatedID, *pkiInscriptionnotauthenticatedID);
+    snprintf(localVarBuff_pkiInscriptionnotauthenticatedID, sizeof localVarBuff_pkiInscriptionnotauthenticatedID, "%ld", (long)*pkiInscriptionnotauthenticatedID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiInscriptionnotauthenticatedID, localVarBuff_pkiInscriptionnotauthenticatedID);
 
@@ -220,6 +232,7 @@ ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunication
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -231,11 +244,14 @@ ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunication
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectInscriptionnotauthenticatedAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    inscriptionnotauthenticated_get_communicationrecipients_v1_response_t *elementToReturn = inscriptionnotauthenticated_get_communicationrecipients_v1_response_parseFromJSON(ObjectInscriptionnotauthenticatedAPIlocalVarJSON);
-    cJSON_Delete(ObjectInscriptionnotauthenticatedAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    inscriptionnotauthenticated_get_communicationrecipients_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectInscriptionnotauthenticatedAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = inscriptionnotauthenticated_get_communicationrecipients_v1_response_parseFromJSON(ObjectInscriptionnotauthenticatedAPIlocalVarJSON);
+        cJSON_Delete(ObjectInscriptionnotauthenticatedAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -271,15 +287,18 @@ ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunication
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/inscriptionnotauthenticated/{pkiInscriptionnotauthenticatedID}/getCommunicationsenders")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/inscriptionnotauthenticated/{pkiInscriptionnotauthenticatedID}/getCommunicationsenders");
+    char *localVarPath = strdup("/1/object/inscriptionnotauthenticated/{pkiInscriptionnotauthenticatedID}/getCommunicationsenders");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiInscriptionnotauthenticatedID =  + strlen("{ pkiInscriptionnotauthenticatedID }");
+    long sizeOfPathParams_pkiInscriptionnotauthenticatedID =  + sizeof("{ pkiInscriptionnotauthenticatedID }") - 1;
     if(pkiInscriptionnotauthenticatedID == 0){
         goto end;
     }
@@ -287,7 +306,7 @@ ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunication
     snprintf(localVarToReplace_pkiInscriptionnotauthenticatedID, sizeOfPathParams_pkiInscriptionnotauthenticatedID, "{%s}", "pkiInscriptionnotauthenticatedID");
 
     char localVarBuff_pkiInscriptionnotauthenticatedID[256];
-    intToStr(localVarBuff_pkiInscriptionnotauthenticatedID, *pkiInscriptionnotauthenticatedID);
+    snprintf(localVarBuff_pkiInscriptionnotauthenticatedID, sizeof localVarBuff_pkiInscriptionnotauthenticatedID, "%ld", (long)*pkiInscriptionnotauthenticatedID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiInscriptionnotauthenticatedID, localVarBuff_pkiInscriptionnotauthenticatedID);
 
@@ -302,6 +321,7 @@ ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunication
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -313,11 +333,14 @@ ObjectInscriptionnotauthenticatedAPI_inscriptionnotauthenticatedGetCommunication
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectInscriptionnotauthenticatedAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    inscriptionnotauthenticated_get_communicationsenders_v1_response_t *elementToReturn = inscriptionnotauthenticated_get_communicationsenders_v1_response_parseFromJSON(ObjectInscriptionnotauthenticatedAPIlocalVarJSON);
-    cJSON_Delete(ObjectInscriptionnotauthenticatedAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    inscriptionnotauthenticated_get_communicationsenders_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectInscriptionnotauthenticatedAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = inscriptionnotauthenticated_get_communicationsenders_v1_response_parseFromJSON(ObjectInscriptionnotauthenticatedAPIlocalVarJSON);
+        cJSON_Delete(ObjectInscriptionnotauthenticatedAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

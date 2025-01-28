@@ -22,9 +22,10 @@ typedef struct supply_edit_object_v1_request_t supply_edit_object_v1_request_t;
 typedef struct supply_edit_object_v1_request_t {
     struct supply_request_compound_t *obj_supply; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } supply_edit_object_v1_request_t;
 
-supply_edit_object_v1_request_t *supply_edit_object_v1_request_create(
+__attribute__((deprecated)) supply_edit_object_v1_request_t *supply_edit_object_v1_request_create(
     supply_request_compound_t *obj_supply
 );
 

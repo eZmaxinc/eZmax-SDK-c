@@ -5,7 +5,7 @@
 
 
 
-paymentterm_edit_object_v1_request_t *paymentterm_edit_object_v1_request_create(
+static paymentterm_edit_object_v1_request_t *paymentterm_edit_object_v1_request_create_internal(
     paymentterm_request_compound_t *obj_paymentterm
     ) {
     paymentterm_edit_object_v1_request_t *paymentterm_edit_object_v1_request_local_var = malloc(sizeof(paymentterm_edit_object_v1_request_t));
@@ -14,12 +14,24 @@ paymentterm_edit_object_v1_request_t *paymentterm_edit_object_v1_request_create(
     }
     paymentterm_edit_object_v1_request_local_var->obj_paymentterm = obj_paymentterm;
 
+    paymentterm_edit_object_v1_request_local_var->_library_owned = 1;
     return paymentterm_edit_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) paymentterm_edit_object_v1_request_t *paymentterm_edit_object_v1_request_create(
+    paymentterm_request_compound_t *obj_paymentterm
+    ) {
+    return paymentterm_edit_object_v1_request_create_internal (
+        obj_paymentterm
+        );
+}
 
 void paymentterm_edit_object_v1_request_free(paymentterm_edit_object_v1_request_t *paymentterm_edit_object_v1_request) {
     if(NULL == paymentterm_edit_object_v1_request){
+        return ;
+    }
+    if(paymentterm_edit_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "paymentterm_edit_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ paymentterm_edit_object_v1_request_t *paymentterm_edit_object_v1_request_parseFr
 
     // paymentterm_edit_object_v1_request->obj_paymentterm
     cJSON *obj_paymentterm = cJSON_GetObjectItemCaseSensitive(paymentterm_edit_object_v1_requestJSON, "objPaymentterm");
+    if (cJSON_IsNull(obj_paymentterm)) {
+        obj_paymentterm = NULL;
+    }
     if (!obj_paymentterm) {
         goto end;
     }
@@ -71,7 +86,7 @@ paymentterm_edit_object_v1_request_t *paymentterm_edit_object_v1_request_parseFr
     obj_paymentterm_local_nonprim = paymentterm_request_compound_parseFromJSON(obj_paymentterm); //nonprimitive
 
 
-    paymentterm_edit_object_v1_request_local_var = paymentterm_edit_object_v1_request_create (
+    paymentterm_edit_object_v1_request_local_var = paymentterm_edit_object_v1_request_create_internal (
         obj_paymentterm_local_nonprim
         );
 

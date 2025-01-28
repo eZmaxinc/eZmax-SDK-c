@@ -21,9 +21,10 @@ typedef struct webhook_regenerate_apikey_v1_request_t webhook_regenerate_apikey_
 typedef struct webhook_regenerate_apikey_v1_request_t {
     int b_webhook_issigned; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } webhook_regenerate_apikey_v1_request_t;
 
-webhook_regenerate_apikey_v1_request_t *webhook_regenerate_apikey_v1_request_create(
+__attribute__((deprecated)) webhook_regenerate_apikey_v1_request_t *webhook_regenerate_apikey_v1_request_create(
     int b_webhook_issigned
 );
 

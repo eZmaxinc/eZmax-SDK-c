@@ -28,7 +28,7 @@ creditcarddetail_response_compound_t* instantiate_creditcarddetail_response_comp
       10,
       2024,
       "2500",
-      "Daniel-Johnson Blvd.",
+      "Daniel-Johnson Blvd",
       "H7T 2P6"
     );
   } else {
@@ -39,7 +39,7 @@ creditcarddetail_response_compound_t* instantiate_creditcarddetail_response_comp
       10,
       2024,
       "2500",
-      "Daniel-Johnson Blvd.",
+      "Daniel-Johnson Blvd",
       "H7T 2P6"
     );
   }

@@ -5,7 +5,7 @@
 
 
 
-branding_get_object_v3_response_m_payload_t *branding_get_object_v3_response_m_payload_create(
+static branding_get_object_v3_response_m_payload_t *branding_get_object_v3_response_m_payload_create_internal(
     branding_response_compound_v3_t *obj_branding
     ) {
     branding_get_object_v3_response_m_payload_t *branding_get_object_v3_response_m_payload_local_var = malloc(sizeof(branding_get_object_v3_response_m_payload_t));
@@ -14,12 +14,24 @@ branding_get_object_v3_response_m_payload_t *branding_get_object_v3_response_m_p
     }
     branding_get_object_v3_response_m_payload_local_var->obj_branding = obj_branding;
 
+    branding_get_object_v3_response_m_payload_local_var->_library_owned = 1;
     return branding_get_object_v3_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) branding_get_object_v3_response_m_payload_t *branding_get_object_v3_response_m_payload_create(
+    branding_response_compound_v3_t *obj_branding
+    ) {
+    return branding_get_object_v3_response_m_payload_create_internal (
+        obj_branding
+        );
+}
 
 void branding_get_object_v3_response_m_payload_free(branding_get_object_v3_response_m_payload_t *branding_get_object_v3_response_m_payload) {
     if(NULL == branding_get_object_v3_response_m_payload){
+        return ;
+    }
+    if(branding_get_object_v3_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "branding_get_object_v3_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ branding_get_object_v3_response_m_payload_t *branding_get_object_v3_response_m_p
 
     // branding_get_object_v3_response_m_payload->obj_branding
     cJSON *obj_branding = cJSON_GetObjectItemCaseSensitive(branding_get_object_v3_response_m_payloadJSON, "objBranding");
+    if (cJSON_IsNull(obj_branding)) {
+        obj_branding = NULL;
+    }
     if (!obj_branding) {
         goto end;
     }
@@ -71,7 +86,7 @@ branding_get_object_v3_response_m_payload_t *branding_get_object_v3_response_m_p
     obj_branding_local_nonprim = branding_response_compound_v3_parseFromJSON(obj_branding); //nonprimitive
 
 
-    branding_get_object_v3_response_m_payload_local_var = branding_get_object_v3_response_m_payload_create (
+    branding_get_object_v3_response_m_payload_local_var = branding_get_object_v3_response_m_payload_create_internal (
         obj_branding_local_nonprim
         );
 

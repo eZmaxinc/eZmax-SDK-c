@@ -21,9 +21,10 @@ typedef struct user_edit_colleagues_v2_response_m_payload_t user_edit_colleagues
 typedef struct user_edit_colleagues_v2_response_m_payload_t {
     list_t *a_pki_colleague_id; //primitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } user_edit_colleagues_v2_response_m_payload_t;
 
-user_edit_colleagues_v2_response_m_payload_t *user_edit_colleagues_v2_response_m_payload_create(
+__attribute__((deprecated)) user_edit_colleagues_v2_response_m_payload_t *user_edit_colleagues_v2_response_m_payload_create(
     list_t *a_pki_colleague_id
 );
 

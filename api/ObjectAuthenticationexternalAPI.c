@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 // Functions for enum SSELECTOR for ObjectAuthenticationexternalAPI_authenticationexternalGetAutocompleteV2
 
@@ -267,11 +262,14 @@ ObjectAuthenticationexternalAPI_authenticationexternalCreateObjectV1(apiClient_t
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/authenticationexternal")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/authenticationexternal");
+    char *localVarPath = strdup("/1/object/authenticationexternal");
+
 
 
 
@@ -280,9 +278,10 @@ ObjectAuthenticationexternalAPI_authenticationexternalCreateObjectV1(apiClient_t
     cJSON *localVarSingleItemJSON_authenticationexternal_create_object_v1_request = NULL;
     if (authenticationexternal_create_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_authenticationexternal_create_object_v1_request = authenticationexternal_create_object_v1_request_convertToJSON(authenticationexternal_create_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_authenticationexternal_create_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -294,6 +293,7 @@ ObjectAuthenticationexternalAPI_authenticationexternalCreateObjectV1(apiClient_t
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -301,11 +301,14 @@ ObjectAuthenticationexternalAPI_authenticationexternalCreateObjectV1(apiClient_t
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectAuthenticationexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    authenticationexternal_create_object_v1_response_t *elementToReturn = authenticationexternal_create_object_v1_response_parseFromJSON(ObjectAuthenticationexternalAPIlocalVarJSON);
-    cJSON_Delete(ObjectAuthenticationexternalAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    authenticationexternal_create_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectAuthenticationexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = authenticationexternal_create_object_v1_response_parseFromJSON(ObjectAuthenticationexternalAPIlocalVarJSON);
+        cJSON_Delete(ObjectAuthenticationexternalAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -336,7 +339,7 @@ end:
 //
 // 
 //
-common_response_t*
+authenticationexternal_delete_object_v1_response_t*
 ObjectAuthenticationexternalAPI_authenticationexternalDeleteObjectV1(apiClient_t *apiClient, int *pkiAuthenticationexternalID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -345,15 +348,18 @@ ObjectAuthenticationexternalAPI_authenticationexternalDeleteObjectV1(apiClient_t
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/authenticationexternal/{pkiAuthenticationexternalID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/authenticationexternal/{pkiAuthenticationexternalID}");
+    char *localVarPath = strdup("/1/object/authenticationexternal/{pkiAuthenticationexternalID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiAuthenticationexternalID =  + strlen("{ pkiAuthenticationexternalID }");
+    long sizeOfPathParams_pkiAuthenticationexternalID =  + sizeof("{ pkiAuthenticationexternalID }") - 1;
     if(pkiAuthenticationexternalID == 0){
         goto end;
     }
@@ -361,7 +367,7 @@ ObjectAuthenticationexternalAPI_authenticationexternalDeleteObjectV1(apiClient_t
     snprintf(localVarToReplace_pkiAuthenticationexternalID, sizeOfPathParams_pkiAuthenticationexternalID, "{%s}", "pkiAuthenticationexternalID");
 
     char localVarBuff_pkiAuthenticationexternalID[256];
-    intToStr(localVarBuff_pkiAuthenticationexternalID, *pkiAuthenticationexternalID);
+    snprintf(localVarBuff_pkiAuthenticationexternalID, sizeof localVarBuff_pkiAuthenticationexternalID, "%ld", (long)*pkiAuthenticationexternalID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiAuthenticationexternalID, localVarBuff_pkiAuthenticationexternalID);
 
@@ -376,6 +382,7 @@ ObjectAuthenticationexternalAPI_authenticationexternalDeleteObjectV1(apiClient_t
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "DELETE");
 
     // uncomment below to debug the error response
@@ -387,11 +394,14 @@ ObjectAuthenticationexternalAPI_authenticationexternalDeleteObjectV1(apiClient_t
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectAuthenticationexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectAuthenticationexternalAPIlocalVarJSON);
-    cJSON_Delete(ObjectAuthenticationexternalAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    authenticationexternal_delete_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectAuthenticationexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = authenticationexternal_delete_object_v1_response_parseFromJSON(ObjectAuthenticationexternalAPIlocalVarJSON);
+        cJSON_Delete(ObjectAuthenticationexternalAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -418,7 +428,7 @@ end:
 //
 // 
 //
-common_response_t*
+authenticationexternal_edit_object_v1_response_t*
 ObjectAuthenticationexternalAPI_authenticationexternalEditObjectV1(apiClient_t *apiClient, int *pkiAuthenticationexternalID, authenticationexternal_edit_object_v1_request_t *authenticationexternal_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -427,15 +437,18 @@ ObjectAuthenticationexternalAPI_authenticationexternalEditObjectV1(apiClient_t *
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/authenticationexternal/{pkiAuthenticationexternalID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/authenticationexternal/{pkiAuthenticationexternalID}");
+    char *localVarPath = strdup("/1/object/authenticationexternal/{pkiAuthenticationexternalID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiAuthenticationexternalID =  + strlen("{ pkiAuthenticationexternalID }");
+    long sizeOfPathParams_pkiAuthenticationexternalID =  + sizeof("{ pkiAuthenticationexternalID }") - 1;
     if(pkiAuthenticationexternalID == 0){
         goto end;
     }
@@ -443,7 +456,7 @@ ObjectAuthenticationexternalAPI_authenticationexternalEditObjectV1(apiClient_t *
     snprintf(localVarToReplace_pkiAuthenticationexternalID, sizeOfPathParams_pkiAuthenticationexternalID, "{%s}", "pkiAuthenticationexternalID");
 
     char localVarBuff_pkiAuthenticationexternalID[256];
-    intToStr(localVarBuff_pkiAuthenticationexternalID, *pkiAuthenticationexternalID);
+    snprintf(localVarBuff_pkiAuthenticationexternalID, sizeof localVarBuff_pkiAuthenticationexternalID, "%ld", (long)*pkiAuthenticationexternalID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiAuthenticationexternalID, localVarBuff_pkiAuthenticationexternalID);
 
@@ -454,9 +467,10 @@ ObjectAuthenticationexternalAPI_authenticationexternalEditObjectV1(apiClient_t *
     cJSON *localVarSingleItemJSON_authenticationexternal_edit_object_v1_request = NULL;
     if (authenticationexternal_edit_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_authenticationexternal_edit_object_v1_request = authenticationexternal_edit_object_v1_request_convertToJSON(authenticationexternal_edit_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_authenticationexternal_edit_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -468,6 +482,7 @@ ObjectAuthenticationexternalAPI_authenticationexternalEditObjectV1(apiClient_t *
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -483,11 +498,14 @@ ObjectAuthenticationexternalAPI_authenticationexternalEditObjectV1(apiClient_t *
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectAuthenticationexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectAuthenticationexternalAPIlocalVarJSON);
-    cJSON_Delete(ObjectAuthenticationexternalAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    authenticationexternal_edit_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectAuthenticationexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = authenticationexternal_edit_object_v1_response_parseFromJSON(ObjectAuthenticationexternalAPIlocalVarJSON);
+        cJSON_Delete(ObjectAuthenticationexternalAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -528,22 +546,27 @@ ObjectAuthenticationexternalAPI_authenticationexternalGetAutocompleteV2(apiClien
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/authenticationexternal/getAutocomplete/{sSelector}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/authenticationexternal/getAutocomplete/{sSelector}");
+    char *localVarPath = strdup("/2/object/authenticationexternal/getAutocomplete/{sSelector}");
+
+    if(!sSelector)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_sSelector = strlen(sSelector)+3 + strlen("{ sSelector }");
-    if(sSelector == NULL) {
+    long sizeOfPathParams_sSelector = strlen(authenticationexternalGetAutocompleteV2_SSELECTOR_ToString(sSelector))+3 + sizeof("{ sSelector }") - 1;
+    if(sSelector == 0) {
         goto end;
     }
     char* localVarToReplace_sSelector = malloc(sizeOfPathParams_sSelector);
     sprintf(localVarToReplace_sSelector, "{%s}", "sSelector");
 
-    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, sSelector);
+    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, authenticationexternalGetAutocompleteV2_SSELECTOR_ToString(sSelector));
 
 
 
@@ -567,7 +590,7 @@ ObjectAuthenticationexternalAPI_authenticationexternalGetAutocompleteV2(apiClien
     {
         keyQuery_eFilterActive = strdup("eFilterActive");
         valueQuery_eFilterActive = (eFilterActive);
-        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(authenticationexternalGetAutocompleteV2_EFILTERACTIVE_ToString(
+        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, strdup(authenticationexternalGetAutocompleteV2_EFILTERACTIVE_ToString(
         valueQuery_eFilterActive)));
         list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
     }
@@ -592,6 +615,7 @@ ObjectAuthenticationexternalAPI_authenticationexternalGetAutocompleteV2(apiClien
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -599,11 +623,14 @@ ObjectAuthenticationexternalAPI_authenticationexternalGetAutocompleteV2(apiClien
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectAuthenticationexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    authenticationexternal_get_autocomplete_v2_response_t *elementToReturn = authenticationexternal_get_autocomplete_v2_response_parseFromJSON(ObjectAuthenticationexternalAPIlocalVarJSON);
-    cJSON_Delete(ObjectAuthenticationexternalAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    authenticationexternal_get_autocomplete_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectAuthenticationexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = authenticationexternal_get_autocomplete_v2_response_parseFromJSON(ObjectAuthenticationexternalAPIlocalVarJSON);
+        cJSON_Delete(ObjectAuthenticationexternalAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -664,11 +691,14 @@ ObjectAuthenticationexternalAPI_authenticationexternalGetListV1(apiClient_t *api
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/authenticationexternal/getList")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/authenticationexternal/getList");
+    char *localVarPath = strdup("/1/object/authenticationexternal/getList");
+
 
 
 
@@ -693,7 +723,7 @@ ObjectAuthenticationexternalAPI_authenticationexternalGetListV1(apiClient_t *api
     {
         keyQuery_eOrderBy = strdup("eOrderBy");
         valueQuery_eOrderBy = (eOrderBy);
-        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, (void *)strdup(authenticationexternalGetListV1_EORDERBY_ToString(
+        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, strdup(authenticationexternalGetListV1_EORDERBY_ToString(
         valueQuery_eOrderBy)));
         list_addElement(localVarQueryParameters,keyPairQuery_eOrderBy);
     }
@@ -745,6 +775,7 @@ ObjectAuthenticationexternalAPI_authenticationexternalGetListV1(apiClient_t *api
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -756,11 +787,14 @@ ObjectAuthenticationexternalAPI_authenticationexternalGetListV1(apiClient_t *api
     //    printf("%s\n","The URL is valid, but one of the Accept header is not defined or invalid. For example, you set the header \&quot;Accept: application/json\&quot; but the function can only return \&quot;Content-type: image/png\&quot;");
     //}
     //nonprimitive not container
-    cJSON *ObjectAuthenticationexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    authenticationexternal_get_list_v1_response_t *elementToReturn = authenticationexternal_get_list_v1_response_parseFromJSON(ObjectAuthenticationexternalAPIlocalVarJSON);
-    cJSON_Delete(ObjectAuthenticationexternalAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    authenticationexternal_get_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectAuthenticationexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = authenticationexternal_get_list_v1_response_parseFromJSON(ObjectAuthenticationexternalAPIlocalVarJSON);
+        cJSON_Delete(ObjectAuthenticationexternalAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -844,15 +878,18 @@ ObjectAuthenticationexternalAPI_authenticationexternalGetObjectV2(apiClient_t *a
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/authenticationexternal/{pkiAuthenticationexternalID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/authenticationexternal/{pkiAuthenticationexternalID}");
+    char *localVarPath = strdup("/2/object/authenticationexternal/{pkiAuthenticationexternalID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiAuthenticationexternalID =  + strlen("{ pkiAuthenticationexternalID }");
+    long sizeOfPathParams_pkiAuthenticationexternalID =  + sizeof("{ pkiAuthenticationexternalID }") - 1;
     if(pkiAuthenticationexternalID == 0){
         goto end;
     }
@@ -860,7 +897,7 @@ ObjectAuthenticationexternalAPI_authenticationexternalGetObjectV2(apiClient_t *a
     snprintf(localVarToReplace_pkiAuthenticationexternalID, sizeOfPathParams_pkiAuthenticationexternalID, "{%s}", "pkiAuthenticationexternalID");
 
     char localVarBuff_pkiAuthenticationexternalID[256];
-    intToStr(localVarBuff_pkiAuthenticationexternalID, *pkiAuthenticationexternalID);
+    snprintf(localVarBuff_pkiAuthenticationexternalID, sizeof localVarBuff_pkiAuthenticationexternalID, "%ld", (long)*pkiAuthenticationexternalID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiAuthenticationexternalID, localVarBuff_pkiAuthenticationexternalID);
 
@@ -875,6 +912,7 @@ ObjectAuthenticationexternalAPI_authenticationexternalGetObjectV2(apiClient_t *a
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -886,11 +924,14 @@ ObjectAuthenticationexternalAPI_authenticationexternalGetObjectV2(apiClient_t *a
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectAuthenticationexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    authenticationexternal_get_object_v2_response_t *elementToReturn = authenticationexternal_get_object_v2_response_parseFromJSON(ObjectAuthenticationexternalAPIlocalVarJSON);
-    cJSON_Delete(ObjectAuthenticationexternalAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    authenticationexternal_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectAuthenticationexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = authenticationexternal_get_object_v2_response_parseFromJSON(ObjectAuthenticationexternalAPIlocalVarJSON);
+        cJSON_Delete(ObjectAuthenticationexternalAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -917,7 +958,7 @@ end:
 //
 // 
 //
-common_response_t*
+authenticationexternal_reset_authorization_v1_response_t*
 ObjectAuthenticationexternalAPI_authenticationexternalResetAuthorizationV1(apiClient_t *apiClient, int *pkiAuthenticationexternalID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -926,15 +967,18 @@ ObjectAuthenticationexternalAPI_authenticationexternalResetAuthorizationV1(apiCl
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/authenticationexternal/{pkiAuthenticationexternalID}/resetAuthorization")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/authenticationexternal/{pkiAuthenticationexternalID}/resetAuthorization");
+    char *localVarPath = strdup("/1/object/authenticationexternal/{pkiAuthenticationexternalID}/resetAuthorization");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiAuthenticationexternalID =  + strlen("{ pkiAuthenticationexternalID }");
+    long sizeOfPathParams_pkiAuthenticationexternalID =  + sizeof("{ pkiAuthenticationexternalID }") - 1;
     if(pkiAuthenticationexternalID == 0){
         goto end;
     }
@@ -942,7 +986,7 @@ ObjectAuthenticationexternalAPI_authenticationexternalResetAuthorizationV1(apiCl
     snprintf(localVarToReplace_pkiAuthenticationexternalID, sizeOfPathParams_pkiAuthenticationexternalID, "{%s}", "pkiAuthenticationexternalID");
 
     char localVarBuff_pkiAuthenticationexternalID[256];
-    intToStr(localVarBuff_pkiAuthenticationexternalID, *pkiAuthenticationexternalID);
+    snprintf(localVarBuff_pkiAuthenticationexternalID, sizeof localVarBuff_pkiAuthenticationexternalID, "%ld", (long)*pkiAuthenticationexternalID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiAuthenticationexternalID, localVarBuff_pkiAuthenticationexternalID);
 
@@ -953,9 +997,10 @@ ObjectAuthenticationexternalAPI_authenticationexternalResetAuthorizationV1(apiCl
     cJSON *localVarSingleItemJSON_body = NULL;
     if (body != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_body = object_convertToJSON(body);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_body);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -967,6 +1012,7 @@ ObjectAuthenticationexternalAPI_authenticationexternalResetAuthorizationV1(apiCl
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -978,11 +1024,14 @@ ObjectAuthenticationexternalAPI_authenticationexternalResetAuthorizationV1(apiCl
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectAuthenticationexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectAuthenticationexternalAPIlocalVarJSON);
-    cJSON_Delete(ObjectAuthenticationexternalAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    authenticationexternal_reset_authorization_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectAuthenticationexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = authenticationexternal_reset_authorization_v1_response_parseFromJSON(ObjectAuthenticationexternalAPIlocalVarJSON);
+        cJSON_Delete(ObjectAuthenticationexternalAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

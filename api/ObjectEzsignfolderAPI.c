@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 // Functions for enum EORDERBY for ObjectEzsignfolderAPI_ezsignfolderGetListV1
 
@@ -111,7 +106,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignfolder_archive_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderArchiveV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -120,15 +115,18 @@ ObjectEzsignfolderAPI_ezsignfolderArchiveV1(apiClient_t *apiClient, int *pkiEzsi
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}/archive")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}/archive");
+    char *localVarPath = strdup("/1/object/ezsignfolder/{pkiEzsignfolderID}/archive");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -136,7 +134,7 @@ ObjectEzsignfolderAPI_ezsignfolderArchiveV1(apiClient_t *apiClient, int *pkiEzsi
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -147,9 +145,10 @@ ObjectEzsignfolderAPI_ezsignfolderArchiveV1(apiClient_t *apiClient, int *pkiEzsi
     cJSON *localVarSingleItemJSON_body = NULL;
     if (body != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_body = object_convertToJSON(body);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_body);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -161,6 +160,7 @@ ObjectEzsignfolderAPI_ezsignfolderArchiveV1(apiClient_t *apiClient, int *pkiEzsi
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -176,11 +176,14 @@ ObjectEzsignfolderAPI_ezsignfolderArchiveV1(apiClient_t *apiClient, int *pkiEzsi
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_archive_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_archive_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -210,7 +213,7 @@ end:
 
 // Download multiples files from an Ezsignfolder
 //
-binary_t**
+binary_t*
 ObjectEzsignfolderAPI_ezsignfolderBatchDownloadV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_batch_download_v1_request_t *ezsignfolder_batch_download_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -219,15 +222,18 @@ ObjectEzsignfolderAPI_ezsignfolderBatchDownloadV1(apiClient_t *apiClient, int *p
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}/batchDownload")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}/batchDownload");
+    char *localVarPath = strdup("/1/object/ezsignfolder/{pkiEzsignfolderID}/batchDownload");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -235,7 +241,7 @@ ObjectEzsignfolderAPI_ezsignfolderBatchDownloadV1(apiClient_t *apiClient, int *p
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -246,9 +252,10 @@ ObjectEzsignfolderAPI_ezsignfolderBatchDownloadV1(apiClient_t *apiClient, int *p
     cJSON *localVarSingleItemJSON_ezsignfolder_batch_download_v1_request = NULL;
     if (ezsignfolder_batch_download_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignfolder_batch_download_v1_request = ezsignfolder_batch_download_v1_request_convertToJSON(ezsignfolder_batch_download_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignfolder_batch_download_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/zip"); //produces
     list_addElement(localVarHeaderType,"application/json"); //produces
@@ -261,6 +268,7 @@ ObjectEzsignfolderAPI_ezsignfolderBatchDownloadV1(apiClient_t *apiClient, int *p
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -279,8 +287,10 @@ ObjectEzsignfolderAPI_ezsignfolderBatchDownloadV1(apiClient_t *apiClient, int *p
     //if (apiClient->response_code == 422) {
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
-    //primitive return type simple
-    binary_t** elementToReturn =  strdup((binary_t**)apiClient->dataReceived);
+    //primitive return type simple binary
+    binary_t* elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300)
+        elementToReturn = instantiate_binary_t(apiClient->dataReceived, apiClient->dataReceivedLen);
 
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
@@ -319,11 +329,14 @@ ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1(apiClient_t *apiClient, list_t 
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder");
+    char *localVarPath = strdup("/1/object/ezsignfolder");
+
 
 
 
@@ -355,6 +368,7 @@ ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1(apiClient_t *apiClient, list_t 
         }
         cJSON_AddItemToArray(localVarSingleItemJSON_ezsignfolder_create_object_v1_request, localVar_ezsignfolder_create_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarItemJSON_ezsignfolder_create_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -366,6 +380,7 @@ ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1(apiClient_t *apiClient, list_t 
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -373,11 +388,14 @@ ObjectEzsignfolderAPI_ezsignfolderCreateObjectV1(apiClient_t *apiClient, list_t 
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfolder_create_object_v1_response_t *elementToReturn = ezsignfolder_create_object_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_create_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_create_object_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -425,11 +443,14 @@ ObjectEzsignfolderAPI_ezsignfolderCreateObjectV2(apiClient_t *apiClient, ezsignf
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/ezsignfolder")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/ezsignfolder");
+    char *localVarPath = strdup("/2/object/ezsignfolder");
+
 
 
 
@@ -438,9 +459,10 @@ ObjectEzsignfolderAPI_ezsignfolderCreateObjectV2(apiClient_t *apiClient, ezsignf
     cJSON *localVarSingleItemJSON_ezsignfolder_create_object_v2_request = NULL;
     if (ezsignfolder_create_object_v2_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignfolder_create_object_v2_request = ezsignfolder_create_object_v2_request_convertToJSON(ezsignfolder_create_object_v2_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignfolder_create_object_v2_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -452,6 +474,7 @@ ObjectEzsignfolderAPI_ezsignfolderCreateObjectV2(apiClient_t *apiClient, ezsignf
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -459,11 +482,14 @@ ObjectEzsignfolderAPI_ezsignfolderCreateObjectV2(apiClient_t *apiClient, ezsignf
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfolder_create_object_v2_response_t *elementToReturn = ezsignfolder_create_object_v2_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_create_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_create_object_v2_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -503,11 +529,14 @@ ObjectEzsignfolderAPI_ezsignfolderCreateObjectV3(apiClient_t *apiClient, ezsignf
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/3/object/ezsignfolder")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/3/object/ezsignfolder");
+    char *localVarPath = strdup("/3/object/ezsignfolder");
+
 
 
 
@@ -516,9 +545,10 @@ ObjectEzsignfolderAPI_ezsignfolderCreateObjectV3(apiClient_t *apiClient, ezsignf
     cJSON *localVarSingleItemJSON_ezsignfolder_create_object_v3_request = NULL;
     if (ezsignfolder_create_object_v3_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignfolder_create_object_v3_request = ezsignfolder_create_object_v3_request_convertToJSON(ezsignfolder_create_object_v3_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignfolder_create_object_v3_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -530,6 +560,7 @@ ObjectEzsignfolderAPI_ezsignfolderCreateObjectV3(apiClient_t *apiClient, ezsignf
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -537,11 +568,14 @@ ObjectEzsignfolderAPI_ezsignfolderCreateObjectV3(apiClient_t *apiClient, ezsignf
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfolder_create_object_v3_response_t *elementToReturn = ezsignfolder_create_object_v3_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_create_object_v3_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_create_object_v3_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -570,7 +604,7 @@ end:
 
 // Delete an existing Ezsignfolder
 //
-common_response_t*
+ezsignfolder_delete_object_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignfolderID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -579,15 +613,18 @@ ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1(apiClient_t *apiClient, int *pk
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}");
+    char *localVarPath = strdup("/1/object/ezsignfolder/{pkiEzsignfolderID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -595,7 +632,7 @@ ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1(apiClient_t *apiClient, int *pk
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -610,6 +647,7 @@ ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1(apiClient_t *apiClient, int *pk
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "DELETE");
 
     // uncomment below to debug the error response
@@ -625,11 +663,14 @@ ObjectEzsignfolderAPI_ezsignfolderDeleteObjectV1(apiClient_t *apiClient, int *pk
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_delete_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_delete_object_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -656,7 +697,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignfolder_dispose_ezsignfolders_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderDisposeEzsignfoldersV1(apiClient_t *apiClient, ezsignfolder_dispose_ezsignfolders_v1_request_t *ezsignfolder_dispose_ezsignfolders_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -665,11 +706,14 @@ ObjectEzsignfolderAPI_ezsignfolderDisposeEzsignfoldersV1(apiClient_t *apiClient,
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/disposeEzsignfolders")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/disposeEzsignfolders");
+    char *localVarPath = strdup("/1/object/ezsignfolder/disposeEzsignfolders");
+
 
 
 
@@ -678,9 +722,10 @@ ObjectEzsignfolderAPI_ezsignfolderDisposeEzsignfoldersV1(apiClient_t *apiClient,
     cJSON *localVarSingleItemJSON_ezsignfolder_dispose_ezsignfolders_v1_request = NULL;
     if (ezsignfolder_dispose_ezsignfolders_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignfolder_dispose_ezsignfolders_v1_request = ezsignfolder_dispose_ezsignfolders_v1_request_convertToJSON(ezsignfolder_dispose_ezsignfolders_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignfolder_dispose_ezsignfolders_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -692,6 +737,7 @@ ObjectEzsignfolderAPI_ezsignfolderDisposeEzsignfoldersV1(apiClient_t *apiClient,
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -707,11 +753,14 @@ ObjectEzsignfolderAPI_ezsignfolderDisposeEzsignfoldersV1(apiClient_t *apiClient,
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_dispose_ezsignfolders_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_dispose_ezsignfolders_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -742,7 +791,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignfolder_dispose_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderDisposeV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -751,15 +800,18 @@ ObjectEzsignfolderAPI_ezsignfolderDisposeV1(apiClient_t *apiClient, int *pkiEzsi
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}/dispose")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}/dispose");
+    char *localVarPath = strdup("/1/object/ezsignfolder/{pkiEzsignfolderID}/dispose");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -767,7 +819,7 @@ ObjectEzsignfolderAPI_ezsignfolderDisposeV1(apiClient_t *apiClient, int *pkiEzsi
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -778,9 +830,10 @@ ObjectEzsignfolderAPI_ezsignfolderDisposeV1(apiClient_t *apiClient, int *pkiEzsi
     cJSON *localVarSingleItemJSON_body = NULL;
     if (body != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_body = object_convertToJSON(body);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_body);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -792,6 +845,7 @@ ObjectEzsignfolderAPI_ezsignfolderDisposeV1(apiClient_t *apiClient, int *pkiEzsi
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -807,11 +861,14 @@ ObjectEzsignfolderAPI_ezsignfolderDisposeV1(apiClient_t *apiClient, int *pkiEzsi
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_dispose_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_dispose_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -843,7 +900,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignfolder_edit_object_v3_response_t*
 ObjectEzsignfolderAPI_ezsignfolderEditObjectV3(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_edit_object_v3_request_t *ezsignfolder_edit_object_v3_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -852,15 +909,18 @@ ObjectEzsignfolderAPI_ezsignfolderEditObjectV3(apiClient_t *apiClient, int *pkiE
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/3/object/ezsignfolder/{pkiEzsignfolderID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/3/object/ezsignfolder/{pkiEzsignfolderID}");
+    char *localVarPath = strdup("/3/object/ezsignfolder/{pkiEzsignfolderID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -868,7 +928,7 @@ ObjectEzsignfolderAPI_ezsignfolderEditObjectV3(apiClient_t *apiClient, int *pkiE
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -879,9 +939,10 @@ ObjectEzsignfolderAPI_ezsignfolderEditObjectV3(apiClient_t *apiClient, int *pkiE
     cJSON *localVarSingleItemJSON_ezsignfolder_edit_object_v3_request = NULL;
     if (ezsignfolder_edit_object_v3_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignfolder_edit_object_v3_request = ezsignfolder_edit_object_v3_request_convertToJSON(ezsignfolder_edit_object_v3_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignfolder_edit_object_v3_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -893,6 +954,7 @@ ObjectEzsignfolderAPI_ezsignfolderEditObjectV3(apiClient_t *apiClient, int *pkiE
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -908,11 +970,14 @@ ObjectEzsignfolderAPI_ezsignfolderEditObjectV3(apiClient_t *apiClient, int *pkiE
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_edit_object_v3_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_edit_object_v3_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -944,7 +1009,7 @@ end:
 //
 // End prematurely all Ezsigndocument of Ezsignfolder when some signatures are still required
 //
-common_response_t*
+ezsignfolder_end_prematurely_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderEndPrematurelyV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -953,15 +1018,18 @@ ObjectEzsignfolderAPI_ezsignfolderEndPrematurelyV1(apiClient_t *apiClient, int *
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}/endPrematurely")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}/endPrematurely");
+    char *localVarPath = strdup("/1/object/ezsignfolder/{pkiEzsignfolderID}/endPrematurely");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -969,7 +1037,7 @@ ObjectEzsignfolderAPI_ezsignfolderEndPrematurelyV1(apiClient_t *apiClient, int *
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -980,9 +1048,10 @@ ObjectEzsignfolderAPI_ezsignfolderEndPrematurelyV1(apiClient_t *apiClient, int *
     cJSON *localVarSingleItemJSON_body = NULL;
     if (body != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_body = object_convertToJSON(body);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_body);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -994,6 +1063,7 @@ ObjectEzsignfolderAPI_ezsignfolderEndPrematurelyV1(apiClient_t *apiClient, int *
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -1009,11 +1079,14 @@ ObjectEzsignfolderAPI_ezsignfolderEndPrematurelyV1(apiClient_t *apiClient, int *
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_end_prematurely_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_end_prematurely_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1054,15 +1127,18 @@ ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV1(apiClient_t *apiClient
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}/getActionableElements")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}/getActionableElements");
+    char *localVarPath = strdup("/1/object/ezsignfolder/{pkiEzsignfolderID}/getActionableElements");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -1070,7 +1146,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV1(apiClient_t *apiClient
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -1085,6 +1161,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV1(apiClient_t *apiClient
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1100,11 +1177,14 @@ ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV1(apiClient_t *apiClient
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfolder_get_actionable_elements_v1_response_t *elementToReturn = ezsignfolder_get_actionable_elements_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_get_actionable_elements_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_get_actionable_elements_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1140,15 +1220,18 @@ ObjectEzsignfolderAPI_ezsignfolderGetAttachmentCountV1(apiClient_t *apiClient, i
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}/getAttachmentCount")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}/getAttachmentCount");
+    char *localVarPath = strdup("/1/object/ezsignfolder/{pkiEzsignfolderID}/getAttachmentCount");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -1156,7 +1239,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetAttachmentCountV1(apiClient_t *apiClient, i
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -1171,6 +1254,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetAttachmentCountV1(apiClient_t *apiClient, i
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1182,11 +1266,14 @@ ObjectEzsignfolderAPI_ezsignfolderGetAttachmentCountV1(apiClient_t *apiClient, i
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfolder_get_attachment_count_v1_response_t *elementToReturn = ezsignfolder_get_attachment_count_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_get_attachment_count_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_get_attachment_count_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1222,15 +1309,18 @@ ObjectEzsignfolderAPI_ezsignfolderGetAttachmentsV1(apiClient_t *apiClient, int *
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}/getAttachments")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}/getAttachments");
+    char *localVarPath = strdup("/1/object/ezsignfolder/{pkiEzsignfolderID}/getAttachments");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -1238,7 +1328,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetAttachmentsV1(apiClient_t *apiClient, int *
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -1253,6 +1343,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetAttachmentsV1(apiClient_t *apiClient, int *
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1264,11 +1355,14 @@ ObjectEzsignfolderAPI_ezsignfolderGetAttachmentsV1(apiClient_t *apiClient, int *
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfolder_get_attachments_v1_response_t *elementToReturn = ezsignfolder_get_attachments_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_get_attachments_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_get_attachments_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1304,15 +1398,18 @@ ObjectEzsignfolderAPI_ezsignfolderGetCommunicationCountV1(apiClient_t *apiClient
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}/getCommunicationCount")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}/getCommunicationCount");
+    char *localVarPath = strdup("/1/object/ezsignfolder/{pkiEzsignfolderID}/getCommunicationCount");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -1320,7 +1417,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetCommunicationCountV1(apiClient_t *apiClient
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -1335,6 +1432,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetCommunicationCountV1(apiClient_t *apiClient
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1346,11 +1444,14 @@ ObjectEzsignfolderAPI_ezsignfolderGetCommunicationCountV1(apiClient_t *apiClient
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfolder_get_communication_count_v1_response_t *elementToReturn = ezsignfolder_get_communication_count_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_get_communication_count_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_get_communication_count_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1386,15 +1487,18 @@ ObjectEzsignfolderAPI_ezsignfolderGetCommunicationListV1(apiClient_t *apiClient,
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}/getCommunicationList")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}/getCommunicationList");
+    char *localVarPath = strdup("/1/object/ezsignfolder/{pkiEzsignfolderID}/getCommunicationList");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -1402,7 +1506,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetCommunicationListV1(apiClient_t *apiClient,
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -1417,6 +1521,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetCommunicationListV1(apiClient_t *apiClient,
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1428,11 +1533,14 @@ ObjectEzsignfolderAPI_ezsignfolderGetCommunicationListV1(apiClient_t *apiClient,
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfolder_get_communication_list_v1_response_t *elementToReturn = ezsignfolder_get_communication_list_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_get_communication_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_get_communication_list_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1468,15 +1576,18 @@ ObjectEzsignfolderAPI_ezsignfolderGetCommunicationrecipientsV1(apiClient_t *apiC
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}/getCommunicationrecipients")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}/getCommunicationrecipients");
+    char *localVarPath = strdup("/1/object/ezsignfolder/{pkiEzsignfolderID}/getCommunicationrecipients");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -1484,7 +1595,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetCommunicationrecipientsV1(apiClient_t *apiC
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -1499,6 +1610,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetCommunicationrecipientsV1(apiClient_t *apiC
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1510,11 +1622,14 @@ ObjectEzsignfolderAPI_ezsignfolderGetCommunicationrecipientsV1(apiClient_t *apiC
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfolder_get_communicationrecipients_v1_response_t *elementToReturn = ezsignfolder_get_communicationrecipients_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_get_communicationrecipients_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_get_communicationrecipients_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1550,15 +1665,18 @@ ObjectEzsignfolderAPI_ezsignfolderGetCommunicationsendersV1(apiClient_t *apiClie
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}/getCommunicationsenders")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}/getCommunicationsenders");
+    char *localVarPath = strdup("/1/object/ezsignfolder/{pkiEzsignfolderID}/getCommunicationsenders");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -1566,7 +1684,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetCommunicationsendersV1(apiClient_t *apiClie
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -1581,6 +1699,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetCommunicationsendersV1(apiClient_t *apiClie
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1592,11 +1711,14 @@ ObjectEzsignfolderAPI_ezsignfolderGetCommunicationsendersV1(apiClient_t *apiClie
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfolder_get_communicationsenders_v1_response_t *elementToReturn = ezsignfolder_get_communicationsenders_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_get_communicationsenders_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_get_communicationsenders_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1632,15 +1754,18 @@ ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1(apiClient_t *apiClient, i
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsigndocuments")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsigndocuments");
+    char *localVarPath = strdup("/1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsigndocuments");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -1648,7 +1773,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1(apiClient_t *apiClient, i
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -1663,6 +1788,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1(apiClient_t *apiClient, i
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1674,11 +1800,14 @@ ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1(apiClient_t *apiClient, i
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfolder_get_ezsigndocuments_v1_response_t *elementToReturn = ezsignfolder_get_ezsigndocuments_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_get_ezsigndocuments_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_get_ezsigndocuments_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1714,15 +1843,18 @@ ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1(apiClient_
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsignfoldersignerassociations")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsignfoldersignerassociations");
+    char *localVarPath = strdup("/1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsignfoldersignerassociations");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -1730,7 +1862,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1(apiClient_
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -1745,6 +1877,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1(apiClient_
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1756,11 +1889,14 @@ ObjectEzsignfolderAPI_ezsignfolderGetEzsignfoldersignerassociationsV1(apiClient_
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfolder_get_ezsignfoldersignerassociations_v1_response_t *elementToReturn = ezsignfolder_get_ezsignfoldersignerassociations_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_get_ezsignfoldersignerassociations_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_get_ezsignfoldersignerassociations_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1796,15 +1932,18 @@ ObjectEzsignfolderAPI_ezsignfolderGetEzsignsignaturesAutomaticV1(apiClient_t *ap
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsignsignaturesAutomatic")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsignsignaturesAutomatic");
+    char *localVarPath = strdup("/1/object/ezsignfolder/{pkiEzsignfolderID}/getEzsignsignaturesAutomatic");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -1812,7 +1951,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetEzsignsignaturesAutomaticV1(apiClient_t *ap
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -1827,6 +1966,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetEzsignsignaturesAutomaticV1(apiClient_t *ap
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1838,11 +1978,14 @@ ObjectEzsignfolderAPI_ezsignfolderGetEzsignsignaturesAutomaticV1(apiClient_t *ap
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfolder_get_ezsignsignatures_automatic_v1_response_t *elementToReturn = ezsignfolder_get_ezsignsignatures_automatic_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_get_ezsignsignatures_automatic_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_get_ezsignsignatures_automatic_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1878,15 +2021,18 @@ ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1(apiClient_t *apiClient, int *pk
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}/getFormsData")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}/getFormsData");
+    char *localVarPath = strdup("/1/object/ezsignfolder/{pkiEzsignfolderID}/getFormsData");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -1894,7 +2040,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1(apiClient_t *apiClient, int *pk
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -1910,6 +2056,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1(apiClient_t *apiClient, int *pk
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1929,11 +2076,14 @@ ObjectEzsignfolderAPI_ezsignfolderGetFormsDataV1(apiClient_t *apiClient, int *pk
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfolder_get_forms_data_v1_response_t *elementToReturn = ezsignfolder_get_forms_data_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_get_forms_data_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_get_forms_data_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1969,11 +2119,14 @@ ObjectEzsignfolderAPI_ezsignfolderGetListV1(apiClient_t *apiClient, ezmax_api_de
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/getList")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/getList");
+    char *localVarPath = strdup("/1/object/ezsignfolder/getList");
+
 
 
 
@@ -1998,7 +2151,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetListV1(apiClient_t *apiClient, ezmax_api_de
     {
         keyQuery_eOrderBy = strdup("eOrderBy");
         valueQuery_eOrderBy = (eOrderBy);
-        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, (void *)strdup(ezsignfolderGetListV1_EORDERBY_ToString(
+        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, strdup(ezsignfolderGetListV1_EORDERBY_ToString(
         valueQuery_eOrderBy)));
         list_addElement(localVarQueryParameters,keyPairQuery_eOrderBy);
     }
@@ -2050,6 +2203,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetListV1(apiClient_t *apiClient, ezmax_api_de
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -2061,11 +2215,14 @@ ObjectEzsignfolderAPI_ezsignfolderGetListV1(apiClient_t *apiClient, ezmax_api_de
     //    printf("%s\n","The URL is valid, but one of the Accept header is not defined or invalid. For example, you set the header \&quot;Accept: application/json\&quot; but the function can only return \&quot;Content-type: image/png\&quot;");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfolder_get_list_v1_response_t *elementToReturn = ezsignfolder_get_list_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_get_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_get_list_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -2147,15 +2304,18 @@ ObjectEzsignfolderAPI_ezsignfolderGetObjectV1(apiClient_t *apiClient, int *pkiEz
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}");
+    char *localVarPath = strdup("/1/object/ezsignfolder/{pkiEzsignfolderID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -2163,7 +2323,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetObjectV1(apiClient_t *apiClient, int *pkiEz
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -2178,6 +2338,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetObjectV1(apiClient_t *apiClient, int *pkiEz
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -2189,11 +2350,14 @@ ObjectEzsignfolderAPI_ezsignfolderGetObjectV1(apiClient_t *apiClient, int *pkiEz
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfolder_get_object_v1_response_t *elementToReturn = ezsignfolder_get_object_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_get_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_get_object_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -2229,15 +2393,18 @@ ObjectEzsignfolderAPI_ezsignfolderGetObjectV2(apiClient_t *apiClient, int *pkiEz
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/ezsignfolder/{pkiEzsignfolderID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/ezsignfolder/{pkiEzsignfolderID}");
+    char *localVarPath = strdup("/2/object/ezsignfolder/{pkiEzsignfolderID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -2245,7 +2412,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetObjectV2(apiClient_t *apiClient, int *pkiEz
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -2260,6 +2427,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetObjectV2(apiClient_t *apiClient, int *pkiEz
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -2271,11 +2439,14 @@ ObjectEzsignfolderAPI_ezsignfolderGetObjectV2(apiClient_t *apiClient, int *pkiEz
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfolder_get_object_v2_response_t *elementToReturn = ezsignfolder_get_object_v2_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_get_object_v2_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -2311,15 +2482,18 @@ ObjectEzsignfolderAPI_ezsignfolderGetObjectV3(apiClient_t *apiClient, int *pkiEz
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/3/object/ezsignfolder/{pkiEzsignfolderID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/3/object/ezsignfolder/{pkiEzsignfolderID}");
+    char *localVarPath = strdup("/3/object/ezsignfolder/{pkiEzsignfolderID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -2327,7 +2501,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetObjectV3(apiClient_t *apiClient, int *pkiEz
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -2342,6 +2516,7 @@ ObjectEzsignfolderAPI_ezsignfolderGetObjectV3(apiClient_t *apiClient, int *pkiEz
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -2353,11 +2528,14 @@ ObjectEzsignfolderAPI_ezsignfolderGetObjectV3(apiClient_t *apiClient, int *pkiEz
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfolder_get_object_v3_response_t *elementToReturn = ezsignfolder_get_object_v3_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_get_object_v3_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_get_object_v3_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -2393,15 +2571,18 @@ ObjectEzsignfolderAPI_ezsignfolderImportEzsignfoldersignerassociationsV1(apiClie
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}/importEzsignfoldersignerassociations")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}/importEzsignfoldersignerassociations");
+    char *localVarPath = strdup("/1/object/ezsignfolder/{pkiEzsignfolderID}/importEzsignfoldersignerassociations");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -2409,7 +2590,7 @@ ObjectEzsignfolderAPI_ezsignfolderImportEzsignfoldersignerassociationsV1(apiClie
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -2420,9 +2601,10 @@ ObjectEzsignfolderAPI_ezsignfolderImportEzsignfoldersignerassociationsV1(apiClie
     cJSON *localVarSingleItemJSON_ezsignfolder_import_ezsignfoldersignerassociations_v1_request = NULL;
     if (ezsignfolder_import_ezsignfoldersignerassociations_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignfolder_import_ezsignfoldersignerassociations_v1_request = ezsignfolder_import_ezsignfoldersignerassociations_v1_request_convertToJSON(ezsignfolder_import_ezsignfoldersignerassociations_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignfolder_import_ezsignfoldersignerassociations_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -2434,6 +2616,7 @@ ObjectEzsignfolderAPI_ezsignfolderImportEzsignfoldersignerassociationsV1(apiClie
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -2453,11 +2636,14 @@ ObjectEzsignfolderAPI_ezsignfolderImportEzsignfoldersignerassociationsV1(apiClie
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfolder_import_ezsignfoldersignerassociations_v1_response_t *elementToReturn = ezsignfolder_import_ezsignfoldersignerassociations_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_import_ezsignfoldersignerassociations_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_import_ezsignfoldersignerassociations_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -2498,15 +2684,18 @@ ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV1(apiClient_t *api
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}/importEzsigntemplatepackage")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}/importEzsigntemplatepackage");
+    char *localVarPath = strdup("/1/object/ezsignfolder/{pkiEzsignfolderID}/importEzsigntemplatepackage");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -2514,7 +2703,7 @@ ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV1(apiClient_t *api
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -2525,9 +2714,10 @@ ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV1(apiClient_t *api
     cJSON *localVarSingleItemJSON_ezsignfolder_import_ezsigntemplatepackage_v1_request = NULL;
     if (ezsignfolder_import_ezsigntemplatepackage_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignfolder_import_ezsigntemplatepackage_v1_request = ezsignfolder_import_ezsigntemplatepackage_v1_request_convertToJSON(ezsignfolder_import_ezsigntemplatepackage_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignfolder_import_ezsigntemplatepackage_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -2539,6 +2729,7 @@ ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV1(apiClient_t *api
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -2554,11 +2745,14 @@ ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV1(apiClient_t *api
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignfolder_import_ezsigntemplatepackage_v1_response_t *elementToReturn = ezsignfolder_import_ezsigntemplatepackage_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_import_ezsigntemplatepackage_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_import_ezsigntemplatepackage_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -2588,7 +2782,7 @@ end:
 
 // Reorder Ezsigndocuments in the Ezsignfolder
 //
-common_response_t*
+ezsignfolder_reorder_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderReorderV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_reorder_v1_request_t *ezsignfolder_reorder_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -2597,15 +2791,18 @@ ObjectEzsignfolderAPI_ezsignfolderReorderV1(apiClient_t *apiClient, int *pkiEzsi
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}/reorder")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}/reorder");
+    char *localVarPath = strdup("/1/object/ezsignfolder/{pkiEzsignfolderID}/reorder");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -2613,7 +2810,7 @@ ObjectEzsignfolderAPI_ezsignfolderReorderV1(apiClient_t *apiClient, int *pkiEzsi
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -2624,9 +2821,10 @@ ObjectEzsignfolderAPI_ezsignfolderReorderV1(apiClient_t *apiClient, int *pkiEzsi
     cJSON *localVarSingleItemJSON_ezsignfolder_reorder_v1_request = NULL;
     if (ezsignfolder_reorder_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignfolder_reorder_v1_request = ezsignfolder_reorder_v1_request_convertToJSON(ezsignfolder_reorder_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignfolder_reorder_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -2638,6 +2836,7 @@ ObjectEzsignfolderAPI_ezsignfolderReorderV1(apiClient_t *apiClient, int *pkiEzsi
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -2653,11 +2852,14 @@ ObjectEzsignfolderAPI_ezsignfolderReorderV1(apiClient_t *apiClient, int *pkiEzsi
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_reorder_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_reorder_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -2687,7 +2889,7 @@ end:
 
 // Reorder Ezsigndocuments in the Ezsignfolder
 //
-common_response_t*
+ezsignfolder_reorder_v2_response_t*
 ObjectEzsignfolderAPI_ezsignfolderReorderV2(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_reorder_v2_request_t *ezsignfolder_reorder_v2_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -2696,15 +2898,18 @@ ObjectEzsignfolderAPI_ezsignfolderReorderV2(apiClient_t *apiClient, int *pkiEzsi
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/ezsignfolder/{pkiEzsignfolderID}/reorder")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/ezsignfolder/{pkiEzsignfolderID}/reorder");
+    char *localVarPath = strdup("/2/object/ezsignfolder/{pkiEzsignfolderID}/reorder");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -2712,7 +2917,7 @@ ObjectEzsignfolderAPI_ezsignfolderReorderV2(apiClient_t *apiClient, int *pkiEzsi
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -2723,9 +2928,10 @@ ObjectEzsignfolderAPI_ezsignfolderReorderV2(apiClient_t *apiClient, int *pkiEzsi
     cJSON *localVarSingleItemJSON_ezsignfolder_reorder_v2_request = NULL;
     if (ezsignfolder_reorder_v2_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignfolder_reorder_v2_request = ezsignfolder_reorder_v2_request_convertToJSON(ezsignfolder_reorder_v2_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignfolder_reorder_v2_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -2737,6 +2943,7 @@ ObjectEzsignfolderAPI_ezsignfolderReorderV2(apiClient_t *apiClient, int *pkiEzsi
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -2752,11 +2959,14 @@ ObjectEzsignfolderAPI_ezsignfolderReorderV2(apiClient_t *apiClient, int *pkiEzsi
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_reorder_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_reorder_v2_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -2788,7 +2998,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignfolder_send_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderSendV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_send_v1_request_t *ezsignfolder_send_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -2797,15 +3007,18 @@ ObjectEzsignfolderAPI_ezsignfolderSendV1(apiClient_t *apiClient, int *pkiEzsignf
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}/send")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}/send");
+    char *localVarPath = strdup("/1/object/ezsignfolder/{pkiEzsignfolderID}/send");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -2813,7 +3026,7 @@ ObjectEzsignfolderAPI_ezsignfolderSendV1(apiClient_t *apiClient, int *pkiEzsignf
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -2824,9 +3037,10 @@ ObjectEzsignfolderAPI_ezsignfolderSendV1(apiClient_t *apiClient, int *pkiEzsignf
     cJSON *localVarSingleItemJSON_ezsignfolder_send_v1_request = NULL;
     if (ezsignfolder_send_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignfolder_send_v1_request = ezsignfolder_send_v1_request_convertToJSON(ezsignfolder_send_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignfolder_send_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -2838,6 +3052,7 @@ ObjectEzsignfolderAPI_ezsignfolderSendV1(apiClient_t *apiClient, int *pkiEzsignf
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -2853,11 +3068,14 @@ ObjectEzsignfolderAPI_ezsignfolderSendV1(apiClient_t *apiClient, int *pkiEzsignf
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_send_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_send_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -2889,7 +3107,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignfolder_send_v3_response_t*
 ObjectEzsignfolderAPI_ezsignfolderSendV3(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_send_v3_request_t *ezsignfolder_send_v3_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -2898,15 +3116,18 @@ ObjectEzsignfolderAPI_ezsignfolderSendV3(apiClient_t *apiClient, int *pkiEzsignf
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/3/object/ezsignfolder/{pkiEzsignfolderID}/send")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/3/object/ezsignfolder/{pkiEzsignfolderID}/send");
+    char *localVarPath = strdup("/3/object/ezsignfolder/{pkiEzsignfolderID}/send");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -2914,7 +3135,7 @@ ObjectEzsignfolderAPI_ezsignfolderSendV3(apiClient_t *apiClient, int *pkiEzsignf
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -2925,9 +3146,10 @@ ObjectEzsignfolderAPI_ezsignfolderSendV3(apiClient_t *apiClient, int *pkiEzsignf
     cJSON *localVarSingleItemJSON_ezsignfolder_send_v3_request = NULL;
     if (ezsignfolder_send_v3_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignfolder_send_v3_request = ezsignfolder_send_v3_request_convertToJSON(ezsignfolder_send_v3_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignfolder_send_v3_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -2939,6 +3161,7 @@ ObjectEzsignfolderAPI_ezsignfolderSendV3(apiClient_t *apiClient, int *pkiEzsignf
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -2954,11 +3177,14 @@ ObjectEzsignfolderAPI_ezsignfolderSendV3(apiClient_t *apiClient, int *pkiEzsignf
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_send_v3_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_send_v3_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -2990,7 +3216,7 @@ end:
 //
 // Once an Ezsignfolder has been sent to signatories, it cannot be modified.  Using this endpoint, you can unsend the Ezsignfolder and make it modifiable again.  Signatories will receive an email informing them the signature process was aborted and they might receive a new invitation to sign.  ⚠️ Warning: Any signature previously made by signatories on \"Non-completed\" Ezsigndocuments will be lost.
 //
-common_response_t*
+ezsignfolder_unsend_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderUnsendV1(apiClient_t *apiClient, int *pkiEzsignfolderID, object_t *body)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -2999,15 +3225,18 @@ ObjectEzsignfolderAPI_ezsignfolderUnsendV1(apiClient_t *apiClient, int *pkiEzsig
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignfolder/{pkiEzsignfolderID}/unsend")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignfolder/{pkiEzsignfolderID}/unsend");
+    char *localVarPath = strdup("/1/object/ezsignfolder/{pkiEzsignfolderID}/unsend");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignfolderID =  + strlen("{ pkiEzsignfolderID }");
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
     if(pkiEzsignfolderID == 0){
         goto end;
     }
@@ -3015,7 +3244,7 @@ ObjectEzsignfolderAPI_ezsignfolderUnsendV1(apiClient_t *apiClient, int *pkiEzsig
     snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
 
     char localVarBuff_pkiEzsignfolderID[256];
-    intToStr(localVarBuff_pkiEzsignfolderID, *pkiEzsignfolderID);
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
@@ -3026,9 +3255,10 @@ ObjectEzsignfolderAPI_ezsignfolderUnsendV1(apiClient_t *apiClient, int *pkiEzsig
     cJSON *localVarSingleItemJSON_body = NULL;
     if (body != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_body = object_convertToJSON(body);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_body);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -3040,6 +3270,7 @@ ObjectEzsignfolderAPI_ezsignfolderUnsendV1(apiClient_t *apiClient, int *pkiEzsig
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -3055,11 +3286,14 @@ ObjectEzsignfolderAPI_ezsignfolderUnsendV1(apiClient_t *apiClient, int *pkiEzsig
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignfolder_unsend_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_unsend_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

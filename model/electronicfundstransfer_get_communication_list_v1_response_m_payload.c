@@ -5,7 +5,7 @@
 
 
 
-electronicfundstransfer_get_communication_list_v1_response_m_payload_t *electronicfundstransfer_get_communication_list_v1_response_m_payload_create(
+static electronicfundstransfer_get_communication_list_v1_response_m_payload_t *electronicfundstransfer_get_communication_list_v1_response_m_payload_create_internal(
     list_t *a_obj_communication
     ) {
     electronicfundstransfer_get_communication_list_v1_response_m_payload_t *electronicfundstransfer_get_communication_list_v1_response_m_payload_local_var = malloc(sizeof(electronicfundstransfer_get_communication_list_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ electronicfundstransfer_get_communication_list_v1_response_m_payload_t *electron
     }
     electronicfundstransfer_get_communication_list_v1_response_m_payload_local_var->a_obj_communication = a_obj_communication;
 
+    electronicfundstransfer_get_communication_list_v1_response_m_payload_local_var->_library_owned = 1;
     return electronicfundstransfer_get_communication_list_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) electronicfundstransfer_get_communication_list_v1_response_m_payload_t *electronicfundstransfer_get_communication_list_v1_response_m_payload_create(
+    list_t *a_obj_communication
+    ) {
+    return electronicfundstransfer_get_communication_list_v1_response_m_payload_create_internal (
+        a_obj_communication
+        );
+}
 
 void electronicfundstransfer_get_communication_list_v1_response_m_payload_free(electronicfundstransfer_get_communication_list_v1_response_m_payload_t *electronicfundstransfer_get_communication_list_v1_response_m_payload) {
     if(NULL == electronicfundstransfer_get_communication_list_v1_response_m_payload){
+        return ;
+    }
+    if(electronicfundstransfer_get_communication_list_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "electronicfundstransfer_get_communication_list_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ electronicfundstransfer_get_communication_list_v1_response_m_payload_t *electron
 
     // electronicfundstransfer_get_communication_list_v1_response_m_payload->a_obj_communication
     cJSON *a_obj_communication = cJSON_GetObjectItemCaseSensitive(electronicfundstransfer_get_communication_list_v1_response_m_payloadJSON, "a_objCommunication");
+    if (cJSON_IsNull(a_obj_communication)) {
+        a_obj_communication = NULL;
+    }
     if (!a_obj_communication) {
         goto end;
     }
@@ -96,7 +111,7 @@ electronicfundstransfer_get_communication_list_v1_response_m_payload_t *electron
     }
 
 
-    electronicfundstransfer_get_communication_list_v1_response_m_payload_local_var = electronicfundstransfer_get_communication_list_v1_response_m_payload_create (
+    electronicfundstransfer_get_communication_list_v1_response_m_payload_local_var = electronicfundstransfer_get_communication_list_v1_response_m_payload_create_internal (
         a_obj_communicationList
         );
 

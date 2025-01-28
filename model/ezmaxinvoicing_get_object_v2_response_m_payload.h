@@ -22,9 +22,10 @@ typedef struct ezmaxinvoicing_get_object_v2_response_m_payload_t ezmaxinvoicing_
 typedef struct ezmaxinvoicing_get_object_v2_response_m_payload_t {
     struct ezmaxinvoicing_response_compound_t *obj_ezmaxinvoicing; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezmaxinvoicing_get_object_v2_response_m_payload_t;
 
-ezmaxinvoicing_get_object_v2_response_m_payload_t *ezmaxinvoicing_get_object_v2_response_m_payload_create(
+__attribute__((deprecated)) ezmaxinvoicing_get_object_v2_response_m_payload_t *ezmaxinvoicing_get_object_v2_response_m_payload_create(
     ezmaxinvoicing_response_compound_t *obj_ezmaxinvoicing
 );
 

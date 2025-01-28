@@ -21,22 +21,6 @@ typedef struct ezsigndocument_response_compound_t ezsigndocument_response_compou
 #include "ezsigndocumentdependency_response.h"
 #include "field_e_ezsigndocument_step.h"
 
-// Enum  for ezsigndocument_response_compound
-
-typedef enum  { ezmax_api_definition__full_ezsigndocument_response_compound__NULL = 0, ezmax_api_definition__full_ezsigndocument_response_compound__Unsent, ezmax_api_definition__full_ezsigndocument_response_compound___Unsigned, ezmax_api_definition__full_ezsigndocument_response_compound__PartiallySigned, ezmax_api_definition__full_ezsigndocument_response_compound__DeclinedToSign, ezmax_api_definition__full_ezsigndocument_response_compound__PrematurelyEnded, ezmax_api_definition__full_ezsigndocument_response_compound__PendingCompletion, ezmax_api_definition__full_ezsigndocument_response_compound__Completed, ezmax_api_definition__full_ezsigndocument_response_compound__Disposed } ezmax_api_definition__full_ezsigndocument_response_compound__e;
-
-char* ezsigndocument_response_compound_e_ezsigndocument_step_ToString(ezmax_api_definition__full_ezsigndocument_response_compound__e e_ezsigndocument_step);
-
-ezmax_api_definition__full_ezsigndocument_response_compound__e ezsigndocument_response_compound_e_ezsigndocument_step_FromString(char* e_ezsigndocument_step);
-
-// Enum  for ezsigndocument_response_compound
-
-typedef enum  { ezmax_api_definition__full_ezsigndocument_response_compound__NULL = 0, ezmax_api_definition__full_ezsigndocument_response_compound__Form, ezmax_api_definition__full_ezsigndocument_response_compound__Sign, ezmax_api_definition__full_ezsigndocument_response_compound__None } ezmax_api_definition__full_ezsigndocument_response_compound__e;
-
-char* ezsigndocument_response_compound_e_ezsigndocument_steptype_ToString(ezmax_api_definition__full_ezsigndocument_response_compound__e e_ezsigndocument_steptype);
-
-ezmax_api_definition__full_ezsigndocument_response_compound__e ezsigndocument_response_compound_e_ezsigndocument_steptype_FromString(char* e_ezsigndocument_steptype);
-
 
 
 typedef struct ezsigndocument_response_compound_t {
@@ -47,7 +31,7 @@ typedef struct ezsigndocument_response_compound_t {
     char *dt_ezsignform_completed; // string
     int fki_language_id; //numeric
     char *s_ezsigndocument_name; // string
-    field_e_ezsigndocument_step_t *e_ezsigndocument_step; // custom
+    ezmax_api_definition__full_field_e_ezsigndocument_step__e e_ezsigndocument_step; //referenced enum
     char *dt_ezsigndocument_firstsend; // string
     char *dt_ezsigndocument_lastsend; // string
     int i_ezsigndocument_order; //numeric
@@ -64,7 +48,7 @@ typedef struct ezsigndocument_response_compound_t {
     char *s_ezsigndocument_externalid; // string
     int i_ezsigndocument_ezsignsignatureattachmenttotal; //numeric
     int i_ezsigndocument_ezsigndiscussiontotal; //numeric
-    computed_e_ezsigndocument_steptype_t *e_ezsigndocument_steptype; // custom
+    ezmax_api_definition__full_computed_e_ezsigndocument_steptype__e e_ezsigndocument_steptype; //referenced enum
     int i_ezsigndocument_stepformtotal; //numeric
     int i_ezsigndocument_stepformcurrent; //numeric
     int i_ezsigndocument_stepsignaturetotal; //numeric
@@ -72,9 +56,10 @@ typedef struct ezsigndocument_response_compound_t {
     list_t *a_obj_ezsignfoldersignerassociationstatus; //nonprimitive container
     list_t *a_obj_ezsigndocumentdependency; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigndocument_response_compound_t;
 
-ezsigndocument_response_compound_t *ezsigndocument_response_compound_create(
+__attribute__((deprecated)) ezsigndocument_response_compound_t *ezsigndocument_response_compound_create(
     int pki_ezsigndocument_id,
     int fki_ezsignfolder_id,
     int fki_ezsignfoldersignerassociation_id_declinedtosign,
@@ -82,7 +67,7 @@ ezsigndocument_response_compound_t *ezsigndocument_response_compound_create(
     char *dt_ezsignform_completed,
     int fki_language_id,
     char *s_ezsigndocument_name,
-    field_e_ezsigndocument_step_t *e_ezsigndocument_step,
+    ezmax_api_definition__full_field_e_ezsigndocument_step__e e_ezsigndocument_step,
     char *dt_ezsigndocument_firstsend,
     char *dt_ezsigndocument_lastsend,
     int i_ezsigndocument_order,
@@ -99,7 +84,7 @@ ezsigndocument_response_compound_t *ezsigndocument_response_compound_create(
     char *s_ezsigndocument_externalid,
     int i_ezsigndocument_ezsignsignatureattachmenttotal,
     int i_ezsigndocument_ezsigndiscussiontotal,
-    computed_e_ezsigndocument_steptype_t *e_ezsigndocument_steptype,
+    ezmax_api_definition__full_computed_e_ezsigndocument_steptype__e e_ezsigndocument_steptype,
     int i_ezsigndocument_stepformtotal,
     int i_ezsigndocument_stepformcurrent,
     int i_ezsigndocument_stepsignaturetotal,

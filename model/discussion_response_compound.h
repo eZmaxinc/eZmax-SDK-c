@@ -32,9 +32,10 @@ typedef struct discussion_response_compound_t {
     list_t *a_obj_discussionmembership; //nonprimitive container
     list_t *a_obj_discussionmessage; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } discussion_response_compound_t;
 
-discussion_response_compound_t *discussion_response_compound_create(
+__attribute__((deprecated)) discussion_response_compound_t *discussion_response_compound_create(
     int pki_discussion_id,
     char *s_discussion_description,
     int b_discussion_closed,

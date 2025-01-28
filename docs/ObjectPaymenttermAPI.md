@@ -48,7 +48,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectPaymenttermAPI_paymenttermEditObjectV1(apiClient_t *apiClient, int *pkiPaymenttermID, paymentterm_edit_object_v1_request_t *paymentterm_edit_object_v1_request);
+paymentterm_edit_object_v1_response_t* ObjectPaymenttermAPI_paymenttermEditObjectV1(apiClient_t *apiClient, int *pkiPaymenttermID, paymentterm_edit_object_v1_request_t *paymentterm_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[paymentterm_edit_object_v1_response_t](paymentterm_edit_object_v1_response.md) *
 
 
 ### Authorization

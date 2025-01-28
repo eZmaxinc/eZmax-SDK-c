@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_attachment_documenttype__e field_e_attachment
     return 0;
 }
 
-cJSON *field_e_attachment_documenttype_field_e_attachment_documenttype_convertToJSON(ezmax_api_definition__full_field_e_attachment_documenttype__e field_e_attachment_documenttype) {
+cJSON *field_e_attachment_documenttype_convertToJSON(ezmax_api_definition__full_field_e_attachment_documenttype__e field_e_attachment_documenttype) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_attachment_documenttype", field_e_attachment_documenttype_field_e_attachment_documenttype_ToString(field_e_attachment_documenttype)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_attachment_documenttype__e field_e_attachment_documenttype_field_e_attachment_documenttype_parseFromJSON(cJSON *field_e_attachment_documenttypeJSON) {
-    ezmax_api_definition__full_field_e_attachment_documenttype__e *field_e_attachment_documenttype = NULL;
-    ezmax_api_definition__full_field_e_attachment_documenttype__e field_e_attachment_documenttypeVariable;
-    cJSON *field_e_attachment_documenttypeVar = cJSON_GetObjectItemCaseSensitive(field_e_attachment_documenttypeJSON, "field_e_attachment_documenttype");
-    if(!cJSON_IsString(field_e_attachment_documenttypeVar) || (field_e_attachment_documenttypeVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_attachment_documenttype__e field_e_attachment_documenttype_parseFromJSON(cJSON *field_e_attachment_documenttypeJSON) {
+    if(!cJSON_IsString(field_e_attachment_documenttypeJSON) || (field_e_attachment_documenttypeJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_attachment_documenttypeVariable = field_e_attachment_documenttype_field_e_attachment_documenttype_FromString(field_e_attachment_documenttypeVar->valuestring);
-    return field_e_attachment_documenttypeVariable;
-end:
-    return 0;
+    return field_e_attachment_documenttype_field_e_attachment_documenttype_FromString(field_e_attachment_documenttypeJSON->valuestring);
 }

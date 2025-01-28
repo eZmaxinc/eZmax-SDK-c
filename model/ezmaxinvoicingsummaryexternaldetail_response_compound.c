@@ -5,7 +5,7 @@
 
 
 
-ezmaxinvoicingsummaryexternaldetail_response_compound_t *ezmaxinvoicingsummaryexternaldetail_response_compound_create(
+static ezmaxinvoicingsummaryexternaldetail_response_compound_t *ezmaxinvoicingsummaryexternaldetail_response_compound_create_internal(
     int pki_ezmaxinvoicingsummaryexternaldetail_id,
     int fki_ezmaxinvoicingsummaryexternal_id,
     int fki_ezmaxproduct_id,
@@ -32,12 +32,42 @@ ezmaxinvoicingsummaryexternaldetail_response_compound_t *ezmaxinvoicingsummaryex
     ezmaxinvoicingsummaryexternaldetail_response_compound_local_var->b_ezmaxinvoicingsummaryexternaldetail_adjustment = b_ezmaxinvoicingsummaryexternaldetail_adjustment;
     ezmaxinvoicingsummaryexternaldetail_response_compound_local_var->t_ezmaxproduct_help_x = t_ezmaxproduct_help_x;
 
+    ezmaxinvoicingsummaryexternaldetail_response_compound_local_var->_library_owned = 1;
     return ezmaxinvoicingsummaryexternaldetail_response_compound_local_var;
 }
 
+__attribute__((deprecated)) ezmaxinvoicingsummaryexternaldetail_response_compound_t *ezmaxinvoicingsummaryexternaldetail_response_compound_create(
+    int pki_ezmaxinvoicingsummaryexternaldetail_id,
+    int fki_ezmaxinvoicingsummaryexternal_id,
+    int fki_ezmaxproduct_id,
+    char *s_ezmaxproduct_description_x,
+    char *d_ezmaxinvoicingsummaryexternaldetail_countreal,
+    char *d_ezmaxinvoicingsummaryexternaldetail_subtotal,
+    char *d_ezmaxinvoicingsummaryexternaldetail_rebate,
+    char *d_ezmaxinvoicingsummaryexternaldetail_total,
+    int b_ezmaxinvoicingsummaryexternaldetail_adjustment,
+    char *t_ezmaxproduct_help_x
+    ) {
+    return ezmaxinvoicingsummaryexternaldetail_response_compound_create_internal (
+        pki_ezmaxinvoicingsummaryexternaldetail_id,
+        fki_ezmaxinvoicingsummaryexternal_id,
+        fki_ezmaxproduct_id,
+        s_ezmaxproduct_description_x,
+        d_ezmaxinvoicingsummaryexternaldetail_countreal,
+        d_ezmaxinvoicingsummaryexternaldetail_subtotal,
+        d_ezmaxinvoicingsummaryexternaldetail_rebate,
+        d_ezmaxinvoicingsummaryexternaldetail_total,
+        b_ezmaxinvoicingsummaryexternaldetail_adjustment,
+        t_ezmaxproduct_help_x
+        );
+}
 
 void ezmaxinvoicingsummaryexternaldetail_response_compound_free(ezmaxinvoicingsummaryexternaldetail_response_compound_t *ezmaxinvoicingsummaryexternaldetail_response_compound) {
     if(NULL == ezmaxinvoicingsummaryexternaldetail_response_compound){
+        return ;
+    }
+    if(ezmaxinvoicingsummaryexternaldetail_response_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezmaxinvoicingsummaryexternaldetail_response_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -172,6 +202,9 @@ ezmaxinvoicingsummaryexternaldetail_response_compound_t *ezmaxinvoicingsummaryex
 
     // ezmaxinvoicingsummaryexternaldetail_response_compound->pki_ezmaxinvoicingsummaryexternaldetail_id
     cJSON *pki_ezmaxinvoicingsummaryexternaldetail_id = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryexternaldetail_response_compoundJSON, "pkiEzmaxinvoicingsummaryexternaldetailID");
+    if (cJSON_IsNull(pki_ezmaxinvoicingsummaryexternaldetail_id)) {
+        pki_ezmaxinvoicingsummaryexternaldetail_id = NULL;
+    }
     if (pki_ezmaxinvoicingsummaryexternaldetail_id) { 
     if(!cJSON_IsNumber(pki_ezmaxinvoicingsummaryexternaldetail_id))
     {
@@ -181,6 +214,9 @@ ezmaxinvoicingsummaryexternaldetail_response_compound_t *ezmaxinvoicingsummaryex
 
     // ezmaxinvoicingsummaryexternaldetail_response_compound->fki_ezmaxinvoicingsummaryexternal_id
     cJSON *fki_ezmaxinvoicingsummaryexternal_id = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryexternaldetail_response_compoundJSON, "fkiEzmaxinvoicingsummaryexternalID");
+    if (cJSON_IsNull(fki_ezmaxinvoicingsummaryexternal_id)) {
+        fki_ezmaxinvoicingsummaryexternal_id = NULL;
+    }
     if (fki_ezmaxinvoicingsummaryexternal_id) { 
     if(!cJSON_IsNumber(fki_ezmaxinvoicingsummaryexternal_id))
     {
@@ -190,6 +226,9 @@ ezmaxinvoicingsummaryexternaldetail_response_compound_t *ezmaxinvoicingsummaryex
 
     // ezmaxinvoicingsummaryexternaldetail_response_compound->fki_ezmaxproduct_id
     cJSON *fki_ezmaxproduct_id = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryexternaldetail_response_compoundJSON, "fkiEzmaxproductID");
+    if (cJSON_IsNull(fki_ezmaxproduct_id)) {
+        fki_ezmaxproduct_id = NULL;
+    }
     if (!fki_ezmaxproduct_id) {
         goto end;
     }
@@ -202,6 +241,9 @@ ezmaxinvoicingsummaryexternaldetail_response_compound_t *ezmaxinvoicingsummaryex
 
     // ezmaxinvoicingsummaryexternaldetail_response_compound->s_ezmaxproduct_description_x
     cJSON *s_ezmaxproduct_description_x = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryexternaldetail_response_compoundJSON, "sEzmaxproductDescriptionX");
+    if (cJSON_IsNull(s_ezmaxproduct_description_x)) {
+        s_ezmaxproduct_description_x = NULL;
+    }
     if (!s_ezmaxproduct_description_x) {
         goto end;
     }
@@ -214,6 +256,9 @@ ezmaxinvoicingsummaryexternaldetail_response_compound_t *ezmaxinvoicingsummaryex
 
     // ezmaxinvoicingsummaryexternaldetail_response_compound->d_ezmaxinvoicingsummaryexternaldetail_countreal
     cJSON *d_ezmaxinvoicingsummaryexternaldetail_countreal = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryexternaldetail_response_compoundJSON, "dEzmaxinvoicingsummaryexternaldetailCountreal");
+    if (cJSON_IsNull(d_ezmaxinvoicingsummaryexternaldetail_countreal)) {
+        d_ezmaxinvoicingsummaryexternaldetail_countreal = NULL;
+    }
     if (!d_ezmaxinvoicingsummaryexternaldetail_countreal) {
         goto end;
     }
@@ -226,6 +271,9 @@ ezmaxinvoicingsummaryexternaldetail_response_compound_t *ezmaxinvoicingsummaryex
 
     // ezmaxinvoicingsummaryexternaldetail_response_compound->d_ezmaxinvoicingsummaryexternaldetail_subtotal
     cJSON *d_ezmaxinvoicingsummaryexternaldetail_subtotal = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryexternaldetail_response_compoundJSON, "dEzmaxinvoicingsummaryexternaldetailSubtotal");
+    if (cJSON_IsNull(d_ezmaxinvoicingsummaryexternaldetail_subtotal)) {
+        d_ezmaxinvoicingsummaryexternaldetail_subtotal = NULL;
+    }
     if (!d_ezmaxinvoicingsummaryexternaldetail_subtotal) {
         goto end;
     }
@@ -238,6 +286,9 @@ ezmaxinvoicingsummaryexternaldetail_response_compound_t *ezmaxinvoicingsummaryex
 
     // ezmaxinvoicingsummaryexternaldetail_response_compound->d_ezmaxinvoicingsummaryexternaldetail_rebate
     cJSON *d_ezmaxinvoicingsummaryexternaldetail_rebate = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryexternaldetail_response_compoundJSON, "dEzmaxinvoicingsummaryexternaldetailRebate");
+    if (cJSON_IsNull(d_ezmaxinvoicingsummaryexternaldetail_rebate)) {
+        d_ezmaxinvoicingsummaryexternaldetail_rebate = NULL;
+    }
     if (!d_ezmaxinvoicingsummaryexternaldetail_rebate) {
         goto end;
     }
@@ -250,6 +301,9 @@ ezmaxinvoicingsummaryexternaldetail_response_compound_t *ezmaxinvoicingsummaryex
 
     // ezmaxinvoicingsummaryexternaldetail_response_compound->d_ezmaxinvoicingsummaryexternaldetail_total
     cJSON *d_ezmaxinvoicingsummaryexternaldetail_total = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryexternaldetail_response_compoundJSON, "dEzmaxinvoicingsummaryexternaldetailTotal");
+    if (cJSON_IsNull(d_ezmaxinvoicingsummaryexternaldetail_total)) {
+        d_ezmaxinvoicingsummaryexternaldetail_total = NULL;
+    }
     if (!d_ezmaxinvoicingsummaryexternaldetail_total) {
         goto end;
     }
@@ -262,6 +316,9 @@ ezmaxinvoicingsummaryexternaldetail_response_compound_t *ezmaxinvoicingsummaryex
 
     // ezmaxinvoicingsummaryexternaldetail_response_compound->b_ezmaxinvoicingsummaryexternaldetail_adjustment
     cJSON *b_ezmaxinvoicingsummaryexternaldetail_adjustment = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryexternaldetail_response_compoundJSON, "bEzmaxinvoicingsummaryexternaldetailAdjustment");
+    if (cJSON_IsNull(b_ezmaxinvoicingsummaryexternaldetail_adjustment)) {
+        b_ezmaxinvoicingsummaryexternaldetail_adjustment = NULL;
+    }
     if (!b_ezmaxinvoicingsummaryexternaldetail_adjustment) {
         goto end;
     }
@@ -274,6 +331,9 @@ ezmaxinvoicingsummaryexternaldetail_response_compound_t *ezmaxinvoicingsummaryex
 
     // ezmaxinvoicingsummaryexternaldetail_response_compound->t_ezmaxproduct_help_x
     cJSON *t_ezmaxproduct_help_x = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryexternaldetail_response_compoundJSON, "tEzmaxproductHelpX");
+    if (cJSON_IsNull(t_ezmaxproduct_help_x)) {
+        t_ezmaxproduct_help_x = NULL;
+    }
     if (!t_ezmaxproduct_help_x) {
         goto end;
     }
@@ -285,7 +345,7 @@ ezmaxinvoicingsummaryexternaldetail_response_compound_t *ezmaxinvoicingsummaryex
     }
 
 
-    ezmaxinvoicingsummaryexternaldetail_response_compound_local_var = ezmaxinvoicingsummaryexternaldetail_response_compound_create (
+    ezmaxinvoicingsummaryexternaldetail_response_compound_local_var = ezmaxinvoicingsummaryexternaldetail_response_compound_create_internal (
         pki_ezmaxinvoicingsummaryexternaldetail_id ? pki_ezmaxinvoicingsummaryexternaldetail_id->valuedouble : 0,
         fki_ezmaxinvoicingsummaryexternal_id ? fki_ezmaxinvoicingsummaryexternal_id->valuedouble : 0,
         fki_ezmaxproduct_id->valuedouble,

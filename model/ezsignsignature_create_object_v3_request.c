@@ -5,7 +5,7 @@
 
 
 
-ezsignsignature_create_object_v3_request_t *ezsignsignature_create_object_v3_request_create(
+static ezsignsignature_create_object_v3_request_t *ezsignsignature_create_object_v3_request_create_internal(
     list_t *a_obj_ezsignsignature
     ) {
     ezsignsignature_create_object_v3_request_t *ezsignsignature_create_object_v3_request_local_var = malloc(sizeof(ezsignsignature_create_object_v3_request_t));
@@ -14,12 +14,24 @@ ezsignsignature_create_object_v3_request_t *ezsignsignature_create_object_v3_req
     }
     ezsignsignature_create_object_v3_request_local_var->a_obj_ezsignsignature = a_obj_ezsignsignature;
 
+    ezsignsignature_create_object_v3_request_local_var->_library_owned = 1;
     return ezsignsignature_create_object_v3_request_local_var;
 }
 
+__attribute__((deprecated)) ezsignsignature_create_object_v3_request_t *ezsignsignature_create_object_v3_request_create(
+    list_t *a_obj_ezsignsignature
+    ) {
+    return ezsignsignature_create_object_v3_request_create_internal (
+        a_obj_ezsignsignature
+        );
+}
 
 void ezsignsignature_create_object_v3_request_free(ezsignsignature_create_object_v3_request_t *ezsignsignature_create_object_v3_request) {
     if(NULL == ezsignsignature_create_object_v3_request){
+        return ;
+    }
+    if(ezsignsignature_create_object_v3_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignsignature_create_object_v3_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ ezsignsignature_create_object_v3_request_t *ezsignsignature_create_object_v3_req
 
     // ezsignsignature_create_object_v3_request->a_obj_ezsignsignature
     cJSON *a_obj_ezsignsignature = cJSON_GetObjectItemCaseSensitive(ezsignsignature_create_object_v3_requestJSON, "a_objEzsignsignature");
+    if (cJSON_IsNull(a_obj_ezsignsignature)) {
+        a_obj_ezsignsignature = NULL;
+    }
     if (!a_obj_ezsignsignature) {
         goto end;
     }
@@ -96,7 +111,7 @@ ezsignsignature_create_object_v3_request_t *ezsignsignature_create_object_v3_req
     }
 
 
-    ezsignsignature_create_object_v3_request_local_var = ezsignsignature_create_object_v3_request_create (
+    ezsignsignature_create_object_v3_request_local_var = ezsignsignature_create_object_v3_request_create_internal (
         a_obj_ezsignsignatureList
         );
 

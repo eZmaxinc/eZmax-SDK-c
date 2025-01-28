@@ -5,7 +5,7 @@
 
 
 
-cors_create_object_v1_request_t *cors_create_object_v1_request_create(
+static cors_create_object_v1_request_t *cors_create_object_v1_request_create_internal(
     list_t *a_obj_cors
     ) {
     cors_create_object_v1_request_t *cors_create_object_v1_request_local_var = malloc(sizeof(cors_create_object_v1_request_t));
@@ -14,12 +14,24 @@ cors_create_object_v1_request_t *cors_create_object_v1_request_create(
     }
     cors_create_object_v1_request_local_var->a_obj_cors = a_obj_cors;
 
+    cors_create_object_v1_request_local_var->_library_owned = 1;
     return cors_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) cors_create_object_v1_request_t *cors_create_object_v1_request_create(
+    list_t *a_obj_cors
+    ) {
+    return cors_create_object_v1_request_create_internal (
+        a_obj_cors
+        );
+}
 
 void cors_create_object_v1_request_free(cors_create_object_v1_request_t *cors_create_object_v1_request) {
     if(NULL == cors_create_object_v1_request){
+        return ;
+    }
+    if(cors_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "cors_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ cors_create_object_v1_request_t *cors_create_object_v1_request_parseFromJSON(cJS
 
     // cors_create_object_v1_request->a_obj_cors
     cJSON *a_obj_cors = cJSON_GetObjectItemCaseSensitive(cors_create_object_v1_requestJSON, "a_objCors");
+    if (cJSON_IsNull(a_obj_cors)) {
+        a_obj_cors = NULL;
+    }
     if (!a_obj_cors) {
         goto end;
     }
@@ -96,7 +111,7 @@ cors_create_object_v1_request_t *cors_create_object_v1_request_parseFromJSON(cJS
     }
 
 
-    cors_create_object_v1_request_local_var = cors_create_object_v1_request_create (
+    cors_create_object_v1_request_local_var = cors_create_object_v1_request_create_internal (
         a_obj_corsList
         );
 

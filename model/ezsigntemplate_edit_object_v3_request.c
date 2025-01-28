@@ -5,7 +5,7 @@
 
 
 
-ezsigntemplate_edit_object_v3_request_t *ezsigntemplate_edit_object_v3_request_create(
+static ezsigntemplate_edit_object_v3_request_t *ezsigntemplate_edit_object_v3_request_create_internal(
     ezsigntemplate_request_compound_v3_t *obj_ezsigntemplate
     ) {
     ezsigntemplate_edit_object_v3_request_t *ezsigntemplate_edit_object_v3_request_local_var = malloc(sizeof(ezsigntemplate_edit_object_v3_request_t));
@@ -14,12 +14,24 @@ ezsigntemplate_edit_object_v3_request_t *ezsigntemplate_edit_object_v3_request_c
     }
     ezsigntemplate_edit_object_v3_request_local_var->obj_ezsigntemplate = obj_ezsigntemplate;
 
+    ezsigntemplate_edit_object_v3_request_local_var->_library_owned = 1;
     return ezsigntemplate_edit_object_v3_request_local_var;
 }
 
+__attribute__((deprecated)) ezsigntemplate_edit_object_v3_request_t *ezsigntemplate_edit_object_v3_request_create(
+    ezsigntemplate_request_compound_v3_t *obj_ezsigntemplate
+    ) {
+    return ezsigntemplate_edit_object_v3_request_create_internal (
+        obj_ezsigntemplate
+        );
+}
 
 void ezsigntemplate_edit_object_v3_request_free(ezsigntemplate_edit_object_v3_request_t *ezsigntemplate_edit_object_v3_request) {
     if(NULL == ezsigntemplate_edit_object_v3_request){
+        return ;
+    }
+    if(ezsigntemplate_edit_object_v3_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigntemplate_edit_object_v3_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ ezsigntemplate_edit_object_v3_request_t *ezsigntemplate_edit_object_v3_request_p
 
     // ezsigntemplate_edit_object_v3_request->obj_ezsigntemplate
     cJSON *obj_ezsigntemplate = cJSON_GetObjectItemCaseSensitive(ezsigntemplate_edit_object_v3_requestJSON, "objEzsigntemplate");
+    if (cJSON_IsNull(obj_ezsigntemplate)) {
+        obj_ezsigntemplate = NULL;
+    }
     if (!obj_ezsigntemplate) {
         goto end;
     }
@@ -71,7 +86,7 @@ ezsigntemplate_edit_object_v3_request_t *ezsigntemplate_edit_object_v3_request_p
     obj_ezsigntemplate_local_nonprim = ezsigntemplate_request_compound_v3_parseFromJSON(obj_ezsigntemplate); //nonprimitive
 
 
-    ezsigntemplate_edit_object_v3_request_local_var = ezsigntemplate_edit_object_v3_request_create (
+    ezsigntemplate_edit_object_v3_request_local_var = ezsigntemplate_edit_object_v3_request_create_internal (
         obj_ezsigntemplate_local_nonprim
         );
 

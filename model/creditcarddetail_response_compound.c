@@ -5,7 +5,7 @@
 
 
 
-creditcarddetail_response_compound_t *creditcarddetail_response_compound_create(
+static creditcarddetail_response_compound_t *creditcarddetail_response_compound_create_internal(
     int pki_creditcarddetail_id,
     int fki_creditcardtype_id,
     int i_creditcarddetail_lastdigits,
@@ -28,12 +28,38 @@ creditcarddetail_response_compound_t *creditcarddetail_response_compound_create(
     creditcarddetail_response_compound_local_var->s_creditcarddetail_street = s_creditcarddetail_street;
     creditcarddetail_response_compound_local_var->s_creditcarddetail_zip = s_creditcarddetail_zip;
 
+    creditcarddetail_response_compound_local_var->_library_owned = 1;
     return creditcarddetail_response_compound_local_var;
 }
 
+__attribute__((deprecated)) creditcarddetail_response_compound_t *creditcarddetail_response_compound_create(
+    int pki_creditcarddetail_id,
+    int fki_creditcardtype_id,
+    int i_creditcarddetail_lastdigits,
+    int i_creditcarddetail_expirationmonth,
+    int i_creditcarddetail_expirationyear,
+    char *s_creditcarddetail_civic,
+    char *s_creditcarddetail_street,
+    char *s_creditcarddetail_zip
+    ) {
+    return creditcarddetail_response_compound_create_internal (
+        pki_creditcarddetail_id,
+        fki_creditcardtype_id,
+        i_creditcarddetail_lastdigits,
+        i_creditcarddetail_expirationmonth,
+        i_creditcarddetail_expirationyear,
+        s_creditcarddetail_civic,
+        s_creditcarddetail_street,
+        s_creditcarddetail_zip
+        );
+}
 
 void creditcarddetail_response_compound_free(creditcarddetail_response_compound_t *creditcarddetail_response_compound) {
     if(NULL == creditcarddetail_response_compound){
+        return ;
+    }
+    if(creditcarddetail_response_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "creditcarddetail_response_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -140,6 +166,9 @@ creditcarddetail_response_compound_t *creditcarddetail_response_compound_parseFr
 
     // creditcarddetail_response_compound->pki_creditcarddetail_id
     cJSON *pki_creditcarddetail_id = cJSON_GetObjectItemCaseSensitive(creditcarddetail_response_compoundJSON, "pkiCreditcarddetailID");
+    if (cJSON_IsNull(pki_creditcarddetail_id)) {
+        pki_creditcarddetail_id = NULL;
+    }
     if (!pki_creditcarddetail_id) {
         goto end;
     }
@@ -152,6 +181,9 @@ creditcarddetail_response_compound_t *creditcarddetail_response_compound_parseFr
 
     // creditcarddetail_response_compound->fki_creditcardtype_id
     cJSON *fki_creditcardtype_id = cJSON_GetObjectItemCaseSensitive(creditcarddetail_response_compoundJSON, "fkiCreditcardtypeID");
+    if (cJSON_IsNull(fki_creditcardtype_id)) {
+        fki_creditcardtype_id = NULL;
+    }
     if (!fki_creditcardtype_id) {
         goto end;
     }
@@ -164,6 +196,9 @@ creditcarddetail_response_compound_t *creditcarddetail_response_compound_parseFr
 
     // creditcarddetail_response_compound->i_creditcarddetail_lastdigits
     cJSON *i_creditcarddetail_lastdigits = cJSON_GetObjectItemCaseSensitive(creditcarddetail_response_compoundJSON, "iCreditcarddetailLastdigits");
+    if (cJSON_IsNull(i_creditcarddetail_lastdigits)) {
+        i_creditcarddetail_lastdigits = NULL;
+    }
     if (!i_creditcarddetail_lastdigits) {
         goto end;
     }
@@ -176,6 +211,9 @@ creditcarddetail_response_compound_t *creditcarddetail_response_compound_parseFr
 
     // creditcarddetail_response_compound->i_creditcarddetail_expirationmonth
     cJSON *i_creditcarddetail_expirationmonth = cJSON_GetObjectItemCaseSensitive(creditcarddetail_response_compoundJSON, "iCreditcarddetailExpirationmonth");
+    if (cJSON_IsNull(i_creditcarddetail_expirationmonth)) {
+        i_creditcarddetail_expirationmonth = NULL;
+    }
     if (!i_creditcarddetail_expirationmonth) {
         goto end;
     }
@@ -188,6 +226,9 @@ creditcarddetail_response_compound_t *creditcarddetail_response_compound_parseFr
 
     // creditcarddetail_response_compound->i_creditcarddetail_expirationyear
     cJSON *i_creditcarddetail_expirationyear = cJSON_GetObjectItemCaseSensitive(creditcarddetail_response_compoundJSON, "iCreditcarddetailExpirationyear");
+    if (cJSON_IsNull(i_creditcarddetail_expirationyear)) {
+        i_creditcarddetail_expirationyear = NULL;
+    }
     if (!i_creditcarddetail_expirationyear) {
         goto end;
     }
@@ -200,6 +241,9 @@ creditcarddetail_response_compound_t *creditcarddetail_response_compound_parseFr
 
     // creditcarddetail_response_compound->s_creditcarddetail_civic
     cJSON *s_creditcarddetail_civic = cJSON_GetObjectItemCaseSensitive(creditcarddetail_response_compoundJSON, "sCreditcarddetailCivic");
+    if (cJSON_IsNull(s_creditcarddetail_civic)) {
+        s_creditcarddetail_civic = NULL;
+    }
     if (!s_creditcarddetail_civic) {
         goto end;
     }
@@ -212,6 +256,9 @@ creditcarddetail_response_compound_t *creditcarddetail_response_compound_parseFr
 
     // creditcarddetail_response_compound->s_creditcarddetail_street
     cJSON *s_creditcarddetail_street = cJSON_GetObjectItemCaseSensitive(creditcarddetail_response_compoundJSON, "sCreditcarddetailStreet");
+    if (cJSON_IsNull(s_creditcarddetail_street)) {
+        s_creditcarddetail_street = NULL;
+    }
     if (!s_creditcarddetail_street) {
         goto end;
     }
@@ -224,6 +271,9 @@ creditcarddetail_response_compound_t *creditcarddetail_response_compound_parseFr
 
     // creditcarddetail_response_compound->s_creditcarddetail_zip
     cJSON *s_creditcarddetail_zip = cJSON_GetObjectItemCaseSensitive(creditcarddetail_response_compoundJSON, "sCreditcarddetailZip");
+    if (cJSON_IsNull(s_creditcarddetail_zip)) {
+        s_creditcarddetail_zip = NULL;
+    }
     if (!s_creditcarddetail_zip) {
         goto end;
     }
@@ -235,7 +285,7 @@ creditcarddetail_response_compound_t *creditcarddetail_response_compound_parseFr
     }
 
 
-    creditcarddetail_response_compound_local_var = creditcarddetail_response_compound_create (
+    creditcarddetail_response_compound_local_var = creditcarddetail_response_compound_create_internal (
         pki_creditcarddetail_id->valuedouble,
         fki_creditcardtype_id->valuedouble,
         i_creditcarddetail_lastdigits->valuedouble,

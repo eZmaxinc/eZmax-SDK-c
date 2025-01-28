@@ -5,7 +5,7 @@
 
 
 
-custom_dropdown_element_response_t *custom_dropdown_element_response_create(
+static custom_dropdown_element_response_t *custom_dropdown_element_response_create_internal(
     char *s_label,
     char *s_value
     ) {
@@ -16,12 +16,26 @@ custom_dropdown_element_response_t *custom_dropdown_element_response_create(
     custom_dropdown_element_response_local_var->s_label = s_label;
     custom_dropdown_element_response_local_var->s_value = s_value;
 
+    custom_dropdown_element_response_local_var->_library_owned = 1;
     return custom_dropdown_element_response_local_var;
 }
 
+__attribute__((deprecated)) custom_dropdown_element_response_t *custom_dropdown_element_response_create(
+    char *s_label,
+    char *s_value
+    ) {
+    return custom_dropdown_element_response_create_internal (
+        s_label,
+        s_value
+        );
+}
 
 void custom_dropdown_element_response_free(custom_dropdown_element_response_t *custom_dropdown_element_response) {
     if(NULL == custom_dropdown_element_response){
+        return ;
+    }
+    if(custom_dropdown_element_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "custom_dropdown_element_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +84,9 @@ custom_dropdown_element_response_t *custom_dropdown_element_response_parseFromJS
 
     // custom_dropdown_element_response->s_label
     cJSON *s_label = cJSON_GetObjectItemCaseSensitive(custom_dropdown_element_responseJSON, "sLabel");
+    if (cJSON_IsNull(s_label)) {
+        s_label = NULL;
+    }
     if (!s_label) {
         goto end;
     }
@@ -82,6 +99,9 @@ custom_dropdown_element_response_t *custom_dropdown_element_response_parseFromJS
 
     // custom_dropdown_element_response->s_value
     cJSON *s_value = cJSON_GetObjectItemCaseSensitive(custom_dropdown_element_responseJSON, "sValue");
+    if (cJSON_IsNull(s_value)) {
+        s_value = NULL;
+    }
     if (!s_value) {
         goto end;
     }
@@ -93,7 +113,7 @@ custom_dropdown_element_response_t *custom_dropdown_element_response_parseFromJS
     }
 
 
-    custom_dropdown_element_response_local_var = custom_dropdown_element_response_create (
+    custom_dropdown_element_response_local_var = custom_dropdown_element_response_create_internal (
         strdup(s_label->valuestring),
         strdup(s_value->valuestring)
         );

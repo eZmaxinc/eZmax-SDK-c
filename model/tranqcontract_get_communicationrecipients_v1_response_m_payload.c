@@ -5,7 +5,7 @@
 
 
 
-tranqcontract_get_communicationrecipients_v1_response_m_payload_t *tranqcontract_get_communicationrecipients_v1_response_m_payload_create(
+static tranqcontract_get_communicationrecipients_v1_response_m_payload_t *tranqcontract_get_communicationrecipients_v1_response_m_payload_create_internal(
     list_t *a_obj_communicationrecipientsgroup
     ) {
     tranqcontract_get_communicationrecipients_v1_response_m_payload_t *tranqcontract_get_communicationrecipients_v1_response_m_payload_local_var = malloc(sizeof(tranqcontract_get_communicationrecipients_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ tranqcontract_get_communicationrecipients_v1_response_m_payload_t *tranqcontract
     }
     tranqcontract_get_communicationrecipients_v1_response_m_payload_local_var->a_obj_communicationrecipientsgroup = a_obj_communicationrecipientsgroup;
 
+    tranqcontract_get_communicationrecipients_v1_response_m_payload_local_var->_library_owned = 1;
     return tranqcontract_get_communicationrecipients_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) tranqcontract_get_communicationrecipients_v1_response_m_payload_t *tranqcontract_get_communicationrecipients_v1_response_m_payload_create(
+    list_t *a_obj_communicationrecipientsgroup
+    ) {
+    return tranqcontract_get_communicationrecipients_v1_response_m_payload_create_internal (
+        a_obj_communicationrecipientsgroup
+        );
+}
 
 void tranqcontract_get_communicationrecipients_v1_response_m_payload_free(tranqcontract_get_communicationrecipients_v1_response_m_payload_t *tranqcontract_get_communicationrecipients_v1_response_m_payload) {
     if(NULL == tranqcontract_get_communicationrecipients_v1_response_m_payload){
+        return ;
+    }
+    if(tranqcontract_get_communicationrecipients_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "tranqcontract_get_communicationrecipients_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ tranqcontract_get_communicationrecipients_v1_response_m_payload_t *tranqcontract
 
     // tranqcontract_get_communicationrecipients_v1_response_m_payload->a_obj_communicationrecipientsgroup
     cJSON *a_obj_communicationrecipientsgroup = cJSON_GetObjectItemCaseSensitive(tranqcontract_get_communicationrecipients_v1_response_m_payloadJSON, "a_objCommunicationrecipientsgroup");
+    if (cJSON_IsNull(a_obj_communicationrecipientsgroup)) {
+        a_obj_communicationrecipientsgroup = NULL;
+    }
     if (!a_obj_communicationrecipientsgroup) {
         goto end;
     }
@@ -96,7 +111,7 @@ tranqcontract_get_communicationrecipients_v1_response_m_payload_t *tranqcontract
     }
 
 
-    tranqcontract_get_communicationrecipients_v1_response_m_payload_local_var = tranqcontract_get_communicationrecipients_v1_response_m_payload_create (
+    tranqcontract_get_communicationrecipients_v1_response_m_payload_local_var = tranqcontract_get_communicationrecipients_v1_response_m_payload_create_internal (
         a_obj_communicationrecipientsgroupList
         );
 

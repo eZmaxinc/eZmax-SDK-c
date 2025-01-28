@@ -5,7 +5,7 @@
 
 
 
-ezsigntemplatepackagemembership_create_object_v1_request_t *ezsigntemplatepackagemembership_create_object_v1_request_create(
+static ezsigntemplatepackagemembership_create_object_v1_request_t *ezsigntemplatepackagemembership_create_object_v1_request_create_internal(
     list_t *a_obj_ezsigntemplatepackagemembership
     ) {
     ezsigntemplatepackagemembership_create_object_v1_request_t *ezsigntemplatepackagemembership_create_object_v1_request_local_var = malloc(sizeof(ezsigntemplatepackagemembership_create_object_v1_request_t));
@@ -14,12 +14,24 @@ ezsigntemplatepackagemembership_create_object_v1_request_t *ezsigntemplatepackag
     }
     ezsigntemplatepackagemembership_create_object_v1_request_local_var->a_obj_ezsigntemplatepackagemembership = a_obj_ezsigntemplatepackagemembership;
 
+    ezsigntemplatepackagemembership_create_object_v1_request_local_var->_library_owned = 1;
     return ezsigntemplatepackagemembership_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezsigntemplatepackagemembership_create_object_v1_request_t *ezsigntemplatepackagemembership_create_object_v1_request_create(
+    list_t *a_obj_ezsigntemplatepackagemembership
+    ) {
+    return ezsigntemplatepackagemembership_create_object_v1_request_create_internal (
+        a_obj_ezsigntemplatepackagemembership
+        );
+}
 
 void ezsigntemplatepackagemembership_create_object_v1_request_free(ezsigntemplatepackagemembership_create_object_v1_request_t *ezsigntemplatepackagemembership_create_object_v1_request) {
     if(NULL == ezsigntemplatepackagemembership_create_object_v1_request){
+        return ;
+    }
+    if(ezsigntemplatepackagemembership_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigntemplatepackagemembership_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ ezsigntemplatepackagemembership_create_object_v1_request_t *ezsigntemplatepackag
 
     // ezsigntemplatepackagemembership_create_object_v1_request->a_obj_ezsigntemplatepackagemembership
     cJSON *a_obj_ezsigntemplatepackagemembership = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackagemembership_create_object_v1_requestJSON, "a_objEzsigntemplatepackagemembership");
+    if (cJSON_IsNull(a_obj_ezsigntemplatepackagemembership)) {
+        a_obj_ezsigntemplatepackagemembership = NULL;
+    }
     if (!a_obj_ezsigntemplatepackagemembership) {
         goto end;
     }
@@ -96,7 +111,7 @@ ezsigntemplatepackagemembership_create_object_v1_request_t *ezsigntemplatepackag
     }
 
 
-    ezsigntemplatepackagemembership_create_object_v1_request_local_var = ezsigntemplatepackagemembership_create_object_v1_request_create (
+    ezsigntemplatepackagemembership_create_object_v1_request_local_var = ezsigntemplatepackagemembership_create_object_v1_request_create_internal (
         a_obj_ezsigntemplatepackagemembershipList
         );
 

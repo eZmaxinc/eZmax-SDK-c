@@ -24,9 +24,10 @@ typedef struct signature_response_compound_t {
     char *s_signature_url; // string
     char *s_signature_urlinitials; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } signature_response_compound_t;
 
-signature_response_compound_t *signature_response_compound_create(
+__attribute__((deprecated)) signature_response_compound_t *signature_response_compound_create(
     int pki_signature_id,
     int fki_font_id,
     char *s_signature_url,

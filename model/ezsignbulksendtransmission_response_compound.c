@@ -5,7 +5,7 @@
 
 
 
-ezsignbulksendtransmission_response_compound_t *ezsignbulksendtransmission_response_compound_create(
+static ezsignbulksendtransmission_response_compound_t *ezsignbulksendtransmission_response_compound_create_internal(
     int pki_ezsignbulksendtransmission_id,
     int fki_ezsignbulksend_id,
     char *s_ezsignbulksendtransmission_description,
@@ -24,12 +24,34 @@ ezsignbulksendtransmission_response_compound_t *ezsignbulksendtransmission_respo
     ezsignbulksendtransmission_response_compound_local_var->obj_audit = obj_audit;
     ezsignbulksendtransmission_response_compound_local_var->a_obj_ezsignfoldertransmission = a_obj_ezsignfoldertransmission;
 
+    ezsignbulksendtransmission_response_compound_local_var->_library_owned = 1;
     return ezsignbulksendtransmission_response_compound_local_var;
 }
 
+__attribute__((deprecated)) ezsignbulksendtransmission_response_compound_t *ezsignbulksendtransmission_response_compound_create(
+    int pki_ezsignbulksendtransmission_id,
+    int fki_ezsignbulksend_id,
+    char *s_ezsignbulksendtransmission_description,
+    int i_ezsignbulksendtransmission_errors,
+    common_audit_t *obj_audit,
+    list_t *a_obj_ezsignfoldertransmission
+    ) {
+    return ezsignbulksendtransmission_response_compound_create_internal (
+        pki_ezsignbulksendtransmission_id,
+        fki_ezsignbulksend_id,
+        s_ezsignbulksendtransmission_description,
+        i_ezsignbulksendtransmission_errors,
+        obj_audit,
+        a_obj_ezsignfoldertransmission
+        );
+}
 
 void ezsignbulksendtransmission_response_compound_free(ezsignbulksendtransmission_response_compound_t *ezsignbulksendtransmission_response_compound) {
     if(NULL == ezsignbulksendtransmission_response_compound){
+        return ;
+    }
+    if(ezsignbulksendtransmission_response_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignbulksendtransmission_response_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -144,6 +166,9 @@ ezsignbulksendtransmission_response_compound_t *ezsignbulksendtransmission_respo
 
     // ezsignbulksendtransmission_response_compound->pki_ezsignbulksendtransmission_id
     cJSON *pki_ezsignbulksendtransmission_id = cJSON_GetObjectItemCaseSensitive(ezsignbulksendtransmission_response_compoundJSON, "pkiEzsignbulksendtransmissionID");
+    if (cJSON_IsNull(pki_ezsignbulksendtransmission_id)) {
+        pki_ezsignbulksendtransmission_id = NULL;
+    }
     if (!pki_ezsignbulksendtransmission_id) {
         goto end;
     }
@@ -156,6 +181,9 @@ ezsignbulksendtransmission_response_compound_t *ezsignbulksendtransmission_respo
 
     // ezsignbulksendtransmission_response_compound->fki_ezsignbulksend_id
     cJSON *fki_ezsignbulksend_id = cJSON_GetObjectItemCaseSensitive(ezsignbulksendtransmission_response_compoundJSON, "fkiEzsignbulksendID");
+    if (cJSON_IsNull(fki_ezsignbulksend_id)) {
+        fki_ezsignbulksend_id = NULL;
+    }
     if (!fki_ezsignbulksend_id) {
         goto end;
     }
@@ -168,6 +196,9 @@ ezsignbulksendtransmission_response_compound_t *ezsignbulksendtransmission_respo
 
     // ezsignbulksendtransmission_response_compound->s_ezsignbulksendtransmission_description
     cJSON *s_ezsignbulksendtransmission_description = cJSON_GetObjectItemCaseSensitive(ezsignbulksendtransmission_response_compoundJSON, "sEzsignbulksendtransmissionDescription");
+    if (cJSON_IsNull(s_ezsignbulksendtransmission_description)) {
+        s_ezsignbulksendtransmission_description = NULL;
+    }
     if (!s_ezsignbulksendtransmission_description) {
         goto end;
     }
@@ -180,6 +211,9 @@ ezsignbulksendtransmission_response_compound_t *ezsignbulksendtransmission_respo
 
     // ezsignbulksendtransmission_response_compound->i_ezsignbulksendtransmission_errors
     cJSON *i_ezsignbulksendtransmission_errors = cJSON_GetObjectItemCaseSensitive(ezsignbulksendtransmission_response_compoundJSON, "iEzsignbulksendtransmissionErrors");
+    if (cJSON_IsNull(i_ezsignbulksendtransmission_errors)) {
+        i_ezsignbulksendtransmission_errors = NULL;
+    }
     if (!i_ezsignbulksendtransmission_errors) {
         goto end;
     }
@@ -192,6 +226,9 @@ ezsignbulksendtransmission_response_compound_t *ezsignbulksendtransmission_respo
 
     // ezsignbulksendtransmission_response_compound->obj_audit
     cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(ezsignbulksendtransmission_response_compoundJSON, "objAudit");
+    if (cJSON_IsNull(obj_audit)) {
+        obj_audit = NULL;
+    }
     if (!obj_audit) {
         goto end;
     }
@@ -201,6 +238,9 @@ ezsignbulksendtransmission_response_compound_t *ezsignbulksendtransmission_respo
 
     // ezsignbulksendtransmission_response_compound->a_obj_ezsignfoldertransmission
     cJSON *a_obj_ezsignfoldertransmission = cJSON_GetObjectItemCaseSensitive(ezsignbulksendtransmission_response_compoundJSON, "a_objEzsignfoldertransmission");
+    if (cJSON_IsNull(a_obj_ezsignfoldertransmission)) {
+        a_obj_ezsignfoldertransmission = NULL;
+    }
     if (!a_obj_ezsignfoldertransmission) {
         goto end;
     }
@@ -224,7 +264,7 @@ ezsignbulksendtransmission_response_compound_t *ezsignbulksendtransmission_respo
     }
 
 
-    ezsignbulksendtransmission_response_compound_local_var = ezsignbulksendtransmission_response_compound_create (
+    ezsignbulksendtransmission_response_compound_local_var = ezsignbulksendtransmission_response_compound_create_internal (
         pki_ezsignbulksendtransmission_id->valuedouble,
         fki_ezsignbulksend_id->valuedouble,
         strdup(s_ezsignbulksendtransmission_description->valuestring),

@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_branding_alignlogo__e field_e_branding_alignl
     return 0;
 }
 
-cJSON *field_e_branding_alignlogo_field_e_branding_alignlogo_convertToJSON(ezmax_api_definition__full_field_e_branding_alignlogo__e field_e_branding_alignlogo) {
+cJSON *field_e_branding_alignlogo_convertToJSON(ezmax_api_definition__full_field_e_branding_alignlogo__e field_e_branding_alignlogo) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_branding_alignlogo", field_e_branding_alignlogo_field_e_branding_alignlogo_ToString(field_e_branding_alignlogo)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_branding_alignlogo__e field_e_branding_alignlogo_field_e_branding_alignlogo_parseFromJSON(cJSON *field_e_branding_alignlogoJSON) {
-    ezmax_api_definition__full_field_e_branding_alignlogo__e *field_e_branding_alignlogo = NULL;
-    ezmax_api_definition__full_field_e_branding_alignlogo__e field_e_branding_alignlogoVariable;
-    cJSON *field_e_branding_alignlogoVar = cJSON_GetObjectItemCaseSensitive(field_e_branding_alignlogoJSON, "field_e_branding_alignlogo");
-    if(!cJSON_IsString(field_e_branding_alignlogoVar) || (field_e_branding_alignlogoVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_branding_alignlogo__e field_e_branding_alignlogo_parseFromJSON(cJSON *field_e_branding_alignlogoJSON) {
+    if(!cJSON_IsString(field_e_branding_alignlogoJSON) || (field_e_branding_alignlogoJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_branding_alignlogoVariable = field_e_branding_alignlogo_field_e_branding_alignlogo_FromString(field_e_branding_alignlogoVar->valuestring);
-    return field_e_branding_alignlogoVariable;
-end:
-    return 0;
+    return field_e_branding_alignlogo_field_e_branding_alignlogo_FromString(field_e_branding_alignlogoJSON->valuestring);
 }

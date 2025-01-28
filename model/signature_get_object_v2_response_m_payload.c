@@ -5,7 +5,7 @@
 
 
 
-signature_get_object_v2_response_m_payload_t *signature_get_object_v2_response_m_payload_create(
+static signature_get_object_v2_response_m_payload_t *signature_get_object_v2_response_m_payload_create_internal(
     signature_response_compound_t *obj_signature
     ) {
     signature_get_object_v2_response_m_payload_t *signature_get_object_v2_response_m_payload_local_var = malloc(sizeof(signature_get_object_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ signature_get_object_v2_response_m_payload_t *signature_get_object_v2_response_m
     }
     signature_get_object_v2_response_m_payload_local_var->obj_signature = obj_signature;
 
+    signature_get_object_v2_response_m_payload_local_var->_library_owned = 1;
     return signature_get_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) signature_get_object_v2_response_m_payload_t *signature_get_object_v2_response_m_payload_create(
+    signature_response_compound_t *obj_signature
+    ) {
+    return signature_get_object_v2_response_m_payload_create_internal (
+        obj_signature
+        );
+}
 
 void signature_get_object_v2_response_m_payload_free(signature_get_object_v2_response_m_payload_t *signature_get_object_v2_response_m_payload) {
     if(NULL == signature_get_object_v2_response_m_payload){
+        return ;
+    }
+    if(signature_get_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "signature_get_object_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ signature_get_object_v2_response_m_payload_t *signature_get_object_v2_response_m
 
     // signature_get_object_v2_response_m_payload->obj_signature
     cJSON *obj_signature = cJSON_GetObjectItemCaseSensitive(signature_get_object_v2_response_m_payloadJSON, "objSignature");
+    if (cJSON_IsNull(obj_signature)) {
+        obj_signature = NULL;
+    }
     if (!obj_signature) {
         goto end;
     }
@@ -71,7 +86,7 @@ signature_get_object_v2_response_m_payload_t *signature_get_object_v2_response_m
     obj_signature_local_nonprim = signature_response_compound_parseFromJSON(obj_signature); //nonprimitive
 
 
-    signature_get_object_v2_response_m_payload_local_var = signature_get_object_v2_response_m_payload_create (
+    signature_get_object_v2_response_m_payload_local_var = signature_get_object_v2_response_m_payload_create_internal (
         obj_signature_local_nonprim
         );
 

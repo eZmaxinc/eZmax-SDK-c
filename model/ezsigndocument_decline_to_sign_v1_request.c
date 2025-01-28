@@ -5,7 +5,7 @@
 
 
 
-ezsigndocument_decline_to_sign_v1_request_t *ezsigndocument_decline_to_sign_v1_request_create(
+static ezsigndocument_decline_to_sign_v1_request_t *ezsigndocument_decline_to_sign_v1_request_create_internal(
     char *s_reason
     ) {
     ezsigndocument_decline_to_sign_v1_request_t *ezsigndocument_decline_to_sign_v1_request_local_var = malloc(sizeof(ezsigndocument_decline_to_sign_v1_request_t));
@@ -14,12 +14,24 @@ ezsigndocument_decline_to_sign_v1_request_t *ezsigndocument_decline_to_sign_v1_r
     }
     ezsigndocument_decline_to_sign_v1_request_local_var->s_reason = s_reason;
 
+    ezsigndocument_decline_to_sign_v1_request_local_var->_library_owned = 1;
     return ezsigndocument_decline_to_sign_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezsigndocument_decline_to_sign_v1_request_t *ezsigndocument_decline_to_sign_v1_request_create(
+    char *s_reason
+    ) {
+    return ezsigndocument_decline_to_sign_v1_request_create_internal (
+        s_reason
+        );
+}
 
 void ezsigndocument_decline_to_sign_v1_request_free(ezsigndocument_decline_to_sign_v1_request_t *ezsigndocument_decline_to_sign_v1_request) {
     if(NULL == ezsigndocument_decline_to_sign_v1_request){
+        return ;
+    }
+    if(ezsigndocument_decline_to_sign_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigndocument_decline_to_sign_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -55,6 +67,9 @@ ezsigndocument_decline_to_sign_v1_request_t *ezsigndocument_decline_to_sign_v1_r
 
     // ezsigndocument_decline_to_sign_v1_request->s_reason
     cJSON *s_reason = cJSON_GetObjectItemCaseSensitive(ezsigndocument_decline_to_sign_v1_requestJSON, "sReason");
+    if (cJSON_IsNull(s_reason)) {
+        s_reason = NULL;
+    }
     if (!s_reason) {
         goto end;
     }
@@ -66,7 +81,7 @@ ezsigndocument_decline_to_sign_v1_request_t *ezsigndocument_decline_to_sign_v1_r
     }
 
 
-    ezsigndocument_decline_to_sign_v1_request_local_var = ezsigndocument_decline_to_sign_v1_request_create (
+    ezsigndocument_decline_to_sign_v1_request_local_var = ezsigndocument_decline_to_sign_v1_request_create_internal (
         strdup(s_reason->valuestring)
         );
 

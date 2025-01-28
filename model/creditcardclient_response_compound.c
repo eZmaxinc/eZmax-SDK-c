@@ -5,7 +5,7 @@
 
 
 
-creditcardclient_response_compound_t *creditcardclient_response_compound_create(
+static creditcardclient_response_compound_t *creditcardclient_response_compound_create_internal(
     int pki_creditcardclient_id,
     int fki_creditcarddetail_id,
     int b_creditcardclientrelation_isdefault,
@@ -26,12 +26,36 @@ creditcardclient_response_compound_t *creditcardclient_response_compound_create(
     creditcardclient_response_compound_local_var->b_creditcardclient_allowedtranquillit = b_creditcardclient_allowedtranquillit;
     creditcardclient_response_compound_local_var->obj_creditcarddetail = obj_creditcarddetail;
 
+    creditcardclient_response_compound_local_var->_library_owned = 1;
     return creditcardclient_response_compound_local_var;
 }
 
+__attribute__((deprecated)) creditcardclient_response_compound_t *creditcardclient_response_compound_create(
+    int pki_creditcardclient_id,
+    int fki_creditcarddetail_id,
+    int b_creditcardclientrelation_isdefault,
+    char *s_creditcardclient_description,
+    int b_creditcardclient_allowedcompanypayment,
+    int b_creditcardclient_allowedtranquillit,
+    creditcarddetail_response_compound_t *obj_creditcarddetail
+    ) {
+    return creditcardclient_response_compound_create_internal (
+        pki_creditcardclient_id,
+        fki_creditcarddetail_id,
+        b_creditcardclientrelation_isdefault,
+        s_creditcardclient_description,
+        b_creditcardclient_allowedcompanypayment,
+        b_creditcardclient_allowedtranquillit,
+        obj_creditcarddetail
+        );
+}
 
 void creditcardclient_response_compound_free(creditcardclient_response_compound_t *creditcardclient_response_compound) {
     if(NULL == creditcardclient_response_compound){
+        return ;
+    }
+    if(creditcardclient_response_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "creditcardclient_response_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -133,6 +157,9 @@ creditcardclient_response_compound_t *creditcardclient_response_compound_parseFr
 
     // creditcardclient_response_compound->pki_creditcardclient_id
     cJSON *pki_creditcardclient_id = cJSON_GetObjectItemCaseSensitive(creditcardclient_response_compoundJSON, "pkiCreditcardclientID");
+    if (cJSON_IsNull(pki_creditcardclient_id)) {
+        pki_creditcardclient_id = NULL;
+    }
     if (!pki_creditcardclient_id) {
         goto end;
     }
@@ -145,6 +172,9 @@ creditcardclient_response_compound_t *creditcardclient_response_compound_parseFr
 
     // creditcardclient_response_compound->fki_creditcarddetail_id
     cJSON *fki_creditcarddetail_id = cJSON_GetObjectItemCaseSensitive(creditcardclient_response_compoundJSON, "fkiCreditcarddetailID");
+    if (cJSON_IsNull(fki_creditcarddetail_id)) {
+        fki_creditcarddetail_id = NULL;
+    }
     if (!fki_creditcarddetail_id) {
         goto end;
     }
@@ -157,6 +187,9 @@ creditcardclient_response_compound_t *creditcardclient_response_compound_parseFr
 
     // creditcardclient_response_compound->b_creditcardclientrelation_isdefault
     cJSON *b_creditcardclientrelation_isdefault = cJSON_GetObjectItemCaseSensitive(creditcardclient_response_compoundJSON, "bCreditcardclientrelationIsdefault");
+    if (cJSON_IsNull(b_creditcardclientrelation_isdefault)) {
+        b_creditcardclientrelation_isdefault = NULL;
+    }
     if (!b_creditcardclientrelation_isdefault) {
         goto end;
     }
@@ -169,6 +202,9 @@ creditcardclient_response_compound_t *creditcardclient_response_compound_parseFr
 
     // creditcardclient_response_compound->s_creditcardclient_description
     cJSON *s_creditcardclient_description = cJSON_GetObjectItemCaseSensitive(creditcardclient_response_compoundJSON, "sCreditcardclientDescription");
+    if (cJSON_IsNull(s_creditcardclient_description)) {
+        s_creditcardclient_description = NULL;
+    }
     if (!s_creditcardclient_description) {
         goto end;
     }
@@ -181,6 +217,9 @@ creditcardclient_response_compound_t *creditcardclient_response_compound_parseFr
 
     // creditcardclient_response_compound->b_creditcardclient_allowedcompanypayment
     cJSON *b_creditcardclient_allowedcompanypayment = cJSON_GetObjectItemCaseSensitive(creditcardclient_response_compoundJSON, "bCreditcardclientAllowedcompanypayment");
+    if (cJSON_IsNull(b_creditcardclient_allowedcompanypayment)) {
+        b_creditcardclient_allowedcompanypayment = NULL;
+    }
     if (!b_creditcardclient_allowedcompanypayment) {
         goto end;
     }
@@ -193,6 +232,9 @@ creditcardclient_response_compound_t *creditcardclient_response_compound_parseFr
 
     // creditcardclient_response_compound->b_creditcardclient_allowedtranquillit
     cJSON *b_creditcardclient_allowedtranquillit = cJSON_GetObjectItemCaseSensitive(creditcardclient_response_compoundJSON, "bCreditcardclientAllowedtranquillit");
+    if (cJSON_IsNull(b_creditcardclient_allowedtranquillit)) {
+        b_creditcardclient_allowedtranquillit = NULL;
+    }
     if (!b_creditcardclient_allowedtranquillit) {
         goto end;
     }
@@ -205,6 +247,9 @@ creditcardclient_response_compound_t *creditcardclient_response_compound_parseFr
 
     // creditcardclient_response_compound->obj_creditcarddetail
     cJSON *obj_creditcarddetail = cJSON_GetObjectItemCaseSensitive(creditcardclient_response_compoundJSON, "objCreditcarddetail");
+    if (cJSON_IsNull(obj_creditcarddetail)) {
+        obj_creditcarddetail = NULL;
+    }
     if (!obj_creditcarddetail) {
         goto end;
     }
@@ -213,7 +258,7 @@ creditcardclient_response_compound_t *creditcardclient_response_compound_parseFr
     obj_creditcarddetail_local_nonprim = creditcarddetail_response_compound_parseFromJSON(obj_creditcarddetail); //nonprimitive
 
 
-    creditcardclient_response_compound_local_var = creditcardclient_response_compound_create (
+    creditcardclient_response_compound_local_var = creditcardclient_response_compound_create_internal (
         pki_creditcardclient_id->valuedouble,
         fki_creditcarddetail_id->valuedouble,
         b_creditcardclientrelation_isdefault->valueint,

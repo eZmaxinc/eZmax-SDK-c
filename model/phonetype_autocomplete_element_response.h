@@ -23,9 +23,10 @@ typedef struct phonetype_autocomplete_element_response_t {
     char *s_phonetype_name_x; // string
     int b_phonetype_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } phonetype_autocomplete_element_response_t;
 
-phonetype_autocomplete_element_response_t *phonetype_autocomplete_element_response_create(
+__attribute__((deprecated)) phonetype_autocomplete_element_response_t *phonetype_autocomplete_element_response_create(
     int pki_phonetype_id,
     char *s_phonetype_name_x,
     int b_phonetype_isactive

@@ -5,7 +5,7 @@
 
 
 
-ezsigntemplateformfieldgroup_edit_object_v1_request_t *ezsigntemplateformfieldgroup_edit_object_v1_request_create(
+static ezsigntemplateformfieldgroup_edit_object_v1_request_t *ezsigntemplateformfieldgroup_edit_object_v1_request_create_internal(
     ezsigntemplateformfieldgroup_request_compound_t *obj_ezsigntemplateformfieldgroup
     ) {
     ezsigntemplateformfieldgroup_edit_object_v1_request_t *ezsigntemplateformfieldgroup_edit_object_v1_request_local_var = malloc(sizeof(ezsigntemplateformfieldgroup_edit_object_v1_request_t));
@@ -14,12 +14,24 @@ ezsigntemplateformfieldgroup_edit_object_v1_request_t *ezsigntemplateformfieldgr
     }
     ezsigntemplateformfieldgroup_edit_object_v1_request_local_var->obj_ezsigntemplateformfieldgroup = obj_ezsigntemplateformfieldgroup;
 
+    ezsigntemplateformfieldgroup_edit_object_v1_request_local_var->_library_owned = 1;
     return ezsigntemplateformfieldgroup_edit_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezsigntemplateformfieldgroup_edit_object_v1_request_t *ezsigntemplateformfieldgroup_edit_object_v1_request_create(
+    ezsigntemplateformfieldgroup_request_compound_t *obj_ezsigntemplateformfieldgroup
+    ) {
+    return ezsigntemplateformfieldgroup_edit_object_v1_request_create_internal (
+        obj_ezsigntemplateformfieldgroup
+        );
+}
 
 void ezsigntemplateformfieldgroup_edit_object_v1_request_free(ezsigntemplateformfieldgroup_edit_object_v1_request_t *ezsigntemplateformfieldgroup_edit_object_v1_request) {
     if(NULL == ezsigntemplateformfieldgroup_edit_object_v1_request){
+        return ;
+    }
+    if(ezsigntemplateformfieldgroup_edit_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigntemplateformfieldgroup_edit_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ ezsigntemplateformfieldgroup_edit_object_v1_request_t *ezsigntemplateformfieldgr
 
     // ezsigntemplateformfieldgroup_edit_object_v1_request->obj_ezsigntemplateformfieldgroup
     cJSON *obj_ezsigntemplateformfieldgroup = cJSON_GetObjectItemCaseSensitive(ezsigntemplateformfieldgroup_edit_object_v1_requestJSON, "objEzsigntemplateformfieldgroup");
+    if (cJSON_IsNull(obj_ezsigntemplateformfieldgroup)) {
+        obj_ezsigntemplateformfieldgroup = NULL;
+    }
     if (!obj_ezsigntemplateformfieldgroup) {
         goto end;
     }
@@ -71,7 +86,7 @@ ezsigntemplateformfieldgroup_edit_object_v1_request_t *ezsigntemplateformfieldgr
     obj_ezsigntemplateformfieldgroup_local_nonprim = ezsigntemplateformfieldgroup_request_compound_parseFromJSON(obj_ezsigntemplateformfieldgroup); //nonprimitive
 
 
-    ezsigntemplateformfieldgroup_edit_object_v1_request_local_var = ezsigntemplateformfieldgroup_edit_object_v1_request_create (
+    ezsigntemplateformfieldgroup_edit_object_v1_request_local_var = ezsigntemplateformfieldgroup_edit_object_v1_request_create_internal (
         obj_ezsigntemplateformfieldgroup_local_nonprim
         );
 

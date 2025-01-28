@@ -22,9 +22,10 @@ typedef struct common_get_list_v1_response_m_payload_t {
     int i_row_returned; //numeric
     int i_row_filtered; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } common_get_list_v1_response_m_payload_t;
 
-common_get_list_v1_response_m_payload_t *common_get_list_v1_response_m_payload_create(
+__attribute__((deprecated)) common_get_list_v1_response_m_payload_t *common_get_list_v1_response_m_payload_create(
     int i_row_returned,
     int i_row_filtered
 );

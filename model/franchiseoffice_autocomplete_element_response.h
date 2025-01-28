@@ -23,9 +23,10 @@ typedef struct franchiseoffice_autocomplete_element_response_t {
     int pki_franchiseoffice_id; //numeric
     int b_franchiseoffice_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } franchiseoffice_autocomplete_element_response_t;
 
-franchiseoffice_autocomplete_element_response_t *franchiseoffice_autocomplete_element_response_create(
+__attribute__((deprecated)) franchiseoffice_autocomplete_element_response_t *franchiseoffice_autocomplete_element_response_create(
     char *s_franchiseoffice_description,
     int pki_franchiseoffice_id,
     int b_franchiseoffice_isactive

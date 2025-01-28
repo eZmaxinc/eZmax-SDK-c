@@ -33,8 +33,8 @@ address_response_t* instantiate_address_response(int include_optional) {
       1,
       "Canada",
       "H7T2S3",
-      "doej",
-      "doej"
+      "73.5674",
+      "45.5019"
     );
   } else {
     address_response = address_response_create(
@@ -49,8 +49,8 @@ address_response_t* instantiate_address_response(int include_optional) {
       1,
       "Canada",
       "H7T2S3",
-      "doej",
-      "doej"
+      "73.5674",
+      "45.5019"
     );
   }
 

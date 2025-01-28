@@ -23,9 +23,10 @@ typedef struct ezmaxproduct_autocomplete_element_response_t {
     char *s_ezmaxproduct_description_x; // string
     int b_ezmaxproduct_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezmaxproduct_autocomplete_element_response_t;
 
-ezmaxproduct_autocomplete_element_response_t *ezmaxproduct_autocomplete_element_response_create(
+__attribute__((deprecated)) ezmaxproduct_autocomplete_element_response_t *ezmaxproduct_autocomplete_element_response_create(
     int pki_ezmaxproduct_id,
     char *s_ezmaxproduct_description_x,
     int b_ezmaxproduct_isactive

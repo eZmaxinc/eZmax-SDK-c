@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Create a new Ezsignformfieldgroup
@@ -25,11 +20,14 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupCreateObjectV1(apiClient_t *ap
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignformfieldgroup")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignformfieldgroup");
+    char *localVarPath = strdup("/1/object/ezsignformfieldgroup");
+
 
 
 
@@ -38,9 +36,10 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupCreateObjectV1(apiClient_t *ap
     cJSON *localVarSingleItemJSON_ezsignformfieldgroup_create_object_v1_request = NULL;
     if (ezsignformfieldgroup_create_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignformfieldgroup_create_object_v1_request = ezsignformfieldgroup_create_object_v1_request_convertToJSON(ezsignformfieldgroup_create_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignformfieldgroup_create_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -52,6 +51,7 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupCreateObjectV1(apiClient_t *ap
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -59,11 +59,14 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupCreateObjectV1(apiClient_t *ap
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignformfieldgroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignformfieldgroup_create_object_v1_response_t *elementToReturn = ezsignformfieldgroup_create_object_v1_response_parseFromJSON(ObjectEzsignformfieldgroupAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignformfieldgroupAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignformfieldgroup_create_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignformfieldgroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignformfieldgroup_create_object_v1_response_parseFromJSON(ObjectEzsignformfieldgroupAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignformfieldgroupAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -94,7 +97,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignformfieldgroup_delete_object_v1_response_t*
 ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignformfieldgroupID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -103,15 +106,18 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupDeleteObjectV1(apiClient_t *ap
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignformfieldgroup/{pkiEzsignformfieldgroupID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignformfieldgroup/{pkiEzsignformfieldgroupID}");
+    char *localVarPath = strdup("/1/object/ezsignformfieldgroup/{pkiEzsignformfieldgroupID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignformfieldgroupID =  + strlen("{ pkiEzsignformfieldgroupID }");
+    long sizeOfPathParams_pkiEzsignformfieldgroupID =  + sizeof("{ pkiEzsignformfieldgroupID }") - 1;
     if(pkiEzsignformfieldgroupID == 0){
         goto end;
     }
@@ -119,7 +125,7 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupDeleteObjectV1(apiClient_t *ap
     snprintf(localVarToReplace_pkiEzsignformfieldgroupID, sizeOfPathParams_pkiEzsignformfieldgroupID, "{%s}", "pkiEzsignformfieldgroupID");
 
     char localVarBuff_pkiEzsignformfieldgroupID[256];
-    intToStr(localVarBuff_pkiEzsignformfieldgroupID, *pkiEzsignformfieldgroupID);
+    snprintf(localVarBuff_pkiEzsignformfieldgroupID, sizeof localVarBuff_pkiEzsignformfieldgroupID, "%ld", (long)*pkiEzsignformfieldgroupID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignformfieldgroupID, localVarBuff_pkiEzsignformfieldgroupID);
 
@@ -134,6 +140,7 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupDeleteObjectV1(apiClient_t *ap
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "DELETE");
 
     // uncomment below to debug the error response
@@ -149,11 +156,14 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupDeleteObjectV1(apiClient_t *ap
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignformfieldgroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignformfieldgroupAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignformfieldgroupAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignformfieldgroup_delete_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignformfieldgroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignformfieldgroup_delete_object_v1_response_parseFromJSON(ObjectEzsignformfieldgroupAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignformfieldgroupAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -180,7 +190,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignformfieldgroup_edit_object_v1_response_t*
 ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupEditObjectV1(apiClient_t *apiClient, int *pkiEzsignformfieldgroupID, ezsignformfieldgroup_edit_object_v1_request_t *ezsignformfieldgroup_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -189,15 +199,18 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupEditObjectV1(apiClient_t *apiC
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignformfieldgroup/{pkiEzsignformfieldgroupID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignformfieldgroup/{pkiEzsignformfieldgroupID}");
+    char *localVarPath = strdup("/1/object/ezsignformfieldgroup/{pkiEzsignformfieldgroupID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignformfieldgroupID =  + strlen("{ pkiEzsignformfieldgroupID }");
+    long sizeOfPathParams_pkiEzsignformfieldgroupID =  + sizeof("{ pkiEzsignformfieldgroupID }") - 1;
     if(pkiEzsignformfieldgroupID == 0){
         goto end;
     }
@@ -205,7 +218,7 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupEditObjectV1(apiClient_t *apiC
     snprintf(localVarToReplace_pkiEzsignformfieldgroupID, sizeOfPathParams_pkiEzsignformfieldgroupID, "{%s}", "pkiEzsignformfieldgroupID");
 
     char localVarBuff_pkiEzsignformfieldgroupID[256];
-    intToStr(localVarBuff_pkiEzsignformfieldgroupID, *pkiEzsignformfieldgroupID);
+    snprintf(localVarBuff_pkiEzsignformfieldgroupID, sizeof localVarBuff_pkiEzsignformfieldgroupID, "%ld", (long)*pkiEzsignformfieldgroupID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignformfieldgroupID, localVarBuff_pkiEzsignformfieldgroupID);
 
@@ -216,9 +229,10 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupEditObjectV1(apiClient_t *apiC
     cJSON *localVarSingleItemJSON_ezsignformfieldgroup_edit_object_v1_request = NULL;
     if (ezsignformfieldgroup_edit_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignformfieldgroup_edit_object_v1_request = ezsignformfieldgroup_edit_object_v1_request_convertToJSON(ezsignformfieldgroup_edit_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignformfieldgroup_edit_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -230,6 +244,7 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupEditObjectV1(apiClient_t *apiC
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -245,11 +260,14 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupEditObjectV1(apiClient_t *apiC
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignformfieldgroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignformfieldgroupAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignformfieldgroupAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignformfieldgroup_edit_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignformfieldgroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignformfieldgroup_edit_object_v1_response_parseFromJSON(ObjectEzsignformfieldgroupAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignformfieldgroupAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -290,15 +308,18 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupGetObjectV2(apiClient_t *apiCl
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/ezsignformfieldgroup/{pkiEzsignformfieldgroupID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/ezsignformfieldgroup/{pkiEzsignformfieldgroupID}");
+    char *localVarPath = strdup("/2/object/ezsignformfieldgroup/{pkiEzsignformfieldgroupID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignformfieldgroupID =  + strlen("{ pkiEzsignformfieldgroupID }");
+    long sizeOfPathParams_pkiEzsignformfieldgroupID =  + sizeof("{ pkiEzsignformfieldgroupID }") - 1;
     if(pkiEzsignformfieldgroupID == 0){
         goto end;
     }
@@ -306,7 +327,7 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupGetObjectV2(apiClient_t *apiCl
     snprintf(localVarToReplace_pkiEzsignformfieldgroupID, sizeOfPathParams_pkiEzsignformfieldgroupID, "{%s}", "pkiEzsignformfieldgroupID");
 
     char localVarBuff_pkiEzsignformfieldgroupID[256];
-    intToStr(localVarBuff_pkiEzsignformfieldgroupID, *pkiEzsignformfieldgroupID);
+    snprintf(localVarBuff_pkiEzsignformfieldgroupID, sizeof localVarBuff_pkiEzsignformfieldgroupID, "%ld", (long)*pkiEzsignformfieldgroupID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignformfieldgroupID, localVarBuff_pkiEzsignformfieldgroupID);
 
@@ -321,6 +342,7 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupGetObjectV2(apiClient_t *apiCl
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -332,11 +354,14 @@ ObjectEzsignformfieldgroupAPI_ezsignformfieldgroupGetObjectV2(apiClient_t *apiCl
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignformfieldgroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignformfieldgroup_get_object_v2_response_t *elementToReturn = ezsignformfieldgroup_get_object_v2_response_parseFromJSON(ObjectEzsignformfieldgroupAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignformfieldgroupAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignformfieldgroup_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignformfieldgroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignformfieldgroup_get_object_v2_response_parseFromJSON(ObjectEzsignformfieldgroupAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignformfieldgroupAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

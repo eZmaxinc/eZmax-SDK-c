@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsignfoldertype_completion__e field_e_ezsign
     return 0;
 }
 
-cJSON *field_e_ezsignfoldertype_completion_field_e_ezsignfoldertype_completion_convertToJSON(ezmax_api_definition__full_field_e_ezsignfoldertype_completion__e field_e_ezsignfoldertype_completion) {
+cJSON *field_e_ezsignfoldertype_completion_convertToJSON(ezmax_api_definition__full_field_e_ezsignfoldertype_completion__e field_e_ezsignfoldertype_completion) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsignfoldertype_completion", field_e_ezsignfoldertype_completion_field_e_ezsignfoldertype_completion_ToString(field_e_ezsignfoldertype_completion)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsignfoldertype_completion__e field_e_ezsignfoldertype_completion_field_e_ezsignfoldertype_completion_parseFromJSON(cJSON *field_e_ezsignfoldertype_completionJSON) {
-    ezmax_api_definition__full_field_e_ezsignfoldertype_completion__e *field_e_ezsignfoldertype_completion = NULL;
-    ezmax_api_definition__full_field_e_ezsignfoldertype_completion__e field_e_ezsignfoldertype_completionVariable;
-    cJSON *field_e_ezsignfoldertype_completionVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsignfoldertype_completionJSON, "field_e_ezsignfoldertype_completion");
-    if(!cJSON_IsString(field_e_ezsignfoldertype_completionVar) || (field_e_ezsignfoldertype_completionVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsignfoldertype_completion__e field_e_ezsignfoldertype_completion_parseFromJSON(cJSON *field_e_ezsignfoldertype_completionJSON) {
+    if(!cJSON_IsString(field_e_ezsignfoldertype_completionJSON) || (field_e_ezsignfoldertype_completionJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsignfoldertype_completionVariable = field_e_ezsignfoldertype_completion_field_e_ezsignfoldertype_completion_FromString(field_e_ezsignfoldertype_completionVar->valuestring);
-    return field_e_ezsignfoldertype_completionVariable;
-end:
-    return 0;
+    return field_e_ezsignfoldertype_completion_field_e_ezsignfoldertype_completion_FromString(field_e_ezsignfoldertype_completionJSON->valuestring);
 }

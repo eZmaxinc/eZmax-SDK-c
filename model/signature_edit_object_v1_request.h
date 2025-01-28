@@ -22,9 +22,10 @@ typedef struct signature_edit_object_v1_request_t signature_edit_object_v1_reque
 typedef struct signature_edit_object_v1_request_t {
     struct signature_request_compound_t *obj_signature; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } signature_edit_object_v1_request_t;
 
-signature_edit_object_v1_request_t *signature_edit_object_v1_request_create(
+__attribute__((deprecated)) signature_edit_object_v1_request_t *signature_edit_object_v1_request_create(
     signature_request_compound_t *obj_signature
 );
 

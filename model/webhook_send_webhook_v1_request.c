@@ -4,62 +4,11 @@
 #include "webhook_send_webhook_v1_request.h"
 
 
-char* webhook_send_webhook_v1_request_e_webhook_module_ToString(ezmax_api_definition__full_webhook_send_webhook_v1_request__e e_webhook_module) {
-    char* e_webhook_moduleArray[] =  { "NULL", "Ezsign", "Management" };
-    return e_webhook_moduleArray[e_webhook_module];
-}
 
-ezmax_api_definition__full_webhook_send_webhook_v1_request__e webhook_send_webhook_v1_request_e_webhook_module_FromString(char* e_webhook_module){
-    int stringToReturn = 0;
-    char *e_webhook_moduleArray[] =  { "NULL", "Ezsign", "Management" };
-    size_t sizeofArray = sizeof(e_webhook_moduleArray) / sizeof(e_webhook_moduleArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_webhook_module, e_webhook_moduleArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-char* webhook_send_webhook_v1_request_e_webhook_ezsignevent_ToString(ezmax_api_definition__full_webhook_send_webhook_v1_request__e e_webhook_ezsignevent) {
-    char* e_webhook_ezsigneventArray[] =  { "NULL", "DocumentCompleted", "DocumentFormCompleted", "DocumentUnsent", "EzsignsignerAcceptclause", "EzsignsignerConnect", "FolderCompleted", "FolderDisposed", "FolderSent", "FolderUnsent" };
-    return e_webhook_ezsigneventArray[e_webhook_ezsignevent];
-}
-
-ezmax_api_definition__full_webhook_send_webhook_v1_request__e webhook_send_webhook_v1_request_e_webhook_ezsignevent_FromString(char* e_webhook_ezsignevent){
-    int stringToReturn = 0;
-    char *e_webhook_ezsigneventArray[] =  { "NULL", "DocumentCompleted", "DocumentFormCompleted", "DocumentUnsent", "EzsignsignerAcceptclause", "EzsignsignerConnect", "FolderCompleted", "FolderDisposed", "FolderSent", "FolderUnsent" };
-    size_t sizeofArray = sizeof(e_webhook_ezsigneventArray) / sizeof(e_webhook_ezsigneventArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_webhook_ezsignevent, e_webhook_ezsigneventArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-char* webhook_send_webhook_v1_request_e_webhook_managementevent_ToString(ezmax_api_definition__full_webhook_send_webhook_v1_request__e e_webhook_managementevent) {
-    char* e_webhook_managementeventArray[] =  { "NULL", "UserCreated", "UserstagedCreated" };
-    return e_webhook_managementeventArray[e_webhook_managementevent];
-}
-
-ezmax_api_definition__full_webhook_send_webhook_v1_request__e webhook_send_webhook_v1_request_e_webhook_managementevent_FromString(char* e_webhook_managementevent){
-    int stringToReturn = 0;
-    char *e_webhook_managementeventArray[] =  { "NULL", "UserCreated", "UserstagedCreated" };
-    size_t sizeofArray = sizeof(e_webhook_managementeventArray) / sizeof(e_webhook_managementeventArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_webhook_managementevent, e_webhook_managementeventArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-webhook_send_webhook_v1_request_t *webhook_send_webhook_v1_request_create(
-    field_e_webhook_module_t *e_webhook_module,
-    custom_e_webhook_ezsignevent_t *e_webhook_ezsignevent,
-    field_e_webhook_managementevent_t *e_webhook_managementevent,
+static webhook_send_webhook_v1_request_t *webhook_send_webhook_v1_request_create_internal(
+    ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module,
+    ezmax_api_definition__full_custom_e_webhook_ezsignevent__e e_webhook_ezsignevent,
+    ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent,
     int fki_ezsignfolder_id,
     int fki_ezsigndocument_id,
     int fki_ezsignsigner_id,
@@ -79,27 +28,41 @@ webhook_send_webhook_v1_request_t *webhook_send_webhook_v1_request_create(
     webhook_send_webhook_v1_request_local_var->fki_user_id = fki_user_id;
     webhook_send_webhook_v1_request_local_var->fki_userstaged_id = fki_userstaged_id;
 
+    webhook_send_webhook_v1_request_local_var->_library_owned = 1;
     return webhook_send_webhook_v1_request_local_var;
 }
 
+__attribute__((deprecated)) webhook_send_webhook_v1_request_t *webhook_send_webhook_v1_request_create(
+    ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module,
+    ezmax_api_definition__full_custom_e_webhook_ezsignevent__e e_webhook_ezsignevent,
+    ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent,
+    int fki_ezsignfolder_id,
+    int fki_ezsigndocument_id,
+    int fki_ezsignsigner_id,
+    int fki_user_id,
+    int fki_userstaged_id
+    ) {
+    return webhook_send_webhook_v1_request_create_internal (
+        e_webhook_module,
+        e_webhook_ezsignevent,
+        e_webhook_managementevent,
+        fki_ezsignfolder_id,
+        fki_ezsigndocument_id,
+        fki_ezsignsigner_id,
+        fki_user_id,
+        fki_userstaged_id
+        );
+}
 
 void webhook_send_webhook_v1_request_free(webhook_send_webhook_v1_request_t *webhook_send_webhook_v1_request) {
     if(NULL == webhook_send_webhook_v1_request){
         return ;
     }
+    if(webhook_send_webhook_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "webhook_send_webhook_v1_request_free");
+        return ;
+    }
     listEntry_t *listEntry;
-    if (webhook_send_webhook_v1_request->e_webhook_module) {
-        field_e_webhook_module_free(webhook_send_webhook_v1_request->e_webhook_module);
-        webhook_send_webhook_v1_request->e_webhook_module = NULL;
-    }
-    if (webhook_send_webhook_v1_request->e_webhook_ezsignevent) {
-        custom_e_webhook_ezsignevent_free(webhook_send_webhook_v1_request->e_webhook_ezsignevent);
-        webhook_send_webhook_v1_request->e_webhook_ezsignevent = NULL;
-    }
-    if (webhook_send_webhook_v1_request->e_webhook_managementevent) {
-        field_e_webhook_managementevent_free(webhook_send_webhook_v1_request->e_webhook_managementevent);
-        webhook_send_webhook_v1_request->e_webhook_managementevent = NULL;
-    }
     free(webhook_send_webhook_v1_request);
 }
 
@@ -107,7 +70,7 @@ cJSON *webhook_send_webhook_v1_request_convertToJSON(webhook_send_webhook_v1_req
     cJSON *item = cJSON_CreateObject();
 
     // webhook_send_webhook_v1_request->e_webhook_module
-    if (ezmax_api_definition__full_webhook_send_webhook_v1_request__NULL == webhook_send_webhook_v1_request->e_webhook_module) {
+    if (ezmax_api_definition__full_field_e_webhook_module__NULL == webhook_send_webhook_v1_request->e_webhook_module) {
         goto fail;
     }
     cJSON *e_webhook_module_local_JSON = field_e_webhook_module_convertToJSON(webhook_send_webhook_v1_request->e_webhook_module);
@@ -121,7 +84,7 @@ cJSON *webhook_send_webhook_v1_request_convertToJSON(webhook_send_webhook_v1_req
 
 
     // webhook_send_webhook_v1_request->e_webhook_ezsignevent
-    if(webhook_send_webhook_v1_request->e_webhook_ezsignevent != ezmax_api_definition__full_webhook_send_webhook_v1_request__NULL) {
+    if(webhook_send_webhook_v1_request->e_webhook_ezsignevent != ezmax_api_definition__full_custom_e_webhook_ezsignevent__NULL) {
     cJSON *e_webhook_ezsignevent_local_JSON = custom_e_webhook_ezsignevent_convertToJSON(webhook_send_webhook_v1_request->e_webhook_ezsignevent);
     if(e_webhook_ezsignevent_local_JSON == NULL) {
         goto fail; // custom
@@ -134,7 +97,7 @@ cJSON *webhook_send_webhook_v1_request_convertToJSON(webhook_send_webhook_v1_req
 
 
     // webhook_send_webhook_v1_request->e_webhook_managementevent
-    if(webhook_send_webhook_v1_request->e_webhook_managementevent != ezmax_api_definition__full_webhook_send_webhook_v1_request__NULL) {
+    if(webhook_send_webhook_v1_request->e_webhook_managementevent != ezmax_api_definition__full_field_e_webhook_managementevent__NULL) {
     cJSON *e_webhook_managementevent_local_JSON = field_e_webhook_managementevent_convertToJSON(webhook_send_webhook_v1_request->e_webhook_managementevent);
     if(e_webhook_managementevent_local_JSON == NULL) {
         goto fail; // custom
@@ -198,16 +161,19 @@ webhook_send_webhook_v1_request_t *webhook_send_webhook_v1_request_parseFromJSON
     webhook_send_webhook_v1_request_t *webhook_send_webhook_v1_request_local_var = NULL;
 
     // define the local variable for webhook_send_webhook_v1_request->e_webhook_module
-    field_e_webhook_module_t *e_webhook_module_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module_local_nonprim = 0;
 
     // define the local variable for webhook_send_webhook_v1_request->e_webhook_ezsignevent
-    custom_e_webhook_ezsignevent_t *e_webhook_ezsignevent_local_nonprim = NULL;
+    ezmax_api_definition__full_custom_e_webhook_ezsignevent__e e_webhook_ezsignevent_local_nonprim = 0;
 
     // define the local variable for webhook_send_webhook_v1_request->e_webhook_managementevent
-    field_e_webhook_managementevent_t *e_webhook_managementevent_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent_local_nonprim = 0;
 
     // webhook_send_webhook_v1_request->e_webhook_module
     cJSON *e_webhook_module = cJSON_GetObjectItemCaseSensitive(webhook_send_webhook_v1_requestJSON, "eWebhookModule");
+    if (cJSON_IsNull(e_webhook_module)) {
+        e_webhook_module = NULL;
+    }
     if (!e_webhook_module) {
         goto end;
     }
@@ -217,18 +183,27 @@ webhook_send_webhook_v1_request_t *webhook_send_webhook_v1_request_parseFromJSON
 
     // webhook_send_webhook_v1_request->e_webhook_ezsignevent
     cJSON *e_webhook_ezsignevent = cJSON_GetObjectItemCaseSensitive(webhook_send_webhook_v1_requestJSON, "eWebhookEzsignevent");
+    if (cJSON_IsNull(e_webhook_ezsignevent)) {
+        e_webhook_ezsignevent = NULL;
+    }
     if (e_webhook_ezsignevent) { 
     e_webhook_ezsignevent_local_nonprim = custom_e_webhook_ezsignevent_parseFromJSON(e_webhook_ezsignevent); //custom
     }
 
     // webhook_send_webhook_v1_request->e_webhook_managementevent
     cJSON *e_webhook_managementevent = cJSON_GetObjectItemCaseSensitive(webhook_send_webhook_v1_requestJSON, "eWebhookManagementevent");
+    if (cJSON_IsNull(e_webhook_managementevent)) {
+        e_webhook_managementevent = NULL;
+    }
     if (e_webhook_managementevent) { 
     e_webhook_managementevent_local_nonprim = field_e_webhook_managementevent_parseFromJSON(e_webhook_managementevent); //custom
     }
 
     // webhook_send_webhook_v1_request->fki_ezsignfolder_id
     cJSON *fki_ezsignfolder_id = cJSON_GetObjectItemCaseSensitive(webhook_send_webhook_v1_requestJSON, "fkiEzsignfolderID");
+    if (cJSON_IsNull(fki_ezsignfolder_id)) {
+        fki_ezsignfolder_id = NULL;
+    }
     if (fki_ezsignfolder_id) { 
     if(!cJSON_IsNumber(fki_ezsignfolder_id))
     {
@@ -238,6 +213,9 @@ webhook_send_webhook_v1_request_t *webhook_send_webhook_v1_request_parseFromJSON
 
     // webhook_send_webhook_v1_request->fki_ezsigndocument_id
     cJSON *fki_ezsigndocument_id = cJSON_GetObjectItemCaseSensitive(webhook_send_webhook_v1_requestJSON, "fkiEzsigndocumentID");
+    if (cJSON_IsNull(fki_ezsigndocument_id)) {
+        fki_ezsigndocument_id = NULL;
+    }
     if (fki_ezsigndocument_id) { 
     if(!cJSON_IsNumber(fki_ezsigndocument_id))
     {
@@ -247,6 +225,9 @@ webhook_send_webhook_v1_request_t *webhook_send_webhook_v1_request_parseFromJSON
 
     // webhook_send_webhook_v1_request->fki_ezsignsigner_id
     cJSON *fki_ezsignsigner_id = cJSON_GetObjectItemCaseSensitive(webhook_send_webhook_v1_requestJSON, "fkiEzsignsignerID");
+    if (cJSON_IsNull(fki_ezsignsigner_id)) {
+        fki_ezsignsigner_id = NULL;
+    }
     if (fki_ezsignsigner_id) { 
     if(!cJSON_IsNumber(fki_ezsignsigner_id))
     {
@@ -256,6 +237,9 @@ webhook_send_webhook_v1_request_t *webhook_send_webhook_v1_request_parseFromJSON
 
     // webhook_send_webhook_v1_request->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(webhook_send_webhook_v1_requestJSON, "fkiUserID");
+    if (cJSON_IsNull(fki_user_id)) {
+        fki_user_id = NULL;
+    }
     if (fki_user_id) { 
     if(!cJSON_IsNumber(fki_user_id))
     {
@@ -265,6 +249,9 @@ webhook_send_webhook_v1_request_t *webhook_send_webhook_v1_request_parseFromJSON
 
     // webhook_send_webhook_v1_request->fki_userstaged_id
     cJSON *fki_userstaged_id = cJSON_GetObjectItemCaseSensitive(webhook_send_webhook_v1_requestJSON, "fkiUserstagedID");
+    if (cJSON_IsNull(fki_userstaged_id)) {
+        fki_userstaged_id = NULL;
+    }
     if (fki_userstaged_id) { 
     if(!cJSON_IsNumber(fki_userstaged_id))
     {
@@ -273,10 +260,10 @@ webhook_send_webhook_v1_request_t *webhook_send_webhook_v1_request_parseFromJSON
     }
 
 
-    webhook_send_webhook_v1_request_local_var = webhook_send_webhook_v1_request_create (
+    webhook_send_webhook_v1_request_local_var = webhook_send_webhook_v1_request_create_internal (
         e_webhook_module_local_nonprim,
-        e_webhook_ezsignevent ? e_webhook_ezsignevent_local_nonprim : NULL,
-        e_webhook_managementevent ? e_webhook_managementevent_local_nonprim : NULL,
+        e_webhook_ezsignevent ? e_webhook_ezsignevent_local_nonprim : 0,
+        e_webhook_managementevent ? e_webhook_managementevent_local_nonprim : 0,
         fki_ezsignfolder_id ? fki_ezsignfolder_id->valuedouble : 0,
         fki_ezsigndocument_id ? fki_ezsigndocument_id->valuedouble : 0,
         fki_ezsignsigner_id ? fki_ezsignsigner_id->valuedouble : 0,
@@ -287,16 +274,13 @@ webhook_send_webhook_v1_request_t *webhook_send_webhook_v1_request_parseFromJSON
     return webhook_send_webhook_v1_request_local_var;
 end:
     if (e_webhook_module_local_nonprim) {
-        field_e_webhook_module_free(e_webhook_module_local_nonprim);
-        e_webhook_module_local_nonprim = NULL;
+        e_webhook_module_local_nonprim = 0;
     }
     if (e_webhook_ezsignevent_local_nonprim) {
-        custom_e_webhook_ezsignevent_free(e_webhook_ezsignevent_local_nonprim);
-        e_webhook_ezsignevent_local_nonprim = NULL;
+        e_webhook_ezsignevent_local_nonprim = 0;
     }
     if (e_webhook_managementevent_local_nonprim) {
-        field_e_webhook_managementevent_free(e_webhook_managementevent_local_nonprim);
-        e_webhook_managementevent_local_nonprim = NULL;
+        e_webhook_managementevent_local_nonprim = 0;
     }
     return NULL;
 

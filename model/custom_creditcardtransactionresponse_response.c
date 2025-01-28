@@ -4,47 +4,13 @@
 #include "custom_creditcardtransactionresponse_response.h"
 
 
-char* custom_creditcardtransactionresponse_response_e_creditcardtransaction_avsresult_ToString(ezmax_api_definition__full_custom_creditcardtransactionresponse_response__e e_creditcardtransaction_avsresult) {
-    char* e_creditcardtransaction_avsresultArray[] =  { "NULL", "Match", "NoMatch", "PartialMatch", "NotImplemented", "NotVerified" };
-    return e_creditcardtransaction_avsresultArray[e_creditcardtransaction_avsresult];
-}
 
-ezmax_api_definition__full_custom_creditcardtransactionresponse_response__e custom_creditcardtransactionresponse_response_e_creditcardtransaction_avsresult_FromString(char* e_creditcardtransaction_avsresult){
-    int stringToReturn = 0;
-    char *e_creditcardtransaction_avsresultArray[] =  { "NULL", "Match", "NoMatch", "PartialMatch", "NotImplemented", "NotVerified" };
-    size_t sizeofArray = sizeof(e_creditcardtransaction_avsresultArray) / sizeof(e_creditcardtransaction_avsresultArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_creditcardtransaction_avsresult, e_creditcardtransaction_avsresultArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-char* custom_creditcardtransactionresponse_response_e_creditcardtransaction_cvdresult_ToString(ezmax_api_definition__full_custom_creditcardtransactionresponse_response__e e_creditcardtransaction_cvdresult) {
-    char* e_creditcardtransaction_cvdresultArray[] =  { "NULL", "Match", "NoMatch", "NotVerified" };
-    return e_creditcardtransaction_cvdresultArray[e_creditcardtransaction_cvdresult];
-}
-
-ezmax_api_definition__full_custom_creditcardtransactionresponse_response__e custom_creditcardtransactionresponse_response_e_creditcardtransaction_cvdresult_FromString(char* e_creditcardtransaction_cvdresult){
-    int stringToReturn = 0;
-    char *e_creditcardtransaction_cvdresultArray[] =  { "NULL", "Match", "NoMatch", "NotVerified" };
-    size_t sizeofArray = sizeof(e_creditcardtransaction_cvdresultArray) / sizeof(e_creditcardtransaction_cvdresultArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_creditcardtransaction_cvdresult, e_creditcardtransaction_cvdresultArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-custom_creditcardtransactionresponse_response_t *custom_creditcardtransactionresponse_response_create(
+static custom_creditcardtransactionresponse_response_t *custom_creditcardtransactionresponse_response_create_internal(
     char *s_creditcardtransaction_is_ocode,
     char *s_creditcardtransaction_responsecode,
     char *s_creditcardtransaction_responseterminalmessage,
-    field_e_creditcardtransaction_avsresult_t *e_creditcardtransaction_avsresult,
-    field_e_creditcardtransaction_cvdresult_t *e_creditcardtransaction_cvdresult
+    ezmax_api_definition__full_field_e_creditcardtransaction_avsresult__e e_creditcardtransaction_avsresult,
+    ezmax_api_definition__full_field_e_creditcardtransaction_cvdresult__e e_creditcardtransaction_cvdresult
     ) {
     custom_creditcardtransactionresponse_response_t *custom_creditcardtransactionresponse_response_local_var = malloc(sizeof(custom_creditcardtransactionresponse_response_t));
     if (!custom_creditcardtransactionresponse_response_local_var) {
@@ -56,12 +22,32 @@ custom_creditcardtransactionresponse_response_t *custom_creditcardtransactionres
     custom_creditcardtransactionresponse_response_local_var->e_creditcardtransaction_avsresult = e_creditcardtransaction_avsresult;
     custom_creditcardtransactionresponse_response_local_var->e_creditcardtransaction_cvdresult = e_creditcardtransaction_cvdresult;
 
+    custom_creditcardtransactionresponse_response_local_var->_library_owned = 1;
     return custom_creditcardtransactionresponse_response_local_var;
 }
 
+__attribute__((deprecated)) custom_creditcardtransactionresponse_response_t *custom_creditcardtransactionresponse_response_create(
+    char *s_creditcardtransaction_is_ocode,
+    char *s_creditcardtransaction_responsecode,
+    char *s_creditcardtransaction_responseterminalmessage,
+    ezmax_api_definition__full_field_e_creditcardtransaction_avsresult__e e_creditcardtransaction_avsresult,
+    ezmax_api_definition__full_field_e_creditcardtransaction_cvdresult__e e_creditcardtransaction_cvdresult
+    ) {
+    return custom_creditcardtransactionresponse_response_create_internal (
+        s_creditcardtransaction_is_ocode,
+        s_creditcardtransaction_responsecode,
+        s_creditcardtransaction_responseterminalmessage,
+        e_creditcardtransaction_avsresult,
+        e_creditcardtransaction_cvdresult
+        );
+}
 
 void custom_creditcardtransactionresponse_response_free(custom_creditcardtransactionresponse_response_t *custom_creditcardtransactionresponse_response) {
     if(NULL == custom_creditcardtransactionresponse_response){
+        return ;
+    }
+    if(custom_creditcardtransactionresponse_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "custom_creditcardtransactionresponse_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -76,14 +62,6 @@ void custom_creditcardtransactionresponse_response_free(custom_creditcardtransac
     if (custom_creditcardtransactionresponse_response->s_creditcardtransaction_responseterminalmessage) {
         free(custom_creditcardtransactionresponse_response->s_creditcardtransaction_responseterminalmessage);
         custom_creditcardtransactionresponse_response->s_creditcardtransaction_responseterminalmessage = NULL;
-    }
-    if (custom_creditcardtransactionresponse_response->e_creditcardtransaction_avsresult) {
-        field_e_creditcardtransaction_avsresult_free(custom_creditcardtransactionresponse_response->e_creditcardtransaction_avsresult);
-        custom_creditcardtransactionresponse_response->e_creditcardtransaction_avsresult = NULL;
-    }
-    if (custom_creditcardtransactionresponse_response->e_creditcardtransaction_cvdresult) {
-        field_e_creditcardtransaction_cvdresult_free(custom_creditcardtransactionresponse_response->e_creditcardtransaction_cvdresult);
-        custom_creditcardtransactionresponse_response->e_creditcardtransaction_cvdresult = NULL;
     }
     free(custom_creditcardtransactionresponse_response);
 }
@@ -119,7 +97,7 @@ cJSON *custom_creditcardtransactionresponse_response_convertToJSON(custom_credit
 
 
     // custom_creditcardtransactionresponse_response->e_creditcardtransaction_avsresult
-    if(custom_creditcardtransactionresponse_response->e_creditcardtransaction_avsresult != ezmax_api_definition__full_custom_creditcardtransactionresponse_response__NULL) {
+    if(custom_creditcardtransactionresponse_response->e_creditcardtransaction_avsresult != ezmax_api_definition__full_field_e_creditcardtransaction_avsresult__NULL) {
     cJSON *e_creditcardtransaction_avsresult_local_JSON = field_e_creditcardtransaction_avsresult_convertToJSON(custom_creditcardtransactionresponse_response->e_creditcardtransaction_avsresult);
     if(e_creditcardtransaction_avsresult_local_JSON == NULL) {
         goto fail; // custom
@@ -132,7 +110,7 @@ cJSON *custom_creditcardtransactionresponse_response_convertToJSON(custom_credit
 
 
     // custom_creditcardtransactionresponse_response->e_creditcardtransaction_cvdresult
-    if(custom_creditcardtransactionresponse_response->e_creditcardtransaction_cvdresult != ezmax_api_definition__full_custom_creditcardtransactionresponse_response__NULL) {
+    if(custom_creditcardtransactionresponse_response->e_creditcardtransaction_cvdresult != ezmax_api_definition__full_field_e_creditcardtransaction_cvdresult__NULL) {
     cJSON *e_creditcardtransaction_cvdresult_local_JSON = field_e_creditcardtransaction_cvdresult_convertToJSON(custom_creditcardtransactionresponse_response->e_creditcardtransaction_cvdresult);
     if(e_creditcardtransaction_cvdresult_local_JSON == NULL) {
         goto fail; // custom
@@ -156,13 +134,16 @@ custom_creditcardtransactionresponse_response_t *custom_creditcardtransactionres
     custom_creditcardtransactionresponse_response_t *custom_creditcardtransactionresponse_response_local_var = NULL;
 
     // define the local variable for custom_creditcardtransactionresponse_response->e_creditcardtransaction_avsresult
-    field_e_creditcardtransaction_avsresult_t *e_creditcardtransaction_avsresult_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_creditcardtransaction_avsresult__e e_creditcardtransaction_avsresult_local_nonprim = 0;
 
     // define the local variable for custom_creditcardtransactionresponse_response->e_creditcardtransaction_cvdresult
-    field_e_creditcardtransaction_cvdresult_t *e_creditcardtransaction_cvdresult_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_creditcardtransaction_cvdresult__e e_creditcardtransaction_cvdresult_local_nonprim = 0;
 
     // custom_creditcardtransactionresponse_response->s_creditcardtransaction_is_ocode
     cJSON *s_creditcardtransaction_is_ocode = cJSON_GetObjectItemCaseSensitive(custom_creditcardtransactionresponse_responseJSON, "sCreditcardtransactionISOcode");
+    if (cJSON_IsNull(s_creditcardtransaction_is_ocode)) {
+        s_creditcardtransaction_is_ocode = NULL;
+    }
     if (!s_creditcardtransaction_is_ocode) {
         goto end;
     }
@@ -175,6 +156,9 @@ custom_creditcardtransactionresponse_response_t *custom_creditcardtransactionres
 
     // custom_creditcardtransactionresponse_response->s_creditcardtransaction_responsecode
     cJSON *s_creditcardtransaction_responsecode = cJSON_GetObjectItemCaseSensitive(custom_creditcardtransactionresponse_responseJSON, "sCreditcardtransactionResponsecode");
+    if (cJSON_IsNull(s_creditcardtransaction_responsecode)) {
+        s_creditcardtransaction_responsecode = NULL;
+    }
     if (!s_creditcardtransaction_responsecode) {
         goto end;
     }
@@ -187,6 +171,9 @@ custom_creditcardtransactionresponse_response_t *custom_creditcardtransactionres
 
     // custom_creditcardtransactionresponse_response->s_creditcardtransaction_responseterminalmessage
     cJSON *s_creditcardtransaction_responseterminalmessage = cJSON_GetObjectItemCaseSensitive(custom_creditcardtransactionresponse_responseJSON, "sCreditcardtransactionResponseterminalmessage");
+    if (cJSON_IsNull(s_creditcardtransaction_responseterminalmessage)) {
+        s_creditcardtransaction_responseterminalmessage = NULL;
+    }
     if (!s_creditcardtransaction_responseterminalmessage) {
         goto end;
     }
@@ -199,34 +186,38 @@ custom_creditcardtransactionresponse_response_t *custom_creditcardtransactionres
 
     // custom_creditcardtransactionresponse_response->e_creditcardtransaction_avsresult
     cJSON *e_creditcardtransaction_avsresult = cJSON_GetObjectItemCaseSensitive(custom_creditcardtransactionresponse_responseJSON, "eCreditcardtransactionAvsresult");
+    if (cJSON_IsNull(e_creditcardtransaction_avsresult)) {
+        e_creditcardtransaction_avsresult = NULL;
+    }
     if (e_creditcardtransaction_avsresult) { 
     e_creditcardtransaction_avsresult_local_nonprim = field_e_creditcardtransaction_avsresult_parseFromJSON(e_creditcardtransaction_avsresult); //custom
     }
 
     // custom_creditcardtransactionresponse_response->e_creditcardtransaction_cvdresult
     cJSON *e_creditcardtransaction_cvdresult = cJSON_GetObjectItemCaseSensitive(custom_creditcardtransactionresponse_responseJSON, "eCreditcardtransactionCvdresult");
+    if (cJSON_IsNull(e_creditcardtransaction_cvdresult)) {
+        e_creditcardtransaction_cvdresult = NULL;
+    }
     if (e_creditcardtransaction_cvdresult) { 
     e_creditcardtransaction_cvdresult_local_nonprim = field_e_creditcardtransaction_cvdresult_parseFromJSON(e_creditcardtransaction_cvdresult); //custom
     }
 
 
-    custom_creditcardtransactionresponse_response_local_var = custom_creditcardtransactionresponse_response_create (
+    custom_creditcardtransactionresponse_response_local_var = custom_creditcardtransactionresponse_response_create_internal (
         strdup(s_creditcardtransaction_is_ocode->valuestring),
         strdup(s_creditcardtransaction_responsecode->valuestring),
         strdup(s_creditcardtransaction_responseterminalmessage->valuestring),
-        e_creditcardtransaction_avsresult ? e_creditcardtransaction_avsresult_local_nonprim : NULL,
-        e_creditcardtransaction_cvdresult ? e_creditcardtransaction_cvdresult_local_nonprim : NULL
+        e_creditcardtransaction_avsresult ? e_creditcardtransaction_avsresult_local_nonprim : 0,
+        e_creditcardtransaction_cvdresult ? e_creditcardtransaction_cvdresult_local_nonprim : 0
         );
 
     return custom_creditcardtransactionresponse_response_local_var;
 end:
     if (e_creditcardtransaction_avsresult_local_nonprim) {
-        field_e_creditcardtransaction_avsresult_free(e_creditcardtransaction_avsresult_local_nonprim);
-        e_creditcardtransaction_avsresult_local_nonprim = NULL;
+        e_creditcardtransaction_avsresult_local_nonprim = 0;
     }
     if (e_creditcardtransaction_cvdresult_local_nonprim) {
-        field_e_creditcardtransaction_cvdresult_free(e_creditcardtransaction_cvdresult_local_nonprim);
-        e_creditcardtransaction_cvdresult_local_nonprim = NULL;
+        e_creditcardtransaction_cvdresult_local_nonprim = 0;
     }
     return NULL;
 

@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_user_ezsignprepaid__e field_e_user_ezsignprep
     return 0;
 }
 
-cJSON *field_e_user_ezsignprepaid_field_e_user_ezsignprepaid_convertToJSON(ezmax_api_definition__full_field_e_user_ezsignprepaid__e field_e_user_ezsignprepaid) {
+cJSON *field_e_user_ezsignprepaid_convertToJSON(ezmax_api_definition__full_field_e_user_ezsignprepaid__e field_e_user_ezsignprepaid) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_user_ezsignprepaid", field_e_user_ezsignprepaid_field_e_user_ezsignprepaid_ToString(field_e_user_ezsignprepaid)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_user_ezsignprepaid__e field_e_user_ezsignprepaid_field_e_user_ezsignprepaid_parseFromJSON(cJSON *field_e_user_ezsignprepaidJSON) {
-    ezmax_api_definition__full_field_e_user_ezsignprepaid__e *field_e_user_ezsignprepaid = NULL;
-    ezmax_api_definition__full_field_e_user_ezsignprepaid__e field_e_user_ezsignprepaidVariable;
-    cJSON *field_e_user_ezsignprepaidVar = cJSON_GetObjectItemCaseSensitive(field_e_user_ezsignprepaidJSON, "field_e_user_ezsignprepaid");
-    if(!cJSON_IsString(field_e_user_ezsignprepaidVar) || (field_e_user_ezsignprepaidVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_user_ezsignprepaid__e field_e_user_ezsignprepaid_parseFromJSON(cJSON *field_e_user_ezsignprepaidJSON) {
+    if(!cJSON_IsString(field_e_user_ezsignprepaidJSON) || (field_e_user_ezsignprepaidJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_user_ezsignprepaidVariable = field_e_user_ezsignprepaid_field_e_user_ezsignprepaid_FromString(field_e_user_ezsignprepaidVar->valuestring);
-    return field_e_user_ezsignprepaidVariable;
-end:
-    return 0;
+    return field_e_user_ezsignprepaid_field_e_user_ezsignprepaid_FromString(field_e_user_ezsignprepaidJSON->valuestring);
 }

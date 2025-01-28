@@ -5,7 +5,7 @@
 
 
 
-usergroup_request_compound_t *usergroup_request_compound_create(
+static usergroup_request_compound_t *usergroup_request_compound_create_internal(
     int pki_usergroup_id,
     email_request_t *obj_email,
     multilingual_usergroup_name_t *obj_usergroup_name
@@ -18,12 +18,28 @@ usergroup_request_compound_t *usergroup_request_compound_create(
     usergroup_request_compound_local_var->obj_email = obj_email;
     usergroup_request_compound_local_var->obj_usergroup_name = obj_usergroup_name;
 
+    usergroup_request_compound_local_var->_library_owned = 1;
     return usergroup_request_compound_local_var;
 }
 
+__attribute__((deprecated)) usergroup_request_compound_t *usergroup_request_compound_create(
+    int pki_usergroup_id,
+    email_request_t *obj_email,
+    multilingual_usergroup_name_t *obj_usergroup_name
+    ) {
+    return usergroup_request_compound_create_internal (
+        pki_usergroup_id,
+        obj_email,
+        obj_usergroup_name
+        );
+}
 
 void usergroup_request_compound_free(usergroup_request_compound_t *usergroup_request_compound) {
     if(NULL == usergroup_request_compound){
+        return ;
+    }
+    if(usergroup_request_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroup_request_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -95,6 +111,9 @@ usergroup_request_compound_t *usergroup_request_compound_parseFromJSON(cJSON *us
 
     // usergroup_request_compound->pki_usergroup_id
     cJSON *pki_usergroup_id = cJSON_GetObjectItemCaseSensitive(usergroup_request_compoundJSON, "pkiUsergroupID");
+    if (cJSON_IsNull(pki_usergroup_id)) {
+        pki_usergroup_id = NULL;
+    }
     if (pki_usergroup_id) { 
     if(!cJSON_IsNumber(pki_usergroup_id))
     {
@@ -104,12 +123,18 @@ usergroup_request_compound_t *usergroup_request_compound_parseFromJSON(cJSON *us
 
     // usergroup_request_compound->obj_email
     cJSON *obj_email = cJSON_GetObjectItemCaseSensitive(usergroup_request_compoundJSON, "objEmail");
+    if (cJSON_IsNull(obj_email)) {
+        obj_email = NULL;
+    }
     if (obj_email) { 
     obj_email_local_nonprim = email_request_parseFromJSON(obj_email); //nonprimitive
     }
 
     // usergroup_request_compound->obj_usergroup_name
     cJSON *obj_usergroup_name = cJSON_GetObjectItemCaseSensitive(usergroup_request_compoundJSON, "objUsergroupName");
+    if (cJSON_IsNull(obj_usergroup_name)) {
+        obj_usergroup_name = NULL;
+    }
     if (!obj_usergroup_name) {
         goto end;
     }
@@ -118,7 +143,7 @@ usergroup_request_compound_t *usergroup_request_compound_parseFromJSON(cJSON *us
     obj_usergroup_name_local_nonprim = multilingual_usergroup_name_parseFromJSON(obj_usergroup_name); //nonprimitive
 
 
-    usergroup_request_compound_local_var = usergroup_request_compound_create (
+    usergroup_request_compound_local_var = usergroup_request_compound_create_internal (
         pki_usergroup_id ? pki_usergroup_id->valuedouble : 0,
         obj_email ? obj_email_local_nonprim : NULL,
         obj_usergroup_name_local_nonprim

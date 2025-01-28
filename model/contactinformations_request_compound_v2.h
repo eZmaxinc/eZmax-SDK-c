@@ -15,24 +15,16 @@
 
 typedef struct contactinformations_request_compound_v2_t contactinformations_request_compound_v2_t;
 
-#include "address_request.h"
-#include "email_request.h"
+#include "address_request_compound.h"
+#include "email_request_compound.h"
 #include "field_e_contactinformations_type.h"
-#include "phone_request.h"
-#include "website_request.h"
-
-// Enum  for contactinformations_request_compound_v2
-
-typedef enum  { ezmax_api_definition__full_contactinformations_request_compound_v2__NULL = 0, ezmax_api_definition__full_contactinformations_request_compound_v2__BankAccount, ezmax_api_definition__full_contactinformations_request_compound_v2__ContactObject, ezmax_api_definition__full_contactinformations_request_compound_v2__CreditCard, ezmax_api_definition__full_contactinformations_request_compound_v2__Customer, ezmax_api_definition__full_contactinformations_request_compound_v2__ExternalBroker, ezmax_api_definition__full_contactinformations_request_compound_v2__ExternalBrokerFirm, ezmax_api_definition__full_contactinformations_request_compound_v2__EzcomCompany, ezmax_api_definition__full_contactinformations_request_compound_v2__FinancialInstitution, ezmax_api_definition__full_contactinformations_request_compound_v2__FranchiseCompany, ezmax_api_definition__full_contactinformations_request_compound_v2__FranchiseOffice, ezmax_api_definition__full_contactinformations_request_compound_v2__Supplier } ezmax_api_definition__full_contactinformations_request_compound_v2__e;
-
-char* contactinformations_request_compound_v2_e_contactinformations_type_ToString(ezmax_api_definition__full_contactinformations_request_compound_v2__e e_contactinformations_type);
-
-ezmax_api_definition__full_contactinformations_request_compound_v2__e contactinformations_request_compound_v2_e_contactinformations_type_FromString(char* e_contactinformations_type);
+#include "phone_request_compound.h"
+#include "website_request_compound.h"
 
 
 
 typedef struct contactinformations_request_compound_v2_t {
-    field_e_contactinformations_type_t *e_contactinformations_type; // custom
+    ezmax_api_definition__full_field_e_contactinformations_type__e e_contactinformations_type; //referenced enum
     int i_address_default; //numeric
     int i_phone_default; //numeric
     int i_email_default; //numeric
@@ -42,10 +34,11 @@ typedef struct contactinformations_request_compound_v2_t {
     list_t *a_obj_email; //nonprimitive container
     list_t *a_obj_website; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } contactinformations_request_compound_v2_t;
 
-contactinformations_request_compound_v2_t *contactinformations_request_compound_v2_create(
-    field_e_contactinformations_type_t *e_contactinformations_type,
+__attribute__((deprecated)) contactinformations_request_compound_v2_t *contactinformations_request_compound_v2_create(
+    ezmax_api_definition__full_field_e_contactinformations_type__e e_contactinformations_type,
     int i_address_default,
     int i_phone_default,
     int i_email_default,

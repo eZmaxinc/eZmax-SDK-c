@@ -21,9 +21,10 @@ typedef struct ezsignbulksend_reorder_v1_request_t ezsignbulksend_reorder_v1_req
 typedef struct ezsignbulksend_reorder_v1_request_t {
     list_t *a_pki_ezsignbulksenddocumentmapping_id; //primitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignbulksend_reorder_v1_request_t;
 
-ezsignbulksend_reorder_v1_request_t *ezsignbulksend_reorder_v1_request_create(
+__attribute__((deprecated)) ezsignbulksend_reorder_v1_request_t *ezsignbulksend_reorder_v1_request_create(
     list_t *a_pki_ezsignbulksenddocumentmapping_id
 );
 

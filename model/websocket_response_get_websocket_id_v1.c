@@ -22,7 +22,7 @@ ezmax_api_definition__full_websocket_response_get_websocket_id_v1_EWEBSOCKETMESS
     return 0;
 }
 
-websocket_response_get_websocket_id_v1_t *websocket_response_get_websocket_id_v1_create(
+static websocket_response_get_websocket_id_v1_t *websocket_response_get_websocket_id_v1_create_internal(
     ezmax_api_definition__full_websocket_response_get_websocket_id_v1_EWEBSOCKETMESSAGETYPE_e e_websocket_messagetype,
     websocket_response_get_websocket_id_v1_m_payload_t *m_payload
     ) {
@@ -33,12 +33,26 @@ websocket_response_get_websocket_id_v1_t *websocket_response_get_websocket_id_v1
     websocket_response_get_websocket_id_v1_local_var->e_websocket_messagetype = e_websocket_messagetype;
     websocket_response_get_websocket_id_v1_local_var->m_payload = m_payload;
 
+    websocket_response_get_websocket_id_v1_local_var->_library_owned = 1;
     return websocket_response_get_websocket_id_v1_local_var;
 }
 
+__attribute__((deprecated)) websocket_response_get_websocket_id_v1_t *websocket_response_get_websocket_id_v1_create(
+    ezmax_api_definition__full_websocket_response_get_websocket_id_v1_EWEBSOCKETMESSAGETYPE_e e_websocket_messagetype,
+    websocket_response_get_websocket_id_v1_m_payload_t *m_payload
+    ) {
+    return websocket_response_get_websocket_id_v1_create_internal (
+        e_websocket_messagetype,
+        m_payload
+        );
+}
 
 void websocket_response_get_websocket_id_v1_free(websocket_response_get_websocket_id_v1_t *websocket_response_get_websocket_id_v1) {
     if(NULL == websocket_response_get_websocket_id_v1){
+        return ;
+    }
+    if(websocket_response_get_websocket_id_v1->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "websocket_response_get_websocket_id_v1_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -56,7 +70,7 @@ cJSON *websocket_response_get_websocket_id_v1_convertToJSON(websocket_response_g
     if (ezmax_api_definition__full_websocket_response_get_websocket_id_v1_EWEBSOCKETMESSAGETYPE_NULL == websocket_response_get_websocket_id_v1->e_websocket_messagetype) {
         goto fail;
     }
-    if(cJSON_AddStringToObject(item, "eWebsocketMessagetype", e_websocket_messagetypewebsocket_response_get_websocket_id_v1_ToString(websocket_response_get_websocket_id_v1->e_websocket_messagetype)) == NULL)
+    if(cJSON_AddStringToObject(item, "eWebsocketMessagetype", websocket_response_get_websocket_id_v1_e_websocket_messagetype_ToString(websocket_response_get_websocket_id_v1->e_websocket_messagetype)) == NULL)
     {
     goto fail; //Enum
     }
@@ -92,6 +106,9 @@ websocket_response_get_websocket_id_v1_t *websocket_response_get_websocket_id_v1
 
     // websocket_response_get_websocket_id_v1->e_websocket_messagetype
     cJSON *e_websocket_messagetype = cJSON_GetObjectItemCaseSensitive(websocket_response_get_websocket_id_v1JSON, "eWebsocketMessagetype");
+    if (cJSON_IsNull(e_websocket_messagetype)) {
+        e_websocket_messagetype = NULL;
+    }
     if (!e_websocket_messagetype) {
         goto end;
     }
@@ -106,6 +123,9 @@ websocket_response_get_websocket_id_v1_t *websocket_response_get_websocket_id_v1
 
     // websocket_response_get_websocket_id_v1->m_payload
     cJSON *m_payload = cJSON_GetObjectItemCaseSensitive(websocket_response_get_websocket_id_v1JSON, "mPayload");
+    if (cJSON_IsNull(m_payload)) {
+        m_payload = NULL;
+    }
     if (!m_payload) {
         goto end;
     }
@@ -114,7 +134,7 @@ websocket_response_get_websocket_id_v1_t *websocket_response_get_websocket_id_v1
     m_payload_local_nonprim = websocket_response_get_websocket_id_v1_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
-    websocket_response_get_websocket_id_v1_local_var = websocket_response_get_websocket_id_v1_create (
+    websocket_response_get_websocket_id_v1_local_var = websocket_response_get_websocket_id_v1_create_internal (
         e_websocket_messagetypeVariable,
         m_payload_local_nonprim
         );

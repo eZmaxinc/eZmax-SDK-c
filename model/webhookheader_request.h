@@ -23,9 +23,10 @@ typedef struct webhookheader_request_t {
     char *s_webhookheader_name; // string
     char *s_webhookheader_value; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } webhookheader_request_t;
 
-webhookheader_request_t *webhookheader_request_create(
+__attribute__((deprecated)) webhookheader_request_t *webhookheader_request_create(
     int pki_webhookheader_id,
     char *s_webhookheader_name,
     char *s_webhookheader_value

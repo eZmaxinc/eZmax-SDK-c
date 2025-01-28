@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsigntemplatesignature_consultationtrigger__
     return 0;
 }
 
-cJSON *field_e_ezsigntemplatesignature_consultationtrigger_field_e_ezsigntemplatesignature_consultationtrigger_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplatesignature_consultationtrigger__e field_e_ezsigntemplatesignature_consultationtrigger) {
+cJSON *field_e_ezsigntemplatesignature_consultationtrigger_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplatesignature_consultationtrigger__e field_e_ezsigntemplatesignature_consultationtrigger) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsigntemplatesignature_consultationtrigger", field_e_ezsigntemplatesignature_consultationtrigger_field_e_ezsigntemplatesignature_consultationtrigger_ToString(field_e_ezsigntemplatesignature_consultationtrigger)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsigntemplatesignature_consultationtrigger__e field_e_ezsigntemplatesignature_consultationtrigger_field_e_ezsigntemplatesignature_consultationtrigger_parseFromJSON(cJSON *field_e_ezsigntemplatesignature_consultationtriggerJSON) {
-    ezmax_api_definition__full_field_e_ezsigntemplatesignature_consultationtrigger__e *field_e_ezsigntemplatesignature_consultationtrigger = NULL;
-    ezmax_api_definition__full_field_e_ezsigntemplatesignature_consultationtrigger__e field_e_ezsigntemplatesignature_consultationtriggerVariable;
-    cJSON *field_e_ezsigntemplatesignature_consultationtriggerVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsigntemplatesignature_consultationtriggerJSON, "field_e_ezsigntemplatesignature_consultationtrigger");
-    if(!cJSON_IsString(field_e_ezsigntemplatesignature_consultationtriggerVar) || (field_e_ezsigntemplatesignature_consultationtriggerVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsigntemplatesignature_consultationtrigger__e field_e_ezsigntemplatesignature_consultationtrigger_parseFromJSON(cJSON *field_e_ezsigntemplatesignature_consultationtriggerJSON) {
+    if(!cJSON_IsString(field_e_ezsigntemplatesignature_consultationtriggerJSON) || (field_e_ezsigntemplatesignature_consultationtriggerJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsigntemplatesignature_consultationtriggerVariable = field_e_ezsigntemplatesignature_consultationtrigger_field_e_ezsigntemplatesignature_consultationtrigger_FromString(field_e_ezsigntemplatesignature_consultationtriggerVar->valuestring);
-    return field_e_ezsigntemplatesignature_consultationtriggerVariable;
-end:
-    return 0;
+    return field_e_ezsigntemplatesignature_consultationtrigger_field_e_ezsigntemplatesignature_consultationtrigger_FromString(field_e_ezsigntemplatesignature_consultationtriggerJSON->valuestring);
 }

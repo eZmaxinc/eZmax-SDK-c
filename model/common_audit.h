@@ -23,9 +23,10 @@ typedef struct common_audit_t {
     struct common_auditdetail_t *obj_auditdetail_created; //model
     struct common_auditdetail_t *obj_auditdetail_modified; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } common_audit_t;
 
-common_audit_t *common_audit_create(
+__attribute__((deprecated)) common_audit_t *common_audit_create(
     common_auditdetail_t *obj_auditdetail_created,
     common_auditdetail_t *obj_auditdetail_modified
 );

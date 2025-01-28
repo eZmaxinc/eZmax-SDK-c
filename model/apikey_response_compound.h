@@ -32,9 +32,10 @@ typedef struct apikey_response_compound_t {
     int b_apikey_issigned; //boolean
     struct common_audit_t *obj_audit; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } apikey_response_compound_t;
 
-apikey_response_compound_t *apikey_response_compound_create(
+__attribute__((deprecated)) apikey_response_compound_t *apikey_response_compound_create(
     int pki_apikey_id,
     int fki_user_id,
     multilingual_apikey_description_t *obj_apikey_description,

@@ -28,9 +28,10 @@ typedef struct discussion_response_t {
     int i_discussionmessage_countunread; //numeric
     struct custom_discussionconfiguration_response_t *obj_discussionconfiguration; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } discussion_response_t;
 
-discussion_response_t *discussion_response_create(
+__attribute__((deprecated)) discussion_response_t *discussion_response_create(
     int pki_discussion_id,
     char *s_discussion_description,
     int b_discussion_closed,

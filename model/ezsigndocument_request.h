@@ -59,9 +59,10 @@ typedef struct ezsigndocument_request_t {
     char *s_ezsigndocument_name; // string
     char *s_ezsigndocument_externalid; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigndocument_request_t;
 
-ezsigndocument_request_t *ezsigndocument_request_create(
+__attribute__((deprecated)) ezsigndocument_request_t *ezsigndocument_request_create(
     int pki_ezsigndocument_id,
     int fki_ezsignfolder_id,
     int fki_ezsigntemplate_id,

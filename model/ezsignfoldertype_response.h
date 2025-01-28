@@ -22,38 +22,6 @@ typedef struct ezsignfoldertype_response_t ezsignfoldertype_response_t;
 #include "multilingual_ezsignfoldertype_name.h"
 #include "userlogintype_response.h"
 
-// Enum  for ezsignfoldertype_response
-
-typedef enum  { ezmax_api_definition__full_ezsignfoldertype_response__NULL = 0, ezmax_api_definition__full_ezsignfoldertype_response__User, ezmax_api_definition__full_ezsignfoldertype_response__Usergroup } ezmax_api_definition__full_ezsignfoldertype_response__e;
-
-char* ezsignfoldertype_response_e_ezsignfoldertype_privacylevel_ToString(ezmax_api_definition__full_ezsignfoldertype_response__e e_ezsignfoldertype_privacylevel);
-
-ezmax_api_definition__full_ezsignfoldertype_response__e ezsignfoldertype_response_e_ezsignfoldertype_privacylevel_FromString(char* e_ezsignfoldertype_privacylevel);
-
-// Enum  for ezsignfoldertype_response
-
-typedef enum  { ezmax_api_definition__full_ezsignfoldertype_response__NULL = 0, ezmax_api_definition__full_ezsignfoldertype_response__None, ezmax_api_definition__full_ezsignfoldertype_response__Daily, ezmax_api_definition__full_ezsignfoldertype_response__Weekly } ezmax_api_definition__full_ezsignfoldertype_response__e;
-
-char* ezsignfoldertype_response_e_ezsignfoldertype_sendreminderfrequency_ToString(ezmax_api_definition__full_ezsignfoldertype_response__e e_ezsignfoldertype_sendreminderfrequency);
-
-ezmax_api_definition__full_ezsignfoldertype_response__e ezsignfoldertype_response_e_ezsignfoldertype_sendreminderfrequency_FromString(char* e_ezsignfoldertype_sendreminderfrequency);
-
-// Enum  for ezsignfoldertype_response
-
-typedef enum  { ezmax_api_definition__full_ezsignfoldertype_response__NULL = 0, ezmax_api_definition__full_ezsignfoldertype_response__No, ezmax_api_definition__full_ezsignfoldertype_response__Manual, ezmax_api_definition__full_ezsignfoldertype_response__Automatic } ezmax_api_definition__full_ezsignfoldertype_response__e;
-
-char* ezsignfoldertype_response_e_ezsignfoldertype_disposal_ToString(ezmax_api_definition__full_ezsignfoldertype_response__e e_ezsignfoldertype_disposal);
-
-ezmax_api_definition__full_ezsignfoldertype_response__e ezsignfoldertype_response_e_ezsignfoldertype_disposal_FromString(char* e_ezsignfoldertype_disposal);
-
-// Enum  for ezsignfoldertype_response
-
-typedef enum  { ezmax_api_definition__full_ezsignfoldertype_response__NULL = 0, ezmax_api_definition__full_ezsignfoldertype_response__PerEzsigndocument, ezmax_api_definition__full_ezsignfoldertype_response__PerEzsignfolder } ezmax_api_definition__full_ezsignfoldertype_response__e;
-
-char* ezsignfoldertype_response_e_ezsignfoldertype_completion_ToString(ezmax_api_definition__full_ezsignfoldertype_response__e e_ezsignfoldertype_completion);
-
-ezmax_api_definition__full_ezsignfoldertype_response__e ezsignfoldertype_response_e_ezsignfoldertype_completion_FromString(char* e_ezsignfoldertype_completion);
-
 
 
 typedef struct ezsignfoldertype_response_t {
@@ -71,11 +39,11 @@ typedef struct ezsignfoldertype_response_t {
     char *s_email_address_summary; // string
     char *s_usergroup_name_x; // string
     char *s_usergroup_name_x_restricted; // string
-    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel; // custom
-    field_e_ezsignfoldertype_sendreminderfrequency_t *e_ezsignfoldertype_sendreminderfrequency; // custom
+    ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel; //referenced enum
+    ezmax_api_definition__full_field_e_ezsignfoldertype_sendreminderfrequency__e e_ezsignfoldertype_sendreminderfrequency; //referenced enum
     int i_ezsignfoldertype_archivaldays; //numeric
-    field_e_ezsignfoldertype_disposal_t *e_ezsignfoldertype_disposal; // custom
-    field_e_ezsignfoldertype_completion_t *e_ezsignfoldertype_completion; // custom
+    ezmax_api_definition__full_field_e_ezsignfoldertype_disposal__e e_ezsignfoldertype_disposal; //referenced enum
+    ezmax_api_definition__full_field_e_ezsignfoldertype_completion__e e_ezsignfoldertype_completion; //referenced enum
     int i_ezsignfoldertype_disposaldays; //numeric
     int i_ezsignfoldertype_deadlinedays; //numeric
     int b_ezsignfoldertype_automaticsignature; //boolean
@@ -107,9 +75,10 @@ typedef struct ezsignfoldertype_response_t {
     int b_ezsignfoldertype_isactive; //boolean
     list_t *a_obj_userlogintype; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfoldertype_response_t;
 
-ezsignfoldertype_response_t *ezsignfoldertype_response_create(
+__attribute__((deprecated)) ezsignfoldertype_response_t *ezsignfoldertype_response_create(
     int pki_ezsignfoldertype_id,
     multilingual_ezsignfoldertype_name_t *obj_ezsignfoldertype_name,
     int fki_branding_id,
@@ -124,11 +93,11 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_create(
     char *s_email_address_summary,
     char *s_usergroup_name_x,
     char *s_usergroup_name_x_restricted,
-    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel,
-    field_e_ezsignfoldertype_sendreminderfrequency_t *e_ezsignfoldertype_sendreminderfrequency,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_sendreminderfrequency__e e_ezsignfoldertype_sendreminderfrequency,
     int i_ezsignfoldertype_archivaldays,
-    field_e_ezsignfoldertype_disposal_t *e_ezsignfoldertype_disposal,
-    field_e_ezsignfoldertype_completion_t *e_ezsignfoldertype_completion,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_disposal__e e_ezsignfoldertype_disposal,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_completion__e e_ezsignfoldertype_completion,
     int i_ezsignfoldertype_disposaldays,
     int i_ezsignfoldertype_deadlinedays,
     int b_ezsignfoldertype_automaticsignature,

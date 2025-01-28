@@ -26,9 +26,10 @@ typedef struct notificationsubsection_response_t {
     char *s_notificationsection_name_x; // string
     char *s_notificationsubsection_name_x; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } notificationsubsection_response_t;
 
-notificationsubsection_response_t *notificationsubsection_response_create(
+__attribute__((deprecated)) notificationsubsection_response_t *notificationsubsection_response_create(
     int pki_notificationsubsection_id,
     int fki_notificationsection_id,
     multilingual_notificationsubsection_name_t *obj_notificationsubsection_name,

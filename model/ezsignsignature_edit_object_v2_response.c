@@ -5,7 +5,7 @@
 
 
 
-ezsignsignature_edit_object_v2_response_t *ezsignsignature_edit_object_v2_response_create(
+static ezsignsignature_edit_object_v2_response_t *ezsignsignature_edit_object_v2_response_create_internal(
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
@@ -16,12 +16,26 @@ ezsignsignature_edit_object_v2_response_t *ezsignsignature_edit_object_v2_respon
     ezsignsignature_edit_object_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     ezsignsignature_edit_object_v2_response_local_var->obj_debug = obj_debug;
 
+    ezsignsignature_edit_object_v2_response_local_var->_library_owned = 1;
     return ezsignsignature_edit_object_v2_response_local_var;
 }
 
+__attribute__((deprecated)) ezsignsignature_edit_object_v2_response_t *ezsignsignature_edit_object_v2_response_create(
+    common_response_obj_debug_payload_t *obj_debug_payload,
+    common_response_obj_debug_t *obj_debug
+    ) {
+    return ezsignsignature_edit_object_v2_response_create_internal (
+        obj_debug_payload,
+        obj_debug
+        );
+}
 
 void ezsignsignature_edit_object_v2_response_free(ezsignsignature_edit_object_v2_response_t *ezsignsignature_edit_object_v2_response) {
     if(NULL == ezsignsignature_edit_object_v2_response){
+        return ;
+    }
+    if(ezsignsignature_edit_object_v2_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignsignature_edit_object_v2_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -85,6 +99,9 @@ ezsignsignature_edit_object_v2_response_t *ezsignsignature_edit_object_v2_respon
 
     // ezsignsignature_edit_object_v2_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(ezsignsignature_edit_object_v2_responseJSON, "objDebugPayload");
+    if (cJSON_IsNull(obj_debug_payload)) {
+        obj_debug_payload = NULL;
+    }
     if (!obj_debug_payload) {
         goto end;
     }
@@ -94,12 +111,15 @@ ezsignsignature_edit_object_v2_response_t *ezsignsignature_edit_object_v2_respon
 
     // ezsignsignature_edit_object_v2_response->obj_debug
     cJSON *obj_debug = cJSON_GetObjectItemCaseSensitive(ezsignsignature_edit_object_v2_responseJSON, "objDebug");
+    if (cJSON_IsNull(obj_debug)) {
+        obj_debug = NULL;
+    }
     if (obj_debug) { 
     obj_debug_local_nonprim = common_response_obj_debug_parseFromJSON(obj_debug); //nonprimitive
     }
 
 
-    ezsignsignature_edit_object_v2_response_local_var = ezsignsignature_edit_object_v2_response_create (
+    ezsignsignature_edit_object_v2_response_local_var = ezsignsignature_edit_object_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );

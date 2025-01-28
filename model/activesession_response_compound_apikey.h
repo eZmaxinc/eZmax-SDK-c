@@ -22,9 +22,10 @@ typedef struct activesession_response_compound_apikey_t {
     int pki_apikey_id; //numeric
     char *s_apikey_description_x; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } activesession_response_compound_apikey_t;
 
-activesession_response_compound_apikey_t *activesession_response_compound_apikey_create(
+__attribute__((deprecated)) activesession_response_compound_apikey_t *activesession_response_compound_apikey_create(
     int pki_apikey_id,
     char *s_apikey_description_x
 );

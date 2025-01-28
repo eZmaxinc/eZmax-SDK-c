@@ -22,9 +22,10 @@ typedef struct multilingual_ezdoctemplatedocument_name_t {
     char *s_ezdoctemplatedocument_name1; // string
     char *s_ezdoctemplatedocument_name2; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } multilingual_ezdoctemplatedocument_name_t;
 
-multilingual_ezdoctemplatedocument_name_t *multilingual_ezdoctemplatedocument_name_create(
+__attribute__((deprecated)) multilingual_ezdoctemplatedocument_name_t *multilingual_ezdoctemplatedocument_name_create(
     char *s_ezdoctemplatedocument_name1,
     char *s_ezdoctemplatedocument_name2
 );

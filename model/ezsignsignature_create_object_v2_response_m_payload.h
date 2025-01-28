@@ -21,9 +21,10 @@ typedef struct ezsignsignature_create_object_v2_response_m_payload_t ezsignsigna
 typedef struct ezsignsignature_create_object_v2_response_m_payload_t {
     list_t *a_pki_ezsignsignature_id; //primitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsignature_create_object_v2_response_m_payload_t;
 
-ezsignsignature_create_object_v2_response_m_payload_t *ezsignsignature_create_object_v2_response_m_payload_create(
+__attribute__((deprecated)) ezsignsignature_create_object_v2_response_m_payload_t *ezsignsignature_create_object_v2_response_m_payload_create(
     list_t *a_pki_ezsignsignature_id
 );
 

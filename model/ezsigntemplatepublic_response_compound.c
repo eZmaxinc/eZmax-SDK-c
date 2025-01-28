@@ -4,25 +4,8 @@
 #include "ezsigntemplatepublic_response_compound.h"
 
 
-char* ezsigntemplatepublic_response_compound_e_ezsigntemplatepublic_limittype_ToString(ezmax_api_definition__full_ezsigntemplatepublic_response_compound__e e_ezsigntemplatepublic_limittype) {
-    char* e_ezsigntemplatepublic_limittypeArray[] =  { "NULL", "Hour", "Day", "Month", "Total" };
-    return e_ezsigntemplatepublic_limittypeArray[e_ezsigntemplatepublic_limittype];
-}
 
-ezmax_api_definition__full_ezsigntemplatepublic_response_compound__e ezsigntemplatepublic_response_compound_e_ezsigntemplatepublic_limittype_FromString(char* e_ezsigntemplatepublic_limittype){
-    int stringToReturn = 0;
-    char *e_ezsigntemplatepublic_limittypeArray[] =  { "NULL", "Hour", "Day", "Month", "Total" };
-    size_t sizeofArray = sizeof(e_ezsigntemplatepublic_limittypeArray) / sizeof(e_ezsigntemplatepublic_limittypeArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_ezsigntemplatepublic_limittype, e_ezsigntemplatepublic_limittypeArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound_create(
+static ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound_create_internal(
     int pki_ezsigntemplatepublic_id,
     int fki_ezsignfoldertype_id,
     char *s_ezsignfoldertype_name_x,
@@ -34,7 +17,7 @@ ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound
     char *s_ezsigntemplatepublic_referenceid,
     int b_ezsigntemplatepublic_isactive,
     char *t_ezsigntemplatepublic_note,
-    field_e_ezsigntemplatepublic_limittype_t *e_ezsigntemplatepublic_limittype,
+    ezmax_api_definition__full_field_e_ezsigntemplatepublic_limittype__e e_ezsigntemplatepublic_limittype,
     int i_ezsigntemplatepublic_limit,
     int i_ezsigntemplatepublic_limitexceeded,
     char *dt_ezsigntemplatepublic_limitexceededsince,
@@ -67,12 +50,60 @@ ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound
     ezsigntemplatepublic_response_compound_local_var->obj_audit = obj_audit;
     ezsigntemplatepublic_response_compound_local_var->a_obj_ezsignfolderezsigntemplatepublic = a_obj_ezsignfolderezsigntemplatepublic;
 
+    ezsigntemplatepublic_response_compound_local_var->_library_owned = 1;
     return ezsigntemplatepublic_response_compound_local_var;
 }
 
+__attribute__((deprecated)) ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound_create(
+    int pki_ezsigntemplatepublic_id,
+    int fki_ezsignfoldertype_id,
+    char *s_ezsignfoldertype_name_x,
+    int fki_userlogintype_id,
+    char *s_userlogintype_description_x,
+    int fki_ezsigntemplate_id,
+    int fki_ezsigntemplatepackage_id,
+    char *s_ezsigntemplatepublic_description,
+    char *s_ezsigntemplatepublic_referenceid,
+    int b_ezsigntemplatepublic_isactive,
+    char *t_ezsigntemplatepublic_note,
+    ezmax_api_definition__full_field_e_ezsigntemplatepublic_limittype__e e_ezsigntemplatepublic_limittype,
+    int i_ezsigntemplatepublic_limit,
+    int i_ezsigntemplatepublic_limitexceeded,
+    char *dt_ezsigntemplatepublic_limitexceededsince,
+    char *s_ezsigntemplatepublic_url,
+    char *s_ezsigntemplatepublic_ezsigntemplatedescription,
+    common_audit_t *obj_audit,
+    list_t *a_obj_ezsignfolderezsigntemplatepublic
+    ) {
+    return ezsigntemplatepublic_response_compound_create_internal (
+        pki_ezsigntemplatepublic_id,
+        fki_ezsignfoldertype_id,
+        s_ezsignfoldertype_name_x,
+        fki_userlogintype_id,
+        s_userlogintype_description_x,
+        fki_ezsigntemplate_id,
+        fki_ezsigntemplatepackage_id,
+        s_ezsigntemplatepublic_description,
+        s_ezsigntemplatepublic_referenceid,
+        b_ezsigntemplatepublic_isactive,
+        t_ezsigntemplatepublic_note,
+        e_ezsigntemplatepublic_limittype,
+        i_ezsigntemplatepublic_limit,
+        i_ezsigntemplatepublic_limitexceeded,
+        dt_ezsigntemplatepublic_limitexceededsince,
+        s_ezsigntemplatepublic_url,
+        s_ezsigntemplatepublic_ezsigntemplatedescription,
+        obj_audit,
+        a_obj_ezsignfolderezsigntemplatepublic
+        );
+}
 
 void ezsigntemplatepublic_response_compound_free(ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound) {
     if(NULL == ezsigntemplatepublic_response_compound){
+        return ;
+    }
+    if(ezsigntemplatepublic_response_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigntemplatepublic_response_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -95,10 +126,6 @@ void ezsigntemplatepublic_response_compound_free(ezsigntemplatepublic_response_c
     if (ezsigntemplatepublic_response_compound->t_ezsigntemplatepublic_note) {
         free(ezsigntemplatepublic_response_compound->t_ezsigntemplatepublic_note);
         ezsigntemplatepublic_response_compound->t_ezsigntemplatepublic_note = NULL;
-    }
-    if (ezsigntemplatepublic_response_compound->e_ezsigntemplatepublic_limittype) {
-        field_e_ezsigntemplatepublic_limittype_free(ezsigntemplatepublic_response_compound->e_ezsigntemplatepublic_limittype);
-        ezsigntemplatepublic_response_compound->e_ezsigntemplatepublic_limittype = NULL;
     }
     if (ezsigntemplatepublic_response_compound->dt_ezsigntemplatepublic_limitexceededsince) {
         free(ezsigntemplatepublic_response_compound->dt_ezsigntemplatepublic_limitexceededsince);
@@ -227,7 +254,7 @@ cJSON *ezsigntemplatepublic_response_compound_convertToJSON(ezsigntemplatepublic
 
 
     // ezsigntemplatepublic_response_compound->e_ezsigntemplatepublic_limittype
-    if (ezmax_api_definition__full_ezsigntemplatepublic_response_compound__NULL == ezsigntemplatepublic_response_compound->e_ezsigntemplatepublic_limittype) {
+    if (ezmax_api_definition__full_field_e_ezsigntemplatepublic_limittype__NULL == ezsigntemplatepublic_response_compound->e_ezsigntemplatepublic_limittype) {
         goto fail;
     }
     cJSON *e_ezsigntemplatepublic_limittype_local_JSON = field_e_ezsigntemplatepublic_limittype_convertToJSON(ezsigntemplatepublic_response_compound->e_ezsigntemplatepublic_limittype);
@@ -331,7 +358,7 @@ ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound
     ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound_local_var = NULL;
 
     // define the local variable for ezsigntemplatepublic_response_compound->e_ezsigntemplatepublic_limittype
-    field_e_ezsigntemplatepublic_limittype_t *e_ezsigntemplatepublic_limittype_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_ezsigntemplatepublic_limittype__e e_ezsigntemplatepublic_limittype_local_nonprim = 0;
 
     // define the local variable for ezsigntemplatepublic_response_compound->obj_audit
     common_audit_t *obj_audit_local_nonprim = NULL;
@@ -341,6 +368,9 @@ ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound
 
     // ezsigntemplatepublic_response_compound->pki_ezsigntemplatepublic_id
     cJSON *pki_ezsigntemplatepublic_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_response_compoundJSON, "pkiEzsigntemplatepublicID");
+    if (cJSON_IsNull(pki_ezsigntemplatepublic_id)) {
+        pki_ezsigntemplatepublic_id = NULL;
+    }
     if (!pki_ezsigntemplatepublic_id) {
         goto end;
     }
@@ -353,6 +383,9 @@ ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound
 
     // ezsigntemplatepublic_response_compound->fki_ezsignfoldertype_id
     cJSON *fki_ezsignfoldertype_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_response_compoundJSON, "fkiEzsignfoldertypeID");
+    if (cJSON_IsNull(fki_ezsignfoldertype_id)) {
+        fki_ezsignfoldertype_id = NULL;
+    }
     if (!fki_ezsignfoldertype_id) {
         goto end;
     }
@@ -365,6 +398,9 @@ ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound
 
     // ezsigntemplatepublic_response_compound->s_ezsignfoldertype_name_x
     cJSON *s_ezsignfoldertype_name_x = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_response_compoundJSON, "sEzsignfoldertypeNameX");
+    if (cJSON_IsNull(s_ezsignfoldertype_name_x)) {
+        s_ezsignfoldertype_name_x = NULL;
+    }
     if (!s_ezsignfoldertype_name_x) {
         goto end;
     }
@@ -377,6 +413,9 @@ ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound
 
     // ezsigntemplatepublic_response_compound->fki_userlogintype_id
     cJSON *fki_userlogintype_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_response_compoundJSON, "fkiUserlogintypeID");
+    if (cJSON_IsNull(fki_userlogintype_id)) {
+        fki_userlogintype_id = NULL;
+    }
     if (!fki_userlogintype_id) {
         goto end;
     }
@@ -389,6 +428,9 @@ ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound
 
     // ezsigntemplatepublic_response_compound->s_userlogintype_description_x
     cJSON *s_userlogintype_description_x = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_response_compoundJSON, "sUserlogintypeDescriptionX");
+    if (cJSON_IsNull(s_userlogintype_description_x)) {
+        s_userlogintype_description_x = NULL;
+    }
     if (!s_userlogintype_description_x) {
         goto end;
     }
@@ -401,6 +443,9 @@ ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound
 
     // ezsigntemplatepublic_response_compound->fki_ezsigntemplate_id
     cJSON *fki_ezsigntemplate_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_response_compoundJSON, "fkiEzsigntemplateID");
+    if (cJSON_IsNull(fki_ezsigntemplate_id)) {
+        fki_ezsigntemplate_id = NULL;
+    }
     if (fki_ezsigntemplate_id) { 
     if(!cJSON_IsNumber(fki_ezsigntemplate_id))
     {
@@ -410,6 +455,9 @@ ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound
 
     // ezsigntemplatepublic_response_compound->fki_ezsigntemplatepackage_id
     cJSON *fki_ezsigntemplatepackage_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_response_compoundJSON, "fkiEzsigntemplatepackageID");
+    if (cJSON_IsNull(fki_ezsigntemplatepackage_id)) {
+        fki_ezsigntemplatepackage_id = NULL;
+    }
     if (fki_ezsigntemplatepackage_id) { 
     if(!cJSON_IsNumber(fki_ezsigntemplatepackage_id))
     {
@@ -419,6 +467,9 @@ ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound
 
     // ezsigntemplatepublic_response_compound->s_ezsigntemplatepublic_description
     cJSON *s_ezsigntemplatepublic_description = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_response_compoundJSON, "sEzsigntemplatepublicDescription");
+    if (cJSON_IsNull(s_ezsigntemplatepublic_description)) {
+        s_ezsigntemplatepublic_description = NULL;
+    }
     if (!s_ezsigntemplatepublic_description) {
         goto end;
     }
@@ -431,6 +482,9 @@ ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound
 
     // ezsigntemplatepublic_response_compound->s_ezsigntemplatepublic_referenceid
     cJSON *s_ezsigntemplatepublic_referenceid = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_response_compoundJSON, "sEzsigntemplatepublicReferenceid");
+    if (cJSON_IsNull(s_ezsigntemplatepublic_referenceid)) {
+        s_ezsigntemplatepublic_referenceid = NULL;
+    }
     if (!s_ezsigntemplatepublic_referenceid) {
         goto end;
     }
@@ -443,6 +497,9 @@ ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound
 
     // ezsigntemplatepublic_response_compound->b_ezsigntemplatepublic_isactive
     cJSON *b_ezsigntemplatepublic_isactive = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_response_compoundJSON, "bEzsigntemplatepublicIsactive");
+    if (cJSON_IsNull(b_ezsigntemplatepublic_isactive)) {
+        b_ezsigntemplatepublic_isactive = NULL;
+    }
     if (!b_ezsigntemplatepublic_isactive) {
         goto end;
     }
@@ -455,6 +512,9 @@ ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound
 
     // ezsigntemplatepublic_response_compound->t_ezsigntemplatepublic_note
     cJSON *t_ezsigntemplatepublic_note = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_response_compoundJSON, "tEzsigntemplatepublicNote");
+    if (cJSON_IsNull(t_ezsigntemplatepublic_note)) {
+        t_ezsigntemplatepublic_note = NULL;
+    }
     if (!t_ezsigntemplatepublic_note) {
         goto end;
     }
@@ -467,6 +527,9 @@ ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound
 
     // ezsigntemplatepublic_response_compound->e_ezsigntemplatepublic_limittype
     cJSON *e_ezsigntemplatepublic_limittype = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_response_compoundJSON, "eEzsigntemplatepublicLimittype");
+    if (cJSON_IsNull(e_ezsigntemplatepublic_limittype)) {
+        e_ezsigntemplatepublic_limittype = NULL;
+    }
     if (!e_ezsigntemplatepublic_limittype) {
         goto end;
     }
@@ -476,6 +539,9 @@ ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound
 
     // ezsigntemplatepublic_response_compound->i_ezsigntemplatepublic_limit
     cJSON *i_ezsigntemplatepublic_limit = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_response_compoundJSON, "iEzsigntemplatepublicLimit");
+    if (cJSON_IsNull(i_ezsigntemplatepublic_limit)) {
+        i_ezsigntemplatepublic_limit = NULL;
+    }
     if (!i_ezsigntemplatepublic_limit) {
         goto end;
     }
@@ -488,6 +554,9 @@ ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound
 
     // ezsigntemplatepublic_response_compound->i_ezsigntemplatepublic_limitexceeded
     cJSON *i_ezsigntemplatepublic_limitexceeded = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_response_compoundJSON, "iEzsigntemplatepublicLimitexceeded");
+    if (cJSON_IsNull(i_ezsigntemplatepublic_limitexceeded)) {
+        i_ezsigntemplatepublic_limitexceeded = NULL;
+    }
     if (!i_ezsigntemplatepublic_limitexceeded) {
         goto end;
     }
@@ -500,6 +569,9 @@ ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound
 
     // ezsigntemplatepublic_response_compound->dt_ezsigntemplatepublic_limitexceededsince
     cJSON *dt_ezsigntemplatepublic_limitexceededsince = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_response_compoundJSON, "dtEzsigntemplatepublicLimitexceededsince");
+    if (cJSON_IsNull(dt_ezsigntemplatepublic_limitexceededsince)) {
+        dt_ezsigntemplatepublic_limitexceededsince = NULL;
+    }
     if (!dt_ezsigntemplatepublic_limitexceededsince) {
         goto end;
     }
@@ -512,6 +584,9 @@ ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound
 
     // ezsigntemplatepublic_response_compound->s_ezsigntemplatepublic_url
     cJSON *s_ezsigntemplatepublic_url = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_response_compoundJSON, "sEzsigntemplatepublicUrl");
+    if (cJSON_IsNull(s_ezsigntemplatepublic_url)) {
+        s_ezsigntemplatepublic_url = NULL;
+    }
     if (!s_ezsigntemplatepublic_url) {
         goto end;
     }
@@ -524,6 +599,9 @@ ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound
 
     // ezsigntemplatepublic_response_compound->s_ezsigntemplatepublic_ezsigntemplatedescription
     cJSON *s_ezsigntemplatepublic_ezsigntemplatedescription = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_response_compoundJSON, "sEzsigntemplatepublicEzsigntemplatedescription");
+    if (cJSON_IsNull(s_ezsigntemplatepublic_ezsigntemplatedescription)) {
+        s_ezsigntemplatepublic_ezsigntemplatedescription = NULL;
+    }
     if (!s_ezsigntemplatepublic_ezsigntemplatedescription) {
         goto end;
     }
@@ -536,12 +614,18 @@ ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound
 
     // ezsigntemplatepublic_response_compound->obj_audit
     cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_response_compoundJSON, "objAudit");
+    if (cJSON_IsNull(obj_audit)) {
+        obj_audit = NULL;
+    }
     if (obj_audit) { 
     obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
     }
 
     // ezsigntemplatepublic_response_compound->a_obj_ezsignfolderezsigntemplatepublic
     cJSON *a_obj_ezsignfolderezsigntemplatepublic = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_response_compoundJSON, "a_objEzsignfolderezsigntemplatepublic");
+    if (cJSON_IsNull(a_obj_ezsignfolderezsigntemplatepublic)) {
+        a_obj_ezsignfolderezsigntemplatepublic = NULL;
+    }
     if (!a_obj_ezsignfolderezsigntemplatepublic) {
         goto end;
     }
@@ -565,7 +649,7 @@ ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound
     }
 
 
-    ezsigntemplatepublic_response_compound_local_var = ezsigntemplatepublic_response_compound_create (
+    ezsigntemplatepublic_response_compound_local_var = ezsigntemplatepublic_response_compound_create_internal (
         pki_ezsigntemplatepublic_id->valuedouble,
         fki_ezsignfoldertype_id->valuedouble,
         strdup(s_ezsignfoldertype_name_x->valuestring),
@@ -590,8 +674,7 @@ ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound
     return ezsigntemplatepublic_response_compound_local_var;
 end:
     if (e_ezsigntemplatepublic_limittype_local_nonprim) {
-        field_e_ezsigntemplatepublic_limittype_free(e_ezsigntemplatepublic_limittype_local_nonprim);
-        e_ezsigntemplatepublic_limittype_local_nonprim = NULL;
+        e_ezsigntemplatepublic_limittype_local_nonprim = 0;
     }
     if (obj_audit_local_nonprim) {
         common_audit_free(obj_audit_local_nonprim);

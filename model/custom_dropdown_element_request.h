@@ -22,9 +22,10 @@ typedef struct custom_dropdown_element_request_t {
     char *s_label; // string
     char *s_value; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_dropdown_element_request_t;
 
-custom_dropdown_element_request_t *custom_dropdown_element_request_create(
+__attribute__((deprecated)) custom_dropdown_element_request_t *custom_dropdown_element_request_create(
     char *s_label,
     char *s_value
 );

@@ -5,7 +5,7 @@
 
 
 
-activesession_list_element_t *activesession_list_element_create(
+static activesession_list_element_t *activesession_list_element_create_internal(
     int pki_activesession_id,
     int fki_user_id,
     int fki_computer_id,
@@ -36,12 +36,46 @@ activesession_list_element_t *activesession_list_element_create(
     activesession_list_element_local_var->dt_activesession_lasthit = dt_activesession_lasthit;
     activesession_list_element_local_var->s_activesession_ip = s_activesession_ip;
 
+    activesession_list_element_local_var->_library_owned = 1;
     return activesession_list_element_local_var;
 }
 
+__attribute__((deprecated)) activesession_list_element_t *activesession_list_element_create(
+    int pki_activesession_id,
+    int fki_user_id,
+    int fki_computer_id,
+    int fki_company_id,
+    int fki_department_id,
+    char *s_company_name_x,
+    char *s_department_name_x,
+    char *s_activesession_loginname,
+    char *s_computer_description,
+    char *dt_activesession_firsthit,
+    char *dt_activesession_lasthit,
+    char *s_activesession_ip
+    ) {
+    return activesession_list_element_create_internal (
+        pki_activesession_id,
+        fki_user_id,
+        fki_computer_id,
+        fki_company_id,
+        fki_department_id,
+        s_company_name_x,
+        s_department_name_x,
+        s_activesession_loginname,
+        s_computer_description,
+        dt_activesession_firsthit,
+        dt_activesession_lasthit,
+        s_activesession_ip
+        );
+}
 
 void activesession_list_element_free(activesession_list_element_t *activesession_list_element) {
     if(NULL == activesession_list_element){
+        return ;
+    }
+    if(activesession_list_element->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "activesession_list_element_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -200,6 +234,9 @@ activesession_list_element_t *activesession_list_element_parseFromJSON(cJSON *ac
 
     // activesession_list_element->pki_activesession_id
     cJSON *pki_activesession_id = cJSON_GetObjectItemCaseSensitive(activesession_list_elementJSON, "pkiActivesessionID");
+    if (cJSON_IsNull(pki_activesession_id)) {
+        pki_activesession_id = NULL;
+    }
     if (!pki_activesession_id) {
         goto end;
     }
@@ -212,6 +249,9 @@ activesession_list_element_t *activesession_list_element_parseFromJSON(cJSON *ac
 
     // activesession_list_element->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(activesession_list_elementJSON, "fkiUserID");
+    if (cJSON_IsNull(fki_user_id)) {
+        fki_user_id = NULL;
+    }
     if (!fki_user_id) {
         goto end;
     }
@@ -224,6 +264,9 @@ activesession_list_element_t *activesession_list_element_parseFromJSON(cJSON *ac
 
     // activesession_list_element->fki_computer_id
     cJSON *fki_computer_id = cJSON_GetObjectItemCaseSensitive(activesession_list_elementJSON, "fkiComputerID");
+    if (cJSON_IsNull(fki_computer_id)) {
+        fki_computer_id = NULL;
+    }
     if (!fki_computer_id) {
         goto end;
     }
@@ -236,6 +279,9 @@ activesession_list_element_t *activesession_list_element_parseFromJSON(cJSON *ac
 
     // activesession_list_element->fki_company_id
     cJSON *fki_company_id = cJSON_GetObjectItemCaseSensitive(activesession_list_elementJSON, "fkiCompanyID");
+    if (cJSON_IsNull(fki_company_id)) {
+        fki_company_id = NULL;
+    }
     if (!fki_company_id) {
         goto end;
     }
@@ -248,6 +294,9 @@ activesession_list_element_t *activesession_list_element_parseFromJSON(cJSON *ac
 
     // activesession_list_element->fki_department_id
     cJSON *fki_department_id = cJSON_GetObjectItemCaseSensitive(activesession_list_elementJSON, "fkiDepartmentID");
+    if (cJSON_IsNull(fki_department_id)) {
+        fki_department_id = NULL;
+    }
     if (!fki_department_id) {
         goto end;
     }
@@ -260,6 +309,9 @@ activesession_list_element_t *activesession_list_element_parseFromJSON(cJSON *ac
 
     // activesession_list_element->s_company_name_x
     cJSON *s_company_name_x = cJSON_GetObjectItemCaseSensitive(activesession_list_elementJSON, "sCompanyNameX");
+    if (cJSON_IsNull(s_company_name_x)) {
+        s_company_name_x = NULL;
+    }
     if (!s_company_name_x) {
         goto end;
     }
@@ -272,6 +324,9 @@ activesession_list_element_t *activesession_list_element_parseFromJSON(cJSON *ac
 
     // activesession_list_element->s_department_name_x
     cJSON *s_department_name_x = cJSON_GetObjectItemCaseSensitive(activesession_list_elementJSON, "sDepartmentNameX");
+    if (cJSON_IsNull(s_department_name_x)) {
+        s_department_name_x = NULL;
+    }
     if (!s_department_name_x) {
         goto end;
     }
@@ -284,6 +339,9 @@ activesession_list_element_t *activesession_list_element_parseFromJSON(cJSON *ac
 
     // activesession_list_element->s_activesession_loginname
     cJSON *s_activesession_loginname = cJSON_GetObjectItemCaseSensitive(activesession_list_elementJSON, "sActivesessionLoginname");
+    if (cJSON_IsNull(s_activesession_loginname)) {
+        s_activesession_loginname = NULL;
+    }
     if (!s_activesession_loginname) {
         goto end;
     }
@@ -296,6 +354,9 @@ activesession_list_element_t *activesession_list_element_parseFromJSON(cJSON *ac
 
     // activesession_list_element->s_computer_description
     cJSON *s_computer_description = cJSON_GetObjectItemCaseSensitive(activesession_list_elementJSON, "sComputerDescription");
+    if (cJSON_IsNull(s_computer_description)) {
+        s_computer_description = NULL;
+    }
     if (!s_computer_description) {
         goto end;
     }
@@ -308,6 +369,9 @@ activesession_list_element_t *activesession_list_element_parseFromJSON(cJSON *ac
 
     // activesession_list_element->dt_activesession_firsthit
     cJSON *dt_activesession_firsthit = cJSON_GetObjectItemCaseSensitive(activesession_list_elementJSON, "dtActivesessionFirsthit");
+    if (cJSON_IsNull(dt_activesession_firsthit)) {
+        dt_activesession_firsthit = NULL;
+    }
     if (!dt_activesession_firsthit) {
         goto end;
     }
@@ -320,6 +384,9 @@ activesession_list_element_t *activesession_list_element_parseFromJSON(cJSON *ac
 
     // activesession_list_element->dt_activesession_lasthit
     cJSON *dt_activesession_lasthit = cJSON_GetObjectItemCaseSensitive(activesession_list_elementJSON, "dtActivesessionLasthit");
+    if (cJSON_IsNull(dt_activesession_lasthit)) {
+        dt_activesession_lasthit = NULL;
+    }
     if (!dt_activesession_lasthit) {
         goto end;
     }
@@ -332,6 +399,9 @@ activesession_list_element_t *activesession_list_element_parseFromJSON(cJSON *ac
 
     // activesession_list_element->s_activesession_ip
     cJSON *s_activesession_ip = cJSON_GetObjectItemCaseSensitive(activesession_list_elementJSON, "sActivesessionIP");
+    if (cJSON_IsNull(s_activesession_ip)) {
+        s_activesession_ip = NULL;
+    }
     if (!s_activesession_ip) {
         goto end;
     }
@@ -343,7 +413,7 @@ activesession_list_element_t *activesession_list_element_parseFromJSON(cJSON *ac
     }
 
 
-    activesession_list_element_local_var = activesession_list_element_create (
+    activesession_list_element_local_var = activesession_list_element_create_internal (
         pki_activesession_id->valuedouble,
         fki_user_id->valuedouble,
         fki_computer_id->valuedouble,

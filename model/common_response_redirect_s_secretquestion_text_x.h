@@ -21,9 +21,10 @@ typedef struct common_response_redirect_s_secretquestion_text_x_t common_respons
 typedef struct common_response_redirect_s_secretquestion_text_x_t {
     char *s_secretquestion_text_x; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } common_response_redirect_s_secretquestion_text_x_t;
 
-common_response_redirect_s_secretquestion_text_x_t *common_response_redirect_s_secretquestion_text_x_create(
+__attribute__((deprecated)) common_response_redirect_s_secretquestion_text_x_t *common_response_redirect_s_secretquestion_text_x_create(
     char *s_secretquestion_text_x
 );
 

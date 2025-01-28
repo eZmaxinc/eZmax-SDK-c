@@ -24,9 +24,10 @@ typedef struct ezsigntemplatepackagemembership_response_t {
     int fki_ezsigntemplate_id; //numeric
     int i_ezsigntemplatepackagemembership_order; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatepackagemembership_response_t;
 
-ezsigntemplatepackagemembership_response_t *ezsigntemplatepackagemembership_response_create(
+__attribute__((deprecated)) ezsigntemplatepackagemembership_response_t *ezsigntemplatepackagemembership_response_create(
     int pki_ezsigntemplatepackagemembership_id,
     int fki_ezsigntemplatepackage_id,
     int fki_ezsigntemplate_id,

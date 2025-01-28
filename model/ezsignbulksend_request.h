@@ -27,9 +27,10 @@ typedef struct ezsignbulksend_request_t {
     int b_ezsignbulksend_needvalidation; //boolean
     int b_ezsignbulksend_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignbulksend_request_t;
 
-ezsignbulksend_request_t *ezsignbulksend_request_create(
+__attribute__((deprecated)) ezsignbulksend_request_t *ezsignbulksend_request_create(
     int pki_ezsignbulksend_id,
     int fki_ezsignfoldertype_id,
     int fki_language_id,

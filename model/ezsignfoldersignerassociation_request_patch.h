@@ -21,9 +21,10 @@ typedef struct ezsignfoldersignerassociation_request_patch_t ezsignfoldersignera
 typedef struct ezsignfoldersignerassociation_request_patch_t {
     char *t_ezsignfoldersignerassociation_message; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfoldersignerassociation_request_patch_t;
 
-ezsignfoldersignerassociation_request_patch_t *ezsignfoldersignerassociation_request_patch_create(
+__attribute__((deprecated)) ezsignfoldersignerassociation_request_patch_t *ezsignfoldersignerassociation_request_patch_create(
     char *t_ezsignfoldersignerassociation_message
 );
 

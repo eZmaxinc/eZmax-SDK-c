@@ -5,7 +5,7 @@
 
 
 
-user_create_object_v1_request_t *user_create_object_v1_request_create(
+static user_create_object_v1_request_t *user_create_object_v1_request_create_internal(
     list_t *a_obj_user
     ) {
     user_create_object_v1_request_t *user_create_object_v1_request_local_var = malloc(sizeof(user_create_object_v1_request_t));
@@ -14,12 +14,24 @@ user_create_object_v1_request_t *user_create_object_v1_request_create(
     }
     user_create_object_v1_request_local_var->a_obj_user = a_obj_user;
 
+    user_create_object_v1_request_local_var->_library_owned = 1;
     return user_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) user_create_object_v1_request_t *user_create_object_v1_request_create(
+    list_t *a_obj_user
+    ) {
+    return user_create_object_v1_request_create_internal (
+        a_obj_user
+        );
+}
 
 void user_create_object_v1_request_free(user_create_object_v1_request_t *user_create_object_v1_request) {
     if(NULL == user_create_object_v1_request){
+        return ;
+    }
+    if(user_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "user_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ user_create_object_v1_request_t *user_create_object_v1_request_parseFromJSON(cJS
 
     // user_create_object_v1_request->a_obj_user
     cJSON *a_obj_user = cJSON_GetObjectItemCaseSensitive(user_create_object_v1_requestJSON, "a_objUser");
+    if (cJSON_IsNull(a_obj_user)) {
+        a_obj_user = NULL;
+    }
     if (!a_obj_user) {
         goto end;
     }
@@ -96,7 +111,7 @@ user_create_object_v1_request_t *user_create_object_v1_request_parseFromJSON(cJS
     }
 
 
-    user_create_object_v1_request_local_var = user_create_object_v1_request_create (
+    user_create_object_v1_request_local_var = user_create_object_v1_request_create_internal (
         a_obj_userList
         );
 

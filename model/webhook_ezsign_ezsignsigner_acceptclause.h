@@ -15,7 +15,7 @@
 
 typedef struct webhook_ezsign_ezsignsigner_acceptclause_t webhook_ezsign_ezsignsigner_acceptclause_t;
 
-#include "attempt_response.h"
+#include "attempt_response_compound.h"
 #include "custom_webhook_response.h"
 #include "ezsignfolder_response.h"
 #include "ezsignfoldersignerassociation_response_compound.h"
@@ -28,9 +28,10 @@ typedef struct webhook_ezsign_ezsignsigner_acceptclause_t {
     struct ezsignfolder_response_t *obj_ezsignfolder; //model
     struct ezsignfoldersignerassociation_response_compound_t *obj_ezsignfoldersignerassociation; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } webhook_ezsign_ezsignsigner_acceptclause_t;
 
-webhook_ezsign_ezsignsigner_acceptclause_t *webhook_ezsign_ezsignsigner_acceptclause_create(
+__attribute__((deprecated)) webhook_ezsign_ezsignsigner_acceptclause_t *webhook_ezsign_ezsignsigner_acceptclause_create(
     custom_webhook_response_t *obj_webhook,
     list_t *a_obj_attempt,
     ezsignfolder_response_t *obj_ezsignfolder,

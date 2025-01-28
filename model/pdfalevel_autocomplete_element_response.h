@@ -23,9 +23,10 @@ typedef struct pdfalevel_autocomplete_element_response_t {
     char *s_pdfalevel_name; // string
     int b_pdfalevel_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } pdfalevel_autocomplete_element_response_t;
 
-pdfalevel_autocomplete_element_response_t *pdfalevel_autocomplete_element_response_create(
+__attribute__((deprecated)) pdfalevel_autocomplete_element_response_t *pdfalevel_autocomplete_element_response_create(
     int pki_pdfalevel_id,
     char *s_pdfalevel_name,
     int b_pdfalevel_isactive

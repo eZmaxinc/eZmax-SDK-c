@@ -5,7 +5,7 @@
 
 
 
-supply_edit_object_v1_request_t *supply_edit_object_v1_request_create(
+static supply_edit_object_v1_request_t *supply_edit_object_v1_request_create_internal(
     supply_request_compound_t *obj_supply
     ) {
     supply_edit_object_v1_request_t *supply_edit_object_v1_request_local_var = malloc(sizeof(supply_edit_object_v1_request_t));
@@ -14,12 +14,24 @@ supply_edit_object_v1_request_t *supply_edit_object_v1_request_create(
     }
     supply_edit_object_v1_request_local_var->obj_supply = obj_supply;
 
+    supply_edit_object_v1_request_local_var->_library_owned = 1;
     return supply_edit_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) supply_edit_object_v1_request_t *supply_edit_object_v1_request_create(
+    supply_request_compound_t *obj_supply
+    ) {
+    return supply_edit_object_v1_request_create_internal (
+        obj_supply
+        );
+}
 
 void supply_edit_object_v1_request_free(supply_edit_object_v1_request_t *supply_edit_object_v1_request) {
     if(NULL == supply_edit_object_v1_request){
+        return ;
+    }
+    if(supply_edit_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "supply_edit_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ supply_edit_object_v1_request_t *supply_edit_object_v1_request_parseFromJSON(cJS
 
     // supply_edit_object_v1_request->obj_supply
     cJSON *obj_supply = cJSON_GetObjectItemCaseSensitive(supply_edit_object_v1_requestJSON, "objSupply");
+    if (cJSON_IsNull(obj_supply)) {
+        obj_supply = NULL;
+    }
     if (!obj_supply) {
         goto end;
     }
@@ -71,7 +86,7 @@ supply_edit_object_v1_request_t *supply_edit_object_v1_request_parseFromJSON(cJS
     obj_supply_local_nonprim = supply_request_compound_parseFromJSON(obj_supply); //nonprimitive
 
 
-    supply_edit_object_v1_request_local_var = supply_edit_object_v1_request_create (
+    supply_edit_object_v1_request_local_var = supply_edit_object_v1_request_create_internal (
         obj_supply_local_nonprim
         );
 

@@ -5,7 +5,7 @@
 
 
 
-usergroupexternal_create_object_v1_response_m_payload_t *usergroupexternal_create_object_v1_response_m_payload_create(
+static usergroupexternal_create_object_v1_response_m_payload_t *usergroupexternal_create_object_v1_response_m_payload_create_internal(
     list_t *a_pki_usergroupexternal_id
     ) {
     usergroupexternal_create_object_v1_response_m_payload_t *usergroupexternal_create_object_v1_response_m_payload_local_var = malloc(sizeof(usergroupexternal_create_object_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ usergroupexternal_create_object_v1_response_m_payload_t *usergroupexternal_creat
     }
     usergroupexternal_create_object_v1_response_m_payload_local_var->a_pki_usergroupexternal_id = a_pki_usergroupexternal_id;
 
+    usergroupexternal_create_object_v1_response_m_payload_local_var->_library_owned = 1;
     return usergroupexternal_create_object_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) usergroupexternal_create_object_v1_response_m_payload_t *usergroupexternal_create_object_v1_response_m_payload_create(
+    list_t *a_pki_usergroupexternal_id
+    ) {
+    return usergroupexternal_create_object_v1_response_m_payload_create_internal (
+        a_pki_usergroupexternal_id
+        );
+}
 
 void usergroupexternal_create_object_v1_response_m_payload_free(usergroupexternal_create_object_v1_response_m_payload_t *usergroupexternal_create_object_v1_response_m_payload) {
     if(NULL == usergroupexternal_create_object_v1_response_m_payload){
+        return ;
+    }
+    if(usergroupexternal_create_object_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroupexternal_create_object_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +82,9 @@ usergroupexternal_create_object_v1_response_m_payload_t *usergroupexternal_creat
 
     // usergroupexternal_create_object_v1_response_m_payload->a_pki_usergroupexternal_id
     cJSON *a_pki_usergroupexternal_id = cJSON_GetObjectItemCaseSensitive(usergroupexternal_create_object_v1_response_m_payloadJSON, "a_pkiUsergroupexternalID");
+    if (cJSON_IsNull(a_pki_usergroupexternal_id)) {
+        a_pki_usergroupexternal_id = NULL;
+    }
     if (!a_pki_usergroupexternal_id) {
         goto end;
     }
@@ -87,7 +102,7 @@ usergroupexternal_create_object_v1_response_m_payload_t *usergroupexternal_creat
         {
             goto end;
         }
-        double *a_pki_usergroupexternal_id_local_value = (double *)calloc(1, sizeof(double));
+        double *a_pki_usergroupexternal_id_local_value = calloc(1, sizeof(double));
         if(!a_pki_usergroupexternal_id_local_value)
         {
             goto end;
@@ -97,7 +112,7 @@ usergroupexternal_create_object_v1_response_m_payload_t *usergroupexternal_creat
     }
 
 
-    usergroupexternal_create_object_v1_response_m_payload_local_var = usergroupexternal_create_object_v1_response_m_payload_create (
+    usergroupexternal_create_object_v1_response_m_payload_local_var = usergroupexternal_create_object_v1_response_m_payload_create_internal (
         a_pki_usergroupexternal_idList
         );
 

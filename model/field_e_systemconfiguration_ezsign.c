@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_systemconfiguration_ezsign__e field_e_systemc
     return 0;
 }
 
-cJSON *field_e_systemconfiguration_ezsign_field_e_systemconfiguration_ezsign_convertToJSON(ezmax_api_definition__full_field_e_systemconfiguration_ezsign__e field_e_systemconfiguration_ezsign) {
+cJSON *field_e_systemconfiguration_ezsign_convertToJSON(ezmax_api_definition__full_field_e_systemconfiguration_ezsign__e field_e_systemconfiguration_ezsign) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_systemconfiguration_ezsign", field_e_systemconfiguration_ezsign_field_e_systemconfiguration_ezsign_ToString(field_e_systemconfiguration_ezsign)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_systemconfiguration_ezsign__e field_e_systemconfiguration_ezsign_field_e_systemconfiguration_ezsign_parseFromJSON(cJSON *field_e_systemconfiguration_ezsignJSON) {
-    ezmax_api_definition__full_field_e_systemconfiguration_ezsign__e *field_e_systemconfiguration_ezsign = NULL;
-    ezmax_api_definition__full_field_e_systemconfiguration_ezsign__e field_e_systemconfiguration_ezsignVariable;
-    cJSON *field_e_systemconfiguration_ezsignVar = cJSON_GetObjectItemCaseSensitive(field_e_systemconfiguration_ezsignJSON, "field_e_systemconfiguration_ezsign");
-    if(!cJSON_IsString(field_e_systemconfiguration_ezsignVar) || (field_e_systemconfiguration_ezsignVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_systemconfiguration_ezsign__e field_e_systemconfiguration_ezsign_parseFromJSON(cJSON *field_e_systemconfiguration_ezsignJSON) {
+    if(!cJSON_IsString(field_e_systemconfiguration_ezsignJSON) || (field_e_systemconfiguration_ezsignJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_systemconfiguration_ezsignVariable = field_e_systemconfiguration_ezsign_field_e_systemconfiguration_ezsign_FromString(field_e_systemconfiguration_ezsignVar->valuestring);
-    return field_e_systemconfiguration_ezsignVariable;
-end:
-    return 0;
+    return field_e_systemconfiguration_ezsign_field_e_systemconfiguration_ezsign_FromString(field_e_systemconfiguration_ezsignJSON->valuestring);
 }

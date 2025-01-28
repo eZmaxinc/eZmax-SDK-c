@@ -5,7 +5,7 @@
 
 
 
-signature_response_t *signature_response_create(
+static signature_response_t *signature_response_create_internal(
     int pki_signature_id,
     int fki_font_id,
     char *s_signature_url,
@@ -20,12 +20,30 @@ signature_response_t *signature_response_create(
     signature_response_local_var->s_signature_url = s_signature_url;
     signature_response_local_var->s_signature_urlinitials = s_signature_urlinitials;
 
+    signature_response_local_var->_library_owned = 1;
     return signature_response_local_var;
 }
 
+__attribute__((deprecated)) signature_response_t *signature_response_create(
+    int pki_signature_id,
+    int fki_font_id,
+    char *s_signature_url,
+    char *s_signature_urlinitials
+    ) {
+    return signature_response_create_internal (
+        pki_signature_id,
+        fki_font_id,
+        s_signature_url,
+        s_signature_urlinitials
+        );
+}
 
 void signature_response_free(signature_response_t *signature_response) {
     if(NULL == signature_response){
+        return ;
+    }
+    if(signature_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "signature_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -89,6 +107,9 @@ signature_response_t *signature_response_parseFromJSON(cJSON *signature_response
 
     // signature_response->pki_signature_id
     cJSON *pki_signature_id = cJSON_GetObjectItemCaseSensitive(signature_responseJSON, "pkiSignatureID");
+    if (cJSON_IsNull(pki_signature_id)) {
+        pki_signature_id = NULL;
+    }
     if (!pki_signature_id) {
         goto end;
     }
@@ -101,6 +122,9 @@ signature_response_t *signature_response_parseFromJSON(cJSON *signature_response
 
     // signature_response->fki_font_id
     cJSON *fki_font_id = cJSON_GetObjectItemCaseSensitive(signature_responseJSON, "fkiFontID");
+    if (cJSON_IsNull(fki_font_id)) {
+        fki_font_id = NULL;
+    }
     if (fki_font_id) { 
     if(!cJSON_IsNumber(fki_font_id))
     {
@@ -110,6 +134,9 @@ signature_response_t *signature_response_parseFromJSON(cJSON *signature_response
 
     // signature_response->s_signature_url
     cJSON *s_signature_url = cJSON_GetObjectItemCaseSensitive(signature_responseJSON, "sSignatureUrl");
+    if (cJSON_IsNull(s_signature_url)) {
+        s_signature_url = NULL;
+    }
     if (s_signature_url) { 
     if(!cJSON_IsString(s_signature_url) && !cJSON_IsNull(s_signature_url))
     {
@@ -119,6 +146,9 @@ signature_response_t *signature_response_parseFromJSON(cJSON *signature_response
 
     // signature_response->s_signature_urlinitials
     cJSON *s_signature_urlinitials = cJSON_GetObjectItemCaseSensitive(signature_responseJSON, "sSignatureUrlinitials");
+    if (cJSON_IsNull(s_signature_urlinitials)) {
+        s_signature_urlinitials = NULL;
+    }
     if (s_signature_urlinitials) { 
     if(!cJSON_IsString(s_signature_urlinitials) && !cJSON_IsNull(s_signature_urlinitials))
     {
@@ -127,7 +157,7 @@ signature_response_t *signature_response_parseFromJSON(cJSON *signature_response
     }
 
 
-    signature_response_local_var = signature_response_create (
+    signature_response_local_var = signature_response_create_internal (
         pki_signature_id->valuedouble,
         fki_font_id ? fki_font_id->valuedouble : 0,
         s_signature_url && !cJSON_IsNull(s_signature_url) ? strdup(s_signature_url->valuestring) : NULL,

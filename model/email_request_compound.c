@@ -5,7 +5,7 @@
 
 
 
-email_request_compound_t *email_request_compound_create(
+static email_request_compound_t *email_request_compound_create_internal(
     int pki_email_id,
     int fki_emailtype_id,
     char *s_email_address
@@ -18,12 +18,28 @@ email_request_compound_t *email_request_compound_create(
     email_request_compound_local_var->fki_emailtype_id = fki_emailtype_id;
     email_request_compound_local_var->s_email_address = s_email_address;
 
+    email_request_compound_local_var->_library_owned = 1;
     return email_request_compound_local_var;
 }
 
+__attribute__((deprecated)) email_request_compound_t *email_request_compound_create(
+    int pki_email_id,
+    int fki_emailtype_id,
+    char *s_email_address
+    ) {
+    return email_request_compound_create_internal (
+        pki_email_id,
+        fki_emailtype_id,
+        s_email_address
+        );
+}
 
 void email_request_compound_free(email_request_compound_t *email_request_compound) {
     if(NULL == email_request_compound){
+        return ;
+    }
+    if(email_request_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "email_request_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -76,6 +92,9 @@ email_request_compound_t *email_request_compound_parseFromJSON(cJSON *email_requ
 
     // email_request_compound->pki_email_id
     cJSON *pki_email_id = cJSON_GetObjectItemCaseSensitive(email_request_compoundJSON, "pkiEmailID");
+    if (cJSON_IsNull(pki_email_id)) {
+        pki_email_id = NULL;
+    }
     if (pki_email_id) { 
     if(!cJSON_IsNumber(pki_email_id))
     {
@@ -85,6 +104,9 @@ email_request_compound_t *email_request_compound_parseFromJSON(cJSON *email_requ
 
     // email_request_compound->fki_emailtype_id
     cJSON *fki_emailtype_id = cJSON_GetObjectItemCaseSensitive(email_request_compoundJSON, "fkiEmailtypeID");
+    if (cJSON_IsNull(fki_emailtype_id)) {
+        fki_emailtype_id = NULL;
+    }
     if (!fki_emailtype_id) {
         goto end;
     }
@@ -97,6 +119,9 @@ email_request_compound_t *email_request_compound_parseFromJSON(cJSON *email_requ
 
     // email_request_compound->s_email_address
     cJSON *s_email_address = cJSON_GetObjectItemCaseSensitive(email_request_compoundJSON, "sEmailAddress");
+    if (cJSON_IsNull(s_email_address)) {
+        s_email_address = NULL;
+    }
     if (!s_email_address) {
         goto end;
     }
@@ -108,7 +133,7 @@ email_request_compound_t *email_request_compound_parseFromJSON(cJSON *email_requ
     }
 
 
-    email_request_compound_local_var = email_request_compound_create (
+    email_request_compound_local_var = email_request_compound_create_internal (
         pki_email_id ? pki_email_id->valuedouble : 0,
         fki_emailtype_id->valuedouble,
         strdup(s_email_address->valuestring)

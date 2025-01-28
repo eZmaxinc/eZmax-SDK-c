@@ -22,9 +22,10 @@ typedef struct scim_email_t {
     char *value; // string
     int primary; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } scim_email_t;
 
-scim_email_t *scim_email_create(
+__attribute__((deprecated)) scim_email_t *scim_email_create(
     char *value,
     int primary
 );

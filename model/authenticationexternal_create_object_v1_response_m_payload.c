@@ -5,7 +5,7 @@
 
 
 
-authenticationexternal_create_object_v1_response_m_payload_t *authenticationexternal_create_object_v1_response_m_payload_create(
+static authenticationexternal_create_object_v1_response_m_payload_t *authenticationexternal_create_object_v1_response_m_payload_create_internal(
     list_t *a_pki_authenticationexternal_id
     ) {
     authenticationexternal_create_object_v1_response_m_payload_t *authenticationexternal_create_object_v1_response_m_payload_local_var = malloc(sizeof(authenticationexternal_create_object_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ authenticationexternal_create_object_v1_response_m_payload_t *authenticationexte
     }
     authenticationexternal_create_object_v1_response_m_payload_local_var->a_pki_authenticationexternal_id = a_pki_authenticationexternal_id;
 
+    authenticationexternal_create_object_v1_response_m_payload_local_var->_library_owned = 1;
     return authenticationexternal_create_object_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) authenticationexternal_create_object_v1_response_m_payload_t *authenticationexternal_create_object_v1_response_m_payload_create(
+    list_t *a_pki_authenticationexternal_id
+    ) {
+    return authenticationexternal_create_object_v1_response_m_payload_create_internal (
+        a_pki_authenticationexternal_id
+        );
+}
 
 void authenticationexternal_create_object_v1_response_m_payload_free(authenticationexternal_create_object_v1_response_m_payload_t *authenticationexternal_create_object_v1_response_m_payload) {
     if(NULL == authenticationexternal_create_object_v1_response_m_payload){
+        return ;
+    }
+    if(authenticationexternal_create_object_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "authenticationexternal_create_object_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +82,9 @@ authenticationexternal_create_object_v1_response_m_payload_t *authenticationexte
 
     // authenticationexternal_create_object_v1_response_m_payload->a_pki_authenticationexternal_id
     cJSON *a_pki_authenticationexternal_id = cJSON_GetObjectItemCaseSensitive(authenticationexternal_create_object_v1_response_m_payloadJSON, "a_pkiAuthenticationexternalID");
+    if (cJSON_IsNull(a_pki_authenticationexternal_id)) {
+        a_pki_authenticationexternal_id = NULL;
+    }
     if (!a_pki_authenticationexternal_id) {
         goto end;
     }
@@ -87,7 +102,7 @@ authenticationexternal_create_object_v1_response_m_payload_t *authenticationexte
         {
             goto end;
         }
-        double *a_pki_authenticationexternal_id_local_value = (double *)calloc(1, sizeof(double));
+        double *a_pki_authenticationexternal_id_local_value = calloc(1, sizeof(double));
         if(!a_pki_authenticationexternal_id_local_value)
         {
             goto end;
@@ -97,7 +112,7 @@ authenticationexternal_create_object_v1_response_m_payload_t *authenticationexte
     }
 
 
-    authenticationexternal_create_object_v1_response_m_payload_local_var = authenticationexternal_create_object_v1_response_m_payload_create (
+    authenticationexternal_create_object_v1_response_m_payload_local_var = authenticationexternal_create_object_v1_response_m_payload_create_internal (
         a_pki_authenticationexternal_idList
         );
 

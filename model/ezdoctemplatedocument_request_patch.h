@@ -31,9 +31,10 @@ typedef struct ezdoctemplatedocument_request_patch_t {
     char *s_ezdoctemplatedocument_fields; // string
     char *s_ezdoctemplatedocument_base64; //ByteArray
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezdoctemplatedocument_request_patch_t;
 
-ezdoctemplatedocument_request_patch_t *ezdoctemplatedocument_request_patch_create(
+__attribute__((deprecated)) ezdoctemplatedocument_request_patch_t *ezdoctemplatedocument_request_patch_create(
     ezmax_api_definition__full_ezdoctemplatedocument_request_patch_EEZDOCTEMPLATEDOCUMENTFORMAT_e e_ezdoctemplatedocument_format,
     char *s_ezdoctemplatedocument_fields,
     char *s_ezdoctemplatedocument_base64

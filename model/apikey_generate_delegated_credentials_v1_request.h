@@ -21,9 +21,10 @@ typedef struct apikey_generate_delegated_credentials_v1_request_t apikey_generat
 typedef struct apikey_generate_delegated_credentials_v1_request_t {
     int i_expiration_minutes; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } apikey_generate_delegated_credentials_v1_request_t;
 
-apikey_generate_delegated_credentials_v1_request_t *apikey_generate_delegated_credentials_v1_request_create(
+__attribute__((deprecated)) apikey_generate_delegated_credentials_v1_request_t *apikey_generate_delegated_credentials_v1_request_create(
     int i_expiration_minutes
 );
 

@@ -22,9 +22,10 @@ typedef struct ezsignbulksenddocumentmapping_get_object_v2_response_m_payload_t 
 typedef struct ezsignbulksenddocumentmapping_get_object_v2_response_m_payload_t {
     struct ezsignbulksenddocumentmapping_response_compound_t *obj_ezsignbulksenddocumentmapping; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignbulksenddocumentmapping_get_object_v2_response_m_payload_t;
 
-ezsignbulksenddocumentmapping_get_object_v2_response_m_payload_t *ezsignbulksenddocumentmapping_get_object_v2_response_m_payload_create(
+__attribute__((deprecated)) ezsignbulksenddocumentmapping_get_object_v2_response_m_payload_t *ezsignbulksenddocumentmapping_get_object_v2_response_m_payload_create(
     ezsignbulksenddocumentmapping_response_compound_t *obj_ezsignbulksenddocumentmapping
 );
 

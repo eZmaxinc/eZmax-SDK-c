@@ -26,9 +26,10 @@ typedef struct activesession_get_list_v1_response_t {
     struct common_response_obj_debug_t *obj_debug; //model
     struct activesession_get_list_v1_response_m_payload_t *m_payload; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } activesession_get_list_v1_response_t;
 
-activesession_get_list_v1_response_t *activesession_get_list_v1_response_create(
+__attribute__((deprecated)) activesession_get_list_v1_response_t *activesession_get_list_v1_response_create(
     common_response_obj_debug_payload_get_list_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug,
     activesession_get_list_v1_response_m_payload_t *m_payload

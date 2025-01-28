@@ -5,7 +5,7 @@
 
 
 
-timezone_get_autocomplete_v2_response_m_payload_t *timezone_get_autocomplete_v2_response_m_payload_create(
+static timezone_get_autocomplete_v2_response_m_payload_t *timezone_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_timezone
     ) {
     timezone_get_autocomplete_v2_response_m_payload_t *timezone_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(timezone_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ timezone_get_autocomplete_v2_response_m_payload_t *timezone_get_autocomplete_v2_
     }
     timezone_get_autocomplete_v2_response_m_payload_local_var->a_obj_timezone = a_obj_timezone;
 
+    timezone_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return timezone_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) timezone_get_autocomplete_v2_response_m_payload_t *timezone_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_timezone
+    ) {
+    return timezone_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_timezone
+        );
+}
 
 void timezone_get_autocomplete_v2_response_m_payload_free(timezone_get_autocomplete_v2_response_m_payload_t *timezone_get_autocomplete_v2_response_m_payload) {
     if(NULL == timezone_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(timezone_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "timezone_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ timezone_get_autocomplete_v2_response_m_payload_t *timezone_get_autocomplete_v2_
 
     // timezone_get_autocomplete_v2_response_m_payload->a_obj_timezone
     cJSON *a_obj_timezone = cJSON_GetObjectItemCaseSensitive(timezone_get_autocomplete_v2_response_m_payloadJSON, "a_objTimezone");
+    if (cJSON_IsNull(a_obj_timezone)) {
+        a_obj_timezone = NULL;
+    }
     if (!a_obj_timezone) {
         goto end;
     }
@@ -96,7 +111,7 @@ timezone_get_autocomplete_v2_response_m_payload_t *timezone_get_autocomplete_v2_
     }
 
 
-    timezone_get_autocomplete_v2_response_m_payload_local_var = timezone_get_autocomplete_v2_response_m_payload_create (
+    timezone_get_autocomplete_v2_response_m_payload_local_var = timezone_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_timezoneList
         );
 

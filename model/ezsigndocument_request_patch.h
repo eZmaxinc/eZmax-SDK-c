@@ -22,9 +22,10 @@ typedef struct ezsigndocument_request_patch_t {
     char *dt_ezsigndocument_duedate; // string
     char *s_ezsigndocument_name; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigndocument_request_patch_t;
 
-ezsigndocument_request_patch_t *ezsigndocument_request_patch_create(
+__attribute__((deprecated)) ezsigndocument_request_patch_t *ezsigndocument_request_patch_create(
     char *dt_ezsigndocument_duedate,
     char *s_ezsigndocument_name
 );

@@ -23,9 +23,10 @@ typedef struct common_response_filter_t {
     list_t* a_auto_type_having; //map
     list_t* a_enum; //map
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } common_response_filter_t;
 
-common_response_filter_t *common_response_filter_create(
+__attribute__((deprecated)) common_response_filter_t *common_response_filter_create(
     list_t* a_auto_type,
     list_t* a_auto_type_having,
     list_t* a_enum

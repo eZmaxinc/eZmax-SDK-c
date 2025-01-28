@@ -5,7 +5,7 @@
 
 
 
-ezsigntemplatedocument_response_t *ezsigntemplatedocument_response_create(
+static ezsigntemplatedocument_response_t *ezsigntemplatedocument_response_create_internal(
     int pki_ezsigntemplatedocument_id,
     int fki_ezsigntemplate_id,
     char *s_ezsigntemplatedocument_name,
@@ -26,12 +26,36 @@ ezsigntemplatedocument_response_t *ezsigntemplatedocument_response_create(
     ezsigntemplatedocument_response_local_var->i_ezsigntemplatedocument_formfieldtotal = i_ezsigntemplatedocument_formfieldtotal;
     ezsigntemplatedocument_response_local_var->b_ezsigntemplatedocument_hassignedsignatures = b_ezsigntemplatedocument_hassignedsignatures;
 
+    ezsigntemplatedocument_response_local_var->_library_owned = 1;
     return ezsigntemplatedocument_response_local_var;
 }
 
+__attribute__((deprecated)) ezsigntemplatedocument_response_t *ezsigntemplatedocument_response_create(
+    int pki_ezsigntemplatedocument_id,
+    int fki_ezsigntemplate_id,
+    char *s_ezsigntemplatedocument_name,
+    int i_ezsigntemplatedocument_pagetotal,
+    int i_ezsigntemplatedocument_signaturetotal,
+    int i_ezsigntemplatedocument_formfieldtotal,
+    int b_ezsigntemplatedocument_hassignedsignatures
+    ) {
+    return ezsigntemplatedocument_response_create_internal (
+        pki_ezsigntemplatedocument_id,
+        fki_ezsigntemplate_id,
+        s_ezsigntemplatedocument_name,
+        i_ezsigntemplatedocument_pagetotal,
+        i_ezsigntemplatedocument_signaturetotal,
+        i_ezsigntemplatedocument_formfieldtotal,
+        b_ezsigntemplatedocument_hassignedsignatures
+        );
+}
 
 void ezsigntemplatedocument_response_free(ezsigntemplatedocument_response_t *ezsigntemplatedocument_response) {
     if(NULL == ezsigntemplatedocument_response){
+        return ;
+    }
+    if(ezsigntemplatedocument_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigntemplatedocument_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -121,6 +145,9 @@ ezsigntemplatedocument_response_t *ezsigntemplatedocument_response_parseFromJSON
 
     // ezsigntemplatedocument_response->pki_ezsigntemplatedocument_id
     cJSON *pki_ezsigntemplatedocument_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocument_responseJSON, "pkiEzsigntemplatedocumentID");
+    if (cJSON_IsNull(pki_ezsigntemplatedocument_id)) {
+        pki_ezsigntemplatedocument_id = NULL;
+    }
     if (!pki_ezsigntemplatedocument_id) {
         goto end;
     }
@@ -133,6 +160,9 @@ ezsigntemplatedocument_response_t *ezsigntemplatedocument_response_parseFromJSON
 
     // ezsigntemplatedocument_response->fki_ezsigntemplate_id
     cJSON *fki_ezsigntemplate_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocument_responseJSON, "fkiEzsigntemplateID");
+    if (cJSON_IsNull(fki_ezsigntemplate_id)) {
+        fki_ezsigntemplate_id = NULL;
+    }
     if (!fki_ezsigntemplate_id) {
         goto end;
     }
@@ -145,6 +175,9 @@ ezsigntemplatedocument_response_t *ezsigntemplatedocument_response_parseFromJSON
 
     // ezsigntemplatedocument_response->s_ezsigntemplatedocument_name
     cJSON *s_ezsigntemplatedocument_name = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocument_responseJSON, "sEzsigntemplatedocumentName");
+    if (cJSON_IsNull(s_ezsigntemplatedocument_name)) {
+        s_ezsigntemplatedocument_name = NULL;
+    }
     if (!s_ezsigntemplatedocument_name) {
         goto end;
     }
@@ -157,6 +190,9 @@ ezsigntemplatedocument_response_t *ezsigntemplatedocument_response_parseFromJSON
 
     // ezsigntemplatedocument_response->i_ezsigntemplatedocument_pagetotal
     cJSON *i_ezsigntemplatedocument_pagetotal = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocument_responseJSON, "iEzsigntemplatedocumentPagetotal");
+    if (cJSON_IsNull(i_ezsigntemplatedocument_pagetotal)) {
+        i_ezsigntemplatedocument_pagetotal = NULL;
+    }
     if (!i_ezsigntemplatedocument_pagetotal) {
         goto end;
     }
@@ -169,6 +205,9 @@ ezsigntemplatedocument_response_t *ezsigntemplatedocument_response_parseFromJSON
 
     // ezsigntemplatedocument_response->i_ezsigntemplatedocument_signaturetotal
     cJSON *i_ezsigntemplatedocument_signaturetotal = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocument_responseJSON, "iEzsigntemplatedocumentSignaturetotal");
+    if (cJSON_IsNull(i_ezsigntemplatedocument_signaturetotal)) {
+        i_ezsigntemplatedocument_signaturetotal = NULL;
+    }
     if (!i_ezsigntemplatedocument_signaturetotal) {
         goto end;
     }
@@ -181,6 +220,9 @@ ezsigntemplatedocument_response_t *ezsigntemplatedocument_response_parseFromJSON
 
     // ezsigntemplatedocument_response->i_ezsigntemplatedocument_formfieldtotal
     cJSON *i_ezsigntemplatedocument_formfieldtotal = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocument_responseJSON, "iEzsigntemplatedocumentFormfieldtotal");
+    if (cJSON_IsNull(i_ezsigntemplatedocument_formfieldtotal)) {
+        i_ezsigntemplatedocument_formfieldtotal = NULL;
+    }
     if (!i_ezsigntemplatedocument_formfieldtotal) {
         goto end;
     }
@@ -193,6 +235,9 @@ ezsigntemplatedocument_response_t *ezsigntemplatedocument_response_parseFromJSON
 
     // ezsigntemplatedocument_response->b_ezsigntemplatedocument_hassignedsignatures
     cJSON *b_ezsigntemplatedocument_hassignedsignatures = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocument_responseJSON, "bEzsigntemplatedocumentHassignedsignatures");
+    if (cJSON_IsNull(b_ezsigntemplatedocument_hassignedsignatures)) {
+        b_ezsigntemplatedocument_hassignedsignatures = NULL;
+    }
     if (!b_ezsigntemplatedocument_hassignedsignatures) {
         goto end;
     }
@@ -204,7 +249,7 @@ ezsigntemplatedocument_response_t *ezsigntemplatedocument_response_parseFromJSON
     }
 
 
-    ezsigntemplatedocument_response_local_var = ezsigntemplatedocument_response_create (
+    ezsigntemplatedocument_response_local_var = ezsigntemplatedocument_response_create_internal (
         pki_ezsigntemplatedocument_id->valuedouble,
         fki_ezsigntemplate_id->valuedouble,
         strdup(s_ezsigntemplatedocument_name->valuestring),

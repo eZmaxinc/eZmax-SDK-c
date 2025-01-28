@@ -25,7 +25,7 @@ creditcarddetail_request_t* instantiate_creditcarddetail_request(int include_opt
       10,
       2024,
       "2500",
-      "Daniel-Johnson Blvd.",
+      "Daniel-Johnson Blvd",
       "H7T 2P6"
     );
   } else {
@@ -33,7 +33,7 @@ creditcarddetail_request_t* instantiate_creditcarddetail_request(int include_opt
       10,
       2024,
       "2500",
-      "Daniel-Johnson Blvd.",
+      "Daniel-Johnson Blvd",
       "H7T 2P6"
     );
   }

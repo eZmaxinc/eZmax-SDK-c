@@ -22,9 +22,10 @@ typedef struct versionhistory_get_object_v2_response_m_payload_t versionhistory_
 typedef struct versionhistory_get_object_v2_response_m_payload_t {
     struct versionhistory_response_compound_t *obj_versionhistory; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } versionhistory_get_object_v2_response_m_payload_t;
 
-versionhistory_get_object_v2_response_m_payload_t *versionhistory_get_object_v2_response_m_payload_create(
+__attribute__((deprecated)) versionhistory_get_object_v2_response_m_payload_t *versionhistory_get_object_v2_response_m_payload_create(
     versionhistory_response_compound_t *obj_versionhistory
 );
 

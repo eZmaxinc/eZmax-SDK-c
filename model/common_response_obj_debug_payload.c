@@ -5,7 +5,7 @@
 
 
 
-common_response_obj_debug_payload_t *common_response_obj_debug_payload_create(
+static common_response_obj_debug_payload_t *common_response_obj_debug_payload_create_internal(
     int i_version_min,
     int i_version_max,
     list_t *a_required_permission,
@@ -22,12 +22,32 @@ common_response_obj_debug_payload_t *common_response_obj_debug_payload_create(
     common_response_obj_debug_payload_local_var->b_version_deprecated = b_version_deprecated;
     common_response_obj_debug_payload_local_var->dt_response_date = dt_response_date;
 
+    common_response_obj_debug_payload_local_var->_library_owned = 1;
     return common_response_obj_debug_payload_local_var;
 }
 
+__attribute__((deprecated)) common_response_obj_debug_payload_t *common_response_obj_debug_payload_create(
+    int i_version_min,
+    int i_version_max,
+    list_t *a_required_permission,
+    int b_version_deprecated,
+    char *dt_response_date
+    ) {
+    return common_response_obj_debug_payload_create_internal (
+        i_version_min,
+        i_version_max,
+        a_required_permission,
+        b_version_deprecated,
+        dt_response_date
+        );
+}
 
 void common_response_obj_debug_payload_free(common_response_obj_debug_payload_t *common_response_obj_debug_payload) {
     if(NULL == common_response_obj_debug_payload){
+        return ;
+    }
+    if(common_response_obj_debug_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "common_response_obj_debug_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -118,6 +138,9 @@ common_response_obj_debug_payload_t *common_response_obj_debug_payload_parseFrom
 
     // common_response_obj_debug_payload->i_version_min
     cJSON *i_version_min = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payloadJSON, "iVersionMin");
+    if (cJSON_IsNull(i_version_min)) {
+        i_version_min = NULL;
+    }
     if (!i_version_min) {
         goto end;
     }
@@ -130,6 +153,9 @@ common_response_obj_debug_payload_t *common_response_obj_debug_payload_parseFrom
 
     // common_response_obj_debug_payload->i_version_max
     cJSON *i_version_max = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payloadJSON, "iVersionMax");
+    if (cJSON_IsNull(i_version_max)) {
+        i_version_max = NULL;
+    }
     if (!i_version_max) {
         goto end;
     }
@@ -142,6 +168,9 @@ common_response_obj_debug_payload_t *common_response_obj_debug_payload_parseFrom
 
     // common_response_obj_debug_payload->a_required_permission
     cJSON *a_required_permission = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payloadJSON, "a_RequiredPermission");
+    if (cJSON_IsNull(a_required_permission)) {
+        a_required_permission = NULL;
+    }
     if (!a_required_permission) {
         goto end;
     }
@@ -159,7 +188,7 @@ common_response_obj_debug_payload_t *common_response_obj_debug_payload_parseFrom
         {
             goto end;
         }
-        double *a_required_permission_local_value = (double *)calloc(1, sizeof(double));
+        double *a_required_permission_local_value = calloc(1, sizeof(double));
         if(!a_required_permission_local_value)
         {
             goto end;
@@ -170,6 +199,9 @@ common_response_obj_debug_payload_t *common_response_obj_debug_payload_parseFrom
 
     // common_response_obj_debug_payload->b_version_deprecated
     cJSON *b_version_deprecated = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payloadJSON, "bVersionDeprecated");
+    if (cJSON_IsNull(b_version_deprecated)) {
+        b_version_deprecated = NULL;
+    }
     if (!b_version_deprecated) {
         goto end;
     }
@@ -182,6 +214,9 @@ common_response_obj_debug_payload_t *common_response_obj_debug_payload_parseFrom
 
     // common_response_obj_debug_payload->dt_response_date
     cJSON *dt_response_date = cJSON_GetObjectItemCaseSensitive(common_response_obj_debug_payloadJSON, "dtResponseDate");
+    if (cJSON_IsNull(dt_response_date)) {
+        dt_response_date = NULL;
+    }
     if (!dt_response_date) {
         goto end;
     }
@@ -193,7 +228,7 @@ common_response_obj_debug_payload_t *common_response_obj_debug_payload_parseFrom
     }
 
 
-    common_response_obj_debug_payload_local_var = common_response_obj_debug_payload_create (
+    common_response_obj_debug_payload_local_var = common_response_obj_debug_payload_create_internal (
         i_version_min->valuedouble,
         i_version_max->valuedouble,
         a_required_permissionList,

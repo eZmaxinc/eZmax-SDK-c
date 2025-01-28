@@ -4,31 +4,14 @@
 #include "sessionhistory_list_element.h"
 
 
-char* sessionhistory_list_element_e_sessionhistory_endby_ToString(ezmax_api_definition__full_sessionhistory_list_element__e e_sessionhistory_endby) {
-    char* e_sessionhistory_endbyArray[] =  { "NULL", "Decryption", "Hack", "Expired", "Hijack", "DoubleLogon", "Garbage", "Logoff", "BadAuth", "Locked", "Inactive", "InvalidUser", "BadUserType", "BadIP", "ForcedLogoff" };
-    return e_sessionhistory_endbyArray[e_sessionhistory_endby];
-}
 
-ezmax_api_definition__full_sessionhistory_list_element__e sessionhistory_list_element_e_sessionhistory_endby_FromString(char* e_sessionhistory_endby){
-    int stringToReturn = 0;
-    char *e_sessionhistory_endbyArray[] =  { "NULL", "Decryption", "Hack", "Expired", "Hijack", "DoubleLogon", "Garbage", "Logoff", "BadAuth", "Locked", "Inactive", "InvalidUser", "BadUserType", "BadIP", "ForcedLogoff" };
-    size_t sizeofArray = sizeof(e_sessionhistory_endbyArray) / sizeof(e_sessionhistory_endbyArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_sessionhistory_endby, e_sessionhistory_endbyArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-sessionhistory_list_element_t *sessionhistory_list_element_create(
+static sessionhistory_list_element_t *sessionhistory_list_element_create_internal(
     int pki_sessionhistory_id,
     int fki_computer_id,
     int fki_user_id,
     char *dt_sessionhistory_firsthit,
     char *dt_sessionhistory_lasthit,
-    field_e_sessionhistory_endby_t *e_sessionhistory_endby,
+    ezmax_api_definition__full_field_e_sessionhistory_endby__e e_sessionhistory_endby,
     char *s_computer_description,
     char *s_sessionhistory_duration,
     char *s_sessionhistory_ip,
@@ -49,12 +32,42 @@ sessionhistory_list_element_t *sessionhistory_list_element_create(
     sessionhistory_list_element_local_var->s_sessionhistory_ip = s_sessionhistory_ip;
     sessionhistory_list_element_local_var->s_user_loginname = s_user_loginname;
 
+    sessionhistory_list_element_local_var->_library_owned = 1;
     return sessionhistory_list_element_local_var;
 }
 
+__attribute__((deprecated)) sessionhistory_list_element_t *sessionhistory_list_element_create(
+    int pki_sessionhistory_id,
+    int fki_computer_id,
+    int fki_user_id,
+    char *dt_sessionhistory_firsthit,
+    char *dt_sessionhistory_lasthit,
+    ezmax_api_definition__full_field_e_sessionhistory_endby__e e_sessionhistory_endby,
+    char *s_computer_description,
+    char *s_sessionhistory_duration,
+    char *s_sessionhistory_ip,
+    char *s_user_loginname
+    ) {
+    return sessionhistory_list_element_create_internal (
+        pki_sessionhistory_id,
+        fki_computer_id,
+        fki_user_id,
+        dt_sessionhistory_firsthit,
+        dt_sessionhistory_lasthit,
+        e_sessionhistory_endby,
+        s_computer_description,
+        s_sessionhistory_duration,
+        s_sessionhistory_ip,
+        s_user_loginname
+        );
+}
 
 void sessionhistory_list_element_free(sessionhistory_list_element_t *sessionhistory_list_element) {
     if(NULL == sessionhistory_list_element){
+        return ;
+    }
+    if(sessionhistory_list_element->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "sessionhistory_list_element_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -65,10 +78,6 @@ void sessionhistory_list_element_free(sessionhistory_list_element_t *sessionhist
     if (sessionhistory_list_element->dt_sessionhistory_lasthit) {
         free(sessionhistory_list_element->dt_sessionhistory_lasthit);
         sessionhistory_list_element->dt_sessionhistory_lasthit = NULL;
-    }
-    if (sessionhistory_list_element->e_sessionhistory_endby) {
-        field_e_sessionhistory_endby_free(sessionhistory_list_element->e_sessionhistory_endby);
-        sessionhistory_list_element->e_sessionhistory_endby = NULL;
     }
     if (sessionhistory_list_element->s_computer_description) {
         free(sessionhistory_list_element->s_computer_description);
@@ -136,7 +145,7 @@ cJSON *sessionhistory_list_element_convertToJSON(sessionhistory_list_element_t *
 
 
     // sessionhistory_list_element->e_sessionhistory_endby
-    if (ezmax_api_definition__full_sessionhistory_list_element__NULL == sessionhistory_list_element->e_sessionhistory_endby) {
+    if (ezmax_api_definition__full_field_e_sessionhistory_endby__NULL == sessionhistory_list_element->e_sessionhistory_endby) {
         goto fail;
     }
     cJSON *e_sessionhistory_endby_local_JSON = field_e_sessionhistory_endby_convertToJSON(sessionhistory_list_element->e_sessionhistory_endby);
@@ -195,10 +204,13 @@ sessionhistory_list_element_t *sessionhistory_list_element_parseFromJSON(cJSON *
     sessionhistory_list_element_t *sessionhistory_list_element_local_var = NULL;
 
     // define the local variable for sessionhistory_list_element->e_sessionhistory_endby
-    field_e_sessionhistory_endby_t *e_sessionhistory_endby_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_sessionhistory_endby__e e_sessionhistory_endby_local_nonprim = 0;
 
     // sessionhistory_list_element->pki_sessionhistory_id
     cJSON *pki_sessionhistory_id = cJSON_GetObjectItemCaseSensitive(sessionhistory_list_elementJSON, "pkiSessionhistoryID");
+    if (cJSON_IsNull(pki_sessionhistory_id)) {
+        pki_sessionhistory_id = NULL;
+    }
     if (!pki_sessionhistory_id) {
         goto end;
     }
@@ -211,6 +223,9 @@ sessionhistory_list_element_t *sessionhistory_list_element_parseFromJSON(cJSON *
 
     // sessionhistory_list_element->fki_computer_id
     cJSON *fki_computer_id = cJSON_GetObjectItemCaseSensitive(sessionhistory_list_elementJSON, "fkiComputerID");
+    if (cJSON_IsNull(fki_computer_id)) {
+        fki_computer_id = NULL;
+    }
     if (fki_computer_id) { 
     if(!cJSON_IsNumber(fki_computer_id))
     {
@@ -220,6 +235,9 @@ sessionhistory_list_element_t *sessionhistory_list_element_parseFromJSON(cJSON *
 
     // sessionhistory_list_element->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(sessionhistory_list_elementJSON, "fkiUserID");
+    if (cJSON_IsNull(fki_user_id)) {
+        fki_user_id = NULL;
+    }
     if (fki_user_id) { 
     if(!cJSON_IsNumber(fki_user_id))
     {
@@ -229,6 +247,9 @@ sessionhistory_list_element_t *sessionhistory_list_element_parseFromJSON(cJSON *
 
     // sessionhistory_list_element->dt_sessionhistory_firsthit
     cJSON *dt_sessionhistory_firsthit = cJSON_GetObjectItemCaseSensitive(sessionhistory_list_elementJSON, "dtSessionhistoryFirsthit");
+    if (cJSON_IsNull(dt_sessionhistory_firsthit)) {
+        dt_sessionhistory_firsthit = NULL;
+    }
     if (!dt_sessionhistory_firsthit) {
         goto end;
     }
@@ -241,6 +262,9 @@ sessionhistory_list_element_t *sessionhistory_list_element_parseFromJSON(cJSON *
 
     // sessionhistory_list_element->dt_sessionhistory_lasthit
     cJSON *dt_sessionhistory_lasthit = cJSON_GetObjectItemCaseSensitive(sessionhistory_list_elementJSON, "dtSessionhistoryLasthit");
+    if (cJSON_IsNull(dt_sessionhistory_lasthit)) {
+        dt_sessionhistory_lasthit = NULL;
+    }
     if (!dt_sessionhistory_lasthit) {
         goto end;
     }
@@ -253,6 +277,9 @@ sessionhistory_list_element_t *sessionhistory_list_element_parseFromJSON(cJSON *
 
     // sessionhistory_list_element->e_sessionhistory_endby
     cJSON *e_sessionhistory_endby = cJSON_GetObjectItemCaseSensitive(sessionhistory_list_elementJSON, "eSessionhistoryEndby");
+    if (cJSON_IsNull(e_sessionhistory_endby)) {
+        e_sessionhistory_endby = NULL;
+    }
     if (!e_sessionhistory_endby) {
         goto end;
     }
@@ -262,6 +289,9 @@ sessionhistory_list_element_t *sessionhistory_list_element_parseFromJSON(cJSON *
 
     // sessionhistory_list_element->s_computer_description
     cJSON *s_computer_description = cJSON_GetObjectItemCaseSensitive(sessionhistory_list_elementJSON, "sComputerDescription");
+    if (cJSON_IsNull(s_computer_description)) {
+        s_computer_description = NULL;
+    }
     if (s_computer_description) { 
     if(!cJSON_IsString(s_computer_description) && !cJSON_IsNull(s_computer_description))
     {
@@ -271,6 +301,9 @@ sessionhistory_list_element_t *sessionhistory_list_element_parseFromJSON(cJSON *
 
     // sessionhistory_list_element->s_sessionhistory_duration
     cJSON *s_sessionhistory_duration = cJSON_GetObjectItemCaseSensitive(sessionhistory_list_elementJSON, "sSessionhistoryDuration");
+    if (cJSON_IsNull(s_sessionhistory_duration)) {
+        s_sessionhistory_duration = NULL;
+    }
     if (!s_sessionhistory_duration) {
         goto end;
     }
@@ -283,6 +316,9 @@ sessionhistory_list_element_t *sessionhistory_list_element_parseFromJSON(cJSON *
 
     // sessionhistory_list_element->s_sessionhistory_ip
     cJSON *s_sessionhistory_ip = cJSON_GetObjectItemCaseSensitive(sessionhistory_list_elementJSON, "sSessionhistoryIP");
+    if (cJSON_IsNull(s_sessionhistory_ip)) {
+        s_sessionhistory_ip = NULL;
+    }
     if (!s_sessionhistory_ip) {
         goto end;
     }
@@ -295,6 +331,9 @@ sessionhistory_list_element_t *sessionhistory_list_element_parseFromJSON(cJSON *
 
     // sessionhistory_list_element->s_user_loginname
     cJSON *s_user_loginname = cJSON_GetObjectItemCaseSensitive(sessionhistory_list_elementJSON, "sUserLoginname");
+    if (cJSON_IsNull(s_user_loginname)) {
+        s_user_loginname = NULL;
+    }
     if (s_user_loginname) { 
     if(!cJSON_IsString(s_user_loginname) && !cJSON_IsNull(s_user_loginname))
     {
@@ -303,7 +342,7 @@ sessionhistory_list_element_t *sessionhistory_list_element_parseFromJSON(cJSON *
     }
 
 
-    sessionhistory_list_element_local_var = sessionhistory_list_element_create (
+    sessionhistory_list_element_local_var = sessionhistory_list_element_create_internal (
         pki_sessionhistory_id->valuedouble,
         fki_computer_id ? fki_computer_id->valuedouble : 0,
         fki_user_id ? fki_user_id->valuedouble : 0,
@@ -319,8 +358,7 @@ sessionhistory_list_element_t *sessionhistory_list_element_parseFromJSON(cJSON *
     return sessionhistory_list_element_local_var;
 end:
     if (e_sessionhistory_endby_local_nonprim) {
-        field_e_sessionhistory_endby_free(e_sessionhistory_endby_local_nonprim);
-        e_sessionhistory_endby_local_nonprim = NULL;
+        e_sessionhistory_endby_local_nonprim = 0;
     }
     return NULL;
 

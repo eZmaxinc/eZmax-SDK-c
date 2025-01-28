@@ -24,9 +24,10 @@ typedef struct custom_ezmaxpricing_response_t {
     char *dt_ezmaxpricing_start; // string
     char *dt_ezmaxpricing_end; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_ezmaxpricing_response_t;
 
-custom_ezmaxpricing_response_t *custom_ezmaxpricing_response_create(
+__attribute__((deprecated)) custom_ezmaxpricing_response_t *custom_ezmaxpricing_response_create(
     int pki_ezmaxpricing_id,
     char *d_ezmaxpricing_rebateezsignallagents,
     char *dt_ezmaxpricing_start,

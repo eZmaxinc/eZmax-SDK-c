@@ -19,30 +19,6 @@ typedef struct webhook_request_t webhook_request_t;
 #include "field_e_webhook_managementevent.h"
 #include "field_e_webhook_module.h"
 
-// Enum  for webhook_request
-
-typedef enum  { ezmax_api_definition__full_webhook_request__NULL = 0, ezmax_api_definition__full_webhook_request__Ezsign, ezmax_api_definition__full_webhook_request__Management } ezmax_api_definition__full_webhook_request__e;
-
-char* webhook_request_e_webhook_module_ToString(ezmax_api_definition__full_webhook_request__e e_webhook_module);
-
-ezmax_api_definition__full_webhook_request__e webhook_request_e_webhook_module_FromString(char* e_webhook_module);
-
-// Enum  for webhook_request
-
-typedef enum  { ezmax_api_definition__full_webhook_request__NULL = 0, ezmax_api_definition__full_webhook_request__DocumentCompleted, ezmax_api_definition__full_webhook_request__DocumentFormCompleted, ezmax_api_definition__full_webhook_request__DocumentUnsent, ezmax_api_definition__full_webhook_request__EzsignsignerAcceptclause, ezmax_api_definition__full_webhook_request__EzsignsignerConnect, ezmax_api_definition__full_webhook_request__FolderCompleted, ezmax_api_definition__full_webhook_request__FolderDisposed, ezmax_api_definition__full_webhook_request__FolderSent, ezmax_api_definition__full_webhook_request__FolderUnsent, ezmax_api_definition__full_webhook_request__SignatureSigned } ezmax_api_definition__full_webhook_request__e;
-
-char* webhook_request_e_webhook_ezsignevent_ToString(ezmax_api_definition__full_webhook_request__e e_webhook_ezsignevent);
-
-ezmax_api_definition__full_webhook_request__e webhook_request_e_webhook_ezsignevent_FromString(char* e_webhook_ezsignevent);
-
-// Enum  for webhook_request
-
-typedef enum  { ezmax_api_definition__full_webhook_request__NULL = 0, ezmax_api_definition__full_webhook_request__UserCreated, ezmax_api_definition__full_webhook_request__UserstagedCreated } ezmax_api_definition__full_webhook_request__e;
-
-char* webhook_request_e_webhook_managementevent_ToString(ezmax_api_definition__full_webhook_request__e e_webhook_managementevent);
-
-ezmax_api_definition__full_webhook_request__e webhook_request_e_webhook_managementevent_FromString(char* e_webhook_managementevent);
-
 
 
 typedef struct webhook_request_t {
@@ -50,25 +26,26 @@ typedef struct webhook_request_t {
     int fki_authenticationexternal_id; //numeric
     int fki_ezsignfoldertype_id; //numeric
     char *s_webhook_description; // string
-    field_e_webhook_module_t *e_webhook_module; // custom
-    field_e_webhook_ezsignevent_t *e_webhook_ezsignevent; // custom
-    field_e_webhook_managementevent_t *e_webhook_managementevent; // custom
+    ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module; //referenced enum
+    ezmax_api_definition__full_field_e_webhook_ezsignevent__e e_webhook_ezsignevent; //referenced enum
+    ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent; //referenced enum
     char *s_webhook_url; // string
     char *s_webhook_emailfailed; // string
     int b_webhook_isactive; //boolean
     int b_webhook_issigned; //boolean
     int b_webhook_skipsslvalidation; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } webhook_request_t;
 
-webhook_request_t *webhook_request_create(
+__attribute__((deprecated)) webhook_request_t *webhook_request_create(
     int pki_webhook_id,
     int fki_authenticationexternal_id,
     int fki_ezsignfoldertype_id,
     char *s_webhook_description,
-    field_e_webhook_module_t *e_webhook_module,
-    field_e_webhook_ezsignevent_t *e_webhook_ezsignevent,
-    field_e_webhook_managementevent_t *e_webhook_managementevent,
+    ezmax_api_definition__full_field_e_webhook_module__e e_webhook_module,
+    ezmax_api_definition__full_field_e_webhook_ezsignevent__e e_webhook_ezsignevent,
+    ezmax_api_definition__full_field_e_webhook_managementevent__e e_webhook_managementevent,
     char *s_webhook_url,
     char *s_webhook_emailfailed,
     int b_webhook_isactive,

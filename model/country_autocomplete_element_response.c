@@ -5,7 +5,7 @@
 
 
 
-country_autocomplete_element_response_t *country_autocomplete_element_response_create(
+static country_autocomplete_element_response_t *country_autocomplete_element_response_create_internal(
     int pki_country_id,
     char *s_country_name_x,
     char *s_country_shortname,
@@ -20,12 +20,30 @@ country_autocomplete_element_response_t *country_autocomplete_element_response_c
     country_autocomplete_element_response_local_var->s_country_shortname = s_country_shortname;
     country_autocomplete_element_response_local_var->b_country_isactive = b_country_isactive;
 
+    country_autocomplete_element_response_local_var->_library_owned = 1;
     return country_autocomplete_element_response_local_var;
 }
 
+__attribute__((deprecated)) country_autocomplete_element_response_t *country_autocomplete_element_response_create(
+    int pki_country_id,
+    char *s_country_name_x,
+    char *s_country_shortname,
+    int b_country_isactive
+    ) {
+    return country_autocomplete_element_response_create_internal (
+        pki_country_id,
+        s_country_name_x,
+        s_country_shortname,
+        b_country_isactive
+        );
+}
 
 void country_autocomplete_element_response_free(country_autocomplete_element_response_t *country_autocomplete_element_response) {
     if(NULL == country_autocomplete_element_response){
+        return ;
+    }
+    if(country_autocomplete_element_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "country_autocomplete_element_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -92,6 +110,9 @@ country_autocomplete_element_response_t *country_autocomplete_element_response_p
 
     // country_autocomplete_element_response->pki_country_id
     cJSON *pki_country_id = cJSON_GetObjectItemCaseSensitive(country_autocomplete_element_responseJSON, "pkiCountryID");
+    if (cJSON_IsNull(pki_country_id)) {
+        pki_country_id = NULL;
+    }
     if (!pki_country_id) {
         goto end;
     }
@@ -104,6 +125,9 @@ country_autocomplete_element_response_t *country_autocomplete_element_response_p
 
     // country_autocomplete_element_response->s_country_name_x
     cJSON *s_country_name_x = cJSON_GetObjectItemCaseSensitive(country_autocomplete_element_responseJSON, "sCountryNameX");
+    if (cJSON_IsNull(s_country_name_x)) {
+        s_country_name_x = NULL;
+    }
     if (!s_country_name_x) {
         goto end;
     }
@@ -116,6 +140,9 @@ country_autocomplete_element_response_t *country_autocomplete_element_response_p
 
     // country_autocomplete_element_response->s_country_shortname
     cJSON *s_country_shortname = cJSON_GetObjectItemCaseSensitive(country_autocomplete_element_responseJSON, "sCountryShortname");
+    if (cJSON_IsNull(s_country_shortname)) {
+        s_country_shortname = NULL;
+    }
     if (!s_country_shortname) {
         goto end;
     }
@@ -128,6 +155,9 @@ country_autocomplete_element_response_t *country_autocomplete_element_response_p
 
     // country_autocomplete_element_response->b_country_isactive
     cJSON *b_country_isactive = cJSON_GetObjectItemCaseSensitive(country_autocomplete_element_responseJSON, "bCountryIsactive");
+    if (cJSON_IsNull(b_country_isactive)) {
+        b_country_isactive = NULL;
+    }
     if (!b_country_isactive) {
         goto end;
     }
@@ -139,7 +169,7 @@ country_autocomplete_element_response_t *country_autocomplete_element_response_p
     }
 
 
-    country_autocomplete_element_response_local_var = country_autocomplete_element_response_create (
+    country_autocomplete_element_response_local_var = country_autocomplete_element_response_create_internal (
         pki_country_id->valuedouble,
         strdup(s_country_name_x->valuestring),
         strdup(s_country_shortname->valuestring),

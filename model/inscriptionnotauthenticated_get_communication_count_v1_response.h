@@ -26,9 +26,10 @@ typedef struct inscriptionnotauthenticated_get_communication_count_v1_response_t
     struct common_response_obj_debug_t *obj_debug; //model
     struct inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_t *m_payload; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } inscriptionnotauthenticated_get_communication_count_v1_response_t;
 
-inscriptionnotauthenticated_get_communication_count_v1_response_t *inscriptionnotauthenticated_get_communication_count_v1_response_create(
+__attribute__((deprecated)) inscriptionnotauthenticated_get_communication_count_v1_response_t *inscriptionnotauthenticated_get_communication_count_v1_response_create(
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug,
     inscriptionnotauthenticated_get_communication_count_v1_response_m_payload_t *m_payload

@@ -5,7 +5,7 @@
 
 
 
-discussionmessage_patch_object_v1_request_t *discussionmessage_patch_object_v1_request_create(
+static discussionmessage_patch_object_v1_request_t *discussionmessage_patch_object_v1_request_create_internal(
     discussionmessage_request_patch_t *obj_discussionmessage
     ) {
     discussionmessage_patch_object_v1_request_t *discussionmessage_patch_object_v1_request_local_var = malloc(sizeof(discussionmessage_patch_object_v1_request_t));
@@ -14,12 +14,24 @@ discussionmessage_patch_object_v1_request_t *discussionmessage_patch_object_v1_r
     }
     discussionmessage_patch_object_v1_request_local_var->obj_discussionmessage = obj_discussionmessage;
 
+    discussionmessage_patch_object_v1_request_local_var->_library_owned = 1;
     return discussionmessage_patch_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) discussionmessage_patch_object_v1_request_t *discussionmessage_patch_object_v1_request_create(
+    discussionmessage_request_patch_t *obj_discussionmessage
+    ) {
+    return discussionmessage_patch_object_v1_request_create_internal (
+        obj_discussionmessage
+        );
+}
 
 void discussionmessage_patch_object_v1_request_free(discussionmessage_patch_object_v1_request_t *discussionmessage_patch_object_v1_request) {
     if(NULL == discussionmessage_patch_object_v1_request){
+        return ;
+    }
+    if(discussionmessage_patch_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "discussionmessage_patch_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ discussionmessage_patch_object_v1_request_t *discussionmessage_patch_object_v1_r
 
     // discussionmessage_patch_object_v1_request->obj_discussionmessage
     cJSON *obj_discussionmessage = cJSON_GetObjectItemCaseSensitive(discussionmessage_patch_object_v1_requestJSON, "objDiscussionmessage");
+    if (cJSON_IsNull(obj_discussionmessage)) {
+        obj_discussionmessage = NULL;
+    }
     if (!obj_discussionmessage) {
         goto end;
     }
@@ -71,7 +86,7 @@ discussionmessage_patch_object_v1_request_t *discussionmessage_patch_object_v1_r
     obj_discussionmessage_local_nonprim = discussionmessage_request_patch_parseFromJSON(obj_discussionmessage); //nonprimitive
 
 
-    discussionmessage_patch_object_v1_request_local_var = discussionmessage_patch_object_v1_request_create (
+    discussionmessage_patch_object_v1_request_local_var = discussionmessage_patch_object_v1_request_create_internal (
         obj_discussionmessage_local_nonprim
         );
 

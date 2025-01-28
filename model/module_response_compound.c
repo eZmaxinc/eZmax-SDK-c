@@ -5,7 +5,7 @@
 
 
 
-module_response_compound_t *module_response_compound_create(
+static module_response_compound_t *module_response_compound_create_internal(
     int pki_module_id,
     int fki_modulegroup_id,
     char *e_module_internalname,
@@ -26,12 +26,36 @@ module_response_compound_t *module_response_compound_create(
     module_response_compound_local_var->b_module_registeredapi = b_module_registeredapi;
     module_response_compound_local_var->a_obj_modulesection = a_obj_modulesection;
 
+    module_response_compound_local_var->_library_owned = 1;
     return module_response_compound_local_var;
 }
 
+__attribute__((deprecated)) module_response_compound_t *module_response_compound_create(
+    int pki_module_id,
+    int fki_modulegroup_id,
+    char *e_module_internalname,
+    char *s_module_name_x,
+    int b_module_registered,
+    int b_module_registeredapi,
+    list_t *a_obj_modulesection
+    ) {
+    return module_response_compound_create_internal (
+        pki_module_id,
+        fki_modulegroup_id,
+        e_module_internalname,
+        s_module_name_x,
+        b_module_registered,
+        b_module_registeredapi,
+        a_obj_modulesection
+        );
+}
 
 void module_response_compound_free(module_response_compound_t *module_response_compound) {
     if(NULL == module_response_compound){
+        return ;
+    }
+    if(module_response_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "module_response_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -146,6 +170,9 @@ module_response_compound_t *module_response_compound_parseFromJSON(cJSON *module
 
     // module_response_compound->pki_module_id
     cJSON *pki_module_id = cJSON_GetObjectItemCaseSensitive(module_response_compoundJSON, "pkiModuleID");
+    if (cJSON_IsNull(pki_module_id)) {
+        pki_module_id = NULL;
+    }
     if (!pki_module_id) {
         goto end;
     }
@@ -158,6 +185,9 @@ module_response_compound_t *module_response_compound_parseFromJSON(cJSON *module
 
     // module_response_compound->fki_modulegroup_id
     cJSON *fki_modulegroup_id = cJSON_GetObjectItemCaseSensitive(module_response_compoundJSON, "fkiModulegroupID");
+    if (cJSON_IsNull(fki_modulegroup_id)) {
+        fki_modulegroup_id = NULL;
+    }
     if (!fki_modulegroup_id) {
         goto end;
     }
@@ -170,6 +200,9 @@ module_response_compound_t *module_response_compound_parseFromJSON(cJSON *module
 
     // module_response_compound->e_module_internalname
     cJSON *e_module_internalname = cJSON_GetObjectItemCaseSensitive(module_response_compoundJSON, "eModuleInternalname");
+    if (cJSON_IsNull(e_module_internalname)) {
+        e_module_internalname = NULL;
+    }
     if (!e_module_internalname) {
         goto end;
     }
@@ -182,6 +215,9 @@ module_response_compound_t *module_response_compound_parseFromJSON(cJSON *module
 
     // module_response_compound->s_module_name_x
     cJSON *s_module_name_x = cJSON_GetObjectItemCaseSensitive(module_response_compoundJSON, "sModuleNameX");
+    if (cJSON_IsNull(s_module_name_x)) {
+        s_module_name_x = NULL;
+    }
     if (!s_module_name_x) {
         goto end;
     }
@@ -194,6 +230,9 @@ module_response_compound_t *module_response_compound_parseFromJSON(cJSON *module
 
     // module_response_compound->b_module_registered
     cJSON *b_module_registered = cJSON_GetObjectItemCaseSensitive(module_response_compoundJSON, "bModuleRegistered");
+    if (cJSON_IsNull(b_module_registered)) {
+        b_module_registered = NULL;
+    }
     if (!b_module_registered) {
         goto end;
     }
@@ -206,6 +245,9 @@ module_response_compound_t *module_response_compound_parseFromJSON(cJSON *module
 
     // module_response_compound->b_module_registeredapi
     cJSON *b_module_registeredapi = cJSON_GetObjectItemCaseSensitive(module_response_compoundJSON, "bModuleRegisteredapi");
+    if (cJSON_IsNull(b_module_registeredapi)) {
+        b_module_registeredapi = NULL;
+    }
     if (!b_module_registeredapi) {
         goto end;
     }
@@ -218,6 +260,9 @@ module_response_compound_t *module_response_compound_parseFromJSON(cJSON *module
 
     // module_response_compound->a_obj_modulesection
     cJSON *a_obj_modulesection = cJSON_GetObjectItemCaseSensitive(module_response_compoundJSON, "a_objModulesection");
+    if (cJSON_IsNull(a_obj_modulesection)) {
+        a_obj_modulesection = NULL;
+    }
     if (a_obj_modulesection) { 
     cJSON *a_obj_modulesection_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_modulesection)){
@@ -238,7 +283,7 @@ module_response_compound_t *module_response_compound_parseFromJSON(cJSON *module
     }
 
 
-    module_response_compound_local_var = module_response_compound_create (
+    module_response_compound_local_var = module_response_compound_create_internal (
         pki_module_id->valuedouble,
         fki_modulegroup_id->valuedouble,
         strdup(e_module_internalname->valuestring),

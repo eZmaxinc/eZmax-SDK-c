@@ -5,7 +5,7 @@
 
 
 
-creditcardtype_get_autocomplete_v2_response_m_payload_t *creditcardtype_get_autocomplete_v2_response_m_payload_create(
+static creditcardtype_get_autocomplete_v2_response_m_payload_t *creditcardtype_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_creditcardtype
     ) {
     creditcardtype_get_autocomplete_v2_response_m_payload_t *creditcardtype_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(creditcardtype_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ creditcardtype_get_autocomplete_v2_response_m_payload_t *creditcardtype_get_auto
     }
     creditcardtype_get_autocomplete_v2_response_m_payload_local_var->a_obj_creditcardtype = a_obj_creditcardtype;
 
+    creditcardtype_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return creditcardtype_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) creditcardtype_get_autocomplete_v2_response_m_payload_t *creditcardtype_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_creditcardtype
+    ) {
+    return creditcardtype_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_creditcardtype
+        );
+}
 
 void creditcardtype_get_autocomplete_v2_response_m_payload_free(creditcardtype_get_autocomplete_v2_response_m_payload_t *creditcardtype_get_autocomplete_v2_response_m_payload) {
     if(NULL == creditcardtype_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(creditcardtype_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "creditcardtype_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ creditcardtype_get_autocomplete_v2_response_m_payload_t *creditcardtype_get_auto
 
     // creditcardtype_get_autocomplete_v2_response_m_payload->a_obj_creditcardtype
     cJSON *a_obj_creditcardtype = cJSON_GetObjectItemCaseSensitive(creditcardtype_get_autocomplete_v2_response_m_payloadJSON, "a_objCreditcardtype");
+    if (cJSON_IsNull(a_obj_creditcardtype)) {
+        a_obj_creditcardtype = NULL;
+    }
     if (!a_obj_creditcardtype) {
         goto end;
     }
@@ -96,7 +111,7 @@ creditcardtype_get_autocomplete_v2_response_m_payload_t *creditcardtype_get_auto
     }
 
 
-    creditcardtype_get_autocomplete_v2_response_m_payload_local_var = creditcardtype_get_autocomplete_v2_response_m_payload_create (
+    creditcardtype_get_autocomplete_v2_response_m_payload_local_var = creditcardtype_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_creditcardtypeList
         );
 

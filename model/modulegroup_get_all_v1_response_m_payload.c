@@ -5,7 +5,7 @@
 
 
 
-modulegroup_get_all_v1_response_m_payload_t *modulegroup_get_all_v1_response_m_payload_create(
+static modulegroup_get_all_v1_response_m_payload_t *modulegroup_get_all_v1_response_m_payload_create_internal(
     list_t *a_obj_modulegroup
     ) {
     modulegroup_get_all_v1_response_m_payload_t *modulegroup_get_all_v1_response_m_payload_local_var = malloc(sizeof(modulegroup_get_all_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ modulegroup_get_all_v1_response_m_payload_t *modulegroup_get_all_v1_response_m_p
     }
     modulegroup_get_all_v1_response_m_payload_local_var->a_obj_modulegroup = a_obj_modulegroup;
 
+    modulegroup_get_all_v1_response_m_payload_local_var->_library_owned = 1;
     return modulegroup_get_all_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) modulegroup_get_all_v1_response_m_payload_t *modulegroup_get_all_v1_response_m_payload_create(
+    list_t *a_obj_modulegroup
+    ) {
+    return modulegroup_get_all_v1_response_m_payload_create_internal (
+        a_obj_modulegroup
+        );
+}
 
 void modulegroup_get_all_v1_response_m_payload_free(modulegroup_get_all_v1_response_m_payload_t *modulegroup_get_all_v1_response_m_payload) {
     if(NULL == modulegroup_get_all_v1_response_m_payload){
+        return ;
+    }
+    if(modulegroup_get_all_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "modulegroup_get_all_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ modulegroup_get_all_v1_response_m_payload_t *modulegroup_get_all_v1_response_m_p
 
     // modulegroup_get_all_v1_response_m_payload->a_obj_modulegroup
     cJSON *a_obj_modulegroup = cJSON_GetObjectItemCaseSensitive(modulegroup_get_all_v1_response_m_payloadJSON, "a_objModulegroup");
+    if (cJSON_IsNull(a_obj_modulegroup)) {
+        a_obj_modulegroup = NULL;
+    }
     if (!a_obj_modulegroup) {
         goto end;
     }
@@ -96,7 +111,7 @@ modulegroup_get_all_v1_response_m_payload_t *modulegroup_get_all_v1_response_m_p
     }
 
 
-    modulegroup_get_all_v1_response_m_payload_local_var = modulegroup_get_all_v1_response_m_payload_create (
+    modulegroup_get_all_v1_response_m_payload_local_var = modulegroup_get_all_v1_response_m_payload_create_internal (
         a_obj_modulegroupList
         );
 

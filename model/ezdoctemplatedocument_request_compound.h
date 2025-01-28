@@ -18,14 +18,6 @@ typedef struct ezdoctemplatedocument_request_compound_t ezdoctemplatedocument_re
 #include "field_e_ezdoctemplatedocument_privacylevel.h"
 #include "multilingual_ezdoctemplatedocument_name.h"
 
-// Enum  for ezdoctemplatedocument_request_compound
-
-typedef enum  { ezmax_api_definition__full_ezdoctemplatedocument_request_compound__NULL = 0, ezmax_api_definition__full_ezdoctemplatedocument_request_compound__Company, ezmax_api_definition__full_ezdoctemplatedocument_request_compound__Ezsignfoldertype, ezmax_api_definition__full_ezdoctemplatedocument_request_compound__User } ezmax_api_definition__full_ezdoctemplatedocument_request_compound__e;
-
-char* ezdoctemplatedocument_request_compound_e_ezdoctemplatedocument_privacylevel_ToString(ezmax_api_definition__full_ezdoctemplatedocument_request_compound__e e_ezdoctemplatedocument_privacylevel);
-
-ezmax_api_definition__full_ezdoctemplatedocument_request_compound__e ezdoctemplatedocument_request_compound_e_ezdoctemplatedocument_privacylevel_FromString(char* e_ezdoctemplatedocument_privacylevel);
-
 
 
 typedef struct ezdoctemplatedocument_request_compound_t {
@@ -34,19 +26,20 @@ typedef struct ezdoctemplatedocument_request_compound_t {
     int fki_ezsignfoldertype_id; //numeric
     int fki_ezdoctemplatetype_id; //numeric
     int fki_ezdoctemplatefieldtypecategory_id; //numeric
-    field_e_ezdoctemplatedocument_privacylevel_t *e_ezdoctemplatedocument_privacylevel; // custom
+    ezmax_api_definition__full_field_e_ezdoctemplatedocument_privacylevel__e e_ezdoctemplatedocument_privacylevel; //referenced enum
     int b_ezdoctemplatedocument_isactive; //boolean
     struct multilingual_ezdoctemplatedocument_name_t *obj_ezdoctemplatedocument_name; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezdoctemplatedocument_request_compound_t;
 
-ezdoctemplatedocument_request_compound_t *ezdoctemplatedocument_request_compound_create(
+__attribute__((deprecated)) ezdoctemplatedocument_request_compound_t *ezdoctemplatedocument_request_compound_create(
     int pki_ezdoctemplatedocument_id,
     int fki_language_id,
     int fki_ezsignfoldertype_id,
     int fki_ezdoctemplatetype_id,
     int fki_ezdoctemplatefieldtypecategory_id,
-    field_e_ezdoctemplatedocument_privacylevel_t *e_ezdoctemplatedocument_privacylevel,
+    ezmax_api_definition__full_field_e_ezdoctemplatedocument_privacylevel__e e_ezdoctemplatedocument_privacylevel,
     int b_ezdoctemplatedocument_isactive,
     multilingual_ezdoctemplatedocument_name_t *obj_ezdoctemplatedocument_name
 );

@@ -25,9 +25,10 @@ typedef struct notificationtest_get_elements_v1_response_m_payload_t {
     list_t *a_s_variableobject_property; //primitive container
     list_t *a_obj_variableobject; //primitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } notificationtest_get_elements_v1_response_m_payload_t;
 
-notificationtest_get_elements_v1_response_m_payload_t *notificationtest_get_elements_v1_response_m_payload_create(
+__attribute__((deprecated)) notificationtest_get_elements_v1_response_m_payload_t *notificationtest_get_elements_v1_response_m_payload_create(
     int pki_notificationtest_id,
     char *s_notificationtest_function,
     list_t *a_s_variableobject_property,

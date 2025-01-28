@@ -23,9 +23,10 @@ typedef struct custom_communicationrecipientsgroup_response_t {
     char *s_communicationrecipientsgroup_label; // string
     list_t *a_obj_communicationrecipientsrecipient; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_communicationrecipientsgroup_response_t;
 
-custom_communicationrecipientsgroup_response_t *custom_communicationrecipientsgroup_response_create(
+__attribute__((deprecated)) custom_communicationrecipientsgroup_response_t *custom_communicationrecipientsgroup_response_create(
     char *s_communicationrecipientsgroup_label,
     list_t *a_obj_communicationrecipientsrecipient
 );

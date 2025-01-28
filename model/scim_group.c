@@ -5,7 +5,7 @@
 
 
 
-scim_group_t *scim_group_create(
+static scim_group_t *scim_group_create_internal(
     char *id,
     char *display_name,
     list_t *members
@@ -18,12 +18,28 @@ scim_group_t *scim_group_create(
     scim_group_local_var->display_name = display_name;
     scim_group_local_var->members = members;
 
+    scim_group_local_var->_library_owned = 1;
     return scim_group_local_var;
 }
 
+__attribute__((deprecated)) scim_group_t *scim_group_create(
+    char *id,
+    char *display_name,
+    list_t *members
+    ) {
+    return scim_group_create_internal (
+        id,
+        display_name,
+        members
+        );
+}
 
 void scim_group_free(scim_group_t *scim_group) {
     if(NULL == scim_group){
+        return ;
+    }
+    if(scim_group->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "scim_group_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -101,6 +117,9 @@ scim_group_t *scim_group_parseFromJSON(cJSON *scim_groupJSON){
 
     // scim_group->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(scim_groupJSON, "id");
+    if (cJSON_IsNull(id)) {
+        id = NULL;
+    }
     if (id) { 
     if(!cJSON_IsString(id) && !cJSON_IsNull(id))
     {
@@ -110,6 +129,9 @@ scim_group_t *scim_group_parseFromJSON(cJSON *scim_groupJSON){
 
     // scim_group->display_name
     cJSON *display_name = cJSON_GetObjectItemCaseSensitive(scim_groupJSON, "displayName");
+    if (cJSON_IsNull(display_name)) {
+        display_name = NULL;
+    }
     if (!display_name) {
         goto end;
     }
@@ -122,6 +144,9 @@ scim_group_t *scim_group_parseFromJSON(cJSON *scim_groupJSON){
 
     // scim_group->members
     cJSON *members = cJSON_GetObjectItemCaseSensitive(scim_groupJSON, "members");
+    if (cJSON_IsNull(members)) {
+        members = NULL;
+    }
     if (members) { 
     cJSON *members_local_nonprimitive = NULL;
     if(!cJSON_IsArray(members)){
@@ -142,7 +167,7 @@ scim_group_t *scim_group_parseFromJSON(cJSON *scim_groupJSON){
     }
 
 
-    scim_group_local_var = scim_group_create (
+    scim_group_local_var = scim_group_create_internal (
         id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
         strdup(display_name->valuestring),
         members ? membersList : NULL

@@ -23,9 +23,10 @@ typedef struct custom_contact_name_response_t {
     char *s_contact_lastname; // string
     char *s_contact_company; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_contact_name_response_t;
 
-custom_contact_name_response_t *custom_contact_name_response_create(
+__attribute__((deprecated)) custom_contact_name_response_t *custom_contact_name_response_create(
     char *s_contact_firstname,
     char *s_contact_lastname,
     char *s_contact_company

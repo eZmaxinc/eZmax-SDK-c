@@ -56,9 +56,10 @@ typedef struct ezsigntemplatedocument_request_t {
     ezmax_api_definition__full_ezsigntemplatedocument_request_EEZSIGNTEMPLATEDOCUMENTFORM_e e_ezsigntemplatedocument_form; //enum
     char *s_ezsigntemplatedocument_password; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatedocument_request_t;
 
-ezsigntemplatedocument_request_t *ezsigntemplatedocument_request_create(
+__attribute__((deprecated)) ezsigntemplatedocument_request_t *ezsigntemplatedocument_request_create(
     int pki_ezsigntemplatedocument_id,
     int fki_ezsigntemplate_id,
     int fki_ezsigndocument_id,

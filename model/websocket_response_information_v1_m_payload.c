@@ -5,7 +5,7 @@
 
 
 
-websocket_response_information_v1_m_payload_t *websocket_response_information_v1_m_payload_create(
+static websocket_response_information_v1_m_payload_t *websocket_response_information_v1_m_payload_create_internal(
     char *s_information_message
     ) {
     websocket_response_information_v1_m_payload_t *websocket_response_information_v1_m_payload_local_var = malloc(sizeof(websocket_response_information_v1_m_payload_t));
@@ -14,12 +14,24 @@ websocket_response_information_v1_m_payload_t *websocket_response_information_v1
     }
     websocket_response_information_v1_m_payload_local_var->s_information_message = s_information_message;
 
+    websocket_response_information_v1_m_payload_local_var->_library_owned = 1;
     return websocket_response_information_v1_m_payload_local_var;
 }
 
+__attribute__((deprecated)) websocket_response_information_v1_m_payload_t *websocket_response_information_v1_m_payload_create(
+    char *s_information_message
+    ) {
+    return websocket_response_information_v1_m_payload_create_internal (
+        s_information_message
+        );
+}
 
 void websocket_response_information_v1_m_payload_free(websocket_response_information_v1_m_payload_t *websocket_response_information_v1_m_payload) {
     if(NULL == websocket_response_information_v1_m_payload){
+        return ;
+    }
+    if(websocket_response_information_v1_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "websocket_response_information_v1_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -55,6 +67,9 @@ websocket_response_information_v1_m_payload_t *websocket_response_information_v1
 
     // websocket_response_information_v1_m_payload->s_information_message
     cJSON *s_information_message = cJSON_GetObjectItemCaseSensitive(websocket_response_information_v1_m_payloadJSON, "sInformationMessage");
+    if (cJSON_IsNull(s_information_message)) {
+        s_information_message = NULL;
+    }
     if (!s_information_message) {
         goto end;
     }
@@ -66,7 +81,7 @@ websocket_response_information_v1_m_payload_t *websocket_response_information_v1
     }
 
 
-    websocket_response_information_v1_m_payload_local_var = websocket_response_information_v1_m_payload_create (
+    websocket_response_information_v1_m_payload_local_var = websocket_response_information_v1_m_payload_create_internal (
         strdup(s_information_message->valuestring)
         );
 

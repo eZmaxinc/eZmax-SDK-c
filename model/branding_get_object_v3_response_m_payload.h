@@ -22,9 +22,10 @@ typedef struct branding_get_object_v3_response_m_payload_t branding_get_object_v
 typedef struct branding_get_object_v3_response_m_payload_t {
     struct branding_response_compound_v3_t *obj_branding; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } branding_get_object_v3_response_m_payload_t;
 
-branding_get_object_v3_response_m_payload_t *branding_get_object_v3_response_m_payload_create(
+__attribute__((deprecated)) branding_get_object_v3_response_m_payload_t *branding_get_object_v3_response_m_payload_create(
     branding_response_compound_v3_t *obj_branding
 );
 

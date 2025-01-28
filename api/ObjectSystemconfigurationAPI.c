@@ -5,18 +5,13 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Edit an existing Systemconfiguration
 //
 // 
 //
-common_response_t*
+systemconfiguration_edit_object_v1_response_t*
 ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1(apiClient_t *apiClient, int *pkiSystemconfigurationID, systemconfiguration_edit_object_v1_request_t *systemconfiguration_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -25,15 +20,18 @@ ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1(apiClient_t *apiCli
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/systemconfiguration/{pkiSystemconfigurationID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/systemconfiguration/{pkiSystemconfigurationID}");
+    char *localVarPath = strdup("/1/object/systemconfiguration/{pkiSystemconfigurationID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiSystemconfigurationID =  + strlen("{ pkiSystemconfigurationID }");
+    long sizeOfPathParams_pkiSystemconfigurationID =  + sizeof("{ pkiSystemconfigurationID }") - 1;
     if(pkiSystemconfigurationID == 0){
         goto end;
     }
@@ -41,7 +39,7 @@ ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1(apiClient_t *apiCli
     snprintf(localVarToReplace_pkiSystemconfigurationID, sizeOfPathParams_pkiSystemconfigurationID, "{%s}", "pkiSystemconfigurationID");
 
     char localVarBuff_pkiSystemconfigurationID[256];
-    intToStr(localVarBuff_pkiSystemconfigurationID, *pkiSystemconfigurationID);
+    snprintf(localVarBuff_pkiSystemconfigurationID, sizeof localVarBuff_pkiSystemconfigurationID, "%ld", (long)*pkiSystemconfigurationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiSystemconfigurationID, localVarBuff_pkiSystemconfigurationID);
 
@@ -52,9 +50,10 @@ ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1(apiClient_t *apiCli
     cJSON *localVarSingleItemJSON_systemconfiguration_edit_object_v1_request = NULL;
     if (systemconfiguration_edit_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_systemconfiguration_edit_object_v1_request = systemconfiguration_edit_object_v1_request_convertToJSON(systemconfiguration_edit_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_systemconfiguration_edit_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -66,6 +65,7 @@ ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1(apiClient_t *apiCli
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -81,11 +81,14 @@ ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1(apiClient_t *apiCli
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectSystemconfigurationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectSystemconfigurationAPIlocalVarJSON);
-    cJSON_Delete(ObjectSystemconfigurationAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    systemconfiguration_edit_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectSystemconfigurationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = systemconfiguration_edit_object_v1_response_parseFromJSON(ObjectSystemconfigurationAPIlocalVarJSON);
+        cJSON_Delete(ObjectSystemconfigurationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -126,15 +129,18 @@ ObjectSystemconfigurationAPI_systemconfigurationGetObjectV2(apiClient_t *apiClie
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/systemconfiguration/{pkiSystemconfigurationID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/systemconfiguration/{pkiSystemconfigurationID}");
+    char *localVarPath = strdup("/2/object/systemconfiguration/{pkiSystemconfigurationID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiSystemconfigurationID =  + strlen("{ pkiSystemconfigurationID }");
+    long sizeOfPathParams_pkiSystemconfigurationID =  + sizeof("{ pkiSystemconfigurationID }") - 1;
     if(pkiSystemconfigurationID == 0){
         goto end;
     }
@@ -142,7 +148,7 @@ ObjectSystemconfigurationAPI_systemconfigurationGetObjectV2(apiClient_t *apiClie
     snprintf(localVarToReplace_pkiSystemconfigurationID, sizeOfPathParams_pkiSystemconfigurationID, "{%s}", "pkiSystemconfigurationID");
 
     char localVarBuff_pkiSystemconfigurationID[256];
-    intToStr(localVarBuff_pkiSystemconfigurationID, *pkiSystemconfigurationID);
+    snprintf(localVarBuff_pkiSystemconfigurationID, sizeof localVarBuff_pkiSystemconfigurationID, "%ld", (long)*pkiSystemconfigurationID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiSystemconfigurationID, localVarBuff_pkiSystemconfigurationID);
 
@@ -157,6 +163,7 @@ ObjectSystemconfigurationAPI_systemconfigurationGetObjectV2(apiClient_t *apiClie
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -168,11 +175,14 @@ ObjectSystemconfigurationAPI_systemconfigurationGetObjectV2(apiClient_t *apiClie
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectSystemconfigurationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    systemconfiguration_get_object_v2_response_t *elementToReturn = systemconfiguration_get_object_v2_response_parseFromJSON(ObjectSystemconfigurationAPIlocalVarJSON);
-    cJSON_Delete(ObjectSystemconfigurationAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    systemconfiguration_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectSystemconfigurationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = systemconfiguration_get_object_v2_response_parseFromJSON(ObjectSystemconfigurationAPIlocalVarJSON);
+        cJSON_Delete(ObjectSystemconfigurationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

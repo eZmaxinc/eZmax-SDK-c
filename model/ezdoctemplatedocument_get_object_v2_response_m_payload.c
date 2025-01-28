@@ -5,7 +5,7 @@
 
 
 
-ezdoctemplatedocument_get_object_v2_response_m_payload_t *ezdoctemplatedocument_get_object_v2_response_m_payload_create(
+static ezdoctemplatedocument_get_object_v2_response_m_payload_t *ezdoctemplatedocument_get_object_v2_response_m_payload_create_internal(
     ezdoctemplatedocument_response_compound_t *obj_ezdoctemplatedocument
     ) {
     ezdoctemplatedocument_get_object_v2_response_m_payload_t *ezdoctemplatedocument_get_object_v2_response_m_payload_local_var = malloc(sizeof(ezdoctemplatedocument_get_object_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ ezdoctemplatedocument_get_object_v2_response_m_payload_t *ezdoctemplatedocument_
     }
     ezdoctemplatedocument_get_object_v2_response_m_payload_local_var->obj_ezdoctemplatedocument = obj_ezdoctemplatedocument;
 
+    ezdoctemplatedocument_get_object_v2_response_m_payload_local_var->_library_owned = 1;
     return ezdoctemplatedocument_get_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezdoctemplatedocument_get_object_v2_response_m_payload_t *ezdoctemplatedocument_get_object_v2_response_m_payload_create(
+    ezdoctemplatedocument_response_compound_t *obj_ezdoctemplatedocument
+    ) {
+    return ezdoctemplatedocument_get_object_v2_response_m_payload_create_internal (
+        obj_ezdoctemplatedocument
+        );
+}
 
 void ezdoctemplatedocument_get_object_v2_response_m_payload_free(ezdoctemplatedocument_get_object_v2_response_m_payload_t *ezdoctemplatedocument_get_object_v2_response_m_payload) {
     if(NULL == ezdoctemplatedocument_get_object_v2_response_m_payload){
+        return ;
+    }
+    if(ezdoctemplatedocument_get_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezdoctemplatedocument_get_object_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ ezdoctemplatedocument_get_object_v2_response_m_payload_t *ezdoctemplatedocument_
 
     // ezdoctemplatedocument_get_object_v2_response_m_payload->obj_ezdoctemplatedocument
     cJSON *obj_ezdoctemplatedocument = cJSON_GetObjectItemCaseSensitive(ezdoctemplatedocument_get_object_v2_response_m_payloadJSON, "objEzdoctemplatedocument");
+    if (cJSON_IsNull(obj_ezdoctemplatedocument)) {
+        obj_ezdoctemplatedocument = NULL;
+    }
     if (!obj_ezdoctemplatedocument) {
         goto end;
     }
@@ -71,7 +86,7 @@ ezdoctemplatedocument_get_object_v2_response_m_payload_t *ezdoctemplatedocument_
     obj_ezdoctemplatedocument_local_nonprim = ezdoctemplatedocument_response_compound_parseFromJSON(obj_ezdoctemplatedocument); //nonprimitive
 
 
-    ezdoctemplatedocument_get_object_v2_response_m_payload_local_var = ezdoctemplatedocument_get_object_v2_response_m_payload_create (
+    ezdoctemplatedocument_get_object_v2_response_m_payload_local_var = ezdoctemplatedocument_get_object_v2_response_m_payload_create_internal (
         obj_ezdoctemplatedocument_local_nonprim
         );
 

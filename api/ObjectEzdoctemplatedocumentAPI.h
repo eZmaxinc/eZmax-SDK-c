@@ -5,15 +5,16 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/ezdoctemplatedocument_create_object_v1_request.h"
 #include "../model/ezdoctemplatedocument_create_object_v1_response.h"
 #include "../model/ezdoctemplatedocument_edit_object_v1_request.h"
+#include "../model/ezdoctemplatedocument_edit_object_v1_response.h"
 #include "../model/ezdoctemplatedocument_get_autocomplete_v2_response.h"
 #include "../model/ezdoctemplatedocument_get_list_v1_response.h"
 #include "../model/ezdoctemplatedocument_get_object_v2_response.h"
 #include "../model/ezdoctemplatedocument_patch_object_v1_request.h"
+#include "../model/ezdoctemplatedocument_patch_object_v1_response.h"
 #include "../model/header_accept_language.h"
 
 // Enum SSELECTOR for ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentGetAutocompleteV2
@@ -55,7 +56,7 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentDownloadV1(apiClient_t *apiC
 //
 // 
 //
-common_response_t*
+ezdoctemplatedocument_edit_object_v1_response_t*
 ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentEditObjectV1(apiClient_t *apiClient, int *pkiEzdoctemplatedocumentID, ezdoctemplatedocument_edit_object_v1_request_t *ezdoctemplatedocument_edit_object_v1_request);
 
 
@@ -87,7 +88,7 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentGetObjectV2(apiClient_t *api
 //
 // 
 //
-common_response_t*
+ezdoctemplatedocument_patch_object_v1_response_t*
 ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentPatchObjectV1(apiClient_t *apiClient, int *pkiEzdoctemplatedocumentID, ezdoctemplatedocument_patch_object_v1_request_t *ezdoctemplatedocument_patch_object_v1_request);
 
 

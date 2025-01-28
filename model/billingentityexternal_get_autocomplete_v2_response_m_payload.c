@@ -5,7 +5,7 @@
 
 
 
-billingentityexternal_get_autocomplete_v2_response_m_payload_t *billingentityexternal_get_autocomplete_v2_response_m_payload_create(
+static billingentityexternal_get_autocomplete_v2_response_m_payload_t *billingentityexternal_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_billingentityexternal
     ) {
     billingentityexternal_get_autocomplete_v2_response_m_payload_t *billingentityexternal_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(billingentityexternal_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ billingentityexternal_get_autocomplete_v2_response_m_payload_t *billingentityext
     }
     billingentityexternal_get_autocomplete_v2_response_m_payload_local_var->a_obj_billingentityexternal = a_obj_billingentityexternal;
 
+    billingentityexternal_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return billingentityexternal_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) billingentityexternal_get_autocomplete_v2_response_m_payload_t *billingentityexternal_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_billingentityexternal
+    ) {
+    return billingentityexternal_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_billingentityexternal
+        );
+}
 
 void billingentityexternal_get_autocomplete_v2_response_m_payload_free(billingentityexternal_get_autocomplete_v2_response_m_payload_t *billingentityexternal_get_autocomplete_v2_response_m_payload) {
     if(NULL == billingentityexternal_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(billingentityexternal_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "billingentityexternal_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ billingentityexternal_get_autocomplete_v2_response_m_payload_t *billingentityext
 
     // billingentityexternal_get_autocomplete_v2_response_m_payload->a_obj_billingentityexternal
     cJSON *a_obj_billingentityexternal = cJSON_GetObjectItemCaseSensitive(billingentityexternal_get_autocomplete_v2_response_m_payloadJSON, "a_objBillingentityexternal");
+    if (cJSON_IsNull(a_obj_billingentityexternal)) {
+        a_obj_billingentityexternal = NULL;
+    }
     if (!a_obj_billingentityexternal) {
         goto end;
     }
@@ -96,7 +111,7 @@ billingentityexternal_get_autocomplete_v2_response_m_payload_t *billingentityext
     }
 
 
-    billingentityexternal_get_autocomplete_v2_response_m_payload_local_var = billingentityexternal_get_autocomplete_v2_response_m_payload_create (
+    billingentityexternal_get_autocomplete_v2_response_m_payload_local_var = billingentityexternal_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_billingentityexternalList
         );
 

@@ -5,7 +5,7 @@
 
 
 
-custom_notificationsubsectiongetnotificationtests_response_t *custom_notificationsubsectiongetnotificationtests_response_create(
+static custom_notificationsubsectiongetnotificationtests_response_t *custom_notificationsubsectiongetnotificationtests_response_create_internal(
     int pki_notificationsubsection_id,
     int fki_notificationsection_id,
     multilingual_notificationsubsection_name_t *obj_notificationsubsection_name,
@@ -24,12 +24,34 @@ custom_notificationsubsectiongetnotificationtests_response_t *custom_notificatio
     custom_notificationsubsectiongetnotificationtests_response_local_var->s_notificationsubsection_name_x = s_notificationsubsection_name_x;
     custom_notificationsubsectiongetnotificationtests_response_local_var->a_obj_notificationtest = a_obj_notificationtest;
 
+    custom_notificationsubsectiongetnotificationtests_response_local_var->_library_owned = 1;
     return custom_notificationsubsectiongetnotificationtests_response_local_var;
 }
 
+__attribute__((deprecated)) custom_notificationsubsectiongetnotificationtests_response_t *custom_notificationsubsectiongetnotificationtests_response_create(
+    int pki_notificationsubsection_id,
+    int fki_notificationsection_id,
+    multilingual_notificationsubsection_name_t *obj_notificationsubsection_name,
+    char *s_notificationsection_name_x,
+    char *s_notificationsubsection_name_x,
+    list_t *a_obj_notificationtest
+    ) {
+    return custom_notificationsubsectiongetnotificationtests_response_create_internal (
+        pki_notificationsubsection_id,
+        fki_notificationsection_id,
+        obj_notificationsubsection_name,
+        s_notificationsection_name_x,
+        s_notificationsubsection_name_x,
+        a_obj_notificationtest
+        );
+}
 
 void custom_notificationsubsectiongetnotificationtests_response_free(custom_notificationsubsectiongetnotificationtests_response_t *custom_notificationsubsectiongetnotificationtests_response) {
     if(NULL == custom_notificationsubsectiongetnotificationtests_response){
+        return ;
+    }
+    if(custom_notificationsubsectiongetnotificationtests_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "custom_notificationsubsectiongetnotificationtests_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -146,6 +168,9 @@ custom_notificationsubsectiongetnotificationtests_response_t *custom_notificatio
 
     // custom_notificationsubsectiongetnotificationtests_response->pki_notificationsubsection_id
     cJSON *pki_notificationsubsection_id = cJSON_GetObjectItemCaseSensitive(custom_notificationsubsectiongetnotificationtests_responseJSON, "pkiNotificationsubsectionID");
+    if (cJSON_IsNull(pki_notificationsubsection_id)) {
+        pki_notificationsubsection_id = NULL;
+    }
     if (!pki_notificationsubsection_id) {
         goto end;
     }
@@ -158,6 +183,9 @@ custom_notificationsubsectiongetnotificationtests_response_t *custom_notificatio
 
     // custom_notificationsubsectiongetnotificationtests_response->fki_notificationsection_id
     cJSON *fki_notificationsection_id = cJSON_GetObjectItemCaseSensitive(custom_notificationsubsectiongetnotificationtests_responseJSON, "fkiNotificationsectionID");
+    if (cJSON_IsNull(fki_notificationsection_id)) {
+        fki_notificationsection_id = NULL;
+    }
     if (!fki_notificationsection_id) {
         goto end;
     }
@@ -170,12 +198,18 @@ custom_notificationsubsectiongetnotificationtests_response_t *custom_notificatio
 
     // custom_notificationsubsectiongetnotificationtests_response->obj_notificationsubsection_name
     cJSON *obj_notificationsubsection_name = cJSON_GetObjectItemCaseSensitive(custom_notificationsubsectiongetnotificationtests_responseJSON, "objNotificationsubsectionName");
+    if (cJSON_IsNull(obj_notificationsubsection_name)) {
+        obj_notificationsubsection_name = NULL;
+    }
     if (obj_notificationsubsection_name) { 
     obj_notificationsubsection_name_local_nonprim = multilingual_notificationsubsection_name_parseFromJSON(obj_notificationsubsection_name); //nonprimitive
     }
 
     // custom_notificationsubsectiongetnotificationtests_response->s_notificationsection_name_x
     cJSON *s_notificationsection_name_x = cJSON_GetObjectItemCaseSensitive(custom_notificationsubsectiongetnotificationtests_responseJSON, "sNotificationsectionNameX");
+    if (cJSON_IsNull(s_notificationsection_name_x)) {
+        s_notificationsection_name_x = NULL;
+    }
     if (s_notificationsection_name_x) { 
     if(!cJSON_IsString(s_notificationsection_name_x) && !cJSON_IsNull(s_notificationsection_name_x))
     {
@@ -185,6 +219,9 @@ custom_notificationsubsectiongetnotificationtests_response_t *custom_notificatio
 
     // custom_notificationsubsectiongetnotificationtests_response->s_notificationsubsection_name_x
     cJSON *s_notificationsubsection_name_x = cJSON_GetObjectItemCaseSensitive(custom_notificationsubsectiongetnotificationtests_responseJSON, "sNotificationsubsectionNameX");
+    if (cJSON_IsNull(s_notificationsubsection_name_x)) {
+        s_notificationsubsection_name_x = NULL;
+    }
     if (!s_notificationsubsection_name_x) {
         goto end;
     }
@@ -197,6 +234,9 @@ custom_notificationsubsectiongetnotificationtests_response_t *custom_notificatio
 
     // custom_notificationsubsectiongetnotificationtests_response->a_obj_notificationtest
     cJSON *a_obj_notificationtest = cJSON_GetObjectItemCaseSensitive(custom_notificationsubsectiongetnotificationtests_responseJSON, "a_objNotificationtest");
+    if (cJSON_IsNull(a_obj_notificationtest)) {
+        a_obj_notificationtest = NULL;
+    }
     if (!a_obj_notificationtest) {
         goto end;
     }
@@ -220,7 +260,7 @@ custom_notificationsubsectiongetnotificationtests_response_t *custom_notificatio
     }
 
 
-    custom_notificationsubsectiongetnotificationtests_response_local_var = custom_notificationsubsectiongetnotificationtests_response_create (
+    custom_notificationsubsectiongetnotificationtests_response_local_var = custom_notificationsubsectiongetnotificationtests_response_create_internal (
         pki_notificationsubsection_id->valuedouble,
         fki_notificationsection_id->valuedouble,
         obj_notificationsubsection_name ? obj_notificationsubsection_name_local_nonprim : NULL,

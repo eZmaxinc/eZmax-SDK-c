@@ -5,7 +5,7 @@
 
 
 
-subnet_create_object_v1_request_t *subnet_create_object_v1_request_create(
+static subnet_create_object_v1_request_t *subnet_create_object_v1_request_create_internal(
     list_t *a_obj_subnet
     ) {
     subnet_create_object_v1_request_t *subnet_create_object_v1_request_local_var = malloc(sizeof(subnet_create_object_v1_request_t));
@@ -14,12 +14,24 @@ subnet_create_object_v1_request_t *subnet_create_object_v1_request_create(
     }
     subnet_create_object_v1_request_local_var->a_obj_subnet = a_obj_subnet;
 
+    subnet_create_object_v1_request_local_var->_library_owned = 1;
     return subnet_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) subnet_create_object_v1_request_t *subnet_create_object_v1_request_create(
+    list_t *a_obj_subnet
+    ) {
+    return subnet_create_object_v1_request_create_internal (
+        a_obj_subnet
+        );
+}
 
 void subnet_create_object_v1_request_free(subnet_create_object_v1_request_t *subnet_create_object_v1_request) {
     if(NULL == subnet_create_object_v1_request){
+        return ;
+    }
+    if(subnet_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "subnet_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ subnet_create_object_v1_request_t *subnet_create_object_v1_request_parseFromJSON
 
     // subnet_create_object_v1_request->a_obj_subnet
     cJSON *a_obj_subnet = cJSON_GetObjectItemCaseSensitive(subnet_create_object_v1_requestJSON, "a_objSubnet");
+    if (cJSON_IsNull(a_obj_subnet)) {
+        a_obj_subnet = NULL;
+    }
     if (!a_obj_subnet) {
         goto end;
     }
@@ -96,7 +111,7 @@ subnet_create_object_v1_request_t *subnet_create_object_v1_request_parseFromJSON
     }
 
 
-    subnet_create_object_v1_request_local_var = subnet_create_object_v1_request_create (
+    subnet_create_object_v1_request_local_var = subnet_create_object_v1_request_create_internal (
         a_obj_subnetList
         );
 

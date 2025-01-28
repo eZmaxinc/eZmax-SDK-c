@@ -24,9 +24,10 @@ typedef struct ezsigndocument_create_ezsignelements_positioned_by_word_v1_reques
     list_t *a_obj_ezsignformfieldgroup; //nonprimitive container
     list_t *a_obj_ezsignsignature; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_t;
 
-ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_t *ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_create(
+__attribute__((deprecated)) ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_t *ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_create(
     list_t *a_obj_ezsignformfieldgroup,
     list_t *a_obj_ezsignsignature
 );

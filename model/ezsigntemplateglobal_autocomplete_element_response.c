@@ -5,7 +5,7 @@
 
 
 
-ezsigntemplateglobal_autocomplete_element_response_t *ezsigntemplateglobal_autocomplete_element_response_create(
+static ezsigntemplateglobal_autocomplete_element_response_t *ezsigntemplateglobal_autocomplete_element_response_create_internal(
     int pki_ezsigntemplateglobal_id,
     char *s_ezsigntemplateglobal_description,
     int b_ezsigntemplateglobal_isactive
@@ -18,12 +18,28 @@ ezsigntemplateglobal_autocomplete_element_response_t *ezsigntemplateglobal_autoc
     ezsigntemplateglobal_autocomplete_element_response_local_var->s_ezsigntemplateglobal_description = s_ezsigntemplateglobal_description;
     ezsigntemplateglobal_autocomplete_element_response_local_var->b_ezsigntemplateglobal_isactive = b_ezsigntemplateglobal_isactive;
 
+    ezsigntemplateglobal_autocomplete_element_response_local_var->_library_owned = 1;
     return ezsigntemplateglobal_autocomplete_element_response_local_var;
 }
 
+__attribute__((deprecated)) ezsigntemplateglobal_autocomplete_element_response_t *ezsigntemplateglobal_autocomplete_element_response_create(
+    int pki_ezsigntemplateglobal_id,
+    char *s_ezsigntemplateglobal_description,
+    int b_ezsigntemplateglobal_isactive
+    ) {
+    return ezsigntemplateglobal_autocomplete_element_response_create_internal (
+        pki_ezsigntemplateglobal_id,
+        s_ezsigntemplateglobal_description,
+        b_ezsigntemplateglobal_isactive
+        );
+}
 
 void ezsigntemplateglobal_autocomplete_element_response_free(ezsigntemplateglobal_autocomplete_element_response_t *ezsigntemplateglobal_autocomplete_element_response) {
     if(NULL == ezsigntemplateglobal_autocomplete_element_response){
+        return ;
+    }
+    if(ezsigntemplateglobal_autocomplete_element_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigntemplateglobal_autocomplete_element_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -77,6 +93,9 @@ ezsigntemplateglobal_autocomplete_element_response_t *ezsigntemplateglobal_autoc
 
     // ezsigntemplateglobal_autocomplete_element_response->pki_ezsigntemplateglobal_id
     cJSON *pki_ezsigntemplateglobal_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplateglobal_autocomplete_element_responseJSON, "pkiEzsigntemplateglobalID");
+    if (cJSON_IsNull(pki_ezsigntemplateglobal_id)) {
+        pki_ezsigntemplateglobal_id = NULL;
+    }
     if (!pki_ezsigntemplateglobal_id) {
         goto end;
     }
@@ -89,6 +108,9 @@ ezsigntemplateglobal_autocomplete_element_response_t *ezsigntemplateglobal_autoc
 
     // ezsigntemplateglobal_autocomplete_element_response->s_ezsigntemplateglobal_description
     cJSON *s_ezsigntemplateglobal_description = cJSON_GetObjectItemCaseSensitive(ezsigntemplateglobal_autocomplete_element_responseJSON, "sEzsigntemplateglobalDescription");
+    if (cJSON_IsNull(s_ezsigntemplateglobal_description)) {
+        s_ezsigntemplateglobal_description = NULL;
+    }
     if (!s_ezsigntemplateglobal_description) {
         goto end;
     }
@@ -101,6 +123,9 @@ ezsigntemplateglobal_autocomplete_element_response_t *ezsigntemplateglobal_autoc
 
     // ezsigntemplateglobal_autocomplete_element_response->b_ezsigntemplateglobal_isactive
     cJSON *b_ezsigntemplateglobal_isactive = cJSON_GetObjectItemCaseSensitive(ezsigntemplateglobal_autocomplete_element_responseJSON, "bEzsigntemplateglobalIsactive");
+    if (cJSON_IsNull(b_ezsigntemplateglobal_isactive)) {
+        b_ezsigntemplateglobal_isactive = NULL;
+    }
     if (!b_ezsigntemplateglobal_isactive) {
         goto end;
     }
@@ -112,7 +137,7 @@ ezsigntemplateglobal_autocomplete_element_response_t *ezsigntemplateglobal_autoc
     }
 
 
-    ezsigntemplateglobal_autocomplete_element_response_local_var = ezsigntemplateglobal_autocomplete_element_response_create (
+    ezsigntemplateglobal_autocomplete_element_response_local_var = ezsigntemplateglobal_autocomplete_element_response_create_internal (
         pki_ezsigntemplateglobal_id->valuedouble,
         strdup(s_ezsigntemplateglobal_description->valuestring),
         b_ezsigntemplateglobal_isactive->valueint

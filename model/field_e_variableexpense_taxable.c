@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_variableexpense_taxable__e field_e_variableex
     return 0;
 }
 
-cJSON *field_e_variableexpense_taxable_field_e_variableexpense_taxable_convertToJSON(ezmax_api_definition__full_field_e_variableexpense_taxable__e field_e_variableexpense_taxable) {
+cJSON *field_e_variableexpense_taxable_convertToJSON(ezmax_api_definition__full_field_e_variableexpense_taxable__e field_e_variableexpense_taxable) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_variableexpense_taxable", field_e_variableexpense_taxable_field_e_variableexpense_taxable_ToString(field_e_variableexpense_taxable)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_variableexpense_taxable__e field_e_variableexpense_taxable_field_e_variableexpense_taxable_parseFromJSON(cJSON *field_e_variableexpense_taxableJSON) {
-    ezmax_api_definition__full_field_e_variableexpense_taxable__e *field_e_variableexpense_taxable = NULL;
-    ezmax_api_definition__full_field_e_variableexpense_taxable__e field_e_variableexpense_taxableVariable;
-    cJSON *field_e_variableexpense_taxableVar = cJSON_GetObjectItemCaseSensitive(field_e_variableexpense_taxableJSON, "field_e_variableexpense_taxable");
-    if(!cJSON_IsString(field_e_variableexpense_taxableVar) || (field_e_variableexpense_taxableVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_variableexpense_taxable__e field_e_variableexpense_taxable_parseFromJSON(cJSON *field_e_variableexpense_taxableJSON) {
+    if(!cJSON_IsString(field_e_variableexpense_taxableJSON) || (field_e_variableexpense_taxableJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_variableexpense_taxableVariable = field_e_variableexpense_taxable_field_e_variableexpense_taxable_FromString(field_e_variableexpense_taxableVar->valuestring);
-    return field_e_variableexpense_taxableVariable;
-end:
-    return 0;
+    return field_e_variableexpense_taxable_field_e_variableexpense_taxable_FromString(field_e_variableexpense_taxableJSON->valuestring);
 }

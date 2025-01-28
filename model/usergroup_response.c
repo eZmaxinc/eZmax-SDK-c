@@ -5,7 +5,7 @@
 
 
 
-usergroup_response_t *usergroup_response_create(
+static usergroup_response_t *usergroup_response_create_internal(
     int pki_usergroup_id,
     multilingual_usergroup_name_t *obj_usergroup_name,
     char *s_usergroup_name_x,
@@ -20,12 +20,30 @@ usergroup_response_t *usergroup_response_create(
     usergroup_response_local_var->s_usergroup_name_x = s_usergroup_name_x;
     usergroup_response_local_var->obj_email = obj_email;
 
+    usergroup_response_local_var->_library_owned = 1;
     return usergroup_response_local_var;
 }
 
+__attribute__((deprecated)) usergroup_response_t *usergroup_response_create(
+    int pki_usergroup_id,
+    multilingual_usergroup_name_t *obj_usergroup_name,
+    char *s_usergroup_name_x,
+    email_request_t *obj_email
+    ) {
+    return usergroup_response_create_internal (
+        pki_usergroup_id,
+        obj_usergroup_name,
+        s_usergroup_name_x,
+        obj_email
+        );
+}
 
 void usergroup_response_free(usergroup_response_t *usergroup_response) {
     if(NULL == usergroup_response){
+        return ;
+    }
+    if(usergroup_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroup_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -110,6 +128,9 @@ usergroup_response_t *usergroup_response_parseFromJSON(cJSON *usergroup_response
 
     // usergroup_response->pki_usergroup_id
     cJSON *pki_usergroup_id = cJSON_GetObjectItemCaseSensitive(usergroup_responseJSON, "pkiUsergroupID");
+    if (cJSON_IsNull(pki_usergroup_id)) {
+        pki_usergroup_id = NULL;
+    }
     if (!pki_usergroup_id) {
         goto end;
     }
@@ -122,6 +143,9 @@ usergroup_response_t *usergroup_response_parseFromJSON(cJSON *usergroup_response
 
     // usergroup_response->obj_usergroup_name
     cJSON *obj_usergroup_name = cJSON_GetObjectItemCaseSensitive(usergroup_responseJSON, "objUsergroupName");
+    if (cJSON_IsNull(obj_usergroup_name)) {
+        obj_usergroup_name = NULL;
+    }
     if (!obj_usergroup_name) {
         goto end;
     }
@@ -131,6 +155,9 @@ usergroup_response_t *usergroup_response_parseFromJSON(cJSON *usergroup_response
 
     // usergroup_response->s_usergroup_name_x
     cJSON *s_usergroup_name_x = cJSON_GetObjectItemCaseSensitive(usergroup_responseJSON, "sUsergroupNameX");
+    if (cJSON_IsNull(s_usergroup_name_x)) {
+        s_usergroup_name_x = NULL;
+    }
     if (s_usergroup_name_x) { 
     if(!cJSON_IsString(s_usergroup_name_x) && !cJSON_IsNull(s_usergroup_name_x))
     {
@@ -140,12 +167,15 @@ usergroup_response_t *usergroup_response_parseFromJSON(cJSON *usergroup_response
 
     // usergroup_response->obj_email
     cJSON *obj_email = cJSON_GetObjectItemCaseSensitive(usergroup_responseJSON, "objEmail");
+    if (cJSON_IsNull(obj_email)) {
+        obj_email = NULL;
+    }
     if (obj_email) { 
     obj_email_local_nonprim = email_request_parseFromJSON(obj_email); //nonprimitive
     }
 
 
-    usergroup_response_local_var = usergroup_response_create (
+    usergroup_response_local_var = usergroup_response_create_internal (
         pki_usergroup_id->valuedouble,
         obj_usergroup_name_local_nonprim,
         s_usergroup_name_x && !cJSON_IsNull(s_usergroup_name_x) ? strdup(s_usergroup_name_x->valuestring) : NULL,

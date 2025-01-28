@@ -28,9 +28,10 @@ typedef struct user_create_ezsignuser_v1_request_t {
     char *s_phone_number; // string
     char *s_phone_extension; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } user_create_ezsignuser_v1_request_t;
 
-user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_create(
+__attribute__((deprecated)) user_create_ezsignuser_v1_request_t *user_create_ezsignuser_v1_request_create(
     int fki_language_id,
     char *s_user_firstname,
     char *s_user_lastname,

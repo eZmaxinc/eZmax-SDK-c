@@ -22,9 +22,10 @@ typedef struct cors_create_object_v1_request_t cors_create_object_v1_request_t;
 typedef struct cors_create_object_v1_request_t {
     list_t *a_obj_cors; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } cors_create_object_v1_request_t;
 
-cors_create_object_v1_request_t *cors_create_object_v1_request_create(
+__attribute__((deprecated)) cors_create_object_v1_request_t *cors_create_object_v1_request_create(
     list_t *a_obj_cors
 );
 

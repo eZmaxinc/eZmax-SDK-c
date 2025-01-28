@@ -22,7 +22,7 @@ ezmax_api_definition__full_computed_e_ezsigndocument_steptype__e computed_e_ezsi
     return 0;
 }
 
-cJSON *computed_e_ezsigndocument_steptype_computed_e_ezsigndocument_steptype_convertToJSON(ezmax_api_definition__full_computed_e_ezsigndocument_steptype__e computed_e_ezsigndocument_steptype) {
+cJSON *computed_e_ezsigndocument_steptype_convertToJSON(ezmax_api_definition__full_computed_e_ezsigndocument_steptype__e computed_e_ezsigndocument_steptype) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "computed_e_ezsigndocument_steptype", computed_e_ezsigndocument_steptype_computed_e_ezsigndocument_steptype_ToString(computed_e_ezsigndocument_steptype)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_computed_e_ezsigndocument_steptype__e computed_e_ezsigndocument_steptype_computed_e_ezsigndocument_steptype_parseFromJSON(cJSON *computed_e_ezsigndocument_steptypeJSON) {
-    ezmax_api_definition__full_computed_e_ezsigndocument_steptype__e *computed_e_ezsigndocument_steptype = NULL;
-    ezmax_api_definition__full_computed_e_ezsigndocument_steptype__e computed_e_ezsigndocument_steptypeVariable;
-    cJSON *computed_e_ezsigndocument_steptypeVar = cJSON_GetObjectItemCaseSensitive(computed_e_ezsigndocument_steptypeJSON, "computed_e_ezsigndocument_steptype");
-    if(!cJSON_IsString(computed_e_ezsigndocument_steptypeVar) || (computed_e_ezsigndocument_steptypeVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_computed_e_ezsigndocument_steptype__e computed_e_ezsigndocument_steptype_parseFromJSON(cJSON *computed_e_ezsigndocument_steptypeJSON) {
+    if(!cJSON_IsString(computed_e_ezsigndocument_steptypeJSON) || (computed_e_ezsigndocument_steptypeJSON->valuestring == NULL)) {
+        return 0;
     }
-    computed_e_ezsigndocument_steptypeVariable = computed_e_ezsigndocument_steptype_computed_e_ezsigndocument_steptype_FromString(computed_e_ezsigndocument_steptypeVar->valuestring);
-    return computed_e_ezsigndocument_steptypeVariable;
-end:
-    return 0;
+    return computed_e_ezsigndocument_steptype_computed_e_ezsigndocument_steptype_FromString(computed_e_ezsigndocument_steptypeJSON->valuestring);
 }

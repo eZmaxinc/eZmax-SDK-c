@@ -24,9 +24,10 @@ typedef struct ezsignfolder_import_ezsigntemplatepackage_v1_request_t {
     char *dt_ezsigndocument_duedate; // string
     list_t *a_obj_import_ezsigntemplatepackage_relation; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfolder_import_ezsigntemplatepackage_v1_request_t;
 
-ezsignfolder_import_ezsigntemplatepackage_v1_request_t *ezsignfolder_import_ezsigntemplatepackage_v1_request_create(
+__attribute__((deprecated)) ezsignfolder_import_ezsigntemplatepackage_v1_request_t *ezsignfolder_import_ezsigntemplatepackage_v1_request_create(
     int fki_ezsigntemplatepackage_id,
     char *dt_ezsigndocument_duedate,
     list_t *a_obj_import_ezsigntemplatepackage_relation

@@ -22,9 +22,10 @@ typedef struct rejectedoffertopurchase_get_communicationsenders_v1_response_m_pa
 typedef struct rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_t {
     list_t *a_obj_communicationsenders; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_t;
 
-rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_t *rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_create(
+__attribute__((deprecated)) rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_t *rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload_create(
     list_t *a_obj_communicationsenders
 );
 

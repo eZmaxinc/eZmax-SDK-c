@@ -5,7 +5,7 @@
 
 
 
-ezmaxinvoicingsummaryinternal_response_t *ezmaxinvoicingsummaryinternal_response_create(
+static ezmaxinvoicingsummaryinternal_response_t *ezmaxinvoicingsummaryinternal_response_create_internal(
     int pki_ezmaxinvoicingsummaryinternal_id,
     multilingual_ezmaxinvoicingsummaryinternal_description_t *obj_ezmaxinvoicingsummaryinternal_description,
     char *s_ezmaxinvoicingsummaryinternal_description_x,
@@ -24,12 +24,34 @@ ezmaxinvoicingsummaryinternal_response_t *ezmaxinvoicingsummaryinternal_response
     ezmaxinvoicingsummaryinternal_response_local_var->fki_billingentityinternal_id = fki_billingentityinternal_id;
     ezmaxinvoicingsummaryinternal_response_local_var->s_billingentityinternal_description_x = s_billingentityinternal_description_x;
 
+    ezmaxinvoicingsummaryinternal_response_local_var->_library_owned = 1;
     return ezmaxinvoicingsummaryinternal_response_local_var;
 }
 
+__attribute__((deprecated)) ezmaxinvoicingsummaryinternal_response_t *ezmaxinvoicingsummaryinternal_response_create(
+    int pki_ezmaxinvoicingsummaryinternal_id,
+    multilingual_ezmaxinvoicingsummaryinternal_description_t *obj_ezmaxinvoicingsummaryinternal_description,
+    char *s_ezmaxinvoicingsummaryinternal_description_x,
+    int fki_ezmaxinvoicing_id,
+    int fki_billingentityinternal_id,
+    char *s_billingentityinternal_description_x
+    ) {
+    return ezmaxinvoicingsummaryinternal_response_create_internal (
+        pki_ezmaxinvoicingsummaryinternal_id,
+        obj_ezmaxinvoicingsummaryinternal_description,
+        s_ezmaxinvoicingsummaryinternal_description_x,
+        fki_ezmaxinvoicing_id,
+        fki_billingentityinternal_id,
+        s_billingentityinternal_description_x
+        );
+}
 
 void ezmaxinvoicingsummaryinternal_response_free(ezmaxinvoicingsummaryinternal_response_t *ezmaxinvoicingsummaryinternal_response) {
     if(NULL == ezmaxinvoicingsummaryinternal_response){
+        return ;
+    }
+    if(ezmaxinvoicingsummaryinternal_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezmaxinvoicingsummaryinternal_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -124,6 +146,9 @@ ezmaxinvoicingsummaryinternal_response_t *ezmaxinvoicingsummaryinternal_response
 
     // ezmaxinvoicingsummaryinternal_response->pki_ezmaxinvoicingsummaryinternal_id
     cJSON *pki_ezmaxinvoicingsummaryinternal_id = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryinternal_responseJSON, "pkiEzmaxinvoicingsummaryinternalID");
+    if (cJSON_IsNull(pki_ezmaxinvoicingsummaryinternal_id)) {
+        pki_ezmaxinvoicingsummaryinternal_id = NULL;
+    }
     if (pki_ezmaxinvoicingsummaryinternal_id) { 
     if(!cJSON_IsNumber(pki_ezmaxinvoicingsummaryinternal_id))
     {
@@ -133,6 +158,9 @@ ezmaxinvoicingsummaryinternal_response_t *ezmaxinvoicingsummaryinternal_response
 
     // ezmaxinvoicingsummaryinternal_response->obj_ezmaxinvoicingsummaryinternal_description
     cJSON *obj_ezmaxinvoicingsummaryinternal_description = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryinternal_responseJSON, "objEzmaxinvoicingsummaryinternalDescription");
+    if (cJSON_IsNull(obj_ezmaxinvoicingsummaryinternal_description)) {
+        obj_ezmaxinvoicingsummaryinternal_description = NULL;
+    }
     if (!obj_ezmaxinvoicingsummaryinternal_description) {
         goto end;
     }
@@ -142,6 +170,9 @@ ezmaxinvoicingsummaryinternal_response_t *ezmaxinvoicingsummaryinternal_response
 
     // ezmaxinvoicingsummaryinternal_response->s_ezmaxinvoicingsummaryinternal_description_x
     cJSON *s_ezmaxinvoicingsummaryinternal_description_x = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryinternal_responseJSON, "sEzmaxinvoicingsummaryinternalDescriptionX");
+    if (cJSON_IsNull(s_ezmaxinvoicingsummaryinternal_description_x)) {
+        s_ezmaxinvoicingsummaryinternal_description_x = NULL;
+    }
     if (!s_ezmaxinvoicingsummaryinternal_description_x) {
         goto end;
     }
@@ -154,6 +185,9 @@ ezmaxinvoicingsummaryinternal_response_t *ezmaxinvoicingsummaryinternal_response
 
     // ezmaxinvoicingsummaryinternal_response->fki_ezmaxinvoicing_id
     cJSON *fki_ezmaxinvoicing_id = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryinternal_responseJSON, "fkiEzmaxinvoicingID");
+    if (cJSON_IsNull(fki_ezmaxinvoicing_id)) {
+        fki_ezmaxinvoicing_id = NULL;
+    }
     if (fki_ezmaxinvoicing_id) { 
     if(!cJSON_IsNumber(fki_ezmaxinvoicing_id))
     {
@@ -163,6 +197,9 @@ ezmaxinvoicingsummaryinternal_response_t *ezmaxinvoicingsummaryinternal_response
 
     // ezmaxinvoicingsummaryinternal_response->fki_billingentityinternal_id
     cJSON *fki_billingentityinternal_id = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryinternal_responseJSON, "fkiBillingentityinternalID");
+    if (cJSON_IsNull(fki_billingentityinternal_id)) {
+        fki_billingentityinternal_id = NULL;
+    }
     if (!fki_billingentityinternal_id) {
         goto end;
     }
@@ -175,6 +212,9 @@ ezmaxinvoicingsummaryinternal_response_t *ezmaxinvoicingsummaryinternal_response
 
     // ezmaxinvoicingsummaryinternal_response->s_billingentityinternal_description_x
     cJSON *s_billingentityinternal_description_x = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicingsummaryinternal_responseJSON, "sBillingentityinternalDescriptionX");
+    if (cJSON_IsNull(s_billingentityinternal_description_x)) {
+        s_billingentityinternal_description_x = NULL;
+    }
     if (!s_billingentityinternal_description_x) {
         goto end;
     }
@@ -186,7 +226,7 @@ ezmaxinvoicingsummaryinternal_response_t *ezmaxinvoicingsummaryinternal_response
     }
 
 
-    ezmaxinvoicingsummaryinternal_response_local_var = ezmaxinvoicingsummaryinternal_response_create (
+    ezmaxinvoicingsummaryinternal_response_local_var = ezmaxinvoicingsummaryinternal_response_create_internal (
         pki_ezmaxinvoicingsummaryinternal_id ? pki_ezmaxinvoicingsummaryinternal_id->valuedouble : 0,
         obj_ezmaxinvoicingsummaryinternal_description_local_nonprim,
         strdup(s_ezmaxinvoicingsummaryinternal_description_x->valuestring),

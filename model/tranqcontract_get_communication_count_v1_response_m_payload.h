@@ -21,9 +21,10 @@ typedef struct tranqcontract_get_communication_count_v1_response_m_payload_t tra
 typedef struct tranqcontract_get_communication_count_v1_response_m_payload_t {
     int i_communication_count; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } tranqcontract_get_communication_count_v1_response_m_payload_t;
 
-tranqcontract_get_communication_count_v1_response_m_payload_t *tranqcontract_get_communication_count_v1_response_m_payload_create(
+__attribute__((deprecated)) tranqcontract_get_communication_count_v1_response_m_payload_t *tranqcontract_get_communication_count_v1_response_m_payload_create(
     int i_communication_count
 );
 

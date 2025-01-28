@@ -23,9 +23,10 @@ typedef struct billingentityexternal_autocomplete_element_response_t {
     char *s_billingentityexternal_description; // string
     int b_billingentityexternal_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } billingentityexternal_autocomplete_element_response_t;
 
-billingentityexternal_autocomplete_element_response_t *billingentityexternal_autocomplete_element_response_create(
+__attribute__((deprecated)) billingentityexternal_autocomplete_element_response_t *billingentityexternal_autocomplete_element_response_create(
     int pki_billingentityexternal_id,
     char *s_billingentityexternal_description,
     int b_billingentityexternal_isactive

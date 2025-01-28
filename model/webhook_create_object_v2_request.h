@@ -22,9 +22,10 @@ typedef struct webhook_create_object_v2_request_t webhook_create_object_v2_reque
 typedef struct webhook_create_object_v2_request_t {
     list_t *a_obj_webhook; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } webhook_create_object_v2_request_t;
 
-webhook_create_object_v2_request_t *webhook_create_object_v2_request_create(
+__attribute__((deprecated)) webhook_create_object_v2_request_t *webhook_create_object_v2_request_create(
     list_t *a_obj_webhook
 );
 

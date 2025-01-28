@@ -22,9 +22,10 @@ typedef struct user_create_ezsignuser_v1_response_m_payload_t {
     list_t *a_s_email_address_success; //primitive container
     list_t *a_s_email_address_failure; //primitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } user_create_ezsignuser_v1_response_m_payload_t;
 
-user_create_ezsignuser_v1_response_m_payload_t *user_create_ezsignuser_v1_response_m_payload_create(
+__attribute__((deprecated)) user_create_ezsignuser_v1_response_m_payload_t *user_create_ezsignuser_v1_response_m_payload_create(
     list_t *a_s_email_address_success,
     list_t *a_s_email_address_failure
 );

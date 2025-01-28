@@ -5,7 +5,7 @@
 
 
 
-secretquestion_get_autocomplete_v2_response_m_payload_t *secretquestion_get_autocomplete_v2_response_m_payload_create(
+static secretquestion_get_autocomplete_v2_response_m_payload_t *secretquestion_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_secretquestion
     ) {
     secretquestion_get_autocomplete_v2_response_m_payload_t *secretquestion_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(secretquestion_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ secretquestion_get_autocomplete_v2_response_m_payload_t *secretquestion_get_auto
     }
     secretquestion_get_autocomplete_v2_response_m_payload_local_var->a_obj_secretquestion = a_obj_secretquestion;
 
+    secretquestion_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return secretquestion_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) secretquestion_get_autocomplete_v2_response_m_payload_t *secretquestion_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_secretquestion
+    ) {
+    return secretquestion_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_secretquestion
+        );
+}
 
 void secretquestion_get_autocomplete_v2_response_m_payload_free(secretquestion_get_autocomplete_v2_response_m_payload_t *secretquestion_get_autocomplete_v2_response_m_payload) {
     if(NULL == secretquestion_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(secretquestion_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "secretquestion_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ secretquestion_get_autocomplete_v2_response_m_payload_t *secretquestion_get_auto
 
     // secretquestion_get_autocomplete_v2_response_m_payload->a_obj_secretquestion
     cJSON *a_obj_secretquestion = cJSON_GetObjectItemCaseSensitive(secretquestion_get_autocomplete_v2_response_m_payloadJSON, "a_objSecretquestion");
+    if (cJSON_IsNull(a_obj_secretquestion)) {
+        a_obj_secretquestion = NULL;
+    }
     if (!a_obj_secretquestion) {
         goto end;
     }
@@ -96,7 +111,7 @@ secretquestion_get_autocomplete_v2_response_m_payload_t *secretquestion_get_auto
     }
 
 
-    secretquestion_get_autocomplete_v2_response_m_payload_local_var = secretquestion_get_autocomplete_v2_response_m_payload_create (
+    secretquestion_get_autocomplete_v2_response_m_payload_local_var = secretquestion_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_secretquestionList
         );
 

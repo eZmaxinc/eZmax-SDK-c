@@ -24,9 +24,9 @@ char* field_e_user_origin_field_e_user_origin_ToString(ezmax_api_definition__ful
 
 ezmax_api_definition__full_field_e_user_origin__e field_e_user_origin_field_e_user_origin_FromString(char* field_e_user_origin);
 
-//cJSON *field_e_user_origin_field_e_user_origin_convertToJSON(ezmax_api_definition__full_field_e_user_origin__e field_e_user_origin);
+cJSON *field_e_user_origin_convertToJSON(ezmax_api_definition__full_field_e_user_origin__e field_e_user_origin);
 
-//ezmax_api_definition__full_field_e_user_origin__e field_e_user_origin_field_e_user_origin_parseFromJSON(cJSON *field_e_user_originJSON);
+ezmax_api_definition__full_field_e_user_origin__e field_e_user_origin_parseFromJSON(cJSON *field_e_user_originJSON);
 
 #endif /* _field_e_user_origin_H_ */
 

@@ -5,7 +5,7 @@
 
 
 
-authenticationexternal_get_object_v2_response_m_payload_t *authenticationexternal_get_object_v2_response_m_payload_create(
+static authenticationexternal_get_object_v2_response_m_payload_t *authenticationexternal_get_object_v2_response_m_payload_create_internal(
     authenticationexternal_response_compound_t *obj_authenticationexternal
     ) {
     authenticationexternal_get_object_v2_response_m_payload_t *authenticationexternal_get_object_v2_response_m_payload_local_var = malloc(sizeof(authenticationexternal_get_object_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ authenticationexternal_get_object_v2_response_m_payload_t *authenticationexterna
     }
     authenticationexternal_get_object_v2_response_m_payload_local_var->obj_authenticationexternal = obj_authenticationexternal;
 
+    authenticationexternal_get_object_v2_response_m_payload_local_var->_library_owned = 1;
     return authenticationexternal_get_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) authenticationexternal_get_object_v2_response_m_payload_t *authenticationexternal_get_object_v2_response_m_payload_create(
+    authenticationexternal_response_compound_t *obj_authenticationexternal
+    ) {
+    return authenticationexternal_get_object_v2_response_m_payload_create_internal (
+        obj_authenticationexternal
+        );
+}
 
 void authenticationexternal_get_object_v2_response_m_payload_free(authenticationexternal_get_object_v2_response_m_payload_t *authenticationexternal_get_object_v2_response_m_payload) {
     if(NULL == authenticationexternal_get_object_v2_response_m_payload){
+        return ;
+    }
+    if(authenticationexternal_get_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "authenticationexternal_get_object_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ authenticationexternal_get_object_v2_response_m_payload_t *authenticationexterna
 
     // authenticationexternal_get_object_v2_response_m_payload->obj_authenticationexternal
     cJSON *obj_authenticationexternal = cJSON_GetObjectItemCaseSensitive(authenticationexternal_get_object_v2_response_m_payloadJSON, "objAuthenticationexternal");
+    if (cJSON_IsNull(obj_authenticationexternal)) {
+        obj_authenticationexternal = NULL;
+    }
     if (!obj_authenticationexternal) {
         goto end;
     }
@@ -71,7 +86,7 @@ authenticationexternal_get_object_v2_response_m_payload_t *authenticationexterna
     obj_authenticationexternal_local_nonprim = authenticationexternal_response_compound_parseFromJSON(obj_authenticationexternal); //nonprimitive
 
 
-    authenticationexternal_get_object_v2_response_m_payload_local_var = authenticationexternal_get_object_v2_response_m_payload_create (
+    authenticationexternal_get_object_v2_response_m_payload_local_var = authenticationexternal_get_object_v2_response_m_payload_create_internal (
         obj_authenticationexternal_local_nonprim
         );
 

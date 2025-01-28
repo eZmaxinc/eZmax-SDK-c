@@ -5,7 +5,7 @@
 
 
 
-multilingual_ezmaxinvoicingsummaryinternal_description_t *multilingual_ezmaxinvoicingsummaryinternal_description_create(
+static multilingual_ezmaxinvoicingsummaryinternal_description_t *multilingual_ezmaxinvoicingsummaryinternal_description_create_internal(
     char *s_ezmaxinvoicingsummaryinternal_description1,
     char *s_ezmaxinvoicingsummaryinternal_description2
     ) {
@@ -16,12 +16,26 @@ multilingual_ezmaxinvoicingsummaryinternal_description_t *multilingual_ezmaxinvo
     multilingual_ezmaxinvoicingsummaryinternal_description_local_var->s_ezmaxinvoicingsummaryinternal_description1 = s_ezmaxinvoicingsummaryinternal_description1;
     multilingual_ezmaxinvoicingsummaryinternal_description_local_var->s_ezmaxinvoicingsummaryinternal_description2 = s_ezmaxinvoicingsummaryinternal_description2;
 
+    multilingual_ezmaxinvoicingsummaryinternal_description_local_var->_library_owned = 1;
     return multilingual_ezmaxinvoicingsummaryinternal_description_local_var;
 }
 
+__attribute__((deprecated)) multilingual_ezmaxinvoicingsummaryinternal_description_t *multilingual_ezmaxinvoicingsummaryinternal_description_create(
+    char *s_ezmaxinvoicingsummaryinternal_description1,
+    char *s_ezmaxinvoicingsummaryinternal_description2
+    ) {
+    return multilingual_ezmaxinvoicingsummaryinternal_description_create_internal (
+        s_ezmaxinvoicingsummaryinternal_description1,
+        s_ezmaxinvoicingsummaryinternal_description2
+        );
+}
 
 void multilingual_ezmaxinvoicingsummaryinternal_description_free(multilingual_ezmaxinvoicingsummaryinternal_description_t *multilingual_ezmaxinvoicingsummaryinternal_description) {
     if(NULL == multilingual_ezmaxinvoicingsummaryinternal_description){
+        return ;
+    }
+    if(multilingual_ezmaxinvoicingsummaryinternal_description->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "multilingual_ezmaxinvoicingsummaryinternal_description_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -68,6 +82,9 @@ multilingual_ezmaxinvoicingsummaryinternal_description_t *multilingual_ezmaxinvo
 
     // multilingual_ezmaxinvoicingsummaryinternal_description->s_ezmaxinvoicingsummaryinternal_description1
     cJSON *s_ezmaxinvoicingsummaryinternal_description1 = cJSON_GetObjectItemCaseSensitive(multilingual_ezmaxinvoicingsummaryinternal_descriptionJSON, "sEzmaxinvoicingsummaryinternalDescription1");
+    if (cJSON_IsNull(s_ezmaxinvoicingsummaryinternal_description1)) {
+        s_ezmaxinvoicingsummaryinternal_description1 = NULL;
+    }
     if (s_ezmaxinvoicingsummaryinternal_description1) { 
     if(!cJSON_IsString(s_ezmaxinvoicingsummaryinternal_description1) && !cJSON_IsNull(s_ezmaxinvoicingsummaryinternal_description1))
     {
@@ -77,6 +94,9 @@ multilingual_ezmaxinvoicingsummaryinternal_description_t *multilingual_ezmaxinvo
 
     // multilingual_ezmaxinvoicingsummaryinternal_description->s_ezmaxinvoicingsummaryinternal_description2
     cJSON *s_ezmaxinvoicingsummaryinternal_description2 = cJSON_GetObjectItemCaseSensitive(multilingual_ezmaxinvoicingsummaryinternal_descriptionJSON, "sEzmaxinvoicingsummaryinternalDescription2");
+    if (cJSON_IsNull(s_ezmaxinvoicingsummaryinternal_description2)) {
+        s_ezmaxinvoicingsummaryinternal_description2 = NULL;
+    }
     if (s_ezmaxinvoicingsummaryinternal_description2) { 
     if(!cJSON_IsString(s_ezmaxinvoicingsummaryinternal_description2) && !cJSON_IsNull(s_ezmaxinvoicingsummaryinternal_description2))
     {
@@ -85,7 +105,7 @@ multilingual_ezmaxinvoicingsummaryinternal_description_t *multilingual_ezmaxinvo
     }
 
 
-    multilingual_ezmaxinvoicingsummaryinternal_description_local_var = multilingual_ezmaxinvoicingsummaryinternal_description_create (
+    multilingual_ezmaxinvoicingsummaryinternal_description_local_var = multilingual_ezmaxinvoicingsummaryinternal_description_create_internal (
         s_ezmaxinvoicingsummaryinternal_description1 && !cJSON_IsNull(s_ezmaxinvoicingsummaryinternal_description1) ? strdup(s_ezmaxinvoicingsummaryinternal_description1->valuestring) : NULL,
         s_ezmaxinvoicingsummaryinternal_description2 && !cJSON_IsNull(s_ezmaxinvoicingsummaryinternal_description2) ? strdup(s_ezmaxinvoicingsummaryinternal_description2->valuestring) : NULL
         );

@@ -23,9 +23,10 @@ typedef struct taxassignment_autocomplete_element_response_t {
     int pki_taxassignment_id; //numeric
     int b_taxassignment_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } taxassignment_autocomplete_element_response_t;
 
-taxassignment_autocomplete_element_response_t *taxassignment_autocomplete_element_response_create(
+__attribute__((deprecated)) taxassignment_autocomplete_element_response_t *taxassignment_autocomplete_element_response_create(
     char *s_taxassignment_description_x,
     int pki_taxassignment_id,
     int b_taxassignment_isactive

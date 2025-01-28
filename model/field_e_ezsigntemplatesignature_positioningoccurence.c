@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioningoccurence_
     return 0;
 }
 
-cJSON *field_e_ezsigntemplatesignature_positioningoccurence_field_e_ezsigntemplatesignature_positioningoccurence_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioningoccurence__e field_e_ezsigntemplatesignature_positioningoccurence) {
+cJSON *field_e_ezsigntemplatesignature_positioningoccurence_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioningoccurence__e field_e_ezsigntemplatesignature_positioningoccurence) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsigntemplatesignature_positioningoccurence", field_e_ezsigntemplatesignature_positioningoccurence_field_e_ezsigntemplatesignature_positioningoccurence_ToString(field_e_ezsigntemplatesignature_positioningoccurence)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioningoccurence__e field_e_ezsigntemplatesignature_positioningoccurence_field_e_ezsigntemplatesignature_positioningoccurence_parseFromJSON(cJSON *field_e_ezsigntemplatesignature_positioningoccurenceJSON) {
-    ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioningoccurence__e *field_e_ezsigntemplatesignature_positioningoccurence = NULL;
-    ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioningoccurence__e field_e_ezsigntemplatesignature_positioningoccurenceVariable;
-    cJSON *field_e_ezsigntemplatesignature_positioningoccurenceVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsigntemplatesignature_positioningoccurenceJSON, "field_e_ezsigntemplatesignature_positioningoccurence");
-    if(!cJSON_IsString(field_e_ezsigntemplatesignature_positioningoccurenceVar) || (field_e_ezsigntemplatesignature_positioningoccurenceVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioningoccurence__e field_e_ezsigntemplatesignature_positioningoccurence_parseFromJSON(cJSON *field_e_ezsigntemplatesignature_positioningoccurenceJSON) {
+    if(!cJSON_IsString(field_e_ezsigntemplatesignature_positioningoccurenceJSON) || (field_e_ezsigntemplatesignature_positioningoccurenceJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsigntemplatesignature_positioningoccurenceVariable = field_e_ezsigntemplatesignature_positioningoccurence_field_e_ezsigntemplatesignature_positioningoccurence_FromString(field_e_ezsigntemplatesignature_positioningoccurenceVar->valuestring);
-    return field_e_ezsigntemplatesignature_positioningoccurenceVariable;
-end:
-    return 0;
+    return field_e_ezsigntemplatesignature_positioningoccurence_field_e_ezsigntemplatesignature_positioningoccurence_FromString(field_e_ezsigntemplatesignature_positioningoccurenceJSON->valuestring);
 }

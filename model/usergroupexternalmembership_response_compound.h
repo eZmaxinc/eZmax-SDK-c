@@ -28,9 +28,10 @@ typedef struct usergroupexternalmembership_response_compound_t {
     char *s_email_address; // string
     char *s_usergroupexternal_name; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } usergroupexternalmembership_response_compound_t;
 
-usergroupexternalmembership_response_compound_t *usergroupexternalmembership_response_compound_create(
+__attribute__((deprecated)) usergroupexternalmembership_response_compound_t *usergroupexternalmembership_response_compound_create(
     int pki_usergroupexternalmembership_id,
     int fki_usergroupexternal_id,
     int fki_user_id,

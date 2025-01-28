@@ -22,9 +22,10 @@ typedef struct ezsignformfieldgroup_edit_object_v1_request_t ezsignformfieldgrou
 typedef struct ezsignformfieldgroup_edit_object_v1_request_t {
     struct ezsignformfieldgroup_request_compound_t *obj_ezsignformfieldgroup; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignformfieldgroup_edit_object_v1_request_t;
 
-ezsignformfieldgroup_edit_object_v1_request_t *ezsignformfieldgroup_edit_object_v1_request_create(
+__attribute__((deprecated)) ezsignformfieldgroup_edit_object_v1_request_t *ezsignformfieldgroup_edit_object_v1_request_create(
     ezsignformfieldgroup_request_compound_t *obj_ezsignformfieldgroup
 );
 

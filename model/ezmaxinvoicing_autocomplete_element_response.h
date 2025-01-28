@@ -23,9 +23,10 @@ typedef struct ezmaxinvoicing_autocomplete_element_response_t {
     int pki_ezmaxinvoicing_id; //numeric
     int b_ezmaxinvoicing_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezmaxinvoicing_autocomplete_element_response_t;
 
-ezmaxinvoicing_autocomplete_element_response_t *ezmaxinvoicing_autocomplete_element_response_create(
+__attribute__((deprecated)) ezmaxinvoicing_autocomplete_element_response_t *ezmaxinvoicing_autocomplete_element_response_create(
     char *yyyymm_ezmaxinvoicing,
     int pki_ezmaxinvoicing_id,
     int b_ezmaxinvoicing_isactive

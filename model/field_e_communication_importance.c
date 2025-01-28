@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_communication_importance__e field_e_communica
     return 0;
 }
 
-cJSON *field_e_communication_importance_field_e_communication_importance_convertToJSON(ezmax_api_definition__full_field_e_communication_importance__e field_e_communication_importance) {
+cJSON *field_e_communication_importance_convertToJSON(ezmax_api_definition__full_field_e_communication_importance__e field_e_communication_importance) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_communication_importance", field_e_communication_importance_field_e_communication_importance_ToString(field_e_communication_importance)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_communication_importance__e field_e_communication_importance_field_e_communication_importance_parseFromJSON(cJSON *field_e_communication_importanceJSON) {
-    ezmax_api_definition__full_field_e_communication_importance__e *field_e_communication_importance = NULL;
-    ezmax_api_definition__full_field_e_communication_importance__e field_e_communication_importanceVariable;
-    cJSON *field_e_communication_importanceVar = cJSON_GetObjectItemCaseSensitive(field_e_communication_importanceJSON, "field_e_communication_importance");
-    if(!cJSON_IsString(field_e_communication_importanceVar) || (field_e_communication_importanceVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_communication_importance__e field_e_communication_importance_parseFromJSON(cJSON *field_e_communication_importanceJSON) {
+    if(!cJSON_IsString(field_e_communication_importanceJSON) || (field_e_communication_importanceJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_communication_importanceVariable = field_e_communication_importance_field_e_communication_importance_FromString(field_e_communication_importanceVar->valuestring);
-    return field_e_communication_importanceVariable;
-end:
-    return 0;
+    return field_e_communication_importance_field_e_communication_importance_FromString(field_e_communication_importanceJSON->valuestring);
 }

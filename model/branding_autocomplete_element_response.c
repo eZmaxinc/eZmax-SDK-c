@@ -5,7 +5,7 @@
 
 
 
-branding_autocomplete_element_response_t *branding_autocomplete_element_response_create(
+static branding_autocomplete_element_response_t *branding_autocomplete_element_response_create_internal(
     char *s_branding_description_x,
     int pki_branding_id,
     int b_branding_isactive
@@ -18,12 +18,28 @@ branding_autocomplete_element_response_t *branding_autocomplete_element_response
     branding_autocomplete_element_response_local_var->pki_branding_id = pki_branding_id;
     branding_autocomplete_element_response_local_var->b_branding_isactive = b_branding_isactive;
 
+    branding_autocomplete_element_response_local_var->_library_owned = 1;
     return branding_autocomplete_element_response_local_var;
 }
 
+__attribute__((deprecated)) branding_autocomplete_element_response_t *branding_autocomplete_element_response_create(
+    char *s_branding_description_x,
+    int pki_branding_id,
+    int b_branding_isactive
+    ) {
+    return branding_autocomplete_element_response_create_internal (
+        s_branding_description_x,
+        pki_branding_id,
+        b_branding_isactive
+        );
+}
 
 void branding_autocomplete_element_response_free(branding_autocomplete_element_response_t *branding_autocomplete_element_response) {
     if(NULL == branding_autocomplete_element_response){
+        return ;
+    }
+    if(branding_autocomplete_element_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "branding_autocomplete_element_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -77,6 +93,9 @@ branding_autocomplete_element_response_t *branding_autocomplete_element_response
 
     // branding_autocomplete_element_response->s_branding_description_x
     cJSON *s_branding_description_x = cJSON_GetObjectItemCaseSensitive(branding_autocomplete_element_responseJSON, "sBrandingDescriptionX");
+    if (cJSON_IsNull(s_branding_description_x)) {
+        s_branding_description_x = NULL;
+    }
     if (!s_branding_description_x) {
         goto end;
     }
@@ -89,6 +108,9 @@ branding_autocomplete_element_response_t *branding_autocomplete_element_response
 
     // branding_autocomplete_element_response->pki_branding_id
     cJSON *pki_branding_id = cJSON_GetObjectItemCaseSensitive(branding_autocomplete_element_responseJSON, "pkiBrandingID");
+    if (cJSON_IsNull(pki_branding_id)) {
+        pki_branding_id = NULL;
+    }
     if (!pki_branding_id) {
         goto end;
     }
@@ -101,6 +123,9 @@ branding_autocomplete_element_response_t *branding_autocomplete_element_response
 
     // branding_autocomplete_element_response->b_branding_isactive
     cJSON *b_branding_isactive = cJSON_GetObjectItemCaseSensitive(branding_autocomplete_element_responseJSON, "bBrandingIsactive");
+    if (cJSON_IsNull(b_branding_isactive)) {
+        b_branding_isactive = NULL;
+    }
     if (!b_branding_isactive) {
         goto end;
     }
@@ -112,7 +137,7 @@ branding_autocomplete_element_response_t *branding_autocomplete_element_response
     }
 
 
-    branding_autocomplete_element_response_local_var = branding_autocomplete_element_response_create (
+    branding_autocomplete_element_response_local_var = branding_autocomplete_element_response_create_internal (
         strdup(s_branding_description_x->valuestring),
         pki_branding_id->valuedouble,
         b_branding_isactive->valueint

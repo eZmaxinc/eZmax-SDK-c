@@ -22,9 +22,10 @@ typedef struct contacttitle_get_autocomplete_v2_response_m_payload_t contacttitl
 typedef struct contacttitle_get_autocomplete_v2_response_m_payload_t {
     list_t *a_obj_contacttitle; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } contacttitle_get_autocomplete_v2_response_m_payload_t;
 
-contacttitle_get_autocomplete_v2_response_m_payload_t *contacttitle_get_autocomplete_v2_response_m_payload_create(
+__attribute__((deprecated)) contacttitle_get_autocomplete_v2_response_m_payload_t *contacttitle_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_contacttitle
 );
 

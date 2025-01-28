@@ -5,7 +5,7 @@
 
 
 
-ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_t *ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_create(
+static ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_t *ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_create_internal(
     int b_ezsigntemplatepackage_needvalidation,
     int b_ezsignbulksend_needvalidation
     ) {
@@ -16,12 +16,26 @@ ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_t *ezs
     ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_local_var->b_ezsigntemplatepackage_needvalidation = b_ezsigntemplatepackage_needvalidation;
     ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_local_var->b_ezsignbulksend_needvalidation = b_ezsignbulksend_needvalidation;
 
+    ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_local_var->_library_owned = 1;
     return ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_t *ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_create(
+    int b_ezsigntemplatepackage_needvalidation,
+    int b_ezsignbulksend_needvalidation
+    ) {
+    return ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_create_internal (
+        b_ezsigntemplatepackage_needvalidation,
+        b_ezsignbulksend_needvalidation
+        );
+}
 
 void ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_free(ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_t *ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload) {
     if(NULL == ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload){
+        return ;
+    }
+    if(ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -62,6 +76,9 @@ ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_t *ezs
 
     // ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload->b_ezsigntemplatepackage_needvalidation
     cJSON *b_ezsigntemplatepackage_needvalidation = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payloadJSON, "bEzsigntemplatepackageNeedvalidation");
+    if (cJSON_IsNull(b_ezsigntemplatepackage_needvalidation)) {
+        b_ezsigntemplatepackage_needvalidation = NULL;
+    }
     if (!b_ezsigntemplatepackage_needvalidation) {
         goto end;
     }
@@ -74,6 +91,9 @@ ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_t *ezs
 
     // ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload->b_ezsignbulksend_needvalidation
     cJSON *b_ezsignbulksend_needvalidation = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payloadJSON, "bEzsignbulksendNeedvalidation");
+    if (cJSON_IsNull(b_ezsignbulksend_needvalidation)) {
+        b_ezsignbulksend_needvalidation = NULL;
+    }
     if (!b_ezsignbulksend_needvalidation) {
         goto end;
     }
@@ -85,7 +105,7 @@ ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_t *ezs
     }
 
 
-    ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_local_var = ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_create (
+    ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_local_var = ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_create_internal (
         b_ezsigntemplatepackage_needvalidation->valueint,
         b_ezsignbulksend_needvalidation->valueint
         );

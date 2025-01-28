@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 // Functions for enum SSELECTOR for ObjectVariableexpenseAPI_variableexpenseGetAutocompleteV2
 
@@ -267,11 +262,14 @@ ObjectVariableexpenseAPI_variableexpenseCreateObjectV1(apiClient_t *apiClient, v
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/variableexpense")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/variableexpense");
+    char *localVarPath = strdup("/1/object/variableexpense");
+
 
 
 
@@ -280,9 +278,10 @@ ObjectVariableexpenseAPI_variableexpenseCreateObjectV1(apiClient_t *apiClient, v
     cJSON *localVarSingleItemJSON_variableexpense_create_object_v1_request = NULL;
     if (variableexpense_create_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_variableexpense_create_object_v1_request = variableexpense_create_object_v1_request_convertToJSON(variableexpense_create_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_variableexpense_create_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -294,6 +293,7 @@ ObjectVariableexpenseAPI_variableexpenseCreateObjectV1(apiClient_t *apiClient, v
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -301,11 +301,14 @@ ObjectVariableexpenseAPI_variableexpenseCreateObjectV1(apiClient_t *apiClient, v
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectVariableexpenseAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    variableexpense_create_object_v1_response_t *elementToReturn = variableexpense_create_object_v1_response_parseFromJSON(ObjectVariableexpenseAPIlocalVarJSON);
-    cJSON_Delete(ObjectVariableexpenseAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    variableexpense_create_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectVariableexpenseAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = variableexpense_create_object_v1_response_parseFromJSON(ObjectVariableexpenseAPIlocalVarJSON);
+        cJSON_Delete(ObjectVariableexpenseAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -336,7 +339,7 @@ end:
 //
 // 
 //
-common_response_t*
+variableexpense_edit_object_v1_response_t*
 ObjectVariableexpenseAPI_variableexpenseEditObjectV1(apiClient_t *apiClient, int *pkiVariableexpenseID, variableexpense_edit_object_v1_request_t *variableexpense_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -345,15 +348,18 @@ ObjectVariableexpenseAPI_variableexpenseEditObjectV1(apiClient_t *apiClient, int
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/variableexpense/{pkiVariableexpenseID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/variableexpense/{pkiVariableexpenseID}");
+    char *localVarPath = strdup("/1/object/variableexpense/{pkiVariableexpenseID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiVariableexpenseID =  + strlen("{ pkiVariableexpenseID }");
+    long sizeOfPathParams_pkiVariableexpenseID =  + sizeof("{ pkiVariableexpenseID }") - 1;
     if(pkiVariableexpenseID == 0){
         goto end;
     }
@@ -361,7 +367,7 @@ ObjectVariableexpenseAPI_variableexpenseEditObjectV1(apiClient_t *apiClient, int
     snprintf(localVarToReplace_pkiVariableexpenseID, sizeOfPathParams_pkiVariableexpenseID, "{%s}", "pkiVariableexpenseID");
 
     char localVarBuff_pkiVariableexpenseID[256];
-    intToStr(localVarBuff_pkiVariableexpenseID, *pkiVariableexpenseID);
+    snprintf(localVarBuff_pkiVariableexpenseID, sizeof localVarBuff_pkiVariableexpenseID, "%ld", (long)*pkiVariableexpenseID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiVariableexpenseID, localVarBuff_pkiVariableexpenseID);
 
@@ -372,9 +378,10 @@ ObjectVariableexpenseAPI_variableexpenseEditObjectV1(apiClient_t *apiClient, int
     cJSON *localVarSingleItemJSON_variableexpense_edit_object_v1_request = NULL;
     if (variableexpense_edit_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_variableexpense_edit_object_v1_request = variableexpense_edit_object_v1_request_convertToJSON(variableexpense_edit_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_variableexpense_edit_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -386,6 +393,7 @@ ObjectVariableexpenseAPI_variableexpenseEditObjectV1(apiClient_t *apiClient, int
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -401,11 +409,14 @@ ObjectVariableexpenseAPI_variableexpenseEditObjectV1(apiClient_t *apiClient, int
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectVariableexpenseAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectVariableexpenseAPIlocalVarJSON);
-    cJSON_Delete(ObjectVariableexpenseAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    variableexpense_edit_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectVariableexpenseAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = variableexpense_edit_object_v1_response_parseFromJSON(ObjectVariableexpenseAPIlocalVarJSON);
+        cJSON_Delete(ObjectVariableexpenseAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -446,22 +457,27 @@ ObjectVariableexpenseAPI_variableexpenseGetAutocompleteV2(apiClient_t *apiClient
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/variableexpense/getAutocomplete/{sSelector}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/variableexpense/getAutocomplete/{sSelector}");
+    char *localVarPath = strdup("/2/object/variableexpense/getAutocomplete/{sSelector}");
+
+    if(!sSelector)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_sSelector = strlen(sSelector)+3 + strlen("{ sSelector }");
-    if(sSelector == NULL) {
+    long sizeOfPathParams_sSelector = strlen(variableexpenseGetAutocompleteV2_SSELECTOR_ToString(sSelector))+3 + sizeof("{ sSelector }") - 1;
+    if(sSelector == 0) {
         goto end;
     }
     char* localVarToReplace_sSelector = malloc(sizeOfPathParams_sSelector);
     sprintf(localVarToReplace_sSelector, "{%s}", "sSelector");
 
-    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, sSelector);
+    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, variableexpenseGetAutocompleteV2_SSELECTOR_ToString(sSelector));
 
 
 
@@ -485,7 +501,7 @@ ObjectVariableexpenseAPI_variableexpenseGetAutocompleteV2(apiClient_t *apiClient
     {
         keyQuery_eFilterActive = strdup("eFilterActive");
         valueQuery_eFilterActive = (eFilterActive);
-        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(variableexpenseGetAutocompleteV2_EFILTERACTIVE_ToString(
+        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, strdup(variableexpenseGetAutocompleteV2_EFILTERACTIVE_ToString(
         valueQuery_eFilterActive)));
         list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
     }
@@ -510,6 +526,7 @@ ObjectVariableexpenseAPI_variableexpenseGetAutocompleteV2(apiClient_t *apiClient
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -517,11 +534,14 @@ ObjectVariableexpenseAPI_variableexpenseGetAutocompleteV2(apiClient_t *apiClient
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectVariableexpenseAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    variableexpense_get_autocomplete_v2_response_t *elementToReturn = variableexpense_get_autocomplete_v2_response_parseFromJSON(ObjectVariableexpenseAPIlocalVarJSON);
-    cJSON_Delete(ObjectVariableexpenseAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    variableexpense_get_autocomplete_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectVariableexpenseAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = variableexpense_get_autocomplete_v2_response_parseFromJSON(ObjectVariableexpenseAPIlocalVarJSON);
+        cJSON_Delete(ObjectVariableexpenseAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -582,11 +602,14 @@ ObjectVariableexpenseAPI_variableexpenseGetListV1(apiClient_t *apiClient, ezmax_
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/variableexpense/getList")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/variableexpense/getList");
+    char *localVarPath = strdup("/1/object/variableexpense/getList");
+
 
 
 
@@ -611,7 +634,7 @@ ObjectVariableexpenseAPI_variableexpenseGetListV1(apiClient_t *apiClient, ezmax_
     {
         keyQuery_eOrderBy = strdup("eOrderBy");
         valueQuery_eOrderBy = (eOrderBy);
-        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, (void *)strdup(variableexpenseGetListV1_EORDERBY_ToString(
+        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, strdup(variableexpenseGetListV1_EORDERBY_ToString(
         valueQuery_eOrderBy)));
         list_addElement(localVarQueryParameters,keyPairQuery_eOrderBy);
     }
@@ -663,6 +686,7 @@ ObjectVariableexpenseAPI_variableexpenseGetListV1(apiClient_t *apiClient, ezmax_
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -674,11 +698,14 @@ ObjectVariableexpenseAPI_variableexpenseGetListV1(apiClient_t *apiClient, ezmax_
     //    printf("%s\n","The URL is valid, but one of the Accept header is not defined or invalid. For example, you set the header \&quot;Accept: application/json\&quot; but the function can only return \&quot;Content-type: image/png\&quot;");
     //}
     //nonprimitive not container
-    cJSON *ObjectVariableexpenseAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    variableexpense_get_list_v1_response_t *elementToReturn = variableexpense_get_list_v1_response_parseFromJSON(ObjectVariableexpenseAPIlocalVarJSON);
-    cJSON_Delete(ObjectVariableexpenseAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    variableexpense_get_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectVariableexpenseAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = variableexpense_get_list_v1_response_parseFromJSON(ObjectVariableexpenseAPIlocalVarJSON);
+        cJSON_Delete(ObjectVariableexpenseAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -762,15 +789,18 @@ ObjectVariableexpenseAPI_variableexpenseGetObjectV2(apiClient_t *apiClient, int 
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/variableexpense/{pkiVariableexpenseID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/variableexpense/{pkiVariableexpenseID}");
+    char *localVarPath = strdup("/2/object/variableexpense/{pkiVariableexpenseID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiVariableexpenseID =  + strlen("{ pkiVariableexpenseID }");
+    long sizeOfPathParams_pkiVariableexpenseID =  + sizeof("{ pkiVariableexpenseID }") - 1;
     if(pkiVariableexpenseID == 0){
         goto end;
     }
@@ -778,7 +808,7 @@ ObjectVariableexpenseAPI_variableexpenseGetObjectV2(apiClient_t *apiClient, int 
     snprintf(localVarToReplace_pkiVariableexpenseID, sizeOfPathParams_pkiVariableexpenseID, "{%s}", "pkiVariableexpenseID");
 
     char localVarBuff_pkiVariableexpenseID[256];
-    intToStr(localVarBuff_pkiVariableexpenseID, *pkiVariableexpenseID);
+    snprintf(localVarBuff_pkiVariableexpenseID, sizeof localVarBuff_pkiVariableexpenseID, "%ld", (long)*pkiVariableexpenseID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiVariableexpenseID, localVarBuff_pkiVariableexpenseID);
 
@@ -793,6 +823,7 @@ ObjectVariableexpenseAPI_variableexpenseGetObjectV2(apiClient_t *apiClient, int 
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -804,11 +835,14 @@ ObjectVariableexpenseAPI_variableexpenseGetObjectV2(apiClient_t *apiClient, int 
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectVariableexpenseAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    variableexpense_get_object_v2_response_t *elementToReturn = variableexpense_get_object_v2_response_parseFromJSON(ObjectVariableexpenseAPIlocalVarJSON);
-    cJSON_Delete(ObjectVariableexpenseAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    variableexpense_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectVariableexpenseAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = variableexpense_get_object_v2_response_parseFromJSON(ObjectVariableexpenseAPIlocalVarJSON);
+        cJSON_Delete(ObjectVariableexpenseAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

@@ -34,9 +34,10 @@ typedef struct ezsigndocument_extract_text_v1_request_t {
     int i_width; //numeric
     int i_height; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigndocument_extract_text_v1_request_t;
 
-ezsigndocument_extract_text_v1_request_t *ezsigndocument_extract_text_v1_request_create(
+__attribute__((deprecated)) ezsigndocument_extract_text_v1_request_t *ezsigndocument_extract_text_v1_request_create(
     int i_page,
     ezmax_api_definition__full_ezsigndocument_extract_text_v1_request_ESECTION_e e_section,
     int i_x,

@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Retrieve an existing Ezsignbulksendtransmission's Csv containing errors
@@ -25,15 +20,18 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetCsvErrorsV1(api
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignbulksendtransmission/{pkiEzsignbulksendtransmissionID}/getCsvErrors")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignbulksendtransmission/{pkiEzsignbulksendtransmissionID}/getCsvErrors");
+    char *localVarPath = strdup("/1/object/ezsignbulksendtransmission/{pkiEzsignbulksendtransmissionID}/getCsvErrors");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignbulksendtransmissionID =  + strlen("{ pkiEzsignbulksendtransmissionID }");
+    long sizeOfPathParams_pkiEzsignbulksendtransmissionID =  + sizeof("{ pkiEzsignbulksendtransmissionID }") - 1;
     if(pkiEzsignbulksendtransmissionID == 0){
         goto end;
     }
@@ -41,7 +39,7 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetCsvErrorsV1(api
     snprintf(localVarToReplace_pkiEzsignbulksendtransmissionID, sizeOfPathParams_pkiEzsignbulksendtransmissionID, "{%s}", "pkiEzsignbulksendtransmissionID");
 
     char localVarBuff_pkiEzsignbulksendtransmissionID[256];
-    intToStr(localVarBuff_pkiEzsignbulksendtransmissionID, *pkiEzsignbulksendtransmissionID);
+    snprintf(localVarBuff_pkiEzsignbulksendtransmissionID, sizeof localVarBuff_pkiEzsignbulksendtransmissionID, "%ld", (long)*pkiEzsignbulksendtransmissionID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksendtransmissionID, localVarBuff_pkiEzsignbulksendtransmissionID);
 
@@ -57,6 +55,7 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetCsvErrorsV1(api
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -75,8 +74,10 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetCsvErrorsV1(api
     //if (apiClient->response_code == 422) {
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
-    //primitive return type simple
-    char* elementToReturn =  strdup((char*)apiClient->dataReceived);
+    //primitive return type simple string
+    char* elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300)
+        elementToReturn = strdup((char*)apiClient->dataReceived);
 
     if (apiClient->dataReceived) {
         free(apiClient->dataReceived);
@@ -110,15 +111,18 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetEzsignsignature
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignbulksendtransmission/{pkiEzsignbulksendtransmissionID}/getEzsignsignaturesAutomatic")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignbulksendtransmission/{pkiEzsignbulksendtransmissionID}/getEzsignsignaturesAutomatic");
+    char *localVarPath = strdup("/1/object/ezsignbulksendtransmission/{pkiEzsignbulksendtransmissionID}/getEzsignsignaturesAutomatic");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignbulksendtransmissionID =  + strlen("{ pkiEzsignbulksendtransmissionID }");
+    long sizeOfPathParams_pkiEzsignbulksendtransmissionID =  + sizeof("{ pkiEzsignbulksendtransmissionID }") - 1;
     if(pkiEzsignbulksendtransmissionID == 0){
         goto end;
     }
@@ -126,7 +130,7 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetEzsignsignature
     snprintf(localVarToReplace_pkiEzsignbulksendtransmissionID, sizeOfPathParams_pkiEzsignbulksendtransmissionID, "{%s}", "pkiEzsignbulksendtransmissionID");
 
     char localVarBuff_pkiEzsignbulksendtransmissionID[256];
-    intToStr(localVarBuff_pkiEzsignbulksendtransmissionID, *pkiEzsignbulksendtransmissionID);
+    snprintf(localVarBuff_pkiEzsignbulksendtransmissionID, sizeof localVarBuff_pkiEzsignbulksendtransmissionID, "%ld", (long)*pkiEzsignbulksendtransmissionID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksendtransmissionID, localVarBuff_pkiEzsignbulksendtransmissionID);
 
@@ -141,6 +145,7 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetEzsignsignature
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -152,11 +157,14 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetEzsignsignature
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignbulksendtransmissionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_t *elementToReturn = ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_parseFromJSON(ObjectEzsignbulksendtransmissionAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignbulksendtransmissionAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignbulksendtransmissionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignbulksendtransmission_get_ezsignsignatures_automatic_v1_response_parseFromJSON(ObjectEzsignbulksendtransmissionAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignbulksendtransmissionAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -192,15 +200,18 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetFormsDataV1(api
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignbulksendtransmission/{pkiEzsignbulksendtransmissionID}/getFormsData")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignbulksendtransmission/{pkiEzsignbulksendtransmissionID}/getFormsData");
+    char *localVarPath = strdup("/1/object/ezsignbulksendtransmission/{pkiEzsignbulksendtransmissionID}/getFormsData");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignbulksendtransmissionID =  + strlen("{ pkiEzsignbulksendtransmissionID }");
+    long sizeOfPathParams_pkiEzsignbulksendtransmissionID =  + sizeof("{ pkiEzsignbulksendtransmissionID }") - 1;
     if(pkiEzsignbulksendtransmissionID == 0){
         goto end;
     }
@@ -208,7 +219,7 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetFormsDataV1(api
     snprintf(localVarToReplace_pkiEzsignbulksendtransmissionID, sizeOfPathParams_pkiEzsignbulksendtransmissionID, "{%s}", "pkiEzsignbulksendtransmissionID");
 
     char localVarBuff_pkiEzsignbulksendtransmissionID[256];
-    intToStr(localVarBuff_pkiEzsignbulksendtransmissionID, *pkiEzsignbulksendtransmissionID);
+    snprintf(localVarBuff_pkiEzsignbulksendtransmissionID, sizeof localVarBuff_pkiEzsignbulksendtransmissionID, "%ld", (long)*pkiEzsignbulksendtransmissionID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksendtransmissionID, localVarBuff_pkiEzsignbulksendtransmissionID);
 
@@ -224,6 +235,7 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetFormsDataV1(api
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -243,11 +255,14 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetFormsDataV1(api
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignbulksendtransmissionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignbulksendtransmission_get_forms_data_v1_response_t *elementToReturn = ezsignbulksendtransmission_get_forms_data_v1_response_parseFromJSON(ObjectEzsignbulksendtransmissionAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignbulksendtransmissionAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignbulksendtransmission_get_forms_data_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignbulksendtransmissionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignbulksendtransmission_get_forms_data_v1_response_parseFromJSON(ObjectEzsignbulksendtransmissionAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignbulksendtransmissionAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -283,15 +298,18 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetObjectV2(apiCli
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/ezsignbulksendtransmission/{pkiEzsignbulksendtransmissionID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/ezsignbulksendtransmission/{pkiEzsignbulksendtransmissionID}");
+    char *localVarPath = strdup("/2/object/ezsignbulksendtransmission/{pkiEzsignbulksendtransmissionID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignbulksendtransmissionID =  + strlen("{ pkiEzsignbulksendtransmissionID }");
+    long sizeOfPathParams_pkiEzsignbulksendtransmissionID =  + sizeof("{ pkiEzsignbulksendtransmissionID }") - 1;
     if(pkiEzsignbulksendtransmissionID == 0){
         goto end;
     }
@@ -299,7 +317,7 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetObjectV2(apiCli
     snprintf(localVarToReplace_pkiEzsignbulksendtransmissionID, sizeOfPathParams_pkiEzsignbulksendtransmissionID, "{%s}", "pkiEzsignbulksendtransmissionID");
 
     char localVarBuff_pkiEzsignbulksendtransmissionID[256];
-    intToStr(localVarBuff_pkiEzsignbulksendtransmissionID, *pkiEzsignbulksendtransmissionID);
+    snprintf(localVarBuff_pkiEzsignbulksendtransmissionID, sizeof localVarBuff_pkiEzsignbulksendtransmissionID, "%ld", (long)*pkiEzsignbulksendtransmissionID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksendtransmissionID, localVarBuff_pkiEzsignbulksendtransmissionID);
 
@@ -314,6 +332,7 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetObjectV2(apiCli
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -325,11 +344,14 @@ ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetObjectV2(apiCli
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignbulksendtransmissionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignbulksendtransmission_get_object_v2_response_t *elementToReturn = ezsignbulksendtransmission_get_object_v2_response_parseFromJSON(ObjectEzsignbulksendtransmissionAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignbulksendtransmissionAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignbulksendtransmission_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignbulksendtransmissionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignbulksendtransmission_get_object_v2_response_parseFromJSON(ObjectEzsignbulksendtransmissionAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignbulksendtransmissionAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

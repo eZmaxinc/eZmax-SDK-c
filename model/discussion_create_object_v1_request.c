@@ -5,7 +5,7 @@
 
 
 
-discussion_create_object_v1_request_t *discussion_create_object_v1_request_create(
+static discussion_create_object_v1_request_t *discussion_create_object_v1_request_create_internal(
     list_t *a_obj_discussion
     ) {
     discussion_create_object_v1_request_t *discussion_create_object_v1_request_local_var = malloc(sizeof(discussion_create_object_v1_request_t));
@@ -14,12 +14,24 @@ discussion_create_object_v1_request_t *discussion_create_object_v1_request_creat
     }
     discussion_create_object_v1_request_local_var->a_obj_discussion = a_obj_discussion;
 
+    discussion_create_object_v1_request_local_var->_library_owned = 1;
     return discussion_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) discussion_create_object_v1_request_t *discussion_create_object_v1_request_create(
+    list_t *a_obj_discussion
+    ) {
+    return discussion_create_object_v1_request_create_internal (
+        a_obj_discussion
+        );
+}
 
 void discussion_create_object_v1_request_free(discussion_create_object_v1_request_t *discussion_create_object_v1_request) {
     if(NULL == discussion_create_object_v1_request){
+        return ;
+    }
+    if(discussion_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "discussion_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ discussion_create_object_v1_request_t *discussion_create_object_v1_request_parse
 
     // discussion_create_object_v1_request->a_obj_discussion
     cJSON *a_obj_discussion = cJSON_GetObjectItemCaseSensitive(discussion_create_object_v1_requestJSON, "a_objDiscussion");
+    if (cJSON_IsNull(a_obj_discussion)) {
+        a_obj_discussion = NULL;
+    }
     if (!a_obj_discussion) {
         goto end;
     }
@@ -96,7 +111,7 @@ discussion_create_object_v1_request_t *discussion_create_object_v1_request_parse
     }
 
 
-    discussion_create_object_v1_request_local_var = discussion_create_object_v1_request_create (
+    discussion_create_object_v1_request_local_var = discussion_create_object_v1_request_create_internal (
         a_obj_discussionList
         );
 

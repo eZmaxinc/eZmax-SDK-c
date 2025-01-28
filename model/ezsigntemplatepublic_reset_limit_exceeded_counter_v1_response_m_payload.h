@@ -21,9 +21,10 @@ typedef struct ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_p
 typedef struct ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_t {
     char *dt_ezsigntemplatepublic_limitexceededsince; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_t;
 
-ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_t *ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_create(
+__attribute__((deprecated)) ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_t *ezsigntemplatepublic_reset_limit_exceeded_counter_v1_response_m_payload_create(
     char *dt_ezsigntemplatepublic_limitexceededsince
 );
 

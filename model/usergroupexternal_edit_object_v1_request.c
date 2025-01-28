@@ -5,7 +5,7 @@
 
 
 
-usergroupexternal_edit_object_v1_request_t *usergroupexternal_edit_object_v1_request_create(
+static usergroupexternal_edit_object_v1_request_t *usergroupexternal_edit_object_v1_request_create_internal(
     usergroupexternal_request_compound_t *obj_usergroupexternal
     ) {
     usergroupexternal_edit_object_v1_request_t *usergroupexternal_edit_object_v1_request_local_var = malloc(sizeof(usergroupexternal_edit_object_v1_request_t));
@@ -14,12 +14,24 @@ usergroupexternal_edit_object_v1_request_t *usergroupexternal_edit_object_v1_req
     }
     usergroupexternal_edit_object_v1_request_local_var->obj_usergroupexternal = obj_usergroupexternal;
 
+    usergroupexternal_edit_object_v1_request_local_var->_library_owned = 1;
     return usergroupexternal_edit_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) usergroupexternal_edit_object_v1_request_t *usergroupexternal_edit_object_v1_request_create(
+    usergroupexternal_request_compound_t *obj_usergroupexternal
+    ) {
+    return usergroupexternal_edit_object_v1_request_create_internal (
+        obj_usergroupexternal
+        );
+}
 
 void usergroupexternal_edit_object_v1_request_free(usergroupexternal_edit_object_v1_request_t *usergroupexternal_edit_object_v1_request) {
     if(NULL == usergroupexternal_edit_object_v1_request){
+        return ;
+    }
+    if(usergroupexternal_edit_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroupexternal_edit_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ usergroupexternal_edit_object_v1_request_t *usergroupexternal_edit_object_v1_req
 
     // usergroupexternal_edit_object_v1_request->obj_usergroupexternal
     cJSON *obj_usergroupexternal = cJSON_GetObjectItemCaseSensitive(usergroupexternal_edit_object_v1_requestJSON, "objUsergroupexternal");
+    if (cJSON_IsNull(obj_usergroupexternal)) {
+        obj_usergroupexternal = NULL;
+    }
     if (!obj_usergroupexternal) {
         goto end;
     }
@@ -71,7 +86,7 @@ usergroupexternal_edit_object_v1_request_t *usergroupexternal_edit_object_v1_req
     obj_usergroupexternal_local_nonprim = usergroupexternal_request_compound_parseFromJSON(obj_usergroupexternal); //nonprimitive
 
 
-    usergroupexternal_edit_object_v1_request_local_var = usergroupexternal_edit_object_v1_request_create (
+    usergroupexternal_edit_object_v1_request_local_var = usergroupexternal_edit_object_v1_request_create_internal (
         obj_usergroupexternal_local_nonprim
         );
 

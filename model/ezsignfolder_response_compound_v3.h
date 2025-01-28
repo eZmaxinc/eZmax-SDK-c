@@ -23,38 +23,6 @@ typedef struct ezsignfolder_response_compound_v3_t ezsignfolder_response_compoun
 #include "field_e_ezsignfolder_documentdependency.h"
 #include "field_e_ezsignfolder_step.h"
 
-// Enum  for ezsignfolder_response_compound_v3
-
-typedef enum  { ezmax_api_definition__full_ezsignfolder_response_compound_v3__NULL = 0, ezmax_api_definition__full_ezsignfolder_response_compound_v3__PerEzsigndocument, ezmax_api_definition__full_ezsignfolder_response_compound_v3__PerEzsignfolder } ezmax_api_definition__full_ezsignfolder_response_compound_v3__e;
-
-char* ezsignfolder_response_compound_v3_e_ezsignfolder_completion_ToString(ezmax_api_definition__full_ezsignfolder_response_compound_v3__e e_ezsignfolder_completion);
-
-ezmax_api_definition__full_ezsignfolder_response_compound_v3__e ezsignfolder_response_compound_v3_e_ezsignfolder_completion_FromString(char* e_ezsignfolder_completion);
-
-// Enum  for ezsignfolder_response_compound_v3
-
-typedef enum  { ezmax_api_definition__full_ezsignfolder_response_compound_v3__NULL = 0, ezmax_api_definition__full_ezsignfolder_response_compound_v3__All, ezmax_api_definition__full_ezsignfolder_response_compound_v3__EzsignsignerOnly } ezmax_api_definition__full_ezsignfolder_response_compound_v3__e;
-
-char* ezsignfolder_response_compound_v3_e_ezsignfolder_documentdependency_ToString(ezmax_api_definition__full_ezsignfolder_response_compound_v3__e e_ezsignfolder_documentdependency);
-
-ezmax_api_definition__full_ezsignfolder_response_compound_v3__e ezsignfolder_response_compound_v3_e_ezsignfolder_documentdependency_FromString(char* e_ezsignfolder_documentdependency);
-
-// Enum  for ezsignfolder_response_compound_v3
-
-typedef enum  { ezmax_api_definition__full_ezsignfolder_response_compound_v3__NULL = 0, ezmax_api_definition__full_ezsignfolder_response_compound_v3__Unsent, ezmax_api_definition__full_ezsignfolder_response_compound_v3__PendingSend, ezmax_api_definition__full_ezsignfolder_response_compound_v3__Sent, ezmax_api_definition__full_ezsignfolder_response_compound_v3__PartiallySigned, ezmax_api_definition__full_ezsignfolder_response_compound_v3__Expired, ezmax_api_definition__full_ezsignfolder_response_compound_v3__Completed, ezmax_api_definition__full_ezsignfolder_response_compound_v3__Archived, ezmax_api_definition__full_ezsignfolder_response_compound_v3__Disposed } ezmax_api_definition__full_ezsignfolder_response_compound_v3__e;
-
-char* ezsignfolder_response_compound_v3_e_ezsignfolder_step_ToString(ezmax_api_definition__full_ezsignfolder_response_compound_v3__e e_ezsignfolder_step);
-
-ezmax_api_definition__full_ezsignfolder_response_compound_v3__e ezsignfolder_response_compound_v3_e_ezsignfolder_step_FromString(char* e_ezsignfolder_step);
-
-// Enum  for ezsignfolder_response_compound_v3
-
-typedef enum  { ezmax_api_definition__full_ezsignfolder_response_compound_v3__NULL = 0, ezmax_api_definition__full_ezsignfolder_response_compound_v3__Signer, ezmax_api_definition__full_ezsignfolder_response_compound_v3__Read, ezmax_api_definition__full_ezsignfolder_response_compound_v3__Modify, ezmax_api_definition__full_ezsignfolder_response_compound_v3__Full } ezmax_api_definition__full_ezsignfolder_response_compound_v3__e;
-
-char* ezsignfolder_response_compound_v3_e_ezsignfolder_access_ToString(ezmax_api_definition__full_ezsignfolder_response_compound_v3__e e_ezsignfolder_access);
-
-ezmax_api_definition__full_ezsignfolder_response_compound_v3__e ezsignfolder_response_compound_v3_e_ezsignfolder_access_FromString(char* e_ezsignfolder_access);
-
 
 
 typedef struct ezsignfolder_response_compound_v3_t {
@@ -62,8 +30,8 @@ typedef struct ezsignfolder_response_compound_v3_t {
     int fki_ezsignfoldertype_id; //numeric
     struct custom_ezsignfoldertype_response_t *obj_ezsignfoldertype; //model
     int fki_timezone_id; //numeric
-    field_e_ezsignfolder_completion_t *e_ezsignfolder_completion; // custom
-    field_e_ezsignfolder_documentdependency_t *e_ezsignfolder_documentdependency; // custom
+    ezmax_api_definition__full_field_e_ezsignfolder_completion__e e_ezsignfolder_completion; //referenced enum
+    ezmax_api_definition__full_field_e_ezsignfolder_documentdependency__e e_ezsignfolder_documentdependency; //referenced enum
     char *s_ezsignfoldertype_name_x; // string
     int fki_billingentityinternal_id; //numeric
     char *s_billingentityinternal_description_x; // string
@@ -79,23 +47,24 @@ typedef struct ezsignfolder_response_compound_v3_t {
     char *dt_ezsignfolder_sentdate; // string
     char *dt_ezsignfolder_scheduledarchive; // string
     char *dt_ezsignfolder_scheduleddispose; // string
-    field_e_ezsignfolder_step_t *e_ezsignfolder_step; // custom
+    ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step; //referenced enum
     char *dt_ezsignfolder_close; // string
     char *t_ezsignfolder_message; // string
     struct common_audit_t *obj_audit; //model
     char *s_ezsignfolder_externalid; // string
-    computed_e_ezsignfolder_access_t *e_ezsignfolder_access; // custom
+    ezmax_api_definition__full_computed_e_ezsignfolder_access__e e_ezsignfolder_access; //referenced enum
     struct custom_timezone_with_code_response_t *obj_timezone; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfolder_response_compound_v3_t;
 
-ezsignfolder_response_compound_v3_t *ezsignfolder_response_compound_v3_create(
+__attribute__((deprecated)) ezsignfolder_response_compound_v3_t *ezsignfolder_response_compound_v3_create(
     int pki_ezsignfolder_id,
     int fki_ezsignfoldertype_id,
     custom_ezsignfoldertype_response_t *obj_ezsignfoldertype,
     int fki_timezone_id,
-    field_e_ezsignfolder_completion_t *e_ezsignfolder_completion,
-    field_e_ezsignfolder_documentdependency_t *e_ezsignfolder_documentdependency,
+    ezmax_api_definition__full_field_e_ezsignfolder_completion__e e_ezsignfolder_completion,
+    ezmax_api_definition__full_field_e_ezsignfolder_documentdependency__e e_ezsignfolder_documentdependency,
     char *s_ezsignfoldertype_name_x,
     int fki_billingentityinternal_id,
     char *s_billingentityinternal_description_x,
@@ -111,12 +80,12 @@ ezsignfolder_response_compound_v3_t *ezsignfolder_response_compound_v3_create(
     char *dt_ezsignfolder_sentdate,
     char *dt_ezsignfolder_scheduledarchive,
     char *dt_ezsignfolder_scheduleddispose,
-    field_e_ezsignfolder_step_t *e_ezsignfolder_step,
+    ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step,
     char *dt_ezsignfolder_close,
     char *t_ezsignfolder_message,
     common_audit_t *obj_audit,
     char *s_ezsignfolder_externalid,
-    computed_e_ezsignfolder_access_t *e_ezsignfolder_access,
+    ezmax_api_definition__full_computed_e_ezsignfolder_access__e e_ezsignfolder_access,
     custom_timezone_with_code_response_t *obj_timezone
 );
 

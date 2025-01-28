@@ -24,9 +24,10 @@ typedef struct ezsignfoldersignerassociation_create_object_v1_request_t {
     struct ezsignfoldersignerassociation_request_t *obj_ezsignfoldersignerassociation; //model
     struct ezsignfoldersignerassociation_request_compound_t *obj_ezsignfoldersignerassociation_compound; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfoldersignerassociation_create_object_v1_request_t;
 
-ezsignfoldersignerassociation_create_object_v1_request_t *ezsignfoldersignerassociation_create_object_v1_request_create(
+__attribute__((deprecated)) ezsignfoldersignerassociation_create_object_v1_request_t *ezsignfoldersignerassociation_create_object_v1_request_create(
     ezsignfoldersignerassociation_request_t *obj_ezsignfoldersignerassociation,
     ezsignfoldersignerassociation_request_compound_t *obj_ezsignfoldersignerassociation_compound
 );

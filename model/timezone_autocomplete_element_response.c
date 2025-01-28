@@ -5,7 +5,7 @@
 
 
 
-timezone_autocomplete_element_response_t *timezone_autocomplete_element_response_create(
+static timezone_autocomplete_element_response_t *timezone_autocomplete_element_response_create_internal(
     char *s_timezone_name,
     int pki_timezone_id,
     int b_timezone_isactive
@@ -18,12 +18,28 @@ timezone_autocomplete_element_response_t *timezone_autocomplete_element_response
     timezone_autocomplete_element_response_local_var->pki_timezone_id = pki_timezone_id;
     timezone_autocomplete_element_response_local_var->b_timezone_isactive = b_timezone_isactive;
 
+    timezone_autocomplete_element_response_local_var->_library_owned = 1;
     return timezone_autocomplete_element_response_local_var;
 }
 
+__attribute__((deprecated)) timezone_autocomplete_element_response_t *timezone_autocomplete_element_response_create(
+    char *s_timezone_name,
+    int pki_timezone_id,
+    int b_timezone_isactive
+    ) {
+    return timezone_autocomplete_element_response_create_internal (
+        s_timezone_name,
+        pki_timezone_id,
+        b_timezone_isactive
+        );
+}
 
 void timezone_autocomplete_element_response_free(timezone_autocomplete_element_response_t *timezone_autocomplete_element_response) {
     if(NULL == timezone_autocomplete_element_response){
+        return ;
+    }
+    if(timezone_autocomplete_element_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "timezone_autocomplete_element_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -77,6 +93,9 @@ timezone_autocomplete_element_response_t *timezone_autocomplete_element_response
 
     // timezone_autocomplete_element_response->s_timezone_name
     cJSON *s_timezone_name = cJSON_GetObjectItemCaseSensitive(timezone_autocomplete_element_responseJSON, "sTimezoneName");
+    if (cJSON_IsNull(s_timezone_name)) {
+        s_timezone_name = NULL;
+    }
     if (!s_timezone_name) {
         goto end;
     }
@@ -89,6 +108,9 @@ timezone_autocomplete_element_response_t *timezone_autocomplete_element_response
 
     // timezone_autocomplete_element_response->pki_timezone_id
     cJSON *pki_timezone_id = cJSON_GetObjectItemCaseSensitive(timezone_autocomplete_element_responseJSON, "pkiTimezoneID");
+    if (cJSON_IsNull(pki_timezone_id)) {
+        pki_timezone_id = NULL;
+    }
     if (!pki_timezone_id) {
         goto end;
     }
@@ -101,6 +123,9 @@ timezone_autocomplete_element_response_t *timezone_autocomplete_element_response
 
     // timezone_autocomplete_element_response->b_timezone_isactive
     cJSON *b_timezone_isactive = cJSON_GetObjectItemCaseSensitive(timezone_autocomplete_element_responseJSON, "bTimezoneIsactive");
+    if (cJSON_IsNull(b_timezone_isactive)) {
+        b_timezone_isactive = NULL;
+    }
     if (!b_timezone_isactive) {
         goto end;
     }
@@ -112,7 +137,7 @@ timezone_autocomplete_element_response_t *timezone_autocomplete_element_response
     }
 
 
-    timezone_autocomplete_element_response_local_var = timezone_autocomplete_element_response_create (
+    timezone_autocomplete_element_response_local_var = timezone_autocomplete_element_response_create_internal (
         strdup(s_timezone_name->valuestring),
         pki_timezone_id->valuedouble,
         b_timezone_isactive->valueint

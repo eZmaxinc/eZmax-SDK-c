@@ -5,7 +5,7 @@
 
 
 
-user_get_colleagues_v2_response_m_payload_t *user_get_colleagues_v2_response_m_payload_create(
+static user_get_colleagues_v2_response_m_payload_t *user_get_colleagues_v2_response_m_payload_create_internal(
     list_t *a_obj_colleague,
     list_t *a_obj_colleague_clonable
     ) {
@@ -16,12 +16,26 @@ user_get_colleagues_v2_response_m_payload_t *user_get_colleagues_v2_response_m_p
     user_get_colleagues_v2_response_m_payload_local_var->a_obj_colleague = a_obj_colleague;
     user_get_colleagues_v2_response_m_payload_local_var->a_obj_colleague_clonable = a_obj_colleague_clonable;
 
+    user_get_colleagues_v2_response_m_payload_local_var->_library_owned = 1;
     return user_get_colleagues_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) user_get_colleagues_v2_response_m_payload_t *user_get_colleagues_v2_response_m_payload_create(
+    list_t *a_obj_colleague,
+    list_t *a_obj_colleague_clonable
+    ) {
+    return user_get_colleagues_v2_response_m_payload_create_internal (
+        a_obj_colleague,
+        a_obj_colleague_clonable
+        );
+}
 
 void user_get_colleagues_v2_response_m_payload_free(user_get_colleagues_v2_response_m_payload_t *user_get_colleagues_v2_response_m_payload) {
     if(NULL == user_get_colleagues_v2_response_m_payload){
+        return ;
+    }
+    if(user_get_colleagues_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "user_get_colleagues_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -106,6 +120,9 @@ user_get_colleagues_v2_response_m_payload_t *user_get_colleagues_v2_response_m_p
 
     // user_get_colleagues_v2_response_m_payload->a_obj_colleague
     cJSON *a_obj_colleague = cJSON_GetObjectItemCaseSensitive(user_get_colleagues_v2_response_m_payloadJSON, "a_objColleague");
+    if (cJSON_IsNull(a_obj_colleague)) {
+        a_obj_colleague = NULL;
+    }
     if (!a_obj_colleague) {
         goto end;
     }
@@ -130,6 +147,9 @@ user_get_colleagues_v2_response_m_payload_t *user_get_colleagues_v2_response_m_p
 
     // user_get_colleagues_v2_response_m_payload->a_obj_colleague_clonable
     cJSON *a_obj_colleague_clonable = cJSON_GetObjectItemCaseSensitive(user_get_colleagues_v2_response_m_payloadJSON, "a_objColleagueClonable");
+    if (cJSON_IsNull(a_obj_colleague_clonable)) {
+        a_obj_colleague_clonable = NULL;
+    }
     if (!a_obj_colleague_clonable) {
         goto end;
     }
@@ -153,7 +173,7 @@ user_get_colleagues_v2_response_m_payload_t *user_get_colleagues_v2_response_m_p
     }
 
 
-    user_get_colleagues_v2_response_m_payload_local_var = user_get_colleagues_v2_response_m_payload_create (
+    user_get_colleagues_v2_response_m_payload_local_var = user_get_colleagues_v2_response_m_payload_create_internal (
         a_obj_colleagueList,
         a_obj_colleague_clonableList
         );

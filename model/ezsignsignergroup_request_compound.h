@@ -24,9 +24,10 @@ typedef struct ezsignsignergroup_request_compound_t {
     int fki_ezsignfolder_id; //numeric
     struct multilingual_ezsignsignergroup_description_t *obj_ezsignsignergroup_description; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsignergroup_request_compound_t;
 
-ezsignsignergroup_request_compound_t *ezsignsignergroup_request_compound_create(
+__attribute__((deprecated)) ezsignsignergroup_request_compound_t *ezsignsignergroup_request_compound_create(
     int pki_ezsignsignergroup_id,
     int fki_ezsignfolder_id,
     multilingual_ezsignsignergroup_description_t *obj_ezsignsignergroup_description

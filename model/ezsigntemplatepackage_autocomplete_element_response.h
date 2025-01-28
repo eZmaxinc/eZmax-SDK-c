@@ -17,27 +17,20 @@ typedef struct ezsigntemplatepackage_autocomplete_element_response_t ezsigntempl
 
 #include "field_e_ezsignfoldertype_privacylevel.h"
 
-// Enum  for ezsigntemplatepackage_autocomplete_element_response
-
-typedef enum  { ezmax_api_definition__full_ezsigntemplatepackage_autocomplete_element_response__NULL = 0, ezmax_api_definition__full_ezsigntemplatepackage_autocomplete_element_response__User, ezmax_api_definition__full_ezsigntemplatepackage_autocomplete_element_response__Usergroup } ezmax_api_definition__full_ezsigntemplatepackage_autocomplete_element_response__e;
-
-char* ezsigntemplatepackage_autocomplete_element_response_e_ezsignfoldertype_privacylevel_ToString(ezmax_api_definition__full_ezsigntemplatepackage_autocomplete_element_response__e e_ezsignfoldertype_privacylevel);
-
-ezmax_api_definition__full_ezsigntemplatepackage_autocomplete_element_response__e ezsigntemplatepackage_autocomplete_element_response_e_ezsignfoldertype_privacylevel_FromString(char* e_ezsignfoldertype_privacylevel);
-
 
 
 typedef struct ezsigntemplatepackage_autocomplete_element_response_t {
-    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel; // custom
+    ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel; //referenced enum
     char *s_ezsigntemplatepackage_description; // string
     int pki_ezsigntemplatepackage_id; //numeric
     int b_ezsigntemplatepackage_isactive; //boolean
     int b_disabled; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatepackage_autocomplete_element_response_t;
 
-ezsigntemplatepackage_autocomplete_element_response_t *ezsigntemplatepackage_autocomplete_element_response_create(
-    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel,
+__attribute__((deprecated)) ezsigntemplatepackage_autocomplete_element_response_t *ezsigntemplatepackage_autocomplete_element_response_create(
+    ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel,
     char *s_ezsigntemplatepackage_description,
     int pki_ezsigntemplatepackage_id,
     int b_ezsigntemplatepackage_isactive,

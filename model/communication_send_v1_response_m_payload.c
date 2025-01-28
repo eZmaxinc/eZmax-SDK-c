@@ -5,7 +5,7 @@
 
 
 
-communication_send_v1_response_m_payload_t *communication_send_v1_response_m_payload_create(
+static communication_send_v1_response_m_payload_t *communication_send_v1_response_m_payload_create_internal(
     list_t *a_pki_communication_id
     ) {
     communication_send_v1_response_m_payload_t *communication_send_v1_response_m_payload_local_var = malloc(sizeof(communication_send_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ communication_send_v1_response_m_payload_t *communication_send_v1_response_m_pay
     }
     communication_send_v1_response_m_payload_local_var->a_pki_communication_id = a_pki_communication_id;
 
+    communication_send_v1_response_m_payload_local_var->_library_owned = 1;
     return communication_send_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) communication_send_v1_response_m_payload_t *communication_send_v1_response_m_payload_create(
+    list_t *a_pki_communication_id
+    ) {
+    return communication_send_v1_response_m_payload_create_internal (
+        a_pki_communication_id
+        );
+}
 
 void communication_send_v1_response_m_payload_free(communication_send_v1_response_m_payload_t *communication_send_v1_response_m_payload) {
     if(NULL == communication_send_v1_response_m_payload){
+        return ;
+    }
+    if(communication_send_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "communication_send_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +82,9 @@ communication_send_v1_response_m_payload_t *communication_send_v1_response_m_pay
 
     // communication_send_v1_response_m_payload->a_pki_communication_id
     cJSON *a_pki_communication_id = cJSON_GetObjectItemCaseSensitive(communication_send_v1_response_m_payloadJSON, "a_pkiCommunicationID");
+    if (cJSON_IsNull(a_pki_communication_id)) {
+        a_pki_communication_id = NULL;
+    }
     if (!a_pki_communication_id) {
         goto end;
     }
@@ -87,7 +102,7 @@ communication_send_v1_response_m_payload_t *communication_send_v1_response_m_pay
         {
             goto end;
         }
-        double *a_pki_communication_id_local_value = (double *)calloc(1, sizeof(double));
+        double *a_pki_communication_id_local_value = calloc(1, sizeof(double));
         if(!a_pki_communication_id_local_value)
         {
             goto end;
@@ -97,7 +112,7 @@ communication_send_v1_response_m_payload_t *communication_send_v1_response_m_pay
     }
 
 
-    communication_send_v1_response_m_payload_local_var = communication_send_v1_response_m_payload_create (
+    communication_send_v1_response_m_payload_local_var = communication_send_v1_response_m_payload_create_internal (
         a_pki_communication_idList
         );
 

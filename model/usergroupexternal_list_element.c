@@ -5,7 +5,7 @@
 
 
 
-usergroupexternal_list_element_t *usergroupexternal_list_element_create(
+static usergroupexternal_list_element_t *usergroupexternal_list_element_create_internal(
     int pki_usergroupexternal_id,
     char *s_usergroupexternal_name,
     char *s_usergroupexternal_id
@@ -18,12 +18,28 @@ usergroupexternal_list_element_t *usergroupexternal_list_element_create(
     usergroupexternal_list_element_local_var->s_usergroupexternal_name = s_usergroupexternal_name;
     usergroupexternal_list_element_local_var->s_usergroupexternal_id = s_usergroupexternal_id;
 
+    usergroupexternal_list_element_local_var->_library_owned = 1;
     return usergroupexternal_list_element_local_var;
 }
 
+__attribute__((deprecated)) usergroupexternal_list_element_t *usergroupexternal_list_element_create(
+    int pki_usergroupexternal_id,
+    char *s_usergroupexternal_name,
+    char *s_usergroupexternal_id
+    ) {
+    return usergroupexternal_list_element_create_internal (
+        pki_usergroupexternal_id,
+        s_usergroupexternal_name,
+        s_usergroupexternal_id
+        );
+}
 
 void usergroupexternal_list_element_free(usergroupexternal_list_element_t *usergroupexternal_list_element) {
     if(NULL == usergroupexternal_list_element){
+        return ;
+    }
+    if(usergroupexternal_list_element->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroupexternal_list_element_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -81,6 +97,9 @@ usergroupexternal_list_element_t *usergroupexternal_list_element_parseFromJSON(c
 
     // usergroupexternal_list_element->pki_usergroupexternal_id
     cJSON *pki_usergroupexternal_id = cJSON_GetObjectItemCaseSensitive(usergroupexternal_list_elementJSON, "pkiUsergroupexternalID");
+    if (cJSON_IsNull(pki_usergroupexternal_id)) {
+        pki_usergroupexternal_id = NULL;
+    }
     if (!pki_usergroupexternal_id) {
         goto end;
     }
@@ -93,6 +112,9 @@ usergroupexternal_list_element_t *usergroupexternal_list_element_parseFromJSON(c
 
     // usergroupexternal_list_element->s_usergroupexternal_name
     cJSON *s_usergroupexternal_name = cJSON_GetObjectItemCaseSensitive(usergroupexternal_list_elementJSON, "sUsergroupexternalName");
+    if (cJSON_IsNull(s_usergroupexternal_name)) {
+        s_usergroupexternal_name = NULL;
+    }
     if (!s_usergroupexternal_name) {
         goto end;
     }
@@ -105,6 +127,9 @@ usergroupexternal_list_element_t *usergroupexternal_list_element_parseFromJSON(c
 
     // usergroupexternal_list_element->s_usergroupexternal_id
     cJSON *s_usergroupexternal_id = cJSON_GetObjectItemCaseSensitive(usergroupexternal_list_elementJSON, "sUsergroupexternalID");
+    if (cJSON_IsNull(s_usergroupexternal_id)) {
+        s_usergroupexternal_id = NULL;
+    }
     if (!s_usergroupexternal_id) {
         goto end;
     }
@@ -116,7 +141,7 @@ usergroupexternal_list_element_t *usergroupexternal_list_element_parseFromJSON(c
     }
 
 
-    usergroupexternal_list_element_local_var = usergroupexternal_list_element_create (
+    usergroupexternal_list_element_local_var = usergroupexternal_list_element_create_internal (
         pki_usergroupexternal_id->valuedouble,
         strdup(s_usergroupexternal_name->valuestring),
         strdup(s_usergroupexternal_id->valuestring)

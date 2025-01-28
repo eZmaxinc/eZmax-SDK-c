@@ -26,9 +26,10 @@ typedef struct ezsignsignature_get_ezsignsignatures_automatic_v1_response_t {
     struct common_response_obj_debug_t *obj_debug; //model
     struct ezsignsignature_get_ezsignsignatures_automatic_v1_response_m_payload_t *m_payload; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsignature_get_ezsignsignatures_automatic_v1_response_t;
 
-ezsignsignature_get_ezsignsignatures_automatic_v1_response_t *ezsignsignature_get_ezsignsignatures_automatic_v1_response_create(
+__attribute__((deprecated)) ezsignsignature_get_ezsignsignatures_automatic_v1_response_t *ezsignsignature_get_ezsignsignatures_automatic_v1_response_create(
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug,
     ezsignsignature_get_ezsignsignatures_automatic_v1_response_m_payload_t *m_payload

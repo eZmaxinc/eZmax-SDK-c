@@ -18,14 +18,6 @@ typedef struct ezmaxinvoicinguser_response_compound_t ezmaxinvoicinguser_respons
 #include "custom_contact_name_response.h"
 #include "field_e_ezmaxinvoicinguser_variationezsign.h"
 
-// Enum  for ezmaxinvoicinguser_response_compound
-
-typedef enum  { ezmax_api_definition__full_ezmaxinvoicinguser_response_compound__NULL = 0, ezmax_api_definition__full_ezmaxinvoicinguser_response_compound__Charge, ezmax_api_definition__full_ezmaxinvoicinguser_response_compound__Refund, ezmax_api_definition__full_ezmaxinvoicinguser_response_compound__Same } ezmax_api_definition__full_ezmaxinvoicinguser_response_compound__e;
-
-char* ezmaxinvoicinguser_response_compound_e_ezmaxinvoicinguser_variationezsign_ToString(ezmax_api_definition__full_ezmaxinvoicinguser_response_compound__e e_ezmaxinvoicinguser_variationezsign);
-
-ezmax_api_definition__full_ezmaxinvoicinguser_response_compound__e ezmaxinvoicinguser_response_compound_e_ezmaxinvoicinguser_variationezsign_FromString(char* e_ezmaxinvoicinguser_variationezsign);
-
 
 
 typedef struct ezmaxinvoicinguser_response_compound_t {
@@ -37,12 +29,13 @@ typedef struct ezmaxinvoicinguser_response_compound_t {
     int i_ezmaxinvoicinguser_ezsigndocument; //numeric
     int b_ezmaxinvoicinguser_ezsignaccount; //boolean
     int b_ezmaxinvoicinguser_billableezsign; //boolean
-    field_e_ezmaxinvoicinguser_variationezsign_t *e_ezmaxinvoicinguser_variationezsign; // custom
+    ezmax_api_definition__full_field_e_ezmaxinvoicinguser_variationezsign__e e_ezmaxinvoicinguser_variationezsign; //referenced enum
     struct custom_contact_name_response_t *obj_contact_name; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezmaxinvoicinguser_response_compound_t;
 
-ezmaxinvoicinguser_response_compound_t *ezmaxinvoicinguser_response_compound_create(
+__attribute__((deprecated)) ezmaxinvoicinguser_response_compound_t *ezmaxinvoicinguser_response_compound_create(
     int pki_ezmaxinvoicinguser_id,
     int fki_ezmaxinvoicing_id,
     int fki_billingentityinternal_id,
@@ -51,7 +44,7 @@ ezmaxinvoicinguser_response_compound_t *ezmaxinvoicinguser_response_compound_cre
     int i_ezmaxinvoicinguser_ezsigndocument,
     int b_ezmaxinvoicinguser_ezsignaccount,
     int b_ezmaxinvoicinguser_billableezsign,
-    field_e_ezmaxinvoicinguser_variationezsign_t *e_ezmaxinvoicinguser_variationezsign,
+    ezmax_api_definition__full_field_e_ezmaxinvoicinguser_variationezsign__e e_ezmaxinvoicinguser_variationezsign,
     custom_contact_name_response_t *obj_contact_name
 );
 

@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_user_logintype__e field_e_user_logintype_fiel
     return 0;
 }
 
-cJSON *field_e_user_logintype_field_e_user_logintype_convertToJSON(ezmax_api_definition__full_field_e_user_logintype__e field_e_user_logintype) {
+cJSON *field_e_user_logintype_convertToJSON(ezmax_api_definition__full_field_e_user_logintype__e field_e_user_logintype) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_user_logintype", field_e_user_logintype_field_e_user_logintype_ToString(field_e_user_logintype)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_user_logintype__e field_e_user_logintype_field_e_user_logintype_parseFromJSON(cJSON *field_e_user_logintypeJSON) {
-    ezmax_api_definition__full_field_e_user_logintype__e *field_e_user_logintype = NULL;
-    ezmax_api_definition__full_field_e_user_logintype__e field_e_user_logintypeVariable;
-    cJSON *field_e_user_logintypeVar = cJSON_GetObjectItemCaseSensitive(field_e_user_logintypeJSON, "field_e_user_logintype");
-    if(!cJSON_IsString(field_e_user_logintypeVar) || (field_e_user_logintypeVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_user_logintype__e field_e_user_logintype_parseFromJSON(cJSON *field_e_user_logintypeJSON) {
+    if(!cJSON_IsString(field_e_user_logintypeJSON) || (field_e_user_logintypeJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_user_logintypeVariable = field_e_user_logintype_field_e_user_logintype_FromString(field_e_user_logintypeVar->valuestring);
-    return field_e_user_logintypeVariable;
-end:
-    return 0;
+    return field_e_user_logintype_field_e_user_logintype_FromString(field_e_user_logintypeJSON->valuestring);
 }

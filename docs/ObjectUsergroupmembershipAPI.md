@@ -47,7 +47,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectUsergroupmembershipAPI_usergroupmembershipDeleteObjectV1(apiClient_t *apiClient, int *pkiUsergroupmembershipID);
+usergroupmembership_delete_object_v1_response_t* ObjectUsergroupmembershipAPI_usergroupmembershipDeleteObjectV1(apiClient_t *apiClient, int *pkiUsergroupmembershipID);
 ```
 
 ### Parameters
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[usergroupmembership_delete_object_v1_response_t](usergroupmembership_delete_object_v1_response.md) *
 
 
 ### Authorization
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectUsergroupmembershipAPI_usergroupmembershipEditObjectV1(apiClient_t *apiClient, int *pkiUsergroupmembershipID, usergroupmembership_edit_object_v1_request_t *usergroupmembership_edit_object_v1_request);
+usergroupmembership_edit_object_v1_response_t* ObjectUsergroupmembershipAPI_usergroupmembershipEditObjectV1(apiClient_t *apiClient, int *pkiUsergroupmembershipID, usergroupmembership_edit_object_v1_request_t *usergroupmembership_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[usergroupmembership_edit_object_v1_response_t](usergroupmembership_edit_object_v1_response.md) *
 
 
 ### Authorization

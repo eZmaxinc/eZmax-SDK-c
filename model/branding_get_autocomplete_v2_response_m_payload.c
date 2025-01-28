@@ -5,7 +5,7 @@
 
 
 
-branding_get_autocomplete_v2_response_m_payload_t *branding_get_autocomplete_v2_response_m_payload_create(
+static branding_get_autocomplete_v2_response_m_payload_t *branding_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_branding
     ) {
     branding_get_autocomplete_v2_response_m_payload_t *branding_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(branding_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ branding_get_autocomplete_v2_response_m_payload_t *branding_get_autocomplete_v2_
     }
     branding_get_autocomplete_v2_response_m_payload_local_var->a_obj_branding = a_obj_branding;
 
+    branding_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return branding_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) branding_get_autocomplete_v2_response_m_payload_t *branding_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_branding
+    ) {
+    return branding_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_branding
+        );
+}
 
 void branding_get_autocomplete_v2_response_m_payload_free(branding_get_autocomplete_v2_response_m_payload_t *branding_get_autocomplete_v2_response_m_payload) {
     if(NULL == branding_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(branding_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "branding_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ branding_get_autocomplete_v2_response_m_payload_t *branding_get_autocomplete_v2_
 
     // branding_get_autocomplete_v2_response_m_payload->a_obj_branding
     cJSON *a_obj_branding = cJSON_GetObjectItemCaseSensitive(branding_get_autocomplete_v2_response_m_payloadJSON, "a_objBranding");
+    if (cJSON_IsNull(a_obj_branding)) {
+        a_obj_branding = NULL;
+    }
     if (!a_obj_branding) {
         goto end;
     }
@@ -96,7 +111,7 @@ branding_get_autocomplete_v2_response_m_payload_t *branding_get_autocomplete_v2_
     }
 
 
-    branding_get_autocomplete_v2_response_m_payload_local_var = branding_get_autocomplete_v2_response_m_payload_create (
+    branding_get_autocomplete_v2_response_m_payload_local_var = branding_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_brandingList
         );
 

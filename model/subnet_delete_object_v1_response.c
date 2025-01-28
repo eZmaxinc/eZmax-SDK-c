@@ -5,7 +5,7 @@
 
 
 
-subnet_delete_object_v1_response_t *subnet_delete_object_v1_response_create(
+static subnet_delete_object_v1_response_t *subnet_delete_object_v1_response_create_internal(
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
@@ -16,12 +16,26 @@ subnet_delete_object_v1_response_t *subnet_delete_object_v1_response_create(
     subnet_delete_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     subnet_delete_object_v1_response_local_var->obj_debug = obj_debug;
 
+    subnet_delete_object_v1_response_local_var->_library_owned = 1;
     return subnet_delete_object_v1_response_local_var;
 }
 
+__attribute__((deprecated)) subnet_delete_object_v1_response_t *subnet_delete_object_v1_response_create(
+    common_response_obj_debug_payload_t *obj_debug_payload,
+    common_response_obj_debug_t *obj_debug
+    ) {
+    return subnet_delete_object_v1_response_create_internal (
+        obj_debug_payload,
+        obj_debug
+        );
+}
 
 void subnet_delete_object_v1_response_free(subnet_delete_object_v1_response_t *subnet_delete_object_v1_response) {
     if(NULL == subnet_delete_object_v1_response){
+        return ;
+    }
+    if(subnet_delete_object_v1_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "subnet_delete_object_v1_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -85,6 +99,9 @@ subnet_delete_object_v1_response_t *subnet_delete_object_v1_response_parseFromJS
 
     // subnet_delete_object_v1_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(subnet_delete_object_v1_responseJSON, "objDebugPayload");
+    if (cJSON_IsNull(obj_debug_payload)) {
+        obj_debug_payload = NULL;
+    }
     if (!obj_debug_payload) {
         goto end;
     }
@@ -94,12 +111,15 @@ subnet_delete_object_v1_response_t *subnet_delete_object_v1_response_parseFromJS
 
     // subnet_delete_object_v1_response->obj_debug
     cJSON *obj_debug = cJSON_GetObjectItemCaseSensitive(subnet_delete_object_v1_responseJSON, "objDebug");
+    if (cJSON_IsNull(obj_debug)) {
+        obj_debug = NULL;
+    }
     if (obj_debug) { 
     obj_debug_local_nonprim = common_response_obj_debug_parseFromJSON(obj_debug); //nonprimitive
     }
 
 
-    subnet_delete_object_v1_response_local_var = subnet_delete_object_v1_response_create (
+    subnet_delete_object_v1_response_local_var = subnet_delete_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );

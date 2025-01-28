@@ -5,7 +5,7 @@
 
 
 
-creditcardclient_create_object_v1_request_t *creditcardclient_create_object_v1_request_create(
+static creditcardclient_create_object_v1_request_t *creditcardclient_create_object_v1_request_create_internal(
     list_t *a_obj_creditcardclient
     ) {
     creditcardclient_create_object_v1_request_t *creditcardclient_create_object_v1_request_local_var = malloc(sizeof(creditcardclient_create_object_v1_request_t));
@@ -14,12 +14,24 @@ creditcardclient_create_object_v1_request_t *creditcardclient_create_object_v1_r
     }
     creditcardclient_create_object_v1_request_local_var->a_obj_creditcardclient = a_obj_creditcardclient;
 
+    creditcardclient_create_object_v1_request_local_var->_library_owned = 1;
     return creditcardclient_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) creditcardclient_create_object_v1_request_t *creditcardclient_create_object_v1_request_create(
+    list_t *a_obj_creditcardclient
+    ) {
+    return creditcardclient_create_object_v1_request_create_internal (
+        a_obj_creditcardclient
+        );
+}
 
 void creditcardclient_create_object_v1_request_free(creditcardclient_create_object_v1_request_t *creditcardclient_create_object_v1_request) {
     if(NULL == creditcardclient_create_object_v1_request){
+        return ;
+    }
+    if(creditcardclient_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "creditcardclient_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ creditcardclient_create_object_v1_request_t *creditcardclient_create_object_v1_r
 
     // creditcardclient_create_object_v1_request->a_obj_creditcardclient
     cJSON *a_obj_creditcardclient = cJSON_GetObjectItemCaseSensitive(creditcardclient_create_object_v1_requestJSON, "a_objCreditcardclient");
+    if (cJSON_IsNull(a_obj_creditcardclient)) {
+        a_obj_creditcardclient = NULL;
+    }
     if (!a_obj_creditcardclient) {
         goto end;
     }
@@ -96,7 +111,7 @@ creditcardclient_create_object_v1_request_t *creditcardclient_create_object_v1_r
     }
 
 
-    creditcardclient_create_object_v1_request_local_var = creditcardclient_create_object_v1_request_create (
+    creditcardclient_create_object_v1_request_local_var = creditcardclient_create_object_v1_request_create_internal (
         a_obj_creditcardclientList
         );
 

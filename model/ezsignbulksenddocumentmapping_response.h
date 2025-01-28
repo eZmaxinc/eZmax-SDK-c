@@ -25,9 +25,10 @@ typedef struct ezsignbulksenddocumentmapping_response_t {
     int fki_ezsigntemplate_id; //numeric
     int i_ezsignbulksenddocumentmapping_order; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignbulksenddocumentmapping_response_t;
 
-ezsignbulksenddocumentmapping_response_t *ezsignbulksenddocumentmapping_response_create(
+__attribute__((deprecated)) ezsignbulksenddocumentmapping_response_t *ezsignbulksenddocumentmapping_response_create(
     int pki_ezsignbulksenddocumentmapping_id,
     int fki_ezsignbulksend_id,
     int fki_ezsigntemplatepackage_id,

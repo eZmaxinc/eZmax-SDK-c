@@ -5,7 +5,7 @@
 
 
 
-apikey_generate_delegated_credentials_v1_response_m_payload_t *apikey_generate_delegated_credentials_v1_response_m_payload_create(
+static apikey_generate_delegated_credentials_v1_response_m_payload_t *apikey_generate_delegated_credentials_v1_response_m_payload_create_internal(
     custom_apikey_t *obj_apikey
     ) {
     apikey_generate_delegated_credentials_v1_response_m_payload_t *apikey_generate_delegated_credentials_v1_response_m_payload_local_var = malloc(sizeof(apikey_generate_delegated_credentials_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ apikey_generate_delegated_credentials_v1_response_m_payload_t *apikey_generate_d
     }
     apikey_generate_delegated_credentials_v1_response_m_payload_local_var->obj_apikey = obj_apikey;
 
+    apikey_generate_delegated_credentials_v1_response_m_payload_local_var->_library_owned = 1;
     return apikey_generate_delegated_credentials_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) apikey_generate_delegated_credentials_v1_response_m_payload_t *apikey_generate_delegated_credentials_v1_response_m_payload_create(
+    custom_apikey_t *obj_apikey
+    ) {
+    return apikey_generate_delegated_credentials_v1_response_m_payload_create_internal (
+        obj_apikey
+        );
+}
 
 void apikey_generate_delegated_credentials_v1_response_m_payload_free(apikey_generate_delegated_credentials_v1_response_m_payload_t *apikey_generate_delegated_credentials_v1_response_m_payload) {
     if(NULL == apikey_generate_delegated_credentials_v1_response_m_payload){
+        return ;
+    }
+    if(apikey_generate_delegated_credentials_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "apikey_generate_delegated_credentials_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ apikey_generate_delegated_credentials_v1_response_m_payload_t *apikey_generate_d
 
     // apikey_generate_delegated_credentials_v1_response_m_payload->obj_apikey
     cJSON *obj_apikey = cJSON_GetObjectItemCaseSensitive(apikey_generate_delegated_credentials_v1_response_m_payloadJSON, "objApikey");
+    if (cJSON_IsNull(obj_apikey)) {
+        obj_apikey = NULL;
+    }
     if (!obj_apikey) {
         goto end;
     }
@@ -71,7 +86,7 @@ apikey_generate_delegated_credentials_v1_response_m_payload_t *apikey_generate_d
     obj_apikey_local_nonprim = custom_apikey_parseFromJSON(obj_apikey); //nonprimitive
 
 
-    apikey_generate_delegated_credentials_v1_response_m_payload_local_var = apikey_generate_delegated_credentials_v1_response_m_payload_create (
+    apikey_generate_delegated_credentials_v1_response_m_payload_local_var = apikey_generate_delegated_credentials_v1_response_m_payload_create_internal (
         obj_apikey_local_nonprim
         );
 

@@ -22,9 +22,10 @@ typedef struct franchisereferalincome_create_object_v2_request_t franchiserefera
 typedef struct franchisereferalincome_create_object_v2_request_t {
     list_t *a_obj_franchisereferalincome; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } franchisereferalincome_create_object_v2_request_t;
 
-franchisereferalincome_create_object_v2_request_t *franchisereferalincome_create_object_v2_request_create(
+__attribute__((deprecated)) franchisereferalincome_create_object_v2_request_t *franchisereferalincome_create_object_v2_request_create(
     list_t *a_obj_franchisereferalincome
 );
 

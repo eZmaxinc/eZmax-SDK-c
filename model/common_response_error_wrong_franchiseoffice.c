@@ -4,27 +4,10 @@
 #include "common_response_error_wrong_franchiseoffice.h"
 
 
-char* common_response_error_wrong_franchiseoffice_e_error_code_ToString(ezmax_api_definition__full_common_response_error_wrong_franchiseoffice__e e_error_code) {
-    char* e_error_codeArray[] =  { "NULL", "BADREQUEST", "BADREQUEST_CLOCKSKEW", "UNAUTHORIZED_BADAUTH", "UNAUTHORIZED_BADMFA", "UNAUTHORIZED_EXPIRED", "UNAUTHORIZED_REQUEST", "FORBIDDEN", "FORBIDDEN_CONFIGURATION", "FORBIDDEN_MODULE", "FORBIDDEN_NOACCESS", "FORBIDDEN_PERMISSION", "FORBIDDEN_SUBSCRIPTION", "FORBIDDEN_USERTYPE", "FORBIDDEN_USER_ORIGIN_EXTERNAL", "NOTFOUND", "NOTFOUND_OBJECT", "NOTFOUND_ROUTE", "METHODNOTALLOWED", "NOTACCEPTABLE_CONTENT", "NOTACCEPTABLE_LANGUAGE", "UNPROCESSABLEENTITY_ACTIVESESSION_ALREADY_CLONING", "UNPROCESSABLEENTITY_CANNOTDELETE", "UNPROCESSABLEENTITY_CANNOTMODIFY", "UNPROCESSABLEENTITY_CHANGEPASSWORD_INVALID_CURRENT", "UNPROCESSABLEENTITY_CHANGEPASSWORD_SAME", "UNPROCESSABLEENTITY_DATA_MISSING", "UNPROCESSABLEENTITY_DATA_UNIQUE", "UNPROCESSABLEENTITY_DATA_VALIDATION", "UNPROCESSABLEENTITY_DATA_OUTOFBOUND", "UNPROCESSABLEENTITY_DOWNLOAD_ERROR", "UNPROCESSABLEENTITY_EZSIGNFORM_VALIDATION", "UNPROCESSABLEENTITY_EZSIGNSIGNERCONNECTED", "UNPROCESSABLEENTITY_NOTHINGTODO", "UNPROCESSABLEENTITY_NOTREADY", "UNPROCESSABLEENTITY_PDF_FORM", "UNPROCESSABLEENTITY_PDF_SIGNATURE", "UNPROCESSABLEENTITY_PDF_FORM_AND_SIGNATURE", "UNPROCESSABLEENTITY_PDF_INCOMPATIBLE", "UNPROCESSABLEENTITY_PDF_PASSWORD", "UNPROCESSABLEENTITY_PDF_WRONG_PASSWORD", "UNPROCESSABLEENTITY_PDF_REPAIRABLE", "UNPROCESSABLEENTITY_PDF_XFA", "UNPROCESSABLEENTITY_TEMPLATE_MISMATCH", "UNPROCESSABLEENTITY_UNMODIFIABLE_FIELD", "UNPROCESSABLEENTITY_USER_STAGED", "TOOMANYREQUESTS", "TOOMANYREQUESTS_THIRDPARTY", "ERROR_INTERNAL", "ERROR_CONFIGURATION", "ERROR_NOTIMPLEMENTED" };
-    return e_error_codeArray[e_error_code];
-}
 
-ezmax_api_definition__full_common_response_error_wrong_franchiseoffice__e common_response_error_wrong_franchiseoffice_e_error_code_FromString(char* e_error_code){
-    int stringToReturn = 0;
-    char *e_error_codeArray[] =  { "NULL", "BADREQUEST", "BADREQUEST_CLOCKSKEW", "UNAUTHORIZED_BADAUTH", "UNAUTHORIZED_BADMFA", "UNAUTHORIZED_EXPIRED", "UNAUTHORIZED_REQUEST", "FORBIDDEN", "FORBIDDEN_CONFIGURATION", "FORBIDDEN_MODULE", "FORBIDDEN_NOACCESS", "FORBIDDEN_PERMISSION", "FORBIDDEN_SUBSCRIPTION", "FORBIDDEN_USERTYPE", "FORBIDDEN_USER_ORIGIN_EXTERNAL", "NOTFOUND", "NOTFOUND_OBJECT", "NOTFOUND_ROUTE", "METHODNOTALLOWED", "NOTACCEPTABLE_CONTENT", "NOTACCEPTABLE_LANGUAGE", "UNPROCESSABLEENTITY_ACTIVESESSION_ALREADY_CLONING", "UNPROCESSABLEENTITY_CANNOTDELETE", "UNPROCESSABLEENTITY_CANNOTMODIFY", "UNPROCESSABLEENTITY_CHANGEPASSWORD_INVALID_CURRENT", "UNPROCESSABLEENTITY_CHANGEPASSWORD_SAME", "UNPROCESSABLEENTITY_DATA_MISSING", "UNPROCESSABLEENTITY_DATA_UNIQUE", "UNPROCESSABLEENTITY_DATA_VALIDATION", "UNPROCESSABLEENTITY_DATA_OUTOFBOUND", "UNPROCESSABLEENTITY_DOWNLOAD_ERROR", "UNPROCESSABLEENTITY_EZSIGNFORM_VALIDATION", "UNPROCESSABLEENTITY_EZSIGNSIGNERCONNECTED", "UNPROCESSABLEENTITY_NOTHINGTODO", "UNPROCESSABLEENTITY_NOTREADY", "UNPROCESSABLEENTITY_PDF_FORM", "UNPROCESSABLEENTITY_PDF_SIGNATURE", "UNPROCESSABLEENTITY_PDF_FORM_AND_SIGNATURE", "UNPROCESSABLEENTITY_PDF_INCOMPATIBLE", "UNPROCESSABLEENTITY_PDF_PASSWORD", "UNPROCESSABLEENTITY_PDF_WRONG_PASSWORD", "UNPROCESSABLEENTITY_PDF_REPAIRABLE", "UNPROCESSABLEENTITY_PDF_XFA", "UNPROCESSABLEENTITY_TEMPLATE_MISMATCH", "UNPROCESSABLEENTITY_UNMODIFIABLE_FIELD", "UNPROCESSABLEENTITY_USER_STAGED", "TOOMANYREQUESTS", "TOOMANYREQUESTS_THIRDPARTY", "ERROR_INTERNAL", "ERROR_CONFIGURATION", "ERROR_NOTIMPLEMENTED" };
-    size_t sizeofArray = sizeof(e_error_codeArray) / sizeof(e_error_codeArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_error_code, e_error_codeArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-common_response_error_wrong_franchiseoffice_t *common_response_error_wrong_franchiseoffice_create(
+static common_response_error_wrong_franchiseoffice_t *common_response_error_wrong_franchiseoffice_create_internal(
     char *s_error_message,
-    field_e_error_code_t *e_error_code,
+    ezmax_api_definition__full_field_e_error_code__e e_error_code,
     list_t *a_s_error_messagedetail,
     int fki_franchiseagence_id,
     char *s_franchiseagence_name,
@@ -43,22 +26,42 @@ common_response_error_wrong_franchiseoffice_t *common_response_error_wrong_franc
     common_response_error_wrong_franchiseoffice_local_var->fki_franchiseoffice_id = fki_franchiseoffice_id;
     common_response_error_wrong_franchiseoffice_local_var->i_franchiseoffice_code = i_franchiseoffice_code;
 
+    common_response_error_wrong_franchiseoffice_local_var->_library_owned = 1;
     return common_response_error_wrong_franchiseoffice_local_var;
 }
 
+__attribute__((deprecated)) common_response_error_wrong_franchiseoffice_t *common_response_error_wrong_franchiseoffice_create(
+    char *s_error_message,
+    ezmax_api_definition__full_field_e_error_code__e e_error_code,
+    list_t *a_s_error_messagedetail,
+    int fki_franchiseagence_id,
+    char *s_franchiseagence_name,
+    int fki_franchiseoffice_id,
+    char *i_franchiseoffice_code
+    ) {
+    return common_response_error_wrong_franchiseoffice_create_internal (
+        s_error_message,
+        e_error_code,
+        a_s_error_messagedetail,
+        fki_franchiseagence_id,
+        s_franchiseagence_name,
+        fki_franchiseoffice_id,
+        i_franchiseoffice_code
+        );
+}
 
 void common_response_error_wrong_franchiseoffice_free(common_response_error_wrong_franchiseoffice_t *common_response_error_wrong_franchiseoffice) {
     if(NULL == common_response_error_wrong_franchiseoffice){
+        return ;
+    }
+    if(common_response_error_wrong_franchiseoffice->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "common_response_error_wrong_franchiseoffice_free");
         return ;
     }
     listEntry_t *listEntry;
     if (common_response_error_wrong_franchiseoffice->s_error_message) {
         free(common_response_error_wrong_franchiseoffice->s_error_message);
         common_response_error_wrong_franchiseoffice->s_error_message = NULL;
-    }
-    if (common_response_error_wrong_franchiseoffice->e_error_code) {
-        field_e_error_code_free(common_response_error_wrong_franchiseoffice->e_error_code);
-        common_response_error_wrong_franchiseoffice->e_error_code = NULL;
     }
     if (common_response_error_wrong_franchiseoffice->a_s_error_messagedetail) {
         list_ForEach(listEntry, common_response_error_wrong_franchiseoffice->a_s_error_messagedetail) {
@@ -91,7 +94,7 @@ cJSON *common_response_error_wrong_franchiseoffice_convertToJSON(common_response
 
 
     // common_response_error_wrong_franchiseoffice->e_error_code
-    if (ezmax_api_definition__full_common_response_error_wrong_franchiseoffice__NULL == common_response_error_wrong_franchiseoffice->e_error_code) {
+    if (ezmax_api_definition__full_field_e_error_code__NULL == common_response_error_wrong_franchiseoffice->e_error_code) {
         goto fail;
     }
     cJSON *e_error_code_local_JSON = field_e_error_code_convertToJSON(common_response_error_wrong_franchiseoffice->e_error_code);
@@ -113,7 +116,7 @@ cJSON *common_response_error_wrong_franchiseoffice_convertToJSON(common_response
 
     listEntry_t *a_s_error_messagedetailListEntry;
     list_ForEach(a_s_error_messagedetailListEntry, common_response_error_wrong_franchiseoffice->a_s_error_messagedetail) {
-    if(cJSON_AddStringToObject(a_s_error_messagedetail, "", (char*)a_s_error_messagedetailListEntry->data) == NULL)
+    if(cJSON_AddStringToObject(a_s_error_messagedetail, "", a_s_error_messagedetailListEntry->data) == NULL)
     {
         goto fail;
     }
@@ -169,13 +172,16 @@ common_response_error_wrong_franchiseoffice_t *common_response_error_wrong_franc
     common_response_error_wrong_franchiseoffice_t *common_response_error_wrong_franchiseoffice_local_var = NULL;
 
     // define the local variable for common_response_error_wrong_franchiseoffice->e_error_code
-    field_e_error_code_t *e_error_code_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_error_code__e e_error_code_local_nonprim = 0;
 
     // define the local list for common_response_error_wrong_franchiseoffice->a_s_error_messagedetail
     list_t *a_s_error_messagedetailList = NULL;
 
     // common_response_error_wrong_franchiseoffice->s_error_message
     cJSON *s_error_message = cJSON_GetObjectItemCaseSensitive(common_response_error_wrong_franchiseofficeJSON, "sErrorMessage");
+    if (cJSON_IsNull(s_error_message)) {
+        s_error_message = NULL;
+    }
     if (!s_error_message) {
         goto end;
     }
@@ -188,6 +194,9 @@ common_response_error_wrong_franchiseoffice_t *common_response_error_wrong_franc
 
     // common_response_error_wrong_franchiseoffice->e_error_code
     cJSON *e_error_code = cJSON_GetObjectItemCaseSensitive(common_response_error_wrong_franchiseofficeJSON, "eErrorCode");
+    if (cJSON_IsNull(e_error_code)) {
+        e_error_code = NULL;
+    }
     if (!e_error_code) {
         goto end;
     }
@@ -197,6 +206,9 @@ common_response_error_wrong_franchiseoffice_t *common_response_error_wrong_franc
 
     // common_response_error_wrong_franchiseoffice->a_s_error_messagedetail
     cJSON *a_s_error_messagedetail = cJSON_GetObjectItemCaseSensitive(common_response_error_wrong_franchiseofficeJSON, "a_sErrorMessagedetail");
+    if (cJSON_IsNull(a_s_error_messagedetail)) {
+        a_s_error_messagedetail = NULL;
+    }
     if (a_s_error_messagedetail) { 
     cJSON *a_s_error_messagedetail_local = NULL;
     if(!cJSON_IsArray(a_s_error_messagedetail)) {
@@ -216,6 +228,9 @@ common_response_error_wrong_franchiseoffice_t *common_response_error_wrong_franc
 
     // common_response_error_wrong_franchiseoffice->fki_franchiseagence_id
     cJSON *fki_franchiseagence_id = cJSON_GetObjectItemCaseSensitive(common_response_error_wrong_franchiseofficeJSON, "fkiFranchiseagenceID");
+    if (cJSON_IsNull(fki_franchiseagence_id)) {
+        fki_franchiseagence_id = NULL;
+    }
     if (!fki_franchiseagence_id) {
         goto end;
     }
@@ -228,6 +243,9 @@ common_response_error_wrong_franchiseoffice_t *common_response_error_wrong_franc
 
     // common_response_error_wrong_franchiseoffice->s_franchiseagence_name
     cJSON *s_franchiseagence_name = cJSON_GetObjectItemCaseSensitive(common_response_error_wrong_franchiseofficeJSON, "sFranchiseagenceName");
+    if (cJSON_IsNull(s_franchiseagence_name)) {
+        s_franchiseagence_name = NULL;
+    }
     if (!s_franchiseagence_name) {
         goto end;
     }
@@ -240,6 +258,9 @@ common_response_error_wrong_franchiseoffice_t *common_response_error_wrong_franc
 
     // common_response_error_wrong_franchiseoffice->fki_franchiseoffice_id
     cJSON *fki_franchiseoffice_id = cJSON_GetObjectItemCaseSensitive(common_response_error_wrong_franchiseofficeJSON, "fkiFranchiseofficeID");
+    if (cJSON_IsNull(fki_franchiseoffice_id)) {
+        fki_franchiseoffice_id = NULL;
+    }
     if (!fki_franchiseoffice_id) {
         goto end;
     }
@@ -252,6 +273,9 @@ common_response_error_wrong_franchiseoffice_t *common_response_error_wrong_franc
 
     // common_response_error_wrong_franchiseoffice->i_franchiseoffice_code
     cJSON *i_franchiseoffice_code = cJSON_GetObjectItemCaseSensitive(common_response_error_wrong_franchiseofficeJSON, "iFranchiseofficeCode");
+    if (cJSON_IsNull(i_franchiseoffice_code)) {
+        i_franchiseoffice_code = NULL;
+    }
     if (!i_franchiseoffice_code) {
         goto end;
     }
@@ -263,7 +287,7 @@ common_response_error_wrong_franchiseoffice_t *common_response_error_wrong_franc
     }
 
 
-    common_response_error_wrong_franchiseoffice_local_var = common_response_error_wrong_franchiseoffice_create (
+    common_response_error_wrong_franchiseoffice_local_var = common_response_error_wrong_franchiseoffice_create_internal (
         strdup(s_error_message->valuestring),
         e_error_code_local_nonprim,
         a_s_error_messagedetail ? a_s_error_messagedetailList : NULL,
@@ -276,8 +300,7 @@ common_response_error_wrong_franchiseoffice_t *common_response_error_wrong_franc
     return common_response_error_wrong_franchiseoffice_local_var;
 end:
     if (e_error_code_local_nonprim) {
-        field_e_error_code_free(e_error_code_local_nonprim);
-        e_error_code_local_nonprim = NULL;
+        e_error_code_local_nonprim = 0;
     }
     if (a_s_error_messagedetailList) {
         listEntry_t *listEntry = NULL;

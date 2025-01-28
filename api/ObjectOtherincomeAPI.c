@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Retrieve Communication count
@@ -25,15 +20,18 @@ ObjectOtherincomeAPI_otherincomeGetCommunicationCountV1(apiClient_t *apiClient, 
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/otherincome/{pkiOtherincomeID}/getCommunicationCount")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/otherincome/{pkiOtherincomeID}/getCommunicationCount");
+    char *localVarPath = strdup("/1/object/otherincome/{pkiOtherincomeID}/getCommunicationCount");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiOtherincomeID =  + strlen("{ pkiOtherincomeID }");
+    long sizeOfPathParams_pkiOtherincomeID =  + sizeof("{ pkiOtherincomeID }") - 1;
     if(pkiOtherincomeID == 0){
         goto end;
     }
@@ -41,7 +39,7 @@ ObjectOtherincomeAPI_otherincomeGetCommunicationCountV1(apiClient_t *apiClient, 
     snprintf(localVarToReplace_pkiOtherincomeID, sizeOfPathParams_pkiOtherincomeID, "{%s}", "pkiOtherincomeID");
 
     char localVarBuff_pkiOtherincomeID[256];
-    intToStr(localVarBuff_pkiOtherincomeID, *pkiOtherincomeID);
+    snprintf(localVarBuff_pkiOtherincomeID, sizeof localVarBuff_pkiOtherincomeID, "%ld", (long)*pkiOtherincomeID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiOtherincomeID, localVarBuff_pkiOtherincomeID);
 
@@ -56,6 +54,7 @@ ObjectOtherincomeAPI_otherincomeGetCommunicationCountV1(apiClient_t *apiClient, 
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -67,11 +66,14 @@ ObjectOtherincomeAPI_otherincomeGetCommunicationCountV1(apiClient_t *apiClient, 
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectOtherincomeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    otherincome_get_communication_count_v1_response_t *elementToReturn = otherincome_get_communication_count_v1_response_parseFromJSON(ObjectOtherincomeAPIlocalVarJSON);
-    cJSON_Delete(ObjectOtherincomeAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    otherincome_get_communication_count_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectOtherincomeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = otherincome_get_communication_count_v1_response_parseFromJSON(ObjectOtherincomeAPIlocalVarJSON);
+        cJSON_Delete(ObjectOtherincomeAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -107,15 +109,18 @@ ObjectOtherincomeAPI_otherincomeGetCommunicationListV1(apiClient_t *apiClient, i
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/otherincome/{pkiOtherincomeID}/getCommunicationList")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/otherincome/{pkiOtherincomeID}/getCommunicationList");
+    char *localVarPath = strdup("/1/object/otherincome/{pkiOtherincomeID}/getCommunicationList");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiOtherincomeID =  + strlen("{ pkiOtherincomeID }");
+    long sizeOfPathParams_pkiOtherincomeID =  + sizeof("{ pkiOtherincomeID }") - 1;
     if(pkiOtherincomeID == 0){
         goto end;
     }
@@ -123,7 +128,7 @@ ObjectOtherincomeAPI_otherincomeGetCommunicationListV1(apiClient_t *apiClient, i
     snprintf(localVarToReplace_pkiOtherincomeID, sizeOfPathParams_pkiOtherincomeID, "{%s}", "pkiOtherincomeID");
 
     char localVarBuff_pkiOtherincomeID[256];
-    intToStr(localVarBuff_pkiOtherincomeID, *pkiOtherincomeID);
+    snprintf(localVarBuff_pkiOtherincomeID, sizeof localVarBuff_pkiOtherincomeID, "%ld", (long)*pkiOtherincomeID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiOtherincomeID, localVarBuff_pkiOtherincomeID);
 
@@ -138,6 +143,7 @@ ObjectOtherincomeAPI_otherincomeGetCommunicationListV1(apiClient_t *apiClient, i
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -149,11 +155,14 @@ ObjectOtherincomeAPI_otherincomeGetCommunicationListV1(apiClient_t *apiClient, i
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectOtherincomeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    otherincome_get_communication_list_v1_response_t *elementToReturn = otherincome_get_communication_list_v1_response_parseFromJSON(ObjectOtherincomeAPIlocalVarJSON);
-    cJSON_Delete(ObjectOtherincomeAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    otherincome_get_communication_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectOtherincomeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = otherincome_get_communication_list_v1_response_parseFromJSON(ObjectOtherincomeAPIlocalVarJSON);
+        cJSON_Delete(ObjectOtherincomeAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -189,15 +198,18 @@ ObjectOtherincomeAPI_otherincomeGetCommunicationrecipientsV1(apiClient_t *apiCli
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/otherincome/{pkiOtherincomeID}/getCommunicationrecipients")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/otherincome/{pkiOtherincomeID}/getCommunicationrecipients");
+    char *localVarPath = strdup("/1/object/otherincome/{pkiOtherincomeID}/getCommunicationrecipients");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiOtherincomeID =  + strlen("{ pkiOtherincomeID }");
+    long sizeOfPathParams_pkiOtherincomeID =  + sizeof("{ pkiOtherincomeID }") - 1;
     if(pkiOtherincomeID == 0){
         goto end;
     }
@@ -205,7 +217,7 @@ ObjectOtherincomeAPI_otherincomeGetCommunicationrecipientsV1(apiClient_t *apiCli
     snprintf(localVarToReplace_pkiOtherincomeID, sizeOfPathParams_pkiOtherincomeID, "{%s}", "pkiOtherincomeID");
 
     char localVarBuff_pkiOtherincomeID[256];
-    intToStr(localVarBuff_pkiOtherincomeID, *pkiOtherincomeID);
+    snprintf(localVarBuff_pkiOtherincomeID, sizeof localVarBuff_pkiOtherincomeID, "%ld", (long)*pkiOtherincomeID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiOtherincomeID, localVarBuff_pkiOtherincomeID);
 
@@ -220,6 +232,7 @@ ObjectOtherincomeAPI_otherincomeGetCommunicationrecipientsV1(apiClient_t *apiCli
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -231,11 +244,14 @@ ObjectOtherincomeAPI_otherincomeGetCommunicationrecipientsV1(apiClient_t *apiCli
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectOtherincomeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    otherincome_get_communicationrecipients_v1_response_t *elementToReturn = otherincome_get_communicationrecipients_v1_response_parseFromJSON(ObjectOtherincomeAPIlocalVarJSON);
-    cJSON_Delete(ObjectOtherincomeAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    otherincome_get_communicationrecipients_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectOtherincomeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = otherincome_get_communicationrecipients_v1_response_parseFromJSON(ObjectOtherincomeAPIlocalVarJSON);
+        cJSON_Delete(ObjectOtherincomeAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -271,15 +287,18 @@ ObjectOtherincomeAPI_otherincomeGetCommunicationsendersV1(apiClient_t *apiClient
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/otherincome/{pkiOtherincomeID}/getCommunicationsenders")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/otherincome/{pkiOtherincomeID}/getCommunicationsenders");
+    char *localVarPath = strdup("/1/object/otherincome/{pkiOtherincomeID}/getCommunicationsenders");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiOtherincomeID =  + strlen("{ pkiOtherincomeID }");
+    long sizeOfPathParams_pkiOtherincomeID =  + sizeof("{ pkiOtherincomeID }") - 1;
     if(pkiOtherincomeID == 0){
         goto end;
     }
@@ -287,7 +306,7 @@ ObjectOtherincomeAPI_otherincomeGetCommunicationsendersV1(apiClient_t *apiClient
     snprintf(localVarToReplace_pkiOtherincomeID, sizeOfPathParams_pkiOtherincomeID, "{%s}", "pkiOtherincomeID");
 
     char localVarBuff_pkiOtherincomeID[256];
-    intToStr(localVarBuff_pkiOtherincomeID, *pkiOtherincomeID);
+    snprintf(localVarBuff_pkiOtherincomeID, sizeof localVarBuff_pkiOtherincomeID, "%ld", (long)*pkiOtherincomeID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiOtherincomeID, localVarBuff_pkiOtherincomeID);
 
@@ -302,6 +321,7 @@ ObjectOtherincomeAPI_otherincomeGetCommunicationsendersV1(apiClient_t *apiClient
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -313,11 +333,14 @@ ObjectOtherincomeAPI_otherincomeGetCommunicationsendersV1(apiClient_t *apiClient
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectOtherincomeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    otherincome_get_communicationsenders_v1_response_t *elementToReturn = otherincome_get_communicationsenders_v1_response_parseFromJSON(ObjectOtherincomeAPIlocalVarJSON);
-    cJSON_Delete(ObjectOtherincomeAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    otherincome_get_communicationsenders_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectOtherincomeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = otherincome_get_communicationsenders_v1_response_parseFromJSON(ObjectOtherincomeAPIlocalVarJSON);
+        cJSON_Delete(ObjectOtherincomeAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

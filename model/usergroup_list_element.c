@@ -5,7 +5,7 @@
 
 
 
-usergroup_list_element_t *usergroup_list_element_create(
+static usergroup_list_element_t *usergroup_list_element_create_internal(
     int pki_usergroup_id,
     char *s_usergroup_name_x,
     int i_count_user
@@ -18,12 +18,28 @@ usergroup_list_element_t *usergroup_list_element_create(
     usergroup_list_element_local_var->s_usergroup_name_x = s_usergroup_name_x;
     usergroup_list_element_local_var->i_count_user = i_count_user;
 
+    usergroup_list_element_local_var->_library_owned = 1;
     return usergroup_list_element_local_var;
 }
 
+__attribute__((deprecated)) usergroup_list_element_t *usergroup_list_element_create(
+    int pki_usergroup_id,
+    char *s_usergroup_name_x,
+    int i_count_user
+    ) {
+    return usergroup_list_element_create_internal (
+        pki_usergroup_id,
+        s_usergroup_name_x,
+        i_count_user
+        );
+}
 
 void usergroup_list_element_free(usergroup_list_element_t *usergroup_list_element) {
     if(NULL == usergroup_list_element){
+        return ;
+    }
+    if(usergroup_list_element->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroup_list_element_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -77,6 +93,9 @@ usergroup_list_element_t *usergroup_list_element_parseFromJSON(cJSON *usergroup_
 
     // usergroup_list_element->pki_usergroup_id
     cJSON *pki_usergroup_id = cJSON_GetObjectItemCaseSensitive(usergroup_list_elementJSON, "pkiUsergroupID");
+    if (cJSON_IsNull(pki_usergroup_id)) {
+        pki_usergroup_id = NULL;
+    }
     if (!pki_usergroup_id) {
         goto end;
     }
@@ -89,6 +108,9 @@ usergroup_list_element_t *usergroup_list_element_parseFromJSON(cJSON *usergroup_
 
     // usergroup_list_element->s_usergroup_name_x
     cJSON *s_usergroup_name_x = cJSON_GetObjectItemCaseSensitive(usergroup_list_elementJSON, "sUsergroupNameX");
+    if (cJSON_IsNull(s_usergroup_name_x)) {
+        s_usergroup_name_x = NULL;
+    }
     if (!s_usergroup_name_x) {
         goto end;
     }
@@ -101,6 +123,9 @@ usergroup_list_element_t *usergroup_list_element_parseFromJSON(cJSON *usergroup_
 
     // usergroup_list_element->i_count_user
     cJSON *i_count_user = cJSON_GetObjectItemCaseSensitive(usergroup_list_elementJSON, "iCountUser");
+    if (cJSON_IsNull(i_count_user)) {
+        i_count_user = NULL;
+    }
     if (!i_count_user) {
         goto end;
     }
@@ -112,7 +137,7 @@ usergroup_list_element_t *usergroup_list_element_parseFromJSON(cJSON *usergroup_
     }
 
 
-    usergroup_list_element_local_var = usergroup_list_element_create (
+    usergroup_list_element_local_var = usergroup_list_element_create_internal (
         pki_usergroup_id->valuedouble,
         strdup(s_usergroup_name_x->valuestring),
         i_count_user->valuedouble

@@ -5,7 +5,7 @@
 
 
 
-ezsignannotation_get_object_v2_response_m_payload_t *ezsignannotation_get_object_v2_response_m_payload_create(
+static ezsignannotation_get_object_v2_response_m_payload_t *ezsignannotation_get_object_v2_response_m_payload_create_internal(
     ezsignannotation_response_compound_t *obj_ezsignannotation
     ) {
     ezsignannotation_get_object_v2_response_m_payload_t *ezsignannotation_get_object_v2_response_m_payload_local_var = malloc(sizeof(ezsignannotation_get_object_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ ezsignannotation_get_object_v2_response_m_payload_t *ezsignannotation_get_object
     }
     ezsignannotation_get_object_v2_response_m_payload_local_var->obj_ezsignannotation = obj_ezsignannotation;
 
+    ezsignannotation_get_object_v2_response_m_payload_local_var->_library_owned = 1;
     return ezsignannotation_get_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezsignannotation_get_object_v2_response_m_payload_t *ezsignannotation_get_object_v2_response_m_payload_create(
+    ezsignannotation_response_compound_t *obj_ezsignannotation
+    ) {
+    return ezsignannotation_get_object_v2_response_m_payload_create_internal (
+        obj_ezsignannotation
+        );
+}
 
 void ezsignannotation_get_object_v2_response_m_payload_free(ezsignannotation_get_object_v2_response_m_payload_t *ezsignannotation_get_object_v2_response_m_payload) {
     if(NULL == ezsignannotation_get_object_v2_response_m_payload){
+        return ;
+    }
+    if(ezsignannotation_get_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignannotation_get_object_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ ezsignannotation_get_object_v2_response_m_payload_t *ezsignannotation_get_object
 
     // ezsignannotation_get_object_v2_response_m_payload->obj_ezsignannotation
     cJSON *obj_ezsignannotation = cJSON_GetObjectItemCaseSensitive(ezsignannotation_get_object_v2_response_m_payloadJSON, "objEzsignannotation");
+    if (cJSON_IsNull(obj_ezsignannotation)) {
+        obj_ezsignannotation = NULL;
+    }
     if (!obj_ezsignannotation) {
         goto end;
     }
@@ -71,7 +86,7 @@ ezsignannotation_get_object_v2_response_m_payload_t *ezsignannotation_get_object
     obj_ezsignannotation_local_nonprim = ezsignannotation_response_compound_parseFromJSON(obj_ezsignannotation); //nonprimitive
 
 
-    ezsignannotation_get_object_v2_response_m_payload_local_var = ezsignannotation_get_object_v2_response_m_payload_create (
+    ezsignannotation_get_object_v2_response_m_payload_local_var = ezsignannotation_get_object_v2_response_m_payload_create_internal (
         obj_ezsignannotation_local_nonprim
         );
 

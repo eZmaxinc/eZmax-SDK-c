@@ -4,26 +4,9 @@
 #include "contactinformations_request_v2.h"
 
 
-char* contactinformations_request_v2_e_contactinformations_type_ToString(ezmax_api_definition__full_contactinformations_request_v2__e e_contactinformations_type) {
-    char* e_contactinformations_typeArray[] =  { "NULL", "BankAccount", "ContactObject", "CreditCard", "Customer", "ExternalBroker", "ExternalBrokerFirm", "EzcomCompany", "FinancialInstitution", "FranchiseCompany", "FranchiseOffice", "Supplier" };
-    return e_contactinformations_typeArray[e_contactinformations_type];
-}
 
-ezmax_api_definition__full_contactinformations_request_v2__e contactinformations_request_v2_e_contactinformations_type_FromString(char* e_contactinformations_type){
-    int stringToReturn = 0;
-    char *e_contactinformations_typeArray[] =  { "NULL", "BankAccount", "ContactObject", "CreditCard", "Customer", "ExternalBroker", "ExternalBrokerFirm", "EzcomCompany", "FinancialInstitution", "FranchiseCompany", "FranchiseOffice", "Supplier" };
-    size_t sizeofArray = sizeof(e_contactinformations_typeArray) / sizeof(e_contactinformations_typeArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_contactinformations_type, e_contactinformations_typeArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-contactinformations_request_v2_t *contactinformations_request_v2_create(
-    field_e_contactinformations_type_t *e_contactinformations_type,
+static contactinformations_request_v2_t *contactinformations_request_v2_create_internal(
+    ezmax_api_definition__full_field_e_contactinformations_type__e e_contactinformations_type,
     int i_address_default,
     int i_phone_default,
     int i_email_default,
@@ -39,19 +22,35 @@ contactinformations_request_v2_t *contactinformations_request_v2_create(
     contactinformations_request_v2_local_var->i_email_default = i_email_default;
     contactinformations_request_v2_local_var->i_website_default = i_website_default;
 
+    contactinformations_request_v2_local_var->_library_owned = 1;
     return contactinformations_request_v2_local_var;
 }
 
+__attribute__((deprecated)) contactinformations_request_v2_t *contactinformations_request_v2_create(
+    ezmax_api_definition__full_field_e_contactinformations_type__e e_contactinformations_type,
+    int i_address_default,
+    int i_phone_default,
+    int i_email_default,
+    int i_website_default
+    ) {
+    return contactinformations_request_v2_create_internal (
+        e_contactinformations_type,
+        i_address_default,
+        i_phone_default,
+        i_email_default,
+        i_website_default
+        );
+}
 
 void contactinformations_request_v2_free(contactinformations_request_v2_t *contactinformations_request_v2) {
     if(NULL == contactinformations_request_v2){
         return ;
     }
-    listEntry_t *listEntry;
-    if (contactinformations_request_v2->e_contactinformations_type) {
-        field_e_contactinformations_type_free(contactinformations_request_v2->e_contactinformations_type);
-        contactinformations_request_v2->e_contactinformations_type = NULL;
+    if(contactinformations_request_v2->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "contactinformations_request_v2_free");
+        return ;
     }
+    listEntry_t *listEntry;
     free(contactinformations_request_v2);
 }
 
@@ -59,7 +58,7 @@ cJSON *contactinformations_request_v2_convertToJSON(contactinformations_request_
     cJSON *item = cJSON_CreateObject();
 
     // contactinformations_request_v2->e_contactinformations_type
-    if (ezmax_api_definition__full_contactinformations_request_v2__NULL == contactinformations_request_v2->e_contactinformations_type) {
+    if (ezmax_api_definition__full_field_e_contactinformations_type__NULL == contactinformations_request_v2->e_contactinformations_type) {
         goto fail;
     }
     cJSON *e_contactinformations_type_local_JSON = field_e_contactinformations_type_convertToJSON(contactinformations_request_v2->e_contactinformations_type);
@@ -120,10 +119,13 @@ contactinformations_request_v2_t *contactinformations_request_v2_parseFromJSON(c
     contactinformations_request_v2_t *contactinformations_request_v2_local_var = NULL;
 
     // define the local variable for contactinformations_request_v2->e_contactinformations_type
-    field_e_contactinformations_type_t *e_contactinformations_type_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_contactinformations_type__e e_contactinformations_type_local_nonprim = 0;
 
     // contactinformations_request_v2->e_contactinformations_type
     cJSON *e_contactinformations_type = cJSON_GetObjectItemCaseSensitive(contactinformations_request_v2JSON, "eContactinformationsType");
+    if (cJSON_IsNull(e_contactinformations_type)) {
+        e_contactinformations_type = NULL;
+    }
     if (!e_contactinformations_type) {
         goto end;
     }
@@ -133,6 +135,9 @@ contactinformations_request_v2_t *contactinformations_request_v2_parseFromJSON(c
 
     // contactinformations_request_v2->i_address_default
     cJSON *i_address_default = cJSON_GetObjectItemCaseSensitive(contactinformations_request_v2JSON, "iAddressDefault");
+    if (cJSON_IsNull(i_address_default)) {
+        i_address_default = NULL;
+    }
     if (!i_address_default) {
         goto end;
     }
@@ -145,6 +150,9 @@ contactinformations_request_v2_t *contactinformations_request_v2_parseFromJSON(c
 
     // contactinformations_request_v2->i_phone_default
     cJSON *i_phone_default = cJSON_GetObjectItemCaseSensitive(contactinformations_request_v2JSON, "iPhoneDefault");
+    if (cJSON_IsNull(i_phone_default)) {
+        i_phone_default = NULL;
+    }
     if (!i_phone_default) {
         goto end;
     }
@@ -157,6 +165,9 @@ contactinformations_request_v2_t *contactinformations_request_v2_parseFromJSON(c
 
     // contactinformations_request_v2->i_email_default
     cJSON *i_email_default = cJSON_GetObjectItemCaseSensitive(contactinformations_request_v2JSON, "iEmailDefault");
+    if (cJSON_IsNull(i_email_default)) {
+        i_email_default = NULL;
+    }
     if (!i_email_default) {
         goto end;
     }
@@ -169,6 +180,9 @@ contactinformations_request_v2_t *contactinformations_request_v2_parseFromJSON(c
 
     // contactinformations_request_v2->i_website_default
     cJSON *i_website_default = cJSON_GetObjectItemCaseSensitive(contactinformations_request_v2JSON, "iWebsiteDefault");
+    if (cJSON_IsNull(i_website_default)) {
+        i_website_default = NULL;
+    }
     if (!i_website_default) {
         goto end;
     }
@@ -180,7 +194,7 @@ contactinformations_request_v2_t *contactinformations_request_v2_parseFromJSON(c
     }
 
 
-    contactinformations_request_v2_local_var = contactinformations_request_v2_create (
+    contactinformations_request_v2_local_var = contactinformations_request_v2_create_internal (
         e_contactinformations_type_local_nonprim,
         i_address_default->valuedouble,
         i_phone_default->valuedouble,
@@ -191,8 +205,7 @@ contactinformations_request_v2_t *contactinformations_request_v2_parseFromJSON(c
     return contactinformations_request_v2_local_var;
 end:
     if (e_contactinformations_type_local_nonprim) {
-        field_e_contactinformations_type_free(e_contactinformations_type_local_nonprim);
-        e_contactinformations_type_local_nonprim = NULL;
+        e_contactinformations_type_local_nonprim = 0;
     }
     return NULL;
 

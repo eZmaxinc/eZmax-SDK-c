@@ -27,9 +27,10 @@ typedef struct ezsigntemplatepackage_request_compound_t {
     int b_ezsigntemplatepackage_adminonly; //boolean
     int b_ezsigntemplatepackage_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatepackage_request_compound_t;
 
-ezsigntemplatepackage_request_compound_t *ezsigntemplatepackage_request_compound_create(
+__attribute__((deprecated)) ezsigntemplatepackage_request_compound_t *ezsigntemplatepackage_request_compound_create(
     int pki_ezsigntemplatepackage_id,
     int fki_ezsignfoldertype_id,
     int fki_ezdoctemplatedocument_id,

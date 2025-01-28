@@ -5,7 +5,7 @@
 
 
 
-billingentityinternal_get_object_v2_response_m_payload_t *billingentityinternal_get_object_v2_response_m_payload_create(
+static billingentityinternal_get_object_v2_response_m_payload_t *billingentityinternal_get_object_v2_response_m_payload_create_internal(
     billingentityinternal_response_compound_t *obj_billingentityinternal
     ) {
     billingentityinternal_get_object_v2_response_m_payload_t *billingentityinternal_get_object_v2_response_m_payload_local_var = malloc(sizeof(billingentityinternal_get_object_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ billingentityinternal_get_object_v2_response_m_payload_t *billingentityinternal_
     }
     billingentityinternal_get_object_v2_response_m_payload_local_var->obj_billingentityinternal = obj_billingentityinternal;
 
+    billingentityinternal_get_object_v2_response_m_payload_local_var->_library_owned = 1;
     return billingentityinternal_get_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) billingentityinternal_get_object_v2_response_m_payload_t *billingentityinternal_get_object_v2_response_m_payload_create(
+    billingentityinternal_response_compound_t *obj_billingentityinternal
+    ) {
+    return billingentityinternal_get_object_v2_response_m_payload_create_internal (
+        obj_billingentityinternal
+        );
+}
 
 void billingentityinternal_get_object_v2_response_m_payload_free(billingentityinternal_get_object_v2_response_m_payload_t *billingentityinternal_get_object_v2_response_m_payload) {
     if(NULL == billingentityinternal_get_object_v2_response_m_payload){
+        return ;
+    }
+    if(billingentityinternal_get_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "billingentityinternal_get_object_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ billingentityinternal_get_object_v2_response_m_payload_t *billingentityinternal_
 
     // billingentityinternal_get_object_v2_response_m_payload->obj_billingentityinternal
     cJSON *obj_billingentityinternal = cJSON_GetObjectItemCaseSensitive(billingentityinternal_get_object_v2_response_m_payloadJSON, "objBillingentityinternal");
+    if (cJSON_IsNull(obj_billingentityinternal)) {
+        obj_billingentityinternal = NULL;
+    }
     if (!obj_billingentityinternal) {
         goto end;
     }
@@ -71,7 +86,7 @@ billingentityinternal_get_object_v2_response_m_payload_t *billingentityinternal_
     obj_billingentityinternal_local_nonprim = billingentityinternal_response_compound_parseFromJSON(obj_billingentityinternal); //nonprimitive
 
 
-    billingentityinternal_get_object_v2_response_m_payload_local_var = billingentityinternal_get_object_v2_response_m_payload_create (
+    billingentityinternal_get_object_v2_response_m_payload_local_var = billingentityinternal_get_object_v2_response_m_payload_create_internal (
         obj_billingentityinternal_local_nonprim
         );
 

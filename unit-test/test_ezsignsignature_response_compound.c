@@ -60,7 +60,7 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
       "Phone number",
       ezmax_api_definition__full_ezsignsignature_response_compound__"AllOf",
       "Foo",
-      "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
+      "^[0-9]{9}$",
        // false, not to have infinite recursion
       instantiate_custom_contact_name_response(0),
        // false, not to have infinite recursion
@@ -111,7 +111,7 @@ ezsignsignature_response_compound_t* instantiate_ezsignsignature_response_compou
       "Phone number",
       ezmax_api_definition__full_ezsignsignature_response_compound__"AllOf",
       "Foo",
-      "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
+      "^[0-9]{9}$",
       NULL,
       NULL,
       NULL,

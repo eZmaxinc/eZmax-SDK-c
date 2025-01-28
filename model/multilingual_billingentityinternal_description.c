@@ -5,7 +5,7 @@
 
 
 
-multilingual_billingentityinternal_description_t *multilingual_billingentityinternal_description_create(
+static multilingual_billingentityinternal_description_t *multilingual_billingentityinternal_description_create_internal(
     char *s_billingentityinternal_description1,
     char *s_billingentityinternal_description2
     ) {
@@ -16,12 +16,26 @@ multilingual_billingentityinternal_description_t *multilingual_billingentityinte
     multilingual_billingentityinternal_description_local_var->s_billingentityinternal_description1 = s_billingentityinternal_description1;
     multilingual_billingentityinternal_description_local_var->s_billingentityinternal_description2 = s_billingentityinternal_description2;
 
+    multilingual_billingentityinternal_description_local_var->_library_owned = 1;
     return multilingual_billingentityinternal_description_local_var;
 }
 
+__attribute__((deprecated)) multilingual_billingentityinternal_description_t *multilingual_billingentityinternal_description_create(
+    char *s_billingentityinternal_description1,
+    char *s_billingentityinternal_description2
+    ) {
+    return multilingual_billingentityinternal_description_create_internal (
+        s_billingentityinternal_description1,
+        s_billingentityinternal_description2
+        );
+}
 
 void multilingual_billingentityinternal_description_free(multilingual_billingentityinternal_description_t *multilingual_billingentityinternal_description) {
     if(NULL == multilingual_billingentityinternal_description){
+        return ;
+    }
+    if(multilingual_billingentityinternal_description->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "multilingual_billingentityinternal_description_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -68,6 +82,9 @@ multilingual_billingentityinternal_description_t *multilingual_billingentityinte
 
     // multilingual_billingentityinternal_description->s_billingentityinternal_description1
     cJSON *s_billingentityinternal_description1 = cJSON_GetObjectItemCaseSensitive(multilingual_billingentityinternal_descriptionJSON, "sBillingentityinternalDescription1");
+    if (cJSON_IsNull(s_billingentityinternal_description1)) {
+        s_billingentityinternal_description1 = NULL;
+    }
     if (s_billingentityinternal_description1) { 
     if(!cJSON_IsString(s_billingentityinternal_description1) && !cJSON_IsNull(s_billingentityinternal_description1))
     {
@@ -77,6 +94,9 @@ multilingual_billingentityinternal_description_t *multilingual_billingentityinte
 
     // multilingual_billingentityinternal_description->s_billingentityinternal_description2
     cJSON *s_billingentityinternal_description2 = cJSON_GetObjectItemCaseSensitive(multilingual_billingentityinternal_descriptionJSON, "sBillingentityinternalDescription2");
+    if (cJSON_IsNull(s_billingentityinternal_description2)) {
+        s_billingentityinternal_description2 = NULL;
+    }
     if (s_billingentityinternal_description2) { 
     if(!cJSON_IsString(s_billingentityinternal_description2) && !cJSON_IsNull(s_billingentityinternal_description2))
     {
@@ -85,7 +105,7 @@ multilingual_billingentityinternal_description_t *multilingual_billingentityinte
     }
 
 
-    multilingual_billingentityinternal_description_local_var = multilingual_billingentityinternal_description_create (
+    multilingual_billingentityinternal_description_local_var = multilingual_billingentityinternal_description_create_internal (
         s_billingentityinternal_description1 && !cJSON_IsNull(s_billingentityinternal_description1) ? strdup(s_billingentityinternal_description1->valuestring) : NULL,
         s_billingentityinternal_description2 && !cJSON_IsNull(s_billingentityinternal_description2) ? strdup(s_billingentityinternal_description2->valuestring) : NULL
         );

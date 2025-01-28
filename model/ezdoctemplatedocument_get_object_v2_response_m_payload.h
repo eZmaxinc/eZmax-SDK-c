@@ -22,9 +22,10 @@ typedef struct ezdoctemplatedocument_get_object_v2_response_m_payload_t ezdoctem
 typedef struct ezdoctemplatedocument_get_object_v2_response_m_payload_t {
     struct ezdoctemplatedocument_response_compound_t *obj_ezdoctemplatedocument; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezdoctemplatedocument_get_object_v2_response_m_payload_t;
 
-ezdoctemplatedocument_get_object_v2_response_m_payload_t *ezdoctemplatedocument_get_object_v2_response_m_payload_create(
+__attribute__((deprecated)) ezdoctemplatedocument_get_object_v2_response_m_payload_t *ezdoctemplatedocument_get_object_v2_response_m_payload_create(
     ezdoctemplatedocument_response_compound_t *obj_ezdoctemplatedocument
 );
 

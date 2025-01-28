@@ -15,17 +15,18 @@
 
 typedef struct userstaged_get_object_v2_response_m_payload_t userstaged_get_object_v2_response_m_payload_t;
 
-#include "userstaged_response.h"
+#include "userstaged_response_compound.h"
 
 
 
 typedef struct userstaged_get_object_v2_response_m_payload_t {
-    struct userstaged_response_t *obj_userstaged; //model
+    struct userstaged_response_compound_t *obj_userstaged; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } userstaged_get_object_v2_response_m_payload_t;
 
-userstaged_get_object_v2_response_m_payload_t *userstaged_get_object_v2_response_m_payload_create(
-    userstaged_response_t *obj_userstaged
+__attribute__((deprecated)) userstaged_get_object_v2_response_m_payload_t *userstaged_get_object_v2_response_m_payload_create(
+    userstaged_response_compound_t *obj_userstaged
 );
 
 void userstaged_get_object_v2_response_m_payload_free(userstaged_get_object_v2_response_m_payload_t *userstaged_get_object_v2_response_m_payload);

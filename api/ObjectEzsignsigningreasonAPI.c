@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 // Functions for enum SSELECTOR for ObjectEzsignsigningreasonAPI_ezsignsigningreasonGetAutocompleteV2
 
@@ -267,11 +262,14 @@ ObjectEzsignsigningreasonAPI_ezsignsigningreasonCreateObjectV1(apiClient_t *apiC
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignsigningreason")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignsigningreason");
+    char *localVarPath = strdup("/1/object/ezsignsigningreason");
+
 
 
 
@@ -280,9 +278,10 @@ ObjectEzsignsigningreasonAPI_ezsignsigningreasonCreateObjectV1(apiClient_t *apiC
     cJSON *localVarSingleItemJSON_ezsignsigningreason_create_object_v1_request = NULL;
     if (ezsignsigningreason_create_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignsigningreason_create_object_v1_request = ezsignsigningreason_create_object_v1_request_convertToJSON(ezsignsigningreason_create_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignsigningreason_create_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -294,6 +293,7 @@ ObjectEzsignsigningreasonAPI_ezsignsigningreasonCreateObjectV1(apiClient_t *apiC
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -301,11 +301,14 @@ ObjectEzsignsigningreasonAPI_ezsignsigningreasonCreateObjectV1(apiClient_t *apiC
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignsigningreasonAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignsigningreason_create_object_v1_response_t *elementToReturn = ezsignsigningreason_create_object_v1_response_parseFromJSON(ObjectEzsignsigningreasonAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignsigningreasonAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignsigningreason_create_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignsigningreasonAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignsigningreason_create_object_v1_response_parseFromJSON(ObjectEzsignsigningreasonAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignsigningreasonAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -336,7 +339,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignsigningreason_edit_object_v1_response_t*
 ObjectEzsignsigningreasonAPI_ezsignsigningreasonEditObjectV1(apiClient_t *apiClient, int *pkiEzsignsigningreasonID, ezsignsigningreason_edit_object_v1_request_t *ezsignsigningreason_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -345,15 +348,18 @@ ObjectEzsignsigningreasonAPI_ezsignsigningreasonEditObjectV1(apiClient_t *apiCli
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignsigningreason/{pkiEzsignsigningreasonID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignsigningreason/{pkiEzsignsigningreasonID}");
+    char *localVarPath = strdup("/1/object/ezsignsigningreason/{pkiEzsignsigningreasonID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignsigningreasonID =  + strlen("{ pkiEzsignsigningreasonID }");
+    long sizeOfPathParams_pkiEzsignsigningreasonID =  + sizeof("{ pkiEzsignsigningreasonID }") - 1;
     if(pkiEzsignsigningreasonID == 0){
         goto end;
     }
@@ -361,7 +367,7 @@ ObjectEzsignsigningreasonAPI_ezsignsigningreasonEditObjectV1(apiClient_t *apiCli
     snprintf(localVarToReplace_pkiEzsignsigningreasonID, sizeOfPathParams_pkiEzsignsigningreasonID, "{%s}", "pkiEzsignsigningreasonID");
 
     char localVarBuff_pkiEzsignsigningreasonID[256];
-    intToStr(localVarBuff_pkiEzsignsigningreasonID, *pkiEzsignsigningreasonID);
+    snprintf(localVarBuff_pkiEzsignsigningreasonID, sizeof localVarBuff_pkiEzsignsigningreasonID, "%ld", (long)*pkiEzsignsigningreasonID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignsigningreasonID, localVarBuff_pkiEzsignsigningreasonID);
 
@@ -372,9 +378,10 @@ ObjectEzsignsigningreasonAPI_ezsignsigningreasonEditObjectV1(apiClient_t *apiCli
     cJSON *localVarSingleItemJSON_ezsignsigningreason_edit_object_v1_request = NULL;
     if (ezsignsigningreason_edit_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignsigningreason_edit_object_v1_request = ezsignsigningreason_edit_object_v1_request_convertToJSON(ezsignsigningreason_edit_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignsigningreason_edit_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -386,6 +393,7 @@ ObjectEzsignsigningreasonAPI_ezsignsigningreasonEditObjectV1(apiClient_t *apiCli
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -401,11 +409,14 @@ ObjectEzsignsigningreasonAPI_ezsignsigningreasonEditObjectV1(apiClient_t *apiCli
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignsigningreasonAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignsigningreasonAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignsigningreasonAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignsigningreason_edit_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignsigningreasonAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignsigningreason_edit_object_v1_response_parseFromJSON(ObjectEzsignsigningreasonAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignsigningreasonAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -446,22 +457,27 @@ ObjectEzsignsigningreasonAPI_ezsignsigningreasonGetAutocompleteV2(apiClient_t *a
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/ezsignsigningreason/getAutocomplete/{sSelector}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/ezsignsigningreason/getAutocomplete/{sSelector}");
+    char *localVarPath = strdup("/2/object/ezsignsigningreason/getAutocomplete/{sSelector}");
+
+    if(!sSelector)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_sSelector = strlen(sSelector)+3 + strlen("{ sSelector }");
-    if(sSelector == NULL) {
+    long sizeOfPathParams_sSelector = strlen(ezsignsigningreasonGetAutocompleteV2_SSELECTOR_ToString(sSelector))+3 + sizeof("{ sSelector }") - 1;
+    if(sSelector == 0) {
         goto end;
     }
     char* localVarToReplace_sSelector = malloc(sizeOfPathParams_sSelector);
     sprintf(localVarToReplace_sSelector, "{%s}", "sSelector");
 
-    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, sSelector);
+    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, ezsignsigningreasonGetAutocompleteV2_SSELECTOR_ToString(sSelector));
 
 
 
@@ -485,7 +501,7 @@ ObjectEzsignsigningreasonAPI_ezsignsigningreasonGetAutocompleteV2(apiClient_t *a
     {
         keyQuery_eFilterActive = strdup("eFilterActive");
         valueQuery_eFilterActive = (eFilterActive);
-        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(ezsignsigningreasonGetAutocompleteV2_EFILTERACTIVE_ToString(
+        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, strdup(ezsignsigningreasonGetAutocompleteV2_EFILTERACTIVE_ToString(
         valueQuery_eFilterActive)));
         list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
     }
@@ -510,6 +526,7 @@ ObjectEzsignsigningreasonAPI_ezsignsigningreasonGetAutocompleteV2(apiClient_t *a
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -517,11 +534,14 @@ ObjectEzsignsigningreasonAPI_ezsignsigningreasonGetAutocompleteV2(apiClient_t *a
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignsigningreasonAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignsigningreason_get_autocomplete_v2_response_t *elementToReturn = ezsignsigningreason_get_autocomplete_v2_response_parseFromJSON(ObjectEzsignsigningreasonAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignsigningreasonAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignsigningreason_get_autocomplete_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignsigningreasonAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignsigningreason_get_autocomplete_v2_response_parseFromJSON(ObjectEzsignsigningreasonAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignsigningreasonAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -582,11 +602,14 @@ ObjectEzsignsigningreasonAPI_ezsignsigningreasonGetListV1(apiClient_t *apiClient
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignsigningreason/getList")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignsigningreason/getList");
+    char *localVarPath = strdup("/1/object/ezsignsigningreason/getList");
+
 
 
 
@@ -611,7 +634,7 @@ ObjectEzsignsigningreasonAPI_ezsignsigningreasonGetListV1(apiClient_t *apiClient
     {
         keyQuery_eOrderBy = strdup("eOrderBy");
         valueQuery_eOrderBy = (eOrderBy);
-        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, (void *)strdup(ezsignsigningreasonGetListV1_EORDERBY_ToString(
+        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, strdup(ezsignsigningreasonGetListV1_EORDERBY_ToString(
         valueQuery_eOrderBy)));
         list_addElement(localVarQueryParameters,keyPairQuery_eOrderBy);
     }
@@ -663,6 +686,7 @@ ObjectEzsignsigningreasonAPI_ezsignsigningreasonGetListV1(apiClient_t *apiClient
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -674,11 +698,14 @@ ObjectEzsignsigningreasonAPI_ezsignsigningreasonGetListV1(apiClient_t *apiClient
     //    printf("%s\n","The URL is valid, but one of the Accept header is not defined or invalid. For example, you set the header \&quot;Accept: application/json\&quot; but the function can only return \&quot;Content-type: image/png\&quot;");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignsigningreasonAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignsigningreason_get_list_v1_response_t *elementToReturn = ezsignsigningreason_get_list_v1_response_parseFromJSON(ObjectEzsignsigningreasonAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignsigningreasonAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignsigningreason_get_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignsigningreasonAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignsigningreason_get_list_v1_response_parseFromJSON(ObjectEzsignsigningreasonAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignsigningreasonAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -762,15 +789,18 @@ ObjectEzsignsigningreasonAPI_ezsignsigningreasonGetObjectV2(apiClient_t *apiClie
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/ezsignsigningreason/{pkiEzsignsigningreasonID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/ezsignsigningreason/{pkiEzsignsigningreasonID}");
+    char *localVarPath = strdup("/2/object/ezsignsigningreason/{pkiEzsignsigningreasonID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignsigningreasonID =  + strlen("{ pkiEzsignsigningreasonID }");
+    long sizeOfPathParams_pkiEzsignsigningreasonID =  + sizeof("{ pkiEzsignsigningreasonID }") - 1;
     if(pkiEzsignsigningreasonID == 0){
         goto end;
     }
@@ -778,7 +808,7 @@ ObjectEzsignsigningreasonAPI_ezsignsigningreasonGetObjectV2(apiClient_t *apiClie
     snprintf(localVarToReplace_pkiEzsignsigningreasonID, sizeOfPathParams_pkiEzsignsigningreasonID, "{%s}", "pkiEzsignsigningreasonID");
 
     char localVarBuff_pkiEzsignsigningreasonID[256];
-    intToStr(localVarBuff_pkiEzsignsigningreasonID, *pkiEzsignsigningreasonID);
+    snprintf(localVarBuff_pkiEzsignsigningreasonID, sizeof localVarBuff_pkiEzsignsigningreasonID, "%ld", (long)*pkiEzsignsigningreasonID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignsigningreasonID, localVarBuff_pkiEzsignsigningreasonID);
 
@@ -793,6 +823,7 @@ ObjectEzsignsigningreasonAPI_ezsignsigningreasonGetObjectV2(apiClient_t *apiClie
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -804,11 +835,14 @@ ObjectEzsignsigningreasonAPI_ezsignsigningreasonGetObjectV2(apiClient_t *apiClie
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignsigningreasonAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignsigningreason_get_object_v2_response_t *elementToReturn = ezsignsigningreason_get_object_v2_response_parseFromJSON(ObjectEzsignsigningreasonAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignsigningreasonAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignsigningreason_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignsigningreasonAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignsigningreason_get_object_v2_response_parseFromJSON(ObjectEzsignsigningreasonAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignsigningreasonAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

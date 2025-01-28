@@ -5,7 +5,7 @@
 
 
 
-cors_create_object_v1_response_m_payload_t *cors_create_object_v1_response_m_payload_create(
+static cors_create_object_v1_response_m_payload_t *cors_create_object_v1_response_m_payload_create_internal(
     list_t *a_pki_cors_id
     ) {
     cors_create_object_v1_response_m_payload_t *cors_create_object_v1_response_m_payload_local_var = malloc(sizeof(cors_create_object_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ cors_create_object_v1_response_m_payload_t *cors_create_object_v1_response_m_pay
     }
     cors_create_object_v1_response_m_payload_local_var->a_pki_cors_id = a_pki_cors_id;
 
+    cors_create_object_v1_response_m_payload_local_var->_library_owned = 1;
     return cors_create_object_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) cors_create_object_v1_response_m_payload_t *cors_create_object_v1_response_m_payload_create(
+    list_t *a_pki_cors_id
+    ) {
+    return cors_create_object_v1_response_m_payload_create_internal (
+        a_pki_cors_id
+        );
+}
 
 void cors_create_object_v1_response_m_payload_free(cors_create_object_v1_response_m_payload_t *cors_create_object_v1_response_m_payload) {
     if(NULL == cors_create_object_v1_response_m_payload){
+        return ;
+    }
+    if(cors_create_object_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "cors_create_object_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +82,9 @@ cors_create_object_v1_response_m_payload_t *cors_create_object_v1_response_m_pay
 
     // cors_create_object_v1_response_m_payload->a_pki_cors_id
     cJSON *a_pki_cors_id = cJSON_GetObjectItemCaseSensitive(cors_create_object_v1_response_m_payloadJSON, "a_pkiCorsID");
+    if (cJSON_IsNull(a_pki_cors_id)) {
+        a_pki_cors_id = NULL;
+    }
     if (!a_pki_cors_id) {
         goto end;
     }
@@ -87,7 +102,7 @@ cors_create_object_v1_response_m_payload_t *cors_create_object_v1_response_m_pay
         {
             goto end;
         }
-        double *a_pki_cors_id_local_value = (double *)calloc(1, sizeof(double));
+        double *a_pki_cors_id_local_value = calloc(1, sizeof(double));
         if(!a_pki_cors_id_local_value)
         {
             goto end;
@@ -97,7 +112,7 @@ cors_create_object_v1_response_m_payload_t *cors_create_object_v1_response_m_pay
     }
 
 
-    cors_create_object_v1_response_m_payload_local_var = cors_create_object_v1_response_m_payload_create (
+    cors_create_object_v1_response_m_payload_local_var = cors_create_object_v1_response_m_payload_create_internal (
         a_pki_cors_idList
         );
 

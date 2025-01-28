@@ -22,9 +22,10 @@ typedef struct creditcardclient_edit_object_v1_request_t creditcardclient_edit_o
 typedef struct creditcardclient_edit_object_v1_request_t {
     struct creditcardclient_request_compound_t *obj_creditcardclient; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } creditcardclient_edit_object_v1_request_t;
 
-creditcardclient_edit_object_v1_request_t *creditcardclient_edit_object_v1_request_create(
+__attribute__((deprecated)) creditcardclient_edit_object_v1_request_t *creditcardclient_edit_object_v1_request_create(
     creditcardclient_request_compound_t *obj_creditcardclient
 );
 

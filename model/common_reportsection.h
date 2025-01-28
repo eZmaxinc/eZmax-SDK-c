@@ -19,29 +19,22 @@ typedef struct common_reportsection_t common_reportsection_t;
 #include "common_reportsubsection.h"
 #include "enum_horizontalalignment.h"
 
-// Enum  for common_reportsection
-
-typedef enum  { ezmax_api_definition__full_common_reportsection__NULL = 0, ezmax_api_definition__full_common_reportsection__Center, ezmax_api_definition__full_common_reportsection__Left, ezmax_api_definition__full_common_reportsection__Right } ezmax_api_definition__full_common_reportsection__e;
-
-char* common_reportsection_e_reportsection_horizontalalignment_ToString(ezmax_api_definition__full_common_reportsection__e e_reportsection_horizontalalignment);
-
-ezmax_api_definition__full_common_reportsection__e common_reportsection_e_reportsection_horizontalalignment_FromString(char* e_reportsection_horizontalalignment);
-
 
 
 typedef struct common_reportsection_t {
     list_t *a_obj_reportsubsection; //nonprimitive container
     list_t *a_obj_reportcolumn; //nonprimitive container
-    enum_horizontalalignment_t *e_reportsection_horizontalalignment; // custom
+    ezmax_api_definition__full_enum_horizontalalignment__e e_reportsection_horizontalalignment; //referenced enum
     int i_reportsection_columncount; //numeric
     int i_reportsection_width; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } common_reportsection_t;
 
-common_reportsection_t *common_reportsection_create(
+__attribute__((deprecated)) common_reportsection_t *common_reportsection_create(
     list_t *a_obj_reportsubsection,
     list_t *a_obj_reportcolumn,
-    enum_horizontalalignment_t *e_reportsection_horizontalalignment,
+    ezmax_api_definition__full_enum_horizontalalignment__e e_reportsection_horizontalalignment,
     int i_reportsection_columncount,
     int i_reportsection_width
 );

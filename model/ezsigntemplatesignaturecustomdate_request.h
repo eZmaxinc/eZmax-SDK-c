@@ -26,9 +26,10 @@ typedef struct ezsigntemplatesignaturecustomdate_request_t {
     int i_ezsigntemplatesignaturecustomdate_offsety; //numeric
     char *s_ezsigntemplatesignaturecustomdate_format; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatesignaturecustomdate_request_t;
 
-ezsigntemplatesignaturecustomdate_request_t *ezsigntemplatesignaturecustomdate_request_create(
+__attribute__((deprecated)) ezsigntemplatesignaturecustomdate_request_t *ezsigntemplatesignaturecustomdate_request_create(
     int pki_ezsigntemplatesignaturecustomdate_id,
     int i_ezsigntemplatesignaturecustomdate_x,
     int i_ezsigntemplatesignaturecustomdate_y,

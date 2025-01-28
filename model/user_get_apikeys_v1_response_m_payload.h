@@ -15,16 +15,17 @@
 
 typedef struct user_get_apikeys_v1_response_m_payload_t user_get_apikeys_v1_response_m_payload_t;
 
-#include "apikey_response.h"
+#include "apikey_response_compound.h"
 
 
 
 typedef struct user_get_apikeys_v1_response_m_payload_t {
     list_t *a_obj_apikey; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } user_get_apikeys_v1_response_m_payload_t;
 
-user_get_apikeys_v1_response_m_payload_t *user_get_apikeys_v1_response_m_payload_create(
+__attribute__((deprecated)) user_get_apikeys_v1_response_m_payload_t *user_get_apikeys_v1_response_m_payload_create(
     list_t *a_obj_apikey
 );
 

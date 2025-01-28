@@ -15,23 +15,24 @@
 
 typedef struct webhook_userstaged_userstaged_created_t webhook_userstaged_userstaged_created_t;
 
-#include "attempt_response.h"
+#include "attempt_response_compound.h"
 #include "custom_webhook_response.h"
-#include "userstaged_response.h"
+#include "userstaged_response_compound.h"
 
 
 
 typedef struct webhook_userstaged_userstaged_created_t {
     struct custom_webhook_response_t *obj_webhook; //model
     list_t *a_obj_attempt; //nonprimitive container
-    struct userstaged_response_t *obj_userstaged; //model
+    struct userstaged_response_compound_t *obj_userstaged; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } webhook_userstaged_userstaged_created_t;
 
-webhook_userstaged_userstaged_created_t *webhook_userstaged_userstaged_created_create(
+__attribute__((deprecated)) webhook_userstaged_userstaged_created_t *webhook_userstaged_userstaged_created_create(
     custom_webhook_response_t *obj_webhook,
     list_t *a_obj_attempt,
-    userstaged_response_t *obj_userstaged
+    userstaged_response_compound_t *obj_userstaged
 );
 
 void webhook_userstaged_userstaged_created_free(webhook_userstaged_userstaged_created_t *webhook_userstaged_userstaged_created);

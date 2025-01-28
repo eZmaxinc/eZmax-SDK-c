@@ -17,21 +17,22 @@ typedef struct ezsignfoldersignerassociation_get_object_v1_response_t ezsignfold
 
 #include "common_response_obj_debug.h"
 #include "common_response_obj_debug_payload.h"
-#include "ezsignfoldersignerassociation_response_compound.h"
+#include "ezsignfoldersignerassociation_get_object_v1_response_m_payload.h"
 
 
 
 typedef struct ezsignfoldersignerassociation_get_object_v1_response_t {
     struct common_response_obj_debug_payload_t *obj_debug_payload; //model
     struct common_response_obj_debug_t *obj_debug; //model
-    struct ezsignfoldersignerassociation_response_compound_t *m_payload; //model
+    struct ezsignfoldersignerassociation_get_object_v1_response_m_payload_t *m_payload; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfoldersignerassociation_get_object_v1_response_t;
 
-ezsignfoldersignerassociation_get_object_v1_response_t *ezsignfoldersignerassociation_get_object_v1_response_create(
+__attribute__((deprecated)) ezsignfoldersignerassociation_get_object_v1_response_t *ezsignfoldersignerassociation_get_object_v1_response_create(
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug,
-    ezsignfoldersignerassociation_response_compound_t *m_payload
+    ezsignfoldersignerassociation_get_object_v1_response_m_payload_t *m_payload
 );
 
 void ezsignfoldersignerassociation_get_object_v1_response_free(ezsignfoldersignerassociation_get_object_v1_response_t *ezsignfoldersignerassociation_get_object_v1_response);

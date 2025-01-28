@@ -22,9 +22,10 @@ typedef struct creditcardtype_get_autocomplete_v2_response_m_payload_t creditcar
 typedef struct creditcardtype_get_autocomplete_v2_response_m_payload_t {
     list_t *a_obj_creditcardtype; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } creditcardtype_get_autocomplete_v2_response_m_payload_t;
 
-creditcardtype_get_autocomplete_v2_response_m_payload_t *creditcardtype_get_autocomplete_v2_response_m_payload_create(
+__attribute__((deprecated)) creditcardtype_get_autocomplete_v2_response_m_payload_t *creditcardtype_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_creditcardtype
 );
 

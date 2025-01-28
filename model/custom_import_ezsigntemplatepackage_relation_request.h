@@ -23,9 +23,10 @@ typedef struct custom_import_ezsigntemplatepackage_relation_request_t {
     int fki_ezsignfoldersignerassociation_id; //numeric
     char *s_ezsigntemplatepackagesigner_description; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_import_ezsigntemplatepackage_relation_request_t;
 
-custom_import_ezsigntemplatepackage_relation_request_t *custom_import_ezsigntemplatepackage_relation_request_create(
+__attribute__((deprecated)) custom_import_ezsigntemplatepackage_relation_request_t *custom_import_ezsigntemplatepackage_relation_request_create(
     int fki_ezsigntemplatepackagesigner_id,
     int fki_ezsignfoldersignerassociation_id,
     char *s_ezsigntemplatepackagesigner_description

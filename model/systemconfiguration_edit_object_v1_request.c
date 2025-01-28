@@ -5,7 +5,7 @@
 
 
 
-systemconfiguration_edit_object_v1_request_t *systemconfiguration_edit_object_v1_request_create(
+static systemconfiguration_edit_object_v1_request_t *systemconfiguration_edit_object_v1_request_create_internal(
     systemconfiguration_request_compound_t *obj_systemconfiguration
     ) {
     systemconfiguration_edit_object_v1_request_t *systemconfiguration_edit_object_v1_request_local_var = malloc(sizeof(systemconfiguration_edit_object_v1_request_t));
@@ -14,12 +14,24 @@ systemconfiguration_edit_object_v1_request_t *systemconfiguration_edit_object_v1
     }
     systemconfiguration_edit_object_v1_request_local_var->obj_systemconfiguration = obj_systemconfiguration;
 
+    systemconfiguration_edit_object_v1_request_local_var->_library_owned = 1;
     return systemconfiguration_edit_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) systemconfiguration_edit_object_v1_request_t *systemconfiguration_edit_object_v1_request_create(
+    systemconfiguration_request_compound_t *obj_systemconfiguration
+    ) {
+    return systemconfiguration_edit_object_v1_request_create_internal (
+        obj_systemconfiguration
+        );
+}
 
 void systemconfiguration_edit_object_v1_request_free(systemconfiguration_edit_object_v1_request_t *systemconfiguration_edit_object_v1_request) {
     if(NULL == systemconfiguration_edit_object_v1_request){
+        return ;
+    }
+    if(systemconfiguration_edit_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "systemconfiguration_edit_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ systemconfiguration_edit_object_v1_request_t *systemconfiguration_edit_object_v1
 
     // systemconfiguration_edit_object_v1_request->obj_systemconfiguration
     cJSON *obj_systemconfiguration = cJSON_GetObjectItemCaseSensitive(systemconfiguration_edit_object_v1_requestJSON, "objSystemconfiguration");
+    if (cJSON_IsNull(obj_systemconfiguration)) {
+        obj_systemconfiguration = NULL;
+    }
     if (!obj_systemconfiguration) {
         goto end;
     }
@@ -71,7 +86,7 @@ systemconfiguration_edit_object_v1_request_t *systemconfiguration_edit_object_v1
     obj_systemconfiguration_local_nonprim = systemconfiguration_request_compound_parseFromJSON(obj_systemconfiguration); //nonprimitive
 
 
-    systemconfiguration_edit_object_v1_request_local_var = systemconfiguration_edit_object_v1_request_create (
+    systemconfiguration_edit_object_v1_request_local_var = systemconfiguration_edit_object_v1_request_create_internal (
         obj_systemconfiguration_local_nonprim
         );
 

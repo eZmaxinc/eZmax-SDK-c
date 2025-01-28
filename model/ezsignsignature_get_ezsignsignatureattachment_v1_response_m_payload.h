@@ -22,9 +22,10 @@ typedef struct ezsignsignature_get_ezsignsignatureattachment_v1_response_m_paylo
 typedef struct ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_t {
     list_t *a_obj_ezsignsignatureattachment; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_t;
 
-ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_t *ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_create(
+__attribute__((deprecated)) ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_t *ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload_create(
     list_t *a_obj_ezsignsignatureattachment
 );
 

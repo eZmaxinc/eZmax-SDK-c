@@ -18,30 +18,23 @@ typedef struct paymentterm_request_t paymentterm_request_t;
 #include "field_e_paymentterm_type.h"
 #include "multilingual_paymentterm_description.h"
 
-// Enum  for paymentterm_request
-
-typedef enum  { ezmax_api_definition__full_paymentterm_request__NULL = 0, ezmax_api_definition__full_paymentterm_request__Days, ezmax_api_definition__full_paymentterm_request__Dayofthemonth } ezmax_api_definition__full_paymentterm_request__e;
-
-char* paymentterm_request_e_paymentterm_type_ToString(ezmax_api_definition__full_paymentterm_request__e e_paymentterm_type);
-
-ezmax_api_definition__full_paymentterm_request__e paymentterm_request_e_paymentterm_type_FromString(char* e_paymentterm_type);
-
 
 
 typedef struct paymentterm_request_t {
     int pki_paymentterm_id; //numeric
     char *s_paymentterm_code; // string
-    field_e_paymentterm_type_t *e_paymentterm_type; // custom
+    ezmax_api_definition__full_field_e_paymentterm_type__e e_paymentterm_type; //referenced enum
     int i_paymentterm_day; //numeric
     struct multilingual_paymentterm_description_t *obj_paymentterm_description; //model
     int b_paymentterm_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } paymentterm_request_t;
 
-paymentterm_request_t *paymentterm_request_create(
+__attribute__((deprecated)) paymentterm_request_t *paymentterm_request_create(
     int pki_paymentterm_id,
     char *s_paymentterm_code,
-    field_e_paymentterm_type_t *e_paymentterm_type,
+    ezmax_api_definition__full_field_e_paymentterm_type__e e_paymentterm_type,
     int i_paymentterm_day,
     multilingual_paymentterm_description_t *obj_paymentterm_description,
     int b_paymentterm_isactive

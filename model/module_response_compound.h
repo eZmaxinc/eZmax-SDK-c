@@ -28,9 +28,10 @@ typedef struct module_response_compound_t {
     int b_module_registeredapi; //boolean
     list_t *a_obj_modulesection; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } module_response_compound_t;
 
-module_response_compound_t *module_response_compound_create(
+__attribute__((deprecated)) module_response_compound_t *module_response_compound_create(
     int pki_module_id,
     int fki_modulegroup_id,
     char *e_module_internalname,

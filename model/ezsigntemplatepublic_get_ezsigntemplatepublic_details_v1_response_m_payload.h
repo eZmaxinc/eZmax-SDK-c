@@ -24,9 +24,10 @@ typedef struct ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response
     int fki_userlogintype_id; //numeric
     list_t *a_s_ezsigntemplatesigner_description; //primitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_t;
 
-ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_t *ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_create(
+__attribute__((deprecated)) ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_t *ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_response_m_payload_create(
     custom_branding_response_t *obj_branding,
     int fki_userlogintype_id,
     list_t *a_s_ezsigntemplatesigner_description

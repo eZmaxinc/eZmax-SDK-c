@@ -5,7 +5,7 @@
 
 
 
-clonehistory_list_element_t *clonehistory_list_element_create(
+static clonehistory_list_element_t *clonehistory_list_element_create_internal(
     int pki_clonehistory_id,
     int fki_user_id_cloning,
     int fki_user_id_cloned,
@@ -34,12 +34,44 @@ clonehistory_list_element_t *clonehistory_list_element_create(
     clonehistory_list_element_local_var->s_user_firstname_cloned = s_user_firstname_cloned;
     clonehistory_list_element_local_var->s_user_lastname_cloned = s_user_lastname_cloned;
 
+    clonehistory_list_element_local_var->_library_owned = 1;
     return clonehistory_list_element_local_var;
 }
 
+__attribute__((deprecated)) clonehistory_list_element_t *clonehistory_list_element_create(
+    int pki_clonehistory_id,
+    int fki_user_id_cloning,
+    int fki_user_id_cloned,
+    char *dt_clonehistory_firsthit,
+    char *dt_clonehistory_lasthit,
+    char *s_user_loginname_cloning,
+    char *s_user_firstname_cloning,
+    char *s_user_lastname_cloning,
+    char *s_user_loginname_cloned,
+    char *s_user_firstname_cloned,
+    char *s_user_lastname_cloned
+    ) {
+    return clonehistory_list_element_create_internal (
+        pki_clonehistory_id,
+        fki_user_id_cloning,
+        fki_user_id_cloned,
+        dt_clonehistory_firsthit,
+        dt_clonehistory_lasthit,
+        s_user_loginname_cloning,
+        s_user_firstname_cloning,
+        s_user_lastname_cloning,
+        s_user_loginname_cloned,
+        s_user_firstname_cloned,
+        s_user_lastname_cloned
+        );
+}
 
 void clonehistory_list_element_free(clonehistory_list_element_t *clonehistory_list_element) {
     if(NULL == clonehistory_list_element){
+        return ;
+    }
+    if(clonehistory_list_element->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "clonehistory_list_element_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -192,6 +224,9 @@ clonehistory_list_element_t *clonehistory_list_element_parseFromJSON(cJSON *clon
 
     // clonehistory_list_element->pki_clonehistory_id
     cJSON *pki_clonehistory_id = cJSON_GetObjectItemCaseSensitive(clonehistory_list_elementJSON, "pkiClonehistoryID");
+    if (cJSON_IsNull(pki_clonehistory_id)) {
+        pki_clonehistory_id = NULL;
+    }
     if (!pki_clonehistory_id) {
         goto end;
     }
@@ -204,6 +239,9 @@ clonehistory_list_element_t *clonehistory_list_element_parseFromJSON(cJSON *clon
 
     // clonehistory_list_element->fki_user_id_cloning
     cJSON *fki_user_id_cloning = cJSON_GetObjectItemCaseSensitive(clonehistory_list_elementJSON, "fkiUserIDCloning");
+    if (cJSON_IsNull(fki_user_id_cloning)) {
+        fki_user_id_cloning = NULL;
+    }
     if (!fki_user_id_cloning) {
         goto end;
     }
@@ -216,6 +254,9 @@ clonehistory_list_element_t *clonehistory_list_element_parseFromJSON(cJSON *clon
 
     // clonehistory_list_element->fki_user_id_cloned
     cJSON *fki_user_id_cloned = cJSON_GetObjectItemCaseSensitive(clonehistory_list_elementJSON, "fkiUserIDCloned");
+    if (cJSON_IsNull(fki_user_id_cloned)) {
+        fki_user_id_cloned = NULL;
+    }
     if (!fki_user_id_cloned) {
         goto end;
     }
@@ -228,6 +269,9 @@ clonehistory_list_element_t *clonehistory_list_element_parseFromJSON(cJSON *clon
 
     // clonehistory_list_element->dt_clonehistory_firsthit
     cJSON *dt_clonehistory_firsthit = cJSON_GetObjectItemCaseSensitive(clonehistory_list_elementJSON, "dtClonehistoryFirsthit");
+    if (cJSON_IsNull(dt_clonehistory_firsthit)) {
+        dt_clonehistory_firsthit = NULL;
+    }
     if (!dt_clonehistory_firsthit) {
         goto end;
     }
@@ -240,6 +284,9 @@ clonehistory_list_element_t *clonehistory_list_element_parseFromJSON(cJSON *clon
 
     // clonehistory_list_element->dt_clonehistory_lasthit
     cJSON *dt_clonehistory_lasthit = cJSON_GetObjectItemCaseSensitive(clonehistory_list_elementJSON, "dtClonehistoryLasthit");
+    if (cJSON_IsNull(dt_clonehistory_lasthit)) {
+        dt_clonehistory_lasthit = NULL;
+    }
     if (dt_clonehistory_lasthit) { 
     if(!cJSON_IsString(dt_clonehistory_lasthit) && !cJSON_IsNull(dt_clonehistory_lasthit))
     {
@@ -249,6 +296,9 @@ clonehistory_list_element_t *clonehistory_list_element_parseFromJSON(cJSON *clon
 
     // clonehistory_list_element->s_user_loginname_cloning
     cJSON *s_user_loginname_cloning = cJSON_GetObjectItemCaseSensitive(clonehistory_list_elementJSON, "sUserLoginnameCloning");
+    if (cJSON_IsNull(s_user_loginname_cloning)) {
+        s_user_loginname_cloning = NULL;
+    }
     if (!s_user_loginname_cloning) {
         goto end;
     }
@@ -261,6 +311,9 @@ clonehistory_list_element_t *clonehistory_list_element_parseFromJSON(cJSON *clon
 
     // clonehistory_list_element->s_user_firstname_cloning
     cJSON *s_user_firstname_cloning = cJSON_GetObjectItemCaseSensitive(clonehistory_list_elementJSON, "sUserFirstnameCloning");
+    if (cJSON_IsNull(s_user_firstname_cloning)) {
+        s_user_firstname_cloning = NULL;
+    }
     if (!s_user_firstname_cloning) {
         goto end;
     }
@@ -273,6 +326,9 @@ clonehistory_list_element_t *clonehistory_list_element_parseFromJSON(cJSON *clon
 
     // clonehistory_list_element->s_user_lastname_cloning
     cJSON *s_user_lastname_cloning = cJSON_GetObjectItemCaseSensitive(clonehistory_list_elementJSON, "sUserLastnameCloning");
+    if (cJSON_IsNull(s_user_lastname_cloning)) {
+        s_user_lastname_cloning = NULL;
+    }
     if (!s_user_lastname_cloning) {
         goto end;
     }
@@ -285,6 +341,9 @@ clonehistory_list_element_t *clonehistory_list_element_parseFromJSON(cJSON *clon
 
     // clonehistory_list_element->s_user_loginname_cloned
     cJSON *s_user_loginname_cloned = cJSON_GetObjectItemCaseSensitive(clonehistory_list_elementJSON, "sUserLoginnameCloned");
+    if (cJSON_IsNull(s_user_loginname_cloned)) {
+        s_user_loginname_cloned = NULL;
+    }
     if (!s_user_loginname_cloned) {
         goto end;
     }
@@ -297,6 +356,9 @@ clonehistory_list_element_t *clonehistory_list_element_parseFromJSON(cJSON *clon
 
     // clonehistory_list_element->s_user_firstname_cloned
     cJSON *s_user_firstname_cloned = cJSON_GetObjectItemCaseSensitive(clonehistory_list_elementJSON, "sUserFirstnameCloned");
+    if (cJSON_IsNull(s_user_firstname_cloned)) {
+        s_user_firstname_cloned = NULL;
+    }
     if (!s_user_firstname_cloned) {
         goto end;
     }
@@ -309,6 +371,9 @@ clonehistory_list_element_t *clonehistory_list_element_parseFromJSON(cJSON *clon
 
     // clonehistory_list_element->s_user_lastname_cloned
     cJSON *s_user_lastname_cloned = cJSON_GetObjectItemCaseSensitive(clonehistory_list_elementJSON, "sUserLastnameCloned");
+    if (cJSON_IsNull(s_user_lastname_cloned)) {
+        s_user_lastname_cloned = NULL;
+    }
     if (!s_user_lastname_cloned) {
         goto end;
     }
@@ -320,7 +385,7 @@ clonehistory_list_element_t *clonehistory_list_element_parseFromJSON(cJSON *clon
     }
 
 
-    clonehistory_list_element_local_var = clonehistory_list_element_create (
+    clonehistory_list_element_local_var = clonehistory_list_element_create_internal (
         pki_clonehistory_id->valuedouble,
         fki_user_id_cloning->valuedouble,
         fki_user_id_cloned->valuedouble,

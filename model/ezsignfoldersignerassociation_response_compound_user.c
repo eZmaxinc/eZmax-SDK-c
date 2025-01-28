@@ -5,7 +5,7 @@
 
 
 
-ezsignfoldersignerassociation_response_compound_user_t *ezsignfoldersignerassociation_response_compound_user_create(
+static ezsignfoldersignerassociation_response_compound_user_t *ezsignfoldersignerassociation_response_compound_user_create_internal(
     int pki_user_id,
     int fki_language_id,
     char *s_user_firstname,
@@ -22,12 +22,32 @@ ezsignfoldersignerassociation_response_compound_user_t *ezsignfoldersignerassoci
     ezsignfoldersignerassociation_response_compound_user_local_var->s_user_lastname = s_user_lastname;
     ezsignfoldersignerassociation_response_compound_user_local_var->s_email_address = s_email_address;
 
+    ezsignfoldersignerassociation_response_compound_user_local_var->_library_owned = 1;
     return ezsignfoldersignerassociation_response_compound_user_local_var;
 }
 
+__attribute__((deprecated)) ezsignfoldersignerassociation_response_compound_user_t *ezsignfoldersignerassociation_response_compound_user_create(
+    int pki_user_id,
+    int fki_language_id,
+    char *s_user_firstname,
+    char *s_user_lastname,
+    char *s_email_address
+    ) {
+    return ezsignfoldersignerassociation_response_compound_user_create_internal (
+        pki_user_id,
+        fki_language_id,
+        s_user_firstname,
+        s_user_lastname,
+        s_email_address
+        );
+}
 
 void ezsignfoldersignerassociation_response_compound_user_free(ezsignfoldersignerassociation_response_compound_user_t *ezsignfoldersignerassociation_response_compound_user) {
     if(NULL == ezsignfoldersignerassociation_response_compound_user){
+        return ;
+    }
+    if(ezsignfoldersignerassociation_response_compound_user->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignfoldersignerassociation_response_compound_user_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -107,6 +127,9 @@ ezsignfoldersignerassociation_response_compound_user_t *ezsignfoldersignerassoci
 
     // ezsignfoldersignerassociation_response_compound_user->pki_user_id
     cJSON *pki_user_id = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_response_compound_userJSON, "pkiUserID");
+    if (cJSON_IsNull(pki_user_id)) {
+        pki_user_id = NULL;
+    }
     if (!pki_user_id) {
         goto end;
     }
@@ -119,6 +142,9 @@ ezsignfoldersignerassociation_response_compound_user_t *ezsignfoldersignerassoci
 
     // ezsignfoldersignerassociation_response_compound_user->fki_language_id
     cJSON *fki_language_id = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_response_compound_userJSON, "fkiLanguageID");
+    if (cJSON_IsNull(fki_language_id)) {
+        fki_language_id = NULL;
+    }
     if (!fki_language_id) {
         goto end;
     }
@@ -131,6 +157,9 @@ ezsignfoldersignerassociation_response_compound_user_t *ezsignfoldersignerassoci
 
     // ezsignfoldersignerassociation_response_compound_user->s_user_firstname
     cJSON *s_user_firstname = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_response_compound_userJSON, "sUserFirstname");
+    if (cJSON_IsNull(s_user_firstname)) {
+        s_user_firstname = NULL;
+    }
     if (!s_user_firstname) {
         goto end;
     }
@@ -143,6 +172,9 @@ ezsignfoldersignerassociation_response_compound_user_t *ezsignfoldersignerassoci
 
     // ezsignfoldersignerassociation_response_compound_user->s_user_lastname
     cJSON *s_user_lastname = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_response_compound_userJSON, "sUserLastname");
+    if (cJSON_IsNull(s_user_lastname)) {
+        s_user_lastname = NULL;
+    }
     if (!s_user_lastname) {
         goto end;
     }
@@ -155,6 +187,9 @@ ezsignfoldersignerassociation_response_compound_user_t *ezsignfoldersignerassoci
 
     // ezsignfoldersignerassociation_response_compound_user->s_email_address
     cJSON *s_email_address = cJSON_GetObjectItemCaseSensitive(ezsignfoldersignerassociation_response_compound_userJSON, "sEmailAddress");
+    if (cJSON_IsNull(s_email_address)) {
+        s_email_address = NULL;
+    }
     if (!s_email_address) {
         goto end;
     }
@@ -166,7 +201,7 @@ ezsignfoldersignerassociation_response_compound_user_t *ezsignfoldersignerassoci
     }
 
 
-    ezsignfoldersignerassociation_response_compound_user_local_var = ezsignfoldersignerassociation_response_compound_user_create (
+    ezsignfoldersignerassociation_response_compound_user_local_var = ezsignfoldersignerassociation_response_compound_user_create_internal (
         pki_user_id->valuedouble,
         fki_language_id->valuedouble,
         strdup(s_user_firstname->valuestring),

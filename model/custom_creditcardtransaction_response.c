@@ -4,26 +4,9 @@
 #include "custom_creditcardtransaction_response.h"
 
 
-char* custom_creditcardtransaction_response_e_creditcardtype_codename_ToString(ezmax_api_definition__full_custom_creditcardtransaction_response__e e_creditcardtype_codename) {
-    char* e_creditcardtype_codenameArray[] =  { "NULL", "Amex", "Mastercard", "Visa" };
-    return e_creditcardtype_codenameArray[e_creditcardtype_codename];
-}
 
-ezmax_api_definition__full_custom_creditcardtransaction_response__e custom_creditcardtransaction_response_e_creditcardtype_codename_FromString(char* e_creditcardtype_codename){
-    int stringToReturn = 0;
-    char *e_creditcardtype_codenameArray[] =  { "NULL", "Amex", "Mastercard", "Visa" };
-    size_t sizeofArray = sizeof(e_creditcardtype_codenameArray) / sizeof(e_creditcardtype_codenameArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_creditcardtype_codename, e_creditcardtype_codenameArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-custom_creditcardtransaction_response_t *custom_creditcardtransaction_response_create(
-    field_e_creditcardtype_codename_t *e_creditcardtype_codename,
+static custom_creditcardtransaction_response_t *custom_creditcardtransaction_response_create_internal(
+    ezmax_api_definition__full_field_e_creditcardtype_codename__e e_creditcardtype_codename,
     char *d_creditcardtransaction_amount,
     char *s_creditcardtransaction_partiallydecryptednumber,
     char *s_creditcardtransaction_referencenumber
@@ -37,19 +20,33 @@ custom_creditcardtransaction_response_t *custom_creditcardtransaction_response_c
     custom_creditcardtransaction_response_local_var->s_creditcardtransaction_partiallydecryptednumber = s_creditcardtransaction_partiallydecryptednumber;
     custom_creditcardtransaction_response_local_var->s_creditcardtransaction_referencenumber = s_creditcardtransaction_referencenumber;
 
+    custom_creditcardtransaction_response_local_var->_library_owned = 1;
     return custom_creditcardtransaction_response_local_var;
 }
 
+__attribute__((deprecated)) custom_creditcardtransaction_response_t *custom_creditcardtransaction_response_create(
+    ezmax_api_definition__full_field_e_creditcardtype_codename__e e_creditcardtype_codename,
+    char *d_creditcardtransaction_amount,
+    char *s_creditcardtransaction_partiallydecryptednumber,
+    char *s_creditcardtransaction_referencenumber
+    ) {
+    return custom_creditcardtransaction_response_create_internal (
+        e_creditcardtype_codename,
+        d_creditcardtransaction_amount,
+        s_creditcardtransaction_partiallydecryptednumber,
+        s_creditcardtransaction_referencenumber
+        );
+}
 
 void custom_creditcardtransaction_response_free(custom_creditcardtransaction_response_t *custom_creditcardtransaction_response) {
     if(NULL == custom_creditcardtransaction_response){
         return ;
     }
-    listEntry_t *listEntry;
-    if (custom_creditcardtransaction_response->e_creditcardtype_codename) {
-        field_e_creditcardtype_codename_free(custom_creditcardtransaction_response->e_creditcardtype_codename);
-        custom_creditcardtransaction_response->e_creditcardtype_codename = NULL;
+    if(custom_creditcardtransaction_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "custom_creditcardtransaction_response_free");
+        return ;
     }
+    listEntry_t *listEntry;
     if (custom_creditcardtransaction_response->d_creditcardtransaction_amount) {
         free(custom_creditcardtransaction_response->d_creditcardtransaction_amount);
         custom_creditcardtransaction_response->d_creditcardtransaction_amount = NULL;
@@ -69,7 +66,7 @@ cJSON *custom_creditcardtransaction_response_convertToJSON(custom_creditcardtran
     cJSON *item = cJSON_CreateObject();
 
     // custom_creditcardtransaction_response->e_creditcardtype_codename
-    if (ezmax_api_definition__full_custom_creditcardtransaction_response__NULL == custom_creditcardtransaction_response->e_creditcardtype_codename) {
+    if (ezmax_api_definition__full_field_e_creditcardtype_codename__NULL == custom_creditcardtransaction_response->e_creditcardtype_codename) {
         goto fail;
     }
     cJSON *e_creditcardtype_codename_local_JSON = field_e_creditcardtype_codename_convertToJSON(custom_creditcardtransaction_response->e_creditcardtype_codename);
@@ -121,10 +118,13 @@ custom_creditcardtransaction_response_t *custom_creditcardtransaction_response_p
     custom_creditcardtransaction_response_t *custom_creditcardtransaction_response_local_var = NULL;
 
     // define the local variable for custom_creditcardtransaction_response->e_creditcardtype_codename
-    field_e_creditcardtype_codename_t *e_creditcardtype_codename_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_creditcardtype_codename__e e_creditcardtype_codename_local_nonprim = 0;
 
     // custom_creditcardtransaction_response->e_creditcardtype_codename
     cJSON *e_creditcardtype_codename = cJSON_GetObjectItemCaseSensitive(custom_creditcardtransaction_responseJSON, "eCreditcardtypeCodename");
+    if (cJSON_IsNull(e_creditcardtype_codename)) {
+        e_creditcardtype_codename = NULL;
+    }
     if (!e_creditcardtype_codename) {
         goto end;
     }
@@ -134,6 +134,9 @@ custom_creditcardtransaction_response_t *custom_creditcardtransaction_response_p
 
     // custom_creditcardtransaction_response->d_creditcardtransaction_amount
     cJSON *d_creditcardtransaction_amount = cJSON_GetObjectItemCaseSensitive(custom_creditcardtransaction_responseJSON, "dCreditcardtransactionAmount");
+    if (cJSON_IsNull(d_creditcardtransaction_amount)) {
+        d_creditcardtransaction_amount = NULL;
+    }
     if (!d_creditcardtransaction_amount) {
         goto end;
     }
@@ -146,6 +149,9 @@ custom_creditcardtransaction_response_t *custom_creditcardtransaction_response_p
 
     // custom_creditcardtransaction_response->s_creditcardtransaction_partiallydecryptednumber
     cJSON *s_creditcardtransaction_partiallydecryptednumber = cJSON_GetObjectItemCaseSensitive(custom_creditcardtransaction_responseJSON, "sCreditcardtransactionPartiallydecryptednumber");
+    if (cJSON_IsNull(s_creditcardtransaction_partiallydecryptednumber)) {
+        s_creditcardtransaction_partiallydecryptednumber = NULL;
+    }
     if (!s_creditcardtransaction_partiallydecryptednumber) {
         goto end;
     }
@@ -158,6 +164,9 @@ custom_creditcardtransaction_response_t *custom_creditcardtransaction_response_p
 
     // custom_creditcardtransaction_response->s_creditcardtransaction_referencenumber
     cJSON *s_creditcardtransaction_referencenumber = cJSON_GetObjectItemCaseSensitive(custom_creditcardtransaction_responseJSON, "sCreditcardtransactionReferencenumber");
+    if (cJSON_IsNull(s_creditcardtransaction_referencenumber)) {
+        s_creditcardtransaction_referencenumber = NULL;
+    }
     if (!s_creditcardtransaction_referencenumber) {
         goto end;
     }
@@ -169,7 +178,7 @@ custom_creditcardtransaction_response_t *custom_creditcardtransaction_response_p
     }
 
 
-    custom_creditcardtransaction_response_local_var = custom_creditcardtransaction_response_create (
+    custom_creditcardtransaction_response_local_var = custom_creditcardtransaction_response_create_internal (
         e_creditcardtype_codename_local_nonprim,
         strdup(d_creditcardtransaction_amount->valuestring),
         strdup(s_creditcardtransaction_partiallydecryptednumber->valuestring),
@@ -179,8 +188,7 @@ custom_creditcardtransaction_response_t *custom_creditcardtransaction_response_p
     return custom_creditcardtransaction_response_local_var;
 end:
     if (e_creditcardtype_codename_local_nonprim) {
-        field_e_creditcardtype_codename_free(e_creditcardtype_codename_local_nonprim);
-        e_creditcardtype_codename_local_nonprim = NULL;
+        e_creditcardtype_codename_local_nonprim = 0;
     }
     return NULL;
 

@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Create a new Ezsignbulksendsignermapping
@@ -25,11 +20,14 @@ ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingCreateObjectV1(a
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignbulksendsignermapping")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignbulksendsignermapping");
+    char *localVarPath = strdup("/1/object/ezsignbulksendsignermapping");
+
 
 
 
@@ -38,9 +36,10 @@ ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingCreateObjectV1(a
     cJSON *localVarSingleItemJSON_ezsignbulksendsignermapping_create_object_v1_request = NULL;
     if (ezsignbulksendsignermapping_create_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignbulksendsignermapping_create_object_v1_request = ezsignbulksendsignermapping_create_object_v1_request_convertToJSON(ezsignbulksendsignermapping_create_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignbulksendsignermapping_create_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -52,6 +51,7 @@ ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingCreateObjectV1(a
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -59,11 +59,14 @@ ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingCreateObjectV1(a
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignbulksendsignermappingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignbulksendsignermapping_create_object_v1_response_t *elementToReturn = ezsignbulksendsignermapping_create_object_v1_response_parseFromJSON(ObjectEzsignbulksendsignermappingAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignbulksendsignermappingAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignbulksendsignermapping_create_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignbulksendsignermappingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignbulksendsignermapping_create_object_v1_response_parseFromJSON(ObjectEzsignbulksendsignermappingAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignbulksendsignermappingAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -94,7 +97,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsignbulksendsignermapping_delete_object_v1_response_t*
 ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksendsignermappingID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -103,15 +106,18 @@ ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingDeleteObjectV1(a
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignbulksendsignermapping/{pkiEzsignbulksendsignermappingID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignbulksendsignermapping/{pkiEzsignbulksendsignermappingID}");
+    char *localVarPath = strdup("/1/object/ezsignbulksendsignermapping/{pkiEzsignbulksendsignermappingID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignbulksendsignermappingID =  + strlen("{ pkiEzsignbulksendsignermappingID }");
+    long sizeOfPathParams_pkiEzsignbulksendsignermappingID =  + sizeof("{ pkiEzsignbulksendsignermappingID }") - 1;
     if(pkiEzsignbulksendsignermappingID == 0){
         goto end;
     }
@@ -119,7 +125,7 @@ ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingDeleteObjectV1(a
     snprintf(localVarToReplace_pkiEzsignbulksendsignermappingID, sizeOfPathParams_pkiEzsignbulksendsignermappingID, "{%s}", "pkiEzsignbulksendsignermappingID");
 
     char localVarBuff_pkiEzsignbulksendsignermappingID[256];
-    intToStr(localVarBuff_pkiEzsignbulksendsignermappingID, *pkiEzsignbulksendsignermappingID);
+    snprintf(localVarBuff_pkiEzsignbulksendsignermappingID, sizeof localVarBuff_pkiEzsignbulksendsignermappingID, "%ld", (long)*pkiEzsignbulksendsignermappingID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksendsignermappingID, localVarBuff_pkiEzsignbulksendsignermappingID);
 
@@ -134,6 +140,7 @@ ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingDeleteObjectV1(a
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "DELETE");
 
     // uncomment below to debug the error response
@@ -145,11 +152,14 @@ ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingDeleteObjectV1(a
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignbulksendsignermappingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignbulksendsignermappingAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignbulksendsignermappingAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignbulksendsignermapping_delete_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignbulksendsignermappingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignbulksendsignermapping_delete_object_v1_response_parseFromJSON(ObjectEzsignbulksendsignermappingAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignbulksendsignermappingAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -185,15 +195,18 @@ ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingGetObjectV2(apiC
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/ezsignbulksendsignermapping/{pkiEzsignbulksendsignermappingID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/ezsignbulksendsignermapping/{pkiEzsignbulksendsignermappingID}");
+    char *localVarPath = strdup("/2/object/ezsignbulksendsignermapping/{pkiEzsignbulksendsignermappingID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignbulksendsignermappingID =  + strlen("{ pkiEzsignbulksendsignermappingID }");
+    long sizeOfPathParams_pkiEzsignbulksendsignermappingID =  + sizeof("{ pkiEzsignbulksendsignermappingID }") - 1;
     if(pkiEzsignbulksendsignermappingID == 0){
         goto end;
     }
@@ -201,7 +214,7 @@ ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingGetObjectV2(apiC
     snprintf(localVarToReplace_pkiEzsignbulksendsignermappingID, sizeOfPathParams_pkiEzsignbulksendsignermappingID, "{%s}", "pkiEzsignbulksendsignermappingID");
 
     char localVarBuff_pkiEzsignbulksendsignermappingID[256];
-    intToStr(localVarBuff_pkiEzsignbulksendsignermappingID, *pkiEzsignbulksendsignermappingID);
+    snprintf(localVarBuff_pkiEzsignbulksendsignermappingID, sizeof localVarBuff_pkiEzsignbulksendsignermappingID, "%ld", (long)*pkiEzsignbulksendsignermappingID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksendsignermappingID, localVarBuff_pkiEzsignbulksendsignermappingID);
 
@@ -216,6 +229,7 @@ ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingGetObjectV2(apiC
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -227,11 +241,14 @@ ObjectEzsignbulksendsignermappingAPI_ezsignbulksendsignermappingGetObjectV2(apiC
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignbulksendsignermappingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignbulksendsignermapping_get_object_v2_response_t *elementToReturn = ezsignbulksendsignermapping_get_object_v2_response_parseFromJSON(ObjectEzsignbulksendsignermappingAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignbulksendsignermappingAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignbulksendsignermapping_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignbulksendsignermappingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignbulksendsignermapping_get_object_v2_response_parseFromJSON(ObjectEzsignbulksendsignermappingAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignbulksendsignermappingAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

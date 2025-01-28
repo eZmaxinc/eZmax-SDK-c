@@ -17,26 +17,19 @@ typedef struct ezsigntemplate_autocomplete_element_response_t ezsigntemplate_aut
 
 #include "field_e_ezsignfoldertype_privacylevel.h"
 
-// Enum  for ezsigntemplate_autocomplete_element_response
-
-typedef enum  { ezmax_api_definition__full_ezsigntemplate_autocomplete_element_response__NULL = 0, ezmax_api_definition__full_ezsigntemplate_autocomplete_element_response__User, ezmax_api_definition__full_ezsigntemplate_autocomplete_element_response__Usergroup } ezmax_api_definition__full_ezsigntemplate_autocomplete_element_response__e;
-
-char* ezsigntemplate_autocomplete_element_response_e_ezsignfoldertype_privacylevel_ToString(ezmax_api_definition__full_ezsigntemplate_autocomplete_element_response__e e_ezsignfoldertype_privacylevel);
-
-ezmax_api_definition__full_ezsigntemplate_autocomplete_element_response__e ezsigntemplate_autocomplete_element_response_e_ezsignfoldertype_privacylevel_FromString(char* e_ezsignfoldertype_privacylevel);
-
 
 
 typedef struct ezsigntemplate_autocomplete_element_response_t {
-    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel; // custom
+    ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel; //referenced enum
     char *s_ezsigntemplate_description; // string
     int pki_ezsigntemplate_id; //numeric
     int b_ezsigntemplate_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplate_autocomplete_element_response_t;
 
-ezsigntemplate_autocomplete_element_response_t *ezsigntemplate_autocomplete_element_response_create(
-    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel,
+__attribute__((deprecated)) ezsigntemplate_autocomplete_element_response_t *ezsigntemplate_autocomplete_element_response_create(
+    ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel,
     char *s_ezsigntemplate_description,
     int pki_ezsigntemplate_id,
     int b_ezsigntemplate_isactive

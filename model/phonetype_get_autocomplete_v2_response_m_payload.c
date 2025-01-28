@@ -5,7 +5,7 @@
 
 
 
-phonetype_get_autocomplete_v2_response_m_payload_t *phonetype_get_autocomplete_v2_response_m_payload_create(
+static phonetype_get_autocomplete_v2_response_m_payload_t *phonetype_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_phonetype
     ) {
     phonetype_get_autocomplete_v2_response_m_payload_t *phonetype_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(phonetype_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ phonetype_get_autocomplete_v2_response_m_payload_t *phonetype_get_autocomplete_v
     }
     phonetype_get_autocomplete_v2_response_m_payload_local_var->a_obj_phonetype = a_obj_phonetype;
 
+    phonetype_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return phonetype_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) phonetype_get_autocomplete_v2_response_m_payload_t *phonetype_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_phonetype
+    ) {
+    return phonetype_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_phonetype
+        );
+}
 
 void phonetype_get_autocomplete_v2_response_m_payload_free(phonetype_get_autocomplete_v2_response_m_payload_t *phonetype_get_autocomplete_v2_response_m_payload) {
     if(NULL == phonetype_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(phonetype_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "phonetype_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ phonetype_get_autocomplete_v2_response_m_payload_t *phonetype_get_autocomplete_v
 
     // phonetype_get_autocomplete_v2_response_m_payload->a_obj_phonetype
     cJSON *a_obj_phonetype = cJSON_GetObjectItemCaseSensitive(phonetype_get_autocomplete_v2_response_m_payloadJSON, "a_objPhonetype");
+    if (cJSON_IsNull(a_obj_phonetype)) {
+        a_obj_phonetype = NULL;
+    }
     if (!a_obj_phonetype) {
         goto end;
     }
@@ -96,7 +111,7 @@ phonetype_get_autocomplete_v2_response_m_payload_t *phonetype_get_autocomplete_v
     }
 
 
-    phonetype_get_autocomplete_v2_response_m_payload_local_var = phonetype_get_autocomplete_v2_response_m_payload_create (
+    phonetype_get_autocomplete_v2_response_m_payload_local_var = phonetype_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_phonetypeList
         );
 

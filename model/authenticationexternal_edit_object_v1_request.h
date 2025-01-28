@@ -22,9 +22,10 @@ typedef struct authenticationexternal_edit_object_v1_request_t authenticationext
 typedef struct authenticationexternal_edit_object_v1_request_t {
     struct authenticationexternal_request_compound_t *obj_authenticationexternal; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } authenticationexternal_edit_object_v1_request_t;
 
-authenticationexternal_edit_object_v1_request_t *authenticationexternal_edit_object_v1_request_create(
+__attribute__((deprecated)) authenticationexternal_edit_object_v1_request_t *authenticationexternal_edit_object_v1_request_create(
     authenticationexternal_request_compound_t *obj_authenticationexternal
 );
 

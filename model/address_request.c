@@ -5,7 +5,7 @@
 
 
 
-address_request_t *address_request_create(
+static address_request_t *address_request_create_internal(
     int pki_address_id,
     int fki_addresstype_id,
     char *s_address_civic,
@@ -34,12 +34,44 @@ address_request_t *address_request_create(
     address_request_local_var->f_address_longitude = f_address_longitude;
     address_request_local_var->f_address_latitude = f_address_latitude;
 
+    address_request_local_var->_library_owned = 1;
     return address_request_local_var;
 }
 
+__attribute__((deprecated)) address_request_t *address_request_create(
+    int pki_address_id,
+    int fki_addresstype_id,
+    char *s_address_civic,
+    char *s_address_street,
+    char *s_address_suite,
+    char *s_address_city,
+    int fki_province_id,
+    int fki_country_id,
+    char *s_address_zip,
+    char *f_address_longitude,
+    char *f_address_latitude
+    ) {
+    return address_request_create_internal (
+        pki_address_id,
+        fki_addresstype_id,
+        s_address_civic,
+        s_address_street,
+        s_address_suite,
+        s_address_city,
+        fki_province_id,
+        fki_country_id,
+        s_address_zip,
+        f_address_longitude,
+        f_address_latitude
+        );
+}
 
 void address_request_free(address_request_t *address_request) {
     if(NULL == address_request){
+        return ;
+    }
+    if(address_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "address_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -185,6 +217,9 @@ address_request_t *address_request_parseFromJSON(cJSON *address_requestJSON){
 
     // address_request->pki_address_id
     cJSON *pki_address_id = cJSON_GetObjectItemCaseSensitive(address_requestJSON, "pkiAddressID");
+    if (cJSON_IsNull(pki_address_id)) {
+        pki_address_id = NULL;
+    }
     if (pki_address_id) { 
     if(!cJSON_IsNumber(pki_address_id))
     {
@@ -194,6 +229,9 @@ address_request_t *address_request_parseFromJSON(cJSON *address_requestJSON){
 
     // address_request->fki_addresstype_id
     cJSON *fki_addresstype_id = cJSON_GetObjectItemCaseSensitive(address_requestJSON, "fkiAddresstypeID");
+    if (cJSON_IsNull(fki_addresstype_id)) {
+        fki_addresstype_id = NULL;
+    }
     if (!fki_addresstype_id) {
         goto end;
     }
@@ -206,6 +244,9 @@ address_request_t *address_request_parseFromJSON(cJSON *address_requestJSON){
 
     // address_request->s_address_civic
     cJSON *s_address_civic = cJSON_GetObjectItemCaseSensitive(address_requestJSON, "sAddressCivic");
+    if (cJSON_IsNull(s_address_civic)) {
+        s_address_civic = NULL;
+    }
     if (!s_address_civic) {
         goto end;
     }
@@ -218,6 +259,9 @@ address_request_t *address_request_parseFromJSON(cJSON *address_requestJSON){
 
     // address_request->s_address_street
     cJSON *s_address_street = cJSON_GetObjectItemCaseSensitive(address_requestJSON, "sAddressStreet");
+    if (cJSON_IsNull(s_address_street)) {
+        s_address_street = NULL;
+    }
     if (!s_address_street) {
         goto end;
     }
@@ -230,6 +274,9 @@ address_request_t *address_request_parseFromJSON(cJSON *address_requestJSON){
 
     // address_request->s_address_suite
     cJSON *s_address_suite = cJSON_GetObjectItemCaseSensitive(address_requestJSON, "sAddressSuite");
+    if (cJSON_IsNull(s_address_suite)) {
+        s_address_suite = NULL;
+    }
     if (s_address_suite) { 
     if(!cJSON_IsString(s_address_suite) && !cJSON_IsNull(s_address_suite))
     {
@@ -239,6 +286,9 @@ address_request_t *address_request_parseFromJSON(cJSON *address_requestJSON){
 
     // address_request->s_address_city
     cJSON *s_address_city = cJSON_GetObjectItemCaseSensitive(address_requestJSON, "sAddressCity");
+    if (cJSON_IsNull(s_address_city)) {
+        s_address_city = NULL;
+    }
     if (!s_address_city) {
         goto end;
     }
@@ -251,6 +301,9 @@ address_request_t *address_request_parseFromJSON(cJSON *address_requestJSON){
 
     // address_request->fki_province_id
     cJSON *fki_province_id = cJSON_GetObjectItemCaseSensitive(address_requestJSON, "fkiProvinceID");
+    if (cJSON_IsNull(fki_province_id)) {
+        fki_province_id = NULL;
+    }
     if (!fki_province_id) {
         goto end;
     }
@@ -263,6 +316,9 @@ address_request_t *address_request_parseFromJSON(cJSON *address_requestJSON){
 
     // address_request->fki_country_id
     cJSON *fki_country_id = cJSON_GetObjectItemCaseSensitive(address_requestJSON, "fkiCountryID");
+    if (cJSON_IsNull(fki_country_id)) {
+        fki_country_id = NULL;
+    }
     if (!fki_country_id) {
         goto end;
     }
@@ -275,6 +331,9 @@ address_request_t *address_request_parseFromJSON(cJSON *address_requestJSON){
 
     // address_request->s_address_zip
     cJSON *s_address_zip = cJSON_GetObjectItemCaseSensitive(address_requestJSON, "sAddressZip");
+    if (cJSON_IsNull(s_address_zip)) {
+        s_address_zip = NULL;
+    }
     if (!s_address_zip) {
         goto end;
     }
@@ -287,6 +346,9 @@ address_request_t *address_request_parseFromJSON(cJSON *address_requestJSON){
 
     // address_request->f_address_longitude
     cJSON *f_address_longitude = cJSON_GetObjectItemCaseSensitive(address_requestJSON, "fAddressLongitude");
+    if (cJSON_IsNull(f_address_longitude)) {
+        f_address_longitude = NULL;
+    }
     if (f_address_longitude) { 
     if(!cJSON_IsString(f_address_longitude) && !cJSON_IsNull(f_address_longitude))
     {
@@ -296,6 +358,9 @@ address_request_t *address_request_parseFromJSON(cJSON *address_requestJSON){
 
     // address_request->f_address_latitude
     cJSON *f_address_latitude = cJSON_GetObjectItemCaseSensitive(address_requestJSON, "fAddressLatitude");
+    if (cJSON_IsNull(f_address_latitude)) {
+        f_address_latitude = NULL;
+    }
     if (f_address_latitude) { 
     if(!cJSON_IsString(f_address_latitude) && !cJSON_IsNull(f_address_latitude))
     {
@@ -304,7 +369,7 @@ address_request_t *address_request_parseFromJSON(cJSON *address_requestJSON){
     }
 
 
-    address_request_local_var = address_request_create (
+    address_request_local_var = address_request_create_internal (
         pki_address_id ? pki_address_id->valuedouble : 0,
         fki_addresstype_id->valuedouble,
         strdup(s_address_civic->valuestring),

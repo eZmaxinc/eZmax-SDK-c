@@ -22,9 +22,10 @@ typedef struct ezsignformfieldgroupsigner_request_t {
     int pki_ezsignformfieldgroupsigner_id; //numeric
     int fki_ezsignfoldersignerassociation_id; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignformfieldgroupsigner_request_t;
 
-ezsignformfieldgroupsigner_request_t *ezsignformfieldgroupsigner_request_create(
+__attribute__((deprecated)) ezsignformfieldgroupsigner_request_t *ezsignformfieldgroupsigner_request_create(
     int pki_ezsignformfieldgroupsigner_id,
     int fki_ezsignfoldersignerassociation_id
 );

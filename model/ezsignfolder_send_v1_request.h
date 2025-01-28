@@ -21,9 +21,10 @@ typedef struct ezsignfolder_send_v1_request_t ezsignfolder_send_v1_request_t;
 typedef struct ezsignfolder_send_v1_request_t {
     char *t_extra_message; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfolder_send_v1_request_t;
 
-ezsignfolder_send_v1_request_t *ezsignfolder_send_v1_request_create(
+__attribute__((deprecated)) ezsignfolder_send_v1_request_t *ezsignfolder_send_v1_request_create(
     char *t_extra_message
 );
 

@@ -25,9 +25,10 @@ typedef struct usergroup_request_compound_t {
     struct email_request_t *obj_email; //model
     struct multilingual_usergroup_name_t *obj_usergroup_name; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } usergroup_request_compound_t;
 
-usergroup_request_compound_t *usergroup_request_compound_create(
+__attribute__((deprecated)) usergroup_request_compound_t *usergroup_request_compound_create(
     int pki_usergroup_id,
     email_request_t *obj_email,
     multilingual_usergroup_name_t *obj_usergroup_name

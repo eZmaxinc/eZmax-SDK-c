@@ -5,7 +5,7 @@
 
 
 
-apikey_get_list_v1_response_m_payload_t *apikey_get_list_v1_response_m_payload_create(
+static apikey_get_list_v1_response_m_payload_t *apikey_get_list_v1_response_m_payload_create_internal(
     int i_row_returned,
     int i_row_filtered,
     list_t *a_obj_apikey
@@ -18,12 +18,28 @@ apikey_get_list_v1_response_m_payload_t *apikey_get_list_v1_response_m_payload_c
     apikey_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
     apikey_get_list_v1_response_m_payload_local_var->a_obj_apikey = a_obj_apikey;
 
+    apikey_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     return apikey_get_list_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) apikey_get_list_v1_response_m_payload_t *apikey_get_list_v1_response_m_payload_create(
+    int i_row_returned,
+    int i_row_filtered,
+    list_t *a_obj_apikey
+    ) {
+    return apikey_get_list_v1_response_m_payload_create_internal (
+        i_row_returned,
+        i_row_filtered,
+        a_obj_apikey
+        );
+}
 
 void apikey_get_list_v1_response_m_payload_free(apikey_get_list_v1_response_m_payload_t *apikey_get_list_v1_response_m_payload) {
     if(NULL == apikey_get_list_v1_response_m_payload){
+        return ;
+    }
+    if(apikey_get_list_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "apikey_get_list_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -95,6 +111,9 @@ apikey_get_list_v1_response_m_payload_t *apikey_get_list_v1_response_m_payload_p
 
     // apikey_get_list_v1_response_m_payload->i_row_returned
     cJSON *i_row_returned = cJSON_GetObjectItemCaseSensitive(apikey_get_list_v1_response_m_payloadJSON, "iRowReturned");
+    if (cJSON_IsNull(i_row_returned)) {
+        i_row_returned = NULL;
+    }
     if (!i_row_returned) {
         goto end;
     }
@@ -107,6 +126,9 @@ apikey_get_list_v1_response_m_payload_t *apikey_get_list_v1_response_m_payload_p
 
     // apikey_get_list_v1_response_m_payload->i_row_filtered
     cJSON *i_row_filtered = cJSON_GetObjectItemCaseSensitive(apikey_get_list_v1_response_m_payloadJSON, "iRowFiltered");
+    if (cJSON_IsNull(i_row_filtered)) {
+        i_row_filtered = NULL;
+    }
     if (!i_row_filtered) {
         goto end;
     }
@@ -119,6 +141,9 @@ apikey_get_list_v1_response_m_payload_t *apikey_get_list_v1_response_m_payload_p
 
     // apikey_get_list_v1_response_m_payload->a_obj_apikey
     cJSON *a_obj_apikey = cJSON_GetObjectItemCaseSensitive(apikey_get_list_v1_response_m_payloadJSON, "a_objApikey");
+    if (cJSON_IsNull(a_obj_apikey)) {
+        a_obj_apikey = NULL;
+    }
     if (!a_obj_apikey) {
         goto end;
     }
@@ -142,7 +167,7 @@ apikey_get_list_v1_response_m_payload_t *apikey_get_list_v1_response_m_payload_p
     }
 
 
-    apikey_get_list_v1_response_m_payload_local_var = apikey_get_list_v1_response_m_payload_create (
+    apikey_get_list_v1_response_m_payload_local_var = apikey_get_list_v1_response_m_payload_create_internal (
         i_row_returned->valuedouble,
         i_row_filtered->valuedouble,
         a_obj_apikeyList

@@ -5,7 +5,7 @@
 
 
 
-multilingual_notificationsubsection_name_t *multilingual_notificationsubsection_name_create(
+static multilingual_notificationsubsection_name_t *multilingual_notificationsubsection_name_create_internal(
     char *s_notificationsubsection_name1,
     char *s_notificationsubsection_name2
     ) {
@@ -16,12 +16,26 @@ multilingual_notificationsubsection_name_t *multilingual_notificationsubsection_
     multilingual_notificationsubsection_name_local_var->s_notificationsubsection_name1 = s_notificationsubsection_name1;
     multilingual_notificationsubsection_name_local_var->s_notificationsubsection_name2 = s_notificationsubsection_name2;
 
+    multilingual_notificationsubsection_name_local_var->_library_owned = 1;
     return multilingual_notificationsubsection_name_local_var;
 }
 
+__attribute__((deprecated)) multilingual_notificationsubsection_name_t *multilingual_notificationsubsection_name_create(
+    char *s_notificationsubsection_name1,
+    char *s_notificationsubsection_name2
+    ) {
+    return multilingual_notificationsubsection_name_create_internal (
+        s_notificationsubsection_name1,
+        s_notificationsubsection_name2
+        );
+}
 
 void multilingual_notificationsubsection_name_free(multilingual_notificationsubsection_name_t *multilingual_notificationsubsection_name) {
     if(NULL == multilingual_notificationsubsection_name){
+        return ;
+    }
+    if(multilingual_notificationsubsection_name->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "multilingual_notificationsubsection_name_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -68,6 +82,9 @@ multilingual_notificationsubsection_name_t *multilingual_notificationsubsection_
 
     // multilingual_notificationsubsection_name->s_notificationsubsection_name1
     cJSON *s_notificationsubsection_name1 = cJSON_GetObjectItemCaseSensitive(multilingual_notificationsubsection_nameJSON, "sNotificationsubsectionName1");
+    if (cJSON_IsNull(s_notificationsubsection_name1)) {
+        s_notificationsubsection_name1 = NULL;
+    }
     if (s_notificationsubsection_name1) { 
     if(!cJSON_IsString(s_notificationsubsection_name1) && !cJSON_IsNull(s_notificationsubsection_name1))
     {
@@ -77,6 +94,9 @@ multilingual_notificationsubsection_name_t *multilingual_notificationsubsection_
 
     // multilingual_notificationsubsection_name->s_notificationsubsection_name2
     cJSON *s_notificationsubsection_name2 = cJSON_GetObjectItemCaseSensitive(multilingual_notificationsubsection_nameJSON, "sNotificationsubsectionName2");
+    if (cJSON_IsNull(s_notificationsubsection_name2)) {
+        s_notificationsubsection_name2 = NULL;
+    }
     if (s_notificationsubsection_name2) { 
     if(!cJSON_IsString(s_notificationsubsection_name2) && !cJSON_IsNull(s_notificationsubsection_name2))
     {
@@ -85,7 +105,7 @@ multilingual_notificationsubsection_name_t *multilingual_notificationsubsection_
     }
 
 
-    multilingual_notificationsubsection_name_local_var = multilingual_notificationsubsection_name_create (
+    multilingual_notificationsubsection_name_local_var = multilingual_notificationsubsection_name_create_internal (
         s_notificationsubsection_name1 && !cJSON_IsNull(s_notificationsubsection_name1) ? strdup(s_notificationsubsection_name1->valuestring) : NULL,
         s_notificationsubsection_name2 && !cJSON_IsNull(s_notificationsubsection_name2) ? strdup(s_notificationsubsection_name2->valuestring) : NULL
         );

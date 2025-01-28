@@ -22,9 +22,10 @@ typedef struct ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_pay
 typedef struct ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t {
     list_t *a_obj_ezdoctemplatefieldtypecategory; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t;
 
-ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t *ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_create(
+__attribute__((deprecated)) ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t *ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_ezdoctemplatefieldtypecategory
 );
 

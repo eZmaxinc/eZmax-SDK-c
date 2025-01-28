@@ -5,7 +5,7 @@
 
 
 
-branding_edit_object_v2_response_t *branding_edit_object_v2_response_create(
+static branding_edit_object_v2_response_t *branding_edit_object_v2_response_create_internal(
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
@@ -16,12 +16,26 @@ branding_edit_object_v2_response_t *branding_edit_object_v2_response_create(
     branding_edit_object_v2_response_local_var->obj_debug_payload = obj_debug_payload;
     branding_edit_object_v2_response_local_var->obj_debug = obj_debug;
 
+    branding_edit_object_v2_response_local_var->_library_owned = 1;
     return branding_edit_object_v2_response_local_var;
 }
 
+__attribute__((deprecated)) branding_edit_object_v2_response_t *branding_edit_object_v2_response_create(
+    common_response_obj_debug_payload_t *obj_debug_payload,
+    common_response_obj_debug_t *obj_debug
+    ) {
+    return branding_edit_object_v2_response_create_internal (
+        obj_debug_payload,
+        obj_debug
+        );
+}
 
 void branding_edit_object_v2_response_free(branding_edit_object_v2_response_t *branding_edit_object_v2_response) {
     if(NULL == branding_edit_object_v2_response){
+        return ;
+    }
+    if(branding_edit_object_v2_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "branding_edit_object_v2_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -85,6 +99,9 @@ branding_edit_object_v2_response_t *branding_edit_object_v2_response_parseFromJS
 
     // branding_edit_object_v2_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(branding_edit_object_v2_responseJSON, "objDebugPayload");
+    if (cJSON_IsNull(obj_debug_payload)) {
+        obj_debug_payload = NULL;
+    }
     if (!obj_debug_payload) {
         goto end;
     }
@@ -94,12 +111,15 @@ branding_edit_object_v2_response_t *branding_edit_object_v2_response_parseFromJS
 
     // branding_edit_object_v2_response->obj_debug
     cJSON *obj_debug = cJSON_GetObjectItemCaseSensitive(branding_edit_object_v2_responseJSON, "objDebug");
+    if (cJSON_IsNull(obj_debug)) {
+        obj_debug = NULL;
+    }
     if (obj_debug) { 
     obj_debug_local_nonprim = common_response_obj_debug_parseFromJSON(obj_debug); //nonprimitive
     }
 
 
-    branding_edit_object_v2_response_local_var = branding_edit_object_v2_response_create (
+    branding_edit_object_v2_response_local_var = branding_edit_object_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );

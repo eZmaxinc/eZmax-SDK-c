@@ -22,9 +22,10 @@ typedef struct billingentityinternal_get_object_v2_response_m_payload_t billinge
 typedef struct billingentityinternal_get_object_v2_response_m_payload_t {
     struct billingentityinternal_response_compound_t *obj_billingentityinternal; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } billingentityinternal_get_object_v2_response_m_payload_t;
 
-billingentityinternal_get_object_v2_response_m_payload_t *billingentityinternal_get_object_v2_response_m_payload_create(
+__attribute__((deprecated)) billingentityinternal_get_object_v2_response_m_payload_t *billingentityinternal_get_object_v2_response_m_payload_create(
     billingentityinternal_response_compound_t *obj_billingentityinternal
 );
 

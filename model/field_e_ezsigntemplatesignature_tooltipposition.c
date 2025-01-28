@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsigntemplatesignature_tooltipposition__e fi
     return 0;
 }
 
-cJSON *field_e_ezsigntemplatesignature_tooltipposition_field_e_ezsigntemplatesignature_tooltipposition_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplatesignature_tooltipposition__e field_e_ezsigntemplatesignature_tooltipposition) {
+cJSON *field_e_ezsigntemplatesignature_tooltipposition_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplatesignature_tooltipposition__e field_e_ezsigntemplatesignature_tooltipposition) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsigntemplatesignature_tooltipposition", field_e_ezsigntemplatesignature_tooltipposition_field_e_ezsigntemplatesignature_tooltipposition_ToString(field_e_ezsigntemplatesignature_tooltipposition)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsigntemplatesignature_tooltipposition__e field_e_ezsigntemplatesignature_tooltipposition_field_e_ezsigntemplatesignature_tooltipposition_parseFromJSON(cJSON *field_e_ezsigntemplatesignature_tooltippositionJSON) {
-    ezmax_api_definition__full_field_e_ezsigntemplatesignature_tooltipposition__e *field_e_ezsigntemplatesignature_tooltipposition = NULL;
-    ezmax_api_definition__full_field_e_ezsigntemplatesignature_tooltipposition__e field_e_ezsigntemplatesignature_tooltippositionVariable;
-    cJSON *field_e_ezsigntemplatesignature_tooltippositionVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsigntemplatesignature_tooltippositionJSON, "field_e_ezsigntemplatesignature_tooltipposition");
-    if(!cJSON_IsString(field_e_ezsigntemplatesignature_tooltippositionVar) || (field_e_ezsigntemplatesignature_tooltippositionVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsigntemplatesignature_tooltipposition__e field_e_ezsigntemplatesignature_tooltipposition_parseFromJSON(cJSON *field_e_ezsigntemplatesignature_tooltippositionJSON) {
+    if(!cJSON_IsString(field_e_ezsigntemplatesignature_tooltippositionJSON) || (field_e_ezsigntemplatesignature_tooltippositionJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsigntemplatesignature_tooltippositionVariable = field_e_ezsigntemplatesignature_tooltipposition_field_e_ezsigntemplatesignature_tooltipposition_FromString(field_e_ezsigntemplatesignature_tooltippositionVar->valuestring);
-    return field_e_ezsigntemplatesignature_tooltippositionVariable;
-end:
-    return 0;
+    return field_e_ezsigntemplatesignature_tooltipposition_field_e_ezsigntemplatesignature_tooltipposition_FromString(field_e_ezsigntemplatesignature_tooltippositionJSON->valuestring);
 }

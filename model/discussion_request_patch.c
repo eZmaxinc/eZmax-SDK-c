@@ -5,7 +5,7 @@
 
 
 
-discussion_request_patch_t *discussion_request_patch_create(
+static discussion_request_patch_t *discussion_request_patch_create_internal(
     char *s_discussion_description,
     int b_discussion_closed
     ) {
@@ -16,12 +16,26 @@ discussion_request_patch_t *discussion_request_patch_create(
     discussion_request_patch_local_var->s_discussion_description = s_discussion_description;
     discussion_request_patch_local_var->b_discussion_closed = b_discussion_closed;
 
+    discussion_request_patch_local_var->_library_owned = 1;
     return discussion_request_patch_local_var;
 }
 
+__attribute__((deprecated)) discussion_request_patch_t *discussion_request_patch_create(
+    char *s_discussion_description,
+    int b_discussion_closed
+    ) {
+    return discussion_request_patch_create_internal (
+        s_discussion_description,
+        b_discussion_closed
+        );
+}
 
 void discussion_request_patch_free(discussion_request_patch_t *discussion_request_patch) {
     if(NULL == discussion_request_patch){
+        return ;
+    }
+    if(discussion_request_patch->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "discussion_request_patch_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -64,6 +78,9 @@ discussion_request_patch_t *discussion_request_patch_parseFromJSON(cJSON *discus
 
     // discussion_request_patch->s_discussion_description
     cJSON *s_discussion_description = cJSON_GetObjectItemCaseSensitive(discussion_request_patchJSON, "sDiscussionDescription");
+    if (cJSON_IsNull(s_discussion_description)) {
+        s_discussion_description = NULL;
+    }
     if (s_discussion_description) { 
     if(!cJSON_IsString(s_discussion_description) && !cJSON_IsNull(s_discussion_description))
     {
@@ -73,6 +90,9 @@ discussion_request_patch_t *discussion_request_patch_parseFromJSON(cJSON *discus
 
     // discussion_request_patch->b_discussion_closed
     cJSON *b_discussion_closed = cJSON_GetObjectItemCaseSensitive(discussion_request_patchJSON, "bDiscussionClosed");
+    if (cJSON_IsNull(b_discussion_closed)) {
+        b_discussion_closed = NULL;
+    }
     if (b_discussion_closed) { 
     if(!cJSON_IsBool(b_discussion_closed))
     {
@@ -81,7 +101,7 @@ discussion_request_patch_t *discussion_request_patch_parseFromJSON(cJSON *discus
     }
 
 
-    discussion_request_patch_local_var = discussion_request_patch_create (
+    discussion_request_patch_local_var = discussion_request_patch_create_internal (
         s_discussion_description && !cJSON_IsNull(s_discussion_description) ? strdup(s_discussion_description->valuestring) : NULL,
         b_discussion_closed ? b_discussion_closed->valueint : 0
         );

@@ -26,9 +26,10 @@ typedef struct ezsigntemplatepackagesigner_create_object_v1_response_t {
     struct common_response_obj_debug_t *obj_debug; //model
     struct ezsigntemplatepackagesigner_create_object_v1_response_m_payload_t *m_payload; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatepackagesigner_create_object_v1_response_t;
 
-ezsigntemplatepackagesigner_create_object_v1_response_t *ezsigntemplatepackagesigner_create_object_v1_response_create(
+__attribute__((deprecated)) ezsigntemplatepackagesigner_create_object_v1_response_t *ezsigntemplatepackagesigner_create_object_v1_response_create(
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug,
     ezsigntemplatepackagesigner_create_object_v1_response_m_payload_t *m_payload

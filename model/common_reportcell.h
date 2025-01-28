@@ -22,9 +22,10 @@ typedef struct common_reportcell_t {
     int i_reportcell_columnspan; //numeric
     int i_reportcell_rowspan; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } common_reportcell_t;
 
-common_reportcell_t *common_reportcell_create(
+__attribute__((deprecated)) common_reportcell_t *common_reportcell_create(
     int i_reportcell_columnspan,
     int i_reportcell_rowspan
 );

@@ -5,7 +5,7 @@
 
 
 
-ezsignfolder_dispose_ezsignfolders_v1_request_t *ezsignfolder_dispose_ezsignfolders_v1_request_create(
+static ezsignfolder_dispose_ezsignfolders_v1_request_t *ezsignfolder_dispose_ezsignfolders_v1_request_create_internal(
     list_t *a_pki_ezsignfolder_id
     ) {
     ezsignfolder_dispose_ezsignfolders_v1_request_t *ezsignfolder_dispose_ezsignfolders_v1_request_local_var = malloc(sizeof(ezsignfolder_dispose_ezsignfolders_v1_request_t));
@@ -14,12 +14,24 @@ ezsignfolder_dispose_ezsignfolders_v1_request_t *ezsignfolder_dispose_ezsignfold
     }
     ezsignfolder_dispose_ezsignfolders_v1_request_local_var->a_pki_ezsignfolder_id = a_pki_ezsignfolder_id;
 
+    ezsignfolder_dispose_ezsignfolders_v1_request_local_var->_library_owned = 1;
     return ezsignfolder_dispose_ezsignfolders_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezsignfolder_dispose_ezsignfolders_v1_request_t *ezsignfolder_dispose_ezsignfolders_v1_request_create(
+    list_t *a_pki_ezsignfolder_id
+    ) {
+    return ezsignfolder_dispose_ezsignfolders_v1_request_create_internal (
+        a_pki_ezsignfolder_id
+        );
+}
 
 void ezsignfolder_dispose_ezsignfolders_v1_request_free(ezsignfolder_dispose_ezsignfolders_v1_request_t *ezsignfolder_dispose_ezsignfolders_v1_request) {
     if(NULL == ezsignfolder_dispose_ezsignfolders_v1_request){
+        return ;
+    }
+    if(ezsignfolder_dispose_ezsignfolders_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignfolder_dispose_ezsignfolders_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +82,9 @@ ezsignfolder_dispose_ezsignfolders_v1_request_t *ezsignfolder_dispose_ezsignfold
 
     // ezsignfolder_dispose_ezsignfolders_v1_request->a_pki_ezsignfolder_id
     cJSON *a_pki_ezsignfolder_id = cJSON_GetObjectItemCaseSensitive(ezsignfolder_dispose_ezsignfolders_v1_requestJSON, "a_pkiEzsignfolderID");
+    if (cJSON_IsNull(a_pki_ezsignfolder_id)) {
+        a_pki_ezsignfolder_id = NULL;
+    }
     if (!a_pki_ezsignfolder_id) {
         goto end;
     }
@@ -87,7 +102,7 @@ ezsignfolder_dispose_ezsignfolders_v1_request_t *ezsignfolder_dispose_ezsignfold
         {
             goto end;
         }
-        double *a_pki_ezsignfolder_id_local_value = (double *)calloc(1, sizeof(double));
+        double *a_pki_ezsignfolder_id_local_value = calloc(1, sizeof(double));
         if(!a_pki_ezsignfolder_id_local_value)
         {
             goto end;
@@ -97,7 +112,7 @@ ezsignfolder_dispose_ezsignfolders_v1_request_t *ezsignfolder_dispose_ezsignfold
     }
 
 
-    ezsignfolder_dispose_ezsignfolders_v1_request_local_var = ezsignfolder_dispose_ezsignfolders_v1_request_create (
+    ezsignfolder_dispose_ezsignfolders_v1_request_local_var = ezsignfolder_dispose_ezsignfolders_v1_request_create_internal (
         a_pki_ezsignfolder_idList
         );
 

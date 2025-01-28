@@ -24,9 +24,10 @@ typedef struct ezsigntemplateglobaldocument_response_t {
     int i_ezsigntemplateglobaldocument_pagetotal; //numeric
     int i_ezsigntemplateglobaldocument_signaturetotal; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplateglobaldocument_response_t;
 
-ezsigntemplateglobaldocument_response_t *ezsigntemplateglobaldocument_response_create(
+__attribute__((deprecated)) ezsigntemplateglobaldocument_response_t *ezsigntemplateglobaldocument_response_create(
     int pki_ezsigntemplateglobaldocument_id,
     char *s_ezsigntemplateglobaldocument_name,
     int i_ezsigntemplateglobaldocument_pagetotal,

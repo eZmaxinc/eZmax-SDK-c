@@ -32,9 +32,10 @@ typedef struct ezsignbulksend_get_ezsignsignatures_automatic_v1_response_m_paylo
     list_t *a_e_ezsignsignature_type; //nonprimitive container
     list_t *a_obj_ezsignfolder; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignbulksend_get_ezsignsignatures_automatic_v1_response_m_payload_t;
 
-ezsignbulksend_get_ezsignsignatures_automatic_v1_response_m_payload_t *ezsignbulksend_get_ezsignsignatures_automatic_v1_response_m_payload_create(
+__attribute__((deprecated)) ezsignbulksend_get_ezsignsignatures_automatic_v1_response_m_payload_t *ezsignbulksend_get_ezsignsignatures_automatic_v1_response_m_payload_create(
     list_t *a_e_ezsignsignature_type,
     list_t *a_obj_ezsignfolder
 );

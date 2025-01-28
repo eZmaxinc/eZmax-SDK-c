@@ -5,7 +5,7 @@
 
 
 
-signature_edit_object_v1_request_t *signature_edit_object_v1_request_create(
+static signature_edit_object_v1_request_t *signature_edit_object_v1_request_create_internal(
     signature_request_compound_t *obj_signature
     ) {
     signature_edit_object_v1_request_t *signature_edit_object_v1_request_local_var = malloc(sizeof(signature_edit_object_v1_request_t));
@@ -14,12 +14,24 @@ signature_edit_object_v1_request_t *signature_edit_object_v1_request_create(
     }
     signature_edit_object_v1_request_local_var->obj_signature = obj_signature;
 
+    signature_edit_object_v1_request_local_var->_library_owned = 1;
     return signature_edit_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) signature_edit_object_v1_request_t *signature_edit_object_v1_request_create(
+    signature_request_compound_t *obj_signature
+    ) {
+    return signature_edit_object_v1_request_create_internal (
+        obj_signature
+        );
+}
 
 void signature_edit_object_v1_request_free(signature_edit_object_v1_request_t *signature_edit_object_v1_request) {
     if(NULL == signature_edit_object_v1_request){
+        return ;
+    }
+    if(signature_edit_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "signature_edit_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ signature_edit_object_v1_request_t *signature_edit_object_v1_request_parseFromJS
 
     // signature_edit_object_v1_request->obj_signature
     cJSON *obj_signature = cJSON_GetObjectItemCaseSensitive(signature_edit_object_v1_requestJSON, "objSignature");
+    if (cJSON_IsNull(obj_signature)) {
+        obj_signature = NULL;
+    }
     if (!obj_signature) {
         goto end;
     }
@@ -71,7 +86,7 @@ signature_edit_object_v1_request_t *signature_edit_object_v1_request_parseFromJS
     obj_signature_local_nonprim = signature_request_compound_parseFromJSON(obj_signature); //nonprimitive
 
 
-    signature_edit_object_v1_request_local_var = signature_edit_object_v1_request_create (
+    signature_edit_object_v1_request_local_var = signature_edit_object_v1_request_create_internal (
         obj_signature_local_nonprim
         );
 

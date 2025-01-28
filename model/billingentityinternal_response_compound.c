@@ -5,7 +5,7 @@
 
 
 
-billingentityinternal_response_compound_t *billingentityinternal_response_compound_create(
+static billingentityinternal_response_compound_t *billingentityinternal_response_compound_create_internal(
     int pki_billingentityinternal_id,
     multilingual_billingentityinternal_description_t *obj_billingentityinternal_description,
     list_t *a_obj_billingentityinternalproduct
@@ -18,12 +18,28 @@ billingentityinternal_response_compound_t *billingentityinternal_response_compou
     billingentityinternal_response_compound_local_var->obj_billingentityinternal_description = obj_billingentityinternal_description;
     billingentityinternal_response_compound_local_var->a_obj_billingentityinternalproduct = a_obj_billingentityinternalproduct;
 
+    billingentityinternal_response_compound_local_var->_library_owned = 1;
     return billingentityinternal_response_compound_local_var;
 }
 
+__attribute__((deprecated)) billingentityinternal_response_compound_t *billingentityinternal_response_compound_create(
+    int pki_billingentityinternal_id,
+    multilingual_billingentityinternal_description_t *obj_billingentityinternal_description,
+    list_t *a_obj_billingentityinternalproduct
+    ) {
+    return billingentityinternal_response_compound_create_internal (
+        pki_billingentityinternal_id,
+        obj_billingentityinternal_description,
+        a_obj_billingentityinternalproduct
+        );
+}
 
 void billingentityinternal_response_compound_free(billingentityinternal_response_compound_t *billingentityinternal_response_compound) {
     if(NULL == billingentityinternal_response_compound){
+        return ;
+    }
+    if(billingentityinternal_response_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "billingentityinternal_response_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -107,6 +123,9 @@ billingentityinternal_response_compound_t *billingentityinternal_response_compou
 
     // billingentityinternal_response_compound->pki_billingentityinternal_id
     cJSON *pki_billingentityinternal_id = cJSON_GetObjectItemCaseSensitive(billingentityinternal_response_compoundJSON, "pkiBillingentityinternalID");
+    if (cJSON_IsNull(pki_billingentityinternal_id)) {
+        pki_billingentityinternal_id = NULL;
+    }
     if (!pki_billingentityinternal_id) {
         goto end;
     }
@@ -119,6 +138,9 @@ billingentityinternal_response_compound_t *billingentityinternal_response_compou
 
     // billingentityinternal_response_compound->obj_billingentityinternal_description
     cJSON *obj_billingentityinternal_description = cJSON_GetObjectItemCaseSensitive(billingentityinternal_response_compoundJSON, "objBillingentityinternalDescription");
+    if (cJSON_IsNull(obj_billingentityinternal_description)) {
+        obj_billingentityinternal_description = NULL;
+    }
     if (!obj_billingentityinternal_description) {
         goto end;
     }
@@ -128,6 +150,9 @@ billingentityinternal_response_compound_t *billingentityinternal_response_compou
 
     // billingentityinternal_response_compound->a_obj_billingentityinternalproduct
     cJSON *a_obj_billingentityinternalproduct = cJSON_GetObjectItemCaseSensitive(billingentityinternal_response_compoundJSON, "a_objBillingentityinternalproduct");
+    if (cJSON_IsNull(a_obj_billingentityinternalproduct)) {
+        a_obj_billingentityinternalproduct = NULL;
+    }
     if (!a_obj_billingentityinternalproduct) {
         goto end;
     }
@@ -151,7 +176,7 @@ billingentityinternal_response_compound_t *billingentityinternal_response_compou
     }
 
 
-    billingentityinternal_response_compound_local_var = billingentityinternal_response_compound_create (
+    billingentityinternal_response_compound_local_var = billingentityinternal_response_compound_create_internal (
         pki_billingentityinternal_id->valuedouble,
         obj_billingentityinternal_description_local_nonprim,
         a_obj_billingentityinternalproductList

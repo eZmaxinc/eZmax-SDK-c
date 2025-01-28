@@ -18,14 +18,6 @@ typedef struct ezsigntemplatepublic_response_t ezsigntemplatepublic_response_t;
 #include "common_audit.h"
 #include "field_e_ezsigntemplatepublic_limittype.h"
 
-// Enum  for ezsigntemplatepublic_response
-
-typedef enum  { ezmax_api_definition__full_ezsigntemplatepublic_response__NULL = 0, ezmax_api_definition__full_ezsigntemplatepublic_response__Hour, ezmax_api_definition__full_ezsigntemplatepublic_response__Day, ezmax_api_definition__full_ezsigntemplatepublic_response__Month, ezmax_api_definition__full_ezsigntemplatepublic_response__Total } ezmax_api_definition__full_ezsigntemplatepublic_response__e;
-
-char* ezsigntemplatepublic_response_e_ezsigntemplatepublic_limittype_ToString(ezmax_api_definition__full_ezsigntemplatepublic_response__e e_ezsigntemplatepublic_limittype);
-
-ezmax_api_definition__full_ezsigntemplatepublic_response__e ezsigntemplatepublic_response_e_ezsigntemplatepublic_limittype_FromString(char* e_ezsigntemplatepublic_limittype);
-
 
 
 typedef struct ezsigntemplatepublic_response_t {
@@ -40,7 +32,7 @@ typedef struct ezsigntemplatepublic_response_t {
     char *s_ezsigntemplatepublic_referenceid; // string
     int b_ezsigntemplatepublic_isactive; //boolean
     char *t_ezsigntemplatepublic_note; // string
-    field_e_ezsigntemplatepublic_limittype_t *e_ezsigntemplatepublic_limittype; // custom
+    ezmax_api_definition__full_field_e_ezsigntemplatepublic_limittype__e e_ezsigntemplatepublic_limittype; //referenced enum
     int i_ezsigntemplatepublic_limit; //numeric
     int i_ezsigntemplatepublic_limitexceeded; //numeric
     char *dt_ezsigntemplatepublic_limitexceededsince; // string
@@ -48,9 +40,10 @@ typedef struct ezsigntemplatepublic_response_t {
     char *s_ezsigntemplatepublic_ezsigntemplatedescription; // string
     struct common_audit_t *obj_audit; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatepublic_response_t;
 
-ezsigntemplatepublic_response_t *ezsigntemplatepublic_response_create(
+__attribute__((deprecated)) ezsigntemplatepublic_response_t *ezsigntemplatepublic_response_create(
     int pki_ezsigntemplatepublic_id,
     int fki_ezsignfoldertype_id,
     char *s_ezsignfoldertype_name_x,
@@ -62,7 +55,7 @@ ezsigntemplatepublic_response_t *ezsigntemplatepublic_response_create(
     char *s_ezsigntemplatepublic_referenceid,
     int b_ezsigntemplatepublic_isactive,
     char *t_ezsigntemplatepublic_note,
-    field_e_ezsigntemplatepublic_limittype_t *e_ezsigntemplatepublic_limittype,
+    ezmax_api_definition__full_field_e_ezsigntemplatepublic_limittype__e e_ezsigntemplatepublic_limittype,
     int i_ezsigntemplatepublic_limit,
     int i_ezsigntemplatepublic_limitexceeded,
     char *dt_ezsigntemplatepublic_limitexceededsince,

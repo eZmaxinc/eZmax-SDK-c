@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 // Functions for enum SSELECTOR for ObjectSupplyAPI_supplyGetAutocompleteV2
 
@@ -267,11 +262,14 @@ ObjectSupplyAPI_supplyCreateObjectV1(apiClient_t *apiClient, supply_create_objec
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/supply")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/supply");
+    char *localVarPath = strdup("/1/object/supply");
+
 
 
 
@@ -280,9 +278,10 @@ ObjectSupplyAPI_supplyCreateObjectV1(apiClient_t *apiClient, supply_create_objec
     cJSON *localVarSingleItemJSON_supply_create_object_v1_request = NULL;
     if (supply_create_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_supply_create_object_v1_request = supply_create_object_v1_request_convertToJSON(supply_create_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_supply_create_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -294,6 +293,7 @@ ObjectSupplyAPI_supplyCreateObjectV1(apiClient_t *apiClient, supply_create_objec
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -301,11 +301,14 @@ ObjectSupplyAPI_supplyCreateObjectV1(apiClient_t *apiClient, supply_create_objec
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectSupplyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    supply_create_object_v1_response_t *elementToReturn = supply_create_object_v1_response_parseFromJSON(ObjectSupplyAPIlocalVarJSON);
-    cJSON_Delete(ObjectSupplyAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    supply_create_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectSupplyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = supply_create_object_v1_response_parseFromJSON(ObjectSupplyAPIlocalVarJSON);
+        cJSON_Delete(ObjectSupplyAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -336,7 +339,7 @@ end:
 //
 // 
 //
-common_response_t*
+supply_delete_object_v1_response_t*
 ObjectSupplyAPI_supplyDeleteObjectV1(apiClient_t *apiClient, int *pkiSupplyID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -345,15 +348,18 @@ ObjectSupplyAPI_supplyDeleteObjectV1(apiClient_t *apiClient, int *pkiSupplyID)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/supply/{pkiSupplyID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/supply/{pkiSupplyID}");
+    char *localVarPath = strdup("/1/object/supply/{pkiSupplyID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiSupplyID =  + strlen("{ pkiSupplyID }");
+    long sizeOfPathParams_pkiSupplyID =  + sizeof("{ pkiSupplyID }") - 1;
     if(pkiSupplyID == 0){
         goto end;
     }
@@ -361,7 +367,7 @@ ObjectSupplyAPI_supplyDeleteObjectV1(apiClient_t *apiClient, int *pkiSupplyID)
     snprintf(localVarToReplace_pkiSupplyID, sizeOfPathParams_pkiSupplyID, "{%s}", "pkiSupplyID");
 
     char localVarBuff_pkiSupplyID[256];
-    intToStr(localVarBuff_pkiSupplyID, *pkiSupplyID);
+    snprintf(localVarBuff_pkiSupplyID, sizeof localVarBuff_pkiSupplyID, "%ld", (long)*pkiSupplyID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiSupplyID, localVarBuff_pkiSupplyID);
 
@@ -376,6 +382,7 @@ ObjectSupplyAPI_supplyDeleteObjectV1(apiClient_t *apiClient, int *pkiSupplyID)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "DELETE");
 
     // uncomment below to debug the error response
@@ -387,11 +394,14 @@ ObjectSupplyAPI_supplyDeleteObjectV1(apiClient_t *apiClient, int *pkiSupplyID)
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectSupplyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectSupplyAPIlocalVarJSON);
-    cJSON_Delete(ObjectSupplyAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    supply_delete_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectSupplyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = supply_delete_object_v1_response_parseFromJSON(ObjectSupplyAPIlocalVarJSON);
+        cJSON_Delete(ObjectSupplyAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -418,7 +428,7 @@ end:
 //
 // 
 //
-common_response_t*
+supply_edit_object_v1_response_t*
 ObjectSupplyAPI_supplyEditObjectV1(apiClient_t *apiClient, int *pkiSupplyID, supply_edit_object_v1_request_t *supply_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -427,15 +437,18 @@ ObjectSupplyAPI_supplyEditObjectV1(apiClient_t *apiClient, int *pkiSupplyID, sup
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/supply/{pkiSupplyID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/supply/{pkiSupplyID}");
+    char *localVarPath = strdup("/1/object/supply/{pkiSupplyID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiSupplyID =  + strlen("{ pkiSupplyID }");
+    long sizeOfPathParams_pkiSupplyID =  + sizeof("{ pkiSupplyID }") - 1;
     if(pkiSupplyID == 0){
         goto end;
     }
@@ -443,7 +456,7 @@ ObjectSupplyAPI_supplyEditObjectV1(apiClient_t *apiClient, int *pkiSupplyID, sup
     snprintf(localVarToReplace_pkiSupplyID, sizeOfPathParams_pkiSupplyID, "{%s}", "pkiSupplyID");
 
     char localVarBuff_pkiSupplyID[256];
-    intToStr(localVarBuff_pkiSupplyID, *pkiSupplyID);
+    snprintf(localVarBuff_pkiSupplyID, sizeof localVarBuff_pkiSupplyID, "%ld", (long)*pkiSupplyID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiSupplyID, localVarBuff_pkiSupplyID);
 
@@ -454,9 +467,10 @@ ObjectSupplyAPI_supplyEditObjectV1(apiClient_t *apiClient, int *pkiSupplyID, sup
     cJSON *localVarSingleItemJSON_supply_edit_object_v1_request = NULL;
     if (supply_edit_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_supply_edit_object_v1_request = supply_edit_object_v1_request_convertToJSON(supply_edit_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_supply_edit_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -468,6 +482,7 @@ ObjectSupplyAPI_supplyEditObjectV1(apiClient_t *apiClient, int *pkiSupplyID, sup
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -483,11 +498,14 @@ ObjectSupplyAPI_supplyEditObjectV1(apiClient_t *apiClient, int *pkiSupplyID, sup
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectSupplyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectSupplyAPIlocalVarJSON);
-    cJSON_Delete(ObjectSupplyAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    supply_edit_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectSupplyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = supply_edit_object_v1_response_parseFromJSON(ObjectSupplyAPIlocalVarJSON);
+        cJSON_Delete(ObjectSupplyAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -528,22 +546,27 @@ ObjectSupplyAPI_supplyGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_defini
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/supply/getAutocomplete/{sSelector}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/supply/getAutocomplete/{sSelector}");
+    char *localVarPath = strdup("/2/object/supply/getAutocomplete/{sSelector}");
+
+    if(!sSelector)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_sSelector = strlen(sSelector)+3 + strlen("{ sSelector }");
-    if(sSelector == NULL) {
+    long sizeOfPathParams_sSelector = strlen(supplyGetAutocompleteV2_SSELECTOR_ToString(sSelector))+3 + sizeof("{ sSelector }") - 1;
+    if(sSelector == 0) {
         goto end;
     }
     char* localVarToReplace_sSelector = malloc(sizeOfPathParams_sSelector);
     sprintf(localVarToReplace_sSelector, "{%s}", "sSelector");
 
-    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, sSelector);
+    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, supplyGetAutocompleteV2_SSELECTOR_ToString(sSelector));
 
 
 
@@ -567,7 +590,7 @@ ObjectSupplyAPI_supplyGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_defini
     {
         keyQuery_eFilterActive = strdup("eFilterActive");
         valueQuery_eFilterActive = (eFilterActive);
-        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(supplyGetAutocompleteV2_EFILTERACTIVE_ToString(
+        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, strdup(supplyGetAutocompleteV2_EFILTERACTIVE_ToString(
         valueQuery_eFilterActive)));
         list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
     }
@@ -592,6 +615,7 @@ ObjectSupplyAPI_supplyGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_defini
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -599,11 +623,14 @@ ObjectSupplyAPI_supplyGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_defini
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectSupplyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    supply_get_autocomplete_v2_response_t *elementToReturn = supply_get_autocomplete_v2_response_parseFromJSON(ObjectSupplyAPIlocalVarJSON);
-    cJSON_Delete(ObjectSupplyAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    supply_get_autocomplete_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectSupplyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = supply_get_autocomplete_v2_response_parseFromJSON(ObjectSupplyAPIlocalVarJSON);
+        cJSON_Delete(ObjectSupplyAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -664,11 +691,14 @@ ObjectSupplyAPI_supplyGetListV1(apiClient_t *apiClient, ezmax_api_definition__fu
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/supply/getList")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/supply/getList");
+    char *localVarPath = strdup("/1/object/supply/getList");
+
 
 
 
@@ -693,7 +723,7 @@ ObjectSupplyAPI_supplyGetListV1(apiClient_t *apiClient, ezmax_api_definition__fu
     {
         keyQuery_eOrderBy = strdup("eOrderBy");
         valueQuery_eOrderBy = (eOrderBy);
-        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, (void *)strdup(supplyGetListV1_EORDERBY_ToString(
+        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, strdup(supplyGetListV1_EORDERBY_ToString(
         valueQuery_eOrderBy)));
         list_addElement(localVarQueryParameters,keyPairQuery_eOrderBy);
     }
@@ -745,6 +775,7 @@ ObjectSupplyAPI_supplyGetListV1(apiClient_t *apiClient, ezmax_api_definition__fu
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -756,11 +787,14 @@ ObjectSupplyAPI_supplyGetListV1(apiClient_t *apiClient, ezmax_api_definition__fu
     //    printf("%s\n","The URL is valid, but one of the Accept header is not defined or invalid. For example, you set the header \&quot;Accept: application/json\&quot; but the function can only return \&quot;Content-type: image/png\&quot;");
     //}
     //nonprimitive not container
-    cJSON *ObjectSupplyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    supply_get_list_v1_response_t *elementToReturn = supply_get_list_v1_response_parseFromJSON(ObjectSupplyAPIlocalVarJSON);
-    cJSON_Delete(ObjectSupplyAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    supply_get_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectSupplyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = supply_get_list_v1_response_parseFromJSON(ObjectSupplyAPIlocalVarJSON);
+        cJSON_Delete(ObjectSupplyAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -844,15 +878,18 @@ ObjectSupplyAPI_supplyGetObjectV2(apiClient_t *apiClient, int *pkiSupplyID)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/supply/{pkiSupplyID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/supply/{pkiSupplyID}");
+    char *localVarPath = strdup("/2/object/supply/{pkiSupplyID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiSupplyID =  + strlen("{ pkiSupplyID }");
+    long sizeOfPathParams_pkiSupplyID =  + sizeof("{ pkiSupplyID }") - 1;
     if(pkiSupplyID == 0){
         goto end;
     }
@@ -860,7 +897,7 @@ ObjectSupplyAPI_supplyGetObjectV2(apiClient_t *apiClient, int *pkiSupplyID)
     snprintf(localVarToReplace_pkiSupplyID, sizeOfPathParams_pkiSupplyID, "{%s}", "pkiSupplyID");
 
     char localVarBuff_pkiSupplyID[256];
-    intToStr(localVarBuff_pkiSupplyID, *pkiSupplyID);
+    snprintf(localVarBuff_pkiSupplyID, sizeof localVarBuff_pkiSupplyID, "%ld", (long)*pkiSupplyID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiSupplyID, localVarBuff_pkiSupplyID);
 
@@ -875,6 +912,7 @@ ObjectSupplyAPI_supplyGetObjectV2(apiClient_t *apiClient, int *pkiSupplyID)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -886,11 +924,14 @@ ObjectSupplyAPI_supplyGetObjectV2(apiClient_t *apiClient, int *pkiSupplyID)
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectSupplyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    supply_get_object_v2_response_t *elementToReturn = supply_get_object_v2_response_parseFromJSON(ObjectSupplyAPIlocalVarJSON);
-    cJSON_Delete(ObjectSupplyAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    supply_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectSupplyAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = supply_get_object_v2_response_parseFromJSON(ObjectSupplyAPIlocalVarJSON);
+        cJSON_Delete(ObjectSupplyAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

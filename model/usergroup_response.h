@@ -26,9 +26,10 @@ typedef struct usergroup_response_t {
     char *s_usergroup_name_x; // string
     struct email_request_t *obj_email; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } usergroup_response_t;
 
-usergroup_response_t *usergroup_response_create(
+__attribute__((deprecated)) usergroup_response_t *usergroup_response_create(
     int pki_usergroup_id,
     multilingual_usergroup_name_t *obj_usergroup_name,
     char *s_usergroup_name_x,

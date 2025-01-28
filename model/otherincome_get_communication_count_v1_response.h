@@ -26,9 +26,10 @@ typedef struct otherincome_get_communication_count_v1_response_t {
     struct common_response_obj_debug_t *obj_debug; //model
     struct otherincome_get_communication_count_v1_response_m_payload_t *m_payload; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } otherincome_get_communication_count_v1_response_t;
 
-otherincome_get_communication_count_v1_response_t *otherincome_get_communication_count_v1_response_create(
+__attribute__((deprecated)) otherincome_get_communication_count_v1_response_t *otherincome_get_communication_count_v1_response_create(
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug,
     otherincome_get_communication_count_v1_response_m_payload_t *m_payload

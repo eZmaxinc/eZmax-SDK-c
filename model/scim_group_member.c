@@ -5,7 +5,7 @@
 
 
 
-scim_group_member_t *scim_group_member_create(
+static scim_group_member_t *scim_group_member_create_internal(
     char *value,
     char *display,
     char *type,
@@ -20,12 +20,30 @@ scim_group_member_t *scim_group_member_create(
     scim_group_member_local_var->type = type;
     scim_group_member_local_var->ref = ref;
 
+    scim_group_member_local_var->_library_owned = 1;
     return scim_group_member_local_var;
 }
 
+__attribute__((deprecated)) scim_group_member_t *scim_group_member_create(
+    char *value,
+    char *display,
+    char *type,
+    char *ref
+    ) {
+    return scim_group_member_create_internal (
+        value,
+        display,
+        type,
+        ref
+        );
+}
 
 void scim_group_member_free(scim_group_member_t *scim_group_member) {
     if(NULL == scim_group_member){
+        return ;
+    }
+    if(scim_group_member->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "scim_group_member_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -96,6 +114,9 @@ scim_group_member_t *scim_group_member_parseFromJSON(cJSON *scim_group_memberJSO
 
     // scim_group_member->value
     cJSON *value = cJSON_GetObjectItemCaseSensitive(scim_group_memberJSON, "value");
+    if (cJSON_IsNull(value)) {
+        value = NULL;
+    }
     if (value) { 
     if(!cJSON_IsString(value) && !cJSON_IsNull(value))
     {
@@ -105,6 +126,9 @@ scim_group_member_t *scim_group_member_parseFromJSON(cJSON *scim_group_memberJSO
 
     // scim_group_member->display
     cJSON *display = cJSON_GetObjectItemCaseSensitive(scim_group_memberJSON, "display");
+    if (cJSON_IsNull(display)) {
+        display = NULL;
+    }
     if (display) { 
     if(!cJSON_IsString(display) && !cJSON_IsNull(display))
     {
@@ -114,6 +138,9 @@ scim_group_member_t *scim_group_member_parseFromJSON(cJSON *scim_group_memberJSO
 
     // scim_group_member->type
     cJSON *type = cJSON_GetObjectItemCaseSensitive(scim_group_memberJSON, "type");
+    if (cJSON_IsNull(type)) {
+        type = NULL;
+    }
     if (type) { 
     if(!cJSON_IsString(type) && !cJSON_IsNull(type))
     {
@@ -123,6 +150,9 @@ scim_group_member_t *scim_group_member_parseFromJSON(cJSON *scim_group_memberJSO
 
     // scim_group_member->ref
     cJSON *ref = cJSON_GetObjectItemCaseSensitive(scim_group_memberJSON, "$ref");
+    if (cJSON_IsNull(ref)) {
+        ref = NULL;
+    }
     if (ref) { 
     if(!cJSON_IsString(ref) && !cJSON_IsNull(ref))
     {
@@ -131,7 +161,7 @@ scim_group_member_t *scim_group_member_parseFromJSON(cJSON *scim_group_memberJSO
     }
 
 
-    scim_group_member_local_var = scim_group_member_create (
+    scim_group_member_local_var = scim_group_member_create_internal (
         value && !cJSON_IsNull(value) ? strdup(value->valuestring) : NULL,
         display && !cJSON_IsNull(display) ? strdup(display->valuestring) : NULL,
         type && !cJSON_IsNull(type) ? strdup(type->valuestring) : NULL,

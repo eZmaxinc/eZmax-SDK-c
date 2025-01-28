@@ -21,9 +21,10 @@ typedef struct ezsignfolder_dispose_ezsignfolders_v1_request_t ezsignfolder_disp
 typedef struct ezsignfolder_dispose_ezsignfolders_v1_request_t {
     list_t *a_pki_ezsignfolder_id; //primitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfolder_dispose_ezsignfolders_v1_request_t;
 
-ezsignfolder_dispose_ezsignfolders_v1_request_t *ezsignfolder_dispose_ezsignfolders_v1_request_create(
+__attribute__((deprecated)) ezsignfolder_dispose_ezsignfolders_v1_request_t *ezsignfolder_dispose_ezsignfolders_v1_request_create(
     list_t *a_pki_ezsignfolder_id
 );
 

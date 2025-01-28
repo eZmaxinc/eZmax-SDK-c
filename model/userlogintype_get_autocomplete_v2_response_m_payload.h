@@ -22,9 +22,10 @@ typedef struct userlogintype_get_autocomplete_v2_response_m_payload_t userlogint
 typedef struct userlogintype_get_autocomplete_v2_response_m_payload_t {
     list_t *a_obj_userlogintype; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } userlogintype_get_autocomplete_v2_response_m_payload_t;
 
-userlogintype_get_autocomplete_v2_response_m_payload_t *userlogintype_get_autocomplete_v2_response_m_payload_create(
+__attribute__((deprecated)) userlogintype_get_autocomplete_v2_response_m_payload_t *userlogintype_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_userlogintype
 );
 

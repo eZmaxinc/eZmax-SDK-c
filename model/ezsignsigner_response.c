@@ -5,7 +5,7 @@
 
 
 
-ezsignsigner_response_t *ezsignsigner_response_create(
+static ezsignsigner_response_t *ezsignsigner_response_create_internal(
     int pki_ezsignsigner_id,
     int fki_taxassignment_id,
     int fki_secretquestion_id,
@@ -22,12 +22,32 @@ ezsignsigner_response_t *ezsignsigner_response_create(
     ezsignsigner_response_local_var->fki_userlogintype_id = fki_userlogintype_id;
     ezsignsigner_response_local_var->s_userlogintype_description_x = s_userlogintype_description_x;
 
+    ezsignsigner_response_local_var->_library_owned = 1;
     return ezsignsigner_response_local_var;
 }
 
+__attribute__((deprecated)) ezsignsigner_response_t *ezsignsigner_response_create(
+    int pki_ezsignsigner_id,
+    int fki_taxassignment_id,
+    int fki_secretquestion_id,
+    int fki_userlogintype_id,
+    char *s_userlogintype_description_x
+    ) {
+    return ezsignsigner_response_create_internal (
+        pki_ezsignsigner_id,
+        fki_taxassignment_id,
+        fki_secretquestion_id,
+        fki_userlogintype_id,
+        s_userlogintype_description_x
+        );
+}
 
 void ezsignsigner_response_free(ezsignsigner_response_t *ezsignsigner_response) {
     if(NULL == ezsignsigner_response){
+        return ;
+    }
+    if(ezsignsigner_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignsigner_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -98,6 +118,9 @@ ezsignsigner_response_t *ezsignsigner_response_parseFromJSON(cJSON *ezsignsigner
 
     // ezsignsigner_response->pki_ezsignsigner_id
     cJSON *pki_ezsignsigner_id = cJSON_GetObjectItemCaseSensitive(ezsignsigner_responseJSON, "pkiEzsignsignerID");
+    if (cJSON_IsNull(pki_ezsignsigner_id)) {
+        pki_ezsignsigner_id = NULL;
+    }
     if (!pki_ezsignsigner_id) {
         goto end;
     }
@@ -110,6 +133,9 @@ ezsignsigner_response_t *ezsignsigner_response_parseFromJSON(cJSON *ezsignsigner
 
     // ezsignsigner_response->fki_taxassignment_id
     cJSON *fki_taxassignment_id = cJSON_GetObjectItemCaseSensitive(ezsignsigner_responseJSON, "fkiTaxassignmentID");
+    if (cJSON_IsNull(fki_taxassignment_id)) {
+        fki_taxassignment_id = NULL;
+    }
     if (!fki_taxassignment_id) {
         goto end;
     }
@@ -122,6 +148,9 @@ ezsignsigner_response_t *ezsignsigner_response_parseFromJSON(cJSON *ezsignsigner
 
     // ezsignsigner_response->fki_secretquestion_id
     cJSON *fki_secretquestion_id = cJSON_GetObjectItemCaseSensitive(ezsignsigner_responseJSON, "fkiSecretquestionID");
+    if (cJSON_IsNull(fki_secretquestion_id)) {
+        fki_secretquestion_id = NULL;
+    }
     if (fki_secretquestion_id) { 
     if(!cJSON_IsNumber(fki_secretquestion_id))
     {
@@ -131,6 +160,9 @@ ezsignsigner_response_t *ezsignsigner_response_parseFromJSON(cJSON *ezsignsigner
 
     // ezsignsigner_response->fki_userlogintype_id
     cJSON *fki_userlogintype_id = cJSON_GetObjectItemCaseSensitive(ezsignsigner_responseJSON, "fkiUserlogintypeID");
+    if (cJSON_IsNull(fki_userlogintype_id)) {
+        fki_userlogintype_id = NULL;
+    }
     if (!fki_userlogintype_id) {
         goto end;
     }
@@ -143,6 +175,9 @@ ezsignsigner_response_t *ezsignsigner_response_parseFromJSON(cJSON *ezsignsigner
 
     // ezsignsigner_response->s_userlogintype_description_x
     cJSON *s_userlogintype_description_x = cJSON_GetObjectItemCaseSensitive(ezsignsigner_responseJSON, "sUserlogintypeDescriptionX");
+    if (cJSON_IsNull(s_userlogintype_description_x)) {
+        s_userlogintype_description_x = NULL;
+    }
     if (!s_userlogintype_description_x) {
         goto end;
     }
@@ -154,7 +189,7 @@ ezsignsigner_response_t *ezsignsigner_response_parseFromJSON(cJSON *ezsignsigner
     }
 
 
-    ezsignsigner_response_local_var = ezsignsigner_response_create (
+    ezsignsigner_response_local_var = ezsignsigner_response_create_internal (
         pki_ezsignsigner_id->valuedouble,
         fki_taxassignment_id->valuedouble,
         fki_secretquestion_id ? fki_secretquestion_id->valuedouble : 0,

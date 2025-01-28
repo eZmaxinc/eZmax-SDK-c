@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 // Functions for enum SSELECTOR for ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetAutocompleteV2
 
@@ -172,22 +167,27 @@ ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetAutocompleteV2(apiClient_t *apiClient, 
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/ezmaxinvoicing/getAutocomplete/{sSelector}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/ezmaxinvoicing/getAutocomplete/{sSelector}");
+    char *localVarPath = strdup("/2/object/ezmaxinvoicing/getAutocomplete/{sSelector}");
+
+    if(!sSelector)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_sSelector = strlen(sSelector)+3 + strlen("{ sSelector }");
-    if(sSelector == NULL) {
+    long sizeOfPathParams_sSelector = strlen(ezmaxinvoicingGetAutocompleteV2_SSELECTOR_ToString(sSelector))+3 + sizeof("{ sSelector }") - 1;
+    if(sSelector == 0) {
         goto end;
     }
     char* localVarToReplace_sSelector = malloc(sizeOfPathParams_sSelector);
     sprintf(localVarToReplace_sSelector, "{%s}", "sSelector");
 
-    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, sSelector);
+    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, ezmaxinvoicingGetAutocompleteV2_SSELECTOR_ToString(sSelector));
 
 
 
@@ -211,7 +211,7 @@ ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetAutocompleteV2(apiClient_t *apiClient, 
     {
         keyQuery_eFilterActive = strdup("eFilterActive");
         valueQuery_eFilterActive = (eFilterActive);
-        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(ezmaxinvoicingGetAutocompleteV2_EFILTERACTIVE_ToString(
+        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, strdup(ezmaxinvoicingGetAutocompleteV2_EFILTERACTIVE_ToString(
         valueQuery_eFilterActive)));
         list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
     }
@@ -236,6 +236,7 @@ ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetAutocompleteV2(apiClient_t *apiClient, 
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -243,11 +244,14 @@ ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetAutocompleteV2(apiClient_t *apiClient, 
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzmaxinvoicingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezmaxinvoicing_get_autocomplete_v2_response_t *elementToReturn = ezmaxinvoicing_get_autocomplete_v2_response_parseFromJSON(ObjectEzmaxinvoicingAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzmaxinvoicingAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezmaxinvoicing_get_autocomplete_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzmaxinvoicingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezmaxinvoicing_get_autocomplete_v2_response_parseFromJSON(ObjectEzmaxinvoicingAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzmaxinvoicingAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -308,15 +312,18 @@ ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetObjectV2(apiClient_t *apiClient, int *p
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/ezmaxinvoicing/{pkiEzmaxinvoicingID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/ezmaxinvoicing/{pkiEzmaxinvoicingID}");
+    char *localVarPath = strdup("/2/object/ezmaxinvoicing/{pkiEzmaxinvoicingID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzmaxinvoicingID =  + strlen("{ pkiEzmaxinvoicingID }");
+    long sizeOfPathParams_pkiEzmaxinvoicingID =  + sizeof("{ pkiEzmaxinvoicingID }") - 1;
     if(pkiEzmaxinvoicingID == 0){
         goto end;
     }
@@ -324,7 +331,7 @@ ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetObjectV2(apiClient_t *apiClient, int *p
     snprintf(localVarToReplace_pkiEzmaxinvoicingID, sizeOfPathParams_pkiEzmaxinvoicingID, "{%s}", "pkiEzmaxinvoicingID");
 
     char localVarBuff_pkiEzmaxinvoicingID[256];
-    intToStr(localVarBuff_pkiEzmaxinvoicingID, *pkiEzmaxinvoicingID);
+    snprintf(localVarBuff_pkiEzmaxinvoicingID, sizeof localVarBuff_pkiEzmaxinvoicingID, "%ld", (long)*pkiEzmaxinvoicingID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzmaxinvoicingID, localVarBuff_pkiEzmaxinvoicingID);
 
@@ -339,6 +346,7 @@ ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetObjectV2(apiClient_t *apiClient, int *p
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -350,11 +358,14 @@ ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetObjectV2(apiClient_t *apiClient, int *p
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzmaxinvoicingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezmaxinvoicing_get_object_v2_response_t *elementToReturn = ezmaxinvoicing_get_object_v2_response_parseFromJSON(ObjectEzmaxinvoicingAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzmaxinvoicingAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezmaxinvoicing_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzmaxinvoicingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezmaxinvoicing_get_object_v2_response_parseFromJSON(ObjectEzmaxinvoicingAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzmaxinvoicingAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -390,11 +401,14 @@ ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetProvisionalV1(apiClient_t *apiClient)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezmaxinvoicing/getProvisional")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezmaxinvoicing/getProvisional");
+    char *localVarPath = strdup("/1/object/ezmaxinvoicing/getProvisional");
+
 
 
 
@@ -407,6 +421,7 @@ ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetProvisionalV1(apiClient_t *apiClient)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -418,11 +433,14 @@ ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetProvisionalV1(apiClient_t *apiClient)
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzmaxinvoicingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezmaxinvoicing_get_provisional_v1_response_t *elementToReturn = ezmaxinvoicing_get_provisional_v1_response_parseFromJSON(ObjectEzmaxinvoicingAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzmaxinvoicingAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezmaxinvoicing_get_provisional_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzmaxinvoicingAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezmaxinvoicing_get_provisional_v1_response_parseFromJSON(ObjectEzmaxinvoicingAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzmaxinvoicingAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

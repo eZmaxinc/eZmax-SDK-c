@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 // Functions for enum SSELECTOR for ObjectUsergroupexternalAPI_usergroupexternalGetAutocompleteV2
 
@@ -267,11 +262,14 @@ ObjectUsergroupexternalAPI_usergroupexternalCreateObjectV1(apiClient_t *apiClien
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/usergroupexternal")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/usergroupexternal");
+    char *localVarPath = strdup("/1/object/usergroupexternal");
+
 
 
 
@@ -280,9 +278,10 @@ ObjectUsergroupexternalAPI_usergroupexternalCreateObjectV1(apiClient_t *apiClien
     cJSON *localVarSingleItemJSON_usergroupexternal_create_object_v1_request = NULL;
     if (usergroupexternal_create_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_usergroupexternal_create_object_v1_request = usergroupexternal_create_object_v1_request_convertToJSON(usergroupexternal_create_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_usergroupexternal_create_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -294,6 +293,7 @@ ObjectUsergroupexternalAPI_usergroupexternalCreateObjectV1(apiClient_t *apiClien
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -301,11 +301,14 @@ ObjectUsergroupexternalAPI_usergroupexternalCreateObjectV1(apiClient_t *apiClien
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectUsergroupexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    usergroupexternal_create_object_v1_response_t *elementToReturn = usergroupexternal_create_object_v1_response_parseFromJSON(ObjectUsergroupexternalAPIlocalVarJSON);
-    cJSON_Delete(ObjectUsergroupexternalAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    usergroupexternal_create_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUsergroupexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = usergroupexternal_create_object_v1_response_parseFromJSON(ObjectUsergroupexternalAPIlocalVarJSON);
+        cJSON_Delete(ObjectUsergroupexternalAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -336,7 +339,7 @@ end:
 //
 // 
 //
-common_response_t*
+usergroupexternal_delete_object_v1_response_t*
 ObjectUsergroupexternalAPI_usergroupexternalDeleteObjectV1(apiClient_t *apiClient, int *pkiUsergroupexternalID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -345,15 +348,18 @@ ObjectUsergroupexternalAPI_usergroupexternalDeleteObjectV1(apiClient_t *apiClien
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/usergroupexternal/{pkiUsergroupexternalID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/usergroupexternal/{pkiUsergroupexternalID}");
+    char *localVarPath = strdup("/1/object/usergroupexternal/{pkiUsergroupexternalID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiUsergroupexternalID =  + strlen("{ pkiUsergroupexternalID }");
+    long sizeOfPathParams_pkiUsergroupexternalID =  + sizeof("{ pkiUsergroupexternalID }") - 1;
     if(pkiUsergroupexternalID == 0){
         goto end;
     }
@@ -361,7 +367,7 @@ ObjectUsergroupexternalAPI_usergroupexternalDeleteObjectV1(apiClient_t *apiClien
     snprintf(localVarToReplace_pkiUsergroupexternalID, sizeOfPathParams_pkiUsergroupexternalID, "{%s}", "pkiUsergroupexternalID");
 
     char localVarBuff_pkiUsergroupexternalID[256];
-    intToStr(localVarBuff_pkiUsergroupexternalID, *pkiUsergroupexternalID);
+    snprintf(localVarBuff_pkiUsergroupexternalID, sizeof localVarBuff_pkiUsergroupexternalID, "%ld", (long)*pkiUsergroupexternalID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUsergroupexternalID, localVarBuff_pkiUsergroupexternalID);
 
@@ -376,6 +382,7 @@ ObjectUsergroupexternalAPI_usergroupexternalDeleteObjectV1(apiClient_t *apiClien
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "DELETE");
 
     // uncomment below to debug the error response
@@ -391,11 +398,14 @@ ObjectUsergroupexternalAPI_usergroupexternalDeleteObjectV1(apiClient_t *apiClien
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectUsergroupexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectUsergroupexternalAPIlocalVarJSON);
-    cJSON_Delete(ObjectUsergroupexternalAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    usergroupexternal_delete_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUsergroupexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = usergroupexternal_delete_object_v1_response_parseFromJSON(ObjectUsergroupexternalAPIlocalVarJSON);
+        cJSON_Delete(ObjectUsergroupexternalAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -422,7 +432,7 @@ end:
 //
 // 
 //
-common_response_t*
+usergroupexternal_edit_object_v1_response_t*
 ObjectUsergroupexternalAPI_usergroupexternalEditObjectV1(apiClient_t *apiClient, int *pkiUsergroupexternalID, usergroupexternal_edit_object_v1_request_t *usergroupexternal_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -431,15 +441,18 @@ ObjectUsergroupexternalAPI_usergroupexternalEditObjectV1(apiClient_t *apiClient,
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/usergroupexternal/{pkiUsergroupexternalID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/usergroupexternal/{pkiUsergroupexternalID}");
+    char *localVarPath = strdup("/1/object/usergroupexternal/{pkiUsergroupexternalID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiUsergroupexternalID =  + strlen("{ pkiUsergroupexternalID }");
+    long sizeOfPathParams_pkiUsergroupexternalID =  + sizeof("{ pkiUsergroupexternalID }") - 1;
     if(pkiUsergroupexternalID == 0){
         goto end;
     }
@@ -447,7 +460,7 @@ ObjectUsergroupexternalAPI_usergroupexternalEditObjectV1(apiClient_t *apiClient,
     snprintf(localVarToReplace_pkiUsergroupexternalID, sizeOfPathParams_pkiUsergroupexternalID, "{%s}", "pkiUsergroupexternalID");
 
     char localVarBuff_pkiUsergroupexternalID[256];
-    intToStr(localVarBuff_pkiUsergroupexternalID, *pkiUsergroupexternalID);
+    snprintf(localVarBuff_pkiUsergroupexternalID, sizeof localVarBuff_pkiUsergroupexternalID, "%ld", (long)*pkiUsergroupexternalID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUsergroupexternalID, localVarBuff_pkiUsergroupexternalID);
 
@@ -458,9 +471,10 @@ ObjectUsergroupexternalAPI_usergroupexternalEditObjectV1(apiClient_t *apiClient,
     cJSON *localVarSingleItemJSON_usergroupexternal_edit_object_v1_request = NULL;
     if (usergroupexternal_edit_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_usergroupexternal_edit_object_v1_request = usergroupexternal_edit_object_v1_request_convertToJSON(usergroupexternal_edit_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_usergroupexternal_edit_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -472,6 +486,7 @@ ObjectUsergroupexternalAPI_usergroupexternalEditObjectV1(apiClient_t *apiClient,
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -487,11 +502,14 @@ ObjectUsergroupexternalAPI_usergroupexternalEditObjectV1(apiClient_t *apiClient,
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectUsergroupexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectUsergroupexternalAPIlocalVarJSON);
-    cJSON_Delete(ObjectUsergroupexternalAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    usergroupexternal_edit_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUsergroupexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = usergroupexternal_edit_object_v1_response_parseFromJSON(ObjectUsergroupexternalAPIlocalVarJSON);
+        cJSON_Delete(ObjectUsergroupexternalAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -532,22 +550,27 @@ ObjectUsergroupexternalAPI_usergroupexternalGetAutocompleteV2(apiClient_t *apiCl
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/usergroupexternal/getAutocomplete/{sSelector}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/usergroupexternal/getAutocomplete/{sSelector}");
+    char *localVarPath = strdup("/2/object/usergroupexternal/getAutocomplete/{sSelector}");
+
+    if(!sSelector)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_sSelector = strlen(sSelector)+3 + strlen("{ sSelector }");
-    if(sSelector == NULL) {
+    long sizeOfPathParams_sSelector = strlen(usergroupexternalGetAutocompleteV2_SSELECTOR_ToString(sSelector))+3 + sizeof("{ sSelector }") - 1;
+    if(sSelector == 0) {
         goto end;
     }
     char* localVarToReplace_sSelector = malloc(sizeOfPathParams_sSelector);
     sprintf(localVarToReplace_sSelector, "{%s}", "sSelector");
 
-    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, sSelector);
+    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, usergroupexternalGetAutocompleteV2_SSELECTOR_ToString(sSelector));
 
 
 
@@ -571,7 +594,7 @@ ObjectUsergroupexternalAPI_usergroupexternalGetAutocompleteV2(apiClient_t *apiCl
     {
         keyQuery_eFilterActive = strdup("eFilterActive");
         valueQuery_eFilterActive = (eFilterActive);
-        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(usergroupexternalGetAutocompleteV2_EFILTERACTIVE_ToString(
+        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, strdup(usergroupexternalGetAutocompleteV2_EFILTERACTIVE_ToString(
         valueQuery_eFilterActive)));
         list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
     }
@@ -596,6 +619,7 @@ ObjectUsergroupexternalAPI_usergroupexternalGetAutocompleteV2(apiClient_t *apiCl
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -603,11 +627,14 @@ ObjectUsergroupexternalAPI_usergroupexternalGetAutocompleteV2(apiClient_t *apiCl
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectUsergroupexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    usergroupexternal_get_autocomplete_v2_response_t *elementToReturn = usergroupexternal_get_autocomplete_v2_response_parseFromJSON(ObjectUsergroupexternalAPIlocalVarJSON);
-    cJSON_Delete(ObjectUsergroupexternalAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    usergroupexternal_get_autocomplete_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUsergroupexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = usergroupexternal_get_autocomplete_v2_response_parseFromJSON(ObjectUsergroupexternalAPIlocalVarJSON);
+        cJSON_Delete(ObjectUsergroupexternalAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -668,11 +695,14 @@ ObjectUsergroupexternalAPI_usergroupexternalGetListV1(apiClient_t *apiClient, ez
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/usergroupexternal/getList")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/usergroupexternal/getList");
+    char *localVarPath = strdup("/1/object/usergroupexternal/getList");
+
 
 
 
@@ -697,7 +727,7 @@ ObjectUsergroupexternalAPI_usergroupexternalGetListV1(apiClient_t *apiClient, ez
     {
         keyQuery_eOrderBy = strdup("eOrderBy");
         valueQuery_eOrderBy = (eOrderBy);
-        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, (void *)strdup(usergroupexternalGetListV1_EORDERBY_ToString(
+        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, strdup(usergroupexternalGetListV1_EORDERBY_ToString(
         valueQuery_eOrderBy)));
         list_addElement(localVarQueryParameters,keyPairQuery_eOrderBy);
     }
@@ -749,6 +779,7 @@ ObjectUsergroupexternalAPI_usergroupexternalGetListV1(apiClient_t *apiClient, ez
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -760,11 +791,14 @@ ObjectUsergroupexternalAPI_usergroupexternalGetListV1(apiClient_t *apiClient, ez
     //    printf("%s\n","The URL is valid, but one of the Accept header is not defined or invalid. For example, you set the header \&quot;Accept: application/json\&quot; but the function can only return \&quot;Content-type: image/png\&quot;");
     //}
     //nonprimitive not container
-    cJSON *ObjectUsergroupexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    usergroupexternal_get_list_v1_response_t *elementToReturn = usergroupexternal_get_list_v1_response_parseFromJSON(ObjectUsergroupexternalAPIlocalVarJSON);
-    cJSON_Delete(ObjectUsergroupexternalAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    usergroupexternal_get_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUsergroupexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = usergroupexternal_get_list_v1_response_parseFromJSON(ObjectUsergroupexternalAPIlocalVarJSON);
+        cJSON_Delete(ObjectUsergroupexternalAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -848,15 +882,18 @@ ObjectUsergroupexternalAPI_usergroupexternalGetObjectV2(apiClient_t *apiClient, 
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/usergroupexternal/{pkiUsergroupexternalID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/usergroupexternal/{pkiUsergroupexternalID}");
+    char *localVarPath = strdup("/2/object/usergroupexternal/{pkiUsergroupexternalID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiUsergroupexternalID =  + strlen("{ pkiUsergroupexternalID }");
+    long sizeOfPathParams_pkiUsergroupexternalID =  + sizeof("{ pkiUsergroupexternalID }") - 1;
     if(pkiUsergroupexternalID == 0){
         goto end;
     }
@@ -864,7 +901,7 @@ ObjectUsergroupexternalAPI_usergroupexternalGetObjectV2(apiClient_t *apiClient, 
     snprintf(localVarToReplace_pkiUsergroupexternalID, sizeOfPathParams_pkiUsergroupexternalID, "{%s}", "pkiUsergroupexternalID");
 
     char localVarBuff_pkiUsergroupexternalID[256];
-    intToStr(localVarBuff_pkiUsergroupexternalID, *pkiUsergroupexternalID);
+    snprintf(localVarBuff_pkiUsergroupexternalID, sizeof localVarBuff_pkiUsergroupexternalID, "%ld", (long)*pkiUsergroupexternalID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUsergroupexternalID, localVarBuff_pkiUsergroupexternalID);
 
@@ -879,6 +916,7 @@ ObjectUsergroupexternalAPI_usergroupexternalGetObjectV2(apiClient_t *apiClient, 
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -890,11 +928,14 @@ ObjectUsergroupexternalAPI_usergroupexternalGetObjectV2(apiClient_t *apiClient, 
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectUsergroupexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    usergroupexternal_get_object_v2_response_t *elementToReturn = usergroupexternal_get_object_v2_response_parseFromJSON(ObjectUsergroupexternalAPIlocalVarJSON);
-    cJSON_Delete(ObjectUsergroupexternalAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    usergroupexternal_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUsergroupexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = usergroupexternal_get_object_v2_response_parseFromJSON(ObjectUsergroupexternalAPIlocalVarJSON);
+        cJSON_Delete(ObjectUsergroupexternalAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -928,15 +969,18 @@ ObjectUsergroupexternalAPI_usergroupexternalGetUsergroupexternalmembershipsV1(ap
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/usergroupexternal/{pkiUsergroupexternalID}/getUsergroupexternalmemberships")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/usergroupexternal/{pkiUsergroupexternalID}/getUsergroupexternalmemberships");
+    char *localVarPath = strdup("/1/object/usergroupexternal/{pkiUsergroupexternalID}/getUsergroupexternalmemberships");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiUsergroupexternalID =  + strlen("{ pkiUsergroupexternalID }");
+    long sizeOfPathParams_pkiUsergroupexternalID =  + sizeof("{ pkiUsergroupexternalID }") - 1;
     if(pkiUsergroupexternalID == 0){
         goto end;
     }
@@ -944,7 +988,7 @@ ObjectUsergroupexternalAPI_usergroupexternalGetUsergroupexternalmembershipsV1(ap
     snprintf(localVarToReplace_pkiUsergroupexternalID, sizeOfPathParams_pkiUsergroupexternalID, "{%s}", "pkiUsergroupexternalID");
 
     char localVarBuff_pkiUsergroupexternalID[256];
-    intToStr(localVarBuff_pkiUsergroupexternalID, *pkiUsergroupexternalID);
+    snprintf(localVarBuff_pkiUsergroupexternalID, sizeof localVarBuff_pkiUsergroupexternalID, "%ld", (long)*pkiUsergroupexternalID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUsergroupexternalID, localVarBuff_pkiUsergroupexternalID);
 
@@ -959,6 +1003,7 @@ ObjectUsergroupexternalAPI_usergroupexternalGetUsergroupexternalmembershipsV1(ap
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -970,11 +1015,14 @@ ObjectUsergroupexternalAPI_usergroupexternalGetUsergroupexternalmembershipsV1(ap
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectUsergroupexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    usergroupexternal_get_usergroupexternalmemberships_v1_response_t *elementToReturn = usergroupexternal_get_usergroupexternalmemberships_v1_response_parseFromJSON(ObjectUsergroupexternalAPIlocalVarJSON);
-    cJSON_Delete(ObjectUsergroupexternalAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    usergroupexternal_get_usergroupexternalmemberships_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUsergroupexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = usergroupexternal_get_usergroupexternalmemberships_v1_response_parseFromJSON(ObjectUsergroupexternalAPIlocalVarJSON);
+        cJSON_Delete(ObjectUsergroupexternalAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1008,15 +1056,18 @@ ObjectUsergroupexternalAPI_usergroupexternalGetUsergroupsV1(apiClient_t *apiClie
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/usergroupexternal/{pkiUsergroupexternalID}/getUsergroups")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/usergroupexternal/{pkiUsergroupexternalID}/getUsergroups");
+    char *localVarPath = strdup("/1/object/usergroupexternal/{pkiUsergroupexternalID}/getUsergroups");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiUsergroupexternalID =  + strlen("{ pkiUsergroupexternalID }");
+    long sizeOfPathParams_pkiUsergroupexternalID =  + sizeof("{ pkiUsergroupexternalID }") - 1;
     if(pkiUsergroupexternalID == 0){
         goto end;
     }
@@ -1024,7 +1075,7 @@ ObjectUsergroupexternalAPI_usergroupexternalGetUsergroupsV1(apiClient_t *apiClie
     snprintf(localVarToReplace_pkiUsergroupexternalID, sizeOfPathParams_pkiUsergroupexternalID, "{%s}", "pkiUsergroupexternalID");
 
     char localVarBuff_pkiUsergroupexternalID[256];
-    intToStr(localVarBuff_pkiUsergroupexternalID, *pkiUsergroupexternalID);
+    snprintf(localVarBuff_pkiUsergroupexternalID, sizeof localVarBuff_pkiUsergroupexternalID, "%ld", (long)*pkiUsergroupexternalID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiUsergroupexternalID, localVarBuff_pkiUsergroupexternalID);
 
@@ -1039,6 +1090,7 @@ ObjectUsergroupexternalAPI_usergroupexternalGetUsergroupsV1(apiClient_t *apiClie
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -1050,11 +1102,14 @@ ObjectUsergroupexternalAPI_usergroupexternalGetUsergroupsV1(apiClient_t *apiClie
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectUsergroupexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    usergroupexternal_get_usergroups_v1_response_t *elementToReturn = usergroupexternal_get_usergroups_v1_response_parseFromJSON(ObjectUsergroupexternalAPIlocalVarJSON);
-    cJSON_Delete(ObjectUsergroupexternalAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    usergroupexternal_get_usergroups_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectUsergroupexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = usergroupexternal_get_usergroups_v1_response_parseFromJSON(ObjectUsergroupexternalAPIlocalVarJSON);
+        cJSON_Delete(ObjectUsergroupexternalAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

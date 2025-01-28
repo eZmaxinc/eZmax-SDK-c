@@ -5,7 +5,7 @@
 
 
 
-ezsigndocument_request_patch_t *ezsigndocument_request_patch_create(
+static ezsigndocument_request_patch_t *ezsigndocument_request_patch_create_internal(
     char *dt_ezsigndocument_duedate,
     char *s_ezsigndocument_name
     ) {
@@ -16,12 +16,26 @@ ezsigndocument_request_patch_t *ezsigndocument_request_patch_create(
     ezsigndocument_request_patch_local_var->dt_ezsigndocument_duedate = dt_ezsigndocument_duedate;
     ezsigndocument_request_patch_local_var->s_ezsigndocument_name = s_ezsigndocument_name;
 
+    ezsigndocument_request_patch_local_var->_library_owned = 1;
     return ezsigndocument_request_patch_local_var;
 }
 
+__attribute__((deprecated)) ezsigndocument_request_patch_t *ezsigndocument_request_patch_create(
+    char *dt_ezsigndocument_duedate,
+    char *s_ezsigndocument_name
+    ) {
+    return ezsigndocument_request_patch_create_internal (
+        dt_ezsigndocument_duedate,
+        s_ezsigndocument_name
+        );
+}
 
 void ezsigndocument_request_patch_free(ezsigndocument_request_patch_t *ezsigndocument_request_patch) {
     if(NULL == ezsigndocument_request_patch){
+        return ;
+    }
+    if(ezsigndocument_request_patch->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigndocument_request_patch_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -68,6 +82,9 @@ ezsigndocument_request_patch_t *ezsigndocument_request_patch_parseFromJSON(cJSON
 
     // ezsigndocument_request_patch->dt_ezsigndocument_duedate
     cJSON *dt_ezsigndocument_duedate = cJSON_GetObjectItemCaseSensitive(ezsigndocument_request_patchJSON, "dtEzsigndocumentDuedate");
+    if (cJSON_IsNull(dt_ezsigndocument_duedate)) {
+        dt_ezsigndocument_duedate = NULL;
+    }
     if (dt_ezsigndocument_duedate) { 
     if(!cJSON_IsString(dt_ezsigndocument_duedate) && !cJSON_IsNull(dt_ezsigndocument_duedate))
     {
@@ -77,6 +94,9 @@ ezsigndocument_request_patch_t *ezsigndocument_request_patch_parseFromJSON(cJSON
 
     // ezsigndocument_request_patch->s_ezsigndocument_name
     cJSON *s_ezsigndocument_name = cJSON_GetObjectItemCaseSensitive(ezsigndocument_request_patchJSON, "sEzsigndocumentName");
+    if (cJSON_IsNull(s_ezsigndocument_name)) {
+        s_ezsigndocument_name = NULL;
+    }
     if (s_ezsigndocument_name) { 
     if(!cJSON_IsString(s_ezsigndocument_name) && !cJSON_IsNull(s_ezsigndocument_name))
     {
@@ -85,7 +105,7 @@ ezsigndocument_request_patch_t *ezsigndocument_request_patch_parseFromJSON(cJSON
     }
 
 
-    ezsigndocument_request_patch_local_var = ezsigndocument_request_patch_create (
+    ezsigndocument_request_patch_local_var = ezsigndocument_request_patch_create_internal (
         dt_ezsigndocument_duedate && !cJSON_IsNull(dt_ezsigndocument_duedate) ? strdup(dt_ezsigndocument_duedate->valuestring) : NULL,
         s_ezsigndocument_name && !cJSON_IsNull(s_ezsigndocument_name) ? strdup(s_ezsigndocument_name->valuestring) : NULL
         );

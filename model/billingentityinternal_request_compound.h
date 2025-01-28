@@ -25,9 +25,10 @@ typedef struct billingentityinternal_request_compound_t {
     struct multilingual_billingentityinternal_description_t *obj_billingentityinternal_description; //model
     list_t *a_obj_billingentityinternalproduct; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } billingentityinternal_request_compound_t;
 
-billingentityinternal_request_compound_t *billingentityinternal_request_compound_create(
+__attribute__((deprecated)) billingentityinternal_request_compound_t *billingentityinternal_request_compound_create(
     int pki_billingentityinternal_id,
     multilingual_billingentityinternal_description_t *obj_billingentityinternal_description,
     list_t *a_obj_billingentityinternalproduct

@@ -22,9 +22,10 @@ typedef struct invoice_get_communicationsenders_v1_response_m_payload_t invoice_
 typedef struct invoice_get_communicationsenders_v1_response_m_payload_t {
     list_t *a_obj_communicationsenders; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } invoice_get_communicationsenders_v1_response_m_payload_t;
 
-invoice_get_communicationsenders_v1_response_m_payload_t *invoice_get_communicationsenders_v1_response_m_payload_create(
+__attribute__((deprecated)) invoice_get_communicationsenders_v1_response_m_payload_t *invoice_get_communicationsenders_v1_response_m_payload_create(
     list_t *a_obj_communicationsenders
 );
 

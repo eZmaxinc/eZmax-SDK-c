@@ -33,9 +33,10 @@ typedef struct custom_ezsignsignaturestatus_response_t {
     int i_ezsignsignaturestatus_signed; //numeric
     int i_ezsignsignaturestatus_conditional; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_ezsignsignaturestatus_response_t;
 
-custom_ezsignsignaturestatus_response_t *custom_ezsignsignaturestatus_response_create(
+__attribute__((deprecated)) custom_ezsignsignaturestatus_response_t *custom_ezsignsignaturestatus_response_create(
     ezmax_api_definition__full_custom_ezsignsignaturestatus_response_EEZSIGNSIGNATURESTATUSSTEPTYPE_e e_ezsignsignaturestatus_steptype,
     int i_ezsignsignaturestatus_step,
     int i_ezsignsignaturestatus_total,

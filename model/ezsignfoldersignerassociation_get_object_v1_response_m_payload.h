@@ -32,9 +32,10 @@ typedef struct ezsignfoldersignerassociation_get_object_v1_response_m_payload_t 
     struct ezsignfoldersignerassociation_response_compound_user_t *obj_user; //model
     struct ezsignsigner_response_compound_t *obj_ezsignsigner; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfoldersignerassociation_get_object_v1_response_m_payload_t;
 
-ezsignfoldersignerassociation_get_object_v1_response_m_payload_t *ezsignfoldersignerassociation_get_object_v1_response_m_payload_create(
+__attribute__((deprecated)) ezsignfoldersignerassociation_get_object_v1_response_m_payload_t *ezsignfoldersignerassociation_get_object_v1_response_m_payload_create(
     int pki_ezsignfoldersignerassociation_id,
     int fki_ezsignfolder_id,
     int b_ezsignfoldersignerassociation_delayedsend,

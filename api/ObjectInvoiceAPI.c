@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Retrieve Invoice's Attachments
@@ -25,15 +20,18 @@ ObjectInvoiceAPI_invoiceGetAttachmentsV1(apiClient_t *apiClient, int *pkiInvoice
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/invoice/{pkiInvoiceID}/getAttachments")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/invoice/{pkiInvoiceID}/getAttachments");
+    char *localVarPath = strdup("/1/object/invoice/{pkiInvoiceID}/getAttachments");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiInvoiceID =  + strlen("{ pkiInvoiceID }");
+    long sizeOfPathParams_pkiInvoiceID =  + sizeof("{ pkiInvoiceID }") - 1;
     if(pkiInvoiceID == 0){
         goto end;
     }
@@ -41,7 +39,7 @@ ObjectInvoiceAPI_invoiceGetAttachmentsV1(apiClient_t *apiClient, int *pkiInvoice
     snprintf(localVarToReplace_pkiInvoiceID, sizeOfPathParams_pkiInvoiceID, "{%s}", "pkiInvoiceID");
 
     char localVarBuff_pkiInvoiceID[256];
-    intToStr(localVarBuff_pkiInvoiceID, *pkiInvoiceID);
+    snprintf(localVarBuff_pkiInvoiceID, sizeof localVarBuff_pkiInvoiceID, "%ld", (long)*pkiInvoiceID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiInvoiceID, localVarBuff_pkiInvoiceID);
 
@@ -56,6 +54,7 @@ ObjectInvoiceAPI_invoiceGetAttachmentsV1(apiClient_t *apiClient, int *pkiInvoice
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -67,11 +66,14 @@ ObjectInvoiceAPI_invoiceGetAttachmentsV1(apiClient_t *apiClient, int *pkiInvoice
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectInvoiceAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    invoice_get_attachments_v1_response_t *elementToReturn = invoice_get_attachments_v1_response_parseFromJSON(ObjectInvoiceAPIlocalVarJSON);
-    cJSON_Delete(ObjectInvoiceAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    invoice_get_attachments_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectInvoiceAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = invoice_get_attachments_v1_response_parseFromJSON(ObjectInvoiceAPIlocalVarJSON);
+        cJSON_Delete(ObjectInvoiceAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -107,15 +109,18 @@ ObjectInvoiceAPI_invoiceGetCommunicationCountV1(apiClient_t *apiClient, int *pki
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/invoice/{pkiInvoiceID}/getCommunicationCount")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/invoice/{pkiInvoiceID}/getCommunicationCount");
+    char *localVarPath = strdup("/1/object/invoice/{pkiInvoiceID}/getCommunicationCount");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiInvoiceID =  + strlen("{ pkiInvoiceID }");
+    long sizeOfPathParams_pkiInvoiceID =  + sizeof("{ pkiInvoiceID }") - 1;
     if(pkiInvoiceID == 0){
         goto end;
     }
@@ -123,7 +128,7 @@ ObjectInvoiceAPI_invoiceGetCommunicationCountV1(apiClient_t *apiClient, int *pki
     snprintf(localVarToReplace_pkiInvoiceID, sizeOfPathParams_pkiInvoiceID, "{%s}", "pkiInvoiceID");
 
     char localVarBuff_pkiInvoiceID[256];
-    intToStr(localVarBuff_pkiInvoiceID, *pkiInvoiceID);
+    snprintf(localVarBuff_pkiInvoiceID, sizeof localVarBuff_pkiInvoiceID, "%ld", (long)*pkiInvoiceID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiInvoiceID, localVarBuff_pkiInvoiceID);
 
@@ -138,6 +143,7 @@ ObjectInvoiceAPI_invoiceGetCommunicationCountV1(apiClient_t *apiClient, int *pki
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -149,11 +155,14 @@ ObjectInvoiceAPI_invoiceGetCommunicationCountV1(apiClient_t *apiClient, int *pki
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectInvoiceAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    invoice_get_communication_count_v1_response_t *elementToReturn = invoice_get_communication_count_v1_response_parseFromJSON(ObjectInvoiceAPIlocalVarJSON);
-    cJSON_Delete(ObjectInvoiceAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    invoice_get_communication_count_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectInvoiceAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = invoice_get_communication_count_v1_response_parseFromJSON(ObjectInvoiceAPIlocalVarJSON);
+        cJSON_Delete(ObjectInvoiceAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -189,15 +198,18 @@ ObjectInvoiceAPI_invoiceGetCommunicationListV1(apiClient_t *apiClient, int *pkiI
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/invoice/{pkiInvoiceID}/getCommunicationList")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/invoice/{pkiInvoiceID}/getCommunicationList");
+    char *localVarPath = strdup("/1/object/invoice/{pkiInvoiceID}/getCommunicationList");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiInvoiceID =  + strlen("{ pkiInvoiceID }");
+    long sizeOfPathParams_pkiInvoiceID =  + sizeof("{ pkiInvoiceID }") - 1;
     if(pkiInvoiceID == 0){
         goto end;
     }
@@ -205,7 +217,7 @@ ObjectInvoiceAPI_invoiceGetCommunicationListV1(apiClient_t *apiClient, int *pkiI
     snprintf(localVarToReplace_pkiInvoiceID, sizeOfPathParams_pkiInvoiceID, "{%s}", "pkiInvoiceID");
 
     char localVarBuff_pkiInvoiceID[256];
-    intToStr(localVarBuff_pkiInvoiceID, *pkiInvoiceID);
+    snprintf(localVarBuff_pkiInvoiceID, sizeof localVarBuff_pkiInvoiceID, "%ld", (long)*pkiInvoiceID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiInvoiceID, localVarBuff_pkiInvoiceID);
 
@@ -220,6 +232,7 @@ ObjectInvoiceAPI_invoiceGetCommunicationListV1(apiClient_t *apiClient, int *pkiI
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -231,11 +244,14 @@ ObjectInvoiceAPI_invoiceGetCommunicationListV1(apiClient_t *apiClient, int *pkiI
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectInvoiceAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    invoice_get_communication_list_v1_response_t *elementToReturn = invoice_get_communication_list_v1_response_parseFromJSON(ObjectInvoiceAPIlocalVarJSON);
-    cJSON_Delete(ObjectInvoiceAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    invoice_get_communication_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectInvoiceAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = invoice_get_communication_list_v1_response_parseFromJSON(ObjectInvoiceAPIlocalVarJSON);
+        cJSON_Delete(ObjectInvoiceAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -271,15 +287,18 @@ ObjectInvoiceAPI_invoiceGetCommunicationrecipientsV1(apiClient_t *apiClient, int
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/invoice/{pkiInvoiceID}/getCommunicationrecipients")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/invoice/{pkiInvoiceID}/getCommunicationrecipients");
+    char *localVarPath = strdup("/1/object/invoice/{pkiInvoiceID}/getCommunicationrecipients");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiInvoiceID =  + strlen("{ pkiInvoiceID }");
+    long sizeOfPathParams_pkiInvoiceID =  + sizeof("{ pkiInvoiceID }") - 1;
     if(pkiInvoiceID == 0){
         goto end;
     }
@@ -287,7 +306,7 @@ ObjectInvoiceAPI_invoiceGetCommunicationrecipientsV1(apiClient_t *apiClient, int
     snprintf(localVarToReplace_pkiInvoiceID, sizeOfPathParams_pkiInvoiceID, "{%s}", "pkiInvoiceID");
 
     char localVarBuff_pkiInvoiceID[256];
-    intToStr(localVarBuff_pkiInvoiceID, *pkiInvoiceID);
+    snprintf(localVarBuff_pkiInvoiceID, sizeof localVarBuff_pkiInvoiceID, "%ld", (long)*pkiInvoiceID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiInvoiceID, localVarBuff_pkiInvoiceID);
 
@@ -302,6 +321,7 @@ ObjectInvoiceAPI_invoiceGetCommunicationrecipientsV1(apiClient_t *apiClient, int
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -313,11 +333,14 @@ ObjectInvoiceAPI_invoiceGetCommunicationrecipientsV1(apiClient_t *apiClient, int
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectInvoiceAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    invoice_get_communicationrecipients_v1_response_t *elementToReturn = invoice_get_communicationrecipients_v1_response_parseFromJSON(ObjectInvoiceAPIlocalVarJSON);
-    cJSON_Delete(ObjectInvoiceAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    invoice_get_communicationrecipients_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectInvoiceAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = invoice_get_communicationrecipients_v1_response_parseFromJSON(ObjectInvoiceAPIlocalVarJSON);
+        cJSON_Delete(ObjectInvoiceAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -353,15 +376,18 @@ ObjectInvoiceAPI_invoiceGetCommunicationsendersV1(apiClient_t *apiClient, int *p
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/invoice/{pkiInvoiceID}/getCommunicationsenders")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/invoice/{pkiInvoiceID}/getCommunicationsenders");
+    char *localVarPath = strdup("/1/object/invoice/{pkiInvoiceID}/getCommunicationsenders");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiInvoiceID =  + strlen("{ pkiInvoiceID }");
+    long sizeOfPathParams_pkiInvoiceID =  + sizeof("{ pkiInvoiceID }") - 1;
     if(pkiInvoiceID == 0){
         goto end;
     }
@@ -369,7 +395,7 @@ ObjectInvoiceAPI_invoiceGetCommunicationsendersV1(apiClient_t *apiClient, int *p
     snprintf(localVarToReplace_pkiInvoiceID, sizeOfPathParams_pkiInvoiceID, "{%s}", "pkiInvoiceID");
 
     char localVarBuff_pkiInvoiceID[256];
-    intToStr(localVarBuff_pkiInvoiceID, *pkiInvoiceID);
+    snprintf(localVarBuff_pkiInvoiceID, sizeof localVarBuff_pkiInvoiceID, "%ld", (long)*pkiInvoiceID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiInvoiceID, localVarBuff_pkiInvoiceID);
 
@@ -384,6 +410,7 @@ ObjectInvoiceAPI_invoiceGetCommunicationsendersV1(apiClient_t *apiClient, int *p
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -395,11 +422,14 @@ ObjectInvoiceAPI_invoiceGetCommunicationsendersV1(apiClient_t *apiClient, int *p
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectInvoiceAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    invoice_get_communicationsenders_v1_response_t *elementToReturn = invoice_get_communicationsenders_v1_response_parseFromJSON(ObjectInvoiceAPIlocalVarJSON);
-    cJSON_Delete(ObjectInvoiceAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    invoice_get_communicationsenders_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectInvoiceAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = invoice_get_communicationsenders_v1_response_parseFromJSON(ObjectInvoiceAPIlocalVarJSON);
+        cJSON_Delete(ObjectInvoiceAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

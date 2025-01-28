@@ -22,7 +22,7 @@ ezmax_api_definition__full_enum_horizontalalignment__e enum_horizontalalignment_
     return 0;
 }
 
-cJSON *enum_horizontalalignment_enum_horizontalalignment_convertToJSON(ezmax_api_definition__full_enum_horizontalalignment__e enum_horizontalalignment) {
+cJSON *enum_horizontalalignment_convertToJSON(ezmax_api_definition__full_enum_horizontalalignment__e enum_horizontalalignment) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "enum_horizontalalignment", enum_horizontalalignment_enum_horizontalalignment_ToString(enum_horizontalalignment)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_enum_horizontalalignment__e enum_horizontalalignment_enum_horizontalalignment_parseFromJSON(cJSON *enum_horizontalalignmentJSON) {
-    ezmax_api_definition__full_enum_horizontalalignment__e *enum_horizontalalignment = NULL;
-    ezmax_api_definition__full_enum_horizontalalignment__e enum_horizontalalignmentVariable;
-    cJSON *enum_horizontalalignmentVar = cJSON_GetObjectItemCaseSensitive(enum_horizontalalignmentJSON, "enum_horizontalalignment");
-    if(!cJSON_IsString(enum_horizontalalignmentVar) || (enum_horizontalalignmentVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_enum_horizontalalignment__e enum_horizontalalignment_parseFromJSON(cJSON *enum_horizontalalignmentJSON) {
+    if(!cJSON_IsString(enum_horizontalalignmentJSON) || (enum_horizontalalignmentJSON->valuestring == NULL)) {
+        return 0;
     }
-    enum_horizontalalignmentVariable = enum_horizontalalignment_enum_horizontalalignment_FromString(enum_horizontalalignmentVar->valuestring);
-    return enum_horizontalalignmentVariable;
-end:
-    return 0;
+    return enum_horizontalalignment_enum_horizontalalignment_FromString(enum_horizontalalignmentJSON->valuestring);
 }

@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsigntemplateformfieldgroup_signerrequiremen
     return 0;
 }
 
-cJSON *field_e_ezsigntemplateformfieldgroup_signerrequirement_field_e_ezsigntemplateformfieldgroup_signerrequirement_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplateformfieldgroup_signerrequirement__e field_e_ezsigntemplateformfieldgroup_signerrequirement) {
+cJSON *field_e_ezsigntemplateformfieldgroup_signerrequirement_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplateformfieldgroup_signerrequirement__e field_e_ezsigntemplateformfieldgroup_signerrequirement) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsigntemplateformfieldgroup_signerrequirement", field_e_ezsigntemplateformfieldgroup_signerrequirement_field_e_ezsigntemplateformfieldgroup_signerrequirement_ToString(field_e_ezsigntemplateformfieldgroup_signerrequirement)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsigntemplateformfieldgroup_signerrequirement__e field_e_ezsigntemplateformfieldgroup_signerrequirement_field_e_ezsigntemplateformfieldgroup_signerrequirement_parseFromJSON(cJSON *field_e_ezsigntemplateformfieldgroup_signerrequirementJSON) {
-    ezmax_api_definition__full_field_e_ezsigntemplateformfieldgroup_signerrequirement__e *field_e_ezsigntemplateformfieldgroup_signerrequirement = NULL;
-    ezmax_api_definition__full_field_e_ezsigntemplateformfieldgroup_signerrequirement__e field_e_ezsigntemplateformfieldgroup_signerrequirementVariable;
-    cJSON *field_e_ezsigntemplateformfieldgroup_signerrequirementVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsigntemplateformfieldgroup_signerrequirementJSON, "field_e_ezsigntemplateformfieldgroup_signerrequirement");
-    if(!cJSON_IsString(field_e_ezsigntemplateformfieldgroup_signerrequirementVar) || (field_e_ezsigntemplateformfieldgroup_signerrequirementVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsigntemplateformfieldgroup_signerrequirement__e field_e_ezsigntemplateformfieldgroup_signerrequirement_parseFromJSON(cJSON *field_e_ezsigntemplateformfieldgroup_signerrequirementJSON) {
+    if(!cJSON_IsString(field_e_ezsigntemplateformfieldgroup_signerrequirementJSON) || (field_e_ezsigntemplateformfieldgroup_signerrequirementJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsigntemplateformfieldgroup_signerrequirementVariable = field_e_ezsigntemplateformfieldgroup_signerrequirement_field_e_ezsigntemplateformfieldgroup_signerrequirement_FromString(field_e_ezsigntemplateformfieldgroup_signerrequirementVar->valuestring);
-    return field_e_ezsigntemplateformfieldgroup_signerrequirementVariable;
-end:
-    return 0;
+    return field_e_ezsigntemplateformfieldgroup_signerrequirement_field_e_ezsigntemplateformfieldgroup_signerrequirement_FromString(field_e_ezsigntemplateformfieldgroup_signerrequirementJSON->valuestring);
 }

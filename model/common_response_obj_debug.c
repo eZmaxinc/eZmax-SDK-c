@@ -5,7 +5,7 @@
 
 
 
-common_response_obj_debug_t *common_response_obj_debug_create(
+static common_response_obj_debug_t *common_response_obj_debug_create_internal(
     char *s_memory_usage,
     char *s_run_time,
     int i_sql_selects,
@@ -22,12 +22,32 @@ common_response_obj_debug_t *common_response_obj_debug_create(
     common_response_obj_debug_local_var->i_sql_queries = i_sql_queries;
     common_response_obj_debug_local_var->a_obj_sql_query = a_obj_sql_query;
 
+    common_response_obj_debug_local_var->_library_owned = 1;
     return common_response_obj_debug_local_var;
 }
 
+__attribute__((deprecated)) common_response_obj_debug_t *common_response_obj_debug_create(
+    char *s_memory_usage,
+    char *s_run_time,
+    int i_sql_selects,
+    int i_sql_queries,
+    list_t *a_obj_sql_query
+    ) {
+    return common_response_obj_debug_create_internal (
+        s_memory_usage,
+        s_run_time,
+        i_sql_selects,
+        i_sql_queries,
+        a_obj_sql_query
+        );
+}
 
 void common_response_obj_debug_free(common_response_obj_debug_t *common_response_obj_debug) {
     if(NULL == common_response_obj_debug){
+        return ;
+    }
+    if(common_response_obj_debug->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "common_response_obj_debug_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -125,6 +145,9 @@ common_response_obj_debug_t *common_response_obj_debug_parseFromJSON(cJSON *comm
 
     // common_response_obj_debug->s_memory_usage
     cJSON *s_memory_usage = cJSON_GetObjectItemCaseSensitive(common_response_obj_debugJSON, "sMemoryUsage");
+    if (cJSON_IsNull(s_memory_usage)) {
+        s_memory_usage = NULL;
+    }
     if (!s_memory_usage) {
         goto end;
     }
@@ -137,6 +160,9 @@ common_response_obj_debug_t *common_response_obj_debug_parseFromJSON(cJSON *comm
 
     // common_response_obj_debug->s_run_time
     cJSON *s_run_time = cJSON_GetObjectItemCaseSensitive(common_response_obj_debugJSON, "sRunTime");
+    if (cJSON_IsNull(s_run_time)) {
+        s_run_time = NULL;
+    }
     if (!s_run_time) {
         goto end;
     }
@@ -149,6 +175,9 @@ common_response_obj_debug_t *common_response_obj_debug_parseFromJSON(cJSON *comm
 
     // common_response_obj_debug->i_sql_selects
     cJSON *i_sql_selects = cJSON_GetObjectItemCaseSensitive(common_response_obj_debugJSON, "iSQLSelects");
+    if (cJSON_IsNull(i_sql_selects)) {
+        i_sql_selects = NULL;
+    }
     if (!i_sql_selects) {
         goto end;
     }
@@ -161,6 +190,9 @@ common_response_obj_debug_t *common_response_obj_debug_parseFromJSON(cJSON *comm
 
     // common_response_obj_debug->i_sql_queries
     cJSON *i_sql_queries = cJSON_GetObjectItemCaseSensitive(common_response_obj_debugJSON, "iSQLQueries");
+    if (cJSON_IsNull(i_sql_queries)) {
+        i_sql_queries = NULL;
+    }
     if (!i_sql_queries) {
         goto end;
     }
@@ -173,6 +205,9 @@ common_response_obj_debug_t *common_response_obj_debug_parseFromJSON(cJSON *comm
 
     // common_response_obj_debug->a_obj_sql_query
     cJSON *a_obj_sql_query = cJSON_GetObjectItemCaseSensitive(common_response_obj_debugJSON, "a_objSQLQuery");
+    if (cJSON_IsNull(a_obj_sql_query)) {
+        a_obj_sql_query = NULL;
+    }
     if (!a_obj_sql_query) {
         goto end;
     }
@@ -196,7 +231,7 @@ common_response_obj_debug_t *common_response_obj_debug_parseFromJSON(cJSON *comm
     }
 
 
-    common_response_obj_debug_local_var = common_response_obj_debug_create (
+    common_response_obj_debug_local_var = common_response_obj_debug_create_internal (
         strdup(s_memory_usage->valuestring),
         strdup(s_run_time->valuestring),
         i_sql_selects->valuedouble,

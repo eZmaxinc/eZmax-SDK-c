@@ -24,13 +24,13 @@ cors_response_t* instantiate_cors_response(int include_optional) {
     cors_response = cors_response_create(
       228,
       99,
-      "Https://www.example.com"
+      "https://www.example.com"
     );
   } else {
     cors_response = cors_response_create(
       228,
       99,
-      "Https://www.example.com"
+      "https://www.example.com"
     );
   }
 

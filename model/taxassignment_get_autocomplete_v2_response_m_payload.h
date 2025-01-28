@@ -22,9 +22,10 @@ typedef struct taxassignment_get_autocomplete_v2_response_m_payload_t taxassignm
 typedef struct taxassignment_get_autocomplete_v2_response_m_payload_t {
     list_t *a_obj_taxassignment; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } taxassignment_get_autocomplete_v2_response_m_payload_t;
 
-taxassignment_get_autocomplete_v2_response_m_payload_t *taxassignment_get_autocomplete_v2_response_m_payload_create(
+__attribute__((deprecated)) taxassignment_get_autocomplete_v2_response_m_payload_t *taxassignment_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_taxassignment
 );
 

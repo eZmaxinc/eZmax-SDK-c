@@ -24,9 +24,10 @@ typedef struct common_reportgroup_t {
     list_t *a_obj_report; //nonprimitive container
     list_t *a_obj_reportcellstyle_custom; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } common_reportgroup_t;
 
-common_reportgroup_t *common_reportgroup_create(
+__attribute__((deprecated)) common_reportgroup_t *common_reportgroup_create(
     list_t *a_obj_report,
     list_t *a_obj_reportcellstyle_custom
 );

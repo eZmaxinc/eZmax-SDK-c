@@ -5,7 +5,7 @@
 
 
 
-ezsigntemplatesignature_create_object_v2_request_t *ezsigntemplatesignature_create_object_v2_request_create(
+static ezsigntemplatesignature_create_object_v2_request_t *ezsigntemplatesignature_create_object_v2_request_create_internal(
     list_t *a_obj_ezsigntemplatesignature
     ) {
     ezsigntemplatesignature_create_object_v2_request_t *ezsigntemplatesignature_create_object_v2_request_local_var = malloc(sizeof(ezsigntemplatesignature_create_object_v2_request_t));
@@ -14,12 +14,24 @@ ezsigntemplatesignature_create_object_v2_request_t *ezsigntemplatesignature_crea
     }
     ezsigntemplatesignature_create_object_v2_request_local_var->a_obj_ezsigntemplatesignature = a_obj_ezsigntemplatesignature;
 
+    ezsigntemplatesignature_create_object_v2_request_local_var->_library_owned = 1;
     return ezsigntemplatesignature_create_object_v2_request_local_var;
 }
 
+__attribute__((deprecated)) ezsigntemplatesignature_create_object_v2_request_t *ezsigntemplatesignature_create_object_v2_request_create(
+    list_t *a_obj_ezsigntemplatesignature
+    ) {
+    return ezsigntemplatesignature_create_object_v2_request_create_internal (
+        a_obj_ezsigntemplatesignature
+        );
+}
 
 void ezsigntemplatesignature_create_object_v2_request_free(ezsigntemplatesignature_create_object_v2_request_t *ezsigntemplatesignature_create_object_v2_request) {
     if(NULL == ezsigntemplatesignature_create_object_v2_request){
+        return ;
+    }
+    if(ezsigntemplatesignature_create_object_v2_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigntemplatesignature_create_object_v2_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ ezsigntemplatesignature_create_object_v2_request_t *ezsigntemplatesignature_crea
 
     // ezsigntemplatesignature_create_object_v2_request->a_obj_ezsigntemplatesignature
     cJSON *a_obj_ezsigntemplatesignature = cJSON_GetObjectItemCaseSensitive(ezsigntemplatesignature_create_object_v2_requestJSON, "a_objEzsigntemplatesignature");
+    if (cJSON_IsNull(a_obj_ezsigntemplatesignature)) {
+        a_obj_ezsigntemplatesignature = NULL;
+    }
     if (!a_obj_ezsigntemplatesignature) {
         goto end;
     }
@@ -96,7 +111,7 @@ ezsigntemplatesignature_create_object_v2_request_t *ezsigntemplatesignature_crea
     }
 
 
-    ezsigntemplatesignature_create_object_v2_request_local_var = ezsigntemplatesignature_create_object_v2_request_create (
+    ezsigntemplatesignature_create_object_v2_request_local_var = ezsigntemplatesignature_create_object_v2_request_create_internal (
         a_obj_ezsigntemplatesignatureList
         );
 

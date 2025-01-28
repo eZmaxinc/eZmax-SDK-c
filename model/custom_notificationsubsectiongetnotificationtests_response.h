@@ -28,9 +28,10 @@ typedef struct custom_notificationsubsectiongetnotificationtests_response_t {
     char *s_notificationsubsection_name_x; // string
     list_t *a_obj_notificationtest; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_notificationsubsectiongetnotificationtests_response_t;
 
-custom_notificationsubsectiongetnotificationtests_response_t *custom_notificationsubsectiongetnotificationtests_response_create(
+__attribute__((deprecated)) custom_notificationsubsectiongetnotificationtests_response_t *custom_notificationsubsectiongetnotificationtests_response_create(
     int pki_notificationsubsection_id,
     int fki_notificationsection_id,
     multilingual_notificationsubsection_name_t *obj_notificationsubsection_name,

@@ -21,72 +21,33 @@ typedef struct systemconfiguration_request_t systemconfiguration_request_t;
 #include "field_e_systemconfiguration_language2.h"
 #include "field_e_systemconfiguration_newexternaluseraction.h"
 
-// Enum  for systemconfiguration_request
-
-typedef enum  { ezmax_api_definition__full_systemconfiguration_request__NULL = 0, ezmax_api_definition__full_systemconfiguration_request__Stage, ezmax_api_definition__full_systemconfiguration_request__AutoCreate } ezmax_api_definition__full_systemconfiguration_request__e;
-
-char* systemconfiguration_request_e_systemconfiguration_newexternaluseraction_ToString(ezmax_api_definition__full_systemconfiguration_request__e e_systemconfiguration_newexternaluseraction);
-
-ezmax_api_definition__full_systemconfiguration_request__e systemconfiguration_request_e_systemconfiguration_newexternaluseraction_FromString(char* e_systemconfiguration_newexternaluseraction);
-
-// Enum  for systemconfiguration_request
-
-typedef enum  { ezmax_api_definition__full_systemconfiguration_request__NULL = 0, ezmax_api_definition__full_systemconfiguration_request__fr_QC } ezmax_api_definition__full_systemconfiguration_request__e;
-
-char* systemconfiguration_request_e_systemconfiguration_language1_ToString(ezmax_api_definition__full_systemconfiguration_request__e e_systemconfiguration_language1);
-
-ezmax_api_definition__full_systemconfiguration_request__e systemconfiguration_request_e_systemconfiguration_language1_FromString(char* e_systemconfiguration_language1);
-
-// Enum  for systemconfiguration_request
-
-typedef enum  { ezmax_api_definition__full_systemconfiguration_request__NULL = 0, ezmax_api_definition__full_systemconfiguration_request__en_CA, ezmax_api_definition__full_systemconfiguration_request__en_QC, ezmax_api_definition__full_systemconfiguration_request__en_US } ezmax_api_definition__full_systemconfiguration_request__e;
-
-char* systemconfiguration_request_e_systemconfiguration_language2_ToString(ezmax_api_definition__full_systemconfiguration_request__e e_systemconfiguration_language2);
-
-ezmax_api_definition__full_systemconfiguration_request__e systemconfiguration_request_e_systemconfiguration_language2_FromString(char* e_systemconfiguration_language2);
-
-// Enum  for systemconfiguration_request
-
-typedef enum  { ezmax_api_definition__full_systemconfiguration_request__NULL = 0, ezmax_api_definition__full_systemconfiguration_request__No, ezmax_api_definition__full_systemconfiguration_request__Yes } ezmax_api_definition__full_systemconfiguration_request__e;
-
-char* systemconfiguration_request_e_systemconfiguration_ezsign_ToString(ezmax_api_definition__full_systemconfiguration_request__e e_systemconfiguration_ezsign);
-
-ezmax_api_definition__full_systemconfiguration_request__e systemconfiguration_request_e_systemconfiguration_ezsign_FromString(char* e_systemconfiguration_ezsign);
-
-// Enum  for systemconfiguration_request
-
-typedef enum  { ezmax_api_definition__full_systemconfiguration_request__NULL = 0, ezmax_api_definition__full_systemconfiguration_request__Standard, ezmax_api_definition__full_systemconfiguration_request__Pro } ezmax_api_definition__full_systemconfiguration_request__e;
-
-char* systemconfiguration_request_e_systemconfiguration_ezsignofficeplan_ToString(ezmax_api_definition__full_systemconfiguration_request__e e_systemconfiguration_ezsignofficeplan);
-
-ezmax_api_definition__full_systemconfiguration_request__e systemconfiguration_request_e_systemconfiguration_ezsignofficeplan_FromString(char* e_systemconfiguration_ezsignofficeplan);
-
 
 
 typedef struct systemconfiguration_request_t {
     int pki_systemconfiguration_id; //numeric
     int fki_branding_id; //numeric
-    field_e_systemconfiguration_newexternaluseraction_t *e_systemconfiguration_newexternaluseraction; // custom
-    field_e_systemconfiguration_language1_t *e_systemconfiguration_language1; // custom
-    field_e_systemconfiguration_language2_t *e_systemconfiguration_language2; // custom
-    field_e_systemconfiguration_ezsign_t *e_systemconfiguration_ezsign; // custom
-    field_e_systemconfiguration_ezsignofficeplan_t *e_systemconfiguration_ezsignofficeplan; // custom
+    ezmax_api_definition__full_field_e_systemconfiguration_newexternaluseraction__e e_systemconfiguration_newexternaluseraction; //referenced enum
+    ezmax_api_definition__full_field_e_systemconfiguration_language1__e e_systemconfiguration_language1; //referenced enum
+    ezmax_api_definition__full_field_e_systemconfiguration_language2__e e_systemconfiguration_language2; //referenced enum
+    ezmax_api_definition__full_field_e_systemconfiguration_ezsign__e e_systemconfiguration_ezsign; //referenced enum
+    ezmax_api_definition__full_field_e_systemconfiguration_ezsignofficeplan__e e_systemconfiguration_ezsignofficeplan; //referenced enum
     int b_systemconfiguration_ezsignpaidbyoffice; //boolean
     int b_systemconfiguration_ezsignpersonnal; //boolean
     int b_systemconfiguration_sspr; //boolean
     char *dt_systemconfiguration_readonlyexpirationstart; // string
     char *dt_systemconfiguration_readonlyexpirationend; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } systemconfiguration_request_t;
 
-systemconfiguration_request_t *systemconfiguration_request_create(
+__attribute__((deprecated)) systemconfiguration_request_t *systemconfiguration_request_create(
     int pki_systemconfiguration_id,
     int fki_branding_id,
-    field_e_systemconfiguration_newexternaluseraction_t *e_systemconfiguration_newexternaluseraction,
-    field_e_systemconfiguration_language1_t *e_systemconfiguration_language1,
-    field_e_systemconfiguration_language2_t *e_systemconfiguration_language2,
-    field_e_systemconfiguration_ezsign_t *e_systemconfiguration_ezsign,
-    field_e_systemconfiguration_ezsignofficeplan_t *e_systemconfiguration_ezsignofficeplan,
+    ezmax_api_definition__full_field_e_systemconfiguration_newexternaluseraction__e e_systemconfiguration_newexternaluseraction,
+    ezmax_api_definition__full_field_e_systemconfiguration_language1__e e_systemconfiguration_language1,
+    ezmax_api_definition__full_field_e_systemconfiguration_language2__e e_systemconfiguration_language2,
+    ezmax_api_definition__full_field_e_systemconfiguration_ezsign__e e_systemconfiguration_ezsign,
+    ezmax_api_definition__full_field_e_systemconfiguration_ezsignofficeplan__e e_systemconfiguration_ezsignofficeplan,
     int b_systemconfiguration_ezsignpaidbyoffice,
     int b_systemconfiguration_ezsignpersonnal,
     int b_systemconfiguration_sspr,

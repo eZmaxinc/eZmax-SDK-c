@@ -5,7 +5,7 @@
 
 
 
-common_audit_t *common_audit_create(
+static common_audit_t *common_audit_create_internal(
     common_auditdetail_t *obj_auditdetail_created,
     common_auditdetail_t *obj_auditdetail_modified
     ) {
@@ -16,12 +16,26 @@ common_audit_t *common_audit_create(
     common_audit_local_var->obj_auditdetail_created = obj_auditdetail_created;
     common_audit_local_var->obj_auditdetail_modified = obj_auditdetail_modified;
 
+    common_audit_local_var->_library_owned = 1;
     return common_audit_local_var;
 }
 
+__attribute__((deprecated)) common_audit_t *common_audit_create(
+    common_auditdetail_t *obj_auditdetail_created,
+    common_auditdetail_t *obj_auditdetail_modified
+    ) {
+    return common_audit_create_internal (
+        obj_auditdetail_created,
+        obj_auditdetail_modified
+        );
+}
 
 void common_audit_free(common_audit_t *common_audit) {
     if(NULL == common_audit){
+        return ;
+    }
+    if(common_audit->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "common_audit_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -85,6 +99,9 @@ common_audit_t *common_audit_parseFromJSON(cJSON *common_auditJSON){
 
     // common_audit->obj_auditdetail_created
     cJSON *obj_auditdetail_created = cJSON_GetObjectItemCaseSensitive(common_auditJSON, "objAuditdetailCreated");
+    if (cJSON_IsNull(obj_auditdetail_created)) {
+        obj_auditdetail_created = NULL;
+    }
     if (!obj_auditdetail_created) {
         goto end;
     }
@@ -94,12 +111,15 @@ common_audit_t *common_audit_parseFromJSON(cJSON *common_auditJSON){
 
     // common_audit->obj_auditdetail_modified
     cJSON *obj_auditdetail_modified = cJSON_GetObjectItemCaseSensitive(common_auditJSON, "objAuditdetailModified");
+    if (cJSON_IsNull(obj_auditdetail_modified)) {
+        obj_auditdetail_modified = NULL;
+    }
     if (obj_auditdetail_modified) { 
     obj_auditdetail_modified_local_nonprim = common_auditdetail_parseFromJSON(obj_auditdetail_modified); //nonprimitive
     }
 
 
-    common_audit_local_var = common_audit_create (
+    common_audit_local_var = common_audit_create_internal (
         obj_auditdetail_created_local_nonprim,
         obj_auditdetail_modified ? obj_auditdetail_modified_local_nonprim : NULL
         );

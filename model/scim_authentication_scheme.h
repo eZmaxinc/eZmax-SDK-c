@@ -31,9 +31,10 @@ typedef struct scim_authentication_scheme_t {
     char *name; // string
     ezmax_api_definition__full_scim_authentication_scheme_TYPE_e type; //enum
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } scim_authentication_scheme_t;
 
-scim_authentication_scheme_t *scim_authentication_scheme_create(
+__attribute__((deprecated)) scim_authentication_scheme_t *scim_authentication_scheme_create(
     char *description,
     char *name,
     ezmax_api_definition__full_scim_authentication_scheme_TYPE_e type

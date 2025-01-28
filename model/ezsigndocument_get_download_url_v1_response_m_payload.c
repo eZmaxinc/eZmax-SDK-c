@@ -5,7 +5,7 @@
 
 
 
-ezsigndocument_get_download_url_v1_response_m_payload_t *ezsigndocument_get_download_url_v1_response_m_payload_create(
+static ezsigndocument_get_download_url_v1_response_m_payload_t *ezsigndocument_get_download_url_v1_response_m_payload_create_internal(
     char *s_download_url
     ) {
     ezsigndocument_get_download_url_v1_response_m_payload_t *ezsigndocument_get_download_url_v1_response_m_payload_local_var = malloc(sizeof(ezsigndocument_get_download_url_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ ezsigndocument_get_download_url_v1_response_m_payload_t *ezsigndocument_get_down
     }
     ezsigndocument_get_download_url_v1_response_m_payload_local_var->s_download_url = s_download_url;
 
+    ezsigndocument_get_download_url_v1_response_m_payload_local_var->_library_owned = 1;
     return ezsigndocument_get_download_url_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezsigndocument_get_download_url_v1_response_m_payload_t *ezsigndocument_get_download_url_v1_response_m_payload_create(
+    char *s_download_url
+    ) {
+    return ezsigndocument_get_download_url_v1_response_m_payload_create_internal (
+        s_download_url
+        );
+}
 
 void ezsigndocument_get_download_url_v1_response_m_payload_free(ezsigndocument_get_download_url_v1_response_m_payload_t *ezsigndocument_get_download_url_v1_response_m_payload) {
     if(NULL == ezsigndocument_get_download_url_v1_response_m_payload){
+        return ;
+    }
+    if(ezsigndocument_get_download_url_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigndocument_get_download_url_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -55,6 +67,9 @@ ezsigndocument_get_download_url_v1_response_m_payload_t *ezsigndocument_get_down
 
     // ezsigndocument_get_download_url_v1_response_m_payload->s_download_url
     cJSON *s_download_url = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_download_url_v1_response_m_payloadJSON, "sDownloadUrl");
+    if (cJSON_IsNull(s_download_url)) {
+        s_download_url = NULL;
+    }
     if (!s_download_url) {
         goto end;
     }
@@ -66,7 +81,7 @@ ezsigndocument_get_download_url_v1_response_m_payload_t *ezsigndocument_get_down
     }
 
 
-    ezsigndocument_get_download_url_v1_response_m_payload_local_var = ezsigndocument_get_download_url_v1_response_m_payload_create (
+    ezsigndocument_get_download_url_v1_response_m_payload_local_var = ezsigndocument_get_download_url_v1_response_m_payload_create_internal (
         strdup(s_download_url->valuestring)
         );
 

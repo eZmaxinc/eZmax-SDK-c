@@ -22,9 +22,10 @@ typedef struct domain_request_compound_t {
     int pki_domain_id; //numeric
     char *s_domain_name; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } domain_request_compound_t;
 
-domain_request_compound_t *domain_request_compound_create(
+__attribute__((deprecated)) domain_request_compound_t *domain_request_compound_create(
     int pki_domain_id,
     char *s_domain_name
 );

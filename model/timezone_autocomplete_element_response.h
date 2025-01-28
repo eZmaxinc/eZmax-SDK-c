@@ -23,9 +23,10 @@ typedef struct timezone_autocomplete_element_response_t {
     int pki_timezone_id; //numeric
     int b_timezone_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } timezone_autocomplete_element_response_t;
 
-timezone_autocomplete_element_response_t *timezone_autocomplete_element_response_create(
+__attribute__((deprecated)) timezone_autocomplete_element_response_t *timezone_autocomplete_element_response_create(
     char *s_timezone_name,
     int pki_timezone_id,
     int b_timezone_isactive

@@ -5,7 +5,7 @@
 
 
 
-ezsignsignatureattachment_response_t *ezsignsignatureattachment_response_create(
+static ezsignsignatureattachment_response_t *ezsignsignatureattachment_response_create_internal(
     int pki_ezsignsignatureattachment_id,
     int fki_ezsignsignature_id,
     char *bin_ezsignsignatureattachment_md5,
@@ -22,12 +22,32 @@ ezsignsignatureattachment_response_t *ezsignsignatureattachment_response_create(
     ezsignsignatureattachment_response_local_var->s_ezsignsignatureattachment_name = s_ezsignsignatureattachment_name;
     ezsignsignatureattachment_response_local_var->s_download_url = s_download_url;
 
+    ezsignsignatureattachment_response_local_var->_library_owned = 1;
     return ezsignsignatureattachment_response_local_var;
 }
 
+__attribute__((deprecated)) ezsignsignatureattachment_response_t *ezsignsignatureattachment_response_create(
+    int pki_ezsignsignatureattachment_id,
+    int fki_ezsignsignature_id,
+    char *bin_ezsignsignatureattachment_md5,
+    char *s_ezsignsignatureattachment_name,
+    char *s_download_url
+    ) {
+    return ezsignsignatureattachment_response_create_internal (
+        pki_ezsignsignatureattachment_id,
+        fki_ezsignsignature_id,
+        bin_ezsignsignatureattachment_md5,
+        s_ezsignsignatureattachment_name,
+        s_download_url
+        );
+}
 
 void ezsignsignatureattachment_response_free(ezsignsignatureattachment_response_t *ezsignsignatureattachment_response) {
     if(NULL == ezsignsignatureattachment_response){
+        return ;
+    }
+    if(ezsignsignatureattachment_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignsignatureattachment_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -107,6 +127,9 @@ ezsignsignatureattachment_response_t *ezsignsignatureattachment_response_parseFr
 
     // ezsignsignatureattachment_response->pki_ezsignsignatureattachment_id
     cJSON *pki_ezsignsignatureattachment_id = cJSON_GetObjectItemCaseSensitive(ezsignsignatureattachment_responseJSON, "pkiEzsignsignatureattachmentID");
+    if (cJSON_IsNull(pki_ezsignsignatureattachment_id)) {
+        pki_ezsignsignatureattachment_id = NULL;
+    }
     if (!pki_ezsignsignatureattachment_id) {
         goto end;
     }
@@ -119,6 +142,9 @@ ezsignsignatureattachment_response_t *ezsignsignatureattachment_response_parseFr
 
     // ezsignsignatureattachment_response->fki_ezsignsignature_id
     cJSON *fki_ezsignsignature_id = cJSON_GetObjectItemCaseSensitive(ezsignsignatureattachment_responseJSON, "fkiEzsignsignatureID");
+    if (cJSON_IsNull(fki_ezsignsignature_id)) {
+        fki_ezsignsignature_id = NULL;
+    }
     if (!fki_ezsignsignature_id) {
         goto end;
     }
@@ -131,6 +157,9 @@ ezsignsignatureattachment_response_t *ezsignsignatureattachment_response_parseFr
 
     // ezsignsignatureattachment_response->bin_ezsignsignatureattachment_md5
     cJSON *bin_ezsignsignatureattachment_md5 = cJSON_GetObjectItemCaseSensitive(ezsignsignatureattachment_responseJSON, "binEzsignsignatureattachmentMD5");
+    if (cJSON_IsNull(bin_ezsignsignatureattachment_md5)) {
+        bin_ezsignsignatureattachment_md5 = NULL;
+    }
     if (!bin_ezsignsignatureattachment_md5) {
         goto end;
     }
@@ -143,6 +172,9 @@ ezsignsignatureattachment_response_t *ezsignsignatureattachment_response_parseFr
 
     // ezsignsignatureattachment_response->s_ezsignsignatureattachment_name
     cJSON *s_ezsignsignatureattachment_name = cJSON_GetObjectItemCaseSensitive(ezsignsignatureattachment_responseJSON, "sEzsignsignatureattachmentName");
+    if (cJSON_IsNull(s_ezsignsignatureattachment_name)) {
+        s_ezsignsignatureattachment_name = NULL;
+    }
     if (!s_ezsignsignatureattachment_name) {
         goto end;
     }
@@ -155,6 +187,9 @@ ezsignsignatureattachment_response_t *ezsignsignatureattachment_response_parseFr
 
     // ezsignsignatureattachment_response->s_download_url
     cJSON *s_download_url = cJSON_GetObjectItemCaseSensitive(ezsignsignatureattachment_responseJSON, "sDownloadUrl");
+    if (cJSON_IsNull(s_download_url)) {
+        s_download_url = NULL;
+    }
     if (!s_download_url) {
         goto end;
     }
@@ -166,7 +201,7 @@ ezsignsignatureattachment_response_t *ezsignsignatureattachment_response_parseFr
     }
 
 
-    ezsignsignatureattachment_response_local_var = ezsignsignatureattachment_response_create (
+    ezsignsignatureattachment_response_local_var = ezsignsignatureattachment_response_create_internal (
         pki_ezsignsignatureattachment_id->valuedouble,
         fki_ezsignsignature_id->valuedouble,
         strdup(bin_ezsignsignatureattachment_md5->valuestring),

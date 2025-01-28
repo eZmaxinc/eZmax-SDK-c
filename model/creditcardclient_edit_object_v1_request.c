@@ -5,7 +5,7 @@
 
 
 
-creditcardclient_edit_object_v1_request_t *creditcardclient_edit_object_v1_request_create(
+static creditcardclient_edit_object_v1_request_t *creditcardclient_edit_object_v1_request_create_internal(
     creditcardclient_request_compound_t *obj_creditcardclient
     ) {
     creditcardclient_edit_object_v1_request_t *creditcardclient_edit_object_v1_request_local_var = malloc(sizeof(creditcardclient_edit_object_v1_request_t));
@@ -14,12 +14,24 @@ creditcardclient_edit_object_v1_request_t *creditcardclient_edit_object_v1_reque
     }
     creditcardclient_edit_object_v1_request_local_var->obj_creditcardclient = obj_creditcardclient;
 
+    creditcardclient_edit_object_v1_request_local_var->_library_owned = 1;
     return creditcardclient_edit_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) creditcardclient_edit_object_v1_request_t *creditcardclient_edit_object_v1_request_create(
+    creditcardclient_request_compound_t *obj_creditcardclient
+    ) {
+    return creditcardclient_edit_object_v1_request_create_internal (
+        obj_creditcardclient
+        );
+}
 
 void creditcardclient_edit_object_v1_request_free(creditcardclient_edit_object_v1_request_t *creditcardclient_edit_object_v1_request) {
     if(NULL == creditcardclient_edit_object_v1_request){
+        return ;
+    }
+    if(creditcardclient_edit_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "creditcardclient_edit_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ creditcardclient_edit_object_v1_request_t *creditcardclient_edit_object_v1_reque
 
     // creditcardclient_edit_object_v1_request->obj_creditcardclient
     cJSON *obj_creditcardclient = cJSON_GetObjectItemCaseSensitive(creditcardclient_edit_object_v1_requestJSON, "objCreditcardclient");
+    if (cJSON_IsNull(obj_creditcardclient)) {
+        obj_creditcardclient = NULL;
+    }
     if (!obj_creditcardclient) {
         goto end;
     }
@@ -71,7 +86,7 @@ creditcardclient_edit_object_v1_request_t *creditcardclient_edit_object_v1_reque
     obj_creditcardclient_local_nonprim = creditcardclient_request_compound_parseFromJSON(obj_creditcardclient); //nonprimitive
 
 
-    creditcardclient_edit_object_v1_request_local_var = creditcardclient_edit_object_v1_request_create (
+    creditcardclient_edit_object_v1_request_local_var = creditcardclient_edit_object_v1_request_create_internal (
         obj_creditcardclient_local_nonprim
         );
 

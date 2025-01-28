@@ -29,9 +29,10 @@ typedef struct ezsignbulksenddocumentmapping_response_compound_t {
     struct ezsigntemplate_response_compound_t *obj_ezsigntemplate; //model
     struct ezsigntemplatepackage_response_compound_t *obj_ezsigntemplatepackage; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignbulksenddocumentmapping_response_compound_t;
 
-ezsignbulksenddocumentmapping_response_compound_t *ezsignbulksenddocumentmapping_response_compound_create(
+__attribute__((deprecated)) ezsignbulksenddocumentmapping_response_compound_t *ezsignbulksenddocumentmapping_response_compound_create(
     int pki_ezsignbulksenddocumentmapping_id,
     int fki_ezsignbulksend_id,
     int fki_ezsigntemplatepackage_id,

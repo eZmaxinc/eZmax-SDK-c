@@ -5,7 +5,7 @@
 
 
 
-common_response_filter_t *common_response_filter_create(
+static common_response_filter_t *common_response_filter_create_internal(
     list_t* a_auto_type,
     list_t* a_auto_type_having,
     list_t* a_enum
@@ -18,18 +18,34 @@ common_response_filter_t *common_response_filter_create(
     common_response_filter_local_var->a_auto_type_having = a_auto_type_having;
     common_response_filter_local_var->a_enum = a_enum;
 
+    common_response_filter_local_var->_library_owned = 1;
     return common_response_filter_local_var;
 }
 
+__attribute__((deprecated)) common_response_filter_t *common_response_filter_create(
+    list_t* a_auto_type,
+    list_t* a_auto_type_having,
+    list_t* a_enum
+    ) {
+    return common_response_filter_create_internal (
+        a_auto_type,
+        a_auto_type_having,
+        a_enum
+        );
+}
 
 void common_response_filter_free(common_response_filter_t *common_response_filter) {
     if(NULL == common_response_filter){
         return ;
     }
+    if(common_response_filter->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "common_response_filter_free");
+        return ;
+    }
     listEntry_t *listEntry;
     if (common_response_filter->a_auto_type) {
         list_ForEach(listEntry, common_response_filter->a_auto_type) {
-            keyValuePair_t *localKeyValue = (keyValuePair_t*) listEntry->data;
+            keyValuePair_t *localKeyValue = listEntry->data;
             free (localKeyValue->key);
             free (localKeyValue->value);
             keyValuePair_free(localKeyValue);
@@ -39,7 +55,7 @@ void common_response_filter_free(common_response_filter_t *common_response_filte
     }
     if (common_response_filter->a_auto_type_having) {
         list_ForEach(listEntry, common_response_filter->a_auto_type_having) {
-            keyValuePair_t *localKeyValue = (keyValuePair_t*) listEntry->data;
+            keyValuePair_t *localKeyValue = listEntry->data;
             free (localKeyValue->key);
             free (localKeyValue->value);
             keyValuePair_free(localKeyValue);
@@ -49,7 +65,7 @@ void common_response_filter_free(common_response_filter_t *common_response_filte
     }
     if (common_response_filter->a_enum) {
         list_ForEach(listEntry, common_response_filter->a_enum) {
-            keyValuePair_t *localKeyValue = (keyValuePair_t*) listEntry->data;
+            keyValuePair_t *localKeyValue = listEntry->data;
             free (localKeyValue->key);
             free (localKeyValue->value);
             keyValuePair_free(localKeyValue);
@@ -73,8 +89,8 @@ cJSON *common_response_filter_convertToJSON(common_response_filter_t *common_res
     listEntry_t *a_auto_typeListEntry;
     if (common_response_filter->a_auto_type) {
     list_ForEach(a_auto_typeListEntry, common_response_filter->a_auto_type) {
-        keyValuePair_t *localKeyValue = (keyValuePair_t*)a_auto_typeListEntry->data;
-        if(cJSON_AddStringToObject(localMapObject, localKeyValue->key, (char*)localKeyValue->value) == NULL)
+        keyValuePair_t *localKeyValue = a_auto_typeListEntry->data;
+        if(cJSON_AddStringToObject(localMapObject, localKeyValue->key, localKeyValue->value) == NULL)
         {
             goto fail;
         }
@@ -93,8 +109,8 @@ cJSON *common_response_filter_convertToJSON(common_response_filter_t *common_res
     listEntry_t *a_auto_type_havingListEntry;
     if (common_response_filter->a_auto_type_having) {
     list_ForEach(a_auto_type_havingListEntry, common_response_filter->a_auto_type_having) {
-        keyValuePair_t *localKeyValue = (keyValuePair_t*)a_auto_type_havingListEntry->data;
-        if(cJSON_AddStringToObject(localMapObject, localKeyValue->key, (char*)localKeyValue->value) == NULL)
+        keyValuePair_t *localKeyValue = a_auto_type_havingListEntry->data;
+        if(cJSON_AddStringToObject(localMapObject, localKeyValue->key, localKeyValue->value) == NULL)
         {
             goto fail;
         }
@@ -113,7 +129,7 @@ cJSON *common_response_filter_convertToJSON(common_response_filter_t *common_res
     listEntry_t *a_enumListEntry;
     if (common_response_filter->a_enum) {
     list_ForEach(a_enumListEntry, common_response_filter->a_enum) {
-        keyValuePair_t *localKeyValue = (keyValuePair_t*)a_enumListEntry->data;
+        keyValuePair_t *localKeyValue = a_enumListEntry->data;
     }
     }
     }
@@ -141,6 +157,9 @@ common_response_filter_t *common_response_filter_parseFromJSON(cJSON *common_res
 
     // common_response_filter->a_auto_type
     cJSON *a_auto_type = cJSON_GetObjectItemCaseSensitive(common_response_filterJSON, "a_AutoType");
+    if (cJSON_IsNull(a_auto_type)) {
+        a_auto_type = NULL;
+    }
     if (a_auto_type) { 
     cJSON *a_auto_type_local_map = NULL;
     if(!cJSON_IsObject(a_auto_type) && !cJSON_IsNull(a_auto_type))
@@ -166,6 +185,9 @@ common_response_filter_t *common_response_filter_parseFromJSON(cJSON *common_res
 
     // common_response_filter->a_auto_type_having
     cJSON *a_auto_type_having = cJSON_GetObjectItemCaseSensitive(common_response_filterJSON, "a_AutoTypeHaving");
+    if (cJSON_IsNull(a_auto_type_having)) {
+        a_auto_type_having = NULL;
+    }
     if (a_auto_type_having) { 
     cJSON *a_auto_type_having_local_map = NULL;
     if(!cJSON_IsObject(a_auto_type_having) && !cJSON_IsNull(a_auto_type_having))
@@ -191,6 +213,9 @@ common_response_filter_t *common_response_filter_parseFromJSON(cJSON *common_res
 
     // common_response_filter->a_enum
     cJSON *a_enum = cJSON_GetObjectItemCaseSensitive(common_response_filterJSON, "a_Enum");
+    if (cJSON_IsNull(a_enum)) {
+        a_enum = NULL;
+    }
     if (a_enum) { 
     cJSON *a_enum_local_map = NULL;
     if(!cJSON_IsObject(a_enum) && !cJSON_IsNull(a_enum))
@@ -210,7 +235,7 @@ common_response_filter_t *common_response_filter_parseFromJSON(cJSON *common_res
     }
 
 
-    common_response_filter_local_var = common_response_filter_create (
+    common_response_filter_local_var = common_response_filter_create_internal (
         a_auto_type ? a_auto_typeList : NULL,
         a_auto_type_having ? a_auto_type_havingList : NULL,
         a_enum ? a_enumList : NULL
@@ -221,7 +246,7 @@ end:
     if (a_auto_typeList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_auto_typeList) {
-            keyValuePair_t *localKeyValue = (keyValuePair_t*) listEntry->data;
+            keyValuePair_t *localKeyValue = listEntry->data;
             free(localKeyValue->key);
             localKeyValue->key = NULL;
             free(localKeyValue->value);
@@ -235,7 +260,7 @@ end:
     if (a_auto_type_havingList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_auto_type_havingList) {
-            keyValuePair_t *localKeyValue = (keyValuePair_t*) listEntry->data;
+            keyValuePair_t *localKeyValue = listEntry->data;
             free(localKeyValue->key);
             localKeyValue->key = NULL;
             free(localKeyValue->value);
@@ -249,7 +274,7 @@ end:
     if (a_enumList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_enumList) {
-            keyValuePair_t *localKeyValue = (keyValuePair_t*) listEntry->data;
+            keyValuePair_t *localKeyValue = listEntry->data;
             free(localKeyValue->key);
             localKeyValue->key = NULL;
             keyValuePair_free(localKeyValue);

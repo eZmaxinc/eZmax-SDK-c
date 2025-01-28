@@ -19,51 +19,28 @@ typedef struct custom_communication_list_element_response_t custom_communication
 #include "field_e_communication_importance.h"
 #include "field_e_communication_type.h"
 
-// Enum  for custom_communication_list_element_response
-
-typedef enum  { ezmax_api_definition__full_custom_communication_list_element_response__NULL = 0, ezmax_api_definition__full_custom_communication_list_element_response__Outbound, ezmax_api_definition__full_custom_communication_list_element_response__Inbound } ezmax_api_definition__full_custom_communication_list_element_response__e;
-
-char* custom_communication_list_element_response_e_communication_direction_ToString(ezmax_api_definition__full_custom_communication_list_element_response__e e_communication_direction);
-
-ezmax_api_definition__full_custom_communication_list_element_response__e custom_communication_list_element_response_e_communication_direction_FromString(char* e_communication_direction);
-
-// Enum  for custom_communication_list_element_response
-
-typedef enum  { ezmax_api_definition__full_custom_communication_list_element_response__NULL = 0, ezmax_api_definition__full_custom_communication_list_element_response__High, ezmax_api_definition__full_custom_communication_list_element_response__Normal, ezmax_api_definition__full_custom_communication_list_element_response__Low } ezmax_api_definition__full_custom_communication_list_element_response__e;
-
-char* custom_communication_list_element_response_e_communication_importance_ToString(ezmax_api_definition__full_custom_communication_list_element_response__e e_communication_importance);
-
-ezmax_api_definition__full_custom_communication_list_element_response__e custom_communication_list_element_response_e_communication_importance_FromString(char* e_communication_importance);
-
-// Enum  for custom_communication_list_element_response
-
-typedef enum  { ezmax_api_definition__full_custom_communication_list_element_response__NULL = 0, ezmax_api_definition__full_custom_communication_list_element_response__Email, ezmax_api_definition__full_custom_communication_list_element_response__Fax, ezmax_api_definition__full_custom_communication_list_element_response__Sms } ezmax_api_definition__full_custom_communication_list_element_response__e;
-
-char* custom_communication_list_element_response_e_communication_type_ToString(ezmax_api_definition__full_custom_communication_list_element_response__e e_communication_type);
-
-ezmax_api_definition__full_custom_communication_list_element_response__e custom_communication_list_element_response_e_communication_type_FromString(char* e_communication_type);
-
 
 
 typedef struct custom_communication_list_element_response_t {
     int pki_communication_id; //numeric
     char *dt_created_date; // string
-    computed_e_communication_direction_t *e_communication_direction; // custom
-    field_e_communication_importance_t *e_communication_importance; // custom
-    field_e_communication_type_t *e_communication_type; // custom
+    ezmax_api_definition__full_computed_e_communication_direction__e e_communication_direction; //referenced enum
+    ezmax_api_definition__full_field_e_communication_importance__e e_communication_importance; //referenced enum
+    ezmax_api_definition__full_field_e_communication_type__e e_communication_type; //referenced enum
     int i_communicationrecipient_count; //numeric
     char *s_communication_subject; // string
     char *s_communication_sender; // string
     char *s_communication_recipient; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_communication_list_element_response_t;
 
-custom_communication_list_element_response_t *custom_communication_list_element_response_create(
+__attribute__((deprecated)) custom_communication_list_element_response_t *custom_communication_list_element_response_create(
     int pki_communication_id,
     char *dt_created_date,
-    computed_e_communication_direction_t *e_communication_direction,
-    field_e_communication_importance_t *e_communication_importance,
-    field_e_communication_type_t *e_communication_type,
+    ezmax_api_definition__full_computed_e_communication_direction__e e_communication_direction,
+    ezmax_api_definition__full_field_e_communication_importance__e e_communication_importance,
+    ezmax_api_definition__full_field_e_communication_type__e e_communication_type,
     int i_communicationrecipient_count,
     char *s_communication_subject,
     char *s_communication_sender,

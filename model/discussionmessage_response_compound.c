@@ -4,30 +4,13 @@
 #include "discussionmessage_response_compound.h"
 
 
-char* discussionmessage_response_compound_e_discussionmessage_status_ToString(ezmax_api_definition__full_discussionmessage_response_compound__e e_discussionmessage_status) {
-    char* e_discussionmessage_statusArray[] =  { "NULL", "New", "Edited", "Deleted" };
-    return e_discussionmessage_statusArray[e_discussionmessage_status];
-}
 
-ezmax_api_definition__full_discussionmessage_response_compound__e discussionmessage_response_compound_e_discussionmessage_status_FromString(char* e_discussionmessage_status){
-    int stringToReturn = 0;
-    char *e_discussionmessage_statusArray[] =  { "NULL", "New", "Edited", "Deleted" };
-    size_t sizeofArray = sizeof(e_discussionmessage_statusArray) / sizeof(e_discussionmessage_statusArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_discussionmessage_status, e_discussionmessage_statusArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-discussionmessage_response_compound_t *discussionmessage_response_compound_create(
+static discussionmessage_response_compound_t *discussionmessage_response_compound_create_internal(
     int pki_discussionmessage_id,
     int fki_discussion_id,
     int fki_discussionmembership_id,
     int fki_discussionmembership_id_actionrequired,
-    field_e_discussionmessage_status_t *e_discussionmessage_status,
+    ezmax_api_definition__full_field_e_discussionmessage_status__e e_discussionmessage_status,
     char *t_discussionmessage_content,
     char *s_discussionmessage_creatorname,
     char *s_discussionmessage_actionrequiredname,
@@ -47,19 +30,43 @@ discussionmessage_response_compound_t *discussionmessage_response_compound_creat
     discussionmessage_response_compound_local_var->s_discussionmessage_actionrequiredname = s_discussionmessage_actionrequiredname;
     discussionmessage_response_compound_local_var->obj_audit = obj_audit;
 
+    discussionmessage_response_compound_local_var->_library_owned = 1;
     return discussionmessage_response_compound_local_var;
 }
 
+__attribute__((deprecated)) discussionmessage_response_compound_t *discussionmessage_response_compound_create(
+    int pki_discussionmessage_id,
+    int fki_discussion_id,
+    int fki_discussionmembership_id,
+    int fki_discussionmembership_id_actionrequired,
+    ezmax_api_definition__full_field_e_discussionmessage_status__e e_discussionmessage_status,
+    char *t_discussionmessage_content,
+    char *s_discussionmessage_creatorname,
+    char *s_discussionmessage_actionrequiredname,
+    common_audit_t *obj_audit
+    ) {
+    return discussionmessage_response_compound_create_internal (
+        pki_discussionmessage_id,
+        fki_discussion_id,
+        fki_discussionmembership_id,
+        fki_discussionmembership_id_actionrequired,
+        e_discussionmessage_status,
+        t_discussionmessage_content,
+        s_discussionmessage_creatorname,
+        s_discussionmessage_actionrequiredname,
+        obj_audit
+        );
+}
 
 void discussionmessage_response_compound_free(discussionmessage_response_compound_t *discussionmessage_response_compound) {
     if(NULL == discussionmessage_response_compound){
         return ;
     }
-    listEntry_t *listEntry;
-    if (discussionmessage_response_compound->e_discussionmessage_status) {
-        field_e_discussionmessage_status_free(discussionmessage_response_compound->e_discussionmessage_status);
-        discussionmessage_response_compound->e_discussionmessage_status = NULL;
+    if(discussionmessage_response_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "discussionmessage_response_compound_free");
+        return ;
     }
+    listEntry_t *listEntry;
     if (discussionmessage_response_compound->t_discussionmessage_content) {
         free(discussionmessage_response_compound->t_discussionmessage_content);
         discussionmessage_response_compound->t_discussionmessage_content = NULL;
@@ -117,7 +124,7 @@ cJSON *discussionmessage_response_compound_convertToJSON(discussionmessage_respo
 
 
     // discussionmessage_response_compound->e_discussionmessage_status
-    if (ezmax_api_definition__full_discussionmessage_response_compound__NULL == discussionmessage_response_compound->e_discussionmessage_status) {
+    if (ezmax_api_definition__full_field_e_discussionmessage_status__NULL == discussionmessage_response_compound->e_discussionmessage_status) {
         goto fail;
     }
     cJSON *e_discussionmessage_status_local_JSON = field_e_discussionmessage_status_convertToJSON(discussionmessage_response_compound->e_discussionmessage_status);
@@ -182,13 +189,16 @@ discussionmessage_response_compound_t *discussionmessage_response_compound_parse
     discussionmessage_response_compound_t *discussionmessage_response_compound_local_var = NULL;
 
     // define the local variable for discussionmessage_response_compound->e_discussionmessage_status
-    field_e_discussionmessage_status_t *e_discussionmessage_status_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_discussionmessage_status__e e_discussionmessage_status_local_nonprim = 0;
 
     // define the local variable for discussionmessage_response_compound->obj_audit
     common_audit_t *obj_audit_local_nonprim = NULL;
 
     // discussionmessage_response_compound->pki_discussionmessage_id
     cJSON *pki_discussionmessage_id = cJSON_GetObjectItemCaseSensitive(discussionmessage_response_compoundJSON, "pkiDiscussionmessageID");
+    if (cJSON_IsNull(pki_discussionmessage_id)) {
+        pki_discussionmessage_id = NULL;
+    }
     if (!pki_discussionmessage_id) {
         goto end;
     }
@@ -201,6 +211,9 @@ discussionmessage_response_compound_t *discussionmessage_response_compound_parse
 
     // discussionmessage_response_compound->fki_discussion_id
     cJSON *fki_discussion_id = cJSON_GetObjectItemCaseSensitive(discussionmessage_response_compoundJSON, "fkiDiscussionID");
+    if (cJSON_IsNull(fki_discussion_id)) {
+        fki_discussion_id = NULL;
+    }
     if (!fki_discussion_id) {
         goto end;
     }
@@ -213,6 +226,9 @@ discussionmessage_response_compound_t *discussionmessage_response_compound_parse
 
     // discussionmessage_response_compound->fki_discussionmembership_id
     cJSON *fki_discussionmembership_id = cJSON_GetObjectItemCaseSensitive(discussionmessage_response_compoundJSON, "fkiDiscussionmembershipID");
+    if (cJSON_IsNull(fki_discussionmembership_id)) {
+        fki_discussionmembership_id = NULL;
+    }
     if (fki_discussionmembership_id) { 
     if(!cJSON_IsNumber(fki_discussionmembership_id))
     {
@@ -222,6 +238,9 @@ discussionmessage_response_compound_t *discussionmessage_response_compound_parse
 
     // discussionmessage_response_compound->fki_discussionmembership_id_actionrequired
     cJSON *fki_discussionmembership_id_actionrequired = cJSON_GetObjectItemCaseSensitive(discussionmessage_response_compoundJSON, "fkiDiscussionmembershipIDActionrequired");
+    if (cJSON_IsNull(fki_discussionmembership_id_actionrequired)) {
+        fki_discussionmembership_id_actionrequired = NULL;
+    }
     if (fki_discussionmembership_id_actionrequired) { 
     if(!cJSON_IsNumber(fki_discussionmembership_id_actionrequired))
     {
@@ -231,6 +250,9 @@ discussionmessage_response_compound_t *discussionmessage_response_compound_parse
 
     // discussionmessage_response_compound->e_discussionmessage_status
     cJSON *e_discussionmessage_status = cJSON_GetObjectItemCaseSensitive(discussionmessage_response_compoundJSON, "eDiscussionmessageStatus");
+    if (cJSON_IsNull(e_discussionmessage_status)) {
+        e_discussionmessage_status = NULL;
+    }
     if (!e_discussionmessage_status) {
         goto end;
     }
@@ -240,6 +262,9 @@ discussionmessage_response_compound_t *discussionmessage_response_compound_parse
 
     // discussionmessage_response_compound->t_discussionmessage_content
     cJSON *t_discussionmessage_content = cJSON_GetObjectItemCaseSensitive(discussionmessage_response_compoundJSON, "tDiscussionmessageContent");
+    if (cJSON_IsNull(t_discussionmessage_content)) {
+        t_discussionmessage_content = NULL;
+    }
     if (!t_discussionmessage_content) {
         goto end;
     }
@@ -252,6 +277,9 @@ discussionmessage_response_compound_t *discussionmessage_response_compound_parse
 
     // discussionmessage_response_compound->s_discussionmessage_creatorname
     cJSON *s_discussionmessage_creatorname = cJSON_GetObjectItemCaseSensitive(discussionmessage_response_compoundJSON, "sDiscussionmessageCreatorname");
+    if (cJSON_IsNull(s_discussionmessage_creatorname)) {
+        s_discussionmessage_creatorname = NULL;
+    }
     if (!s_discussionmessage_creatorname) {
         goto end;
     }
@@ -264,6 +292,9 @@ discussionmessage_response_compound_t *discussionmessage_response_compound_parse
 
     // discussionmessage_response_compound->s_discussionmessage_actionrequiredname
     cJSON *s_discussionmessage_actionrequiredname = cJSON_GetObjectItemCaseSensitive(discussionmessage_response_compoundJSON, "sDiscussionmessageActionrequiredname");
+    if (cJSON_IsNull(s_discussionmessage_actionrequiredname)) {
+        s_discussionmessage_actionrequiredname = NULL;
+    }
     if (s_discussionmessage_actionrequiredname) { 
     if(!cJSON_IsString(s_discussionmessage_actionrequiredname) && !cJSON_IsNull(s_discussionmessage_actionrequiredname))
     {
@@ -273,6 +304,9 @@ discussionmessage_response_compound_t *discussionmessage_response_compound_parse
 
     // discussionmessage_response_compound->obj_audit
     cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(discussionmessage_response_compoundJSON, "objAudit");
+    if (cJSON_IsNull(obj_audit)) {
+        obj_audit = NULL;
+    }
     if (!obj_audit) {
         goto end;
     }
@@ -281,7 +315,7 @@ discussionmessage_response_compound_t *discussionmessage_response_compound_parse
     obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
 
 
-    discussionmessage_response_compound_local_var = discussionmessage_response_compound_create (
+    discussionmessage_response_compound_local_var = discussionmessage_response_compound_create_internal (
         pki_discussionmessage_id->valuedouble,
         fki_discussion_id->valuedouble,
         fki_discussionmembership_id ? fki_discussionmembership_id->valuedouble : 0,
@@ -296,8 +330,7 @@ discussionmessage_response_compound_t *discussionmessage_response_compound_parse
     return discussionmessage_response_compound_local_var;
 end:
     if (e_discussionmessage_status_local_nonprim) {
-        field_e_discussionmessage_status_free(e_discussionmessage_status_local_nonprim);
-        e_discussionmessage_status_local_nonprim = NULL;
+        e_discussionmessage_status_local_nonprim = 0;
     }
     if (obj_audit_local_nonprim) {
         common_audit_free(obj_audit_local_nonprim);

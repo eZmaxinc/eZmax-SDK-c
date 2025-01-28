@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsigntemplatesignature_dependencyrequirement
     return 0;
 }
 
-cJSON *field_e_ezsigntemplatesignature_dependencyrequirement_field_e_ezsigntemplatesignature_dependencyrequirement_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplatesignature_dependencyrequirement__e field_e_ezsigntemplatesignature_dependencyrequirement) {
+cJSON *field_e_ezsigntemplatesignature_dependencyrequirement_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplatesignature_dependencyrequirement__e field_e_ezsigntemplatesignature_dependencyrequirement) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsigntemplatesignature_dependencyrequirement", field_e_ezsigntemplatesignature_dependencyrequirement_field_e_ezsigntemplatesignature_dependencyrequirement_ToString(field_e_ezsigntemplatesignature_dependencyrequirement)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsigntemplatesignature_dependencyrequirement__e field_e_ezsigntemplatesignature_dependencyrequirement_field_e_ezsigntemplatesignature_dependencyrequirement_parseFromJSON(cJSON *field_e_ezsigntemplatesignature_dependencyrequirementJSON) {
-    ezmax_api_definition__full_field_e_ezsigntemplatesignature_dependencyrequirement__e *field_e_ezsigntemplatesignature_dependencyrequirement = NULL;
-    ezmax_api_definition__full_field_e_ezsigntemplatesignature_dependencyrequirement__e field_e_ezsigntemplatesignature_dependencyrequirementVariable;
-    cJSON *field_e_ezsigntemplatesignature_dependencyrequirementVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsigntemplatesignature_dependencyrequirementJSON, "field_e_ezsigntemplatesignature_dependencyrequirement");
-    if(!cJSON_IsString(field_e_ezsigntemplatesignature_dependencyrequirementVar) || (field_e_ezsigntemplatesignature_dependencyrequirementVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsigntemplatesignature_dependencyrequirement__e field_e_ezsigntemplatesignature_dependencyrequirement_parseFromJSON(cJSON *field_e_ezsigntemplatesignature_dependencyrequirementJSON) {
+    if(!cJSON_IsString(field_e_ezsigntemplatesignature_dependencyrequirementJSON) || (field_e_ezsigntemplatesignature_dependencyrequirementJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsigntemplatesignature_dependencyrequirementVariable = field_e_ezsigntemplatesignature_dependencyrequirement_field_e_ezsigntemplatesignature_dependencyrequirement_FromString(field_e_ezsigntemplatesignature_dependencyrequirementVar->valuestring);
-    return field_e_ezsigntemplatesignature_dependencyrequirementVariable;
-end:
-    return 0;
+    return field_e_ezsigntemplatesignature_dependencyrequirement_field_e_ezsigntemplatesignature_dependencyrequirement_FromString(field_e_ezsigntemplatesignature_dependencyrequirementJSON->valuestring);
 }

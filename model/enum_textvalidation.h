@@ -24,9 +24,9 @@ char* enum_textvalidation_enum_textvalidation_ToString(ezmax_api_definition__ful
 
 ezmax_api_definition__full_enum_textvalidation__e enum_textvalidation_enum_textvalidation_FromString(char* enum_textvalidation);
 
-//cJSON *enum_textvalidation_enum_textvalidation_convertToJSON(ezmax_api_definition__full_enum_textvalidation__e enum_textvalidation);
+cJSON *enum_textvalidation_convertToJSON(ezmax_api_definition__full_enum_textvalidation__e enum_textvalidation);
 
-//ezmax_api_definition__full_enum_textvalidation__e enum_textvalidation_enum_textvalidation_parseFromJSON(cJSON *enum_textvalidationJSON);
+ezmax_api_definition__full_enum_textvalidation__e enum_textvalidation_parseFromJSON(cJSON *enum_textvalidationJSON);
 
 #endif /* _enum_textvalidation_H_ */
 

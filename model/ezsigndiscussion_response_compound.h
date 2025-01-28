@@ -28,9 +28,10 @@ typedef struct ezsigndiscussion_response_compound_t {
     int i_ezsigndiscussion_pagenumber; //numeric
     struct discussion_response_compound_t *obj_discussion; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigndiscussion_response_compound_t;
 
-ezsigndiscussion_response_compound_t *ezsigndiscussion_response_compound_create(
+__attribute__((deprecated)) ezsigndiscussion_response_compound_t *ezsigndiscussion_response_compound_create(
     int pki_ezsigndiscussion_id,
     int fki_ezsignpage_id,
     int fki_discussion_id,

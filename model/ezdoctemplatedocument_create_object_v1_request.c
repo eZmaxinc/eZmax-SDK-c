@@ -5,7 +5,7 @@
 
 
 
-ezdoctemplatedocument_create_object_v1_request_t *ezdoctemplatedocument_create_object_v1_request_create(
+static ezdoctemplatedocument_create_object_v1_request_t *ezdoctemplatedocument_create_object_v1_request_create_internal(
     list_t *a_obj_ezdoctemplatedocument
     ) {
     ezdoctemplatedocument_create_object_v1_request_t *ezdoctemplatedocument_create_object_v1_request_local_var = malloc(sizeof(ezdoctemplatedocument_create_object_v1_request_t));
@@ -14,12 +14,24 @@ ezdoctemplatedocument_create_object_v1_request_t *ezdoctemplatedocument_create_o
     }
     ezdoctemplatedocument_create_object_v1_request_local_var->a_obj_ezdoctemplatedocument = a_obj_ezdoctemplatedocument;
 
+    ezdoctemplatedocument_create_object_v1_request_local_var->_library_owned = 1;
     return ezdoctemplatedocument_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezdoctemplatedocument_create_object_v1_request_t *ezdoctemplatedocument_create_object_v1_request_create(
+    list_t *a_obj_ezdoctemplatedocument
+    ) {
+    return ezdoctemplatedocument_create_object_v1_request_create_internal (
+        a_obj_ezdoctemplatedocument
+        );
+}
 
 void ezdoctemplatedocument_create_object_v1_request_free(ezdoctemplatedocument_create_object_v1_request_t *ezdoctemplatedocument_create_object_v1_request) {
     if(NULL == ezdoctemplatedocument_create_object_v1_request){
+        return ;
+    }
+    if(ezdoctemplatedocument_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezdoctemplatedocument_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ ezdoctemplatedocument_create_object_v1_request_t *ezdoctemplatedocument_create_o
 
     // ezdoctemplatedocument_create_object_v1_request->a_obj_ezdoctemplatedocument
     cJSON *a_obj_ezdoctemplatedocument = cJSON_GetObjectItemCaseSensitive(ezdoctemplatedocument_create_object_v1_requestJSON, "a_objEzdoctemplatedocument");
+    if (cJSON_IsNull(a_obj_ezdoctemplatedocument)) {
+        a_obj_ezdoctemplatedocument = NULL;
+    }
     if (!a_obj_ezdoctemplatedocument) {
         goto end;
     }
@@ -96,7 +111,7 @@ ezdoctemplatedocument_create_object_v1_request_t *ezdoctemplatedocument_create_o
     }
 
 
-    ezdoctemplatedocument_create_object_v1_request_local_var = ezdoctemplatedocument_create_object_v1_request_create (
+    ezdoctemplatedocument_create_object_v1_request_local_var = ezdoctemplatedocument_create_object_v1_request_create_internal (
         a_obj_ezdoctemplatedocumentList
         );
 

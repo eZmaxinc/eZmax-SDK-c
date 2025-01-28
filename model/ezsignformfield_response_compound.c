@@ -4,42 +4,8 @@
 #include "ezsignformfield_response_compound.h"
 
 
-char* ezsignformfield_response_compound_e_ezsignformfield_dependencyrequirement_ToString(ezmax_api_definition__full_ezsignformfield_response_compound__e e_ezsignformfield_dependencyrequirement) {
-    char* e_ezsignformfield_dependencyrequirementArray[] =  { "NULL", "AllOf", "AnyOf" };
-    return e_ezsignformfield_dependencyrequirementArray[e_ezsignformfield_dependencyrequirement];
-}
 
-ezmax_api_definition__full_ezsignformfield_response_compound__e ezsignformfield_response_compound_e_ezsignformfield_dependencyrequirement_FromString(char* e_ezsignformfield_dependencyrequirement){
-    int stringToReturn = 0;
-    char *e_ezsignformfield_dependencyrequirementArray[] =  { "NULL", "AllOf", "AnyOf" };
-    size_t sizeofArray = sizeof(e_ezsignformfield_dependencyrequirementArray) / sizeof(e_ezsignformfield_dependencyrequirementArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_ezsignformfield_dependencyrequirement, e_ezsignformfield_dependencyrequirementArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-char* ezsignformfield_response_compound_e_ezsignformfield_horizontalalignment_ToString(ezmax_api_definition__full_ezsignformfield_response_compound__e e_ezsignformfield_horizontalalignment) {
-    char* e_ezsignformfield_horizontalalignmentArray[] =  { "NULL", "Center", "Left", "Right" };
-    return e_ezsignformfield_horizontalalignmentArray[e_ezsignformfield_horizontalalignment];
-}
-
-ezmax_api_definition__full_ezsignformfield_response_compound__e ezsignformfield_response_compound_e_ezsignformfield_horizontalalignment_FromString(char* e_ezsignformfield_horizontalalignment){
-    int stringToReturn = 0;
-    char *e_ezsignformfield_horizontalalignmentArray[] =  { "NULL", "Center", "Left", "Right" };
-    size_t sizeofArray = sizeof(e_ezsignformfield_horizontalalignmentArray) / sizeof(e_ezsignformfield_horizontalalignmentArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_ezsignformfield_horizontalalignment, e_ezsignformfield_horizontalalignmentArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-ezsignformfield_response_compound_t *ezsignformfield_response_compound_create(
+static ezsignformfield_response_compound_t *ezsignformfield_response_compound_create_internal(
     int pki_ezsignformfield_id,
     int i_ezsignpage_pagenumber,
     char *s_ezsignformfield_label,
@@ -51,8 +17,8 @@ ezsignformfield_response_compound_t *ezsignformfield_response_compound_create(
     int b_ezsignformfield_autocomplete,
     int b_ezsignformfield_selected,
     char *s_ezsignformfield_enteredvalue,
-    field_e_ezsignformfield_dependencyrequirement_t *e_ezsignformfield_dependencyrequirement,
-    enum_horizontalalignment_t *e_ezsignformfield_horizontalalignment,
+    ezmax_api_definition__full_field_e_ezsignformfield_dependencyrequirement__e e_ezsignformfield_dependencyrequirement,
+    ezmax_api_definition__full_enum_horizontalalignment__e e_ezsignformfield_horizontalalignment,
     textstylestatic_response_compound_t *obj_textstylestatic,
     list_t *a_obj_ezsignelementdependency
     ) {
@@ -76,12 +42,52 @@ ezsignformfield_response_compound_t *ezsignformfield_response_compound_create(
     ezsignformfield_response_compound_local_var->obj_textstylestatic = obj_textstylestatic;
     ezsignformfield_response_compound_local_var->a_obj_ezsignelementdependency = a_obj_ezsignelementdependency;
 
+    ezsignformfield_response_compound_local_var->_library_owned = 1;
     return ezsignformfield_response_compound_local_var;
 }
 
+__attribute__((deprecated)) ezsignformfield_response_compound_t *ezsignformfield_response_compound_create(
+    int pki_ezsignformfield_id,
+    int i_ezsignpage_pagenumber,
+    char *s_ezsignformfield_label,
+    char *s_ezsignformfield_value,
+    int i_ezsignformfield_x,
+    int i_ezsignformfield_y,
+    int i_ezsignformfield_width,
+    int i_ezsignformfield_height,
+    int b_ezsignformfield_autocomplete,
+    int b_ezsignformfield_selected,
+    char *s_ezsignformfield_enteredvalue,
+    ezmax_api_definition__full_field_e_ezsignformfield_dependencyrequirement__e e_ezsignformfield_dependencyrequirement,
+    ezmax_api_definition__full_enum_horizontalalignment__e e_ezsignformfield_horizontalalignment,
+    textstylestatic_response_compound_t *obj_textstylestatic,
+    list_t *a_obj_ezsignelementdependency
+    ) {
+    return ezsignformfield_response_compound_create_internal (
+        pki_ezsignformfield_id,
+        i_ezsignpage_pagenumber,
+        s_ezsignformfield_label,
+        s_ezsignformfield_value,
+        i_ezsignformfield_x,
+        i_ezsignformfield_y,
+        i_ezsignformfield_width,
+        i_ezsignformfield_height,
+        b_ezsignformfield_autocomplete,
+        b_ezsignformfield_selected,
+        s_ezsignformfield_enteredvalue,
+        e_ezsignformfield_dependencyrequirement,
+        e_ezsignformfield_horizontalalignment,
+        obj_textstylestatic,
+        a_obj_ezsignelementdependency
+        );
+}
 
 void ezsignformfield_response_compound_free(ezsignformfield_response_compound_t *ezsignformfield_response_compound) {
     if(NULL == ezsignformfield_response_compound){
+        return ;
+    }
+    if(ezsignformfield_response_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignformfield_response_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -97,21 +103,13 @@ void ezsignformfield_response_compound_free(ezsignformfield_response_compound_t 
         free(ezsignformfield_response_compound->s_ezsignformfield_enteredvalue);
         ezsignformfield_response_compound->s_ezsignformfield_enteredvalue = NULL;
     }
-    if (ezsignformfield_response_compound->e_ezsignformfield_dependencyrequirement) {
-        field_e_ezsignformfield_dependencyrequirement_free(ezsignformfield_response_compound->e_ezsignformfield_dependencyrequirement);
-        ezsignformfield_response_compound->e_ezsignformfield_dependencyrequirement = NULL;
-    }
-    if (ezsignformfield_response_compound->e_ezsignformfield_horizontalalignment) {
-        enum_horizontalalignment_free(ezsignformfield_response_compound->e_ezsignformfield_horizontalalignment);
-        ezsignformfield_response_compound->e_ezsignformfield_horizontalalignment = NULL;
-    }
     if (ezsignformfield_response_compound->obj_textstylestatic) {
         textstylestatic_response_compound_free(ezsignformfield_response_compound->obj_textstylestatic);
         ezsignformfield_response_compound->obj_textstylestatic = NULL;
     }
     if (ezsignformfield_response_compound->a_obj_ezsignelementdependency) {
         list_ForEach(listEntry, ezsignformfield_response_compound->a_obj_ezsignelementdependency) {
-            ezsignelementdependency_response_free(listEntry->data);
+            ezsignelementdependency_response_compound_free(listEntry->data);
         }
         list_freeList(ezsignformfield_response_compound->a_obj_ezsignelementdependency);
         ezsignformfield_response_compound->a_obj_ezsignelementdependency = NULL;
@@ -218,7 +216,7 @@ cJSON *ezsignformfield_response_compound_convertToJSON(ezsignformfield_response_
 
 
     // ezsignformfield_response_compound->e_ezsignformfield_dependencyrequirement
-    if(ezsignformfield_response_compound->e_ezsignformfield_dependencyrequirement != ezmax_api_definition__full_ezsignformfield_response_compound__NULL) {
+    if(ezsignformfield_response_compound->e_ezsignformfield_dependencyrequirement != ezmax_api_definition__full_field_e_ezsignformfield_dependencyrequirement__NULL) {
     cJSON *e_ezsignformfield_dependencyrequirement_local_JSON = field_e_ezsignformfield_dependencyrequirement_convertToJSON(ezsignformfield_response_compound->e_ezsignformfield_dependencyrequirement);
     if(e_ezsignformfield_dependencyrequirement_local_JSON == NULL) {
         goto fail; // custom
@@ -231,7 +229,7 @@ cJSON *ezsignformfield_response_compound_convertToJSON(ezsignformfield_response_
 
 
     // ezsignformfield_response_compound->e_ezsignformfield_horizontalalignment
-    if(ezsignformfield_response_compound->e_ezsignformfield_horizontalalignment != ezmax_api_definition__full_ezsignformfield_response_compound__NULL) {
+    if(ezsignformfield_response_compound->e_ezsignformfield_horizontalalignment != ezmax_api_definition__full_enum_horizontalalignment__NULL) {
     cJSON *e_ezsignformfield_horizontalalignment_local_JSON = enum_horizontalalignment_convertToJSON(ezsignformfield_response_compound->e_ezsignformfield_horizontalalignment);
     if(e_ezsignformfield_horizontalalignment_local_JSON == NULL) {
         goto fail; // custom
@@ -266,7 +264,7 @@ cJSON *ezsignformfield_response_compound_convertToJSON(ezsignformfield_response_
     listEntry_t *a_obj_ezsignelementdependencyListEntry;
     if (ezsignformfield_response_compound->a_obj_ezsignelementdependency) {
     list_ForEach(a_obj_ezsignelementdependencyListEntry, ezsignformfield_response_compound->a_obj_ezsignelementdependency) {
-    cJSON *itemLocal = ezsignelementdependency_response_convertToJSON(a_obj_ezsignelementdependencyListEntry->data);
+    cJSON *itemLocal = ezsignelementdependency_response_compound_convertToJSON(a_obj_ezsignelementdependencyListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -288,10 +286,10 @@ ezsignformfield_response_compound_t *ezsignformfield_response_compound_parseFrom
     ezsignformfield_response_compound_t *ezsignformfield_response_compound_local_var = NULL;
 
     // define the local variable for ezsignformfield_response_compound->e_ezsignformfield_dependencyrequirement
-    field_e_ezsignformfield_dependencyrequirement_t *e_ezsignformfield_dependencyrequirement_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_ezsignformfield_dependencyrequirement__e e_ezsignformfield_dependencyrequirement_local_nonprim = 0;
 
     // define the local variable for ezsignformfield_response_compound->e_ezsignformfield_horizontalalignment
-    enum_horizontalalignment_t *e_ezsignformfield_horizontalalignment_local_nonprim = NULL;
+    ezmax_api_definition__full_enum_horizontalalignment__e e_ezsignformfield_horizontalalignment_local_nonprim = 0;
 
     // define the local variable for ezsignformfield_response_compound->obj_textstylestatic
     textstylestatic_response_compound_t *obj_textstylestatic_local_nonprim = NULL;
@@ -301,6 +299,9 @@ ezsignformfield_response_compound_t *ezsignformfield_response_compound_parseFrom
 
     // ezsignformfield_response_compound->pki_ezsignformfield_id
     cJSON *pki_ezsignformfield_id = cJSON_GetObjectItemCaseSensitive(ezsignformfield_response_compoundJSON, "pkiEzsignformfieldID");
+    if (cJSON_IsNull(pki_ezsignformfield_id)) {
+        pki_ezsignformfield_id = NULL;
+    }
     if (!pki_ezsignformfield_id) {
         goto end;
     }
@@ -313,6 +314,9 @@ ezsignformfield_response_compound_t *ezsignformfield_response_compound_parseFrom
 
     // ezsignformfield_response_compound->i_ezsignpage_pagenumber
     cJSON *i_ezsignpage_pagenumber = cJSON_GetObjectItemCaseSensitive(ezsignformfield_response_compoundJSON, "iEzsignpagePagenumber");
+    if (cJSON_IsNull(i_ezsignpage_pagenumber)) {
+        i_ezsignpage_pagenumber = NULL;
+    }
     if (!i_ezsignpage_pagenumber) {
         goto end;
     }
@@ -325,6 +329,9 @@ ezsignformfield_response_compound_t *ezsignformfield_response_compound_parseFrom
 
     // ezsignformfield_response_compound->s_ezsignformfield_label
     cJSON *s_ezsignformfield_label = cJSON_GetObjectItemCaseSensitive(ezsignformfield_response_compoundJSON, "sEzsignformfieldLabel");
+    if (cJSON_IsNull(s_ezsignformfield_label)) {
+        s_ezsignformfield_label = NULL;
+    }
     if (!s_ezsignformfield_label) {
         goto end;
     }
@@ -337,6 +344,9 @@ ezsignformfield_response_compound_t *ezsignformfield_response_compound_parseFrom
 
     // ezsignformfield_response_compound->s_ezsignformfield_value
     cJSON *s_ezsignformfield_value = cJSON_GetObjectItemCaseSensitive(ezsignformfield_response_compoundJSON, "sEzsignformfieldValue");
+    if (cJSON_IsNull(s_ezsignformfield_value)) {
+        s_ezsignformfield_value = NULL;
+    }
     if (s_ezsignformfield_value) { 
     if(!cJSON_IsString(s_ezsignformfield_value) && !cJSON_IsNull(s_ezsignformfield_value))
     {
@@ -346,6 +356,9 @@ ezsignformfield_response_compound_t *ezsignformfield_response_compound_parseFrom
 
     // ezsignformfield_response_compound->i_ezsignformfield_x
     cJSON *i_ezsignformfield_x = cJSON_GetObjectItemCaseSensitive(ezsignformfield_response_compoundJSON, "iEzsignformfieldX");
+    if (cJSON_IsNull(i_ezsignformfield_x)) {
+        i_ezsignformfield_x = NULL;
+    }
     if (!i_ezsignformfield_x) {
         goto end;
     }
@@ -358,6 +371,9 @@ ezsignformfield_response_compound_t *ezsignformfield_response_compound_parseFrom
 
     // ezsignformfield_response_compound->i_ezsignformfield_y
     cJSON *i_ezsignformfield_y = cJSON_GetObjectItemCaseSensitive(ezsignformfield_response_compoundJSON, "iEzsignformfieldY");
+    if (cJSON_IsNull(i_ezsignformfield_y)) {
+        i_ezsignformfield_y = NULL;
+    }
     if (!i_ezsignformfield_y) {
         goto end;
     }
@@ -370,6 +386,9 @@ ezsignformfield_response_compound_t *ezsignformfield_response_compound_parseFrom
 
     // ezsignformfield_response_compound->i_ezsignformfield_width
     cJSON *i_ezsignformfield_width = cJSON_GetObjectItemCaseSensitive(ezsignformfield_response_compoundJSON, "iEzsignformfieldWidth");
+    if (cJSON_IsNull(i_ezsignformfield_width)) {
+        i_ezsignformfield_width = NULL;
+    }
     if (!i_ezsignformfield_width) {
         goto end;
     }
@@ -382,6 +401,9 @@ ezsignformfield_response_compound_t *ezsignformfield_response_compound_parseFrom
 
     // ezsignformfield_response_compound->i_ezsignformfield_height
     cJSON *i_ezsignformfield_height = cJSON_GetObjectItemCaseSensitive(ezsignformfield_response_compoundJSON, "iEzsignformfieldHeight");
+    if (cJSON_IsNull(i_ezsignformfield_height)) {
+        i_ezsignformfield_height = NULL;
+    }
     if (!i_ezsignformfield_height) {
         goto end;
     }
@@ -394,6 +416,9 @@ ezsignformfield_response_compound_t *ezsignformfield_response_compound_parseFrom
 
     // ezsignformfield_response_compound->b_ezsignformfield_autocomplete
     cJSON *b_ezsignformfield_autocomplete = cJSON_GetObjectItemCaseSensitive(ezsignformfield_response_compoundJSON, "bEzsignformfieldAutocomplete");
+    if (cJSON_IsNull(b_ezsignformfield_autocomplete)) {
+        b_ezsignformfield_autocomplete = NULL;
+    }
     if (b_ezsignformfield_autocomplete) { 
     if(!cJSON_IsBool(b_ezsignformfield_autocomplete))
     {
@@ -403,6 +428,9 @@ ezsignformfield_response_compound_t *ezsignformfield_response_compound_parseFrom
 
     // ezsignformfield_response_compound->b_ezsignformfield_selected
     cJSON *b_ezsignformfield_selected = cJSON_GetObjectItemCaseSensitive(ezsignformfield_response_compoundJSON, "bEzsignformfieldSelected");
+    if (cJSON_IsNull(b_ezsignformfield_selected)) {
+        b_ezsignformfield_selected = NULL;
+    }
     if (b_ezsignformfield_selected) { 
     if(!cJSON_IsBool(b_ezsignformfield_selected))
     {
@@ -412,6 +440,9 @@ ezsignformfield_response_compound_t *ezsignformfield_response_compound_parseFrom
 
     // ezsignformfield_response_compound->s_ezsignformfield_enteredvalue
     cJSON *s_ezsignformfield_enteredvalue = cJSON_GetObjectItemCaseSensitive(ezsignformfield_response_compoundJSON, "sEzsignformfieldEnteredvalue");
+    if (cJSON_IsNull(s_ezsignformfield_enteredvalue)) {
+        s_ezsignformfield_enteredvalue = NULL;
+    }
     if (s_ezsignformfield_enteredvalue) { 
     if(!cJSON_IsString(s_ezsignformfield_enteredvalue) && !cJSON_IsNull(s_ezsignformfield_enteredvalue))
     {
@@ -421,24 +452,36 @@ ezsignformfield_response_compound_t *ezsignformfield_response_compound_parseFrom
 
     // ezsignformfield_response_compound->e_ezsignformfield_dependencyrequirement
     cJSON *e_ezsignformfield_dependencyrequirement = cJSON_GetObjectItemCaseSensitive(ezsignformfield_response_compoundJSON, "eEzsignformfieldDependencyrequirement");
+    if (cJSON_IsNull(e_ezsignformfield_dependencyrequirement)) {
+        e_ezsignformfield_dependencyrequirement = NULL;
+    }
     if (e_ezsignformfield_dependencyrequirement) { 
     e_ezsignformfield_dependencyrequirement_local_nonprim = field_e_ezsignformfield_dependencyrequirement_parseFromJSON(e_ezsignformfield_dependencyrequirement); //custom
     }
 
     // ezsignformfield_response_compound->e_ezsignformfield_horizontalalignment
     cJSON *e_ezsignformfield_horizontalalignment = cJSON_GetObjectItemCaseSensitive(ezsignformfield_response_compoundJSON, "eEzsignformfieldHorizontalalignment");
+    if (cJSON_IsNull(e_ezsignformfield_horizontalalignment)) {
+        e_ezsignformfield_horizontalalignment = NULL;
+    }
     if (e_ezsignformfield_horizontalalignment) { 
     e_ezsignformfield_horizontalalignment_local_nonprim = enum_horizontalalignment_parseFromJSON(e_ezsignformfield_horizontalalignment); //custom
     }
 
     // ezsignformfield_response_compound->obj_textstylestatic
     cJSON *obj_textstylestatic = cJSON_GetObjectItemCaseSensitive(ezsignformfield_response_compoundJSON, "objTextstylestatic");
+    if (cJSON_IsNull(obj_textstylestatic)) {
+        obj_textstylestatic = NULL;
+    }
     if (obj_textstylestatic) { 
     obj_textstylestatic_local_nonprim = textstylestatic_response_compound_parseFromJSON(obj_textstylestatic); //nonprimitive
     }
 
     // ezsignformfield_response_compound->a_obj_ezsignelementdependency
     cJSON *a_obj_ezsignelementdependency = cJSON_GetObjectItemCaseSensitive(ezsignformfield_response_compoundJSON, "a_objEzsignelementdependency");
+    if (cJSON_IsNull(a_obj_ezsignelementdependency)) {
+        a_obj_ezsignelementdependency = NULL;
+    }
     if (a_obj_ezsignelementdependency) { 
     cJSON *a_obj_ezsignelementdependency_local_nonprimitive = NULL;
     if(!cJSON_IsArray(a_obj_ezsignelementdependency)){
@@ -452,14 +495,14 @@ ezsignformfield_response_compound_t *ezsignformfield_response_compound_parseFrom
         if(!cJSON_IsObject(a_obj_ezsignelementdependency_local_nonprimitive)){
             goto end;
         }
-        ezsignelementdependency_response_t *a_obj_ezsignelementdependencyItem = ezsignelementdependency_response_parseFromJSON(a_obj_ezsignelementdependency_local_nonprimitive);
+        ezsignelementdependency_response_compound_t *a_obj_ezsignelementdependencyItem = ezsignelementdependency_response_compound_parseFromJSON(a_obj_ezsignelementdependency_local_nonprimitive);
 
         list_addElement(a_obj_ezsignelementdependencyList, a_obj_ezsignelementdependencyItem);
     }
     }
 
 
-    ezsignformfield_response_compound_local_var = ezsignformfield_response_compound_create (
+    ezsignformfield_response_compound_local_var = ezsignformfield_response_compound_create_internal (
         pki_ezsignformfield_id->valuedouble,
         i_ezsignpage_pagenumber->valuedouble,
         strdup(s_ezsignformfield_label->valuestring),
@@ -471,8 +514,8 @@ ezsignformfield_response_compound_t *ezsignformfield_response_compound_parseFrom
         b_ezsignformfield_autocomplete ? b_ezsignformfield_autocomplete->valueint : 0,
         b_ezsignformfield_selected ? b_ezsignformfield_selected->valueint : 0,
         s_ezsignformfield_enteredvalue && !cJSON_IsNull(s_ezsignformfield_enteredvalue) ? strdup(s_ezsignformfield_enteredvalue->valuestring) : NULL,
-        e_ezsignformfield_dependencyrequirement ? e_ezsignformfield_dependencyrequirement_local_nonprim : NULL,
-        e_ezsignformfield_horizontalalignment ? e_ezsignformfield_horizontalalignment_local_nonprim : NULL,
+        e_ezsignformfield_dependencyrequirement ? e_ezsignformfield_dependencyrequirement_local_nonprim : 0,
+        e_ezsignformfield_horizontalalignment ? e_ezsignformfield_horizontalalignment_local_nonprim : 0,
         obj_textstylestatic ? obj_textstylestatic_local_nonprim : NULL,
         a_obj_ezsignelementdependency ? a_obj_ezsignelementdependencyList : NULL
         );
@@ -480,12 +523,10 @@ ezsignformfield_response_compound_t *ezsignformfield_response_compound_parseFrom
     return ezsignformfield_response_compound_local_var;
 end:
     if (e_ezsignformfield_dependencyrequirement_local_nonprim) {
-        field_e_ezsignformfield_dependencyrequirement_free(e_ezsignformfield_dependencyrequirement_local_nonprim);
-        e_ezsignformfield_dependencyrequirement_local_nonprim = NULL;
+        e_ezsignformfield_dependencyrequirement_local_nonprim = 0;
     }
     if (e_ezsignformfield_horizontalalignment_local_nonprim) {
-        enum_horizontalalignment_free(e_ezsignformfield_horizontalalignment_local_nonprim);
-        e_ezsignformfield_horizontalalignment_local_nonprim = NULL;
+        e_ezsignformfield_horizontalalignment_local_nonprim = 0;
     }
     if (obj_textstylestatic_local_nonprim) {
         textstylestatic_response_compound_free(obj_textstylestatic_local_nonprim);
@@ -494,7 +535,7 @@ end:
     if (a_obj_ezsignelementdependencyList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsignelementdependencyList) {
-            ezsignelementdependency_response_free(listEntry->data);
+            ezsignelementdependency_response_compound_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_ezsignelementdependencyList);

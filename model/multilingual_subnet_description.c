@@ -5,7 +5,7 @@
 
 
 
-multilingual_subnet_description_t *multilingual_subnet_description_create(
+static multilingual_subnet_description_t *multilingual_subnet_description_create_internal(
     char *s_subnet_description1,
     char *s_subnet_description2
     ) {
@@ -16,12 +16,26 @@ multilingual_subnet_description_t *multilingual_subnet_description_create(
     multilingual_subnet_description_local_var->s_subnet_description1 = s_subnet_description1;
     multilingual_subnet_description_local_var->s_subnet_description2 = s_subnet_description2;
 
+    multilingual_subnet_description_local_var->_library_owned = 1;
     return multilingual_subnet_description_local_var;
 }
 
+__attribute__((deprecated)) multilingual_subnet_description_t *multilingual_subnet_description_create(
+    char *s_subnet_description1,
+    char *s_subnet_description2
+    ) {
+    return multilingual_subnet_description_create_internal (
+        s_subnet_description1,
+        s_subnet_description2
+        );
+}
 
 void multilingual_subnet_description_free(multilingual_subnet_description_t *multilingual_subnet_description) {
     if(NULL == multilingual_subnet_description){
+        return ;
+    }
+    if(multilingual_subnet_description->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "multilingual_subnet_description_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -68,6 +82,9 @@ multilingual_subnet_description_t *multilingual_subnet_description_parseFromJSON
 
     // multilingual_subnet_description->s_subnet_description1
     cJSON *s_subnet_description1 = cJSON_GetObjectItemCaseSensitive(multilingual_subnet_descriptionJSON, "sSubnetDescription1");
+    if (cJSON_IsNull(s_subnet_description1)) {
+        s_subnet_description1 = NULL;
+    }
     if (s_subnet_description1) { 
     if(!cJSON_IsString(s_subnet_description1) && !cJSON_IsNull(s_subnet_description1))
     {
@@ -77,6 +94,9 @@ multilingual_subnet_description_t *multilingual_subnet_description_parseFromJSON
 
     // multilingual_subnet_description->s_subnet_description2
     cJSON *s_subnet_description2 = cJSON_GetObjectItemCaseSensitive(multilingual_subnet_descriptionJSON, "sSubnetDescription2");
+    if (cJSON_IsNull(s_subnet_description2)) {
+        s_subnet_description2 = NULL;
+    }
     if (s_subnet_description2) { 
     if(!cJSON_IsString(s_subnet_description2) && !cJSON_IsNull(s_subnet_description2))
     {
@@ -85,7 +105,7 @@ multilingual_subnet_description_t *multilingual_subnet_description_parseFromJSON
     }
 
 
-    multilingual_subnet_description_local_var = multilingual_subnet_description_create (
+    multilingual_subnet_description_local_var = multilingual_subnet_description_create_internal (
         s_subnet_description1 && !cJSON_IsNull(s_subnet_description1) ? strdup(s_subnet_description1->valuestring) : NULL,
         s_subnet_description2 && !cJSON_IsNull(s_subnet_description2) ? strdup(s_subnet_description2->valuestring) : NULL
         );

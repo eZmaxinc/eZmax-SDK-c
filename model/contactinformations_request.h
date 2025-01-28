@@ -24,9 +24,10 @@ typedef struct contactinformations_request_t {
     int i_email_default; //numeric
     int i_website_default; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } contactinformations_request_t;
 
-contactinformations_request_t *contactinformations_request_create(
+__attribute__((deprecated)) contactinformations_request_t *contactinformations_request_create(
     int i_address_default,
     int i_phone_default,
     int i_email_default,

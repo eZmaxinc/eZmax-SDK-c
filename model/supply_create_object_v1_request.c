@@ -5,7 +5,7 @@
 
 
 
-supply_create_object_v1_request_t *supply_create_object_v1_request_create(
+static supply_create_object_v1_request_t *supply_create_object_v1_request_create_internal(
     list_t *a_obj_supply
     ) {
     supply_create_object_v1_request_t *supply_create_object_v1_request_local_var = malloc(sizeof(supply_create_object_v1_request_t));
@@ -14,12 +14,24 @@ supply_create_object_v1_request_t *supply_create_object_v1_request_create(
     }
     supply_create_object_v1_request_local_var->a_obj_supply = a_obj_supply;
 
+    supply_create_object_v1_request_local_var->_library_owned = 1;
     return supply_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) supply_create_object_v1_request_t *supply_create_object_v1_request_create(
+    list_t *a_obj_supply
+    ) {
+    return supply_create_object_v1_request_create_internal (
+        a_obj_supply
+        );
+}
 
 void supply_create_object_v1_request_free(supply_create_object_v1_request_t *supply_create_object_v1_request) {
     if(NULL == supply_create_object_v1_request){
+        return ;
+    }
+    if(supply_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "supply_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ supply_create_object_v1_request_t *supply_create_object_v1_request_parseFromJSON
 
     // supply_create_object_v1_request->a_obj_supply
     cJSON *a_obj_supply = cJSON_GetObjectItemCaseSensitive(supply_create_object_v1_requestJSON, "a_objSupply");
+    if (cJSON_IsNull(a_obj_supply)) {
+        a_obj_supply = NULL;
+    }
     if (!a_obj_supply) {
         goto end;
     }
@@ -96,7 +111,7 @@ supply_create_object_v1_request_t *supply_create_object_v1_request_parseFromJSON
     }
 
 
-    supply_create_object_v1_request_local_var = supply_create_object_v1_request_create (
+    supply_create_object_v1_request_local_var = supply_create_object_v1_request_create_internal (
         a_obj_supplyList
         );
 

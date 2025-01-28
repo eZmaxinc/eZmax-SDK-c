@@ -5,7 +5,7 @@
 
 
 
-branding_edit_object_v2_request_t *branding_edit_object_v2_request_create(
+static branding_edit_object_v2_request_t *branding_edit_object_v2_request_create_internal(
     branding_request_compound_v2_t *obj_branding
     ) {
     branding_edit_object_v2_request_t *branding_edit_object_v2_request_local_var = malloc(sizeof(branding_edit_object_v2_request_t));
@@ -14,12 +14,24 @@ branding_edit_object_v2_request_t *branding_edit_object_v2_request_create(
     }
     branding_edit_object_v2_request_local_var->obj_branding = obj_branding;
 
+    branding_edit_object_v2_request_local_var->_library_owned = 1;
     return branding_edit_object_v2_request_local_var;
 }
 
+__attribute__((deprecated)) branding_edit_object_v2_request_t *branding_edit_object_v2_request_create(
+    branding_request_compound_v2_t *obj_branding
+    ) {
+    return branding_edit_object_v2_request_create_internal (
+        obj_branding
+        );
+}
 
 void branding_edit_object_v2_request_free(branding_edit_object_v2_request_t *branding_edit_object_v2_request) {
     if(NULL == branding_edit_object_v2_request){
+        return ;
+    }
+    if(branding_edit_object_v2_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "branding_edit_object_v2_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ branding_edit_object_v2_request_t *branding_edit_object_v2_request_parseFromJSON
 
     // branding_edit_object_v2_request->obj_branding
     cJSON *obj_branding = cJSON_GetObjectItemCaseSensitive(branding_edit_object_v2_requestJSON, "objBranding");
+    if (cJSON_IsNull(obj_branding)) {
+        obj_branding = NULL;
+    }
     if (!obj_branding) {
         goto end;
     }
@@ -71,7 +86,7 @@ branding_edit_object_v2_request_t *branding_edit_object_v2_request_parseFromJSON
     obj_branding_local_nonprim = branding_request_compound_v2_parseFromJSON(obj_branding); //nonprimitive
 
 
-    branding_edit_object_v2_request_local_var = branding_edit_object_v2_request_create (
+    branding_edit_object_v2_request_local_var = branding_edit_object_v2_request_create_internal (
         obj_branding_local_nonprim
         );
 

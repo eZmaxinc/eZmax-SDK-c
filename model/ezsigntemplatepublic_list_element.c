@@ -4,25 +4,8 @@
 #include "ezsigntemplatepublic_list_element.h"
 
 
-char* ezsigntemplatepublic_list_element_e_ezsigntemplatepublic_limittype_ToString(ezmax_api_definition__full_ezsigntemplatepublic_list_element__e e_ezsigntemplatepublic_limittype) {
-    char* e_ezsigntemplatepublic_limittypeArray[] =  { "NULL", "Hour", "Day", "Month", "Total" };
-    return e_ezsigntemplatepublic_limittypeArray[e_ezsigntemplatepublic_limittype];
-}
 
-ezmax_api_definition__full_ezsigntemplatepublic_list_element__e ezsigntemplatepublic_list_element_e_ezsigntemplatepublic_limittype_FromString(char* e_ezsigntemplatepublic_limittype){
-    int stringToReturn = 0;
-    char *e_ezsigntemplatepublic_limittypeArray[] =  { "NULL", "Hour", "Day", "Month", "Total" };
-    size_t sizeofArray = sizeof(e_ezsigntemplatepublic_limittypeArray) / sizeof(e_ezsigntemplatepublic_limittypeArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_ezsigntemplatepublic_limittype, e_ezsigntemplatepublic_limittypeArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-ezsigntemplatepublic_list_element_t *ezsigntemplatepublic_list_element_create(
+static ezsigntemplatepublic_list_element_t *ezsigntemplatepublic_list_element_create_internal(
     int pki_ezsigntemplatepublic_id,
     int fki_ezsignfoldertype_id,
     char *s_ezsignfoldertype_name_x,
@@ -32,7 +15,7 @@ ezsigntemplatepublic_list_element_t *ezsigntemplatepublic_list_element_create(
     char *s_ezsigntemplatepublic_description,
     int b_ezsigntemplatepublic_isactive,
     char *t_ezsigntemplatepublic_note,
-    field_e_ezsigntemplatepublic_limittype_t *e_ezsigntemplatepublic_limittype,
+    ezmax_api_definition__full_field_e_ezsigntemplatepublic_limittype__e e_ezsigntemplatepublic_limittype,
     int i_ezsigntemplatepublic_limit,
     int i_ezsigntemplatepublic_limitexceeded,
     char *dt_ezsigntemplatepublic_limitexceededsince,
@@ -61,12 +44,54 @@ ezsigntemplatepublic_list_element_t *ezsigntemplatepublic_list_element_create(
     ezsigntemplatepublic_list_element_local_var->i_ezsigndocument = i_ezsigndocument;
     ezsigntemplatepublic_list_element_local_var->s_ezsigntemplatepublic_ezsigntemplatedescription = s_ezsigntemplatepublic_ezsigntemplatedescription;
 
+    ezsigntemplatepublic_list_element_local_var->_library_owned = 1;
     return ezsigntemplatepublic_list_element_local_var;
 }
 
+__attribute__((deprecated)) ezsigntemplatepublic_list_element_t *ezsigntemplatepublic_list_element_create(
+    int pki_ezsigntemplatepublic_id,
+    int fki_ezsignfoldertype_id,
+    char *s_ezsignfoldertype_name_x,
+    int fki_userlogintype_id,
+    int fki_ezsigntemplate_id,
+    int fki_ezsigntemplatepackage_id,
+    char *s_ezsigntemplatepublic_description,
+    int b_ezsigntemplatepublic_isactive,
+    char *t_ezsigntemplatepublic_note,
+    ezmax_api_definition__full_field_e_ezsigntemplatepublic_limittype__e e_ezsigntemplatepublic_limittype,
+    int i_ezsigntemplatepublic_limit,
+    int i_ezsigntemplatepublic_limitexceeded,
+    char *dt_ezsigntemplatepublic_limitexceededsince,
+    int i_ezsignfolder,
+    int i_ezsigndocument,
+    char *s_ezsigntemplatepublic_ezsigntemplatedescription
+    ) {
+    return ezsigntemplatepublic_list_element_create_internal (
+        pki_ezsigntemplatepublic_id,
+        fki_ezsignfoldertype_id,
+        s_ezsignfoldertype_name_x,
+        fki_userlogintype_id,
+        fki_ezsigntemplate_id,
+        fki_ezsigntemplatepackage_id,
+        s_ezsigntemplatepublic_description,
+        b_ezsigntemplatepublic_isactive,
+        t_ezsigntemplatepublic_note,
+        e_ezsigntemplatepublic_limittype,
+        i_ezsigntemplatepublic_limit,
+        i_ezsigntemplatepublic_limitexceeded,
+        dt_ezsigntemplatepublic_limitexceededsince,
+        i_ezsignfolder,
+        i_ezsigndocument,
+        s_ezsigntemplatepublic_ezsigntemplatedescription
+        );
+}
 
 void ezsigntemplatepublic_list_element_free(ezsigntemplatepublic_list_element_t *ezsigntemplatepublic_list_element) {
     if(NULL == ezsigntemplatepublic_list_element){
+        return ;
+    }
+    if(ezsigntemplatepublic_list_element->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigntemplatepublic_list_element_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -81,10 +106,6 @@ void ezsigntemplatepublic_list_element_free(ezsigntemplatepublic_list_element_t 
     if (ezsigntemplatepublic_list_element->t_ezsigntemplatepublic_note) {
         free(ezsigntemplatepublic_list_element->t_ezsigntemplatepublic_note);
         ezsigntemplatepublic_list_element->t_ezsigntemplatepublic_note = NULL;
-    }
-    if (ezsigntemplatepublic_list_element->e_ezsigntemplatepublic_limittype) {
-        field_e_ezsigntemplatepublic_limittype_free(ezsigntemplatepublic_list_element->e_ezsigntemplatepublic_limittype);
-        ezsigntemplatepublic_list_element->e_ezsigntemplatepublic_limittype = NULL;
     }
     if (ezsigntemplatepublic_list_element->dt_ezsigntemplatepublic_limitexceededsince) {
         free(ezsigntemplatepublic_list_element->dt_ezsigntemplatepublic_limitexceededsince);
@@ -180,7 +201,7 @@ cJSON *ezsigntemplatepublic_list_element_convertToJSON(ezsigntemplatepublic_list
 
 
     // ezsigntemplatepublic_list_element->e_ezsigntemplatepublic_limittype
-    if (ezmax_api_definition__full_ezsigntemplatepublic_list_element__NULL == ezsigntemplatepublic_list_element->e_ezsigntemplatepublic_limittype) {
+    if (ezmax_api_definition__full_field_e_ezsigntemplatepublic_limittype__NULL == ezsigntemplatepublic_list_element->e_ezsigntemplatepublic_limittype) {
         goto fail;
     }
     cJSON *e_ezsigntemplatepublic_limittype_local_JSON = field_e_ezsigntemplatepublic_limittype_convertToJSON(ezsigntemplatepublic_list_element->e_ezsigntemplatepublic_limittype);
@@ -259,10 +280,13 @@ ezsigntemplatepublic_list_element_t *ezsigntemplatepublic_list_element_parseFrom
     ezsigntemplatepublic_list_element_t *ezsigntemplatepublic_list_element_local_var = NULL;
 
     // define the local variable for ezsigntemplatepublic_list_element->e_ezsigntemplatepublic_limittype
-    field_e_ezsigntemplatepublic_limittype_t *e_ezsigntemplatepublic_limittype_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_ezsigntemplatepublic_limittype__e e_ezsigntemplatepublic_limittype_local_nonprim = 0;
 
     // ezsigntemplatepublic_list_element->pki_ezsigntemplatepublic_id
     cJSON *pki_ezsigntemplatepublic_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_list_elementJSON, "pkiEzsigntemplatepublicID");
+    if (cJSON_IsNull(pki_ezsigntemplatepublic_id)) {
+        pki_ezsigntemplatepublic_id = NULL;
+    }
     if (!pki_ezsigntemplatepublic_id) {
         goto end;
     }
@@ -275,6 +299,9 @@ ezsigntemplatepublic_list_element_t *ezsigntemplatepublic_list_element_parseFrom
 
     // ezsigntemplatepublic_list_element->fki_ezsignfoldertype_id
     cJSON *fki_ezsignfoldertype_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_list_elementJSON, "fkiEzsignfoldertypeID");
+    if (cJSON_IsNull(fki_ezsignfoldertype_id)) {
+        fki_ezsignfoldertype_id = NULL;
+    }
     if (!fki_ezsignfoldertype_id) {
         goto end;
     }
@@ -287,6 +314,9 @@ ezsigntemplatepublic_list_element_t *ezsigntemplatepublic_list_element_parseFrom
 
     // ezsigntemplatepublic_list_element->s_ezsignfoldertype_name_x
     cJSON *s_ezsignfoldertype_name_x = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_list_elementJSON, "sEzsignfoldertypeNameX");
+    if (cJSON_IsNull(s_ezsignfoldertype_name_x)) {
+        s_ezsignfoldertype_name_x = NULL;
+    }
     if (!s_ezsignfoldertype_name_x) {
         goto end;
     }
@@ -299,6 +329,9 @@ ezsigntemplatepublic_list_element_t *ezsigntemplatepublic_list_element_parseFrom
 
     // ezsigntemplatepublic_list_element->fki_userlogintype_id
     cJSON *fki_userlogintype_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_list_elementJSON, "fkiUserlogintypeID");
+    if (cJSON_IsNull(fki_userlogintype_id)) {
+        fki_userlogintype_id = NULL;
+    }
     if (!fki_userlogintype_id) {
         goto end;
     }
@@ -311,6 +344,9 @@ ezsigntemplatepublic_list_element_t *ezsigntemplatepublic_list_element_parseFrom
 
     // ezsigntemplatepublic_list_element->fki_ezsigntemplate_id
     cJSON *fki_ezsigntemplate_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_list_elementJSON, "fkiEzsigntemplateID");
+    if (cJSON_IsNull(fki_ezsigntemplate_id)) {
+        fki_ezsigntemplate_id = NULL;
+    }
     if (fki_ezsigntemplate_id) { 
     if(!cJSON_IsNumber(fki_ezsigntemplate_id))
     {
@@ -320,6 +356,9 @@ ezsigntemplatepublic_list_element_t *ezsigntemplatepublic_list_element_parseFrom
 
     // ezsigntemplatepublic_list_element->fki_ezsigntemplatepackage_id
     cJSON *fki_ezsigntemplatepackage_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_list_elementJSON, "fkiEzsigntemplatepackageID");
+    if (cJSON_IsNull(fki_ezsigntemplatepackage_id)) {
+        fki_ezsigntemplatepackage_id = NULL;
+    }
     if (fki_ezsigntemplatepackage_id) { 
     if(!cJSON_IsNumber(fki_ezsigntemplatepackage_id))
     {
@@ -329,6 +368,9 @@ ezsigntemplatepublic_list_element_t *ezsigntemplatepublic_list_element_parseFrom
 
     // ezsigntemplatepublic_list_element->s_ezsigntemplatepublic_description
     cJSON *s_ezsigntemplatepublic_description = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_list_elementJSON, "sEzsigntemplatepublicDescription");
+    if (cJSON_IsNull(s_ezsigntemplatepublic_description)) {
+        s_ezsigntemplatepublic_description = NULL;
+    }
     if (!s_ezsigntemplatepublic_description) {
         goto end;
     }
@@ -341,6 +383,9 @@ ezsigntemplatepublic_list_element_t *ezsigntemplatepublic_list_element_parseFrom
 
     // ezsigntemplatepublic_list_element->b_ezsigntemplatepublic_isactive
     cJSON *b_ezsigntemplatepublic_isactive = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_list_elementJSON, "bEzsigntemplatepublicIsactive");
+    if (cJSON_IsNull(b_ezsigntemplatepublic_isactive)) {
+        b_ezsigntemplatepublic_isactive = NULL;
+    }
     if (!b_ezsigntemplatepublic_isactive) {
         goto end;
     }
@@ -353,6 +398,9 @@ ezsigntemplatepublic_list_element_t *ezsigntemplatepublic_list_element_parseFrom
 
     // ezsigntemplatepublic_list_element->t_ezsigntemplatepublic_note
     cJSON *t_ezsigntemplatepublic_note = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_list_elementJSON, "tEzsigntemplatepublicNote");
+    if (cJSON_IsNull(t_ezsigntemplatepublic_note)) {
+        t_ezsigntemplatepublic_note = NULL;
+    }
     if (!t_ezsigntemplatepublic_note) {
         goto end;
     }
@@ -365,6 +413,9 @@ ezsigntemplatepublic_list_element_t *ezsigntemplatepublic_list_element_parseFrom
 
     // ezsigntemplatepublic_list_element->e_ezsigntemplatepublic_limittype
     cJSON *e_ezsigntemplatepublic_limittype = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_list_elementJSON, "eEzsigntemplatepublicLimittype");
+    if (cJSON_IsNull(e_ezsigntemplatepublic_limittype)) {
+        e_ezsigntemplatepublic_limittype = NULL;
+    }
     if (!e_ezsigntemplatepublic_limittype) {
         goto end;
     }
@@ -374,6 +425,9 @@ ezsigntemplatepublic_list_element_t *ezsigntemplatepublic_list_element_parseFrom
 
     // ezsigntemplatepublic_list_element->i_ezsigntemplatepublic_limit
     cJSON *i_ezsigntemplatepublic_limit = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_list_elementJSON, "iEzsigntemplatepublicLimit");
+    if (cJSON_IsNull(i_ezsigntemplatepublic_limit)) {
+        i_ezsigntemplatepublic_limit = NULL;
+    }
     if (!i_ezsigntemplatepublic_limit) {
         goto end;
     }
@@ -386,6 +440,9 @@ ezsigntemplatepublic_list_element_t *ezsigntemplatepublic_list_element_parseFrom
 
     // ezsigntemplatepublic_list_element->i_ezsigntemplatepublic_limitexceeded
     cJSON *i_ezsigntemplatepublic_limitexceeded = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_list_elementJSON, "iEzsigntemplatepublicLimitexceeded");
+    if (cJSON_IsNull(i_ezsigntemplatepublic_limitexceeded)) {
+        i_ezsigntemplatepublic_limitexceeded = NULL;
+    }
     if (!i_ezsigntemplatepublic_limitexceeded) {
         goto end;
     }
@@ -398,6 +455,9 @@ ezsigntemplatepublic_list_element_t *ezsigntemplatepublic_list_element_parseFrom
 
     // ezsigntemplatepublic_list_element->dt_ezsigntemplatepublic_limitexceededsince
     cJSON *dt_ezsigntemplatepublic_limitexceededsince = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_list_elementJSON, "dtEzsigntemplatepublicLimitexceededsince");
+    if (cJSON_IsNull(dt_ezsigntemplatepublic_limitexceededsince)) {
+        dt_ezsigntemplatepublic_limitexceededsince = NULL;
+    }
     if (!dt_ezsigntemplatepublic_limitexceededsince) {
         goto end;
     }
@@ -410,6 +470,9 @@ ezsigntemplatepublic_list_element_t *ezsigntemplatepublic_list_element_parseFrom
 
     // ezsigntemplatepublic_list_element->i_ezsignfolder
     cJSON *i_ezsignfolder = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_list_elementJSON, "iEzsignfolder");
+    if (cJSON_IsNull(i_ezsignfolder)) {
+        i_ezsignfolder = NULL;
+    }
     if (!i_ezsignfolder) {
         goto end;
     }
@@ -422,6 +485,9 @@ ezsigntemplatepublic_list_element_t *ezsigntemplatepublic_list_element_parseFrom
 
     // ezsigntemplatepublic_list_element->i_ezsigndocument
     cJSON *i_ezsigndocument = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_list_elementJSON, "iEzsigndocument");
+    if (cJSON_IsNull(i_ezsigndocument)) {
+        i_ezsigndocument = NULL;
+    }
     if (!i_ezsigndocument) {
         goto end;
     }
@@ -434,6 +500,9 @@ ezsigntemplatepublic_list_element_t *ezsigntemplatepublic_list_element_parseFrom
 
     // ezsigntemplatepublic_list_element->s_ezsigntemplatepublic_ezsigntemplatedescription
     cJSON *s_ezsigntemplatepublic_ezsigntemplatedescription = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_list_elementJSON, "sEzsigntemplatepublicEzsigntemplatedescription");
+    if (cJSON_IsNull(s_ezsigntemplatepublic_ezsigntemplatedescription)) {
+        s_ezsigntemplatepublic_ezsigntemplatedescription = NULL;
+    }
     if (!s_ezsigntemplatepublic_ezsigntemplatedescription) {
         goto end;
     }
@@ -445,7 +514,7 @@ ezsigntemplatepublic_list_element_t *ezsigntemplatepublic_list_element_parseFrom
     }
 
 
-    ezsigntemplatepublic_list_element_local_var = ezsigntemplatepublic_list_element_create (
+    ezsigntemplatepublic_list_element_local_var = ezsigntemplatepublic_list_element_create_internal (
         pki_ezsigntemplatepublic_id->valuedouble,
         fki_ezsignfoldertype_id->valuedouble,
         strdup(s_ezsignfoldertype_name_x->valuestring),
@@ -467,8 +536,7 @@ ezsigntemplatepublic_list_element_t *ezsigntemplatepublic_list_element_parseFrom
     return ezsigntemplatepublic_list_element_local_var;
 end:
     if (e_ezsigntemplatepublic_limittype_local_nonprim) {
-        field_e_ezsigntemplatepublic_limittype_free(e_ezsigntemplatepublic_limittype_local_nonprim);
-        e_ezsigntemplatepublic_limittype_local_nonprim = NULL;
+        e_ezsigntemplatepublic_limittype_local_nonprim = 0;
     }
     return NULL;
 

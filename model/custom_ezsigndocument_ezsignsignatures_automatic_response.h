@@ -24,9 +24,10 @@ typedef struct custom_ezsigndocument_ezsignsignatures_automatic_response_t {
     char *s_ezsigndocument_name; // string
     list_t *a_obj_ezsignsignature; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_ezsigndocument_ezsignsignatures_automatic_response_t;
 
-custom_ezsigndocument_ezsignsignatures_automatic_response_t *custom_ezsigndocument_ezsignsignatures_automatic_response_create(
+__attribute__((deprecated)) custom_ezsigndocument_ezsignsignatures_automatic_response_t *custom_ezsigndocument_ezsignsignatures_automatic_response_create(
     int pki_ezsigndocument_id,
     char *s_ezsigndocument_name,
     list_t *a_obj_ezsignsignature

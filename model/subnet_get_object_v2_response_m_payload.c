@@ -5,7 +5,7 @@
 
 
 
-subnet_get_object_v2_response_m_payload_t *subnet_get_object_v2_response_m_payload_create(
+static subnet_get_object_v2_response_m_payload_t *subnet_get_object_v2_response_m_payload_create_internal(
     subnet_response_compound_t *obj_subnet
     ) {
     subnet_get_object_v2_response_m_payload_t *subnet_get_object_v2_response_m_payload_local_var = malloc(sizeof(subnet_get_object_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ subnet_get_object_v2_response_m_payload_t *subnet_get_object_v2_response_m_paylo
     }
     subnet_get_object_v2_response_m_payload_local_var->obj_subnet = obj_subnet;
 
+    subnet_get_object_v2_response_m_payload_local_var->_library_owned = 1;
     return subnet_get_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) subnet_get_object_v2_response_m_payload_t *subnet_get_object_v2_response_m_payload_create(
+    subnet_response_compound_t *obj_subnet
+    ) {
+    return subnet_get_object_v2_response_m_payload_create_internal (
+        obj_subnet
+        );
+}
 
 void subnet_get_object_v2_response_m_payload_free(subnet_get_object_v2_response_m_payload_t *subnet_get_object_v2_response_m_payload) {
     if(NULL == subnet_get_object_v2_response_m_payload){
+        return ;
+    }
+    if(subnet_get_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "subnet_get_object_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ subnet_get_object_v2_response_m_payload_t *subnet_get_object_v2_response_m_paylo
 
     // subnet_get_object_v2_response_m_payload->obj_subnet
     cJSON *obj_subnet = cJSON_GetObjectItemCaseSensitive(subnet_get_object_v2_response_m_payloadJSON, "objSubnet");
+    if (cJSON_IsNull(obj_subnet)) {
+        obj_subnet = NULL;
+    }
     if (!obj_subnet) {
         goto end;
     }
@@ -71,7 +86,7 @@ subnet_get_object_v2_response_m_payload_t *subnet_get_object_v2_response_m_paylo
     obj_subnet_local_nonprim = subnet_response_compound_parseFromJSON(obj_subnet); //nonprimitive
 
 
-    subnet_get_object_v2_response_m_payload_local_var = subnet_get_object_v2_response_m_payload_create (
+    subnet_get_object_v2_response_m_payload_local_var = subnet_get_object_v2_response_m_payload_create_internal (
         obj_subnet_local_nonprim
         );
 

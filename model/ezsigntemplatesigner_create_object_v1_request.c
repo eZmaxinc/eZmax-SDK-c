@@ -5,7 +5,7 @@
 
 
 
-ezsigntemplatesigner_create_object_v1_request_t *ezsigntemplatesigner_create_object_v1_request_create(
+static ezsigntemplatesigner_create_object_v1_request_t *ezsigntemplatesigner_create_object_v1_request_create_internal(
     list_t *a_obj_ezsigntemplatesigner
     ) {
     ezsigntemplatesigner_create_object_v1_request_t *ezsigntemplatesigner_create_object_v1_request_local_var = malloc(sizeof(ezsigntemplatesigner_create_object_v1_request_t));
@@ -14,12 +14,24 @@ ezsigntemplatesigner_create_object_v1_request_t *ezsigntemplatesigner_create_obj
     }
     ezsigntemplatesigner_create_object_v1_request_local_var->a_obj_ezsigntemplatesigner = a_obj_ezsigntemplatesigner;
 
+    ezsigntemplatesigner_create_object_v1_request_local_var->_library_owned = 1;
     return ezsigntemplatesigner_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezsigntemplatesigner_create_object_v1_request_t *ezsigntemplatesigner_create_object_v1_request_create(
+    list_t *a_obj_ezsigntemplatesigner
+    ) {
+    return ezsigntemplatesigner_create_object_v1_request_create_internal (
+        a_obj_ezsigntemplatesigner
+        );
+}
 
 void ezsigntemplatesigner_create_object_v1_request_free(ezsigntemplatesigner_create_object_v1_request_t *ezsigntemplatesigner_create_object_v1_request) {
     if(NULL == ezsigntemplatesigner_create_object_v1_request){
+        return ;
+    }
+    if(ezsigntemplatesigner_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigntemplatesigner_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ ezsigntemplatesigner_create_object_v1_request_t *ezsigntemplatesigner_create_obj
 
     // ezsigntemplatesigner_create_object_v1_request->a_obj_ezsigntemplatesigner
     cJSON *a_obj_ezsigntemplatesigner = cJSON_GetObjectItemCaseSensitive(ezsigntemplatesigner_create_object_v1_requestJSON, "a_objEzsigntemplatesigner");
+    if (cJSON_IsNull(a_obj_ezsigntemplatesigner)) {
+        a_obj_ezsigntemplatesigner = NULL;
+    }
     if (!a_obj_ezsigntemplatesigner) {
         goto end;
     }
@@ -96,7 +111,7 @@ ezsigntemplatesigner_create_object_v1_request_t *ezsigntemplatesigner_create_obj
     }
 
 
-    ezsigntemplatesigner_create_object_v1_request_local_var = ezsigntemplatesigner_create_object_v1_request_create (
+    ezsigntemplatesigner_create_object_v1_request_local_var = ezsigntemplatesigner_create_object_v1_request_create_internal (
         a_obj_ezsigntemplatesignerList
         );
 

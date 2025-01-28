@@ -22,7 +22,7 @@ ezmax_api_definition__full_common_file_EFILESOURCE_e common_file_e_file_source_F
     return 0;
 }
 
-common_file_t *common_file_create(
+static common_file_t *common_file_create_internal(
     char *s_file_name,
     char *s_file_url,
     char *s_file_base64,
@@ -37,12 +37,30 @@ common_file_t *common_file_create(
     common_file_local_var->s_file_base64 = s_file_base64;
     common_file_local_var->e_file_source = e_file_source;
 
+    common_file_local_var->_library_owned = 1;
     return common_file_local_var;
 }
 
+__attribute__((deprecated)) common_file_t *common_file_create(
+    char *s_file_name,
+    char *s_file_url,
+    char *s_file_base64,
+    ezmax_api_definition__full_common_file_EFILESOURCE_e e_file_source
+    ) {
+    return common_file_create_internal (
+        s_file_name,
+        s_file_url,
+        s_file_base64,
+        e_file_source
+        );
+}
 
 void common_file_free(common_file_t *common_file) {
     if(NULL == common_file){
+        return ;
+    }
+    if(common_file->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "common_file_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -93,7 +111,7 @@ cJSON *common_file_convertToJSON(common_file_t *common_file) {
     if (ezmax_api_definition__full_common_file_EFILESOURCE_NULL == common_file->e_file_source) {
         goto fail;
     }
-    if(cJSON_AddStringToObject(item, "eFileSource", e_file_sourcecommon_file_ToString(common_file->e_file_source)) == NULL)
+    if(cJSON_AddStringToObject(item, "eFileSource", common_file_e_file_source_ToString(common_file->e_file_source)) == NULL)
     {
     goto fail; //Enum
     }
@@ -112,6 +130,9 @@ common_file_t *common_file_parseFromJSON(cJSON *common_fileJSON){
 
     // common_file->s_file_name
     cJSON *s_file_name = cJSON_GetObjectItemCaseSensitive(common_fileJSON, "sFileName");
+    if (cJSON_IsNull(s_file_name)) {
+        s_file_name = NULL;
+    }
     if (!s_file_name) {
         goto end;
     }
@@ -124,6 +145,9 @@ common_file_t *common_file_parseFromJSON(cJSON *common_fileJSON){
 
     // common_file->s_file_url
     cJSON *s_file_url = cJSON_GetObjectItemCaseSensitive(common_fileJSON, "sFileUrl");
+    if (cJSON_IsNull(s_file_url)) {
+        s_file_url = NULL;
+    }
     if (s_file_url) { 
     if(!cJSON_IsString(s_file_url) && !cJSON_IsNull(s_file_url))
     {
@@ -133,6 +157,9 @@ common_file_t *common_file_parseFromJSON(cJSON *common_fileJSON){
 
     // common_file->s_file_base64
     cJSON *s_file_base64 = cJSON_GetObjectItemCaseSensitive(common_fileJSON, "sFileBase64");
+    if (cJSON_IsNull(s_file_base64)) {
+        s_file_base64 = NULL;
+    }
     if (s_file_base64) { 
     if(!cJSON_IsString(s_file_base64))
     {
@@ -142,6 +169,9 @@ common_file_t *common_file_parseFromJSON(cJSON *common_fileJSON){
 
     // common_file->e_file_source
     cJSON *e_file_source = cJSON_GetObjectItemCaseSensitive(common_fileJSON, "eFileSource");
+    if (cJSON_IsNull(e_file_source)) {
+        e_file_source = NULL;
+    }
     if (!e_file_source) {
         goto end;
     }
@@ -155,7 +185,7 @@ common_file_t *common_file_parseFromJSON(cJSON *common_fileJSON){
     e_file_sourceVariable = common_file_e_file_source_FromString(e_file_source->valuestring);
 
 
-    common_file_local_var = common_file_create (
+    common_file_local_var = common_file_create_internal (
         strdup(s_file_name->valuestring),
         s_file_url && !cJSON_IsNull(s_file_url) ? strdup(s_file_url->valuestring) : NULL,
         s_file_base64 ? strdup(s_file_base64->valuestring) : NULL,

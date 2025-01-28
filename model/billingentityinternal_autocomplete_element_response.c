@@ -5,7 +5,7 @@
 
 
 
-billingentityinternal_autocomplete_element_response_t *billingentityinternal_autocomplete_element_response_create(
+static billingentityinternal_autocomplete_element_response_t *billingentityinternal_autocomplete_element_response_create_internal(
     int pki_billingentityinternal_id,
     char *s_billingentityinternal_description_x,
     int b_billingentityinternal_isactive
@@ -18,12 +18,28 @@ billingentityinternal_autocomplete_element_response_t *billingentityinternal_aut
     billingentityinternal_autocomplete_element_response_local_var->s_billingentityinternal_description_x = s_billingentityinternal_description_x;
     billingentityinternal_autocomplete_element_response_local_var->b_billingentityinternal_isactive = b_billingentityinternal_isactive;
 
+    billingentityinternal_autocomplete_element_response_local_var->_library_owned = 1;
     return billingentityinternal_autocomplete_element_response_local_var;
 }
 
+__attribute__((deprecated)) billingentityinternal_autocomplete_element_response_t *billingentityinternal_autocomplete_element_response_create(
+    int pki_billingentityinternal_id,
+    char *s_billingentityinternal_description_x,
+    int b_billingentityinternal_isactive
+    ) {
+    return billingentityinternal_autocomplete_element_response_create_internal (
+        pki_billingentityinternal_id,
+        s_billingentityinternal_description_x,
+        b_billingentityinternal_isactive
+        );
+}
 
 void billingentityinternal_autocomplete_element_response_free(billingentityinternal_autocomplete_element_response_t *billingentityinternal_autocomplete_element_response) {
     if(NULL == billingentityinternal_autocomplete_element_response){
+        return ;
+    }
+    if(billingentityinternal_autocomplete_element_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "billingentityinternal_autocomplete_element_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -77,6 +93,9 @@ billingentityinternal_autocomplete_element_response_t *billingentityinternal_aut
 
     // billingentityinternal_autocomplete_element_response->pki_billingentityinternal_id
     cJSON *pki_billingentityinternal_id = cJSON_GetObjectItemCaseSensitive(billingentityinternal_autocomplete_element_responseJSON, "pkiBillingentityinternalID");
+    if (cJSON_IsNull(pki_billingentityinternal_id)) {
+        pki_billingentityinternal_id = NULL;
+    }
     if (!pki_billingentityinternal_id) {
         goto end;
     }
@@ -89,6 +108,9 @@ billingentityinternal_autocomplete_element_response_t *billingentityinternal_aut
 
     // billingentityinternal_autocomplete_element_response->s_billingentityinternal_description_x
     cJSON *s_billingentityinternal_description_x = cJSON_GetObjectItemCaseSensitive(billingentityinternal_autocomplete_element_responseJSON, "sBillingentityinternalDescriptionX");
+    if (cJSON_IsNull(s_billingentityinternal_description_x)) {
+        s_billingentityinternal_description_x = NULL;
+    }
     if (!s_billingentityinternal_description_x) {
         goto end;
     }
@@ -101,6 +123,9 @@ billingentityinternal_autocomplete_element_response_t *billingentityinternal_aut
 
     // billingentityinternal_autocomplete_element_response->b_billingentityinternal_isactive
     cJSON *b_billingentityinternal_isactive = cJSON_GetObjectItemCaseSensitive(billingentityinternal_autocomplete_element_responseJSON, "bBillingentityinternalIsactive");
+    if (cJSON_IsNull(b_billingentityinternal_isactive)) {
+        b_billingentityinternal_isactive = NULL;
+    }
     if (!b_billingentityinternal_isactive) {
         goto end;
     }
@@ -112,7 +137,7 @@ billingentityinternal_autocomplete_element_response_t *billingentityinternal_aut
     }
 
 
-    billingentityinternal_autocomplete_element_response_local_var = billingentityinternal_autocomplete_element_response_create (
+    billingentityinternal_autocomplete_element_response_local_var = billingentityinternal_autocomplete_element_response_create_internal (
         pki_billingentityinternal_id->valuedouble,
         strdup(s_billingentityinternal_description_x->valuestring),
         b_billingentityinternal_isactive->valueint

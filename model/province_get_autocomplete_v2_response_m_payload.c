@@ -5,7 +5,7 @@
 
 
 
-province_get_autocomplete_v2_response_m_payload_t *province_get_autocomplete_v2_response_m_payload_create(
+static province_get_autocomplete_v2_response_m_payload_t *province_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_province
     ) {
     province_get_autocomplete_v2_response_m_payload_t *province_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(province_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ province_get_autocomplete_v2_response_m_payload_t *province_get_autocomplete_v2_
     }
     province_get_autocomplete_v2_response_m_payload_local_var->a_obj_province = a_obj_province;
 
+    province_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return province_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) province_get_autocomplete_v2_response_m_payload_t *province_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_province
+    ) {
+    return province_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_province
+        );
+}
 
 void province_get_autocomplete_v2_response_m_payload_free(province_get_autocomplete_v2_response_m_payload_t *province_get_autocomplete_v2_response_m_payload) {
     if(NULL == province_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(province_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "province_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ province_get_autocomplete_v2_response_m_payload_t *province_get_autocomplete_v2_
 
     // province_get_autocomplete_v2_response_m_payload->a_obj_province
     cJSON *a_obj_province = cJSON_GetObjectItemCaseSensitive(province_get_autocomplete_v2_response_m_payloadJSON, "a_objProvince");
+    if (cJSON_IsNull(a_obj_province)) {
+        a_obj_province = NULL;
+    }
     if (!a_obj_province) {
         goto end;
     }
@@ -96,7 +111,7 @@ province_get_autocomplete_v2_response_m_payload_t *province_get_autocomplete_v2_
     }
 
 
-    province_get_autocomplete_v2_response_m_payload_local_var = province_get_autocomplete_v2_response_m_payload_create (
+    province_get_autocomplete_v2_response_m_payload_local_var = province_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_provinceList
         );
 

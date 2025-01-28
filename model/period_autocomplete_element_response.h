@@ -23,9 +23,10 @@ typedef struct period_autocomplete_element_response_t {
     int pki_period_id; //numeric
     int b_period_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } period_autocomplete_element_response_t;
 
-period_autocomplete_element_response_t *period_autocomplete_element_response_create(
+__attribute__((deprecated)) period_autocomplete_element_response_t *period_autocomplete_element_response_create(
     char *s_period_yyyymm,
     int pki_period_id,
     int b_period_isactive

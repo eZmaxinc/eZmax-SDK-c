@@ -5,7 +5,7 @@
 
 
 
-company_get_autocomplete_v2_response_m_payload_t *company_get_autocomplete_v2_response_m_payload_create(
+static company_get_autocomplete_v2_response_m_payload_t *company_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_company
     ) {
     company_get_autocomplete_v2_response_m_payload_t *company_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(company_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ company_get_autocomplete_v2_response_m_payload_t *company_get_autocomplete_v2_re
     }
     company_get_autocomplete_v2_response_m_payload_local_var->a_obj_company = a_obj_company;
 
+    company_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return company_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) company_get_autocomplete_v2_response_m_payload_t *company_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_company
+    ) {
+    return company_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_company
+        );
+}
 
 void company_get_autocomplete_v2_response_m_payload_free(company_get_autocomplete_v2_response_m_payload_t *company_get_autocomplete_v2_response_m_payload) {
     if(NULL == company_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(company_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "company_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ company_get_autocomplete_v2_response_m_payload_t *company_get_autocomplete_v2_re
 
     // company_get_autocomplete_v2_response_m_payload->a_obj_company
     cJSON *a_obj_company = cJSON_GetObjectItemCaseSensitive(company_get_autocomplete_v2_response_m_payloadJSON, "a_objCompany");
+    if (cJSON_IsNull(a_obj_company)) {
+        a_obj_company = NULL;
+    }
     if (!a_obj_company) {
         goto end;
     }
@@ -96,7 +111,7 @@ company_get_autocomplete_v2_response_m_payload_t *company_get_autocomplete_v2_re
     }
 
 
-    company_get_autocomplete_v2_response_m_payload_local_var = company_get_autocomplete_v2_response_m_payload_create (
+    company_get_autocomplete_v2_response_m_payload_local_var = company_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_companyList
         );
 

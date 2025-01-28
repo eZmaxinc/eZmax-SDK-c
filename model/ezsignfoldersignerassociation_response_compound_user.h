@@ -25,9 +25,10 @@ typedef struct ezsignfoldersignerassociation_response_compound_user_t {
     char *s_user_lastname; // string
     char *s_email_address; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfoldersignerassociation_response_compound_user_t;
 
-ezsignfoldersignerassociation_response_compound_user_t *ezsignfoldersignerassociation_response_compound_user_create(
+__attribute__((deprecated)) ezsignfoldersignerassociation_response_compound_user_t *ezsignfoldersignerassociation_response_compound_user_create(
     int pki_user_id,
     int fki_language_id,
     char *s_user_firstname,

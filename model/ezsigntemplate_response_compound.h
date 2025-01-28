@@ -20,14 +20,6 @@ typedef struct ezsigntemplate_response_compound_t ezsigntemplate_response_compou
 #include "ezsigntemplatesigner_response_compound.h"
 #include "field_e_ezsigntemplate_type.h"
 
-// Enum  for ezsigntemplate_response_compound
-
-typedef enum  { ezmax_api_definition__full_ezsigntemplate_response_compound__NULL = 0, ezmax_api_definition__full_ezsigntemplate_response_compound__User, ezmax_api_definition__full_ezsigntemplate_response_compound__Usergroup, ezmax_api_definition__full_ezsigntemplate_response_compound__Company, ezmax_api_definition__full_ezsigntemplate_response_compound__Ezsignfoldertype } ezmax_api_definition__full_ezsigntemplate_response_compound__e;
-
-char* ezsigntemplate_response_compound_e_ezsigntemplate_type_ToString(ezmax_api_definition__full_ezsigntemplate_response_compound__e e_ezsigntemplate_type);
-
-ezmax_api_definition__full_ezsigntemplate_response_compound__e ezsigntemplate_response_compound_e_ezsigntemplate_type_FromString(char* e_ezsigntemplate_type);
-
 
 
 typedef struct ezsigntemplate_response_compound_t {
@@ -45,13 +37,14 @@ typedef struct ezsigntemplate_response_compound_t {
     char *s_ezsignfoldertype_name_x; // string
     struct common_audit_t *obj_audit; //model
     int b_ezsigntemplate_editallowed; //boolean
-    field_e_ezsigntemplate_type_t *e_ezsigntemplate_type; // custom
+    ezmax_api_definition__full_field_e_ezsigntemplate_type__e e_ezsigntemplate_type; //referenced enum
     struct ezsigntemplatedocument_response_t *obj_ezsigntemplatedocument; //model
     list_t *a_obj_ezsigntemplatesigner; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplate_response_compound_t;
 
-ezsigntemplate_response_compound_t *ezsigntemplate_response_compound_create(
+__attribute__((deprecated)) ezsigntemplate_response_compound_t *ezsigntemplate_response_compound_create(
     int pki_ezsigntemplate_id,
     int fki_ezsigntemplatedocument_id,
     int fki_ezsignfoldertype_id,
@@ -66,7 +59,7 @@ ezsigntemplate_response_compound_t *ezsigntemplate_response_compound_create(
     char *s_ezsignfoldertype_name_x,
     common_audit_t *obj_audit,
     int b_ezsigntemplate_editallowed,
-    field_e_ezsigntemplate_type_t *e_ezsigntemplate_type,
+    ezmax_api_definition__full_field_e_ezsigntemplate_type__e e_ezsigntemplate_type,
     ezsigntemplatedocument_response_t *obj_ezsigntemplatedocument,
     list_t *a_obj_ezsigntemplatesigner
 );

@@ -22,9 +22,10 @@ typedef struct variableexpense_edit_object_v1_request_t variableexpense_edit_obj
 typedef struct variableexpense_edit_object_v1_request_t {
     struct variableexpense_request_compound_t *obj_variableexpense; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } variableexpense_edit_object_v1_request_t;
 
-variableexpense_edit_object_v1_request_t *variableexpense_edit_object_v1_request_create(
+__attribute__((deprecated)) variableexpense_edit_object_v1_request_t *variableexpense_edit_object_v1_request_create(
     variableexpense_request_compound_t *obj_variableexpense
 );
 

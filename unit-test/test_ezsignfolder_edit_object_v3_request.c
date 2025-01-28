@@ -16,7 +16,7 @@
 #include "../model/ezsignfolder_edit_object_v3_request.h"
 ezsignfolder_edit_object_v3_request_t* instantiate_ezsignfolder_edit_object_v3_request(int include_optional);
 
-#include "test_ezsignfolder_request_v3.c"
+#include "test_ezsignfolder_request_compound_v3.c"
 
 
 ezsignfolder_edit_object_v3_request_t* instantiate_ezsignfolder_edit_object_v3_request(int include_optional) {
@@ -24,7 +24,7 @@ ezsignfolder_edit_object_v3_request_t* instantiate_ezsignfolder_edit_object_v3_r
   if (include_optional) {
     ezsignfolder_edit_object_v3_request = ezsignfolder_edit_object_v3_request_create(
        // false, not to have infinite recursion
-      instantiate_ezsignfolder_request_v3(0)
+      instantiate_ezsignfolder_request_compound_v3(0)
     );
   } else {
     ezsignfolder_edit_object_v3_request = ezsignfolder_edit_object_v3_request_create(

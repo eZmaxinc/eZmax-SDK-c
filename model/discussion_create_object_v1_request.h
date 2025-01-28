@@ -22,9 +22,10 @@ typedef struct discussion_create_object_v1_request_t discussion_create_object_v1
 typedef struct discussion_create_object_v1_request_t {
     list_t *a_obj_discussion; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } discussion_create_object_v1_request_t;
 
-discussion_create_object_v1_request_t *discussion_create_object_v1_request_create(
+__attribute__((deprecated)) discussion_create_object_v1_request_t *discussion_create_object_v1_request_create(
     list_t *a_obj_discussion
 );
 

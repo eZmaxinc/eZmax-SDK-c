@@ -22,9 +22,10 @@ typedef struct webhook_edit_object_v1_request_t webhook_edit_object_v1_request_t
 typedef struct webhook_edit_object_v1_request_t {
     struct webhook_request_compound_t *obj_webhook; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } webhook_edit_object_v1_request_t;
 
-webhook_edit_object_v1_request_t *webhook_edit_object_v1_request_create(
+__attribute__((deprecated)) webhook_edit_object_v1_request_t *webhook_edit_object_v1_request_create(
     webhook_request_compound_t *obj_webhook
 );
 

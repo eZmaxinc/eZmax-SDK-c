@@ -5,7 +5,7 @@
 
 
 
-ezsigntemplateglobal_get_autocomplete_v2_response_m_payload_t *ezsigntemplateglobal_get_autocomplete_v2_response_m_payload_create(
+static ezsigntemplateglobal_get_autocomplete_v2_response_m_payload_t *ezsigntemplateglobal_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_ezsigntemplateglobal
     ) {
     ezsigntemplateglobal_get_autocomplete_v2_response_m_payload_t *ezsigntemplateglobal_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(ezsigntemplateglobal_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ ezsigntemplateglobal_get_autocomplete_v2_response_m_payload_t *ezsigntemplateglo
     }
     ezsigntemplateglobal_get_autocomplete_v2_response_m_payload_local_var->a_obj_ezsigntemplateglobal = a_obj_ezsigntemplateglobal;
 
+    ezsigntemplateglobal_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return ezsigntemplateglobal_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezsigntemplateglobal_get_autocomplete_v2_response_m_payload_t *ezsigntemplateglobal_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_ezsigntemplateglobal
+    ) {
+    return ezsigntemplateglobal_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_ezsigntemplateglobal
+        );
+}
 
 void ezsigntemplateglobal_get_autocomplete_v2_response_m_payload_free(ezsigntemplateglobal_get_autocomplete_v2_response_m_payload_t *ezsigntemplateglobal_get_autocomplete_v2_response_m_payload) {
     if(NULL == ezsigntemplateglobal_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(ezsigntemplateglobal_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigntemplateglobal_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ ezsigntemplateglobal_get_autocomplete_v2_response_m_payload_t *ezsigntemplateglo
 
     // ezsigntemplateglobal_get_autocomplete_v2_response_m_payload->a_obj_ezsigntemplateglobal
     cJSON *a_obj_ezsigntemplateglobal = cJSON_GetObjectItemCaseSensitive(ezsigntemplateglobal_get_autocomplete_v2_response_m_payloadJSON, "a_objEzsigntemplateglobal");
+    if (cJSON_IsNull(a_obj_ezsigntemplateglobal)) {
+        a_obj_ezsigntemplateglobal = NULL;
+    }
     if (!a_obj_ezsigntemplateglobal) {
         goto end;
     }
@@ -96,7 +111,7 @@ ezsigntemplateglobal_get_autocomplete_v2_response_m_payload_t *ezsigntemplateglo
     }
 
 
-    ezsigntemplateglobal_get_autocomplete_v2_response_m_payload_local_var = ezsigntemplateglobal_get_autocomplete_v2_response_m_payload_create (
+    ezsigntemplateglobal_get_autocomplete_v2_response_m_payload_local_var = ezsigntemplateglobal_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_ezsigntemplateglobalList
         );
 

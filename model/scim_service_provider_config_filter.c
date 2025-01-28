@@ -5,7 +5,7 @@
 
 
 
-scim_service_provider_config_filter_t *scim_service_provider_config_filter_create(
+static scim_service_provider_config_filter_t *scim_service_provider_config_filter_create_internal(
     int supported,
     int max_results
     ) {
@@ -16,12 +16,26 @@ scim_service_provider_config_filter_t *scim_service_provider_config_filter_creat
     scim_service_provider_config_filter_local_var->supported = supported;
     scim_service_provider_config_filter_local_var->max_results = max_results;
 
+    scim_service_provider_config_filter_local_var->_library_owned = 1;
     return scim_service_provider_config_filter_local_var;
 }
 
+__attribute__((deprecated)) scim_service_provider_config_filter_t *scim_service_provider_config_filter_create(
+    int supported,
+    int max_results
+    ) {
+    return scim_service_provider_config_filter_create_internal (
+        supported,
+        max_results
+        );
+}
 
 void scim_service_provider_config_filter_free(scim_service_provider_config_filter_t *scim_service_provider_config_filter) {
     if(NULL == scim_service_provider_config_filter){
+        return ;
+    }
+    if(scim_service_provider_config_filter->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "scim_service_provider_config_filter_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -62,6 +76,9 @@ scim_service_provider_config_filter_t *scim_service_provider_config_filter_parse
 
     // scim_service_provider_config_filter->supported
     cJSON *supported = cJSON_GetObjectItemCaseSensitive(scim_service_provider_config_filterJSON, "supported");
+    if (cJSON_IsNull(supported)) {
+        supported = NULL;
+    }
     if (!supported) {
         goto end;
     }
@@ -74,6 +91,9 @@ scim_service_provider_config_filter_t *scim_service_provider_config_filter_parse
 
     // scim_service_provider_config_filter->max_results
     cJSON *max_results = cJSON_GetObjectItemCaseSensitive(scim_service_provider_config_filterJSON, "maxResults");
+    if (cJSON_IsNull(max_results)) {
+        max_results = NULL;
+    }
     if (!max_results) {
         goto end;
     }
@@ -85,7 +105,7 @@ scim_service_provider_config_filter_t *scim_service_provider_config_filter_parse
     }
 
 
-    scim_service_provider_config_filter_local_var = scim_service_provider_config_filter_create (
+    scim_service_provider_config_filter_local_var = scim_service_provider_config_filter_create_internal (
         supported->valueint,
         max_results->valuedouble
         );

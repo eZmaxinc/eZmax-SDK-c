@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsigntemplatesignature_font__e field_e_ezsig
     return 0;
 }
 
-cJSON *field_e_ezsigntemplatesignature_font_field_e_ezsigntemplatesignature_font_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplatesignature_font__e field_e_ezsigntemplatesignature_font) {
+cJSON *field_e_ezsigntemplatesignature_font_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplatesignature_font__e field_e_ezsigntemplatesignature_font) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsigntemplatesignature_font", field_e_ezsigntemplatesignature_font_field_e_ezsigntemplatesignature_font_ToString(field_e_ezsigntemplatesignature_font)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsigntemplatesignature_font__e field_e_ezsigntemplatesignature_font_field_e_ezsigntemplatesignature_font_parseFromJSON(cJSON *field_e_ezsigntemplatesignature_fontJSON) {
-    ezmax_api_definition__full_field_e_ezsigntemplatesignature_font__e *field_e_ezsigntemplatesignature_font = NULL;
-    ezmax_api_definition__full_field_e_ezsigntemplatesignature_font__e field_e_ezsigntemplatesignature_fontVariable;
-    cJSON *field_e_ezsigntemplatesignature_fontVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsigntemplatesignature_fontJSON, "field_e_ezsigntemplatesignature_font");
-    if(!cJSON_IsString(field_e_ezsigntemplatesignature_fontVar) || (field_e_ezsigntemplatesignature_fontVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsigntemplatesignature_font__e field_e_ezsigntemplatesignature_font_parseFromJSON(cJSON *field_e_ezsigntemplatesignature_fontJSON) {
+    if(!cJSON_IsString(field_e_ezsigntemplatesignature_fontJSON) || (field_e_ezsigntemplatesignature_fontJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsigntemplatesignature_fontVariable = field_e_ezsigntemplatesignature_font_field_e_ezsigntemplatesignature_font_FromString(field_e_ezsigntemplatesignature_fontVar->valuestring);
-    return field_e_ezsigntemplatesignature_fontVariable;
-end:
-    return 0;
+    return field_e_ezsigntemplatesignature_font_field_e_ezsigntemplatesignature_font_FromString(field_e_ezsigntemplatesignature_fontJSON->valuestring);
 }

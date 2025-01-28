@@ -5,7 +5,7 @@
 
 
 
-creditcardclient_create_object_v1_response_m_payload_t *creditcardclient_create_object_v1_response_m_payload_create(
+static creditcardclient_create_object_v1_response_m_payload_t *creditcardclient_create_object_v1_response_m_payload_create_internal(
     list_t *a_pki_creditcardclient_id
     ) {
     creditcardclient_create_object_v1_response_m_payload_t *creditcardclient_create_object_v1_response_m_payload_local_var = malloc(sizeof(creditcardclient_create_object_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ creditcardclient_create_object_v1_response_m_payload_t *creditcardclient_create_
     }
     creditcardclient_create_object_v1_response_m_payload_local_var->a_pki_creditcardclient_id = a_pki_creditcardclient_id;
 
+    creditcardclient_create_object_v1_response_m_payload_local_var->_library_owned = 1;
     return creditcardclient_create_object_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) creditcardclient_create_object_v1_response_m_payload_t *creditcardclient_create_object_v1_response_m_payload_create(
+    list_t *a_pki_creditcardclient_id
+    ) {
+    return creditcardclient_create_object_v1_response_m_payload_create_internal (
+        a_pki_creditcardclient_id
+        );
+}
 
 void creditcardclient_create_object_v1_response_m_payload_free(creditcardclient_create_object_v1_response_m_payload_t *creditcardclient_create_object_v1_response_m_payload) {
     if(NULL == creditcardclient_create_object_v1_response_m_payload){
+        return ;
+    }
+    if(creditcardclient_create_object_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "creditcardclient_create_object_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +82,9 @@ creditcardclient_create_object_v1_response_m_payload_t *creditcardclient_create_
 
     // creditcardclient_create_object_v1_response_m_payload->a_pki_creditcardclient_id
     cJSON *a_pki_creditcardclient_id = cJSON_GetObjectItemCaseSensitive(creditcardclient_create_object_v1_response_m_payloadJSON, "a_pkiCreditcardclientID");
+    if (cJSON_IsNull(a_pki_creditcardclient_id)) {
+        a_pki_creditcardclient_id = NULL;
+    }
     if (!a_pki_creditcardclient_id) {
         goto end;
     }
@@ -87,7 +102,7 @@ creditcardclient_create_object_v1_response_m_payload_t *creditcardclient_create_
         {
             goto end;
         }
-        double *a_pki_creditcardclient_id_local_value = (double *)calloc(1, sizeof(double));
+        double *a_pki_creditcardclient_id_local_value = calloc(1, sizeof(double));
         if(!a_pki_creditcardclient_id_local_value)
         {
             goto end;
@@ -97,7 +112,7 @@ creditcardclient_create_object_v1_response_m_payload_t *creditcardclient_create_
     }
 
 
-    creditcardclient_create_object_v1_response_m_payload_local_var = creditcardclient_create_object_v1_response_m_payload_create (
+    creditcardclient_create_object_v1_response_m_payload_local_var = creditcardclient_create_object_v1_response_m_payload_create_internal (
         a_pki_creditcardclient_idList
         );
 

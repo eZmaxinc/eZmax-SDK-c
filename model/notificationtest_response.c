@@ -5,7 +5,7 @@
 
 
 
-notificationtest_response_t *notificationtest_response_create(
+static notificationtest_response_t *notificationtest_response_create_internal(
     int pki_notificationtest_id,
     multilingual_notificationtest_name_t *obj_notificationtest_name,
     int fki_notificationsubsection_id,
@@ -22,12 +22,32 @@ notificationtest_response_t *notificationtest_response_create(
     notificationtest_response_local_var->s_notificationtest_function = s_notificationtest_function;
     notificationtest_response_local_var->s_notificationtest_name_x = s_notificationtest_name_x;
 
+    notificationtest_response_local_var->_library_owned = 1;
     return notificationtest_response_local_var;
 }
 
+__attribute__((deprecated)) notificationtest_response_t *notificationtest_response_create(
+    int pki_notificationtest_id,
+    multilingual_notificationtest_name_t *obj_notificationtest_name,
+    int fki_notificationsubsection_id,
+    char *s_notificationtest_function,
+    char *s_notificationtest_name_x
+    ) {
+    return notificationtest_response_create_internal (
+        pki_notificationtest_id,
+        obj_notificationtest_name,
+        fki_notificationsubsection_id,
+        s_notificationtest_function,
+        s_notificationtest_name_x
+        );
+}
 
 void notificationtest_response_free(notificationtest_response_t *notificationtest_response) {
     if(NULL == notificationtest_response){
+        return ;
+    }
+    if(notificationtest_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "notificationtest_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -115,6 +135,9 @@ notificationtest_response_t *notificationtest_response_parseFromJSON(cJSON *noti
 
     // notificationtest_response->pki_notificationtest_id
     cJSON *pki_notificationtest_id = cJSON_GetObjectItemCaseSensitive(notificationtest_responseJSON, "pkiNotificationtestID");
+    if (cJSON_IsNull(pki_notificationtest_id)) {
+        pki_notificationtest_id = NULL;
+    }
     if (!pki_notificationtest_id) {
         goto end;
     }
@@ -127,6 +150,9 @@ notificationtest_response_t *notificationtest_response_parseFromJSON(cJSON *noti
 
     // notificationtest_response->obj_notificationtest_name
     cJSON *obj_notificationtest_name = cJSON_GetObjectItemCaseSensitive(notificationtest_responseJSON, "objNotificationtestName");
+    if (cJSON_IsNull(obj_notificationtest_name)) {
+        obj_notificationtest_name = NULL;
+    }
     if (!obj_notificationtest_name) {
         goto end;
     }
@@ -136,6 +162,9 @@ notificationtest_response_t *notificationtest_response_parseFromJSON(cJSON *noti
 
     // notificationtest_response->fki_notificationsubsection_id
     cJSON *fki_notificationsubsection_id = cJSON_GetObjectItemCaseSensitive(notificationtest_responseJSON, "fkiNotificationsubsectionID");
+    if (cJSON_IsNull(fki_notificationsubsection_id)) {
+        fki_notificationsubsection_id = NULL;
+    }
     if (!fki_notificationsubsection_id) {
         goto end;
     }
@@ -148,6 +177,9 @@ notificationtest_response_t *notificationtest_response_parseFromJSON(cJSON *noti
 
     // notificationtest_response->s_notificationtest_function
     cJSON *s_notificationtest_function = cJSON_GetObjectItemCaseSensitive(notificationtest_responseJSON, "sNotificationtestFunction");
+    if (cJSON_IsNull(s_notificationtest_function)) {
+        s_notificationtest_function = NULL;
+    }
     if (!s_notificationtest_function) {
         goto end;
     }
@@ -160,6 +192,9 @@ notificationtest_response_t *notificationtest_response_parseFromJSON(cJSON *noti
 
     // notificationtest_response->s_notificationtest_name_x
     cJSON *s_notificationtest_name_x = cJSON_GetObjectItemCaseSensitive(notificationtest_responseJSON, "sNotificationtestNameX");
+    if (cJSON_IsNull(s_notificationtest_name_x)) {
+        s_notificationtest_name_x = NULL;
+    }
     if (!s_notificationtest_name_x) {
         goto end;
     }
@@ -171,7 +206,7 @@ notificationtest_response_t *notificationtest_response_parseFromJSON(cJSON *noti
     }
 
 
-    notificationtest_response_local_var = notificationtest_response_create (
+    notificationtest_response_local_var = notificationtest_response_create_internal (
         pki_notificationtest_id->valuedouble,
         obj_notificationtest_name_local_nonprim,
         fki_notificationsubsection_id->valuedouble,

@@ -5,7 +5,7 @@
 
 
 
-period_autocomplete_element_response_t *period_autocomplete_element_response_create(
+static period_autocomplete_element_response_t *period_autocomplete_element_response_create_internal(
     char *s_period_yyyymm,
     int pki_period_id,
     int b_period_isactive
@@ -18,12 +18,28 @@ period_autocomplete_element_response_t *period_autocomplete_element_response_cre
     period_autocomplete_element_response_local_var->pki_period_id = pki_period_id;
     period_autocomplete_element_response_local_var->b_period_isactive = b_period_isactive;
 
+    period_autocomplete_element_response_local_var->_library_owned = 1;
     return period_autocomplete_element_response_local_var;
 }
 
+__attribute__((deprecated)) period_autocomplete_element_response_t *period_autocomplete_element_response_create(
+    char *s_period_yyyymm,
+    int pki_period_id,
+    int b_period_isactive
+    ) {
+    return period_autocomplete_element_response_create_internal (
+        s_period_yyyymm,
+        pki_period_id,
+        b_period_isactive
+        );
+}
 
 void period_autocomplete_element_response_free(period_autocomplete_element_response_t *period_autocomplete_element_response) {
     if(NULL == period_autocomplete_element_response){
+        return ;
+    }
+    if(period_autocomplete_element_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "period_autocomplete_element_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -77,6 +93,9 @@ period_autocomplete_element_response_t *period_autocomplete_element_response_par
 
     // period_autocomplete_element_response->s_period_yyyymm
     cJSON *s_period_yyyymm = cJSON_GetObjectItemCaseSensitive(period_autocomplete_element_responseJSON, "sPeriodYYYYMM");
+    if (cJSON_IsNull(s_period_yyyymm)) {
+        s_period_yyyymm = NULL;
+    }
     if (!s_period_yyyymm) {
         goto end;
     }
@@ -89,6 +108,9 @@ period_autocomplete_element_response_t *period_autocomplete_element_response_par
 
     // period_autocomplete_element_response->pki_period_id
     cJSON *pki_period_id = cJSON_GetObjectItemCaseSensitive(period_autocomplete_element_responseJSON, "pkiPeriodID");
+    if (cJSON_IsNull(pki_period_id)) {
+        pki_period_id = NULL;
+    }
     if (!pki_period_id) {
         goto end;
     }
@@ -101,6 +123,9 @@ period_autocomplete_element_response_t *period_autocomplete_element_response_par
 
     // period_autocomplete_element_response->b_period_isactive
     cJSON *b_period_isactive = cJSON_GetObjectItemCaseSensitive(period_autocomplete_element_responseJSON, "bPeriodIsactive");
+    if (cJSON_IsNull(b_period_isactive)) {
+        b_period_isactive = NULL;
+    }
     if (!b_period_isactive) {
         goto end;
     }
@@ -112,7 +137,7 @@ period_autocomplete_element_response_t *period_autocomplete_element_response_par
     }
 
 
-    period_autocomplete_element_response_local_var = period_autocomplete_element_response_create (
+    period_autocomplete_element_response_local_var = period_autocomplete_element_response_create_internal (
         strdup(s_period_yyyymm->valuestring),
         pki_period_id->valuedouble,
         b_period_isactive->valueint

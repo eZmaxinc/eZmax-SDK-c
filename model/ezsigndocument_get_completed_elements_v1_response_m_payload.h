@@ -24,9 +24,10 @@ typedef struct ezsigndocument_get_completed_elements_v1_response_m_payload_t {
     list_t *a_obj_ezsignsignature; //nonprimitive container
     list_t *a_obj_ezsignformfieldgroup; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigndocument_get_completed_elements_v1_response_m_payload_t;
 
-ezsigndocument_get_completed_elements_v1_response_m_payload_t *ezsigndocument_get_completed_elements_v1_response_m_payload_create(
+__attribute__((deprecated)) ezsigndocument_get_completed_elements_v1_response_m_payload_t *ezsigndocument_get_completed_elements_v1_response_m_payload_create(
     list_t *a_obj_ezsignsignature,
     list_t *a_obj_ezsignformfieldgroup
 );

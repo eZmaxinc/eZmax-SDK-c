@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsignfoldertype_documentdependency__e field_
     return 0;
 }
 
-cJSON *field_e_ezsignfoldertype_documentdependency_field_e_ezsignfoldertype_documentdependency_convertToJSON(ezmax_api_definition__full_field_e_ezsignfoldertype_documentdependency__e field_e_ezsignfoldertype_documentdependency) {
+cJSON *field_e_ezsignfoldertype_documentdependency_convertToJSON(ezmax_api_definition__full_field_e_ezsignfoldertype_documentdependency__e field_e_ezsignfoldertype_documentdependency) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsignfoldertype_documentdependency", field_e_ezsignfoldertype_documentdependency_field_e_ezsignfoldertype_documentdependency_ToString(field_e_ezsignfoldertype_documentdependency)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsignfoldertype_documentdependency__e field_e_ezsignfoldertype_documentdependency_field_e_ezsignfoldertype_documentdependency_parseFromJSON(cJSON *field_e_ezsignfoldertype_documentdependencyJSON) {
-    ezmax_api_definition__full_field_e_ezsignfoldertype_documentdependency__e *field_e_ezsignfoldertype_documentdependency = NULL;
-    ezmax_api_definition__full_field_e_ezsignfoldertype_documentdependency__e field_e_ezsignfoldertype_documentdependencyVariable;
-    cJSON *field_e_ezsignfoldertype_documentdependencyVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsignfoldertype_documentdependencyJSON, "field_e_ezsignfoldertype_documentdependency");
-    if(!cJSON_IsString(field_e_ezsignfoldertype_documentdependencyVar) || (field_e_ezsignfoldertype_documentdependencyVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsignfoldertype_documentdependency__e field_e_ezsignfoldertype_documentdependency_parseFromJSON(cJSON *field_e_ezsignfoldertype_documentdependencyJSON) {
+    if(!cJSON_IsString(field_e_ezsignfoldertype_documentdependencyJSON) || (field_e_ezsignfoldertype_documentdependencyJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsignfoldertype_documentdependencyVariable = field_e_ezsignfoldertype_documentdependency_field_e_ezsignfoldertype_documentdependency_FromString(field_e_ezsignfoldertype_documentdependencyVar->valuestring);
-    return field_e_ezsignfoldertype_documentdependencyVariable;
-end:
-    return 0;
+    return field_e_ezsignfoldertype_documentdependency_field_e_ezsignfoldertype_documentdependency_FromString(field_e_ezsignfoldertype_documentdependencyJSON->valuestring);
 }

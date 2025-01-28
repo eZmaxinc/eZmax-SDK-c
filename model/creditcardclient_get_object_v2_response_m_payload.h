@@ -22,9 +22,10 @@ typedef struct creditcardclient_get_object_v2_response_m_payload_t creditcardcli
 typedef struct creditcardclient_get_object_v2_response_m_payload_t {
     struct creditcardclient_response_compound_t *obj_creditcardclient; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } creditcardclient_get_object_v2_response_m_payload_t;
 
-creditcardclient_get_object_v2_response_m_payload_t *creditcardclient_get_object_v2_response_m_payload_create(
+__attribute__((deprecated)) creditcardclient_get_object_v2_response_m_payload_t *creditcardclient_get_object_v2_response_m_payload_create(
     creditcardclient_response_compound_t *obj_creditcardclient
 );
 

@@ -27,62 +27,6 @@ typedef struct ezsignfoldertype_response_compound_v4_t ezsignfoldertype_response
 #include "usergroup_response.h"
 #include "userlogintype_response.h"
 
-// Enum  for ezsignfoldertype_response_compound_v4
-
-typedef enum  { ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__NULL = 0, ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__All, ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__EzsignsignerOnly } ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__e;
-
-char* ezsignfoldertype_response_compound_v4_e_ezsignfoldertype_documentdependency_ToString(ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__e e_ezsignfoldertype_documentdependency);
-
-ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__e ezsignfoldertype_response_compound_v4_e_ezsignfoldertype_documentdependency_FromString(char* e_ezsignfoldertype_documentdependency);
-
-// Enum  for ezsignfoldertype_response_compound_v4
-
-typedef enum  { ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__NULL = 0, ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__None, ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__Declared, ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__Verified } ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__e;
-
-char* ezsignfoldertype_response_compound_v4_e_ezsignfoldertype_pdfarequirement_ToString(ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__e e_ezsignfoldertype_pdfarequirement);
-
-ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__e ezsignfoldertype_response_compound_v4_e_ezsignfoldertype_pdfarequirement_FromString(char* e_ezsignfoldertype_pdfarequirement);
-
-// Enum  for ezsignfoldertype_response_compound_v4
-
-typedef enum  { ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__NULL = 0, ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__Reject, ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__Convert } ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__e;
-
-char* ezsignfoldertype_response_compound_v4_e_ezsignfoldertype_pdfanoncompliantaction_ToString(ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__e e_ezsignfoldertype_pdfanoncompliantaction);
-
-ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__e ezsignfoldertype_response_compound_v4_e_ezsignfoldertype_pdfanoncompliantaction_FromString(char* e_ezsignfoldertype_pdfanoncompliantaction);
-
-// Enum  for ezsignfoldertype_response_compound_v4
-
-typedef enum  { ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__NULL = 0, ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__User, ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__Usergroup } ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__e;
-
-char* ezsignfoldertype_response_compound_v4_e_ezsignfoldertype_privacylevel_ToString(ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__e e_ezsignfoldertype_privacylevel);
-
-ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__e ezsignfoldertype_response_compound_v4_e_ezsignfoldertype_privacylevel_FromString(char* e_ezsignfoldertype_privacylevel);
-
-// Enum  for ezsignfoldertype_response_compound_v4
-
-typedef enum  { ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__NULL = 0, ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__No, ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__Manual, ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__Automatic } ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__e;
-
-char* ezsignfoldertype_response_compound_v4_e_ezsignfoldertype_disposal_ToString(ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__e e_ezsignfoldertype_disposal);
-
-ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__e ezsignfoldertype_response_compound_v4_e_ezsignfoldertype_disposal_FromString(char* e_ezsignfoldertype_disposal);
-
-// Enum  for ezsignfoldertype_response_compound_v4
-
-typedef enum  { ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__NULL = 0, ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__PerEzsigndocument, ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__PerEzsignfolder } ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__e;
-
-char* ezsignfoldertype_response_compound_v4_e_ezsignfoldertype_completion_ToString(ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__e e_ezsignfoldertype_completion);
-
-ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__e ezsignfoldertype_response_compound_v4_e_ezsignfoldertype_completion_FromString(char* e_ezsignfoldertype_completion);
-
-// Enum  for ezsignfoldertype_response_compound_v4
-
-typedef enum  { ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__NULL = 0, ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__No, ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__SignerDocuments, ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__AllDocuments } ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__e;
-
-char* ezsignfoldertype_response_compound_v4_e_ezsignfoldertype_signeraccess_ToString(ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__e e_ezsignfoldertype_signeraccess);
-
-ezmax_api_definition__full_ezsignfoldertype_response_compound_v4__e ezsignfoldertype_response_compound_v4_e_ezsignfoldertype_signeraccess_FromString(char* e_ezsignfoldertype_signeraccess);
-
 
 
 typedef struct ezsignfoldertype_response_compound_v4_t {
@@ -95,22 +39,22 @@ typedef struct ezsignfoldertype_response_compound_v4_t {
     int fki_font_id_formfield; //numeric
     int fki_font_id_signature; //numeric
     int fki_pdfalevel_id_convert; //numeric
-    field_e_ezsignfoldertype_documentdependency_t *e_ezsignfoldertype_documentdependency; // custom
+    ezmax_api_definition__full_field_e_ezsignfoldertype_documentdependency__e e_ezsignfoldertype_documentdependency; //referenced enum
     char *s_branding_description_x; // string
     char *s_billingentityinternal_description_x; // string
     char *s_ezsigntsarequirement_description_x; // string
     char *s_email_address_signed; // string
     char *s_email_address_summary; // string
-    field_e_ezsignfoldertype_pdfarequirement_t *e_ezsignfoldertype_pdfarequirement; // custom
-    field_e_ezsignfoldertype_pdfanoncompliantaction_t *e_ezsignfoldertype_pdfanoncompliantaction; // custom
-    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel; // custom
+    ezmax_api_definition__full_field_e_ezsignfoldertype_pdfarequirement__e e_ezsignfoldertype_pdfarequirement; //referenced enum
+    ezmax_api_definition__full_field_e_ezsignfoldertype_pdfanoncompliantaction__e e_ezsignfoldertype_pdfanoncompliantaction; //referenced enum
+    ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel; //referenced enum
     int i_ezsignfoldertype_fontsizeannotation; //numeric
     int i_ezsignfoldertype_fontsizeformfield; //numeric
     int i_ezsignfoldertype_sendreminderfirstdays; //numeric
     int i_ezsignfoldertype_sendreminderotherdays; //numeric
     int i_ezsignfoldertype_archivaldays; //numeric
-    field_e_ezsignfoldertype_disposal_t *e_ezsignfoldertype_disposal; // custom
-    field_e_ezsignfoldertype_completion_t *e_ezsignfoldertype_completion; // custom
+    ezmax_api_definition__full_field_e_ezsignfoldertype_disposal__e e_ezsignfoldertype_disposal; //referenced enum
+    ezmax_api_definition__full_field_e_ezsignfoldertype_completion__e e_ezsignfoldertype_completion; //referenced enum
     int i_ezsignfoldertype_disposaldays; //numeric
     int i_ezsignfoldertype_deadlinedays; //numeric
     int b_ezsignfoldertype_prematurelyendautomatically; //boolean
@@ -142,7 +86,7 @@ typedef struct ezsignfoldertype_response_compound_v4_t {
     int b_ezsignfoldertype_sendsummarytofullgroup; //boolean
     int b_ezsignfoldertype_sendsummarytolimitedgroup; //boolean
     int b_ezsignfoldertype_sendsummarytocolleague; //boolean
-    field_e_ezsignfoldertype_signeraccess_t *e_ezsignfoldertype_signeraccess; // custom
+    ezmax_api_definition__full_field_e_ezsignfoldertype_signeraccess__e e_ezsignfoldertype_signeraccess; //referenced enum
     int b_ezsignfoldertype_isactive; //boolean
     list_t *a_fki_pdfalevel_id; //primitive container
     list_t *a_obj_userlogintype; //nonprimitive container
@@ -153,9 +97,10 @@ typedef struct ezsignfoldertype_response_compound_v4_t {
     list_t *a_fki_user_id_signed; //primitive container
     list_t *a_fki_user_id_summary; //primitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfoldertype_response_compound_v4_t;
 
-ezsignfoldertype_response_compound_v4_t *ezsignfoldertype_response_compound_v4_create(
+__attribute__((deprecated)) ezsignfoldertype_response_compound_v4_t *ezsignfoldertype_response_compound_v4_create(
     int pki_ezsignfoldertype_id,
     multilingual_ezsignfoldertype_name_t *obj_ezsignfoldertype_name,
     int fki_branding_id,
@@ -165,22 +110,22 @@ ezsignfoldertype_response_compound_v4_t *ezsignfoldertype_response_compound_v4_c
     int fki_font_id_formfield,
     int fki_font_id_signature,
     int fki_pdfalevel_id_convert,
-    field_e_ezsignfoldertype_documentdependency_t *e_ezsignfoldertype_documentdependency,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_documentdependency__e e_ezsignfoldertype_documentdependency,
     char *s_branding_description_x,
     char *s_billingentityinternal_description_x,
     char *s_ezsigntsarequirement_description_x,
     char *s_email_address_signed,
     char *s_email_address_summary,
-    field_e_ezsignfoldertype_pdfarequirement_t *e_ezsignfoldertype_pdfarequirement,
-    field_e_ezsignfoldertype_pdfanoncompliantaction_t *e_ezsignfoldertype_pdfanoncompliantaction,
-    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_pdfarequirement__e e_ezsignfoldertype_pdfarequirement,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_pdfanoncompliantaction__e e_ezsignfoldertype_pdfanoncompliantaction,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel,
     int i_ezsignfoldertype_fontsizeannotation,
     int i_ezsignfoldertype_fontsizeformfield,
     int i_ezsignfoldertype_sendreminderfirstdays,
     int i_ezsignfoldertype_sendreminderotherdays,
     int i_ezsignfoldertype_archivaldays,
-    field_e_ezsignfoldertype_disposal_t *e_ezsignfoldertype_disposal,
-    field_e_ezsignfoldertype_completion_t *e_ezsignfoldertype_completion,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_disposal__e e_ezsignfoldertype_disposal,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_completion__e e_ezsignfoldertype_completion,
     int i_ezsignfoldertype_disposaldays,
     int i_ezsignfoldertype_deadlinedays,
     int b_ezsignfoldertype_prematurelyendautomatically,
@@ -212,7 +157,7 @@ ezsignfoldertype_response_compound_v4_t *ezsignfoldertype_response_compound_v4_c
     int b_ezsignfoldertype_sendsummarytofullgroup,
     int b_ezsignfoldertype_sendsummarytolimitedgroup,
     int b_ezsignfoldertype_sendsummarytocolleague,
-    field_e_ezsignfoldertype_signeraccess_t *e_ezsignfoldertype_signeraccess,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_signeraccess__e e_ezsignfoldertype_signeraccess,
     int b_ezsignfoldertype_isactive,
     list_t *a_fki_pdfalevel_id,
     list_t *a_obj_userlogintype,

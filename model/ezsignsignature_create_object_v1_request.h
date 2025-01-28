@@ -24,9 +24,10 @@ typedef struct ezsignsignature_create_object_v1_request_t {
     struct ezsignsignature_request_t *obj_ezsignsignature; //model
     struct ezsignsignature_request_compound_t *obj_ezsignsignature_compound; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsignature_create_object_v1_request_t;
 
-ezsignsignature_create_object_v1_request_t *ezsignsignature_create_object_v1_request_create(
+__attribute__((deprecated)) ezsignsignature_create_object_v1_request_t *ezsignsignature_create_object_v1_request_create(
     ezsignsignature_request_t *obj_ezsignsignature,
     ezsignsignature_request_compound_t *obj_ezsignsignature_compound
 );

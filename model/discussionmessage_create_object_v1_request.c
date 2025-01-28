@@ -5,7 +5,7 @@
 
 
 
-discussionmessage_create_object_v1_request_t *discussionmessage_create_object_v1_request_create(
+static discussionmessage_create_object_v1_request_t *discussionmessage_create_object_v1_request_create_internal(
     list_t *a_obj_discussionmessage
     ) {
     discussionmessage_create_object_v1_request_t *discussionmessage_create_object_v1_request_local_var = malloc(sizeof(discussionmessage_create_object_v1_request_t));
@@ -14,12 +14,24 @@ discussionmessage_create_object_v1_request_t *discussionmessage_create_object_v1
     }
     discussionmessage_create_object_v1_request_local_var->a_obj_discussionmessage = a_obj_discussionmessage;
 
+    discussionmessage_create_object_v1_request_local_var->_library_owned = 1;
     return discussionmessage_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) discussionmessage_create_object_v1_request_t *discussionmessage_create_object_v1_request_create(
+    list_t *a_obj_discussionmessage
+    ) {
+    return discussionmessage_create_object_v1_request_create_internal (
+        a_obj_discussionmessage
+        );
+}
 
 void discussionmessage_create_object_v1_request_free(discussionmessage_create_object_v1_request_t *discussionmessage_create_object_v1_request) {
     if(NULL == discussionmessage_create_object_v1_request){
+        return ;
+    }
+    if(discussionmessage_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "discussionmessage_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ discussionmessage_create_object_v1_request_t *discussionmessage_create_object_v1
 
     // discussionmessage_create_object_v1_request->a_obj_discussionmessage
     cJSON *a_obj_discussionmessage = cJSON_GetObjectItemCaseSensitive(discussionmessage_create_object_v1_requestJSON, "a_objDiscussionmessage");
+    if (cJSON_IsNull(a_obj_discussionmessage)) {
+        a_obj_discussionmessage = NULL;
+    }
     if (!a_obj_discussionmessage) {
         goto end;
     }
@@ -96,7 +111,7 @@ discussionmessage_create_object_v1_request_t *discussionmessage_create_object_v1
     }
 
 
-    discussionmessage_create_object_v1_request_local_var = discussionmessage_create_object_v1_request_create (
+    discussionmessage_create_object_v1_request_local_var = discussionmessage_create_object_v1_request_create_internal (
         a_obj_discussionmessageList
         );
 

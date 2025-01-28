@@ -23,9 +23,10 @@ typedef struct ezsigntemplatesigner_create_object_v1_response_m_payload_t {
     int b_ezsigntemplatepackage_needvalidation; //boolean
     int b_ezsignbulksend_needvalidation; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatesigner_create_object_v1_response_m_payload_t;
 
-ezsigntemplatesigner_create_object_v1_response_m_payload_t *ezsigntemplatesigner_create_object_v1_response_m_payload_create(
+__attribute__((deprecated)) ezsigntemplatesigner_create_object_v1_response_m_payload_t *ezsigntemplatesigner_create_object_v1_response_m_payload_create(
     list_t *a_pki_ezsigntemplatesigner_id,
     int b_ezsigntemplatepackage_needvalidation,
     int b_ezsignbulksend_needvalidation

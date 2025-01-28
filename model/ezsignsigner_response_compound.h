@@ -27,9 +27,10 @@ typedef struct ezsignsigner_response_compound_t {
     char *s_userlogintype_description_x; // string
     struct ezsignsigner_response_compound_contact_t *obj_contact; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsigner_response_compound_t;
 
-ezsignsigner_response_compound_t *ezsignsigner_response_compound_create(
+__attribute__((deprecated)) ezsignsigner_response_compound_t *ezsignsigner_response_compound_create(
     int pki_ezsignsigner_id,
     int fki_taxassignment_id,
     int fki_secretquestion_id,

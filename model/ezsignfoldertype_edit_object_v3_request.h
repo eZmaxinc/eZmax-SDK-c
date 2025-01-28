@@ -22,9 +22,10 @@ typedef struct ezsignfoldertype_edit_object_v3_request_t ezsignfoldertype_edit_o
 typedef struct ezsignfoldertype_edit_object_v3_request_t {
     struct ezsignfoldertype_request_compound_v3_t *obj_ezsignfoldertype; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfoldertype_edit_object_v3_request_t;
 
-ezsignfoldertype_edit_object_v3_request_t *ezsignfoldertype_edit_object_v3_request_create(
+__attribute__((deprecated)) ezsignfoldertype_edit_object_v3_request_t *ezsignfoldertype_edit_object_v3_request_create(
     ezsignfoldertype_request_compound_v3_t *obj_ezsignfoldertype
 );
 

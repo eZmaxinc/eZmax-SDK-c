@@ -24,9 +24,10 @@ typedef struct scim_group_member_t {
     char *type; // string
     char *ref; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } scim_group_member_t;
 
-scim_group_member_t *scim_group_member_create(
+__attribute__((deprecated)) scim_group_member_t *scim_group_member_create(
     char *value,
     char *display,
     char *type,

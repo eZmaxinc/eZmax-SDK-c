@@ -5,7 +5,7 @@
 
 
 
-userstaged_response_compound_t *userstaged_response_compound_create(
+static userstaged_response_compound_t *userstaged_response_compound_create_internal(
     int pki_userstaged_id,
     int fki_email_id,
     char *s_email_address,
@@ -24,12 +24,34 @@ userstaged_response_compound_t *userstaged_response_compound_create(
     userstaged_response_compound_local_var->s_userstaged_lastname = s_userstaged_lastname;
     userstaged_response_compound_local_var->s_userstaged_externalid = s_userstaged_externalid;
 
+    userstaged_response_compound_local_var->_library_owned = 1;
     return userstaged_response_compound_local_var;
 }
 
+__attribute__((deprecated)) userstaged_response_compound_t *userstaged_response_compound_create(
+    int pki_userstaged_id,
+    int fki_email_id,
+    char *s_email_address,
+    char *s_userstaged_firstname,
+    char *s_userstaged_lastname,
+    char *s_userstaged_externalid
+    ) {
+    return userstaged_response_compound_create_internal (
+        pki_userstaged_id,
+        fki_email_id,
+        s_email_address,
+        s_userstaged_firstname,
+        s_userstaged_lastname,
+        s_userstaged_externalid
+        );
+}
 
 void userstaged_response_compound_free(userstaged_response_compound_t *userstaged_response_compound) {
     if(NULL == userstaged_response_compound){
+        return ;
+    }
+    if(userstaged_response_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "userstaged_response_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -122,6 +144,9 @@ userstaged_response_compound_t *userstaged_response_compound_parseFromJSON(cJSON
 
     // userstaged_response_compound->pki_userstaged_id
     cJSON *pki_userstaged_id = cJSON_GetObjectItemCaseSensitive(userstaged_response_compoundJSON, "pkiUserstagedID");
+    if (cJSON_IsNull(pki_userstaged_id)) {
+        pki_userstaged_id = NULL;
+    }
     if (!pki_userstaged_id) {
         goto end;
     }
@@ -134,6 +159,9 @@ userstaged_response_compound_t *userstaged_response_compound_parseFromJSON(cJSON
 
     // userstaged_response_compound->fki_email_id
     cJSON *fki_email_id = cJSON_GetObjectItemCaseSensitive(userstaged_response_compoundJSON, "fkiEmailID");
+    if (cJSON_IsNull(fki_email_id)) {
+        fki_email_id = NULL;
+    }
     if (!fki_email_id) {
         goto end;
     }
@@ -146,6 +174,9 @@ userstaged_response_compound_t *userstaged_response_compound_parseFromJSON(cJSON
 
     // userstaged_response_compound->s_email_address
     cJSON *s_email_address = cJSON_GetObjectItemCaseSensitive(userstaged_response_compoundJSON, "sEmailAddress");
+    if (cJSON_IsNull(s_email_address)) {
+        s_email_address = NULL;
+    }
     if (!s_email_address) {
         goto end;
     }
@@ -158,6 +189,9 @@ userstaged_response_compound_t *userstaged_response_compound_parseFromJSON(cJSON
 
     // userstaged_response_compound->s_userstaged_firstname
     cJSON *s_userstaged_firstname = cJSON_GetObjectItemCaseSensitive(userstaged_response_compoundJSON, "sUserstagedFirstname");
+    if (cJSON_IsNull(s_userstaged_firstname)) {
+        s_userstaged_firstname = NULL;
+    }
     if (!s_userstaged_firstname) {
         goto end;
     }
@@ -170,6 +204,9 @@ userstaged_response_compound_t *userstaged_response_compound_parseFromJSON(cJSON
 
     // userstaged_response_compound->s_userstaged_lastname
     cJSON *s_userstaged_lastname = cJSON_GetObjectItemCaseSensitive(userstaged_response_compoundJSON, "sUserstagedLastname");
+    if (cJSON_IsNull(s_userstaged_lastname)) {
+        s_userstaged_lastname = NULL;
+    }
     if (!s_userstaged_lastname) {
         goto end;
     }
@@ -182,6 +219,9 @@ userstaged_response_compound_t *userstaged_response_compound_parseFromJSON(cJSON
 
     // userstaged_response_compound->s_userstaged_externalid
     cJSON *s_userstaged_externalid = cJSON_GetObjectItemCaseSensitive(userstaged_response_compoundJSON, "sUserstagedExternalid");
+    if (cJSON_IsNull(s_userstaged_externalid)) {
+        s_userstaged_externalid = NULL;
+    }
     if (!s_userstaged_externalid) {
         goto end;
     }
@@ -193,7 +233,7 @@ userstaged_response_compound_t *userstaged_response_compound_parseFromJSON(cJSON
     }
 
 
-    userstaged_response_compound_local_var = userstaged_response_compound_create (
+    userstaged_response_compound_local_var = userstaged_response_compound_create_internal (
         pki_userstaged_id->valuedouble,
         fki_email_id->valuedouble,
         strdup(s_email_address->valuestring),

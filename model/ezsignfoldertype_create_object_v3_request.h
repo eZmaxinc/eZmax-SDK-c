@@ -22,9 +22,10 @@ typedef struct ezsignfoldertype_create_object_v3_request_t ezsignfoldertype_crea
 typedef struct ezsignfoldertype_create_object_v3_request_t {
     list_t *a_obj_ezsignfoldertype; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfoldertype_create_object_v3_request_t;
 
-ezsignfoldertype_create_object_v3_request_t *ezsignfoldertype_create_object_v3_request_create(
+__attribute__((deprecated)) ezsignfoldertype_create_object_v3_request_t *ezsignfoldertype_create_object_v3_request_create(
     list_t *a_obj_ezsignfoldertype
 );
 

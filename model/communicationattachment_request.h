@@ -24,9 +24,10 @@ typedef struct communicationattachment_request_t {
     int fki_invoice_id; //numeric
     int fki_salarypreparation_id; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } communicationattachment_request_t;
 
-communicationattachment_request_t *communicationattachment_request_create(
+__attribute__((deprecated)) communicationattachment_request_t *communicationattachment_request_create(
     int pki_communicationattachment_id,
     int fki_attachment_id,
     int fki_invoice_id,

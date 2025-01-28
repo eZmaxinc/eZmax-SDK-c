@@ -1,0 +1,82 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include "../include/apiClient.h"
+#include "../include/list.h"
+#include "../external/cJSON.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+#include "../model/common_response_error.h"
+#include "../model/creditcardmerchant_create_object_v1_request.h"
+#include "../model/creditcardmerchant_create_object_v1_response.h"
+#include "../model/creditcardmerchant_delete_object_v1_response.h"
+#include "../model/creditcardmerchant_edit_object_v1_request.h"
+#include "../model/creditcardmerchant_edit_object_v1_response.h"
+#include "../model/creditcardmerchant_get_autocomplete_v2_response.h"
+#include "../model/creditcardmerchant_get_list_v1_response.h"
+#include "../model/creditcardmerchant_get_object_v2_response.h"
+#include "../model/header_accept_language.h"
+
+// Enum SSELECTOR for ObjectCreditcardmerchantAPI_creditcardmerchantGetAutocompleteV2
+typedef enum  { ezmax_api_definition__full_creditcardmerchantGetAutocompleteV2_SSELECTOR_NULL = 0, ezmax_api_definition__full_creditcardmerchantGetAutocompleteV2_SSELECTOR_All } ezmax_api_definition__full_creditcardmerchantGetAutocompleteV2_sSelector_e;
+
+// Enum EFILTERACTIVE for ObjectCreditcardmerchantAPI_creditcardmerchantGetAutocompleteV2
+typedef enum  { ezmax_api_definition__full_creditcardmerchantGetAutocompleteV2_EFILTERACTIVE_NULL = 0, ezmax_api_definition__full_creditcardmerchantGetAutocompleteV2_EFILTERACTIVE_All, ezmax_api_definition__full_creditcardmerchantGetAutocompleteV2_EFILTERACTIVE_Active, ezmax_api_definition__full_creditcardmerchantGetAutocompleteV2_EFILTERACTIVE_Inactive } ezmax_api_definition__full_creditcardmerchantGetAutocompleteV2_eFilterActive_e;
+
+// Enum  for ObjectCreditcardmerchantAPI_creditcardmerchantGetAutocompleteV2
+typedef enum  { ezmax_api_definition__full_creditcardmerchantGetAutocompleteV2__NULL = 0, ezmax_api_definition__full_creditcardmerchantGetAutocompleteV2__*, ezmax_api_definition__full_creditcardmerchantGetAutocompleteV2__en, ezmax_api_definition__full_creditcardmerchantGetAutocompleteV2__fr } ezmax_api_definition__full_creditcardmerchantGetAutocompleteV2_Accept-Language_e;
+
+// Enum EORDERBY for ObjectCreditcardmerchantAPI_creditcardmerchantGetListV1
+typedef enum  { ezmax_api_definition__full_creditcardmerchantGetListV1_EORDERBY_NULL = 0, ezmax_api_definition__full_creditcardmerchantGetListV1_EORDERBY_pkiCreditcardmerchantID_ASC, ezmax_api_definition__full_creditcardmerchantGetListV1_EORDERBY_pkiCreditcardmerchantID_DESC, ezmax_api_definition__full_creditcardmerchantGetListV1_EORDERBY_fkiBankaccountID_ASC, ezmax_api_definition__full_creditcardmerchantGetListV1_EORDERBY_fkiBankaccountID_DESC, ezmax_api_definition__full_creditcardmerchantGetListV1_EORDERBY_fkiLanguageID_ASC, ezmax_api_definition__full_creditcardmerchantGetListV1_EORDERBY_fkiLanguageID_DESC, ezmax_api_definition__full_creditcardmerchantGetListV1_EORDERBY_bCreditcardmerchantDenyvisa_ASC, ezmax_api_definition__full_creditcardmerchantGetListV1_EORDERBY_bCreditcardmerchantDenyvisa_DESC, ezmax_api_definition__full_creditcardmerchantGetListV1_EORDERBY_bCreditcardmerchantDenymastercard_ASC, ezmax_api_definition__full_creditcardmerchantGetListV1_EORDERBY_bCreditcardmerchantDenymastercard_DESC, ezmax_api_definition__full_creditcardmerchantGetListV1_EORDERBY_bCreditcardmerchantDenyamex_ASC, ezmax_api_definition__full_creditcardmerchantGetListV1_EORDERBY_bCreditcardmerchantDenyamex_DESC, ezmax_api_definition__full_creditcardmerchantGetListV1_EORDERBY_bCreditcardmerchantIsactive_ASC, ezmax_api_definition__full_creditcardmerchantGetListV1_EORDERBY_bCreditcardmerchantIsactive_DESC, ezmax_api_definition__full_creditcardmerchantGetListV1_EORDERBY_sCreditcardmerchantDescription_ASC, ezmax_api_definition__full_creditcardmerchantGetListV1_EORDERBY_sCreditcardmerchantDescription_DESC, ezmax_api_definition__full_creditcardmerchantGetListV1_EORDERBY_sCreditcardmerchantStoreid_ASC, ezmax_api_definition__full_creditcardmerchantGetListV1_EORDERBY_sCreditcardmerchantStoreid_DESC } ezmax_api_definition__full_creditcardmerchantGetListV1_eOrderBy_e;
+
+// Enum  for ObjectCreditcardmerchantAPI_creditcardmerchantGetListV1
+typedef enum  { ezmax_api_definition__full_creditcardmerchantGetListV1__NULL = 0, ezmax_api_definition__full_creditcardmerchantGetListV1__*, ezmax_api_definition__full_creditcardmerchantGetListV1__en, ezmax_api_definition__full_creditcardmerchantGetListV1__fr } ezmax_api_definition__full_creditcardmerchantGetListV1_Accept-Language_e;
+
+
+// Create a new Creditcardmerchant
+//
+// The endpoint allows to create one or many elements at once.
+//
+creditcardmerchant_create_object_v1_response_t*
+ObjectCreditcardmerchantAPI_creditcardmerchantCreateObjectV1(apiClient_t *apiClient, creditcardmerchant_create_object_v1_request_t *creditcardmerchant_create_object_v1_request);
+
+
+// Delete an existing Creditcardmerchant
+//
+// 
+//
+creditcardmerchant_delete_object_v1_response_t*
+ObjectCreditcardmerchantAPI_creditcardmerchantDeleteObjectV1(apiClient_t *apiClient, int *pkiCreditcardmerchantID);
+
+
+// Edit an existing Creditcardmerchant
+//
+// 
+//
+creditcardmerchant_edit_object_v1_response_t*
+ObjectCreditcardmerchantAPI_creditcardmerchantEditObjectV1(apiClient_t *apiClient, int *pkiCreditcardmerchantID, creditcardmerchant_edit_object_v1_request_t *creditcardmerchant_edit_object_v1_request);
+
+
+// Retrieve Creditcardmerchants and IDs
+//
+// Get the list of Creditcardmerchant to be used in a dropdown or autocomplete control.
+//
+creditcardmerchant_get_autocomplete_v2_response_t*
+ObjectCreditcardmerchantAPI_creditcardmerchantGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_creditcardmerchantGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_creditcardmerchantGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
+
+
+// Retrieve Creditcardmerchant list
+//
+// 
+//
+creditcardmerchant_get_list_v1_response_t*
+ObjectCreditcardmerchantAPI_creditcardmerchantGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_creditcardmerchantGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
+
+
+// Retrieve an existing Creditcardmerchant
+//
+// 
+//
+creditcardmerchant_get_object_v2_response_t*
+ObjectCreditcardmerchantAPI_creditcardmerchantGetObjectV2(apiClient_t *apiClient, int *pkiCreditcardmerchantID);
+
+

@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsignelementdependency_operator__e field_e_e
     return 0;
 }
 
-cJSON *field_e_ezsignelementdependency_operator_field_e_ezsignelementdependency_operator_convertToJSON(ezmax_api_definition__full_field_e_ezsignelementdependency_operator__e field_e_ezsignelementdependency_operator) {
+cJSON *field_e_ezsignelementdependency_operator_convertToJSON(ezmax_api_definition__full_field_e_ezsignelementdependency_operator__e field_e_ezsignelementdependency_operator) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsignelementdependency_operator", field_e_ezsignelementdependency_operator_field_e_ezsignelementdependency_operator_ToString(field_e_ezsignelementdependency_operator)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsignelementdependency_operator__e field_e_ezsignelementdependency_operator_field_e_ezsignelementdependency_operator_parseFromJSON(cJSON *field_e_ezsignelementdependency_operatorJSON) {
-    ezmax_api_definition__full_field_e_ezsignelementdependency_operator__e *field_e_ezsignelementdependency_operator = NULL;
-    ezmax_api_definition__full_field_e_ezsignelementdependency_operator__e field_e_ezsignelementdependency_operatorVariable;
-    cJSON *field_e_ezsignelementdependency_operatorVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsignelementdependency_operatorJSON, "field_e_ezsignelementdependency_operator");
-    if(!cJSON_IsString(field_e_ezsignelementdependency_operatorVar) || (field_e_ezsignelementdependency_operatorVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsignelementdependency_operator__e field_e_ezsignelementdependency_operator_parseFromJSON(cJSON *field_e_ezsignelementdependency_operatorJSON) {
+    if(!cJSON_IsString(field_e_ezsignelementdependency_operatorJSON) || (field_e_ezsignelementdependency_operatorJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsignelementdependency_operatorVariable = field_e_ezsignelementdependency_operator_field_e_ezsignelementdependency_operator_FromString(field_e_ezsignelementdependency_operatorVar->valuestring);
-    return field_e_ezsignelementdependency_operatorVariable;
-end:
-    return 0;
+    return field_e_ezsignelementdependency_operator_field_e_ezsignelementdependency_operator_FromString(field_e_ezsignelementdependency_operatorJSON->valuestring);
 }

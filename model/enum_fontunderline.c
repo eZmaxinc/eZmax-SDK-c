@@ -22,7 +22,7 @@ ezmax_api_definition__full_enum_fontunderline__e enum_fontunderline_enum_fontund
     return 0;
 }
 
-cJSON *enum_fontunderline_enum_fontunderline_convertToJSON(ezmax_api_definition__full_enum_fontunderline__e enum_fontunderline) {
+cJSON *enum_fontunderline_convertToJSON(ezmax_api_definition__full_enum_fontunderline__e enum_fontunderline) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "enum_fontunderline", enum_fontunderline_enum_fontunderline_ToString(enum_fontunderline)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_enum_fontunderline__e enum_fontunderline_enum_fontunderline_parseFromJSON(cJSON *enum_fontunderlineJSON) {
-    ezmax_api_definition__full_enum_fontunderline__e *enum_fontunderline = NULL;
-    ezmax_api_definition__full_enum_fontunderline__e enum_fontunderlineVariable;
-    cJSON *enum_fontunderlineVar = cJSON_GetObjectItemCaseSensitive(enum_fontunderlineJSON, "enum_fontunderline");
-    if(!cJSON_IsString(enum_fontunderlineVar) || (enum_fontunderlineVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_enum_fontunderline__e enum_fontunderline_parseFromJSON(cJSON *enum_fontunderlineJSON) {
+    if(!cJSON_IsString(enum_fontunderlineJSON) || (enum_fontunderlineJSON->valuestring == NULL)) {
+        return 0;
     }
-    enum_fontunderlineVariable = enum_fontunderline_enum_fontunderline_FromString(enum_fontunderlineVar->valuestring);
-    return enum_fontunderlineVariable;
-end:
-    return 0;
+    return enum_fontunderline_enum_fontunderline_FromString(enum_fontunderlineJSON->valuestring);
 }

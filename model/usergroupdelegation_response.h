@@ -28,9 +28,10 @@ typedef struct usergroupdelegation_response_t {
     char *s_email_address; // string
     char *s_usergroup_name_x; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } usergroupdelegation_response_t;
 
-usergroupdelegation_response_t *usergroupdelegation_response_create(
+__attribute__((deprecated)) usergroupdelegation_response_t *usergroupdelegation_response_create(
     int pki_usergroupdelegation_id,
     int fki_usergroup_id,
     int fki_user_id,

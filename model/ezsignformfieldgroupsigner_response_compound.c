@@ -5,7 +5,7 @@
 
 
 
-ezsignformfieldgroupsigner_response_compound_t *ezsignformfieldgroupsigner_response_compound_create(
+static ezsignformfieldgroupsigner_response_compound_t *ezsignformfieldgroupsigner_response_compound_create_internal(
     int pki_ezsignformfieldgroupsigner_id,
     int fki_ezsignfoldersignerassociation_id
     ) {
@@ -16,12 +16,26 @@ ezsignformfieldgroupsigner_response_compound_t *ezsignformfieldgroupsigner_respo
     ezsignformfieldgroupsigner_response_compound_local_var->pki_ezsignformfieldgroupsigner_id = pki_ezsignformfieldgroupsigner_id;
     ezsignformfieldgroupsigner_response_compound_local_var->fki_ezsignfoldersignerassociation_id = fki_ezsignfoldersignerassociation_id;
 
+    ezsignformfieldgroupsigner_response_compound_local_var->_library_owned = 1;
     return ezsignformfieldgroupsigner_response_compound_local_var;
 }
 
+__attribute__((deprecated)) ezsignformfieldgroupsigner_response_compound_t *ezsignformfieldgroupsigner_response_compound_create(
+    int pki_ezsignformfieldgroupsigner_id,
+    int fki_ezsignfoldersignerassociation_id
+    ) {
+    return ezsignformfieldgroupsigner_response_compound_create_internal (
+        pki_ezsignformfieldgroupsigner_id,
+        fki_ezsignfoldersignerassociation_id
+        );
+}
 
 void ezsignformfieldgroupsigner_response_compound_free(ezsignformfieldgroupsigner_response_compound_t *ezsignformfieldgroupsigner_response_compound) {
     if(NULL == ezsignformfieldgroupsigner_response_compound){
+        return ;
+    }
+    if(ezsignformfieldgroupsigner_response_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignformfieldgroupsigner_response_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -62,6 +76,9 @@ ezsignformfieldgroupsigner_response_compound_t *ezsignformfieldgroupsigner_respo
 
     // ezsignformfieldgroupsigner_response_compound->pki_ezsignformfieldgroupsigner_id
     cJSON *pki_ezsignformfieldgroupsigner_id = cJSON_GetObjectItemCaseSensitive(ezsignformfieldgroupsigner_response_compoundJSON, "pkiEzsignformfieldgroupsignerID");
+    if (cJSON_IsNull(pki_ezsignformfieldgroupsigner_id)) {
+        pki_ezsignformfieldgroupsigner_id = NULL;
+    }
     if (!pki_ezsignformfieldgroupsigner_id) {
         goto end;
     }
@@ -74,6 +91,9 @@ ezsignformfieldgroupsigner_response_compound_t *ezsignformfieldgroupsigner_respo
 
     // ezsignformfieldgroupsigner_response_compound->fki_ezsignfoldersignerassociation_id
     cJSON *fki_ezsignfoldersignerassociation_id = cJSON_GetObjectItemCaseSensitive(ezsignformfieldgroupsigner_response_compoundJSON, "fkiEzsignfoldersignerassociationID");
+    if (cJSON_IsNull(fki_ezsignfoldersignerassociation_id)) {
+        fki_ezsignfoldersignerassociation_id = NULL;
+    }
     if (!fki_ezsignfoldersignerassociation_id) {
         goto end;
     }
@@ -85,7 +105,7 @@ ezsignformfieldgroupsigner_response_compound_t *ezsignformfieldgroupsigner_respo
     }
 
 
-    ezsignformfieldgroupsigner_response_compound_local_var = ezsignformfieldgroupsigner_response_compound_create (
+    ezsignformfieldgroupsigner_response_compound_local_var = ezsignformfieldgroupsigner_response_compound_create_internal (
         pki_ezsignformfieldgroupsigner_id->valuedouble,
         fki_ezsignfoldersignerassociation_id->valuedouble
         );

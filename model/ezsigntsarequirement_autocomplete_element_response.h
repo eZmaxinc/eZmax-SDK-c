@@ -24,9 +24,10 @@ typedef struct ezsigntsarequirement_autocomplete_element_response_t {
     int b_ezsigntsarequirement_isactive; //boolean
     int b_disabled; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntsarequirement_autocomplete_element_response_t;
 
-ezsigntsarequirement_autocomplete_element_response_t *ezsigntsarequirement_autocomplete_element_response_create(
+__attribute__((deprecated)) ezsigntsarequirement_autocomplete_element_response_t *ezsigntsarequirement_autocomplete_element_response_create(
     char *s_ezsigntsarequirement_description_x,
     int pki_ezsigntsarequirement_id,
     int b_ezsigntsarequirement_isactive,

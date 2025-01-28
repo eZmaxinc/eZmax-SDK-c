@@ -5,7 +5,7 @@
 
 
 
-user_edit_object_v1_request_t *user_edit_object_v1_request_create(
+static user_edit_object_v1_request_t *user_edit_object_v1_request_create_internal(
     user_request_compound_t *obj_user
     ) {
     user_edit_object_v1_request_t *user_edit_object_v1_request_local_var = malloc(sizeof(user_edit_object_v1_request_t));
@@ -14,12 +14,24 @@ user_edit_object_v1_request_t *user_edit_object_v1_request_create(
     }
     user_edit_object_v1_request_local_var->obj_user = obj_user;
 
+    user_edit_object_v1_request_local_var->_library_owned = 1;
     return user_edit_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) user_edit_object_v1_request_t *user_edit_object_v1_request_create(
+    user_request_compound_t *obj_user
+    ) {
+    return user_edit_object_v1_request_create_internal (
+        obj_user
+        );
+}
 
 void user_edit_object_v1_request_free(user_edit_object_v1_request_t *user_edit_object_v1_request) {
     if(NULL == user_edit_object_v1_request){
+        return ;
+    }
+    if(user_edit_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "user_edit_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ user_edit_object_v1_request_t *user_edit_object_v1_request_parseFromJSON(cJSON *
 
     // user_edit_object_v1_request->obj_user
     cJSON *obj_user = cJSON_GetObjectItemCaseSensitive(user_edit_object_v1_requestJSON, "objUser");
+    if (cJSON_IsNull(obj_user)) {
+        obj_user = NULL;
+    }
     if (!obj_user) {
         goto end;
     }
@@ -71,7 +86,7 @@ user_edit_object_v1_request_t *user_edit_object_v1_request_parseFromJSON(cJSON *
     obj_user_local_nonprim = user_request_compound_parseFromJSON(obj_user); //nonprimitive
 
 
-    user_edit_object_v1_request_local_var = user_edit_object_v1_request_create (
+    user_edit_object_v1_request_local_var = user_edit_object_v1_request_create_internal (
         obj_user_local_nonprim
         );
 

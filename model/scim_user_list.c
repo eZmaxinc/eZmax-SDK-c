@@ -5,7 +5,7 @@
 
 
 
-scim_user_list_t *scim_user_list_create(
+static scim_user_list_t *scim_user_list_create_internal(
     int total_results,
     int items_per_page,
     int start_index,
@@ -22,12 +22,32 @@ scim_user_list_t *scim_user_list_create(
     scim_user_list_local_var->schemas = schemas;
     scim_user_list_local_var->resources = resources;
 
+    scim_user_list_local_var->_library_owned = 1;
     return scim_user_list_local_var;
 }
 
+__attribute__((deprecated)) scim_user_list_t *scim_user_list_create(
+    int total_results,
+    int items_per_page,
+    int start_index,
+    list_t *schemas,
+    list_t *resources
+    ) {
+    return scim_user_list_create_internal (
+        total_results,
+        items_per_page,
+        start_index,
+        schemas,
+        resources
+        );
+}
 
 void scim_user_list_free(scim_user_list_t *scim_user_list) {
     if(NULL == scim_user_list){
+        return ;
+    }
+    if(scim_user_list->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "scim_user_list_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -84,7 +104,7 @@ cJSON *scim_user_list_convertToJSON(scim_user_list_t *scim_user_list) {
 
     listEntry_t *schemasListEntry;
     list_ForEach(schemasListEntry, scim_user_list->schemas) {
-    if(cJSON_AddStringToObject(schemas, "", (char*)schemasListEntry->data) == NULL)
+    if(cJSON_AddStringToObject(schemas, "", schemasListEntry->data) == NULL)
     {
         goto fail;
     }
@@ -131,6 +151,9 @@ scim_user_list_t *scim_user_list_parseFromJSON(cJSON *scim_user_listJSON){
 
     // scim_user_list->total_results
     cJSON *total_results = cJSON_GetObjectItemCaseSensitive(scim_user_listJSON, "totalResults");
+    if (cJSON_IsNull(total_results)) {
+        total_results = NULL;
+    }
     if (total_results) { 
     if(!cJSON_IsNumber(total_results))
     {
@@ -140,6 +163,9 @@ scim_user_list_t *scim_user_list_parseFromJSON(cJSON *scim_user_listJSON){
 
     // scim_user_list->items_per_page
     cJSON *items_per_page = cJSON_GetObjectItemCaseSensitive(scim_user_listJSON, "itemsPerPage");
+    if (cJSON_IsNull(items_per_page)) {
+        items_per_page = NULL;
+    }
     if (items_per_page) { 
     if(!cJSON_IsNumber(items_per_page))
     {
@@ -149,6 +175,9 @@ scim_user_list_t *scim_user_list_parseFromJSON(cJSON *scim_user_listJSON){
 
     // scim_user_list->start_index
     cJSON *start_index = cJSON_GetObjectItemCaseSensitive(scim_user_listJSON, "startIndex");
+    if (cJSON_IsNull(start_index)) {
+        start_index = NULL;
+    }
     if (start_index) { 
     if(!cJSON_IsNumber(start_index))
     {
@@ -158,6 +187,9 @@ scim_user_list_t *scim_user_list_parseFromJSON(cJSON *scim_user_listJSON){
 
     // scim_user_list->schemas
     cJSON *schemas = cJSON_GetObjectItemCaseSensitive(scim_user_listJSON, "schemas");
+    if (cJSON_IsNull(schemas)) {
+        schemas = NULL;
+    }
     if (schemas) { 
     cJSON *schemas_local = NULL;
     if(!cJSON_IsArray(schemas)) {
@@ -177,6 +209,9 @@ scim_user_list_t *scim_user_list_parseFromJSON(cJSON *scim_user_listJSON){
 
     // scim_user_list->resources
     cJSON *resources = cJSON_GetObjectItemCaseSensitive(scim_user_listJSON, "Resources");
+    if (cJSON_IsNull(resources)) {
+        resources = NULL;
+    }
     if (resources) { 
     cJSON *resources_local_nonprimitive = NULL;
     if(!cJSON_IsArray(resources)){
@@ -197,7 +232,7 @@ scim_user_list_t *scim_user_list_parseFromJSON(cJSON *scim_user_listJSON){
     }
 
 
-    scim_user_list_local_var = scim_user_list_create (
+    scim_user_list_local_var = scim_user_list_create_internal (
         total_results ? total_results->valuedouble : 0,
         items_per_page ? items_per_page->valuedouble : 0,
         start_index ? start_index->valuedouble : 0,

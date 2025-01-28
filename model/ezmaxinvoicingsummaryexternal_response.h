@@ -25,9 +25,10 @@ typedef struct ezmaxinvoicingsummaryexternal_response_t {
     char *s_billingentityexternal_description; // string
     char *s_ezmaxinvoicingsummaryexternal_description; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezmaxinvoicingsummaryexternal_response_t;
 
-ezmaxinvoicingsummaryexternal_response_t *ezmaxinvoicingsummaryexternal_response_create(
+__attribute__((deprecated)) ezmaxinvoicingsummaryexternal_response_t *ezmaxinvoicingsummaryexternal_response_create(
     int pki_ezmaxinvoicingsummaryexternal_id,
     int fki_ezmaxinvoicing_id,
     int fki_billingentityexternal_id,

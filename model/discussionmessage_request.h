@@ -24,9 +24,10 @@ typedef struct discussionmessage_request_t {
     int fki_discussionmembership_id_actionrequired; //numeric
     char *t_discussionmessage_content; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } discussionmessage_request_t;
 
-discussionmessage_request_t *discussionmessage_request_create(
+__attribute__((deprecated)) discussionmessage_request_t *discussionmessage_request_create(
     int pki_discussionmessage_id,
     int fki_discussion_id,
     int fki_discussionmembership_id_actionrequired,

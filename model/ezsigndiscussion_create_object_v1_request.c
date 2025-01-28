@@ -5,7 +5,7 @@
 
 
 
-ezsigndiscussion_create_object_v1_request_t *ezsigndiscussion_create_object_v1_request_create(
+static ezsigndiscussion_create_object_v1_request_t *ezsigndiscussion_create_object_v1_request_create_internal(
     list_t *a_obj_ezsigndiscussion
     ) {
     ezsigndiscussion_create_object_v1_request_t *ezsigndiscussion_create_object_v1_request_local_var = malloc(sizeof(ezsigndiscussion_create_object_v1_request_t));
@@ -14,12 +14,24 @@ ezsigndiscussion_create_object_v1_request_t *ezsigndiscussion_create_object_v1_r
     }
     ezsigndiscussion_create_object_v1_request_local_var->a_obj_ezsigndiscussion = a_obj_ezsigndiscussion;
 
+    ezsigndiscussion_create_object_v1_request_local_var->_library_owned = 1;
     return ezsigndiscussion_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezsigndiscussion_create_object_v1_request_t *ezsigndiscussion_create_object_v1_request_create(
+    list_t *a_obj_ezsigndiscussion
+    ) {
+    return ezsigndiscussion_create_object_v1_request_create_internal (
+        a_obj_ezsigndiscussion
+        );
+}
 
 void ezsigndiscussion_create_object_v1_request_free(ezsigndiscussion_create_object_v1_request_t *ezsigndiscussion_create_object_v1_request) {
     if(NULL == ezsigndiscussion_create_object_v1_request){
+        return ;
+    }
+    if(ezsigndiscussion_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigndiscussion_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ ezsigndiscussion_create_object_v1_request_t *ezsigndiscussion_create_object_v1_r
 
     // ezsigndiscussion_create_object_v1_request->a_obj_ezsigndiscussion
     cJSON *a_obj_ezsigndiscussion = cJSON_GetObjectItemCaseSensitive(ezsigndiscussion_create_object_v1_requestJSON, "a_objEzsigndiscussion");
+    if (cJSON_IsNull(a_obj_ezsigndiscussion)) {
+        a_obj_ezsigndiscussion = NULL;
+    }
     if (!a_obj_ezsigndiscussion) {
         goto end;
     }
@@ -96,7 +111,7 @@ ezsigndiscussion_create_object_v1_request_t *ezsigndiscussion_create_object_v1_r
     }
 
 
-    ezsigndiscussion_create_object_v1_request_local_var = ezsigndiscussion_create_object_v1_request_create (
+    ezsigndiscussion_create_object_v1_request_local_var = ezsigndiscussion_create_object_v1_request_create_internal (
         a_obj_ezsigndiscussionList
         );
 

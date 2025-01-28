@@ -5,7 +5,7 @@
 
 
 
-ezsignfolder_get_list_v1_response_m_payload_t *ezsignfolder_get_list_v1_response_m_payload_create(
+static ezsignfolder_get_list_v1_response_m_payload_t *ezsignfolder_get_list_v1_response_m_payload_create_internal(
     int i_row_returned,
     int i_row_filtered,
     list_t *a_obj_ezsignfolder
@@ -18,12 +18,28 @@ ezsignfolder_get_list_v1_response_m_payload_t *ezsignfolder_get_list_v1_response
     ezsignfolder_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
     ezsignfolder_get_list_v1_response_m_payload_local_var->a_obj_ezsignfolder = a_obj_ezsignfolder;
 
+    ezsignfolder_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     return ezsignfolder_get_list_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezsignfolder_get_list_v1_response_m_payload_t *ezsignfolder_get_list_v1_response_m_payload_create(
+    int i_row_returned,
+    int i_row_filtered,
+    list_t *a_obj_ezsignfolder
+    ) {
+    return ezsignfolder_get_list_v1_response_m_payload_create_internal (
+        i_row_returned,
+        i_row_filtered,
+        a_obj_ezsignfolder
+        );
+}
 
 void ezsignfolder_get_list_v1_response_m_payload_free(ezsignfolder_get_list_v1_response_m_payload_t *ezsignfolder_get_list_v1_response_m_payload) {
     if(NULL == ezsignfolder_get_list_v1_response_m_payload){
+        return ;
+    }
+    if(ezsignfolder_get_list_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignfolder_get_list_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -95,6 +111,9 @@ ezsignfolder_get_list_v1_response_m_payload_t *ezsignfolder_get_list_v1_response
 
     // ezsignfolder_get_list_v1_response_m_payload->i_row_returned
     cJSON *i_row_returned = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_list_v1_response_m_payloadJSON, "iRowReturned");
+    if (cJSON_IsNull(i_row_returned)) {
+        i_row_returned = NULL;
+    }
     if (!i_row_returned) {
         goto end;
     }
@@ -107,6 +126,9 @@ ezsignfolder_get_list_v1_response_m_payload_t *ezsignfolder_get_list_v1_response
 
     // ezsignfolder_get_list_v1_response_m_payload->i_row_filtered
     cJSON *i_row_filtered = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_list_v1_response_m_payloadJSON, "iRowFiltered");
+    if (cJSON_IsNull(i_row_filtered)) {
+        i_row_filtered = NULL;
+    }
     if (!i_row_filtered) {
         goto end;
     }
@@ -119,6 +141,9 @@ ezsignfolder_get_list_v1_response_m_payload_t *ezsignfolder_get_list_v1_response
 
     // ezsignfolder_get_list_v1_response_m_payload->a_obj_ezsignfolder
     cJSON *a_obj_ezsignfolder = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_list_v1_response_m_payloadJSON, "a_objEzsignfolder");
+    if (cJSON_IsNull(a_obj_ezsignfolder)) {
+        a_obj_ezsignfolder = NULL;
+    }
     if (!a_obj_ezsignfolder) {
         goto end;
     }
@@ -142,7 +167,7 @@ ezsignfolder_get_list_v1_response_m_payload_t *ezsignfolder_get_list_v1_response
     }
 
 
-    ezsignfolder_get_list_v1_response_m_payload_local_var = ezsignfolder_get_list_v1_response_m_payload_create (
+    ezsignfolder_get_list_v1_response_m_payload_local_var = ezsignfolder_get_list_v1_response_m_payload_create_internal (
         i_row_returned->valuedouble,
         i_row_filtered->valuedouble,
         a_obj_ezsignfolderList

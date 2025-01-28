@@ -23,9 +23,10 @@ typedef struct email_request_t {
     int fki_emailtype_id; //numeric
     char *s_email_address; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } email_request_t;
 
-email_request_t *email_request_create(
+__attribute__((deprecated)) email_request_t *email_request_create(
     int pki_email_id,
     int fki_emailtype_id,
     char *s_email_address

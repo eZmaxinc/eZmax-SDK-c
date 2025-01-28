@@ -1,30 +1,26 @@
 cmake_minimum_required (VERSION 2.6...3.10.2)
-project (CGenerator)
+project (CGenerator C)
 
 cmake_policy(SET CMP0063 NEW)
 
 set(CMAKE_C_VISIBILITY_PRESET default)
-set(CMAKE_CXX_VISIBILITY_PRESET default)
 set(CMAKE_VISIBILITY_INLINES_HIDDEN OFF)
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Werror=implicit-function-declaration")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Werror=missing-declarations")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Werror=int-conversion")
 
 option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
 
 find_package(OpenSSL)
 
 if (OPENSSL_FOUND)
-    message (STATUS "OPENSSL found")
-
-    set(CMAKE_C_FLAGS "-DOPENSSL")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DOPENSSL")
     if(CMAKE_VERSION VERSION_LESS 3.4)
         include_directories(${OPENSSL_INCLUDE_DIR})
         include_directories(${OPENSSL_INCLUDE_DIRS})
         link_directories(${OPENSSL_LIBRARIES})
     endif()
-
-    message(STATUS "Using OpenSSL ${OPENSSL_VERSION}")
-else()
-    message (STATUS "OpenSSL Not found.")
 endif()
 
 set(pkgName "ezmax_api_definition__full")
@@ -42,8 +38,6 @@ else()
     if(CURL_FOUND)
         include_directories(${CURL_INCLUDE_DIR})
         set(PLATFORM_LIBRARIES ${PLATFORM_LIBRARIES} ${CURL_LIBRARIES} )
-    else(CURL_FOUND)
-        message(FATAL_ERROR "Could not find the CURL library and development files.")
     endif()
 endif()
 
@@ -128,6 +122,9 @@ set(SRCS
     model/authenticationexternal_reset_authorization_v1_response.c
     model/authenticationexternal_response.c
     model/authenticationexternal_response_compound.c
+    model/bankaccount_autocomplete_element_response.c
+    model/bankaccount_get_autocomplete_v2_response.c
+    model/bankaccount_get_autocomplete_v2_response_m_payload.c
     model/billingentityexternal_autocomplete_element_response.c
     model/billingentityexternal_generate_federation_token_v1_request.c
     model/billingentityexternal_generate_federation_token_v1_response.c
@@ -291,6 +288,24 @@ set(SRCS
     model/creditcarddetail_request.c
     model/creditcarddetail_response.c
     model/creditcarddetail_response_compound.c
+    model/creditcardmerchant_autocomplete_element_response.c
+    model/creditcardmerchant_create_object_v1_request.c
+    model/creditcardmerchant_create_object_v1_response.c
+    model/creditcardmerchant_create_object_v1_response_m_payload.c
+    model/creditcardmerchant_delete_object_v1_response.c
+    model/creditcardmerchant_edit_object_v1_request.c
+    model/creditcardmerchant_edit_object_v1_response.c
+    model/creditcardmerchant_get_autocomplete_v2_response.c
+    model/creditcardmerchant_get_autocomplete_v2_response_m_payload.c
+    model/creditcardmerchant_get_list_v1_response.c
+    model/creditcardmerchant_get_list_v1_response_m_payload.c
+    model/creditcardmerchant_get_object_v2_response.c
+    model/creditcardmerchant_get_object_v2_response_m_payload.c
+    model/creditcardmerchant_list_element.c
+    model/creditcardmerchant_request.c
+    model/creditcardmerchant_request_compound.c
+    model/creditcardmerchant_response.c
+    model/creditcardmerchant_response_compound.c
     model/creditcardtype_autocomplete_element_response.c
     model/creditcardtype_get_autocomplete_v2_response.c
     model/creditcardtype_get_autocomplete_v2_response_m_payload.c
@@ -1700,6 +1715,7 @@ set(SRCS
     api/ObjectApikeyAPI.c
     api/ObjectAttachmentAPI.c
     api/ObjectAuthenticationexternalAPI.c
+    api/ObjectBankaccountAPI.c
     api/ObjectBillingentityexternalAPI.c
     api/ObjectBillingentityinternalAPI.c
     api/ObjectBrandingAPI.c
@@ -1711,6 +1727,7 @@ set(SRCS
     api/ObjectCorsAPI.c
     api/ObjectCountryAPI.c
     api/ObjectCreditcardclientAPI.c
+    api/ObjectCreditcardmerchantAPI.c
     api/ObjectCreditcardtypeAPI.c
     api/ObjectCustomerAPI.c
     api/ObjectDepartmentAPI.c
@@ -1810,6 +1827,7 @@ set(HDRS
     include/keyValuePair.h
     external/cJSON.h
     model/object.h
+    model/any_type.h
     model/activesession_generate_federation_token_v1_request.h
     model/activesession_generate_federation_token_v1_response.h
     model/activesession_generate_federation_token_v1_response_m_payload.h
@@ -1884,6 +1902,9 @@ set(HDRS
     model/authenticationexternal_reset_authorization_v1_response.h
     model/authenticationexternal_response.h
     model/authenticationexternal_response_compound.h
+    model/bankaccount_autocomplete_element_response.h
+    model/bankaccount_get_autocomplete_v2_response.h
+    model/bankaccount_get_autocomplete_v2_response_m_payload.h
     model/billingentityexternal_autocomplete_element_response.h
     model/billingentityexternal_generate_federation_token_v1_request.h
     model/billingentityexternal_generate_federation_token_v1_response.h
@@ -2047,6 +2068,24 @@ set(HDRS
     model/creditcarddetail_request.h
     model/creditcarddetail_response.h
     model/creditcarddetail_response_compound.h
+    model/creditcardmerchant_autocomplete_element_response.h
+    model/creditcardmerchant_create_object_v1_request.h
+    model/creditcardmerchant_create_object_v1_response.h
+    model/creditcardmerchant_create_object_v1_response_m_payload.h
+    model/creditcardmerchant_delete_object_v1_response.h
+    model/creditcardmerchant_edit_object_v1_request.h
+    model/creditcardmerchant_edit_object_v1_response.h
+    model/creditcardmerchant_get_autocomplete_v2_response.h
+    model/creditcardmerchant_get_autocomplete_v2_response_m_payload.h
+    model/creditcardmerchant_get_list_v1_response.h
+    model/creditcardmerchant_get_list_v1_response_m_payload.h
+    model/creditcardmerchant_get_object_v2_response.h
+    model/creditcardmerchant_get_object_v2_response_m_payload.h
+    model/creditcardmerchant_list_element.h
+    model/creditcardmerchant_request.h
+    model/creditcardmerchant_request_compound.h
+    model/creditcardmerchant_response.h
+    model/creditcardmerchant_response_compound.h
     model/creditcardtype_autocomplete_element_response.h
     model/creditcardtype_get_autocomplete_v2_response.h
     model/creditcardtype_get_autocomplete_v2_response_m_payload.h
@@ -3456,6 +3495,7 @@ set(HDRS
     api/ObjectApikeyAPI.h
     api/ObjectAttachmentAPI.h
     api/ObjectAuthenticationexternalAPI.h
+    api/ObjectBankaccountAPI.h
     api/ObjectBillingentityexternalAPI.h
     api/ObjectBillingentityinternalAPI.h
     api/ObjectBrandingAPI.h
@@ -3467,6 +3507,7 @@ set(HDRS
     api/ObjectCorsAPI.h
     api/ObjectCountryAPI.h
     api/ObjectCreditcardclientAPI.h
+    api/ObjectCreditcardmerchantAPI.h
     api/ObjectCreditcardtypeAPI.h
     api/ObjectCustomerAPI.h
     api/ObjectDepartmentAPI.h
@@ -3646,6 +3687,7 @@ set(HDRS "")
 #    unit-tests/manual-ObjectApikeyAPI.c
 #    unit-tests/manual-ObjectAttachmentAPI.c
 #    unit-tests/manual-ObjectAuthenticationexternalAPI.c
+#    unit-tests/manual-ObjectBankaccountAPI.c
 #    unit-tests/manual-ObjectBillingentityexternalAPI.c
 #    unit-tests/manual-ObjectBillingentityinternalAPI.c
 #    unit-tests/manual-ObjectBrandingAPI.c
@@ -3657,6 +3699,7 @@ set(HDRS "")
 #    unit-tests/manual-ObjectCorsAPI.c
 #    unit-tests/manual-ObjectCountryAPI.c
 #    unit-tests/manual-ObjectCreditcardclientAPI.c
+#    unit-tests/manual-ObjectCreditcardmerchantAPI.c
 #    unit-tests/manual-ObjectCreditcardtypeAPI.c
 #    unit-tests/manual-ObjectCustomerAPI.c
 #    unit-tests/manual-ObjectDepartmentAPI.c

@@ -21,9 +21,10 @@ typedef struct communication_send_v1_response_m_payload_t communication_send_v1_
 typedef struct communication_send_v1_response_m_payload_t {
     list_t *a_pki_communication_id; //primitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } communication_send_v1_response_m_payload_t;
 
-communication_send_v1_response_m_payload_t *communication_send_v1_response_m_payload_create(
+__attribute__((deprecated)) communication_send_v1_response_m_payload_t *communication_send_v1_response_m_payload_create(
     list_t *a_pki_communication_id
 );
 

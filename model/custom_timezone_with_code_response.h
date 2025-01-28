@@ -22,9 +22,10 @@ typedef struct custom_timezone_with_code_response_t {
     char *s_timezone_name; // string
     char *s_code; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_timezone_with_code_response_t;
 
-custom_timezone_with_code_response_t *custom_timezone_with_code_response_create(
+__attribute__((deprecated)) custom_timezone_with_code_response_t *custom_timezone_with_code_response_create(
     char *s_timezone_name,
     char *s_code
 );

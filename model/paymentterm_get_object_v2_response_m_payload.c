@@ -5,7 +5,7 @@
 
 
 
-paymentterm_get_object_v2_response_m_payload_t *paymentterm_get_object_v2_response_m_payload_create(
+static paymentterm_get_object_v2_response_m_payload_t *paymentterm_get_object_v2_response_m_payload_create_internal(
     paymentterm_response_compound_t *obj_paymentterm
     ) {
     paymentterm_get_object_v2_response_m_payload_t *paymentterm_get_object_v2_response_m_payload_local_var = malloc(sizeof(paymentterm_get_object_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ paymentterm_get_object_v2_response_m_payload_t *paymentterm_get_object_v2_respon
     }
     paymentterm_get_object_v2_response_m_payload_local_var->obj_paymentterm = obj_paymentterm;
 
+    paymentterm_get_object_v2_response_m_payload_local_var->_library_owned = 1;
     return paymentterm_get_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) paymentterm_get_object_v2_response_m_payload_t *paymentterm_get_object_v2_response_m_payload_create(
+    paymentterm_response_compound_t *obj_paymentterm
+    ) {
+    return paymentterm_get_object_v2_response_m_payload_create_internal (
+        obj_paymentterm
+        );
+}
 
 void paymentterm_get_object_v2_response_m_payload_free(paymentterm_get_object_v2_response_m_payload_t *paymentterm_get_object_v2_response_m_payload) {
     if(NULL == paymentterm_get_object_v2_response_m_payload){
+        return ;
+    }
+    if(paymentterm_get_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "paymentterm_get_object_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ paymentterm_get_object_v2_response_m_payload_t *paymentterm_get_object_v2_respon
 
     // paymentterm_get_object_v2_response_m_payload->obj_paymentterm
     cJSON *obj_paymentterm = cJSON_GetObjectItemCaseSensitive(paymentterm_get_object_v2_response_m_payloadJSON, "objPaymentterm");
+    if (cJSON_IsNull(obj_paymentterm)) {
+        obj_paymentterm = NULL;
+    }
     if (!obj_paymentterm) {
         goto end;
     }
@@ -71,7 +86,7 @@ paymentterm_get_object_v2_response_m_payload_t *paymentterm_get_object_v2_respon
     obj_paymentterm_local_nonprim = paymentterm_response_compound_parseFromJSON(obj_paymentterm); //nonprimitive
 
 
-    paymentterm_get_object_v2_response_m_payload_local_var = paymentterm_get_object_v2_response_m_payload_create (
+    paymentterm_get_object_v2_response_m_payload_local_var = paymentterm_get_object_v2_response_m_payload_create_internal (
         obj_paymentterm_local_nonprim
         );
 

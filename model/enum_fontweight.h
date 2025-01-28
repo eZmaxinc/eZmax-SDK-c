@@ -24,9 +24,9 @@ char* enum_fontweight_enum_fontweight_ToString(ezmax_api_definition__full_enum_f
 
 ezmax_api_definition__full_enum_fontweight__e enum_fontweight_enum_fontweight_FromString(char* enum_fontweight);
 
-//cJSON *enum_fontweight_enum_fontweight_convertToJSON(ezmax_api_definition__full_enum_fontweight__e enum_fontweight);
+cJSON *enum_fontweight_convertToJSON(ezmax_api_definition__full_enum_fontweight__e enum_fontweight);
 
-//ezmax_api_definition__full_enum_fontweight__e enum_fontweight_enum_fontweight_parseFromJSON(cJSON *enum_fontweightJSON);
+ezmax_api_definition__full_enum_fontweight__e enum_fontweight_parseFromJSON(cJSON *enum_fontweightJSON);
 
 #endif /* _enum_fontweight_H_ */
 

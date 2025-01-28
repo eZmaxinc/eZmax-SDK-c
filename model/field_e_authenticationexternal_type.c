@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_authenticationexternal_type__e field_e_authen
     return 0;
 }
 
-cJSON *field_e_authenticationexternal_type_field_e_authenticationexternal_type_convertToJSON(ezmax_api_definition__full_field_e_authenticationexternal_type__e field_e_authenticationexternal_type) {
+cJSON *field_e_authenticationexternal_type_convertToJSON(ezmax_api_definition__full_field_e_authenticationexternal_type__e field_e_authenticationexternal_type) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_authenticationexternal_type", field_e_authenticationexternal_type_field_e_authenticationexternal_type_ToString(field_e_authenticationexternal_type)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_authenticationexternal_type__e field_e_authenticationexternal_type_field_e_authenticationexternal_type_parseFromJSON(cJSON *field_e_authenticationexternal_typeJSON) {
-    ezmax_api_definition__full_field_e_authenticationexternal_type__e *field_e_authenticationexternal_type = NULL;
-    ezmax_api_definition__full_field_e_authenticationexternal_type__e field_e_authenticationexternal_typeVariable;
-    cJSON *field_e_authenticationexternal_typeVar = cJSON_GetObjectItemCaseSensitive(field_e_authenticationexternal_typeJSON, "field_e_authenticationexternal_type");
-    if(!cJSON_IsString(field_e_authenticationexternal_typeVar) || (field_e_authenticationexternal_typeVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_authenticationexternal_type__e field_e_authenticationexternal_type_parseFromJSON(cJSON *field_e_authenticationexternal_typeJSON) {
+    if(!cJSON_IsString(field_e_authenticationexternal_typeJSON) || (field_e_authenticationexternal_typeJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_authenticationexternal_typeVariable = field_e_authenticationexternal_type_field_e_authenticationexternal_type_FromString(field_e_authenticationexternal_typeVar->valuestring);
-    return field_e_authenticationexternal_typeVariable;
-end:
-    return 0;
+    return field_e_authenticationexternal_type_field_e_authenticationexternal_type_FromString(field_e_authenticationexternal_typeJSON->valuestring);
 }

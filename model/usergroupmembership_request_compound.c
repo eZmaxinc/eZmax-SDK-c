@@ -5,7 +5,7 @@
 
 
 
-usergroupmembership_request_compound_t *usergroupmembership_request_compound_create(
+static usergroupmembership_request_compound_t *usergroupmembership_request_compound_create_internal(
     int pki_usergroupmembership_id,
     int fki_usergroup_id,
     int fki_user_id,
@@ -20,12 +20,30 @@ usergroupmembership_request_compound_t *usergroupmembership_request_compound_cre
     usergroupmembership_request_compound_local_var->fki_user_id = fki_user_id;
     usergroupmembership_request_compound_local_var->fki_usergroupexternal_id = fki_usergroupexternal_id;
 
+    usergroupmembership_request_compound_local_var->_library_owned = 1;
     return usergroupmembership_request_compound_local_var;
 }
 
+__attribute__((deprecated)) usergroupmembership_request_compound_t *usergroupmembership_request_compound_create(
+    int pki_usergroupmembership_id,
+    int fki_usergroup_id,
+    int fki_user_id,
+    int fki_usergroupexternal_id
+    ) {
+    return usergroupmembership_request_compound_create_internal (
+        pki_usergroupmembership_id,
+        fki_usergroup_id,
+        fki_user_id,
+        fki_usergroupexternal_id
+        );
+}
 
 void usergroupmembership_request_compound_free(usergroupmembership_request_compound_t *usergroupmembership_request_compound) {
     if(NULL == usergroupmembership_request_compound){
+        return ;
+    }
+    if(usergroupmembership_request_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroupmembership_request_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -81,6 +99,9 @@ usergroupmembership_request_compound_t *usergroupmembership_request_compound_par
 
     // usergroupmembership_request_compound->pki_usergroupmembership_id
     cJSON *pki_usergroupmembership_id = cJSON_GetObjectItemCaseSensitive(usergroupmembership_request_compoundJSON, "pkiUsergroupmembershipID");
+    if (cJSON_IsNull(pki_usergroupmembership_id)) {
+        pki_usergroupmembership_id = NULL;
+    }
     if (pki_usergroupmembership_id) { 
     if(!cJSON_IsNumber(pki_usergroupmembership_id))
     {
@@ -90,6 +111,9 @@ usergroupmembership_request_compound_t *usergroupmembership_request_compound_par
 
     // usergroupmembership_request_compound->fki_usergroup_id
     cJSON *fki_usergroup_id = cJSON_GetObjectItemCaseSensitive(usergroupmembership_request_compoundJSON, "fkiUsergroupID");
+    if (cJSON_IsNull(fki_usergroup_id)) {
+        fki_usergroup_id = NULL;
+    }
     if (!fki_usergroup_id) {
         goto end;
     }
@@ -102,6 +126,9 @@ usergroupmembership_request_compound_t *usergroupmembership_request_compound_par
 
     // usergroupmembership_request_compound->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(usergroupmembership_request_compoundJSON, "fkiUserID");
+    if (cJSON_IsNull(fki_user_id)) {
+        fki_user_id = NULL;
+    }
     if (fki_user_id) { 
     if(!cJSON_IsNumber(fki_user_id))
     {
@@ -111,6 +138,9 @@ usergroupmembership_request_compound_t *usergroupmembership_request_compound_par
 
     // usergroupmembership_request_compound->fki_usergroupexternal_id
     cJSON *fki_usergroupexternal_id = cJSON_GetObjectItemCaseSensitive(usergroupmembership_request_compoundJSON, "fkiUsergroupexternalID");
+    if (cJSON_IsNull(fki_usergroupexternal_id)) {
+        fki_usergroupexternal_id = NULL;
+    }
     if (fki_usergroupexternal_id) { 
     if(!cJSON_IsNumber(fki_usergroupexternal_id))
     {
@@ -119,7 +149,7 @@ usergroupmembership_request_compound_t *usergroupmembership_request_compound_par
     }
 
 
-    usergroupmembership_request_compound_local_var = usergroupmembership_request_compound_create (
+    usergroupmembership_request_compound_local_var = usergroupmembership_request_compound_create_internal (
         pki_usergroupmembership_id ? pki_usergroupmembership_id->valuedouble : 0,
         fki_usergroup_id->valuedouble,
         fki_user_id ? fki_user_id->valuedouble : 0,

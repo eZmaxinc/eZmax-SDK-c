@@ -5,7 +5,7 @@
 
 
 
-ezsigndocument_create_object_v1_response_m_payload_t *ezsigndocument_create_object_v1_response_m_payload_create(
+static ezsigndocument_create_object_v1_response_m_payload_t *ezsigndocument_create_object_v1_response_m_payload_create_internal(
     list_t *a_pki_ezsigndocument_id
     ) {
     ezsigndocument_create_object_v1_response_m_payload_t *ezsigndocument_create_object_v1_response_m_payload_local_var = malloc(sizeof(ezsigndocument_create_object_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ ezsigndocument_create_object_v1_response_m_payload_t *ezsigndocument_create_obje
     }
     ezsigndocument_create_object_v1_response_m_payload_local_var->a_pki_ezsigndocument_id = a_pki_ezsigndocument_id;
 
+    ezsigndocument_create_object_v1_response_m_payload_local_var->_library_owned = 1;
     return ezsigndocument_create_object_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezsigndocument_create_object_v1_response_m_payload_t *ezsigndocument_create_object_v1_response_m_payload_create(
+    list_t *a_pki_ezsigndocument_id
+    ) {
+    return ezsigndocument_create_object_v1_response_m_payload_create_internal (
+        a_pki_ezsigndocument_id
+        );
+}
 
 void ezsigndocument_create_object_v1_response_m_payload_free(ezsigndocument_create_object_v1_response_m_payload_t *ezsigndocument_create_object_v1_response_m_payload) {
     if(NULL == ezsigndocument_create_object_v1_response_m_payload){
+        return ;
+    }
+    if(ezsigndocument_create_object_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigndocument_create_object_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +82,9 @@ ezsigndocument_create_object_v1_response_m_payload_t *ezsigndocument_create_obje
 
     // ezsigndocument_create_object_v1_response_m_payload->a_pki_ezsigndocument_id
     cJSON *a_pki_ezsigndocument_id = cJSON_GetObjectItemCaseSensitive(ezsigndocument_create_object_v1_response_m_payloadJSON, "a_pkiEzsigndocumentID");
+    if (cJSON_IsNull(a_pki_ezsigndocument_id)) {
+        a_pki_ezsigndocument_id = NULL;
+    }
     if (!a_pki_ezsigndocument_id) {
         goto end;
     }
@@ -87,7 +102,7 @@ ezsigndocument_create_object_v1_response_m_payload_t *ezsigndocument_create_obje
         {
             goto end;
         }
-        double *a_pki_ezsigndocument_id_local_value = (double *)calloc(1, sizeof(double));
+        double *a_pki_ezsigndocument_id_local_value = calloc(1, sizeof(double));
         if(!a_pki_ezsigndocument_id_local_value)
         {
             goto end;
@@ -97,7 +112,7 @@ ezsigndocument_create_object_v1_response_m_payload_t *ezsigndocument_create_obje
     }
 
 
-    ezsigndocument_create_object_v1_response_m_payload_local_var = ezsigndocument_create_object_v1_response_m_payload_create (
+    ezsigndocument_create_object_v1_response_m_payload_local_var = ezsigndocument_create_object_v1_response_m_payload_create_internal (
         a_pki_ezsigndocument_idList
         );
 

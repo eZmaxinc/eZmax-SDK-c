@@ -22,9 +22,10 @@ typedef struct ezsigndocument_get_form_data_v1_response_m_payload_t ezsigndocume
 typedef struct ezsigndocument_get_form_data_v1_response_m_payload_t {
     struct custom_form_data_document_response_t *obj_form_data_document; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigndocument_get_form_data_v1_response_m_payload_t;
 
-ezsigndocument_get_form_data_v1_response_m_payload_t *ezsigndocument_get_form_data_v1_response_m_payload_create(
+__attribute__((deprecated)) ezsigndocument_get_form_data_v1_response_m_payload_t *ezsigndocument_get_form_data_v1_response_m_payload_create(
     custom_form_data_document_response_t *obj_form_data_document
 );
 

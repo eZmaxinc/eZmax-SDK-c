@@ -5,7 +5,7 @@
 
 
 
-common_get_report_v1_response_m_payload_t *common_get_report_v1_response_m_payload_create(
+static common_get_report_v1_response_m_payload_t *common_get_report_v1_response_m_payload_create_internal(
     common_reportgroup_t *obj_reportgroup
     ) {
     common_get_report_v1_response_m_payload_t *common_get_report_v1_response_m_payload_local_var = malloc(sizeof(common_get_report_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ common_get_report_v1_response_m_payload_t *common_get_report_v1_response_m_paylo
     }
     common_get_report_v1_response_m_payload_local_var->obj_reportgroup = obj_reportgroup;
 
+    common_get_report_v1_response_m_payload_local_var->_library_owned = 1;
     return common_get_report_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) common_get_report_v1_response_m_payload_t *common_get_report_v1_response_m_payload_create(
+    common_reportgroup_t *obj_reportgroup
+    ) {
+    return common_get_report_v1_response_m_payload_create_internal (
+        obj_reportgroup
+        );
+}
 
 void common_get_report_v1_response_m_payload_free(common_get_report_v1_response_m_payload_t *common_get_report_v1_response_m_payload) {
     if(NULL == common_get_report_v1_response_m_payload){
+        return ;
+    }
+    if(common_get_report_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "common_get_report_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ common_get_report_v1_response_m_payload_t *common_get_report_v1_response_m_paylo
 
     // common_get_report_v1_response_m_payload->obj_reportgroup
     cJSON *obj_reportgroup = cJSON_GetObjectItemCaseSensitive(common_get_report_v1_response_m_payloadJSON, "objReportgroup");
+    if (cJSON_IsNull(obj_reportgroup)) {
+        obj_reportgroup = NULL;
+    }
     if (!obj_reportgroup) {
         goto end;
     }
@@ -71,7 +86,7 @@ common_get_report_v1_response_m_payload_t *common_get_report_v1_response_m_paylo
     obj_reportgroup_local_nonprim = common_reportgroup_parseFromJSON(obj_reportgroup); //nonprimitive
 
 
-    common_get_report_v1_response_m_payload_local_var = common_get_report_v1_response_m_payload_create (
+    common_get_report_v1_response_m_payload_local_var = common_get_report_v1_response_m_payload_create_internal (
         obj_reportgroup_local_nonprim
         );
 

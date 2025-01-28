@@ -22,9 +22,10 @@ typedef struct multilingual_paymentterm_description_t {
     char *s_paymentterm_description1; // string
     char *s_paymentterm_description2; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } multilingual_paymentterm_description_t;
 
-multilingual_paymentterm_description_t *multilingual_paymentterm_description_create(
+__attribute__((deprecated)) multilingual_paymentterm_description_t *multilingual_paymentterm_description_create(
     char *s_paymentterm_description1,
     char *s_paymentterm_description2
 );

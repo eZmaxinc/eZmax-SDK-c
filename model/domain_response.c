@@ -5,7 +5,7 @@
 
 
 
-domain_response_t *domain_response_create(
+static domain_response_t *domain_response_create_internal(
     int pki_domain_id,
     char *s_domain_name,
     int b_domain_validdkim,
@@ -24,12 +24,34 @@ domain_response_t *domain_response_create(
     domain_response_local_var->b_domain_validcustomer = b_domain_validcustomer;
     domain_response_local_var->obj_audit = obj_audit;
 
+    domain_response_local_var->_library_owned = 1;
     return domain_response_local_var;
 }
 
+__attribute__((deprecated)) domain_response_t *domain_response_create(
+    int pki_domain_id,
+    char *s_domain_name,
+    int b_domain_validdkim,
+    int b_domain_validmailfrom,
+    int b_domain_validcustomer,
+    common_audit_t *obj_audit
+    ) {
+    return domain_response_create_internal (
+        pki_domain_id,
+        s_domain_name,
+        b_domain_validdkim,
+        b_domain_validmailfrom,
+        b_domain_validcustomer,
+        obj_audit
+        );
+}
 
 void domain_response_free(domain_response_t *domain_response) {
     if(NULL == domain_response){
+        return ;
+    }
+    if(domain_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "domain_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -122,6 +144,9 @@ domain_response_t *domain_response_parseFromJSON(cJSON *domain_responseJSON){
 
     // domain_response->pki_domain_id
     cJSON *pki_domain_id = cJSON_GetObjectItemCaseSensitive(domain_responseJSON, "pkiDomainID");
+    if (cJSON_IsNull(pki_domain_id)) {
+        pki_domain_id = NULL;
+    }
     if (!pki_domain_id) {
         goto end;
     }
@@ -134,6 +159,9 @@ domain_response_t *domain_response_parseFromJSON(cJSON *domain_responseJSON){
 
     // domain_response->s_domain_name
     cJSON *s_domain_name = cJSON_GetObjectItemCaseSensitive(domain_responseJSON, "sDomainName");
+    if (cJSON_IsNull(s_domain_name)) {
+        s_domain_name = NULL;
+    }
     if (!s_domain_name) {
         goto end;
     }
@@ -146,6 +174,9 @@ domain_response_t *domain_response_parseFromJSON(cJSON *domain_responseJSON){
 
     // domain_response->b_domain_validdkim
     cJSON *b_domain_validdkim = cJSON_GetObjectItemCaseSensitive(domain_responseJSON, "bDomainValiddkim");
+    if (cJSON_IsNull(b_domain_validdkim)) {
+        b_domain_validdkim = NULL;
+    }
     if (!b_domain_validdkim) {
         goto end;
     }
@@ -158,6 +189,9 @@ domain_response_t *domain_response_parseFromJSON(cJSON *domain_responseJSON){
 
     // domain_response->b_domain_validmailfrom
     cJSON *b_domain_validmailfrom = cJSON_GetObjectItemCaseSensitive(domain_responseJSON, "bDomainValidmailfrom");
+    if (cJSON_IsNull(b_domain_validmailfrom)) {
+        b_domain_validmailfrom = NULL;
+    }
     if (!b_domain_validmailfrom) {
         goto end;
     }
@@ -170,6 +204,9 @@ domain_response_t *domain_response_parseFromJSON(cJSON *domain_responseJSON){
 
     // domain_response->b_domain_validcustomer
     cJSON *b_domain_validcustomer = cJSON_GetObjectItemCaseSensitive(domain_responseJSON, "bDomainValidcustomer");
+    if (cJSON_IsNull(b_domain_validcustomer)) {
+        b_domain_validcustomer = NULL;
+    }
     if (!b_domain_validcustomer) {
         goto end;
     }
@@ -182,6 +219,9 @@ domain_response_t *domain_response_parseFromJSON(cJSON *domain_responseJSON){
 
     // domain_response->obj_audit
     cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(domain_responseJSON, "objAudit");
+    if (cJSON_IsNull(obj_audit)) {
+        obj_audit = NULL;
+    }
     if (!obj_audit) {
         goto end;
     }
@@ -190,7 +230,7 @@ domain_response_t *domain_response_parseFromJSON(cJSON *domain_responseJSON){
     obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
 
 
-    domain_response_local_var = domain_response_create (
+    domain_response_local_var = domain_response_create_internal (
         pki_domain_id->valuedouble,
         strdup(s_domain_name->valuestring),
         b_domain_validdkim->valueint,

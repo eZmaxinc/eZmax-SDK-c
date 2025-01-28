@@ -26,9 +26,10 @@ typedef struct custom_form_data_document_response_t {
     char *dt_modified_date; // string
     list_t *a_obj_form_data_signer; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_form_data_document_response_t;
 
-custom_form_data_document_response_t *custom_form_data_document_response_create(
+__attribute__((deprecated)) custom_form_data_document_response_t *custom_form_data_document_response_create(
     int pki_ezsigndocument_id,
     int fki_ezsignfolder_id,
     char *s_ezsigndocument_name,

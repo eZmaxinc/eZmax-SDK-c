@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 // Functions for enum SSELECTOR for ObjectBillingentityexternalAPI_billingentityexternalGetAutocompleteV2
 
@@ -172,15 +167,18 @@ ObjectBillingentityexternalAPI_billingentityexternalGenerateFederationTokenV1(ap
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/billingentityexternal/{pkiBillingentityexternalID}/generateFederationToken")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/billingentityexternal/{pkiBillingentityexternalID}/generateFederationToken");
+    char *localVarPath = strdup("/1/object/billingentityexternal/{pkiBillingentityexternalID}/generateFederationToken");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiBillingentityexternalID =  + strlen("{ pkiBillingentityexternalID }");
+    long sizeOfPathParams_pkiBillingentityexternalID =  + sizeof("{ pkiBillingentityexternalID }") - 1;
     if(pkiBillingentityexternalID == 0){
         goto end;
     }
@@ -188,7 +186,7 @@ ObjectBillingentityexternalAPI_billingentityexternalGenerateFederationTokenV1(ap
     snprintf(localVarToReplace_pkiBillingentityexternalID, sizeOfPathParams_pkiBillingentityexternalID, "{%s}", "pkiBillingentityexternalID");
 
     char localVarBuff_pkiBillingentityexternalID[256];
-    intToStr(localVarBuff_pkiBillingentityexternalID, *pkiBillingentityexternalID);
+    snprintf(localVarBuff_pkiBillingentityexternalID, sizeof localVarBuff_pkiBillingentityexternalID, "%ld", (long)*pkiBillingentityexternalID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiBillingentityexternalID, localVarBuff_pkiBillingentityexternalID);
 
@@ -199,9 +197,10 @@ ObjectBillingentityexternalAPI_billingentityexternalGenerateFederationTokenV1(ap
     cJSON *localVarSingleItemJSON_billingentityexternal_generate_federation_token_v1_request = NULL;
     if (billingentityexternal_generate_federation_token_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_billingentityexternal_generate_federation_token_v1_request = billingentityexternal_generate_federation_token_v1_request_convertToJSON(billingentityexternal_generate_federation_token_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_billingentityexternal_generate_federation_token_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -213,6 +212,7 @@ ObjectBillingentityexternalAPI_billingentityexternalGenerateFederationTokenV1(ap
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -224,11 +224,14 @@ ObjectBillingentityexternalAPI_billingentityexternalGenerateFederationTokenV1(ap
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectBillingentityexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    billingentityexternal_generate_federation_token_v1_response_t *elementToReturn = billingentityexternal_generate_federation_token_v1_response_parseFromJSON(ObjectBillingentityexternalAPIlocalVarJSON);
-    cJSON_Delete(ObjectBillingentityexternalAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    billingentityexternal_generate_federation_token_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectBillingentityexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = billingentityexternal_generate_federation_token_v1_response_parseFromJSON(ObjectBillingentityexternalAPIlocalVarJSON);
+        cJSON_Delete(ObjectBillingentityexternalAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -269,22 +272,27 @@ ObjectBillingentityexternalAPI_billingentityexternalGetAutocompleteV2(apiClient_
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/billingentityexternal/getAutocomplete/{sSelector}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/billingentityexternal/getAutocomplete/{sSelector}");
+    char *localVarPath = strdup("/2/object/billingentityexternal/getAutocomplete/{sSelector}");
+
+    if(!sSelector)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_sSelector = strlen(sSelector)+3 + strlen("{ sSelector }");
-    if(sSelector == NULL) {
+    long sizeOfPathParams_sSelector = strlen(billingentityexternalGetAutocompleteV2_SSELECTOR_ToString(sSelector))+3 + sizeof("{ sSelector }") - 1;
+    if(sSelector == 0) {
         goto end;
     }
     char* localVarToReplace_sSelector = malloc(sizeOfPathParams_sSelector);
     sprintf(localVarToReplace_sSelector, "{%s}", "sSelector");
 
-    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, sSelector);
+    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, billingentityexternalGetAutocompleteV2_SSELECTOR_ToString(sSelector));
 
 
 
@@ -308,7 +316,7 @@ ObjectBillingentityexternalAPI_billingentityexternalGetAutocompleteV2(apiClient_
     {
         keyQuery_eFilterActive = strdup("eFilterActive");
         valueQuery_eFilterActive = (eFilterActive);
-        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(billingentityexternalGetAutocompleteV2_EFILTERACTIVE_ToString(
+        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, strdup(billingentityexternalGetAutocompleteV2_EFILTERACTIVE_ToString(
         valueQuery_eFilterActive)));
         list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
     }
@@ -333,6 +341,7 @@ ObjectBillingentityexternalAPI_billingentityexternalGetAutocompleteV2(apiClient_
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -340,11 +349,14 @@ ObjectBillingentityexternalAPI_billingentityexternalGetAutocompleteV2(apiClient_
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectBillingentityexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    billingentityexternal_get_autocomplete_v2_response_t *elementToReturn = billingentityexternal_get_autocomplete_v2_response_parseFromJSON(ObjectBillingentityexternalAPIlocalVarJSON);
-    cJSON_Delete(ObjectBillingentityexternalAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    billingentityexternal_get_autocomplete_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectBillingentityexternalAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = billingentityexternal_get_autocomplete_v2_response_parseFromJSON(ObjectBillingentityexternalAPIlocalVarJSON);
+        cJSON_Delete(ObjectBillingentityexternalAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

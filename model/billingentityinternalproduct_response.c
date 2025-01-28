@@ -5,7 +5,7 @@
 
 
 
-billingentityinternalproduct_response_t *billingentityinternalproduct_response_create(
+static billingentityinternalproduct_response_t *billingentityinternalproduct_response_create_internal(
     int pki_billingentityinternalproduct_id,
     int fki_billingentityinternal_id,
     char *s_billingentityinternal_description_x,
@@ -26,12 +26,36 @@ billingentityinternalproduct_response_t *billingentityinternalproduct_response_c
     billingentityinternalproduct_response_local_var->fki_billingentityexternal_id = fki_billingentityexternal_id;
     billingentityinternalproduct_response_local_var->s_billingentityexternal_description = s_billingentityexternal_description;
 
+    billingentityinternalproduct_response_local_var->_library_owned = 1;
     return billingentityinternalproduct_response_local_var;
 }
 
+__attribute__((deprecated)) billingentityinternalproduct_response_t *billingentityinternalproduct_response_create(
+    int pki_billingentityinternalproduct_id,
+    int fki_billingentityinternal_id,
+    char *s_billingentityinternal_description_x,
+    int fki_ezmaxproduct_id,
+    char *s_ezmaxproduct_description_x,
+    int fki_billingentityexternal_id,
+    char *s_billingentityexternal_description
+    ) {
+    return billingentityinternalproduct_response_create_internal (
+        pki_billingentityinternalproduct_id,
+        fki_billingentityinternal_id,
+        s_billingentityinternal_description_x,
+        fki_ezmaxproduct_id,
+        s_ezmaxproduct_description_x,
+        fki_billingentityexternal_id,
+        s_billingentityexternal_description
+        );
+}
 
 void billingentityinternalproduct_response_free(billingentityinternalproduct_response_t *billingentityinternalproduct_response) {
     if(NULL == billingentityinternalproduct_response){
+        return ;
+    }
+    if(billingentityinternalproduct_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "billingentityinternalproduct_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -129,6 +153,9 @@ billingentityinternalproduct_response_t *billingentityinternalproduct_response_p
 
     // billingentityinternalproduct_response->pki_billingentityinternalproduct_id
     cJSON *pki_billingentityinternalproduct_id = cJSON_GetObjectItemCaseSensitive(billingentityinternalproduct_responseJSON, "pkiBillingentityinternalproductID");
+    if (cJSON_IsNull(pki_billingentityinternalproduct_id)) {
+        pki_billingentityinternalproduct_id = NULL;
+    }
     if (!pki_billingentityinternalproduct_id) {
         goto end;
     }
@@ -141,6 +168,9 @@ billingentityinternalproduct_response_t *billingentityinternalproduct_response_p
 
     // billingentityinternalproduct_response->fki_billingentityinternal_id
     cJSON *fki_billingentityinternal_id = cJSON_GetObjectItemCaseSensitive(billingentityinternalproduct_responseJSON, "fkiBillingentityinternalID");
+    if (cJSON_IsNull(fki_billingentityinternal_id)) {
+        fki_billingentityinternal_id = NULL;
+    }
     if (!fki_billingentityinternal_id) {
         goto end;
     }
@@ -153,6 +183,9 @@ billingentityinternalproduct_response_t *billingentityinternalproduct_response_p
 
     // billingentityinternalproduct_response->s_billingentityinternal_description_x
     cJSON *s_billingentityinternal_description_x = cJSON_GetObjectItemCaseSensitive(billingentityinternalproduct_responseJSON, "sBillingentityinternalDescriptionX");
+    if (cJSON_IsNull(s_billingentityinternal_description_x)) {
+        s_billingentityinternal_description_x = NULL;
+    }
     if (!s_billingentityinternal_description_x) {
         goto end;
     }
@@ -165,6 +198,9 @@ billingentityinternalproduct_response_t *billingentityinternalproduct_response_p
 
     // billingentityinternalproduct_response->fki_ezmaxproduct_id
     cJSON *fki_ezmaxproduct_id = cJSON_GetObjectItemCaseSensitive(billingentityinternalproduct_responseJSON, "fkiEzmaxproductID");
+    if (cJSON_IsNull(fki_ezmaxproduct_id)) {
+        fki_ezmaxproduct_id = NULL;
+    }
     if (!fki_ezmaxproduct_id) {
         goto end;
     }
@@ -177,6 +213,9 @@ billingentityinternalproduct_response_t *billingentityinternalproduct_response_p
 
     // billingentityinternalproduct_response->s_ezmaxproduct_description_x
     cJSON *s_ezmaxproduct_description_x = cJSON_GetObjectItemCaseSensitive(billingentityinternalproduct_responseJSON, "sEzmaxproductDescriptionX");
+    if (cJSON_IsNull(s_ezmaxproduct_description_x)) {
+        s_ezmaxproduct_description_x = NULL;
+    }
     if (!s_ezmaxproduct_description_x) {
         goto end;
     }
@@ -189,6 +228,9 @@ billingentityinternalproduct_response_t *billingentityinternalproduct_response_p
 
     // billingentityinternalproduct_response->fki_billingentityexternal_id
     cJSON *fki_billingentityexternal_id = cJSON_GetObjectItemCaseSensitive(billingentityinternalproduct_responseJSON, "fkiBillingentityexternalID");
+    if (cJSON_IsNull(fki_billingentityexternal_id)) {
+        fki_billingentityexternal_id = NULL;
+    }
     if (!fki_billingentityexternal_id) {
         goto end;
     }
@@ -201,6 +243,9 @@ billingentityinternalproduct_response_t *billingentityinternalproduct_response_p
 
     // billingentityinternalproduct_response->s_billingentityexternal_description
     cJSON *s_billingentityexternal_description = cJSON_GetObjectItemCaseSensitive(billingentityinternalproduct_responseJSON, "sBillingentityexternalDescription");
+    if (cJSON_IsNull(s_billingentityexternal_description)) {
+        s_billingentityexternal_description = NULL;
+    }
     if (!s_billingentityexternal_description) {
         goto end;
     }
@@ -212,7 +257,7 @@ billingentityinternalproduct_response_t *billingentityinternalproduct_response_p
     }
 
 
-    billingentityinternalproduct_response_local_var = billingentityinternalproduct_response_create (
+    billingentityinternalproduct_response_local_var = billingentityinternalproduct_response_create_internal (
         pki_billingentityinternalproduct_id->valuedouble,
         fki_billingentityinternal_id->valuedouble,
         strdup(s_billingentityinternal_description_x->valuestring),

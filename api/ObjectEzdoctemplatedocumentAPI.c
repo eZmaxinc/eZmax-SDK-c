@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 // Functions for enum SSELECTOR for ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentGetAutocompleteV2
 
@@ -319,11 +314,14 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentCreateObjectV1(apiClient_t *
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezdoctemplatedocument")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezdoctemplatedocument");
+    char *localVarPath = strdup("/1/object/ezdoctemplatedocument");
+
 
 
 
@@ -332,9 +330,10 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentCreateObjectV1(apiClient_t *
     cJSON *localVarSingleItemJSON_ezdoctemplatedocument_create_object_v1_request = NULL;
     if (ezdoctemplatedocument_create_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezdoctemplatedocument_create_object_v1_request = ezdoctemplatedocument_create_object_v1_request_convertToJSON(ezdoctemplatedocument_create_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezdoctemplatedocument_create_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -346,6 +345,7 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentCreateObjectV1(apiClient_t *
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -353,11 +353,14 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentCreateObjectV1(apiClient_t *
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzdoctemplatedocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezdoctemplatedocument_create_object_v1_response_t *elementToReturn = ezdoctemplatedocument_create_object_v1_response_parseFromJSON(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezdoctemplatedocument_create_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzdoctemplatedocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezdoctemplatedocument_create_object_v1_response_parseFromJSON(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -397,15 +400,18 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentDownloadV1(apiClient_t *apiC
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezdoctemplatedocument/{pkiEzdoctemplatedocumentID}/download")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezdoctemplatedocument/{pkiEzdoctemplatedocumentID}/download");
+    char *localVarPath = strdup("/1/object/ezdoctemplatedocument/{pkiEzdoctemplatedocumentID}/download");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzdoctemplatedocumentID =  + strlen("{ pkiEzdoctemplatedocumentID }");
+    long sizeOfPathParams_pkiEzdoctemplatedocumentID =  + sizeof("{ pkiEzdoctemplatedocumentID }") - 1;
     if(pkiEzdoctemplatedocumentID == 0){
         goto end;
     }
@@ -413,7 +419,7 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentDownloadV1(apiClient_t *apiC
     snprintf(localVarToReplace_pkiEzdoctemplatedocumentID, sizeOfPathParams_pkiEzdoctemplatedocumentID, "{%s}", "pkiEzdoctemplatedocumentID");
 
     char localVarBuff_pkiEzdoctemplatedocumentID[256];
-    intToStr(localVarBuff_pkiEzdoctemplatedocumentID, *pkiEzdoctemplatedocumentID);
+    snprintf(localVarBuff_pkiEzdoctemplatedocumentID, sizeof localVarBuff_pkiEzdoctemplatedocumentID, "%ld", (long)*pkiEzdoctemplatedocumentID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzdoctemplatedocumentID, localVarBuff_pkiEzdoctemplatedocumentID);
 
@@ -428,6 +434,7 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentDownloadV1(apiClient_t *apiC
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -459,7 +466,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezdoctemplatedocument_edit_object_v1_response_t*
 ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentEditObjectV1(apiClient_t *apiClient, int *pkiEzdoctemplatedocumentID, ezdoctemplatedocument_edit_object_v1_request_t *ezdoctemplatedocument_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -468,15 +475,18 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentEditObjectV1(apiClient_t *ap
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezdoctemplatedocument/{pkiEzdoctemplatedocumentID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezdoctemplatedocument/{pkiEzdoctemplatedocumentID}");
+    char *localVarPath = strdup("/1/object/ezdoctemplatedocument/{pkiEzdoctemplatedocumentID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzdoctemplatedocumentID =  + strlen("{ pkiEzdoctemplatedocumentID }");
+    long sizeOfPathParams_pkiEzdoctemplatedocumentID =  + sizeof("{ pkiEzdoctemplatedocumentID }") - 1;
     if(pkiEzdoctemplatedocumentID == 0){
         goto end;
     }
@@ -484,7 +494,7 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentEditObjectV1(apiClient_t *ap
     snprintf(localVarToReplace_pkiEzdoctemplatedocumentID, sizeOfPathParams_pkiEzdoctemplatedocumentID, "{%s}", "pkiEzdoctemplatedocumentID");
 
     char localVarBuff_pkiEzdoctemplatedocumentID[256];
-    intToStr(localVarBuff_pkiEzdoctemplatedocumentID, *pkiEzdoctemplatedocumentID);
+    snprintf(localVarBuff_pkiEzdoctemplatedocumentID, sizeof localVarBuff_pkiEzdoctemplatedocumentID, "%ld", (long)*pkiEzdoctemplatedocumentID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzdoctemplatedocumentID, localVarBuff_pkiEzdoctemplatedocumentID);
 
@@ -495,9 +505,10 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentEditObjectV1(apiClient_t *ap
     cJSON *localVarSingleItemJSON_ezdoctemplatedocument_edit_object_v1_request = NULL;
     if (ezdoctemplatedocument_edit_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezdoctemplatedocument_edit_object_v1_request = ezdoctemplatedocument_edit_object_v1_request_convertToJSON(ezdoctemplatedocument_edit_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezdoctemplatedocument_edit_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -509,6 +520,7 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentEditObjectV1(apiClient_t *ap
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -524,11 +536,14 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentEditObjectV1(apiClient_t *ap
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzdoctemplatedocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezdoctemplatedocument_edit_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzdoctemplatedocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezdoctemplatedocument_edit_object_v1_response_parseFromJSON(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -569,22 +584,27 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentGetAutocompleteV2(apiClient_
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/ezdoctemplatedocument/getAutocomplete/{sSelector}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/ezdoctemplatedocument/getAutocomplete/{sSelector}");
+    char *localVarPath = strdup("/2/object/ezdoctemplatedocument/getAutocomplete/{sSelector}");
+
+    if(!sSelector)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_sSelector = strlen(sSelector)+3 + strlen("{ sSelector }");
-    if(sSelector == NULL) {
+    long sizeOfPathParams_sSelector = strlen(ezdoctemplatedocumentGetAutocompleteV2_SSELECTOR_ToString(sSelector))+3 + sizeof("{ sSelector }") - 1;
+    if(sSelector == 0) {
         goto end;
     }
     char* localVarToReplace_sSelector = malloc(sizeOfPathParams_sSelector);
     sprintf(localVarToReplace_sSelector, "{%s}", "sSelector");
 
-    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, sSelector);
+    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, ezdoctemplatedocumentGetAutocompleteV2_SSELECTOR_ToString(sSelector));
 
 
 
@@ -620,7 +640,7 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentGetAutocompleteV2(apiClient_
     {
         keyQuery_eType = strdup("eType");
         valueQuery_eType = (eType);
-        keyPairQuery_eType = keyValuePair_create(keyQuery_eType, (void *)strdup(ezdoctemplatedocumentGetAutocompleteV2_ETYPE_ToString(
+        keyPairQuery_eType = keyValuePair_create(keyQuery_eType, strdup(ezdoctemplatedocumentGetAutocompleteV2_ETYPE_ToString(
         valueQuery_eType)));
         list_addElement(localVarQueryParameters,keyPairQuery_eType);
     }
@@ -633,7 +653,7 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentGetAutocompleteV2(apiClient_
     {
         keyQuery_eFilterActive = strdup("eFilterActive");
         valueQuery_eFilterActive = (eFilterActive);
-        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(ezdoctemplatedocumentGetAutocompleteV2_EFILTERACTIVE_ToString(
+        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, strdup(ezdoctemplatedocumentGetAutocompleteV2_EFILTERACTIVE_ToString(
         valueQuery_eFilterActive)));
         list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
     }
@@ -658,6 +678,7 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentGetAutocompleteV2(apiClient_
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -665,11 +686,14 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentGetAutocompleteV2(apiClient_
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzdoctemplatedocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezdoctemplatedocument_get_autocomplete_v2_response_t *elementToReturn = ezdoctemplatedocument_get_autocomplete_v2_response_parseFromJSON(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezdoctemplatedocument_get_autocomplete_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzdoctemplatedocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezdoctemplatedocument_get_autocomplete_v2_response_parseFromJSON(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -750,11 +774,14 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentGetListV1(apiClient_t *apiCl
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezdoctemplatedocument/getList")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezdoctemplatedocument/getList");
+    char *localVarPath = strdup("/1/object/ezdoctemplatedocument/getList");
+
 
 
 
@@ -779,7 +806,7 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentGetListV1(apiClient_t *apiCl
     {
         keyQuery_eOrderBy = strdup("eOrderBy");
         valueQuery_eOrderBy = (eOrderBy);
-        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, (void *)strdup(ezdoctemplatedocumentGetListV1_EORDERBY_ToString(
+        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, strdup(ezdoctemplatedocumentGetListV1_EORDERBY_ToString(
         valueQuery_eOrderBy)));
         list_addElement(localVarQueryParameters,keyPairQuery_eOrderBy);
     }
@@ -831,6 +858,7 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentGetListV1(apiClient_t *apiCl
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -842,11 +870,14 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentGetListV1(apiClient_t *apiCl
     //    printf("%s\n","The URL is valid, but one of the Accept header is not defined or invalid. For example, you set the header \&quot;Accept: application/json\&quot; but the function can only return \&quot;Content-type: image/png\&quot;");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzdoctemplatedocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezdoctemplatedocument_get_list_v1_response_t *elementToReturn = ezdoctemplatedocument_get_list_v1_response_parseFromJSON(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezdoctemplatedocument_get_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzdoctemplatedocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezdoctemplatedocument_get_list_v1_response_parseFromJSON(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -930,15 +961,18 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentGetObjectV2(apiClient_t *api
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/ezdoctemplatedocument/{pkiEzdoctemplatedocumentID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/ezdoctemplatedocument/{pkiEzdoctemplatedocumentID}");
+    char *localVarPath = strdup("/2/object/ezdoctemplatedocument/{pkiEzdoctemplatedocumentID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzdoctemplatedocumentID =  + strlen("{ pkiEzdoctemplatedocumentID }");
+    long sizeOfPathParams_pkiEzdoctemplatedocumentID =  + sizeof("{ pkiEzdoctemplatedocumentID }") - 1;
     if(pkiEzdoctemplatedocumentID == 0){
         goto end;
     }
@@ -946,7 +980,7 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentGetObjectV2(apiClient_t *api
     snprintf(localVarToReplace_pkiEzdoctemplatedocumentID, sizeOfPathParams_pkiEzdoctemplatedocumentID, "{%s}", "pkiEzdoctemplatedocumentID");
 
     char localVarBuff_pkiEzdoctemplatedocumentID[256];
-    intToStr(localVarBuff_pkiEzdoctemplatedocumentID, *pkiEzdoctemplatedocumentID);
+    snprintf(localVarBuff_pkiEzdoctemplatedocumentID, sizeof localVarBuff_pkiEzdoctemplatedocumentID, "%ld", (long)*pkiEzdoctemplatedocumentID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzdoctemplatedocumentID, localVarBuff_pkiEzdoctemplatedocumentID);
 
@@ -961,6 +995,7 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentGetObjectV2(apiClient_t *api
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -972,11 +1007,14 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentGetObjectV2(apiClient_t *api
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzdoctemplatedocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezdoctemplatedocument_get_object_v2_response_t *elementToReturn = ezdoctemplatedocument_get_object_v2_response_parseFromJSON(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezdoctemplatedocument_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzdoctemplatedocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezdoctemplatedocument_get_object_v2_response_parseFromJSON(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -1003,7 +1041,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezdoctemplatedocument_patch_object_v1_response_t*
 ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentPatchObjectV1(apiClient_t *apiClient, int *pkiEzdoctemplatedocumentID, ezdoctemplatedocument_patch_object_v1_request_t *ezdoctemplatedocument_patch_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -1012,15 +1050,18 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentPatchObjectV1(apiClient_t *a
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezdoctemplatedocument/{pkiEzdoctemplatedocumentID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezdoctemplatedocument/{pkiEzdoctemplatedocumentID}");
+    char *localVarPath = strdup("/1/object/ezdoctemplatedocument/{pkiEzdoctemplatedocumentID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzdoctemplatedocumentID =  + strlen("{ pkiEzdoctemplatedocumentID }");
+    long sizeOfPathParams_pkiEzdoctemplatedocumentID =  + sizeof("{ pkiEzdoctemplatedocumentID }") - 1;
     if(pkiEzdoctemplatedocumentID == 0){
         goto end;
     }
@@ -1028,7 +1069,7 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentPatchObjectV1(apiClient_t *a
     snprintf(localVarToReplace_pkiEzdoctemplatedocumentID, sizeOfPathParams_pkiEzdoctemplatedocumentID, "{%s}", "pkiEzdoctemplatedocumentID");
 
     char localVarBuff_pkiEzdoctemplatedocumentID[256];
-    intToStr(localVarBuff_pkiEzdoctemplatedocumentID, *pkiEzdoctemplatedocumentID);
+    snprintf(localVarBuff_pkiEzdoctemplatedocumentID, sizeof localVarBuff_pkiEzdoctemplatedocumentID, "%ld", (long)*pkiEzdoctemplatedocumentID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzdoctemplatedocumentID, localVarBuff_pkiEzdoctemplatedocumentID);
 
@@ -1039,9 +1080,10 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentPatchObjectV1(apiClient_t *a
     cJSON *localVarSingleItemJSON_ezdoctemplatedocument_patch_object_v1_request = NULL;
     if (ezdoctemplatedocument_patch_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezdoctemplatedocument_patch_object_v1_request = ezdoctemplatedocument_patch_object_v1_request_convertToJSON(ezdoctemplatedocument_patch_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezdoctemplatedocument_patch_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -1053,6 +1095,7 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentPatchObjectV1(apiClient_t *a
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PATCH");
 
     // uncomment below to debug the error response
@@ -1064,11 +1107,14 @@ ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentPatchObjectV1(apiClient_t *a
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzdoctemplatedocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezdoctemplatedocument_patch_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzdoctemplatedocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezdoctemplatedocument_patch_object_v1_response_parseFromJSON(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzdoctemplatedocumentAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

@@ -5,7 +5,7 @@
 
 
 
-textstylestatic_response_t *textstylestatic_response_create(
+static textstylestatic_response_t *textstylestatic_response_create_internal(
     int pki_textstylestatic_id,
     int fki_font_id,
     char *s_font_name,
@@ -30,12 +30,40 @@ textstylestatic_response_t *textstylestatic_response_create(
     textstylestatic_response_local_var->i_textstylestatic_fontcolor = i_textstylestatic_fontcolor;
     textstylestatic_response_local_var->i_textstylestatic_size = i_textstylestatic_size;
 
+    textstylestatic_response_local_var->_library_owned = 1;
     return textstylestatic_response_local_var;
 }
 
+__attribute__((deprecated)) textstylestatic_response_t *textstylestatic_response_create(
+    int pki_textstylestatic_id,
+    int fki_font_id,
+    char *s_font_name,
+    int b_textstylestatic_bold,
+    int b_textstylestatic_underline,
+    int b_textstylestatic_italic,
+    int b_textstylestatic_strikethrough,
+    int i_textstylestatic_fontcolor,
+    int i_textstylestatic_size
+    ) {
+    return textstylestatic_response_create_internal (
+        pki_textstylestatic_id,
+        fki_font_id,
+        s_font_name,
+        b_textstylestatic_bold,
+        b_textstylestatic_underline,
+        b_textstylestatic_italic,
+        b_textstylestatic_strikethrough,
+        i_textstylestatic_fontcolor,
+        i_textstylestatic_size
+        );
+}
 
 void textstylestatic_response_free(textstylestatic_response_t *textstylestatic_response) {
     if(NULL == textstylestatic_response){
+        return ;
+    }
+    if(textstylestatic_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "textstylestatic_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -142,6 +170,9 @@ textstylestatic_response_t *textstylestatic_response_parseFromJSON(cJSON *textst
 
     // textstylestatic_response->pki_textstylestatic_id
     cJSON *pki_textstylestatic_id = cJSON_GetObjectItemCaseSensitive(textstylestatic_responseJSON, "pkiTextstylestaticID");
+    if (cJSON_IsNull(pki_textstylestatic_id)) {
+        pki_textstylestatic_id = NULL;
+    }
     if (pki_textstylestatic_id) { 
     if(!cJSON_IsNumber(pki_textstylestatic_id))
     {
@@ -151,6 +182,9 @@ textstylestatic_response_t *textstylestatic_response_parseFromJSON(cJSON *textst
 
     // textstylestatic_response->fki_font_id
     cJSON *fki_font_id = cJSON_GetObjectItemCaseSensitive(textstylestatic_responseJSON, "fkiFontID");
+    if (cJSON_IsNull(fki_font_id)) {
+        fki_font_id = NULL;
+    }
     if (!fki_font_id) {
         goto end;
     }
@@ -163,6 +197,9 @@ textstylestatic_response_t *textstylestatic_response_parseFromJSON(cJSON *textst
 
     // textstylestatic_response->s_font_name
     cJSON *s_font_name = cJSON_GetObjectItemCaseSensitive(textstylestatic_responseJSON, "sFontName");
+    if (cJSON_IsNull(s_font_name)) {
+        s_font_name = NULL;
+    }
     if (!s_font_name) {
         goto end;
     }
@@ -175,6 +212,9 @@ textstylestatic_response_t *textstylestatic_response_parseFromJSON(cJSON *textst
 
     // textstylestatic_response->b_textstylestatic_bold
     cJSON *b_textstylestatic_bold = cJSON_GetObjectItemCaseSensitive(textstylestatic_responseJSON, "bTextstylestaticBold");
+    if (cJSON_IsNull(b_textstylestatic_bold)) {
+        b_textstylestatic_bold = NULL;
+    }
     if (!b_textstylestatic_bold) {
         goto end;
     }
@@ -187,6 +227,9 @@ textstylestatic_response_t *textstylestatic_response_parseFromJSON(cJSON *textst
 
     // textstylestatic_response->b_textstylestatic_underline
     cJSON *b_textstylestatic_underline = cJSON_GetObjectItemCaseSensitive(textstylestatic_responseJSON, "bTextstylestaticUnderline");
+    if (cJSON_IsNull(b_textstylestatic_underline)) {
+        b_textstylestatic_underline = NULL;
+    }
     if (!b_textstylestatic_underline) {
         goto end;
     }
@@ -199,6 +242,9 @@ textstylestatic_response_t *textstylestatic_response_parseFromJSON(cJSON *textst
 
     // textstylestatic_response->b_textstylestatic_italic
     cJSON *b_textstylestatic_italic = cJSON_GetObjectItemCaseSensitive(textstylestatic_responseJSON, "bTextstylestaticItalic");
+    if (cJSON_IsNull(b_textstylestatic_italic)) {
+        b_textstylestatic_italic = NULL;
+    }
     if (!b_textstylestatic_italic) {
         goto end;
     }
@@ -211,6 +257,9 @@ textstylestatic_response_t *textstylestatic_response_parseFromJSON(cJSON *textst
 
     // textstylestatic_response->b_textstylestatic_strikethrough
     cJSON *b_textstylestatic_strikethrough = cJSON_GetObjectItemCaseSensitive(textstylestatic_responseJSON, "bTextstylestaticStrikethrough");
+    if (cJSON_IsNull(b_textstylestatic_strikethrough)) {
+        b_textstylestatic_strikethrough = NULL;
+    }
     if (!b_textstylestatic_strikethrough) {
         goto end;
     }
@@ -223,6 +272,9 @@ textstylestatic_response_t *textstylestatic_response_parseFromJSON(cJSON *textst
 
     // textstylestatic_response->i_textstylestatic_fontcolor
     cJSON *i_textstylestatic_fontcolor = cJSON_GetObjectItemCaseSensitive(textstylestatic_responseJSON, "iTextstylestaticFontcolor");
+    if (cJSON_IsNull(i_textstylestatic_fontcolor)) {
+        i_textstylestatic_fontcolor = NULL;
+    }
     if (!i_textstylestatic_fontcolor) {
         goto end;
     }
@@ -235,6 +287,9 @@ textstylestatic_response_t *textstylestatic_response_parseFromJSON(cJSON *textst
 
     // textstylestatic_response->i_textstylestatic_size
     cJSON *i_textstylestatic_size = cJSON_GetObjectItemCaseSensitive(textstylestatic_responseJSON, "iTextstylestaticSize");
+    if (cJSON_IsNull(i_textstylestatic_size)) {
+        i_textstylestatic_size = NULL;
+    }
     if (!i_textstylestatic_size) {
         goto end;
     }
@@ -246,7 +301,7 @@ textstylestatic_response_t *textstylestatic_response_parseFromJSON(cJSON *textst
     }
 
 
-    textstylestatic_response_local_var = textstylestatic_response_create (
+    textstylestatic_response_local_var = textstylestatic_response_create_internal (
         pki_textstylestatic_id ? pki_textstylestatic_id->valuedouble : 0,
         fki_font_id->valuedouble,
         strdup(s_font_name->valuestring),

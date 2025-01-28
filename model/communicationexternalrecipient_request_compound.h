@@ -17,30 +17,23 @@ typedef struct communicationexternalrecipient_request_compound_t communicationex
 
 #include "field_e_communicationexternalrecipient_type.h"
 
-// Enum  for communicationexternalrecipient_request_compound
-
-typedef enum  { ezmax_api_definition__full_communicationexternalrecipient_request_compound__NULL = 0, ezmax_api_definition__full_communicationexternalrecipient_request_compound__To, ezmax_api_definition__full_communicationexternalrecipient_request_compound__Cc, ezmax_api_definition__full_communicationexternalrecipient_request_compound__Bcc } ezmax_api_definition__full_communicationexternalrecipient_request_compound__e;
-
-char* communicationexternalrecipient_request_compound_e_communicationexternalrecipient_type_ToString(ezmax_api_definition__full_communicationexternalrecipient_request_compound__e e_communicationexternalrecipient_type);
-
-ezmax_api_definition__full_communicationexternalrecipient_request_compound__e communicationexternalrecipient_request_compound_e_communicationexternalrecipient_type_FromString(char* e_communicationexternalrecipient_type);
-
 
 
 typedef struct communicationexternalrecipient_request_compound_t {
     int pki_communicationexternalrecipient_id; //numeric
     char *s_email_address; // string
     char *s_phone_e164; // string
-    field_e_communicationexternalrecipient_type_t *e_communicationexternalrecipient_type; // custom
+    ezmax_api_definition__full_field_e_communicationexternalrecipient_type__e e_communicationexternalrecipient_type; //referenced enum
     char *s_communicationexternalrecipient_name; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } communicationexternalrecipient_request_compound_t;
 
-communicationexternalrecipient_request_compound_t *communicationexternalrecipient_request_compound_create(
+__attribute__((deprecated)) communicationexternalrecipient_request_compound_t *communicationexternalrecipient_request_compound_create(
     int pki_communicationexternalrecipient_id,
     char *s_email_address,
     char *s_phone_e164,
-    field_e_communicationexternalrecipient_type_t *e_communicationexternalrecipient_type,
+    ezmax_api_definition__full_field_e_communicationexternalrecipient_type__e e_communicationexternalrecipient_type,
     char *s_communicationexternalrecipient_name
 );
 

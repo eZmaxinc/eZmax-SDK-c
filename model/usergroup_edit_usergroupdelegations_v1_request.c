@@ -5,7 +5,7 @@
 
 
 
-usergroup_edit_usergroupdelegations_v1_request_t *usergroup_edit_usergroupdelegations_v1_request_create(
+static usergroup_edit_usergroupdelegations_v1_request_t *usergroup_edit_usergroupdelegations_v1_request_create_internal(
     list_t *a_obj_usergroupdelegation
     ) {
     usergroup_edit_usergroupdelegations_v1_request_t *usergroup_edit_usergroupdelegations_v1_request_local_var = malloc(sizeof(usergroup_edit_usergroupdelegations_v1_request_t));
@@ -14,12 +14,24 @@ usergroup_edit_usergroupdelegations_v1_request_t *usergroup_edit_usergroupdelega
     }
     usergroup_edit_usergroupdelegations_v1_request_local_var->a_obj_usergroupdelegation = a_obj_usergroupdelegation;
 
+    usergroup_edit_usergroupdelegations_v1_request_local_var->_library_owned = 1;
     return usergroup_edit_usergroupdelegations_v1_request_local_var;
 }
 
+__attribute__((deprecated)) usergroup_edit_usergroupdelegations_v1_request_t *usergroup_edit_usergroupdelegations_v1_request_create(
+    list_t *a_obj_usergroupdelegation
+    ) {
+    return usergroup_edit_usergroupdelegations_v1_request_create_internal (
+        a_obj_usergroupdelegation
+        );
+}
 
 void usergroup_edit_usergroupdelegations_v1_request_free(usergroup_edit_usergroupdelegations_v1_request_t *usergroup_edit_usergroupdelegations_v1_request) {
     if(NULL == usergroup_edit_usergroupdelegations_v1_request){
+        return ;
+    }
+    if(usergroup_edit_usergroupdelegations_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroup_edit_usergroupdelegations_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ usergroup_edit_usergroupdelegations_v1_request_t *usergroup_edit_usergroupdelega
 
     // usergroup_edit_usergroupdelegations_v1_request->a_obj_usergroupdelegation
     cJSON *a_obj_usergroupdelegation = cJSON_GetObjectItemCaseSensitive(usergroup_edit_usergroupdelegations_v1_requestJSON, "a_objUsergroupdelegation");
+    if (cJSON_IsNull(a_obj_usergroupdelegation)) {
+        a_obj_usergroupdelegation = NULL;
+    }
     if (!a_obj_usergroupdelegation) {
         goto end;
     }
@@ -96,7 +111,7 @@ usergroup_edit_usergroupdelegations_v1_request_t *usergroup_edit_usergroupdelega
     }
 
 
-    usergroup_edit_usergroupdelegations_v1_request_local_var = usergroup_edit_usergroupdelegations_v1_request_create (
+    usergroup_edit_usergroupdelegations_v1_request_local_var = usergroup_edit_usergroupdelegations_v1_request_create_internal (
         a_obj_usergroupdelegationList
         );
 

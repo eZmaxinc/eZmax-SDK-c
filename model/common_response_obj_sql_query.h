@@ -22,9 +22,10 @@ typedef struct common_response_obj_sql_query_t {
     char *s_query; // string
     float f_duration; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } common_response_obj_sql_query_t;
 
-common_response_obj_sql_query_t *common_response_obj_sql_query_create(
+__attribute__((deprecated)) common_response_obj_sql_query_t *common_response_obj_sql_query_create(
     char *s_query,
     float f_duration
 );

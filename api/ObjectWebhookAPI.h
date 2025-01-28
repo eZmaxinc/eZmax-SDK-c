@@ -5,23 +5,23 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/common_response_error_too_many_requests.h"
-#include "../model/custom_e_webhook_ezsignevent.h"
-#include "../model/field_e_webhook_managementevent.h"
-#include "../model/field_e_webhook_module.h"
 #include "../model/header_accept_language.h"
 #include "../model/object.h"
 #include "../model/webhook_create_object_v2_request.h"
 #include "../model/webhook_create_object_v2_response.h"
+#include "../model/webhook_delete_object_v1_response.h"
 #include "../model/webhook_edit_object_v1_request.h"
+#include "../model/webhook_edit_object_v1_response.h"
 #include "../model/webhook_get_history_v1_response.h"
 #include "../model/webhook_get_list_v1_response.h"
 #include "../model/webhook_get_object_v2_response.h"
 #include "../model/webhook_regenerate_apikey_v1_request.h"
 #include "../model/webhook_regenerate_apikey_v1_response.h"
 #include "../model/webhook_send_webhook_v1_request.h"
+#include "../model/webhook_send_webhook_v1_response.h"
+#include "../model/webhook_test_v1_response.h"
 
 // Enum EWEBHOOKHISTORYINTERVAL for ObjectWebhookAPI_webhookGetHistoryV1
 typedef enum  { ezmax_api_definition__full_webhookGetHistoryV1_EWEBHOOKHISTORYINTERVAL_NULL = 0, ezmax_api_definition__full_webhookGetHistoryV1_EWEBHOOKHISTORYINTERVAL_LastDay, ezmax_api_definition__full_webhookGetHistoryV1_EWEBHOOKHISTORYINTERVAL_LastWeek } ezmax_api_definition__full_webhookGetHistoryV1_eWebhookHistoryinterval_e;
@@ -45,7 +45,7 @@ ObjectWebhookAPI_webhookCreateObjectV2(apiClient_t *apiClient, webhook_create_ob
 //
 // 
 //
-common_response_t*
+webhook_delete_object_v1_response_t*
 ObjectWebhookAPI_webhookDeleteObjectV1(apiClient_t *apiClient, int *pkiWebhookID);
 
 
@@ -53,7 +53,7 @@ ObjectWebhookAPI_webhookDeleteObjectV1(apiClient_t *apiClient, int *pkiWebhookID
 //
 // 
 //
-common_response_t*
+webhook_edit_object_v1_response_t*
 ObjectWebhookAPI_webhookEditObjectV1(apiClient_t *apiClient, int *pkiWebhookID, webhook_edit_object_v1_request_t *webhook_edit_object_v1_request);
 
 
@@ -91,7 +91,7 @@ ObjectWebhookAPI_webhookRegenerateApikeyV1(apiClient_t *apiClient, int *pkiWebho
 
 // Emit a Webhook event
 //
-common_response_t*
+webhook_send_webhook_v1_response_t*
 ObjectWebhookAPI_webhookSendWebhookV1(apiClient_t *apiClient, webhook_send_webhook_v1_request_t *webhook_send_webhook_v1_request);
 
 
@@ -99,7 +99,7 @@ ObjectWebhookAPI_webhookSendWebhookV1(apiClient_t *apiClient, webhook_send_webho
 //
 // 
 //
-common_response_t*
+webhook_test_v1_response_t*
 ObjectWebhookAPI_webhookTestV1(apiClient_t *apiClient, int *pkiWebhookID, object_t *body);
 
 

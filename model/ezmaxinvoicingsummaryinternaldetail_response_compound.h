@@ -32,9 +32,10 @@ typedef struct ezmaxinvoicingsummaryinternaldetail_response_compound_t {
     int b_ezmaxinvoicingsummaryinternaldetail_adjustment; //boolean
     char *t_ezmaxproduct_help_x; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezmaxinvoicingsummaryinternaldetail_response_compound_t;
 
-ezmaxinvoicingsummaryinternaldetail_response_compound_t *ezmaxinvoicingsummaryinternaldetail_response_compound_create(
+__attribute__((deprecated)) ezmaxinvoicingsummaryinternaldetail_response_compound_t *ezmaxinvoicingsummaryinternaldetail_response_compound_create(
     int pki_ezmaxinvoicingsummaryinternaldetail_id,
     int fki_ezmaxinvoicingsummaryinternal_id,
     int fki_ezmaxproduct_id,

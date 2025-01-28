@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__e field_e_u
     return 0;
 }
 
-cJSON *field_e_user_ezsignsendreminderfrequency_field_e_user_ezsignsendreminderfrequency_convertToJSON(ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__e field_e_user_ezsignsendreminderfrequency) {
+cJSON *field_e_user_ezsignsendreminderfrequency_convertToJSON(ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__e field_e_user_ezsignsendreminderfrequency) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_user_ezsignsendreminderfrequency", field_e_user_ezsignsendreminderfrequency_field_e_user_ezsignsendreminderfrequency_ToString(field_e_user_ezsignsendreminderfrequency)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__e field_e_user_ezsignsendreminderfrequency_field_e_user_ezsignsendreminderfrequency_parseFromJSON(cJSON *field_e_user_ezsignsendreminderfrequencyJSON) {
-    ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__e *field_e_user_ezsignsendreminderfrequency = NULL;
-    ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__e field_e_user_ezsignsendreminderfrequencyVariable;
-    cJSON *field_e_user_ezsignsendreminderfrequencyVar = cJSON_GetObjectItemCaseSensitive(field_e_user_ezsignsendreminderfrequencyJSON, "field_e_user_ezsignsendreminderfrequency");
-    if(!cJSON_IsString(field_e_user_ezsignsendreminderfrequencyVar) || (field_e_user_ezsignsendreminderfrequencyVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__e field_e_user_ezsignsendreminderfrequency_parseFromJSON(cJSON *field_e_user_ezsignsendreminderfrequencyJSON) {
+    if(!cJSON_IsString(field_e_user_ezsignsendreminderfrequencyJSON) || (field_e_user_ezsignsendreminderfrequencyJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_user_ezsignsendreminderfrequencyVariable = field_e_user_ezsignsendreminderfrequency_field_e_user_ezsignsendreminderfrequency_FromString(field_e_user_ezsignsendreminderfrequencyVar->valuestring);
-    return field_e_user_ezsignsendreminderfrequencyVariable;
-end:
-    return 0;
+    return field_e_user_ezsignsendreminderfrequency_field_e_user_ezsignsendreminderfrequency_FromString(field_e_user_ezsignsendreminderfrequencyJSON->valuestring);
 }

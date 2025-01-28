@@ -26,9 +26,10 @@ typedef struct userstaged_response_t {
     char *s_userstaged_lastname; // string
     char *s_userstaged_externalid; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } userstaged_response_t;
 
-userstaged_response_t *userstaged_response_create(
+__attribute__((deprecated)) userstaged_response_t *userstaged_response_create(
     int pki_userstaged_id,
     int fki_email_id,
     char *s_email_address,

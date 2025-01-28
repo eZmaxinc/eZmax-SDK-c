@@ -5,7 +5,7 @@
 
 
 
-custom_user_name_response_t *custom_user_name_response_create(
+static custom_user_name_response_t *custom_user_name_response_create_internal(
     char *s_user_lastname,
     char *s_user_firstname
     ) {
@@ -16,12 +16,26 @@ custom_user_name_response_t *custom_user_name_response_create(
     custom_user_name_response_local_var->s_user_lastname = s_user_lastname;
     custom_user_name_response_local_var->s_user_firstname = s_user_firstname;
 
+    custom_user_name_response_local_var->_library_owned = 1;
     return custom_user_name_response_local_var;
 }
 
+__attribute__((deprecated)) custom_user_name_response_t *custom_user_name_response_create(
+    char *s_user_lastname,
+    char *s_user_firstname
+    ) {
+    return custom_user_name_response_create_internal (
+        s_user_lastname,
+        s_user_firstname
+        );
+}
 
 void custom_user_name_response_free(custom_user_name_response_t *custom_user_name_response) {
     if(NULL == custom_user_name_response){
+        return ;
+    }
+    if(custom_user_name_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "custom_user_name_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +84,9 @@ custom_user_name_response_t *custom_user_name_response_parseFromJSON(cJSON *cust
 
     // custom_user_name_response->s_user_lastname
     cJSON *s_user_lastname = cJSON_GetObjectItemCaseSensitive(custom_user_name_responseJSON, "sUserLastname");
+    if (cJSON_IsNull(s_user_lastname)) {
+        s_user_lastname = NULL;
+    }
     if (!s_user_lastname) {
         goto end;
     }
@@ -82,6 +99,9 @@ custom_user_name_response_t *custom_user_name_response_parseFromJSON(cJSON *cust
 
     // custom_user_name_response->s_user_firstname
     cJSON *s_user_firstname = cJSON_GetObjectItemCaseSensitive(custom_user_name_responseJSON, "sUserFirstname");
+    if (cJSON_IsNull(s_user_firstname)) {
+        s_user_firstname = NULL;
+    }
     if (!s_user_firstname) {
         goto end;
     }
@@ -93,7 +113,7 @@ custom_user_name_response_t *custom_user_name_response_parseFromJSON(cJSON *cust
     }
 
 
-    custom_user_name_response_local_var = custom_user_name_response_create (
+    custom_user_name_response_local_var = custom_user_name_response_create_internal (
         strdup(s_user_lastname->valuestring),
         strdup(s_user_firstname->valuestring)
         );

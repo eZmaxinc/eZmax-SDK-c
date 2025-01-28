@@ -8,10 +8,10 @@
 #include "../model/billingentityinternal_create_object_v1_request.h"
 #include "../model/billingentityinternal_create_object_v1_response.h"
 #include "../model/billingentityinternal_edit_object_v1_request.h"
+#include "../model/billingentityinternal_edit_object_v1_response.h"
 #include "../model/billingentityinternal_get_autocomplete_v2_response.h"
 #include "../model/billingentityinternal_get_list_v1_response.h"
 #include "../model/billingentityinternal_get_object_v2_response.h"
-#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/header_accept_language.h"
 
@@ -43,7 +43,7 @@ ObjectBillingentityinternalAPI_billingentityinternalCreateObjectV1(apiClient_t *
 //
 // 
 //
-common_response_t*
+billingentityinternal_edit_object_v1_response_t*
 ObjectBillingentityinternalAPI_billingentityinternalEditObjectV1(apiClient_t *apiClient, int *pkiBillingentityinternalID, billingentityinternal_edit_object_v1_request_t *billingentityinternal_edit_object_v1_request);
 
 

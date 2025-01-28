@@ -23,9 +23,10 @@ typedef struct ezsigndocument_create_element_v3_response_t {
     int pki_ezsigndocument_id; //numeric
     list_t *a_obj_matchingtemplate; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigndocument_create_element_v3_response_t;
 
-ezsigndocument_create_element_v3_response_t *ezsigndocument_create_element_v3_response_create(
+__attribute__((deprecated)) ezsigndocument_create_element_v3_response_t *ezsigndocument_create_element_v3_response_create(
     int pki_ezsigndocument_id,
     list_t *a_obj_matchingtemplate
 );

@@ -5,7 +5,7 @@
 
 
 
-ezsigntsarequirement_autocomplete_element_response_t *ezsigntsarequirement_autocomplete_element_response_create(
+static ezsigntsarequirement_autocomplete_element_response_t *ezsigntsarequirement_autocomplete_element_response_create_internal(
     char *s_ezsigntsarequirement_description_x,
     int pki_ezsigntsarequirement_id,
     int b_ezsigntsarequirement_isactive,
@@ -20,12 +20,30 @@ ezsigntsarequirement_autocomplete_element_response_t *ezsigntsarequirement_autoc
     ezsigntsarequirement_autocomplete_element_response_local_var->b_ezsigntsarequirement_isactive = b_ezsigntsarequirement_isactive;
     ezsigntsarequirement_autocomplete_element_response_local_var->b_disabled = b_disabled;
 
+    ezsigntsarequirement_autocomplete_element_response_local_var->_library_owned = 1;
     return ezsigntsarequirement_autocomplete_element_response_local_var;
 }
 
+__attribute__((deprecated)) ezsigntsarequirement_autocomplete_element_response_t *ezsigntsarequirement_autocomplete_element_response_create(
+    char *s_ezsigntsarequirement_description_x,
+    int pki_ezsigntsarequirement_id,
+    int b_ezsigntsarequirement_isactive,
+    int b_disabled
+    ) {
+    return ezsigntsarequirement_autocomplete_element_response_create_internal (
+        s_ezsigntsarequirement_description_x,
+        pki_ezsigntsarequirement_id,
+        b_ezsigntsarequirement_isactive,
+        b_disabled
+        );
+}
 
 void ezsigntsarequirement_autocomplete_element_response_free(ezsigntsarequirement_autocomplete_element_response_t *ezsigntsarequirement_autocomplete_element_response) {
     if(NULL == ezsigntsarequirement_autocomplete_element_response){
+        return ;
+    }
+    if(ezsigntsarequirement_autocomplete_element_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigntsarequirement_autocomplete_element_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -88,6 +106,9 @@ ezsigntsarequirement_autocomplete_element_response_t *ezsigntsarequirement_autoc
 
     // ezsigntsarequirement_autocomplete_element_response->s_ezsigntsarequirement_description_x
     cJSON *s_ezsigntsarequirement_description_x = cJSON_GetObjectItemCaseSensitive(ezsigntsarequirement_autocomplete_element_responseJSON, "sEzsigntsarequirementDescriptionX");
+    if (cJSON_IsNull(s_ezsigntsarequirement_description_x)) {
+        s_ezsigntsarequirement_description_x = NULL;
+    }
     if (!s_ezsigntsarequirement_description_x) {
         goto end;
     }
@@ -100,6 +121,9 @@ ezsigntsarequirement_autocomplete_element_response_t *ezsigntsarequirement_autoc
 
     // ezsigntsarequirement_autocomplete_element_response->pki_ezsigntsarequirement_id
     cJSON *pki_ezsigntsarequirement_id = cJSON_GetObjectItemCaseSensitive(ezsigntsarequirement_autocomplete_element_responseJSON, "pkiEzsigntsarequirementID");
+    if (cJSON_IsNull(pki_ezsigntsarequirement_id)) {
+        pki_ezsigntsarequirement_id = NULL;
+    }
     if (!pki_ezsigntsarequirement_id) {
         goto end;
     }
@@ -112,6 +136,9 @@ ezsigntsarequirement_autocomplete_element_response_t *ezsigntsarequirement_autoc
 
     // ezsigntsarequirement_autocomplete_element_response->b_ezsigntsarequirement_isactive
     cJSON *b_ezsigntsarequirement_isactive = cJSON_GetObjectItemCaseSensitive(ezsigntsarequirement_autocomplete_element_responseJSON, "bEzsigntsarequirementIsactive");
+    if (cJSON_IsNull(b_ezsigntsarequirement_isactive)) {
+        b_ezsigntsarequirement_isactive = NULL;
+    }
     if (!b_ezsigntsarequirement_isactive) {
         goto end;
     }
@@ -124,6 +151,9 @@ ezsigntsarequirement_autocomplete_element_response_t *ezsigntsarequirement_autoc
 
     // ezsigntsarequirement_autocomplete_element_response->b_disabled
     cJSON *b_disabled = cJSON_GetObjectItemCaseSensitive(ezsigntsarequirement_autocomplete_element_responseJSON, "bDisabled");
+    if (cJSON_IsNull(b_disabled)) {
+        b_disabled = NULL;
+    }
     if (!b_disabled) {
         goto end;
     }
@@ -135,7 +165,7 @@ ezsigntsarequirement_autocomplete_element_response_t *ezsigntsarequirement_autoc
     }
 
 
-    ezsigntsarequirement_autocomplete_element_response_local_var = ezsigntsarequirement_autocomplete_element_response_create (
+    ezsigntsarequirement_autocomplete_element_response_local_var = ezsigntsarequirement_autocomplete_element_response_create_internal (
         strdup(s_ezsigntsarequirement_description_x->valuestring),
         pki_ezsigntsarequirement_id->valuedouble,
         b_ezsigntsarequirement_isactive->valueint,

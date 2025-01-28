@@ -23,9 +23,10 @@ typedef struct billingentityinternal_request_t {
     int pki_billingentityinternal_id; //numeric
     struct multilingual_billingentityinternal_description_t *obj_billingentityinternal_description; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } billingentityinternal_request_t;
 
-billingentityinternal_request_t *billingentityinternal_request_create(
+__attribute__((deprecated)) billingentityinternal_request_t *billingentityinternal_request_create(
     int pki_billingentityinternal_id,
     multilingual_billingentityinternal_description_t *obj_billingentityinternal_description
 );

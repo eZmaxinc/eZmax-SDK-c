@@ -5,7 +5,7 @@
 
 
 
-userlogintype_autocomplete_element_response_t *userlogintype_autocomplete_element_response_create(
+static userlogintype_autocomplete_element_response_t *userlogintype_autocomplete_element_response_create_internal(
     int pki_userlogintype_id,
     char *s_userlogintype_description_x,
     int b_userlogintype_isactive
@@ -18,12 +18,28 @@ userlogintype_autocomplete_element_response_t *userlogintype_autocomplete_elemen
     userlogintype_autocomplete_element_response_local_var->s_userlogintype_description_x = s_userlogintype_description_x;
     userlogintype_autocomplete_element_response_local_var->b_userlogintype_isactive = b_userlogintype_isactive;
 
+    userlogintype_autocomplete_element_response_local_var->_library_owned = 1;
     return userlogintype_autocomplete_element_response_local_var;
 }
 
+__attribute__((deprecated)) userlogintype_autocomplete_element_response_t *userlogintype_autocomplete_element_response_create(
+    int pki_userlogintype_id,
+    char *s_userlogintype_description_x,
+    int b_userlogintype_isactive
+    ) {
+    return userlogintype_autocomplete_element_response_create_internal (
+        pki_userlogintype_id,
+        s_userlogintype_description_x,
+        b_userlogintype_isactive
+        );
+}
 
 void userlogintype_autocomplete_element_response_free(userlogintype_autocomplete_element_response_t *userlogintype_autocomplete_element_response) {
     if(NULL == userlogintype_autocomplete_element_response){
+        return ;
+    }
+    if(userlogintype_autocomplete_element_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "userlogintype_autocomplete_element_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -77,6 +93,9 @@ userlogintype_autocomplete_element_response_t *userlogintype_autocomplete_elemen
 
     // userlogintype_autocomplete_element_response->pki_userlogintype_id
     cJSON *pki_userlogintype_id = cJSON_GetObjectItemCaseSensitive(userlogintype_autocomplete_element_responseJSON, "pkiUserlogintypeID");
+    if (cJSON_IsNull(pki_userlogintype_id)) {
+        pki_userlogintype_id = NULL;
+    }
     if (!pki_userlogintype_id) {
         goto end;
     }
@@ -89,6 +108,9 @@ userlogintype_autocomplete_element_response_t *userlogintype_autocomplete_elemen
 
     // userlogintype_autocomplete_element_response->s_userlogintype_description_x
     cJSON *s_userlogintype_description_x = cJSON_GetObjectItemCaseSensitive(userlogintype_autocomplete_element_responseJSON, "sUserlogintypeDescriptionX");
+    if (cJSON_IsNull(s_userlogintype_description_x)) {
+        s_userlogintype_description_x = NULL;
+    }
     if (!s_userlogintype_description_x) {
         goto end;
     }
@@ -101,6 +123,9 @@ userlogintype_autocomplete_element_response_t *userlogintype_autocomplete_elemen
 
     // userlogintype_autocomplete_element_response->b_userlogintype_isactive
     cJSON *b_userlogintype_isactive = cJSON_GetObjectItemCaseSensitive(userlogintype_autocomplete_element_responseJSON, "bUserlogintypeIsactive");
+    if (cJSON_IsNull(b_userlogintype_isactive)) {
+        b_userlogintype_isactive = NULL;
+    }
     if (!b_userlogintype_isactive) {
         goto end;
     }
@@ -112,7 +137,7 @@ userlogintype_autocomplete_element_response_t *userlogintype_autocomplete_elemen
     }
 
 
-    userlogintype_autocomplete_element_response_local_var = userlogintype_autocomplete_element_response_create (
+    userlogintype_autocomplete_element_response_local_var = userlogintype_autocomplete_element_response_create_internal (
         pki_userlogintype_id->valuedouble,
         strdup(s_userlogintype_description_x->valuestring),
         b_userlogintype_isactive->valueint

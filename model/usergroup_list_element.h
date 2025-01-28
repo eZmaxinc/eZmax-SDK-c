@@ -23,9 +23,10 @@ typedef struct usergroup_list_element_t {
     char *s_usergroup_name_x; // string
     int i_count_user; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } usergroup_list_element_t;
 
-usergroup_list_element_t *usergroup_list_element_create(
+__attribute__((deprecated)) usergroup_list_element_t *usergroup_list_element_create(
     int pki_usergroup_id,
     char *s_usergroup_name_x,
     int i_count_user

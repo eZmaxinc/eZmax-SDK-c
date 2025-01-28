@@ -22,9 +22,10 @@ typedef struct custom_form_data_ezsignformfield_response_t {
     char *s_ezsignformfield_label; // string
     char *s_ezsignformfield_value; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_form_data_ezsignformfield_response_t;
 
-custom_form_data_ezsignformfield_response_t *custom_form_data_ezsignformfield_response_create(
+__attribute__((deprecated)) custom_form_data_ezsignformfield_response_t *custom_form_data_ezsignformfield_response_create(
     char *s_ezsignformfield_label,
     char *s_ezsignformfield_value
 );

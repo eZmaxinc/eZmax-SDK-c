@@ -47,7 +47,7 @@ ezsignsignature_request_t* instantiate_ezsignsignature_request(int include_optio
       "Foo",
       ezmax_api_definition__full_ezsignsignature_request__"None",
       "Phone number",
-      "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
+      "^[0-9]{9}$",
       ezmax_api_definition__full_ezsignsignature_request__"AllOf"
     );
   } else {
@@ -77,7 +77,7 @@ ezsignsignature_request_t* instantiate_ezsignsignature_request(int include_optio
       "Foo",
       ezmax_api_definition__full_ezsignsignature_request__"None",
       "Phone number",
-      "/[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+.[a-zA-Z]{2,4}/",
+      "^[0-9]{9}$",
       ezmax_api_definition__full_ezsignsignature_request__"AllOf"
     );
   }

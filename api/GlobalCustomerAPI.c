@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 // Functions for enum SINFRASTRUCTUREPRODUCTCODE for GlobalCustomerAPI_globalCustomerGetEndpointV1
 
@@ -77,15 +72,20 @@ GlobalCustomerAPI_globalCustomerGetEndpointV1(apiClient_t *apiClient, char *pksC
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/customer/{pksCustomerCode}/endpoint")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/customer/{pksCustomerCode}/endpoint");
+    char *localVarPath = strdup("/1/customer/{pksCustomerCode}/endpoint");
+
+    if(!pksCustomerCode)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_pksCustomerCode = strlen(pksCustomerCode)+3 + strlen("{ pksCustomerCode }");
+    long sizeOfPathParams_pksCustomerCode = strlen(pksCustomerCode)+3 + sizeof("{ pksCustomerCode }") - 1;
     if(pksCustomerCode == NULL) {
         goto end;
     }
@@ -104,7 +104,7 @@ GlobalCustomerAPI_globalCustomerGetEndpointV1(apiClient_t *apiClient, char *pksC
     {
         keyQuery_sInfrastructureproductCode = strdup("sInfrastructureproductCode");
         valueQuery_sInfrastructureproductCode = (sInfrastructureproductCode);
-        keyPairQuery_sInfrastructureproductCode = keyValuePair_create(keyQuery_sInfrastructureproductCode, (void *)strdup(globalCustomerGetEndpointV1_SINFRASTRUCTUREPRODUCTCODE_ToString(
+        keyPairQuery_sInfrastructureproductCode = keyValuePair_create(keyQuery_sInfrastructureproductCode, strdup(globalCustomerGetEndpointV1_SINFRASTRUCTUREPRODUCTCODE_ToString(
         valueQuery_sInfrastructureproductCode)));
         list_addElement(localVarQueryParameters,keyPairQuery_sInfrastructureproductCode);
     }
@@ -117,6 +117,7 @@ GlobalCustomerAPI_globalCustomerGetEndpointV1(apiClient_t *apiClient, char *pksC
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -128,11 +129,14 @@ GlobalCustomerAPI_globalCustomerGetEndpointV1(apiClient_t *apiClient, char *pksC
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *GlobalCustomerAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    global_customer_get_endpoint_v1_response_t *elementToReturn = global_customer_get_endpoint_v1_response_parseFromJSON(GlobalCustomerAPIlocalVarJSON);
-    cJSON_Delete(GlobalCustomerAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    global_customer_get_endpoint_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *GlobalCustomerAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = global_customer_get_endpoint_v1_response_parseFromJSON(GlobalCustomerAPIlocalVarJSON);
+        cJSON_Delete(GlobalCustomerAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

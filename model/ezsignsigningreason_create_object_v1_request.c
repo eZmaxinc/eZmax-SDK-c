@@ -5,7 +5,7 @@
 
 
 
-ezsignsigningreason_create_object_v1_request_t *ezsignsigningreason_create_object_v1_request_create(
+static ezsignsigningreason_create_object_v1_request_t *ezsignsigningreason_create_object_v1_request_create_internal(
     list_t *a_obj_ezsignsigningreason
     ) {
     ezsignsigningreason_create_object_v1_request_t *ezsignsigningreason_create_object_v1_request_local_var = malloc(sizeof(ezsignsigningreason_create_object_v1_request_t));
@@ -14,12 +14,24 @@ ezsignsigningreason_create_object_v1_request_t *ezsignsigningreason_create_objec
     }
     ezsignsigningreason_create_object_v1_request_local_var->a_obj_ezsignsigningreason = a_obj_ezsignsigningreason;
 
+    ezsignsigningreason_create_object_v1_request_local_var->_library_owned = 1;
     return ezsignsigningreason_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezsignsigningreason_create_object_v1_request_t *ezsignsigningreason_create_object_v1_request_create(
+    list_t *a_obj_ezsignsigningreason
+    ) {
+    return ezsignsigningreason_create_object_v1_request_create_internal (
+        a_obj_ezsignsigningreason
+        );
+}
 
 void ezsignsigningreason_create_object_v1_request_free(ezsignsigningreason_create_object_v1_request_t *ezsignsigningreason_create_object_v1_request) {
     if(NULL == ezsignsigningreason_create_object_v1_request){
+        return ;
+    }
+    if(ezsignsigningreason_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignsigningreason_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ ezsignsigningreason_create_object_v1_request_t *ezsignsigningreason_create_objec
 
     // ezsignsigningreason_create_object_v1_request->a_obj_ezsignsigningreason
     cJSON *a_obj_ezsignsigningreason = cJSON_GetObjectItemCaseSensitive(ezsignsigningreason_create_object_v1_requestJSON, "a_objEzsignsigningreason");
+    if (cJSON_IsNull(a_obj_ezsignsigningreason)) {
+        a_obj_ezsignsigningreason = NULL;
+    }
     if (!a_obj_ezsignsigningreason) {
         goto end;
     }
@@ -96,7 +111,7 @@ ezsignsigningreason_create_object_v1_request_t *ezsignsigningreason_create_objec
     }
 
 
-    ezsignsigningreason_create_object_v1_request_local_var = ezsignsigningreason_create_object_v1_request_create (
+    ezsignsigningreason_create_object_v1_request_local_var = ezsignsigningreason_create_object_v1_request_create_internal (
         a_obj_ezsignsigningreasonList
         );
 

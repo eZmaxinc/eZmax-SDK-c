@@ -41,9 +41,10 @@ typedef struct ezmaxinvoicingsummaryglobal_response_compound_t {
     char *t_ezmaxproduct_help_x; // string
     list_t *a_obj_ezmaxinvoicingcommission; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezmaxinvoicingsummaryglobal_response_compound_t;
 
-ezmaxinvoicingsummaryglobal_response_compound_t *ezmaxinvoicingsummaryglobal_response_compound_create(
+__attribute__((deprecated)) ezmaxinvoicingsummaryglobal_response_compound_t *ezmaxinvoicingsummaryglobal_response_compound_create(
     int pki_ezmaxinvoicingsummaryglobal_id,
     int fki_ezmaxinvoicing_id,
     int fki_ezmaxproduct_id,

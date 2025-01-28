@@ -24,9 +24,10 @@ typedef struct ezsignsigningreason_response_t {
     struct multilingual_ezsignsigningreason_description_t *obj_ezsignsigningreason_description; //model
     int b_ezsignsigningreason_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsigningreason_response_t;
 
-ezsignsigningreason_response_t *ezsignsigningreason_response_create(
+__attribute__((deprecated)) ezsignsigningreason_response_t *ezsignsigningreason_response_create(
     int pki_ezsignsigningreason_id,
     multilingual_ezsignsigningreason_description_t *obj_ezsignsigningreason_description,
     int b_ezsignsigningreason_isactive

@@ -23,9 +23,10 @@ typedef struct custom_word_position_word_response_t {
     char *s_word; // string
     list_t *a_obj_word_position_occurence; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_word_position_word_response_t;
 
-custom_word_position_word_response_t *custom_word_position_word_response_create(
+__attribute__((deprecated)) custom_word_position_word_response_t *custom_word_position_word_response_create(
     char *s_word,
     list_t *a_obj_word_position_occurence
 );

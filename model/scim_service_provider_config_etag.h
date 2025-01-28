@@ -21,9 +21,10 @@ typedef struct scim_service_provider_config_etag_t scim_service_provider_config_
 typedef struct scim_service_provider_config_etag_t {
     int supported; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } scim_service_provider_config_etag_t;
 
-scim_service_provider_config_etag_t *scim_service_provider_config_etag_create(
+__attribute__((deprecated)) scim_service_provider_config_etag_t *scim_service_provider_config_etag_create(
     int supported
 );
 

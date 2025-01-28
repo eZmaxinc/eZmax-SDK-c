@@ -5,7 +5,7 @@
 
 
 
-contactinformations_request_t *contactinformations_request_create(
+static contactinformations_request_t *contactinformations_request_create_internal(
     int i_address_default,
     int i_phone_default,
     int i_email_default,
@@ -20,12 +20,30 @@ contactinformations_request_t *contactinformations_request_create(
     contactinformations_request_local_var->i_email_default = i_email_default;
     contactinformations_request_local_var->i_website_default = i_website_default;
 
+    contactinformations_request_local_var->_library_owned = 1;
     return contactinformations_request_local_var;
 }
 
+__attribute__((deprecated)) contactinformations_request_t *contactinformations_request_create(
+    int i_address_default,
+    int i_phone_default,
+    int i_email_default,
+    int i_website_default
+    ) {
+    return contactinformations_request_create_internal (
+        i_address_default,
+        i_phone_default,
+        i_email_default,
+        i_website_default
+        );
+}
 
 void contactinformations_request_free(contactinformations_request_t *contactinformations_request) {
     if(NULL == contactinformations_request){
+        return ;
+    }
+    if(contactinformations_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "contactinformations_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -84,6 +102,9 @@ contactinformations_request_t *contactinformations_request_parseFromJSON(cJSON *
 
     // contactinformations_request->i_address_default
     cJSON *i_address_default = cJSON_GetObjectItemCaseSensitive(contactinformations_requestJSON, "iAddressDefault");
+    if (cJSON_IsNull(i_address_default)) {
+        i_address_default = NULL;
+    }
     if (!i_address_default) {
         goto end;
     }
@@ -96,6 +117,9 @@ contactinformations_request_t *contactinformations_request_parseFromJSON(cJSON *
 
     // contactinformations_request->i_phone_default
     cJSON *i_phone_default = cJSON_GetObjectItemCaseSensitive(contactinformations_requestJSON, "iPhoneDefault");
+    if (cJSON_IsNull(i_phone_default)) {
+        i_phone_default = NULL;
+    }
     if (!i_phone_default) {
         goto end;
     }
@@ -108,6 +132,9 @@ contactinformations_request_t *contactinformations_request_parseFromJSON(cJSON *
 
     // contactinformations_request->i_email_default
     cJSON *i_email_default = cJSON_GetObjectItemCaseSensitive(contactinformations_requestJSON, "iEmailDefault");
+    if (cJSON_IsNull(i_email_default)) {
+        i_email_default = NULL;
+    }
     if (!i_email_default) {
         goto end;
     }
@@ -120,6 +147,9 @@ contactinformations_request_t *contactinformations_request_parseFromJSON(cJSON *
 
     // contactinformations_request->i_website_default
     cJSON *i_website_default = cJSON_GetObjectItemCaseSensitive(contactinformations_requestJSON, "iWebsiteDefault");
+    if (cJSON_IsNull(i_website_default)) {
+        i_website_default = NULL;
+    }
     if (!i_website_default) {
         goto end;
     }
@@ -131,7 +161,7 @@ contactinformations_request_t *contactinformations_request_parseFromJSON(cJSON *
     }
 
 
-    contactinformations_request_local_var = contactinformations_request_create (
+    contactinformations_request_local_var = contactinformations_request_create_internal (
         i_address_default->valuedouble,
         i_phone_default->valuedouble,
         i_email_default->valuedouble,

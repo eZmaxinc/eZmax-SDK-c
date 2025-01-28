@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Retrieve the content
@@ -25,15 +20,18 @@ ObjectAttachmentAPI_attachmentDownloadV1(apiClient_t *apiClient, int *pkiAttachm
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/attachment/{pkiAttachmentID}/download")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/attachment/{pkiAttachmentID}/download");
+    char *localVarPath = strdup("/1/object/attachment/{pkiAttachmentID}/download");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiAttachmentID =  + strlen("{ pkiAttachmentID }");
+    long sizeOfPathParams_pkiAttachmentID =  + sizeof("{ pkiAttachmentID }") - 1;
     if(pkiAttachmentID == 0){
         goto end;
     }
@@ -41,7 +39,7 @@ ObjectAttachmentAPI_attachmentDownloadV1(apiClient_t *apiClient, int *pkiAttachm
     snprintf(localVarToReplace_pkiAttachmentID, sizeOfPathParams_pkiAttachmentID, "{%s}", "pkiAttachmentID");
 
     char localVarBuff_pkiAttachmentID[256];
-    intToStr(localVarBuff_pkiAttachmentID, *pkiAttachmentID);
+    snprintf(localVarBuff_pkiAttachmentID, sizeof localVarBuff_pkiAttachmentID, "%ld", (long)*pkiAttachmentID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiAttachmentID, localVarBuff_pkiAttachmentID);
 
@@ -56,6 +54,7 @@ ObjectAttachmentAPI_attachmentDownloadV1(apiClient_t *apiClient, int *pkiAttachm
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -96,15 +95,18 @@ ObjectAttachmentAPI_attachmentGetAttachmentlogsV1(apiClient_t *apiClient, int *p
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/attachment/{pkiAttachmentID}/getAttachmentlogs")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/attachment/{pkiAttachmentID}/getAttachmentlogs");
+    char *localVarPath = strdup("/1/object/attachment/{pkiAttachmentID}/getAttachmentlogs");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiAttachmentID =  + strlen("{ pkiAttachmentID }");
+    long sizeOfPathParams_pkiAttachmentID =  + sizeof("{ pkiAttachmentID }") - 1;
     if(pkiAttachmentID == 0){
         goto end;
     }
@@ -112,7 +114,7 @@ ObjectAttachmentAPI_attachmentGetAttachmentlogsV1(apiClient_t *apiClient, int *p
     snprintf(localVarToReplace_pkiAttachmentID, sizeOfPathParams_pkiAttachmentID, "{%s}", "pkiAttachmentID");
 
     char localVarBuff_pkiAttachmentID[256];
-    intToStr(localVarBuff_pkiAttachmentID, *pkiAttachmentID);
+    snprintf(localVarBuff_pkiAttachmentID, sizeof localVarBuff_pkiAttachmentID, "%ld", (long)*pkiAttachmentID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiAttachmentID, localVarBuff_pkiAttachmentID);
 
@@ -127,6 +129,7 @@ ObjectAttachmentAPI_attachmentGetAttachmentlogsV1(apiClient_t *apiClient, int *p
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -138,11 +141,14 @@ ObjectAttachmentAPI_attachmentGetAttachmentlogsV1(apiClient_t *apiClient, int *p
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectAttachmentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    attachment_get_attachmentlogs_v1_response_t *elementToReturn = attachment_get_attachmentlogs_v1_response_parseFromJSON(ObjectAttachmentAPIlocalVarJSON);
-    cJSON_Delete(ObjectAttachmentAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    attachment_get_attachmentlogs_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectAttachmentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = attachment_get_attachmentlogs_v1_response_parseFromJSON(ObjectAttachmentAPIlocalVarJSON);
+        cJSON_Delete(ObjectAttachmentAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

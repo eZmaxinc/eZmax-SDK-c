@@ -5,7 +5,7 @@
 
 
 
-user_edit_colleagues_v2_request_t *user_edit_colleagues_v2_request_create(
+static user_edit_colleagues_v2_request_t *user_edit_colleagues_v2_request_create_internal(
     list_t *a_obj_colleague
     ) {
     user_edit_colleagues_v2_request_t *user_edit_colleagues_v2_request_local_var = malloc(sizeof(user_edit_colleagues_v2_request_t));
@@ -14,12 +14,24 @@ user_edit_colleagues_v2_request_t *user_edit_colleagues_v2_request_create(
     }
     user_edit_colleagues_v2_request_local_var->a_obj_colleague = a_obj_colleague;
 
+    user_edit_colleagues_v2_request_local_var->_library_owned = 1;
     return user_edit_colleagues_v2_request_local_var;
 }
 
+__attribute__((deprecated)) user_edit_colleagues_v2_request_t *user_edit_colleagues_v2_request_create(
+    list_t *a_obj_colleague
+    ) {
+    return user_edit_colleagues_v2_request_create_internal (
+        a_obj_colleague
+        );
+}
 
 void user_edit_colleagues_v2_request_free(user_edit_colleagues_v2_request_t *user_edit_colleagues_v2_request) {
     if(NULL == user_edit_colleagues_v2_request){
+        return ;
+    }
+    if(user_edit_colleagues_v2_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "user_edit_colleagues_v2_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ user_edit_colleagues_v2_request_t *user_edit_colleagues_v2_request_parseFromJSON
 
     // user_edit_colleagues_v2_request->a_obj_colleague
     cJSON *a_obj_colleague = cJSON_GetObjectItemCaseSensitive(user_edit_colleagues_v2_requestJSON, "a_objColleague");
+    if (cJSON_IsNull(a_obj_colleague)) {
+        a_obj_colleague = NULL;
+    }
     if (!a_obj_colleague) {
         goto end;
     }
@@ -96,7 +111,7 @@ user_edit_colleagues_v2_request_t *user_edit_colleagues_v2_request_parseFromJSON
     }
 
 
-    user_edit_colleagues_v2_request_local_var = user_edit_colleagues_v2_request_create (
+    user_edit_colleagues_v2_request_local_var = user_edit_colleagues_v2_request_create_internal (
         a_obj_colleagueList
         );
 

@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Create a new User of type Ezsignuser
@@ -25,11 +20,14 @@ ModuleUserAPI_userCreateEzsignuserV1(apiClient_t *apiClient, list_t *user_create
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/module/user/createezsignuser")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/module/user/createezsignuser");
+    char *localVarPath = strdup("/1/module/user/createezsignuser");
+
 
 
 
@@ -61,6 +59,7 @@ ModuleUserAPI_userCreateEzsignuserV1(apiClient_t *apiClient, list_t *user_create
         }
         cJSON_AddItemToArray(localVarSingleItemJSON_user_create_ezsignuser_v1_request, localVar_user_create_ezsignuser_v1_request);
         localVarBodyParameters = cJSON_Print(localVarItemJSON_user_create_ezsignuser_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -72,6 +71,7 @@ ModuleUserAPI_userCreateEzsignuserV1(apiClient_t *apiClient, list_t *user_create
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -79,11 +79,14 @@ ModuleUserAPI_userCreateEzsignuserV1(apiClient_t *apiClient, list_t *user_create
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ModuleUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    user_create_ezsignuser_v1_response_t *elementToReturn = user_create_ezsignuser_v1_response_parseFromJSON(ModuleUserAPIlocalVarJSON);
-    cJSON_Delete(ModuleUserAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    user_create_ezsignuser_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ModuleUserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = user_create_ezsignuser_v1_response_parseFromJSON(ModuleUserAPIlocalVarJSON);
+        cJSON_Delete(ModuleUserAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

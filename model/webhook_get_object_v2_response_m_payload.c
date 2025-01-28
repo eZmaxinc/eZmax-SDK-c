@@ -5,7 +5,7 @@
 
 
 
-webhook_get_object_v2_response_m_payload_t *webhook_get_object_v2_response_m_payload_create(
+static webhook_get_object_v2_response_m_payload_t *webhook_get_object_v2_response_m_payload_create_internal(
     webhook_response_compound_t *obj_webhook
     ) {
     webhook_get_object_v2_response_m_payload_t *webhook_get_object_v2_response_m_payload_local_var = malloc(sizeof(webhook_get_object_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ webhook_get_object_v2_response_m_payload_t *webhook_get_object_v2_response_m_pay
     }
     webhook_get_object_v2_response_m_payload_local_var->obj_webhook = obj_webhook;
 
+    webhook_get_object_v2_response_m_payload_local_var->_library_owned = 1;
     return webhook_get_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) webhook_get_object_v2_response_m_payload_t *webhook_get_object_v2_response_m_payload_create(
+    webhook_response_compound_t *obj_webhook
+    ) {
+    return webhook_get_object_v2_response_m_payload_create_internal (
+        obj_webhook
+        );
+}
 
 void webhook_get_object_v2_response_m_payload_free(webhook_get_object_v2_response_m_payload_t *webhook_get_object_v2_response_m_payload) {
     if(NULL == webhook_get_object_v2_response_m_payload){
+        return ;
+    }
+    if(webhook_get_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "webhook_get_object_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ webhook_get_object_v2_response_m_payload_t *webhook_get_object_v2_response_m_pay
 
     // webhook_get_object_v2_response_m_payload->obj_webhook
     cJSON *obj_webhook = cJSON_GetObjectItemCaseSensitive(webhook_get_object_v2_response_m_payloadJSON, "objWebhook");
+    if (cJSON_IsNull(obj_webhook)) {
+        obj_webhook = NULL;
+    }
     if (!obj_webhook) {
         goto end;
     }
@@ -71,7 +86,7 @@ webhook_get_object_v2_response_m_payload_t *webhook_get_object_v2_response_m_pay
     obj_webhook_local_nonprim = webhook_response_compound_parseFromJSON(obj_webhook); //nonprimitive
 
 
-    webhook_get_object_v2_response_m_payload_local_var = webhook_get_object_v2_response_m_payload_create (
+    webhook_get_object_v2_response_m_payload_local_var = webhook_get_object_v2_response_m_payload_create_internal (
         obj_webhook_local_nonprim
         );
 

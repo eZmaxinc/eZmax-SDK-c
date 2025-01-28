@@ -5,7 +5,7 @@
 
 
 
-usergroupdelegation_edit_object_v1_request_t *usergroupdelegation_edit_object_v1_request_create(
+static usergroupdelegation_edit_object_v1_request_t *usergroupdelegation_edit_object_v1_request_create_internal(
     usergroupdelegation_request_compound_t *obj_usergroupdelegation
     ) {
     usergroupdelegation_edit_object_v1_request_t *usergroupdelegation_edit_object_v1_request_local_var = malloc(sizeof(usergroupdelegation_edit_object_v1_request_t));
@@ -14,12 +14,24 @@ usergroupdelegation_edit_object_v1_request_t *usergroupdelegation_edit_object_v1
     }
     usergroupdelegation_edit_object_v1_request_local_var->obj_usergroupdelegation = obj_usergroupdelegation;
 
+    usergroupdelegation_edit_object_v1_request_local_var->_library_owned = 1;
     return usergroupdelegation_edit_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) usergroupdelegation_edit_object_v1_request_t *usergroupdelegation_edit_object_v1_request_create(
+    usergroupdelegation_request_compound_t *obj_usergroupdelegation
+    ) {
+    return usergroupdelegation_edit_object_v1_request_create_internal (
+        obj_usergroupdelegation
+        );
+}
 
 void usergroupdelegation_edit_object_v1_request_free(usergroupdelegation_edit_object_v1_request_t *usergroupdelegation_edit_object_v1_request) {
     if(NULL == usergroupdelegation_edit_object_v1_request){
+        return ;
+    }
+    if(usergroupdelegation_edit_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroupdelegation_edit_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ usergroupdelegation_edit_object_v1_request_t *usergroupdelegation_edit_object_v1
 
     // usergroupdelegation_edit_object_v1_request->obj_usergroupdelegation
     cJSON *obj_usergroupdelegation = cJSON_GetObjectItemCaseSensitive(usergroupdelegation_edit_object_v1_requestJSON, "objUsergroupdelegation");
+    if (cJSON_IsNull(obj_usergroupdelegation)) {
+        obj_usergroupdelegation = NULL;
+    }
     if (!obj_usergroupdelegation) {
         goto end;
     }
@@ -71,7 +86,7 @@ usergroupdelegation_edit_object_v1_request_t *usergroupdelegation_edit_object_v1
     obj_usergroupdelegation_local_nonprim = usergroupdelegation_request_compound_parseFromJSON(obj_usergroupdelegation); //nonprimitive
 
 
-    usergroupdelegation_edit_object_v1_request_local_var = usergroupdelegation_edit_object_v1_request_create (
+    usergroupdelegation_edit_object_v1_request_local_var = usergroupdelegation_edit_object_v1_request_create_internal (
         obj_usergroupdelegation_local_nonprim
         );
 

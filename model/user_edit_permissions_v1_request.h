@@ -15,16 +15,17 @@
 
 typedef struct user_edit_permissions_v1_request_t user_edit_permissions_v1_request_t;
 
-#include "permission_request.h"
+#include "permission_request_compound.h"
 
 
 
 typedef struct user_edit_permissions_v1_request_t {
     list_t *a_obj_permission; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } user_edit_permissions_v1_request_t;
 
-user_edit_permissions_v1_request_t *user_edit_permissions_v1_request_create(
+__attribute__((deprecated)) user_edit_permissions_v1_request_t *user_edit_permissions_v1_request_create(
     list_t *a_obj_permission
 );
 

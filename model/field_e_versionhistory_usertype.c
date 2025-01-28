@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_versionhistory_usertype__e field_e_versionhis
     return 0;
 }
 
-cJSON *field_e_versionhistory_usertype_field_e_versionhistory_usertype_convertToJSON(ezmax_api_definition__full_field_e_versionhistory_usertype__e field_e_versionhistory_usertype) {
+cJSON *field_e_versionhistory_usertype_convertToJSON(ezmax_api_definition__full_field_e_versionhistory_usertype__e field_e_versionhistory_usertype) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_versionhistory_usertype", field_e_versionhistory_usertype_field_e_versionhistory_usertype_ToString(field_e_versionhistory_usertype)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_versionhistory_usertype__e field_e_versionhistory_usertype_field_e_versionhistory_usertype_parseFromJSON(cJSON *field_e_versionhistory_usertypeJSON) {
-    ezmax_api_definition__full_field_e_versionhistory_usertype__e *field_e_versionhistory_usertype = NULL;
-    ezmax_api_definition__full_field_e_versionhistory_usertype__e field_e_versionhistory_usertypeVariable;
-    cJSON *field_e_versionhistory_usertypeVar = cJSON_GetObjectItemCaseSensitive(field_e_versionhistory_usertypeJSON, "field_e_versionhistory_usertype");
-    if(!cJSON_IsString(field_e_versionhistory_usertypeVar) || (field_e_versionhistory_usertypeVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_versionhistory_usertype__e field_e_versionhistory_usertype_parseFromJSON(cJSON *field_e_versionhistory_usertypeJSON) {
+    if(!cJSON_IsString(field_e_versionhistory_usertypeJSON) || (field_e_versionhistory_usertypeJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_versionhistory_usertypeVariable = field_e_versionhistory_usertype_field_e_versionhistory_usertype_FromString(field_e_versionhistory_usertypeVar->valuestring);
-    return field_e_versionhistory_usertypeVariable;
-end:
-    return 0;
+    return field_e_versionhistory_usertype_field_e_versionhistory_usertype_FromString(field_e_versionhistory_usertypeJSON->valuestring);
 }

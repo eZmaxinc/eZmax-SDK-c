@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezmaxinvoicinguser_variationezsign__e field_e
     return 0;
 }
 
-cJSON *field_e_ezmaxinvoicinguser_variationezsign_field_e_ezmaxinvoicinguser_variationezsign_convertToJSON(ezmax_api_definition__full_field_e_ezmaxinvoicinguser_variationezsign__e field_e_ezmaxinvoicinguser_variationezsign) {
+cJSON *field_e_ezmaxinvoicinguser_variationezsign_convertToJSON(ezmax_api_definition__full_field_e_ezmaxinvoicinguser_variationezsign__e field_e_ezmaxinvoicinguser_variationezsign) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezmaxinvoicinguser_variationezsign", field_e_ezmaxinvoicinguser_variationezsign_field_e_ezmaxinvoicinguser_variationezsign_ToString(field_e_ezmaxinvoicinguser_variationezsign)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezmaxinvoicinguser_variationezsign__e field_e_ezmaxinvoicinguser_variationezsign_field_e_ezmaxinvoicinguser_variationezsign_parseFromJSON(cJSON *field_e_ezmaxinvoicinguser_variationezsignJSON) {
-    ezmax_api_definition__full_field_e_ezmaxinvoicinguser_variationezsign__e *field_e_ezmaxinvoicinguser_variationezsign = NULL;
-    ezmax_api_definition__full_field_e_ezmaxinvoicinguser_variationezsign__e field_e_ezmaxinvoicinguser_variationezsignVariable;
-    cJSON *field_e_ezmaxinvoicinguser_variationezsignVar = cJSON_GetObjectItemCaseSensitive(field_e_ezmaxinvoicinguser_variationezsignJSON, "field_e_ezmaxinvoicinguser_variationezsign");
-    if(!cJSON_IsString(field_e_ezmaxinvoicinguser_variationezsignVar) || (field_e_ezmaxinvoicinguser_variationezsignVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezmaxinvoicinguser_variationezsign__e field_e_ezmaxinvoicinguser_variationezsign_parseFromJSON(cJSON *field_e_ezmaxinvoicinguser_variationezsignJSON) {
+    if(!cJSON_IsString(field_e_ezmaxinvoicinguser_variationezsignJSON) || (field_e_ezmaxinvoicinguser_variationezsignJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezmaxinvoicinguser_variationezsignVariable = field_e_ezmaxinvoicinguser_variationezsign_field_e_ezmaxinvoicinguser_variationezsign_FromString(field_e_ezmaxinvoicinguser_variationezsignVar->valuestring);
-    return field_e_ezmaxinvoicinguser_variationezsignVariable;
-end:
-    return 0;
+    return field_e_ezmaxinvoicinguser_variationezsign_field_e_ezmaxinvoicinguser_variationezsign_FromString(field_e_ezmaxinvoicinguser_variationezsignJSON->valuestring);
 }

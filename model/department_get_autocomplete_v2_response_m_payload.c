@@ -5,7 +5,7 @@
 
 
 
-department_get_autocomplete_v2_response_m_payload_t *department_get_autocomplete_v2_response_m_payload_create(
+static department_get_autocomplete_v2_response_m_payload_t *department_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_department
     ) {
     department_get_autocomplete_v2_response_m_payload_t *department_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(department_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ department_get_autocomplete_v2_response_m_payload_t *department_get_autocomplete
     }
     department_get_autocomplete_v2_response_m_payload_local_var->a_obj_department = a_obj_department;
 
+    department_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return department_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) department_get_autocomplete_v2_response_m_payload_t *department_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_department
+    ) {
+    return department_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_department
+        );
+}
 
 void department_get_autocomplete_v2_response_m_payload_free(department_get_autocomplete_v2_response_m_payload_t *department_get_autocomplete_v2_response_m_payload) {
     if(NULL == department_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(department_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "department_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ department_get_autocomplete_v2_response_m_payload_t *department_get_autocomplete
 
     // department_get_autocomplete_v2_response_m_payload->a_obj_department
     cJSON *a_obj_department = cJSON_GetObjectItemCaseSensitive(department_get_autocomplete_v2_response_m_payloadJSON, "a_objDepartment");
+    if (cJSON_IsNull(a_obj_department)) {
+        a_obj_department = NULL;
+    }
     if (!a_obj_department) {
         goto end;
     }
@@ -96,7 +111,7 @@ department_get_autocomplete_v2_response_m_payload_t *department_get_autocomplete
     }
 
 
-    department_get_autocomplete_v2_response_m_payload_local_var = department_get_autocomplete_v2_response_m_payload_create (
+    department_get_autocomplete_v2_response_m_payload_local_var = department_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_departmentList
         );
 

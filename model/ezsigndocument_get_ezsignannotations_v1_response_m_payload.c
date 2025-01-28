@@ -5,7 +5,7 @@
 
 
 
-ezsigndocument_get_ezsignannotations_v1_response_m_payload_t *ezsigndocument_get_ezsignannotations_v1_response_m_payload_create(
+static ezsigndocument_get_ezsignannotations_v1_response_m_payload_t *ezsigndocument_get_ezsignannotations_v1_response_m_payload_create_internal(
     list_t *a_obj_ezsignannotation
     ) {
     ezsigndocument_get_ezsignannotations_v1_response_m_payload_t *ezsigndocument_get_ezsignannotations_v1_response_m_payload_local_var = malloc(sizeof(ezsigndocument_get_ezsignannotations_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ ezsigndocument_get_ezsignannotations_v1_response_m_payload_t *ezsigndocument_get
     }
     ezsigndocument_get_ezsignannotations_v1_response_m_payload_local_var->a_obj_ezsignannotation = a_obj_ezsignannotation;
 
+    ezsigndocument_get_ezsignannotations_v1_response_m_payload_local_var->_library_owned = 1;
     return ezsigndocument_get_ezsignannotations_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezsigndocument_get_ezsignannotations_v1_response_m_payload_t *ezsigndocument_get_ezsignannotations_v1_response_m_payload_create(
+    list_t *a_obj_ezsignannotation
+    ) {
+    return ezsigndocument_get_ezsignannotations_v1_response_m_payload_create_internal (
+        a_obj_ezsignannotation
+        );
+}
 
 void ezsigndocument_get_ezsignannotations_v1_response_m_payload_free(ezsigndocument_get_ezsignannotations_v1_response_m_payload_t *ezsigndocument_get_ezsignannotations_v1_response_m_payload) {
     if(NULL == ezsigndocument_get_ezsignannotations_v1_response_m_payload){
+        return ;
+    }
+    if(ezsigndocument_get_ezsignannotations_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigndocument_get_ezsignannotations_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ ezsigndocument_get_ezsignannotations_v1_response_m_payload_t *ezsigndocument_get
 
     // ezsigndocument_get_ezsignannotations_v1_response_m_payload->a_obj_ezsignannotation
     cJSON *a_obj_ezsignannotation = cJSON_GetObjectItemCaseSensitive(ezsigndocument_get_ezsignannotations_v1_response_m_payloadJSON, "a_objEzsignannotation");
+    if (cJSON_IsNull(a_obj_ezsignannotation)) {
+        a_obj_ezsignannotation = NULL;
+    }
     if (!a_obj_ezsignannotation) {
         goto end;
     }
@@ -96,7 +111,7 @@ ezsigndocument_get_ezsignannotations_v1_response_m_payload_t *ezsigndocument_get
     }
 
 
-    ezsigndocument_get_ezsignannotations_v1_response_m_payload_local_var = ezsigndocument_get_ezsignannotations_v1_response_m_payload_create (
+    ezsigndocument_get_ezsignannotations_v1_response_m_payload_local_var = ezsigndocument_get_ezsignannotations_v1_response_m_payload_create_internal (
         a_obj_ezsignannotationList
         );
 

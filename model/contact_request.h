@@ -26,9 +26,10 @@ typedef struct contact_request_t {
     char *s_contact_company; // string
     char *dt_contact_birthdate; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } contact_request_t;
 
-contact_request_t *contact_request_create(
+__attribute__((deprecated)) contact_request_t *contact_request_create(
     int fki_contacttitle_id,
     int fki_language_id,
     char *s_contact_firstname,

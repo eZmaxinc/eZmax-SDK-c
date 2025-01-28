@@ -22,9 +22,10 @@ typedef struct usergroupdelegation_edit_object_v1_request_t usergroupdelegation_
 typedef struct usergroupdelegation_edit_object_v1_request_t {
     struct usergroupdelegation_request_compound_t *obj_usergroupdelegation; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } usergroupdelegation_edit_object_v1_request_t;
 
-usergroupdelegation_edit_object_v1_request_t *usergroupdelegation_edit_object_v1_request_create(
+__attribute__((deprecated)) usergroupdelegation_edit_object_v1_request_t *usergroupdelegation_edit_object_v1_request_create(
     usergroupdelegation_request_compound_t *obj_usergroupdelegation
 );
 

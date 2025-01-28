@@ -5,7 +5,7 @@
 
 
 
-sessionhistory_get_list_v1_response_t *sessionhistory_get_list_v1_response_create(
+static sessionhistory_get_list_v1_response_t *sessionhistory_get_list_v1_response_create_internal(
     common_response_obj_debug_payload_get_list_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug,
     sessionhistory_get_list_v1_response_m_payload_t *m_payload
@@ -18,12 +18,28 @@ sessionhistory_get_list_v1_response_t *sessionhistory_get_list_v1_response_creat
     sessionhistory_get_list_v1_response_local_var->obj_debug = obj_debug;
     sessionhistory_get_list_v1_response_local_var->m_payload = m_payload;
 
+    sessionhistory_get_list_v1_response_local_var->_library_owned = 1;
     return sessionhistory_get_list_v1_response_local_var;
 }
 
+__attribute__((deprecated)) sessionhistory_get_list_v1_response_t *sessionhistory_get_list_v1_response_create(
+    common_response_obj_debug_payload_get_list_t *obj_debug_payload,
+    common_response_obj_debug_t *obj_debug,
+    sessionhistory_get_list_v1_response_m_payload_t *m_payload
+    ) {
+    return sessionhistory_get_list_v1_response_create_internal (
+        obj_debug_payload,
+        obj_debug,
+        m_payload
+        );
+}
 
 void sessionhistory_get_list_v1_response_free(sessionhistory_get_list_v1_response_t *sessionhistory_get_list_v1_response) {
     if(NULL == sessionhistory_get_list_v1_response){
+        return ;
+    }
+    if(sessionhistory_get_list_v1_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "sessionhistory_get_list_v1_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -108,6 +124,9 @@ sessionhistory_get_list_v1_response_t *sessionhistory_get_list_v1_response_parse
 
     // sessionhistory_get_list_v1_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(sessionhistory_get_list_v1_responseJSON, "objDebugPayload");
+    if (cJSON_IsNull(obj_debug_payload)) {
+        obj_debug_payload = NULL;
+    }
     if (!obj_debug_payload) {
         goto end;
     }
@@ -117,12 +136,18 @@ sessionhistory_get_list_v1_response_t *sessionhistory_get_list_v1_response_parse
 
     // sessionhistory_get_list_v1_response->obj_debug
     cJSON *obj_debug = cJSON_GetObjectItemCaseSensitive(sessionhistory_get_list_v1_responseJSON, "objDebug");
+    if (cJSON_IsNull(obj_debug)) {
+        obj_debug = NULL;
+    }
     if (obj_debug) { 
     obj_debug_local_nonprim = common_response_obj_debug_parseFromJSON(obj_debug); //nonprimitive
     }
 
     // sessionhistory_get_list_v1_response->m_payload
     cJSON *m_payload = cJSON_GetObjectItemCaseSensitive(sessionhistory_get_list_v1_responseJSON, "mPayload");
+    if (cJSON_IsNull(m_payload)) {
+        m_payload = NULL;
+    }
     if (!m_payload) {
         goto end;
     }
@@ -131,7 +156,7 @@ sessionhistory_get_list_v1_response_t *sessionhistory_get_list_v1_response_parse
     m_payload_local_nonprim = sessionhistory_get_list_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
-    sessionhistory_get_list_v1_response_local_var = sessionhistory_get_list_v1_response_create (
+    sessionhistory_get_list_v1_response_local_var = sessionhistory_get_list_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim

@@ -20,22 +20,6 @@ typedef struct ezsigntemplateglobal_response_compound_t ezsigntemplateglobal_res
 #include "field_e_ezsigntemplateglobal_module.h"
 #include "field_e_ezsigntemplateglobal_supplier.h"
 
-// Enum  for ezsigntemplateglobal_response_compound
-
-typedef enum  { ezmax_api_definition__full_ezsigntemplateglobal_response_compound__NULL = 0, ezmax_api_definition__full_ezsigntemplateglobal_response_compound__All, ezmax_api_definition__full_ezsigntemplateglobal_response_compound__Inscription } ezmax_api_definition__full_ezsigntemplateglobal_response_compound__e;
-
-char* ezsigntemplateglobal_response_compound_e_ezsigntemplateglobal_module_ToString(ezmax_api_definition__full_ezsigntemplateglobal_response_compound__e e_ezsigntemplateglobal_module);
-
-ezmax_api_definition__full_ezsigntemplateglobal_response_compound__e ezsigntemplateglobal_response_compound_e_ezsigntemplateglobal_module_FromString(char* e_ezsigntemplateglobal_module);
-
-// Enum  for ezsigntemplateglobal_response_compound
-
-typedef enum  { ezmax_api_definition__full_ezsigntemplateglobal_response_compound__NULL = 0, ezmax_api_definition__full_ezsigntemplateglobal_response_compound__Centris, ezmax_api_definition__full_ezsigntemplateglobal_response_compound__Webforms, ezmax_api_definition__full_ezsigntemplateglobal_response_compound__GHACQ } ezmax_api_definition__full_ezsigntemplateglobal_response_compound__e;
-
-char* ezsigntemplateglobal_response_compound_e_ezsigntemplateglobal_supplier_ToString(ezmax_api_definition__full_ezsigntemplateglobal_response_compound__e e_ezsigntemplateglobal_supplier);
-
-ezmax_api_definition__full_ezsigntemplateglobal_response_compound__e ezsigntemplateglobal_response_compound_e_ezsigntemplateglobal_supplier_FromString(char* e_ezsigntemplateglobal_supplier);
-
 
 
 typedef struct ezsigntemplateglobal_response_compound_t {
@@ -45,24 +29,25 @@ typedef struct ezsigntemplateglobal_response_compound_t {
     char *s_module_name_x; // string
     int fki_language_id; //numeric
     char *s_language_name_x; // string
-    field_e_ezsigntemplateglobal_module_t *e_ezsigntemplateglobal_module; // custom
-    field_e_ezsigntemplateglobal_supplier_t *e_ezsigntemplateglobal_supplier; // custom
+    ezmax_api_definition__full_field_e_ezsigntemplateglobal_module__e e_ezsigntemplateglobal_module; //referenced enum
+    ezmax_api_definition__full_field_e_ezsigntemplateglobal_supplier__e e_ezsigntemplateglobal_supplier; //referenced enum
     char *s_ezsigntemplateglobal_code; // string
     char *s_ezsigntemplateglobal_description; // string
     struct ezsigntemplateglobaldocument_response_t *obj_ezsigntemplateglobaldocument; //model
     list_t *a_obj_ezsigntemplateglobalsigner; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplateglobal_response_compound_t;
 
-ezsigntemplateglobal_response_compound_t *ezsigntemplateglobal_response_compound_create(
+__attribute__((deprecated)) ezsigntemplateglobal_response_compound_t *ezsigntemplateglobal_response_compound_create(
     int pki_ezsigntemplateglobal_id,
     int fki_ezsigntemplateglobaldocument_id,
     int fki_module_id,
     char *s_module_name_x,
     int fki_language_id,
     char *s_language_name_x,
-    field_e_ezsigntemplateglobal_module_t *e_ezsigntemplateglobal_module,
-    field_e_ezsigntemplateglobal_supplier_t *e_ezsigntemplateglobal_supplier,
+    ezmax_api_definition__full_field_e_ezsigntemplateglobal_module__e e_ezsigntemplateglobal_module,
+    ezmax_api_definition__full_field_e_ezsigntemplateglobal_supplier__e e_ezsigntemplateglobal_supplier,
     char *s_ezsigntemplateglobal_code,
     char *s_ezsigntemplateglobal_description,
     ezsigntemplateglobaldocument_response_t *obj_ezsigntemplateglobaldocument,

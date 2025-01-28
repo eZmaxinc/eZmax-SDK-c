@@ -5,7 +5,7 @@
 
 
 
-multilingual_supply_description_t *multilingual_supply_description_create(
+static multilingual_supply_description_t *multilingual_supply_description_create_internal(
     char *s_supply_description1,
     char *s_supply_description2
     ) {
@@ -16,12 +16,26 @@ multilingual_supply_description_t *multilingual_supply_description_create(
     multilingual_supply_description_local_var->s_supply_description1 = s_supply_description1;
     multilingual_supply_description_local_var->s_supply_description2 = s_supply_description2;
 
+    multilingual_supply_description_local_var->_library_owned = 1;
     return multilingual_supply_description_local_var;
 }
 
+__attribute__((deprecated)) multilingual_supply_description_t *multilingual_supply_description_create(
+    char *s_supply_description1,
+    char *s_supply_description2
+    ) {
+    return multilingual_supply_description_create_internal (
+        s_supply_description1,
+        s_supply_description2
+        );
+}
 
 void multilingual_supply_description_free(multilingual_supply_description_t *multilingual_supply_description) {
     if(NULL == multilingual_supply_description){
+        return ;
+    }
+    if(multilingual_supply_description->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "multilingual_supply_description_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -68,6 +82,9 @@ multilingual_supply_description_t *multilingual_supply_description_parseFromJSON
 
     // multilingual_supply_description->s_supply_description1
     cJSON *s_supply_description1 = cJSON_GetObjectItemCaseSensitive(multilingual_supply_descriptionJSON, "sSupplyDescription1");
+    if (cJSON_IsNull(s_supply_description1)) {
+        s_supply_description1 = NULL;
+    }
     if (s_supply_description1) { 
     if(!cJSON_IsString(s_supply_description1) && !cJSON_IsNull(s_supply_description1))
     {
@@ -77,6 +94,9 @@ multilingual_supply_description_t *multilingual_supply_description_parseFromJSON
 
     // multilingual_supply_description->s_supply_description2
     cJSON *s_supply_description2 = cJSON_GetObjectItemCaseSensitive(multilingual_supply_descriptionJSON, "sSupplyDescription2");
+    if (cJSON_IsNull(s_supply_description2)) {
+        s_supply_description2 = NULL;
+    }
     if (s_supply_description2) { 
     if(!cJSON_IsString(s_supply_description2) && !cJSON_IsNull(s_supply_description2))
     {
@@ -85,7 +105,7 @@ multilingual_supply_description_t *multilingual_supply_description_parseFromJSON
     }
 
 
-    multilingual_supply_description_local_var = multilingual_supply_description_create (
+    multilingual_supply_description_local_var = multilingual_supply_description_create_internal (
         s_supply_description1 && !cJSON_IsNull(s_supply_description1) ? strdup(s_supply_description1->valuestring) : NULL,
         s_supply_description2 && !cJSON_IsNull(s_supply_description2) ? strdup(s_supply_description2->valuestring) : NULL
         );

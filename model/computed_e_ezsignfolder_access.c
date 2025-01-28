@@ -22,7 +22,7 @@ ezmax_api_definition__full_computed_e_ezsignfolder_access__e computed_e_ezsignfo
     return 0;
 }
 
-cJSON *computed_e_ezsignfolder_access_computed_e_ezsignfolder_access_convertToJSON(ezmax_api_definition__full_computed_e_ezsignfolder_access__e computed_e_ezsignfolder_access) {
+cJSON *computed_e_ezsignfolder_access_convertToJSON(ezmax_api_definition__full_computed_e_ezsignfolder_access__e computed_e_ezsignfolder_access) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "computed_e_ezsignfolder_access", computed_e_ezsignfolder_access_computed_e_ezsignfolder_access_ToString(computed_e_ezsignfolder_access)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_computed_e_ezsignfolder_access__e computed_e_ezsignfolder_access_computed_e_ezsignfolder_access_parseFromJSON(cJSON *computed_e_ezsignfolder_accessJSON) {
-    ezmax_api_definition__full_computed_e_ezsignfolder_access__e *computed_e_ezsignfolder_access = NULL;
-    ezmax_api_definition__full_computed_e_ezsignfolder_access__e computed_e_ezsignfolder_accessVariable;
-    cJSON *computed_e_ezsignfolder_accessVar = cJSON_GetObjectItemCaseSensitive(computed_e_ezsignfolder_accessJSON, "computed_e_ezsignfolder_access");
-    if(!cJSON_IsString(computed_e_ezsignfolder_accessVar) || (computed_e_ezsignfolder_accessVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_computed_e_ezsignfolder_access__e computed_e_ezsignfolder_access_parseFromJSON(cJSON *computed_e_ezsignfolder_accessJSON) {
+    if(!cJSON_IsString(computed_e_ezsignfolder_accessJSON) || (computed_e_ezsignfolder_accessJSON->valuestring == NULL)) {
+        return 0;
     }
-    computed_e_ezsignfolder_accessVariable = computed_e_ezsignfolder_access_computed_e_ezsignfolder_access_FromString(computed_e_ezsignfolder_accessVar->valuestring);
-    return computed_e_ezsignfolder_accessVariable;
-end:
-    return 0;
+    return computed_e_ezsignfolder_access_computed_e_ezsignfolder_access_FromString(computed_e_ezsignfolder_accessJSON->valuestring);
 }

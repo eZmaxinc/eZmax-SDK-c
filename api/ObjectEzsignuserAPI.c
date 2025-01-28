@@ -5,18 +5,13 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Edit an existing Ezsignuser
 //
 // 
 //
-common_response_t*
+ezsignuser_edit_object_v1_response_t*
 ObjectEzsignuserAPI_ezsignuserEditObjectV1(apiClient_t *apiClient, int *pkiEzsignuserID, ezsignuser_edit_object_v1_request_t *ezsignuser_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -25,15 +20,18 @@ ObjectEzsignuserAPI_ezsignuserEditObjectV1(apiClient_t *apiClient, int *pkiEzsig
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsignuser/{pkiEzsignuserID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsignuser/{pkiEzsignuserID}");
+    char *localVarPath = strdup("/1/object/ezsignuser/{pkiEzsignuserID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignuserID =  + strlen("{ pkiEzsignuserID }");
+    long sizeOfPathParams_pkiEzsignuserID =  + sizeof("{ pkiEzsignuserID }") - 1;
     if(pkiEzsignuserID == 0){
         goto end;
     }
@@ -41,7 +39,7 @@ ObjectEzsignuserAPI_ezsignuserEditObjectV1(apiClient_t *apiClient, int *pkiEzsig
     snprintf(localVarToReplace_pkiEzsignuserID, sizeOfPathParams_pkiEzsignuserID, "{%s}", "pkiEzsignuserID");
 
     char localVarBuff_pkiEzsignuserID[256];
-    intToStr(localVarBuff_pkiEzsignuserID, *pkiEzsignuserID);
+    snprintf(localVarBuff_pkiEzsignuserID, sizeof localVarBuff_pkiEzsignuserID, "%ld", (long)*pkiEzsignuserID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignuserID, localVarBuff_pkiEzsignuserID);
 
@@ -52,9 +50,10 @@ ObjectEzsignuserAPI_ezsignuserEditObjectV1(apiClient_t *apiClient, int *pkiEzsig
     cJSON *localVarSingleItemJSON_ezsignuser_edit_object_v1_request = NULL;
     if (ezsignuser_edit_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsignuser_edit_object_v1_request = ezsignuser_edit_object_v1_request_convertToJSON(ezsignuser_edit_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignuser_edit_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -66,6 +65,7 @@ ObjectEzsignuserAPI_ezsignuserEditObjectV1(apiClient_t *apiClient, int *pkiEzsig
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -81,11 +81,14 @@ ObjectEzsignuserAPI_ezsignuserEditObjectV1(apiClient_t *apiClient, int *pkiEzsig
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignuserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsignuserAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignuserAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignuser_edit_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignuserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignuser_edit_object_v1_response_parseFromJSON(ObjectEzsignuserAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignuserAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -126,15 +129,18 @@ ObjectEzsignuserAPI_ezsignuserGetObjectV2(apiClient_t *apiClient, int *pkiEzsign
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/ezsignuser/{pkiEzsignuserID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/ezsignuser/{pkiEzsignuserID}");
+    char *localVarPath = strdup("/2/object/ezsignuser/{pkiEzsignuserID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsignuserID =  + strlen("{ pkiEzsignuserID }");
+    long sizeOfPathParams_pkiEzsignuserID =  + sizeof("{ pkiEzsignuserID }") - 1;
     if(pkiEzsignuserID == 0){
         goto end;
     }
@@ -142,7 +148,7 @@ ObjectEzsignuserAPI_ezsignuserGetObjectV2(apiClient_t *apiClient, int *pkiEzsign
     snprintf(localVarToReplace_pkiEzsignuserID, sizeOfPathParams_pkiEzsignuserID, "{%s}", "pkiEzsignuserID");
 
     char localVarBuff_pkiEzsignuserID[256];
-    intToStr(localVarBuff_pkiEzsignuserID, *pkiEzsignuserID);
+    snprintf(localVarBuff_pkiEzsignuserID, sizeof localVarBuff_pkiEzsignuserID, "%ld", (long)*pkiEzsignuserID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignuserID, localVarBuff_pkiEzsignuserID);
 
@@ -157,6 +163,7 @@ ObjectEzsignuserAPI_ezsignuserGetObjectV2(apiClient_t *apiClient, int *pkiEzsign
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -168,11 +175,14 @@ ObjectEzsignuserAPI_ezsignuserGetObjectV2(apiClient_t *apiClient, int *pkiEzsign
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsignuserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsignuser_get_object_v2_response_t *elementToReturn = ezsignuser_get_object_v2_response_parseFromJSON(ObjectEzsignuserAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsignuserAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsignuser_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignuserAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignuser_get_object_v2_response_parseFromJSON(ObjectEzsignuserAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignuserAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

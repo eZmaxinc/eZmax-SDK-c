@@ -4,26 +4,9 @@
 #include "ezsigntemplatepackage_autocomplete_element_response.h"
 
 
-char* ezsigntemplatepackage_autocomplete_element_response_e_ezsignfoldertype_privacylevel_ToString(ezmax_api_definition__full_ezsigntemplatepackage_autocomplete_element_response__e e_ezsignfoldertype_privacylevel) {
-    char* e_ezsignfoldertype_privacylevelArray[] =  { "NULL", "User", "Usergroup" };
-    return e_ezsignfoldertype_privacylevelArray[e_ezsignfoldertype_privacylevel];
-}
 
-ezmax_api_definition__full_ezsigntemplatepackage_autocomplete_element_response__e ezsigntemplatepackage_autocomplete_element_response_e_ezsignfoldertype_privacylevel_FromString(char* e_ezsignfoldertype_privacylevel){
-    int stringToReturn = 0;
-    char *e_ezsignfoldertype_privacylevelArray[] =  { "NULL", "User", "Usergroup" };
-    size_t sizeofArray = sizeof(e_ezsignfoldertype_privacylevelArray) / sizeof(e_ezsignfoldertype_privacylevelArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_ezsignfoldertype_privacylevel, e_ezsignfoldertype_privacylevelArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-ezsigntemplatepackage_autocomplete_element_response_t *ezsigntemplatepackage_autocomplete_element_response_create(
-    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel,
+static ezsigntemplatepackage_autocomplete_element_response_t *ezsigntemplatepackage_autocomplete_element_response_create_internal(
+    ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel,
     char *s_ezsigntemplatepackage_description,
     int pki_ezsigntemplatepackage_id,
     int b_ezsigntemplatepackage_isactive,
@@ -39,19 +22,35 @@ ezsigntemplatepackage_autocomplete_element_response_t *ezsigntemplatepackage_aut
     ezsigntemplatepackage_autocomplete_element_response_local_var->b_ezsigntemplatepackage_isactive = b_ezsigntemplatepackage_isactive;
     ezsigntemplatepackage_autocomplete_element_response_local_var->b_disabled = b_disabled;
 
+    ezsigntemplatepackage_autocomplete_element_response_local_var->_library_owned = 1;
     return ezsigntemplatepackage_autocomplete_element_response_local_var;
 }
 
+__attribute__((deprecated)) ezsigntemplatepackage_autocomplete_element_response_t *ezsigntemplatepackage_autocomplete_element_response_create(
+    ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel,
+    char *s_ezsigntemplatepackage_description,
+    int pki_ezsigntemplatepackage_id,
+    int b_ezsigntemplatepackage_isactive,
+    int b_disabled
+    ) {
+    return ezsigntemplatepackage_autocomplete_element_response_create_internal (
+        e_ezsignfoldertype_privacylevel,
+        s_ezsigntemplatepackage_description,
+        pki_ezsigntemplatepackage_id,
+        b_ezsigntemplatepackage_isactive,
+        b_disabled
+        );
+}
 
 void ezsigntemplatepackage_autocomplete_element_response_free(ezsigntemplatepackage_autocomplete_element_response_t *ezsigntemplatepackage_autocomplete_element_response) {
     if(NULL == ezsigntemplatepackage_autocomplete_element_response){
         return ;
     }
-    listEntry_t *listEntry;
-    if (ezsigntemplatepackage_autocomplete_element_response->e_ezsignfoldertype_privacylevel) {
-        field_e_ezsignfoldertype_privacylevel_free(ezsigntemplatepackage_autocomplete_element_response->e_ezsignfoldertype_privacylevel);
-        ezsigntemplatepackage_autocomplete_element_response->e_ezsignfoldertype_privacylevel = NULL;
+    if(ezsigntemplatepackage_autocomplete_element_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigntemplatepackage_autocomplete_element_response_free");
+        return ;
     }
+    listEntry_t *listEntry;
     if (ezsigntemplatepackage_autocomplete_element_response->s_ezsigntemplatepackage_description) {
         free(ezsigntemplatepackage_autocomplete_element_response->s_ezsigntemplatepackage_description);
         ezsigntemplatepackage_autocomplete_element_response->s_ezsigntemplatepackage_description = NULL;
@@ -63,7 +62,7 @@ cJSON *ezsigntemplatepackage_autocomplete_element_response_convertToJSON(ezsignt
     cJSON *item = cJSON_CreateObject();
 
     // ezsigntemplatepackage_autocomplete_element_response->e_ezsignfoldertype_privacylevel
-    if (ezmax_api_definition__full_ezsigntemplatepackage_autocomplete_element_response__NULL == ezsigntemplatepackage_autocomplete_element_response->e_ezsignfoldertype_privacylevel) {
+    if (ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__NULL == ezsigntemplatepackage_autocomplete_element_response->e_ezsignfoldertype_privacylevel) {
         goto fail;
     }
     cJSON *e_ezsignfoldertype_privacylevel_local_JSON = field_e_ezsignfoldertype_privacylevel_convertToJSON(ezsigntemplatepackage_autocomplete_element_response->e_ezsignfoldertype_privacylevel);
@@ -124,10 +123,13 @@ ezsigntemplatepackage_autocomplete_element_response_t *ezsigntemplatepackage_aut
     ezsigntemplatepackage_autocomplete_element_response_t *ezsigntemplatepackage_autocomplete_element_response_local_var = NULL;
 
     // define the local variable for ezsigntemplatepackage_autocomplete_element_response->e_ezsignfoldertype_privacylevel
-    field_e_ezsignfoldertype_privacylevel_t *e_ezsignfoldertype_privacylevel_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel_local_nonprim = 0;
 
     // ezsigntemplatepackage_autocomplete_element_response->e_ezsignfoldertype_privacylevel
     cJSON *e_ezsignfoldertype_privacylevel = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackage_autocomplete_element_responseJSON, "eEzsignfoldertypePrivacylevel");
+    if (cJSON_IsNull(e_ezsignfoldertype_privacylevel)) {
+        e_ezsignfoldertype_privacylevel = NULL;
+    }
     if (!e_ezsignfoldertype_privacylevel) {
         goto end;
     }
@@ -137,6 +139,9 @@ ezsigntemplatepackage_autocomplete_element_response_t *ezsigntemplatepackage_aut
 
     // ezsigntemplatepackage_autocomplete_element_response->s_ezsigntemplatepackage_description
     cJSON *s_ezsigntemplatepackage_description = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackage_autocomplete_element_responseJSON, "sEzsigntemplatepackageDescription");
+    if (cJSON_IsNull(s_ezsigntemplatepackage_description)) {
+        s_ezsigntemplatepackage_description = NULL;
+    }
     if (!s_ezsigntemplatepackage_description) {
         goto end;
     }
@@ -149,6 +154,9 @@ ezsigntemplatepackage_autocomplete_element_response_t *ezsigntemplatepackage_aut
 
     // ezsigntemplatepackage_autocomplete_element_response->pki_ezsigntemplatepackage_id
     cJSON *pki_ezsigntemplatepackage_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackage_autocomplete_element_responseJSON, "pkiEzsigntemplatepackageID");
+    if (cJSON_IsNull(pki_ezsigntemplatepackage_id)) {
+        pki_ezsigntemplatepackage_id = NULL;
+    }
     if (!pki_ezsigntemplatepackage_id) {
         goto end;
     }
@@ -161,6 +169,9 @@ ezsigntemplatepackage_autocomplete_element_response_t *ezsigntemplatepackage_aut
 
     // ezsigntemplatepackage_autocomplete_element_response->b_ezsigntemplatepackage_isactive
     cJSON *b_ezsigntemplatepackage_isactive = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackage_autocomplete_element_responseJSON, "bEzsigntemplatepackageIsactive");
+    if (cJSON_IsNull(b_ezsigntemplatepackage_isactive)) {
+        b_ezsigntemplatepackage_isactive = NULL;
+    }
     if (!b_ezsigntemplatepackage_isactive) {
         goto end;
     }
@@ -173,6 +184,9 @@ ezsigntemplatepackage_autocomplete_element_response_t *ezsigntemplatepackage_aut
 
     // ezsigntemplatepackage_autocomplete_element_response->b_disabled
     cJSON *b_disabled = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackage_autocomplete_element_responseJSON, "bDisabled");
+    if (cJSON_IsNull(b_disabled)) {
+        b_disabled = NULL;
+    }
     if (!b_disabled) {
         goto end;
     }
@@ -184,7 +198,7 @@ ezsigntemplatepackage_autocomplete_element_response_t *ezsigntemplatepackage_aut
     }
 
 
-    ezsigntemplatepackage_autocomplete_element_response_local_var = ezsigntemplatepackage_autocomplete_element_response_create (
+    ezsigntemplatepackage_autocomplete_element_response_local_var = ezsigntemplatepackage_autocomplete_element_response_create_internal (
         e_ezsignfoldertype_privacylevel_local_nonprim,
         strdup(s_ezsigntemplatepackage_description->valuestring),
         pki_ezsigntemplatepackage_id->valuedouble,
@@ -195,8 +209,7 @@ ezsigntemplatepackage_autocomplete_element_response_t *ezsigntemplatepackage_aut
     return ezsigntemplatepackage_autocomplete_element_response_local_var;
 end:
     if (e_ezsignfoldertype_privacylevel_local_nonprim) {
-        field_e_ezsignfoldertype_privacylevel_free(e_ezsignfoldertype_privacylevel_local_nonprim);
-        e_ezsignfoldertype_privacylevel_local_nonprim = NULL;
+        e_ezsignfoldertype_privacylevel_local_nonprim = 0;
     }
     return NULL;
 

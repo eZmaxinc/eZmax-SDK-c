@@ -22,9 +22,10 @@ typedef struct branding_create_object_v2_request_t branding_create_object_v2_req
 typedef struct branding_create_object_v2_request_t {
     list_t *a_obj_branding; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } branding_create_object_v2_request_t;
 
-branding_create_object_v2_request_t *branding_create_object_v2_request_create(
+__attribute__((deprecated)) branding_create_object_v2_request_t *branding_create_object_v2_request_create(
     list_t *a_obj_branding
 );
 

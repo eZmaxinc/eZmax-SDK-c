@@ -24,9 +24,10 @@ typedef struct custom_forms_data_folder_response_t {
     char *s_ezsignfolder_description; // string
     list_t *a_obj_form_data_document; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_forms_data_folder_response_t;
 
-custom_forms_data_folder_response_t *custom_forms_data_folder_response_create(
+__attribute__((deprecated)) custom_forms_data_folder_response_t *custom_forms_data_folder_response_create(
     int pki_ezsignfolder_id,
     char *s_ezsignfolder_description,
     list_t *a_obj_form_data_document

@@ -17,14 +17,6 @@ typedef struct communicationrecipient_request_compound_t communicationrecipient_
 
 #include "field_e_communicationrecipient_type.h"
 
-// Enum  for communicationrecipient_request_compound
-
-typedef enum  { ezmax_api_definition__full_communicationrecipient_request_compound__NULL = 0, ezmax_api_definition__full_communicationrecipient_request_compound__To, ezmax_api_definition__full_communicationrecipient_request_compound__Cc, ezmax_api_definition__full_communicationrecipient_request_compound__Bcc } ezmax_api_definition__full_communicationrecipient_request_compound__e;
-
-char* communicationrecipient_request_compound_e_communicationrecipient_type_ToString(ezmax_api_definition__full_communicationrecipient_request_compound__e e_communicationrecipient_type);
-
-ezmax_api_definition__full_communicationrecipient_request_compound__e communicationrecipient_request_compound_e_communicationrecipient_type_FromString(char* e_communicationrecipient_type);
-
 
 
 typedef struct communicationrecipient_request_compound_t {
@@ -42,11 +34,12 @@ typedef struct communicationrecipient_request_compound_t {
     int fki_user_id; //numeric
     int fki_mailboxshared_id; //numeric
     int fki_phonelineshared_id; //numeric
-    field_e_communicationrecipient_type_t *e_communicationrecipient_type; // custom
+    ezmax_api_definition__full_field_e_communicationrecipient_type__e e_communicationrecipient_type; //referenced enum
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } communicationrecipient_request_compound_t;
 
-communicationrecipient_request_compound_t *communicationrecipient_request_compound_create(
+__attribute__((deprecated)) communicationrecipient_request_compound_t *communicationrecipient_request_compound_create(
     int pki_communicationrecipient_id,
     int fki_agent_id,
     int fki_broker_id,
@@ -61,7 +54,7 @@ communicationrecipient_request_compound_t *communicationrecipient_request_compou
     int fki_user_id,
     int fki_mailboxshared_id,
     int fki_phonelineshared_id,
-    field_e_communicationrecipient_type_t *e_communicationrecipient_type
+    ezmax_api_definition__full_field_e_communicationrecipient_type__e e_communicationrecipient_type
 );
 
 void communicationrecipient_request_compound_free(communicationrecipient_request_compound_t *communicationrecipient_request_compound);

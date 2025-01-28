@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_colleague_realestateinprogess__e field_e_coll
     return 0;
 }
 
-cJSON *field_e_colleague_realestateinprogess_field_e_colleague_realestateinprogess_convertToJSON(ezmax_api_definition__full_field_e_colleague_realestateinprogess__e field_e_colleague_realestateinprogess) {
+cJSON *field_e_colleague_realestateinprogess_convertToJSON(ezmax_api_definition__full_field_e_colleague_realestateinprogess__e field_e_colleague_realestateinprogess) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_colleague_realestateinprogess", field_e_colleague_realestateinprogess_field_e_colleague_realestateinprogess_ToString(field_e_colleague_realestateinprogess)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_colleague_realestateinprogess__e field_e_colleague_realestateinprogess_field_e_colleague_realestateinprogess_parseFromJSON(cJSON *field_e_colleague_realestateinprogessJSON) {
-    ezmax_api_definition__full_field_e_colleague_realestateinprogess__e *field_e_colleague_realestateinprogess = NULL;
-    ezmax_api_definition__full_field_e_colleague_realestateinprogess__e field_e_colleague_realestateinprogessVariable;
-    cJSON *field_e_colleague_realestateinprogessVar = cJSON_GetObjectItemCaseSensitive(field_e_colleague_realestateinprogessJSON, "field_e_colleague_realestateinprogess");
-    if(!cJSON_IsString(field_e_colleague_realestateinprogessVar) || (field_e_colleague_realestateinprogessVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_colleague_realestateinprogess__e field_e_colleague_realestateinprogess_parseFromJSON(cJSON *field_e_colleague_realestateinprogessJSON) {
+    if(!cJSON_IsString(field_e_colleague_realestateinprogessJSON) || (field_e_colleague_realestateinprogessJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_colleague_realestateinprogessVariable = field_e_colleague_realestateinprogess_field_e_colleague_realestateinprogess_FromString(field_e_colleague_realestateinprogessVar->valuestring);
-    return field_e_colleague_realestateinprogessVariable;
-end:
-    return 0;
+    return field_e_colleague_realestateinprogess_field_e_colleague_realestateinprogess_FromString(field_e_colleague_realestateinprogessJSON->valuestring);
 }

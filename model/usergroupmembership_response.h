@@ -30,9 +30,10 @@ typedef struct usergroupmembership_response_t {
     char *s_usergroup_name_x; // string
     char *s_usergroupexternal_name; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } usergroupmembership_response_t;
 
-usergroupmembership_response_t *usergroupmembership_response_create(
+__attribute__((deprecated)) usergroupmembership_response_t *usergroupmembership_response_create(
     int pki_usergroupmembership_id,
     int fki_usergroup_id,
     int fki_user_id,

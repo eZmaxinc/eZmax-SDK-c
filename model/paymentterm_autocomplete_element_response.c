@@ -5,7 +5,7 @@
 
 
 
-paymentterm_autocomplete_element_response_t *paymentterm_autocomplete_element_response_create(
+static paymentterm_autocomplete_element_response_t *paymentterm_autocomplete_element_response_create_internal(
     int pki_paymentterm_id,
     char *s_paymentterm_description_x,
     int b_paymentterm_isactive
@@ -18,12 +18,28 @@ paymentterm_autocomplete_element_response_t *paymentterm_autocomplete_element_re
     paymentterm_autocomplete_element_response_local_var->s_paymentterm_description_x = s_paymentterm_description_x;
     paymentterm_autocomplete_element_response_local_var->b_paymentterm_isactive = b_paymentterm_isactive;
 
+    paymentterm_autocomplete_element_response_local_var->_library_owned = 1;
     return paymentterm_autocomplete_element_response_local_var;
 }
 
+__attribute__((deprecated)) paymentterm_autocomplete_element_response_t *paymentterm_autocomplete_element_response_create(
+    int pki_paymentterm_id,
+    char *s_paymentterm_description_x,
+    int b_paymentterm_isactive
+    ) {
+    return paymentterm_autocomplete_element_response_create_internal (
+        pki_paymentterm_id,
+        s_paymentterm_description_x,
+        b_paymentterm_isactive
+        );
+}
 
 void paymentterm_autocomplete_element_response_free(paymentterm_autocomplete_element_response_t *paymentterm_autocomplete_element_response) {
     if(NULL == paymentterm_autocomplete_element_response){
+        return ;
+    }
+    if(paymentterm_autocomplete_element_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "paymentterm_autocomplete_element_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -77,6 +93,9 @@ paymentterm_autocomplete_element_response_t *paymentterm_autocomplete_element_re
 
     // paymentterm_autocomplete_element_response->pki_paymentterm_id
     cJSON *pki_paymentterm_id = cJSON_GetObjectItemCaseSensitive(paymentterm_autocomplete_element_responseJSON, "pkiPaymenttermID");
+    if (cJSON_IsNull(pki_paymentterm_id)) {
+        pki_paymentterm_id = NULL;
+    }
     if (!pki_paymentterm_id) {
         goto end;
     }
@@ -89,6 +108,9 @@ paymentterm_autocomplete_element_response_t *paymentterm_autocomplete_element_re
 
     // paymentterm_autocomplete_element_response->s_paymentterm_description_x
     cJSON *s_paymentterm_description_x = cJSON_GetObjectItemCaseSensitive(paymentterm_autocomplete_element_responseJSON, "sPaymenttermDescriptionX");
+    if (cJSON_IsNull(s_paymentterm_description_x)) {
+        s_paymentterm_description_x = NULL;
+    }
     if (!s_paymentterm_description_x) {
         goto end;
     }
@@ -101,6 +123,9 @@ paymentterm_autocomplete_element_response_t *paymentterm_autocomplete_element_re
 
     // paymentterm_autocomplete_element_response->b_paymentterm_isactive
     cJSON *b_paymentterm_isactive = cJSON_GetObjectItemCaseSensitive(paymentterm_autocomplete_element_responseJSON, "bPaymenttermIsactive");
+    if (cJSON_IsNull(b_paymentterm_isactive)) {
+        b_paymentterm_isactive = NULL;
+    }
     if (!b_paymentterm_isactive) {
         goto end;
     }
@@ -112,7 +137,7 @@ paymentterm_autocomplete_element_response_t *paymentterm_autocomplete_element_re
     }
 
 
-    paymentterm_autocomplete_element_response_local_var = paymentterm_autocomplete_element_response_create (
+    paymentterm_autocomplete_element_response_local_var = paymentterm_autocomplete_element_response_create_internal (
         pki_paymentterm_id->valuedouble,
         strdup(s_paymentterm_description_x->valuestring),
         b_paymentterm_isactive->valueint

@@ -18,30 +18,23 @@ typedef struct authenticationexternal_response_t authenticationexternal_response
 #include "common_audit.h"
 #include "field_e_authenticationexternal_type.h"
 
-// Enum  for authenticationexternal_response
-
-typedef enum  { ezmax_api_definition__full_authenticationexternal_response__NULL = 0, ezmax_api_definition__full_authenticationexternal_response__Salesforce, ezmax_api_definition__full_authenticationexternal_response__SalesforceSandbox } ezmax_api_definition__full_authenticationexternal_response__e;
-
-char* authenticationexternal_response_e_authenticationexternal_type_ToString(ezmax_api_definition__full_authenticationexternal_response__e e_authenticationexternal_type);
-
-ezmax_api_definition__full_authenticationexternal_response__e authenticationexternal_response_e_authenticationexternal_type_FromString(char* e_authenticationexternal_type);
-
 
 
 typedef struct authenticationexternal_response_t {
     int pki_authenticationexternal_id; //numeric
     char *s_authenticationexternal_description; // string
-    field_e_authenticationexternal_type_t *e_authenticationexternal_type; // custom
+    ezmax_api_definition__full_field_e_authenticationexternal_type__e e_authenticationexternal_type; //referenced enum
     int b_authenticationexternal_connected; //boolean
     char *s_authenticationexternal_authorizationurl; // string
     struct common_audit_t *obj_audit; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } authenticationexternal_response_t;
 
-authenticationexternal_response_t *authenticationexternal_response_create(
+__attribute__((deprecated)) authenticationexternal_response_t *authenticationexternal_response_create(
     int pki_authenticationexternal_id,
     char *s_authenticationexternal_description,
-    field_e_authenticationexternal_type_t *e_authenticationexternal_type,
+    ezmax_api_definition__full_field_e_authenticationexternal_type__e e_authenticationexternal_type,
     int b_authenticationexternal_connected,
     char *s_authenticationexternal_authorizationurl,
     common_audit_t *obj_audit

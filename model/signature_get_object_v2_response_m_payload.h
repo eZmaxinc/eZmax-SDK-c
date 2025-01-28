@@ -22,9 +22,10 @@ typedef struct signature_get_object_v2_response_m_payload_t signature_get_object
 typedef struct signature_get_object_v2_response_m_payload_t {
     struct signature_response_compound_t *obj_signature; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } signature_get_object_v2_response_m_payload_t;
 
-signature_get_object_v2_response_m_payload_t *signature_get_object_v2_response_m_payload_create(
+__attribute__((deprecated)) signature_get_object_v2_response_m_payload_t *signature_get_object_v2_response_m_payload_create(
     signature_response_compound_t *obj_signature
 );
 

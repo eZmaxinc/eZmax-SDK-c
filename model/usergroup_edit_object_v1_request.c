@@ -5,7 +5,7 @@
 
 
 
-usergroup_edit_object_v1_request_t *usergroup_edit_object_v1_request_create(
+static usergroup_edit_object_v1_request_t *usergroup_edit_object_v1_request_create_internal(
     usergroup_request_compound_t *obj_usergroup
     ) {
     usergroup_edit_object_v1_request_t *usergroup_edit_object_v1_request_local_var = malloc(sizeof(usergroup_edit_object_v1_request_t));
@@ -14,12 +14,24 @@ usergroup_edit_object_v1_request_t *usergroup_edit_object_v1_request_create(
     }
     usergroup_edit_object_v1_request_local_var->obj_usergroup = obj_usergroup;
 
+    usergroup_edit_object_v1_request_local_var->_library_owned = 1;
     return usergroup_edit_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) usergroup_edit_object_v1_request_t *usergroup_edit_object_v1_request_create(
+    usergroup_request_compound_t *obj_usergroup
+    ) {
+    return usergroup_edit_object_v1_request_create_internal (
+        obj_usergroup
+        );
+}
 
 void usergroup_edit_object_v1_request_free(usergroup_edit_object_v1_request_t *usergroup_edit_object_v1_request) {
     if(NULL == usergroup_edit_object_v1_request){
+        return ;
+    }
+    if(usergroup_edit_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroup_edit_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ usergroup_edit_object_v1_request_t *usergroup_edit_object_v1_request_parseFromJS
 
     // usergroup_edit_object_v1_request->obj_usergroup
     cJSON *obj_usergroup = cJSON_GetObjectItemCaseSensitive(usergroup_edit_object_v1_requestJSON, "objUsergroup");
+    if (cJSON_IsNull(obj_usergroup)) {
+        obj_usergroup = NULL;
+    }
     if (!obj_usergroup) {
         goto end;
     }
@@ -71,7 +86,7 @@ usergroup_edit_object_v1_request_t *usergroup_edit_object_v1_request_parseFromJS
     obj_usergroup_local_nonprim = usergroup_request_compound_parseFromJSON(obj_usergroup); //nonprimitive
 
 
-    usergroup_edit_object_v1_request_local_var = usergroup_edit_object_v1_request_create (
+    usergroup_edit_object_v1_request_local_var = usergroup_edit_object_v1_request_create_internal (
         obj_usergroup_local_nonprim
         );
 

@@ -22,9 +22,10 @@ typedef struct ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_
     char *pks_ezmaxcustomer_code; // string
     char *s_ezsigntemplatepublic_referenceid; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_t;
 
-ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_t *ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_create(
+__attribute__((deprecated)) ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_t *ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request_create(
     char *pks_ezmaxcustomer_code,
     char *s_ezsigntemplatepublic_referenceid
 );

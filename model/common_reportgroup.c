@@ -5,7 +5,7 @@
 
 
 
-common_reportgroup_t *common_reportgroup_create(
+static common_reportgroup_t *common_reportgroup_create_internal(
     list_t *a_obj_report,
     list_t *a_obj_reportcellstyle_custom
     ) {
@@ -16,12 +16,26 @@ common_reportgroup_t *common_reportgroup_create(
     common_reportgroup_local_var->a_obj_report = a_obj_report;
     common_reportgroup_local_var->a_obj_reportcellstyle_custom = a_obj_reportcellstyle_custom;
 
+    common_reportgroup_local_var->_library_owned = 1;
     return common_reportgroup_local_var;
 }
 
+__attribute__((deprecated)) common_reportgroup_t *common_reportgroup_create(
+    list_t *a_obj_report,
+    list_t *a_obj_reportcellstyle_custom
+    ) {
+    return common_reportgroup_create_internal (
+        a_obj_report,
+        a_obj_reportcellstyle_custom
+        );
+}
 
 void common_reportgroup_free(common_reportgroup_t *common_reportgroup) {
     if(NULL == common_reportgroup){
+        return ;
+    }
+    if(common_reportgroup->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "common_reportgroup_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -106,6 +120,9 @@ common_reportgroup_t *common_reportgroup_parseFromJSON(cJSON *common_reportgroup
 
     // common_reportgroup->a_obj_report
     cJSON *a_obj_report = cJSON_GetObjectItemCaseSensitive(common_reportgroupJSON, "a_objReport");
+    if (cJSON_IsNull(a_obj_report)) {
+        a_obj_report = NULL;
+    }
     if (!a_obj_report) {
         goto end;
     }
@@ -130,6 +147,9 @@ common_reportgroup_t *common_reportgroup_parseFromJSON(cJSON *common_reportgroup
 
     // common_reportgroup->a_obj_reportcellstyle_custom
     cJSON *a_obj_reportcellstyle_custom = cJSON_GetObjectItemCaseSensitive(common_reportgroupJSON, "a_objReportcellstyleCustom");
+    if (cJSON_IsNull(a_obj_reportcellstyle_custom)) {
+        a_obj_reportcellstyle_custom = NULL;
+    }
     if (!a_obj_reportcellstyle_custom) {
         goto end;
     }
@@ -153,7 +173,7 @@ common_reportgroup_t *common_reportgroup_parseFromJSON(cJSON *common_reportgroup
     }
 
 
-    common_reportgroup_local_var = common_reportgroup_create (
+    common_reportgroup_local_var = common_reportgroup_create_internal (
         a_obj_reportList,
         a_obj_reportcellstyle_customList
         );

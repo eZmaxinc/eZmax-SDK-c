@@ -22,9 +22,10 @@ typedef struct usergroupdelegation_get_object_v2_response_m_payload_t usergroupd
 typedef struct usergroupdelegation_get_object_v2_response_m_payload_t {
     struct usergroupdelegation_response_compound_t *obj_usergroupdelegation; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } usergroupdelegation_get_object_v2_response_m_payload_t;
 
-usergroupdelegation_get_object_v2_response_m_payload_t *usergroupdelegation_get_object_v2_response_m_payload_create(
+__attribute__((deprecated)) usergroupdelegation_get_object_v2_response_m_payload_t *usergroupdelegation_get_object_v2_response_m_payload_create(
     usergroupdelegation_response_compound_t *obj_usergroupdelegation
 );
 

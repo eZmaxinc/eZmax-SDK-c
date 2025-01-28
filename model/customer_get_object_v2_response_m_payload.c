@@ -5,7 +5,7 @@
 
 
 
-customer_get_object_v2_response_m_payload_t *customer_get_object_v2_response_m_payload_create(
+static customer_get_object_v2_response_m_payload_t *customer_get_object_v2_response_m_payload_create_internal(
     customer_response_compound_t *obj_customer
     ) {
     customer_get_object_v2_response_m_payload_t *customer_get_object_v2_response_m_payload_local_var = malloc(sizeof(customer_get_object_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ customer_get_object_v2_response_m_payload_t *customer_get_object_v2_response_m_p
     }
     customer_get_object_v2_response_m_payload_local_var->obj_customer = obj_customer;
 
+    customer_get_object_v2_response_m_payload_local_var->_library_owned = 1;
     return customer_get_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) customer_get_object_v2_response_m_payload_t *customer_get_object_v2_response_m_payload_create(
+    customer_response_compound_t *obj_customer
+    ) {
+    return customer_get_object_v2_response_m_payload_create_internal (
+        obj_customer
+        );
+}
 
 void customer_get_object_v2_response_m_payload_free(customer_get_object_v2_response_m_payload_t *customer_get_object_v2_response_m_payload) {
     if(NULL == customer_get_object_v2_response_m_payload){
+        return ;
+    }
+    if(customer_get_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "customer_get_object_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ customer_get_object_v2_response_m_payload_t *customer_get_object_v2_response_m_p
 
     // customer_get_object_v2_response_m_payload->obj_customer
     cJSON *obj_customer = cJSON_GetObjectItemCaseSensitive(customer_get_object_v2_response_m_payloadJSON, "objCustomer");
+    if (cJSON_IsNull(obj_customer)) {
+        obj_customer = NULL;
+    }
     if (!obj_customer) {
         goto end;
     }
@@ -71,7 +86,7 @@ customer_get_object_v2_response_m_payload_t *customer_get_object_v2_response_m_p
     obj_customer_local_nonprim = customer_response_compound_parseFromJSON(obj_customer); //nonprimitive
 
 
-    customer_get_object_v2_response_m_payload_local_var = customer_get_object_v2_response_m_payload_create (
+    customer_get_object_v2_response_m_payload_local_var = customer_get_object_v2_response_m_payload_create_internal (
         obj_customer_local_nonprim
         );
 

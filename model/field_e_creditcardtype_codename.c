@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_creditcardtype_codename__e field_e_creditcard
     return 0;
 }
 
-cJSON *field_e_creditcardtype_codename_field_e_creditcardtype_codename_convertToJSON(ezmax_api_definition__full_field_e_creditcardtype_codename__e field_e_creditcardtype_codename) {
+cJSON *field_e_creditcardtype_codename_convertToJSON(ezmax_api_definition__full_field_e_creditcardtype_codename__e field_e_creditcardtype_codename) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_creditcardtype_codename", field_e_creditcardtype_codename_field_e_creditcardtype_codename_ToString(field_e_creditcardtype_codename)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_creditcardtype_codename__e field_e_creditcardtype_codename_field_e_creditcardtype_codename_parseFromJSON(cJSON *field_e_creditcardtype_codenameJSON) {
-    ezmax_api_definition__full_field_e_creditcardtype_codename__e *field_e_creditcardtype_codename = NULL;
-    ezmax_api_definition__full_field_e_creditcardtype_codename__e field_e_creditcardtype_codenameVariable;
-    cJSON *field_e_creditcardtype_codenameVar = cJSON_GetObjectItemCaseSensitive(field_e_creditcardtype_codenameJSON, "field_e_creditcardtype_codename");
-    if(!cJSON_IsString(field_e_creditcardtype_codenameVar) || (field_e_creditcardtype_codenameVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_creditcardtype_codename__e field_e_creditcardtype_codename_parseFromJSON(cJSON *field_e_creditcardtype_codenameJSON) {
+    if(!cJSON_IsString(field_e_creditcardtype_codenameJSON) || (field_e_creditcardtype_codenameJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_creditcardtype_codenameVariable = field_e_creditcardtype_codename_field_e_creditcardtype_codename_FromString(field_e_creditcardtype_codenameVar->valuestring);
-    return field_e_creditcardtype_codenameVariable;
-end:
-    return 0;
+    return field_e_creditcardtype_codename_field_e_creditcardtype_codename_FromString(field_e_creditcardtype_codenameJSON->valuestring);
 }

@@ -5,7 +5,7 @@
 
 
 
-ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t *ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_create(
+static ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t *ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_ezdoctemplatefieldtypecategory
     ) {
     ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t *ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t *ezdocte
     }
     ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_local_var->a_obj_ezdoctemplatefieldtypecategory = a_obj_ezdoctemplatefieldtypecategory;
 
+    ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t *ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_ezdoctemplatefieldtypecategory
+    ) {
+    return ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_ezdoctemplatefieldtypecategory
+        );
+}
 
 void ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_free(ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t *ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload) {
     if(NULL == ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t *ezdocte
 
     // ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload->a_obj_ezdoctemplatefieldtypecategory
     cJSON *a_obj_ezdoctemplatefieldtypecategory = cJSON_GetObjectItemCaseSensitive(ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payloadJSON, "a_objEzdoctemplatefieldtypecategory");
+    if (cJSON_IsNull(a_obj_ezdoctemplatefieldtypecategory)) {
+        a_obj_ezdoctemplatefieldtypecategory = NULL;
+    }
     if (!a_obj_ezdoctemplatefieldtypecategory) {
         goto end;
     }
@@ -96,7 +111,7 @@ ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_t *ezdocte
     }
 
 
-    ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_local_var = ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_create (
+    ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_local_var = ezdoctemplatefieldtypecategory_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_ezdoctemplatefieldtypecategoryList
         );
 

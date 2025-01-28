@@ -24,9 +24,10 @@ typedef struct custom_communicationattachment_request_t {
     struct communicationattachment_request_compound_t *obj_communicationattachment; //model
     struct common_file_t *obj_communicationexternalattachment; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_communicationattachment_request_t;
 
-custom_communicationattachment_request_t *custom_communicationattachment_request_create(
+__attribute__((deprecated)) custom_communicationattachment_request_t *custom_communicationattachment_request_create(
     communicationattachment_request_compound_t *obj_communicationattachment,
     common_file_t *obj_communicationexternalattachment
 );

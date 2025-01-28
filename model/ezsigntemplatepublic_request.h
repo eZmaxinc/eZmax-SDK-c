@@ -17,14 +17,6 @@ typedef struct ezsigntemplatepublic_request_t ezsigntemplatepublic_request_t;
 
 #include "field_e_ezsigntemplatepublic_limittype.h"
 
-// Enum  for ezsigntemplatepublic_request
-
-typedef enum  { ezmax_api_definition__full_ezsigntemplatepublic_request__NULL = 0, ezmax_api_definition__full_ezsigntemplatepublic_request__Hour, ezmax_api_definition__full_ezsigntemplatepublic_request__Day, ezmax_api_definition__full_ezsigntemplatepublic_request__Month, ezmax_api_definition__full_ezsigntemplatepublic_request__Total } ezmax_api_definition__full_ezsigntemplatepublic_request__e;
-
-char* ezsigntemplatepublic_request_e_ezsigntemplatepublic_limittype_ToString(ezmax_api_definition__full_ezsigntemplatepublic_request__e e_ezsigntemplatepublic_limittype);
-
-ezmax_api_definition__full_ezsigntemplatepublic_request__e ezsigntemplatepublic_request_e_ezsigntemplatepublic_limittype_FromString(char* e_ezsigntemplatepublic_limittype);
-
 
 
 typedef struct ezsigntemplatepublic_request_t {
@@ -36,12 +28,13 @@ typedef struct ezsigntemplatepublic_request_t {
     char *s_ezsigntemplatepublic_description; // string
     int b_ezsigntemplatepublic_isactive; //boolean
     char *t_ezsigntemplatepublic_note; // string
-    field_e_ezsigntemplatepublic_limittype_t *e_ezsigntemplatepublic_limittype; // custom
+    ezmax_api_definition__full_field_e_ezsigntemplatepublic_limittype__e e_ezsigntemplatepublic_limittype; //referenced enum
     int i_ezsigntemplatepublic_limit; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatepublic_request_t;
 
-ezsigntemplatepublic_request_t *ezsigntemplatepublic_request_create(
+__attribute__((deprecated)) ezsigntemplatepublic_request_t *ezsigntemplatepublic_request_create(
     int pki_ezsigntemplatepublic_id,
     int fki_ezsignfoldertype_id,
     int fki_userlogintype_id,
@@ -50,7 +43,7 @@ ezsigntemplatepublic_request_t *ezsigntemplatepublic_request_create(
     char *s_ezsigntemplatepublic_description,
     int b_ezsigntemplatepublic_isactive,
     char *t_ezsigntemplatepublic_note,
-    field_e_ezsigntemplatepublic_limittype_t *e_ezsigntemplatepublic_limittype,
+    ezmax_api_definition__full_field_e_ezsigntemplatepublic_limittype__e e_ezsigntemplatepublic_limittype,
     int i_ezsigntemplatepublic_limit
 );
 

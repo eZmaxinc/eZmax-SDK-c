@@ -25,9 +25,10 @@ typedef struct global_ezmaxcustomer_get_configuration_v1_response_t {
     char *s_cognito_client_id_external; // string
     char *s_cognito_client_id_ezmaxpublic; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } global_ezmaxcustomer_get_configuration_v1_response_t;
 
-global_ezmaxcustomer_get_configuration_v1_response_t *global_ezmaxcustomer_get_configuration_v1_response_create(
+__attribute__((deprecated)) global_ezmaxcustomer_get_configuration_v1_response_t *global_ezmaxcustomer_get_configuration_v1_response_create(
     char *s_infrastructureregion_code,
     char *s_infrastructureregion_code_web,
     char *s_infrastructureenvironmenttype_description,

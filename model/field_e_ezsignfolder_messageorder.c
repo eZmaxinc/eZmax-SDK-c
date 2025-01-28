@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsignfolder_messageorder__e field_e_ezsignfo
     return 0;
 }
 
-cJSON *field_e_ezsignfolder_messageorder_field_e_ezsignfolder_messageorder_convertToJSON(ezmax_api_definition__full_field_e_ezsignfolder_messageorder__e field_e_ezsignfolder_messageorder) {
+cJSON *field_e_ezsignfolder_messageorder_convertToJSON(ezmax_api_definition__full_field_e_ezsignfolder_messageorder__e field_e_ezsignfolder_messageorder) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsignfolder_messageorder", field_e_ezsignfolder_messageorder_field_e_ezsignfolder_messageorder_ToString(field_e_ezsignfolder_messageorder)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsignfolder_messageorder__e field_e_ezsignfolder_messageorder_field_e_ezsignfolder_messageorder_parseFromJSON(cJSON *field_e_ezsignfolder_messageorderJSON) {
-    ezmax_api_definition__full_field_e_ezsignfolder_messageorder__e *field_e_ezsignfolder_messageorder = NULL;
-    ezmax_api_definition__full_field_e_ezsignfolder_messageorder__e field_e_ezsignfolder_messageorderVariable;
-    cJSON *field_e_ezsignfolder_messageorderVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsignfolder_messageorderJSON, "field_e_ezsignfolder_messageorder");
-    if(!cJSON_IsString(field_e_ezsignfolder_messageorderVar) || (field_e_ezsignfolder_messageorderVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsignfolder_messageorder__e field_e_ezsignfolder_messageorder_parseFromJSON(cJSON *field_e_ezsignfolder_messageorderJSON) {
+    if(!cJSON_IsString(field_e_ezsignfolder_messageorderJSON) || (field_e_ezsignfolder_messageorderJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsignfolder_messageorderVariable = field_e_ezsignfolder_messageorder_field_e_ezsignfolder_messageorder_FromString(field_e_ezsignfolder_messageorderVar->valuestring);
-    return field_e_ezsignfolder_messageorderVariable;
-end:
-    return 0;
+    return field_e_ezsignfolder_messageorder_field_e_ezsignfolder_messageorder_FromString(field_e_ezsignfolder_messageorderJSON->valuestring);
 }

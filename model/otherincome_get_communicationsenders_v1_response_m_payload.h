@@ -22,9 +22,10 @@ typedef struct otherincome_get_communicationsenders_v1_response_m_payload_t othe
 typedef struct otherincome_get_communicationsenders_v1_response_m_payload_t {
     list_t *a_obj_communicationsenders; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } otherincome_get_communicationsenders_v1_response_m_payload_t;
 
-otherincome_get_communicationsenders_v1_response_m_payload_t *otherincome_get_communicationsenders_v1_response_m_payload_create(
+__attribute__((deprecated)) otherincome_get_communicationsenders_v1_response_m_payload_t *otherincome_get_communicationsenders_v1_response_m_payload_create(
     list_t *a_obj_communicationsenders
 );
 

@@ -5,7 +5,7 @@
 
 
 
-otherincome_get_communication_count_v1_response_m_payload_t *otherincome_get_communication_count_v1_response_m_payload_create(
+static otherincome_get_communication_count_v1_response_m_payload_t *otherincome_get_communication_count_v1_response_m_payload_create_internal(
     int i_communication_count
     ) {
     otherincome_get_communication_count_v1_response_m_payload_t *otherincome_get_communication_count_v1_response_m_payload_local_var = malloc(sizeof(otherincome_get_communication_count_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ otherincome_get_communication_count_v1_response_m_payload_t *otherincome_get_com
     }
     otherincome_get_communication_count_v1_response_m_payload_local_var->i_communication_count = i_communication_count;
 
+    otherincome_get_communication_count_v1_response_m_payload_local_var->_library_owned = 1;
     return otherincome_get_communication_count_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) otherincome_get_communication_count_v1_response_m_payload_t *otherincome_get_communication_count_v1_response_m_payload_create(
+    int i_communication_count
+    ) {
+    return otherincome_get_communication_count_v1_response_m_payload_create_internal (
+        i_communication_count
+        );
+}
 
 void otherincome_get_communication_count_v1_response_m_payload_free(otherincome_get_communication_count_v1_response_m_payload_t *otherincome_get_communication_count_v1_response_m_payload) {
     if(NULL == otherincome_get_communication_count_v1_response_m_payload){
+        return ;
+    }
+    if(otherincome_get_communication_count_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "otherincome_get_communication_count_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -51,6 +63,9 @@ otherincome_get_communication_count_v1_response_m_payload_t *otherincome_get_com
 
     // otherincome_get_communication_count_v1_response_m_payload->i_communication_count
     cJSON *i_communication_count = cJSON_GetObjectItemCaseSensitive(otherincome_get_communication_count_v1_response_m_payloadJSON, "iCommunicationCount");
+    if (cJSON_IsNull(i_communication_count)) {
+        i_communication_count = NULL;
+    }
     if (!i_communication_count) {
         goto end;
     }
@@ -62,7 +77,7 @@ otherincome_get_communication_count_v1_response_m_payload_t *otherincome_get_com
     }
 
 
-    otherincome_get_communication_count_v1_response_m_payload_local_var = otherincome_get_communication_count_v1_response_m_payload_create (
+    otherincome_get_communication_count_v1_response_m_payload_local_var = otherincome_get_communication_count_v1_response_m_payload_create_internal (
         i_communication_count->valuedouble
         );
 

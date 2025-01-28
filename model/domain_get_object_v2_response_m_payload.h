@@ -22,9 +22,10 @@ typedef struct domain_get_object_v2_response_m_payload_t domain_get_object_v2_re
 typedef struct domain_get_object_v2_response_m_payload_t {
     struct domain_response_compound_t *obj_domain; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } domain_get_object_v2_response_m_payload_t;
 
-domain_get_object_v2_response_m_payload_t *domain_get_object_v2_response_m_payload_create(
+__attribute__((deprecated)) domain_get_object_v2_response_m_payload_t *domain_get_object_v2_response_m_payload_create(
     domain_response_compound_t *obj_domain
 );
 

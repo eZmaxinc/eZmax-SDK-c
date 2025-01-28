@@ -5,7 +5,7 @@
 
 
 
-usergroupmembership_response_compound_t *usergroupmembership_response_compound_create(
+static usergroupmembership_response_compound_t *usergroupmembership_response_compound_create_internal(
     int pki_usergroupmembership_id,
     int fki_usergroup_id,
     int fki_user_id,
@@ -32,12 +32,42 @@ usergroupmembership_response_compound_t *usergroupmembership_response_compound_c
     usergroupmembership_response_compound_local_var->s_usergroup_name_x = s_usergroup_name_x;
     usergroupmembership_response_compound_local_var->s_usergroupexternal_name = s_usergroupexternal_name;
 
+    usergroupmembership_response_compound_local_var->_library_owned = 1;
     return usergroupmembership_response_compound_local_var;
 }
 
+__attribute__((deprecated)) usergroupmembership_response_compound_t *usergroupmembership_response_compound_create(
+    int pki_usergroupmembership_id,
+    int fki_usergroup_id,
+    int fki_user_id,
+    int fki_usergroupexternal_id,
+    char *s_user_firstname,
+    char *s_user_lastname,
+    char *s_user_loginname,
+    char *s_email_address,
+    char *s_usergroup_name_x,
+    char *s_usergroupexternal_name
+    ) {
+    return usergroupmembership_response_compound_create_internal (
+        pki_usergroupmembership_id,
+        fki_usergroup_id,
+        fki_user_id,
+        fki_usergroupexternal_id,
+        s_user_firstname,
+        s_user_lastname,
+        s_user_loginname,
+        s_email_address,
+        s_usergroup_name_x,
+        s_usergroupexternal_name
+        );
+}
 
 void usergroupmembership_response_compound_free(usergroupmembership_response_compound_t *usergroupmembership_response_compound) {
     if(NULL == usergroupmembership_response_compound){
+        return ;
+    }
+    if(usergroupmembership_response_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroupmembership_response_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -167,6 +197,9 @@ usergroupmembership_response_compound_t *usergroupmembership_response_compound_p
 
     // usergroupmembership_response_compound->pki_usergroupmembership_id
     cJSON *pki_usergroupmembership_id = cJSON_GetObjectItemCaseSensitive(usergroupmembership_response_compoundJSON, "pkiUsergroupmembershipID");
+    if (cJSON_IsNull(pki_usergroupmembership_id)) {
+        pki_usergroupmembership_id = NULL;
+    }
     if (!pki_usergroupmembership_id) {
         goto end;
     }
@@ -179,6 +212,9 @@ usergroupmembership_response_compound_t *usergroupmembership_response_compound_p
 
     // usergroupmembership_response_compound->fki_usergroup_id
     cJSON *fki_usergroup_id = cJSON_GetObjectItemCaseSensitive(usergroupmembership_response_compoundJSON, "fkiUsergroupID");
+    if (cJSON_IsNull(fki_usergroup_id)) {
+        fki_usergroup_id = NULL;
+    }
     if (!fki_usergroup_id) {
         goto end;
     }
@@ -191,6 +227,9 @@ usergroupmembership_response_compound_t *usergroupmembership_response_compound_p
 
     // usergroupmembership_response_compound->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(usergroupmembership_response_compoundJSON, "fkiUserID");
+    if (cJSON_IsNull(fki_user_id)) {
+        fki_user_id = NULL;
+    }
     if (fki_user_id) { 
     if(!cJSON_IsNumber(fki_user_id))
     {
@@ -200,6 +239,9 @@ usergroupmembership_response_compound_t *usergroupmembership_response_compound_p
 
     // usergroupmembership_response_compound->fki_usergroupexternal_id
     cJSON *fki_usergroupexternal_id = cJSON_GetObjectItemCaseSensitive(usergroupmembership_response_compoundJSON, "fkiUsergroupexternalID");
+    if (cJSON_IsNull(fki_usergroupexternal_id)) {
+        fki_usergroupexternal_id = NULL;
+    }
     if (fki_usergroupexternal_id) { 
     if(!cJSON_IsNumber(fki_usergroupexternal_id))
     {
@@ -209,6 +251,9 @@ usergroupmembership_response_compound_t *usergroupmembership_response_compound_p
 
     // usergroupmembership_response_compound->s_user_firstname
     cJSON *s_user_firstname = cJSON_GetObjectItemCaseSensitive(usergroupmembership_response_compoundJSON, "sUserFirstname");
+    if (cJSON_IsNull(s_user_firstname)) {
+        s_user_firstname = NULL;
+    }
     if (s_user_firstname) { 
     if(!cJSON_IsString(s_user_firstname) && !cJSON_IsNull(s_user_firstname))
     {
@@ -218,6 +263,9 @@ usergroupmembership_response_compound_t *usergroupmembership_response_compound_p
 
     // usergroupmembership_response_compound->s_user_lastname
     cJSON *s_user_lastname = cJSON_GetObjectItemCaseSensitive(usergroupmembership_response_compoundJSON, "sUserLastname");
+    if (cJSON_IsNull(s_user_lastname)) {
+        s_user_lastname = NULL;
+    }
     if (s_user_lastname) { 
     if(!cJSON_IsString(s_user_lastname) && !cJSON_IsNull(s_user_lastname))
     {
@@ -227,6 +275,9 @@ usergroupmembership_response_compound_t *usergroupmembership_response_compound_p
 
     // usergroupmembership_response_compound->s_user_loginname
     cJSON *s_user_loginname = cJSON_GetObjectItemCaseSensitive(usergroupmembership_response_compoundJSON, "sUserLoginname");
+    if (cJSON_IsNull(s_user_loginname)) {
+        s_user_loginname = NULL;
+    }
     if (s_user_loginname) { 
     if(!cJSON_IsString(s_user_loginname) && !cJSON_IsNull(s_user_loginname))
     {
@@ -236,6 +287,9 @@ usergroupmembership_response_compound_t *usergroupmembership_response_compound_p
 
     // usergroupmembership_response_compound->s_email_address
     cJSON *s_email_address = cJSON_GetObjectItemCaseSensitive(usergroupmembership_response_compoundJSON, "sEmailAddress");
+    if (cJSON_IsNull(s_email_address)) {
+        s_email_address = NULL;
+    }
     if (s_email_address) { 
     if(!cJSON_IsString(s_email_address) && !cJSON_IsNull(s_email_address))
     {
@@ -245,6 +299,9 @@ usergroupmembership_response_compound_t *usergroupmembership_response_compound_p
 
     // usergroupmembership_response_compound->s_usergroup_name_x
     cJSON *s_usergroup_name_x = cJSON_GetObjectItemCaseSensitive(usergroupmembership_response_compoundJSON, "sUsergroupNameX");
+    if (cJSON_IsNull(s_usergroup_name_x)) {
+        s_usergroup_name_x = NULL;
+    }
     if (!s_usergroup_name_x) {
         goto end;
     }
@@ -257,6 +314,9 @@ usergroupmembership_response_compound_t *usergroupmembership_response_compound_p
 
     // usergroupmembership_response_compound->s_usergroupexternal_name
     cJSON *s_usergroupexternal_name = cJSON_GetObjectItemCaseSensitive(usergroupmembership_response_compoundJSON, "sUsergroupexternalName");
+    if (cJSON_IsNull(s_usergroupexternal_name)) {
+        s_usergroupexternal_name = NULL;
+    }
     if (s_usergroupexternal_name) { 
     if(!cJSON_IsString(s_usergroupexternal_name) && !cJSON_IsNull(s_usergroupexternal_name))
     {
@@ -265,7 +325,7 @@ usergroupmembership_response_compound_t *usergroupmembership_response_compound_p
     }
 
 
-    usergroupmembership_response_compound_local_var = usergroupmembership_response_compound_create (
+    usergroupmembership_response_compound_local_var = usergroupmembership_response_compound_create_internal (
         pki_usergroupmembership_id->valuedouble,
         fki_usergroup_id->valuedouble,
         fki_user_id ? fki_user_id->valuedouble : 0,

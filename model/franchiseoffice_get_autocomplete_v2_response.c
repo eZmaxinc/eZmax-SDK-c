@@ -5,7 +5,7 @@
 
 
 
-franchiseoffice_get_autocomplete_v2_response_t *franchiseoffice_get_autocomplete_v2_response_create(
+static franchiseoffice_get_autocomplete_v2_response_t *franchiseoffice_get_autocomplete_v2_response_create_internal(
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug,
     franchiseoffice_get_autocomplete_v2_response_m_payload_t *m_payload
@@ -18,12 +18,28 @@ franchiseoffice_get_autocomplete_v2_response_t *franchiseoffice_get_autocomplete
     franchiseoffice_get_autocomplete_v2_response_local_var->obj_debug = obj_debug;
     franchiseoffice_get_autocomplete_v2_response_local_var->m_payload = m_payload;
 
+    franchiseoffice_get_autocomplete_v2_response_local_var->_library_owned = 1;
     return franchiseoffice_get_autocomplete_v2_response_local_var;
 }
 
+__attribute__((deprecated)) franchiseoffice_get_autocomplete_v2_response_t *franchiseoffice_get_autocomplete_v2_response_create(
+    common_response_obj_debug_payload_t *obj_debug_payload,
+    common_response_obj_debug_t *obj_debug,
+    franchiseoffice_get_autocomplete_v2_response_m_payload_t *m_payload
+    ) {
+    return franchiseoffice_get_autocomplete_v2_response_create_internal (
+        obj_debug_payload,
+        obj_debug,
+        m_payload
+        );
+}
 
 void franchiseoffice_get_autocomplete_v2_response_free(franchiseoffice_get_autocomplete_v2_response_t *franchiseoffice_get_autocomplete_v2_response) {
     if(NULL == franchiseoffice_get_autocomplete_v2_response){
+        return ;
+    }
+    if(franchiseoffice_get_autocomplete_v2_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "franchiseoffice_get_autocomplete_v2_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -108,6 +124,9 @@ franchiseoffice_get_autocomplete_v2_response_t *franchiseoffice_get_autocomplete
 
     // franchiseoffice_get_autocomplete_v2_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(franchiseoffice_get_autocomplete_v2_responseJSON, "objDebugPayload");
+    if (cJSON_IsNull(obj_debug_payload)) {
+        obj_debug_payload = NULL;
+    }
     if (!obj_debug_payload) {
         goto end;
     }
@@ -117,12 +136,18 @@ franchiseoffice_get_autocomplete_v2_response_t *franchiseoffice_get_autocomplete
 
     // franchiseoffice_get_autocomplete_v2_response->obj_debug
     cJSON *obj_debug = cJSON_GetObjectItemCaseSensitive(franchiseoffice_get_autocomplete_v2_responseJSON, "objDebug");
+    if (cJSON_IsNull(obj_debug)) {
+        obj_debug = NULL;
+    }
     if (obj_debug) { 
     obj_debug_local_nonprim = common_response_obj_debug_parseFromJSON(obj_debug); //nonprimitive
     }
 
     // franchiseoffice_get_autocomplete_v2_response->m_payload
     cJSON *m_payload = cJSON_GetObjectItemCaseSensitive(franchiseoffice_get_autocomplete_v2_responseJSON, "mPayload");
+    if (cJSON_IsNull(m_payload)) {
+        m_payload = NULL;
+    }
     if (!m_payload) {
         goto end;
     }
@@ -131,7 +156,7 @@ franchiseoffice_get_autocomplete_v2_response_t *franchiseoffice_get_autocomplete
     m_payload_local_nonprim = franchiseoffice_get_autocomplete_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
-    franchiseoffice_get_autocomplete_v2_response_local_var = franchiseoffice_get_autocomplete_v2_response_create (
+    franchiseoffice_get_autocomplete_v2_response_local_var = franchiseoffice_get_autocomplete_v2_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim

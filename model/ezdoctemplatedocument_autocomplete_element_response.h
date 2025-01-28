@@ -23,9 +23,10 @@ typedef struct ezdoctemplatedocument_autocomplete_element_response_t {
     char *s_ezdoctemplatedocument_name_x; // string
     int b_ezdoctemplatedocument_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezdoctemplatedocument_autocomplete_element_response_t;
 
-ezdoctemplatedocument_autocomplete_element_response_t *ezdoctemplatedocument_autocomplete_element_response_create(
+__attribute__((deprecated)) ezdoctemplatedocument_autocomplete_element_response_t *ezdoctemplatedocument_autocomplete_element_response_create(
     int pki_ezdoctemplatedocument_id,
     char *s_ezdoctemplatedocument_name_x,
     int b_ezdoctemplatedocument_isactive

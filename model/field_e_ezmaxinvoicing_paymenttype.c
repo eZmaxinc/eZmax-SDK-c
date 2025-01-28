@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezmaxinvoicing_paymenttype__e field_e_ezmaxin
     return 0;
 }
 
-cJSON *field_e_ezmaxinvoicing_paymenttype_field_e_ezmaxinvoicing_paymenttype_convertToJSON(ezmax_api_definition__full_field_e_ezmaxinvoicing_paymenttype__e field_e_ezmaxinvoicing_paymenttype) {
+cJSON *field_e_ezmaxinvoicing_paymenttype_convertToJSON(ezmax_api_definition__full_field_e_ezmaxinvoicing_paymenttype__e field_e_ezmaxinvoicing_paymenttype) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezmaxinvoicing_paymenttype", field_e_ezmaxinvoicing_paymenttype_field_e_ezmaxinvoicing_paymenttype_ToString(field_e_ezmaxinvoicing_paymenttype)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezmaxinvoicing_paymenttype__e field_e_ezmaxinvoicing_paymenttype_field_e_ezmaxinvoicing_paymenttype_parseFromJSON(cJSON *field_e_ezmaxinvoicing_paymenttypeJSON) {
-    ezmax_api_definition__full_field_e_ezmaxinvoicing_paymenttype__e *field_e_ezmaxinvoicing_paymenttype = NULL;
-    ezmax_api_definition__full_field_e_ezmaxinvoicing_paymenttype__e field_e_ezmaxinvoicing_paymenttypeVariable;
-    cJSON *field_e_ezmaxinvoicing_paymenttypeVar = cJSON_GetObjectItemCaseSensitive(field_e_ezmaxinvoicing_paymenttypeJSON, "field_e_ezmaxinvoicing_paymenttype");
-    if(!cJSON_IsString(field_e_ezmaxinvoicing_paymenttypeVar) || (field_e_ezmaxinvoicing_paymenttypeVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezmaxinvoicing_paymenttype__e field_e_ezmaxinvoicing_paymenttype_parseFromJSON(cJSON *field_e_ezmaxinvoicing_paymenttypeJSON) {
+    if(!cJSON_IsString(field_e_ezmaxinvoicing_paymenttypeJSON) || (field_e_ezmaxinvoicing_paymenttypeJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezmaxinvoicing_paymenttypeVariable = field_e_ezmaxinvoicing_paymenttype_field_e_ezmaxinvoicing_paymenttype_FromString(field_e_ezmaxinvoicing_paymenttypeVar->valuestring);
-    return field_e_ezmaxinvoicing_paymenttypeVariable;
-end:
-    return 0;
+    return field_e_ezmaxinvoicing_paymenttype_field_e_ezmaxinvoicing_paymenttype_FromString(field_e_ezmaxinvoicing_paymenttypeJSON->valuestring);
 }

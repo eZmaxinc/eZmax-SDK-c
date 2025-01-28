@@ -5,7 +5,7 @@
 
 
 
-ezsigntemplatedocument_request_patch_t *ezsigntemplatedocument_request_patch_create(
+static ezsigntemplatedocument_request_patch_t *ezsigntemplatedocument_request_patch_create_internal(
     char *s_ezsigntemplatedocument_name
     ) {
     ezsigntemplatedocument_request_patch_t *ezsigntemplatedocument_request_patch_local_var = malloc(sizeof(ezsigntemplatedocument_request_patch_t));
@@ -14,12 +14,24 @@ ezsigntemplatedocument_request_patch_t *ezsigntemplatedocument_request_patch_cre
     }
     ezsigntemplatedocument_request_patch_local_var->s_ezsigntemplatedocument_name = s_ezsigntemplatedocument_name;
 
+    ezsigntemplatedocument_request_patch_local_var->_library_owned = 1;
     return ezsigntemplatedocument_request_patch_local_var;
 }
 
+__attribute__((deprecated)) ezsigntemplatedocument_request_patch_t *ezsigntemplatedocument_request_patch_create(
+    char *s_ezsigntemplatedocument_name
+    ) {
+    return ezsigntemplatedocument_request_patch_create_internal (
+        s_ezsigntemplatedocument_name
+        );
+}
 
 void ezsigntemplatedocument_request_patch_free(ezsigntemplatedocument_request_patch_t *ezsigntemplatedocument_request_patch) {
     if(NULL == ezsigntemplatedocument_request_patch){
+        return ;
+    }
+    if(ezsigntemplatedocument_request_patch->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigntemplatedocument_request_patch_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -54,6 +66,9 @@ ezsigntemplatedocument_request_patch_t *ezsigntemplatedocument_request_patch_par
 
     // ezsigntemplatedocument_request_patch->s_ezsigntemplatedocument_name
     cJSON *s_ezsigntemplatedocument_name = cJSON_GetObjectItemCaseSensitive(ezsigntemplatedocument_request_patchJSON, "sEzsigntemplatedocumentName");
+    if (cJSON_IsNull(s_ezsigntemplatedocument_name)) {
+        s_ezsigntemplatedocument_name = NULL;
+    }
     if (s_ezsigntemplatedocument_name) { 
     if(!cJSON_IsString(s_ezsigntemplatedocument_name) && !cJSON_IsNull(s_ezsigntemplatedocument_name))
     {
@@ -62,7 +77,7 @@ ezsigntemplatedocument_request_patch_t *ezsigntemplatedocument_request_patch_par
     }
 
 
-    ezsigntemplatedocument_request_patch_local_var = ezsigntemplatedocument_request_patch_create (
+    ezsigntemplatedocument_request_patch_local_var = ezsigntemplatedocument_request_patch_create_internal (
         s_ezsigntemplatedocument_name && !cJSON_IsNull(s_ezsigntemplatedocument_name) ? strdup(s_ezsigntemplatedocument_name->valuestring) : NULL
         );
 

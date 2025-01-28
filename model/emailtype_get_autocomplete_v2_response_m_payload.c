@@ -5,7 +5,7 @@
 
 
 
-emailtype_get_autocomplete_v2_response_m_payload_t *emailtype_get_autocomplete_v2_response_m_payload_create(
+static emailtype_get_autocomplete_v2_response_m_payload_t *emailtype_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_emailtype
     ) {
     emailtype_get_autocomplete_v2_response_m_payload_t *emailtype_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(emailtype_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ emailtype_get_autocomplete_v2_response_m_payload_t *emailtype_get_autocomplete_v
     }
     emailtype_get_autocomplete_v2_response_m_payload_local_var->a_obj_emailtype = a_obj_emailtype;
 
+    emailtype_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return emailtype_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) emailtype_get_autocomplete_v2_response_m_payload_t *emailtype_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_emailtype
+    ) {
+    return emailtype_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_emailtype
+        );
+}
 
 void emailtype_get_autocomplete_v2_response_m_payload_free(emailtype_get_autocomplete_v2_response_m_payload_t *emailtype_get_autocomplete_v2_response_m_payload) {
     if(NULL == emailtype_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(emailtype_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "emailtype_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ emailtype_get_autocomplete_v2_response_m_payload_t *emailtype_get_autocomplete_v
 
     // emailtype_get_autocomplete_v2_response_m_payload->a_obj_emailtype
     cJSON *a_obj_emailtype = cJSON_GetObjectItemCaseSensitive(emailtype_get_autocomplete_v2_response_m_payloadJSON, "a_objEmailtype");
+    if (cJSON_IsNull(a_obj_emailtype)) {
+        a_obj_emailtype = NULL;
+    }
     if (!a_obj_emailtype) {
         goto end;
     }
@@ -96,7 +111,7 @@ emailtype_get_autocomplete_v2_response_m_payload_t *emailtype_get_autocomplete_v
     }
 
 
-    emailtype_get_autocomplete_v2_response_m_payload_local_var = emailtype_get_autocomplete_v2_response_m_payload_create (
+    emailtype_get_autocomplete_v2_response_m_payload_local_var = emailtype_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_emailtypeList
         );
 

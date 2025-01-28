@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_systemconfiguration_newexternaluseraction__e 
     return 0;
 }
 
-cJSON *field_e_systemconfiguration_newexternaluseraction_field_e_systemconfiguration_newexternaluseraction_convertToJSON(ezmax_api_definition__full_field_e_systemconfiguration_newexternaluseraction__e field_e_systemconfiguration_newexternaluseraction) {
+cJSON *field_e_systemconfiguration_newexternaluseraction_convertToJSON(ezmax_api_definition__full_field_e_systemconfiguration_newexternaluseraction__e field_e_systemconfiguration_newexternaluseraction) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_systemconfiguration_newexternaluseraction", field_e_systemconfiguration_newexternaluseraction_field_e_systemconfiguration_newexternaluseraction_ToString(field_e_systemconfiguration_newexternaluseraction)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_systemconfiguration_newexternaluseraction__e field_e_systemconfiguration_newexternaluseraction_field_e_systemconfiguration_newexternaluseraction_parseFromJSON(cJSON *field_e_systemconfiguration_newexternaluseractionJSON) {
-    ezmax_api_definition__full_field_e_systemconfiguration_newexternaluseraction__e *field_e_systemconfiguration_newexternaluseraction = NULL;
-    ezmax_api_definition__full_field_e_systemconfiguration_newexternaluseraction__e field_e_systemconfiguration_newexternaluseractionVariable;
-    cJSON *field_e_systemconfiguration_newexternaluseractionVar = cJSON_GetObjectItemCaseSensitive(field_e_systemconfiguration_newexternaluseractionJSON, "field_e_systemconfiguration_newexternaluseraction");
-    if(!cJSON_IsString(field_e_systemconfiguration_newexternaluseractionVar) || (field_e_systemconfiguration_newexternaluseractionVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_systemconfiguration_newexternaluseraction__e field_e_systemconfiguration_newexternaluseraction_parseFromJSON(cJSON *field_e_systemconfiguration_newexternaluseractionJSON) {
+    if(!cJSON_IsString(field_e_systemconfiguration_newexternaluseractionJSON) || (field_e_systemconfiguration_newexternaluseractionJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_systemconfiguration_newexternaluseractionVariable = field_e_systemconfiguration_newexternaluseraction_field_e_systemconfiguration_newexternaluseraction_FromString(field_e_systemconfiguration_newexternaluseractionVar->valuestring);
-    return field_e_systemconfiguration_newexternaluseractionVariable;
-end:
-    return 0;
+    return field_e_systemconfiguration_newexternaluseraction_field_e_systemconfiguration_newexternaluseraction_FromString(field_e_systemconfiguration_newexternaluseractionJSON->valuestring);
 }

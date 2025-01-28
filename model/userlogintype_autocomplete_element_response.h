@@ -23,9 +23,10 @@ typedef struct userlogintype_autocomplete_element_response_t {
     char *s_userlogintype_description_x; // string
     int b_userlogintype_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } userlogintype_autocomplete_element_response_t;
 
-userlogintype_autocomplete_element_response_t *userlogintype_autocomplete_element_response_create(
+__attribute__((deprecated)) userlogintype_autocomplete_element_response_t *userlogintype_autocomplete_element_response_create(
     int pki_userlogintype_id,
     char *s_userlogintype_description_x,
     int b_userlogintype_isactive

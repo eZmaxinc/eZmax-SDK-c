@@ -18,31 +18,24 @@ typedef struct custom_ezsignfoldertransmission_response_t custom_ezsignfoldertra
 #include "custom_ezsignfoldertransmission_signer_response.h"
 #include "field_e_ezsignfolder_step.h"
 
-// Enum  for custom_ezsignfoldertransmission_response
-
-typedef enum  { ezmax_api_definition__full_custom_ezsignfoldertransmission_response__NULL = 0, ezmax_api_definition__full_custom_ezsignfoldertransmission_response__Unsent, ezmax_api_definition__full_custom_ezsignfoldertransmission_response__PendingSend, ezmax_api_definition__full_custom_ezsignfoldertransmission_response__Sent, ezmax_api_definition__full_custom_ezsignfoldertransmission_response__PartiallySigned, ezmax_api_definition__full_custom_ezsignfoldertransmission_response__Expired, ezmax_api_definition__full_custom_ezsignfoldertransmission_response__Completed, ezmax_api_definition__full_custom_ezsignfoldertransmission_response__Archived, ezmax_api_definition__full_custom_ezsignfoldertransmission_response__Disposed } ezmax_api_definition__full_custom_ezsignfoldertransmission_response__e;
-
-char* custom_ezsignfoldertransmission_response_e_ezsignfolder_step_ToString(ezmax_api_definition__full_custom_ezsignfoldertransmission_response__e e_ezsignfolder_step);
-
-ezmax_api_definition__full_custom_ezsignfoldertransmission_response__e custom_ezsignfoldertransmission_response_e_ezsignfolder_step_FromString(char* e_ezsignfolder_step);
-
 
 
 typedef struct custom_ezsignfoldertransmission_response_t {
     int pki_ezsignfolder_id; //numeric
     char *s_ezsignfolder_description; // string
-    field_e_ezsignfolder_step_t *e_ezsignfolder_step; // custom
+    ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step; //referenced enum
     int i_ezsignfolder_signaturetotal; //numeric
     int i_ezsignfolder_formfieldtotal; //numeric
     int i_ezsignfolder_signaturesigned; //numeric
     list_t *a_obj_ezsignfoldertransmission_signer; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_ezsignfoldertransmission_response_t;
 
-custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_response_create(
+__attribute__((deprecated)) custom_ezsignfoldertransmission_response_t *custom_ezsignfoldertransmission_response_create(
     int pki_ezsignfolder_id,
     char *s_ezsignfolder_description,
-    field_e_ezsignfolder_step_t *e_ezsignfolder_step,
+    ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step,
     int i_ezsignfolder_signaturetotal,
     int i_ezsignfolder_formfieldtotal,
     int i_ezsignfolder_signaturesigned,

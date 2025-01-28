@@ -30,9 +30,10 @@ typedef struct creditcardclient_request_t {
     struct creditcarddetail_request_t *obj_creditcarddetail; //model
     char *s_creditcardclient_cvv; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } creditcardclient_request_t;
 
-creditcardclient_request_t *creditcardclient_request_create(
+__attribute__((deprecated)) creditcardclient_request_t *creditcardclient_request_create(
     int pki_creditcardclient_id,
     char *fks_creditcardtoken_id,
     int b_creditcardclientrelation_isdefault,

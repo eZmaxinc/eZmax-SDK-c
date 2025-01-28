@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e field_e_ezsi
     return 0;
 }
 
-cJSON *field_e_ezsignfoldertype_privacylevel_field_e_ezsignfoldertype_privacylevel_convertToJSON(ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e field_e_ezsignfoldertype_privacylevel) {
+cJSON *field_e_ezsignfoldertype_privacylevel_convertToJSON(ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e field_e_ezsignfoldertype_privacylevel) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsignfoldertype_privacylevel", field_e_ezsignfoldertype_privacylevel_field_e_ezsignfoldertype_privacylevel_ToString(field_e_ezsignfoldertype_privacylevel)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e field_e_ezsignfoldertype_privacylevel_field_e_ezsignfoldertype_privacylevel_parseFromJSON(cJSON *field_e_ezsignfoldertype_privacylevelJSON) {
-    ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e *field_e_ezsignfoldertype_privacylevel = NULL;
-    ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e field_e_ezsignfoldertype_privacylevelVariable;
-    cJSON *field_e_ezsignfoldertype_privacylevelVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsignfoldertype_privacylevelJSON, "field_e_ezsignfoldertype_privacylevel");
-    if(!cJSON_IsString(field_e_ezsignfoldertype_privacylevelVar) || (field_e_ezsignfoldertype_privacylevelVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e field_e_ezsignfoldertype_privacylevel_parseFromJSON(cJSON *field_e_ezsignfoldertype_privacylevelJSON) {
+    if(!cJSON_IsString(field_e_ezsignfoldertype_privacylevelJSON) || (field_e_ezsignfoldertype_privacylevelJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsignfoldertype_privacylevelVariable = field_e_ezsignfoldertype_privacylevel_field_e_ezsignfoldertype_privacylevel_FromString(field_e_ezsignfoldertype_privacylevelVar->valuestring);
-    return field_e_ezsignfoldertype_privacylevelVariable;
-end:
-    return 0;
+    return field_e_ezsignfoldertype_privacylevel_field_e_ezsignfoldertype_privacylevel_FromString(field_e_ezsignfoldertype_privacylevelJSON->valuestring);
 }

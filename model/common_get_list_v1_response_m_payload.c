@@ -5,7 +5,7 @@
 
 
 
-common_get_list_v1_response_m_payload_t *common_get_list_v1_response_m_payload_create(
+static common_get_list_v1_response_m_payload_t *common_get_list_v1_response_m_payload_create_internal(
     int i_row_returned,
     int i_row_filtered
     ) {
@@ -16,12 +16,26 @@ common_get_list_v1_response_m_payload_t *common_get_list_v1_response_m_payload_c
     common_get_list_v1_response_m_payload_local_var->i_row_returned = i_row_returned;
     common_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
 
+    common_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     return common_get_list_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) common_get_list_v1_response_m_payload_t *common_get_list_v1_response_m_payload_create(
+    int i_row_returned,
+    int i_row_filtered
+    ) {
+    return common_get_list_v1_response_m_payload_create_internal (
+        i_row_returned,
+        i_row_filtered
+        );
+}
 
 void common_get_list_v1_response_m_payload_free(common_get_list_v1_response_m_payload_t *common_get_list_v1_response_m_payload) {
     if(NULL == common_get_list_v1_response_m_payload){
+        return ;
+    }
+    if(common_get_list_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "common_get_list_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -62,6 +76,9 @@ common_get_list_v1_response_m_payload_t *common_get_list_v1_response_m_payload_p
 
     // common_get_list_v1_response_m_payload->i_row_returned
     cJSON *i_row_returned = cJSON_GetObjectItemCaseSensitive(common_get_list_v1_response_m_payloadJSON, "iRowReturned");
+    if (cJSON_IsNull(i_row_returned)) {
+        i_row_returned = NULL;
+    }
     if (!i_row_returned) {
         goto end;
     }
@@ -74,6 +91,9 @@ common_get_list_v1_response_m_payload_t *common_get_list_v1_response_m_payload_p
 
     // common_get_list_v1_response_m_payload->i_row_filtered
     cJSON *i_row_filtered = cJSON_GetObjectItemCaseSensitive(common_get_list_v1_response_m_payloadJSON, "iRowFiltered");
+    if (cJSON_IsNull(i_row_filtered)) {
+        i_row_filtered = NULL;
+    }
     if (!i_row_filtered) {
         goto end;
     }
@@ -85,7 +105,7 @@ common_get_list_v1_response_m_payload_t *common_get_list_v1_response_m_payload_p
     }
 
 
-    common_get_list_v1_response_m_payload_local_var = common_get_list_v1_response_m_payload_create (
+    common_get_list_v1_response_m_payload_local_var = common_get_list_v1_response_m_payload_create_internal (
         i_row_returned->valuedouble,
         i_row_filtered->valuedouble
         );

@@ -5,7 +5,7 @@
 
 
 
-variableexpense_create_object_v1_request_t *variableexpense_create_object_v1_request_create(
+static variableexpense_create_object_v1_request_t *variableexpense_create_object_v1_request_create_internal(
     list_t *a_obj_variableexpense
     ) {
     variableexpense_create_object_v1_request_t *variableexpense_create_object_v1_request_local_var = malloc(sizeof(variableexpense_create_object_v1_request_t));
@@ -14,12 +14,24 @@ variableexpense_create_object_v1_request_t *variableexpense_create_object_v1_req
     }
     variableexpense_create_object_v1_request_local_var->a_obj_variableexpense = a_obj_variableexpense;
 
+    variableexpense_create_object_v1_request_local_var->_library_owned = 1;
     return variableexpense_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) variableexpense_create_object_v1_request_t *variableexpense_create_object_v1_request_create(
+    list_t *a_obj_variableexpense
+    ) {
+    return variableexpense_create_object_v1_request_create_internal (
+        a_obj_variableexpense
+        );
+}
 
 void variableexpense_create_object_v1_request_free(variableexpense_create_object_v1_request_t *variableexpense_create_object_v1_request) {
     if(NULL == variableexpense_create_object_v1_request){
+        return ;
+    }
+    if(variableexpense_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "variableexpense_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ variableexpense_create_object_v1_request_t *variableexpense_create_object_v1_req
 
     // variableexpense_create_object_v1_request->a_obj_variableexpense
     cJSON *a_obj_variableexpense = cJSON_GetObjectItemCaseSensitive(variableexpense_create_object_v1_requestJSON, "a_objVariableexpense");
+    if (cJSON_IsNull(a_obj_variableexpense)) {
+        a_obj_variableexpense = NULL;
+    }
     if (!a_obj_variableexpense) {
         goto end;
     }
@@ -96,7 +111,7 @@ variableexpense_create_object_v1_request_t *variableexpense_create_object_v1_req
     }
 
 
-    variableexpense_create_object_v1_request_local_var = variableexpense_create_object_v1_request_create (
+    variableexpense_create_object_v1_request_local_var = variableexpense_create_object_v1_request_create_internal (
         a_obj_variableexpenseList
         );
 

@@ -22,9 +22,10 @@ typedef struct common_get_report_v1_response_m_payload_t common_get_report_v1_re
 typedef struct common_get_report_v1_response_m_payload_t {
     struct common_reportgroup_t *obj_reportgroup; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } common_get_report_v1_response_m_payload_t;
 
-common_get_report_v1_response_m_payload_t *common_get_report_v1_response_m_payload_create(
+__attribute__((deprecated)) common_get_report_v1_response_m_payload_t *common_get_report_v1_response_m_payload_create(
     common_reportgroup_t *obj_reportgroup
 );
 

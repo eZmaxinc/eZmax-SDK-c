@@ -30,7 +30,7 @@ supply_request_compound_t* instantiate_supply_request_compound(int include_optio
       "PPLET",
        // false, not to have infinite recursion
       instantiate_multilingual_supply_description(0),
-      "8",
+      "8.00",
       true,
       true
     );
@@ -42,7 +42,7 @@ supply_request_compound_t* instantiate_supply_request_compound(int include_optio
       2,
       "PPLET",
       NULL,
-      "8",
+      "8.00",
       true,
       true
     );

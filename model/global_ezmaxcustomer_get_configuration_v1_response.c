@@ -5,7 +5,7 @@
 
 
 
-global_ezmaxcustomer_get_configuration_v1_response_t *global_ezmaxcustomer_get_configuration_v1_response_create(
+static global_ezmaxcustomer_get_configuration_v1_response_t *global_ezmaxcustomer_get_configuration_v1_response_create_internal(
     char *s_infrastructureregion_code,
     char *s_infrastructureregion_code_web,
     char *s_infrastructureenvironmenttype_description,
@@ -22,12 +22,32 @@ global_ezmaxcustomer_get_configuration_v1_response_t *global_ezmaxcustomer_get_c
     global_ezmaxcustomer_get_configuration_v1_response_local_var->s_cognito_client_id_external = s_cognito_client_id_external;
     global_ezmaxcustomer_get_configuration_v1_response_local_var->s_cognito_client_id_ezmaxpublic = s_cognito_client_id_ezmaxpublic;
 
+    global_ezmaxcustomer_get_configuration_v1_response_local_var->_library_owned = 1;
     return global_ezmaxcustomer_get_configuration_v1_response_local_var;
 }
 
+__attribute__((deprecated)) global_ezmaxcustomer_get_configuration_v1_response_t *global_ezmaxcustomer_get_configuration_v1_response_create(
+    char *s_infrastructureregion_code,
+    char *s_infrastructureregion_code_web,
+    char *s_infrastructureenvironmenttype_description,
+    char *s_cognito_client_id_external,
+    char *s_cognito_client_id_ezmaxpublic
+    ) {
+    return global_ezmaxcustomer_get_configuration_v1_response_create_internal (
+        s_infrastructureregion_code,
+        s_infrastructureregion_code_web,
+        s_infrastructureenvironmenttype_description,
+        s_cognito_client_id_external,
+        s_cognito_client_id_ezmaxpublic
+        );
+}
 
 void global_ezmaxcustomer_get_configuration_v1_response_free(global_ezmaxcustomer_get_configuration_v1_response_t *global_ezmaxcustomer_get_configuration_v1_response) {
     if(NULL == global_ezmaxcustomer_get_configuration_v1_response){
+        return ;
+    }
+    if(global_ezmaxcustomer_get_configuration_v1_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "global_ezmaxcustomer_get_configuration_v1_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -114,6 +134,9 @@ global_ezmaxcustomer_get_configuration_v1_response_t *global_ezmaxcustomer_get_c
 
     // global_ezmaxcustomer_get_configuration_v1_response->s_infrastructureregion_code
     cJSON *s_infrastructureregion_code = cJSON_GetObjectItemCaseSensitive(global_ezmaxcustomer_get_configuration_v1_responseJSON, "sInfrastructureregionCode");
+    if (cJSON_IsNull(s_infrastructureregion_code)) {
+        s_infrastructureregion_code = NULL;
+    }
     if (!s_infrastructureregion_code) {
         goto end;
     }
@@ -126,6 +149,9 @@ global_ezmaxcustomer_get_configuration_v1_response_t *global_ezmaxcustomer_get_c
 
     // global_ezmaxcustomer_get_configuration_v1_response->s_infrastructureregion_code_web
     cJSON *s_infrastructureregion_code_web = cJSON_GetObjectItemCaseSensitive(global_ezmaxcustomer_get_configuration_v1_responseJSON, "sInfrastructureregionCodeWeb");
+    if (cJSON_IsNull(s_infrastructureregion_code_web)) {
+        s_infrastructureregion_code_web = NULL;
+    }
     if (!s_infrastructureregion_code_web) {
         goto end;
     }
@@ -138,6 +164,9 @@ global_ezmaxcustomer_get_configuration_v1_response_t *global_ezmaxcustomer_get_c
 
     // global_ezmaxcustomer_get_configuration_v1_response->s_infrastructureenvironmenttype_description
     cJSON *s_infrastructureenvironmenttype_description = cJSON_GetObjectItemCaseSensitive(global_ezmaxcustomer_get_configuration_v1_responseJSON, "sInfrastructureenvironmenttypeDescription");
+    if (cJSON_IsNull(s_infrastructureenvironmenttype_description)) {
+        s_infrastructureenvironmenttype_description = NULL;
+    }
     if (!s_infrastructureenvironmenttype_description) {
         goto end;
     }
@@ -150,6 +179,9 @@ global_ezmaxcustomer_get_configuration_v1_response_t *global_ezmaxcustomer_get_c
 
     // global_ezmaxcustomer_get_configuration_v1_response->s_cognito_client_id_external
     cJSON *s_cognito_client_id_external = cJSON_GetObjectItemCaseSensitive(global_ezmaxcustomer_get_configuration_v1_responseJSON, "sCognitoClientIDExternal");
+    if (cJSON_IsNull(s_cognito_client_id_external)) {
+        s_cognito_client_id_external = NULL;
+    }
     if (s_cognito_client_id_external) { 
     if(!cJSON_IsString(s_cognito_client_id_external) && !cJSON_IsNull(s_cognito_client_id_external))
     {
@@ -159,6 +191,9 @@ global_ezmaxcustomer_get_configuration_v1_response_t *global_ezmaxcustomer_get_c
 
     // global_ezmaxcustomer_get_configuration_v1_response->s_cognito_client_id_ezmaxpublic
     cJSON *s_cognito_client_id_ezmaxpublic = cJSON_GetObjectItemCaseSensitive(global_ezmaxcustomer_get_configuration_v1_responseJSON, "sCognitoClientIDEzmaxpublic");
+    if (cJSON_IsNull(s_cognito_client_id_ezmaxpublic)) {
+        s_cognito_client_id_ezmaxpublic = NULL;
+    }
     if (!s_cognito_client_id_ezmaxpublic) {
         goto end;
     }
@@ -170,7 +205,7 @@ global_ezmaxcustomer_get_configuration_v1_response_t *global_ezmaxcustomer_get_c
     }
 
 
-    global_ezmaxcustomer_get_configuration_v1_response_local_var = global_ezmaxcustomer_get_configuration_v1_response_create (
+    global_ezmaxcustomer_get_configuration_v1_response_local_var = global_ezmaxcustomer_get_configuration_v1_response_create_internal (
         strdup(s_infrastructureregion_code->valuestring),
         strdup(s_infrastructureregion_code_web->valuestring),
         strdup(s_infrastructureenvironmenttype_description->valuestring),

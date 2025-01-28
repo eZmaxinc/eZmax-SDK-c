@@ -22,9 +22,10 @@ typedef struct discussionmessage_patch_object_v1_request_t discussionmessage_pat
 typedef struct discussionmessage_patch_object_v1_request_t {
     struct discussionmessage_request_patch_t *obj_discussionmessage; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } discussionmessage_patch_object_v1_request_t;
 
-discussionmessage_patch_object_v1_request_t *discussionmessage_patch_object_v1_request_create(
+__attribute__((deprecated)) discussionmessage_patch_object_v1_request_t *discussionmessage_patch_object_v1_request_create(
     discussionmessage_request_patch_t *obj_discussionmessage
 );
 

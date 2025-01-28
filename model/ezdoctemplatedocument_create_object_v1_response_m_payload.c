@@ -5,7 +5,7 @@
 
 
 
-ezdoctemplatedocument_create_object_v1_response_m_payload_t *ezdoctemplatedocument_create_object_v1_response_m_payload_create(
+static ezdoctemplatedocument_create_object_v1_response_m_payload_t *ezdoctemplatedocument_create_object_v1_response_m_payload_create_internal(
     list_t *a_pki_ezdoctemplatedocument_id
     ) {
     ezdoctemplatedocument_create_object_v1_response_m_payload_t *ezdoctemplatedocument_create_object_v1_response_m_payload_local_var = malloc(sizeof(ezdoctemplatedocument_create_object_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ ezdoctemplatedocument_create_object_v1_response_m_payload_t *ezdoctemplatedocume
     }
     ezdoctemplatedocument_create_object_v1_response_m_payload_local_var->a_pki_ezdoctemplatedocument_id = a_pki_ezdoctemplatedocument_id;
 
+    ezdoctemplatedocument_create_object_v1_response_m_payload_local_var->_library_owned = 1;
     return ezdoctemplatedocument_create_object_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezdoctemplatedocument_create_object_v1_response_m_payload_t *ezdoctemplatedocument_create_object_v1_response_m_payload_create(
+    list_t *a_pki_ezdoctemplatedocument_id
+    ) {
+    return ezdoctemplatedocument_create_object_v1_response_m_payload_create_internal (
+        a_pki_ezdoctemplatedocument_id
+        );
+}
 
 void ezdoctemplatedocument_create_object_v1_response_m_payload_free(ezdoctemplatedocument_create_object_v1_response_m_payload_t *ezdoctemplatedocument_create_object_v1_response_m_payload) {
     if(NULL == ezdoctemplatedocument_create_object_v1_response_m_payload){
+        return ;
+    }
+    if(ezdoctemplatedocument_create_object_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezdoctemplatedocument_create_object_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +82,9 @@ ezdoctemplatedocument_create_object_v1_response_m_payload_t *ezdoctemplatedocume
 
     // ezdoctemplatedocument_create_object_v1_response_m_payload->a_pki_ezdoctemplatedocument_id
     cJSON *a_pki_ezdoctemplatedocument_id = cJSON_GetObjectItemCaseSensitive(ezdoctemplatedocument_create_object_v1_response_m_payloadJSON, "a_pkiEzdoctemplatedocumentID");
+    if (cJSON_IsNull(a_pki_ezdoctemplatedocument_id)) {
+        a_pki_ezdoctemplatedocument_id = NULL;
+    }
     if (!a_pki_ezdoctemplatedocument_id) {
         goto end;
     }
@@ -87,7 +102,7 @@ ezdoctemplatedocument_create_object_v1_response_m_payload_t *ezdoctemplatedocume
         {
             goto end;
         }
-        double *a_pki_ezdoctemplatedocument_id_local_value = (double *)calloc(1, sizeof(double));
+        double *a_pki_ezdoctemplatedocument_id_local_value = calloc(1, sizeof(double));
         if(!a_pki_ezdoctemplatedocument_id_local_value)
         {
             goto end;
@@ -97,7 +112,7 @@ ezdoctemplatedocument_create_object_v1_response_m_payload_t *ezdoctemplatedocume
     }
 
 
-    ezdoctemplatedocument_create_object_v1_response_m_payload_local_var = ezdoctemplatedocument_create_object_v1_response_m_payload_create (
+    ezdoctemplatedocument_create_object_v1_response_m_payload_local_var = ezdoctemplatedocument_create_object_v1_response_m_payload_create_internal (
         a_pki_ezdoctemplatedocument_idList
         );
 

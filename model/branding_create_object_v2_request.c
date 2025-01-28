@@ -5,7 +5,7 @@
 
 
 
-branding_create_object_v2_request_t *branding_create_object_v2_request_create(
+static branding_create_object_v2_request_t *branding_create_object_v2_request_create_internal(
     list_t *a_obj_branding
     ) {
     branding_create_object_v2_request_t *branding_create_object_v2_request_local_var = malloc(sizeof(branding_create_object_v2_request_t));
@@ -14,12 +14,24 @@ branding_create_object_v2_request_t *branding_create_object_v2_request_create(
     }
     branding_create_object_v2_request_local_var->a_obj_branding = a_obj_branding;
 
+    branding_create_object_v2_request_local_var->_library_owned = 1;
     return branding_create_object_v2_request_local_var;
 }
 
+__attribute__((deprecated)) branding_create_object_v2_request_t *branding_create_object_v2_request_create(
+    list_t *a_obj_branding
+    ) {
+    return branding_create_object_v2_request_create_internal (
+        a_obj_branding
+        );
+}
 
 void branding_create_object_v2_request_free(branding_create_object_v2_request_t *branding_create_object_v2_request) {
     if(NULL == branding_create_object_v2_request){
+        return ;
+    }
+    if(branding_create_object_v2_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "branding_create_object_v2_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ branding_create_object_v2_request_t *branding_create_object_v2_request_parseFrom
 
     // branding_create_object_v2_request->a_obj_branding
     cJSON *a_obj_branding = cJSON_GetObjectItemCaseSensitive(branding_create_object_v2_requestJSON, "a_objBranding");
+    if (cJSON_IsNull(a_obj_branding)) {
+        a_obj_branding = NULL;
+    }
     if (!a_obj_branding) {
         goto end;
     }
@@ -96,7 +111,7 @@ branding_create_object_v2_request_t *branding_create_object_v2_request_parseFrom
     }
 
 
-    branding_create_object_v2_request_local_var = branding_create_object_v2_request_create (
+    branding_create_object_v2_request_local_var = branding_create_object_v2_request_create_internal (
         a_obj_brandingList
         );
 

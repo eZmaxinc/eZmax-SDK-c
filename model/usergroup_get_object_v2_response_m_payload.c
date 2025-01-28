@@ -5,7 +5,7 @@
 
 
 
-usergroup_get_object_v2_response_m_payload_t *usergroup_get_object_v2_response_m_payload_create(
+static usergroup_get_object_v2_response_m_payload_t *usergroup_get_object_v2_response_m_payload_create_internal(
     usergroup_response_compound_t *obj_usergroup
     ) {
     usergroup_get_object_v2_response_m_payload_t *usergroup_get_object_v2_response_m_payload_local_var = malloc(sizeof(usergroup_get_object_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ usergroup_get_object_v2_response_m_payload_t *usergroup_get_object_v2_response_m
     }
     usergroup_get_object_v2_response_m_payload_local_var->obj_usergroup = obj_usergroup;
 
+    usergroup_get_object_v2_response_m_payload_local_var->_library_owned = 1;
     return usergroup_get_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) usergroup_get_object_v2_response_m_payload_t *usergroup_get_object_v2_response_m_payload_create(
+    usergroup_response_compound_t *obj_usergroup
+    ) {
+    return usergroup_get_object_v2_response_m_payload_create_internal (
+        obj_usergroup
+        );
+}
 
 void usergroup_get_object_v2_response_m_payload_free(usergroup_get_object_v2_response_m_payload_t *usergroup_get_object_v2_response_m_payload) {
     if(NULL == usergroup_get_object_v2_response_m_payload){
+        return ;
+    }
+    if(usergroup_get_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroup_get_object_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ usergroup_get_object_v2_response_m_payload_t *usergroup_get_object_v2_response_m
 
     // usergroup_get_object_v2_response_m_payload->obj_usergroup
     cJSON *obj_usergroup = cJSON_GetObjectItemCaseSensitive(usergroup_get_object_v2_response_m_payloadJSON, "objUsergroup");
+    if (cJSON_IsNull(obj_usergroup)) {
+        obj_usergroup = NULL;
+    }
     if (!obj_usergroup) {
         goto end;
     }
@@ -71,7 +86,7 @@ usergroup_get_object_v2_response_m_payload_t *usergroup_get_object_v2_response_m
     obj_usergroup_local_nonprim = usergroup_response_compound_parseFromJSON(obj_usergroup); //nonprimitive
 
 
-    usergroup_get_object_v2_response_m_payload_local_var = usergroup_get_object_v2_response_m_payload_create (
+    usergroup_get_object_v2_response_m_payload_local_var = usergroup_get_object_v2_response_m_payload_create_internal (
         obj_usergroup_local_nonprim
         );
 

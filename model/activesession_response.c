@@ -4,130 +4,11 @@
 #include "activesession_response.h"
 
 
-char* activesession_response_e_activesession_usertype_ToString(ezmax_api_definition__full_activesession_response__e e_activesession_usertype) {
-    char* e_activesession_usertypeArray[] =  { "NULL", "AgentBroker", "Assistant", "EzsignSigner", "EzsignUser", "Normal" };
-    return e_activesession_usertypeArray[e_activesession_usertype];
-}
 
-ezmax_api_definition__full_activesession_response__e activesession_response_e_activesession_usertype_FromString(char* e_activesession_usertype){
-    int stringToReturn = 0;
-    char *e_activesession_usertypeArray[] =  { "NULL", "AgentBroker", "Assistant", "EzsignSigner", "EzsignUser", "Normal" };
-    size_t sizeofArray = sizeof(e_activesession_usertypeArray) / sizeof(e_activesession_usertypeArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_activesession_usertype, e_activesession_usertypeArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-char* activesession_response_e_activesession_origin_ToString(ezmax_api_definition__full_activesession_response__e e_activesession_origin) {
-    char* e_activesession_originArray[] =  { "NULL", "BuiltIn", "External" };
-    return e_activesession_originArray[e_activesession_origin];
-}
-
-ezmax_api_definition__full_activesession_response__e activesession_response_e_activesession_origin_FromString(char* e_activesession_origin){
-    int stringToReturn = 0;
-    char *e_activesession_originArray[] =  { "NULL", "BuiltIn", "External" };
-    size_t sizeofArray = sizeof(e_activesession_originArray) / sizeof(e_activesession_originArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_activesession_origin, e_activesession_originArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-char* activesession_response_e_activesession_weekdaystart_ToString(ezmax_api_definition__full_activesession_response__e e_activesession_weekdaystart) {
-    char* e_activesession_weekdaystartArray[] =  { "NULL", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
-    return e_activesession_weekdaystartArray[e_activesession_weekdaystart];
-}
-
-ezmax_api_definition__full_activesession_response__e activesession_response_e_activesession_weekdaystart_FromString(char* e_activesession_weekdaystart){
-    int stringToReturn = 0;
-    char *e_activesession_weekdaystartArray[] =  { "NULL", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
-    size_t sizeofArray = sizeof(e_activesession_weekdaystartArray) / sizeof(e_activesession_weekdaystartArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_activesession_weekdaystart, e_activesession_weekdaystartArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-char* activesession_response_e_activesession_ezsign_ToString(ezmax_api_definition__full_activesession_response__e e_activesession_ezsign) {
-    char* e_activesession_ezsignArray[] =  { "NULL", "No", "Read", "Modify", "Full" };
-    return e_activesession_ezsignArray[e_activesession_ezsign];
-}
-
-ezmax_api_definition__full_activesession_response__e activesession_response_e_activesession_ezsign_FromString(char* e_activesession_ezsign){
-    int stringToReturn = 0;
-    char *e_activesession_ezsignArray[] =  { "NULL", "No", "Read", "Modify", "Full" };
-    size_t sizeofArray = sizeof(e_activesession_ezsignArray) / sizeof(e_activesession_ezsignArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_activesession_ezsign, e_activesession_ezsignArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-char* activesession_response_e_activesession_ezsignaccess_ToString(ezmax_api_definition__full_activesession_response__e e_activesession_ezsignaccess) {
-    char* e_activesession_ezsignaccessArray[] =  { "NULL", "No", "PaidByOffice", "PerDocument", "Prepaid" };
-    return e_activesession_ezsignaccessArray[e_activesession_ezsignaccess];
-}
-
-ezmax_api_definition__full_activesession_response__e activesession_response_e_activesession_ezsignaccess_FromString(char* e_activesession_ezsignaccess){
-    int stringToReturn = 0;
-    char *e_activesession_ezsignaccessArray[] =  { "NULL", "No", "PaidByOffice", "PerDocument", "Prepaid" };
-    size_t sizeofArray = sizeof(e_activesession_ezsignaccessArray) / sizeof(e_activesession_ezsignaccessArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_activesession_ezsignaccess, e_activesession_ezsignaccessArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-char* activesession_response_e_activesession_ezsignprepaid_ToString(ezmax_api_definition__full_activesession_response__e e_activesession_ezsignprepaid) {
-    char* e_activesession_ezsignprepaidArray[] =  { "NULL", "No", "Basic", "Standard", "Pro" };
-    return e_activesession_ezsignprepaidArray[e_activesession_ezsignprepaid];
-}
-
-ezmax_api_definition__full_activesession_response__e activesession_response_e_activesession_ezsignprepaid_FromString(char* e_activesession_ezsignprepaid){
-    int stringToReturn = 0;
-    char *e_activesession_ezsignprepaidArray[] =  { "NULL", "No", "Basic", "Standard", "Pro" };
-    size_t sizeofArray = sizeof(e_activesession_ezsignprepaidArray) / sizeof(e_activesession_ezsignprepaidArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_activesession_ezsignprepaid, e_activesession_ezsignprepaidArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-char* activesession_response_e_activesession_realestateinprogress_ToString(ezmax_api_definition__full_activesession_response__e e_activesession_realestateinprogress) {
-    char* e_activesession_realestateinprogressArray[] =  { "NULL", "No", "Read", "Modify", "Create" };
-    return e_activesession_realestateinprogressArray[e_activesession_realestateinprogress];
-}
-
-ezmax_api_definition__full_activesession_response__e activesession_response_e_activesession_realestateinprogress_FromString(char* e_activesession_realestateinprogress){
-    int stringToReturn = 0;
-    char *e_activesession_realestateinprogressArray[] =  { "NULL", "No", "Read", "Modify", "Create" };
-    size_t sizeofArray = sizeof(e_activesession_realestateinprogressArray) / sizeof(e_activesession_realestateinprogressArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_activesession_realestateinprogress, e_activesession_realestateinprogressArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-activesession_response_t *activesession_response_create(
-    field_e_activesession_usertype_t *e_activesession_usertype,
-    field_e_activesession_origin_t *e_activesession_origin,
-    field_e_activesession_weekdaystart_t *e_activesession_weekdaystart,
+static activesession_response_t *activesession_response_create_internal(
+    ezmax_api_definition__full_field_e_activesession_usertype__e e_activesession_usertype,
+    ezmax_api_definition__full_field_e_activesession_origin__e e_activesession_origin,
+    ezmax_api_definition__full_field_e_activesession_weekdaystart__e e_activesession_weekdaystart,
     int fki_language_id,
     char *s_company_name_x,
     char *s_department_name_x,
@@ -137,10 +18,10 @@ activesession_response_t *activesession_response_create(
     int b_activesession_canafe,
     int b_activesession_financial,
     int b_activesession_realestatecompleted,
-    field_e_activesession_ezsign_t *e_activesession_ezsign,
-    field_e_activesession_ezsignaccess_t *e_activesession_ezsignaccess,
-    field_e_activesession_ezsignprepaid_t *e_activesession_ezsignprepaid,
-    field_e_activesession_realestateinprogress_t *e_activesession_realestateinprogress,
+    ezmax_api_definition__full_field_e_activesession_ezsign__e e_activesession_ezsign,
+    ezmax_api_definition__full_field_e_activesession_ezsignaccess__e e_activesession_ezsignaccess,
+    ezmax_api_definition__full_field_e_activesession_ezsignprepaid__e e_activesession_ezsignprepaid,
+    ezmax_api_definition__full_field_e_activesession_realestateinprogress__e e_activesession_realestateinprogress,
     char *pks_customer_code,
     int fki_systemconfigurationtype_id,
     int fki_signature_id
@@ -169,27 +50,63 @@ activesession_response_t *activesession_response_create(
     activesession_response_local_var->fki_systemconfigurationtype_id = fki_systemconfigurationtype_id;
     activesession_response_local_var->fki_signature_id = fki_signature_id;
 
+    activesession_response_local_var->_library_owned = 1;
     return activesession_response_local_var;
 }
 
+__attribute__((deprecated)) activesession_response_t *activesession_response_create(
+    ezmax_api_definition__full_field_e_activesession_usertype__e e_activesession_usertype,
+    ezmax_api_definition__full_field_e_activesession_origin__e e_activesession_origin,
+    ezmax_api_definition__full_field_e_activesession_weekdaystart__e e_activesession_weekdaystart,
+    int fki_language_id,
+    char *s_company_name_x,
+    char *s_department_name_x,
+    int b_activesession_debug,
+    int b_activesession_issuperadmin,
+    int b_activesession_attachment,
+    int b_activesession_canafe,
+    int b_activesession_financial,
+    int b_activesession_realestatecompleted,
+    ezmax_api_definition__full_field_e_activesession_ezsign__e e_activesession_ezsign,
+    ezmax_api_definition__full_field_e_activesession_ezsignaccess__e e_activesession_ezsignaccess,
+    ezmax_api_definition__full_field_e_activesession_ezsignprepaid__e e_activesession_ezsignprepaid,
+    ezmax_api_definition__full_field_e_activesession_realestateinprogress__e e_activesession_realestateinprogress,
+    char *pks_customer_code,
+    int fki_systemconfigurationtype_id,
+    int fki_signature_id
+    ) {
+    return activesession_response_create_internal (
+        e_activesession_usertype,
+        e_activesession_origin,
+        e_activesession_weekdaystart,
+        fki_language_id,
+        s_company_name_x,
+        s_department_name_x,
+        b_activesession_debug,
+        b_activesession_issuperadmin,
+        b_activesession_attachment,
+        b_activesession_canafe,
+        b_activesession_financial,
+        b_activesession_realestatecompleted,
+        e_activesession_ezsign,
+        e_activesession_ezsignaccess,
+        e_activesession_ezsignprepaid,
+        e_activesession_realestateinprogress,
+        pks_customer_code,
+        fki_systemconfigurationtype_id,
+        fki_signature_id
+        );
+}
 
 void activesession_response_free(activesession_response_t *activesession_response) {
     if(NULL == activesession_response){
         return ;
     }
+    if(activesession_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "activesession_response_free");
+        return ;
+    }
     listEntry_t *listEntry;
-    if (activesession_response->e_activesession_usertype) {
-        field_e_activesession_usertype_free(activesession_response->e_activesession_usertype);
-        activesession_response->e_activesession_usertype = NULL;
-    }
-    if (activesession_response->e_activesession_origin) {
-        field_e_activesession_origin_free(activesession_response->e_activesession_origin);
-        activesession_response->e_activesession_origin = NULL;
-    }
-    if (activesession_response->e_activesession_weekdaystart) {
-        field_e_activesession_weekdaystart_free(activesession_response->e_activesession_weekdaystart);
-        activesession_response->e_activesession_weekdaystart = NULL;
-    }
     if (activesession_response->s_company_name_x) {
         free(activesession_response->s_company_name_x);
         activesession_response->s_company_name_x = NULL;
@@ -197,22 +114,6 @@ void activesession_response_free(activesession_response_t *activesession_respons
     if (activesession_response->s_department_name_x) {
         free(activesession_response->s_department_name_x);
         activesession_response->s_department_name_x = NULL;
-    }
-    if (activesession_response->e_activesession_ezsign) {
-        field_e_activesession_ezsign_free(activesession_response->e_activesession_ezsign);
-        activesession_response->e_activesession_ezsign = NULL;
-    }
-    if (activesession_response->e_activesession_ezsignaccess) {
-        field_e_activesession_ezsignaccess_free(activesession_response->e_activesession_ezsignaccess);
-        activesession_response->e_activesession_ezsignaccess = NULL;
-    }
-    if (activesession_response->e_activesession_ezsignprepaid) {
-        field_e_activesession_ezsignprepaid_free(activesession_response->e_activesession_ezsignprepaid);
-        activesession_response->e_activesession_ezsignprepaid = NULL;
-    }
-    if (activesession_response->e_activesession_realestateinprogress) {
-        field_e_activesession_realestateinprogress_free(activesession_response->e_activesession_realestateinprogress);
-        activesession_response->e_activesession_realestateinprogress = NULL;
     }
     if (activesession_response->pks_customer_code) {
         free(activesession_response->pks_customer_code);
@@ -225,7 +126,7 @@ cJSON *activesession_response_convertToJSON(activesession_response_t *activesess
     cJSON *item = cJSON_CreateObject();
 
     // activesession_response->e_activesession_usertype
-    if (ezmax_api_definition__full_activesession_response__NULL == activesession_response->e_activesession_usertype) {
+    if (ezmax_api_definition__full_field_e_activesession_usertype__NULL == activesession_response->e_activesession_usertype) {
         goto fail;
     }
     cJSON *e_activesession_usertype_local_JSON = field_e_activesession_usertype_convertToJSON(activesession_response->e_activesession_usertype);
@@ -239,7 +140,7 @@ cJSON *activesession_response_convertToJSON(activesession_response_t *activesess
 
 
     // activesession_response->e_activesession_origin
-    if (ezmax_api_definition__full_activesession_response__NULL == activesession_response->e_activesession_origin) {
+    if (ezmax_api_definition__full_field_e_activesession_origin__NULL == activesession_response->e_activesession_origin) {
         goto fail;
     }
     cJSON *e_activesession_origin_local_JSON = field_e_activesession_origin_convertToJSON(activesession_response->e_activesession_origin);
@@ -253,7 +154,7 @@ cJSON *activesession_response_convertToJSON(activesession_response_t *activesess
 
 
     // activesession_response->e_activesession_weekdaystart
-    if (ezmax_api_definition__full_activesession_response__NULL == activesession_response->e_activesession_weekdaystart) {
+    if (ezmax_api_definition__full_field_e_activesession_weekdaystart__NULL == activesession_response->e_activesession_weekdaystart) {
         goto fail;
     }
     cJSON *e_activesession_weekdaystart_local_JSON = field_e_activesession_weekdaystart_convertToJSON(activesession_response->e_activesession_weekdaystart);
@@ -344,7 +245,7 @@ cJSON *activesession_response_convertToJSON(activesession_response_t *activesess
 
 
     // activesession_response->e_activesession_ezsign
-    if(activesession_response->e_activesession_ezsign != ezmax_api_definition__full_activesession_response__NULL) {
+    if(activesession_response->e_activesession_ezsign != ezmax_api_definition__full_field_e_activesession_ezsign__NULL) {
     cJSON *e_activesession_ezsign_local_JSON = field_e_activesession_ezsign_convertToJSON(activesession_response->e_activesession_ezsign);
     if(e_activesession_ezsign_local_JSON == NULL) {
         goto fail; // custom
@@ -357,7 +258,7 @@ cJSON *activesession_response_convertToJSON(activesession_response_t *activesess
 
 
     // activesession_response->e_activesession_ezsignaccess
-    if (ezmax_api_definition__full_activesession_response__NULL == activesession_response->e_activesession_ezsignaccess) {
+    if (ezmax_api_definition__full_field_e_activesession_ezsignaccess__NULL == activesession_response->e_activesession_ezsignaccess) {
         goto fail;
     }
     cJSON *e_activesession_ezsignaccess_local_JSON = field_e_activesession_ezsignaccess_convertToJSON(activesession_response->e_activesession_ezsignaccess);
@@ -371,7 +272,7 @@ cJSON *activesession_response_convertToJSON(activesession_response_t *activesess
 
 
     // activesession_response->e_activesession_ezsignprepaid
-    if(activesession_response->e_activesession_ezsignprepaid != ezmax_api_definition__full_activesession_response__NULL) {
+    if(activesession_response->e_activesession_ezsignprepaid != ezmax_api_definition__full_field_e_activesession_ezsignprepaid__NULL) {
     cJSON *e_activesession_ezsignprepaid_local_JSON = field_e_activesession_ezsignprepaid_convertToJSON(activesession_response->e_activesession_ezsignprepaid);
     if(e_activesession_ezsignprepaid_local_JSON == NULL) {
         goto fail; // custom
@@ -384,7 +285,7 @@ cJSON *activesession_response_convertToJSON(activesession_response_t *activesess
 
 
     // activesession_response->e_activesession_realestateinprogress
-    if(activesession_response->e_activesession_realestateinprogress != ezmax_api_definition__full_activesession_response__NULL) {
+    if(activesession_response->e_activesession_realestateinprogress != ezmax_api_definition__full_field_e_activesession_realestateinprogress__NULL) {
     cJSON *e_activesession_realestateinprogress_local_JSON = field_e_activesession_realestateinprogress_convertToJSON(activesession_response->e_activesession_realestateinprogress);
     if(e_activesession_realestateinprogress_local_JSON == NULL) {
         goto fail; // custom
@@ -434,28 +335,31 @@ activesession_response_t *activesession_response_parseFromJSON(cJSON *activesess
     activesession_response_t *activesession_response_local_var = NULL;
 
     // define the local variable for activesession_response->e_activesession_usertype
-    field_e_activesession_usertype_t *e_activesession_usertype_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_activesession_usertype__e e_activesession_usertype_local_nonprim = 0;
 
     // define the local variable for activesession_response->e_activesession_origin
-    field_e_activesession_origin_t *e_activesession_origin_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_activesession_origin__e e_activesession_origin_local_nonprim = 0;
 
     // define the local variable for activesession_response->e_activesession_weekdaystart
-    field_e_activesession_weekdaystart_t *e_activesession_weekdaystart_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_activesession_weekdaystart__e e_activesession_weekdaystart_local_nonprim = 0;
 
     // define the local variable for activesession_response->e_activesession_ezsign
-    field_e_activesession_ezsign_t *e_activesession_ezsign_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_activesession_ezsign__e e_activesession_ezsign_local_nonprim = 0;
 
     // define the local variable for activesession_response->e_activesession_ezsignaccess
-    field_e_activesession_ezsignaccess_t *e_activesession_ezsignaccess_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_activesession_ezsignaccess__e e_activesession_ezsignaccess_local_nonprim = 0;
 
     // define the local variable for activesession_response->e_activesession_ezsignprepaid
-    field_e_activesession_ezsignprepaid_t *e_activesession_ezsignprepaid_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_activesession_ezsignprepaid__e e_activesession_ezsignprepaid_local_nonprim = 0;
 
     // define the local variable for activesession_response->e_activesession_realestateinprogress
-    field_e_activesession_realestateinprogress_t *e_activesession_realestateinprogress_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_activesession_realestateinprogress__e e_activesession_realestateinprogress_local_nonprim = 0;
 
     // activesession_response->e_activesession_usertype
     cJSON *e_activesession_usertype = cJSON_GetObjectItemCaseSensitive(activesession_responseJSON, "eActivesessionUsertype");
+    if (cJSON_IsNull(e_activesession_usertype)) {
+        e_activesession_usertype = NULL;
+    }
     if (!e_activesession_usertype) {
         goto end;
     }
@@ -465,6 +369,9 @@ activesession_response_t *activesession_response_parseFromJSON(cJSON *activesess
 
     // activesession_response->e_activesession_origin
     cJSON *e_activesession_origin = cJSON_GetObjectItemCaseSensitive(activesession_responseJSON, "eActivesessionOrigin");
+    if (cJSON_IsNull(e_activesession_origin)) {
+        e_activesession_origin = NULL;
+    }
     if (!e_activesession_origin) {
         goto end;
     }
@@ -474,6 +381,9 @@ activesession_response_t *activesession_response_parseFromJSON(cJSON *activesess
 
     // activesession_response->e_activesession_weekdaystart
     cJSON *e_activesession_weekdaystart = cJSON_GetObjectItemCaseSensitive(activesession_responseJSON, "eActivesessionWeekdaystart");
+    if (cJSON_IsNull(e_activesession_weekdaystart)) {
+        e_activesession_weekdaystart = NULL;
+    }
     if (!e_activesession_weekdaystart) {
         goto end;
     }
@@ -483,6 +393,9 @@ activesession_response_t *activesession_response_parseFromJSON(cJSON *activesess
 
     // activesession_response->fki_language_id
     cJSON *fki_language_id = cJSON_GetObjectItemCaseSensitive(activesession_responseJSON, "fkiLanguageID");
+    if (cJSON_IsNull(fki_language_id)) {
+        fki_language_id = NULL;
+    }
     if (!fki_language_id) {
         goto end;
     }
@@ -495,6 +408,9 @@ activesession_response_t *activesession_response_parseFromJSON(cJSON *activesess
 
     // activesession_response->s_company_name_x
     cJSON *s_company_name_x = cJSON_GetObjectItemCaseSensitive(activesession_responseJSON, "sCompanyNameX");
+    if (cJSON_IsNull(s_company_name_x)) {
+        s_company_name_x = NULL;
+    }
     if (!s_company_name_x) {
         goto end;
     }
@@ -507,6 +423,9 @@ activesession_response_t *activesession_response_parseFromJSON(cJSON *activesess
 
     // activesession_response->s_department_name_x
     cJSON *s_department_name_x = cJSON_GetObjectItemCaseSensitive(activesession_responseJSON, "sDepartmentNameX");
+    if (cJSON_IsNull(s_department_name_x)) {
+        s_department_name_x = NULL;
+    }
     if (!s_department_name_x) {
         goto end;
     }
@@ -519,6 +438,9 @@ activesession_response_t *activesession_response_parseFromJSON(cJSON *activesess
 
     // activesession_response->b_activesession_debug
     cJSON *b_activesession_debug = cJSON_GetObjectItemCaseSensitive(activesession_responseJSON, "bActivesessionDebug");
+    if (cJSON_IsNull(b_activesession_debug)) {
+        b_activesession_debug = NULL;
+    }
     if (!b_activesession_debug) {
         goto end;
     }
@@ -531,6 +453,9 @@ activesession_response_t *activesession_response_parseFromJSON(cJSON *activesess
 
     // activesession_response->b_activesession_issuperadmin
     cJSON *b_activesession_issuperadmin = cJSON_GetObjectItemCaseSensitive(activesession_responseJSON, "bActivesessionIssuperadmin");
+    if (cJSON_IsNull(b_activesession_issuperadmin)) {
+        b_activesession_issuperadmin = NULL;
+    }
     if (!b_activesession_issuperadmin) {
         goto end;
     }
@@ -543,6 +468,9 @@ activesession_response_t *activesession_response_parseFromJSON(cJSON *activesess
 
     // activesession_response->b_activesession_attachment
     cJSON *b_activesession_attachment = cJSON_GetObjectItemCaseSensitive(activesession_responseJSON, "bActivesessionAttachment");
+    if (cJSON_IsNull(b_activesession_attachment)) {
+        b_activesession_attachment = NULL;
+    }
     if (b_activesession_attachment) { 
     if(!cJSON_IsBool(b_activesession_attachment))
     {
@@ -552,6 +480,9 @@ activesession_response_t *activesession_response_parseFromJSON(cJSON *activesess
 
     // activesession_response->b_activesession_canafe
     cJSON *b_activesession_canafe = cJSON_GetObjectItemCaseSensitive(activesession_responseJSON, "bActivesessionCanafe");
+    if (cJSON_IsNull(b_activesession_canafe)) {
+        b_activesession_canafe = NULL;
+    }
     if (b_activesession_canafe) { 
     if(!cJSON_IsBool(b_activesession_canafe))
     {
@@ -561,6 +492,9 @@ activesession_response_t *activesession_response_parseFromJSON(cJSON *activesess
 
     // activesession_response->b_activesession_financial
     cJSON *b_activesession_financial = cJSON_GetObjectItemCaseSensitive(activesession_responseJSON, "bActivesessionFinancial");
+    if (cJSON_IsNull(b_activesession_financial)) {
+        b_activesession_financial = NULL;
+    }
     if (b_activesession_financial) { 
     if(!cJSON_IsBool(b_activesession_financial))
     {
@@ -570,6 +504,9 @@ activesession_response_t *activesession_response_parseFromJSON(cJSON *activesess
 
     // activesession_response->b_activesession_realestatecompleted
     cJSON *b_activesession_realestatecompleted = cJSON_GetObjectItemCaseSensitive(activesession_responseJSON, "bActivesessionRealestatecompleted");
+    if (cJSON_IsNull(b_activesession_realestatecompleted)) {
+        b_activesession_realestatecompleted = NULL;
+    }
     if (b_activesession_realestatecompleted) { 
     if(!cJSON_IsBool(b_activesession_realestatecompleted))
     {
@@ -579,12 +516,18 @@ activesession_response_t *activesession_response_parseFromJSON(cJSON *activesess
 
     // activesession_response->e_activesession_ezsign
     cJSON *e_activesession_ezsign = cJSON_GetObjectItemCaseSensitive(activesession_responseJSON, "eActivesessionEzsign");
+    if (cJSON_IsNull(e_activesession_ezsign)) {
+        e_activesession_ezsign = NULL;
+    }
     if (e_activesession_ezsign) { 
     e_activesession_ezsign_local_nonprim = field_e_activesession_ezsign_parseFromJSON(e_activesession_ezsign); //custom
     }
 
     // activesession_response->e_activesession_ezsignaccess
     cJSON *e_activesession_ezsignaccess = cJSON_GetObjectItemCaseSensitive(activesession_responseJSON, "eActivesessionEzsignaccess");
+    if (cJSON_IsNull(e_activesession_ezsignaccess)) {
+        e_activesession_ezsignaccess = NULL;
+    }
     if (!e_activesession_ezsignaccess) {
         goto end;
     }
@@ -594,18 +537,27 @@ activesession_response_t *activesession_response_parseFromJSON(cJSON *activesess
 
     // activesession_response->e_activesession_ezsignprepaid
     cJSON *e_activesession_ezsignprepaid = cJSON_GetObjectItemCaseSensitive(activesession_responseJSON, "eActivesessionEzsignprepaid");
+    if (cJSON_IsNull(e_activesession_ezsignprepaid)) {
+        e_activesession_ezsignprepaid = NULL;
+    }
     if (e_activesession_ezsignprepaid) { 
     e_activesession_ezsignprepaid_local_nonprim = field_e_activesession_ezsignprepaid_parseFromJSON(e_activesession_ezsignprepaid); //custom
     }
 
     // activesession_response->e_activesession_realestateinprogress
     cJSON *e_activesession_realestateinprogress = cJSON_GetObjectItemCaseSensitive(activesession_responseJSON, "eActivesessionRealestateinprogress");
+    if (cJSON_IsNull(e_activesession_realestateinprogress)) {
+        e_activesession_realestateinprogress = NULL;
+    }
     if (e_activesession_realestateinprogress) { 
     e_activesession_realestateinprogress_local_nonprim = field_e_activesession_realestateinprogress_parseFromJSON(e_activesession_realestateinprogress); //custom
     }
 
     // activesession_response->pks_customer_code
     cJSON *pks_customer_code = cJSON_GetObjectItemCaseSensitive(activesession_responseJSON, "pksCustomerCode");
+    if (cJSON_IsNull(pks_customer_code)) {
+        pks_customer_code = NULL;
+    }
     if (!pks_customer_code) {
         goto end;
     }
@@ -618,6 +570,9 @@ activesession_response_t *activesession_response_parseFromJSON(cJSON *activesess
 
     // activesession_response->fki_systemconfigurationtype_id
     cJSON *fki_systemconfigurationtype_id = cJSON_GetObjectItemCaseSensitive(activesession_responseJSON, "fkiSystemconfigurationtypeID");
+    if (cJSON_IsNull(fki_systemconfigurationtype_id)) {
+        fki_systemconfigurationtype_id = NULL;
+    }
     if (!fki_systemconfigurationtype_id) {
         goto end;
     }
@@ -630,6 +585,9 @@ activesession_response_t *activesession_response_parseFromJSON(cJSON *activesess
 
     // activesession_response->fki_signature_id
     cJSON *fki_signature_id = cJSON_GetObjectItemCaseSensitive(activesession_responseJSON, "fkiSignatureID");
+    if (cJSON_IsNull(fki_signature_id)) {
+        fki_signature_id = NULL;
+    }
     if (fki_signature_id) { 
     if(!cJSON_IsNumber(fki_signature_id))
     {
@@ -638,7 +596,7 @@ activesession_response_t *activesession_response_parseFromJSON(cJSON *activesess
     }
 
 
-    activesession_response_local_var = activesession_response_create (
+    activesession_response_local_var = activesession_response_create_internal (
         e_activesession_usertype_local_nonprim,
         e_activesession_origin_local_nonprim,
         e_activesession_weekdaystart_local_nonprim,
@@ -651,10 +609,10 @@ activesession_response_t *activesession_response_parseFromJSON(cJSON *activesess
         b_activesession_canafe ? b_activesession_canafe->valueint : 0,
         b_activesession_financial ? b_activesession_financial->valueint : 0,
         b_activesession_realestatecompleted ? b_activesession_realestatecompleted->valueint : 0,
-        e_activesession_ezsign ? e_activesession_ezsign_local_nonprim : NULL,
+        e_activesession_ezsign ? e_activesession_ezsign_local_nonprim : 0,
         e_activesession_ezsignaccess_local_nonprim,
-        e_activesession_ezsignprepaid ? e_activesession_ezsignprepaid_local_nonprim : NULL,
-        e_activesession_realestateinprogress ? e_activesession_realestateinprogress_local_nonprim : NULL,
+        e_activesession_ezsignprepaid ? e_activesession_ezsignprepaid_local_nonprim : 0,
+        e_activesession_realestateinprogress ? e_activesession_realestateinprogress_local_nonprim : 0,
         strdup(pks_customer_code->valuestring),
         fki_systemconfigurationtype_id->valuedouble,
         fki_signature_id ? fki_signature_id->valuedouble : 0
@@ -663,32 +621,25 @@ activesession_response_t *activesession_response_parseFromJSON(cJSON *activesess
     return activesession_response_local_var;
 end:
     if (e_activesession_usertype_local_nonprim) {
-        field_e_activesession_usertype_free(e_activesession_usertype_local_nonprim);
-        e_activesession_usertype_local_nonprim = NULL;
+        e_activesession_usertype_local_nonprim = 0;
     }
     if (e_activesession_origin_local_nonprim) {
-        field_e_activesession_origin_free(e_activesession_origin_local_nonprim);
-        e_activesession_origin_local_nonprim = NULL;
+        e_activesession_origin_local_nonprim = 0;
     }
     if (e_activesession_weekdaystart_local_nonprim) {
-        field_e_activesession_weekdaystart_free(e_activesession_weekdaystart_local_nonprim);
-        e_activesession_weekdaystart_local_nonprim = NULL;
+        e_activesession_weekdaystart_local_nonprim = 0;
     }
     if (e_activesession_ezsign_local_nonprim) {
-        field_e_activesession_ezsign_free(e_activesession_ezsign_local_nonprim);
-        e_activesession_ezsign_local_nonprim = NULL;
+        e_activesession_ezsign_local_nonprim = 0;
     }
     if (e_activesession_ezsignaccess_local_nonprim) {
-        field_e_activesession_ezsignaccess_free(e_activesession_ezsignaccess_local_nonprim);
-        e_activesession_ezsignaccess_local_nonprim = NULL;
+        e_activesession_ezsignaccess_local_nonprim = 0;
     }
     if (e_activesession_ezsignprepaid_local_nonprim) {
-        field_e_activesession_ezsignprepaid_free(e_activesession_ezsignprepaid_local_nonprim);
-        e_activesession_ezsignprepaid_local_nonprim = NULL;
+        e_activesession_ezsignprepaid_local_nonprim = 0;
     }
     if (e_activesession_realestateinprogress_local_nonprim) {
-        field_e_activesession_realestateinprogress_free(e_activesession_realestateinprogress_local_nonprim);
-        e_activesession_realestateinprogress_local_nonprim = NULL;
+        e_activesession_realestateinprogress_local_nonprim = 0;
     }
     return NULL;
 

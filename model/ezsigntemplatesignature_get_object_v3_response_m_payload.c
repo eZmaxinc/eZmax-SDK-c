@@ -5,7 +5,7 @@
 
 
 
-ezsigntemplatesignature_get_object_v3_response_m_payload_t *ezsigntemplatesignature_get_object_v3_response_m_payload_create(
+static ezsigntemplatesignature_get_object_v3_response_m_payload_t *ezsigntemplatesignature_get_object_v3_response_m_payload_create_internal(
     ezsigntemplatesignature_response_compound_v3_t *obj_ezsigntemplatesignature
     ) {
     ezsigntemplatesignature_get_object_v3_response_m_payload_t *ezsigntemplatesignature_get_object_v3_response_m_payload_local_var = malloc(sizeof(ezsigntemplatesignature_get_object_v3_response_m_payload_t));
@@ -14,12 +14,24 @@ ezsigntemplatesignature_get_object_v3_response_m_payload_t *ezsigntemplatesignat
     }
     ezsigntemplatesignature_get_object_v3_response_m_payload_local_var->obj_ezsigntemplatesignature = obj_ezsigntemplatesignature;
 
+    ezsigntemplatesignature_get_object_v3_response_m_payload_local_var->_library_owned = 1;
     return ezsigntemplatesignature_get_object_v3_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezsigntemplatesignature_get_object_v3_response_m_payload_t *ezsigntemplatesignature_get_object_v3_response_m_payload_create(
+    ezsigntemplatesignature_response_compound_v3_t *obj_ezsigntemplatesignature
+    ) {
+    return ezsigntemplatesignature_get_object_v3_response_m_payload_create_internal (
+        obj_ezsigntemplatesignature
+        );
+}
 
 void ezsigntemplatesignature_get_object_v3_response_m_payload_free(ezsigntemplatesignature_get_object_v3_response_m_payload_t *ezsigntemplatesignature_get_object_v3_response_m_payload) {
     if(NULL == ezsigntemplatesignature_get_object_v3_response_m_payload){
+        return ;
+    }
+    if(ezsigntemplatesignature_get_object_v3_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigntemplatesignature_get_object_v3_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ ezsigntemplatesignature_get_object_v3_response_m_payload_t *ezsigntemplatesignat
 
     // ezsigntemplatesignature_get_object_v3_response_m_payload->obj_ezsigntemplatesignature
     cJSON *obj_ezsigntemplatesignature = cJSON_GetObjectItemCaseSensitive(ezsigntemplatesignature_get_object_v3_response_m_payloadJSON, "objEzsigntemplatesignature");
+    if (cJSON_IsNull(obj_ezsigntemplatesignature)) {
+        obj_ezsigntemplatesignature = NULL;
+    }
     if (!obj_ezsigntemplatesignature) {
         goto end;
     }
@@ -71,7 +86,7 @@ ezsigntemplatesignature_get_object_v3_response_m_payload_t *ezsigntemplatesignat
     obj_ezsigntemplatesignature_local_nonprim = ezsigntemplatesignature_response_compound_v3_parseFromJSON(obj_ezsigntemplatesignature); //nonprimitive
 
 
-    ezsigntemplatesignature_get_object_v3_response_m_payload_local_var = ezsigntemplatesignature_get_object_v3_response_m_payload_create (
+    ezsigntemplatesignature_get_object_v3_response_m_payload_local_var = ezsigntemplatesignature_get_object_v3_response_m_payload_create_internal (
         obj_ezsigntemplatesignature_local_nonprim
         );
 

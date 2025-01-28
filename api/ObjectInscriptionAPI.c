@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Retrieve Inscription's Attachments
@@ -25,15 +20,18 @@ ObjectInscriptionAPI_inscriptionGetAttachmentsV1(apiClient_t *apiClient, int *pk
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/inscription/{pkiInscriptionID}/getAttachments")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/inscription/{pkiInscriptionID}/getAttachments");
+    char *localVarPath = strdup("/1/object/inscription/{pkiInscriptionID}/getAttachments");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiInscriptionID =  + strlen("{ pkiInscriptionID }");
+    long sizeOfPathParams_pkiInscriptionID =  + sizeof("{ pkiInscriptionID }") - 1;
     if(pkiInscriptionID == 0){
         goto end;
     }
@@ -41,7 +39,7 @@ ObjectInscriptionAPI_inscriptionGetAttachmentsV1(apiClient_t *apiClient, int *pk
     snprintf(localVarToReplace_pkiInscriptionID, sizeOfPathParams_pkiInscriptionID, "{%s}", "pkiInscriptionID");
 
     char localVarBuff_pkiInscriptionID[256];
-    intToStr(localVarBuff_pkiInscriptionID, *pkiInscriptionID);
+    snprintf(localVarBuff_pkiInscriptionID, sizeof localVarBuff_pkiInscriptionID, "%ld", (long)*pkiInscriptionID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiInscriptionID, localVarBuff_pkiInscriptionID);
 
@@ -56,6 +54,7 @@ ObjectInscriptionAPI_inscriptionGetAttachmentsV1(apiClient_t *apiClient, int *pk
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -67,11 +66,14 @@ ObjectInscriptionAPI_inscriptionGetAttachmentsV1(apiClient_t *apiClient, int *pk
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectInscriptionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    inscription_get_attachments_v1_response_t *elementToReturn = inscription_get_attachments_v1_response_parseFromJSON(ObjectInscriptionAPIlocalVarJSON);
-    cJSON_Delete(ObjectInscriptionAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    inscription_get_attachments_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectInscriptionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = inscription_get_attachments_v1_response_parseFromJSON(ObjectInscriptionAPIlocalVarJSON);
+        cJSON_Delete(ObjectInscriptionAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -107,15 +109,18 @@ ObjectInscriptionAPI_inscriptionGetCommunicationCountV1(apiClient_t *apiClient, 
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/inscription/{pkiInscriptionID}/getCommunicationCount")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/inscription/{pkiInscriptionID}/getCommunicationCount");
+    char *localVarPath = strdup("/1/object/inscription/{pkiInscriptionID}/getCommunicationCount");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiInscriptionID =  + strlen("{ pkiInscriptionID }");
+    long sizeOfPathParams_pkiInscriptionID =  + sizeof("{ pkiInscriptionID }") - 1;
     if(pkiInscriptionID == 0){
         goto end;
     }
@@ -123,7 +128,7 @@ ObjectInscriptionAPI_inscriptionGetCommunicationCountV1(apiClient_t *apiClient, 
     snprintf(localVarToReplace_pkiInscriptionID, sizeOfPathParams_pkiInscriptionID, "{%s}", "pkiInscriptionID");
 
     char localVarBuff_pkiInscriptionID[256];
-    intToStr(localVarBuff_pkiInscriptionID, *pkiInscriptionID);
+    snprintf(localVarBuff_pkiInscriptionID, sizeof localVarBuff_pkiInscriptionID, "%ld", (long)*pkiInscriptionID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiInscriptionID, localVarBuff_pkiInscriptionID);
 
@@ -138,6 +143,7 @@ ObjectInscriptionAPI_inscriptionGetCommunicationCountV1(apiClient_t *apiClient, 
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -149,11 +155,14 @@ ObjectInscriptionAPI_inscriptionGetCommunicationCountV1(apiClient_t *apiClient, 
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectInscriptionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    inscription_get_communication_count_v1_response_t *elementToReturn = inscription_get_communication_count_v1_response_parseFromJSON(ObjectInscriptionAPIlocalVarJSON);
-    cJSON_Delete(ObjectInscriptionAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    inscription_get_communication_count_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectInscriptionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = inscription_get_communication_count_v1_response_parseFromJSON(ObjectInscriptionAPIlocalVarJSON);
+        cJSON_Delete(ObjectInscriptionAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -189,15 +198,18 @@ ObjectInscriptionAPI_inscriptionGetCommunicationListV1(apiClient_t *apiClient, i
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/inscription/{pkiInscriptionID}/getCommunicationList")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/inscription/{pkiInscriptionID}/getCommunicationList");
+    char *localVarPath = strdup("/1/object/inscription/{pkiInscriptionID}/getCommunicationList");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiInscriptionID =  + strlen("{ pkiInscriptionID }");
+    long sizeOfPathParams_pkiInscriptionID =  + sizeof("{ pkiInscriptionID }") - 1;
     if(pkiInscriptionID == 0){
         goto end;
     }
@@ -205,7 +217,7 @@ ObjectInscriptionAPI_inscriptionGetCommunicationListV1(apiClient_t *apiClient, i
     snprintf(localVarToReplace_pkiInscriptionID, sizeOfPathParams_pkiInscriptionID, "{%s}", "pkiInscriptionID");
 
     char localVarBuff_pkiInscriptionID[256];
-    intToStr(localVarBuff_pkiInscriptionID, *pkiInscriptionID);
+    snprintf(localVarBuff_pkiInscriptionID, sizeof localVarBuff_pkiInscriptionID, "%ld", (long)*pkiInscriptionID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiInscriptionID, localVarBuff_pkiInscriptionID);
 
@@ -220,6 +232,7 @@ ObjectInscriptionAPI_inscriptionGetCommunicationListV1(apiClient_t *apiClient, i
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -231,11 +244,14 @@ ObjectInscriptionAPI_inscriptionGetCommunicationListV1(apiClient_t *apiClient, i
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectInscriptionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    inscription_get_communication_list_v1_response_t *elementToReturn = inscription_get_communication_list_v1_response_parseFromJSON(ObjectInscriptionAPIlocalVarJSON);
-    cJSON_Delete(ObjectInscriptionAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    inscription_get_communication_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectInscriptionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = inscription_get_communication_list_v1_response_parseFromJSON(ObjectInscriptionAPIlocalVarJSON);
+        cJSON_Delete(ObjectInscriptionAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -271,15 +287,18 @@ ObjectInscriptionAPI_inscriptionGetCommunicationrecipientsV1(apiClient_t *apiCli
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/inscription/{pkiInscriptionID}/getCommunicationrecipients")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/inscription/{pkiInscriptionID}/getCommunicationrecipients");
+    char *localVarPath = strdup("/1/object/inscription/{pkiInscriptionID}/getCommunicationrecipients");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiInscriptionID =  + strlen("{ pkiInscriptionID }");
+    long sizeOfPathParams_pkiInscriptionID =  + sizeof("{ pkiInscriptionID }") - 1;
     if(pkiInscriptionID == 0){
         goto end;
     }
@@ -287,7 +306,7 @@ ObjectInscriptionAPI_inscriptionGetCommunicationrecipientsV1(apiClient_t *apiCli
     snprintf(localVarToReplace_pkiInscriptionID, sizeOfPathParams_pkiInscriptionID, "{%s}", "pkiInscriptionID");
 
     char localVarBuff_pkiInscriptionID[256];
-    intToStr(localVarBuff_pkiInscriptionID, *pkiInscriptionID);
+    snprintf(localVarBuff_pkiInscriptionID, sizeof localVarBuff_pkiInscriptionID, "%ld", (long)*pkiInscriptionID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiInscriptionID, localVarBuff_pkiInscriptionID);
 
@@ -302,6 +321,7 @@ ObjectInscriptionAPI_inscriptionGetCommunicationrecipientsV1(apiClient_t *apiCli
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -313,11 +333,14 @@ ObjectInscriptionAPI_inscriptionGetCommunicationrecipientsV1(apiClient_t *apiCli
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectInscriptionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    inscription_get_communicationrecipients_v1_response_t *elementToReturn = inscription_get_communicationrecipients_v1_response_parseFromJSON(ObjectInscriptionAPIlocalVarJSON);
-    cJSON_Delete(ObjectInscriptionAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    inscription_get_communicationrecipients_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectInscriptionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = inscription_get_communicationrecipients_v1_response_parseFromJSON(ObjectInscriptionAPIlocalVarJSON);
+        cJSON_Delete(ObjectInscriptionAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -353,15 +376,18 @@ ObjectInscriptionAPI_inscriptionGetCommunicationsendersV1(apiClient_t *apiClient
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/inscription/{pkiInscriptionID}/getCommunicationsenders")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/inscription/{pkiInscriptionID}/getCommunicationsenders");
+    char *localVarPath = strdup("/1/object/inscription/{pkiInscriptionID}/getCommunicationsenders");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiInscriptionID =  + strlen("{ pkiInscriptionID }");
+    long sizeOfPathParams_pkiInscriptionID =  + sizeof("{ pkiInscriptionID }") - 1;
     if(pkiInscriptionID == 0){
         goto end;
     }
@@ -369,7 +395,7 @@ ObjectInscriptionAPI_inscriptionGetCommunicationsendersV1(apiClient_t *apiClient
     snprintf(localVarToReplace_pkiInscriptionID, sizeOfPathParams_pkiInscriptionID, "{%s}", "pkiInscriptionID");
 
     char localVarBuff_pkiInscriptionID[256];
-    intToStr(localVarBuff_pkiInscriptionID, *pkiInscriptionID);
+    snprintf(localVarBuff_pkiInscriptionID, sizeof localVarBuff_pkiInscriptionID, "%ld", (long)*pkiInscriptionID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiInscriptionID, localVarBuff_pkiInscriptionID);
 
@@ -384,6 +410,7 @@ ObjectInscriptionAPI_inscriptionGetCommunicationsendersV1(apiClient_t *apiClient
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -395,11 +422,14 @@ ObjectInscriptionAPI_inscriptionGetCommunicationsendersV1(apiClient_t *apiClient
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectInscriptionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    inscription_get_communicationsenders_v1_response_t *elementToReturn = inscription_get_communicationsenders_v1_response_parseFromJSON(ObjectInscriptionAPIlocalVarJSON);
-    cJSON_Delete(ObjectInscriptionAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    inscription_get_communicationsenders_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectInscriptionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = inscription_get_communicationsenders_v1_response_parseFromJSON(ObjectInscriptionAPIlocalVarJSON);
+        cJSON_Delete(ObjectInscriptionAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

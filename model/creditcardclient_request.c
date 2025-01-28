@@ -5,7 +5,7 @@
 
 
 
-creditcardclient_request_t *creditcardclient_request_create(
+static creditcardclient_request_t *creditcardclient_request_create_internal(
     int pki_creditcardclient_id,
     char *fks_creditcardtoken_id,
     int b_creditcardclientrelation_isdefault,
@@ -30,12 +30,40 @@ creditcardclient_request_t *creditcardclient_request_create(
     creditcardclient_request_local_var->obj_creditcarddetail = obj_creditcarddetail;
     creditcardclient_request_local_var->s_creditcardclient_cvv = s_creditcardclient_cvv;
 
+    creditcardclient_request_local_var->_library_owned = 1;
     return creditcardclient_request_local_var;
 }
 
+__attribute__((deprecated)) creditcardclient_request_t *creditcardclient_request_create(
+    int pki_creditcardclient_id,
+    char *fks_creditcardtoken_id,
+    int b_creditcardclientrelation_isdefault,
+    char *s_creditcardclient_description,
+    int b_creditcardclient_allowedcompanypayment,
+    int b_creditcardclient_allowedezsign,
+    int b_creditcardclient_allowedtranquillit,
+    creditcarddetail_request_t *obj_creditcarddetail,
+    char *s_creditcardclient_cvv
+    ) {
+    return creditcardclient_request_create_internal (
+        pki_creditcardclient_id,
+        fks_creditcardtoken_id,
+        b_creditcardclientrelation_isdefault,
+        s_creditcardclient_description,
+        b_creditcardclient_allowedcompanypayment,
+        b_creditcardclient_allowedezsign,
+        b_creditcardclient_allowedtranquillit,
+        obj_creditcarddetail,
+        s_creditcardclient_cvv
+        );
+}
 
 void creditcardclient_request_free(creditcardclient_request_t *creditcardclient_request) {
     if(NULL == creditcardclient_request){
+        return ;
+    }
+    if(creditcardclient_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "creditcardclient_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -161,6 +189,9 @@ creditcardclient_request_t *creditcardclient_request_parseFromJSON(cJSON *credit
 
     // creditcardclient_request->pki_creditcardclient_id
     cJSON *pki_creditcardclient_id = cJSON_GetObjectItemCaseSensitive(creditcardclient_requestJSON, "pkiCreditcardclientID");
+    if (cJSON_IsNull(pki_creditcardclient_id)) {
+        pki_creditcardclient_id = NULL;
+    }
     if (pki_creditcardclient_id) { 
     if(!cJSON_IsNumber(pki_creditcardclient_id))
     {
@@ -170,6 +201,9 @@ creditcardclient_request_t *creditcardclient_request_parseFromJSON(cJSON *credit
 
     // creditcardclient_request->fks_creditcardtoken_id
     cJSON *fks_creditcardtoken_id = cJSON_GetObjectItemCaseSensitive(creditcardclient_requestJSON, "fksCreditcardtokenID");
+    if (cJSON_IsNull(fks_creditcardtoken_id)) {
+        fks_creditcardtoken_id = NULL;
+    }
     if (fks_creditcardtoken_id) { 
     if(!cJSON_IsString(fks_creditcardtoken_id) && !cJSON_IsNull(fks_creditcardtoken_id))
     {
@@ -179,6 +213,9 @@ creditcardclient_request_t *creditcardclient_request_parseFromJSON(cJSON *credit
 
     // creditcardclient_request->b_creditcardclientrelation_isdefault
     cJSON *b_creditcardclientrelation_isdefault = cJSON_GetObjectItemCaseSensitive(creditcardclient_requestJSON, "bCreditcardclientrelationIsdefault");
+    if (cJSON_IsNull(b_creditcardclientrelation_isdefault)) {
+        b_creditcardclientrelation_isdefault = NULL;
+    }
     if (!b_creditcardclientrelation_isdefault) {
         goto end;
     }
@@ -191,6 +228,9 @@ creditcardclient_request_t *creditcardclient_request_parseFromJSON(cJSON *credit
 
     // creditcardclient_request->s_creditcardclient_description
     cJSON *s_creditcardclient_description = cJSON_GetObjectItemCaseSensitive(creditcardclient_requestJSON, "sCreditcardclientDescription");
+    if (cJSON_IsNull(s_creditcardclient_description)) {
+        s_creditcardclient_description = NULL;
+    }
     if (!s_creditcardclient_description) {
         goto end;
     }
@@ -203,6 +243,9 @@ creditcardclient_request_t *creditcardclient_request_parseFromJSON(cJSON *credit
 
     // creditcardclient_request->b_creditcardclient_allowedcompanypayment
     cJSON *b_creditcardclient_allowedcompanypayment = cJSON_GetObjectItemCaseSensitive(creditcardclient_requestJSON, "bCreditcardclientAllowedcompanypayment");
+    if (cJSON_IsNull(b_creditcardclient_allowedcompanypayment)) {
+        b_creditcardclient_allowedcompanypayment = NULL;
+    }
     if (!b_creditcardclient_allowedcompanypayment) {
         goto end;
     }
@@ -215,6 +258,9 @@ creditcardclient_request_t *creditcardclient_request_parseFromJSON(cJSON *credit
 
     // creditcardclient_request->b_creditcardclient_allowedezsign
     cJSON *b_creditcardclient_allowedezsign = cJSON_GetObjectItemCaseSensitive(creditcardclient_requestJSON, "bCreditcardclientAllowedezsign");
+    if (cJSON_IsNull(b_creditcardclient_allowedezsign)) {
+        b_creditcardclient_allowedezsign = NULL;
+    }
     if (!b_creditcardclient_allowedezsign) {
         goto end;
     }
@@ -227,6 +273,9 @@ creditcardclient_request_t *creditcardclient_request_parseFromJSON(cJSON *credit
 
     // creditcardclient_request->b_creditcardclient_allowedtranquillit
     cJSON *b_creditcardclient_allowedtranquillit = cJSON_GetObjectItemCaseSensitive(creditcardclient_requestJSON, "bCreditcardclientAllowedtranquillit");
+    if (cJSON_IsNull(b_creditcardclient_allowedtranquillit)) {
+        b_creditcardclient_allowedtranquillit = NULL;
+    }
     if (!b_creditcardclient_allowedtranquillit) {
         goto end;
     }
@@ -239,6 +288,9 @@ creditcardclient_request_t *creditcardclient_request_parseFromJSON(cJSON *credit
 
     // creditcardclient_request->obj_creditcarddetail
     cJSON *obj_creditcarddetail = cJSON_GetObjectItemCaseSensitive(creditcardclient_requestJSON, "objCreditcarddetail");
+    if (cJSON_IsNull(obj_creditcarddetail)) {
+        obj_creditcarddetail = NULL;
+    }
     if (!obj_creditcarddetail) {
         goto end;
     }
@@ -248,6 +300,9 @@ creditcardclient_request_t *creditcardclient_request_parseFromJSON(cJSON *credit
 
     // creditcardclient_request->s_creditcardclient_cvv
     cJSON *s_creditcardclient_cvv = cJSON_GetObjectItemCaseSensitive(creditcardclient_requestJSON, "sCreditcardclientCVV");
+    if (cJSON_IsNull(s_creditcardclient_cvv)) {
+        s_creditcardclient_cvv = NULL;
+    }
     if (!s_creditcardclient_cvv) {
         goto end;
     }
@@ -259,7 +314,7 @@ creditcardclient_request_t *creditcardclient_request_parseFromJSON(cJSON *credit
     }
 
 
-    creditcardclient_request_local_var = creditcardclient_request_create (
+    creditcardclient_request_local_var = creditcardclient_request_create_internal (
         pki_creditcardclient_id ? pki_creditcardclient_id->valuedouble : 0,
         fks_creditcardtoken_id && !cJSON_IsNull(fks_creditcardtoken_id) ? strdup(fks_creditcardtoken_id->valuestring) : NULL,
         b_creditcardclientrelation_isdefault->valueint,

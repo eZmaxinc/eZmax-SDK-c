@@ -5,7 +5,7 @@
 
 
 
-usergroupexternal_get_object_v2_response_m_payload_t *usergroupexternal_get_object_v2_response_m_payload_create(
+static usergroupexternal_get_object_v2_response_m_payload_t *usergroupexternal_get_object_v2_response_m_payload_create_internal(
     usergroupexternal_response_compound_t *obj_usergroupexternal
     ) {
     usergroupexternal_get_object_v2_response_m_payload_t *usergroupexternal_get_object_v2_response_m_payload_local_var = malloc(sizeof(usergroupexternal_get_object_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ usergroupexternal_get_object_v2_response_m_payload_t *usergroupexternal_get_obje
     }
     usergroupexternal_get_object_v2_response_m_payload_local_var->obj_usergroupexternal = obj_usergroupexternal;
 
+    usergroupexternal_get_object_v2_response_m_payload_local_var->_library_owned = 1;
     return usergroupexternal_get_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) usergroupexternal_get_object_v2_response_m_payload_t *usergroupexternal_get_object_v2_response_m_payload_create(
+    usergroupexternal_response_compound_t *obj_usergroupexternal
+    ) {
+    return usergroupexternal_get_object_v2_response_m_payload_create_internal (
+        obj_usergroupexternal
+        );
+}
 
 void usergroupexternal_get_object_v2_response_m_payload_free(usergroupexternal_get_object_v2_response_m_payload_t *usergroupexternal_get_object_v2_response_m_payload) {
     if(NULL == usergroupexternal_get_object_v2_response_m_payload){
+        return ;
+    }
+    if(usergroupexternal_get_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroupexternal_get_object_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ usergroupexternal_get_object_v2_response_m_payload_t *usergroupexternal_get_obje
 
     // usergroupexternal_get_object_v2_response_m_payload->obj_usergroupexternal
     cJSON *obj_usergroupexternal = cJSON_GetObjectItemCaseSensitive(usergroupexternal_get_object_v2_response_m_payloadJSON, "objUsergroupexternal");
+    if (cJSON_IsNull(obj_usergroupexternal)) {
+        obj_usergroupexternal = NULL;
+    }
     if (!obj_usergroupexternal) {
         goto end;
     }
@@ -71,7 +86,7 @@ usergroupexternal_get_object_v2_response_m_payload_t *usergroupexternal_get_obje
     obj_usergroupexternal_local_nonprim = usergroupexternal_response_compound_parseFromJSON(obj_usergroupexternal); //nonprimitive
 
 
-    usergroupexternal_get_object_v2_response_m_payload_local_var = usergroupexternal_get_object_v2_response_m_payload_create (
+    usergroupexternal_get_object_v2_response_m_payload_local_var = usergroupexternal_get_object_v2_response_m_payload_create_internal (
         obj_usergroupexternal_local_nonprim
         );
 

@@ -27,9 +27,10 @@ typedef struct ezsigntemplatedocumentpage_response_compound_t {
     int i_ezsigntemplatedocumentpage_pagenumber; //numeric
     char *s_computed_imageurl; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatedocumentpage_response_compound_t;
 
-ezsigntemplatedocumentpage_response_compound_t *ezsigntemplatedocumentpage_response_compound_create(
+__attribute__((deprecated)) ezsigntemplatedocumentpage_response_compound_t *ezsigntemplatedocumentpage_response_compound_create(
     int pki_ezsigntemplatedocumentpage_id,
     int i_ezsigntemplatedocumentpage_widthimage,
     int i_ezsigntemplatedocumentpage_heightimage,

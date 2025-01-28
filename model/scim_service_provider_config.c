@@ -5,7 +5,7 @@
 
 
 
-scim_service_provider_config_t *scim_service_provider_config_create(
+static scim_service_provider_config_t *scim_service_provider_config_create_internal(
     list_t *authentication_schemes,
     scim_service_provider_config_bulk_t *bulk,
     scim_service_provider_config_change_password_t *change_password,
@@ -28,12 +28,38 @@ scim_service_provider_config_t *scim_service_provider_config_create(
     scim_service_provider_config_local_var->patch = patch;
     scim_service_provider_config_local_var->sort = sort;
 
+    scim_service_provider_config_local_var->_library_owned = 1;
     return scim_service_provider_config_local_var;
 }
 
+__attribute__((deprecated)) scim_service_provider_config_t *scim_service_provider_config_create(
+    list_t *authentication_schemes,
+    scim_service_provider_config_bulk_t *bulk,
+    scim_service_provider_config_change_password_t *change_password,
+    char *documentation_uri,
+    scim_service_provider_config_etag_t *etag,
+    scim_service_provider_config_filter_t *filter,
+    scim_service_provider_config_patch_t *patch,
+    scim_service_provider_config_sort_t *sort
+    ) {
+    return scim_service_provider_config_create_internal (
+        authentication_schemes,
+        bulk,
+        change_password,
+        documentation_uri,
+        etag,
+        filter,
+        patch,
+        sort
+        );
+}
 
 void scim_service_provider_config_free(scim_service_provider_config_t *scim_service_provider_config) {
     if(NULL == scim_service_provider_config){
+        return ;
+    }
+    if(scim_service_provider_config->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "scim_service_provider_config_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -226,6 +252,9 @@ scim_service_provider_config_t *scim_service_provider_config_parseFromJSON(cJSON
 
     // scim_service_provider_config->authentication_schemes
     cJSON *authentication_schemes = cJSON_GetObjectItemCaseSensitive(scim_service_provider_configJSON, "authenticationSchemes");
+    if (cJSON_IsNull(authentication_schemes)) {
+        authentication_schemes = NULL;
+    }
     if (!authentication_schemes) {
         goto end;
     }
@@ -250,6 +279,9 @@ scim_service_provider_config_t *scim_service_provider_config_parseFromJSON(cJSON
 
     // scim_service_provider_config->bulk
     cJSON *bulk = cJSON_GetObjectItemCaseSensitive(scim_service_provider_configJSON, "bulk");
+    if (cJSON_IsNull(bulk)) {
+        bulk = NULL;
+    }
     if (!bulk) {
         goto end;
     }
@@ -259,6 +291,9 @@ scim_service_provider_config_t *scim_service_provider_config_parseFromJSON(cJSON
 
     // scim_service_provider_config->change_password
     cJSON *change_password = cJSON_GetObjectItemCaseSensitive(scim_service_provider_configJSON, "changePassword");
+    if (cJSON_IsNull(change_password)) {
+        change_password = NULL;
+    }
     if (!change_password) {
         goto end;
     }
@@ -268,6 +303,9 @@ scim_service_provider_config_t *scim_service_provider_config_parseFromJSON(cJSON
 
     // scim_service_provider_config->documentation_uri
     cJSON *documentation_uri = cJSON_GetObjectItemCaseSensitive(scim_service_provider_configJSON, "documentationUri");
+    if (cJSON_IsNull(documentation_uri)) {
+        documentation_uri = NULL;
+    }
     if (!documentation_uri) {
         goto end;
     }
@@ -280,6 +318,9 @@ scim_service_provider_config_t *scim_service_provider_config_parseFromJSON(cJSON
 
     // scim_service_provider_config->etag
     cJSON *etag = cJSON_GetObjectItemCaseSensitive(scim_service_provider_configJSON, "etag");
+    if (cJSON_IsNull(etag)) {
+        etag = NULL;
+    }
     if (!etag) {
         goto end;
     }
@@ -289,6 +330,9 @@ scim_service_provider_config_t *scim_service_provider_config_parseFromJSON(cJSON
 
     // scim_service_provider_config->filter
     cJSON *filter = cJSON_GetObjectItemCaseSensitive(scim_service_provider_configJSON, "filter");
+    if (cJSON_IsNull(filter)) {
+        filter = NULL;
+    }
     if (!filter) {
         goto end;
     }
@@ -298,6 +342,9 @@ scim_service_provider_config_t *scim_service_provider_config_parseFromJSON(cJSON
 
     // scim_service_provider_config->patch
     cJSON *patch = cJSON_GetObjectItemCaseSensitive(scim_service_provider_configJSON, "patch");
+    if (cJSON_IsNull(patch)) {
+        patch = NULL;
+    }
     if (!patch) {
         goto end;
     }
@@ -307,6 +354,9 @@ scim_service_provider_config_t *scim_service_provider_config_parseFromJSON(cJSON
 
     // scim_service_provider_config->sort
     cJSON *sort = cJSON_GetObjectItemCaseSensitive(scim_service_provider_configJSON, "sort");
+    if (cJSON_IsNull(sort)) {
+        sort = NULL;
+    }
     if (!sort) {
         goto end;
     }
@@ -315,7 +365,7 @@ scim_service_provider_config_t *scim_service_provider_config_parseFromJSON(cJSON
     sort_local_nonprim = scim_service_provider_config_sort_parseFromJSON(sort); //nonprimitive
 
 
-    scim_service_provider_config_local_var = scim_service_provider_config_create (
+    scim_service_provider_config_local_var = scim_service_provider_config_create_internal (
         authentication_schemesList,
         bulk_local_nonprim,
         change_password_local_nonprim,

@@ -5,7 +5,7 @@
 
 
 
-ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_t *ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_create(
+static ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_t *ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_ezdoctemplatedocument
     ) {
     ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_t *ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_t *ezdoctemplatedoc
     }
     ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_local_var->a_obj_ezdoctemplatedocument = a_obj_ezdoctemplatedocument;
 
+    ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_t *ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_ezdoctemplatedocument
+    ) {
+    return ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_ezdoctemplatedocument
+        );
+}
 
 void ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_free(ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_t *ezdoctemplatedocument_get_autocomplete_v2_response_m_payload) {
     if(NULL == ezdoctemplatedocument_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(ezdoctemplatedocument_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_t *ezdoctemplatedoc
 
     // ezdoctemplatedocument_get_autocomplete_v2_response_m_payload->a_obj_ezdoctemplatedocument
     cJSON *a_obj_ezdoctemplatedocument = cJSON_GetObjectItemCaseSensitive(ezdoctemplatedocument_get_autocomplete_v2_response_m_payloadJSON, "a_objEzdoctemplatedocument");
+    if (cJSON_IsNull(a_obj_ezdoctemplatedocument)) {
+        a_obj_ezdoctemplatedocument = NULL;
+    }
     if (!a_obj_ezdoctemplatedocument) {
         goto end;
     }
@@ -96,7 +111,7 @@ ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_t *ezdoctemplatedoc
     }
 
 
-    ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_local_var = ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_create (
+    ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_local_var = ezdoctemplatedocument_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_ezdoctemplatedocumentList
         );
 

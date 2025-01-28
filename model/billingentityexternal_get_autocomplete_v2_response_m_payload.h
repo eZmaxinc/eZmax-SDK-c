@@ -22,9 +22,10 @@ typedef struct billingentityexternal_get_autocomplete_v2_response_m_payload_t bi
 typedef struct billingentityexternal_get_autocomplete_v2_response_m_payload_t {
     list_t *a_obj_billingentityexternal; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } billingentityexternal_get_autocomplete_v2_response_m_payload_t;
 
-billingentityexternal_get_autocomplete_v2_response_m_payload_t *billingentityexternal_get_autocomplete_v2_response_m_payload_create(
+__attribute__((deprecated)) billingentityexternal_get_autocomplete_v2_response_m_payload_t *billingentityexternal_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_billingentityexternal
 );
 

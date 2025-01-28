@@ -32,9 +32,10 @@ typedef struct activesession_list_element_t {
     char *dt_activesession_lasthit; // string
     char *s_activesession_ip; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } activesession_list_element_t;
 
-activesession_list_element_t *activesession_list_element_create(
+__attribute__((deprecated)) activesession_list_element_t *activesession_list_element_create(
     int pki_activesession_id,
     int fki_user_id,
     int fki_computer_id,

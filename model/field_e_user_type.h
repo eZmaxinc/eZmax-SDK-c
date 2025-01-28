@@ -24,9 +24,9 @@ char* field_e_user_type_field_e_user_type_ToString(ezmax_api_definition__full_fi
 
 ezmax_api_definition__full_field_e_user_type__e field_e_user_type_field_e_user_type_FromString(char* field_e_user_type);
 
-//cJSON *field_e_user_type_field_e_user_type_convertToJSON(ezmax_api_definition__full_field_e_user_type__e field_e_user_type);
+cJSON *field_e_user_type_convertToJSON(ezmax_api_definition__full_field_e_user_type__e field_e_user_type);
 
-//ezmax_api_definition__full_field_e_user_type__e field_e_user_type_field_e_user_type_parseFromJSON(cJSON *field_e_user_typeJSON);
+ezmax_api_definition__full_field_e_user_type__e field_e_user_type_parseFromJSON(cJSON *field_e_user_typeJSON);
 
 #endif /* _field_e_user_type_H_ */
 

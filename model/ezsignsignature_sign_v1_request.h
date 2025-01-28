@@ -37,9 +37,10 @@ typedef struct ezsignsignature_sign_v1_request_t {
     list_t *a_obj_file; //nonprimitive container
     int b_is_automatic; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsignature_sign_v1_request_t;
 
-ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_create(
+__attribute__((deprecated)) ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_create(
     int fki_ezsignsigningreason_id,
     int fki_font_id,
     char *s_value,

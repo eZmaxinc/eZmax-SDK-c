@@ -22,9 +22,10 @@ typedef struct ezsignformfieldgroup_get_object_v2_response_m_payload_t ezsignfor
 typedef struct ezsignformfieldgroup_get_object_v2_response_m_payload_t {
     struct ezsignformfieldgroup_response_compound_t *obj_ezsignformfieldgroup; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignformfieldgroup_get_object_v2_response_m_payload_t;
 
-ezsignformfieldgroup_get_object_v2_response_m_payload_t *ezsignformfieldgroup_get_object_v2_response_m_payload_create(
+__attribute__((deprecated)) ezsignformfieldgroup_get_object_v2_response_m_payload_t *ezsignformfieldgroup_get_object_v2_response_m_payload_create(
     ezsignformfieldgroup_response_compound_t *obj_ezsignformfieldgroup
 );
 

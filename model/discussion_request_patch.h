@@ -22,9 +22,10 @@ typedef struct discussion_request_patch_t {
     char *s_discussion_description; // string
     int b_discussion_closed; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } discussion_request_patch_t;
 
-discussion_request_patch_t *discussion_request_patch_create(
+__attribute__((deprecated)) discussion_request_patch_t *discussion_request_patch_create(
     char *s_discussion_description,
     int b_discussion_closed
 );

@@ -5,7 +5,7 @@
 
 
 
-ezsignsignergroup_create_object_v1_response_m_payload_t *ezsignsignergroup_create_object_v1_response_m_payload_create(
+static ezsignsignergroup_create_object_v1_response_m_payload_t *ezsignsignergroup_create_object_v1_response_m_payload_create_internal(
     list_t *a_pki_ezsignsignergroup_id
     ) {
     ezsignsignergroup_create_object_v1_response_m_payload_t *ezsignsignergroup_create_object_v1_response_m_payload_local_var = malloc(sizeof(ezsignsignergroup_create_object_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ ezsignsignergroup_create_object_v1_response_m_payload_t *ezsignsignergroup_creat
     }
     ezsignsignergroup_create_object_v1_response_m_payload_local_var->a_pki_ezsignsignergroup_id = a_pki_ezsignsignergroup_id;
 
+    ezsignsignergroup_create_object_v1_response_m_payload_local_var->_library_owned = 1;
     return ezsignsignergroup_create_object_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezsignsignergroup_create_object_v1_response_m_payload_t *ezsignsignergroup_create_object_v1_response_m_payload_create(
+    list_t *a_pki_ezsignsignergroup_id
+    ) {
+    return ezsignsignergroup_create_object_v1_response_m_payload_create_internal (
+        a_pki_ezsignsignergroup_id
+        );
+}
 
 void ezsignsignergroup_create_object_v1_response_m_payload_free(ezsignsignergroup_create_object_v1_response_m_payload_t *ezsignsignergroup_create_object_v1_response_m_payload) {
     if(NULL == ezsignsignergroup_create_object_v1_response_m_payload){
+        return ;
+    }
+    if(ezsignsignergroup_create_object_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignsignergroup_create_object_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +82,9 @@ ezsignsignergroup_create_object_v1_response_m_payload_t *ezsignsignergroup_creat
 
     // ezsignsignergroup_create_object_v1_response_m_payload->a_pki_ezsignsignergroup_id
     cJSON *a_pki_ezsignsignergroup_id = cJSON_GetObjectItemCaseSensitive(ezsignsignergroup_create_object_v1_response_m_payloadJSON, "a_pkiEzsignsignergroupID");
+    if (cJSON_IsNull(a_pki_ezsignsignergroup_id)) {
+        a_pki_ezsignsignergroup_id = NULL;
+    }
     if (!a_pki_ezsignsignergroup_id) {
         goto end;
     }
@@ -87,7 +102,7 @@ ezsignsignergroup_create_object_v1_response_m_payload_t *ezsignsignergroup_creat
         {
             goto end;
         }
-        double *a_pki_ezsignsignergroup_id_local_value = (double *)calloc(1, sizeof(double));
+        double *a_pki_ezsignsignergroup_id_local_value = calloc(1, sizeof(double));
         if(!a_pki_ezsignsignergroup_id_local_value)
         {
             goto end;
@@ -97,7 +112,7 @@ ezsignsignergroup_create_object_v1_response_m_payload_t *ezsignsignergroup_creat
     }
 
 
-    ezsignsignergroup_create_object_v1_response_m_payload_local_var = ezsignsignergroup_create_object_v1_response_m_payload_create (
+    ezsignsignergroup_create_object_v1_response_m_payload_local_var = ezsignsignergroup_create_object_v1_response_m_payload_create_internal (
         a_pki_ezsignsignergroup_idList
         );
 

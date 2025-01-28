@@ -23,9 +23,10 @@ typedef struct activesession_generate_federation_token_v1_response_m_payload_t {
     struct custom_apikeyfederation_t *obj_apikeyfederation; //model
     char *s_ezmaxcustomercode_url; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } activesession_generate_federation_token_v1_response_m_payload_t;
 
-activesession_generate_federation_token_v1_response_m_payload_t *activesession_generate_federation_token_v1_response_m_payload_create(
+__attribute__((deprecated)) activesession_generate_federation_token_v1_response_m_payload_t *activesession_generate_federation_token_v1_response_m_payload_create(
     custom_apikeyfederation_t *obj_apikeyfederation,
     char *s_ezmaxcustomercode_url
 );

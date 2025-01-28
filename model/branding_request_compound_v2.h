@@ -19,42 +19,27 @@ typedef struct branding_request_compound_v2_t branding_request_compound_v2_t;
 #include "field_e_branding_logo.h"
 #include "multilingual_branding_description.h"
 
-// Enum  for branding_request_compound_v2
-
-typedef enum  { ezmax_api_definition__full_branding_request_compound_v2__NULL = 0, ezmax_api_definition__full_branding_request_compound_v2___Default, ezmax_api_definition__full_branding_request_compound_v2__JPEG, ezmax_api_definition__full_branding_request_compound_v2__PNG } ezmax_api_definition__full_branding_request_compound_v2__e;
-
-char* branding_request_compound_v2_e_branding_logo_ToString(ezmax_api_definition__full_branding_request_compound_v2__e e_branding_logo);
-
-ezmax_api_definition__full_branding_request_compound_v2__e branding_request_compound_v2_e_branding_logo_FromString(char* e_branding_logo);
-
-// Enum  for branding_request_compound_v2
-
-typedef enum  { ezmax_api_definition__full_branding_request_compound_v2__NULL = 0, ezmax_api_definition__full_branding_request_compound_v2__Center, ezmax_api_definition__full_branding_request_compound_v2__Left, ezmax_api_definition__full_branding_request_compound_v2__Right } ezmax_api_definition__full_branding_request_compound_v2__e;
-
-char* branding_request_compound_v2_e_branding_alignlogo_ToString(ezmax_api_definition__full_branding_request_compound_v2__e e_branding_alignlogo);
-
-ezmax_api_definition__full_branding_request_compound_v2__e branding_request_compound_v2_e_branding_alignlogo_FromString(char* e_branding_alignlogo);
-
 
 
 typedef struct branding_request_compound_v2_t {
     int pki_branding_id; //numeric
     struct multilingual_branding_description_t *obj_branding_description; //model
-    field_e_branding_logo_t *e_branding_logo; // custom
-    field_e_branding_alignlogo_t *e_branding_alignlogo; // custom
+    ezmax_api_definition__full_field_e_branding_logo__e e_branding_logo; //referenced enum
+    ezmax_api_definition__full_field_e_branding_alignlogo__e e_branding_alignlogo; //referenced enum
     char *s_branding_base64; //ByteArray
     int i_branding_color; //numeric
     char *s_branding_name; // string
     char *s_email_address; // string
     int b_branding_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } branding_request_compound_v2_t;
 
-branding_request_compound_v2_t *branding_request_compound_v2_create(
+__attribute__((deprecated)) branding_request_compound_v2_t *branding_request_compound_v2_create(
     int pki_branding_id,
     multilingual_branding_description_t *obj_branding_description,
-    field_e_branding_logo_t *e_branding_logo,
-    field_e_branding_alignlogo_t *e_branding_alignlogo,
+    ezmax_api_definition__full_field_e_branding_logo__e e_branding_logo,
+    ezmax_api_definition__full_field_e_branding_alignlogo__e e_branding_alignlogo,
     char *s_branding_base64,
     int i_branding_color,
     char *s_branding_name,

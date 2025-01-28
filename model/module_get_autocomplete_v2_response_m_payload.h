@@ -22,9 +22,10 @@ typedef struct module_get_autocomplete_v2_response_m_payload_t module_get_autoco
 typedef struct module_get_autocomplete_v2_response_m_payload_t {
     list_t *a_obj_module; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } module_get_autocomplete_v2_response_m_payload_t;
 
-module_get_autocomplete_v2_response_m_payload_t *module_get_autocomplete_v2_response_m_payload_create(
+__attribute__((deprecated)) module_get_autocomplete_v2_response_m_payload_t *module_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_module
 );
 

@@ -5,7 +5,7 @@
 
 
 
-ezsignfolder_reorder_v1_request_t *ezsignfolder_reorder_v1_request_create(
+static ezsignfolder_reorder_v1_request_t *ezsignfolder_reorder_v1_request_create_internal(
     list_t *a_pki_ezsigndocument_id
     ) {
     ezsignfolder_reorder_v1_request_t *ezsignfolder_reorder_v1_request_local_var = malloc(sizeof(ezsignfolder_reorder_v1_request_t));
@@ -14,12 +14,24 @@ ezsignfolder_reorder_v1_request_t *ezsignfolder_reorder_v1_request_create(
     }
     ezsignfolder_reorder_v1_request_local_var->a_pki_ezsigndocument_id = a_pki_ezsigndocument_id;
 
+    ezsignfolder_reorder_v1_request_local_var->_library_owned = 1;
     return ezsignfolder_reorder_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezsignfolder_reorder_v1_request_t *ezsignfolder_reorder_v1_request_create(
+    list_t *a_pki_ezsigndocument_id
+    ) {
+    return ezsignfolder_reorder_v1_request_create_internal (
+        a_pki_ezsigndocument_id
+        );
+}
 
 void ezsignfolder_reorder_v1_request_free(ezsignfolder_reorder_v1_request_t *ezsignfolder_reorder_v1_request) {
     if(NULL == ezsignfolder_reorder_v1_request){
+        return ;
+    }
+    if(ezsignfolder_reorder_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignfolder_reorder_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +82,9 @@ ezsignfolder_reorder_v1_request_t *ezsignfolder_reorder_v1_request_parseFromJSON
 
     // ezsignfolder_reorder_v1_request->a_pki_ezsigndocument_id
     cJSON *a_pki_ezsigndocument_id = cJSON_GetObjectItemCaseSensitive(ezsignfolder_reorder_v1_requestJSON, "a_pkiEzsigndocumentID");
+    if (cJSON_IsNull(a_pki_ezsigndocument_id)) {
+        a_pki_ezsigndocument_id = NULL;
+    }
     if (!a_pki_ezsigndocument_id) {
         goto end;
     }
@@ -87,7 +102,7 @@ ezsignfolder_reorder_v1_request_t *ezsignfolder_reorder_v1_request_parseFromJSON
         {
             goto end;
         }
-        double *a_pki_ezsigndocument_id_local_value = (double *)calloc(1, sizeof(double));
+        double *a_pki_ezsigndocument_id_local_value = calloc(1, sizeof(double));
         if(!a_pki_ezsigndocument_id_local_value)
         {
             goto end;
@@ -97,7 +112,7 @@ ezsignfolder_reorder_v1_request_t *ezsignfolder_reorder_v1_request_parseFromJSON
     }
 
 
-    ezsignfolder_reorder_v1_request_local_var = ezsignfolder_reorder_v1_request_create (
+    ezsignfolder_reorder_v1_request_local_var = ezsignfolder_reorder_v1_request_create_internal (
         a_pki_ezsigndocument_idList
         );
 

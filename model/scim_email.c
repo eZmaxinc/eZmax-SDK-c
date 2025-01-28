@@ -5,7 +5,7 @@
 
 
 
-scim_email_t *scim_email_create(
+static scim_email_t *scim_email_create_internal(
     char *value,
     int primary
     ) {
@@ -16,12 +16,26 @@ scim_email_t *scim_email_create(
     scim_email_local_var->value = value;
     scim_email_local_var->primary = primary;
 
+    scim_email_local_var->_library_owned = 1;
     return scim_email_local_var;
 }
 
+__attribute__((deprecated)) scim_email_t *scim_email_create(
+    char *value,
+    int primary
+    ) {
+    return scim_email_create_internal (
+        value,
+        primary
+        );
+}
 
 void scim_email_free(scim_email_t *scim_email) {
     if(NULL == scim_email){
+        return ;
+    }
+    if(scim_email->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "scim_email_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -64,6 +78,9 @@ scim_email_t *scim_email_parseFromJSON(cJSON *scim_emailJSON){
 
     // scim_email->value
     cJSON *value = cJSON_GetObjectItemCaseSensitive(scim_emailJSON, "value");
+    if (cJSON_IsNull(value)) {
+        value = NULL;
+    }
     if (value) { 
     if(!cJSON_IsString(value) && !cJSON_IsNull(value))
     {
@@ -73,6 +90,9 @@ scim_email_t *scim_email_parseFromJSON(cJSON *scim_emailJSON){
 
     // scim_email->primary
     cJSON *primary = cJSON_GetObjectItemCaseSensitive(scim_emailJSON, "primary");
+    if (cJSON_IsNull(primary)) {
+        primary = NULL;
+    }
     if (primary) { 
     if(!cJSON_IsBool(primary))
     {
@@ -81,7 +101,7 @@ scim_email_t *scim_email_parseFromJSON(cJSON *scim_emailJSON){
     }
 
 
-    scim_email_local_var = scim_email_create (
+    scim_email_local_var = scim_email_create_internal (
         value && !cJSON_IsNull(value) ? strdup(value->valuestring) : NULL,
         primary ? primary->valueint : 0
         );

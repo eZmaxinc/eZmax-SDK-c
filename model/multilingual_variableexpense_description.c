@@ -5,7 +5,7 @@
 
 
 
-multilingual_variableexpense_description_t *multilingual_variableexpense_description_create(
+static multilingual_variableexpense_description_t *multilingual_variableexpense_description_create_internal(
     char *s_variableexpense_description1,
     char *s_variableexpense_description2
     ) {
@@ -16,12 +16,26 @@ multilingual_variableexpense_description_t *multilingual_variableexpense_descrip
     multilingual_variableexpense_description_local_var->s_variableexpense_description1 = s_variableexpense_description1;
     multilingual_variableexpense_description_local_var->s_variableexpense_description2 = s_variableexpense_description2;
 
+    multilingual_variableexpense_description_local_var->_library_owned = 1;
     return multilingual_variableexpense_description_local_var;
 }
 
+__attribute__((deprecated)) multilingual_variableexpense_description_t *multilingual_variableexpense_description_create(
+    char *s_variableexpense_description1,
+    char *s_variableexpense_description2
+    ) {
+    return multilingual_variableexpense_description_create_internal (
+        s_variableexpense_description1,
+        s_variableexpense_description2
+        );
+}
 
 void multilingual_variableexpense_description_free(multilingual_variableexpense_description_t *multilingual_variableexpense_description) {
     if(NULL == multilingual_variableexpense_description){
+        return ;
+    }
+    if(multilingual_variableexpense_description->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "multilingual_variableexpense_description_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -68,6 +82,9 @@ multilingual_variableexpense_description_t *multilingual_variableexpense_descrip
 
     // multilingual_variableexpense_description->s_variableexpense_description1
     cJSON *s_variableexpense_description1 = cJSON_GetObjectItemCaseSensitive(multilingual_variableexpense_descriptionJSON, "sVariableexpenseDescription1");
+    if (cJSON_IsNull(s_variableexpense_description1)) {
+        s_variableexpense_description1 = NULL;
+    }
     if (s_variableexpense_description1) { 
     if(!cJSON_IsString(s_variableexpense_description1) && !cJSON_IsNull(s_variableexpense_description1))
     {
@@ -77,6 +94,9 @@ multilingual_variableexpense_description_t *multilingual_variableexpense_descrip
 
     // multilingual_variableexpense_description->s_variableexpense_description2
     cJSON *s_variableexpense_description2 = cJSON_GetObjectItemCaseSensitive(multilingual_variableexpense_descriptionJSON, "sVariableexpenseDescription2");
+    if (cJSON_IsNull(s_variableexpense_description2)) {
+        s_variableexpense_description2 = NULL;
+    }
     if (s_variableexpense_description2) { 
     if(!cJSON_IsString(s_variableexpense_description2) && !cJSON_IsNull(s_variableexpense_description2))
     {
@@ -85,7 +105,7 @@ multilingual_variableexpense_description_t *multilingual_variableexpense_descrip
     }
 
 
-    multilingual_variableexpense_description_local_var = multilingual_variableexpense_description_create (
+    multilingual_variableexpense_description_local_var = multilingual_variableexpense_description_create_internal (
         s_variableexpense_description1 && !cJSON_IsNull(s_variableexpense_description1) ? strdup(s_variableexpense_description1->valuestring) : NULL,
         s_variableexpense_description2 && !cJSON_IsNull(s_variableexpense_description2) ? strdup(s_variableexpense_description2->valuestring) : NULL
         );

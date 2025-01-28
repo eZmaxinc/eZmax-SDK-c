@@ -5,7 +5,7 @@
 
 
 
-custom_word_position_word_response_t *custom_word_position_word_response_create(
+static custom_word_position_word_response_t *custom_word_position_word_response_create_internal(
     char *s_word,
     list_t *a_obj_word_position_occurence
     ) {
@@ -16,12 +16,26 @@ custom_word_position_word_response_t *custom_word_position_word_response_create(
     custom_word_position_word_response_local_var->s_word = s_word;
     custom_word_position_word_response_local_var->a_obj_word_position_occurence = a_obj_word_position_occurence;
 
+    custom_word_position_word_response_local_var->_library_owned = 1;
     return custom_word_position_word_response_local_var;
 }
 
+__attribute__((deprecated)) custom_word_position_word_response_t *custom_word_position_word_response_create(
+    char *s_word,
+    list_t *a_obj_word_position_occurence
+    ) {
+    return custom_word_position_word_response_create_internal (
+        s_word,
+        a_obj_word_position_occurence
+        );
+}
 
 void custom_word_position_word_response_free(custom_word_position_word_response_t *custom_word_position_word_response) {
     if(NULL == custom_word_position_word_response){
+        return ;
+    }
+    if(custom_word_position_word_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "custom_word_position_word_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -88,6 +102,9 @@ custom_word_position_word_response_t *custom_word_position_word_response_parseFr
 
     // custom_word_position_word_response->s_word
     cJSON *s_word = cJSON_GetObjectItemCaseSensitive(custom_word_position_word_responseJSON, "sWord");
+    if (cJSON_IsNull(s_word)) {
+        s_word = NULL;
+    }
     if (!s_word) {
         goto end;
     }
@@ -100,6 +117,9 @@ custom_word_position_word_response_t *custom_word_position_word_response_parseFr
 
     // custom_word_position_word_response->a_obj_word_position_occurence
     cJSON *a_obj_word_position_occurence = cJSON_GetObjectItemCaseSensitive(custom_word_position_word_responseJSON, "a_objWordPositionOccurence");
+    if (cJSON_IsNull(a_obj_word_position_occurence)) {
+        a_obj_word_position_occurence = NULL;
+    }
     if (!a_obj_word_position_occurence) {
         goto end;
     }
@@ -123,7 +143,7 @@ custom_word_position_word_response_t *custom_word_position_word_response_parseFr
     }
 
 
-    custom_word_position_word_response_local_var = custom_word_position_word_response_create (
+    custom_word_position_word_response_local_var = custom_word_position_word_response_create_internal (
         strdup(s_word->valuestring),
         a_obj_word_position_occurenceList
         );

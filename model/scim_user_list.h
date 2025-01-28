@@ -26,9 +26,10 @@ typedef struct scim_user_list_t {
     list_t *schemas; //primitive container
     list_t *resources; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } scim_user_list_t;
 
-scim_user_list_t *scim_user_list_create(
+__attribute__((deprecated)) scim_user_list_t *scim_user_list_create(
     int total_results,
     int items_per_page,
     int start_index,

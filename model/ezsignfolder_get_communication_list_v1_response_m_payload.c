@@ -5,7 +5,7 @@
 
 
 
-ezsignfolder_get_communication_list_v1_response_m_payload_t *ezsignfolder_get_communication_list_v1_response_m_payload_create(
+static ezsignfolder_get_communication_list_v1_response_m_payload_t *ezsignfolder_get_communication_list_v1_response_m_payload_create_internal(
     list_t *a_obj_communication
     ) {
     ezsignfolder_get_communication_list_v1_response_m_payload_t *ezsignfolder_get_communication_list_v1_response_m_payload_local_var = malloc(sizeof(ezsignfolder_get_communication_list_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ ezsignfolder_get_communication_list_v1_response_m_payload_t *ezsignfolder_get_co
     }
     ezsignfolder_get_communication_list_v1_response_m_payload_local_var->a_obj_communication = a_obj_communication;
 
+    ezsignfolder_get_communication_list_v1_response_m_payload_local_var->_library_owned = 1;
     return ezsignfolder_get_communication_list_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezsignfolder_get_communication_list_v1_response_m_payload_t *ezsignfolder_get_communication_list_v1_response_m_payload_create(
+    list_t *a_obj_communication
+    ) {
+    return ezsignfolder_get_communication_list_v1_response_m_payload_create_internal (
+        a_obj_communication
+        );
+}
 
 void ezsignfolder_get_communication_list_v1_response_m_payload_free(ezsignfolder_get_communication_list_v1_response_m_payload_t *ezsignfolder_get_communication_list_v1_response_m_payload) {
     if(NULL == ezsignfolder_get_communication_list_v1_response_m_payload){
+        return ;
+    }
+    if(ezsignfolder_get_communication_list_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignfolder_get_communication_list_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ ezsignfolder_get_communication_list_v1_response_m_payload_t *ezsignfolder_get_co
 
     // ezsignfolder_get_communication_list_v1_response_m_payload->a_obj_communication
     cJSON *a_obj_communication = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_communication_list_v1_response_m_payloadJSON, "a_objCommunication");
+    if (cJSON_IsNull(a_obj_communication)) {
+        a_obj_communication = NULL;
+    }
     if (!a_obj_communication) {
         goto end;
     }
@@ -96,7 +111,7 @@ ezsignfolder_get_communication_list_v1_response_m_payload_t *ezsignfolder_get_co
     }
 
 
-    ezsignfolder_get_communication_list_v1_response_m_payload_local_var = ezsignfolder_get_communication_list_v1_response_m_payload_create (
+    ezsignfolder_get_communication_list_v1_response_m_payload_local_var = ezsignfolder_get_communication_list_v1_response_m_payload_create_internal (
         a_obj_communicationList
         );
 

@@ -23,9 +23,10 @@ typedef struct module_autocomplete_element_response_t {
     char *s_module_name_x; // string
     int b_module_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } module_autocomplete_element_response_t;
 
-module_autocomplete_element_response_t *module_autocomplete_element_response_create(
+__attribute__((deprecated)) module_autocomplete_element_response_t *module_autocomplete_element_response_create(
     int pki_module_id,
     char *s_module_name_x,
     int b_module_isactive

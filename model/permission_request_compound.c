@@ -5,7 +5,7 @@
 
 
 
-permission_request_compound_t *permission_request_compound_create(
+static permission_request_compound_t *permission_request_compound_create_internal(
     int pki_permission_id,
     int fki_user_id,
     int fki_apikey_id,
@@ -24,12 +24,34 @@ permission_request_compound_t *permission_request_compound_create(
     permission_request_compound_local_var->fki_company_id = fki_company_id;
     permission_request_compound_local_var->fki_modulesection_id = fki_modulesection_id;
 
+    permission_request_compound_local_var->_library_owned = 1;
     return permission_request_compound_local_var;
 }
 
+__attribute__((deprecated)) permission_request_compound_t *permission_request_compound_create(
+    int pki_permission_id,
+    int fki_user_id,
+    int fki_apikey_id,
+    int fki_usergroup_id,
+    int fki_company_id,
+    int fki_modulesection_id
+    ) {
+    return permission_request_compound_create_internal (
+        pki_permission_id,
+        fki_user_id,
+        fki_apikey_id,
+        fki_usergroup_id,
+        fki_company_id,
+        fki_modulesection_id
+        );
+}
 
 void permission_request_compound_free(permission_request_compound_t *permission_request_compound) {
     if(NULL == permission_request_compound){
+        return ;
+    }
+    if(permission_request_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "permission_request_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -101,6 +123,9 @@ permission_request_compound_t *permission_request_compound_parseFromJSON(cJSON *
 
     // permission_request_compound->pki_permission_id
     cJSON *pki_permission_id = cJSON_GetObjectItemCaseSensitive(permission_request_compoundJSON, "pkiPermissionID");
+    if (cJSON_IsNull(pki_permission_id)) {
+        pki_permission_id = NULL;
+    }
     if (pki_permission_id) { 
     if(!cJSON_IsNumber(pki_permission_id))
     {
@@ -110,6 +135,9 @@ permission_request_compound_t *permission_request_compound_parseFromJSON(cJSON *
 
     // permission_request_compound->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(permission_request_compoundJSON, "fkiUserID");
+    if (cJSON_IsNull(fki_user_id)) {
+        fki_user_id = NULL;
+    }
     if (fki_user_id) { 
     if(!cJSON_IsNumber(fki_user_id))
     {
@@ -119,6 +147,9 @@ permission_request_compound_t *permission_request_compound_parseFromJSON(cJSON *
 
     // permission_request_compound->fki_apikey_id
     cJSON *fki_apikey_id = cJSON_GetObjectItemCaseSensitive(permission_request_compoundJSON, "fkiApikeyID");
+    if (cJSON_IsNull(fki_apikey_id)) {
+        fki_apikey_id = NULL;
+    }
     if (fki_apikey_id) { 
     if(!cJSON_IsNumber(fki_apikey_id))
     {
@@ -128,6 +159,9 @@ permission_request_compound_t *permission_request_compound_parseFromJSON(cJSON *
 
     // permission_request_compound->fki_usergroup_id
     cJSON *fki_usergroup_id = cJSON_GetObjectItemCaseSensitive(permission_request_compoundJSON, "fkiUsergroupID");
+    if (cJSON_IsNull(fki_usergroup_id)) {
+        fki_usergroup_id = NULL;
+    }
     if (fki_usergroup_id) { 
     if(!cJSON_IsNumber(fki_usergroup_id))
     {
@@ -137,6 +171,9 @@ permission_request_compound_t *permission_request_compound_parseFromJSON(cJSON *
 
     // permission_request_compound->fki_company_id
     cJSON *fki_company_id = cJSON_GetObjectItemCaseSensitive(permission_request_compoundJSON, "fkiCompanyID");
+    if (cJSON_IsNull(fki_company_id)) {
+        fki_company_id = NULL;
+    }
     if (fki_company_id) { 
     if(!cJSON_IsNumber(fki_company_id))
     {
@@ -146,6 +183,9 @@ permission_request_compound_t *permission_request_compound_parseFromJSON(cJSON *
 
     // permission_request_compound->fki_modulesection_id
     cJSON *fki_modulesection_id = cJSON_GetObjectItemCaseSensitive(permission_request_compoundJSON, "fkiModulesectionID");
+    if (cJSON_IsNull(fki_modulesection_id)) {
+        fki_modulesection_id = NULL;
+    }
     if (!fki_modulesection_id) {
         goto end;
     }
@@ -157,7 +197,7 @@ permission_request_compound_t *permission_request_compound_parseFromJSON(cJSON *
     }
 
 
-    permission_request_compound_local_var = permission_request_compound_create (
+    permission_request_compound_local_var = permission_request_compound_create_internal (
         pki_permission_id ? pki_permission_id->valuedouble : 0,
         fki_user_id ? fki_user_id->valuedouble : 0,
         fki_apikey_id ? fki_apikey_id->valuedouble : 0,

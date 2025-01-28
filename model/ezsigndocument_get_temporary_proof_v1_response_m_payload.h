@@ -15,16 +15,17 @@
 
 typedef struct ezsigndocument_get_temporary_proof_v1_response_m_payload_t ezsigndocument_get_temporary_proof_v1_response_m_payload_t;
 
-#include "ezsigndocumentlog_response.h"
+#include "ezsigndocumentlog_response_compound.h"
 
 
 
 typedef struct ezsigndocument_get_temporary_proof_v1_response_m_payload_t {
     list_t *a_obj_ezsigndocumentlog; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigndocument_get_temporary_proof_v1_response_m_payload_t;
 
-ezsigndocument_get_temporary_proof_v1_response_m_payload_t *ezsigndocument_get_temporary_proof_v1_response_m_payload_create(
+__attribute__((deprecated)) ezsigndocument_get_temporary_proof_v1_response_m_payload_t *ezsigndocument_get_temporary_proof_v1_response_m_payload_create(
     list_t *a_obj_ezsigndocumentlog
 );
 

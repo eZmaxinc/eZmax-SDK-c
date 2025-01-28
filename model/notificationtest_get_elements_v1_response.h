@@ -26,9 +26,10 @@ typedef struct notificationtest_get_elements_v1_response_t {
     struct common_response_obj_debug_t *obj_debug; //model
     struct notificationtest_get_elements_v1_response_m_payload_t *m_payload; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } notificationtest_get_elements_v1_response_t;
 
-notificationtest_get_elements_v1_response_t *notificationtest_get_elements_v1_response_create(
+__attribute__((deprecated)) notificationtest_get_elements_v1_response_t *notificationtest_get_elements_v1_response_create(
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug,
     notificationtest_get_elements_v1_response_m_payload_t *m_payload

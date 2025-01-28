@@ -5,7 +5,7 @@
 
 
 
-webhookheader_request_compound_t *webhookheader_request_compound_create(
+static webhookheader_request_compound_t *webhookheader_request_compound_create_internal(
     int pki_webhookheader_id,
     char *s_webhookheader_name,
     char *s_webhookheader_value
@@ -18,12 +18,28 @@ webhookheader_request_compound_t *webhookheader_request_compound_create(
     webhookheader_request_compound_local_var->s_webhookheader_name = s_webhookheader_name;
     webhookheader_request_compound_local_var->s_webhookheader_value = s_webhookheader_value;
 
+    webhookheader_request_compound_local_var->_library_owned = 1;
     return webhookheader_request_compound_local_var;
 }
 
+__attribute__((deprecated)) webhookheader_request_compound_t *webhookheader_request_compound_create(
+    int pki_webhookheader_id,
+    char *s_webhookheader_name,
+    char *s_webhookheader_value
+    ) {
+    return webhookheader_request_compound_create_internal (
+        pki_webhookheader_id,
+        s_webhookheader_name,
+        s_webhookheader_value
+        );
+}
 
 void webhookheader_request_compound_free(webhookheader_request_compound_t *webhookheader_request_compound) {
     if(NULL == webhookheader_request_compound){
+        return ;
+    }
+    if(webhookheader_request_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "webhookheader_request_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -80,6 +96,9 @@ webhookheader_request_compound_t *webhookheader_request_compound_parseFromJSON(c
 
     // webhookheader_request_compound->pki_webhookheader_id
     cJSON *pki_webhookheader_id = cJSON_GetObjectItemCaseSensitive(webhookheader_request_compoundJSON, "pkiWebhookheaderID");
+    if (cJSON_IsNull(pki_webhookheader_id)) {
+        pki_webhookheader_id = NULL;
+    }
     if (pki_webhookheader_id) { 
     if(!cJSON_IsNumber(pki_webhookheader_id))
     {
@@ -89,6 +108,9 @@ webhookheader_request_compound_t *webhookheader_request_compound_parseFromJSON(c
 
     // webhookheader_request_compound->s_webhookheader_name
     cJSON *s_webhookheader_name = cJSON_GetObjectItemCaseSensitive(webhookheader_request_compoundJSON, "sWebhookheaderName");
+    if (cJSON_IsNull(s_webhookheader_name)) {
+        s_webhookheader_name = NULL;
+    }
     if (!s_webhookheader_name) {
         goto end;
     }
@@ -101,6 +123,9 @@ webhookheader_request_compound_t *webhookheader_request_compound_parseFromJSON(c
 
     // webhookheader_request_compound->s_webhookheader_value
     cJSON *s_webhookheader_value = cJSON_GetObjectItemCaseSensitive(webhookheader_request_compoundJSON, "sWebhookheaderValue");
+    if (cJSON_IsNull(s_webhookheader_value)) {
+        s_webhookheader_value = NULL;
+    }
     if (!s_webhookheader_value) {
         goto end;
     }
@@ -112,7 +137,7 @@ webhookheader_request_compound_t *webhookheader_request_compound_parseFromJSON(c
     }
 
 
-    webhookheader_request_compound_local_var = webhookheader_request_compound_create (
+    webhookheader_request_compound_local_var = webhookheader_request_compound_create_internal (
         pki_webhookheader_id ? pki_webhookheader_id->valuedouble : 0,
         strdup(s_webhookheader_name->valuestring),
         strdup(s_webhookheader_value->valuestring)

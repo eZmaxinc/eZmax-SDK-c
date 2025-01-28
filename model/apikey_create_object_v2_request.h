@@ -15,16 +15,17 @@
 
 typedef struct apikey_create_object_v2_request_t apikey_create_object_v2_request_t;
 
-#include "apikey_request.h"
+#include "apikey_request_compound.h"
 
 
 
 typedef struct apikey_create_object_v2_request_t {
     list_t *a_obj_apikey; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } apikey_create_object_v2_request_t;
 
-apikey_create_object_v2_request_t *apikey_create_object_v2_request_create(
+__attribute__((deprecated)) apikey_create_object_v2_request_t *apikey_create_object_v2_request_create(
     list_t *a_obj_apikey
 );
 

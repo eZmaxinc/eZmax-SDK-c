@@ -5,7 +5,7 @@
 
 
 
-ezsigntsarequirement_get_autocomplete_v2_response_m_payload_t *ezsigntsarequirement_get_autocomplete_v2_response_m_payload_create(
+static ezsigntsarequirement_get_autocomplete_v2_response_m_payload_t *ezsigntsarequirement_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_ezsigntsarequirement
     ) {
     ezsigntsarequirement_get_autocomplete_v2_response_m_payload_t *ezsigntsarequirement_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(ezsigntsarequirement_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ ezsigntsarequirement_get_autocomplete_v2_response_m_payload_t *ezsigntsarequirem
     }
     ezsigntsarequirement_get_autocomplete_v2_response_m_payload_local_var->a_obj_ezsigntsarequirement = a_obj_ezsigntsarequirement;
 
+    ezsigntsarequirement_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return ezsigntsarequirement_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezsigntsarequirement_get_autocomplete_v2_response_m_payload_t *ezsigntsarequirement_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_ezsigntsarequirement
+    ) {
+    return ezsigntsarequirement_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_ezsigntsarequirement
+        );
+}
 
 void ezsigntsarequirement_get_autocomplete_v2_response_m_payload_free(ezsigntsarequirement_get_autocomplete_v2_response_m_payload_t *ezsigntsarequirement_get_autocomplete_v2_response_m_payload) {
     if(NULL == ezsigntsarequirement_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(ezsigntsarequirement_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigntsarequirement_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ ezsigntsarequirement_get_autocomplete_v2_response_m_payload_t *ezsigntsarequirem
 
     // ezsigntsarequirement_get_autocomplete_v2_response_m_payload->a_obj_ezsigntsarequirement
     cJSON *a_obj_ezsigntsarequirement = cJSON_GetObjectItemCaseSensitive(ezsigntsarequirement_get_autocomplete_v2_response_m_payloadJSON, "a_objEzsigntsarequirement");
+    if (cJSON_IsNull(a_obj_ezsigntsarequirement)) {
+        a_obj_ezsigntsarequirement = NULL;
+    }
     if (!a_obj_ezsigntsarequirement) {
         goto end;
     }
@@ -96,7 +111,7 @@ ezsigntsarequirement_get_autocomplete_v2_response_m_payload_t *ezsigntsarequirem
     }
 
 
-    ezsigntsarequirement_get_autocomplete_v2_response_m_payload_local_var = ezsigntsarequirement_get_autocomplete_v2_response_m_payload_create (
+    ezsigntsarequirement_get_autocomplete_v2_response_m_payload_local_var = ezsigntsarequirement_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_ezsigntsarequirementList
         );
 

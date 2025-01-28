@@ -5,7 +5,7 @@
 
 
 
-apikey_generate_delegated_credentials_v1_request_t *apikey_generate_delegated_credentials_v1_request_create(
+static apikey_generate_delegated_credentials_v1_request_t *apikey_generate_delegated_credentials_v1_request_create_internal(
     int i_expiration_minutes
     ) {
     apikey_generate_delegated_credentials_v1_request_t *apikey_generate_delegated_credentials_v1_request_local_var = malloc(sizeof(apikey_generate_delegated_credentials_v1_request_t));
@@ -14,12 +14,24 @@ apikey_generate_delegated_credentials_v1_request_t *apikey_generate_delegated_cr
     }
     apikey_generate_delegated_credentials_v1_request_local_var->i_expiration_minutes = i_expiration_minutes;
 
+    apikey_generate_delegated_credentials_v1_request_local_var->_library_owned = 1;
     return apikey_generate_delegated_credentials_v1_request_local_var;
 }
 
+__attribute__((deprecated)) apikey_generate_delegated_credentials_v1_request_t *apikey_generate_delegated_credentials_v1_request_create(
+    int i_expiration_minutes
+    ) {
+    return apikey_generate_delegated_credentials_v1_request_create_internal (
+        i_expiration_minutes
+        );
+}
 
 void apikey_generate_delegated_credentials_v1_request_free(apikey_generate_delegated_credentials_v1_request_t *apikey_generate_delegated_credentials_v1_request) {
     if(NULL == apikey_generate_delegated_credentials_v1_request){
+        return ;
+    }
+    if(apikey_generate_delegated_credentials_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "apikey_generate_delegated_credentials_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -51,6 +63,9 @@ apikey_generate_delegated_credentials_v1_request_t *apikey_generate_delegated_cr
 
     // apikey_generate_delegated_credentials_v1_request->i_expiration_minutes
     cJSON *i_expiration_minutes = cJSON_GetObjectItemCaseSensitive(apikey_generate_delegated_credentials_v1_requestJSON, "iExpirationMinutes");
+    if (cJSON_IsNull(i_expiration_minutes)) {
+        i_expiration_minutes = NULL;
+    }
     if (!i_expiration_minutes) {
         goto end;
     }
@@ -62,7 +77,7 @@ apikey_generate_delegated_credentials_v1_request_t *apikey_generate_delegated_cr
     }
 
 
-    apikey_generate_delegated_credentials_v1_request_local_var = apikey_generate_delegated_credentials_v1_request_create (
+    apikey_generate_delegated_credentials_v1_request_local_var = apikey_generate_delegated_credentials_v1_request_create_internal (
         i_expiration_minutes->valuedouble
         );
 

@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 // Functions for enum EORDERBY for ObjectActivesessionAPI_activesessionGetListV1
 
@@ -120,11 +115,14 @@ ObjectActivesessionAPI_activesessionGenerateFederationTokenV1(apiClient_t *apiCl
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/activesession/generateFederationToken")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/activesession/generateFederationToken");
+    char *localVarPath = strdup("/1/object/activesession/generateFederationToken");
+
 
 
 
@@ -133,9 +131,10 @@ ObjectActivesessionAPI_activesessionGenerateFederationTokenV1(apiClient_t *apiCl
     cJSON *localVarSingleItemJSON_activesession_generate_federation_token_v1_request = NULL;
     if (activesession_generate_federation_token_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_activesession_generate_federation_token_v1_request = activesession_generate_federation_token_v1_request_convertToJSON(activesession_generate_federation_token_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_activesession_generate_federation_token_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -147,6 +146,7 @@ ObjectActivesessionAPI_activesessionGenerateFederationTokenV1(apiClient_t *apiCl
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -158,11 +158,14 @@ ObjectActivesessionAPI_activesessionGenerateFederationTokenV1(apiClient_t *apiCl
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectActivesessionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    activesession_generate_federation_token_v1_response_t *elementToReturn = activesession_generate_federation_token_v1_response_parseFromJSON(ObjectActivesessionAPIlocalVarJSON);
-    cJSON_Delete(ObjectActivesessionAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    activesession_generate_federation_token_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectActivesessionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = activesession_generate_federation_token_v1_response_parseFromJSON(ObjectActivesessionAPIlocalVarJSON);
+        cJSON_Delete(ObjectActivesessionAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -202,11 +205,14 @@ ObjectActivesessionAPI_activesessionGetCurrentV1(apiClient_t *apiClient)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/activesession/getCurrent")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/activesession/getCurrent");
+    char *localVarPath = strdup("/1/object/activesession/getCurrent");
+
 
 
 
@@ -219,6 +225,7 @@ ObjectActivesessionAPI_activesessionGetCurrentV1(apiClient_t *apiClient)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -254,11 +261,14 @@ ObjectActivesessionAPI_activesessionGetCurrentV1(apiClient_t *apiClient)
     //    printf("%s\n","The user is not running the latest version of the native application. He must valide or update its version before he can continue with this request");
     //}
     //nonprimitive not container
-    cJSON *ObjectActivesessionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    activesession_get_current_v1_response_t *elementToReturn = activesession_get_current_v1_response_parseFromJSON(ObjectActivesessionAPIlocalVarJSON);
-    cJSON_Delete(ObjectActivesessionAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    activesession_get_current_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectActivesessionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = activesession_get_current_v1_response_parseFromJSON(ObjectActivesessionAPIlocalVarJSON);
+        cJSON_Delete(ObjectActivesessionAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -293,11 +303,14 @@ ObjectActivesessionAPI_activesessionGetCurrentV2(apiClient_t *apiClient)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/activesession/getCurrent")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/activesession/getCurrent");
+    char *localVarPath = strdup("/2/object/activesession/getCurrent");
+
 
 
 
@@ -310,6 +323,7 @@ ObjectActivesessionAPI_activesessionGetCurrentV2(apiClient_t *apiClient)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -345,11 +359,14 @@ ObjectActivesessionAPI_activesessionGetCurrentV2(apiClient_t *apiClient)
     //    printf("%s\n","The user is not running the latest version of the native application. He must valide or update its version before he can continue with this request");
     //}
     //nonprimitive not container
-    cJSON *ObjectActivesessionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    activesession_get_current_v2_response_t *elementToReturn = activesession_get_current_v2_response_parseFromJSON(ObjectActivesessionAPIlocalVarJSON);
-    cJSON_Delete(ObjectActivesessionAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    activesession_get_current_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectActivesessionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = activesession_get_current_v2_response_parseFromJSON(ObjectActivesessionAPIlocalVarJSON);
+        cJSON_Delete(ObjectActivesessionAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -382,11 +399,14 @@ ObjectActivesessionAPI_activesessionGetListV1(apiClient_t *apiClient, ezmax_api_
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/activesession/getList")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/activesession/getList");
+    char *localVarPath = strdup("/1/object/activesession/getList");
+
 
 
 
@@ -411,7 +431,7 @@ ObjectActivesessionAPI_activesessionGetListV1(apiClient_t *apiClient, ezmax_api_
     {
         keyQuery_eOrderBy = strdup("eOrderBy");
         valueQuery_eOrderBy = (eOrderBy);
-        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, (void *)strdup(activesessionGetListV1_EORDERBY_ToString(
+        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, strdup(activesessionGetListV1_EORDERBY_ToString(
         valueQuery_eOrderBy)));
         list_addElement(localVarQueryParameters,keyPairQuery_eOrderBy);
     }
@@ -463,6 +483,7 @@ ObjectActivesessionAPI_activesessionGetListV1(apiClient_t *apiClient, ezmax_api_
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -474,11 +495,14 @@ ObjectActivesessionAPI_activesessionGetListV1(apiClient_t *apiClient, ezmax_api_
     //    printf("%s\n","The URL is valid, but one of the Accept header is not defined or invalid. For example, you set the header \&quot;Accept: application/json\&quot; but the function can only return \&quot;Content-type: image/png\&quot;");
     //}
     //nonprimitive not container
-    cJSON *ObjectActivesessionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    activesession_get_list_v1_response_t *elementToReturn = activesession_get_list_v1_response_parseFromJSON(ObjectActivesessionAPIlocalVarJSON);
-    cJSON_Delete(ObjectActivesessionAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    activesession_get_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectActivesessionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = activesession_get_list_v1_response_parseFromJSON(ObjectActivesessionAPIlocalVarJSON);
+        cJSON_Delete(ObjectActivesessionAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

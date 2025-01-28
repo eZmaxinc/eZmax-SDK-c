@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsignelementdependency_validation__e field_e
     return 0;
 }
 
-cJSON *field_e_ezsignelementdependency_validation_field_e_ezsignelementdependency_validation_convertToJSON(ezmax_api_definition__full_field_e_ezsignelementdependency_validation__e field_e_ezsignelementdependency_validation) {
+cJSON *field_e_ezsignelementdependency_validation_convertToJSON(ezmax_api_definition__full_field_e_ezsignelementdependency_validation__e field_e_ezsignelementdependency_validation) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsignelementdependency_validation", field_e_ezsignelementdependency_validation_field_e_ezsignelementdependency_validation_ToString(field_e_ezsignelementdependency_validation)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsignelementdependency_validation__e field_e_ezsignelementdependency_validation_field_e_ezsignelementdependency_validation_parseFromJSON(cJSON *field_e_ezsignelementdependency_validationJSON) {
-    ezmax_api_definition__full_field_e_ezsignelementdependency_validation__e *field_e_ezsignelementdependency_validation = NULL;
-    ezmax_api_definition__full_field_e_ezsignelementdependency_validation__e field_e_ezsignelementdependency_validationVariable;
-    cJSON *field_e_ezsignelementdependency_validationVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsignelementdependency_validationJSON, "field_e_ezsignelementdependency_validation");
-    if(!cJSON_IsString(field_e_ezsignelementdependency_validationVar) || (field_e_ezsignelementdependency_validationVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsignelementdependency_validation__e field_e_ezsignelementdependency_validation_parseFromJSON(cJSON *field_e_ezsignelementdependency_validationJSON) {
+    if(!cJSON_IsString(field_e_ezsignelementdependency_validationJSON) || (field_e_ezsignelementdependency_validationJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsignelementdependency_validationVariable = field_e_ezsignelementdependency_validation_field_e_ezsignelementdependency_validation_FromString(field_e_ezsignelementdependency_validationVar->valuestring);
-    return field_e_ezsignelementdependency_validationVariable;
-end:
-    return 0;
+    return field_e_ezsignelementdependency_validation_field_e_ezsignelementdependency_validation_FromString(field_e_ezsignelementdependency_validationJSON->valuestring);
 }

@@ -31,9 +31,10 @@ typedef struct websocket_response_get_websocket_id_v1_t {
     ezmax_api_definition__full_websocket_response_get_websocket_id_v1_EWEBSOCKETMESSAGETYPE_e e_websocket_messagetype; //enum
     struct websocket_response_get_websocket_id_v1_m_payload_t *m_payload; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } websocket_response_get_websocket_id_v1_t;
 
-websocket_response_get_websocket_id_v1_t *websocket_response_get_websocket_id_v1_create(
+__attribute__((deprecated)) websocket_response_get_websocket_id_v1_t *websocket_response_get_websocket_id_v1_create(
     ezmax_api_definition__full_websocket_response_get_websocket_id_v1_EWEBSOCKETMESSAGETYPE_e e_websocket_messagetype,
     websocket_response_get_websocket_id_v1_m_payload_t *m_payload
 );

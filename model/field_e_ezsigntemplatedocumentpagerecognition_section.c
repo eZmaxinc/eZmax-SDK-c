@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsigntemplatedocumentpagerecognition_section
     return 0;
 }
 
-cJSON *field_e_ezsigntemplatedocumentpagerecognition_section_field_e_ezsigntemplatedocumentpagerecognition_section_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplatedocumentpagerecognition_section__e field_e_ezsigntemplatedocumentpagerecognition_section) {
+cJSON *field_e_ezsigntemplatedocumentpagerecognition_section_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplatedocumentpagerecognition_section__e field_e_ezsigntemplatedocumentpagerecognition_section) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsigntemplatedocumentpagerecognition_section", field_e_ezsigntemplatedocumentpagerecognition_section_field_e_ezsigntemplatedocumentpagerecognition_section_ToString(field_e_ezsigntemplatedocumentpagerecognition_section)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsigntemplatedocumentpagerecognition_section__e field_e_ezsigntemplatedocumentpagerecognition_section_field_e_ezsigntemplatedocumentpagerecognition_section_parseFromJSON(cJSON *field_e_ezsigntemplatedocumentpagerecognition_sectionJSON) {
-    ezmax_api_definition__full_field_e_ezsigntemplatedocumentpagerecognition_section__e *field_e_ezsigntemplatedocumentpagerecognition_section = NULL;
-    ezmax_api_definition__full_field_e_ezsigntemplatedocumentpagerecognition_section__e field_e_ezsigntemplatedocumentpagerecognition_sectionVariable;
-    cJSON *field_e_ezsigntemplatedocumentpagerecognition_sectionVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsigntemplatedocumentpagerecognition_sectionJSON, "field_e_ezsigntemplatedocumentpagerecognition_section");
-    if(!cJSON_IsString(field_e_ezsigntemplatedocumentpagerecognition_sectionVar) || (field_e_ezsigntemplatedocumentpagerecognition_sectionVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsigntemplatedocumentpagerecognition_section__e field_e_ezsigntemplatedocumentpagerecognition_section_parseFromJSON(cJSON *field_e_ezsigntemplatedocumentpagerecognition_sectionJSON) {
+    if(!cJSON_IsString(field_e_ezsigntemplatedocumentpagerecognition_sectionJSON) || (field_e_ezsigntemplatedocumentpagerecognition_sectionJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsigntemplatedocumentpagerecognition_sectionVariable = field_e_ezsigntemplatedocumentpagerecognition_section_field_e_ezsigntemplatedocumentpagerecognition_section_FromString(field_e_ezsigntemplatedocumentpagerecognition_sectionVar->valuestring);
-    return field_e_ezsigntemplatedocumentpagerecognition_sectionVariable;
-end:
-    return 0;
+    return field_e_ezsigntemplatedocumentpagerecognition_section_field_e_ezsigntemplatedocumentpagerecognition_section_FromString(field_e_ezsigntemplatedocumentpagerecognition_sectionJSON->valuestring);
 }

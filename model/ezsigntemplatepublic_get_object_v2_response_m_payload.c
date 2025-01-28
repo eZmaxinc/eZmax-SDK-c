@@ -5,7 +5,7 @@
 
 
 
-ezsigntemplatepublic_get_object_v2_response_m_payload_t *ezsigntemplatepublic_get_object_v2_response_m_payload_create(
+static ezsigntemplatepublic_get_object_v2_response_m_payload_t *ezsigntemplatepublic_get_object_v2_response_m_payload_create_internal(
     ezsigntemplatepublic_response_compound_t *obj_ezsigntemplatepublic
     ) {
     ezsigntemplatepublic_get_object_v2_response_m_payload_t *ezsigntemplatepublic_get_object_v2_response_m_payload_local_var = malloc(sizeof(ezsigntemplatepublic_get_object_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ ezsigntemplatepublic_get_object_v2_response_m_payload_t *ezsigntemplatepublic_ge
     }
     ezsigntemplatepublic_get_object_v2_response_m_payload_local_var->obj_ezsigntemplatepublic = obj_ezsigntemplatepublic;
 
+    ezsigntemplatepublic_get_object_v2_response_m_payload_local_var->_library_owned = 1;
     return ezsigntemplatepublic_get_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezsigntemplatepublic_get_object_v2_response_m_payload_t *ezsigntemplatepublic_get_object_v2_response_m_payload_create(
+    ezsigntemplatepublic_response_compound_t *obj_ezsigntemplatepublic
+    ) {
+    return ezsigntemplatepublic_get_object_v2_response_m_payload_create_internal (
+        obj_ezsigntemplatepublic
+        );
+}
 
 void ezsigntemplatepublic_get_object_v2_response_m_payload_free(ezsigntemplatepublic_get_object_v2_response_m_payload_t *ezsigntemplatepublic_get_object_v2_response_m_payload) {
     if(NULL == ezsigntemplatepublic_get_object_v2_response_m_payload){
+        return ;
+    }
+    if(ezsigntemplatepublic_get_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigntemplatepublic_get_object_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ ezsigntemplatepublic_get_object_v2_response_m_payload_t *ezsigntemplatepublic_ge
 
     // ezsigntemplatepublic_get_object_v2_response_m_payload->obj_ezsigntemplatepublic
     cJSON *obj_ezsigntemplatepublic = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepublic_get_object_v2_response_m_payloadJSON, "objEzsigntemplatepublic");
+    if (cJSON_IsNull(obj_ezsigntemplatepublic)) {
+        obj_ezsigntemplatepublic = NULL;
+    }
     if (!obj_ezsigntemplatepublic) {
         goto end;
     }
@@ -71,7 +86,7 @@ ezsigntemplatepublic_get_object_v2_response_m_payload_t *ezsigntemplatepublic_ge
     obj_ezsigntemplatepublic_local_nonprim = ezsigntemplatepublic_response_compound_parseFromJSON(obj_ezsigntemplatepublic); //nonprimitive
 
 
-    ezsigntemplatepublic_get_object_v2_response_m_payload_local_var = ezsigntemplatepublic_get_object_v2_response_m_payload_create (
+    ezsigntemplatepublic_get_object_v2_response_m_payload_local_var = ezsigntemplatepublic_get_object_v2_response_m_payload_create_internal (
         obj_ezsigntemplatepublic_local_nonprim
         );
 

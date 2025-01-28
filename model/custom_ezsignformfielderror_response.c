@@ -5,7 +5,7 @@
 
 
 
-custom_ezsignformfielderror_response_t *custom_ezsignformfielderror_response_create(
+static custom_ezsignformfielderror_response_t *custom_ezsignformfielderror_response_create_internal(
     char *s_ezsignformfield_label,
     list_t *a_obj_ezsignformfielderrortest
     ) {
@@ -16,12 +16,26 @@ custom_ezsignformfielderror_response_t *custom_ezsignformfielderror_response_cre
     custom_ezsignformfielderror_response_local_var->s_ezsignformfield_label = s_ezsignformfield_label;
     custom_ezsignformfielderror_response_local_var->a_obj_ezsignformfielderrortest = a_obj_ezsignformfielderrortest;
 
+    custom_ezsignformfielderror_response_local_var->_library_owned = 1;
     return custom_ezsignformfielderror_response_local_var;
 }
 
+__attribute__((deprecated)) custom_ezsignformfielderror_response_t *custom_ezsignformfielderror_response_create(
+    char *s_ezsignformfield_label,
+    list_t *a_obj_ezsignformfielderrortest
+    ) {
+    return custom_ezsignformfielderror_response_create_internal (
+        s_ezsignformfield_label,
+        a_obj_ezsignformfielderrortest
+        );
+}
 
 void custom_ezsignformfielderror_response_free(custom_ezsignformfielderror_response_t *custom_ezsignformfielderror_response) {
     if(NULL == custom_ezsignformfielderror_response){
+        return ;
+    }
+    if(custom_ezsignformfielderror_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "custom_ezsignformfielderror_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -31,7 +45,7 @@ void custom_ezsignformfielderror_response_free(custom_ezsignformfielderror_respo
     }
     if (custom_ezsignformfielderror_response->a_obj_ezsignformfielderrortest) {
         list_ForEach(listEntry, custom_ezsignformfielderror_response->a_obj_ezsignformfielderrortest) {
-            object_free(listEntry->data);
+            custom_ezsignformfielderrortest_response_free(listEntry->data);
         }
         list_freeList(custom_ezsignformfielderror_response->a_obj_ezsignformfielderrortest);
         custom_ezsignformfielderror_response->a_obj_ezsignformfielderrortest = NULL;
@@ -63,7 +77,7 @@ cJSON *custom_ezsignformfielderror_response_convertToJSON(custom_ezsignformfield
     listEntry_t *a_obj_ezsignformfielderrortestListEntry;
     if (custom_ezsignformfielderror_response->a_obj_ezsignformfielderrortest) {
     list_ForEach(a_obj_ezsignformfielderrortestListEntry, custom_ezsignformfielderror_response->a_obj_ezsignformfielderrortest) {
-    cJSON *itemLocal = object_convertToJSON(a_obj_ezsignformfielderrortestListEntry->data);
+    cJSON *itemLocal = custom_ezsignformfielderrortest_response_convertToJSON(a_obj_ezsignformfielderrortestListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -88,6 +102,9 @@ custom_ezsignformfielderror_response_t *custom_ezsignformfielderror_response_par
 
     // custom_ezsignformfielderror_response->s_ezsignformfield_label
     cJSON *s_ezsignformfield_label = cJSON_GetObjectItemCaseSensitive(custom_ezsignformfielderror_responseJSON, "sEzsignformfieldLabel");
+    if (cJSON_IsNull(s_ezsignformfield_label)) {
+        s_ezsignformfield_label = NULL;
+    }
     if (!s_ezsignformfield_label) {
         goto end;
     }
@@ -100,6 +117,9 @@ custom_ezsignformfielderror_response_t *custom_ezsignformfielderror_response_par
 
     // custom_ezsignformfielderror_response->a_obj_ezsignformfielderrortest
     cJSON *a_obj_ezsignformfielderrortest = cJSON_GetObjectItemCaseSensitive(custom_ezsignformfielderror_responseJSON, "a_objEzsignformfielderrortest");
+    if (cJSON_IsNull(a_obj_ezsignformfielderrortest)) {
+        a_obj_ezsignformfielderrortest = NULL;
+    }
     if (!a_obj_ezsignformfielderrortest) {
         goto end;
     }
@@ -117,13 +137,13 @@ custom_ezsignformfielderror_response_t *custom_ezsignformfielderror_response_par
         if(!cJSON_IsObject(a_obj_ezsignformfielderrortest_local_nonprimitive)){
             goto end;
         }
-        object_t *a_obj_ezsignformfielderrortestItem = object_parseFromJSON(a_obj_ezsignformfielderrortest_local_nonprimitive);
+        custom_ezsignformfielderrortest_response_t *a_obj_ezsignformfielderrortestItem = custom_ezsignformfielderrortest_response_parseFromJSON(a_obj_ezsignformfielderrortest_local_nonprimitive);
 
         list_addElement(a_obj_ezsignformfielderrortestList, a_obj_ezsignformfielderrortestItem);
     }
 
 
-    custom_ezsignformfielderror_response_local_var = custom_ezsignformfielderror_response_create (
+    custom_ezsignformfielderror_response_local_var = custom_ezsignformfielderror_response_create_internal (
         strdup(s_ezsignformfield_label->valuestring),
         a_obj_ezsignformfielderrortestList
         );
@@ -133,7 +153,7 @@ end:
     if (a_obj_ezsignformfielderrortestList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsignformfielderrortestList) {
-            object_free(listEntry->data);
+            custom_ezsignformfielderrortest_response_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_ezsignformfielderrortestList);

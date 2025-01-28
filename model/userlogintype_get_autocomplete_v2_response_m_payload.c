@@ -5,7 +5,7 @@
 
 
 
-userlogintype_get_autocomplete_v2_response_m_payload_t *userlogintype_get_autocomplete_v2_response_m_payload_create(
+static userlogintype_get_autocomplete_v2_response_m_payload_t *userlogintype_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_userlogintype
     ) {
     userlogintype_get_autocomplete_v2_response_m_payload_t *userlogintype_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(userlogintype_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ userlogintype_get_autocomplete_v2_response_m_payload_t *userlogintype_get_autoco
     }
     userlogintype_get_autocomplete_v2_response_m_payload_local_var->a_obj_userlogintype = a_obj_userlogintype;
 
+    userlogintype_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return userlogintype_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) userlogintype_get_autocomplete_v2_response_m_payload_t *userlogintype_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_userlogintype
+    ) {
+    return userlogintype_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_userlogintype
+        );
+}
 
 void userlogintype_get_autocomplete_v2_response_m_payload_free(userlogintype_get_autocomplete_v2_response_m_payload_t *userlogintype_get_autocomplete_v2_response_m_payload) {
     if(NULL == userlogintype_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(userlogintype_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "userlogintype_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ userlogintype_get_autocomplete_v2_response_m_payload_t *userlogintype_get_autoco
 
     // userlogintype_get_autocomplete_v2_response_m_payload->a_obj_userlogintype
     cJSON *a_obj_userlogintype = cJSON_GetObjectItemCaseSensitive(userlogintype_get_autocomplete_v2_response_m_payloadJSON, "a_objUserlogintype");
+    if (cJSON_IsNull(a_obj_userlogintype)) {
+        a_obj_userlogintype = NULL;
+    }
     if (!a_obj_userlogintype) {
         goto end;
     }
@@ -96,7 +111,7 @@ userlogintype_get_autocomplete_v2_response_m_payload_t *userlogintype_get_autoco
     }
 
 
-    userlogintype_get_autocomplete_v2_response_m_payload_local_var = userlogintype_get_autocomplete_v2_response_m_payload_create (
+    userlogintype_get_autocomplete_v2_response_m_payload_local_var = userlogintype_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_userlogintypeList
         );
 

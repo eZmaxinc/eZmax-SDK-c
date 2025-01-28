@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 // Functions for enum EORDERBY for ObjectDomainAPI_domainGetListV1
 
@@ -120,11 +115,14 @@ ObjectDomainAPI_domainCreateObjectV1(apiClient_t *apiClient, domain_create_objec
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/domain")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/domain");
+    char *localVarPath = strdup("/1/object/domain");
+
 
 
 
@@ -133,9 +131,10 @@ ObjectDomainAPI_domainCreateObjectV1(apiClient_t *apiClient, domain_create_objec
     cJSON *localVarSingleItemJSON_domain_create_object_v1_request = NULL;
     if (domain_create_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_domain_create_object_v1_request = domain_create_object_v1_request_convertToJSON(domain_create_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_domain_create_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -147,6 +146,7 @@ ObjectDomainAPI_domainCreateObjectV1(apiClient_t *apiClient, domain_create_objec
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -154,11 +154,14 @@ ObjectDomainAPI_domainCreateObjectV1(apiClient_t *apiClient, domain_create_objec
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectDomainAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    domain_create_object_v1_response_t *elementToReturn = domain_create_object_v1_response_parseFromJSON(ObjectDomainAPIlocalVarJSON);
-    cJSON_Delete(ObjectDomainAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    domain_create_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectDomainAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = domain_create_object_v1_response_parseFromJSON(ObjectDomainAPIlocalVarJSON);
+        cJSON_Delete(ObjectDomainAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -189,7 +192,7 @@ end:
 //
 // 
 //
-common_response_t*
+domain_delete_object_v1_response_t*
 ObjectDomainAPI_domainDeleteObjectV1(apiClient_t *apiClient, int *pkiDomainID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -198,15 +201,18 @@ ObjectDomainAPI_domainDeleteObjectV1(apiClient_t *apiClient, int *pkiDomainID)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/domain/{pkiDomainID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/domain/{pkiDomainID}");
+    char *localVarPath = strdup("/1/object/domain/{pkiDomainID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiDomainID =  + strlen("{ pkiDomainID }");
+    long sizeOfPathParams_pkiDomainID =  + sizeof("{ pkiDomainID }") - 1;
     if(pkiDomainID == 0){
         goto end;
     }
@@ -214,7 +220,7 @@ ObjectDomainAPI_domainDeleteObjectV1(apiClient_t *apiClient, int *pkiDomainID)
     snprintf(localVarToReplace_pkiDomainID, sizeOfPathParams_pkiDomainID, "{%s}", "pkiDomainID");
 
     char localVarBuff_pkiDomainID[256];
-    intToStr(localVarBuff_pkiDomainID, *pkiDomainID);
+    snprintf(localVarBuff_pkiDomainID, sizeof localVarBuff_pkiDomainID, "%ld", (long)*pkiDomainID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiDomainID, localVarBuff_pkiDomainID);
 
@@ -229,6 +235,7 @@ ObjectDomainAPI_domainDeleteObjectV1(apiClient_t *apiClient, int *pkiDomainID)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "DELETE");
 
     // uncomment below to debug the error response
@@ -240,11 +247,14 @@ ObjectDomainAPI_domainDeleteObjectV1(apiClient_t *apiClient, int *pkiDomainID)
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectDomainAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectDomainAPIlocalVarJSON);
-    cJSON_Delete(ObjectDomainAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    domain_delete_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectDomainAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = domain_delete_object_v1_response_parseFromJSON(ObjectDomainAPIlocalVarJSON);
+        cJSON_Delete(ObjectDomainAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -280,11 +290,14 @@ ObjectDomainAPI_domainGetListV1(apiClient_t *apiClient, ezmax_api_definition__fu
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/domain/getList")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/domain/getList");
+    char *localVarPath = strdup("/1/object/domain/getList");
+
 
 
 
@@ -309,7 +322,7 @@ ObjectDomainAPI_domainGetListV1(apiClient_t *apiClient, ezmax_api_definition__fu
     {
         keyQuery_eOrderBy = strdup("eOrderBy");
         valueQuery_eOrderBy = (eOrderBy);
-        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, (void *)strdup(domainGetListV1_EORDERBY_ToString(
+        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, strdup(domainGetListV1_EORDERBY_ToString(
         valueQuery_eOrderBy)));
         list_addElement(localVarQueryParameters,keyPairQuery_eOrderBy);
     }
@@ -361,6 +374,7 @@ ObjectDomainAPI_domainGetListV1(apiClient_t *apiClient, ezmax_api_definition__fu
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -372,11 +386,14 @@ ObjectDomainAPI_domainGetListV1(apiClient_t *apiClient, ezmax_api_definition__fu
     //    printf("%s\n","The URL is valid, but one of the Accept header is not defined or invalid. For example, you set the header \&quot;Accept: application/json\&quot; but the function can only return \&quot;Content-type: image/png\&quot;");
     //}
     //nonprimitive not container
-    cJSON *ObjectDomainAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    domain_get_list_v1_response_t *elementToReturn = domain_get_list_v1_response_parseFromJSON(ObjectDomainAPIlocalVarJSON);
-    cJSON_Delete(ObjectDomainAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    domain_get_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectDomainAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = domain_get_list_v1_response_parseFromJSON(ObjectDomainAPIlocalVarJSON);
+        cJSON_Delete(ObjectDomainAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -460,15 +477,18 @@ ObjectDomainAPI_domainGetObjectV2(apiClient_t *apiClient, int *pkiDomainID)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/domain/{pkiDomainID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/domain/{pkiDomainID}");
+    char *localVarPath = strdup("/2/object/domain/{pkiDomainID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiDomainID =  + strlen("{ pkiDomainID }");
+    long sizeOfPathParams_pkiDomainID =  + sizeof("{ pkiDomainID }") - 1;
     if(pkiDomainID == 0){
         goto end;
     }
@@ -476,7 +496,7 @@ ObjectDomainAPI_domainGetObjectV2(apiClient_t *apiClient, int *pkiDomainID)
     snprintf(localVarToReplace_pkiDomainID, sizeOfPathParams_pkiDomainID, "{%s}", "pkiDomainID");
 
     char localVarBuff_pkiDomainID[256];
-    intToStr(localVarBuff_pkiDomainID, *pkiDomainID);
+    snprintf(localVarBuff_pkiDomainID, sizeof localVarBuff_pkiDomainID, "%ld", (long)*pkiDomainID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiDomainID, localVarBuff_pkiDomainID);
 
@@ -491,6 +511,7 @@ ObjectDomainAPI_domainGetObjectV2(apiClient_t *apiClient, int *pkiDomainID)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -502,11 +523,14 @@ ObjectDomainAPI_domainGetObjectV2(apiClient_t *apiClient, int *pkiDomainID)
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectDomainAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    domain_get_object_v2_response_t *elementToReturn = domain_get_object_v2_response_parseFromJSON(ObjectDomainAPIlocalVarJSON);
-    cJSON_Delete(ObjectDomainAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    domain_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectDomainAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = domain_get_object_v2_response_parseFromJSON(ObjectDomainAPIlocalVarJSON);
+        cJSON_Delete(ObjectDomainAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

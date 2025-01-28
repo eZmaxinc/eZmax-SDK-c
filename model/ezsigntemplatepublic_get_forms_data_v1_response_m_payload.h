@@ -22,9 +22,10 @@ typedef struct ezsigntemplatepublic_get_forms_data_v1_response_m_payload_t ezsig
 typedef struct ezsigntemplatepublic_get_forms_data_v1_response_m_payload_t {
     list_t *a_obj_forms_data_folder; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatepublic_get_forms_data_v1_response_m_payload_t;
 
-ezsigntemplatepublic_get_forms_data_v1_response_m_payload_t *ezsigntemplatepublic_get_forms_data_v1_response_m_payload_create(
+__attribute__((deprecated)) ezsigntemplatepublic_get_forms_data_v1_response_m_payload_t *ezsigntemplatepublic_get_forms_data_v1_response_m_payload_create(
     list_t *a_obj_forms_data_folder
 );
 

@@ -4,52 +4,18 @@
 #include "versionhistory_response.h"
 
 
-char* versionhistory_response_e_versionhistory_usertype_ToString(ezmax_api_definition__full_versionhistory_response__e e_versionhistory_usertype) {
-    char* e_versionhistory_usertypeArray[] =  { "NULL", "", "AgentBroker", "EzsignUser", "Normal" };
-    return e_versionhistory_usertypeArray[e_versionhistory_usertype];
-}
 
-ezmax_api_definition__full_versionhistory_response__e versionhistory_response_e_versionhistory_usertype_FromString(char* e_versionhistory_usertype){
-    int stringToReturn = 0;
-    char *e_versionhistory_usertypeArray[] =  { "NULL", "", "AgentBroker", "EzsignUser", "Normal" };
-    size_t sizeofArray = sizeof(e_versionhistory_usertypeArray) / sizeof(e_versionhistory_usertypeArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_versionhistory_usertype, e_versionhistory_usertypeArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-char* versionhistory_response_e_versionhistory_type_ToString(ezmax_api_definition__full_versionhistory_response__e e_versionhistory_type) {
-    char* e_versionhistory_typeArray[] =  { "NULL", "AgentBroker", "NewFeature", "Correction", "Modification", "ImportantMessage" };
-    return e_versionhistory_typeArray[e_versionhistory_type];
-}
-
-ezmax_api_definition__full_versionhistory_response__e versionhistory_response_e_versionhistory_type_FromString(char* e_versionhistory_type){
-    int stringToReturn = 0;
-    char *e_versionhistory_typeArray[] =  { "NULL", "AgentBroker", "NewFeature", "Correction", "Modification", "ImportantMessage" };
-    size_t sizeofArray = sizeof(e_versionhistory_typeArray) / sizeof(e_versionhistory_typeArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_versionhistory_type, e_versionhistory_typeArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-versionhistory_response_t *versionhistory_response_create(
+static versionhistory_response_t *versionhistory_response_create_internal(
     int pki_versionhistory_id,
     int fki_module_id,
     int fki_modulesection_id,
     char *s_module_name_x,
     char *s_modulesection_name_x,
-    field_e_versionhistory_usertype_t *e_versionhistory_usertype,
+    ezmax_api_definition__full_field_e_versionhistory_usertype__e e_versionhistory_usertype,
     multilingual_versionhistory_detail_t *obj_versionhistory_detail,
     char *dt_versionhistory_date,
     char *dt_versionhistory_dateend,
-    field_e_versionhistory_type_t *e_versionhistory_type,
+    ezmax_api_definition__full_field_e_versionhistory_type__e e_versionhistory_type,
     int b_versionhistory_draft
     ) {
     versionhistory_response_t *versionhistory_response_local_var = malloc(sizeof(versionhistory_response_t));
@@ -68,12 +34,44 @@ versionhistory_response_t *versionhistory_response_create(
     versionhistory_response_local_var->e_versionhistory_type = e_versionhistory_type;
     versionhistory_response_local_var->b_versionhistory_draft = b_versionhistory_draft;
 
+    versionhistory_response_local_var->_library_owned = 1;
     return versionhistory_response_local_var;
 }
 
+__attribute__((deprecated)) versionhistory_response_t *versionhistory_response_create(
+    int pki_versionhistory_id,
+    int fki_module_id,
+    int fki_modulesection_id,
+    char *s_module_name_x,
+    char *s_modulesection_name_x,
+    ezmax_api_definition__full_field_e_versionhistory_usertype__e e_versionhistory_usertype,
+    multilingual_versionhistory_detail_t *obj_versionhistory_detail,
+    char *dt_versionhistory_date,
+    char *dt_versionhistory_dateend,
+    ezmax_api_definition__full_field_e_versionhistory_type__e e_versionhistory_type,
+    int b_versionhistory_draft
+    ) {
+    return versionhistory_response_create_internal (
+        pki_versionhistory_id,
+        fki_module_id,
+        fki_modulesection_id,
+        s_module_name_x,
+        s_modulesection_name_x,
+        e_versionhistory_usertype,
+        obj_versionhistory_detail,
+        dt_versionhistory_date,
+        dt_versionhistory_dateend,
+        e_versionhistory_type,
+        b_versionhistory_draft
+        );
+}
 
 void versionhistory_response_free(versionhistory_response_t *versionhistory_response) {
     if(NULL == versionhistory_response){
+        return ;
+    }
+    if(versionhistory_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "versionhistory_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -84,10 +82,6 @@ void versionhistory_response_free(versionhistory_response_t *versionhistory_resp
     if (versionhistory_response->s_modulesection_name_x) {
         free(versionhistory_response->s_modulesection_name_x);
         versionhistory_response->s_modulesection_name_x = NULL;
-    }
-    if (versionhistory_response->e_versionhistory_usertype) {
-        field_e_versionhistory_usertype_free(versionhistory_response->e_versionhistory_usertype);
-        versionhistory_response->e_versionhistory_usertype = NULL;
     }
     if (versionhistory_response->obj_versionhistory_detail) {
         multilingual_versionhistory_detail_free(versionhistory_response->obj_versionhistory_detail);
@@ -100,10 +94,6 @@ void versionhistory_response_free(versionhistory_response_t *versionhistory_resp
     if (versionhistory_response->dt_versionhistory_dateend) {
         free(versionhistory_response->dt_versionhistory_dateend);
         versionhistory_response->dt_versionhistory_dateend = NULL;
-    }
-    if (versionhistory_response->e_versionhistory_type) {
-        field_e_versionhistory_type_free(versionhistory_response->e_versionhistory_type);
-        versionhistory_response->e_versionhistory_type = NULL;
     }
     free(versionhistory_response);
 }
@@ -153,7 +143,7 @@ cJSON *versionhistory_response_convertToJSON(versionhistory_response_t *versionh
 
 
     // versionhistory_response->e_versionhistory_usertype
-    if(versionhistory_response->e_versionhistory_usertype != ezmax_api_definition__full_versionhistory_response__NULL) {
+    if(versionhistory_response->e_versionhistory_usertype != ezmax_api_definition__full_field_e_versionhistory_usertype__NULL) {
     cJSON *e_versionhistory_usertype_local_JSON = field_e_versionhistory_usertype_convertToJSON(versionhistory_response->e_versionhistory_usertype);
     if(e_versionhistory_usertype_local_JSON == NULL) {
         goto fail; // custom
@@ -197,7 +187,7 @@ cJSON *versionhistory_response_convertToJSON(versionhistory_response_t *versionh
 
 
     // versionhistory_response->e_versionhistory_type
-    if (ezmax_api_definition__full_versionhistory_response__NULL == versionhistory_response->e_versionhistory_type) {
+    if (ezmax_api_definition__full_field_e_versionhistory_type__NULL == versionhistory_response->e_versionhistory_type) {
         goto fail;
     }
     cJSON *e_versionhistory_type_local_JSON = field_e_versionhistory_type_convertToJSON(versionhistory_response->e_versionhistory_type);
@@ -231,16 +221,19 @@ versionhistory_response_t *versionhistory_response_parseFromJSON(cJSON *versionh
     versionhistory_response_t *versionhistory_response_local_var = NULL;
 
     // define the local variable for versionhistory_response->e_versionhistory_usertype
-    field_e_versionhistory_usertype_t *e_versionhistory_usertype_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_versionhistory_usertype__e e_versionhistory_usertype_local_nonprim = 0;
 
     // define the local variable for versionhistory_response->obj_versionhistory_detail
     multilingual_versionhistory_detail_t *obj_versionhistory_detail_local_nonprim = NULL;
 
     // define the local variable for versionhistory_response->e_versionhistory_type
-    field_e_versionhistory_type_t *e_versionhistory_type_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_versionhistory_type__e e_versionhistory_type_local_nonprim = 0;
 
     // versionhistory_response->pki_versionhistory_id
     cJSON *pki_versionhistory_id = cJSON_GetObjectItemCaseSensitive(versionhistory_responseJSON, "pkiVersionhistoryID");
+    if (cJSON_IsNull(pki_versionhistory_id)) {
+        pki_versionhistory_id = NULL;
+    }
     if (!pki_versionhistory_id) {
         goto end;
     }
@@ -253,6 +246,9 @@ versionhistory_response_t *versionhistory_response_parseFromJSON(cJSON *versionh
 
     // versionhistory_response->fki_module_id
     cJSON *fki_module_id = cJSON_GetObjectItemCaseSensitive(versionhistory_responseJSON, "fkiModuleID");
+    if (cJSON_IsNull(fki_module_id)) {
+        fki_module_id = NULL;
+    }
     if (fki_module_id) { 
     if(!cJSON_IsNumber(fki_module_id))
     {
@@ -262,6 +258,9 @@ versionhistory_response_t *versionhistory_response_parseFromJSON(cJSON *versionh
 
     // versionhistory_response->fki_modulesection_id
     cJSON *fki_modulesection_id = cJSON_GetObjectItemCaseSensitive(versionhistory_responseJSON, "fkiModulesectionID");
+    if (cJSON_IsNull(fki_modulesection_id)) {
+        fki_modulesection_id = NULL;
+    }
     if (fki_modulesection_id) { 
     if(!cJSON_IsNumber(fki_modulesection_id))
     {
@@ -271,6 +270,9 @@ versionhistory_response_t *versionhistory_response_parseFromJSON(cJSON *versionh
 
     // versionhistory_response->s_module_name_x
     cJSON *s_module_name_x = cJSON_GetObjectItemCaseSensitive(versionhistory_responseJSON, "sModuleNameX");
+    if (cJSON_IsNull(s_module_name_x)) {
+        s_module_name_x = NULL;
+    }
     if (s_module_name_x) { 
     if(!cJSON_IsString(s_module_name_x) && !cJSON_IsNull(s_module_name_x))
     {
@@ -280,6 +282,9 @@ versionhistory_response_t *versionhistory_response_parseFromJSON(cJSON *versionh
 
     // versionhistory_response->s_modulesection_name_x
     cJSON *s_modulesection_name_x = cJSON_GetObjectItemCaseSensitive(versionhistory_responseJSON, "sModulesectionNameX");
+    if (cJSON_IsNull(s_modulesection_name_x)) {
+        s_modulesection_name_x = NULL;
+    }
     if (s_modulesection_name_x) { 
     if(!cJSON_IsString(s_modulesection_name_x) && !cJSON_IsNull(s_modulesection_name_x))
     {
@@ -289,12 +294,18 @@ versionhistory_response_t *versionhistory_response_parseFromJSON(cJSON *versionh
 
     // versionhistory_response->e_versionhistory_usertype
     cJSON *e_versionhistory_usertype = cJSON_GetObjectItemCaseSensitive(versionhistory_responseJSON, "eVersionhistoryUsertype");
+    if (cJSON_IsNull(e_versionhistory_usertype)) {
+        e_versionhistory_usertype = NULL;
+    }
     if (e_versionhistory_usertype) { 
     e_versionhistory_usertype_local_nonprim = field_e_versionhistory_usertype_parseFromJSON(e_versionhistory_usertype); //custom
     }
 
     // versionhistory_response->obj_versionhistory_detail
     cJSON *obj_versionhistory_detail = cJSON_GetObjectItemCaseSensitive(versionhistory_responseJSON, "objVersionhistoryDetail");
+    if (cJSON_IsNull(obj_versionhistory_detail)) {
+        obj_versionhistory_detail = NULL;
+    }
     if (!obj_versionhistory_detail) {
         goto end;
     }
@@ -304,6 +315,9 @@ versionhistory_response_t *versionhistory_response_parseFromJSON(cJSON *versionh
 
     // versionhistory_response->dt_versionhistory_date
     cJSON *dt_versionhistory_date = cJSON_GetObjectItemCaseSensitive(versionhistory_responseJSON, "dtVersionhistoryDate");
+    if (cJSON_IsNull(dt_versionhistory_date)) {
+        dt_versionhistory_date = NULL;
+    }
     if (!dt_versionhistory_date) {
         goto end;
     }
@@ -316,6 +330,9 @@ versionhistory_response_t *versionhistory_response_parseFromJSON(cJSON *versionh
 
     // versionhistory_response->dt_versionhistory_dateend
     cJSON *dt_versionhistory_dateend = cJSON_GetObjectItemCaseSensitive(versionhistory_responseJSON, "dtVersionhistoryDateend");
+    if (cJSON_IsNull(dt_versionhistory_dateend)) {
+        dt_versionhistory_dateend = NULL;
+    }
     if (dt_versionhistory_dateend) { 
     if(!cJSON_IsString(dt_versionhistory_dateend) && !cJSON_IsNull(dt_versionhistory_dateend))
     {
@@ -325,6 +342,9 @@ versionhistory_response_t *versionhistory_response_parseFromJSON(cJSON *versionh
 
     // versionhistory_response->e_versionhistory_type
     cJSON *e_versionhistory_type = cJSON_GetObjectItemCaseSensitive(versionhistory_responseJSON, "eVersionhistoryType");
+    if (cJSON_IsNull(e_versionhistory_type)) {
+        e_versionhistory_type = NULL;
+    }
     if (!e_versionhistory_type) {
         goto end;
     }
@@ -334,6 +354,9 @@ versionhistory_response_t *versionhistory_response_parseFromJSON(cJSON *versionh
 
     // versionhistory_response->b_versionhistory_draft
     cJSON *b_versionhistory_draft = cJSON_GetObjectItemCaseSensitive(versionhistory_responseJSON, "bVersionhistoryDraft");
+    if (cJSON_IsNull(b_versionhistory_draft)) {
+        b_versionhistory_draft = NULL;
+    }
     if (!b_versionhistory_draft) {
         goto end;
     }
@@ -345,13 +368,13 @@ versionhistory_response_t *versionhistory_response_parseFromJSON(cJSON *versionh
     }
 
 
-    versionhistory_response_local_var = versionhistory_response_create (
+    versionhistory_response_local_var = versionhistory_response_create_internal (
         pki_versionhistory_id->valuedouble,
         fki_module_id ? fki_module_id->valuedouble : 0,
         fki_modulesection_id ? fki_modulesection_id->valuedouble : 0,
         s_module_name_x && !cJSON_IsNull(s_module_name_x) ? strdup(s_module_name_x->valuestring) : NULL,
         s_modulesection_name_x && !cJSON_IsNull(s_modulesection_name_x) ? strdup(s_modulesection_name_x->valuestring) : NULL,
-        e_versionhistory_usertype ? e_versionhistory_usertype_local_nonprim : NULL,
+        e_versionhistory_usertype ? e_versionhistory_usertype_local_nonprim : 0,
         obj_versionhistory_detail_local_nonprim,
         strdup(dt_versionhistory_date->valuestring),
         dt_versionhistory_dateend && !cJSON_IsNull(dt_versionhistory_dateend) ? strdup(dt_versionhistory_dateend->valuestring) : NULL,
@@ -362,16 +385,14 @@ versionhistory_response_t *versionhistory_response_parseFromJSON(cJSON *versionh
     return versionhistory_response_local_var;
 end:
     if (e_versionhistory_usertype_local_nonprim) {
-        field_e_versionhistory_usertype_free(e_versionhistory_usertype_local_nonprim);
-        e_versionhistory_usertype_local_nonprim = NULL;
+        e_versionhistory_usertype_local_nonprim = 0;
     }
     if (obj_versionhistory_detail_local_nonprim) {
         multilingual_versionhistory_detail_free(obj_versionhistory_detail_local_nonprim);
         obj_versionhistory_detail_local_nonprim = NULL;
     }
     if (e_versionhistory_type_local_nonprim) {
-        field_e_versionhistory_type_free(e_versionhistory_type_local_nonprim);
-        e_versionhistory_type_local_nonprim = NULL;
+        e_versionhistory_type_local_nonprim = 0;
     }
     return NULL;
 

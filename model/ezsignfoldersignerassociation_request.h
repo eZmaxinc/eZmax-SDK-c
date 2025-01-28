@@ -26,9 +26,10 @@ typedef struct ezsignfoldersignerassociation_request_t {
     int b_ezsignfoldersignerassociation_receivecopy; //boolean
     char *t_ezsignfoldersignerassociation_message; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfoldersignerassociation_request_t;
 
-ezsignfoldersignerassociation_request_t *ezsignfoldersignerassociation_request_create(
+__attribute__((deprecated)) ezsignfoldersignerassociation_request_t *ezsignfoldersignerassociation_request_create(
     int pki_ezsignfoldersignerassociation_id,
     int fki_user_id,
     int fki_ezsignsignergroup_id,

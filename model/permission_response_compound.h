@@ -27,9 +27,10 @@ typedef struct permission_response_compound_t {
     int fki_modulesection_id; //numeric
     char *s_company_name_x; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } permission_response_compound_t;
 
-permission_response_compound_t *permission_response_compound_create(
+__attribute__((deprecated)) permission_response_compound_t *permission_response_compound_create(
     int pki_permission_id,
     int fki_user_id,
     int fki_apikey_id,

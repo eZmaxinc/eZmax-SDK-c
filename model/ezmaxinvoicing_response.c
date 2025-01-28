@@ -4,25 +4,8 @@
 #include "ezmaxinvoicing_response.h"
 
 
-char* ezmaxinvoicing_response_e_ezmaxinvoicing_paymenttype_ToString(ezmax_api_definition__full_ezmaxinvoicing_response__e e_ezmaxinvoicing_paymenttype) {
-    char* e_ezmaxinvoicing_paymenttypeArray[] =  { "NULL", "Cheque", "CreditCard", "DirectDebit" };
-    return e_ezmaxinvoicing_paymenttypeArray[e_ezmaxinvoicing_paymenttype];
-}
 
-ezmax_api_definition__full_ezmaxinvoicing_response__e ezmaxinvoicing_response_e_ezmaxinvoicing_paymenttype_FromString(char* e_ezmaxinvoicing_paymenttype){
-    int stringToReturn = 0;
-    char *e_ezmaxinvoicing_paymenttypeArray[] =  { "NULL", "Cheque", "CreditCard", "DirectDebit" };
-    size_t sizeofArray = sizeof(e_ezmaxinvoicing_paymenttypeArray) / sizeof(e_ezmaxinvoicing_paymenttypeArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_ezmaxinvoicing_paymenttype, e_ezmaxinvoicing_paymenttypeArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-ezmaxinvoicing_response_t *ezmaxinvoicing_response_create(
+static ezmaxinvoicing_response_t *ezmaxinvoicing_response_create_internal(
     int pki_ezmaxinvoicing_id,
     int fki_ezmaxinvoicingcontract_id,
     int fki_ezmaxpricing_id,
@@ -30,7 +13,7 @@ ezmaxinvoicing_response_t *ezmaxinvoicing_response_create(
     char *s_systemconfigurationtype_description_x,
     char *yyyymm_ezmaxinvoicing,
     int i_ezmaxinvoicing_days,
-    field_e_ezmaxinvoicing_paymenttype_t *e_ezmaxinvoicing_paymenttype,
+    ezmax_api_definition__full_field_e_ezmaxinvoicing_paymenttype__e e_ezmaxinvoicing_paymenttype,
     char *d_ezmaxinvoicing_rebatepaymenttype,
     int i_ezmaxinvoicing_contractlength,
     char *d_ezmaxinvoicing_rebatecontractlength,
@@ -55,12 +38,48 @@ ezmaxinvoicing_response_t *ezmaxinvoicing_response_create(
     ezmaxinvoicing_response_local_var->b_ezmaxinvoicing_rebate_ezsignallagents = b_ezmaxinvoicing_rebate_ezsignallagents;
     ezmaxinvoicing_response_local_var->obj_audit = obj_audit;
 
+    ezmaxinvoicing_response_local_var->_library_owned = 1;
     return ezmaxinvoicing_response_local_var;
 }
 
+__attribute__((deprecated)) ezmaxinvoicing_response_t *ezmaxinvoicing_response_create(
+    int pki_ezmaxinvoicing_id,
+    int fki_ezmaxinvoicingcontract_id,
+    int fki_ezmaxpricing_id,
+    int fki_systemconfigurationtype_id,
+    char *s_systemconfigurationtype_description_x,
+    char *yyyymm_ezmaxinvoicing,
+    int i_ezmaxinvoicing_days,
+    ezmax_api_definition__full_field_e_ezmaxinvoicing_paymenttype__e e_ezmaxinvoicing_paymenttype,
+    char *d_ezmaxinvoicing_rebatepaymenttype,
+    int i_ezmaxinvoicing_contractlength,
+    char *d_ezmaxinvoicing_rebatecontractlength,
+    int b_ezmaxinvoicing_rebate_ezsignallagents,
+    common_audit_t *obj_audit
+    ) {
+    return ezmaxinvoicing_response_create_internal (
+        pki_ezmaxinvoicing_id,
+        fki_ezmaxinvoicingcontract_id,
+        fki_ezmaxpricing_id,
+        fki_systemconfigurationtype_id,
+        s_systemconfigurationtype_description_x,
+        yyyymm_ezmaxinvoicing,
+        i_ezmaxinvoicing_days,
+        e_ezmaxinvoicing_paymenttype,
+        d_ezmaxinvoicing_rebatepaymenttype,
+        i_ezmaxinvoicing_contractlength,
+        d_ezmaxinvoicing_rebatecontractlength,
+        b_ezmaxinvoicing_rebate_ezsignallagents,
+        obj_audit
+        );
+}
 
 void ezmaxinvoicing_response_free(ezmaxinvoicing_response_t *ezmaxinvoicing_response) {
     if(NULL == ezmaxinvoicing_response){
+        return ;
+    }
+    if(ezmaxinvoicing_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezmaxinvoicing_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -71,10 +90,6 @@ void ezmaxinvoicing_response_free(ezmaxinvoicing_response_t *ezmaxinvoicing_resp
     if (ezmaxinvoicing_response->yyyymm_ezmaxinvoicing) {
         free(ezmaxinvoicing_response->yyyymm_ezmaxinvoicing);
         ezmaxinvoicing_response->yyyymm_ezmaxinvoicing = NULL;
-    }
-    if (ezmaxinvoicing_response->e_ezmaxinvoicing_paymenttype) {
-        field_e_ezmaxinvoicing_paymenttype_free(ezmaxinvoicing_response->e_ezmaxinvoicing_paymenttype);
-        ezmaxinvoicing_response->e_ezmaxinvoicing_paymenttype = NULL;
     }
     if (ezmaxinvoicing_response->d_ezmaxinvoicing_rebatepaymenttype) {
         free(ezmaxinvoicing_response->d_ezmaxinvoicing_rebatepaymenttype);
@@ -157,7 +172,7 @@ cJSON *ezmaxinvoicing_response_convertToJSON(ezmaxinvoicing_response_t *ezmaxinv
 
 
     // ezmaxinvoicing_response->e_ezmaxinvoicing_paymenttype
-    if (ezmax_api_definition__full_ezmaxinvoicing_response__NULL == ezmaxinvoicing_response->e_ezmaxinvoicing_paymenttype) {
+    if (ezmax_api_definition__full_field_e_ezmaxinvoicing_paymenttype__NULL == ezmaxinvoicing_response->e_ezmaxinvoicing_paymenttype) {
         goto fail;
     }
     cJSON *e_ezmaxinvoicing_paymenttype_local_JSON = field_e_ezmaxinvoicing_paymenttype_convertToJSON(ezmaxinvoicing_response->e_ezmaxinvoicing_paymenttype);
@@ -231,13 +246,16 @@ ezmaxinvoicing_response_t *ezmaxinvoicing_response_parseFromJSON(cJSON *ezmaxinv
     ezmaxinvoicing_response_t *ezmaxinvoicing_response_local_var = NULL;
 
     // define the local variable for ezmaxinvoicing_response->e_ezmaxinvoicing_paymenttype
-    field_e_ezmaxinvoicing_paymenttype_t *e_ezmaxinvoicing_paymenttype_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_ezmaxinvoicing_paymenttype__e e_ezmaxinvoicing_paymenttype_local_nonprim = 0;
 
     // define the local variable for ezmaxinvoicing_response->obj_audit
     common_audit_t *obj_audit_local_nonprim = NULL;
 
     // ezmaxinvoicing_response->pki_ezmaxinvoicing_id
     cJSON *pki_ezmaxinvoicing_id = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicing_responseJSON, "pkiEzmaxinvoicingID");
+    if (cJSON_IsNull(pki_ezmaxinvoicing_id)) {
+        pki_ezmaxinvoicing_id = NULL;
+    }
     if (pki_ezmaxinvoicing_id) { 
     if(!cJSON_IsNumber(pki_ezmaxinvoicing_id))
     {
@@ -247,6 +265,9 @@ ezmaxinvoicing_response_t *ezmaxinvoicing_response_parseFromJSON(cJSON *ezmaxinv
 
     // ezmaxinvoicing_response->fki_ezmaxinvoicingcontract_id
     cJSON *fki_ezmaxinvoicingcontract_id = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicing_responseJSON, "fkiEzmaxinvoicingcontractID");
+    if (cJSON_IsNull(fki_ezmaxinvoicingcontract_id)) {
+        fki_ezmaxinvoicingcontract_id = NULL;
+    }
     if (!fki_ezmaxinvoicingcontract_id) {
         goto end;
     }
@@ -259,6 +280,9 @@ ezmaxinvoicing_response_t *ezmaxinvoicing_response_parseFromJSON(cJSON *ezmaxinv
 
     // ezmaxinvoicing_response->fki_ezmaxpricing_id
     cJSON *fki_ezmaxpricing_id = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicing_responseJSON, "fkiEzmaxpricingID");
+    if (cJSON_IsNull(fki_ezmaxpricing_id)) {
+        fki_ezmaxpricing_id = NULL;
+    }
     if (!fki_ezmaxpricing_id) {
         goto end;
     }
@@ -271,6 +295,9 @@ ezmaxinvoicing_response_t *ezmaxinvoicing_response_parseFromJSON(cJSON *ezmaxinv
 
     // ezmaxinvoicing_response->fki_systemconfigurationtype_id
     cJSON *fki_systemconfigurationtype_id = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicing_responseJSON, "fkiSystemconfigurationtypeID");
+    if (cJSON_IsNull(fki_systemconfigurationtype_id)) {
+        fki_systemconfigurationtype_id = NULL;
+    }
     if (!fki_systemconfigurationtype_id) {
         goto end;
     }
@@ -283,6 +310,9 @@ ezmaxinvoicing_response_t *ezmaxinvoicing_response_parseFromJSON(cJSON *ezmaxinv
 
     // ezmaxinvoicing_response->s_systemconfigurationtype_description_x
     cJSON *s_systemconfigurationtype_description_x = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicing_responseJSON, "sSystemconfigurationtypeDescriptionX");
+    if (cJSON_IsNull(s_systemconfigurationtype_description_x)) {
+        s_systemconfigurationtype_description_x = NULL;
+    }
     if (!s_systemconfigurationtype_description_x) {
         goto end;
     }
@@ -295,6 +325,9 @@ ezmaxinvoicing_response_t *ezmaxinvoicing_response_parseFromJSON(cJSON *ezmaxinv
 
     // ezmaxinvoicing_response->yyyymm_ezmaxinvoicing
     cJSON *yyyymm_ezmaxinvoicing = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicing_responseJSON, "yyyymmEzmaxinvoicing");
+    if (cJSON_IsNull(yyyymm_ezmaxinvoicing)) {
+        yyyymm_ezmaxinvoicing = NULL;
+    }
     if (!yyyymm_ezmaxinvoicing) {
         goto end;
     }
@@ -307,6 +340,9 @@ ezmaxinvoicing_response_t *ezmaxinvoicing_response_parseFromJSON(cJSON *ezmaxinv
 
     // ezmaxinvoicing_response->i_ezmaxinvoicing_days
     cJSON *i_ezmaxinvoicing_days = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicing_responseJSON, "iEzmaxinvoicingDays");
+    if (cJSON_IsNull(i_ezmaxinvoicing_days)) {
+        i_ezmaxinvoicing_days = NULL;
+    }
     if (!i_ezmaxinvoicing_days) {
         goto end;
     }
@@ -319,6 +355,9 @@ ezmaxinvoicing_response_t *ezmaxinvoicing_response_parseFromJSON(cJSON *ezmaxinv
 
     // ezmaxinvoicing_response->e_ezmaxinvoicing_paymenttype
     cJSON *e_ezmaxinvoicing_paymenttype = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicing_responseJSON, "eEzmaxinvoicingPaymenttype");
+    if (cJSON_IsNull(e_ezmaxinvoicing_paymenttype)) {
+        e_ezmaxinvoicing_paymenttype = NULL;
+    }
     if (!e_ezmaxinvoicing_paymenttype) {
         goto end;
     }
@@ -328,6 +367,9 @@ ezmaxinvoicing_response_t *ezmaxinvoicing_response_parseFromJSON(cJSON *ezmaxinv
 
     // ezmaxinvoicing_response->d_ezmaxinvoicing_rebatepaymenttype
     cJSON *d_ezmaxinvoicing_rebatepaymenttype = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicing_responseJSON, "dEzmaxinvoicingRebatepaymenttype");
+    if (cJSON_IsNull(d_ezmaxinvoicing_rebatepaymenttype)) {
+        d_ezmaxinvoicing_rebatepaymenttype = NULL;
+    }
     if (!d_ezmaxinvoicing_rebatepaymenttype) {
         goto end;
     }
@@ -340,6 +382,9 @@ ezmaxinvoicing_response_t *ezmaxinvoicing_response_parseFromJSON(cJSON *ezmaxinv
 
     // ezmaxinvoicing_response->i_ezmaxinvoicing_contractlength
     cJSON *i_ezmaxinvoicing_contractlength = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicing_responseJSON, "iEzmaxinvoicingContractlength");
+    if (cJSON_IsNull(i_ezmaxinvoicing_contractlength)) {
+        i_ezmaxinvoicing_contractlength = NULL;
+    }
     if (!i_ezmaxinvoicing_contractlength) {
         goto end;
     }
@@ -352,6 +397,9 @@ ezmaxinvoicing_response_t *ezmaxinvoicing_response_parseFromJSON(cJSON *ezmaxinv
 
     // ezmaxinvoicing_response->d_ezmaxinvoicing_rebatecontractlength
     cJSON *d_ezmaxinvoicing_rebatecontractlength = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicing_responseJSON, "dEzmaxinvoicingRebatecontractlength");
+    if (cJSON_IsNull(d_ezmaxinvoicing_rebatecontractlength)) {
+        d_ezmaxinvoicing_rebatecontractlength = NULL;
+    }
     if (!d_ezmaxinvoicing_rebatecontractlength) {
         goto end;
     }
@@ -364,6 +412,9 @@ ezmaxinvoicing_response_t *ezmaxinvoicing_response_parseFromJSON(cJSON *ezmaxinv
 
     // ezmaxinvoicing_response->b_ezmaxinvoicing_rebate_ezsignallagents
     cJSON *b_ezmaxinvoicing_rebate_ezsignallagents = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicing_responseJSON, "bEzmaxinvoicingRebateEzsignallagents");
+    if (cJSON_IsNull(b_ezmaxinvoicing_rebate_ezsignallagents)) {
+        b_ezmaxinvoicing_rebate_ezsignallagents = NULL;
+    }
     if (!b_ezmaxinvoicing_rebate_ezsignallagents) {
         goto end;
     }
@@ -376,12 +427,15 @@ ezmaxinvoicing_response_t *ezmaxinvoicing_response_parseFromJSON(cJSON *ezmaxinv
 
     // ezmaxinvoicing_response->obj_audit
     cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(ezmaxinvoicing_responseJSON, "objAudit");
+    if (cJSON_IsNull(obj_audit)) {
+        obj_audit = NULL;
+    }
     if (obj_audit) { 
     obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
     }
 
 
-    ezmaxinvoicing_response_local_var = ezmaxinvoicing_response_create (
+    ezmaxinvoicing_response_local_var = ezmaxinvoicing_response_create_internal (
         pki_ezmaxinvoicing_id ? pki_ezmaxinvoicing_id->valuedouble : 0,
         fki_ezmaxinvoicingcontract_id->valuedouble,
         fki_ezmaxpricing_id->valuedouble,
@@ -400,8 +454,7 @@ ezmaxinvoicing_response_t *ezmaxinvoicing_response_parseFromJSON(cJSON *ezmaxinv
     return ezmaxinvoicing_response_local_var;
 end:
     if (e_ezmaxinvoicing_paymenttype_local_nonprim) {
-        field_e_ezmaxinvoicing_paymenttype_free(e_ezmaxinvoicing_paymenttype_local_nonprim);
-        e_ezmaxinvoicing_paymenttype_local_nonprim = NULL;
+        e_ezmaxinvoicing_paymenttype_local_nonprim = 0;
     }
     if (obj_audit_local_nonprim) {
         common_audit_free(obj_audit_local_nonprim);

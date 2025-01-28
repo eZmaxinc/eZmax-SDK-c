@@ -5,7 +5,7 @@
 
 
 
-subnet_create_object_v1_response_m_payload_t *subnet_create_object_v1_response_m_payload_create(
+static subnet_create_object_v1_response_m_payload_t *subnet_create_object_v1_response_m_payload_create_internal(
     list_t *a_pki_subnet_id
     ) {
     subnet_create_object_v1_response_m_payload_t *subnet_create_object_v1_response_m_payload_local_var = malloc(sizeof(subnet_create_object_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ subnet_create_object_v1_response_m_payload_t *subnet_create_object_v1_response_m
     }
     subnet_create_object_v1_response_m_payload_local_var->a_pki_subnet_id = a_pki_subnet_id;
 
+    subnet_create_object_v1_response_m_payload_local_var->_library_owned = 1;
     return subnet_create_object_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) subnet_create_object_v1_response_m_payload_t *subnet_create_object_v1_response_m_payload_create(
+    list_t *a_pki_subnet_id
+    ) {
+    return subnet_create_object_v1_response_m_payload_create_internal (
+        a_pki_subnet_id
+        );
+}
 
 void subnet_create_object_v1_response_m_payload_free(subnet_create_object_v1_response_m_payload_t *subnet_create_object_v1_response_m_payload) {
     if(NULL == subnet_create_object_v1_response_m_payload){
+        return ;
+    }
+    if(subnet_create_object_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "subnet_create_object_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +82,9 @@ subnet_create_object_v1_response_m_payload_t *subnet_create_object_v1_response_m
 
     // subnet_create_object_v1_response_m_payload->a_pki_subnet_id
     cJSON *a_pki_subnet_id = cJSON_GetObjectItemCaseSensitive(subnet_create_object_v1_response_m_payloadJSON, "a_pkiSubnetID");
+    if (cJSON_IsNull(a_pki_subnet_id)) {
+        a_pki_subnet_id = NULL;
+    }
     if (!a_pki_subnet_id) {
         goto end;
     }
@@ -87,7 +102,7 @@ subnet_create_object_v1_response_m_payload_t *subnet_create_object_v1_response_m
         {
             goto end;
         }
-        double *a_pki_subnet_id_local_value = (double *)calloc(1, sizeof(double));
+        double *a_pki_subnet_id_local_value = calloc(1, sizeof(double));
         if(!a_pki_subnet_id_local_value)
         {
             goto end;
@@ -97,7 +112,7 @@ subnet_create_object_v1_response_m_payload_t *subnet_create_object_v1_response_m
     }
 
 
-    subnet_create_object_v1_response_m_payload_local_var = subnet_create_object_v1_response_m_payload_create (
+    subnet_create_object_v1_response_m_payload_local_var = subnet_create_object_v1_response_m_payload_create_internal (
         a_pki_subnet_idList
         );
 

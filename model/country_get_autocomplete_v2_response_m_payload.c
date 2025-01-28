@@ -5,7 +5,7 @@
 
 
 
-country_get_autocomplete_v2_response_m_payload_t *country_get_autocomplete_v2_response_m_payload_create(
+static country_get_autocomplete_v2_response_m_payload_t *country_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_country
     ) {
     country_get_autocomplete_v2_response_m_payload_t *country_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(country_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ country_get_autocomplete_v2_response_m_payload_t *country_get_autocomplete_v2_re
     }
     country_get_autocomplete_v2_response_m_payload_local_var->a_obj_country = a_obj_country;
 
+    country_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return country_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) country_get_autocomplete_v2_response_m_payload_t *country_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_country
+    ) {
+    return country_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_country
+        );
+}
 
 void country_get_autocomplete_v2_response_m_payload_free(country_get_autocomplete_v2_response_m_payload_t *country_get_autocomplete_v2_response_m_payload) {
     if(NULL == country_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(country_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "country_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ country_get_autocomplete_v2_response_m_payload_t *country_get_autocomplete_v2_re
 
     // country_get_autocomplete_v2_response_m_payload->a_obj_country
     cJSON *a_obj_country = cJSON_GetObjectItemCaseSensitive(country_get_autocomplete_v2_response_m_payloadJSON, "a_objCountry");
+    if (cJSON_IsNull(a_obj_country)) {
+        a_obj_country = NULL;
+    }
     if (!a_obj_country) {
         goto end;
     }
@@ -96,7 +111,7 @@ country_get_autocomplete_v2_response_m_payload_t *country_get_autocomplete_v2_re
     }
 
 
-    country_get_autocomplete_v2_response_m_payload_local_var = country_get_autocomplete_v2_response_m_payload_create (
+    country_get_autocomplete_v2_response_m_payload_local_var = country_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_countryList
         );
 

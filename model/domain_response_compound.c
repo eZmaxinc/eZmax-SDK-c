@@ -5,7 +5,7 @@
 
 
 
-domain_response_compound_t *domain_response_compound_create(
+static domain_response_compound_t *domain_response_compound_create_internal(
     int pki_domain_id,
     char *s_domain_name,
     int b_domain_validdkim,
@@ -26,12 +26,36 @@ domain_response_compound_t *domain_response_compound_create(
     domain_response_compound_local_var->obj_audit = obj_audit;
     domain_response_compound_local_var->a_obj_dnsrecord = a_obj_dnsrecord;
 
+    domain_response_compound_local_var->_library_owned = 1;
     return domain_response_compound_local_var;
 }
 
+__attribute__((deprecated)) domain_response_compound_t *domain_response_compound_create(
+    int pki_domain_id,
+    char *s_domain_name,
+    int b_domain_validdkim,
+    int b_domain_validmailfrom,
+    int b_domain_validcustomer,
+    common_audit_t *obj_audit,
+    list_t *a_obj_dnsrecord
+    ) {
+    return domain_response_compound_create_internal (
+        pki_domain_id,
+        s_domain_name,
+        b_domain_validdkim,
+        b_domain_validmailfrom,
+        b_domain_validcustomer,
+        obj_audit,
+        a_obj_dnsrecord
+        );
+}
 
 void domain_response_compound_free(domain_response_compound_t *domain_response_compound) {
     if(NULL == domain_response_compound){
+        return ;
+    }
+    if(domain_response_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "domain_response_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -45,7 +69,7 @@ void domain_response_compound_free(domain_response_compound_t *domain_response_c
     }
     if (domain_response_compound->a_obj_dnsrecord) {
         list_ForEach(listEntry, domain_response_compound->a_obj_dnsrecord) {
-            object_free(listEntry->data);
+            custom_dnsrecord_response_free(listEntry->data);
         }
         list_freeList(domain_response_compound->a_obj_dnsrecord);
         domain_response_compound->a_obj_dnsrecord = NULL;
@@ -127,7 +151,7 @@ cJSON *domain_response_compound_convertToJSON(domain_response_compound_t *domain
     listEntry_t *a_obj_dnsrecordListEntry;
     if (domain_response_compound->a_obj_dnsrecord) {
     list_ForEach(a_obj_dnsrecordListEntry, domain_response_compound->a_obj_dnsrecord) {
-    cJSON *itemLocal = object_convertToJSON(a_obj_dnsrecordListEntry->data);
+    cJSON *itemLocal = custom_dnsrecord_response_convertToJSON(a_obj_dnsrecordListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -155,6 +179,9 @@ domain_response_compound_t *domain_response_compound_parseFromJSON(cJSON *domain
 
     // domain_response_compound->pki_domain_id
     cJSON *pki_domain_id = cJSON_GetObjectItemCaseSensitive(domain_response_compoundJSON, "pkiDomainID");
+    if (cJSON_IsNull(pki_domain_id)) {
+        pki_domain_id = NULL;
+    }
     if (!pki_domain_id) {
         goto end;
     }
@@ -167,6 +194,9 @@ domain_response_compound_t *domain_response_compound_parseFromJSON(cJSON *domain
 
     // domain_response_compound->s_domain_name
     cJSON *s_domain_name = cJSON_GetObjectItemCaseSensitive(domain_response_compoundJSON, "sDomainName");
+    if (cJSON_IsNull(s_domain_name)) {
+        s_domain_name = NULL;
+    }
     if (!s_domain_name) {
         goto end;
     }
@@ -179,6 +209,9 @@ domain_response_compound_t *domain_response_compound_parseFromJSON(cJSON *domain
 
     // domain_response_compound->b_domain_validdkim
     cJSON *b_domain_validdkim = cJSON_GetObjectItemCaseSensitive(domain_response_compoundJSON, "bDomainValiddkim");
+    if (cJSON_IsNull(b_domain_validdkim)) {
+        b_domain_validdkim = NULL;
+    }
     if (!b_domain_validdkim) {
         goto end;
     }
@@ -191,6 +224,9 @@ domain_response_compound_t *domain_response_compound_parseFromJSON(cJSON *domain
 
     // domain_response_compound->b_domain_validmailfrom
     cJSON *b_domain_validmailfrom = cJSON_GetObjectItemCaseSensitive(domain_response_compoundJSON, "bDomainValidmailfrom");
+    if (cJSON_IsNull(b_domain_validmailfrom)) {
+        b_domain_validmailfrom = NULL;
+    }
     if (!b_domain_validmailfrom) {
         goto end;
     }
@@ -203,6 +239,9 @@ domain_response_compound_t *domain_response_compound_parseFromJSON(cJSON *domain
 
     // domain_response_compound->b_domain_validcustomer
     cJSON *b_domain_validcustomer = cJSON_GetObjectItemCaseSensitive(domain_response_compoundJSON, "bDomainValidcustomer");
+    if (cJSON_IsNull(b_domain_validcustomer)) {
+        b_domain_validcustomer = NULL;
+    }
     if (!b_domain_validcustomer) {
         goto end;
     }
@@ -215,6 +254,9 @@ domain_response_compound_t *domain_response_compound_parseFromJSON(cJSON *domain
 
     // domain_response_compound->obj_audit
     cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(domain_response_compoundJSON, "objAudit");
+    if (cJSON_IsNull(obj_audit)) {
+        obj_audit = NULL;
+    }
     if (!obj_audit) {
         goto end;
     }
@@ -224,6 +266,9 @@ domain_response_compound_t *domain_response_compound_parseFromJSON(cJSON *domain
 
     // domain_response_compound->a_obj_dnsrecord
     cJSON *a_obj_dnsrecord = cJSON_GetObjectItemCaseSensitive(domain_response_compoundJSON, "a_objDnsrecord");
+    if (cJSON_IsNull(a_obj_dnsrecord)) {
+        a_obj_dnsrecord = NULL;
+    }
     if (!a_obj_dnsrecord) {
         goto end;
     }
@@ -241,13 +286,13 @@ domain_response_compound_t *domain_response_compound_parseFromJSON(cJSON *domain
         if(!cJSON_IsObject(a_obj_dnsrecord_local_nonprimitive)){
             goto end;
         }
-        object_t *a_obj_dnsrecordItem = object_parseFromJSON(a_obj_dnsrecord_local_nonprimitive);
+        custom_dnsrecord_response_t *a_obj_dnsrecordItem = custom_dnsrecord_response_parseFromJSON(a_obj_dnsrecord_local_nonprimitive);
 
         list_addElement(a_obj_dnsrecordList, a_obj_dnsrecordItem);
     }
 
 
-    domain_response_compound_local_var = domain_response_compound_create (
+    domain_response_compound_local_var = domain_response_compound_create_internal (
         pki_domain_id->valuedouble,
         strdup(s_domain_name->valuestring),
         b_domain_validdkim->valueint,
@@ -266,7 +311,7 @@ end:
     if (a_obj_dnsrecordList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_dnsrecordList) {
-            object_free(listEntry->data);
+            custom_dnsrecord_response_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_dnsrecordList);

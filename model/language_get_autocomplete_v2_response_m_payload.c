@@ -5,7 +5,7 @@
 
 
 
-language_get_autocomplete_v2_response_m_payload_t *language_get_autocomplete_v2_response_m_payload_create(
+static language_get_autocomplete_v2_response_m_payload_t *language_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_language
     ) {
     language_get_autocomplete_v2_response_m_payload_t *language_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(language_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ language_get_autocomplete_v2_response_m_payload_t *language_get_autocomplete_v2_
     }
     language_get_autocomplete_v2_response_m_payload_local_var->a_obj_language = a_obj_language;
 
+    language_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return language_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) language_get_autocomplete_v2_response_m_payload_t *language_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_language
+    ) {
+    return language_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_language
+        );
+}
 
 void language_get_autocomplete_v2_response_m_payload_free(language_get_autocomplete_v2_response_m_payload_t *language_get_autocomplete_v2_response_m_payload) {
     if(NULL == language_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(language_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "language_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ language_get_autocomplete_v2_response_m_payload_t *language_get_autocomplete_v2_
 
     // language_get_autocomplete_v2_response_m_payload->a_obj_language
     cJSON *a_obj_language = cJSON_GetObjectItemCaseSensitive(language_get_autocomplete_v2_response_m_payloadJSON, "a_objLanguage");
+    if (cJSON_IsNull(a_obj_language)) {
+        a_obj_language = NULL;
+    }
     if (!a_obj_language) {
         goto end;
     }
@@ -96,7 +111,7 @@ language_get_autocomplete_v2_response_m_payload_t *language_get_autocomplete_v2_
     }
 
 
-    language_get_autocomplete_v2_response_m_payload_local_var = language_get_autocomplete_v2_response_m_payload_create (
+    language_get_autocomplete_v2_response_m_payload_local_var = language_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_languageList
         );
 

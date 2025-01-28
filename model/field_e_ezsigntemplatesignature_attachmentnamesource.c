@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsigntemplatesignature_attachmentnamesource_
     return 0;
 }
 
-cJSON *field_e_ezsigntemplatesignature_attachmentnamesource_field_e_ezsigntemplatesignature_attachmentnamesource_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplatesignature_attachmentnamesource__e field_e_ezsigntemplatesignature_attachmentnamesource) {
+cJSON *field_e_ezsigntemplatesignature_attachmentnamesource_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplatesignature_attachmentnamesource__e field_e_ezsigntemplatesignature_attachmentnamesource) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsigntemplatesignature_attachmentnamesource", field_e_ezsigntemplatesignature_attachmentnamesource_field_e_ezsigntemplatesignature_attachmentnamesource_ToString(field_e_ezsigntemplatesignature_attachmentnamesource)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsigntemplatesignature_attachmentnamesource__e field_e_ezsigntemplatesignature_attachmentnamesource_field_e_ezsigntemplatesignature_attachmentnamesource_parseFromJSON(cJSON *field_e_ezsigntemplatesignature_attachmentnamesourceJSON) {
-    ezmax_api_definition__full_field_e_ezsigntemplatesignature_attachmentnamesource__e *field_e_ezsigntemplatesignature_attachmentnamesource = NULL;
-    ezmax_api_definition__full_field_e_ezsigntemplatesignature_attachmentnamesource__e field_e_ezsigntemplatesignature_attachmentnamesourceVariable;
-    cJSON *field_e_ezsigntemplatesignature_attachmentnamesourceVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsigntemplatesignature_attachmentnamesourceJSON, "field_e_ezsigntemplatesignature_attachmentnamesource");
-    if(!cJSON_IsString(field_e_ezsigntemplatesignature_attachmentnamesourceVar) || (field_e_ezsigntemplatesignature_attachmentnamesourceVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsigntemplatesignature_attachmentnamesource__e field_e_ezsigntemplatesignature_attachmentnamesource_parseFromJSON(cJSON *field_e_ezsigntemplatesignature_attachmentnamesourceJSON) {
+    if(!cJSON_IsString(field_e_ezsigntemplatesignature_attachmentnamesourceJSON) || (field_e_ezsigntemplatesignature_attachmentnamesourceJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsigntemplatesignature_attachmentnamesourceVariable = field_e_ezsigntemplatesignature_attachmentnamesource_field_e_ezsigntemplatesignature_attachmentnamesource_FromString(field_e_ezsigntemplatesignature_attachmentnamesourceVar->valuestring);
-    return field_e_ezsigntemplatesignature_attachmentnamesourceVariable;
-end:
-    return 0;
+    return field_e_ezsigntemplatesignature_attachmentnamesource_field_e_ezsigntemplatesignature_attachmentnamesource_FromString(field_e_ezsigntemplatesignature_attachmentnamesourceJSON->valuestring);
 }

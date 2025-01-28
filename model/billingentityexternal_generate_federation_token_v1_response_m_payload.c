@@ -5,7 +5,7 @@
 
 
 
-billingentityexternal_generate_federation_token_v1_response_m_payload_t *billingentityexternal_generate_federation_token_v1_response_m_payload_create(
+static billingentityexternal_generate_federation_token_v1_response_m_payload_t *billingentityexternal_generate_federation_token_v1_response_m_payload_create_internal(
     custom_apikeyfederation_t *obj_apikeyfederation,
     char *s_ezmaxcustomercode_url
     ) {
@@ -16,12 +16,26 @@ billingentityexternal_generate_federation_token_v1_response_m_payload_t *billing
     billingentityexternal_generate_federation_token_v1_response_m_payload_local_var->obj_apikeyfederation = obj_apikeyfederation;
     billingentityexternal_generate_federation_token_v1_response_m_payload_local_var->s_ezmaxcustomercode_url = s_ezmaxcustomercode_url;
 
+    billingentityexternal_generate_federation_token_v1_response_m_payload_local_var->_library_owned = 1;
     return billingentityexternal_generate_federation_token_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) billingentityexternal_generate_federation_token_v1_response_m_payload_t *billingentityexternal_generate_federation_token_v1_response_m_payload_create(
+    custom_apikeyfederation_t *obj_apikeyfederation,
+    char *s_ezmaxcustomercode_url
+    ) {
+    return billingentityexternal_generate_federation_token_v1_response_m_payload_create_internal (
+        obj_apikeyfederation,
+        s_ezmaxcustomercode_url
+        );
+}
 
 void billingentityexternal_generate_federation_token_v1_response_m_payload_free(billingentityexternal_generate_federation_token_v1_response_m_payload_t *billingentityexternal_generate_federation_token_v1_response_m_payload) {
     if(NULL == billingentityexternal_generate_federation_token_v1_response_m_payload){
+        return ;
+    }
+    if(billingentityexternal_generate_federation_token_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "billingentityexternal_generate_federation_token_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -78,6 +92,9 @@ billingentityexternal_generate_federation_token_v1_response_m_payload_t *billing
 
     // billingentityexternal_generate_federation_token_v1_response_m_payload->obj_apikeyfederation
     cJSON *obj_apikeyfederation = cJSON_GetObjectItemCaseSensitive(billingentityexternal_generate_federation_token_v1_response_m_payloadJSON, "objApikeyfederation");
+    if (cJSON_IsNull(obj_apikeyfederation)) {
+        obj_apikeyfederation = NULL;
+    }
     if (!obj_apikeyfederation) {
         goto end;
     }
@@ -87,6 +104,9 @@ billingentityexternal_generate_federation_token_v1_response_m_payload_t *billing
 
     // billingentityexternal_generate_federation_token_v1_response_m_payload->s_ezmaxcustomercode_url
     cJSON *s_ezmaxcustomercode_url = cJSON_GetObjectItemCaseSensitive(billingentityexternal_generate_federation_token_v1_response_m_payloadJSON, "sEzmaxcustomercodeUrl");
+    if (cJSON_IsNull(s_ezmaxcustomercode_url)) {
+        s_ezmaxcustomercode_url = NULL;
+    }
     if (!s_ezmaxcustomercode_url) {
         goto end;
     }
@@ -98,7 +118,7 @@ billingentityexternal_generate_federation_token_v1_response_m_payload_t *billing
     }
 
 
-    billingentityexternal_generate_federation_token_v1_response_m_payload_local_var = billingentityexternal_generate_federation_token_v1_response_m_payload_create (
+    billingentityexternal_generate_federation_token_v1_response_m_payload_local_var = billingentityexternal_generate_federation_token_v1_response_m_payload_create_internal (
         obj_apikeyfederation_local_nonprim,
         strdup(s_ezmaxcustomercode_url->valuestring)
         );

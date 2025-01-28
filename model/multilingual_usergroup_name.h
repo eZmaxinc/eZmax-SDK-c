@@ -22,9 +22,10 @@ typedef struct multilingual_usergroup_name_t {
     char *s_usergroup_name1; // string
     char *s_usergroup_name2; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } multilingual_usergroup_name_t;
 
-multilingual_usergroup_name_t *multilingual_usergroup_name_create(
+__attribute__((deprecated)) multilingual_usergroup_name_t *multilingual_usergroup_name_create(
     char *s_usergroup_name1,
     char *s_usergroup_name2
 );

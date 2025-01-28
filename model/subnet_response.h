@@ -27,9 +27,10 @@ typedef struct subnet_response_t {
     long i_subnet_network; //numeric
     long i_subnet_mask; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } subnet_response_t;
 
-subnet_response_t *subnet_response_create(
+__attribute__((deprecated)) subnet_response_t *subnet_response_create(
     int pki_subnet_id,
     int fki_user_id,
     int fki_apikey_id,

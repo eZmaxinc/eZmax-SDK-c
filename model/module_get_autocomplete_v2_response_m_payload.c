@@ -5,7 +5,7 @@
 
 
 
-module_get_autocomplete_v2_response_m_payload_t *module_get_autocomplete_v2_response_m_payload_create(
+static module_get_autocomplete_v2_response_m_payload_t *module_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_module
     ) {
     module_get_autocomplete_v2_response_m_payload_t *module_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(module_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ module_get_autocomplete_v2_response_m_payload_t *module_get_autocomplete_v2_resp
     }
     module_get_autocomplete_v2_response_m_payload_local_var->a_obj_module = a_obj_module;
 
+    module_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return module_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) module_get_autocomplete_v2_response_m_payload_t *module_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_module
+    ) {
+    return module_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_module
+        );
+}
 
 void module_get_autocomplete_v2_response_m_payload_free(module_get_autocomplete_v2_response_m_payload_t *module_get_autocomplete_v2_response_m_payload) {
     if(NULL == module_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(module_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "module_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ module_get_autocomplete_v2_response_m_payload_t *module_get_autocomplete_v2_resp
 
     // module_get_autocomplete_v2_response_m_payload->a_obj_module
     cJSON *a_obj_module = cJSON_GetObjectItemCaseSensitive(module_get_autocomplete_v2_response_m_payloadJSON, "a_objModule");
+    if (cJSON_IsNull(a_obj_module)) {
+        a_obj_module = NULL;
+    }
     if (!a_obj_module) {
         goto end;
     }
@@ -96,7 +111,7 @@ module_get_autocomplete_v2_response_m_payload_t *module_get_autocomplete_v2_resp
     }
 
 
-    module_get_autocomplete_v2_response_m_payload_local_var = module_get_autocomplete_v2_response_m_payload_create (
+    module_get_autocomplete_v2_response_m_payload_local_var = module_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_moduleList
         );
 

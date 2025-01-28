@@ -15,16 +15,17 @@
 
 typedef struct ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response_m_payload_t ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response_m_payload_t;
 
-#include "ezsigntemplatedocumentpage_response.h"
+#include "ezsigntemplatedocumentpage_response_compound.h"
 
 
 
 typedef struct ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response_m_payload_t {
     list_t *a_obj_ezsigntemplatedocumentpage; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response_m_payload_t;
 
-ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response_m_payload_t *ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response_m_payload_create(
+__attribute__((deprecated)) ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response_m_payload_t *ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response_m_payload_create(
     list_t *a_obj_ezsigntemplatedocumentpage
 );
 

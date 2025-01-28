@@ -5,7 +5,7 @@
 
 
 
-subnet_request_t *subnet_request_create(
+static subnet_request_t *subnet_request_create_internal(
     int pki_subnet_id,
     int fki_user_id,
     int fki_apikey_id,
@@ -24,12 +24,34 @@ subnet_request_t *subnet_request_create(
     subnet_request_local_var->i_subnet_network = i_subnet_network;
     subnet_request_local_var->i_subnet_mask = i_subnet_mask;
 
+    subnet_request_local_var->_library_owned = 1;
     return subnet_request_local_var;
 }
 
+__attribute__((deprecated)) subnet_request_t *subnet_request_create(
+    int pki_subnet_id,
+    int fki_user_id,
+    int fki_apikey_id,
+    multilingual_subnet_description_t *obj_subnet_description,
+    long i_subnet_network,
+    long i_subnet_mask
+    ) {
+    return subnet_request_create_internal (
+        pki_subnet_id,
+        fki_user_id,
+        fki_apikey_id,
+        obj_subnet_description,
+        i_subnet_network,
+        i_subnet_mask
+        );
+}
 
 void subnet_request_free(subnet_request_t *subnet_request) {
     if(NULL == subnet_request){
+        return ;
+    }
+    if(subnet_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "subnet_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -115,6 +137,9 @@ subnet_request_t *subnet_request_parseFromJSON(cJSON *subnet_requestJSON){
 
     // subnet_request->pki_subnet_id
     cJSON *pki_subnet_id = cJSON_GetObjectItemCaseSensitive(subnet_requestJSON, "pkiSubnetID");
+    if (cJSON_IsNull(pki_subnet_id)) {
+        pki_subnet_id = NULL;
+    }
     if (pki_subnet_id) { 
     if(!cJSON_IsNumber(pki_subnet_id))
     {
@@ -124,6 +149,9 @@ subnet_request_t *subnet_request_parseFromJSON(cJSON *subnet_requestJSON){
 
     // subnet_request->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(subnet_requestJSON, "fkiUserID");
+    if (cJSON_IsNull(fki_user_id)) {
+        fki_user_id = NULL;
+    }
     if (fki_user_id) { 
     if(!cJSON_IsNumber(fki_user_id))
     {
@@ -133,6 +161,9 @@ subnet_request_t *subnet_request_parseFromJSON(cJSON *subnet_requestJSON){
 
     // subnet_request->fki_apikey_id
     cJSON *fki_apikey_id = cJSON_GetObjectItemCaseSensitive(subnet_requestJSON, "fkiApikeyID");
+    if (cJSON_IsNull(fki_apikey_id)) {
+        fki_apikey_id = NULL;
+    }
     if (fki_apikey_id) { 
     if(!cJSON_IsNumber(fki_apikey_id))
     {
@@ -142,6 +173,9 @@ subnet_request_t *subnet_request_parseFromJSON(cJSON *subnet_requestJSON){
 
     // subnet_request->obj_subnet_description
     cJSON *obj_subnet_description = cJSON_GetObjectItemCaseSensitive(subnet_requestJSON, "objSubnetDescription");
+    if (cJSON_IsNull(obj_subnet_description)) {
+        obj_subnet_description = NULL;
+    }
     if (!obj_subnet_description) {
         goto end;
     }
@@ -151,6 +185,9 @@ subnet_request_t *subnet_request_parseFromJSON(cJSON *subnet_requestJSON){
 
     // subnet_request->i_subnet_network
     cJSON *i_subnet_network = cJSON_GetObjectItemCaseSensitive(subnet_requestJSON, "iSubnetNetwork");
+    if (cJSON_IsNull(i_subnet_network)) {
+        i_subnet_network = NULL;
+    }
     if (!i_subnet_network) {
         goto end;
     }
@@ -163,6 +200,9 @@ subnet_request_t *subnet_request_parseFromJSON(cJSON *subnet_requestJSON){
 
     // subnet_request->i_subnet_mask
     cJSON *i_subnet_mask = cJSON_GetObjectItemCaseSensitive(subnet_requestJSON, "iSubnetMask");
+    if (cJSON_IsNull(i_subnet_mask)) {
+        i_subnet_mask = NULL;
+    }
     if (!i_subnet_mask) {
         goto end;
     }
@@ -174,7 +214,7 @@ subnet_request_t *subnet_request_parseFromJSON(cJSON *subnet_requestJSON){
     }
 
 
-    subnet_request_local_var = subnet_request_create (
+    subnet_request_local_var = subnet_request_create_internal (
         pki_subnet_id ? pki_subnet_id->valuedouble : 0,
         fki_user_id ? fki_user_id->valuedouble : 0,
         fki_apikey_id ? fki_apikey_id->valuedouble : 0,

@@ -50,7 +50,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectAuthenticationexternalAPI_authenticationexternalDeleteObjectV1(apiClient_t *apiClient, int *pkiAuthenticationexternalID);
+authenticationexternal_delete_object_v1_response_t* ObjectAuthenticationexternalAPI_authenticationexternalDeleteObjectV1(apiClient_t *apiClient, int *pkiAuthenticationexternalID);
 ```
 
 ### Parameters
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[authenticationexternal_delete_object_v1_response_t](authenticationexternal_delete_object_v1_response.md) *
 
 
 ### Authorization
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectAuthenticationexternalAPI_authenticationexternalEditObjectV1(apiClient_t *apiClient, int *pkiAuthenticationexternalID, authenticationexternal_edit_object_v1_request_t *authenticationexternal_edit_object_v1_request);
+authenticationexternal_edit_object_v1_response_t* ObjectAuthenticationexternalAPI_authenticationexternalEditObjectV1(apiClient_t *apiClient, int *pkiAuthenticationexternalID, authenticationexternal_edit_object_v1_request_t *authenticationexternal_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[authenticationexternal_edit_object_v1_response_t](authenticationexternal_edit_object_v1_response.md) *
 
 
 ### Authorization
@@ -213,7 +213,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectAuthenticationexternalAPI_authenticationexternalResetAuthorizationV1(apiClient_t *apiClient, int *pkiAuthenticationexternalID, object_t *body);
+authenticationexternal_reset_authorization_v1_response_t* ObjectAuthenticationexternalAPI_authenticationexternalResetAuthorizationV1(apiClient_t *apiClient, int *pkiAuthenticationexternalID, object_t *body);
 ```
 
 ### Parameters
@@ -225,7 +225,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[authenticationexternal_reset_authorization_v1_response_t](authenticationexternal_reset_authorization_v1_response.md) *
 
 
 ### Authorization

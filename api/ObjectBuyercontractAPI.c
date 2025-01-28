@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Retrieve Communication count
@@ -25,15 +20,18 @@ ObjectBuyercontractAPI_buyercontractGetCommunicationCountV1(apiClient_t *apiClie
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/buyercontract/{pkiBuyercontractID}/getCommunicationCount")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/buyercontract/{pkiBuyercontractID}/getCommunicationCount");
+    char *localVarPath = strdup("/1/object/buyercontract/{pkiBuyercontractID}/getCommunicationCount");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiBuyercontractID =  + strlen("{ pkiBuyercontractID }");
+    long sizeOfPathParams_pkiBuyercontractID =  + sizeof("{ pkiBuyercontractID }") - 1;
     if(pkiBuyercontractID == 0){
         goto end;
     }
@@ -41,7 +39,7 @@ ObjectBuyercontractAPI_buyercontractGetCommunicationCountV1(apiClient_t *apiClie
     snprintf(localVarToReplace_pkiBuyercontractID, sizeOfPathParams_pkiBuyercontractID, "{%s}", "pkiBuyercontractID");
 
     char localVarBuff_pkiBuyercontractID[256];
-    intToStr(localVarBuff_pkiBuyercontractID, *pkiBuyercontractID);
+    snprintf(localVarBuff_pkiBuyercontractID, sizeof localVarBuff_pkiBuyercontractID, "%ld", (long)*pkiBuyercontractID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiBuyercontractID, localVarBuff_pkiBuyercontractID);
 
@@ -56,6 +54,7 @@ ObjectBuyercontractAPI_buyercontractGetCommunicationCountV1(apiClient_t *apiClie
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -67,11 +66,14 @@ ObjectBuyercontractAPI_buyercontractGetCommunicationCountV1(apiClient_t *apiClie
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectBuyercontractAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    buyercontract_get_communication_count_v1_response_t *elementToReturn = buyercontract_get_communication_count_v1_response_parseFromJSON(ObjectBuyercontractAPIlocalVarJSON);
-    cJSON_Delete(ObjectBuyercontractAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    buyercontract_get_communication_count_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectBuyercontractAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = buyercontract_get_communication_count_v1_response_parseFromJSON(ObjectBuyercontractAPIlocalVarJSON);
+        cJSON_Delete(ObjectBuyercontractAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -107,15 +109,18 @@ ObjectBuyercontractAPI_buyercontractGetCommunicationListV1(apiClient_t *apiClien
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/buyercontract/{pkiBuyercontractID}/getCommunicationList")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/buyercontract/{pkiBuyercontractID}/getCommunicationList");
+    char *localVarPath = strdup("/1/object/buyercontract/{pkiBuyercontractID}/getCommunicationList");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiBuyercontractID =  + strlen("{ pkiBuyercontractID }");
+    long sizeOfPathParams_pkiBuyercontractID =  + sizeof("{ pkiBuyercontractID }") - 1;
     if(pkiBuyercontractID == 0){
         goto end;
     }
@@ -123,7 +128,7 @@ ObjectBuyercontractAPI_buyercontractGetCommunicationListV1(apiClient_t *apiClien
     snprintf(localVarToReplace_pkiBuyercontractID, sizeOfPathParams_pkiBuyercontractID, "{%s}", "pkiBuyercontractID");
 
     char localVarBuff_pkiBuyercontractID[256];
-    intToStr(localVarBuff_pkiBuyercontractID, *pkiBuyercontractID);
+    snprintf(localVarBuff_pkiBuyercontractID, sizeof localVarBuff_pkiBuyercontractID, "%ld", (long)*pkiBuyercontractID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiBuyercontractID, localVarBuff_pkiBuyercontractID);
 
@@ -138,6 +143,7 @@ ObjectBuyercontractAPI_buyercontractGetCommunicationListV1(apiClient_t *apiClien
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -149,11 +155,14 @@ ObjectBuyercontractAPI_buyercontractGetCommunicationListV1(apiClient_t *apiClien
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectBuyercontractAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    buyercontract_get_communication_list_v1_response_t *elementToReturn = buyercontract_get_communication_list_v1_response_parseFromJSON(ObjectBuyercontractAPIlocalVarJSON);
-    cJSON_Delete(ObjectBuyercontractAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    buyercontract_get_communication_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectBuyercontractAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = buyercontract_get_communication_list_v1_response_parseFromJSON(ObjectBuyercontractAPIlocalVarJSON);
+        cJSON_Delete(ObjectBuyercontractAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -189,15 +198,18 @@ ObjectBuyercontractAPI_buyercontractGetCommunicationrecipientsV1(apiClient_t *ap
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/buyercontract/{pkiBuyercontractID}/getCommunicationrecipients")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/buyercontract/{pkiBuyercontractID}/getCommunicationrecipients");
+    char *localVarPath = strdup("/1/object/buyercontract/{pkiBuyercontractID}/getCommunicationrecipients");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiBuyercontractID =  + strlen("{ pkiBuyercontractID }");
+    long sizeOfPathParams_pkiBuyercontractID =  + sizeof("{ pkiBuyercontractID }") - 1;
     if(pkiBuyercontractID == 0){
         goto end;
     }
@@ -205,7 +217,7 @@ ObjectBuyercontractAPI_buyercontractGetCommunicationrecipientsV1(apiClient_t *ap
     snprintf(localVarToReplace_pkiBuyercontractID, sizeOfPathParams_pkiBuyercontractID, "{%s}", "pkiBuyercontractID");
 
     char localVarBuff_pkiBuyercontractID[256];
-    intToStr(localVarBuff_pkiBuyercontractID, *pkiBuyercontractID);
+    snprintf(localVarBuff_pkiBuyercontractID, sizeof localVarBuff_pkiBuyercontractID, "%ld", (long)*pkiBuyercontractID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiBuyercontractID, localVarBuff_pkiBuyercontractID);
 
@@ -220,6 +232,7 @@ ObjectBuyercontractAPI_buyercontractGetCommunicationrecipientsV1(apiClient_t *ap
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -231,11 +244,14 @@ ObjectBuyercontractAPI_buyercontractGetCommunicationrecipientsV1(apiClient_t *ap
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectBuyercontractAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    buyercontract_get_communicationrecipients_v1_response_t *elementToReturn = buyercontract_get_communicationrecipients_v1_response_parseFromJSON(ObjectBuyercontractAPIlocalVarJSON);
-    cJSON_Delete(ObjectBuyercontractAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    buyercontract_get_communicationrecipients_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectBuyercontractAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = buyercontract_get_communicationrecipients_v1_response_parseFromJSON(ObjectBuyercontractAPIlocalVarJSON);
+        cJSON_Delete(ObjectBuyercontractAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -271,15 +287,18 @@ ObjectBuyercontractAPI_buyercontractGetCommunicationsendersV1(apiClient_t *apiCl
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/buyercontract/{pkiBuyercontractID}/getCommunicationsenders")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/buyercontract/{pkiBuyercontractID}/getCommunicationsenders");
+    char *localVarPath = strdup("/1/object/buyercontract/{pkiBuyercontractID}/getCommunicationsenders");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiBuyercontractID =  + strlen("{ pkiBuyercontractID }");
+    long sizeOfPathParams_pkiBuyercontractID =  + sizeof("{ pkiBuyercontractID }") - 1;
     if(pkiBuyercontractID == 0){
         goto end;
     }
@@ -287,7 +306,7 @@ ObjectBuyercontractAPI_buyercontractGetCommunicationsendersV1(apiClient_t *apiCl
     snprintf(localVarToReplace_pkiBuyercontractID, sizeOfPathParams_pkiBuyercontractID, "{%s}", "pkiBuyercontractID");
 
     char localVarBuff_pkiBuyercontractID[256];
-    intToStr(localVarBuff_pkiBuyercontractID, *pkiBuyercontractID);
+    snprintf(localVarBuff_pkiBuyercontractID, sizeof localVarBuff_pkiBuyercontractID, "%ld", (long)*pkiBuyercontractID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiBuyercontractID, localVarBuff_pkiBuyercontractID);
 
@@ -302,6 +321,7 @@ ObjectBuyercontractAPI_buyercontractGetCommunicationsendersV1(apiClient_t *apiCl
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -313,11 +333,14 @@ ObjectBuyercontractAPI_buyercontractGetCommunicationsendersV1(apiClient_t *apiCl
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectBuyercontractAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    buyercontract_get_communicationsenders_v1_response_t *elementToReturn = buyercontract_get_communicationsenders_v1_response_parseFromJSON(ObjectBuyercontractAPIlocalVarJSON);
-    cJSON_Delete(ObjectBuyercontractAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    buyercontract_get_communicationsenders_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectBuyercontractAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = buyercontract_get_communicationsenders_v1_response_parseFromJSON(ObjectBuyercontractAPIlocalVarJSON);
+        cJSON_Delete(ObjectBuyercontractAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

@@ -5,7 +5,7 @@
 
 
 
-ezsignfolder_send_v1_request_t *ezsignfolder_send_v1_request_create(
+static ezsignfolder_send_v1_request_t *ezsignfolder_send_v1_request_create_internal(
     char *t_extra_message
     ) {
     ezsignfolder_send_v1_request_t *ezsignfolder_send_v1_request_local_var = malloc(sizeof(ezsignfolder_send_v1_request_t));
@@ -14,12 +14,24 @@ ezsignfolder_send_v1_request_t *ezsignfolder_send_v1_request_create(
     }
     ezsignfolder_send_v1_request_local_var->t_extra_message = t_extra_message;
 
+    ezsignfolder_send_v1_request_local_var->_library_owned = 1;
     return ezsignfolder_send_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezsignfolder_send_v1_request_t *ezsignfolder_send_v1_request_create(
+    char *t_extra_message
+    ) {
+    return ezsignfolder_send_v1_request_create_internal (
+        t_extra_message
+        );
+}
 
 void ezsignfolder_send_v1_request_free(ezsignfolder_send_v1_request_t *ezsignfolder_send_v1_request) {
     if(NULL == ezsignfolder_send_v1_request){
+        return ;
+    }
+    if(ezsignfolder_send_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignfolder_send_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -55,6 +67,9 @@ ezsignfolder_send_v1_request_t *ezsignfolder_send_v1_request_parseFromJSON(cJSON
 
     // ezsignfolder_send_v1_request->t_extra_message
     cJSON *t_extra_message = cJSON_GetObjectItemCaseSensitive(ezsignfolder_send_v1_requestJSON, "tExtraMessage");
+    if (cJSON_IsNull(t_extra_message)) {
+        t_extra_message = NULL;
+    }
     if (!t_extra_message) {
         goto end;
     }
@@ -66,7 +81,7 @@ ezsignfolder_send_v1_request_t *ezsignfolder_send_v1_request_parseFromJSON(cJSON
     }
 
 
-    ezsignfolder_send_v1_request_local_var = ezsignfolder_send_v1_request_create (
+    ezsignfolder_send_v1_request_local_var = ezsignfolder_send_v1_request_create_internal (
         strdup(t_extra_message->valuestring)
         );
 

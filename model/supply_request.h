@@ -30,9 +30,10 @@ typedef struct supply_request_t {
     int b_supply_isactive; //boolean
     int b_supply_variableprice; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } supply_request_t;
 
-supply_request_t *supply_request_create(
+__attribute__((deprecated)) supply_request_t *supply_request_create(
     int pki_supply_id,
     int fki_glaccount_id,
     int fki_glaccountcontainer_id,

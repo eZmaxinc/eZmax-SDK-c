@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Retrieve an existing Notificationsection's Notificationtests
@@ -25,15 +20,18 @@ ObjectNotificationsectionAPI_notificationsectionGetNotificationtestsV1(apiClient
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/notificationsection/{pkiNotificationsectionID}/getNotificationtests")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/notificationsection/{pkiNotificationsectionID}/getNotificationtests");
+    char *localVarPath = strdup("/1/object/notificationsection/{pkiNotificationsectionID}/getNotificationtests");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiNotificationsectionID =  + strlen("{ pkiNotificationsectionID }");
+    long sizeOfPathParams_pkiNotificationsectionID =  + sizeof("{ pkiNotificationsectionID }") - 1;
     if(pkiNotificationsectionID == 0){
         goto end;
     }
@@ -41,7 +39,7 @@ ObjectNotificationsectionAPI_notificationsectionGetNotificationtestsV1(apiClient
     snprintf(localVarToReplace_pkiNotificationsectionID, sizeOfPathParams_pkiNotificationsectionID, "{%s}", "pkiNotificationsectionID");
 
     char localVarBuff_pkiNotificationsectionID[256];
-    intToStr(localVarBuff_pkiNotificationsectionID, *pkiNotificationsectionID);
+    snprintf(localVarBuff_pkiNotificationsectionID, sizeof localVarBuff_pkiNotificationsectionID, "%ld", (long)*pkiNotificationsectionID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiNotificationsectionID, localVarBuff_pkiNotificationsectionID);
 
@@ -69,6 +67,7 @@ ObjectNotificationsectionAPI_notificationsectionGetNotificationtestsV1(apiClient
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -80,11 +79,14 @@ ObjectNotificationsectionAPI_notificationsectionGetNotificationtestsV1(apiClient
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectNotificationsectionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    notificationsection_get_notificationtests_v1_response_t *elementToReturn = notificationsection_get_notificationtests_v1_response_parseFromJSON(ObjectNotificationsectionAPIlocalVarJSON);
-    cJSON_Delete(ObjectNotificationsectionAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    notificationsection_get_notificationtests_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectNotificationsectionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = notificationsection_get_notificationtests_v1_response_parseFromJSON(ObjectNotificationsectionAPIlocalVarJSON);
+        cJSON_Delete(ObjectNotificationsectionAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

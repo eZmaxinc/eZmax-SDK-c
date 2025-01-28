@@ -5,7 +5,7 @@
 
 
 
-user_create_object_v2_response_m_payload_t *user_create_object_v2_response_m_payload_create(
+static user_create_object_v2_response_m_payload_t *user_create_object_v2_response_m_payload_create_internal(
     list_t *a_pki_user_id
     ) {
     user_create_object_v2_response_m_payload_t *user_create_object_v2_response_m_payload_local_var = malloc(sizeof(user_create_object_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ user_create_object_v2_response_m_payload_t *user_create_object_v2_response_m_pay
     }
     user_create_object_v2_response_m_payload_local_var->a_pki_user_id = a_pki_user_id;
 
+    user_create_object_v2_response_m_payload_local_var->_library_owned = 1;
     return user_create_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) user_create_object_v2_response_m_payload_t *user_create_object_v2_response_m_payload_create(
+    list_t *a_pki_user_id
+    ) {
+    return user_create_object_v2_response_m_payload_create_internal (
+        a_pki_user_id
+        );
+}
 
 void user_create_object_v2_response_m_payload_free(user_create_object_v2_response_m_payload_t *user_create_object_v2_response_m_payload) {
     if(NULL == user_create_object_v2_response_m_payload){
+        return ;
+    }
+    if(user_create_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "user_create_object_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +82,9 @@ user_create_object_v2_response_m_payload_t *user_create_object_v2_response_m_pay
 
     // user_create_object_v2_response_m_payload->a_pki_user_id
     cJSON *a_pki_user_id = cJSON_GetObjectItemCaseSensitive(user_create_object_v2_response_m_payloadJSON, "a_pkiUserID");
+    if (cJSON_IsNull(a_pki_user_id)) {
+        a_pki_user_id = NULL;
+    }
     if (!a_pki_user_id) {
         goto end;
     }
@@ -87,7 +102,7 @@ user_create_object_v2_response_m_payload_t *user_create_object_v2_response_m_pay
         {
             goto end;
         }
-        double *a_pki_user_id_local_value = (double *)calloc(1, sizeof(double));
+        double *a_pki_user_id_local_value = calloc(1, sizeof(double));
         if(!a_pki_user_id_local_value)
         {
             goto end;
@@ -97,7 +112,7 @@ user_create_object_v2_response_m_payload_t *user_create_object_v2_response_m_pay
     }
 
 
-    user_create_object_v2_response_m_payload_local_var = user_create_object_v2_response_m_payload_create (
+    user_create_object_v2_response_m_payload_local_var = user_create_object_v2_response_m_payload_create_internal (
         a_pki_user_idList
         );
 

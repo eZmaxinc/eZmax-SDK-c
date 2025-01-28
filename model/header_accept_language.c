@@ -22,7 +22,7 @@ ezmax_api_definition__full_header_accept_language__e header_accept_language_head
     return 0;
 }
 
-cJSON *header_accept_language_header_accept_language_convertToJSON(ezmax_api_definition__full_header_accept_language__e header_accept_language) {
+cJSON *header_accept_language_convertToJSON(ezmax_api_definition__full_header_accept_language__e header_accept_language) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "header_accept_language", header_accept_language_header_accept_language_ToString(header_accept_language)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_header_accept_language__e header_accept_language_header_accept_language_parseFromJSON(cJSON *header_accept_languageJSON) {
-    ezmax_api_definition__full_header_accept_language__e *header_accept_language = NULL;
-    ezmax_api_definition__full_header_accept_language__e header_accept_languageVariable;
-    cJSON *header_accept_languageVar = cJSON_GetObjectItemCaseSensitive(header_accept_languageJSON, "header_accept_language");
-    if(!cJSON_IsString(header_accept_languageVar) || (header_accept_languageVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_header_accept_language__e header_accept_language_parseFromJSON(cJSON *header_accept_languageJSON) {
+    if(!cJSON_IsString(header_accept_languageJSON) || (header_accept_languageJSON->valuestring == NULL)) {
+        return 0;
     }
-    header_accept_languageVariable = header_accept_language_header_accept_language_FromString(header_accept_languageVar->valuestring);
-    return header_accept_languageVariable;
-end:
-    return 0;
+    return header_accept_language_header_accept_language_FromString(header_accept_languageJSON->valuestring);
 }

@@ -5,7 +5,7 @@
 
 
 
-billingentityinternal_request_t *billingentityinternal_request_create(
+static billingentityinternal_request_t *billingentityinternal_request_create_internal(
     int pki_billingentityinternal_id,
     multilingual_billingentityinternal_description_t *obj_billingentityinternal_description
     ) {
@@ -16,12 +16,26 @@ billingentityinternal_request_t *billingentityinternal_request_create(
     billingentityinternal_request_local_var->pki_billingentityinternal_id = pki_billingentityinternal_id;
     billingentityinternal_request_local_var->obj_billingentityinternal_description = obj_billingentityinternal_description;
 
+    billingentityinternal_request_local_var->_library_owned = 1;
     return billingentityinternal_request_local_var;
 }
 
+__attribute__((deprecated)) billingentityinternal_request_t *billingentityinternal_request_create(
+    int pki_billingentityinternal_id,
+    multilingual_billingentityinternal_description_t *obj_billingentityinternal_description
+    ) {
+    return billingentityinternal_request_create_internal (
+        pki_billingentityinternal_id,
+        obj_billingentityinternal_description
+        );
+}
 
 void billingentityinternal_request_free(billingentityinternal_request_t *billingentityinternal_request) {
     if(NULL == billingentityinternal_request){
+        return ;
+    }
+    if(billingentityinternal_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "billingentityinternal_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +87,9 @@ billingentityinternal_request_t *billingentityinternal_request_parseFromJSON(cJS
 
     // billingentityinternal_request->pki_billingentityinternal_id
     cJSON *pki_billingentityinternal_id = cJSON_GetObjectItemCaseSensitive(billingentityinternal_requestJSON, "pkiBillingentityinternalID");
+    if (cJSON_IsNull(pki_billingentityinternal_id)) {
+        pki_billingentityinternal_id = NULL;
+    }
     if (pki_billingentityinternal_id) { 
     if(!cJSON_IsNumber(pki_billingentityinternal_id))
     {
@@ -82,6 +99,9 @@ billingentityinternal_request_t *billingentityinternal_request_parseFromJSON(cJS
 
     // billingentityinternal_request->obj_billingentityinternal_description
     cJSON *obj_billingentityinternal_description = cJSON_GetObjectItemCaseSensitive(billingentityinternal_requestJSON, "objBillingentityinternalDescription");
+    if (cJSON_IsNull(obj_billingentityinternal_description)) {
+        obj_billingentityinternal_description = NULL;
+    }
     if (!obj_billingentityinternal_description) {
         goto end;
     }
@@ -90,7 +110,7 @@ billingentityinternal_request_t *billingentityinternal_request_parseFromJSON(cJS
     obj_billingentityinternal_description_local_nonprim = multilingual_billingentityinternal_description_parseFromJSON(obj_billingentityinternal_description); //nonprimitive
 
 
-    billingentityinternal_request_local_var = billingentityinternal_request_create (
+    billingentityinternal_request_local_var = billingentityinternal_request_create_internal (
         pki_billingentityinternal_id ? pki_billingentityinternal_id->valuedouble : 0,
         obj_billingentityinternal_description_local_nonprim
         );

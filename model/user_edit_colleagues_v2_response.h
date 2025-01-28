@@ -26,9 +26,10 @@ typedef struct user_edit_colleagues_v2_response_t {
     struct common_response_obj_debug_t *obj_debug; //model
     struct user_edit_colleagues_v2_response_m_payload_t *m_payload; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } user_edit_colleagues_v2_response_t;
 
-user_edit_colleagues_v2_response_t *user_edit_colleagues_v2_response_create(
+__attribute__((deprecated)) user_edit_colleagues_v2_response_t *user_edit_colleagues_v2_response_create(
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug,
     user_edit_colleagues_v2_response_m_payload_t *m_payload

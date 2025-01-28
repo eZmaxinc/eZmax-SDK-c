@@ -22,9 +22,10 @@ typedef struct language_get_autocomplete_v2_response_m_payload_t language_get_au
 typedef struct language_get_autocomplete_v2_response_m_payload_t {
     list_t *a_obj_language; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } language_get_autocomplete_v2_response_m_payload_t;
 
-language_get_autocomplete_v2_response_m_payload_t *language_get_autocomplete_v2_response_m_payload_create(
+__attribute__((deprecated)) language_get_autocomplete_v2_response_m_payload_t *language_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_language
 );
 

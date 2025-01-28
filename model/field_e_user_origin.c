@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_user_origin__e field_e_user_origin_field_e_us
     return 0;
 }
 
-cJSON *field_e_user_origin_field_e_user_origin_convertToJSON(ezmax_api_definition__full_field_e_user_origin__e field_e_user_origin) {
+cJSON *field_e_user_origin_convertToJSON(ezmax_api_definition__full_field_e_user_origin__e field_e_user_origin) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_user_origin", field_e_user_origin_field_e_user_origin_ToString(field_e_user_origin)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_user_origin__e field_e_user_origin_field_e_user_origin_parseFromJSON(cJSON *field_e_user_originJSON) {
-    ezmax_api_definition__full_field_e_user_origin__e *field_e_user_origin = NULL;
-    ezmax_api_definition__full_field_e_user_origin__e field_e_user_originVariable;
-    cJSON *field_e_user_originVar = cJSON_GetObjectItemCaseSensitive(field_e_user_originJSON, "field_e_user_origin");
-    if(!cJSON_IsString(field_e_user_originVar) || (field_e_user_originVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_user_origin__e field_e_user_origin_parseFromJSON(cJSON *field_e_user_originJSON) {
+    if(!cJSON_IsString(field_e_user_originJSON) || (field_e_user_originJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_user_originVariable = field_e_user_origin_field_e_user_origin_FromString(field_e_user_originVar->valuestring);
-    return field_e_user_originVariable;
-end:
-    return 0;
+    return field_e_user_origin_field_e_user_origin_FromString(field_e_user_originJSON->valuestring);
 }

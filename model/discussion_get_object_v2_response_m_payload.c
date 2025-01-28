@@ -5,7 +5,7 @@
 
 
 
-discussion_get_object_v2_response_m_payload_t *discussion_get_object_v2_response_m_payload_create(
+static discussion_get_object_v2_response_m_payload_t *discussion_get_object_v2_response_m_payload_create_internal(
     discussion_response_compound_t *obj_discussion
     ) {
     discussion_get_object_v2_response_m_payload_t *discussion_get_object_v2_response_m_payload_local_var = malloc(sizeof(discussion_get_object_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ discussion_get_object_v2_response_m_payload_t *discussion_get_object_v2_response
     }
     discussion_get_object_v2_response_m_payload_local_var->obj_discussion = obj_discussion;
 
+    discussion_get_object_v2_response_m_payload_local_var->_library_owned = 1;
     return discussion_get_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) discussion_get_object_v2_response_m_payload_t *discussion_get_object_v2_response_m_payload_create(
+    discussion_response_compound_t *obj_discussion
+    ) {
+    return discussion_get_object_v2_response_m_payload_create_internal (
+        obj_discussion
+        );
+}
 
 void discussion_get_object_v2_response_m_payload_free(discussion_get_object_v2_response_m_payload_t *discussion_get_object_v2_response_m_payload) {
     if(NULL == discussion_get_object_v2_response_m_payload){
+        return ;
+    }
+    if(discussion_get_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "discussion_get_object_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ discussion_get_object_v2_response_m_payload_t *discussion_get_object_v2_response
 
     // discussion_get_object_v2_response_m_payload->obj_discussion
     cJSON *obj_discussion = cJSON_GetObjectItemCaseSensitive(discussion_get_object_v2_response_m_payloadJSON, "objDiscussion");
+    if (cJSON_IsNull(obj_discussion)) {
+        obj_discussion = NULL;
+    }
     if (!obj_discussion) {
         goto end;
     }
@@ -71,7 +86,7 @@ discussion_get_object_v2_response_m_payload_t *discussion_get_object_v2_response
     obj_discussion_local_nonprim = discussion_response_compound_parseFromJSON(obj_discussion); //nonprimitive
 
 
-    discussion_get_object_v2_response_m_payload_local_var = discussion_get_object_v2_response_m_payload_create (
+    discussion_get_object_v2_response_m_payload_local_var = discussion_get_object_v2_response_m_payload_create_internal (
         obj_discussion_local_nonprim
         );
 

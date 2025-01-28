@@ -5,7 +5,7 @@
 
 
 
-authenticationexternal_edit_object_v1_request_t *authenticationexternal_edit_object_v1_request_create(
+static authenticationexternal_edit_object_v1_request_t *authenticationexternal_edit_object_v1_request_create_internal(
     authenticationexternal_request_compound_t *obj_authenticationexternal
     ) {
     authenticationexternal_edit_object_v1_request_t *authenticationexternal_edit_object_v1_request_local_var = malloc(sizeof(authenticationexternal_edit_object_v1_request_t));
@@ -14,12 +14,24 @@ authenticationexternal_edit_object_v1_request_t *authenticationexternal_edit_obj
     }
     authenticationexternal_edit_object_v1_request_local_var->obj_authenticationexternal = obj_authenticationexternal;
 
+    authenticationexternal_edit_object_v1_request_local_var->_library_owned = 1;
     return authenticationexternal_edit_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) authenticationexternal_edit_object_v1_request_t *authenticationexternal_edit_object_v1_request_create(
+    authenticationexternal_request_compound_t *obj_authenticationexternal
+    ) {
+    return authenticationexternal_edit_object_v1_request_create_internal (
+        obj_authenticationexternal
+        );
+}
 
 void authenticationexternal_edit_object_v1_request_free(authenticationexternal_edit_object_v1_request_t *authenticationexternal_edit_object_v1_request) {
     if(NULL == authenticationexternal_edit_object_v1_request){
+        return ;
+    }
+    if(authenticationexternal_edit_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "authenticationexternal_edit_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ authenticationexternal_edit_object_v1_request_t *authenticationexternal_edit_obj
 
     // authenticationexternal_edit_object_v1_request->obj_authenticationexternal
     cJSON *obj_authenticationexternal = cJSON_GetObjectItemCaseSensitive(authenticationexternal_edit_object_v1_requestJSON, "objAuthenticationexternal");
+    if (cJSON_IsNull(obj_authenticationexternal)) {
+        obj_authenticationexternal = NULL;
+    }
     if (!obj_authenticationexternal) {
         goto end;
     }
@@ -71,7 +86,7 @@ authenticationexternal_edit_object_v1_request_t *authenticationexternal_edit_obj
     obj_authenticationexternal_local_nonprim = authenticationexternal_request_compound_parseFromJSON(obj_authenticationexternal); //nonprimitive
 
 
-    authenticationexternal_edit_object_v1_request_local_var = authenticationexternal_edit_object_v1_request_create (
+    authenticationexternal_edit_object_v1_request_local_var = authenticationexternal_edit_object_v1_request_create_internal (
         obj_authenticationexternal_local_nonprim
         );
 

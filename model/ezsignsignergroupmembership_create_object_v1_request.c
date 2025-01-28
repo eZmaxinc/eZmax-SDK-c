@@ -5,7 +5,7 @@
 
 
 
-ezsignsignergroupmembership_create_object_v1_request_t *ezsignsignergroupmembership_create_object_v1_request_create(
+static ezsignsignergroupmembership_create_object_v1_request_t *ezsignsignergroupmembership_create_object_v1_request_create_internal(
     list_t *a_obj_ezsignsignergroupmembership
     ) {
     ezsignsignergroupmembership_create_object_v1_request_t *ezsignsignergroupmembership_create_object_v1_request_local_var = malloc(sizeof(ezsignsignergroupmembership_create_object_v1_request_t));
@@ -14,12 +14,24 @@ ezsignsignergroupmembership_create_object_v1_request_t *ezsignsignergroupmembers
     }
     ezsignsignergroupmembership_create_object_v1_request_local_var->a_obj_ezsignsignergroupmembership = a_obj_ezsignsignergroupmembership;
 
+    ezsignsignergroupmembership_create_object_v1_request_local_var->_library_owned = 1;
     return ezsignsignergroupmembership_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezsignsignergroupmembership_create_object_v1_request_t *ezsignsignergroupmembership_create_object_v1_request_create(
+    list_t *a_obj_ezsignsignergroupmembership
+    ) {
+    return ezsignsignergroupmembership_create_object_v1_request_create_internal (
+        a_obj_ezsignsignergroupmembership
+        );
+}
 
 void ezsignsignergroupmembership_create_object_v1_request_free(ezsignsignergroupmembership_create_object_v1_request_t *ezsignsignergroupmembership_create_object_v1_request) {
     if(NULL == ezsignsignergroupmembership_create_object_v1_request){
+        return ;
+    }
+    if(ezsignsignergroupmembership_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignsignergroupmembership_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ ezsignsignergroupmembership_create_object_v1_request_t *ezsignsignergroupmembers
 
     // ezsignsignergroupmembership_create_object_v1_request->a_obj_ezsignsignergroupmembership
     cJSON *a_obj_ezsignsignergroupmembership = cJSON_GetObjectItemCaseSensitive(ezsignsignergroupmembership_create_object_v1_requestJSON, "a_objEzsignsignergroupmembership");
+    if (cJSON_IsNull(a_obj_ezsignsignergroupmembership)) {
+        a_obj_ezsignsignergroupmembership = NULL;
+    }
     if (!a_obj_ezsignsignergroupmembership) {
         goto end;
     }
@@ -96,7 +111,7 @@ ezsignsignergroupmembership_create_object_v1_request_t *ezsignsignergroupmembers
     }
 
 
-    ezsignsignergroupmembership_create_object_v1_request_local_var = ezsignsignergroupmembership_create_object_v1_request_create (
+    ezsignsignergroupmembership_create_object_v1_request_local_var = ezsignsignergroupmembership_create_object_v1_request_create_internal (
         a_obj_ezsignsignergroupmembershipList
         );
 

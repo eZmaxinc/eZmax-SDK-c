@@ -23,9 +23,10 @@ typedef struct common_reportrow_t {
     list_t *a_obj_reportcell; //nonprimitive container
     int i_reportrow_height; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } common_reportrow_t;
 
-common_reportrow_t *common_reportrow_create(
+__attribute__((deprecated)) common_reportrow_t *common_reportrow_create(
     list_t *a_obj_reportcell,
     int i_reportrow_height
 );

@@ -22,9 +22,10 @@ typedef struct branding_get_autocomplete_v2_response_m_payload_t branding_get_au
 typedef struct branding_get_autocomplete_v2_response_m_payload_t {
     list_t *a_obj_branding; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } branding_get_autocomplete_v2_response_m_payload_t;
 
-branding_get_autocomplete_v2_response_m_payload_t *branding_get_autocomplete_v2_response_m_payload_create(
+__attribute__((deprecated)) branding_get_autocomplete_v2_response_m_payload_t *branding_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_branding
 );
 

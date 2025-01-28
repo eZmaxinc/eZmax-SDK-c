@@ -5,7 +5,7 @@
 
 
 
-ezsignsignergroup_get_object_v2_response_m_payload_t *ezsignsignergroup_get_object_v2_response_m_payload_create(
+static ezsignsignergroup_get_object_v2_response_m_payload_t *ezsignsignergroup_get_object_v2_response_m_payload_create_internal(
     ezsignsignergroup_response_compound_t *obj_ezsignsignergroup
     ) {
     ezsignsignergroup_get_object_v2_response_m_payload_t *ezsignsignergroup_get_object_v2_response_m_payload_local_var = malloc(sizeof(ezsignsignergroup_get_object_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ ezsignsignergroup_get_object_v2_response_m_payload_t *ezsignsignergroup_get_obje
     }
     ezsignsignergroup_get_object_v2_response_m_payload_local_var->obj_ezsignsignergroup = obj_ezsignsignergroup;
 
+    ezsignsignergroup_get_object_v2_response_m_payload_local_var->_library_owned = 1;
     return ezsignsignergroup_get_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezsignsignergroup_get_object_v2_response_m_payload_t *ezsignsignergroup_get_object_v2_response_m_payload_create(
+    ezsignsignergroup_response_compound_t *obj_ezsignsignergroup
+    ) {
+    return ezsignsignergroup_get_object_v2_response_m_payload_create_internal (
+        obj_ezsignsignergroup
+        );
+}
 
 void ezsignsignergroup_get_object_v2_response_m_payload_free(ezsignsignergroup_get_object_v2_response_m_payload_t *ezsignsignergroup_get_object_v2_response_m_payload) {
     if(NULL == ezsignsignergroup_get_object_v2_response_m_payload){
+        return ;
+    }
+    if(ezsignsignergroup_get_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignsignergroup_get_object_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ ezsignsignergroup_get_object_v2_response_m_payload_t *ezsignsignergroup_get_obje
 
     // ezsignsignergroup_get_object_v2_response_m_payload->obj_ezsignsignergroup
     cJSON *obj_ezsignsignergroup = cJSON_GetObjectItemCaseSensitive(ezsignsignergroup_get_object_v2_response_m_payloadJSON, "objEzsignsignergroup");
+    if (cJSON_IsNull(obj_ezsignsignergroup)) {
+        obj_ezsignsignergroup = NULL;
+    }
     if (!obj_ezsignsignergroup) {
         goto end;
     }
@@ -71,7 +86,7 @@ ezsignsignergroup_get_object_v2_response_m_payload_t *ezsignsignergroup_get_obje
     obj_ezsignsignergroup_local_nonprim = ezsignsignergroup_response_compound_parseFromJSON(obj_ezsignsignergroup); //nonprimitive
 
 
-    ezsignsignergroup_get_object_v2_response_m_payload_local_var = ezsignsignergroup_get_object_v2_response_m_payload_create (
+    ezsignsignergroup_get_object_v2_response_m_payload_local_var = ezsignsignergroup_get_object_v2_response_m_payload_create_internal (
         obj_ezsignsignergroup_local_nonprim
         );
 

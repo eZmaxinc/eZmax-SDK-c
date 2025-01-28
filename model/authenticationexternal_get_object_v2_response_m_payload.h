@@ -22,9 +22,10 @@ typedef struct authenticationexternal_get_object_v2_response_m_payload_t authent
 typedef struct authenticationexternal_get_object_v2_response_m_payload_t {
     struct authenticationexternal_response_compound_t *obj_authenticationexternal; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } authenticationexternal_get_object_v2_response_m_payload_t;
 
-authenticationexternal_get_object_v2_response_m_payload_t *authenticationexternal_get_object_v2_response_m_payload_create(
+__attribute__((deprecated)) authenticationexternal_get_object_v2_response_m_payload_t *authenticationexternal_get_object_v2_response_m_payload_create(
     authenticationexternal_response_compound_t *obj_authenticationexternal
 );
 

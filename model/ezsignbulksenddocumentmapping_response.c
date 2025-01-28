@@ -5,7 +5,7 @@
 
 
 
-ezsignbulksenddocumentmapping_response_t *ezsignbulksenddocumentmapping_response_create(
+static ezsignbulksenddocumentmapping_response_t *ezsignbulksenddocumentmapping_response_create_internal(
     int pki_ezsignbulksenddocumentmapping_id,
     int fki_ezsignbulksend_id,
     int fki_ezsigntemplatepackage_id,
@@ -22,12 +22,32 @@ ezsignbulksenddocumentmapping_response_t *ezsignbulksenddocumentmapping_response
     ezsignbulksenddocumentmapping_response_local_var->fki_ezsigntemplate_id = fki_ezsigntemplate_id;
     ezsignbulksenddocumentmapping_response_local_var->i_ezsignbulksenddocumentmapping_order = i_ezsignbulksenddocumentmapping_order;
 
+    ezsignbulksenddocumentmapping_response_local_var->_library_owned = 1;
     return ezsignbulksenddocumentmapping_response_local_var;
 }
 
+__attribute__((deprecated)) ezsignbulksenddocumentmapping_response_t *ezsignbulksenddocumentmapping_response_create(
+    int pki_ezsignbulksenddocumentmapping_id,
+    int fki_ezsignbulksend_id,
+    int fki_ezsigntemplatepackage_id,
+    int fki_ezsigntemplate_id,
+    int i_ezsignbulksenddocumentmapping_order
+    ) {
+    return ezsignbulksenddocumentmapping_response_create_internal (
+        pki_ezsignbulksenddocumentmapping_id,
+        fki_ezsignbulksend_id,
+        fki_ezsigntemplatepackage_id,
+        fki_ezsigntemplate_id,
+        i_ezsignbulksenddocumentmapping_order
+        );
+}
 
 void ezsignbulksenddocumentmapping_response_free(ezsignbulksenddocumentmapping_response_t *ezsignbulksenddocumentmapping_response) {
     if(NULL == ezsignbulksenddocumentmapping_response){
+        return ;
+    }
+    if(ezsignbulksenddocumentmapping_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignbulksenddocumentmapping_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -93,6 +113,9 @@ ezsignbulksenddocumentmapping_response_t *ezsignbulksenddocumentmapping_response
 
     // ezsignbulksenddocumentmapping_response->pki_ezsignbulksenddocumentmapping_id
     cJSON *pki_ezsignbulksenddocumentmapping_id = cJSON_GetObjectItemCaseSensitive(ezsignbulksenddocumentmapping_responseJSON, "pkiEzsignbulksenddocumentmappingID");
+    if (cJSON_IsNull(pki_ezsignbulksenddocumentmapping_id)) {
+        pki_ezsignbulksenddocumentmapping_id = NULL;
+    }
     if (!pki_ezsignbulksenddocumentmapping_id) {
         goto end;
     }
@@ -105,6 +128,9 @@ ezsignbulksenddocumentmapping_response_t *ezsignbulksenddocumentmapping_response
 
     // ezsignbulksenddocumentmapping_response->fki_ezsignbulksend_id
     cJSON *fki_ezsignbulksend_id = cJSON_GetObjectItemCaseSensitive(ezsignbulksenddocumentmapping_responseJSON, "fkiEzsignbulksendID");
+    if (cJSON_IsNull(fki_ezsignbulksend_id)) {
+        fki_ezsignbulksend_id = NULL;
+    }
     if (!fki_ezsignbulksend_id) {
         goto end;
     }
@@ -117,6 +143,9 @@ ezsignbulksenddocumentmapping_response_t *ezsignbulksenddocumentmapping_response
 
     // ezsignbulksenddocumentmapping_response->fki_ezsigntemplatepackage_id
     cJSON *fki_ezsigntemplatepackage_id = cJSON_GetObjectItemCaseSensitive(ezsignbulksenddocumentmapping_responseJSON, "fkiEzsigntemplatepackageID");
+    if (cJSON_IsNull(fki_ezsigntemplatepackage_id)) {
+        fki_ezsigntemplatepackage_id = NULL;
+    }
     if (fki_ezsigntemplatepackage_id) { 
     if(!cJSON_IsNumber(fki_ezsigntemplatepackage_id))
     {
@@ -126,6 +155,9 @@ ezsignbulksenddocumentmapping_response_t *ezsignbulksenddocumentmapping_response
 
     // ezsignbulksenddocumentmapping_response->fki_ezsigntemplate_id
     cJSON *fki_ezsigntemplate_id = cJSON_GetObjectItemCaseSensitive(ezsignbulksenddocumentmapping_responseJSON, "fkiEzsigntemplateID");
+    if (cJSON_IsNull(fki_ezsigntemplate_id)) {
+        fki_ezsigntemplate_id = NULL;
+    }
     if (fki_ezsigntemplate_id) { 
     if(!cJSON_IsNumber(fki_ezsigntemplate_id))
     {
@@ -135,6 +167,9 @@ ezsignbulksenddocumentmapping_response_t *ezsignbulksenddocumentmapping_response
 
     // ezsignbulksenddocumentmapping_response->i_ezsignbulksenddocumentmapping_order
     cJSON *i_ezsignbulksenddocumentmapping_order = cJSON_GetObjectItemCaseSensitive(ezsignbulksenddocumentmapping_responseJSON, "iEzsignbulksenddocumentmappingOrder");
+    if (cJSON_IsNull(i_ezsignbulksenddocumentmapping_order)) {
+        i_ezsignbulksenddocumentmapping_order = NULL;
+    }
     if (!i_ezsignbulksenddocumentmapping_order) {
         goto end;
     }
@@ -146,7 +181,7 @@ ezsignbulksenddocumentmapping_response_t *ezsignbulksenddocumentmapping_response
     }
 
 
-    ezsignbulksenddocumentmapping_response_local_var = ezsignbulksenddocumentmapping_response_create (
+    ezsignbulksenddocumentmapping_response_local_var = ezsignbulksenddocumentmapping_response_create_internal (
         pki_ezsignbulksenddocumentmapping_id->valuedouble,
         fki_ezsignbulksend_id->valuedouble,
         fki_ezsigntemplatepackage_id ? fki_ezsigntemplatepackage_id->valuedouble : 0,

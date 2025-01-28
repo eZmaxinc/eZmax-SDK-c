@@ -5,7 +5,7 @@
 
 
 
-communication_send_v1_response_t *communication_send_v1_response_create(
+static communication_send_v1_response_t *communication_send_v1_response_create_internal(
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug,
     communication_send_v1_response_m_payload_t *m_payload
@@ -18,12 +18,28 @@ communication_send_v1_response_t *communication_send_v1_response_create(
     communication_send_v1_response_local_var->obj_debug = obj_debug;
     communication_send_v1_response_local_var->m_payload = m_payload;
 
+    communication_send_v1_response_local_var->_library_owned = 1;
     return communication_send_v1_response_local_var;
 }
 
+__attribute__((deprecated)) communication_send_v1_response_t *communication_send_v1_response_create(
+    common_response_obj_debug_payload_t *obj_debug_payload,
+    common_response_obj_debug_t *obj_debug,
+    communication_send_v1_response_m_payload_t *m_payload
+    ) {
+    return communication_send_v1_response_create_internal (
+        obj_debug_payload,
+        obj_debug,
+        m_payload
+        );
+}
 
 void communication_send_v1_response_free(communication_send_v1_response_t *communication_send_v1_response) {
     if(NULL == communication_send_v1_response){
+        return ;
+    }
+    if(communication_send_v1_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "communication_send_v1_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -108,6 +124,9 @@ communication_send_v1_response_t *communication_send_v1_response_parseFromJSON(c
 
     // communication_send_v1_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(communication_send_v1_responseJSON, "objDebugPayload");
+    if (cJSON_IsNull(obj_debug_payload)) {
+        obj_debug_payload = NULL;
+    }
     if (!obj_debug_payload) {
         goto end;
     }
@@ -117,12 +136,18 @@ communication_send_v1_response_t *communication_send_v1_response_parseFromJSON(c
 
     // communication_send_v1_response->obj_debug
     cJSON *obj_debug = cJSON_GetObjectItemCaseSensitive(communication_send_v1_responseJSON, "objDebug");
+    if (cJSON_IsNull(obj_debug)) {
+        obj_debug = NULL;
+    }
     if (obj_debug) { 
     obj_debug_local_nonprim = common_response_obj_debug_parseFromJSON(obj_debug); //nonprimitive
     }
 
     // communication_send_v1_response->m_payload
     cJSON *m_payload = cJSON_GetObjectItemCaseSensitive(communication_send_v1_responseJSON, "mPayload");
+    if (cJSON_IsNull(m_payload)) {
+        m_payload = NULL;
+    }
     if (!m_payload) {
         goto end;
     }
@@ -131,7 +156,7 @@ communication_send_v1_response_t *communication_send_v1_response_parseFromJSON(c
     m_payload_local_nonprim = communication_send_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
-    communication_send_v1_response_local_var = communication_send_v1_response_create (
+    communication_send_v1_response_local_var = communication_send_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim

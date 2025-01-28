@@ -5,7 +5,7 @@
 
 
 
-scim_user_t *scim_user_create(
+static scim_user_t *scim_user_create_internal(
     char *id,
     char *user_name,
     char *display_name,
@@ -20,12 +20,30 @@ scim_user_t *scim_user_create(
     scim_user_local_var->display_name = display_name;
     scim_user_local_var->emails = emails;
 
+    scim_user_local_var->_library_owned = 1;
     return scim_user_local_var;
 }
 
+__attribute__((deprecated)) scim_user_t *scim_user_create(
+    char *id,
+    char *user_name,
+    char *display_name,
+    list_t *emails
+    ) {
+    return scim_user_create_internal (
+        id,
+        user_name,
+        display_name,
+        emails
+        );
+}
 
 void scim_user_free(scim_user_t *scim_user) {
     if(NULL == scim_user){
+        return ;
+    }
+    if(scim_user->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "scim_user_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -115,6 +133,9 @@ scim_user_t *scim_user_parseFromJSON(cJSON *scim_userJSON){
 
     // scim_user->id
     cJSON *id = cJSON_GetObjectItemCaseSensitive(scim_userJSON, "id");
+    if (cJSON_IsNull(id)) {
+        id = NULL;
+    }
     if (id) { 
     if(!cJSON_IsString(id) && !cJSON_IsNull(id))
     {
@@ -124,6 +145,9 @@ scim_user_t *scim_user_parseFromJSON(cJSON *scim_userJSON){
 
     // scim_user->user_name
     cJSON *user_name = cJSON_GetObjectItemCaseSensitive(scim_userJSON, "userName");
+    if (cJSON_IsNull(user_name)) {
+        user_name = NULL;
+    }
     if (!user_name) {
         goto end;
     }
@@ -136,6 +160,9 @@ scim_user_t *scim_user_parseFromJSON(cJSON *scim_userJSON){
 
     // scim_user->display_name
     cJSON *display_name = cJSON_GetObjectItemCaseSensitive(scim_userJSON, "displayName");
+    if (cJSON_IsNull(display_name)) {
+        display_name = NULL;
+    }
     if (display_name) { 
     if(!cJSON_IsString(display_name) && !cJSON_IsNull(display_name))
     {
@@ -145,6 +172,9 @@ scim_user_t *scim_user_parseFromJSON(cJSON *scim_userJSON){
 
     // scim_user->emails
     cJSON *emails = cJSON_GetObjectItemCaseSensitive(scim_userJSON, "emails");
+    if (cJSON_IsNull(emails)) {
+        emails = NULL;
+    }
     if (emails) { 
     cJSON *emails_local_nonprimitive = NULL;
     if(!cJSON_IsArray(emails)){
@@ -165,7 +195,7 @@ scim_user_t *scim_user_parseFromJSON(cJSON *scim_userJSON){
     }
 
 
-    scim_user_local_var = scim_user_create (
+    scim_user_local_var = scim_user_create_internal (
         id && !cJSON_IsNull(id) ? strdup(id->valuestring) : NULL,
         strdup(user_name->valuestring),
         display_name && !cJSON_IsNull(display_name) ? strdup(display_name->valuestring) : NULL,

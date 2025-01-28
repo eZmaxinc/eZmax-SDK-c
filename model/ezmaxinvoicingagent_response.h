@@ -18,22 +18,6 @@ typedef struct ezmaxinvoicingagent_response_t ezmaxinvoicingagent_response_t;
 #include "field_e_ezmaxinvoicingagent_variationezmax.h"
 #include "field_e_ezmaxinvoicingagent_variationezsign.h"
 
-// Enum  for ezmaxinvoicingagent_response
-
-typedef enum  { ezmax_api_definition__full_ezmaxinvoicingagent_response__NULL = 0, ezmax_api_definition__full_ezmaxinvoicingagent_response__Charge, ezmax_api_definition__full_ezmaxinvoicingagent_response__Refund, ezmax_api_definition__full_ezmaxinvoicingagent_response__Same } ezmax_api_definition__full_ezmaxinvoicingagent_response__e;
-
-char* ezmaxinvoicingagent_response_e_ezmaxinvoicingagent_variationezmax_ToString(ezmax_api_definition__full_ezmaxinvoicingagent_response__e e_ezmaxinvoicingagent_variationezmax);
-
-ezmax_api_definition__full_ezmaxinvoicingagent_response__e ezmaxinvoicingagent_response_e_ezmaxinvoicingagent_variationezmax_FromString(char* e_ezmaxinvoicingagent_variationezmax);
-
-// Enum  for ezmaxinvoicingagent_response
-
-typedef enum  { ezmax_api_definition__full_ezmaxinvoicingagent_response__NULL = 0, ezmax_api_definition__full_ezmaxinvoicingagent_response__Charge, ezmax_api_definition__full_ezmaxinvoicingagent_response__Refund, ezmax_api_definition__full_ezmaxinvoicingagent_response__Same } ezmax_api_definition__full_ezmaxinvoicingagent_response__e;
-
-char* ezmaxinvoicingagent_response_e_ezmaxinvoicingagent_variationezsign_ToString(ezmax_api_definition__full_ezmaxinvoicingagent_response__e e_ezmaxinvoicingagent_variationezsign);
-
-ezmax_api_definition__full_ezmaxinvoicingagent_response__e ezmaxinvoicingagent_response_e_ezmaxinvoicingagent_variationezsign_FromString(char* e_ezmaxinvoicingagent_variationezsign);
-
 
 
 typedef struct ezmaxinvoicingagent_response_t {
@@ -54,13 +38,14 @@ typedef struct ezmaxinvoicingagent_response_t {
     int i_ezmaxinvoicingagent_ezsigndocument; //numeric
     int b_ezmaxinvoicingagent_ezsignaccount; //boolean
     int b_ezmaxinvoicingagent_billableezmax; //boolean
-    field_e_ezmaxinvoicingagent_variationezmax_t *e_ezmaxinvoicingagent_variationezmax; // custom
+    ezmax_api_definition__full_field_e_ezmaxinvoicingagent_variationezmax__e e_ezmaxinvoicingagent_variationezmax; //referenced enum
     int b_ezmaxinvoicingagent_billableezsign; //boolean
-    field_e_ezmaxinvoicingagent_variationezsign_t *e_ezmaxinvoicingagent_variationezsign; // custom
+    ezmax_api_definition__full_field_e_ezmaxinvoicingagent_variationezsign__e e_ezmaxinvoicingagent_variationezsign; //referenced enum
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezmaxinvoicingagent_response_t;
 
-ezmaxinvoicingagent_response_t *ezmaxinvoicingagent_response_create(
+__attribute__((deprecated)) ezmaxinvoicingagent_response_t *ezmaxinvoicingagent_response_create(
     int pki_ezmaxinvoicingagent_id,
     int fki_ezmaxinvoicing_id,
     int fki_billingentityinternal_id,
@@ -78,9 +63,9 @@ ezmaxinvoicingagent_response_t *ezmaxinvoicingagent_response_create(
     int i_ezmaxinvoicingagent_ezsigndocument,
     int b_ezmaxinvoicingagent_ezsignaccount,
     int b_ezmaxinvoicingagent_billableezmax,
-    field_e_ezmaxinvoicingagent_variationezmax_t *e_ezmaxinvoicingagent_variationezmax,
+    ezmax_api_definition__full_field_e_ezmaxinvoicingagent_variationezmax__e e_ezmaxinvoicingagent_variationezmax,
     int b_ezmaxinvoicingagent_billableezsign,
-    field_e_ezmaxinvoicingagent_variationezsign_t *e_ezmaxinvoicingagent_variationezsign
+    ezmax_api_definition__full_field_e_ezmaxinvoicingagent_variationezsign__e e_ezmaxinvoicingagent_variationezsign
 );
 
 void ezmaxinvoicingagent_response_free(ezmaxinvoicingagent_response_t *ezmaxinvoicingagent_response);

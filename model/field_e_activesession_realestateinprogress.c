@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_activesession_realestateinprogress__e field_e
     return 0;
 }
 
-cJSON *field_e_activesession_realestateinprogress_field_e_activesession_realestateinprogress_convertToJSON(ezmax_api_definition__full_field_e_activesession_realestateinprogress__e field_e_activesession_realestateinprogress) {
+cJSON *field_e_activesession_realestateinprogress_convertToJSON(ezmax_api_definition__full_field_e_activesession_realestateinprogress__e field_e_activesession_realestateinprogress) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_activesession_realestateinprogress", field_e_activesession_realestateinprogress_field_e_activesession_realestateinprogress_ToString(field_e_activesession_realestateinprogress)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_activesession_realestateinprogress__e field_e_activesession_realestateinprogress_field_e_activesession_realestateinprogress_parseFromJSON(cJSON *field_e_activesession_realestateinprogressJSON) {
-    ezmax_api_definition__full_field_e_activesession_realestateinprogress__e *field_e_activesession_realestateinprogress = NULL;
-    ezmax_api_definition__full_field_e_activesession_realestateinprogress__e field_e_activesession_realestateinprogressVariable;
-    cJSON *field_e_activesession_realestateinprogressVar = cJSON_GetObjectItemCaseSensitive(field_e_activesession_realestateinprogressJSON, "field_e_activesession_realestateinprogress");
-    if(!cJSON_IsString(field_e_activesession_realestateinprogressVar) || (field_e_activesession_realestateinprogressVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_activesession_realestateinprogress__e field_e_activesession_realestateinprogress_parseFromJSON(cJSON *field_e_activesession_realestateinprogressJSON) {
+    if(!cJSON_IsString(field_e_activesession_realestateinprogressJSON) || (field_e_activesession_realestateinprogressJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_activesession_realestateinprogressVariable = field_e_activesession_realestateinprogress_field_e_activesession_realestateinprogress_FromString(field_e_activesession_realestateinprogressVar->valuestring);
-    return field_e_activesession_realestateinprogressVariable;
-end:
-    return 0;
+    return field_e_activesession_realestateinprogress_field_e_activesession_realestateinprogress_FromString(field_e_activesession_realestateinprogressJSON->valuestring);
 }

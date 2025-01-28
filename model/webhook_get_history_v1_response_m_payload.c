@@ -5,7 +5,7 @@
 
 
 
-webhook_get_history_v1_response_m_payload_t *webhook_get_history_v1_response_m_payload_create(
+static webhook_get_history_v1_response_m_payload_t *webhook_get_history_v1_response_m_payload_create_internal(
     list_t *a_obj_webhooklog
     ) {
     webhook_get_history_v1_response_m_payload_t *webhook_get_history_v1_response_m_payload_local_var = malloc(sizeof(webhook_get_history_v1_response_m_payload_t));
@@ -14,18 +14,30 @@ webhook_get_history_v1_response_m_payload_t *webhook_get_history_v1_response_m_p
     }
     webhook_get_history_v1_response_m_payload_local_var->a_obj_webhooklog = a_obj_webhooklog;
 
+    webhook_get_history_v1_response_m_payload_local_var->_library_owned = 1;
     return webhook_get_history_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) webhook_get_history_v1_response_m_payload_t *webhook_get_history_v1_response_m_payload_create(
+    list_t *a_obj_webhooklog
+    ) {
+    return webhook_get_history_v1_response_m_payload_create_internal (
+        a_obj_webhooklog
+        );
+}
 
 void webhook_get_history_v1_response_m_payload_free(webhook_get_history_v1_response_m_payload_t *webhook_get_history_v1_response_m_payload) {
     if(NULL == webhook_get_history_v1_response_m_payload){
         return ;
     }
+    if(webhook_get_history_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "webhook_get_history_v1_response_m_payload_free");
+        return ;
+    }
     listEntry_t *listEntry;
     if (webhook_get_history_v1_response_m_payload->a_obj_webhooklog) {
         list_ForEach(listEntry, webhook_get_history_v1_response_m_payload->a_obj_webhooklog) {
-            object_free(listEntry->data);
+            custom_webhooklog_response_free(listEntry->data);
         }
         list_freeList(webhook_get_history_v1_response_m_payload->a_obj_webhooklog);
         webhook_get_history_v1_response_m_payload->a_obj_webhooklog = NULL;
@@ -48,7 +60,7 @@ cJSON *webhook_get_history_v1_response_m_payload_convertToJSON(webhook_get_histo
     listEntry_t *a_obj_webhooklogListEntry;
     if (webhook_get_history_v1_response_m_payload->a_obj_webhooklog) {
     list_ForEach(a_obj_webhooklogListEntry, webhook_get_history_v1_response_m_payload->a_obj_webhooklog) {
-    cJSON *itemLocal = object_convertToJSON(a_obj_webhooklogListEntry->data);
+    cJSON *itemLocal = custom_webhooklog_response_convertToJSON(a_obj_webhooklogListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -73,6 +85,9 @@ webhook_get_history_v1_response_m_payload_t *webhook_get_history_v1_response_m_p
 
     // webhook_get_history_v1_response_m_payload->a_obj_webhooklog
     cJSON *a_obj_webhooklog = cJSON_GetObjectItemCaseSensitive(webhook_get_history_v1_response_m_payloadJSON, "a_objWebhooklog");
+    if (cJSON_IsNull(a_obj_webhooklog)) {
+        a_obj_webhooklog = NULL;
+    }
     if (!a_obj_webhooklog) {
         goto end;
     }
@@ -90,13 +105,13 @@ webhook_get_history_v1_response_m_payload_t *webhook_get_history_v1_response_m_p
         if(!cJSON_IsObject(a_obj_webhooklog_local_nonprimitive)){
             goto end;
         }
-        object_t *a_obj_webhooklogItem = object_parseFromJSON(a_obj_webhooklog_local_nonprimitive);
+        custom_webhooklog_response_t *a_obj_webhooklogItem = custom_webhooklog_response_parseFromJSON(a_obj_webhooklog_local_nonprimitive);
 
         list_addElement(a_obj_webhooklogList, a_obj_webhooklogItem);
     }
 
 
-    webhook_get_history_v1_response_m_payload_local_var = webhook_get_history_v1_response_m_payload_create (
+    webhook_get_history_v1_response_m_payload_local_var = webhook_get_history_v1_response_m_payload_create_internal (
         a_obj_webhooklogList
         );
 
@@ -105,7 +120,7 @@ end:
     if (a_obj_webhooklogList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_webhooklogList) {
-            object_free(listEntry->data);
+            custom_webhooklog_response_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_webhooklogList);

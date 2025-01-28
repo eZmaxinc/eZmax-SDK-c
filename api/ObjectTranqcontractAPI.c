@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Retrieve Communication count
@@ -25,15 +20,18 @@ ObjectTranqcontractAPI_tranqcontractGetCommunicationCountV1(apiClient_t *apiClie
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/tranqcontract/{pkiTranqcontractID}/getCommunicationCount")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/tranqcontract/{pkiTranqcontractID}/getCommunicationCount");
+    char *localVarPath = strdup("/1/object/tranqcontract/{pkiTranqcontractID}/getCommunicationCount");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiTranqcontractID =  + strlen("{ pkiTranqcontractID }");
+    long sizeOfPathParams_pkiTranqcontractID =  + sizeof("{ pkiTranqcontractID }") - 1;
     if(pkiTranqcontractID == 0){
         goto end;
     }
@@ -41,7 +39,7 @@ ObjectTranqcontractAPI_tranqcontractGetCommunicationCountV1(apiClient_t *apiClie
     snprintf(localVarToReplace_pkiTranqcontractID, sizeOfPathParams_pkiTranqcontractID, "{%s}", "pkiTranqcontractID");
 
     char localVarBuff_pkiTranqcontractID[256];
-    intToStr(localVarBuff_pkiTranqcontractID, *pkiTranqcontractID);
+    snprintf(localVarBuff_pkiTranqcontractID, sizeof localVarBuff_pkiTranqcontractID, "%ld", (long)*pkiTranqcontractID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiTranqcontractID, localVarBuff_pkiTranqcontractID);
 
@@ -56,6 +54,7 @@ ObjectTranqcontractAPI_tranqcontractGetCommunicationCountV1(apiClient_t *apiClie
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -67,11 +66,14 @@ ObjectTranqcontractAPI_tranqcontractGetCommunicationCountV1(apiClient_t *apiClie
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectTranqcontractAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    tranqcontract_get_communication_count_v1_response_t *elementToReturn = tranqcontract_get_communication_count_v1_response_parseFromJSON(ObjectTranqcontractAPIlocalVarJSON);
-    cJSON_Delete(ObjectTranqcontractAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    tranqcontract_get_communication_count_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectTranqcontractAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = tranqcontract_get_communication_count_v1_response_parseFromJSON(ObjectTranqcontractAPIlocalVarJSON);
+        cJSON_Delete(ObjectTranqcontractAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -107,15 +109,18 @@ ObjectTranqcontractAPI_tranqcontractGetCommunicationListV1(apiClient_t *apiClien
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/tranqcontract/{pkiTranqcontractID}/getCommunicationList")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/tranqcontract/{pkiTranqcontractID}/getCommunicationList");
+    char *localVarPath = strdup("/1/object/tranqcontract/{pkiTranqcontractID}/getCommunicationList");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiTranqcontractID =  + strlen("{ pkiTranqcontractID }");
+    long sizeOfPathParams_pkiTranqcontractID =  + sizeof("{ pkiTranqcontractID }") - 1;
     if(pkiTranqcontractID == 0){
         goto end;
     }
@@ -123,7 +128,7 @@ ObjectTranqcontractAPI_tranqcontractGetCommunicationListV1(apiClient_t *apiClien
     snprintf(localVarToReplace_pkiTranqcontractID, sizeOfPathParams_pkiTranqcontractID, "{%s}", "pkiTranqcontractID");
 
     char localVarBuff_pkiTranqcontractID[256];
-    intToStr(localVarBuff_pkiTranqcontractID, *pkiTranqcontractID);
+    snprintf(localVarBuff_pkiTranqcontractID, sizeof localVarBuff_pkiTranqcontractID, "%ld", (long)*pkiTranqcontractID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiTranqcontractID, localVarBuff_pkiTranqcontractID);
 
@@ -138,6 +143,7 @@ ObjectTranqcontractAPI_tranqcontractGetCommunicationListV1(apiClient_t *apiClien
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -149,11 +155,14 @@ ObjectTranqcontractAPI_tranqcontractGetCommunicationListV1(apiClient_t *apiClien
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectTranqcontractAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    tranqcontract_get_communication_list_v1_response_t *elementToReturn = tranqcontract_get_communication_list_v1_response_parseFromJSON(ObjectTranqcontractAPIlocalVarJSON);
-    cJSON_Delete(ObjectTranqcontractAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    tranqcontract_get_communication_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectTranqcontractAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = tranqcontract_get_communication_list_v1_response_parseFromJSON(ObjectTranqcontractAPIlocalVarJSON);
+        cJSON_Delete(ObjectTranqcontractAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -189,15 +198,18 @@ ObjectTranqcontractAPI_tranqcontractGetCommunicationrecipientsV1(apiClient_t *ap
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/tranqcontract/{pkiTranqcontractID}/getCommunicationrecipients")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/tranqcontract/{pkiTranqcontractID}/getCommunicationrecipients");
+    char *localVarPath = strdup("/1/object/tranqcontract/{pkiTranqcontractID}/getCommunicationrecipients");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiTranqcontractID =  + strlen("{ pkiTranqcontractID }");
+    long sizeOfPathParams_pkiTranqcontractID =  + sizeof("{ pkiTranqcontractID }") - 1;
     if(pkiTranqcontractID == 0){
         goto end;
     }
@@ -205,7 +217,7 @@ ObjectTranqcontractAPI_tranqcontractGetCommunicationrecipientsV1(apiClient_t *ap
     snprintf(localVarToReplace_pkiTranqcontractID, sizeOfPathParams_pkiTranqcontractID, "{%s}", "pkiTranqcontractID");
 
     char localVarBuff_pkiTranqcontractID[256];
-    intToStr(localVarBuff_pkiTranqcontractID, *pkiTranqcontractID);
+    snprintf(localVarBuff_pkiTranqcontractID, sizeof localVarBuff_pkiTranqcontractID, "%ld", (long)*pkiTranqcontractID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiTranqcontractID, localVarBuff_pkiTranqcontractID);
 
@@ -220,6 +232,7 @@ ObjectTranqcontractAPI_tranqcontractGetCommunicationrecipientsV1(apiClient_t *ap
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -231,11 +244,14 @@ ObjectTranqcontractAPI_tranqcontractGetCommunicationrecipientsV1(apiClient_t *ap
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectTranqcontractAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    tranqcontract_get_communicationrecipients_v1_response_t *elementToReturn = tranqcontract_get_communicationrecipients_v1_response_parseFromJSON(ObjectTranqcontractAPIlocalVarJSON);
-    cJSON_Delete(ObjectTranqcontractAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    tranqcontract_get_communicationrecipients_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectTranqcontractAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = tranqcontract_get_communicationrecipients_v1_response_parseFromJSON(ObjectTranqcontractAPIlocalVarJSON);
+        cJSON_Delete(ObjectTranqcontractAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -271,15 +287,18 @@ ObjectTranqcontractAPI_tranqcontractGetCommunicationsendersV1(apiClient_t *apiCl
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/tranqcontract/{pkiTranqcontractID}/getCommunicationsenders")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/tranqcontract/{pkiTranqcontractID}/getCommunicationsenders");
+    char *localVarPath = strdup("/1/object/tranqcontract/{pkiTranqcontractID}/getCommunicationsenders");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiTranqcontractID =  + strlen("{ pkiTranqcontractID }");
+    long sizeOfPathParams_pkiTranqcontractID =  + sizeof("{ pkiTranqcontractID }") - 1;
     if(pkiTranqcontractID == 0){
         goto end;
     }
@@ -287,7 +306,7 @@ ObjectTranqcontractAPI_tranqcontractGetCommunicationsendersV1(apiClient_t *apiCl
     snprintf(localVarToReplace_pkiTranqcontractID, sizeOfPathParams_pkiTranqcontractID, "{%s}", "pkiTranqcontractID");
 
     char localVarBuff_pkiTranqcontractID[256];
-    intToStr(localVarBuff_pkiTranqcontractID, *pkiTranqcontractID);
+    snprintf(localVarBuff_pkiTranqcontractID, sizeof localVarBuff_pkiTranqcontractID, "%ld", (long)*pkiTranqcontractID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiTranqcontractID, localVarBuff_pkiTranqcontractID);
 
@@ -302,6 +321,7 @@ ObjectTranqcontractAPI_tranqcontractGetCommunicationsendersV1(apiClient_t *apiCl
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -313,11 +333,14 @@ ObjectTranqcontractAPI_tranqcontractGetCommunicationsendersV1(apiClient_t *apiCl
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectTranqcontractAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    tranqcontract_get_communicationsenders_v1_response_t *elementToReturn = tranqcontract_get_communicationsenders_v1_response_parseFromJSON(ObjectTranqcontractAPIlocalVarJSON);
-    cJSON_Delete(ObjectTranqcontractAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    tranqcontract_get_communicationsenders_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectTranqcontractAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = tranqcontract_get_communicationsenders_v1_response_parseFromJSON(ObjectTranqcontractAPIlocalVarJSON);
+        cJSON_Delete(ObjectTranqcontractAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

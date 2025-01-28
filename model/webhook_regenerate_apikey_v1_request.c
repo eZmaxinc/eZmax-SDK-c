@@ -5,7 +5,7 @@
 
 
 
-webhook_regenerate_apikey_v1_request_t *webhook_regenerate_apikey_v1_request_create(
+static webhook_regenerate_apikey_v1_request_t *webhook_regenerate_apikey_v1_request_create_internal(
     int b_webhook_issigned
     ) {
     webhook_regenerate_apikey_v1_request_t *webhook_regenerate_apikey_v1_request_local_var = malloc(sizeof(webhook_regenerate_apikey_v1_request_t));
@@ -14,12 +14,24 @@ webhook_regenerate_apikey_v1_request_t *webhook_regenerate_apikey_v1_request_cre
     }
     webhook_regenerate_apikey_v1_request_local_var->b_webhook_issigned = b_webhook_issigned;
 
+    webhook_regenerate_apikey_v1_request_local_var->_library_owned = 1;
     return webhook_regenerate_apikey_v1_request_local_var;
 }
 
+__attribute__((deprecated)) webhook_regenerate_apikey_v1_request_t *webhook_regenerate_apikey_v1_request_create(
+    int b_webhook_issigned
+    ) {
+    return webhook_regenerate_apikey_v1_request_create_internal (
+        b_webhook_issigned
+        );
+}
 
 void webhook_regenerate_apikey_v1_request_free(webhook_regenerate_apikey_v1_request_t *webhook_regenerate_apikey_v1_request) {
     if(NULL == webhook_regenerate_apikey_v1_request){
+        return ;
+    }
+    if(webhook_regenerate_apikey_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "webhook_regenerate_apikey_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -50,6 +62,9 @@ webhook_regenerate_apikey_v1_request_t *webhook_regenerate_apikey_v1_request_par
 
     // webhook_regenerate_apikey_v1_request->b_webhook_issigned
     cJSON *b_webhook_issigned = cJSON_GetObjectItemCaseSensitive(webhook_regenerate_apikey_v1_requestJSON, "bWebhookIssigned");
+    if (cJSON_IsNull(b_webhook_issigned)) {
+        b_webhook_issigned = NULL;
+    }
     if (b_webhook_issigned) { 
     if(!cJSON_IsBool(b_webhook_issigned))
     {
@@ -58,7 +73,7 @@ webhook_regenerate_apikey_v1_request_t *webhook_regenerate_apikey_v1_request_par
     }
 
 
-    webhook_regenerate_apikey_v1_request_local_var = webhook_regenerate_apikey_v1_request_create (
+    webhook_regenerate_apikey_v1_request_local_var = webhook_regenerate_apikey_v1_request_create_internal (
         b_webhook_issigned ? b_webhook_issigned->valueint : 0
         );
 

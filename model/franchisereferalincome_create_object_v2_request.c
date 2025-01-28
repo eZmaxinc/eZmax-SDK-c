@@ -5,7 +5,7 @@
 
 
 
-franchisereferalincome_create_object_v2_request_t *franchisereferalincome_create_object_v2_request_create(
+static franchisereferalincome_create_object_v2_request_t *franchisereferalincome_create_object_v2_request_create_internal(
     list_t *a_obj_franchisereferalincome
     ) {
     franchisereferalincome_create_object_v2_request_t *franchisereferalincome_create_object_v2_request_local_var = malloc(sizeof(franchisereferalincome_create_object_v2_request_t));
@@ -14,12 +14,24 @@ franchisereferalincome_create_object_v2_request_t *franchisereferalincome_create
     }
     franchisereferalincome_create_object_v2_request_local_var->a_obj_franchisereferalincome = a_obj_franchisereferalincome;
 
+    franchisereferalincome_create_object_v2_request_local_var->_library_owned = 1;
     return franchisereferalincome_create_object_v2_request_local_var;
 }
 
+__attribute__((deprecated)) franchisereferalincome_create_object_v2_request_t *franchisereferalincome_create_object_v2_request_create(
+    list_t *a_obj_franchisereferalincome
+    ) {
+    return franchisereferalincome_create_object_v2_request_create_internal (
+        a_obj_franchisereferalincome
+        );
+}
 
 void franchisereferalincome_create_object_v2_request_free(franchisereferalincome_create_object_v2_request_t *franchisereferalincome_create_object_v2_request) {
     if(NULL == franchisereferalincome_create_object_v2_request){
+        return ;
+    }
+    if(franchisereferalincome_create_object_v2_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "franchisereferalincome_create_object_v2_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ franchisereferalincome_create_object_v2_request_t *franchisereferalincome_create
 
     // franchisereferalincome_create_object_v2_request->a_obj_franchisereferalincome
     cJSON *a_obj_franchisereferalincome = cJSON_GetObjectItemCaseSensitive(franchisereferalincome_create_object_v2_requestJSON, "a_objFranchisereferalincome");
+    if (cJSON_IsNull(a_obj_franchisereferalincome)) {
+        a_obj_franchisereferalincome = NULL;
+    }
     if (!a_obj_franchisereferalincome) {
         goto end;
     }
@@ -96,7 +111,7 @@ franchisereferalincome_create_object_v2_request_t *franchisereferalincome_create
     }
 
 
-    franchisereferalincome_create_object_v2_request_local_var = franchisereferalincome_create_object_v2_request_create (
+    franchisereferalincome_create_object_v2_request_local_var = franchisereferalincome_create_object_v2_request_create_internal (
         a_obj_franchisereferalincomeList
         );
 

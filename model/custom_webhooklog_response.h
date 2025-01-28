@@ -22,9 +22,10 @@ typedef struct custom_webhooklog_response_t {
     char *dt_webhooklog_date; // string
     char *t_webhooklog_json; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_webhooklog_response_t;
 
-custom_webhooklog_response_t *custom_webhooklog_response_create(
+__attribute__((deprecated)) custom_webhooklog_response_t *custom_webhooklog_response_create(
     char *dt_webhooklog_date,
     char *t_webhooklog_json
 );

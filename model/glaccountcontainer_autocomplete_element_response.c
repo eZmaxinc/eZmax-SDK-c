@@ -5,7 +5,7 @@
 
 
 
-glaccountcontainer_autocomplete_element_response_t *glaccountcontainer_autocomplete_element_response_create(
+static glaccountcontainer_autocomplete_element_response_t *glaccountcontainer_autocomplete_element_response_create_internal(
     int pki_glaccountcontainer_id,
     char *s_glaccountcontainer_longcode,
     char *s_glaccountcontainer_longdescription_x,
@@ -20,12 +20,30 @@ glaccountcontainer_autocomplete_element_response_t *glaccountcontainer_autocompl
     glaccountcontainer_autocomplete_element_response_local_var->s_glaccountcontainer_longdescription_x = s_glaccountcontainer_longdescription_x;
     glaccountcontainer_autocomplete_element_response_local_var->b_glaccountcontainer_isactive = b_glaccountcontainer_isactive;
 
+    glaccountcontainer_autocomplete_element_response_local_var->_library_owned = 1;
     return glaccountcontainer_autocomplete_element_response_local_var;
 }
 
+__attribute__((deprecated)) glaccountcontainer_autocomplete_element_response_t *glaccountcontainer_autocomplete_element_response_create(
+    int pki_glaccountcontainer_id,
+    char *s_glaccountcontainer_longcode,
+    char *s_glaccountcontainer_longdescription_x,
+    int b_glaccountcontainer_isactive
+    ) {
+    return glaccountcontainer_autocomplete_element_response_create_internal (
+        pki_glaccountcontainer_id,
+        s_glaccountcontainer_longcode,
+        s_glaccountcontainer_longdescription_x,
+        b_glaccountcontainer_isactive
+        );
+}
 
 void glaccountcontainer_autocomplete_element_response_free(glaccountcontainer_autocomplete_element_response_t *glaccountcontainer_autocomplete_element_response) {
     if(NULL == glaccountcontainer_autocomplete_element_response){
+        return ;
+    }
+    if(glaccountcontainer_autocomplete_element_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "glaccountcontainer_autocomplete_element_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -92,6 +110,9 @@ glaccountcontainer_autocomplete_element_response_t *glaccountcontainer_autocompl
 
     // glaccountcontainer_autocomplete_element_response->pki_glaccountcontainer_id
     cJSON *pki_glaccountcontainer_id = cJSON_GetObjectItemCaseSensitive(glaccountcontainer_autocomplete_element_responseJSON, "pkiGlaccountcontainerID");
+    if (cJSON_IsNull(pki_glaccountcontainer_id)) {
+        pki_glaccountcontainer_id = NULL;
+    }
     if (!pki_glaccountcontainer_id) {
         goto end;
     }
@@ -104,6 +125,9 @@ glaccountcontainer_autocomplete_element_response_t *glaccountcontainer_autocompl
 
     // glaccountcontainer_autocomplete_element_response->s_glaccountcontainer_longcode
     cJSON *s_glaccountcontainer_longcode = cJSON_GetObjectItemCaseSensitive(glaccountcontainer_autocomplete_element_responseJSON, "sGlaccountcontainerLongcode");
+    if (cJSON_IsNull(s_glaccountcontainer_longcode)) {
+        s_glaccountcontainer_longcode = NULL;
+    }
     if (!s_glaccountcontainer_longcode) {
         goto end;
     }
@@ -116,6 +140,9 @@ glaccountcontainer_autocomplete_element_response_t *glaccountcontainer_autocompl
 
     // glaccountcontainer_autocomplete_element_response->s_glaccountcontainer_longdescription_x
     cJSON *s_glaccountcontainer_longdescription_x = cJSON_GetObjectItemCaseSensitive(glaccountcontainer_autocomplete_element_responseJSON, "sGlaccountcontainerLongdescriptionX");
+    if (cJSON_IsNull(s_glaccountcontainer_longdescription_x)) {
+        s_glaccountcontainer_longdescription_x = NULL;
+    }
     if (!s_glaccountcontainer_longdescription_x) {
         goto end;
     }
@@ -128,6 +155,9 @@ glaccountcontainer_autocomplete_element_response_t *glaccountcontainer_autocompl
 
     // glaccountcontainer_autocomplete_element_response->b_glaccountcontainer_isactive
     cJSON *b_glaccountcontainer_isactive = cJSON_GetObjectItemCaseSensitive(glaccountcontainer_autocomplete_element_responseJSON, "bGlaccountcontainerIsactive");
+    if (cJSON_IsNull(b_glaccountcontainer_isactive)) {
+        b_glaccountcontainer_isactive = NULL;
+    }
     if (!b_glaccountcontainer_isactive) {
         goto end;
     }
@@ -139,7 +169,7 @@ glaccountcontainer_autocomplete_element_response_t *glaccountcontainer_autocompl
     }
 
 
-    glaccountcontainer_autocomplete_element_response_local_var = glaccountcontainer_autocomplete_element_response_create (
+    glaccountcontainer_autocomplete_element_response_local_var = glaccountcontainer_autocomplete_element_response_create_internal (
         pki_glaccountcontainer_id->valuedouble,
         strdup(s_glaccountcontainer_longcode->valuestring),
         strdup(s_glaccountcontainer_longdescription_x->valuestring),

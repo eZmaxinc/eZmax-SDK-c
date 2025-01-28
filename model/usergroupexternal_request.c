@@ -5,7 +5,7 @@
 
 
 
-usergroupexternal_request_t *usergroupexternal_request_create(
+static usergroupexternal_request_t *usergroupexternal_request_create_internal(
     int pki_usergroupexternal_id,
     char *s_usergroupexternal_name,
     char *s_usergroupexternal_id
@@ -18,12 +18,28 @@ usergroupexternal_request_t *usergroupexternal_request_create(
     usergroupexternal_request_local_var->s_usergroupexternal_name = s_usergroupexternal_name;
     usergroupexternal_request_local_var->s_usergroupexternal_id = s_usergroupexternal_id;
 
+    usergroupexternal_request_local_var->_library_owned = 1;
     return usergroupexternal_request_local_var;
 }
 
+__attribute__((deprecated)) usergroupexternal_request_t *usergroupexternal_request_create(
+    int pki_usergroupexternal_id,
+    char *s_usergroupexternal_name,
+    char *s_usergroupexternal_id
+    ) {
+    return usergroupexternal_request_create_internal (
+        pki_usergroupexternal_id,
+        s_usergroupexternal_name,
+        s_usergroupexternal_id
+        );
+}
 
 void usergroupexternal_request_free(usergroupexternal_request_t *usergroupexternal_request) {
     if(NULL == usergroupexternal_request){
+        return ;
+    }
+    if(usergroupexternal_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroupexternal_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -80,6 +96,9 @@ usergroupexternal_request_t *usergroupexternal_request_parseFromJSON(cJSON *user
 
     // usergroupexternal_request->pki_usergroupexternal_id
     cJSON *pki_usergroupexternal_id = cJSON_GetObjectItemCaseSensitive(usergroupexternal_requestJSON, "pkiUsergroupexternalID");
+    if (cJSON_IsNull(pki_usergroupexternal_id)) {
+        pki_usergroupexternal_id = NULL;
+    }
     if (pki_usergroupexternal_id) { 
     if(!cJSON_IsNumber(pki_usergroupexternal_id))
     {
@@ -89,6 +108,9 @@ usergroupexternal_request_t *usergroupexternal_request_parseFromJSON(cJSON *user
 
     // usergroupexternal_request->s_usergroupexternal_name
     cJSON *s_usergroupexternal_name = cJSON_GetObjectItemCaseSensitive(usergroupexternal_requestJSON, "sUsergroupexternalName");
+    if (cJSON_IsNull(s_usergroupexternal_name)) {
+        s_usergroupexternal_name = NULL;
+    }
     if (!s_usergroupexternal_name) {
         goto end;
     }
@@ -101,6 +123,9 @@ usergroupexternal_request_t *usergroupexternal_request_parseFromJSON(cJSON *user
 
     // usergroupexternal_request->s_usergroupexternal_id
     cJSON *s_usergroupexternal_id = cJSON_GetObjectItemCaseSensitive(usergroupexternal_requestJSON, "sUsergroupexternalID");
+    if (cJSON_IsNull(s_usergroupexternal_id)) {
+        s_usergroupexternal_id = NULL;
+    }
     if (!s_usergroupexternal_id) {
         goto end;
     }
@@ -112,7 +137,7 @@ usergroupexternal_request_t *usergroupexternal_request_parseFromJSON(cJSON *user
     }
 
 
-    usergroupexternal_request_local_var = usergroupexternal_request_create (
+    usergroupexternal_request_local_var = usergroupexternal_request_create_internal (
         pki_usergroupexternal_id ? pki_usergroupexternal_id->valuedouble : 0,
         strdup(s_usergroupexternal_name->valuestring),
         strdup(s_usergroupexternal_id->valuestring)

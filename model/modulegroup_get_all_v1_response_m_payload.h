@@ -22,9 +22,10 @@ typedef struct modulegroup_get_all_v1_response_m_payload_t modulegroup_get_all_v
 typedef struct modulegroup_get_all_v1_response_m_payload_t {
     list_t *a_obj_modulegroup; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } modulegroup_get_all_v1_response_m_payload_t;
 
-modulegroup_get_all_v1_response_m_payload_t *modulegroup_get_all_v1_response_m_payload_create(
+__attribute__((deprecated)) modulegroup_get_all_v1_response_m_payload_t *modulegroup_get_all_v1_response_m_payload_create(
     list_t *a_obj_modulegroup
 );
 

@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 // Functions for enum  for GlobalEzmaxclientAPI_globalEzmaxclientVersionV1
 
@@ -68,15 +63,18 @@ GlobalEzmaxclientAPI_globalEzmaxclientVersionV1(apiClient_t *apiClient, field_pk
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/ezmaxclient/{pksEzmaxclientOs}/version")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/ezmaxclient/{pksEzmaxclientOs}/version");
+    char *localVarPath = strdup("/1/ezmaxclient/{pksEzmaxclientOs}/version");
+
 
 
     // Path Params
-    long sizeOfPathParams_pksEzmaxclientOs =  + strlen("{ pksEzmaxclientOs }");
+    long sizeOfPathParams_pksEzmaxclientOs =  + sizeof("{ pksEzmaxclientOs }") - 1;
 
 
     list_addElement(localVarHeaderType,"application/json"); //produces
@@ -88,6 +86,7 @@ GlobalEzmaxclientAPI_globalEzmaxclientVersionV1(apiClient_t *apiClient, field_pk
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -99,11 +98,14 @@ GlobalEzmaxclientAPI_globalEzmaxclientVersionV1(apiClient_t *apiClient, field_pk
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *GlobalEzmaxclientAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    global_ezmaxclient_version_v1_response_t *elementToReturn = global_ezmaxclient_version_v1_response_parseFromJSON(GlobalEzmaxclientAPIlocalVarJSON);
-    cJSON_Delete(GlobalEzmaxclientAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    global_ezmaxclient_version_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *GlobalEzmaxclientAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = global_ezmaxclient_version_v1_response_parseFromJSON(GlobalEzmaxclientAPIlocalVarJSON);
+        cJSON_Delete(GlobalEzmaxclientAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

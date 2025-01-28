@@ -50,7 +50,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectCreditcardclientAPI_creditcardclientDeleteObjectV1(apiClient_t *apiClient, int *pkiCreditcardclientID);
+creditcardclient_delete_object_v1_response_t* ObjectCreditcardclientAPI_creditcardclientDeleteObjectV1(apiClient_t *apiClient, int *pkiCreditcardclientID);
 ```
 
 ### Parameters
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[creditcardclient_delete_object_v1_response_t](creditcardclient_delete_object_v1_response.md) *
 
 
 ### Authorization
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectCreditcardclientAPI_creditcardclientEditObjectV1(apiClient_t *apiClient, int *pkiCreditcardclientID, creditcardclient_edit_object_v1_request_t *creditcardclient_edit_object_v1_request);
+creditcardclient_edit_object_v1_response_t* ObjectCreditcardclientAPI_creditcardclientEditObjectV1(apiClient_t *apiClient, int *pkiCreditcardclientID, creditcardclient_edit_object_v1_request_t *creditcardclient_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[creditcardclient_edit_object_v1_response_t](creditcardclient_edit_object_v1_response.md) *
 
 
 ### Authorization
@@ -213,7 +213,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectCreditcardclientAPI_creditcardclientPatchObjectV1(apiClient_t *apiClient, int *pkiCreditcardclientID, creditcardclient_patch_object_v1_request_t *creditcardclient_patch_object_v1_request);
+creditcardclient_patch_object_v1_response_t* ObjectCreditcardclientAPI_creditcardclientPatchObjectV1(apiClient_t *apiClient, int *pkiCreditcardclientID, creditcardclient_patch_object_v1_request_t *creditcardclient_patch_object_v1_request);
 ```
 
 ### Parameters
@@ -225,7 +225,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[creditcardclient_patch_object_v1_response_t](creditcardclient_patch_object_v1_response.md) *
 
 
 ### Authorization

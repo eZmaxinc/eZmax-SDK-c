@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Create a new Ezsigndiscussion
@@ -25,11 +20,14 @@ ObjectEzsigndiscussionAPI_ezsigndiscussionCreateObjectV1(apiClient_t *apiClient,
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsigndiscussion")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsigndiscussion");
+    char *localVarPath = strdup("/1/object/ezsigndiscussion");
+
 
 
 
@@ -38,9 +36,10 @@ ObjectEzsigndiscussionAPI_ezsigndiscussionCreateObjectV1(apiClient_t *apiClient,
     cJSON *localVarSingleItemJSON_ezsigndiscussion_create_object_v1_request = NULL;
     if (ezsigndiscussion_create_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_ezsigndiscussion_create_object_v1_request = ezsigndiscussion_create_object_v1_request_convertToJSON(ezsigndiscussion_create_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsigndiscussion_create_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -52,6 +51,7 @@ ObjectEzsigndiscussionAPI_ezsigndiscussionCreateObjectV1(apiClient_t *apiClient,
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -59,11 +59,14 @@ ObjectEzsigndiscussionAPI_ezsigndiscussionCreateObjectV1(apiClient_t *apiClient,
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsigndiscussionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsigndiscussion_create_object_v1_response_t *elementToReturn = ezsigndiscussion_create_object_v1_response_parseFromJSON(ObjectEzsigndiscussionAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsigndiscussionAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsigndiscussion_create_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsigndiscussionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsigndiscussion_create_object_v1_response_parseFromJSON(ObjectEzsigndiscussionAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsigndiscussionAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -94,7 +97,7 @@ end:
 //
 // 
 //
-common_response_t*
+ezsigndiscussion_delete_object_v1_response_t*
 ObjectEzsigndiscussionAPI_ezsigndiscussionDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigndiscussionID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -103,15 +106,18 @@ ObjectEzsigndiscussionAPI_ezsigndiscussionDeleteObjectV1(apiClient_t *apiClient,
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/ezsigndiscussion/{pkiEzsigndiscussionID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/ezsigndiscussion/{pkiEzsigndiscussionID}");
+    char *localVarPath = strdup("/1/object/ezsigndiscussion/{pkiEzsigndiscussionID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsigndiscussionID =  + strlen("{ pkiEzsigndiscussionID }");
+    long sizeOfPathParams_pkiEzsigndiscussionID =  + sizeof("{ pkiEzsigndiscussionID }") - 1;
     if(pkiEzsigndiscussionID == 0){
         goto end;
     }
@@ -119,7 +125,7 @@ ObjectEzsigndiscussionAPI_ezsigndiscussionDeleteObjectV1(apiClient_t *apiClient,
     snprintf(localVarToReplace_pkiEzsigndiscussionID, sizeOfPathParams_pkiEzsigndiscussionID, "{%s}", "pkiEzsigndiscussionID");
 
     char localVarBuff_pkiEzsigndiscussionID[256];
-    intToStr(localVarBuff_pkiEzsigndiscussionID, *pkiEzsigndiscussionID);
+    snprintf(localVarBuff_pkiEzsigndiscussionID, sizeof localVarBuff_pkiEzsigndiscussionID, "%ld", (long)*pkiEzsigndiscussionID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigndiscussionID, localVarBuff_pkiEzsigndiscussionID);
 
@@ -134,6 +140,7 @@ ObjectEzsigndiscussionAPI_ezsigndiscussionDeleteObjectV1(apiClient_t *apiClient,
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "DELETE");
 
     // uncomment below to debug the error response
@@ -145,11 +152,14 @@ ObjectEzsigndiscussionAPI_ezsigndiscussionDeleteObjectV1(apiClient_t *apiClient,
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsigndiscussionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectEzsigndiscussionAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsigndiscussionAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsigndiscussion_delete_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsigndiscussionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsigndiscussion_delete_object_v1_response_parseFromJSON(ObjectEzsigndiscussionAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsigndiscussionAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -185,15 +195,18 @@ ObjectEzsigndiscussionAPI_ezsigndiscussionGetObjectV2(apiClient_t *apiClient, in
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/ezsigndiscussion/{pkiEzsigndiscussionID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/ezsigndiscussion/{pkiEzsigndiscussionID}");
+    char *localVarPath = strdup("/2/object/ezsigndiscussion/{pkiEzsigndiscussionID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiEzsigndiscussionID =  + strlen("{ pkiEzsigndiscussionID }");
+    long sizeOfPathParams_pkiEzsigndiscussionID =  + sizeof("{ pkiEzsigndiscussionID }") - 1;
     if(pkiEzsigndiscussionID == 0){
         goto end;
     }
@@ -201,7 +214,7 @@ ObjectEzsigndiscussionAPI_ezsigndiscussionGetObjectV2(apiClient_t *apiClient, in
     snprintf(localVarToReplace_pkiEzsigndiscussionID, sizeOfPathParams_pkiEzsigndiscussionID, "{%s}", "pkiEzsigndiscussionID");
 
     char localVarBuff_pkiEzsigndiscussionID[256];
-    intToStr(localVarBuff_pkiEzsigndiscussionID, *pkiEzsigndiscussionID);
+    snprintf(localVarBuff_pkiEzsigndiscussionID, sizeof localVarBuff_pkiEzsigndiscussionID, "%ld", (long)*pkiEzsigndiscussionID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigndiscussionID, localVarBuff_pkiEzsigndiscussionID);
 
@@ -216,6 +229,7 @@ ObjectEzsigndiscussionAPI_ezsigndiscussionGetObjectV2(apiClient_t *apiClient, in
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -227,11 +241,14 @@ ObjectEzsigndiscussionAPI_ezsigndiscussionGetObjectV2(apiClient_t *apiClient, in
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectEzsigndiscussionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    ezsigndiscussion_get_object_v2_response_t *elementToReturn = ezsigndiscussion_get_object_v2_response_parseFromJSON(ObjectEzsigndiscussionAPIlocalVarJSON);
-    cJSON_Delete(ObjectEzsigndiscussionAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    ezsigndiscussion_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsigndiscussionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsigndiscussion_get_object_v2_response_parseFromJSON(ObjectEzsigndiscussionAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsigndiscussionAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 // Functions for enum ECONTEXT for ObjectModulegroupAPI_modulegroupGetAllV1
 
@@ -75,22 +70,27 @@ ObjectModulegroupAPI_modulegroupGetAllV1(apiClient_t *apiClient, ezmax_api_defin
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/modulegroup/getAll/{eContext}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/modulegroup/getAll/{eContext}");
+    char *localVarPath = strdup("/1/object/modulegroup/getAll/{eContext}");
+
+    if(!eContext)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_eContext = strlen(eContext)+3 + strlen("{ eContext }");
-    if(eContext == NULL) {
+    long sizeOfPathParams_eContext = strlen(modulegroupGetAllV1_ECONTEXT_ToString(eContext))+3 + sizeof("{ eContext }") - 1;
+    if(eContext == 0) {
         goto end;
     }
     char* localVarToReplace_eContext = malloc(sizeOfPathParams_eContext);
     sprintf(localVarToReplace_eContext, "{%s}", "eContext");
 
-    localVarPath = strReplace(localVarPath, localVarToReplace_eContext, eContext);
+    localVarPath = strReplace(localVarPath, localVarToReplace_eContext, modulegroupGetAllV1_ECONTEXT_ToString(eContext));
 
 
     list_addElement(localVarHeaderType,"application/json"); //produces
@@ -102,6 +102,7 @@ ObjectModulegroupAPI_modulegroupGetAllV1(apiClient_t *apiClient, ezmax_api_defin
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -109,11 +110,14 @@ ObjectModulegroupAPI_modulegroupGetAllV1(apiClient_t *apiClient, ezmax_api_defin
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectModulegroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    modulegroup_get_all_v1_response_t *elementToReturn = modulegroup_get_all_v1_response_parseFromJSON(ObjectModulegroupAPIlocalVarJSON);
-    cJSON_Delete(ObjectModulegroupAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    modulegroup_get_all_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectModulegroupAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = modulegroup_get_all_v1_response_parseFromJSON(ObjectModulegroupAPIlocalVarJSON);
+        cJSON_Delete(ObjectModulegroupAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

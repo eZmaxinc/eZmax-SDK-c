@@ -5,7 +5,7 @@
 
 
 
-notificationtest_get_elements_v1_response_m_payload_t *notificationtest_get_elements_v1_response_m_payload_create(
+static notificationtest_get_elements_v1_response_m_payload_t *notificationtest_get_elements_v1_response_m_payload_create_internal(
     int pki_notificationtest_id,
     char *s_notificationtest_function,
     list_t *a_s_variableobject_property,
@@ -20,12 +20,30 @@ notificationtest_get_elements_v1_response_m_payload_t *notificationtest_get_elem
     notificationtest_get_elements_v1_response_m_payload_local_var->a_s_variableobject_property = a_s_variableobject_property;
     notificationtest_get_elements_v1_response_m_payload_local_var->a_obj_variableobject = a_obj_variableobject;
 
+    notificationtest_get_elements_v1_response_m_payload_local_var->_library_owned = 1;
     return notificationtest_get_elements_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) notificationtest_get_elements_v1_response_m_payload_t *notificationtest_get_elements_v1_response_m_payload_create(
+    int pki_notificationtest_id,
+    char *s_notificationtest_function,
+    list_t *a_s_variableobject_property,
+    list_t *a_obj_variableobject
+    ) {
+    return notificationtest_get_elements_v1_response_m_payload_create_internal (
+        pki_notificationtest_id,
+        s_notificationtest_function,
+        a_s_variableobject_property,
+        a_obj_variableobject
+        );
+}
 
 void notificationtest_get_elements_v1_response_m_payload_free(notificationtest_get_elements_v1_response_m_payload_t *notificationtest_get_elements_v1_response_m_payload) {
     if(NULL == notificationtest_get_elements_v1_response_m_payload){
+        return ;
+    }
+    if(notificationtest_get_elements_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "notificationtest_get_elements_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -82,7 +100,7 @@ cJSON *notificationtest_get_elements_v1_response_m_payload_convertToJSON(notific
 
     listEntry_t *a_s_variableobject_propertyListEntry;
     list_ForEach(a_s_variableobject_propertyListEntry, notificationtest_get_elements_v1_response_m_payload->a_s_variableobject_property) {
-    if(cJSON_AddStringToObject(a_s_variableobject_property, "", (char*)a_s_variableobject_propertyListEntry->data) == NULL)
+    if(cJSON_AddStringToObject(a_s_variableobject_property, "", a_s_variableobject_propertyListEntry->data) == NULL)
     {
         goto fail;
     }
@@ -122,6 +140,9 @@ notificationtest_get_elements_v1_response_m_payload_t *notificationtest_get_elem
 
     // notificationtest_get_elements_v1_response_m_payload->pki_notificationtest_id
     cJSON *pki_notificationtest_id = cJSON_GetObjectItemCaseSensitive(notificationtest_get_elements_v1_response_m_payloadJSON, "pkiNotificationtestID");
+    if (cJSON_IsNull(pki_notificationtest_id)) {
+        pki_notificationtest_id = NULL;
+    }
     if (!pki_notificationtest_id) {
         goto end;
     }
@@ -134,6 +155,9 @@ notificationtest_get_elements_v1_response_m_payload_t *notificationtest_get_elem
 
     // notificationtest_get_elements_v1_response_m_payload->s_notificationtest_function
     cJSON *s_notificationtest_function = cJSON_GetObjectItemCaseSensitive(notificationtest_get_elements_v1_response_m_payloadJSON, "sNotificationtestFunction");
+    if (cJSON_IsNull(s_notificationtest_function)) {
+        s_notificationtest_function = NULL;
+    }
     if (!s_notificationtest_function) {
         goto end;
     }
@@ -146,6 +170,9 @@ notificationtest_get_elements_v1_response_m_payload_t *notificationtest_get_elem
 
     // notificationtest_get_elements_v1_response_m_payload->a_s_variableobject_property
     cJSON *a_s_variableobject_property = cJSON_GetObjectItemCaseSensitive(notificationtest_get_elements_v1_response_m_payloadJSON, "a_sVariableobjectProperty");
+    if (cJSON_IsNull(a_s_variableobject_property)) {
+        a_s_variableobject_property = NULL;
+    }
     if (!a_s_variableobject_property) {
         goto end;
     }
@@ -168,6 +195,9 @@ notificationtest_get_elements_v1_response_m_payload_t *notificationtest_get_elem
 
     // notificationtest_get_elements_v1_response_m_payload->a_obj_variableobject
     cJSON *a_obj_variableobject = cJSON_GetObjectItemCaseSensitive(notificationtest_get_elements_v1_response_m_payloadJSON, "a_objVariableobject");
+    if (cJSON_IsNull(a_obj_variableobject)) {
+        a_obj_variableobject = NULL;
+    }
     if (!a_obj_variableobject) {
         goto end;
     }
@@ -184,7 +214,7 @@ notificationtest_get_elements_v1_response_m_payload_t *notificationtest_get_elem
     }
 
 
-    notificationtest_get_elements_v1_response_m_payload_local_var = notificationtest_get_elements_v1_response_m_payload_create (
+    notificationtest_get_elements_v1_response_m_payload_local_var = notificationtest_get_elements_v1_response_m_payload_create_internal (
         pki_notificationtest_id->valuedouble,
         strdup(s_notificationtest_function->valuestring),
         a_s_variableobject_propertyList,

@@ -5,7 +5,7 @@
 
 
 
-activesession_get_current_v2_response_m_payload_t *activesession_get_current_v2_response_m_payload_create(
+static activesession_get_current_v2_response_m_payload_t *activesession_get_current_v2_response_m_payload_create_internal(
     activesession_response_compound_t *obj_activesession
     ) {
     activesession_get_current_v2_response_m_payload_t *activesession_get_current_v2_response_m_payload_local_var = malloc(sizeof(activesession_get_current_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ activesession_get_current_v2_response_m_payload_t *activesession_get_current_v2_
     }
     activesession_get_current_v2_response_m_payload_local_var->obj_activesession = obj_activesession;
 
+    activesession_get_current_v2_response_m_payload_local_var->_library_owned = 1;
     return activesession_get_current_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) activesession_get_current_v2_response_m_payload_t *activesession_get_current_v2_response_m_payload_create(
+    activesession_response_compound_t *obj_activesession
+    ) {
+    return activesession_get_current_v2_response_m_payload_create_internal (
+        obj_activesession
+        );
+}
 
 void activesession_get_current_v2_response_m_payload_free(activesession_get_current_v2_response_m_payload_t *activesession_get_current_v2_response_m_payload) {
     if(NULL == activesession_get_current_v2_response_m_payload){
+        return ;
+    }
+    if(activesession_get_current_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "activesession_get_current_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ activesession_get_current_v2_response_m_payload_t *activesession_get_current_v2_
 
     // activesession_get_current_v2_response_m_payload->obj_activesession
     cJSON *obj_activesession = cJSON_GetObjectItemCaseSensitive(activesession_get_current_v2_response_m_payloadJSON, "objActivesession");
+    if (cJSON_IsNull(obj_activesession)) {
+        obj_activesession = NULL;
+    }
     if (!obj_activesession) {
         goto end;
     }
@@ -71,7 +86,7 @@ activesession_get_current_v2_response_m_payload_t *activesession_get_current_v2_
     obj_activesession_local_nonprim = activesession_response_compound_parseFromJSON(obj_activesession); //nonprimitive
 
 
-    activesession_get_current_v2_response_m_payload_local_var = activesession_get_current_v2_response_m_payload_create (
+    activesession_get_current_v2_response_m_payload_local_var = activesession_get_current_v2_response_m_payload_create_internal (
         obj_activesession_local_nonprim
         );
 

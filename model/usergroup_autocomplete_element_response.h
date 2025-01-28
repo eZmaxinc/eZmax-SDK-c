@@ -23,9 +23,10 @@ typedef struct usergroup_autocomplete_element_response_t {
     int pki_usergroup_id; //numeric
     int b_usergroup_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } usergroup_autocomplete_element_response_t;
 
-usergroup_autocomplete_element_response_t *usergroup_autocomplete_element_response_create(
+__attribute__((deprecated)) usergroup_autocomplete_element_response_t *usergroup_autocomplete_element_response_create(
     char *s_usergroup_name_x,
     int pki_usergroup_id,
     int b_usergroup_isactive

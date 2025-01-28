@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsignsignature_type__e field_e_ezsignsignatu
     return 0;
 }
 
-cJSON *field_e_ezsignsignature_type_field_e_ezsignsignature_type_convertToJSON(ezmax_api_definition__full_field_e_ezsignsignature_type__e field_e_ezsignsignature_type) {
+cJSON *field_e_ezsignsignature_type_convertToJSON(ezmax_api_definition__full_field_e_ezsignsignature_type__e field_e_ezsignsignature_type) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsignsignature_type", field_e_ezsignsignature_type_field_e_ezsignsignature_type_ToString(field_e_ezsignsignature_type)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsignsignature_type__e field_e_ezsignsignature_type_field_e_ezsignsignature_type_parseFromJSON(cJSON *field_e_ezsignsignature_typeJSON) {
-    ezmax_api_definition__full_field_e_ezsignsignature_type__e *field_e_ezsignsignature_type = NULL;
-    ezmax_api_definition__full_field_e_ezsignsignature_type__e field_e_ezsignsignature_typeVariable;
-    cJSON *field_e_ezsignsignature_typeVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsignsignature_typeJSON, "field_e_ezsignsignature_type");
-    if(!cJSON_IsString(field_e_ezsignsignature_typeVar) || (field_e_ezsignsignature_typeVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsignsignature_type__e field_e_ezsignsignature_type_parseFromJSON(cJSON *field_e_ezsignsignature_typeJSON) {
+    if(!cJSON_IsString(field_e_ezsignsignature_typeJSON) || (field_e_ezsignsignature_typeJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsignsignature_typeVariable = field_e_ezsignsignature_type_field_e_ezsignsignature_type_FromString(field_e_ezsignsignature_typeVar->valuestring);
-    return field_e_ezsignsignature_typeVariable;
-end:
-    return 0;
+    return field_e_ezsignsignature_type_field_e_ezsignsignature_type_FromString(field_e_ezsignsignature_typeJSON->valuestring);
 }

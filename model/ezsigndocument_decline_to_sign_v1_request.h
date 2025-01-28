@@ -21,9 +21,10 @@ typedef struct ezsigndocument_decline_to_sign_v1_request_t ezsigndocument_declin
 typedef struct ezsigndocument_decline_to_sign_v1_request_t {
     char *s_reason; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigndocument_decline_to_sign_v1_request_t;
 
-ezsigndocument_decline_to_sign_v1_request_t *ezsigndocument_decline_to_sign_v1_request_create(
+__attribute__((deprecated)) ezsigndocument_decline_to_sign_v1_request_t *ezsigndocument_decline_to_sign_v1_request_create(
     char *s_reason
 );
 

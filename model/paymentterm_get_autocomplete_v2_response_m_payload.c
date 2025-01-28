@@ -5,7 +5,7 @@
 
 
 
-paymentterm_get_autocomplete_v2_response_m_payload_t *paymentterm_get_autocomplete_v2_response_m_payload_create(
+static paymentterm_get_autocomplete_v2_response_m_payload_t *paymentterm_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_paymentterm
     ) {
     paymentterm_get_autocomplete_v2_response_m_payload_t *paymentterm_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(paymentterm_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ paymentterm_get_autocomplete_v2_response_m_payload_t *paymentterm_get_autocomple
     }
     paymentterm_get_autocomplete_v2_response_m_payload_local_var->a_obj_paymentterm = a_obj_paymentterm;
 
+    paymentterm_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return paymentterm_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) paymentterm_get_autocomplete_v2_response_m_payload_t *paymentterm_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_paymentterm
+    ) {
+    return paymentterm_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_paymentterm
+        );
+}
 
 void paymentterm_get_autocomplete_v2_response_m_payload_free(paymentterm_get_autocomplete_v2_response_m_payload_t *paymentterm_get_autocomplete_v2_response_m_payload) {
     if(NULL == paymentterm_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(paymentterm_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "paymentterm_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ paymentterm_get_autocomplete_v2_response_m_payload_t *paymentterm_get_autocomple
 
     // paymentterm_get_autocomplete_v2_response_m_payload->a_obj_paymentterm
     cJSON *a_obj_paymentterm = cJSON_GetObjectItemCaseSensitive(paymentterm_get_autocomplete_v2_response_m_payloadJSON, "a_objPaymentterm");
+    if (cJSON_IsNull(a_obj_paymentterm)) {
+        a_obj_paymentterm = NULL;
+    }
     if (!a_obj_paymentterm) {
         goto end;
     }
@@ -96,7 +111,7 @@ paymentterm_get_autocomplete_v2_response_m_payload_t *paymentterm_get_autocomple
     }
 
 
-    paymentterm_get_autocomplete_v2_response_m_payload_local_var = paymentterm_get_autocomplete_v2_response_m_payload_create (
+    paymentterm_get_autocomplete_v2_response_m_payload_local_var = paymentterm_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_paymenttermList
         );
 

@@ -24,13 +24,13 @@ cors_request_t* instantiate_cors_request(int include_optional) {
     cors_request = cors_request_create(
       228,
       99,
-      "Https://www.example.com"
+      "https://www.example.com"
     );
   } else {
     cors_request = cors_request_create(
       228,
       99,
-      "Https://www.example.com"
+      "https://www.example.com"
     );
   }
 

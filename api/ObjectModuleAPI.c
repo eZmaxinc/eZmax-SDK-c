@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 // Functions for enum SSELECTOR for ObjectModuleAPI_moduleGetAutocompleteV2
 
@@ -172,22 +167,27 @@ ObjectModuleAPI_moduleGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_defini
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/module/getAutocomplete/{sSelector}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/module/getAutocomplete/{sSelector}");
+    char *localVarPath = strdup("/2/object/module/getAutocomplete/{sSelector}");
+
+    if(!sSelector)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_sSelector = strlen(sSelector)+3 + strlen("{ sSelector }");
-    if(sSelector == NULL) {
+    long sizeOfPathParams_sSelector = strlen(moduleGetAutocompleteV2_SSELECTOR_ToString(sSelector))+3 + sizeof("{ sSelector }") - 1;
+    if(sSelector == 0) {
         goto end;
     }
     char* localVarToReplace_sSelector = malloc(sizeOfPathParams_sSelector);
     sprintf(localVarToReplace_sSelector, "{%s}", "sSelector");
 
-    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, sSelector);
+    localVarPath = strReplace(localVarPath, localVarToReplace_sSelector, moduleGetAutocompleteV2_SSELECTOR_ToString(sSelector));
 
 
 
@@ -211,7 +211,7 @@ ObjectModuleAPI_moduleGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_defini
     {
         keyQuery_eFilterActive = strdup("eFilterActive");
         valueQuery_eFilterActive = (eFilterActive);
-        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, (void *)strdup(moduleGetAutocompleteV2_EFILTERACTIVE_ToString(
+        keyPairQuery_eFilterActive = keyValuePair_create(keyQuery_eFilterActive, strdup(moduleGetAutocompleteV2_EFILTERACTIVE_ToString(
         valueQuery_eFilterActive)));
         list_addElement(localVarQueryParameters,keyPairQuery_eFilterActive);
     }
@@ -236,6 +236,7 @@ ObjectModuleAPI_moduleGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_defini
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -243,11 +244,14 @@ ObjectModuleAPI_moduleGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_defini
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectModuleAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    module_get_autocomplete_v2_response_t *elementToReturn = module_get_autocomplete_v2_response_parseFromJSON(ObjectModuleAPIlocalVarJSON);
-    cJSON_Delete(ObjectModuleAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    module_get_autocomplete_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectModuleAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = module_get_autocomplete_v2_response_parseFromJSON(ObjectModuleAPIlocalVarJSON);
+        cJSON_Delete(ObjectModuleAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

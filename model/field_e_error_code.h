@@ -24,9 +24,9 @@ char* field_e_error_code_field_e_error_code_ToString(ezmax_api_definition__full_
 
 ezmax_api_definition__full_field_e_error_code__e field_e_error_code_field_e_error_code_FromString(char* field_e_error_code);
 
-//cJSON *field_e_error_code_field_e_error_code_convertToJSON(ezmax_api_definition__full_field_e_error_code__e field_e_error_code);
+cJSON *field_e_error_code_convertToJSON(ezmax_api_definition__full_field_e_error_code__e field_e_error_code);
 
-//ezmax_api_definition__full_field_e_error_code__e field_e_error_code_field_e_error_code_parseFromJSON(cJSON *field_e_error_codeJSON);
+ezmax_api_definition__full_field_e_error_code__e field_e_error_code_parseFromJSON(cJSON *field_e_error_codeJSON);
 
 #endif /* _field_e_error_code_H_ */
 

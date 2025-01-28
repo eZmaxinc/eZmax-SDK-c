@@ -52,7 +52,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectWebhookAPI_webhookDeleteObjectV1(apiClient_t *apiClient, int *pkiWebhookID);
+webhook_delete_object_v1_response_t* ObjectWebhookAPI_webhookDeleteObjectV1(apiClient_t *apiClient, int *pkiWebhookID);
 ```
 
 ### Parameters
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[webhook_delete_object_v1_response_t](webhook_delete_object_v1_response.md) *
 
 
 ### Authorization
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectWebhookAPI_webhookEditObjectV1(apiClient_t *apiClient, int *pkiWebhookID, webhook_edit_object_v1_request_t *webhook_edit_object_v1_request);
+webhook_edit_object_v1_response_t* ObjectWebhookAPI_webhookEditObjectV1(apiClient_t *apiClient, int *pkiWebhookID, webhook_edit_object_v1_request_t *webhook_edit_object_v1_request);
 ```
 
 ### Parameters
@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[webhook_edit_object_v1_response_t](webhook_edit_object_v1_response.md) *
 
 
 ### Authorization
@@ -243,7 +243,7 @@ Name | Type | Description  | Notes
 ```c
 // Emit a Webhook event
 //
-common_response_t* ObjectWebhookAPI_webhookSendWebhookV1(apiClient_t *apiClient, webhook_send_webhook_v1_request_t *webhook_send_webhook_v1_request);
+webhook_send_webhook_v1_response_t* ObjectWebhookAPI_webhookSendWebhookV1(apiClient_t *apiClient, webhook_send_webhook_v1_request_t *webhook_send_webhook_v1_request);
 ```
 
 ### Parameters
@@ -254,7 +254,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[webhook_send_webhook_v1_response_t](webhook_send_webhook_v1_response.md) *
 
 
 ### Authorization
@@ -274,7 +274,7 @@ Name | Type | Description  | Notes
 //
 // 
 //
-common_response_t* ObjectWebhookAPI_webhookTestV1(apiClient_t *apiClient, int *pkiWebhookID, object_t *body);
+webhook_test_v1_response_t* ObjectWebhookAPI_webhookTestV1(apiClient_t *apiClient, int *pkiWebhookID, object_t *body);
 ```
 
 ### Parameters
@@ -286,7 +286,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[common_response_t](common_response.md) *
+[webhook_test_v1_response_t](webhook_test_v1_response.md) *
 
 
 ### Authorization

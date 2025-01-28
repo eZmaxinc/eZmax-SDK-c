@@ -21,9 +21,10 @@ typedef struct ezsignfoldersignerassociation_get_in_person_login_url_v1_response
 typedef struct ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_t {
     char *s_login_url; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_t;
 
-ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_t *ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_create(
+__attribute__((deprecated)) ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_t *ezsignfoldersignerassociation_get_in_person_login_url_v1_response_m_payload_create(
     char *s_login_url
 );
 

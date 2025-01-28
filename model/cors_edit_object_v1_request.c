@@ -5,7 +5,7 @@
 
 
 
-cors_edit_object_v1_request_t *cors_edit_object_v1_request_create(
+static cors_edit_object_v1_request_t *cors_edit_object_v1_request_create_internal(
     cors_request_compound_t *obj_cors
     ) {
     cors_edit_object_v1_request_t *cors_edit_object_v1_request_local_var = malloc(sizeof(cors_edit_object_v1_request_t));
@@ -14,12 +14,24 @@ cors_edit_object_v1_request_t *cors_edit_object_v1_request_create(
     }
     cors_edit_object_v1_request_local_var->obj_cors = obj_cors;
 
+    cors_edit_object_v1_request_local_var->_library_owned = 1;
     return cors_edit_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) cors_edit_object_v1_request_t *cors_edit_object_v1_request_create(
+    cors_request_compound_t *obj_cors
+    ) {
+    return cors_edit_object_v1_request_create_internal (
+        obj_cors
+        );
+}
 
 void cors_edit_object_v1_request_free(cors_edit_object_v1_request_t *cors_edit_object_v1_request) {
     if(NULL == cors_edit_object_v1_request){
+        return ;
+    }
+    if(cors_edit_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "cors_edit_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ cors_edit_object_v1_request_t *cors_edit_object_v1_request_parseFromJSON(cJSON *
 
     // cors_edit_object_v1_request->obj_cors
     cJSON *obj_cors = cJSON_GetObjectItemCaseSensitive(cors_edit_object_v1_requestJSON, "objCors");
+    if (cJSON_IsNull(obj_cors)) {
+        obj_cors = NULL;
+    }
     if (!obj_cors) {
         goto end;
     }
@@ -71,7 +86,7 @@ cors_edit_object_v1_request_t *cors_edit_object_v1_request_parseFromJSON(cJSON *
     obj_cors_local_nonprim = cors_request_compound_parseFromJSON(obj_cors); //nonprimitive
 
 
-    cors_edit_object_v1_request_local_var = cors_edit_object_v1_request_create (
+    cors_edit_object_v1_request_local_var = cors_edit_object_v1_request_create_internal (
         obj_cors_local_nonprim
         );
 

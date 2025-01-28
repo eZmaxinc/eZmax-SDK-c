@@ -5,7 +5,7 @@
 
 
 
-glaccount_get_autocomplete_v2_response_m_payload_t *glaccount_get_autocomplete_v2_response_m_payload_create(
+static glaccount_get_autocomplete_v2_response_m_payload_t *glaccount_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_glaccount
     ) {
     glaccount_get_autocomplete_v2_response_m_payload_t *glaccount_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(glaccount_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ glaccount_get_autocomplete_v2_response_m_payload_t *glaccount_get_autocomplete_v
     }
     glaccount_get_autocomplete_v2_response_m_payload_local_var->a_obj_glaccount = a_obj_glaccount;
 
+    glaccount_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return glaccount_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) glaccount_get_autocomplete_v2_response_m_payload_t *glaccount_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_glaccount
+    ) {
+    return glaccount_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_glaccount
+        );
+}
 
 void glaccount_get_autocomplete_v2_response_m_payload_free(glaccount_get_autocomplete_v2_response_m_payload_t *glaccount_get_autocomplete_v2_response_m_payload) {
     if(NULL == glaccount_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(glaccount_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "glaccount_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ glaccount_get_autocomplete_v2_response_m_payload_t *glaccount_get_autocomplete_v
 
     // glaccount_get_autocomplete_v2_response_m_payload->a_obj_glaccount
     cJSON *a_obj_glaccount = cJSON_GetObjectItemCaseSensitive(glaccount_get_autocomplete_v2_response_m_payloadJSON, "a_objGlaccount");
+    if (cJSON_IsNull(a_obj_glaccount)) {
+        a_obj_glaccount = NULL;
+    }
     if (!a_obj_glaccount) {
         goto end;
     }
@@ -96,7 +111,7 @@ glaccount_get_autocomplete_v2_response_m_payload_t *glaccount_get_autocomplete_v
     }
 
 
-    glaccount_get_autocomplete_v2_response_m_payload_local_var = glaccount_get_autocomplete_v2_response_m_payload_create (
+    glaccount_get_autocomplete_v2_response_m_payload_local_var = glaccount_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_glaccountList
         );
 

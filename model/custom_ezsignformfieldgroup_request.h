@@ -15,7 +15,7 @@
 
 typedef struct custom_ezsignformfieldgroup_request_t custom_ezsignformfieldgroup_request_t;
 
-#include "object.h"
+#include "custom_ezsignformfield_request.h"
 
 
 
@@ -24,9 +24,10 @@ typedef struct custom_ezsignformfieldgroup_request_t {
     char *s_ezsignformfieldgroup_label; // string
     list_t *a_obj_ezsignformfield; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_ezsignformfieldgroup_request_t;
 
-custom_ezsignformfieldgroup_request_t *custom_ezsignformfieldgroup_request_create(
+__attribute__((deprecated)) custom_ezsignformfieldgroup_request_t *custom_ezsignformfieldgroup_request_create(
     int pki_ezsignformfieldgroup_id,
     char *s_ezsignformfieldgroup_label,
     list_t *a_obj_ezsignformfield

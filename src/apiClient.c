@@ -17,6 +17,7 @@ apiClient_t *apiClient_create() {
     apiClient->progress_data = NULL;
     apiClient->response_code = 0;
     apiClient->apiKeys_Authorization = NULL;
+    apiClient->accessToken = NULL;
     apiClient->apiKeys_Presigned = NULL;
 
     return apiClient;
@@ -57,6 +58,7 @@ apiClient_t *apiClient_create_with_base_path(const char *basePath
     }else{
         apiClient->apiKeys_Authorization = NULL;
     }
+    apiClient->accessToken = NULL;
     if(apiKeys_Presigned!= NULL) {
         apiClient->apiKeys_Presigned = list_createList();
         listEntry_t *listEntry = NULL;
@@ -92,6 +94,9 @@ void apiClient_free(apiClient_t *apiClient) {
             keyValuePair_free(pair);
         }
         list_freeList(apiClient->apiKeys_Authorization);
+    }
+    if(apiClient->accessToken) {
+        free(apiClient->accessToken);
     }
     if(apiClient->apiKeys_Presigned) {
         listEntry_t *listEntry = NULL;
@@ -138,17 +143,18 @@ void sslConfig_free(sslConfig_t *sslConfig) {
     free(sslConfig);
 }
 
-void replaceSpaceWithPlus(char *stringToProcess) {
-    for(int i = 0; i < strlen(stringToProcess); i++) {
-        if(stringToProcess[i] == ' ') {
-            stringToProcess[i] = '+';
+static void replaceSpaceWithPlus(char *str) {
+    if (str) {
+        for (; *str; str++) {
+            if (*str == ' ')
+                *str = '+';
         }
     }
 }
 
-char *assembleTargetUrl(const char  *basePath,
-                        const char  *operationParameter,
-                        list_t    *queryParameters) {
+static char *assembleTargetUrl(const char  *basePath,
+                               const char  *operationParameter,
+                               list_t    *queryParameters) {
     int neededBufferSizeForQueryParameters = 0;
     listEntry_t *listEntry;
 
@@ -199,7 +205,7 @@ char *assembleTargetUrl(const char  *basePath,
     return targetUrl;
 }
 
-char *assembleHeaderField(char *key, char *value) {
+static char *assembleHeaderField(char *key, char *value) {
     char *header = malloc(strlen(key) + strlen(value) + 3);
 
     strcpy(header, key),
@@ -209,13 +215,13 @@ char *assembleHeaderField(char *key, char *value) {
     return header;
 }
 
-void postData(CURL *handle, const char *bodyParameters) {
+static void postData(CURL *handle, const char *bodyParameters, size_t bodyParametersLength) {
     curl_easy_setopt(handle, CURLOPT_POSTFIELDS, bodyParameters);
     curl_easy_setopt(handle, CURLOPT_POSTFIELDSIZE_LARGE,
-                     (curl_off_t)strlen(bodyParameters));
+                     (curl_off_t)bodyParametersLength);
 }
 
-int lengthOfKeyPair(keyValuePair_t *keyPair) {
+static int lengthOfKeyPair(keyValuePair_t *keyPair) {
     long length = 0;
     if((keyPair->key != NULL) &&
        (keyPair->value != NULL) )
@@ -235,7 +241,8 @@ void apiClient_invoke(apiClient_t    *apiClient,
                       list_t        *headerType,
                       list_t        *contentType,
                       const char    *bodyParameters,
-                      const char    *requestType) {
+                      size_t       bodyParametersLength,
+                      const char   *requestType) {
     CURL *handle = curl_easy_init();
     CURLcode res;
 
@@ -250,38 +257,26 @@ void apiClient_invoke(apiClient_t    *apiClient,
 
         if(headerType != NULL) {
             list_ForEach(listEntry, headerType) {
-                if(strstr((char *) listEntry->data,
-                          "xml") == NULL)
+                if(strstr(listEntry->data, "xml") == NULL)
                 {
-                    buffHeader = malloc(strlen(
-                                    "Accept: ") +
-                                        strlen((char *)
-                                               listEntry->
-                                               data) + 1);
-                    sprintf(buffHeader, "%s%s", "Accept: ",
+                    buffHeader = malloc(sizeof("Accept: ") +
+                                        strlen(listEntry->data));
+                    sprintf(buffHeader, "Accept: %s",
                             (char *) listEntry->data);
-                    headers = curl_slist_append(headers,
-                                                buffHeader);
+                    headers = curl_slist_append(headers, buffHeader);
                     free(buffHeader);
                 }
             }
         }
         if(contentType != NULL) {
             list_ForEach(listEntry, contentType) {
-                if(strstr((char *) listEntry->data,
-                          "xml") == NULL)
+                if(strstr(listEntry->data, "xml") == NULL)
                 {
-                    buffContent =
-                        malloc(strlen(
-                                   "Content-Type: ") + strlen(
-                                   (char *)
-                                   listEntry->data) +
-                               1);
-                    sprintf(buffContent, "%s%s",
-                            "Content-Type: ",
+                    buffContent = malloc(sizeof("Content-Type: ") +
+                                         strlen(listEntry->data));
+                    sprintf(buffContent, "Content-Type: %s",
                             (char *) listEntry->data);
-                    headers = curl_slist_append(headers,
-                                                buffContent);
+                    headers = curl_slist_append(headers, buffContent);
                     free(buffContent);
                     buffContent = NULL;
                 }
@@ -411,8 +406,8 @@ void apiClient_invoke(apiClient_t    *apiClient,
                     curl_easy_setopt(handle, CURLOPT_SSL_VERIFYHOST, 2L);
                 }
             } else {
-                curl_easy_setopt(handle, CURLOPT_SSL_VERIFYPEER, 0L);
-                curl_easy_setopt(handle, CURLOPT_SSL_VERIFYHOST, 0L);
+                curl_easy_setopt(handle, CURLOPT_SSL_VERIFYPEER, 1L);
+                curl_easy_setopt(handle, CURLOPT_SSL_VERIFYHOST, 2L);
             }
         }
 
@@ -438,6 +433,18 @@ void apiClient_invoke(apiClient_t    *apiClient,
             free(headerValueToWrite);
         }
         }
+        }
+        // this would only be generated for bearer token authentication
+        if(apiClient->accessToken != NULL)
+        {
+            int authHeaderSize;
+            char *authHeader = NULL;
+
+            authHeaderSize = snprintf(NULL, 0, "Authorization: Bearer %s", apiClient->accessToken) + 1;
+            authHeader = malloc(authHeaderSize);
+            snprintf(authHeader, authHeaderSize, "Authorization: Bearer %s", apiClient->accessToken);
+            headers = curl_slist_append(headers, authHeader);
+            free(authHeader);
         }
         // this would only be generated for apiKey authentication
         if (apiClient->apiKeys_Presigned != NULL)
@@ -472,7 +479,7 @@ void apiClient_invoke(apiClient_t    *apiClient,
 
 
         if(bodyParameters != NULL) {
-            postData(handle, bodyParameters);
+            postData(handle, bodyParameters, bodyParametersLength);
         }
 
         res = curl_easy_perform(handle);
@@ -504,8 +511,8 @@ void apiClient_invoke(apiClient_t    *apiClient,
 
 size_t writeDataCallback(void *buffer, size_t size, size_t nmemb, void *userp) {
     size_t size_this_time = nmemb * size;
-    apiClient_t *apiClient = (apiClient_t *)userp;
-    apiClient->dataReceived = (char *)realloc( apiClient->dataReceived, apiClient->dataReceivedLen + size_this_time + 1);
+    apiClient_t *apiClient = userp;
+    apiClient->dataReceived = realloc( apiClient->dataReceived, apiClient->dataReceivedLen + size_this_time + 1);
     memcpy((char *)apiClient->dataReceived + apiClient->dataReceivedLen, buffer, size_this_time);
     apiClient->dataReceivedLen += size_this_time;
     ((char*)apiClient->dataReceived)[apiClient->dataReceivedLen] = '\0'; // the space size of (apiClient->dataReceived) = dataReceivedLen + 1

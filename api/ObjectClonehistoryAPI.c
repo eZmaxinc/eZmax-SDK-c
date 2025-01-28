@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 // Functions for enum EORDERBY for ObjectClonehistoryAPI_clonehistoryGetListV1
 
@@ -120,11 +115,14 @@ ObjectClonehistoryAPI_clonehistoryGetListV1(apiClient_t *apiClient, ezmax_api_de
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/clonehistory/getList")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/clonehistory/getList");
+    char *localVarPath = strdup("/1/object/clonehistory/getList");
+
 
 
 
@@ -149,7 +147,7 @@ ObjectClonehistoryAPI_clonehistoryGetListV1(apiClient_t *apiClient, ezmax_api_de
     {
         keyQuery_eOrderBy = strdup("eOrderBy");
         valueQuery_eOrderBy = (eOrderBy);
-        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, (void *)strdup(clonehistoryGetListV1_EORDERBY_ToString(
+        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, strdup(clonehistoryGetListV1_EORDERBY_ToString(
         valueQuery_eOrderBy)));
         list_addElement(localVarQueryParameters,keyPairQuery_eOrderBy);
     }
@@ -201,6 +199,7 @@ ObjectClonehistoryAPI_clonehistoryGetListV1(apiClient_t *apiClient, ezmax_api_de
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -212,11 +211,14 @@ ObjectClonehistoryAPI_clonehistoryGetListV1(apiClient_t *apiClient, ezmax_api_de
     //    printf("%s\n","The URL is valid, but one of the Accept header is not defined or invalid. For example, you set the header \&quot;Accept: application/json\&quot; but the function can only return \&quot;Content-type: image/png\&quot;");
     //}
     //nonprimitive not container
-    cJSON *ObjectClonehistoryAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    clonehistory_get_list_v1_response_t *elementToReturn = clonehistory_get_list_v1_response_parseFromJSON(ObjectClonehistoryAPIlocalVarJSON);
-    cJSON_Delete(ObjectClonehistoryAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    clonehistory_get_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectClonehistoryAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = clonehistory_get_list_v1_response_parseFromJSON(ObjectClonehistoryAPIlocalVarJSON);
+        cJSON_Delete(ObjectClonehistoryAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

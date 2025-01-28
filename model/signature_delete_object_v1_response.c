@@ -5,7 +5,7 @@
 
 
 
-signature_delete_object_v1_response_t *signature_delete_object_v1_response_create(
+static signature_delete_object_v1_response_t *signature_delete_object_v1_response_create_internal(
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug
     ) {
@@ -16,12 +16,26 @@ signature_delete_object_v1_response_t *signature_delete_object_v1_response_creat
     signature_delete_object_v1_response_local_var->obj_debug_payload = obj_debug_payload;
     signature_delete_object_v1_response_local_var->obj_debug = obj_debug;
 
+    signature_delete_object_v1_response_local_var->_library_owned = 1;
     return signature_delete_object_v1_response_local_var;
 }
 
+__attribute__((deprecated)) signature_delete_object_v1_response_t *signature_delete_object_v1_response_create(
+    common_response_obj_debug_payload_t *obj_debug_payload,
+    common_response_obj_debug_t *obj_debug
+    ) {
+    return signature_delete_object_v1_response_create_internal (
+        obj_debug_payload,
+        obj_debug
+        );
+}
 
 void signature_delete_object_v1_response_free(signature_delete_object_v1_response_t *signature_delete_object_v1_response) {
     if(NULL == signature_delete_object_v1_response){
+        return ;
+    }
+    if(signature_delete_object_v1_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "signature_delete_object_v1_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -85,6 +99,9 @@ signature_delete_object_v1_response_t *signature_delete_object_v1_response_parse
 
     // signature_delete_object_v1_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(signature_delete_object_v1_responseJSON, "objDebugPayload");
+    if (cJSON_IsNull(obj_debug_payload)) {
+        obj_debug_payload = NULL;
+    }
     if (!obj_debug_payload) {
         goto end;
     }
@@ -94,12 +111,15 @@ signature_delete_object_v1_response_t *signature_delete_object_v1_response_parse
 
     // signature_delete_object_v1_response->obj_debug
     cJSON *obj_debug = cJSON_GetObjectItemCaseSensitive(signature_delete_object_v1_responseJSON, "objDebug");
+    if (cJSON_IsNull(obj_debug)) {
+        obj_debug = NULL;
+    }
     if (obj_debug) { 
     obj_debug_local_nonprim = common_response_obj_debug_parseFromJSON(obj_debug); //nonprimitive
     }
 
 
-    signature_delete_object_v1_response_local_var = signature_delete_object_v1_response_create (
+    signature_delete_object_v1_response_local_var = signature_delete_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL
         );

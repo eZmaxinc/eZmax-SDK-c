@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsigntemplatesigner_mapping__e field_e_ezsig
     return 0;
 }
 
-cJSON *field_e_ezsigntemplatesigner_mapping_field_e_ezsigntemplatesigner_mapping_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplatesigner_mapping__e field_e_ezsigntemplatesigner_mapping) {
+cJSON *field_e_ezsigntemplatesigner_mapping_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplatesigner_mapping__e field_e_ezsigntemplatesigner_mapping) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsigntemplatesigner_mapping", field_e_ezsigntemplatesigner_mapping_field_e_ezsigntemplatesigner_mapping_ToString(field_e_ezsigntemplatesigner_mapping)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsigntemplatesigner_mapping__e field_e_ezsigntemplatesigner_mapping_field_e_ezsigntemplatesigner_mapping_parseFromJSON(cJSON *field_e_ezsigntemplatesigner_mappingJSON) {
-    ezmax_api_definition__full_field_e_ezsigntemplatesigner_mapping__e *field_e_ezsigntemplatesigner_mapping = NULL;
-    ezmax_api_definition__full_field_e_ezsigntemplatesigner_mapping__e field_e_ezsigntemplatesigner_mappingVariable;
-    cJSON *field_e_ezsigntemplatesigner_mappingVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsigntemplatesigner_mappingJSON, "field_e_ezsigntemplatesigner_mapping");
-    if(!cJSON_IsString(field_e_ezsigntemplatesigner_mappingVar) || (field_e_ezsigntemplatesigner_mappingVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsigntemplatesigner_mapping__e field_e_ezsigntemplatesigner_mapping_parseFromJSON(cJSON *field_e_ezsigntemplatesigner_mappingJSON) {
+    if(!cJSON_IsString(field_e_ezsigntemplatesigner_mappingJSON) || (field_e_ezsigntemplatesigner_mappingJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsigntemplatesigner_mappingVariable = field_e_ezsigntemplatesigner_mapping_field_e_ezsigntemplatesigner_mapping_FromString(field_e_ezsigntemplatesigner_mappingVar->valuestring);
-    return field_e_ezsigntemplatesigner_mappingVariable;
-end:
-    return 0;
+    return field_e_ezsigntemplatesigner_mapping_field_e_ezsigntemplatesigner_mapping_FromString(field_e_ezsigntemplatesigner_mappingJSON->valuestring);
 }

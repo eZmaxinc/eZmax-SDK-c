@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Create a new Customer
@@ -25,11 +20,14 @@ ObjectCustomerAPI_customerCreateObjectV1(apiClient_t *apiClient, customer_create
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/customer")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/customer");
+    char *localVarPath = strdup("/1/object/customer");
+
 
 
 
@@ -38,9 +36,10 @@ ObjectCustomerAPI_customerCreateObjectV1(apiClient_t *apiClient, customer_create
     cJSON *localVarSingleItemJSON_customer_create_object_v1_request = NULL;
     if (customer_create_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_customer_create_object_v1_request = customer_create_object_v1_request_convertToJSON(customer_create_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_customer_create_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -52,6 +51,7 @@ ObjectCustomerAPI_customerCreateObjectV1(apiClient_t *apiClient, customer_create
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -59,11 +59,14 @@ ObjectCustomerAPI_customerCreateObjectV1(apiClient_t *apiClient, customer_create
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectCustomerAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    customer_create_object_v1_response_t *elementToReturn = customer_create_object_v1_response_parseFromJSON(ObjectCustomerAPIlocalVarJSON);
-    cJSON_Delete(ObjectCustomerAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    customer_create_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectCustomerAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = customer_create_object_v1_response_parseFromJSON(ObjectCustomerAPIlocalVarJSON);
+        cJSON_Delete(ObjectCustomerAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -103,15 +106,18 @@ ObjectCustomerAPI_customerGetObjectV2(apiClient_t *apiClient, int *pkiCustomerID
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/customer/{pkiCustomerID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/customer/{pkiCustomerID}");
+    char *localVarPath = strdup("/2/object/customer/{pkiCustomerID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiCustomerID =  + strlen("{ pkiCustomerID }");
+    long sizeOfPathParams_pkiCustomerID =  + sizeof("{ pkiCustomerID }") - 1;
     if(pkiCustomerID == 0){
         goto end;
     }
@@ -119,7 +125,7 @@ ObjectCustomerAPI_customerGetObjectV2(apiClient_t *apiClient, int *pkiCustomerID
     snprintf(localVarToReplace_pkiCustomerID, sizeOfPathParams_pkiCustomerID, "{%s}", "pkiCustomerID");
 
     char localVarBuff_pkiCustomerID[256];
-    intToStr(localVarBuff_pkiCustomerID, *pkiCustomerID);
+    snprintf(localVarBuff_pkiCustomerID, sizeof localVarBuff_pkiCustomerID, "%ld", (long)*pkiCustomerID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiCustomerID, localVarBuff_pkiCustomerID);
 
@@ -134,6 +140,7 @@ ObjectCustomerAPI_customerGetObjectV2(apiClient_t *apiClient, int *pkiCustomerID
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -145,11 +152,14 @@ ObjectCustomerAPI_customerGetObjectV2(apiClient_t *apiClient, int *pkiCustomerID
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectCustomerAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    customer_get_object_v2_response_t *elementToReturn = customer_get_object_v2_response_parseFromJSON(ObjectCustomerAPIlocalVarJSON);
-    cJSON_Delete(ObjectCustomerAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    customer_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectCustomerAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = customer_get_object_v2_response_parseFromJSON(ObjectCustomerAPIlocalVarJSON);
+        cJSON_Delete(ObjectCustomerAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

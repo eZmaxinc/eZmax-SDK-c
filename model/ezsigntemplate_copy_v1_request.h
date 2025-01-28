@@ -23,9 +23,10 @@ typedef struct ezsigntemplate_copy_v1_request_t {
     int b_copy_company; //boolean
     int b_copy_user; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplate_copy_v1_request_t;
 
-ezsigntemplate_copy_v1_request_t *ezsigntemplate_copy_v1_request_create(
+__attribute__((deprecated)) ezsigntemplate_copy_v1_request_t *ezsigntemplate_copy_v1_request_create(
     list_t *a_fki_ezsignfoldertype_id,
     int b_copy_company,
     int b_copy_user

@@ -5,7 +5,7 @@
 
 
 
-inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload_t *inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload_create(
+static inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload_t *inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload_create_internal(
     list_t *a_obj_communicationrecipientsgroup
     ) {
     inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload_t *inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload_local_var = malloc(sizeof(inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload_t 
     }
     inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload_local_var->a_obj_communicationrecipientsgroup = a_obj_communicationrecipientsgroup;
 
+    inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload_local_var->_library_owned = 1;
     return inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload_t *inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload_create(
+    list_t *a_obj_communicationrecipientsgroup
+    ) {
+    return inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload_create_internal (
+        a_obj_communicationrecipientsgroup
+        );
+}
 
 void inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload_free(inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload_t *inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload) {
     if(NULL == inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload){
+        return ;
+    }
+    if(inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload_t 
 
     // inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload->a_obj_communicationrecipientsgroup
     cJSON *a_obj_communicationrecipientsgroup = cJSON_GetObjectItemCaseSensitive(inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payloadJSON, "a_objCommunicationrecipientsgroup");
+    if (cJSON_IsNull(a_obj_communicationrecipientsgroup)) {
+        a_obj_communicationrecipientsgroup = NULL;
+    }
     if (!a_obj_communicationrecipientsgroup) {
         goto end;
     }
@@ -96,7 +111,7 @@ inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload_t 
     }
 
 
-    inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload_local_var = inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload_create (
+    inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload_local_var = inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload_create_internal (
         a_obj_communicationrecipientsgroupList
         );
 

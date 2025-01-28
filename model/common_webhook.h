@@ -15,7 +15,7 @@
 
 typedef struct common_webhook_t common_webhook_t;
 
-#include "attempt_response.h"
+#include "attempt_response_compound.h"
 #include "custom_webhook_response.h"
 
 
@@ -24,9 +24,10 @@ typedef struct common_webhook_t {
     struct custom_webhook_response_t *obj_webhook; //model
     list_t *a_obj_attempt; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } common_webhook_t;
 
-common_webhook_t *common_webhook_create(
+__attribute__((deprecated)) common_webhook_t *common_webhook_create(
     custom_webhook_response_t *obj_webhook,
     list_t *a_obj_attempt
 );

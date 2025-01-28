@@ -5,7 +5,7 @@
 
 
 
-global_customer_get_endpoint_v1_response_t *global_customer_get_endpoint_v1_response_create(
+static global_customer_get_endpoint_v1_response_t *global_customer_get_endpoint_v1_response_create_internal(
     char *s_endpoint_url
     ) {
     global_customer_get_endpoint_v1_response_t *global_customer_get_endpoint_v1_response_local_var = malloc(sizeof(global_customer_get_endpoint_v1_response_t));
@@ -14,12 +14,24 @@ global_customer_get_endpoint_v1_response_t *global_customer_get_endpoint_v1_resp
     }
     global_customer_get_endpoint_v1_response_local_var->s_endpoint_url = s_endpoint_url;
 
+    global_customer_get_endpoint_v1_response_local_var->_library_owned = 1;
     return global_customer_get_endpoint_v1_response_local_var;
 }
 
+__attribute__((deprecated)) global_customer_get_endpoint_v1_response_t *global_customer_get_endpoint_v1_response_create(
+    char *s_endpoint_url
+    ) {
+    return global_customer_get_endpoint_v1_response_create_internal (
+        s_endpoint_url
+        );
+}
 
 void global_customer_get_endpoint_v1_response_free(global_customer_get_endpoint_v1_response_t *global_customer_get_endpoint_v1_response) {
     if(NULL == global_customer_get_endpoint_v1_response){
+        return ;
+    }
+    if(global_customer_get_endpoint_v1_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "global_customer_get_endpoint_v1_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -55,6 +67,9 @@ global_customer_get_endpoint_v1_response_t *global_customer_get_endpoint_v1_resp
 
     // global_customer_get_endpoint_v1_response->s_endpoint_url
     cJSON *s_endpoint_url = cJSON_GetObjectItemCaseSensitive(global_customer_get_endpoint_v1_responseJSON, "sEndpointURL");
+    if (cJSON_IsNull(s_endpoint_url)) {
+        s_endpoint_url = NULL;
+    }
     if (!s_endpoint_url) {
         goto end;
     }
@@ -66,7 +81,7 @@ global_customer_get_endpoint_v1_response_t *global_customer_get_endpoint_v1_resp
     }
 
 
-    global_customer_get_endpoint_v1_response_local_var = global_customer_get_endpoint_v1_response_create (
+    global_customer_get_endpoint_v1_response_local_var = global_customer_get_endpoint_v1_response_create_internal (
         strdup(s_endpoint_url->valuestring)
         );
 

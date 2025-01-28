@@ -29,9 +29,10 @@ typedef struct branding_list_element_t {
     int i_branding_colorbackgroundsmallbox; //numeric
     int b_branding_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } branding_list_element_t;
 
-branding_list_element_t *branding_list_element_create(
+__attribute__((deprecated)) branding_list_element_t *branding_list_element_create(
     int pki_branding_id,
     char *s_branding_description_x,
     int i_branding_colortext,

@@ -22,9 +22,10 @@ typedef struct paymentterm_get_object_v2_response_m_payload_t paymentterm_get_ob
 typedef struct paymentterm_get_object_v2_response_m_payload_t {
     struct paymentterm_response_compound_t *obj_paymentterm; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } paymentterm_get_object_v2_response_m_payload_t;
 
-paymentterm_get_object_v2_response_m_payload_t *paymentterm_get_object_v2_response_m_payload_create(
+__attribute__((deprecated)) paymentterm_get_object_v2_response_m_payload_t *paymentterm_get_object_v2_response_m_payload_create(
     paymentterm_response_compound_t *obj_paymentterm
 );
 

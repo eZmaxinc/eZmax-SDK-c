@@ -5,7 +5,7 @@
 
 
 
-custom_form_data_signer_response_t *custom_form_data_signer_response_create(
+static custom_form_data_signer_response_t *custom_form_data_signer_response_create_internal(
     int fki_ezsignfoldersignerassociation_id,
     int fki_user_id,
     char *s_contact_firstname,
@@ -22,12 +22,32 @@ custom_form_data_signer_response_t *custom_form_data_signer_response_create(
     custom_form_data_signer_response_local_var->s_contact_lastname = s_contact_lastname;
     custom_form_data_signer_response_local_var->a_obj_ezsignformfieldgroup = a_obj_ezsignformfieldgroup;
 
+    custom_form_data_signer_response_local_var->_library_owned = 1;
     return custom_form_data_signer_response_local_var;
 }
 
+__attribute__((deprecated)) custom_form_data_signer_response_t *custom_form_data_signer_response_create(
+    int fki_ezsignfoldersignerassociation_id,
+    int fki_user_id,
+    char *s_contact_firstname,
+    char *s_contact_lastname,
+    list_t *a_obj_ezsignformfieldgroup
+    ) {
+    return custom_form_data_signer_response_create_internal (
+        fki_ezsignfoldersignerassociation_id,
+        fki_user_id,
+        s_contact_firstname,
+        s_contact_lastname,
+        a_obj_ezsignformfieldgroup
+        );
+}
 
 void custom_form_data_signer_response_free(custom_form_data_signer_response_t *custom_form_data_signer_response) {
     if(NULL == custom_form_data_signer_response){
+        return ;
+    }
+    if(custom_form_data_signer_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "custom_form_data_signer_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -124,6 +144,9 @@ custom_form_data_signer_response_t *custom_form_data_signer_response_parseFromJS
 
     // custom_form_data_signer_response->fki_ezsignfoldersignerassociation_id
     cJSON *fki_ezsignfoldersignerassociation_id = cJSON_GetObjectItemCaseSensitive(custom_form_data_signer_responseJSON, "fkiEzsignfoldersignerassociationID");
+    if (cJSON_IsNull(fki_ezsignfoldersignerassociation_id)) {
+        fki_ezsignfoldersignerassociation_id = NULL;
+    }
     if (!fki_ezsignfoldersignerassociation_id) {
         goto end;
     }
@@ -136,6 +159,9 @@ custom_form_data_signer_response_t *custom_form_data_signer_response_parseFromJS
 
     // custom_form_data_signer_response->fki_user_id
     cJSON *fki_user_id = cJSON_GetObjectItemCaseSensitive(custom_form_data_signer_responseJSON, "fkiUserID");
+    if (cJSON_IsNull(fki_user_id)) {
+        fki_user_id = NULL;
+    }
     if (fki_user_id) { 
     if(!cJSON_IsNumber(fki_user_id))
     {
@@ -145,6 +171,9 @@ custom_form_data_signer_response_t *custom_form_data_signer_response_parseFromJS
 
     // custom_form_data_signer_response->s_contact_firstname
     cJSON *s_contact_firstname = cJSON_GetObjectItemCaseSensitive(custom_form_data_signer_responseJSON, "sContactFirstname");
+    if (cJSON_IsNull(s_contact_firstname)) {
+        s_contact_firstname = NULL;
+    }
     if (!s_contact_firstname) {
         goto end;
     }
@@ -157,6 +186,9 @@ custom_form_data_signer_response_t *custom_form_data_signer_response_parseFromJS
 
     // custom_form_data_signer_response->s_contact_lastname
     cJSON *s_contact_lastname = cJSON_GetObjectItemCaseSensitive(custom_form_data_signer_responseJSON, "sContactLastname");
+    if (cJSON_IsNull(s_contact_lastname)) {
+        s_contact_lastname = NULL;
+    }
     if (!s_contact_lastname) {
         goto end;
     }
@@ -169,6 +201,9 @@ custom_form_data_signer_response_t *custom_form_data_signer_response_parseFromJS
 
     // custom_form_data_signer_response->a_obj_ezsignformfieldgroup
     cJSON *a_obj_ezsignformfieldgroup = cJSON_GetObjectItemCaseSensitive(custom_form_data_signer_responseJSON, "a_objEzsignformfieldgroup");
+    if (cJSON_IsNull(a_obj_ezsignformfieldgroup)) {
+        a_obj_ezsignformfieldgroup = NULL;
+    }
     if (!a_obj_ezsignformfieldgroup) {
         goto end;
     }
@@ -192,7 +227,7 @@ custom_form_data_signer_response_t *custom_form_data_signer_response_parseFromJS
     }
 
 
-    custom_form_data_signer_response_local_var = custom_form_data_signer_response_create (
+    custom_form_data_signer_response_local_var = custom_form_data_signer_response_create_internal (
         fki_ezsignfoldersignerassociation_id->valuedouble,
         fki_user_id ? fki_user_id->valuedouble : 0,
         strdup(s_contact_firstname->valuestring),

@@ -24,9 +24,10 @@ typedef struct custom_ezsignformfield_request_t {
     int b_ezsignformfield_selected; //boolean
     char *s_ezsignformfield_enteredvalue; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_ezsignformfield_request_t;
 
-custom_ezsignformfield_request_t *custom_ezsignformfield_request_create(
+__attribute__((deprecated)) custom_ezsignformfield_request_t *custom_ezsignformfield_request_create(
     int pki_ezsignformfield_id,
     char *s_ezsignformfield_label,
     int b_ezsignformfield_selected,

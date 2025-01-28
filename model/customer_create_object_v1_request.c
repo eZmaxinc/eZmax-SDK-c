@@ -5,7 +5,7 @@
 
 
 
-customer_create_object_v1_request_t *customer_create_object_v1_request_create(
+static customer_create_object_v1_request_t *customer_create_object_v1_request_create_internal(
     list_t *a_obj_customer
     ) {
     customer_create_object_v1_request_t *customer_create_object_v1_request_local_var = malloc(sizeof(customer_create_object_v1_request_t));
@@ -14,12 +14,24 @@ customer_create_object_v1_request_t *customer_create_object_v1_request_create(
     }
     customer_create_object_v1_request_local_var->a_obj_customer = a_obj_customer;
 
+    customer_create_object_v1_request_local_var->_library_owned = 1;
     return customer_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) customer_create_object_v1_request_t *customer_create_object_v1_request_create(
+    list_t *a_obj_customer
+    ) {
+    return customer_create_object_v1_request_create_internal (
+        a_obj_customer
+        );
+}
 
 void customer_create_object_v1_request_free(customer_create_object_v1_request_t *customer_create_object_v1_request) {
     if(NULL == customer_create_object_v1_request){
+        return ;
+    }
+    if(customer_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "customer_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ customer_create_object_v1_request_t *customer_create_object_v1_request_parseFrom
 
     // customer_create_object_v1_request->a_obj_customer
     cJSON *a_obj_customer = cJSON_GetObjectItemCaseSensitive(customer_create_object_v1_requestJSON, "a_objCustomer");
+    if (cJSON_IsNull(a_obj_customer)) {
+        a_obj_customer = NULL;
+    }
     if (!a_obj_customer) {
         goto end;
     }
@@ -96,7 +111,7 @@ customer_create_object_v1_request_t *customer_create_object_v1_request_parseFrom
     }
 
 
-    customer_create_object_v1_request_local_var = customer_create_object_v1_request_create (
+    customer_create_object_v1_request_local_var = customer_create_object_v1_request_create_internal (
         a_obj_customerList
         );
 

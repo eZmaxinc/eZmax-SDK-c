@@ -5,7 +5,7 @@
 
 
 
-custom_form_data_ezsignformfieldgroup_response_t *custom_form_data_ezsignformfieldgroup_response_create(
+static custom_form_data_ezsignformfieldgroup_response_t *custom_form_data_ezsignformfieldgroup_response_create_internal(
     char *s_ezsignformfieldgroup_label,
     list_t *a_obj_ezsignformfield
     ) {
@@ -16,12 +16,26 @@ custom_form_data_ezsignformfieldgroup_response_t *custom_form_data_ezsignformfie
     custom_form_data_ezsignformfieldgroup_response_local_var->s_ezsignformfieldgroup_label = s_ezsignformfieldgroup_label;
     custom_form_data_ezsignformfieldgroup_response_local_var->a_obj_ezsignformfield = a_obj_ezsignformfield;
 
+    custom_form_data_ezsignformfieldgroup_response_local_var->_library_owned = 1;
     return custom_form_data_ezsignformfieldgroup_response_local_var;
 }
 
+__attribute__((deprecated)) custom_form_data_ezsignformfieldgroup_response_t *custom_form_data_ezsignformfieldgroup_response_create(
+    char *s_ezsignformfieldgroup_label,
+    list_t *a_obj_ezsignformfield
+    ) {
+    return custom_form_data_ezsignformfieldgroup_response_create_internal (
+        s_ezsignformfieldgroup_label,
+        a_obj_ezsignformfield
+        );
+}
 
 void custom_form_data_ezsignformfieldgroup_response_free(custom_form_data_ezsignformfieldgroup_response_t *custom_form_data_ezsignformfieldgroup_response) {
     if(NULL == custom_form_data_ezsignformfieldgroup_response){
+        return ;
+    }
+    if(custom_form_data_ezsignformfieldgroup_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "custom_form_data_ezsignformfieldgroup_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -88,6 +102,9 @@ custom_form_data_ezsignformfieldgroup_response_t *custom_form_data_ezsignformfie
 
     // custom_form_data_ezsignformfieldgroup_response->s_ezsignformfieldgroup_label
     cJSON *s_ezsignformfieldgroup_label = cJSON_GetObjectItemCaseSensitive(custom_form_data_ezsignformfieldgroup_responseJSON, "sEzsignformfieldgroupLabel");
+    if (cJSON_IsNull(s_ezsignformfieldgroup_label)) {
+        s_ezsignformfieldgroup_label = NULL;
+    }
     if (!s_ezsignformfieldgroup_label) {
         goto end;
     }
@@ -100,6 +117,9 @@ custom_form_data_ezsignformfieldgroup_response_t *custom_form_data_ezsignformfie
 
     // custom_form_data_ezsignformfieldgroup_response->a_obj_ezsignformfield
     cJSON *a_obj_ezsignformfield = cJSON_GetObjectItemCaseSensitive(custom_form_data_ezsignformfieldgroup_responseJSON, "a_objEzsignformfield");
+    if (cJSON_IsNull(a_obj_ezsignformfield)) {
+        a_obj_ezsignformfield = NULL;
+    }
     if (!a_obj_ezsignformfield) {
         goto end;
     }
@@ -123,7 +143,7 @@ custom_form_data_ezsignformfieldgroup_response_t *custom_form_data_ezsignformfie
     }
 
 
-    custom_form_data_ezsignformfieldgroup_response_local_var = custom_form_data_ezsignformfieldgroup_response_create (
+    custom_form_data_ezsignformfieldgroup_response_local_var = custom_form_data_ezsignformfieldgroup_response_create_internal (
         strdup(s_ezsignformfieldgroup_label->valuestring),
         a_obj_ezsignformfieldList
         );

@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_creditcardtransaction_avsresult__e field_e_cr
     return 0;
 }
 
-cJSON *field_e_creditcardtransaction_avsresult_field_e_creditcardtransaction_avsresult_convertToJSON(ezmax_api_definition__full_field_e_creditcardtransaction_avsresult__e field_e_creditcardtransaction_avsresult) {
+cJSON *field_e_creditcardtransaction_avsresult_convertToJSON(ezmax_api_definition__full_field_e_creditcardtransaction_avsresult__e field_e_creditcardtransaction_avsresult) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_creditcardtransaction_avsresult", field_e_creditcardtransaction_avsresult_field_e_creditcardtransaction_avsresult_ToString(field_e_creditcardtransaction_avsresult)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_creditcardtransaction_avsresult__e field_e_creditcardtransaction_avsresult_field_e_creditcardtransaction_avsresult_parseFromJSON(cJSON *field_e_creditcardtransaction_avsresultJSON) {
-    ezmax_api_definition__full_field_e_creditcardtransaction_avsresult__e *field_e_creditcardtransaction_avsresult = NULL;
-    ezmax_api_definition__full_field_e_creditcardtransaction_avsresult__e field_e_creditcardtransaction_avsresultVariable;
-    cJSON *field_e_creditcardtransaction_avsresultVar = cJSON_GetObjectItemCaseSensitive(field_e_creditcardtransaction_avsresultJSON, "field_e_creditcardtransaction_avsresult");
-    if(!cJSON_IsString(field_e_creditcardtransaction_avsresultVar) || (field_e_creditcardtransaction_avsresultVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_creditcardtransaction_avsresult__e field_e_creditcardtransaction_avsresult_parseFromJSON(cJSON *field_e_creditcardtransaction_avsresultJSON) {
+    if(!cJSON_IsString(field_e_creditcardtransaction_avsresultJSON) || (field_e_creditcardtransaction_avsresultJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_creditcardtransaction_avsresultVariable = field_e_creditcardtransaction_avsresult_field_e_creditcardtransaction_avsresult_FromString(field_e_creditcardtransaction_avsresultVar->valuestring);
-    return field_e_creditcardtransaction_avsresultVariable;
-end:
-    return 0;
+    return field_e_creditcardtransaction_avsresult_field_e_creditcardtransaction_avsresult_FromString(field_e_creditcardtransaction_avsresultJSON->valuestring);
 }

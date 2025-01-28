@@ -5,7 +5,7 @@
 
 
 
-ezsignpage_response_t *ezsignpage_response_create(
+static ezsignpage_response_t *ezsignpage_response_create_internal(
     int pki_ezsignpage_id,
     int i_ezsignpage_widthimage,
     int i_ezsignpage_heightimage,
@@ -26,12 +26,36 @@ ezsignpage_response_t *ezsignpage_response_create(
     ezsignpage_response_local_var->i_ezsignpage_pagenumber = i_ezsignpage_pagenumber;
     ezsignpage_response_local_var->s_computed_imageurl = s_computed_imageurl;
 
+    ezsignpage_response_local_var->_library_owned = 1;
     return ezsignpage_response_local_var;
 }
 
+__attribute__((deprecated)) ezsignpage_response_t *ezsignpage_response_create(
+    int pki_ezsignpage_id,
+    int i_ezsignpage_widthimage,
+    int i_ezsignpage_heightimage,
+    int i_ezsignpage_widthpdf,
+    int i_ezsignpage_heightpdf,
+    int i_ezsignpage_pagenumber,
+    char *s_computed_imageurl
+    ) {
+    return ezsignpage_response_create_internal (
+        pki_ezsignpage_id,
+        i_ezsignpage_widthimage,
+        i_ezsignpage_heightimage,
+        i_ezsignpage_widthpdf,
+        i_ezsignpage_heightpdf,
+        i_ezsignpage_pagenumber,
+        s_computed_imageurl
+        );
+}
 
 void ezsignpage_response_free(ezsignpage_response_t *ezsignpage_response) {
     if(NULL == ezsignpage_response){
+        return ;
+    }
+    if(ezsignpage_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignpage_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -121,6 +145,9 @@ ezsignpage_response_t *ezsignpage_response_parseFromJSON(cJSON *ezsignpage_respo
 
     // ezsignpage_response->pki_ezsignpage_id
     cJSON *pki_ezsignpage_id = cJSON_GetObjectItemCaseSensitive(ezsignpage_responseJSON, "pkiEzsignpageID");
+    if (cJSON_IsNull(pki_ezsignpage_id)) {
+        pki_ezsignpage_id = NULL;
+    }
     if (!pki_ezsignpage_id) {
         goto end;
     }
@@ -133,6 +160,9 @@ ezsignpage_response_t *ezsignpage_response_parseFromJSON(cJSON *ezsignpage_respo
 
     // ezsignpage_response->i_ezsignpage_widthimage
     cJSON *i_ezsignpage_widthimage = cJSON_GetObjectItemCaseSensitive(ezsignpage_responseJSON, "iEzsignpageWidthimage");
+    if (cJSON_IsNull(i_ezsignpage_widthimage)) {
+        i_ezsignpage_widthimage = NULL;
+    }
     if (!i_ezsignpage_widthimage) {
         goto end;
     }
@@ -145,6 +175,9 @@ ezsignpage_response_t *ezsignpage_response_parseFromJSON(cJSON *ezsignpage_respo
 
     // ezsignpage_response->i_ezsignpage_heightimage
     cJSON *i_ezsignpage_heightimage = cJSON_GetObjectItemCaseSensitive(ezsignpage_responseJSON, "iEzsignpageHeightimage");
+    if (cJSON_IsNull(i_ezsignpage_heightimage)) {
+        i_ezsignpage_heightimage = NULL;
+    }
     if (!i_ezsignpage_heightimage) {
         goto end;
     }
@@ -157,6 +190,9 @@ ezsignpage_response_t *ezsignpage_response_parseFromJSON(cJSON *ezsignpage_respo
 
     // ezsignpage_response->i_ezsignpage_widthpdf
     cJSON *i_ezsignpage_widthpdf = cJSON_GetObjectItemCaseSensitive(ezsignpage_responseJSON, "iEzsignpageWidthpdf");
+    if (cJSON_IsNull(i_ezsignpage_widthpdf)) {
+        i_ezsignpage_widthpdf = NULL;
+    }
     if (!i_ezsignpage_widthpdf) {
         goto end;
     }
@@ -169,6 +205,9 @@ ezsignpage_response_t *ezsignpage_response_parseFromJSON(cJSON *ezsignpage_respo
 
     // ezsignpage_response->i_ezsignpage_heightpdf
     cJSON *i_ezsignpage_heightpdf = cJSON_GetObjectItemCaseSensitive(ezsignpage_responseJSON, "iEzsignpageHeightpdf");
+    if (cJSON_IsNull(i_ezsignpage_heightpdf)) {
+        i_ezsignpage_heightpdf = NULL;
+    }
     if (!i_ezsignpage_heightpdf) {
         goto end;
     }
@@ -181,6 +220,9 @@ ezsignpage_response_t *ezsignpage_response_parseFromJSON(cJSON *ezsignpage_respo
 
     // ezsignpage_response->i_ezsignpage_pagenumber
     cJSON *i_ezsignpage_pagenumber = cJSON_GetObjectItemCaseSensitive(ezsignpage_responseJSON, "iEzsignpagePagenumber");
+    if (cJSON_IsNull(i_ezsignpage_pagenumber)) {
+        i_ezsignpage_pagenumber = NULL;
+    }
     if (!i_ezsignpage_pagenumber) {
         goto end;
     }
@@ -193,6 +235,9 @@ ezsignpage_response_t *ezsignpage_response_parseFromJSON(cJSON *ezsignpage_respo
 
     // ezsignpage_response->s_computed_imageurl
     cJSON *s_computed_imageurl = cJSON_GetObjectItemCaseSensitive(ezsignpage_responseJSON, "sComputedImageurl");
+    if (cJSON_IsNull(s_computed_imageurl)) {
+        s_computed_imageurl = NULL;
+    }
     if (!s_computed_imageurl) {
         goto end;
     }
@@ -204,7 +249,7 @@ ezsignpage_response_t *ezsignpage_response_parseFromJSON(cJSON *ezsignpage_respo
     }
 
 
-    ezsignpage_response_local_var = ezsignpage_response_create (
+    ezsignpage_response_local_var = ezsignpage_response_create_internal (
         pki_ezsignpage_id->valuedouble,
         i_ezsignpage_widthimage->valuedouble,
         i_ezsignpage_heightimage->valuedouble,

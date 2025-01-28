@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Create a new Cors
@@ -25,11 +20,14 @@ ObjectCorsAPI_corsCreateObjectV1(apiClient_t *apiClient, cors_create_object_v1_r
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/cors")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/cors");
+    char *localVarPath = strdup("/1/object/cors");
+
 
 
 
@@ -38,9 +36,10 @@ ObjectCorsAPI_corsCreateObjectV1(apiClient_t *apiClient, cors_create_object_v1_r
     cJSON *localVarSingleItemJSON_cors_create_object_v1_request = NULL;
     if (cors_create_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_cors_create_object_v1_request = cors_create_object_v1_request_convertToJSON(cors_create_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_cors_create_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -52,6 +51,7 @@ ObjectCorsAPI_corsCreateObjectV1(apiClient_t *apiClient, cors_create_object_v1_r
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -59,11 +59,14 @@ ObjectCorsAPI_corsCreateObjectV1(apiClient_t *apiClient, cors_create_object_v1_r
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectCorsAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    cors_create_object_v1_response_t *elementToReturn = cors_create_object_v1_response_parseFromJSON(ObjectCorsAPIlocalVarJSON);
-    cJSON_Delete(ObjectCorsAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    cors_create_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectCorsAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = cors_create_object_v1_response_parseFromJSON(ObjectCorsAPIlocalVarJSON);
+        cJSON_Delete(ObjectCorsAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -94,7 +97,7 @@ end:
 //
 // 
 //
-common_response_t*
+cors_delete_object_v1_response_t*
 ObjectCorsAPI_corsDeleteObjectV1(apiClient_t *apiClient, int *pkiCorsID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -103,15 +106,18 @@ ObjectCorsAPI_corsDeleteObjectV1(apiClient_t *apiClient, int *pkiCorsID)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/cors/{pkiCorsID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/cors/{pkiCorsID}");
+    char *localVarPath = strdup("/1/object/cors/{pkiCorsID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiCorsID =  + strlen("{ pkiCorsID }");
+    long sizeOfPathParams_pkiCorsID =  + sizeof("{ pkiCorsID }") - 1;
     if(pkiCorsID == 0){
         goto end;
     }
@@ -119,7 +125,7 @@ ObjectCorsAPI_corsDeleteObjectV1(apiClient_t *apiClient, int *pkiCorsID)
     snprintf(localVarToReplace_pkiCorsID, sizeOfPathParams_pkiCorsID, "{%s}", "pkiCorsID");
 
     char localVarBuff_pkiCorsID[256];
-    intToStr(localVarBuff_pkiCorsID, *pkiCorsID);
+    snprintf(localVarBuff_pkiCorsID, sizeof localVarBuff_pkiCorsID, "%ld", (long)*pkiCorsID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiCorsID, localVarBuff_pkiCorsID);
 
@@ -134,6 +140,7 @@ ObjectCorsAPI_corsDeleteObjectV1(apiClient_t *apiClient, int *pkiCorsID)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "DELETE");
 
     // uncomment below to debug the error response
@@ -145,11 +152,14 @@ ObjectCorsAPI_corsDeleteObjectV1(apiClient_t *apiClient, int *pkiCorsID)
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectCorsAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectCorsAPIlocalVarJSON);
-    cJSON_Delete(ObjectCorsAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    cors_delete_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectCorsAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = cors_delete_object_v1_response_parseFromJSON(ObjectCorsAPIlocalVarJSON);
+        cJSON_Delete(ObjectCorsAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -176,7 +186,7 @@ end:
 //
 // 
 //
-common_response_t*
+cors_edit_object_v1_response_t*
 ObjectCorsAPI_corsEditObjectV1(apiClient_t *apiClient, int *pkiCorsID, cors_edit_object_v1_request_t *cors_edit_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -185,15 +195,18 @@ ObjectCorsAPI_corsEditObjectV1(apiClient_t *apiClient, int *pkiCorsID, cors_edit
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/cors/{pkiCorsID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/cors/{pkiCorsID}");
+    char *localVarPath = strdup("/1/object/cors/{pkiCorsID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiCorsID =  + strlen("{ pkiCorsID }");
+    long sizeOfPathParams_pkiCorsID =  + sizeof("{ pkiCorsID }") - 1;
     if(pkiCorsID == 0){
         goto end;
     }
@@ -201,7 +214,7 @@ ObjectCorsAPI_corsEditObjectV1(apiClient_t *apiClient, int *pkiCorsID, cors_edit
     snprintf(localVarToReplace_pkiCorsID, sizeOfPathParams_pkiCorsID, "{%s}", "pkiCorsID");
 
     char localVarBuff_pkiCorsID[256];
-    intToStr(localVarBuff_pkiCorsID, *pkiCorsID);
+    snprintf(localVarBuff_pkiCorsID, sizeof localVarBuff_pkiCorsID, "%ld", (long)*pkiCorsID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiCorsID, localVarBuff_pkiCorsID);
 
@@ -212,9 +225,10 @@ ObjectCorsAPI_corsEditObjectV1(apiClient_t *apiClient, int *pkiCorsID, cors_edit
     cJSON *localVarSingleItemJSON_cors_edit_object_v1_request = NULL;
     if (cors_edit_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_cors_edit_object_v1_request = cors_edit_object_v1_request_convertToJSON(cors_edit_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_cors_edit_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -226,6 +240,7 @@ ObjectCorsAPI_corsEditObjectV1(apiClient_t *apiClient, int *pkiCorsID, cors_edit
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -241,11 +256,14 @@ ObjectCorsAPI_corsEditObjectV1(apiClient_t *apiClient, int *pkiCorsID, cors_edit
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectCorsAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectCorsAPIlocalVarJSON);
-    cJSON_Delete(ObjectCorsAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    cors_edit_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectCorsAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = cors_edit_object_v1_response_parseFromJSON(ObjectCorsAPIlocalVarJSON);
+        cJSON_Delete(ObjectCorsAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -286,15 +304,18 @@ ObjectCorsAPI_corsGetObjectV2(apiClient_t *apiClient, int *pkiCorsID)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/cors/{pkiCorsID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/cors/{pkiCorsID}");
+    char *localVarPath = strdup("/2/object/cors/{pkiCorsID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiCorsID =  + strlen("{ pkiCorsID }");
+    long sizeOfPathParams_pkiCorsID =  + sizeof("{ pkiCorsID }") - 1;
     if(pkiCorsID == 0){
         goto end;
     }
@@ -302,7 +323,7 @@ ObjectCorsAPI_corsGetObjectV2(apiClient_t *apiClient, int *pkiCorsID)
     snprintf(localVarToReplace_pkiCorsID, sizeOfPathParams_pkiCorsID, "{%s}", "pkiCorsID");
 
     char localVarBuff_pkiCorsID[256];
-    intToStr(localVarBuff_pkiCorsID, *pkiCorsID);
+    snprintf(localVarBuff_pkiCorsID, sizeof localVarBuff_pkiCorsID, "%ld", (long)*pkiCorsID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiCorsID, localVarBuff_pkiCorsID);
 
@@ -317,6 +338,7 @@ ObjectCorsAPI_corsGetObjectV2(apiClient_t *apiClient, int *pkiCorsID)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -328,11 +350,14 @@ ObjectCorsAPI_corsGetObjectV2(apiClient_t *apiClient, int *pkiCorsID)
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectCorsAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    cors_get_object_v2_response_t *elementToReturn = cors_get_object_v2_response_parseFromJSON(ObjectCorsAPIlocalVarJSON);
-    cJSON_Delete(ObjectCorsAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    cors_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectCorsAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = cors_get_object_v2_response_parseFromJSON(ObjectCorsAPIlocalVarJSON);
+        cJSON_Delete(ObjectCorsAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

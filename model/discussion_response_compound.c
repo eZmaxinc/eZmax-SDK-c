@@ -5,7 +5,7 @@
 
 
 
-discussion_response_compound_t *discussion_response_compound_create(
+static discussion_response_compound_t *discussion_response_compound_create_internal(
     int pki_discussion_id,
     char *s_discussion_description,
     int b_discussion_closed,
@@ -30,12 +30,40 @@ discussion_response_compound_t *discussion_response_compound_create(
     discussion_response_compound_local_var->a_obj_discussionmembership = a_obj_discussionmembership;
     discussion_response_compound_local_var->a_obj_discussionmessage = a_obj_discussionmessage;
 
+    discussion_response_compound_local_var->_library_owned = 1;
     return discussion_response_compound_local_var;
 }
 
+__attribute__((deprecated)) discussion_response_compound_t *discussion_response_compound_create(
+    int pki_discussion_id,
+    char *s_discussion_description,
+    int b_discussion_closed,
+    char *dt_discussion_lastread,
+    int i_discussionmessage_count,
+    int i_discussionmessage_countunread,
+    custom_discussionconfiguration_response_t *obj_discussionconfiguration,
+    list_t *a_obj_discussionmembership,
+    list_t *a_obj_discussionmessage
+    ) {
+    return discussion_response_compound_create_internal (
+        pki_discussion_id,
+        s_discussion_description,
+        b_discussion_closed,
+        dt_discussion_lastread,
+        i_discussionmessage_count,
+        i_discussionmessage_countunread,
+        obj_discussionconfiguration,
+        a_obj_discussionmembership,
+        a_obj_discussionmessage
+        );
+}
 
 void discussion_response_compound_free(discussion_response_compound_t *discussion_response_compound) {
     if(NULL == discussion_response_compound){
+        return ;
+    }
+    if(discussion_response_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "discussion_response_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -201,6 +229,9 @@ discussion_response_compound_t *discussion_response_compound_parseFromJSON(cJSON
 
     // discussion_response_compound->pki_discussion_id
     cJSON *pki_discussion_id = cJSON_GetObjectItemCaseSensitive(discussion_response_compoundJSON, "pkiDiscussionID");
+    if (cJSON_IsNull(pki_discussion_id)) {
+        pki_discussion_id = NULL;
+    }
     if (!pki_discussion_id) {
         goto end;
     }
@@ -213,6 +244,9 @@ discussion_response_compound_t *discussion_response_compound_parseFromJSON(cJSON
 
     // discussion_response_compound->s_discussion_description
     cJSON *s_discussion_description = cJSON_GetObjectItemCaseSensitive(discussion_response_compoundJSON, "sDiscussionDescription");
+    if (cJSON_IsNull(s_discussion_description)) {
+        s_discussion_description = NULL;
+    }
     if (!s_discussion_description) {
         goto end;
     }
@@ -225,6 +259,9 @@ discussion_response_compound_t *discussion_response_compound_parseFromJSON(cJSON
 
     // discussion_response_compound->b_discussion_closed
     cJSON *b_discussion_closed = cJSON_GetObjectItemCaseSensitive(discussion_response_compoundJSON, "bDiscussionClosed");
+    if (cJSON_IsNull(b_discussion_closed)) {
+        b_discussion_closed = NULL;
+    }
     if (!b_discussion_closed) {
         goto end;
     }
@@ -237,6 +274,9 @@ discussion_response_compound_t *discussion_response_compound_parseFromJSON(cJSON
 
     // discussion_response_compound->dt_discussion_lastread
     cJSON *dt_discussion_lastread = cJSON_GetObjectItemCaseSensitive(discussion_response_compoundJSON, "dtDiscussionLastread");
+    if (cJSON_IsNull(dt_discussion_lastread)) {
+        dt_discussion_lastread = NULL;
+    }
     if (dt_discussion_lastread) { 
     if(!cJSON_IsString(dt_discussion_lastread) && !cJSON_IsNull(dt_discussion_lastread))
     {
@@ -246,6 +286,9 @@ discussion_response_compound_t *discussion_response_compound_parseFromJSON(cJSON
 
     // discussion_response_compound->i_discussionmessage_count
     cJSON *i_discussionmessage_count = cJSON_GetObjectItemCaseSensitive(discussion_response_compoundJSON, "iDiscussionmessageCount");
+    if (cJSON_IsNull(i_discussionmessage_count)) {
+        i_discussionmessage_count = NULL;
+    }
     if (!i_discussionmessage_count) {
         goto end;
     }
@@ -258,6 +301,9 @@ discussion_response_compound_t *discussion_response_compound_parseFromJSON(cJSON
 
     // discussion_response_compound->i_discussionmessage_countunread
     cJSON *i_discussionmessage_countunread = cJSON_GetObjectItemCaseSensitive(discussion_response_compoundJSON, "iDiscussionmessageCountunread");
+    if (cJSON_IsNull(i_discussionmessage_countunread)) {
+        i_discussionmessage_countunread = NULL;
+    }
     if (!i_discussionmessage_countunread) {
         goto end;
     }
@@ -270,12 +316,18 @@ discussion_response_compound_t *discussion_response_compound_parseFromJSON(cJSON
 
     // discussion_response_compound->obj_discussionconfiguration
     cJSON *obj_discussionconfiguration = cJSON_GetObjectItemCaseSensitive(discussion_response_compoundJSON, "objDiscussionconfiguration");
+    if (cJSON_IsNull(obj_discussionconfiguration)) {
+        obj_discussionconfiguration = NULL;
+    }
     if (obj_discussionconfiguration) { 
     obj_discussionconfiguration_local_nonprim = custom_discussionconfiguration_response_parseFromJSON(obj_discussionconfiguration); //nonprimitive
     }
 
     // discussion_response_compound->a_obj_discussionmembership
     cJSON *a_obj_discussionmembership = cJSON_GetObjectItemCaseSensitive(discussion_response_compoundJSON, "a_objDiscussionmembership");
+    if (cJSON_IsNull(a_obj_discussionmembership)) {
+        a_obj_discussionmembership = NULL;
+    }
     if (!a_obj_discussionmembership) {
         goto end;
     }
@@ -300,6 +352,9 @@ discussion_response_compound_t *discussion_response_compound_parseFromJSON(cJSON
 
     // discussion_response_compound->a_obj_discussionmessage
     cJSON *a_obj_discussionmessage = cJSON_GetObjectItemCaseSensitive(discussion_response_compoundJSON, "a_objDiscussionmessage");
+    if (cJSON_IsNull(a_obj_discussionmessage)) {
+        a_obj_discussionmessage = NULL;
+    }
     if (!a_obj_discussionmessage) {
         goto end;
     }
@@ -323,7 +378,7 @@ discussion_response_compound_t *discussion_response_compound_parseFromJSON(cJSON
     }
 
 
-    discussion_response_compound_local_var = discussion_response_compound_create (
+    discussion_response_compound_local_var = discussion_response_compound_create_internal (
         pki_discussion_id->valuedouble,
         strdup(s_discussion_description->valuestring),
         b_discussion_closed->valueint,

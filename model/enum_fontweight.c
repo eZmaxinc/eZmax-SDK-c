@@ -22,7 +22,7 @@ ezmax_api_definition__full_enum_fontweight__e enum_fontweight_enum_fontweight_Fr
     return 0;
 }
 
-cJSON *enum_fontweight_enum_fontweight_convertToJSON(ezmax_api_definition__full_enum_fontweight__e enum_fontweight) {
+cJSON *enum_fontweight_convertToJSON(ezmax_api_definition__full_enum_fontweight__e enum_fontweight) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "enum_fontweight", enum_fontweight_enum_fontweight_ToString(enum_fontweight)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_enum_fontweight__e enum_fontweight_enum_fontweight_parseFromJSON(cJSON *enum_fontweightJSON) {
-    ezmax_api_definition__full_enum_fontweight__e *enum_fontweight = NULL;
-    ezmax_api_definition__full_enum_fontweight__e enum_fontweightVariable;
-    cJSON *enum_fontweightVar = cJSON_GetObjectItemCaseSensitive(enum_fontweightJSON, "enum_fontweight");
-    if(!cJSON_IsString(enum_fontweightVar) || (enum_fontweightVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_enum_fontweight__e enum_fontweight_parseFromJSON(cJSON *enum_fontweightJSON) {
+    if(!cJSON_IsString(enum_fontweightJSON) || (enum_fontweightJSON->valuestring == NULL)) {
+        return 0;
     }
-    enum_fontweightVariable = enum_fontweight_enum_fontweight_FromString(enum_fontweightVar->valuestring);
-    return enum_fontweightVariable;
-end:
-    return 0;
+    return enum_fontweight_enum_fontweight_FromString(enum_fontweightJSON->valuestring);
 }

@@ -21,9 +21,10 @@ typedef struct ezsigntemplatepublic_create_ezsignfolder_v1_response_m_payload_t 
 typedef struct ezsigntemplatepublic_create_ezsignfolder_v1_response_m_payload_t {
     char *s_ezsigntemplatepublic_signingurl; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatepublic_create_ezsignfolder_v1_response_m_payload_t;
 
-ezsigntemplatepublic_create_ezsignfolder_v1_response_m_payload_t *ezsigntemplatepublic_create_ezsignfolder_v1_response_m_payload_create(
+__attribute__((deprecated)) ezsigntemplatepublic_create_ezsignfolder_v1_response_m_payload_t *ezsigntemplatepublic_create_ezsignfolder_v1_response_m_payload_create(
     char *s_ezsigntemplatepublic_signingurl
 );
 

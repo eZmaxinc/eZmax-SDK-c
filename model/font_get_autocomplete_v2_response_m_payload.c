@@ -5,7 +5,7 @@
 
 
 
-font_get_autocomplete_v2_response_m_payload_t *font_get_autocomplete_v2_response_m_payload_create(
+static font_get_autocomplete_v2_response_m_payload_t *font_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_font
     ) {
     font_get_autocomplete_v2_response_m_payload_t *font_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(font_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ font_get_autocomplete_v2_response_m_payload_t *font_get_autocomplete_v2_response
     }
     font_get_autocomplete_v2_response_m_payload_local_var->a_obj_font = a_obj_font;
 
+    font_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return font_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) font_get_autocomplete_v2_response_m_payload_t *font_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_font
+    ) {
+    return font_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_font
+        );
+}
 
 void font_get_autocomplete_v2_response_m_payload_free(font_get_autocomplete_v2_response_m_payload_t *font_get_autocomplete_v2_response_m_payload) {
     if(NULL == font_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(font_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "font_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ font_get_autocomplete_v2_response_m_payload_t *font_get_autocomplete_v2_response
 
     // font_get_autocomplete_v2_response_m_payload->a_obj_font
     cJSON *a_obj_font = cJSON_GetObjectItemCaseSensitive(font_get_autocomplete_v2_response_m_payloadJSON, "a_objFont");
+    if (cJSON_IsNull(a_obj_font)) {
+        a_obj_font = NULL;
+    }
     if (!a_obj_font) {
         goto end;
     }
@@ -96,7 +111,7 @@ font_get_autocomplete_v2_response_m_payload_t *font_get_autocomplete_v2_response
     }
 
 
-    font_get_autocomplete_v2_response_m_payload_local_var = font_get_autocomplete_v2_response_m_payload_create (
+    font_get_autocomplete_v2_response_m_payload_local_var = font_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_fontList
         );
 

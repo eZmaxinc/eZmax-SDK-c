@@ -23,9 +23,10 @@ typedef struct usergroupdelegation_request_compound_t {
     int fki_usergroup_id; //numeric
     int fki_user_id; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } usergroupdelegation_request_compound_t;
 
-usergroupdelegation_request_compound_t *usergroupdelegation_request_compound_create(
+__attribute__((deprecated)) usergroupdelegation_request_compound_t *usergroupdelegation_request_compound_create(
     int pki_usergroupdelegation_id,
     int fki_usergroup_id,
     int fki_user_id

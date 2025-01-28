@@ -21,22 +21,6 @@ typedef struct ezsigndocument_get_object_v1_response_m_payload_t ezsigndocument_
 #include "ezsigndocumentdependency_response.h"
 #include "field_e_ezsigndocument_step.h"
 
-// Enum  for ezsigndocument_get_object_v1_response_m_payload
-
-typedef enum  { ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__NULL = 0, ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__Unsent, ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload___Unsigned, ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__PartiallySigned, ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__DeclinedToSign, ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__PrematurelyEnded, ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__PendingCompletion, ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__Completed, ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__Disposed } ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__e;
-
-char* ezsigndocument_get_object_v1_response_m_payload_e_ezsigndocument_step_ToString(ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__e e_ezsigndocument_step);
-
-ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__e ezsigndocument_get_object_v1_response_m_payload_e_ezsigndocument_step_FromString(char* e_ezsigndocument_step);
-
-// Enum  for ezsigndocument_get_object_v1_response_m_payload
-
-typedef enum  { ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__NULL = 0, ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__Form, ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__Sign, ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__None } ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__e;
-
-char* ezsigndocument_get_object_v1_response_m_payload_e_ezsigndocument_steptype_ToString(ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__e e_ezsigndocument_steptype);
-
-ezmax_api_definition__full_ezsigndocument_get_object_v1_response_m_payload__e ezsigndocument_get_object_v1_response_m_payload_e_ezsigndocument_steptype_FromString(char* e_ezsigndocument_steptype);
-
 
 
 typedef struct ezsigndocument_get_object_v1_response_m_payload_t {
@@ -47,7 +31,7 @@ typedef struct ezsigndocument_get_object_v1_response_m_payload_t {
     char *dt_ezsignform_completed; // string
     int fki_language_id; //numeric
     char *s_ezsigndocument_name; // string
-    field_e_ezsigndocument_step_t *e_ezsigndocument_step; // custom
+    ezmax_api_definition__full_field_e_ezsigndocument_step__e e_ezsigndocument_step; //referenced enum
     char *dt_ezsigndocument_firstsend; // string
     char *dt_ezsigndocument_lastsend; // string
     int i_ezsigndocument_order; //numeric
@@ -64,7 +48,7 @@ typedef struct ezsigndocument_get_object_v1_response_m_payload_t {
     char *s_ezsigndocument_externalid; // string
     int i_ezsigndocument_ezsignsignatureattachmenttotal; //numeric
     int i_ezsigndocument_ezsigndiscussiontotal; //numeric
-    computed_e_ezsigndocument_steptype_t *e_ezsigndocument_steptype; // custom
+    ezmax_api_definition__full_computed_e_ezsigndocument_steptype__e e_ezsigndocument_steptype; //referenced enum
     int i_ezsigndocument_stepformtotal; //numeric
     int i_ezsigndocument_stepformcurrent; //numeric
     int i_ezsigndocument_stepsignaturetotal; //numeric
@@ -72,9 +56,10 @@ typedef struct ezsigndocument_get_object_v1_response_m_payload_t {
     list_t *a_obj_ezsignfoldersignerassociationstatus; //nonprimitive container
     list_t *a_obj_ezsigndocumentdependency; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigndocument_get_object_v1_response_m_payload_t;
 
-ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_response_m_payload_create(
+__attribute__((deprecated)) ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_response_m_payload_create(
     int pki_ezsigndocument_id,
     int fki_ezsignfolder_id,
     int fki_ezsignfoldersignerassociation_id_declinedtosign,
@@ -82,7 +67,7 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
     char *dt_ezsignform_completed,
     int fki_language_id,
     char *s_ezsigndocument_name,
-    field_e_ezsigndocument_step_t *e_ezsigndocument_step,
+    ezmax_api_definition__full_field_e_ezsigndocument_step__e e_ezsigndocument_step,
     char *dt_ezsigndocument_firstsend,
     char *dt_ezsigndocument_lastsend,
     int i_ezsigndocument_order,
@@ -99,7 +84,7 @@ ezsigndocument_get_object_v1_response_m_payload_t *ezsigndocument_get_object_v1_
     char *s_ezsigndocument_externalid,
     int i_ezsigndocument_ezsignsignatureattachmenttotal,
     int i_ezsigndocument_ezsigndiscussiontotal,
-    computed_e_ezsigndocument_steptype_t *e_ezsigndocument_steptype,
+    ezmax_api_definition__full_computed_e_ezsigndocument_steptype__e e_ezsigndocument_steptype,
     int i_ezsigndocument_stepformtotal,
     int i_ezsigndocument_stepformcurrent,
     int i_ezsigndocument_stepsignaturetotal,

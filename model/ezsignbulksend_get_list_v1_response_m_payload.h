@@ -24,9 +24,10 @@ typedef struct ezsignbulksend_get_list_v1_response_m_payload_t {
     int i_row_filtered; //numeric
     list_t *a_obj_ezsignbulksend; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignbulksend_get_list_v1_response_m_payload_t;
 
-ezsignbulksend_get_list_v1_response_m_payload_t *ezsignbulksend_get_list_v1_response_m_payload_create(
+__attribute__((deprecated)) ezsignbulksend_get_list_v1_response_m_payload_t *ezsignbulksend_get_list_v1_response_m_payload_create(
     int i_row_returned,
     int i_row_filtered,
     list_t *a_obj_ezsignbulksend

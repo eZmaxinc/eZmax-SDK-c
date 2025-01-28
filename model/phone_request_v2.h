@@ -24,9 +24,10 @@ typedef struct phone_request_v2_t {
     char *s_phone_extension; // string
     char *s_phone_e164; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } phone_request_v2_t;
 
-phone_request_v2_t *phone_request_v2_create(
+__attribute__((deprecated)) phone_request_v2_t *phone_request_v2_create(
     int pki_phone_id,
     int fki_phonetype_id,
     char *s_phone_extension,

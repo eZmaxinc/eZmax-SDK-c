@@ -19,22 +19,6 @@ typedef struct communication_request_t communication_request_t;
 #include "field_e_communication_importance.h"
 #include "field_e_communication_type.h"
 
-// Enum  for communication_request
-
-typedef enum  { ezmax_api_definition__full_communication_request__NULL = 0, ezmax_api_definition__full_communication_request__High, ezmax_api_definition__full_communication_request__Normal, ezmax_api_definition__full_communication_request__Low } ezmax_api_definition__full_communication_request__e;
-
-char* communication_request_e_communication_importance_ToString(ezmax_api_definition__full_communication_request__e e_communication_importance);
-
-ezmax_api_definition__full_communication_request__e communication_request_e_communication_importance_FromString(char* e_communication_importance);
-
-// Enum  for communication_request
-
-typedef enum  { ezmax_api_definition__full_communication_request__NULL = 0, ezmax_api_definition__full_communication_request__Email, ezmax_api_definition__full_communication_request__Fax, ezmax_api_definition__full_communication_request__Sms } ezmax_api_definition__full_communication_request__e;
-
-char* communication_request_e_communication_type_ToString(ezmax_api_definition__full_communication_request__e e_communication_type);
-
-ezmax_api_definition__full_communication_request__e communication_request_e_communication_type_FromString(char* e_communication_type);
-
 // Enum ECOMMUNICATIONATTACHMENTTYPE for communication_request
 
 typedef enum  { ezmax_api_definition__full_communication_request_ECOMMUNICATIONATTACHMENTTYPE_NULL = 0, ezmax_api_definition__full_communication_request_ECOMMUNICATIONATTACHMENTTYPE_Attachment, ezmax_api_definition__full_communication_request_ECOMMUNICATIONATTACHMENTTYPE_Url } ezmax_api_definition__full_communication_request_ECOMMUNICATIONATTACHMENTTYPE_e;
@@ -47,8 +31,8 @@ ezmax_api_definition__full_communication_request_ECOMMUNICATIONATTACHMENTTYPE_e 
 
 typedef struct communication_request_t {
     int pki_communication_id; //numeric
-    field_e_communication_importance_t *e_communication_importance; // custom
-    field_e_communication_type_t *e_communication_type; // custom
+    ezmax_api_definition__full_field_e_communication_importance__e e_communication_importance; //referenced enum
+    ezmax_api_definition__full_field_e_communication_type__e e_communication_type; //referenced enum
     struct custom_communicationsender_request_t *obj_communicationsender; //model
     char *s_communication_subject; // string
     char *t_communication_body; // string
@@ -57,12 +41,13 @@ typedef struct communication_request_t {
     int i_communication_attachmentlinkexpiration; //numeric
     int b_communication_readreceipt; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } communication_request_t;
 
-communication_request_t *communication_request_create(
+__attribute__((deprecated)) communication_request_t *communication_request_create(
     int pki_communication_id,
-    field_e_communication_importance_t *e_communication_importance,
-    field_e_communication_type_t *e_communication_type,
+    ezmax_api_definition__full_field_e_communication_importance__e e_communication_importance,
+    ezmax_api_definition__full_field_e_communication_type__e e_communication_type,
     custom_communicationsender_request_t *obj_communicationsender,
     char *s_communication_subject,
     char *t_communication_body,

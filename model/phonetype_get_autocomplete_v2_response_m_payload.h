@@ -22,9 +22,10 @@ typedef struct phonetype_get_autocomplete_v2_response_m_payload_t phonetype_get_
 typedef struct phonetype_get_autocomplete_v2_response_m_payload_t {
     list_t *a_obj_phonetype; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } phonetype_get_autocomplete_v2_response_m_payload_t;
 
-phonetype_get_autocomplete_v2_response_m_payload_t *phonetype_get_autocomplete_v2_response_m_payload_create(
+__attribute__((deprecated)) phonetype_get_autocomplete_v2_response_m_payload_t *phonetype_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_phonetype
 );
 

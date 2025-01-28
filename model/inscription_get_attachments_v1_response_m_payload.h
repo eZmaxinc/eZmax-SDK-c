@@ -22,9 +22,10 @@ typedef struct inscription_get_attachments_v1_response_m_payload_t inscription_g
 typedef struct inscription_get_attachments_v1_response_m_payload_t {
     list_t *a_obj_attachmentdocumenttype; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } inscription_get_attachments_v1_response_m_payload_t;
 
-inscription_get_attachments_v1_response_m_payload_t *inscription_get_attachments_v1_response_m_payload_create(
+__attribute__((deprecated)) inscription_get_attachments_v1_response_m_payload_t *inscription_get_attachments_v1_response_m_payload_create(
     list_t *a_obj_attachmentdocumenttype
 );
 

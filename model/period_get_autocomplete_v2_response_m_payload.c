@@ -5,7 +5,7 @@
 
 
 
-period_get_autocomplete_v2_response_m_payload_t *period_get_autocomplete_v2_response_m_payload_create(
+static period_get_autocomplete_v2_response_m_payload_t *period_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_period
     ) {
     period_get_autocomplete_v2_response_m_payload_t *period_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(period_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ period_get_autocomplete_v2_response_m_payload_t *period_get_autocomplete_v2_resp
     }
     period_get_autocomplete_v2_response_m_payload_local_var->a_obj_period = a_obj_period;
 
+    period_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return period_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) period_get_autocomplete_v2_response_m_payload_t *period_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_period
+    ) {
+    return period_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_period
+        );
+}
 
 void period_get_autocomplete_v2_response_m_payload_free(period_get_autocomplete_v2_response_m_payload_t *period_get_autocomplete_v2_response_m_payload) {
     if(NULL == period_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(period_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "period_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ period_get_autocomplete_v2_response_m_payload_t *period_get_autocomplete_v2_resp
 
     // period_get_autocomplete_v2_response_m_payload->a_obj_period
     cJSON *a_obj_period = cJSON_GetObjectItemCaseSensitive(period_get_autocomplete_v2_response_m_payloadJSON, "a_objPeriod");
+    if (cJSON_IsNull(a_obj_period)) {
+        a_obj_period = NULL;
+    }
     if (!a_obj_period) {
         goto end;
     }
@@ -96,7 +111,7 @@ period_get_autocomplete_v2_response_m_payload_t *period_get_autocomplete_v2_resp
     }
 
 
-    period_get_autocomplete_v2_response_m_payload_local_var = period_get_autocomplete_v2_response_m_payload_create (
+    period_get_autocomplete_v2_response_m_payload_local_var = period_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_periodList
         );
 

@@ -21,9 +21,10 @@ typedef struct usergroupmembership_create_object_v1_response_m_payload_t usergro
 typedef struct usergroupmembership_create_object_v1_response_m_payload_t {
     list_t *a_pki_usergroupmembership_id; //primitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } usergroupmembership_create_object_v1_response_m_payload_t;
 
-usergroupmembership_create_object_v1_response_m_payload_t *usergroupmembership_create_object_v1_response_m_payload_create(
+__attribute__((deprecated)) usergroupmembership_create_object_v1_response_m_payload_t *usergroupmembership_create_object_v1_response_m_payload_create(
     list_t *a_pki_usergroupmembership_id
 );
 

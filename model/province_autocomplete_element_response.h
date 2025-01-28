@@ -25,9 +25,10 @@ typedef struct province_autocomplete_element_response_t {
     char *s_province_shortname; // string
     int b_province_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } province_autocomplete_element_response_t;
 
-province_autocomplete_element_response_t *province_autocomplete_element_response_create(
+__attribute__((deprecated)) province_autocomplete_element_response_t *province_autocomplete_element_response_create(
     int pki_province_id,
     int fki_country_id,
     char *s_province_name_x,

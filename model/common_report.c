@@ -5,7 +5,7 @@
 
 
 
-common_report_t *common_report_create(
+static common_report_t *common_report_create_internal(
     list_t *a_obj_reportsection
     ) {
     common_report_t *common_report_local_var = malloc(sizeof(common_report_t));
@@ -14,12 +14,24 @@ common_report_t *common_report_create(
     }
     common_report_local_var->a_obj_reportsection = a_obj_reportsection;
 
+    common_report_local_var->_library_owned = 1;
     return common_report_local_var;
 }
 
+__attribute__((deprecated)) common_report_t *common_report_create(
+    list_t *a_obj_reportsection
+    ) {
+    return common_report_create_internal (
+        a_obj_reportsection
+        );
+}
 
 void common_report_free(common_report_t *common_report) {
     if(NULL == common_report){
+        return ;
+    }
+    if(common_report->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "common_report_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ common_report_t *common_report_parseFromJSON(cJSON *common_reportJSON){
 
     // common_report->a_obj_reportsection
     cJSON *a_obj_reportsection = cJSON_GetObjectItemCaseSensitive(common_reportJSON, "a_objReportsection");
+    if (cJSON_IsNull(a_obj_reportsection)) {
+        a_obj_reportsection = NULL;
+    }
     if (!a_obj_reportsection) {
         goto end;
     }
@@ -96,7 +111,7 @@ common_report_t *common_report_parseFromJSON(cJSON *common_reportJSON){
     }
 
 
-    common_report_local_var = common_report_create (
+    common_report_local_var = common_report_create_internal (
         a_obj_reportsectionList
         );
 

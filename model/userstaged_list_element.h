@@ -25,9 +25,10 @@ typedef struct userstaged_list_element_t {
     char *s_userstaged_lastname; // string
     char *s_userstaged_externalid; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } userstaged_list_element_t;
 
-userstaged_list_element_t *userstaged_list_element_create(
+__attribute__((deprecated)) userstaged_list_element_t *userstaged_list_element_create(
     int pki_userstaged_id,
     char *s_email_address,
     char *s_userstaged_firstname,

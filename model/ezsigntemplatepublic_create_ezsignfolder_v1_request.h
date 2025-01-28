@@ -25,9 +25,10 @@ typedef struct ezsigntemplatepublic_create_ezsignfolder_v1_request_t {
     list_t *a_s_ezsigntemplatesigner_description; //primitive container
     list_t *a_obj_ezsignsigner; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatepublic_create_ezsignfolder_v1_request_t;
 
-ezsigntemplatepublic_create_ezsignfolder_v1_request_t *ezsigntemplatepublic_create_ezsignfolder_v1_request_create(
+__attribute__((deprecated)) ezsigntemplatepublic_create_ezsignfolder_v1_request_t *ezsigntemplatepublic_create_ezsignfolder_v1_request_create(
     char *pks_ezmaxcustomer_code,
     char *s_ezsigntemplatepublic_referenceid,
     list_t *a_s_ezsigntemplatesigner_description,

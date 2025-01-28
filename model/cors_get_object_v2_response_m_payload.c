@@ -5,7 +5,7 @@
 
 
 
-cors_get_object_v2_response_m_payload_t *cors_get_object_v2_response_m_payload_create(
+static cors_get_object_v2_response_m_payload_t *cors_get_object_v2_response_m_payload_create_internal(
     cors_response_compound_t *obj_cors
     ) {
     cors_get_object_v2_response_m_payload_t *cors_get_object_v2_response_m_payload_local_var = malloc(sizeof(cors_get_object_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ cors_get_object_v2_response_m_payload_t *cors_get_object_v2_response_m_payload_c
     }
     cors_get_object_v2_response_m_payload_local_var->obj_cors = obj_cors;
 
+    cors_get_object_v2_response_m_payload_local_var->_library_owned = 1;
     return cors_get_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) cors_get_object_v2_response_m_payload_t *cors_get_object_v2_response_m_payload_create(
+    cors_response_compound_t *obj_cors
+    ) {
+    return cors_get_object_v2_response_m_payload_create_internal (
+        obj_cors
+        );
+}
 
 void cors_get_object_v2_response_m_payload_free(cors_get_object_v2_response_m_payload_t *cors_get_object_v2_response_m_payload) {
     if(NULL == cors_get_object_v2_response_m_payload){
+        return ;
+    }
+    if(cors_get_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "cors_get_object_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ cors_get_object_v2_response_m_payload_t *cors_get_object_v2_response_m_payload_p
 
     // cors_get_object_v2_response_m_payload->obj_cors
     cJSON *obj_cors = cJSON_GetObjectItemCaseSensitive(cors_get_object_v2_response_m_payloadJSON, "objCors");
+    if (cJSON_IsNull(obj_cors)) {
+        obj_cors = NULL;
+    }
     if (!obj_cors) {
         goto end;
     }
@@ -71,7 +86,7 @@ cors_get_object_v2_response_m_payload_t *cors_get_object_v2_response_m_payload_p
     obj_cors_local_nonprim = cors_response_compound_parseFromJSON(obj_cors); //nonprimitive
 
 
-    cors_get_object_v2_response_m_payload_local_var = cors_get_object_v2_response_m_payload_create (
+    cors_get_object_v2_response_m_payload_local_var = cors_get_object_v2_response_m_payload_create_internal (
         obj_cors_local_nonprim
         );
 

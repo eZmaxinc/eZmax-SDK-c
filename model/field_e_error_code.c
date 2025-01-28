@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_error_code__e field_e_error_code_field_e_erro
     return 0;
 }
 
-cJSON *field_e_error_code_field_e_error_code_convertToJSON(ezmax_api_definition__full_field_e_error_code__e field_e_error_code) {
+cJSON *field_e_error_code_convertToJSON(ezmax_api_definition__full_field_e_error_code__e field_e_error_code) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_error_code", field_e_error_code_field_e_error_code_ToString(field_e_error_code)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_error_code__e field_e_error_code_field_e_error_code_parseFromJSON(cJSON *field_e_error_codeJSON) {
-    ezmax_api_definition__full_field_e_error_code__e *field_e_error_code = NULL;
-    ezmax_api_definition__full_field_e_error_code__e field_e_error_codeVariable;
-    cJSON *field_e_error_codeVar = cJSON_GetObjectItemCaseSensitive(field_e_error_codeJSON, "field_e_error_code");
-    if(!cJSON_IsString(field_e_error_codeVar) || (field_e_error_codeVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_error_code__e field_e_error_code_parseFromJSON(cJSON *field_e_error_codeJSON) {
+    if(!cJSON_IsString(field_e_error_codeJSON) || (field_e_error_codeJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_error_codeVariable = field_e_error_code_field_e_error_code_FromString(field_e_error_codeVar->valuestring);
-    return field_e_error_codeVariable;
-end:
-    return 0;
+    return field_e_error_code_field_e_error_code_FromString(field_e_error_codeJSON->valuestring);
 }

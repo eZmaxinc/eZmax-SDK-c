@@ -5,7 +5,7 @@
 
 
 
-apikey_create_object_v2_response_m_payload_t *apikey_create_object_v2_response_m_payload_create(
+static apikey_create_object_v2_response_m_payload_t *apikey_create_object_v2_response_m_payload_create_internal(
     list_t *a_obj_apikey
     ) {
     apikey_create_object_v2_response_m_payload_t *apikey_create_object_v2_response_m_payload_local_var = malloc(sizeof(apikey_create_object_v2_response_m_payload_t));
@@ -14,18 +14,30 @@ apikey_create_object_v2_response_m_payload_t *apikey_create_object_v2_response_m
     }
     apikey_create_object_v2_response_m_payload_local_var->a_obj_apikey = a_obj_apikey;
 
+    apikey_create_object_v2_response_m_payload_local_var->_library_owned = 1;
     return apikey_create_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) apikey_create_object_v2_response_m_payload_t *apikey_create_object_v2_response_m_payload_create(
+    list_t *a_obj_apikey
+    ) {
+    return apikey_create_object_v2_response_m_payload_create_internal (
+        a_obj_apikey
+        );
+}
 
 void apikey_create_object_v2_response_m_payload_free(apikey_create_object_v2_response_m_payload_t *apikey_create_object_v2_response_m_payload) {
     if(NULL == apikey_create_object_v2_response_m_payload){
         return ;
     }
+    if(apikey_create_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "apikey_create_object_v2_response_m_payload_free");
+        return ;
+    }
     listEntry_t *listEntry;
     if (apikey_create_object_v2_response_m_payload->a_obj_apikey) {
         list_ForEach(listEntry, apikey_create_object_v2_response_m_payload->a_obj_apikey) {
-            apikey_response_free(listEntry->data);
+            apikey_response_compound_free(listEntry->data);
         }
         list_freeList(apikey_create_object_v2_response_m_payload->a_obj_apikey);
         apikey_create_object_v2_response_m_payload->a_obj_apikey = NULL;
@@ -48,7 +60,7 @@ cJSON *apikey_create_object_v2_response_m_payload_convertToJSON(apikey_create_ob
     listEntry_t *a_obj_apikeyListEntry;
     if (apikey_create_object_v2_response_m_payload->a_obj_apikey) {
     list_ForEach(a_obj_apikeyListEntry, apikey_create_object_v2_response_m_payload->a_obj_apikey) {
-    cJSON *itemLocal = apikey_response_convertToJSON(a_obj_apikeyListEntry->data);
+    cJSON *itemLocal = apikey_response_compound_convertToJSON(a_obj_apikeyListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -73,6 +85,9 @@ apikey_create_object_v2_response_m_payload_t *apikey_create_object_v2_response_m
 
     // apikey_create_object_v2_response_m_payload->a_obj_apikey
     cJSON *a_obj_apikey = cJSON_GetObjectItemCaseSensitive(apikey_create_object_v2_response_m_payloadJSON, "a_objApikey");
+    if (cJSON_IsNull(a_obj_apikey)) {
+        a_obj_apikey = NULL;
+    }
     if (!a_obj_apikey) {
         goto end;
     }
@@ -90,13 +105,13 @@ apikey_create_object_v2_response_m_payload_t *apikey_create_object_v2_response_m
         if(!cJSON_IsObject(a_obj_apikey_local_nonprimitive)){
             goto end;
         }
-        apikey_response_t *a_obj_apikeyItem = apikey_response_parseFromJSON(a_obj_apikey_local_nonprimitive);
+        apikey_response_compound_t *a_obj_apikeyItem = apikey_response_compound_parseFromJSON(a_obj_apikey_local_nonprimitive);
 
         list_addElement(a_obj_apikeyList, a_obj_apikeyItem);
     }
 
 
-    apikey_create_object_v2_response_m_payload_local_var = apikey_create_object_v2_response_m_payload_create (
+    apikey_create_object_v2_response_m_payload_local_var = apikey_create_object_v2_response_m_payload_create_internal (
         a_obj_apikeyList
         );
 
@@ -105,7 +120,7 @@ end:
     if (a_obj_apikeyList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_apikeyList) {
-            apikey_response_free(listEntry->data);
+            apikey_response_compound_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_apikeyList);

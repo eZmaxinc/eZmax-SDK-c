@@ -21,9 +21,10 @@ typedef struct global_customer_get_endpoint_v1_response_t global_customer_get_en
 typedef struct global_customer_get_endpoint_v1_response_t {
     char *s_endpoint_url; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } global_customer_get_endpoint_v1_response_t;
 
-global_customer_get_endpoint_v1_response_t *global_customer_get_endpoint_v1_response_create(
+__attribute__((deprecated)) global_customer_get_endpoint_v1_response_t *global_customer_get_endpoint_v1_response_create(
     char *s_endpoint_url
 );
 

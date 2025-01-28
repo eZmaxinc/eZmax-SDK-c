@@ -22,9 +22,10 @@ typedef struct ezdoctemplatedocument_create_object_v1_request_t ezdoctemplatedoc
 typedef struct ezdoctemplatedocument_create_object_v1_request_t {
     list_t *a_obj_ezdoctemplatedocument; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezdoctemplatedocument_create_object_v1_request_t;
 
-ezdoctemplatedocument_create_object_v1_request_t *ezdoctemplatedocument_create_object_v1_request_create(
+__attribute__((deprecated)) ezdoctemplatedocument_create_object_v1_request_t *ezdoctemplatedocument_create_object_v1_request_create(
     list_t *a_obj_ezdoctemplatedocument
 );
 

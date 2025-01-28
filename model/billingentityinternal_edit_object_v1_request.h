@@ -22,9 +22,10 @@ typedef struct billingentityinternal_edit_object_v1_request_t billingentityinter
 typedef struct billingentityinternal_edit_object_v1_request_t {
     struct billingentityinternal_request_compound_t *obj_billingentityinternal; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } billingentityinternal_edit_object_v1_request_t;
 
-billingentityinternal_edit_object_v1_request_t *billingentityinternal_edit_object_v1_request_create(
+__attribute__((deprecated)) billingentityinternal_edit_object_v1_request_t *billingentityinternal_edit_object_v1_request_create(
     billingentityinternal_request_compound_t *obj_billingentityinternal
 );
 

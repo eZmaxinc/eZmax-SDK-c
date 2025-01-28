@@ -19,14 +19,6 @@ typedef struct ezsigntemplatepublic_response_compound_t ezsigntemplatepublic_res
 #include "custom_ezsignfolderezsigntemplatepublic_response.h"
 #include "field_e_ezsigntemplatepublic_limittype.h"
 
-// Enum  for ezsigntemplatepublic_response_compound
-
-typedef enum  { ezmax_api_definition__full_ezsigntemplatepublic_response_compound__NULL = 0, ezmax_api_definition__full_ezsigntemplatepublic_response_compound__Hour, ezmax_api_definition__full_ezsigntemplatepublic_response_compound__Day, ezmax_api_definition__full_ezsigntemplatepublic_response_compound__Month, ezmax_api_definition__full_ezsigntemplatepublic_response_compound__Total } ezmax_api_definition__full_ezsigntemplatepublic_response_compound__e;
-
-char* ezsigntemplatepublic_response_compound_e_ezsigntemplatepublic_limittype_ToString(ezmax_api_definition__full_ezsigntemplatepublic_response_compound__e e_ezsigntemplatepublic_limittype);
-
-ezmax_api_definition__full_ezsigntemplatepublic_response_compound__e ezsigntemplatepublic_response_compound_e_ezsigntemplatepublic_limittype_FromString(char* e_ezsigntemplatepublic_limittype);
-
 
 
 typedef struct ezsigntemplatepublic_response_compound_t {
@@ -41,7 +33,7 @@ typedef struct ezsigntemplatepublic_response_compound_t {
     char *s_ezsigntemplatepublic_referenceid; // string
     int b_ezsigntemplatepublic_isactive; //boolean
     char *t_ezsigntemplatepublic_note; // string
-    field_e_ezsigntemplatepublic_limittype_t *e_ezsigntemplatepublic_limittype; // custom
+    ezmax_api_definition__full_field_e_ezsigntemplatepublic_limittype__e e_ezsigntemplatepublic_limittype; //referenced enum
     int i_ezsigntemplatepublic_limit; //numeric
     int i_ezsigntemplatepublic_limitexceeded; //numeric
     char *dt_ezsigntemplatepublic_limitexceededsince; // string
@@ -50,9 +42,10 @@ typedef struct ezsigntemplatepublic_response_compound_t {
     struct common_audit_t *obj_audit; //model
     list_t *a_obj_ezsignfolderezsigntemplatepublic; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatepublic_response_compound_t;
 
-ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound_create(
+__attribute__((deprecated)) ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound_create(
     int pki_ezsigntemplatepublic_id,
     int fki_ezsignfoldertype_id,
     char *s_ezsignfoldertype_name_x,
@@ -64,7 +57,7 @@ ezsigntemplatepublic_response_compound_t *ezsigntemplatepublic_response_compound
     char *s_ezsigntemplatepublic_referenceid,
     int b_ezsigntemplatepublic_isactive,
     char *t_ezsigntemplatepublic_note,
-    field_e_ezsigntemplatepublic_limittype_t *e_ezsigntemplatepublic_limittype,
+    ezmax_api_definition__full_field_e_ezsigntemplatepublic_limittype__e e_ezsigntemplatepublic_limittype,
     int i_ezsigntemplatepublic_limit,
     int i_ezsigntemplatepublic_limitexceeded,
     char *dt_ezsigntemplatepublic_limitexceededsince,

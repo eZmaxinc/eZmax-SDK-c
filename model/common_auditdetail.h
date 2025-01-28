@@ -27,9 +27,10 @@ typedef struct common_auditdetail_t {
     char *s_apikey_description_x; // string
     char *dt_auditdetail_date; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } common_auditdetail_t;
 
-common_auditdetail_t *common_auditdetail_create(
+__attribute__((deprecated)) common_auditdetail_t *common_auditdetail_create(
     int fki_user_id,
     int fki_apikey_id,
     char *s_user_loginname,

@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsigntemplateglobal_supplier__e field_e_ezsi
     return 0;
 }
 
-cJSON *field_e_ezsigntemplateglobal_supplier_field_e_ezsigntemplateglobal_supplier_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplateglobal_supplier__e field_e_ezsigntemplateglobal_supplier) {
+cJSON *field_e_ezsigntemplateglobal_supplier_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplateglobal_supplier__e field_e_ezsigntemplateglobal_supplier) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsigntemplateglobal_supplier", field_e_ezsigntemplateglobal_supplier_field_e_ezsigntemplateglobal_supplier_ToString(field_e_ezsigntemplateglobal_supplier)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsigntemplateglobal_supplier__e field_e_ezsigntemplateglobal_supplier_field_e_ezsigntemplateglobal_supplier_parseFromJSON(cJSON *field_e_ezsigntemplateglobal_supplierJSON) {
-    ezmax_api_definition__full_field_e_ezsigntemplateglobal_supplier__e *field_e_ezsigntemplateglobal_supplier = NULL;
-    ezmax_api_definition__full_field_e_ezsigntemplateglobal_supplier__e field_e_ezsigntemplateglobal_supplierVariable;
-    cJSON *field_e_ezsigntemplateglobal_supplierVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsigntemplateglobal_supplierJSON, "field_e_ezsigntemplateglobal_supplier");
-    if(!cJSON_IsString(field_e_ezsigntemplateglobal_supplierVar) || (field_e_ezsigntemplateglobal_supplierVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsigntemplateglobal_supplier__e field_e_ezsigntemplateglobal_supplier_parseFromJSON(cJSON *field_e_ezsigntemplateglobal_supplierJSON) {
+    if(!cJSON_IsString(field_e_ezsigntemplateglobal_supplierJSON) || (field_e_ezsigntemplateglobal_supplierJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsigntemplateglobal_supplierVariable = field_e_ezsigntemplateglobal_supplier_field_e_ezsigntemplateglobal_supplier_FromString(field_e_ezsigntemplateglobal_supplierVar->valuestring);
-    return field_e_ezsigntemplateglobal_supplierVariable;
-end:
-    return 0;
+    return field_e_ezsigntemplateglobal_supplier_field_e_ezsigntemplateglobal_supplier_FromString(field_e_ezsigntemplateglobal_supplierJSON->valuestring);
 }

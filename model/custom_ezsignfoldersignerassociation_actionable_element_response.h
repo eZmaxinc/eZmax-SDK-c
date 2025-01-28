@@ -34,9 +34,10 @@ typedef struct custom_ezsignfoldersignerassociation_actionable_element_response_
     int b_ezsignfoldersignerassociation_hasactionableelements_current; //boolean
     int b_ezsignfoldersignerassociation_hasactionableelements_future; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_ezsignfoldersignerassociation_actionable_element_response_t;
 
-custom_ezsignfoldersignerassociation_actionable_element_response_t *custom_ezsignfoldersignerassociation_actionable_element_response_create(
+__attribute__((deprecated)) custom_ezsignfoldersignerassociation_actionable_element_response_t *custom_ezsignfoldersignerassociation_actionable_element_response_create(
     int pki_ezsignfoldersignerassociation_id,
     int fki_ezsignfolder_id,
     int b_ezsignfoldersignerassociation_delayedsend,

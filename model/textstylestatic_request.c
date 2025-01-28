@@ -5,7 +5,7 @@
 
 
 
-textstylestatic_request_t *textstylestatic_request_create(
+static textstylestatic_request_t *textstylestatic_request_create_internal(
     int fki_font_id,
     int b_textstylestatic_bold,
     int b_textstylestatic_underline,
@@ -26,12 +26,36 @@ textstylestatic_request_t *textstylestatic_request_create(
     textstylestatic_request_local_var->i_textstylestatic_fontcolor = i_textstylestatic_fontcolor;
     textstylestatic_request_local_var->i_textstylestatic_size = i_textstylestatic_size;
 
+    textstylestatic_request_local_var->_library_owned = 1;
     return textstylestatic_request_local_var;
 }
 
+__attribute__((deprecated)) textstylestatic_request_t *textstylestatic_request_create(
+    int fki_font_id,
+    int b_textstylestatic_bold,
+    int b_textstylestatic_underline,
+    int b_textstylestatic_italic,
+    int b_textstylestatic_strikethrough,
+    int i_textstylestatic_fontcolor,
+    int i_textstylestatic_size
+    ) {
+    return textstylestatic_request_create_internal (
+        fki_font_id,
+        b_textstylestatic_bold,
+        b_textstylestatic_underline,
+        b_textstylestatic_italic,
+        b_textstylestatic_strikethrough,
+        i_textstylestatic_fontcolor,
+        i_textstylestatic_size
+        );
+}
 
 void textstylestatic_request_free(textstylestatic_request_t *textstylestatic_request) {
     if(NULL == textstylestatic_request){
+        return ;
+    }
+    if(textstylestatic_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "textstylestatic_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -117,6 +141,9 @@ textstylestatic_request_t *textstylestatic_request_parseFromJSON(cJSON *textstyl
 
     // textstylestatic_request->fki_font_id
     cJSON *fki_font_id = cJSON_GetObjectItemCaseSensitive(textstylestatic_requestJSON, "fkiFontID");
+    if (cJSON_IsNull(fki_font_id)) {
+        fki_font_id = NULL;
+    }
     if (!fki_font_id) {
         goto end;
     }
@@ -129,6 +156,9 @@ textstylestatic_request_t *textstylestatic_request_parseFromJSON(cJSON *textstyl
 
     // textstylestatic_request->b_textstylestatic_bold
     cJSON *b_textstylestatic_bold = cJSON_GetObjectItemCaseSensitive(textstylestatic_requestJSON, "bTextstylestaticBold");
+    if (cJSON_IsNull(b_textstylestatic_bold)) {
+        b_textstylestatic_bold = NULL;
+    }
     if (!b_textstylestatic_bold) {
         goto end;
     }
@@ -141,6 +171,9 @@ textstylestatic_request_t *textstylestatic_request_parseFromJSON(cJSON *textstyl
 
     // textstylestatic_request->b_textstylestatic_underline
     cJSON *b_textstylestatic_underline = cJSON_GetObjectItemCaseSensitive(textstylestatic_requestJSON, "bTextstylestaticUnderline");
+    if (cJSON_IsNull(b_textstylestatic_underline)) {
+        b_textstylestatic_underline = NULL;
+    }
     if (!b_textstylestatic_underline) {
         goto end;
     }
@@ -153,6 +186,9 @@ textstylestatic_request_t *textstylestatic_request_parseFromJSON(cJSON *textstyl
 
     // textstylestatic_request->b_textstylestatic_italic
     cJSON *b_textstylestatic_italic = cJSON_GetObjectItemCaseSensitive(textstylestatic_requestJSON, "bTextstylestaticItalic");
+    if (cJSON_IsNull(b_textstylestatic_italic)) {
+        b_textstylestatic_italic = NULL;
+    }
     if (!b_textstylestatic_italic) {
         goto end;
     }
@@ -165,6 +201,9 @@ textstylestatic_request_t *textstylestatic_request_parseFromJSON(cJSON *textstyl
 
     // textstylestatic_request->b_textstylestatic_strikethrough
     cJSON *b_textstylestatic_strikethrough = cJSON_GetObjectItemCaseSensitive(textstylestatic_requestJSON, "bTextstylestaticStrikethrough");
+    if (cJSON_IsNull(b_textstylestatic_strikethrough)) {
+        b_textstylestatic_strikethrough = NULL;
+    }
     if (!b_textstylestatic_strikethrough) {
         goto end;
     }
@@ -177,6 +216,9 @@ textstylestatic_request_t *textstylestatic_request_parseFromJSON(cJSON *textstyl
 
     // textstylestatic_request->i_textstylestatic_fontcolor
     cJSON *i_textstylestatic_fontcolor = cJSON_GetObjectItemCaseSensitive(textstylestatic_requestJSON, "iTextstylestaticFontcolor");
+    if (cJSON_IsNull(i_textstylestatic_fontcolor)) {
+        i_textstylestatic_fontcolor = NULL;
+    }
     if (!i_textstylestatic_fontcolor) {
         goto end;
     }
@@ -189,6 +231,9 @@ textstylestatic_request_t *textstylestatic_request_parseFromJSON(cJSON *textstyl
 
     // textstylestatic_request->i_textstylestatic_size
     cJSON *i_textstylestatic_size = cJSON_GetObjectItemCaseSensitive(textstylestatic_requestJSON, "iTextstylestaticSize");
+    if (cJSON_IsNull(i_textstylestatic_size)) {
+        i_textstylestatic_size = NULL;
+    }
     if (!i_textstylestatic_size) {
         goto end;
     }
@@ -200,7 +245,7 @@ textstylestatic_request_t *textstylestatic_request_parseFromJSON(cJSON *textstyl
     }
 
 
-    textstylestatic_request_local_var = textstylestatic_request_create (
+    textstylestatic_request_local_var = textstylestatic_request_create_internal (
         fki_font_id->valuedouble,
         b_textstylestatic_bold->valueint,
         b_textstylestatic_underline->valueint,

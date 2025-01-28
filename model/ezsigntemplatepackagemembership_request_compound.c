@@ -5,7 +5,7 @@
 
 
 
-ezsigntemplatepackagemembership_request_compound_t *ezsigntemplatepackagemembership_request_compound_create(
+static ezsigntemplatepackagemembership_request_compound_t *ezsigntemplatepackagemembership_request_compound_create_internal(
     int pki_ezsigntemplatepackagemembership_id,
     int fki_ezsigntemplatepackage_id,
     int fki_ezsigntemplate_id
@@ -18,12 +18,28 @@ ezsigntemplatepackagemembership_request_compound_t *ezsigntemplatepackagemembers
     ezsigntemplatepackagemembership_request_compound_local_var->fki_ezsigntemplatepackage_id = fki_ezsigntemplatepackage_id;
     ezsigntemplatepackagemembership_request_compound_local_var->fki_ezsigntemplate_id = fki_ezsigntemplate_id;
 
+    ezsigntemplatepackagemembership_request_compound_local_var->_library_owned = 1;
     return ezsigntemplatepackagemembership_request_compound_local_var;
 }
 
+__attribute__((deprecated)) ezsigntemplatepackagemembership_request_compound_t *ezsigntemplatepackagemembership_request_compound_create(
+    int pki_ezsigntemplatepackagemembership_id,
+    int fki_ezsigntemplatepackage_id,
+    int fki_ezsigntemplate_id
+    ) {
+    return ezsigntemplatepackagemembership_request_compound_create_internal (
+        pki_ezsigntemplatepackagemembership_id,
+        fki_ezsigntemplatepackage_id,
+        fki_ezsigntemplate_id
+        );
+}
 
 void ezsigntemplatepackagemembership_request_compound_free(ezsigntemplatepackagemembership_request_compound_t *ezsigntemplatepackagemembership_request_compound) {
     if(NULL == ezsigntemplatepackagemembership_request_compound){
+        return ;
+    }
+    if(ezsigntemplatepackagemembership_request_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigntemplatepackagemembership_request_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -72,6 +88,9 @@ ezsigntemplatepackagemembership_request_compound_t *ezsigntemplatepackagemembers
 
     // ezsigntemplatepackagemembership_request_compound->pki_ezsigntemplatepackagemembership_id
     cJSON *pki_ezsigntemplatepackagemembership_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackagemembership_request_compoundJSON, "pkiEzsigntemplatepackagemembershipID");
+    if (cJSON_IsNull(pki_ezsigntemplatepackagemembership_id)) {
+        pki_ezsigntemplatepackagemembership_id = NULL;
+    }
     if (pki_ezsigntemplatepackagemembership_id) { 
     if(!cJSON_IsNumber(pki_ezsigntemplatepackagemembership_id))
     {
@@ -81,6 +100,9 @@ ezsigntemplatepackagemembership_request_compound_t *ezsigntemplatepackagemembers
 
     // ezsigntemplatepackagemembership_request_compound->fki_ezsigntemplatepackage_id
     cJSON *fki_ezsigntemplatepackage_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackagemembership_request_compoundJSON, "fkiEzsigntemplatepackageID");
+    if (cJSON_IsNull(fki_ezsigntemplatepackage_id)) {
+        fki_ezsigntemplatepackage_id = NULL;
+    }
     if (!fki_ezsigntemplatepackage_id) {
         goto end;
     }
@@ -93,6 +115,9 @@ ezsigntemplatepackagemembership_request_compound_t *ezsigntemplatepackagemembers
 
     // ezsigntemplatepackagemembership_request_compound->fki_ezsigntemplate_id
     cJSON *fki_ezsigntemplate_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatepackagemembership_request_compoundJSON, "fkiEzsigntemplateID");
+    if (cJSON_IsNull(fki_ezsigntemplate_id)) {
+        fki_ezsigntemplate_id = NULL;
+    }
     if (!fki_ezsigntemplate_id) {
         goto end;
     }
@@ -104,7 +129,7 @@ ezsigntemplatepackagemembership_request_compound_t *ezsigntemplatepackagemembers
     }
 
 
-    ezsigntemplatepackagemembership_request_compound_local_var = ezsigntemplatepackagemembership_request_compound_create (
+    ezsigntemplatepackagemembership_request_compound_local_var = ezsigntemplatepackagemembership_request_compound_create_internal (
         pki_ezsigntemplatepackagemembership_id ? pki_ezsigntemplatepackagemembership_id->valuedouble : 0,
         fki_ezsigntemplatepackage_id->valuedouble,
         fki_ezsigntemplate_id->valuedouble

@@ -5,7 +5,7 @@
 
 
 
-multilingual_paymentterm_description_t *multilingual_paymentterm_description_create(
+static multilingual_paymentterm_description_t *multilingual_paymentterm_description_create_internal(
     char *s_paymentterm_description1,
     char *s_paymentterm_description2
     ) {
@@ -16,12 +16,26 @@ multilingual_paymentterm_description_t *multilingual_paymentterm_description_cre
     multilingual_paymentterm_description_local_var->s_paymentterm_description1 = s_paymentterm_description1;
     multilingual_paymentterm_description_local_var->s_paymentterm_description2 = s_paymentterm_description2;
 
+    multilingual_paymentterm_description_local_var->_library_owned = 1;
     return multilingual_paymentterm_description_local_var;
 }
 
+__attribute__((deprecated)) multilingual_paymentterm_description_t *multilingual_paymentterm_description_create(
+    char *s_paymentterm_description1,
+    char *s_paymentterm_description2
+    ) {
+    return multilingual_paymentterm_description_create_internal (
+        s_paymentterm_description1,
+        s_paymentterm_description2
+        );
+}
 
 void multilingual_paymentterm_description_free(multilingual_paymentterm_description_t *multilingual_paymentterm_description) {
     if(NULL == multilingual_paymentterm_description){
+        return ;
+    }
+    if(multilingual_paymentterm_description->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "multilingual_paymentterm_description_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -68,6 +82,9 @@ multilingual_paymentterm_description_t *multilingual_paymentterm_description_par
 
     // multilingual_paymentterm_description->s_paymentterm_description1
     cJSON *s_paymentterm_description1 = cJSON_GetObjectItemCaseSensitive(multilingual_paymentterm_descriptionJSON, "sPaymenttermDescription1");
+    if (cJSON_IsNull(s_paymentterm_description1)) {
+        s_paymentterm_description1 = NULL;
+    }
     if (s_paymentterm_description1) { 
     if(!cJSON_IsString(s_paymentterm_description1) && !cJSON_IsNull(s_paymentterm_description1))
     {
@@ -77,6 +94,9 @@ multilingual_paymentterm_description_t *multilingual_paymentterm_description_par
 
     // multilingual_paymentterm_description->s_paymentterm_description2
     cJSON *s_paymentterm_description2 = cJSON_GetObjectItemCaseSensitive(multilingual_paymentterm_descriptionJSON, "sPaymenttermDescription2");
+    if (cJSON_IsNull(s_paymentterm_description2)) {
+        s_paymentterm_description2 = NULL;
+    }
     if (s_paymentterm_description2) { 
     if(!cJSON_IsString(s_paymentterm_description2) && !cJSON_IsNull(s_paymentterm_description2))
     {
@@ -85,7 +105,7 @@ multilingual_paymentterm_description_t *multilingual_paymentterm_description_par
     }
 
 
-    multilingual_paymentterm_description_local_var = multilingual_paymentterm_description_create (
+    multilingual_paymentterm_description_local_var = multilingual_paymentterm_description_create_internal (
         s_paymentterm_description1 && !cJSON_IsNull(s_paymentterm_description1) ? strdup(s_paymentterm_description1->valuestring) : NULL,
         s_paymentterm_description2 && !cJSON_IsNull(s_paymentterm_description2) ? strdup(s_paymentterm_description2->valuestring) : NULL
         );

@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Create a new User
@@ -23,11 +18,14 @@ ScimUsersAPI_usersCreateObjectScimV2(apiClient_t *apiClient, scim_user_t *scim_u
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/scim/Users")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/scim/Users");
+    char *localVarPath = strdup("/2/scim/Users");
+
 
 
 
@@ -36,9 +34,10 @@ ScimUsersAPI_usersCreateObjectScimV2(apiClient_t *apiClient, scim_user_t *scim_u
     cJSON *localVarSingleItemJSON_scim_user = NULL;
     if (scim_user != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_scim_user = scim_user_convertToJSON(scim_user);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_scim_user);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -50,6 +49,7 @@ ScimUsersAPI_usersCreateObjectScimV2(apiClient_t *apiClient, scim_user_t *scim_u
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -57,11 +57,14 @@ ScimUsersAPI_usersCreateObjectScimV2(apiClient_t *apiClient, scim_user_t *scim_u
     //    printf("%s\n","Created");
     //}
     //nonprimitive not container
-    cJSON *ScimUsersAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    scim_user_t *elementToReturn = scim_user_parseFromJSON(ScimUsersAPIlocalVarJSON);
-    cJSON_Delete(ScimUsersAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    scim_user_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ScimUsersAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = scim_user_parseFromJSON(ScimUsersAPIlocalVarJSON);
+        cJSON_Delete(ScimUsersAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -99,15 +102,20 @@ ScimUsersAPI_usersDeleteObjectScimV2(apiClient_t *apiClient, char *userId)
     list_t *localVarHeaderType = NULL;
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/scim/Users/{userId}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/scim/Users/{userId}");
+    char *localVarPath = strdup("/2/scim/Users/{userId}");
+
+    if(!userId)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_userId = strlen(userId)+3 + strlen("{ userId }");
+    long sizeOfPathParams_userId = strlen(userId)+3 + sizeof("{ userId }") - 1;
     if(userId == NULL) {
         goto end;
     }
@@ -125,6 +133,7 @@ ScimUsersAPI_usersDeleteObjectScimV2(apiClient_t *apiClient, char *userId)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "DELETE");
 
     // uncomment below to debug the error response
@@ -159,15 +168,20 @@ ScimUsersAPI_usersEditObjectScimV2(apiClient_t *apiClient, char *userId, scim_us
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/scim/Users/{userId}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/scim/Users/{userId}");
+    char *localVarPath = strdup("/2/scim/Users/{userId}");
+
+    if(!userId)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_userId = strlen(userId)+3 + strlen("{ userId }");
+    long sizeOfPathParams_userId = strlen(userId)+3 + sizeof("{ userId }") - 1;
     if(userId == NULL) {
         goto end;
     }
@@ -182,9 +196,10 @@ ScimUsersAPI_usersEditObjectScimV2(apiClient_t *apiClient, char *userId, scim_us
     cJSON *localVarSingleItemJSON_scim_user = NULL;
     if (scim_user != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_scim_user = scim_user_convertToJSON(scim_user);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_scim_user);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -196,6 +211,7 @@ ScimUsersAPI_usersEditObjectScimV2(apiClient_t *apiClient, char *userId, scim_us
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PUT");
 
     // uncomment below to debug the error response
@@ -203,11 +219,14 @@ ScimUsersAPI_usersEditObjectScimV2(apiClient_t *apiClient, char *userId, scim_us
     //    printf("%s\n","OK");
     //}
     //nonprimitive not container
-    cJSON *ScimUsersAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    scim_user_t *elementToReturn = scim_user_parseFromJSON(ScimUsersAPIlocalVarJSON);
-    cJSON_Delete(ScimUsersAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    scim_user_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ScimUsersAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = scim_user_parseFromJSON(ScimUsersAPIlocalVarJSON);
+        cJSON_Delete(ScimUsersAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -246,11 +265,14 @@ ScimUsersAPI_usersGetListScimV2(apiClient_t *apiClient, char *filter)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/scim/Users")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/scim/Users");
+    char *localVarPath = strdup("/2/scim/Users");
+
 
 
 
@@ -275,6 +297,7 @@ ScimUsersAPI_usersGetListScimV2(apiClient_t *apiClient, char *filter)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -282,11 +305,14 @@ ScimUsersAPI_usersGetListScimV2(apiClient_t *apiClient, char *filter)
     //    printf("%s\n","OK");
     //}
     //nonprimitive not container
-    cJSON *ScimUsersAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    scim_user_list_t *elementToReturn = scim_user_list_parseFromJSON(ScimUsersAPIlocalVarJSON);
-    cJSON_Delete(ScimUsersAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    scim_user_list_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ScimUsersAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = scim_user_list_parseFromJSON(ScimUsersAPIlocalVarJSON);
+        cJSON_Delete(ScimUsersAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -331,15 +357,20 @@ ScimUsersAPI_usersGetObjectScimV2(apiClient_t *apiClient, char *userId)
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/scim/Users/{userId}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/scim/Users/{userId}");
+    char *localVarPath = strdup("/2/scim/Users/{userId}");
+
+    if(!userId)
+        goto end;
 
 
     // Path Params
-    long sizeOfPathParams_userId = strlen(userId)+3 + strlen("{ userId }");
+    long sizeOfPathParams_userId = strlen(userId)+3 + sizeof("{ userId }") - 1;
     if(userId == NULL) {
         goto end;
     }
@@ -358,6 +389,7 @@ ScimUsersAPI_usersGetObjectScimV2(apiClient_t *apiClient, char *userId)
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -365,11 +397,14 @@ ScimUsersAPI_usersGetObjectScimV2(apiClient_t *apiClient, char *userId)
     //    printf("%s\n","OK");
     //}
     //nonprimitive not container
-    cJSON *ScimUsersAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    scim_user_t *elementToReturn = scim_user_parseFromJSON(ScimUsersAPIlocalVarJSON);
-    cJSON_Delete(ScimUsersAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    scim_user_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ScimUsersAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = scim_user_parseFromJSON(ScimUsersAPIlocalVarJSON);
+        cJSON_Delete(ScimUsersAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

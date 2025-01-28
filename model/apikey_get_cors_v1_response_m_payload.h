@@ -22,9 +22,10 @@ typedef struct apikey_get_cors_v1_response_m_payload_t apikey_get_cors_v1_respon
 typedef struct apikey_get_cors_v1_response_m_payload_t {
     list_t *a_obj_cors; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } apikey_get_cors_v1_response_m_payload_t;
 
-apikey_get_cors_v1_response_m_payload_t *apikey_get_cors_v1_response_m_payload_create(
+__attribute__((deprecated)) apikey_get_cors_v1_response_m_payload_t *apikey_get_cors_v1_response_m_payload_create(
     list_t *a_obj_cors
 );
 

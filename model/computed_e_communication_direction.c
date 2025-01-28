@@ -22,7 +22,7 @@ ezmax_api_definition__full_computed_e_communication_direction__e computed_e_comm
     return 0;
 }
 
-cJSON *computed_e_communication_direction_computed_e_communication_direction_convertToJSON(ezmax_api_definition__full_computed_e_communication_direction__e computed_e_communication_direction) {
+cJSON *computed_e_communication_direction_convertToJSON(ezmax_api_definition__full_computed_e_communication_direction__e computed_e_communication_direction) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "computed_e_communication_direction", computed_e_communication_direction_computed_e_communication_direction_ToString(computed_e_communication_direction)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_computed_e_communication_direction__e computed_e_communication_direction_computed_e_communication_direction_parseFromJSON(cJSON *computed_e_communication_directionJSON) {
-    ezmax_api_definition__full_computed_e_communication_direction__e *computed_e_communication_direction = NULL;
-    ezmax_api_definition__full_computed_e_communication_direction__e computed_e_communication_directionVariable;
-    cJSON *computed_e_communication_directionVar = cJSON_GetObjectItemCaseSensitive(computed_e_communication_directionJSON, "computed_e_communication_direction");
-    if(!cJSON_IsString(computed_e_communication_directionVar) || (computed_e_communication_directionVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_computed_e_communication_direction__e computed_e_communication_direction_parseFromJSON(cJSON *computed_e_communication_directionJSON) {
+    if(!cJSON_IsString(computed_e_communication_directionJSON) || (computed_e_communication_directionJSON->valuestring == NULL)) {
+        return 0;
     }
-    computed_e_communication_directionVariable = computed_e_communication_direction_computed_e_communication_direction_FromString(computed_e_communication_directionVar->valuestring);
-    return computed_e_communication_directionVariable;
-end:
-    return 0;
+    return computed_e_communication_direction_computed_e_communication_direction_FromString(computed_e_communication_directionJSON->valuestring);
 }

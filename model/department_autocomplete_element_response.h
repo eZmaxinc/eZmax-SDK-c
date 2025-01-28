@@ -24,9 +24,10 @@ typedef struct department_autocomplete_element_response_t {
     int pki_department_id; //numeric
     int b_department_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } department_autocomplete_element_response_t;
 
-department_autocomplete_element_response_t *department_autocomplete_element_response_create(
+__attribute__((deprecated)) department_autocomplete_element_response_t *department_autocomplete_element_response_create(
     char *s_company_name_x,
     char *s_department_name_x,
     int pki_department_id,

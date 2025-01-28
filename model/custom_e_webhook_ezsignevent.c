@@ -22,7 +22,7 @@ ezmax_api_definition__full_custom_e_webhook_ezsignevent__e custom_e_webhook_ezsi
     return 0;
 }
 
-cJSON *custom_e_webhook_ezsignevent_custom_e_webhook_ezsignevent_convertToJSON(ezmax_api_definition__full_custom_e_webhook_ezsignevent__e custom_e_webhook_ezsignevent) {
+cJSON *custom_e_webhook_ezsignevent_convertToJSON(ezmax_api_definition__full_custom_e_webhook_ezsignevent__e custom_e_webhook_ezsignevent) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "custom_e_webhook_ezsignevent", custom_e_webhook_ezsignevent_custom_e_webhook_ezsignevent_ToString(custom_e_webhook_ezsignevent)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_custom_e_webhook_ezsignevent__e custom_e_webhook_ezsignevent_custom_e_webhook_ezsignevent_parseFromJSON(cJSON *custom_e_webhook_ezsigneventJSON) {
-    ezmax_api_definition__full_custom_e_webhook_ezsignevent__e *custom_e_webhook_ezsignevent = NULL;
-    ezmax_api_definition__full_custom_e_webhook_ezsignevent__e custom_e_webhook_ezsigneventVariable;
-    cJSON *custom_e_webhook_ezsigneventVar = cJSON_GetObjectItemCaseSensitive(custom_e_webhook_ezsigneventJSON, "custom_e_webhook_ezsignevent");
-    if(!cJSON_IsString(custom_e_webhook_ezsigneventVar) || (custom_e_webhook_ezsigneventVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_custom_e_webhook_ezsignevent__e custom_e_webhook_ezsignevent_parseFromJSON(cJSON *custom_e_webhook_ezsigneventJSON) {
+    if(!cJSON_IsString(custom_e_webhook_ezsigneventJSON) || (custom_e_webhook_ezsigneventJSON->valuestring == NULL)) {
+        return 0;
     }
-    custom_e_webhook_ezsigneventVariable = custom_e_webhook_ezsignevent_custom_e_webhook_ezsignevent_FromString(custom_e_webhook_ezsigneventVar->valuestring);
-    return custom_e_webhook_ezsigneventVariable;
-end:
-    return 0;
+    return custom_e_webhook_ezsignevent_custom_e_webhook_ezsignevent_FromString(custom_e_webhook_ezsigneventJSON->valuestring);
 }

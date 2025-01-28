@@ -5,7 +5,7 @@
 
 
 
-glaccountcontainer_get_autocomplete_v2_response_m_payload_t *glaccountcontainer_get_autocomplete_v2_response_m_payload_create(
+static glaccountcontainer_get_autocomplete_v2_response_m_payload_t *glaccountcontainer_get_autocomplete_v2_response_m_payload_create_internal(
     list_t *a_obj_glaccountcontainer
     ) {
     glaccountcontainer_get_autocomplete_v2_response_m_payload_t *glaccountcontainer_get_autocomplete_v2_response_m_payload_local_var = malloc(sizeof(glaccountcontainer_get_autocomplete_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ glaccountcontainer_get_autocomplete_v2_response_m_payload_t *glaccountcontainer_
     }
     glaccountcontainer_get_autocomplete_v2_response_m_payload_local_var->a_obj_glaccountcontainer = a_obj_glaccountcontainer;
 
+    glaccountcontainer_get_autocomplete_v2_response_m_payload_local_var->_library_owned = 1;
     return glaccountcontainer_get_autocomplete_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) glaccountcontainer_get_autocomplete_v2_response_m_payload_t *glaccountcontainer_get_autocomplete_v2_response_m_payload_create(
+    list_t *a_obj_glaccountcontainer
+    ) {
+    return glaccountcontainer_get_autocomplete_v2_response_m_payload_create_internal (
+        a_obj_glaccountcontainer
+        );
+}
 
 void glaccountcontainer_get_autocomplete_v2_response_m_payload_free(glaccountcontainer_get_autocomplete_v2_response_m_payload_t *glaccountcontainer_get_autocomplete_v2_response_m_payload) {
     if(NULL == glaccountcontainer_get_autocomplete_v2_response_m_payload){
+        return ;
+    }
+    if(glaccountcontainer_get_autocomplete_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "glaccountcontainer_get_autocomplete_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ glaccountcontainer_get_autocomplete_v2_response_m_payload_t *glaccountcontainer_
 
     // glaccountcontainer_get_autocomplete_v2_response_m_payload->a_obj_glaccountcontainer
     cJSON *a_obj_glaccountcontainer = cJSON_GetObjectItemCaseSensitive(glaccountcontainer_get_autocomplete_v2_response_m_payloadJSON, "a_objGlaccountcontainer");
+    if (cJSON_IsNull(a_obj_glaccountcontainer)) {
+        a_obj_glaccountcontainer = NULL;
+    }
     if (!a_obj_glaccountcontainer) {
         goto end;
     }
@@ -96,7 +111,7 @@ glaccountcontainer_get_autocomplete_v2_response_m_payload_t *glaccountcontainer_
     }
 
 
-    glaccountcontainer_get_autocomplete_v2_response_m_payload_local_var = glaccountcontainer_get_autocomplete_v2_response_m_payload_create (
+    glaccountcontainer_get_autocomplete_v2_response_m_payload_local_var = glaccountcontainer_get_autocomplete_v2_response_m_payload_create_internal (
         a_obj_glaccountcontainerList
         );
 

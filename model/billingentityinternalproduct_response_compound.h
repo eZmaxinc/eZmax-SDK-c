@@ -27,9 +27,10 @@ typedef struct billingentityinternalproduct_response_compound_t {
     int fki_billingentityexternal_id; //numeric
     char *s_billingentityexternal_description; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } billingentityinternalproduct_response_compound_t;
 
-billingentityinternalproduct_response_compound_t *billingentityinternalproduct_response_compound_create(
+__attribute__((deprecated)) billingentityinternalproduct_response_compound_t *billingentityinternalproduct_response_compound_create(
     int pki_billingentityinternalproduct_id,
     int fki_billingentityinternal_id,
     char *s_billingentityinternal_description_x,

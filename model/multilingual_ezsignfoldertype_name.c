@@ -5,7 +5,7 @@
 
 
 
-multilingual_ezsignfoldertype_name_t *multilingual_ezsignfoldertype_name_create(
+static multilingual_ezsignfoldertype_name_t *multilingual_ezsignfoldertype_name_create_internal(
     char *s_ezsignfoldertype_name1,
     char *s_ezsignfoldertype_name2
     ) {
@@ -16,12 +16,26 @@ multilingual_ezsignfoldertype_name_t *multilingual_ezsignfoldertype_name_create(
     multilingual_ezsignfoldertype_name_local_var->s_ezsignfoldertype_name1 = s_ezsignfoldertype_name1;
     multilingual_ezsignfoldertype_name_local_var->s_ezsignfoldertype_name2 = s_ezsignfoldertype_name2;
 
+    multilingual_ezsignfoldertype_name_local_var->_library_owned = 1;
     return multilingual_ezsignfoldertype_name_local_var;
 }
 
+__attribute__((deprecated)) multilingual_ezsignfoldertype_name_t *multilingual_ezsignfoldertype_name_create(
+    char *s_ezsignfoldertype_name1,
+    char *s_ezsignfoldertype_name2
+    ) {
+    return multilingual_ezsignfoldertype_name_create_internal (
+        s_ezsignfoldertype_name1,
+        s_ezsignfoldertype_name2
+        );
+}
 
 void multilingual_ezsignfoldertype_name_free(multilingual_ezsignfoldertype_name_t *multilingual_ezsignfoldertype_name) {
     if(NULL == multilingual_ezsignfoldertype_name){
+        return ;
+    }
+    if(multilingual_ezsignfoldertype_name->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "multilingual_ezsignfoldertype_name_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -68,6 +82,9 @@ multilingual_ezsignfoldertype_name_t *multilingual_ezsignfoldertype_name_parseFr
 
     // multilingual_ezsignfoldertype_name->s_ezsignfoldertype_name1
     cJSON *s_ezsignfoldertype_name1 = cJSON_GetObjectItemCaseSensitive(multilingual_ezsignfoldertype_nameJSON, "sEzsignfoldertypeName1");
+    if (cJSON_IsNull(s_ezsignfoldertype_name1)) {
+        s_ezsignfoldertype_name1 = NULL;
+    }
     if (s_ezsignfoldertype_name1) { 
     if(!cJSON_IsString(s_ezsignfoldertype_name1) && !cJSON_IsNull(s_ezsignfoldertype_name1))
     {
@@ -77,6 +94,9 @@ multilingual_ezsignfoldertype_name_t *multilingual_ezsignfoldertype_name_parseFr
 
     // multilingual_ezsignfoldertype_name->s_ezsignfoldertype_name2
     cJSON *s_ezsignfoldertype_name2 = cJSON_GetObjectItemCaseSensitive(multilingual_ezsignfoldertype_nameJSON, "sEzsignfoldertypeName2");
+    if (cJSON_IsNull(s_ezsignfoldertype_name2)) {
+        s_ezsignfoldertype_name2 = NULL;
+    }
     if (s_ezsignfoldertype_name2) { 
     if(!cJSON_IsString(s_ezsignfoldertype_name2) && !cJSON_IsNull(s_ezsignfoldertype_name2))
     {
@@ -85,7 +105,7 @@ multilingual_ezsignfoldertype_name_t *multilingual_ezsignfoldertype_name_parseFr
     }
 
 
-    multilingual_ezsignfoldertype_name_local_var = multilingual_ezsignfoldertype_name_create (
+    multilingual_ezsignfoldertype_name_local_var = multilingual_ezsignfoldertype_name_create_internal (
         s_ezsignfoldertype_name1 && !cJSON_IsNull(s_ezsignfoldertype_name1) ? strdup(s_ezsignfoldertype_name1->valuestring) : NULL,
         s_ezsignfoldertype_name2 && !cJSON_IsNull(s_ezsignfoldertype_name2) ? strdup(s_ezsignfoldertype_name2->valuestring) : NULL
         );

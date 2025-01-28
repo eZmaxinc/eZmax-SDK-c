@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Retrieve Communication count
@@ -25,15 +20,18 @@ ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationCountV1(
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/electronicfundstransfer/{pkiElectronicfundstransferID}/getCommunicationCount")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/electronicfundstransfer/{pkiElectronicfundstransferID}/getCommunicationCount");
+    char *localVarPath = strdup("/1/object/electronicfundstransfer/{pkiElectronicfundstransferID}/getCommunicationCount");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiElectronicfundstransferID =  + strlen("{ pkiElectronicfundstransferID }");
+    long sizeOfPathParams_pkiElectronicfundstransferID =  + sizeof("{ pkiElectronicfundstransferID }") - 1;
     if(pkiElectronicfundstransferID == 0){
         goto end;
     }
@@ -41,7 +39,7 @@ ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationCountV1(
     snprintf(localVarToReplace_pkiElectronicfundstransferID, sizeOfPathParams_pkiElectronicfundstransferID, "{%s}", "pkiElectronicfundstransferID");
 
     char localVarBuff_pkiElectronicfundstransferID[256];
-    intToStr(localVarBuff_pkiElectronicfundstransferID, *pkiElectronicfundstransferID);
+    snprintf(localVarBuff_pkiElectronicfundstransferID, sizeof localVarBuff_pkiElectronicfundstransferID, "%ld", (long)*pkiElectronicfundstransferID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiElectronicfundstransferID, localVarBuff_pkiElectronicfundstransferID);
 
@@ -56,6 +54,7 @@ ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationCountV1(
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -67,11 +66,14 @@ ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationCountV1(
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectElectronicfundstransferAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    electronicfundstransfer_get_communication_count_v1_response_t *elementToReturn = electronicfundstransfer_get_communication_count_v1_response_parseFromJSON(ObjectElectronicfundstransferAPIlocalVarJSON);
-    cJSON_Delete(ObjectElectronicfundstransferAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    electronicfundstransfer_get_communication_count_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectElectronicfundstransferAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = electronicfundstransfer_get_communication_count_v1_response_parseFromJSON(ObjectElectronicfundstransferAPIlocalVarJSON);
+        cJSON_Delete(ObjectElectronicfundstransferAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -107,15 +109,18 @@ ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationListV1(a
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/electronicfundstransfer/{pkiElectronicfundstransferID}/getCommunicationList")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/electronicfundstransfer/{pkiElectronicfundstransferID}/getCommunicationList");
+    char *localVarPath = strdup("/1/object/electronicfundstransfer/{pkiElectronicfundstransferID}/getCommunicationList");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiElectronicfundstransferID =  + strlen("{ pkiElectronicfundstransferID }");
+    long sizeOfPathParams_pkiElectronicfundstransferID =  + sizeof("{ pkiElectronicfundstransferID }") - 1;
     if(pkiElectronicfundstransferID == 0){
         goto end;
     }
@@ -123,7 +128,7 @@ ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationListV1(a
     snprintf(localVarToReplace_pkiElectronicfundstransferID, sizeOfPathParams_pkiElectronicfundstransferID, "{%s}", "pkiElectronicfundstransferID");
 
     char localVarBuff_pkiElectronicfundstransferID[256];
-    intToStr(localVarBuff_pkiElectronicfundstransferID, *pkiElectronicfundstransferID);
+    snprintf(localVarBuff_pkiElectronicfundstransferID, sizeof localVarBuff_pkiElectronicfundstransferID, "%ld", (long)*pkiElectronicfundstransferID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiElectronicfundstransferID, localVarBuff_pkiElectronicfundstransferID);
 
@@ -138,6 +143,7 @@ ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationListV1(a
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -149,11 +155,14 @@ ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationListV1(a
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectElectronicfundstransferAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    electronicfundstransfer_get_communication_list_v1_response_t *elementToReturn = electronicfundstransfer_get_communication_list_v1_response_parseFromJSON(ObjectElectronicfundstransferAPIlocalVarJSON);
-    cJSON_Delete(ObjectElectronicfundstransferAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    electronicfundstransfer_get_communication_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectElectronicfundstransferAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = electronicfundstransfer_get_communication_list_v1_response_parseFromJSON(ObjectElectronicfundstransferAPIlocalVarJSON);
+        cJSON_Delete(ObjectElectronicfundstransferAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -189,15 +198,18 @@ ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationrecipien
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/electronicfundstransfer/{pkiElectronicfundstransferID}/getCommunicationrecipients")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/electronicfundstransfer/{pkiElectronicfundstransferID}/getCommunicationrecipients");
+    char *localVarPath = strdup("/1/object/electronicfundstransfer/{pkiElectronicfundstransferID}/getCommunicationrecipients");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiElectronicfundstransferID =  + strlen("{ pkiElectronicfundstransferID }");
+    long sizeOfPathParams_pkiElectronicfundstransferID =  + sizeof("{ pkiElectronicfundstransferID }") - 1;
     if(pkiElectronicfundstransferID == 0){
         goto end;
     }
@@ -205,7 +217,7 @@ ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationrecipien
     snprintf(localVarToReplace_pkiElectronicfundstransferID, sizeOfPathParams_pkiElectronicfundstransferID, "{%s}", "pkiElectronicfundstransferID");
 
     char localVarBuff_pkiElectronicfundstransferID[256];
-    intToStr(localVarBuff_pkiElectronicfundstransferID, *pkiElectronicfundstransferID);
+    snprintf(localVarBuff_pkiElectronicfundstransferID, sizeof localVarBuff_pkiElectronicfundstransferID, "%ld", (long)*pkiElectronicfundstransferID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiElectronicfundstransferID, localVarBuff_pkiElectronicfundstransferID);
 
@@ -220,6 +232,7 @@ ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationrecipien
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -231,11 +244,14 @@ ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationrecipien
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectElectronicfundstransferAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    electronicfundstransfer_get_communicationrecipients_v1_response_t *elementToReturn = electronicfundstransfer_get_communicationrecipients_v1_response_parseFromJSON(ObjectElectronicfundstransferAPIlocalVarJSON);
-    cJSON_Delete(ObjectElectronicfundstransferAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    electronicfundstransfer_get_communicationrecipients_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectElectronicfundstransferAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = electronicfundstransfer_get_communicationrecipients_v1_response_parseFromJSON(ObjectElectronicfundstransferAPIlocalVarJSON);
+        cJSON_Delete(ObjectElectronicfundstransferAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -271,15 +287,18 @@ ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationsendersV
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/electronicfundstransfer/{pkiElectronicfundstransferID}/getCommunicationsenders")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/electronicfundstransfer/{pkiElectronicfundstransferID}/getCommunicationsenders");
+    char *localVarPath = strdup("/1/object/electronicfundstransfer/{pkiElectronicfundstransferID}/getCommunicationsenders");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiElectronicfundstransferID =  + strlen("{ pkiElectronicfundstransferID }");
+    long sizeOfPathParams_pkiElectronicfundstransferID =  + sizeof("{ pkiElectronicfundstransferID }") - 1;
     if(pkiElectronicfundstransferID == 0){
         goto end;
     }
@@ -287,7 +306,7 @@ ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationsendersV
     snprintf(localVarToReplace_pkiElectronicfundstransferID, sizeOfPathParams_pkiElectronicfundstransferID, "{%s}", "pkiElectronicfundstransferID");
 
     char localVarBuff_pkiElectronicfundstransferID[256];
-    intToStr(localVarBuff_pkiElectronicfundstransferID, *pkiElectronicfundstransferID);
+    snprintf(localVarBuff_pkiElectronicfundstransferID, sizeof localVarBuff_pkiElectronicfundstransferID, "%ld", (long)*pkiElectronicfundstransferID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiElectronicfundstransferID, localVarBuff_pkiElectronicfundstransferID);
 
@@ -302,6 +321,7 @@ ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationsendersV
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -313,11 +333,14 @@ ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationsendersV
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectElectronicfundstransferAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    electronicfundstransfer_get_communicationsenders_v1_response_t *elementToReturn = electronicfundstransfer_get_communicationsenders_v1_response_parseFromJSON(ObjectElectronicfundstransferAPIlocalVarJSON);
-    cJSON_Delete(ObjectElectronicfundstransferAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    electronicfundstransfer_get_communicationsenders_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectElectronicfundstransferAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = electronicfundstransfer_get_communicationsenders_v1_response_parseFromJSON(ObjectElectronicfundstransferAPIlocalVarJSON);
+        cJSON_Delete(ObjectElectronicfundstransferAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

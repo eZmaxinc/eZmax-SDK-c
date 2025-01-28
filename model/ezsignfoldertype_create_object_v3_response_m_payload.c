@@ -5,7 +5,7 @@
 
 
 
-ezsignfoldertype_create_object_v3_response_m_payload_t *ezsignfoldertype_create_object_v3_response_m_payload_create(
+static ezsignfoldertype_create_object_v3_response_m_payload_t *ezsignfoldertype_create_object_v3_response_m_payload_create_internal(
     list_t *a_pki_ezsignfoldertype_id
     ) {
     ezsignfoldertype_create_object_v3_response_m_payload_t *ezsignfoldertype_create_object_v3_response_m_payload_local_var = malloc(sizeof(ezsignfoldertype_create_object_v3_response_m_payload_t));
@@ -14,12 +14,24 @@ ezsignfoldertype_create_object_v3_response_m_payload_t *ezsignfoldertype_create_
     }
     ezsignfoldertype_create_object_v3_response_m_payload_local_var->a_pki_ezsignfoldertype_id = a_pki_ezsignfoldertype_id;
 
+    ezsignfoldertype_create_object_v3_response_m_payload_local_var->_library_owned = 1;
     return ezsignfoldertype_create_object_v3_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) ezsignfoldertype_create_object_v3_response_m_payload_t *ezsignfoldertype_create_object_v3_response_m_payload_create(
+    list_t *a_pki_ezsignfoldertype_id
+    ) {
+    return ezsignfoldertype_create_object_v3_response_m_payload_create_internal (
+        a_pki_ezsignfoldertype_id
+        );
+}
 
 void ezsignfoldertype_create_object_v3_response_m_payload_free(ezsignfoldertype_create_object_v3_response_m_payload_t *ezsignfoldertype_create_object_v3_response_m_payload) {
     if(NULL == ezsignfoldertype_create_object_v3_response_m_payload){
+        return ;
+    }
+    if(ezsignfoldertype_create_object_v3_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignfoldertype_create_object_v3_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +82,9 @@ ezsignfoldertype_create_object_v3_response_m_payload_t *ezsignfoldertype_create_
 
     // ezsignfoldertype_create_object_v3_response_m_payload->a_pki_ezsignfoldertype_id
     cJSON *a_pki_ezsignfoldertype_id = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_create_object_v3_response_m_payloadJSON, "a_pkiEzsignfoldertypeID");
+    if (cJSON_IsNull(a_pki_ezsignfoldertype_id)) {
+        a_pki_ezsignfoldertype_id = NULL;
+    }
     if (!a_pki_ezsignfoldertype_id) {
         goto end;
     }
@@ -87,7 +102,7 @@ ezsignfoldertype_create_object_v3_response_m_payload_t *ezsignfoldertype_create_
         {
             goto end;
         }
-        double *a_pki_ezsignfoldertype_id_local_value = (double *)calloc(1, sizeof(double));
+        double *a_pki_ezsignfoldertype_id_local_value = calloc(1, sizeof(double));
         if(!a_pki_ezsignfoldertype_id_local_value)
         {
             goto end;
@@ -97,7 +112,7 @@ ezsignfoldertype_create_object_v3_response_m_payload_t *ezsignfoldertype_create_
     }
 
 
-    ezsignfoldertype_create_object_v3_response_m_payload_local_var = ezsignfoldertype_create_object_v3_response_m_payload_create (
+    ezsignfoldertype_create_object_v3_response_m_payload_local_var = ezsignfoldertype_create_object_v3_response_m_payload_create_internal (
         a_pki_ezsignfoldertype_idList
         );
 

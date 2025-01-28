@@ -5,7 +5,7 @@
 
 
 
-ezsignbulksendsignermapping_create_object_v1_request_t *ezsignbulksendsignermapping_create_object_v1_request_create(
+static ezsignbulksendsignermapping_create_object_v1_request_t *ezsignbulksendsignermapping_create_object_v1_request_create_internal(
     list_t *a_obj_ezsignbulksendsignermapping
     ) {
     ezsignbulksendsignermapping_create_object_v1_request_t *ezsignbulksendsignermapping_create_object_v1_request_local_var = malloc(sizeof(ezsignbulksendsignermapping_create_object_v1_request_t));
@@ -14,12 +14,24 @@ ezsignbulksendsignermapping_create_object_v1_request_t *ezsignbulksendsignermapp
     }
     ezsignbulksendsignermapping_create_object_v1_request_local_var->a_obj_ezsignbulksendsignermapping = a_obj_ezsignbulksendsignermapping;
 
+    ezsignbulksendsignermapping_create_object_v1_request_local_var->_library_owned = 1;
     return ezsignbulksendsignermapping_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezsignbulksendsignermapping_create_object_v1_request_t *ezsignbulksendsignermapping_create_object_v1_request_create(
+    list_t *a_obj_ezsignbulksendsignermapping
+    ) {
+    return ezsignbulksendsignermapping_create_object_v1_request_create_internal (
+        a_obj_ezsignbulksendsignermapping
+        );
+}
 
 void ezsignbulksendsignermapping_create_object_v1_request_free(ezsignbulksendsignermapping_create_object_v1_request_t *ezsignbulksendsignermapping_create_object_v1_request) {
     if(NULL == ezsignbulksendsignermapping_create_object_v1_request){
+        return ;
+    }
+    if(ezsignbulksendsignermapping_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignbulksendsignermapping_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ ezsignbulksendsignermapping_create_object_v1_request_t *ezsignbulksendsignermapp
 
     // ezsignbulksendsignermapping_create_object_v1_request->a_obj_ezsignbulksendsignermapping
     cJSON *a_obj_ezsignbulksendsignermapping = cJSON_GetObjectItemCaseSensitive(ezsignbulksendsignermapping_create_object_v1_requestJSON, "a_objEzsignbulksendsignermapping");
+    if (cJSON_IsNull(a_obj_ezsignbulksendsignermapping)) {
+        a_obj_ezsignbulksendsignermapping = NULL;
+    }
     if (!a_obj_ezsignbulksendsignermapping) {
         goto end;
     }
@@ -96,7 +111,7 @@ ezsignbulksendsignermapping_create_object_v1_request_t *ezsignbulksendsignermapp
     }
 
 
-    ezsignbulksendsignermapping_create_object_v1_request_local_var = ezsignbulksendsignermapping_create_object_v1_request_create (
+    ezsignbulksendsignermapping_create_object_v1_request_local_var = ezsignbulksendsignermapping_create_object_v1_request_create_internal (
         a_obj_ezsignbulksendsignermappingList
         );
 

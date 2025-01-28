@@ -5,7 +5,7 @@
 
 
 
-signature_create_object_v1_response_m_payload_t *signature_create_object_v1_response_m_payload_create(
+static signature_create_object_v1_response_m_payload_t *signature_create_object_v1_response_m_payload_create_internal(
     list_t *a_pki_signature_id
     ) {
     signature_create_object_v1_response_m_payload_t *signature_create_object_v1_response_m_payload_local_var = malloc(sizeof(signature_create_object_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ signature_create_object_v1_response_m_payload_t *signature_create_object_v1_resp
     }
     signature_create_object_v1_response_m_payload_local_var->a_pki_signature_id = a_pki_signature_id;
 
+    signature_create_object_v1_response_m_payload_local_var->_library_owned = 1;
     return signature_create_object_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) signature_create_object_v1_response_m_payload_t *signature_create_object_v1_response_m_payload_create(
+    list_t *a_pki_signature_id
+    ) {
+    return signature_create_object_v1_response_m_payload_create_internal (
+        a_pki_signature_id
+        );
+}
 
 void signature_create_object_v1_response_m_payload_free(signature_create_object_v1_response_m_payload_t *signature_create_object_v1_response_m_payload) {
     if(NULL == signature_create_object_v1_response_m_payload){
+        return ;
+    }
+    if(signature_create_object_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "signature_create_object_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +82,9 @@ signature_create_object_v1_response_m_payload_t *signature_create_object_v1_resp
 
     // signature_create_object_v1_response_m_payload->a_pki_signature_id
     cJSON *a_pki_signature_id = cJSON_GetObjectItemCaseSensitive(signature_create_object_v1_response_m_payloadJSON, "a_pkiSignatureID");
+    if (cJSON_IsNull(a_pki_signature_id)) {
+        a_pki_signature_id = NULL;
+    }
     if (!a_pki_signature_id) {
         goto end;
     }
@@ -87,7 +102,7 @@ signature_create_object_v1_response_m_payload_t *signature_create_object_v1_resp
         {
             goto end;
         }
-        double *a_pki_signature_id_local_value = (double *)calloc(1, sizeof(double));
+        double *a_pki_signature_id_local_value = calloc(1, sizeof(double));
         if(!a_pki_signature_id_local_value)
         {
             goto end;
@@ -97,7 +112,7 @@ signature_create_object_v1_response_m_payload_t *signature_create_object_v1_resp
     }
 
 
-    signature_create_object_v1_response_m_payload_local_var = signature_create_object_v1_response_m_payload_create (
+    signature_create_object_v1_response_m_payload_local_var = signature_create_object_v1_response_m_payload_create_internal (
         a_pki_signature_idList
         );
 

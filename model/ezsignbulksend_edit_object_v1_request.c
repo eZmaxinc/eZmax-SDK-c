@@ -5,7 +5,7 @@
 
 
 
-ezsignbulksend_edit_object_v1_request_t *ezsignbulksend_edit_object_v1_request_create(
+static ezsignbulksend_edit_object_v1_request_t *ezsignbulksend_edit_object_v1_request_create_internal(
     ezsignbulksend_request_compound_t *obj_ezsignbulksend
     ) {
     ezsignbulksend_edit_object_v1_request_t *ezsignbulksend_edit_object_v1_request_local_var = malloc(sizeof(ezsignbulksend_edit_object_v1_request_t));
@@ -14,12 +14,24 @@ ezsignbulksend_edit_object_v1_request_t *ezsignbulksend_edit_object_v1_request_c
     }
     ezsignbulksend_edit_object_v1_request_local_var->obj_ezsignbulksend = obj_ezsignbulksend;
 
+    ezsignbulksend_edit_object_v1_request_local_var->_library_owned = 1;
     return ezsignbulksend_edit_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezsignbulksend_edit_object_v1_request_t *ezsignbulksend_edit_object_v1_request_create(
+    ezsignbulksend_request_compound_t *obj_ezsignbulksend
+    ) {
+    return ezsignbulksend_edit_object_v1_request_create_internal (
+        obj_ezsignbulksend
+        );
+}
 
 void ezsignbulksend_edit_object_v1_request_free(ezsignbulksend_edit_object_v1_request_t *ezsignbulksend_edit_object_v1_request) {
     if(NULL == ezsignbulksend_edit_object_v1_request){
+        return ;
+    }
+    if(ezsignbulksend_edit_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignbulksend_edit_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ ezsignbulksend_edit_object_v1_request_t *ezsignbulksend_edit_object_v1_request_p
 
     // ezsignbulksend_edit_object_v1_request->obj_ezsignbulksend
     cJSON *obj_ezsignbulksend = cJSON_GetObjectItemCaseSensitive(ezsignbulksend_edit_object_v1_requestJSON, "objEzsignbulksend");
+    if (cJSON_IsNull(obj_ezsignbulksend)) {
+        obj_ezsignbulksend = NULL;
+    }
     if (!obj_ezsignbulksend) {
         goto end;
     }
@@ -71,7 +86,7 @@ ezsignbulksend_edit_object_v1_request_t *ezsignbulksend_edit_object_v1_request_p
     obj_ezsignbulksend_local_nonprim = ezsignbulksend_request_compound_parseFromJSON(obj_ezsignbulksend); //nonprimitive
 
 
-    ezsignbulksend_edit_object_v1_request_local_var = ezsignbulksend_edit_object_v1_request_create (
+    ezsignbulksend_edit_object_v1_request_local_var = ezsignbulksend_edit_object_v1_request_create_internal (
         obj_ezsignbulksend_local_nonprim
         );
 

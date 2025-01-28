@@ -27,9 +27,10 @@ typedef struct ezsigndiscussion_request_t {
     int i_ezsigndiscussion_y; //numeric
     struct discussion_request_t *obj_discussion; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigndiscussion_request_t;
 
-ezsigndiscussion_request_t *ezsigndiscussion_request_create(
+__attribute__((deprecated)) ezsigndiscussion_request_t *ezsigndiscussion_request_create(
     int pki_ezsigndiscussion_id,
     int fki_ezsigndocument_id,
     int i_ezsigndiscussion_pagenumber,

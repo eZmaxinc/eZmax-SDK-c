@@ -22,9 +22,10 @@ typedef struct user_create_object_v1_request_t user_create_object_v1_request_t;
 typedef struct user_create_object_v1_request_t {
     list_t *a_obj_user; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } user_create_object_v1_request_t;
 
-user_create_object_v1_request_t *user_create_object_v1_request_create(
+__attribute__((deprecated)) user_create_object_v1_request_t *user_create_object_v1_request_create(
     list_t *a_obj_user
 );
 

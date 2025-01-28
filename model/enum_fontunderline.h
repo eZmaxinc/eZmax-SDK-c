@@ -24,9 +24,9 @@ char* enum_fontunderline_enum_fontunderline_ToString(ezmax_api_definition__full_
 
 ezmax_api_definition__full_enum_fontunderline__e enum_fontunderline_enum_fontunderline_FromString(char* enum_fontunderline);
 
-//cJSON *enum_fontunderline_enum_fontunderline_convertToJSON(ezmax_api_definition__full_enum_fontunderline__e enum_fontunderline);
+cJSON *enum_fontunderline_convertToJSON(ezmax_api_definition__full_enum_fontunderline__e enum_fontunderline);
 
-//ezmax_api_definition__full_enum_fontunderline__e enum_fontunderline_enum_fontunderline_parseFromJSON(cJSON *enum_fontunderlineJSON);
+ezmax_api_definition__full_enum_fontunderline__e enum_fontunderline_parseFromJSON(cJSON *enum_fontunderlineJSON);
 
 #endif /* _enum_fontunderline_H_ */
 

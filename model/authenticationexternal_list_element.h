@@ -17,28 +17,21 @@ typedef struct authenticationexternal_list_element_t authenticationexternal_list
 
 #include "field_e_authenticationexternal_type.h"
 
-// Enum  for authenticationexternal_list_element
-
-typedef enum  { ezmax_api_definition__full_authenticationexternal_list_element__NULL = 0, ezmax_api_definition__full_authenticationexternal_list_element__Salesforce, ezmax_api_definition__full_authenticationexternal_list_element__SalesforceSandbox } ezmax_api_definition__full_authenticationexternal_list_element__e;
-
-char* authenticationexternal_list_element_e_authenticationexternal_type_ToString(ezmax_api_definition__full_authenticationexternal_list_element__e e_authenticationexternal_type);
-
-ezmax_api_definition__full_authenticationexternal_list_element__e authenticationexternal_list_element_e_authenticationexternal_type_FromString(char* e_authenticationexternal_type);
-
 
 
 typedef struct authenticationexternal_list_element_t {
     int pki_authenticationexternal_id; //numeric
     char *s_authenticationexternal_description; // string
-    field_e_authenticationexternal_type_t *e_authenticationexternal_type; // custom
+    ezmax_api_definition__full_field_e_authenticationexternal_type__e e_authenticationexternal_type; //referenced enum
     int b_authenticationexternal_connected; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } authenticationexternal_list_element_t;
 
-authenticationexternal_list_element_t *authenticationexternal_list_element_create(
+__attribute__((deprecated)) authenticationexternal_list_element_t *authenticationexternal_list_element_create(
     int pki_authenticationexternal_id,
     char *s_authenticationexternal_description,
-    field_e_authenticationexternal_type_t *e_authenticationexternal_type,
+    ezmax_api_definition__full_field_e_authenticationexternal_type__e e_authenticationexternal_type,
     int b_authenticationexternal_connected
 );
 

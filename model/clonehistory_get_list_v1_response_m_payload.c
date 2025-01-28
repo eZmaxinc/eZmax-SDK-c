@@ -5,7 +5,7 @@
 
 
 
-clonehistory_get_list_v1_response_m_payload_t *clonehistory_get_list_v1_response_m_payload_create(
+static clonehistory_get_list_v1_response_m_payload_t *clonehistory_get_list_v1_response_m_payload_create_internal(
     int i_row_returned,
     int i_row_filtered,
     list_t *a_obj_clonehistory
@@ -18,12 +18,28 @@ clonehistory_get_list_v1_response_m_payload_t *clonehistory_get_list_v1_response
     clonehistory_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
     clonehistory_get_list_v1_response_m_payload_local_var->a_obj_clonehistory = a_obj_clonehistory;
 
+    clonehistory_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     return clonehistory_get_list_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) clonehistory_get_list_v1_response_m_payload_t *clonehistory_get_list_v1_response_m_payload_create(
+    int i_row_returned,
+    int i_row_filtered,
+    list_t *a_obj_clonehistory
+    ) {
+    return clonehistory_get_list_v1_response_m_payload_create_internal (
+        i_row_returned,
+        i_row_filtered,
+        a_obj_clonehistory
+        );
+}
 
 void clonehistory_get_list_v1_response_m_payload_free(clonehistory_get_list_v1_response_m_payload_t *clonehistory_get_list_v1_response_m_payload) {
     if(NULL == clonehistory_get_list_v1_response_m_payload){
+        return ;
+    }
+    if(clonehistory_get_list_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "clonehistory_get_list_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -95,6 +111,9 @@ clonehistory_get_list_v1_response_m_payload_t *clonehistory_get_list_v1_response
 
     // clonehistory_get_list_v1_response_m_payload->i_row_returned
     cJSON *i_row_returned = cJSON_GetObjectItemCaseSensitive(clonehistory_get_list_v1_response_m_payloadJSON, "iRowReturned");
+    if (cJSON_IsNull(i_row_returned)) {
+        i_row_returned = NULL;
+    }
     if (!i_row_returned) {
         goto end;
     }
@@ -107,6 +126,9 @@ clonehistory_get_list_v1_response_m_payload_t *clonehistory_get_list_v1_response
 
     // clonehistory_get_list_v1_response_m_payload->i_row_filtered
     cJSON *i_row_filtered = cJSON_GetObjectItemCaseSensitive(clonehistory_get_list_v1_response_m_payloadJSON, "iRowFiltered");
+    if (cJSON_IsNull(i_row_filtered)) {
+        i_row_filtered = NULL;
+    }
     if (!i_row_filtered) {
         goto end;
     }
@@ -119,6 +141,9 @@ clonehistory_get_list_v1_response_m_payload_t *clonehistory_get_list_v1_response
 
     // clonehistory_get_list_v1_response_m_payload->a_obj_clonehistory
     cJSON *a_obj_clonehistory = cJSON_GetObjectItemCaseSensitive(clonehistory_get_list_v1_response_m_payloadJSON, "a_objClonehistory");
+    if (cJSON_IsNull(a_obj_clonehistory)) {
+        a_obj_clonehistory = NULL;
+    }
     if (!a_obj_clonehistory) {
         goto end;
     }
@@ -142,7 +167,7 @@ clonehistory_get_list_v1_response_m_payload_t *clonehistory_get_list_v1_response
     }
 
 
-    clonehistory_get_list_v1_response_m_payload_local_var = clonehistory_get_list_v1_response_m_payload_create (
+    clonehistory_get_list_v1_response_m_payload_local_var = clonehistory_get_list_v1_response_m_payload_create_internal (
         i_row_returned->valuedouble,
         i_row_filtered->valuedouble,
         a_obj_clonehistoryList

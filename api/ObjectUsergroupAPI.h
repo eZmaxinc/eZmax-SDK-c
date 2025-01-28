@@ -5,12 +5,12 @@
 #include "../external/cJSON.h"
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
-#include "../model/common_response.h"
 #include "../model/common_response_error.h"
 #include "../model/header_accept_language.h"
 #include "../model/usergroup_create_object_v1_request.h"
 #include "../model/usergroup_create_object_v1_response.h"
 #include "../model/usergroup_edit_object_v1_request.h"
+#include "../model/usergroup_edit_object_v1_response.h"
 #include "../model/usergroup_edit_permissions_v1_request.h"
 #include "../model/usergroup_edit_permissions_v1_response.h"
 #include "../model/usergroup_edit_usergroupdelegations_v1_request.h"
@@ -52,7 +52,7 @@ ObjectUsergroupAPI_usergroupCreateObjectV1(apiClient_t *apiClient, usergroup_cre
 //
 // 
 //
-common_response_t*
+usergroup_edit_object_v1_response_t*
 ObjectUsergroupAPI_usergroupEditObjectV1(apiClient_t *apiClient, int *pkiUsergroupID, usergroup_edit_object_v1_request_t *usergroup_edit_object_v1_request);
 
 

@@ -5,7 +5,7 @@
 
 
 
-discussion_response_t *discussion_response_create(
+static discussion_response_t *discussion_response_create_internal(
     int pki_discussion_id,
     char *s_discussion_description,
     int b_discussion_closed,
@@ -26,12 +26,36 @@ discussion_response_t *discussion_response_create(
     discussion_response_local_var->i_discussionmessage_countunread = i_discussionmessage_countunread;
     discussion_response_local_var->obj_discussionconfiguration = obj_discussionconfiguration;
 
+    discussion_response_local_var->_library_owned = 1;
     return discussion_response_local_var;
 }
 
+__attribute__((deprecated)) discussion_response_t *discussion_response_create(
+    int pki_discussion_id,
+    char *s_discussion_description,
+    int b_discussion_closed,
+    char *dt_discussion_lastread,
+    int i_discussionmessage_count,
+    int i_discussionmessage_countunread,
+    custom_discussionconfiguration_response_t *obj_discussionconfiguration
+    ) {
+    return discussion_response_create_internal (
+        pki_discussion_id,
+        s_discussion_description,
+        b_discussion_closed,
+        dt_discussion_lastread,
+        i_discussionmessage_count,
+        i_discussionmessage_countunread,
+        obj_discussionconfiguration
+        );
+}
 
 void discussion_response_free(discussion_response_t *discussion_response) {
     if(NULL == discussion_response){
+        return ;
+    }
+    if(discussion_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "discussion_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -135,6 +159,9 @@ discussion_response_t *discussion_response_parseFromJSON(cJSON *discussion_respo
 
     // discussion_response->pki_discussion_id
     cJSON *pki_discussion_id = cJSON_GetObjectItemCaseSensitive(discussion_responseJSON, "pkiDiscussionID");
+    if (cJSON_IsNull(pki_discussion_id)) {
+        pki_discussion_id = NULL;
+    }
     if (!pki_discussion_id) {
         goto end;
     }
@@ -147,6 +174,9 @@ discussion_response_t *discussion_response_parseFromJSON(cJSON *discussion_respo
 
     // discussion_response->s_discussion_description
     cJSON *s_discussion_description = cJSON_GetObjectItemCaseSensitive(discussion_responseJSON, "sDiscussionDescription");
+    if (cJSON_IsNull(s_discussion_description)) {
+        s_discussion_description = NULL;
+    }
     if (!s_discussion_description) {
         goto end;
     }
@@ -159,6 +189,9 @@ discussion_response_t *discussion_response_parseFromJSON(cJSON *discussion_respo
 
     // discussion_response->b_discussion_closed
     cJSON *b_discussion_closed = cJSON_GetObjectItemCaseSensitive(discussion_responseJSON, "bDiscussionClosed");
+    if (cJSON_IsNull(b_discussion_closed)) {
+        b_discussion_closed = NULL;
+    }
     if (!b_discussion_closed) {
         goto end;
     }
@@ -171,6 +204,9 @@ discussion_response_t *discussion_response_parseFromJSON(cJSON *discussion_respo
 
     // discussion_response->dt_discussion_lastread
     cJSON *dt_discussion_lastread = cJSON_GetObjectItemCaseSensitive(discussion_responseJSON, "dtDiscussionLastread");
+    if (cJSON_IsNull(dt_discussion_lastread)) {
+        dt_discussion_lastread = NULL;
+    }
     if (dt_discussion_lastread) { 
     if(!cJSON_IsString(dt_discussion_lastread) && !cJSON_IsNull(dt_discussion_lastread))
     {
@@ -180,6 +216,9 @@ discussion_response_t *discussion_response_parseFromJSON(cJSON *discussion_respo
 
     // discussion_response->i_discussionmessage_count
     cJSON *i_discussionmessage_count = cJSON_GetObjectItemCaseSensitive(discussion_responseJSON, "iDiscussionmessageCount");
+    if (cJSON_IsNull(i_discussionmessage_count)) {
+        i_discussionmessage_count = NULL;
+    }
     if (!i_discussionmessage_count) {
         goto end;
     }
@@ -192,6 +231,9 @@ discussion_response_t *discussion_response_parseFromJSON(cJSON *discussion_respo
 
     // discussion_response->i_discussionmessage_countunread
     cJSON *i_discussionmessage_countunread = cJSON_GetObjectItemCaseSensitive(discussion_responseJSON, "iDiscussionmessageCountunread");
+    if (cJSON_IsNull(i_discussionmessage_countunread)) {
+        i_discussionmessage_countunread = NULL;
+    }
     if (!i_discussionmessage_countunread) {
         goto end;
     }
@@ -204,12 +246,15 @@ discussion_response_t *discussion_response_parseFromJSON(cJSON *discussion_respo
 
     // discussion_response->obj_discussionconfiguration
     cJSON *obj_discussionconfiguration = cJSON_GetObjectItemCaseSensitive(discussion_responseJSON, "objDiscussionconfiguration");
+    if (cJSON_IsNull(obj_discussionconfiguration)) {
+        obj_discussionconfiguration = NULL;
+    }
     if (obj_discussionconfiguration) { 
     obj_discussionconfiguration_local_nonprim = custom_discussionconfiguration_response_parseFromJSON(obj_discussionconfiguration); //nonprimitive
     }
 
 
-    discussion_response_local_var = discussion_response_create (
+    discussion_response_local_var = discussion_response_create_internal (
         pki_discussion_id->valuedouble,
         strdup(s_discussion_description->valuestring),
         b_discussion_closed->valueint,

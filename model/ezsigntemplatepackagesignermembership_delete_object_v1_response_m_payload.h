@@ -22,9 +22,10 @@ typedef struct ezsigntemplatepackagesignermembership_delete_object_v1_response_m
     int b_ezsigntemplatepackage_needvalidation; //boolean
     int b_ezsignbulksend_needvalidation; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_t;
 
-ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_t *ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_create(
+__attribute__((deprecated)) ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_t *ezsigntemplatepackagesignermembership_delete_object_v1_response_m_payload_create(
     int b_ezsigntemplatepackage_needvalidation,
     int b_ezsignbulksend_needvalidation
 );

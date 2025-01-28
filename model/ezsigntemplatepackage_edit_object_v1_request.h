@@ -22,9 +22,10 @@ typedef struct ezsigntemplatepackage_edit_object_v1_request_t ezsigntemplatepack
 typedef struct ezsigntemplatepackage_edit_object_v1_request_t {
     struct ezsigntemplatepackage_request_compound_t *obj_ezsigntemplatepackage; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatepackage_edit_object_v1_request_t;
 
-ezsigntemplatepackage_edit_object_v1_request_t *ezsigntemplatepackage_edit_object_v1_request_create(
+__attribute__((deprecated)) ezsigntemplatepackage_edit_object_v1_request_t *ezsigntemplatepackage_edit_object_v1_request_create(
     ezsigntemplatepackage_request_compound_t *obj_ezsigntemplatepackage
 );
 

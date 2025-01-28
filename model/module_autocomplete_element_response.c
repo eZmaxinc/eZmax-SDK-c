@@ -5,7 +5,7 @@
 
 
 
-module_autocomplete_element_response_t *module_autocomplete_element_response_create(
+static module_autocomplete_element_response_t *module_autocomplete_element_response_create_internal(
     int pki_module_id,
     char *s_module_name_x,
     int b_module_isactive
@@ -18,12 +18,28 @@ module_autocomplete_element_response_t *module_autocomplete_element_response_cre
     module_autocomplete_element_response_local_var->s_module_name_x = s_module_name_x;
     module_autocomplete_element_response_local_var->b_module_isactive = b_module_isactive;
 
+    module_autocomplete_element_response_local_var->_library_owned = 1;
     return module_autocomplete_element_response_local_var;
 }
 
+__attribute__((deprecated)) module_autocomplete_element_response_t *module_autocomplete_element_response_create(
+    int pki_module_id,
+    char *s_module_name_x,
+    int b_module_isactive
+    ) {
+    return module_autocomplete_element_response_create_internal (
+        pki_module_id,
+        s_module_name_x,
+        b_module_isactive
+        );
+}
 
 void module_autocomplete_element_response_free(module_autocomplete_element_response_t *module_autocomplete_element_response) {
     if(NULL == module_autocomplete_element_response){
+        return ;
+    }
+    if(module_autocomplete_element_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "module_autocomplete_element_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -77,6 +93,9 @@ module_autocomplete_element_response_t *module_autocomplete_element_response_par
 
     // module_autocomplete_element_response->pki_module_id
     cJSON *pki_module_id = cJSON_GetObjectItemCaseSensitive(module_autocomplete_element_responseJSON, "pkiModuleID");
+    if (cJSON_IsNull(pki_module_id)) {
+        pki_module_id = NULL;
+    }
     if (!pki_module_id) {
         goto end;
     }
@@ -89,6 +108,9 @@ module_autocomplete_element_response_t *module_autocomplete_element_response_par
 
     // module_autocomplete_element_response->s_module_name_x
     cJSON *s_module_name_x = cJSON_GetObjectItemCaseSensitive(module_autocomplete_element_responseJSON, "sModuleNameX");
+    if (cJSON_IsNull(s_module_name_x)) {
+        s_module_name_x = NULL;
+    }
     if (!s_module_name_x) {
         goto end;
     }
@@ -101,6 +123,9 @@ module_autocomplete_element_response_t *module_autocomplete_element_response_par
 
     // module_autocomplete_element_response->b_module_isactive
     cJSON *b_module_isactive = cJSON_GetObjectItemCaseSensitive(module_autocomplete_element_responseJSON, "bModuleIsactive");
+    if (cJSON_IsNull(b_module_isactive)) {
+        b_module_isactive = NULL;
+    }
     if (!b_module_isactive) {
         goto end;
     }
@@ -112,7 +137,7 @@ module_autocomplete_element_response_t *module_autocomplete_element_response_par
     }
 
 
-    module_autocomplete_element_response_local_var = module_autocomplete_element_response_create (
+    module_autocomplete_element_response_local_var = module_autocomplete_element_response_create_internal (
         pki_module_id->valuedouble,
         strdup(s_module_name_x->valuestring),
         b_module_isactive->valueint

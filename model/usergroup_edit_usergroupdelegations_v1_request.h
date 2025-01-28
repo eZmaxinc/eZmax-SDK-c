@@ -22,9 +22,10 @@ typedef struct usergroup_edit_usergroupdelegations_v1_request_t usergroup_edit_u
 typedef struct usergroup_edit_usergroupdelegations_v1_request_t {
     list_t *a_obj_usergroupdelegation; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } usergroup_edit_usergroupdelegations_v1_request_t;
 
-usergroup_edit_usergroupdelegations_v1_request_t *usergroup_edit_usergroupdelegations_v1_request_create(
+__attribute__((deprecated)) usergroup_edit_usergroupdelegations_v1_request_t *usergroup_edit_usergroupdelegations_v1_request_create(
     list_t *a_obj_usergroupdelegation
 );
 

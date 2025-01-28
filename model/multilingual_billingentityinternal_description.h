@@ -22,9 +22,10 @@ typedef struct multilingual_billingentityinternal_description_t {
     char *s_billingentityinternal_description1; // string
     char *s_billingentityinternal_description2; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } multilingual_billingentityinternal_description_t;
 
-multilingual_billingentityinternal_description_t *multilingual_billingentityinternal_description_create(
+__attribute__((deprecated)) multilingual_billingentityinternal_description_t *multilingual_billingentityinternal_description_create(
     char *s_billingentityinternal_description1,
     char *s_billingentityinternal_description2
 );

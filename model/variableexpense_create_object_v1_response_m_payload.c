@@ -5,7 +5,7 @@
 
 
 
-variableexpense_create_object_v1_response_m_payload_t *variableexpense_create_object_v1_response_m_payload_create(
+static variableexpense_create_object_v1_response_m_payload_t *variableexpense_create_object_v1_response_m_payload_create_internal(
     list_t *a_pki_variableexpense_id
     ) {
     variableexpense_create_object_v1_response_m_payload_t *variableexpense_create_object_v1_response_m_payload_local_var = malloc(sizeof(variableexpense_create_object_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ variableexpense_create_object_v1_response_m_payload_t *variableexpense_create_ob
     }
     variableexpense_create_object_v1_response_m_payload_local_var->a_pki_variableexpense_id = a_pki_variableexpense_id;
 
+    variableexpense_create_object_v1_response_m_payload_local_var->_library_owned = 1;
     return variableexpense_create_object_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) variableexpense_create_object_v1_response_m_payload_t *variableexpense_create_object_v1_response_m_payload_create(
+    list_t *a_pki_variableexpense_id
+    ) {
+    return variableexpense_create_object_v1_response_m_payload_create_internal (
+        a_pki_variableexpense_id
+        );
+}
 
 void variableexpense_create_object_v1_response_m_payload_free(variableexpense_create_object_v1_response_m_payload_t *variableexpense_create_object_v1_response_m_payload) {
     if(NULL == variableexpense_create_object_v1_response_m_payload){
+        return ;
+    }
+    if(variableexpense_create_object_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "variableexpense_create_object_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +82,9 @@ variableexpense_create_object_v1_response_m_payload_t *variableexpense_create_ob
 
     // variableexpense_create_object_v1_response_m_payload->a_pki_variableexpense_id
     cJSON *a_pki_variableexpense_id = cJSON_GetObjectItemCaseSensitive(variableexpense_create_object_v1_response_m_payloadJSON, "a_pkiVariableexpenseID");
+    if (cJSON_IsNull(a_pki_variableexpense_id)) {
+        a_pki_variableexpense_id = NULL;
+    }
     if (!a_pki_variableexpense_id) {
         goto end;
     }
@@ -87,7 +102,7 @@ variableexpense_create_object_v1_response_m_payload_t *variableexpense_create_ob
         {
             goto end;
         }
-        double *a_pki_variableexpense_id_local_value = (double *)calloc(1, sizeof(double));
+        double *a_pki_variableexpense_id_local_value = calloc(1, sizeof(double));
         if(!a_pki_variableexpense_id_local_value)
         {
             goto end;
@@ -97,7 +112,7 @@ variableexpense_create_object_v1_response_m_payload_t *variableexpense_create_ob
     }
 
 
-    variableexpense_create_object_v1_response_m_payload_local_var = variableexpense_create_object_v1_response_m_payload_create (
+    variableexpense_create_object_v1_response_m_payload_local_var = variableexpense_create_object_v1_response_m_payload_create_internal (
         a_pki_variableexpense_idList
         );
 

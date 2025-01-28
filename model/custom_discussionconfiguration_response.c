@@ -5,7 +5,7 @@
 
 
 
-custom_discussionconfiguration_response_t *custom_discussionconfiguration_response_create(
+static custom_discussionconfiguration_response_t *custom_discussionconfiguration_response_create_internal(
     int b_discussionconfiguration_completehistorywhenadded,
     int b_discussionconfiguration_createallowed,
     int b_discussionconfiguration_deleteallowed,
@@ -22,12 +22,32 @@ custom_discussionconfiguration_response_t *custom_discussionconfiguration_respon
     custom_discussionconfiguration_response_local_var->b_discussionconfiguration_deletediscussionmessageallowed = b_discussionconfiguration_deletediscussionmessageallowed;
     custom_discussionconfiguration_response_local_var->b_discussionconfiguration_editdiscussionmessageallowed = b_discussionconfiguration_editdiscussionmessageallowed;
 
+    custom_discussionconfiguration_response_local_var->_library_owned = 1;
     return custom_discussionconfiguration_response_local_var;
 }
 
+__attribute__((deprecated)) custom_discussionconfiguration_response_t *custom_discussionconfiguration_response_create(
+    int b_discussionconfiguration_completehistorywhenadded,
+    int b_discussionconfiguration_createallowed,
+    int b_discussionconfiguration_deleteallowed,
+    int b_discussionconfiguration_deletediscussionmessageallowed,
+    int b_discussionconfiguration_editdiscussionmessageallowed
+    ) {
+    return custom_discussionconfiguration_response_create_internal (
+        b_discussionconfiguration_completehistorywhenadded,
+        b_discussionconfiguration_createallowed,
+        b_discussionconfiguration_deleteallowed,
+        b_discussionconfiguration_deletediscussionmessageallowed,
+        b_discussionconfiguration_editdiscussionmessageallowed
+        );
+}
 
 void custom_discussionconfiguration_response_free(custom_discussionconfiguration_response_t *custom_discussionconfiguration_response) {
     if(NULL == custom_discussionconfiguration_response){
+        return ;
+    }
+    if(custom_discussionconfiguration_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "custom_discussionconfiguration_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -95,6 +115,9 @@ custom_discussionconfiguration_response_t *custom_discussionconfiguration_respon
 
     // custom_discussionconfiguration_response->b_discussionconfiguration_completehistorywhenadded
     cJSON *b_discussionconfiguration_completehistorywhenadded = cJSON_GetObjectItemCaseSensitive(custom_discussionconfiguration_responseJSON, "bDiscussionconfigurationCompletehistorywhenadded");
+    if (cJSON_IsNull(b_discussionconfiguration_completehistorywhenadded)) {
+        b_discussionconfiguration_completehistorywhenadded = NULL;
+    }
     if (!b_discussionconfiguration_completehistorywhenadded) {
         goto end;
     }
@@ -107,6 +130,9 @@ custom_discussionconfiguration_response_t *custom_discussionconfiguration_respon
 
     // custom_discussionconfiguration_response->b_discussionconfiguration_createallowed
     cJSON *b_discussionconfiguration_createallowed = cJSON_GetObjectItemCaseSensitive(custom_discussionconfiguration_responseJSON, "bDiscussionconfigurationCreateallowed");
+    if (cJSON_IsNull(b_discussionconfiguration_createallowed)) {
+        b_discussionconfiguration_createallowed = NULL;
+    }
     if (!b_discussionconfiguration_createallowed) {
         goto end;
     }
@@ -119,6 +145,9 @@ custom_discussionconfiguration_response_t *custom_discussionconfiguration_respon
 
     // custom_discussionconfiguration_response->b_discussionconfiguration_deleteallowed
     cJSON *b_discussionconfiguration_deleteallowed = cJSON_GetObjectItemCaseSensitive(custom_discussionconfiguration_responseJSON, "bDiscussionconfigurationDeleteallowed");
+    if (cJSON_IsNull(b_discussionconfiguration_deleteallowed)) {
+        b_discussionconfiguration_deleteallowed = NULL;
+    }
     if (!b_discussionconfiguration_deleteallowed) {
         goto end;
     }
@@ -131,6 +160,9 @@ custom_discussionconfiguration_response_t *custom_discussionconfiguration_respon
 
     // custom_discussionconfiguration_response->b_discussionconfiguration_deletediscussionmessageallowed
     cJSON *b_discussionconfiguration_deletediscussionmessageallowed = cJSON_GetObjectItemCaseSensitive(custom_discussionconfiguration_responseJSON, "bDiscussionconfigurationDeletediscussionmessageallowed");
+    if (cJSON_IsNull(b_discussionconfiguration_deletediscussionmessageallowed)) {
+        b_discussionconfiguration_deletediscussionmessageallowed = NULL;
+    }
     if (!b_discussionconfiguration_deletediscussionmessageallowed) {
         goto end;
     }
@@ -143,6 +175,9 @@ custom_discussionconfiguration_response_t *custom_discussionconfiguration_respon
 
     // custom_discussionconfiguration_response->b_discussionconfiguration_editdiscussionmessageallowed
     cJSON *b_discussionconfiguration_editdiscussionmessageallowed = cJSON_GetObjectItemCaseSensitive(custom_discussionconfiguration_responseJSON, "bDiscussionconfigurationEditdiscussionmessageallowed");
+    if (cJSON_IsNull(b_discussionconfiguration_editdiscussionmessageallowed)) {
+        b_discussionconfiguration_editdiscussionmessageallowed = NULL;
+    }
     if (!b_discussionconfiguration_editdiscussionmessageallowed) {
         goto end;
     }
@@ -154,7 +189,7 @@ custom_discussionconfiguration_response_t *custom_discussionconfiguration_respon
     }
 
 
-    custom_discussionconfiguration_response_local_var = custom_discussionconfiguration_response_create (
+    custom_discussionconfiguration_response_local_var = custom_discussionconfiguration_response_create_internal (
         b_discussionconfiguration_completehistorywhenadded->valueint,
         b_discussionconfiguration_createallowed->valueint,
         b_discussionconfiguration_deleteallowed->valueint,

@@ -39,7 +39,7 @@ ezmax_api_definition__full_custom_dnsrecord_response_EDNSRECORDVALIDATION_e cust
     return 0;
 }
 
-custom_dnsrecord_response_t *custom_dnsrecord_response_create(
+static custom_dnsrecord_response_t *custom_dnsrecord_response_create_internal(
     ezmax_api_definition__full_custom_dnsrecord_response_EDNSRECORDTYPE_e e_dnsrecord_type,
     ezmax_api_definition__full_custom_dnsrecord_response_EDNSRECORDVALIDATION_e e_dnsrecord_validation,
     char *s_dnsrecord_name,
@@ -58,12 +58,34 @@ custom_dnsrecord_response_t *custom_dnsrecord_response_create(
     custom_dnsrecord_response_local_var->s_dnsrecord_expectedvalue = s_dnsrecord_expectedvalue;
     custom_dnsrecord_response_local_var->b_dnsrecord_must_match = b_dnsrecord_must_match;
 
+    custom_dnsrecord_response_local_var->_library_owned = 1;
     return custom_dnsrecord_response_local_var;
 }
 
+__attribute__((deprecated)) custom_dnsrecord_response_t *custom_dnsrecord_response_create(
+    ezmax_api_definition__full_custom_dnsrecord_response_EDNSRECORDTYPE_e e_dnsrecord_type,
+    ezmax_api_definition__full_custom_dnsrecord_response_EDNSRECORDVALIDATION_e e_dnsrecord_validation,
+    char *s_dnsrecord_name,
+    char *s_dnsrecord_value,
+    char *s_dnsrecord_expectedvalue,
+    int b_dnsrecord_must_match
+    ) {
+    return custom_dnsrecord_response_create_internal (
+        e_dnsrecord_type,
+        e_dnsrecord_validation,
+        s_dnsrecord_name,
+        s_dnsrecord_value,
+        s_dnsrecord_expectedvalue,
+        b_dnsrecord_must_match
+        );
+}
 
 void custom_dnsrecord_response_free(custom_dnsrecord_response_t *custom_dnsrecord_response) {
     if(NULL == custom_dnsrecord_response){
+        return ;
+    }
+    if(custom_dnsrecord_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "custom_dnsrecord_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -89,7 +111,7 @@ cJSON *custom_dnsrecord_response_convertToJSON(custom_dnsrecord_response_t *cust
     if (ezmax_api_definition__full_custom_dnsrecord_response_EDNSRECORDTYPE_NULL == custom_dnsrecord_response->e_dnsrecord_type) {
         goto fail;
     }
-    if(cJSON_AddStringToObject(item, "eDnsrecordType", e_dnsrecord_typecustom_dnsrecord_response_ToString(custom_dnsrecord_response->e_dnsrecord_type)) == NULL)
+    if(cJSON_AddStringToObject(item, "eDnsrecordType", custom_dnsrecord_response_e_dnsrecord_type_ToString(custom_dnsrecord_response->e_dnsrecord_type)) == NULL)
     {
     goto fail; //Enum
     }
@@ -99,7 +121,7 @@ cJSON *custom_dnsrecord_response_convertToJSON(custom_dnsrecord_response_t *cust
     if (ezmax_api_definition__full_custom_dnsrecord_response_EDNSRECORDVALIDATION_NULL == custom_dnsrecord_response->e_dnsrecord_validation) {
         goto fail;
     }
-    if(cJSON_AddStringToObject(item, "eDnsrecordValidation", e_dnsrecord_validationcustom_dnsrecord_response_ToString(custom_dnsrecord_response->e_dnsrecord_validation)) == NULL)
+    if(cJSON_AddStringToObject(item, "eDnsrecordValidation", custom_dnsrecord_response_e_dnsrecord_validation_ToString(custom_dnsrecord_response->e_dnsrecord_validation)) == NULL)
     {
     goto fail; //Enum
     }
@@ -152,6 +174,9 @@ custom_dnsrecord_response_t *custom_dnsrecord_response_parseFromJSON(cJSON *cust
 
     // custom_dnsrecord_response->e_dnsrecord_type
     cJSON *e_dnsrecord_type = cJSON_GetObjectItemCaseSensitive(custom_dnsrecord_responseJSON, "eDnsrecordType");
+    if (cJSON_IsNull(e_dnsrecord_type)) {
+        e_dnsrecord_type = NULL;
+    }
     if (!e_dnsrecord_type) {
         goto end;
     }
@@ -166,6 +191,9 @@ custom_dnsrecord_response_t *custom_dnsrecord_response_parseFromJSON(cJSON *cust
 
     // custom_dnsrecord_response->e_dnsrecord_validation
     cJSON *e_dnsrecord_validation = cJSON_GetObjectItemCaseSensitive(custom_dnsrecord_responseJSON, "eDnsrecordValidation");
+    if (cJSON_IsNull(e_dnsrecord_validation)) {
+        e_dnsrecord_validation = NULL;
+    }
     if (!e_dnsrecord_validation) {
         goto end;
     }
@@ -180,6 +208,9 @@ custom_dnsrecord_response_t *custom_dnsrecord_response_parseFromJSON(cJSON *cust
 
     // custom_dnsrecord_response->s_dnsrecord_name
     cJSON *s_dnsrecord_name = cJSON_GetObjectItemCaseSensitive(custom_dnsrecord_responseJSON, "sDnsrecordName");
+    if (cJSON_IsNull(s_dnsrecord_name)) {
+        s_dnsrecord_name = NULL;
+    }
     if (!s_dnsrecord_name) {
         goto end;
     }
@@ -192,6 +223,9 @@ custom_dnsrecord_response_t *custom_dnsrecord_response_parseFromJSON(cJSON *cust
 
     // custom_dnsrecord_response->s_dnsrecord_value
     cJSON *s_dnsrecord_value = cJSON_GetObjectItemCaseSensitive(custom_dnsrecord_responseJSON, "sDnsrecordValue");
+    if (cJSON_IsNull(s_dnsrecord_value)) {
+        s_dnsrecord_value = NULL;
+    }
     if (s_dnsrecord_value) { 
     if(!cJSON_IsString(s_dnsrecord_value) && !cJSON_IsNull(s_dnsrecord_value))
     {
@@ -201,6 +235,9 @@ custom_dnsrecord_response_t *custom_dnsrecord_response_parseFromJSON(cJSON *cust
 
     // custom_dnsrecord_response->s_dnsrecord_expectedvalue
     cJSON *s_dnsrecord_expectedvalue = cJSON_GetObjectItemCaseSensitive(custom_dnsrecord_responseJSON, "sDnsrecordExpectedvalue");
+    if (cJSON_IsNull(s_dnsrecord_expectedvalue)) {
+        s_dnsrecord_expectedvalue = NULL;
+    }
     if (s_dnsrecord_expectedvalue) { 
     if(!cJSON_IsString(s_dnsrecord_expectedvalue) && !cJSON_IsNull(s_dnsrecord_expectedvalue))
     {
@@ -210,6 +247,9 @@ custom_dnsrecord_response_t *custom_dnsrecord_response_parseFromJSON(cJSON *cust
 
     // custom_dnsrecord_response->b_dnsrecord_must_match
     cJSON *b_dnsrecord_must_match = cJSON_GetObjectItemCaseSensitive(custom_dnsrecord_responseJSON, "bDnsrecordMustMatch");
+    if (cJSON_IsNull(b_dnsrecord_must_match)) {
+        b_dnsrecord_must_match = NULL;
+    }
     if (!b_dnsrecord_must_match) {
         goto end;
     }
@@ -221,7 +261,7 @@ custom_dnsrecord_response_t *custom_dnsrecord_response_parseFromJSON(cJSON *cust
     }
 
 
-    custom_dnsrecord_response_local_var = custom_dnsrecord_response_create (
+    custom_dnsrecord_response_local_var = custom_dnsrecord_response_create_internal (
         e_dnsrecord_typeVariable,
         e_dnsrecord_validationVariable,
         strdup(s_dnsrecord_name->valuestring),

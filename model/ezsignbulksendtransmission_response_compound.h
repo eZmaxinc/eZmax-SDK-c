@@ -28,9 +28,10 @@ typedef struct ezsignbulksendtransmission_response_compound_t {
     struct common_audit_t *obj_audit; //model
     list_t *a_obj_ezsignfoldertransmission; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignbulksendtransmission_response_compound_t;
 
-ezsignbulksendtransmission_response_compound_t *ezsignbulksendtransmission_response_compound_create(
+__attribute__((deprecated)) ezsignbulksendtransmission_response_compound_t *ezsignbulksendtransmission_response_compound_create(
     int pki_ezsignbulksendtransmission_id,
     int fki_ezsignbulksend_id,
     char *s_ezsignbulksendtransmission_description,

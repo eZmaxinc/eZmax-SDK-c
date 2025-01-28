@@ -5,7 +5,7 @@
 
 
 
-ezsignformfieldgroup_create_object_v1_response_t *ezsignformfieldgroup_create_object_v1_response_create(
+static ezsignformfieldgroup_create_object_v1_response_t *ezsignformfieldgroup_create_object_v1_response_create_internal(
     common_response_obj_debug_payload_t *obj_debug_payload,
     common_response_obj_debug_t *obj_debug,
     ezsignformfieldgroup_create_object_v1_response_m_payload_t *m_payload
@@ -18,12 +18,28 @@ ezsignformfieldgroup_create_object_v1_response_t *ezsignformfieldgroup_create_ob
     ezsignformfieldgroup_create_object_v1_response_local_var->obj_debug = obj_debug;
     ezsignformfieldgroup_create_object_v1_response_local_var->m_payload = m_payload;
 
+    ezsignformfieldgroup_create_object_v1_response_local_var->_library_owned = 1;
     return ezsignformfieldgroup_create_object_v1_response_local_var;
 }
 
+__attribute__((deprecated)) ezsignformfieldgroup_create_object_v1_response_t *ezsignformfieldgroup_create_object_v1_response_create(
+    common_response_obj_debug_payload_t *obj_debug_payload,
+    common_response_obj_debug_t *obj_debug,
+    ezsignformfieldgroup_create_object_v1_response_m_payload_t *m_payload
+    ) {
+    return ezsignformfieldgroup_create_object_v1_response_create_internal (
+        obj_debug_payload,
+        obj_debug,
+        m_payload
+        );
+}
 
 void ezsignformfieldgroup_create_object_v1_response_free(ezsignformfieldgroup_create_object_v1_response_t *ezsignformfieldgroup_create_object_v1_response) {
     if(NULL == ezsignformfieldgroup_create_object_v1_response){
+        return ;
+    }
+    if(ezsignformfieldgroup_create_object_v1_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignformfieldgroup_create_object_v1_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -108,6 +124,9 @@ ezsignformfieldgroup_create_object_v1_response_t *ezsignformfieldgroup_create_ob
 
     // ezsignformfieldgroup_create_object_v1_response->obj_debug_payload
     cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(ezsignformfieldgroup_create_object_v1_responseJSON, "objDebugPayload");
+    if (cJSON_IsNull(obj_debug_payload)) {
+        obj_debug_payload = NULL;
+    }
     if (!obj_debug_payload) {
         goto end;
     }
@@ -117,12 +136,18 @@ ezsignformfieldgroup_create_object_v1_response_t *ezsignformfieldgroup_create_ob
 
     // ezsignformfieldgroup_create_object_v1_response->obj_debug
     cJSON *obj_debug = cJSON_GetObjectItemCaseSensitive(ezsignformfieldgroup_create_object_v1_responseJSON, "objDebug");
+    if (cJSON_IsNull(obj_debug)) {
+        obj_debug = NULL;
+    }
     if (obj_debug) { 
     obj_debug_local_nonprim = common_response_obj_debug_parseFromJSON(obj_debug); //nonprimitive
     }
 
     // ezsignformfieldgroup_create_object_v1_response->m_payload
     cJSON *m_payload = cJSON_GetObjectItemCaseSensitive(ezsignformfieldgroup_create_object_v1_responseJSON, "mPayload");
+    if (cJSON_IsNull(m_payload)) {
+        m_payload = NULL;
+    }
     if (!m_payload) {
         goto end;
     }
@@ -131,7 +156,7 @@ ezsignformfieldgroup_create_object_v1_response_t *ezsignformfieldgroup_create_ob
     m_payload_local_nonprim = ezsignformfieldgroup_create_object_v1_response_m_payload_parseFromJSON(m_payload); //nonprimitive
 
 
-    ezsignformfieldgroup_create_object_v1_response_local_var = ezsignformfieldgroup_create_object_v1_response_create (
+    ezsignformfieldgroup_create_object_v1_response_local_var = ezsignformfieldgroup_create_object_v1_response_create_internal (
         obj_debug_payload_local_nonprim,
         obj_debug ? obj_debug_local_nonprim : NULL,
         m_payload_local_nonprim

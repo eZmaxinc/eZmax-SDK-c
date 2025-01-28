@@ -29,9 +29,10 @@ typedef struct communicationreference_request_t {
     int fki_electronicfundstransfer_id; //numeric
     int fki_rejectedoffertopurchase_id; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } communicationreference_request_t;
 
-communicationreference_request_t *communicationreference_request_create(
+__attribute__((deprecated)) communicationreference_request_t *communicationreference_request_create(
     int pki_communicationreference_id,
     int fki_buyercontract_id,
     int fki_ezsignfolder_id,

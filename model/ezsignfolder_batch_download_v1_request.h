@@ -30,9 +30,10 @@ typedef struct ezsignfolder_batch_download_v1_request_t {
     list_t *a_pki_ezsigndocument_id; //primitive container
     list_t *a_e_document_type; //primitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfolder_batch_download_v1_request_t;
 
-ezsignfolder_batch_download_v1_request_t *ezsignfolder_batch_download_v1_request_create(
+__attribute__((deprecated)) ezsignfolder_batch_download_v1_request_t *ezsignfolder_batch_download_v1_request_create(
     list_t *a_pki_ezsigndocument_id,
     list_t *a_e_document_type
 );

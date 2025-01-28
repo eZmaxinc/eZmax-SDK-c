@@ -21,9 +21,10 @@ typedef struct ezsignformfieldgroup_create_object_v1_response_m_payload_t ezsign
 typedef struct ezsignformfieldgroup_create_object_v1_response_m_payload_t {
     list_t *a_pki_ezsignformfieldgroup_id; //primitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignformfieldgroup_create_object_v1_response_m_payload_t;
 
-ezsignformfieldgroup_create_object_v1_response_m_payload_t *ezsignformfieldgroup_create_object_v1_response_m_payload_create(
+__attribute__((deprecated)) ezsignformfieldgroup_create_object_v1_response_m_payload_t *ezsignformfieldgroup_create_object_v1_response_m_payload_create(
     list_t *a_pki_ezsignformfieldgroup_id
 );
 

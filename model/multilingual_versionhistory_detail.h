@@ -22,9 +22,10 @@ typedef struct multilingual_versionhistory_detail_t {
     char *t_versionhistory_detail1; // string
     char *t_versionhistory_detail2; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } multilingual_versionhistory_detail_t;
 
-multilingual_versionhistory_detail_t *multilingual_versionhistory_detail_create(
+__attribute__((deprecated)) multilingual_versionhistory_detail_t *multilingual_versionhistory_detail_create(
     char *t_versionhistory_detail1,
     char *t_versionhistory_detail2
 );

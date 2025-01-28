@@ -5,7 +5,7 @@
 
 
 
-ezsignbulksendtransmission_response_t *ezsignbulksendtransmission_response_create(
+static ezsignbulksendtransmission_response_t *ezsignbulksendtransmission_response_create_internal(
     int pki_ezsignbulksendtransmission_id,
     int fki_ezsignbulksend_id,
     char *s_ezsignbulksendtransmission_description,
@@ -22,12 +22,32 @@ ezsignbulksendtransmission_response_t *ezsignbulksendtransmission_response_creat
     ezsignbulksendtransmission_response_local_var->i_ezsignbulksendtransmission_errors = i_ezsignbulksendtransmission_errors;
     ezsignbulksendtransmission_response_local_var->obj_audit = obj_audit;
 
+    ezsignbulksendtransmission_response_local_var->_library_owned = 1;
     return ezsignbulksendtransmission_response_local_var;
 }
 
+__attribute__((deprecated)) ezsignbulksendtransmission_response_t *ezsignbulksendtransmission_response_create(
+    int pki_ezsignbulksendtransmission_id,
+    int fki_ezsignbulksend_id,
+    char *s_ezsignbulksendtransmission_description,
+    int i_ezsignbulksendtransmission_errors,
+    common_audit_t *obj_audit
+    ) {
+    return ezsignbulksendtransmission_response_create_internal (
+        pki_ezsignbulksendtransmission_id,
+        fki_ezsignbulksend_id,
+        s_ezsignbulksendtransmission_description,
+        i_ezsignbulksendtransmission_errors,
+        obj_audit
+        );
+}
 
 void ezsignbulksendtransmission_response_free(ezsignbulksendtransmission_response_t *ezsignbulksendtransmission_response) {
     if(NULL == ezsignbulksendtransmission_response){
+        return ;
+    }
+    if(ezsignbulksendtransmission_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignbulksendtransmission_response_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -111,6 +131,9 @@ ezsignbulksendtransmission_response_t *ezsignbulksendtransmission_response_parse
 
     // ezsignbulksendtransmission_response->pki_ezsignbulksendtransmission_id
     cJSON *pki_ezsignbulksendtransmission_id = cJSON_GetObjectItemCaseSensitive(ezsignbulksendtransmission_responseJSON, "pkiEzsignbulksendtransmissionID");
+    if (cJSON_IsNull(pki_ezsignbulksendtransmission_id)) {
+        pki_ezsignbulksendtransmission_id = NULL;
+    }
     if (!pki_ezsignbulksendtransmission_id) {
         goto end;
     }
@@ -123,6 +146,9 @@ ezsignbulksendtransmission_response_t *ezsignbulksendtransmission_response_parse
 
     // ezsignbulksendtransmission_response->fki_ezsignbulksend_id
     cJSON *fki_ezsignbulksend_id = cJSON_GetObjectItemCaseSensitive(ezsignbulksendtransmission_responseJSON, "fkiEzsignbulksendID");
+    if (cJSON_IsNull(fki_ezsignbulksend_id)) {
+        fki_ezsignbulksend_id = NULL;
+    }
     if (!fki_ezsignbulksend_id) {
         goto end;
     }
@@ -135,6 +161,9 @@ ezsignbulksendtransmission_response_t *ezsignbulksendtransmission_response_parse
 
     // ezsignbulksendtransmission_response->s_ezsignbulksendtransmission_description
     cJSON *s_ezsignbulksendtransmission_description = cJSON_GetObjectItemCaseSensitive(ezsignbulksendtransmission_responseJSON, "sEzsignbulksendtransmissionDescription");
+    if (cJSON_IsNull(s_ezsignbulksendtransmission_description)) {
+        s_ezsignbulksendtransmission_description = NULL;
+    }
     if (!s_ezsignbulksendtransmission_description) {
         goto end;
     }
@@ -147,6 +176,9 @@ ezsignbulksendtransmission_response_t *ezsignbulksendtransmission_response_parse
 
     // ezsignbulksendtransmission_response->i_ezsignbulksendtransmission_errors
     cJSON *i_ezsignbulksendtransmission_errors = cJSON_GetObjectItemCaseSensitive(ezsignbulksendtransmission_responseJSON, "iEzsignbulksendtransmissionErrors");
+    if (cJSON_IsNull(i_ezsignbulksendtransmission_errors)) {
+        i_ezsignbulksendtransmission_errors = NULL;
+    }
     if (!i_ezsignbulksendtransmission_errors) {
         goto end;
     }
@@ -159,6 +191,9 @@ ezsignbulksendtransmission_response_t *ezsignbulksendtransmission_response_parse
 
     // ezsignbulksendtransmission_response->obj_audit
     cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(ezsignbulksendtransmission_responseJSON, "objAudit");
+    if (cJSON_IsNull(obj_audit)) {
+        obj_audit = NULL;
+    }
     if (!obj_audit) {
         goto end;
     }
@@ -167,7 +202,7 @@ ezsignbulksendtransmission_response_t *ezsignbulksendtransmission_response_parse
     obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
 
 
-    ezsignbulksendtransmission_response_local_var = ezsignbulksendtransmission_response_create (
+    ezsignbulksendtransmission_response_local_var = ezsignbulksendtransmission_response_create_internal (
         pki_ezsignbulksendtransmission_id->valuedouble,
         fki_ezsignbulksend_id->valuedouble,
         strdup(s_ezsignbulksendtransmission_description->valuestring),

@@ -22,9 +22,10 @@ typedef struct ezsigndocument_create_ezsignelements_positioned_by_word_v1_respon
     list_t *a_pki_ezsignsignature_id; //primitive container
     list_t *a_pki_ezsignformfieldgroup_id; //primitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigndocument_create_ezsignelements_positioned_by_word_v1_response_m_payload_t;
 
-ezsigndocument_create_ezsignelements_positioned_by_word_v1_response_m_payload_t *ezsigndocument_create_ezsignelements_positioned_by_word_v1_response_m_payload_create(
+__attribute__((deprecated)) ezsigndocument_create_ezsignelements_positioned_by_word_v1_response_m_payload_t *ezsigndocument_create_ezsignelements_positioned_by_word_v1_response_m_payload_create(
     list_t *a_pki_ezsignsignature_id,
     list_t *a_pki_ezsignformfieldgroup_id
 );

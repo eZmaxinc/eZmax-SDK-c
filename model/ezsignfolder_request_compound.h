@@ -17,14 +17,6 @@ typedef struct ezsignfolder_request_compound_t ezsignfolder_request_compound_t;
 
 #include "field_e_ezsignfolder_sendreminderfrequency.h"
 
-// Enum  for ezsignfolder_request_compound
-
-typedef enum  { ezmax_api_definition__full_ezsignfolder_request_compound__NULL = 0, ezmax_api_definition__full_ezsignfolder_request_compound__None, ezmax_api_definition__full_ezsignfolder_request_compound__Daily, ezmax_api_definition__full_ezsignfolder_request_compound__Weekly } ezmax_api_definition__full_ezsignfolder_request_compound__e;
-
-char* ezsignfolder_request_compound_e_ezsignfolder_sendreminderfrequency_ToString(ezmax_api_definition__full_ezsignfolder_request_compound__e e_ezsignfolder_sendreminderfrequency);
-
-ezmax_api_definition__full_ezsignfolder_request_compound__e ezsignfolder_request_compound_e_ezsignfolder_sendreminderfrequency_FromString(char* e_ezsignfolder_sendreminderfrequency);
-
 
 
 typedef struct ezsignfolder_request_compound_t {
@@ -34,19 +26,20 @@ typedef struct ezsignfolder_request_compound_t {
     int fki_ezsigntsarequirement_id; //numeric
     char *s_ezsignfolder_description; // string
     char *t_ezsignfolder_note; // string
-    field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency; // custom
+    ezmax_api_definition__full_field_e_ezsignfolder_sendreminderfrequency__e e_ezsignfolder_sendreminderfrequency; //referenced enum
     char *s_ezsignfolder_externalid; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfolder_request_compound_t;
 
-ezsignfolder_request_compound_t *ezsignfolder_request_compound_create(
+__attribute__((deprecated)) ezsignfolder_request_compound_t *ezsignfolder_request_compound_create(
     int pki_ezsignfolder_id,
     int fki_ezsignfoldertype_id,
     int fki_timezone_id,
     int fki_ezsigntsarequirement_id,
     char *s_ezsignfolder_description,
     char *t_ezsignfolder_note,
-    field_e_ezsignfolder_sendreminderfrequency_t *e_ezsignfolder_sendreminderfrequency,
+    ezmax_api_definition__full_field_e_ezsignfolder_sendreminderfrequency__e e_ezsignfolder_sendreminderfrequency,
     char *s_ezsignfolder_externalid
 );
 

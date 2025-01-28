@@ -22,9 +22,10 @@ typedef struct font_get_autocomplete_v2_response_m_payload_t font_get_autocomple
 typedef struct font_get_autocomplete_v2_response_m_payload_t {
     list_t *a_obj_font; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } font_get_autocomplete_v2_response_m_payload_t;
 
-font_get_autocomplete_v2_response_m_payload_t *font_get_autocomplete_v2_response_m_payload_create(
+__attribute__((deprecated)) font_get_autocomplete_v2_response_m_payload_t *font_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_font
 );
 

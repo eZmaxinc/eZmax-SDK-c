@@ -5,11 +5,6 @@
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
-#define intToStr(dst, src) \
-    do {\
-    char dst[256];\
-    snprintf(dst, 256, "%ld", (long int)(src));\
-}while(0)
 
 
 // Create a new Discussion
@@ -25,11 +20,14 @@ ObjectDiscussionAPI_discussionCreateObjectV1(apiClient_t *apiClient, discussion_
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/discussion")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/discussion");
+    char *localVarPath = strdup("/1/object/discussion");
+
 
 
 
@@ -38,9 +36,10 @@ ObjectDiscussionAPI_discussionCreateObjectV1(apiClient_t *apiClient, discussion_
     cJSON *localVarSingleItemJSON_discussion_create_object_v1_request = NULL;
     if (discussion_create_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_discussion_create_object_v1_request = discussion_create_object_v1_request_convertToJSON(discussion_create_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_discussion_create_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -52,6 +51,7 @@ ObjectDiscussionAPI_discussionCreateObjectV1(apiClient_t *apiClient, discussion_
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -59,11 +59,14 @@ ObjectDiscussionAPI_discussionCreateObjectV1(apiClient_t *apiClient, discussion_
     //    printf("%s\n","Successful response");
     //}
     //nonprimitive not container
-    cJSON *ObjectDiscussionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    discussion_create_object_v1_response_t *elementToReturn = discussion_create_object_v1_response_parseFromJSON(ObjectDiscussionAPIlocalVarJSON);
-    cJSON_Delete(ObjectDiscussionAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    discussion_create_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectDiscussionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = discussion_create_object_v1_response_parseFromJSON(ObjectDiscussionAPIlocalVarJSON);
+        cJSON_Delete(ObjectDiscussionAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -94,7 +97,7 @@ end:
 //
 // 
 //
-common_response_t*
+discussion_delete_object_v1_response_t*
 ObjectDiscussionAPI_discussionDeleteObjectV1(apiClient_t *apiClient, int *pkiDiscussionID)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -103,15 +106,18 @@ ObjectDiscussionAPI_discussionDeleteObjectV1(apiClient_t *apiClient, int *pkiDis
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/discussion/{pkiDiscussionID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/discussion/{pkiDiscussionID}");
+    char *localVarPath = strdup("/1/object/discussion/{pkiDiscussionID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiDiscussionID =  + strlen("{ pkiDiscussionID }");
+    long sizeOfPathParams_pkiDiscussionID =  + sizeof("{ pkiDiscussionID }") - 1;
     if(pkiDiscussionID == 0){
         goto end;
     }
@@ -119,7 +125,7 @@ ObjectDiscussionAPI_discussionDeleteObjectV1(apiClient_t *apiClient, int *pkiDis
     snprintf(localVarToReplace_pkiDiscussionID, sizeOfPathParams_pkiDiscussionID, "{%s}", "pkiDiscussionID");
 
     char localVarBuff_pkiDiscussionID[256];
-    intToStr(localVarBuff_pkiDiscussionID, *pkiDiscussionID);
+    snprintf(localVarBuff_pkiDiscussionID, sizeof localVarBuff_pkiDiscussionID, "%ld", (long)*pkiDiscussionID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiDiscussionID, localVarBuff_pkiDiscussionID);
 
@@ -134,6 +140,7 @@ ObjectDiscussionAPI_discussionDeleteObjectV1(apiClient_t *apiClient, int *pkiDis
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "DELETE");
 
     // uncomment below to debug the error response
@@ -145,11 +152,14 @@ ObjectDiscussionAPI_discussionDeleteObjectV1(apiClient_t *apiClient, int *pkiDis
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectDiscussionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectDiscussionAPIlocalVarJSON);
-    cJSON_Delete(ObjectDiscussionAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    discussion_delete_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectDiscussionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = discussion_delete_object_v1_response_parseFromJSON(ObjectDiscussionAPIlocalVarJSON);
+        cJSON_Delete(ObjectDiscussionAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -185,15 +195,18 @@ ObjectDiscussionAPI_discussionGetObjectV2(apiClient_t *apiClient, int *pkiDiscus
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = NULL;
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/2/object/discussion/{pkiDiscussionID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/2/object/discussion/{pkiDiscussionID}");
+    char *localVarPath = strdup("/2/object/discussion/{pkiDiscussionID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiDiscussionID =  + strlen("{ pkiDiscussionID }");
+    long sizeOfPathParams_pkiDiscussionID =  + sizeof("{ pkiDiscussionID }") - 1;
     if(pkiDiscussionID == 0){
         goto end;
     }
@@ -201,7 +214,7 @@ ObjectDiscussionAPI_discussionGetObjectV2(apiClient_t *apiClient, int *pkiDiscus
     snprintf(localVarToReplace_pkiDiscussionID, sizeOfPathParams_pkiDiscussionID, "{%s}", "pkiDiscussionID");
 
     char localVarBuff_pkiDiscussionID[256];
-    intToStr(localVarBuff_pkiDiscussionID, *pkiDiscussionID);
+    snprintf(localVarBuff_pkiDiscussionID, sizeof localVarBuff_pkiDiscussionID, "%ld", (long)*pkiDiscussionID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiDiscussionID, localVarBuff_pkiDiscussionID);
 
@@ -216,6 +229,7 @@ ObjectDiscussionAPI_discussionGetObjectV2(apiClient_t *apiClient, int *pkiDiscus
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "GET");
 
     // uncomment below to debug the error response
@@ -227,11 +241,14 @@ ObjectDiscussionAPI_discussionGetObjectV2(apiClient_t *apiClient, int *pkiDiscus
     //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectDiscussionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    discussion_get_object_v2_response_t *elementToReturn = discussion_get_object_v2_response_parseFromJSON(ObjectDiscussionAPIlocalVarJSON);
-    cJSON_Delete(ObjectDiscussionAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    discussion_get_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectDiscussionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = discussion_get_object_v2_response_parseFromJSON(ObjectDiscussionAPIlocalVarJSON);
+        cJSON_Delete(ObjectDiscussionAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -258,7 +275,7 @@ end:
 //
 // 
 //
-common_response_t*
+discussion_patch_object_v1_response_t*
 ObjectDiscussionAPI_discussionPatchObjectV1(apiClient_t *apiClient, int *pkiDiscussionID, discussion_patch_object_v1_request_t *discussion_patch_object_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -267,15 +284,18 @@ ObjectDiscussionAPI_discussionPatchObjectV1(apiClient_t *apiClient, int *pkiDisc
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/discussion/{pkiDiscussionID}")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/discussion/{pkiDiscussionID}");
+    char *localVarPath = strdup("/1/object/discussion/{pkiDiscussionID}");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiDiscussionID =  + strlen("{ pkiDiscussionID }");
+    long sizeOfPathParams_pkiDiscussionID =  + sizeof("{ pkiDiscussionID }") - 1;
     if(pkiDiscussionID == 0){
         goto end;
     }
@@ -283,7 +303,7 @@ ObjectDiscussionAPI_discussionPatchObjectV1(apiClient_t *apiClient, int *pkiDisc
     snprintf(localVarToReplace_pkiDiscussionID, sizeOfPathParams_pkiDiscussionID, "{%s}", "pkiDiscussionID");
 
     char localVarBuff_pkiDiscussionID[256];
-    intToStr(localVarBuff_pkiDiscussionID, *pkiDiscussionID);
+    snprintf(localVarBuff_pkiDiscussionID, sizeof localVarBuff_pkiDiscussionID, "%ld", (long)*pkiDiscussionID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiDiscussionID, localVarBuff_pkiDiscussionID);
 
@@ -294,9 +314,10 @@ ObjectDiscussionAPI_discussionPatchObjectV1(apiClient_t *apiClient, int *pkiDisc
     cJSON *localVarSingleItemJSON_discussion_patch_object_v1_request = NULL;
     if (discussion_patch_object_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_discussion_patch_object_v1_request = discussion_patch_object_v1_request_convertToJSON(discussion_patch_object_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_discussion_patch_object_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -308,6 +329,7 @@ ObjectDiscussionAPI_discussionPatchObjectV1(apiClient_t *apiClient, int *pkiDisc
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "PATCH");
 
     // uncomment below to debug the error response
@@ -323,11 +345,14 @@ ObjectDiscussionAPI_discussionPatchObjectV1(apiClient_t *apiClient, int *pkiDisc
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectDiscussionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectDiscussionAPIlocalVarJSON);
-    cJSON_Delete(ObjectDiscussionAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    discussion_patch_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectDiscussionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = discussion_patch_object_v1_response_parseFromJSON(ObjectDiscussionAPIlocalVarJSON);
+        cJSON_Delete(ObjectDiscussionAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type
@@ -357,7 +382,7 @@ end:
 
 // Update the read status of the discussion
 //
-common_response_t*
+discussion_update_discussionreadstatus_v1_response_t*
 ObjectDiscussionAPI_discussionUpdateDiscussionreadstatusV1(apiClient_t *apiClient, int *pkiDiscussionID, discussion_update_discussionreadstatus_v1_request_t *discussion_update_discussionreadstatus_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
@@ -366,15 +391,18 @@ ObjectDiscussionAPI_discussionUpdateDiscussionreadstatusV1(apiClient_t *apiClien
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
     char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
 
     // create the path
-    long sizeOfPath = strlen("/1/object/discussion/{pkiDiscussionID}/updateDiscussionreadstatus")+1;
-    char *localVarPath = malloc(sizeOfPath);
-    snprintf(localVarPath, sizeOfPath, "/1/object/discussion/{pkiDiscussionID}/updateDiscussionreadstatus");
+    char *localVarPath = strdup("/1/object/discussion/{pkiDiscussionID}/updateDiscussionreadstatus");
+
 
 
     // Path Params
-    long sizeOfPathParams_pkiDiscussionID =  + strlen("{ pkiDiscussionID }");
+    long sizeOfPathParams_pkiDiscussionID =  + sizeof("{ pkiDiscussionID }") - 1;
     if(pkiDiscussionID == 0){
         goto end;
     }
@@ -382,7 +410,7 @@ ObjectDiscussionAPI_discussionUpdateDiscussionreadstatusV1(apiClient_t *apiClien
     snprintf(localVarToReplace_pkiDiscussionID, sizeOfPathParams_pkiDiscussionID, "{%s}", "pkiDiscussionID");
 
     char localVarBuff_pkiDiscussionID[256];
-    intToStr(localVarBuff_pkiDiscussionID, *pkiDiscussionID);
+    snprintf(localVarBuff_pkiDiscussionID, sizeof localVarBuff_pkiDiscussionID, "%ld", (long)*pkiDiscussionID);
 
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiDiscussionID, localVarBuff_pkiDiscussionID);
 
@@ -393,9 +421,10 @@ ObjectDiscussionAPI_discussionUpdateDiscussionreadstatusV1(apiClient_t *apiClien
     cJSON *localVarSingleItemJSON_discussion_update_discussionreadstatus_v1_request = NULL;
     if (discussion_update_discussionreadstatus_v1_request != NULL)
     {
-        //string
+        //not string, not binary
         localVarSingleItemJSON_discussion_update_discussionreadstatus_v1_request = discussion_update_discussionreadstatus_v1_request_convertToJSON(discussion_update_discussionreadstatus_v1_request);
         localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_discussion_update_discussionreadstatus_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
@@ -407,6 +436,7 @@ ObjectDiscussionAPI_discussionUpdateDiscussionreadstatusV1(apiClient_t *apiClien
                     localVarHeaderType,
                     localVarContentType,
                     localVarBodyParameters,
+                    localVarBodyLength,
                     "POST");
 
     // uncomment below to debug the error response
@@ -422,11 +452,14 @@ ObjectDiscussionAPI_discussionUpdateDiscussionreadstatusV1(apiClient_t *apiClien
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    cJSON *ObjectDiscussionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-    common_response_t *elementToReturn = common_response_parseFromJSON(ObjectDiscussionAPIlocalVarJSON);
-    cJSON_Delete(ObjectDiscussionAPIlocalVarJSON);
-    if(elementToReturn == NULL) {
-        // return 0;
+    discussion_update_discussionreadstatus_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectDiscussionAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = discussion_update_discussionreadstatus_v1_response_parseFromJSON(ObjectDiscussionAPIlocalVarJSON);
+        cJSON_Delete(ObjectDiscussionAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
     }
 
     //return type

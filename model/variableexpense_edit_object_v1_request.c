@@ -5,7 +5,7 @@
 
 
 
-variableexpense_edit_object_v1_request_t *variableexpense_edit_object_v1_request_create(
+static variableexpense_edit_object_v1_request_t *variableexpense_edit_object_v1_request_create_internal(
     variableexpense_request_compound_t *obj_variableexpense
     ) {
     variableexpense_edit_object_v1_request_t *variableexpense_edit_object_v1_request_local_var = malloc(sizeof(variableexpense_edit_object_v1_request_t));
@@ -14,12 +14,24 @@ variableexpense_edit_object_v1_request_t *variableexpense_edit_object_v1_request
     }
     variableexpense_edit_object_v1_request_local_var->obj_variableexpense = obj_variableexpense;
 
+    variableexpense_edit_object_v1_request_local_var->_library_owned = 1;
     return variableexpense_edit_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) variableexpense_edit_object_v1_request_t *variableexpense_edit_object_v1_request_create(
+    variableexpense_request_compound_t *obj_variableexpense
+    ) {
+    return variableexpense_edit_object_v1_request_create_internal (
+        obj_variableexpense
+        );
+}
 
 void variableexpense_edit_object_v1_request_free(variableexpense_edit_object_v1_request_t *variableexpense_edit_object_v1_request) {
     if(NULL == variableexpense_edit_object_v1_request){
+        return ;
+    }
+    if(variableexpense_edit_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "variableexpense_edit_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ variableexpense_edit_object_v1_request_t *variableexpense_edit_object_v1_request
 
     // variableexpense_edit_object_v1_request->obj_variableexpense
     cJSON *obj_variableexpense = cJSON_GetObjectItemCaseSensitive(variableexpense_edit_object_v1_requestJSON, "objVariableexpense");
+    if (cJSON_IsNull(obj_variableexpense)) {
+        obj_variableexpense = NULL;
+    }
     if (!obj_variableexpense) {
         goto end;
     }
@@ -71,7 +86,7 @@ variableexpense_edit_object_v1_request_t *variableexpense_edit_object_v1_request
     obj_variableexpense_local_nonprim = variableexpense_request_compound_parseFromJSON(obj_variableexpense); //nonprimitive
 
 
-    variableexpense_edit_object_v1_request_local_var = variableexpense_edit_object_v1_request_create (
+    variableexpense_edit_object_v1_request_local_var = variableexpense_edit_object_v1_request_create_internal (
         obj_variableexpense_local_nonprim
         );
 

@@ -22,9 +22,10 @@ typedef struct multilingual_userlogintype_description_t {
     char *s_userlogintype_description1; // string
     char *s_userlogintype_description2; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } multilingual_userlogintype_description_t;
 
-multilingual_userlogintype_description_t *multilingual_userlogintype_description_create(
+__attribute__((deprecated)) multilingual_userlogintype_description_t *multilingual_userlogintype_description_create(
     char *s_userlogintype_description1,
     char *s_userlogintype_description2
 );

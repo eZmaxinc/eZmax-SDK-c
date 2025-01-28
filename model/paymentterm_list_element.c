@@ -4,28 +4,11 @@
 #include "paymentterm_list_element.h"
 
 
-char* paymentterm_list_element_e_paymentterm_type_ToString(ezmax_api_definition__full_paymentterm_list_element__e e_paymentterm_type) {
-    char* e_paymentterm_typeArray[] =  { "NULL", "Days", "Dayofthemonth" };
-    return e_paymentterm_typeArray[e_paymentterm_type];
-}
 
-ezmax_api_definition__full_paymentterm_list_element__e paymentterm_list_element_e_paymentterm_type_FromString(char* e_paymentterm_type){
-    int stringToReturn = 0;
-    char *e_paymentterm_typeArray[] =  { "NULL", "Days", "Dayofthemonth" };
-    size_t sizeofArray = sizeof(e_paymentterm_typeArray) / sizeof(e_paymentterm_typeArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_paymentterm_type, e_paymentterm_typeArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-paymentterm_list_element_t *paymentterm_list_element_create(
+static paymentterm_list_element_t *paymentterm_list_element_create_internal(
     int pki_paymentterm_id,
     char *s_paymentterm_code,
-    field_e_paymentterm_type_t *e_paymentterm_type,
+    ezmax_api_definition__full_field_e_paymentterm_type__e e_paymentterm_type,
     int i_paymentterm_day,
     char *s_paymentterm_description_x,
     int b_paymentterm_isactive
@@ -41,22 +24,40 @@ paymentterm_list_element_t *paymentterm_list_element_create(
     paymentterm_list_element_local_var->s_paymentterm_description_x = s_paymentterm_description_x;
     paymentterm_list_element_local_var->b_paymentterm_isactive = b_paymentterm_isactive;
 
+    paymentterm_list_element_local_var->_library_owned = 1;
     return paymentterm_list_element_local_var;
 }
 
+__attribute__((deprecated)) paymentterm_list_element_t *paymentterm_list_element_create(
+    int pki_paymentterm_id,
+    char *s_paymentterm_code,
+    ezmax_api_definition__full_field_e_paymentterm_type__e e_paymentterm_type,
+    int i_paymentterm_day,
+    char *s_paymentterm_description_x,
+    int b_paymentterm_isactive
+    ) {
+    return paymentterm_list_element_create_internal (
+        pki_paymentterm_id,
+        s_paymentterm_code,
+        e_paymentterm_type,
+        i_paymentterm_day,
+        s_paymentterm_description_x,
+        b_paymentterm_isactive
+        );
+}
 
 void paymentterm_list_element_free(paymentterm_list_element_t *paymentterm_list_element) {
     if(NULL == paymentterm_list_element){
+        return ;
+    }
+    if(paymentterm_list_element->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "paymentterm_list_element_free");
         return ;
     }
     listEntry_t *listEntry;
     if (paymentterm_list_element->s_paymentterm_code) {
         free(paymentterm_list_element->s_paymentterm_code);
         paymentterm_list_element->s_paymentterm_code = NULL;
-    }
-    if (paymentterm_list_element->e_paymentterm_type) {
-        field_e_paymentterm_type_free(paymentterm_list_element->e_paymentterm_type);
-        paymentterm_list_element->e_paymentterm_type = NULL;
     }
     if (paymentterm_list_element->s_paymentterm_description_x) {
         free(paymentterm_list_element->s_paymentterm_description_x);
@@ -87,7 +88,7 @@ cJSON *paymentterm_list_element_convertToJSON(paymentterm_list_element_t *paymen
 
 
     // paymentterm_list_element->e_paymentterm_type
-    if (ezmax_api_definition__full_paymentterm_list_element__NULL == paymentterm_list_element->e_paymentterm_type) {
+    if (ezmax_api_definition__full_field_e_paymentterm_type__NULL == paymentterm_list_element->e_paymentterm_type) {
         goto fail;
     }
     cJSON *e_paymentterm_type_local_JSON = field_e_paymentterm_type_convertToJSON(paymentterm_list_element->e_paymentterm_type);
@@ -139,10 +140,13 @@ paymentterm_list_element_t *paymentterm_list_element_parseFromJSON(cJSON *paymen
     paymentterm_list_element_t *paymentterm_list_element_local_var = NULL;
 
     // define the local variable for paymentterm_list_element->e_paymentterm_type
-    field_e_paymentterm_type_t *e_paymentterm_type_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_paymentterm_type__e e_paymentterm_type_local_nonprim = 0;
 
     // paymentterm_list_element->pki_paymentterm_id
     cJSON *pki_paymentterm_id = cJSON_GetObjectItemCaseSensitive(paymentterm_list_elementJSON, "pkiPaymenttermID");
+    if (cJSON_IsNull(pki_paymentterm_id)) {
+        pki_paymentterm_id = NULL;
+    }
     if (!pki_paymentterm_id) {
         goto end;
     }
@@ -155,6 +159,9 @@ paymentterm_list_element_t *paymentterm_list_element_parseFromJSON(cJSON *paymen
 
     // paymentterm_list_element->s_paymentterm_code
     cJSON *s_paymentterm_code = cJSON_GetObjectItemCaseSensitive(paymentterm_list_elementJSON, "sPaymenttermCode");
+    if (cJSON_IsNull(s_paymentterm_code)) {
+        s_paymentterm_code = NULL;
+    }
     if (!s_paymentterm_code) {
         goto end;
     }
@@ -167,6 +174,9 @@ paymentterm_list_element_t *paymentterm_list_element_parseFromJSON(cJSON *paymen
 
     // paymentterm_list_element->e_paymentterm_type
     cJSON *e_paymentterm_type = cJSON_GetObjectItemCaseSensitive(paymentterm_list_elementJSON, "ePaymenttermType");
+    if (cJSON_IsNull(e_paymentterm_type)) {
+        e_paymentterm_type = NULL;
+    }
     if (!e_paymentterm_type) {
         goto end;
     }
@@ -176,6 +186,9 @@ paymentterm_list_element_t *paymentterm_list_element_parseFromJSON(cJSON *paymen
 
     // paymentterm_list_element->i_paymentterm_day
     cJSON *i_paymentterm_day = cJSON_GetObjectItemCaseSensitive(paymentterm_list_elementJSON, "iPaymenttermDay");
+    if (cJSON_IsNull(i_paymentterm_day)) {
+        i_paymentterm_day = NULL;
+    }
     if (!i_paymentterm_day) {
         goto end;
     }
@@ -188,6 +201,9 @@ paymentterm_list_element_t *paymentterm_list_element_parseFromJSON(cJSON *paymen
 
     // paymentterm_list_element->s_paymentterm_description_x
     cJSON *s_paymentterm_description_x = cJSON_GetObjectItemCaseSensitive(paymentterm_list_elementJSON, "sPaymenttermDescriptionX");
+    if (cJSON_IsNull(s_paymentterm_description_x)) {
+        s_paymentterm_description_x = NULL;
+    }
     if (!s_paymentterm_description_x) {
         goto end;
     }
@@ -200,6 +216,9 @@ paymentterm_list_element_t *paymentterm_list_element_parseFromJSON(cJSON *paymen
 
     // paymentterm_list_element->b_paymentterm_isactive
     cJSON *b_paymentterm_isactive = cJSON_GetObjectItemCaseSensitive(paymentterm_list_elementJSON, "bPaymenttermIsactive");
+    if (cJSON_IsNull(b_paymentterm_isactive)) {
+        b_paymentterm_isactive = NULL;
+    }
     if (!b_paymentterm_isactive) {
         goto end;
     }
@@ -211,7 +230,7 @@ paymentterm_list_element_t *paymentterm_list_element_parseFromJSON(cJSON *paymen
     }
 
 
-    paymentterm_list_element_local_var = paymentterm_list_element_create (
+    paymentterm_list_element_local_var = paymentterm_list_element_create_internal (
         pki_paymentterm_id->valuedouble,
         strdup(s_paymentterm_code->valuestring),
         e_paymentterm_type_local_nonprim,
@@ -223,8 +242,7 @@ paymentterm_list_element_t *paymentterm_list_element_parseFromJSON(cJSON *paymen
     return paymentterm_list_element_local_var;
 end:
     if (e_paymentterm_type_local_nonprim) {
-        field_e_paymentterm_type_free(e_paymentterm_type_local_nonprim);
-        e_paymentterm_type_local_nonprim = NULL;
+        e_paymentterm_type_local_nonprim = 0;
     }
     return NULL;
 

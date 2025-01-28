@@ -5,7 +5,7 @@
 
 
 
-usergroupexternal_create_object_v1_request_t *usergroupexternal_create_object_v1_request_create(
+static usergroupexternal_create_object_v1_request_t *usergroupexternal_create_object_v1_request_create_internal(
     list_t *a_obj_usergroupexternal
     ) {
     usergroupexternal_create_object_v1_request_t *usergroupexternal_create_object_v1_request_local_var = malloc(sizeof(usergroupexternal_create_object_v1_request_t));
@@ -14,12 +14,24 @@ usergroupexternal_create_object_v1_request_t *usergroupexternal_create_object_v1
     }
     usergroupexternal_create_object_v1_request_local_var->a_obj_usergroupexternal = a_obj_usergroupexternal;
 
+    usergroupexternal_create_object_v1_request_local_var->_library_owned = 1;
     return usergroupexternal_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) usergroupexternal_create_object_v1_request_t *usergroupexternal_create_object_v1_request_create(
+    list_t *a_obj_usergroupexternal
+    ) {
+    return usergroupexternal_create_object_v1_request_create_internal (
+        a_obj_usergroupexternal
+        );
+}
 
 void usergroupexternal_create_object_v1_request_free(usergroupexternal_create_object_v1_request_t *usergroupexternal_create_object_v1_request) {
     if(NULL == usergroupexternal_create_object_v1_request){
+        return ;
+    }
+    if(usergroupexternal_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroupexternal_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ usergroupexternal_create_object_v1_request_t *usergroupexternal_create_object_v1
 
     // usergroupexternal_create_object_v1_request->a_obj_usergroupexternal
     cJSON *a_obj_usergroupexternal = cJSON_GetObjectItemCaseSensitive(usergroupexternal_create_object_v1_requestJSON, "a_objUsergroupexternal");
+    if (cJSON_IsNull(a_obj_usergroupexternal)) {
+        a_obj_usergroupexternal = NULL;
+    }
     if (!a_obj_usergroupexternal) {
         goto end;
     }
@@ -96,7 +111,7 @@ usergroupexternal_create_object_v1_request_t *usergroupexternal_create_object_v1
     }
 
 
-    usergroupexternal_create_object_v1_request_local_var = usergroupexternal_create_object_v1_request_create (
+    usergroupexternal_create_object_v1_request_local_var = usergroupexternal_create_object_v1_request_create_internal (
         a_obj_usergroupexternalList
         );
 

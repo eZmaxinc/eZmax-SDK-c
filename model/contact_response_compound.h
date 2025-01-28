@@ -18,14 +18,6 @@ typedef struct contact_response_compound_t contact_response_compound_t;
 #include "contactinformations_response_compound.h"
 #include "field_e_contact_type.h"
 
-// Enum  for contact_response_compound
-
-typedef enum  { ezmax_api_definition__full_contact_response_compound__NULL = 0, ezmax_api_definition__full_contact_response_compound__Agent, ezmax_api_definition__full_contact_response_compound__Assistant, ezmax_api_definition__full_contact_response_compound__BankAccount, ezmax_api_definition__full_contact_response_compound__Borrower, ezmax_api_definition__full_contact_response_compound__Buyer, ezmax_api_definition__full_contact_response_compound__Company, ezmax_api_definition__full_contact_response_compound__ContractCreator, ezmax_api_definition__full_contact_response_compound__Creditcardmerchant, ezmax_api_definition__full_contact_response_compound__Customer, ezmax_api_definition__full_contact_response_compound__Depositreceipt, ezmax_api_definition__full_contact_response_compound__Employee, ezmax_api_definition__full_contact_response_compound__ExternalBroker, ezmax_api_definition__full_contact_response_compound__EzsignSigner, ezmax_api_definition__full_contact_response_compound__EzsignUser, ezmax_api_definition__full_contact_response_compound__EzcomAgent, ezmax_api_definition__full_contact_response_compound__EzcomApprover, ezmax_api_definition__full_contact_response_compound__FinancialInstitution, ezmax_api_definition__full_contact_response_compound__FranchiseBroker, ezmax_api_definition__full_contact_response_compound__Franchisefranchisecontact, ezmax_api_definition__full_contact_response_compound__Franchisefranchisesignatory, ezmax_api_definition__full_contact_response_compound__FranchiseOfficeBroker, ezmax_api_definition__full_contact_response_compound__FranchiseCompany, ezmax_api_definition__full_contact_response_compound__FranchiseOwner, ezmax_api_definition__full_contact_response_compound__Lead, ezmax_api_definition__full_contact_response_compound__MarketingCampaignSample, ezmax_api_definition__full_contact_response_compound__Notary, ezmax_api_definition__full_contact_response_compound__Payer, ezmax_api_definition__full_contact_response_compound__Petowner, ezmax_api_definition__full_contact_response_compound__PrivateTo, ezmax_api_definition__full_contact_response_compound__RewardMember, ezmax_api_definition__full_contact_response_compound__RewardRepresentative, ezmax_api_definition__full_contact_response_compound__Seller, ezmax_api_definition__full_contact_response_compound__Shared, ezmax_api_definition__full_contact_response_compound__Supplier, ezmax_api_definition__full_contact_response_compound__Survey, ezmax_api_definition__full_contact_response_compound__Inspector } ezmax_api_definition__full_contact_response_compound__e;
-
-char* contact_response_compound_e_contact_type_ToString(ezmax_api_definition__full_contact_response_compound__e e_contact_type);
-
-ezmax_api_definition__full_contact_response_compound__e contact_response_compound_e_contact_type_FromString(char* e_contact_type);
-
 
 
 typedef struct contact_response_compound_t {
@@ -34,7 +26,7 @@ typedef struct contact_response_compound_t {
     int fki_contacttitle_id; //numeric
     int fki_contactinformations_id; //numeric
     char *dt_contact_birthdate; // string
-    field_e_contact_type_t *e_contact_type; // custom
+    ezmax_api_definition__full_field_e_contact_type__e e_contact_type; //referenced enum
     char *s_contact_firstname; // string
     char *s_contact_lastname; // string
     char *s_contact_company; // string
@@ -43,15 +35,16 @@ typedef struct contact_response_compound_t {
     int b_contact_isactive; //boolean
     struct contactinformations_response_compound_t *obj_contactinformations; //model
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } contact_response_compound_t;
 
-contact_response_compound_t *contact_response_compound_create(
+__attribute__((deprecated)) contact_response_compound_t *contact_response_compound_create(
     int pki_contact_id,
     int fki_language_id,
     int fki_contacttitle_id,
     int fki_contactinformations_id,
     char *dt_contact_birthdate,
-    field_e_contact_type_t *e_contact_type,
+    ezmax_api_definition__full_field_e_contact_type__e e_contact_type,
     char *s_contact_firstname,
     char *s_contact_lastname,
     char *s_contact_company,

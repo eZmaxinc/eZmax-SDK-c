@@ -5,7 +5,7 @@
 
 
 
-custom_ezsignformfieldgroup_request_t *custom_ezsignformfieldgroup_request_create(
+static custom_ezsignformfieldgroup_request_t *custom_ezsignformfieldgroup_request_create_internal(
     int pki_ezsignformfieldgroup_id,
     char *s_ezsignformfieldgroup_label,
     list_t *a_obj_ezsignformfield
@@ -18,12 +18,28 @@ custom_ezsignformfieldgroup_request_t *custom_ezsignformfieldgroup_request_creat
     custom_ezsignformfieldgroup_request_local_var->s_ezsignformfieldgroup_label = s_ezsignformfieldgroup_label;
     custom_ezsignformfieldgroup_request_local_var->a_obj_ezsignformfield = a_obj_ezsignformfield;
 
+    custom_ezsignformfieldgroup_request_local_var->_library_owned = 1;
     return custom_ezsignformfieldgroup_request_local_var;
 }
 
+__attribute__((deprecated)) custom_ezsignformfieldgroup_request_t *custom_ezsignformfieldgroup_request_create(
+    int pki_ezsignformfieldgroup_id,
+    char *s_ezsignformfieldgroup_label,
+    list_t *a_obj_ezsignformfield
+    ) {
+    return custom_ezsignformfieldgroup_request_create_internal (
+        pki_ezsignformfieldgroup_id,
+        s_ezsignformfieldgroup_label,
+        a_obj_ezsignformfield
+        );
+}
 
 void custom_ezsignformfieldgroup_request_free(custom_ezsignformfieldgroup_request_t *custom_ezsignformfieldgroup_request) {
     if(NULL == custom_ezsignformfieldgroup_request){
+        return ;
+    }
+    if(custom_ezsignformfieldgroup_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "custom_ezsignformfieldgroup_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -33,7 +49,7 @@ void custom_ezsignformfieldgroup_request_free(custom_ezsignformfieldgroup_reques
     }
     if (custom_ezsignformfieldgroup_request->a_obj_ezsignformfield) {
         list_ForEach(listEntry, custom_ezsignformfieldgroup_request->a_obj_ezsignformfield) {
-            object_free(listEntry->data);
+            custom_ezsignformfield_request_free(listEntry->data);
         }
         list_freeList(custom_ezsignformfieldgroup_request->a_obj_ezsignformfield);
         custom_ezsignformfieldgroup_request->a_obj_ezsignformfield = NULL;
@@ -72,7 +88,7 @@ cJSON *custom_ezsignformfieldgroup_request_convertToJSON(custom_ezsignformfieldg
     listEntry_t *a_obj_ezsignformfieldListEntry;
     if (custom_ezsignformfieldgroup_request->a_obj_ezsignformfield) {
     list_ForEach(a_obj_ezsignformfieldListEntry, custom_ezsignformfieldgroup_request->a_obj_ezsignformfield) {
-    cJSON *itemLocal = object_convertToJSON(a_obj_ezsignformfieldListEntry->data);
+    cJSON *itemLocal = custom_ezsignformfield_request_convertToJSON(a_obj_ezsignformfieldListEntry->data);
     if(itemLocal == NULL) {
     goto fail;
     }
@@ -97,6 +113,9 @@ custom_ezsignformfieldgroup_request_t *custom_ezsignformfieldgroup_request_parse
 
     // custom_ezsignformfieldgroup_request->pki_ezsignformfieldgroup_id
     cJSON *pki_ezsignformfieldgroup_id = cJSON_GetObjectItemCaseSensitive(custom_ezsignformfieldgroup_requestJSON, "pkiEzsignformfieldgroupID");
+    if (cJSON_IsNull(pki_ezsignformfieldgroup_id)) {
+        pki_ezsignformfieldgroup_id = NULL;
+    }
     if (pki_ezsignformfieldgroup_id) { 
     if(!cJSON_IsNumber(pki_ezsignformfieldgroup_id))
     {
@@ -106,6 +125,9 @@ custom_ezsignformfieldgroup_request_t *custom_ezsignformfieldgroup_request_parse
 
     // custom_ezsignformfieldgroup_request->s_ezsignformfieldgroup_label
     cJSON *s_ezsignformfieldgroup_label = cJSON_GetObjectItemCaseSensitive(custom_ezsignformfieldgroup_requestJSON, "sEzsignformfieldgroupLabel");
+    if (cJSON_IsNull(s_ezsignformfieldgroup_label)) {
+        s_ezsignformfieldgroup_label = NULL;
+    }
     if (s_ezsignformfieldgroup_label) { 
     if(!cJSON_IsString(s_ezsignformfieldgroup_label) && !cJSON_IsNull(s_ezsignformfieldgroup_label))
     {
@@ -115,6 +137,9 @@ custom_ezsignformfieldgroup_request_t *custom_ezsignformfieldgroup_request_parse
 
     // custom_ezsignformfieldgroup_request->a_obj_ezsignformfield
     cJSON *a_obj_ezsignformfield = cJSON_GetObjectItemCaseSensitive(custom_ezsignformfieldgroup_requestJSON, "a_objEzsignformfield");
+    if (cJSON_IsNull(a_obj_ezsignformfield)) {
+        a_obj_ezsignformfield = NULL;
+    }
     if (!a_obj_ezsignformfield) {
         goto end;
     }
@@ -132,13 +157,13 @@ custom_ezsignformfieldgroup_request_t *custom_ezsignformfieldgroup_request_parse
         if(!cJSON_IsObject(a_obj_ezsignformfield_local_nonprimitive)){
             goto end;
         }
-        object_t *a_obj_ezsignformfieldItem = object_parseFromJSON(a_obj_ezsignformfield_local_nonprimitive);
+        custom_ezsignformfield_request_t *a_obj_ezsignformfieldItem = custom_ezsignformfield_request_parseFromJSON(a_obj_ezsignformfield_local_nonprimitive);
 
         list_addElement(a_obj_ezsignformfieldList, a_obj_ezsignformfieldItem);
     }
 
 
-    custom_ezsignformfieldgroup_request_local_var = custom_ezsignformfieldgroup_request_create (
+    custom_ezsignformfieldgroup_request_local_var = custom_ezsignformfieldgroup_request_create_internal (
         pki_ezsignformfieldgroup_id ? pki_ezsignformfieldgroup_id->valuedouble : 0,
         s_ezsignformfieldgroup_label && !cJSON_IsNull(s_ezsignformfieldgroup_label) ? strdup(s_ezsignformfieldgroup_label->valuestring) : NULL,
         a_obj_ezsignformfieldList
@@ -149,7 +174,7 @@ end:
     if (a_obj_ezsignformfieldList) {
         listEntry_t *listEntry = NULL;
         list_ForEach(listEntry, a_obj_ezsignformfieldList) {
-            object_free(listEntry->data);
+            custom_ezsignformfield_request_free(listEntry->data);
             listEntry->data = NULL;
         }
         list_freeList(a_obj_ezsignformfieldList);

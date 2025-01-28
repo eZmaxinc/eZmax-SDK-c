@@ -5,7 +5,7 @@
 
 
 
-contact_request_compound_t *contact_request_compound_create(
+static contact_request_compound_t *contact_request_compound_create_internal(
     int fki_contacttitle_id,
     int fki_language_id,
     char *s_contact_firstname,
@@ -26,12 +26,36 @@ contact_request_compound_t *contact_request_compound_create(
     contact_request_compound_local_var->dt_contact_birthdate = dt_contact_birthdate;
     contact_request_compound_local_var->obj_contactinformations = obj_contactinformations;
 
+    contact_request_compound_local_var->_library_owned = 1;
     return contact_request_compound_local_var;
 }
 
+__attribute__((deprecated)) contact_request_compound_t *contact_request_compound_create(
+    int fki_contacttitle_id,
+    int fki_language_id,
+    char *s_contact_firstname,
+    char *s_contact_lastname,
+    char *s_contact_company,
+    char *dt_contact_birthdate,
+    contactinformations_request_compound_t *obj_contactinformations
+    ) {
+    return contact_request_compound_create_internal (
+        fki_contacttitle_id,
+        fki_language_id,
+        s_contact_firstname,
+        s_contact_lastname,
+        s_contact_company,
+        dt_contact_birthdate,
+        obj_contactinformations
+        );
+}
 
 void contact_request_compound_free(contact_request_compound_t *contact_request_compound) {
     if(NULL == contact_request_compound){
+        return ;
+    }
+    if(contact_request_compound->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "contact_request_compound_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -144,6 +168,9 @@ contact_request_compound_t *contact_request_compound_parseFromJSON(cJSON *contac
 
     // contact_request_compound->fki_contacttitle_id
     cJSON *fki_contacttitle_id = cJSON_GetObjectItemCaseSensitive(contact_request_compoundJSON, "fkiContacttitleID");
+    if (cJSON_IsNull(fki_contacttitle_id)) {
+        fki_contacttitle_id = NULL;
+    }
     if (!fki_contacttitle_id) {
         goto end;
     }
@@ -156,6 +183,9 @@ contact_request_compound_t *contact_request_compound_parseFromJSON(cJSON *contac
 
     // contact_request_compound->fki_language_id
     cJSON *fki_language_id = cJSON_GetObjectItemCaseSensitive(contact_request_compoundJSON, "fkiLanguageID");
+    if (cJSON_IsNull(fki_language_id)) {
+        fki_language_id = NULL;
+    }
     if (!fki_language_id) {
         goto end;
     }
@@ -168,6 +198,9 @@ contact_request_compound_t *contact_request_compound_parseFromJSON(cJSON *contac
 
     // contact_request_compound->s_contact_firstname
     cJSON *s_contact_firstname = cJSON_GetObjectItemCaseSensitive(contact_request_compoundJSON, "sContactFirstname");
+    if (cJSON_IsNull(s_contact_firstname)) {
+        s_contact_firstname = NULL;
+    }
     if (!s_contact_firstname) {
         goto end;
     }
@@ -180,6 +213,9 @@ contact_request_compound_t *contact_request_compound_parseFromJSON(cJSON *contac
 
     // contact_request_compound->s_contact_lastname
     cJSON *s_contact_lastname = cJSON_GetObjectItemCaseSensitive(contact_request_compoundJSON, "sContactLastname");
+    if (cJSON_IsNull(s_contact_lastname)) {
+        s_contact_lastname = NULL;
+    }
     if (!s_contact_lastname) {
         goto end;
     }
@@ -192,6 +228,9 @@ contact_request_compound_t *contact_request_compound_parseFromJSON(cJSON *contac
 
     // contact_request_compound->s_contact_company
     cJSON *s_contact_company = cJSON_GetObjectItemCaseSensitive(contact_request_compoundJSON, "sContactCompany");
+    if (cJSON_IsNull(s_contact_company)) {
+        s_contact_company = NULL;
+    }
     if (!s_contact_company) {
         goto end;
     }
@@ -204,6 +243,9 @@ contact_request_compound_t *contact_request_compound_parseFromJSON(cJSON *contac
 
     // contact_request_compound->dt_contact_birthdate
     cJSON *dt_contact_birthdate = cJSON_GetObjectItemCaseSensitive(contact_request_compoundJSON, "dtContactBirthdate");
+    if (cJSON_IsNull(dt_contact_birthdate)) {
+        dt_contact_birthdate = NULL;
+    }
     if (dt_contact_birthdate) { 
     if(!cJSON_IsString(dt_contact_birthdate) && !cJSON_IsNull(dt_contact_birthdate))
     {
@@ -213,6 +255,9 @@ contact_request_compound_t *contact_request_compound_parseFromJSON(cJSON *contac
 
     // contact_request_compound->obj_contactinformations
     cJSON *obj_contactinformations = cJSON_GetObjectItemCaseSensitive(contact_request_compoundJSON, "objContactinformations");
+    if (cJSON_IsNull(obj_contactinformations)) {
+        obj_contactinformations = NULL;
+    }
     if (!obj_contactinformations) {
         goto end;
     }
@@ -221,7 +266,7 @@ contact_request_compound_t *contact_request_compound_parseFromJSON(cJSON *contac
     obj_contactinformations_local_nonprim = contactinformations_request_compound_parseFromJSON(obj_contactinformations); //nonprimitive
 
 
-    contact_request_compound_local_var = contact_request_compound_create (
+    contact_request_compound_local_var = contact_request_compound_create_internal (
         fki_contacttitle_id->valuedouble,
         fki_language_id->valuedouble,
         strdup(s_contact_firstname->valuestring),

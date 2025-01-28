@@ -5,7 +5,7 @@
 
 
 
-user_get_permissions_v1_response_m_payload_t *user_get_permissions_v1_response_m_payload_create(
+static user_get_permissions_v1_response_m_payload_t *user_get_permissions_v1_response_m_payload_create_internal(
     list_t *a_obj_modulegroup
     ) {
     user_get_permissions_v1_response_m_payload_t *user_get_permissions_v1_response_m_payload_local_var = malloc(sizeof(user_get_permissions_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ user_get_permissions_v1_response_m_payload_t *user_get_permissions_v1_response_m
     }
     user_get_permissions_v1_response_m_payload_local_var->a_obj_modulegroup = a_obj_modulegroup;
 
+    user_get_permissions_v1_response_m_payload_local_var->_library_owned = 1;
     return user_get_permissions_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) user_get_permissions_v1_response_m_payload_t *user_get_permissions_v1_response_m_payload_create(
+    list_t *a_obj_modulegroup
+    ) {
+    return user_get_permissions_v1_response_m_payload_create_internal (
+        a_obj_modulegroup
+        );
+}
 
 void user_get_permissions_v1_response_m_payload_free(user_get_permissions_v1_response_m_payload_t *user_get_permissions_v1_response_m_payload) {
     if(NULL == user_get_permissions_v1_response_m_payload){
+        return ;
+    }
+    if(user_get_permissions_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "user_get_permissions_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ user_get_permissions_v1_response_m_payload_t *user_get_permissions_v1_response_m
 
     // user_get_permissions_v1_response_m_payload->a_obj_modulegroup
     cJSON *a_obj_modulegroup = cJSON_GetObjectItemCaseSensitive(user_get_permissions_v1_response_m_payloadJSON, "a_objModulegroup");
+    if (cJSON_IsNull(a_obj_modulegroup)) {
+        a_obj_modulegroup = NULL;
+    }
     if (!a_obj_modulegroup) {
         goto end;
     }
@@ -96,7 +111,7 @@ user_get_permissions_v1_response_m_payload_t *user_get_permissions_v1_response_m
     }
 
 
-    user_get_permissions_v1_response_m_payload_local_var = user_get_permissions_v1_response_m_payload_create (
+    user_get_permissions_v1_response_m_payload_local_var = user_get_permissions_v1_response_m_payload_create_internal (
         a_obj_modulegroupList
         );
 

@@ -21,9 +21,10 @@ typedef struct billingentityexternal_generate_federation_token_v1_request_t bill
 typedef struct billingentityexternal_generate_federation_token_v1_request_t {
     char *fks_ezmaxcustomer_code; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } billingentityexternal_generate_federation_token_v1_request_t;
 
-billingentityexternal_generate_federation_token_v1_request_t *billingentityexternal_generate_federation_token_v1_request_create(
+__attribute__((deprecated)) billingentityexternal_generate_federation_token_v1_request_t *billingentityexternal_generate_federation_token_v1_request_create(
     char *fks_ezmaxcustomer_code
 );
 

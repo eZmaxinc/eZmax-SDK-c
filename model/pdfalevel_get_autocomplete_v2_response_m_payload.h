@@ -22,9 +22,10 @@ typedef struct pdfalevel_get_autocomplete_v2_response_m_payload_t pdfalevel_get_
 typedef struct pdfalevel_get_autocomplete_v2_response_m_payload_t {
     list_t *a_obj_pdfalevel; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } pdfalevel_get_autocomplete_v2_response_m_payload_t;
 
-pdfalevel_get_autocomplete_v2_response_m_payload_t *pdfalevel_get_autocomplete_v2_response_m_payload_create(
+__attribute__((deprecated)) pdfalevel_get_autocomplete_v2_response_m_payload_t *pdfalevel_get_autocomplete_v2_response_m_payload_create(
     list_t *a_obj_pdfalevel
 );
 

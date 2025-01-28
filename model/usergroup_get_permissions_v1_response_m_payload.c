@@ -5,7 +5,7 @@
 
 
 
-usergroup_get_permissions_v1_response_m_payload_t *usergroup_get_permissions_v1_response_m_payload_create(
+static usergroup_get_permissions_v1_response_m_payload_t *usergroup_get_permissions_v1_response_m_payload_create_internal(
     list_t *a_obj_modulegroup
     ) {
     usergroup_get_permissions_v1_response_m_payload_t *usergroup_get_permissions_v1_response_m_payload_local_var = malloc(sizeof(usergroup_get_permissions_v1_response_m_payload_t));
@@ -14,12 +14,24 @@ usergroup_get_permissions_v1_response_m_payload_t *usergroup_get_permissions_v1_
     }
     usergroup_get_permissions_v1_response_m_payload_local_var->a_obj_modulegroup = a_obj_modulegroup;
 
+    usergroup_get_permissions_v1_response_m_payload_local_var->_library_owned = 1;
     return usergroup_get_permissions_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) usergroup_get_permissions_v1_response_m_payload_t *usergroup_get_permissions_v1_response_m_payload_create(
+    list_t *a_obj_modulegroup
+    ) {
+    return usergroup_get_permissions_v1_response_m_payload_create_internal (
+        a_obj_modulegroup
+        );
+}
 
 void usergroup_get_permissions_v1_response_m_payload_free(usergroup_get_permissions_v1_response_m_payload_t *usergroup_get_permissions_v1_response_m_payload) {
     if(NULL == usergroup_get_permissions_v1_response_m_payload){
+        return ;
+    }
+    if(usergroup_get_permissions_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroup_get_permissions_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ usergroup_get_permissions_v1_response_m_payload_t *usergroup_get_permissions_v1_
 
     // usergroup_get_permissions_v1_response_m_payload->a_obj_modulegroup
     cJSON *a_obj_modulegroup = cJSON_GetObjectItemCaseSensitive(usergroup_get_permissions_v1_response_m_payloadJSON, "a_objModulegroup");
+    if (cJSON_IsNull(a_obj_modulegroup)) {
+        a_obj_modulegroup = NULL;
+    }
     if (!a_obj_modulegroup) {
         goto end;
     }
@@ -96,7 +111,7 @@ usergroup_get_permissions_v1_response_m_payload_t *usergroup_get_permissions_v1_
     }
 
 
-    usergroup_get_permissions_v1_response_m_payload_local_var = usergroup_get_permissions_v1_response_m_payload_create (
+    usergroup_get_permissions_v1_response_m_payload_local_var = usergroup_get_permissions_v1_response_m_payload_create_internal (
         a_obj_modulegroupList
         );
 

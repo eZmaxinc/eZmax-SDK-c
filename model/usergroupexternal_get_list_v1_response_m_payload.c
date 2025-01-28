@@ -5,7 +5,7 @@
 
 
 
-usergroupexternal_get_list_v1_response_m_payload_t *usergroupexternal_get_list_v1_response_m_payload_create(
+static usergroupexternal_get_list_v1_response_m_payload_t *usergroupexternal_get_list_v1_response_m_payload_create_internal(
     int i_row_returned,
     int i_row_filtered,
     list_t *a_obj_usergroupexternal
@@ -18,12 +18,28 @@ usergroupexternal_get_list_v1_response_m_payload_t *usergroupexternal_get_list_v
     usergroupexternal_get_list_v1_response_m_payload_local_var->i_row_filtered = i_row_filtered;
     usergroupexternal_get_list_v1_response_m_payload_local_var->a_obj_usergroupexternal = a_obj_usergroupexternal;
 
+    usergroupexternal_get_list_v1_response_m_payload_local_var->_library_owned = 1;
     return usergroupexternal_get_list_v1_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) usergroupexternal_get_list_v1_response_m_payload_t *usergroupexternal_get_list_v1_response_m_payload_create(
+    int i_row_returned,
+    int i_row_filtered,
+    list_t *a_obj_usergroupexternal
+    ) {
+    return usergroupexternal_get_list_v1_response_m_payload_create_internal (
+        i_row_returned,
+        i_row_filtered,
+        a_obj_usergroupexternal
+        );
+}
 
 void usergroupexternal_get_list_v1_response_m_payload_free(usergroupexternal_get_list_v1_response_m_payload_t *usergroupexternal_get_list_v1_response_m_payload) {
     if(NULL == usergroupexternal_get_list_v1_response_m_payload){
+        return ;
+    }
+    if(usergroupexternal_get_list_v1_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "usergroupexternal_get_list_v1_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -95,6 +111,9 @@ usergroupexternal_get_list_v1_response_m_payload_t *usergroupexternal_get_list_v
 
     // usergroupexternal_get_list_v1_response_m_payload->i_row_returned
     cJSON *i_row_returned = cJSON_GetObjectItemCaseSensitive(usergroupexternal_get_list_v1_response_m_payloadJSON, "iRowReturned");
+    if (cJSON_IsNull(i_row_returned)) {
+        i_row_returned = NULL;
+    }
     if (!i_row_returned) {
         goto end;
     }
@@ -107,6 +126,9 @@ usergroupexternal_get_list_v1_response_m_payload_t *usergroupexternal_get_list_v
 
     // usergroupexternal_get_list_v1_response_m_payload->i_row_filtered
     cJSON *i_row_filtered = cJSON_GetObjectItemCaseSensitive(usergroupexternal_get_list_v1_response_m_payloadJSON, "iRowFiltered");
+    if (cJSON_IsNull(i_row_filtered)) {
+        i_row_filtered = NULL;
+    }
     if (!i_row_filtered) {
         goto end;
     }
@@ -119,6 +141,9 @@ usergroupexternal_get_list_v1_response_m_payload_t *usergroupexternal_get_list_v
 
     // usergroupexternal_get_list_v1_response_m_payload->a_obj_usergroupexternal
     cJSON *a_obj_usergroupexternal = cJSON_GetObjectItemCaseSensitive(usergroupexternal_get_list_v1_response_m_payloadJSON, "a_objUsergroupexternal");
+    if (cJSON_IsNull(a_obj_usergroupexternal)) {
+        a_obj_usergroupexternal = NULL;
+    }
     if (!a_obj_usergroupexternal) {
         goto end;
     }
@@ -142,7 +167,7 @@ usergroupexternal_get_list_v1_response_m_payload_t *usergroupexternal_get_list_v
     }
 
 
-    usergroupexternal_get_list_v1_response_m_payload_local_var = usergroupexternal_get_list_v1_response_m_payload_create (
+    usergroupexternal_get_list_v1_response_m_payload_local_var = usergroupexternal_get_list_v1_response_m_payload_create_internal (
         i_row_returned->valuedouble,
         i_row_filtered->valuedouble,
         a_obj_usergroupexternalList

@@ -4,28 +4,11 @@
 #include "phone_response.h"
 
 
-char* phone_response_e_phone_type_ToString(ezmax_api_definition__full_phone_response__e e_phone_type) {
-    char* e_phone_typeArray[] =  { "NULL", "Local", "International" };
-    return e_phone_typeArray[e_phone_type];
-}
 
-ezmax_api_definition__full_phone_response__e phone_response_e_phone_type_FromString(char* e_phone_type){
-    int stringToReturn = 0;
-    char *e_phone_typeArray[] =  { "NULL", "Local", "International" };
-    size_t sizeofArray = sizeof(e_phone_typeArray) / sizeof(e_phone_typeArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_phone_type, e_phone_typeArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-phone_response_t *phone_response_create(
+static phone_response_t *phone_response_create_internal(
     int pki_phone_id,
     int fki_phonetype_id,
-    field_e_phone_type_t *e_phone_type,
+    ezmax_api_definition__full_field_e_phone_type__e e_phone_type,
     char *s_phone_e164,
     char *s_phone_extension
     ) {
@@ -39,19 +22,35 @@ phone_response_t *phone_response_create(
     phone_response_local_var->s_phone_e164 = s_phone_e164;
     phone_response_local_var->s_phone_extension = s_phone_extension;
 
+    phone_response_local_var->_library_owned = 1;
     return phone_response_local_var;
 }
 
+__attribute__((deprecated)) phone_response_t *phone_response_create(
+    int pki_phone_id,
+    int fki_phonetype_id,
+    ezmax_api_definition__full_field_e_phone_type__e e_phone_type,
+    char *s_phone_e164,
+    char *s_phone_extension
+    ) {
+    return phone_response_create_internal (
+        pki_phone_id,
+        fki_phonetype_id,
+        e_phone_type,
+        s_phone_e164,
+        s_phone_extension
+        );
+}
 
 void phone_response_free(phone_response_t *phone_response) {
     if(NULL == phone_response){
         return ;
     }
-    listEntry_t *listEntry;
-    if (phone_response->e_phone_type) {
-        field_e_phone_type_free(phone_response->e_phone_type);
-        phone_response->e_phone_type = NULL;
+    if(phone_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "phone_response_free");
+        return ;
     }
+    listEntry_t *listEntry;
     if (phone_response->s_phone_e164) {
         free(phone_response->s_phone_e164);
         phone_response->s_phone_e164 = NULL;
@@ -85,7 +84,7 @@ cJSON *phone_response_convertToJSON(phone_response_t *phone_response) {
 
 
     // phone_response->e_phone_type
-    if(phone_response->e_phone_type != ezmax_api_definition__full_phone_response__NULL) {
+    if(phone_response->e_phone_type != ezmax_api_definition__full_field_e_phone_type__NULL) {
     cJSON *e_phone_type_local_JSON = field_e_phone_type_convertToJSON(phone_response->e_phone_type);
     if(e_phone_type_local_JSON == NULL) {
         goto fail; // custom
@@ -125,10 +124,13 @@ phone_response_t *phone_response_parseFromJSON(cJSON *phone_responseJSON){
     phone_response_t *phone_response_local_var = NULL;
 
     // define the local variable for phone_response->e_phone_type
-    field_e_phone_type_t *e_phone_type_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_phone_type__e e_phone_type_local_nonprim = 0;
 
     // phone_response->pki_phone_id
     cJSON *pki_phone_id = cJSON_GetObjectItemCaseSensitive(phone_responseJSON, "pkiPhoneID");
+    if (cJSON_IsNull(pki_phone_id)) {
+        pki_phone_id = NULL;
+    }
     if (!pki_phone_id) {
         goto end;
     }
@@ -141,6 +143,9 @@ phone_response_t *phone_response_parseFromJSON(cJSON *phone_responseJSON){
 
     // phone_response->fki_phonetype_id
     cJSON *fki_phonetype_id = cJSON_GetObjectItemCaseSensitive(phone_responseJSON, "fkiPhonetypeID");
+    if (cJSON_IsNull(fki_phonetype_id)) {
+        fki_phonetype_id = NULL;
+    }
     if (!fki_phonetype_id) {
         goto end;
     }
@@ -153,12 +158,18 @@ phone_response_t *phone_response_parseFromJSON(cJSON *phone_responseJSON){
 
     // phone_response->e_phone_type
     cJSON *e_phone_type = cJSON_GetObjectItemCaseSensitive(phone_responseJSON, "ePhoneType");
+    if (cJSON_IsNull(e_phone_type)) {
+        e_phone_type = NULL;
+    }
     if (e_phone_type) { 
     e_phone_type_local_nonprim = field_e_phone_type_parseFromJSON(e_phone_type); //custom
     }
 
     // phone_response->s_phone_e164
     cJSON *s_phone_e164 = cJSON_GetObjectItemCaseSensitive(phone_responseJSON, "sPhoneE164");
+    if (cJSON_IsNull(s_phone_e164)) {
+        s_phone_e164 = NULL;
+    }
     if (s_phone_e164) { 
     if(!cJSON_IsString(s_phone_e164) && !cJSON_IsNull(s_phone_e164))
     {
@@ -168,6 +179,9 @@ phone_response_t *phone_response_parseFromJSON(cJSON *phone_responseJSON){
 
     // phone_response->s_phone_extension
     cJSON *s_phone_extension = cJSON_GetObjectItemCaseSensitive(phone_responseJSON, "sPhoneExtension");
+    if (cJSON_IsNull(s_phone_extension)) {
+        s_phone_extension = NULL;
+    }
     if (s_phone_extension) { 
     if(!cJSON_IsString(s_phone_extension) && !cJSON_IsNull(s_phone_extension))
     {
@@ -176,10 +190,10 @@ phone_response_t *phone_response_parseFromJSON(cJSON *phone_responseJSON){
     }
 
 
-    phone_response_local_var = phone_response_create (
+    phone_response_local_var = phone_response_create_internal (
         pki_phone_id->valuedouble,
         fki_phonetype_id->valuedouble,
-        e_phone_type ? e_phone_type_local_nonprim : NULL,
+        e_phone_type ? e_phone_type_local_nonprim : 0,
         s_phone_e164 && !cJSON_IsNull(s_phone_e164) ? strdup(s_phone_e164->valuestring) : NULL,
         s_phone_extension && !cJSON_IsNull(s_phone_extension) ? strdup(s_phone_extension->valuestring) : NULL
         );
@@ -187,8 +201,7 @@ phone_response_t *phone_response_parseFromJSON(cJSON *phone_responseJSON){
     return phone_response_local_var;
 end:
     if (e_phone_type_local_nonprim) {
-        field_e_phone_type_free(e_phone_type_local_nonprim);
-        e_phone_type_local_nonprim = NULL;
+        e_phone_type_local_nonprim = 0;
     }
     return NULL;
 

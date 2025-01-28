@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_notificationpreference_status__e field_e_noti
     return 0;
 }
 
-cJSON *field_e_notificationpreference_status_field_e_notificationpreference_status_convertToJSON(ezmax_api_definition__full_field_e_notificationpreference_status__e field_e_notificationpreference_status) {
+cJSON *field_e_notificationpreference_status_convertToJSON(ezmax_api_definition__full_field_e_notificationpreference_status__e field_e_notificationpreference_status) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_notificationpreference_status", field_e_notificationpreference_status_field_e_notificationpreference_status_ToString(field_e_notificationpreference_status)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_notificationpreference_status__e field_e_notificationpreference_status_field_e_notificationpreference_status_parseFromJSON(cJSON *field_e_notificationpreference_statusJSON) {
-    ezmax_api_definition__full_field_e_notificationpreference_status__e *field_e_notificationpreference_status = NULL;
-    ezmax_api_definition__full_field_e_notificationpreference_status__e field_e_notificationpreference_statusVariable;
-    cJSON *field_e_notificationpreference_statusVar = cJSON_GetObjectItemCaseSensitive(field_e_notificationpreference_statusJSON, "field_e_notificationpreference_status");
-    if(!cJSON_IsString(field_e_notificationpreference_statusVar) || (field_e_notificationpreference_statusVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_notificationpreference_status__e field_e_notificationpreference_status_parseFromJSON(cJSON *field_e_notificationpreference_statusJSON) {
+    if(!cJSON_IsString(field_e_notificationpreference_statusJSON) || (field_e_notificationpreference_statusJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_notificationpreference_statusVariable = field_e_notificationpreference_status_field_e_notificationpreference_status_FromString(field_e_notificationpreference_statusVar->valuestring);
-    return field_e_notificationpreference_statusVariable;
-end:
-    return 0;
+    return field_e_notificationpreference_status_field_e_notificationpreference_status_FromString(field_e_notificationpreference_statusJSON->valuestring);
 }

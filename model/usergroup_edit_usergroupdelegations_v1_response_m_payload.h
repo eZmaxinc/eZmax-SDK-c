@@ -21,9 +21,10 @@ typedef struct usergroup_edit_usergroupdelegations_v1_response_m_payload_t userg
 typedef struct usergroup_edit_usergroupdelegations_v1_response_m_payload_t {
     list_t *a_pki_usergroupdelegation_id; //primitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } usergroup_edit_usergroupdelegations_v1_response_m_payload_t;
 
-usergroup_edit_usergroupdelegations_v1_response_m_payload_t *usergroup_edit_usergroupdelegations_v1_response_m_payload_create(
+__attribute__((deprecated)) usergroup_edit_usergroupdelegations_v1_response_m_payload_t *usergroup_edit_usergroupdelegations_v1_response_m_payload_create(
     list_t *a_pki_usergroupdelegation_id
 );
 

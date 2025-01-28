@@ -23,9 +23,10 @@ typedef struct company_autocomplete_element_response_t {
     char *s_company_name_x; // string
     int b_company_isactive; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } company_autocomplete_element_response_t;
 
-company_autocomplete_element_response_t *company_autocomplete_element_response_create(
+__attribute__((deprecated)) company_autocomplete_element_response_t *company_autocomplete_element_response_create(
     int pki_company_id,
     char *s_company_name_x,
     int b_company_isactive

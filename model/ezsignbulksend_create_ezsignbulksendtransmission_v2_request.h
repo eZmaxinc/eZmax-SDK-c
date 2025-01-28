@@ -28,9 +28,10 @@ typedef struct ezsignbulksend_create_ezsignbulksendtransmission_v2_request_t {
     char *t_extra_message; // string
     char *s_csv_base64; //ByteArray
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignbulksend_create_ezsignbulksendtransmission_v2_request_t;
 
-ezsignbulksend_create_ezsignbulksendtransmission_v2_request_t *ezsignbulksend_create_ezsignbulksendtransmission_v2_request_create(
+__attribute__((deprecated)) ezsignbulksend_create_ezsignbulksendtransmission_v2_request_t *ezsignbulksend_create_ezsignbulksendtransmission_v2_request_create(
     int fki_userlogintype_id,
     int fki_ezsigntsarequirement_id,
     char *s_ezsignbulksendtransmission_description,

@@ -27,9 +27,10 @@ typedef struct ezsigntemplatedocument_response_compound_t {
     int i_ezsigntemplatedocument_formfieldtotal; //numeric
     int b_ezsigntemplatedocument_hassignedsignatures; //boolean
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatedocument_response_compound_t;
 
-ezsigntemplatedocument_response_compound_t *ezsigntemplatedocument_response_compound_create(
+__attribute__((deprecated)) ezsigntemplatedocument_response_compound_t *ezsigntemplatedocument_response_compound_create(
     int pki_ezsigntemplatedocument_id,
     int fki_ezsigntemplate_id,
     char *s_ezsigntemplatedocument_name,

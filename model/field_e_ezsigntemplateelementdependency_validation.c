@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsigntemplateelementdependency_validation__e
     return 0;
 }
 
-cJSON *field_e_ezsigntemplateelementdependency_validation_field_e_ezsigntemplateelementdependency_validation_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplateelementdependency_validation__e field_e_ezsigntemplateelementdependency_validation) {
+cJSON *field_e_ezsigntemplateelementdependency_validation_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplateelementdependency_validation__e field_e_ezsigntemplateelementdependency_validation) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsigntemplateelementdependency_validation", field_e_ezsigntemplateelementdependency_validation_field_e_ezsigntemplateelementdependency_validation_ToString(field_e_ezsigntemplateelementdependency_validation)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsigntemplateelementdependency_validation__e field_e_ezsigntemplateelementdependency_validation_field_e_ezsigntemplateelementdependency_validation_parseFromJSON(cJSON *field_e_ezsigntemplateelementdependency_validationJSON) {
-    ezmax_api_definition__full_field_e_ezsigntemplateelementdependency_validation__e *field_e_ezsigntemplateelementdependency_validation = NULL;
-    ezmax_api_definition__full_field_e_ezsigntemplateelementdependency_validation__e field_e_ezsigntemplateelementdependency_validationVariable;
-    cJSON *field_e_ezsigntemplateelementdependency_validationVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsigntemplateelementdependency_validationJSON, "field_e_ezsigntemplateelementdependency_validation");
-    if(!cJSON_IsString(field_e_ezsigntemplateelementdependency_validationVar) || (field_e_ezsigntemplateelementdependency_validationVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsigntemplateelementdependency_validation__e field_e_ezsigntemplateelementdependency_validation_parseFromJSON(cJSON *field_e_ezsigntemplateelementdependency_validationJSON) {
+    if(!cJSON_IsString(field_e_ezsigntemplateelementdependency_validationJSON) || (field_e_ezsigntemplateelementdependency_validationJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsigntemplateelementdependency_validationVariable = field_e_ezsigntemplateelementdependency_validation_field_e_ezsigntemplateelementdependency_validation_FromString(field_e_ezsigntemplateelementdependency_validationVar->valuestring);
-    return field_e_ezsigntemplateelementdependency_validationVariable;
-end:
-    return 0;
+    return field_e_ezsigntemplateelementdependency_validation_field_e_ezsigntemplateelementdependency_validation_FromString(field_e_ezsigntemplateelementdependency_validationJSON->valuestring);
 }

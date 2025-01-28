@@ -22,9 +22,10 @@ typedef struct ezsignsignergroup_create_object_v1_request_t ezsignsignergroup_cr
 typedef struct ezsignsignergroup_create_object_v1_request_t {
     list_t *a_obj_ezsignsignergroup; //nonprimitive container
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsignergroup_create_object_v1_request_t;
 
-ezsignsignergroup_create_object_v1_request_t *ezsignsignergroup_create_object_v1_request_create(
+__attribute__((deprecated)) ezsignsignergroup_create_object_v1_request_t *ezsignsignergroup_create_object_v1_request_create(
     list_t *a_obj_ezsignsignergroup
 );
 

@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_colleague_ezsign__e field_e_colleague_ezsign_
     return 0;
 }
 
-cJSON *field_e_colleague_ezsign_field_e_colleague_ezsign_convertToJSON(ezmax_api_definition__full_field_e_colleague_ezsign__e field_e_colleague_ezsign) {
+cJSON *field_e_colleague_ezsign_convertToJSON(ezmax_api_definition__full_field_e_colleague_ezsign__e field_e_colleague_ezsign) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_colleague_ezsign", field_e_colleague_ezsign_field_e_colleague_ezsign_ToString(field_e_colleague_ezsign)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_colleague_ezsign__e field_e_colleague_ezsign_field_e_colleague_ezsign_parseFromJSON(cJSON *field_e_colleague_ezsignJSON) {
-    ezmax_api_definition__full_field_e_colleague_ezsign__e *field_e_colleague_ezsign = NULL;
-    ezmax_api_definition__full_field_e_colleague_ezsign__e field_e_colleague_ezsignVariable;
-    cJSON *field_e_colleague_ezsignVar = cJSON_GetObjectItemCaseSensitive(field_e_colleague_ezsignJSON, "field_e_colleague_ezsign");
-    if(!cJSON_IsString(field_e_colleague_ezsignVar) || (field_e_colleague_ezsignVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_colleague_ezsign__e field_e_colleague_ezsign_parseFromJSON(cJSON *field_e_colleague_ezsignJSON) {
+    if(!cJSON_IsString(field_e_colleague_ezsignJSON) || (field_e_colleague_ezsignJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_colleague_ezsignVariable = field_e_colleague_ezsign_field_e_colleague_ezsign_FromString(field_e_colleague_ezsignVar->valuestring);
-    return field_e_colleague_ezsignVariable;
-end:
-    return 0;
+    return field_e_colleague_ezsign_field_e_colleague_ezsign_FromString(field_e_colleague_ezsignJSON->valuestring);
 }

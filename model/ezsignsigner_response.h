@@ -25,9 +25,10 @@ typedef struct ezsignsigner_response_t {
     int fki_userlogintype_id; //numeric
     char *s_userlogintype_description_x; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsigner_response_t;
 
-ezsignsigner_response_t *ezsignsigner_response_create(
+__attribute__((deprecated)) ezsignsigner_response_t *ezsignsigner_response_create(
     int pki_ezsignsigner_id,
     int fki_taxassignment_id,
     int fki_secretquestion_id,

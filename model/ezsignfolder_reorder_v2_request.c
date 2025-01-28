@@ -4,26 +4,9 @@
 #include "ezsignfolder_reorder_v2_request.h"
 
 
-char* ezsignfolder_reorder_v2_request_e_ezsignfolder_documentdependency_ToString(ezmax_api_definition__full_ezsignfolder_reorder_v2_request__e e_ezsignfolder_documentdependency) {
-    char* e_ezsignfolder_documentdependencyArray[] =  { "NULL", "All", "EzsignsignerOnly" };
-    return e_ezsignfolder_documentdependencyArray[e_ezsignfolder_documentdependency];
-}
 
-ezmax_api_definition__full_ezsignfolder_reorder_v2_request__e ezsignfolder_reorder_v2_request_e_ezsignfolder_documentdependency_FromString(char* e_ezsignfolder_documentdependency){
-    int stringToReturn = 0;
-    char *e_ezsignfolder_documentdependencyArray[] =  { "NULL", "All", "EzsignsignerOnly" };
-    size_t sizeofArray = sizeof(e_ezsignfolder_documentdependencyArray) / sizeof(e_ezsignfolder_documentdependencyArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(e_ezsignfolder_documentdependency, e_ezsignfolder_documentdependencyArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-ezsignfolder_reorder_v2_request_t *ezsignfolder_reorder_v2_request_create(
-    field_e_ezsignfolder_documentdependency_t *e_ezsignfolder_documentdependency,
+static ezsignfolder_reorder_v2_request_t *ezsignfolder_reorder_v2_request_create_internal(
+    ezmax_api_definition__full_field_e_ezsignfolder_documentdependency__e e_ezsignfolder_documentdependency,
     list_t *a_obj_ezsigndocument
     ) {
     ezsignfolder_reorder_v2_request_t *ezsignfolder_reorder_v2_request_local_var = malloc(sizeof(ezsignfolder_reorder_v2_request_t));
@@ -33,19 +16,29 @@ ezsignfolder_reorder_v2_request_t *ezsignfolder_reorder_v2_request_create(
     ezsignfolder_reorder_v2_request_local_var->e_ezsignfolder_documentdependency = e_ezsignfolder_documentdependency;
     ezsignfolder_reorder_v2_request_local_var->a_obj_ezsigndocument = a_obj_ezsigndocument;
 
+    ezsignfolder_reorder_v2_request_local_var->_library_owned = 1;
     return ezsignfolder_reorder_v2_request_local_var;
 }
 
+__attribute__((deprecated)) ezsignfolder_reorder_v2_request_t *ezsignfolder_reorder_v2_request_create(
+    ezmax_api_definition__full_field_e_ezsignfolder_documentdependency__e e_ezsignfolder_documentdependency,
+    list_t *a_obj_ezsigndocument
+    ) {
+    return ezsignfolder_reorder_v2_request_create_internal (
+        e_ezsignfolder_documentdependency,
+        a_obj_ezsigndocument
+        );
+}
 
 void ezsignfolder_reorder_v2_request_free(ezsignfolder_reorder_v2_request_t *ezsignfolder_reorder_v2_request) {
     if(NULL == ezsignfolder_reorder_v2_request){
         return ;
     }
-    listEntry_t *listEntry;
-    if (ezsignfolder_reorder_v2_request->e_ezsignfolder_documentdependency) {
-        field_e_ezsignfolder_documentdependency_free(ezsignfolder_reorder_v2_request->e_ezsignfolder_documentdependency);
-        ezsignfolder_reorder_v2_request->e_ezsignfolder_documentdependency = NULL;
+    if(ezsignfolder_reorder_v2_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignfolder_reorder_v2_request_free");
+        return ;
     }
+    listEntry_t *listEntry;
     if (ezsignfolder_reorder_v2_request->a_obj_ezsigndocument) {
         list_ForEach(listEntry, ezsignfolder_reorder_v2_request->a_obj_ezsigndocument) {
             custom_ezsigndocument_request_free(listEntry->data);
@@ -60,7 +53,7 @@ cJSON *ezsignfolder_reorder_v2_request_convertToJSON(ezsignfolder_reorder_v2_req
     cJSON *item = cJSON_CreateObject();
 
     // ezsignfolder_reorder_v2_request->e_ezsignfolder_documentdependency
-    if(ezsignfolder_reorder_v2_request->e_ezsignfolder_documentdependency != ezmax_api_definition__full_ezsignfolder_reorder_v2_request__NULL) {
+    if(ezsignfolder_reorder_v2_request->e_ezsignfolder_documentdependency != ezmax_api_definition__full_field_e_ezsignfolder_documentdependency__NULL) {
     cJSON *e_ezsignfolder_documentdependency_local_JSON = field_e_ezsignfolder_documentdependency_convertToJSON(ezsignfolder_reorder_v2_request->e_ezsignfolder_documentdependency);
     if(e_ezsignfolder_documentdependency_local_JSON == NULL) {
         goto fail; // custom
@@ -105,19 +98,25 @@ ezsignfolder_reorder_v2_request_t *ezsignfolder_reorder_v2_request_parseFromJSON
     ezsignfolder_reorder_v2_request_t *ezsignfolder_reorder_v2_request_local_var = NULL;
 
     // define the local variable for ezsignfolder_reorder_v2_request->e_ezsignfolder_documentdependency
-    field_e_ezsignfolder_documentdependency_t *e_ezsignfolder_documentdependency_local_nonprim = NULL;
+    ezmax_api_definition__full_field_e_ezsignfolder_documentdependency__e e_ezsignfolder_documentdependency_local_nonprim = 0;
 
     // define the local list for ezsignfolder_reorder_v2_request->a_obj_ezsigndocument
     list_t *a_obj_ezsigndocumentList = NULL;
 
     // ezsignfolder_reorder_v2_request->e_ezsignfolder_documentdependency
     cJSON *e_ezsignfolder_documentdependency = cJSON_GetObjectItemCaseSensitive(ezsignfolder_reorder_v2_requestJSON, "eEzsignfolderDocumentdependency");
+    if (cJSON_IsNull(e_ezsignfolder_documentdependency)) {
+        e_ezsignfolder_documentdependency = NULL;
+    }
     if (e_ezsignfolder_documentdependency) { 
     e_ezsignfolder_documentdependency_local_nonprim = field_e_ezsignfolder_documentdependency_parseFromJSON(e_ezsignfolder_documentdependency); //custom
     }
 
     // ezsignfolder_reorder_v2_request->a_obj_ezsigndocument
     cJSON *a_obj_ezsigndocument = cJSON_GetObjectItemCaseSensitive(ezsignfolder_reorder_v2_requestJSON, "a_objEzsigndocument");
+    if (cJSON_IsNull(a_obj_ezsigndocument)) {
+        a_obj_ezsigndocument = NULL;
+    }
     if (!a_obj_ezsigndocument) {
         goto end;
     }
@@ -141,16 +140,15 @@ ezsignfolder_reorder_v2_request_t *ezsignfolder_reorder_v2_request_parseFromJSON
     }
 
 
-    ezsignfolder_reorder_v2_request_local_var = ezsignfolder_reorder_v2_request_create (
-        e_ezsignfolder_documentdependency ? e_ezsignfolder_documentdependency_local_nonprim : NULL,
+    ezsignfolder_reorder_v2_request_local_var = ezsignfolder_reorder_v2_request_create_internal (
+        e_ezsignfolder_documentdependency ? e_ezsignfolder_documentdependency_local_nonprim : 0,
         a_obj_ezsigndocumentList
         );
 
     return ezsignfolder_reorder_v2_request_local_var;
 end:
     if (e_ezsignfolder_documentdependency_local_nonprim) {
-        field_e_ezsignfolder_documentdependency_free(e_ezsignfolder_documentdependency_local_nonprim);
-        e_ezsignfolder_documentdependency_local_nonprim = NULL;
+        e_ezsignfolder_documentdependency_local_nonprim = 0;
     }
     if (a_obj_ezsigndocumentList) {
         listEntry_t *listEntry = NULL;

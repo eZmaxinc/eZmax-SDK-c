@@ -5,7 +5,7 @@
 
 
 
-franchisereferalincome_create_object_v2_response_m_payload_t *franchisereferalincome_create_object_v2_response_m_payload_create(
+static franchisereferalincome_create_object_v2_response_m_payload_t *franchisereferalincome_create_object_v2_response_m_payload_create_internal(
     list_t *a_pki_franchisereferalincome_id
     ) {
     franchisereferalincome_create_object_v2_response_m_payload_t *franchisereferalincome_create_object_v2_response_m_payload_local_var = malloc(sizeof(franchisereferalincome_create_object_v2_response_m_payload_t));
@@ -14,12 +14,24 @@ franchisereferalincome_create_object_v2_response_m_payload_t *franchisereferalin
     }
     franchisereferalincome_create_object_v2_response_m_payload_local_var->a_pki_franchisereferalincome_id = a_pki_franchisereferalincome_id;
 
+    franchisereferalincome_create_object_v2_response_m_payload_local_var->_library_owned = 1;
     return franchisereferalincome_create_object_v2_response_m_payload_local_var;
 }
 
+__attribute__((deprecated)) franchisereferalincome_create_object_v2_response_m_payload_t *franchisereferalincome_create_object_v2_response_m_payload_create(
+    list_t *a_pki_franchisereferalincome_id
+    ) {
+    return franchisereferalincome_create_object_v2_response_m_payload_create_internal (
+        a_pki_franchisereferalincome_id
+        );
+}
 
 void franchisereferalincome_create_object_v2_response_m_payload_free(franchisereferalincome_create_object_v2_response_m_payload_t *franchisereferalincome_create_object_v2_response_m_payload) {
     if(NULL == franchisereferalincome_create_object_v2_response_m_payload){
+        return ;
+    }
+    if(franchisereferalincome_create_object_v2_response_m_payload->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "franchisereferalincome_create_object_v2_response_m_payload_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -70,6 +82,9 @@ franchisereferalincome_create_object_v2_response_m_payload_t *franchisereferalin
 
     // franchisereferalincome_create_object_v2_response_m_payload->a_pki_franchisereferalincome_id
     cJSON *a_pki_franchisereferalincome_id = cJSON_GetObjectItemCaseSensitive(franchisereferalincome_create_object_v2_response_m_payloadJSON, "a_pkiFranchisereferalincomeID");
+    if (cJSON_IsNull(a_pki_franchisereferalincome_id)) {
+        a_pki_franchisereferalincome_id = NULL;
+    }
     if (!a_pki_franchisereferalincome_id) {
         goto end;
     }
@@ -87,7 +102,7 @@ franchisereferalincome_create_object_v2_response_m_payload_t *franchisereferalin
         {
             goto end;
         }
-        double *a_pki_franchisereferalincome_id_local_value = (double *)calloc(1, sizeof(double));
+        double *a_pki_franchisereferalincome_id_local_value = calloc(1, sizeof(double));
         if(!a_pki_franchisereferalincome_id_local_value)
         {
             goto end;
@@ -97,7 +112,7 @@ franchisereferalincome_create_object_v2_response_m_payload_t *franchisereferalin
     }
 
 
-    franchisereferalincome_create_object_v2_response_m_payload_local_var = franchisereferalincome_create_object_v2_response_m_payload_create (
+    franchisereferalincome_create_object_v2_response_m_payload_local_var = franchisereferalincome_create_object_v2_response_m_payload_create_internal (
         a_pki_franchisereferalincome_idList
         );
 

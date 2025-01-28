@@ -37,9 +37,10 @@ typedef struct custom_ezsignfoldertype_response_t {
     int i_ezsignfoldertype_fontsizeannotation; //numeric
     int i_ezsignfoldertype_fontsizeformfield; //numeric
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } custom_ezsignfoldertype_response_t;
 
-custom_ezsignfoldertype_response_t *custom_ezsignfoldertype_response_create(
+__attribute__((deprecated)) custom_ezsignfoldertype_response_t *custom_ezsignfoldertype_response_create(
     int pki_ezsignfoldertype_id,
     int fki_font_id_annotation,
     int fki_font_id_formfield,

@@ -17,29 +17,22 @@ typedef struct phone_response_t phone_response_t;
 
 #include "field_e_phone_type.h"
 
-// Enum  for phone_response
-
-typedef enum  { ezmax_api_definition__full_phone_response__NULL = 0, ezmax_api_definition__full_phone_response__Local, ezmax_api_definition__full_phone_response__International } ezmax_api_definition__full_phone_response__e;
-
-char* phone_response_e_phone_type_ToString(ezmax_api_definition__full_phone_response__e e_phone_type);
-
-ezmax_api_definition__full_phone_response__e phone_response_e_phone_type_FromString(char* e_phone_type);
-
 
 
 typedef struct phone_response_t {
     int pki_phone_id; //numeric
     int fki_phonetype_id; //numeric
-    field_e_phone_type_t *e_phone_type; // custom
+    ezmax_api_definition__full_field_e_phone_type__e e_phone_type; //referenced enum
     char *s_phone_e164; // string
     char *s_phone_extension; // string
 
+    int _library_owned; // Is the library responsible for freeing this object?
 } phone_response_t;
 
-phone_response_t *phone_response_create(
+__attribute__((deprecated)) phone_response_t *phone_response_create(
     int pki_phone_id,
     int fki_phonetype_id,
-    field_e_phone_type_t *e_phone_type,
+    ezmax_api_definition__full_field_e_phone_type__e e_phone_type,
     char *s_phone_e164,
     char *s_phone_extension
 );

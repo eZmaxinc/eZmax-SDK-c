@@ -22,7 +22,7 @@ ezmax_api_definition__full_field_e_ezsigntemplate_recognition__e field_e_ezsignt
     return 0;
 }
 
-cJSON *field_e_ezsigntemplate_recognition_field_e_ezsigntemplate_recognition_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplate_recognition__e field_e_ezsigntemplate_recognition) {
+cJSON *field_e_ezsigntemplate_recognition_convertToJSON(ezmax_api_definition__full_field_e_ezsigntemplate_recognition__e field_e_ezsigntemplate_recognition) {
     cJSON *item = cJSON_CreateObject();
     if(cJSON_AddStringToObject(item, "field_e_ezsigntemplate_recognition", field_e_ezsigntemplate_recognition_field_e_ezsigntemplate_recognition_ToString(field_e_ezsigntemplate_recognition)) == NULL) {
         goto fail;
@@ -33,15 +33,9 @@ fail:
     return NULL;
 }
 
-ezmax_api_definition__full_field_e_ezsigntemplate_recognition__e field_e_ezsigntemplate_recognition_field_e_ezsigntemplate_recognition_parseFromJSON(cJSON *field_e_ezsigntemplate_recognitionJSON) {
-    ezmax_api_definition__full_field_e_ezsigntemplate_recognition__e *field_e_ezsigntemplate_recognition = NULL;
-    ezmax_api_definition__full_field_e_ezsigntemplate_recognition__e field_e_ezsigntemplate_recognitionVariable;
-    cJSON *field_e_ezsigntemplate_recognitionVar = cJSON_GetObjectItemCaseSensitive(field_e_ezsigntemplate_recognitionJSON, "field_e_ezsigntemplate_recognition");
-    if(!cJSON_IsString(field_e_ezsigntemplate_recognitionVar) || (field_e_ezsigntemplate_recognitionVar->valuestring == NULL)){
-        goto end;
+ezmax_api_definition__full_field_e_ezsigntemplate_recognition__e field_e_ezsigntemplate_recognition_parseFromJSON(cJSON *field_e_ezsigntemplate_recognitionJSON) {
+    if(!cJSON_IsString(field_e_ezsigntemplate_recognitionJSON) || (field_e_ezsigntemplate_recognitionJSON->valuestring == NULL)) {
+        return 0;
     }
-    field_e_ezsigntemplate_recognitionVariable = field_e_ezsigntemplate_recognition_field_e_ezsigntemplate_recognition_FromString(field_e_ezsigntemplate_recognitionVar->valuestring);
-    return field_e_ezsigntemplate_recognitionVariable;
-end:
-    return 0;
+    return field_e_ezsigntemplate_recognition_field_e_ezsigntemplate_recognition_FromString(field_e_ezsigntemplate_recognitionJSON->valuestring);
 }

@@ -5,7 +5,7 @@
 
 
 
-signature_create_object_v1_request_t *signature_create_object_v1_request_create(
+static signature_create_object_v1_request_t *signature_create_object_v1_request_create_internal(
     list_t *a_obj_signature
     ) {
     signature_create_object_v1_request_t *signature_create_object_v1_request_local_var = malloc(sizeof(signature_create_object_v1_request_t));
@@ -14,12 +14,24 @@ signature_create_object_v1_request_t *signature_create_object_v1_request_create(
     }
     signature_create_object_v1_request_local_var->a_obj_signature = a_obj_signature;
 
+    signature_create_object_v1_request_local_var->_library_owned = 1;
     return signature_create_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) signature_create_object_v1_request_t *signature_create_object_v1_request_create(
+    list_t *a_obj_signature
+    ) {
+    return signature_create_object_v1_request_create_internal (
+        a_obj_signature
+        );
+}
 
 void signature_create_object_v1_request_free(signature_create_object_v1_request_t *signature_create_object_v1_request) {
     if(NULL == signature_create_object_v1_request){
+        return ;
+    }
+    if(signature_create_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "signature_create_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -73,6 +85,9 @@ signature_create_object_v1_request_t *signature_create_object_v1_request_parseFr
 
     // signature_create_object_v1_request->a_obj_signature
     cJSON *a_obj_signature = cJSON_GetObjectItemCaseSensitive(signature_create_object_v1_requestJSON, "a_objSignature");
+    if (cJSON_IsNull(a_obj_signature)) {
+        a_obj_signature = NULL;
+    }
     if (!a_obj_signature) {
         goto end;
     }
@@ -96,7 +111,7 @@ signature_create_object_v1_request_t *signature_create_object_v1_request_parseFr
     }
 
 
-    signature_create_object_v1_request_local_var = signature_create_object_v1_request_create (
+    signature_create_object_v1_request_local_var = signature_create_object_v1_request_create_internal (
         a_obj_signatureList
         );
 

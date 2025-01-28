@@ -5,7 +5,7 @@
 
 
 
-ezsignuser_edit_object_v1_request_t *ezsignuser_edit_object_v1_request_create(
+static ezsignuser_edit_object_v1_request_t *ezsignuser_edit_object_v1_request_create_internal(
     ezsignuser_request_compound_t *obj_ezsignuser
     ) {
     ezsignuser_edit_object_v1_request_t *ezsignuser_edit_object_v1_request_local_var = malloc(sizeof(ezsignuser_edit_object_v1_request_t));
@@ -14,12 +14,24 @@ ezsignuser_edit_object_v1_request_t *ezsignuser_edit_object_v1_request_create(
     }
     ezsignuser_edit_object_v1_request_local_var->obj_ezsignuser = obj_ezsignuser;
 
+    ezsignuser_edit_object_v1_request_local_var->_library_owned = 1;
     return ezsignuser_edit_object_v1_request_local_var;
 }
 
+__attribute__((deprecated)) ezsignuser_edit_object_v1_request_t *ezsignuser_edit_object_v1_request_create(
+    ezsignuser_request_compound_t *obj_ezsignuser
+    ) {
+    return ezsignuser_edit_object_v1_request_create_internal (
+        obj_ezsignuser
+        );
+}
 
 void ezsignuser_edit_object_v1_request_free(ezsignuser_edit_object_v1_request_t *ezsignuser_edit_object_v1_request) {
     if(NULL == ezsignuser_edit_object_v1_request){
+        return ;
+    }
+    if(ezsignuser_edit_object_v1_request->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignuser_edit_object_v1_request_free");
         return ;
     }
     listEntry_t *listEntry;
@@ -63,6 +75,9 @@ ezsignuser_edit_object_v1_request_t *ezsignuser_edit_object_v1_request_parseFrom
 
     // ezsignuser_edit_object_v1_request->obj_ezsignuser
     cJSON *obj_ezsignuser = cJSON_GetObjectItemCaseSensitive(ezsignuser_edit_object_v1_requestJSON, "objEzsignuser");
+    if (cJSON_IsNull(obj_ezsignuser)) {
+        obj_ezsignuser = NULL;
+    }
     if (!obj_ezsignuser) {
         goto end;
     }
@@ -71,7 +86,7 @@ ezsignuser_edit_object_v1_request_t *ezsignuser_edit_object_v1_request_parseFrom
     obj_ezsignuser_local_nonprim = ezsignuser_request_compound_parseFromJSON(obj_ezsignuser); //nonprimitive
 
 
-    ezsignuser_edit_object_v1_request_local_var = ezsignuser_edit_object_v1_request_create (
+    ezsignuser_edit_object_v1_request_local_var = ezsignuser_edit_object_v1_request_create_internal (
         obj_ezsignuser_local_nonprim
         );
 
