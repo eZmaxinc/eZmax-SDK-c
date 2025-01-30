@@ -70,6 +70,7 @@ typedef struct ezsignsignature_response_compound_t {
     struct custom_contact_name_response_t *obj_contact_name_delegation; //model
     struct signature_response_compound_t *obj_signature; //model
     char *dt_ezsignsignature_date_in_folder_timezone; // string
+    char *s_ezsignsignergroup_description_x; // string
     int b_ezsignsignature_customdate; //boolean
     list_t *a_obj_ezsignsignaturecustomdate; //nonprimitive container
     struct custom_creditcardtransaction_response_t *obj_creditcardtransaction; //model
@@ -118,6 +119,7 @@ __attribute__((deprecated)) ezsignsignature_response_compound_t *ezsignsignature
     custom_contact_name_response_t *obj_contact_name_delegation,
     signature_response_compound_t *obj_signature,
     char *dt_ezsignsignature_date_in_folder_timezone,
+    char *s_ezsignsignergroup_description_x,
     int b_ezsignsignature_customdate,
     list_t *a_obj_ezsignsignaturecustomdate,
     custom_creditcardtransaction_response_t *obj_creditcardtransaction,
