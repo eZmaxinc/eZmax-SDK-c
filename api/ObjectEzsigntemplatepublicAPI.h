@@ -10,6 +10,7 @@
 #include "../model/ezsigntemplatepublic_create_ezsignfolder_v1_response.h"
 #include "../model/ezsigntemplatepublic_create_object_v1_request.h"
 #include "../model/ezsigntemplatepublic_create_object_v1_response.h"
+#include "../model/ezsigntemplatepublic_delete_object_v1_response.h"
 #include "../model/ezsigntemplatepublic_edit_object_v1_request.h"
 #include "../model/ezsigntemplatepublic_edit_object_v1_response.h"
 #include "../model/ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request.h"
@@ -43,6 +44,14 @@ ObjectEzsigntemplatepublicAPI_ezsigntemplatepublicCreateEzsignfolderV1(apiClient
 //
 ezsigntemplatepublic_create_object_v1_response_t*
 ObjectEzsigntemplatepublicAPI_ezsigntemplatepublicCreateObjectV1(apiClient_t *apiClient, ezsigntemplatepublic_create_object_v1_request_t *ezsigntemplatepublic_create_object_v1_request);
+
+
+// Delete an existing Ezsigntemplatepublic
+//
+// 
+//
+ezsigntemplatepublic_delete_object_v1_response_t*
+ObjectEzsigntemplatepublicAPI_ezsigntemplatepublicDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatepublicID);
 
 
 // Edit an existing Ezsigntemplatepublic

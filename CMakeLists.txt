@@ -1065,6 +1065,7 @@ set(SRCS
     model/ezsigntemplatepublic_create_object_v1_request.c
     model/ezsigntemplatepublic_create_object_v1_response.c
     model/ezsigntemplatepublic_create_object_v1_response_m_payload.c
+    model/ezsigntemplatepublic_delete_object_v1_response.c
     model/ezsigntemplatepublic_edit_object_v1_request.c
     model/ezsigntemplatepublic_edit_object_v1_response.c
     model/ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request.c
@@ -2845,6 +2846,7 @@ set(HDRS
     model/ezsigntemplatepublic_create_object_v1_request.h
     model/ezsigntemplatepublic_create_object_v1_response.h
     model/ezsigntemplatepublic_create_object_v1_response_m_payload.h
+    model/ezsigntemplatepublic_delete_object_v1_response.h
     model/ezsigntemplatepublic_edit_object_v1_request.h
     model/ezsigntemplatepublic_edit_object_v1_response.h
     model/ezsigntemplatepublic_get_ezsigntemplatepublic_details_v1_request.h

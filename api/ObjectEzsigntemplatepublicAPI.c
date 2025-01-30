@@ -278,6 +278,99 @@ end:
 
 }
 
+// Delete an existing Ezsigntemplatepublic
+//
+// 
+//
+ezsigntemplatepublic_delete_object_v1_response_t*
+ObjectEzsigntemplatepublicAPI_ezsigntemplatepublicDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsigntemplatepublicID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/ezsigntemplatepublic/{pkiEzsigntemplatepublicID}");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsigntemplatepublicID =  + sizeof("{ pkiEzsigntemplatepublicID }") - 1;
+    if(pkiEzsigntemplatepublicID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsigntemplatepublicID = malloc(sizeOfPathParams_pkiEzsigntemplatepublicID);
+    snprintf(localVarToReplace_pkiEzsigntemplatepublicID, sizeOfPathParams_pkiEzsigntemplatepublicID, "{%s}", "pkiEzsigntemplatepublicID");
+
+    char localVarBuff_pkiEzsigntemplatepublicID[256];
+    snprintf(localVarBuff_pkiEzsigntemplatepublicID, sizeof localVarBuff_pkiEzsigntemplatepublicID, "%ld", (long)*pkiEzsigntemplatepublicID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatepublicID, localVarBuff_pkiEzsigntemplatepublicID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "DELETE");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    ezsigntemplatepublic_delete_object_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsigntemplatepublicAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsigntemplatepublic_delete_object_v1_response_parseFromJSON(ObjectEzsigntemplatepublicAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsigntemplatepublicAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsigntemplatepublicID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Edit an existing Ezsigntemplatepublic
 //
 // 
