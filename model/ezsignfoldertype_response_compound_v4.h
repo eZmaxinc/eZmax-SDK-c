@@ -70,6 +70,7 @@ typedef struct ezsignfoldertype_response_compound_v4_t {
     int b_ezsignfoldertype_sendsignedtouser; //boolean
     int b_ezsignfoldertype_sendattachmentezsignsigner; //boolean
     int b_ezsignfoldertype_sendproofezsignsigner; //boolean
+    int b_ezsignfoldertype_sendattachmentreceivecopy; //boolean
     int b_ezsignfoldertype_sendattachmentuser; //boolean
     int b_ezsignfoldertype_sendproofuser; //boolean
     int b_ezsignfoldertype_sendproofemail; //boolean
@@ -141,6 +142,7 @@ __attribute__((deprecated)) ezsignfoldertype_response_compound_v4_t *ezsignfolde
     int b_ezsignfoldertype_sendsignedtouser,
     int b_ezsignfoldertype_sendattachmentezsignsigner,
     int b_ezsignfoldertype_sendproofezsignsigner,
+    int b_ezsignfoldertype_sendattachmentreceivecopy,
     int b_ezsignfoldertype_sendattachmentuser,
     int b_ezsignfoldertype_sendproofuser,
     int b_ezsignfoldertype_sendproofemail,

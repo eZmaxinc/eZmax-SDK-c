@@ -48,6 +48,7 @@ static ezsignfoldertype_request_v3_t *ezsignfoldertype_request_v3_create_interna
     int b_ezsignfoldertype_sendsignedtouser,
     int b_ezsignfoldertype_sendattachmentezsignsigner,
     int b_ezsignfoldertype_sendproofezsignsigner,
+    int b_ezsignfoldertype_sendattachmentreceivecopy,
     int b_ezsignfoldertype_sendattachmentuser,
     int b_ezsignfoldertype_sendproofuser,
     int b_ezsignfoldertype_sendproofemail,
@@ -113,6 +114,7 @@ static ezsignfoldertype_request_v3_t *ezsignfoldertype_request_v3_create_interna
     ezsignfoldertype_request_v3_local_var->b_ezsignfoldertype_sendsignedtouser = b_ezsignfoldertype_sendsignedtouser;
     ezsignfoldertype_request_v3_local_var->b_ezsignfoldertype_sendattachmentezsignsigner = b_ezsignfoldertype_sendattachmentezsignsigner;
     ezsignfoldertype_request_v3_local_var->b_ezsignfoldertype_sendproofezsignsigner = b_ezsignfoldertype_sendproofezsignsigner;
+    ezsignfoldertype_request_v3_local_var->b_ezsignfoldertype_sendattachmentreceivecopy = b_ezsignfoldertype_sendattachmentreceivecopy;
     ezsignfoldertype_request_v3_local_var->b_ezsignfoldertype_sendattachmentuser = b_ezsignfoldertype_sendattachmentuser;
     ezsignfoldertype_request_v3_local_var->b_ezsignfoldertype_sendproofuser = b_ezsignfoldertype_sendproofuser;
     ezsignfoldertype_request_v3_local_var->b_ezsignfoldertype_sendproofemail = b_ezsignfoldertype_sendproofemail;
@@ -179,6 +181,7 @@ __attribute__((deprecated)) ezsignfoldertype_request_v3_t *ezsignfoldertype_requ
     int b_ezsignfoldertype_sendsignedtouser,
     int b_ezsignfoldertype_sendattachmentezsignsigner,
     int b_ezsignfoldertype_sendproofezsignsigner,
+    int b_ezsignfoldertype_sendattachmentreceivecopy,
     int b_ezsignfoldertype_sendattachmentuser,
     int b_ezsignfoldertype_sendproofuser,
     int b_ezsignfoldertype_sendproofemail,
@@ -241,6 +244,7 @@ __attribute__((deprecated)) ezsignfoldertype_request_v3_t *ezsignfoldertype_requ
         b_ezsignfoldertype_sendsignedtouser,
         b_ezsignfoldertype_sendattachmentezsignsigner,
         b_ezsignfoldertype_sendproofezsignsigner,
+        b_ezsignfoldertype_sendattachmentreceivecopy,
         b_ezsignfoldertype_sendattachmentuser,
         b_ezsignfoldertype_sendproofuser,
         b_ezsignfoldertype_sendproofemail,
@@ -743,6 +747,14 @@ cJSON *ezsignfoldertype_request_v3_convertToJSON(ezsignfoldertype_request_v3_t *
     // ezsignfoldertype_request_v3->b_ezsignfoldertype_sendproofezsignsigner
     if(ezsignfoldertype_request_v3->b_ezsignfoldertype_sendproofezsignsigner) {
     if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeSendproofezsignsigner", ezsignfoldertype_request_v3->b_ezsignfoldertype_sendproofezsignsigner) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
+    // ezsignfoldertype_request_v3->b_ezsignfoldertype_sendattachmentreceivecopy
+    if(ezsignfoldertype_request_v3->b_ezsignfoldertype_sendattachmentreceivecopy) {
+    if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeSendattachmentreceivecopy", ezsignfoldertype_request_v3->b_ezsignfoldertype_sendattachmentreceivecopy) == NULL) {
     goto fail; //Bool
     }
     }
@@ -1541,6 +1553,18 @@ ezsignfoldertype_request_v3_t *ezsignfoldertype_request_v3_parseFromJSON(cJSON *
     }
     }
 
+    // ezsignfoldertype_request_v3->b_ezsignfoldertype_sendattachmentreceivecopy
+    cJSON *b_ezsignfoldertype_sendattachmentreceivecopy = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_request_v3JSON, "bEzsignfoldertypeSendattachmentreceivecopy");
+    if (cJSON_IsNull(b_ezsignfoldertype_sendattachmentreceivecopy)) {
+        b_ezsignfoldertype_sendattachmentreceivecopy = NULL;
+    }
+    if (b_ezsignfoldertype_sendattachmentreceivecopy) { 
+    if(!cJSON_IsBool(b_ezsignfoldertype_sendattachmentreceivecopy))
+    {
+    goto end; //Bool
+    }
+    }
+
     // ezsignfoldertype_request_v3->b_ezsignfoldertype_sendattachmentuser
     cJSON *b_ezsignfoldertype_sendattachmentuser = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_request_v3JSON, "bEzsignfoldertypeSendattachmentuser");
     if (cJSON_IsNull(b_ezsignfoldertype_sendattachmentuser)) {
@@ -1819,6 +1843,7 @@ ezsignfoldertype_request_v3_t *ezsignfoldertype_request_v3_parseFromJSON(cJSON *
         b_ezsignfoldertype_sendsignedtouser ? b_ezsignfoldertype_sendsignedtouser->valueint : 0,
         b_ezsignfoldertype_sendattachmentezsignsigner ? b_ezsignfoldertype_sendattachmentezsignsigner->valueint : 0,
         b_ezsignfoldertype_sendproofezsignsigner ? b_ezsignfoldertype_sendproofezsignsigner->valueint : 0,
+        b_ezsignfoldertype_sendattachmentreceivecopy ? b_ezsignfoldertype_sendattachmentreceivecopy->valueint : 0,
         b_ezsignfoldertype_sendattachmentuser ? b_ezsignfoldertype_sendattachmentuser->valueint : 0,
         b_ezsignfoldertype_sendproofuser ? b_ezsignfoldertype_sendproofuser->valueint : 0,
         b_ezsignfoldertype_sendproofemail ? b_ezsignfoldertype_sendproofemail->valueint : 0,

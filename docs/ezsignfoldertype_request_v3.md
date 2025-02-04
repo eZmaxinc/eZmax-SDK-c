@@ -45,6 +45,7 @@ Name | Type | Description | Notes
 **b_ezsignfoldertype_sendsignedtouser** | **int** | Whether we send an email to User who signed when document is completed | [optional] 
 **b_ezsignfoldertype_sendattachmentezsignsigner** | **int** | Whether we send the Ezsigndocument in the email to Ezsignsigner | [optional] 
 **b_ezsignfoldertype_sendproofezsignsigner** | **int** | Whether we send the proof in the email to Ezsignsigner | [optional] 
+**b_ezsignfoldertype_sendattachmentreceivecopy** | **int** | Whether we send the Ezsigndocument in the email to Ezsignsigner or User when bEzsignfoldersignerassociationReceivecopy &#x3D; 1 | [optional] 
 **b_ezsignfoldertype_sendattachmentuser** | **int** | Whether we send the Ezsigndocument in the email to User | [optional] 
 **b_ezsignfoldertype_sendproofuser** | **int** | Whether we send the proof in the email to User | [optional] 
 **b_ezsignfoldertype_sendproofemail** | **int** | Whether we send the proof in the email to external recipient | [optional] 

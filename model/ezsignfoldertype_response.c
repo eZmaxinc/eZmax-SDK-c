@@ -37,6 +37,7 @@ static ezsignfoldertype_response_t *ezsignfoldertype_response_create_internal(
     int b_ezsignfoldertype_sendsignedtouser,
     int b_ezsignfoldertype_sendattachmentezsignsigner,
     int b_ezsignfoldertype_sendproofezsignsigner,
+    int b_ezsignfoldertype_sendattachmentreceivecopy,
     int b_ezsignfoldertype_sendattachmentuser,
     int b_ezsignfoldertype_sendproofuser,
     int b_ezsignfoldertype_sendproofemail,
@@ -91,6 +92,7 @@ static ezsignfoldertype_response_t *ezsignfoldertype_response_create_internal(
     ezsignfoldertype_response_local_var->b_ezsignfoldertype_sendsignedtouser = b_ezsignfoldertype_sendsignedtouser;
     ezsignfoldertype_response_local_var->b_ezsignfoldertype_sendattachmentezsignsigner = b_ezsignfoldertype_sendattachmentezsignsigner;
     ezsignfoldertype_response_local_var->b_ezsignfoldertype_sendproofezsignsigner = b_ezsignfoldertype_sendproofezsignsigner;
+    ezsignfoldertype_response_local_var->b_ezsignfoldertype_sendattachmentreceivecopy = b_ezsignfoldertype_sendattachmentreceivecopy;
     ezsignfoldertype_response_local_var->b_ezsignfoldertype_sendattachmentuser = b_ezsignfoldertype_sendattachmentuser;
     ezsignfoldertype_response_local_var->b_ezsignfoldertype_sendproofuser = b_ezsignfoldertype_sendproofuser;
     ezsignfoldertype_response_local_var->b_ezsignfoldertype_sendproofemail = b_ezsignfoldertype_sendproofemail;
@@ -146,6 +148,7 @@ __attribute__((deprecated)) ezsignfoldertype_response_t *ezsignfoldertype_respon
     int b_ezsignfoldertype_sendsignedtouser,
     int b_ezsignfoldertype_sendattachmentezsignsigner,
     int b_ezsignfoldertype_sendproofezsignsigner,
+    int b_ezsignfoldertype_sendattachmentreceivecopy,
     int b_ezsignfoldertype_sendattachmentuser,
     int b_ezsignfoldertype_sendproofuser,
     int b_ezsignfoldertype_sendproofemail,
@@ -197,6 +200,7 @@ __attribute__((deprecated)) ezsignfoldertype_response_t *ezsignfoldertype_respon
         b_ezsignfoldertype_sendsignedtouser,
         b_ezsignfoldertype_sendattachmentezsignsigner,
         b_ezsignfoldertype_sendproofezsignsigner,
+        b_ezsignfoldertype_sendattachmentreceivecopy,
         b_ezsignfoldertype_sendattachmentuser,
         b_ezsignfoldertype_sendproofuser,
         b_ezsignfoldertype_sendproofemail,
@@ -549,6 +553,14 @@ cJSON *ezsignfoldertype_response_convertToJSON(ezsignfoldertype_response_t *ezsi
     // ezsignfoldertype_response->b_ezsignfoldertype_sendproofezsignsigner
     if(ezsignfoldertype_response->b_ezsignfoldertype_sendproofezsignsigner) {
     if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeSendproofezsignsigner", ezsignfoldertype_response->b_ezsignfoldertype_sendproofezsignsigner) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
+    // ezsignfoldertype_response->b_ezsignfoldertype_sendattachmentreceivecopy
+    if(ezsignfoldertype_response->b_ezsignfoldertype_sendattachmentreceivecopy) {
+    if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeSendattachmentreceivecopy", ezsignfoldertype_response->b_ezsignfoldertype_sendattachmentreceivecopy) == NULL) {
     goto fail; //Bool
     }
     }
@@ -1131,6 +1143,18 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
     }
     }
 
+    // ezsignfoldertype_response->b_ezsignfoldertype_sendattachmentreceivecopy
+    cJSON *b_ezsignfoldertype_sendattachmentreceivecopy = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeSendattachmentreceivecopy");
+    if (cJSON_IsNull(b_ezsignfoldertype_sendattachmentreceivecopy)) {
+        b_ezsignfoldertype_sendattachmentreceivecopy = NULL;
+    }
+    if (b_ezsignfoldertype_sendattachmentreceivecopy) { 
+    if(!cJSON_IsBool(b_ezsignfoldertype_sendattachmentreceivecopy))
+    {
+    goto end; //Bool
+    }
+    }
+
     // ezsignfoldertype_response->b_ezsignfoldertype_sendattachmentuser
     cJSON *b_ezsignfoldertype_sendattachmentuser = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_responseJSON, "bEzsignfoldertypeSendattachmentuser");
     if (cJSON_IsNull(b_ezsignfoldertype_sendattachmentuser)) {
@@ -1416,6 +1440,7 @@ ezsignfoldertype_response_t *ezsignfoldertype_response_parseFromJSON(cJSON *ezsi
         b_ezsignfoldertype_sendsignedtouser ? b_ezsignfoldertype_sendsignedtouser->valueint : 0,
         b_ezsignfoldertype_sendattachmentezsignsigner ? b_ezsignfoldertype_sendattachmentezsignsigner->valueint : 0,
         b_ezsignfoldertype_sendproofezsignsigner ? b_ezsignfoldertype_sendproofezsignsigner->valueint : 0,
+        b_ezsignfoldertype_sendattachmentreceivecopy ? b_ezsignfoldertype_sendattachmentreceivecopy->valueint : 0,
         b_ezsignfoldertype_sendattachmentuser ? b_ezsignfoldertype_sendattachmentuser->valueint : 0,
         b_ezsignfoldertype_sendproofuser ? b_ezsignfoldertype_sendproofuser->valueint : 0,
         b_ezsignfoldertype_sendproofemail ? b_ezsignfoldertype_sendproofemail->valueint : 0,
