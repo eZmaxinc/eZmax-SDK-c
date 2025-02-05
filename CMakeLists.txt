@@ -309,6 +309,9 @@ set(SRCS
     model/creditcardtype_autocomplete_element_response.c
     model/creditcardtype_get_autocomplete_v2_response.c
     model/creditcardtype_get_autocomplete_v2_response_m_payload.c
+    model/currency_autocomplete_element_response.c
+    model/currency_get_autocomplete_v2_response.c
+    model/currency_get_autocomplete_v2_response_m_payload.c
     model/custom_apikey.c
     model/custom_apikeyfederation.c
     model/custom_attachment_response.c
@@ -1730,6 +1733,7 @@ set(SRCS
     api/ObjectCreditcardclientAPI.c
     api/ObjectCreditcardmerchantAPI.c
     api/ObjectCreditcardtypeAPI.c
+    api/ObjectCurrencyAPI.c
     api/ObjectCustomerAPI.c
     api/ObjectDepartmentAPI.c
     api/ObjectDiscussionAPI.c
@@ -2090,6 +2094,9 @@ set(HDRS
     model/creditcardtype_autocomplete_element_response.h
     model/creditcardtype_get_autocomplete_v2_response.h
     model/creditcardtype_get_autocomplete_v2_response_m_payload.h
+    model/currency_autocomplete_element_response.h
+    model/currency_get_autocomplete_v2_response.h
+    model/currency_get_autocomplete_v2_response_m_payload.h
     model/custom_apikey.h
     model/custom_apikeyfederation.h
     model/custom_attachment_response.h
@@ -3511,6 +3518,7 @@ set(HDRS
     api/ObjectCreditcardclientAPI.h
     api/ObjectCreditcardmerchantAPI.h
     api/ObjectCreditcardtypeAPI.h
+    api/ObjectCurrencyAPI.h
     api/ObjectCustomerAPI.h
     api/ObjectDepartmentAPI.h
     api/ObjectDiscussionAPI.h
@@ -3703,6 +3711,7 @@ set(HDRS "")
 #    unit-tests/manual-ObjectCreditcardclientAPI.c
 #    unit-tests/manual-ObjectCreditcardmerchantAPI.c
 #    unit-tests/manual-ObjectCreditcardtypeAPI.c
+#    unit-tests/manual-ObjectCurrencyAPI.c
 #    unit-tests/manual-ObjectCustomerAPI.c
 #    unit-tests/manual-ObjectDepartmentAPI.c
 #    unit-tests/manual-ObjectDiscussionAPI.c

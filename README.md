@@ -135,6 +135,7 @@ Category | Method | HTTP request | Description
 *ObjectCreditcardmerchantAPI* | [**ObjectCreditcardmerchantAPI_creditcardmerchantGetListV1**](docs/ObjectCreditcardmerchantAPI.md#ObjectCreditcardmerchantAPI_creditcardmerchantGetListV1) | **GET** /1/object/creditcardmerchant/getList | Retrieve Creditcardmerchant list
 *ObjectCreditcardmerchantAPI* | [**ObjectCreditcardmerchantAPI_creditcardmerchantGetObjectV2**](docs/ObjectCreditcardmerchantAPI.md#ObjectCreditcardmerchantAPI_creditcardmerchantGetObjectV2) | **GET** /2/object/creditcardmerchant/{pkiCreditcardmerchantID} | Retrieve an existing Creditcardmerchant
 *ObjectCreditcardtypeAPI* | [**ObjectCreditcardtypeAPI_creditcardtypeGetAutocompleteV2**](docs/ObjectCreditcardtypeAPI.md#ObjectCreditcardtypeAPI_creditcardtypeGetAutocompleteV2) | **GET** /2/object/creditcardtype/getAutocomplete/{sSelector} | Retrieve Creditcardtypes and IDs
+*ObjectCurrencyAPI* | [**ObjectCurrencyAPI_currencyGetAutocompleteV2**](docs/ObjectCurrencyAPI.md#ObjectCurrencyAPI_currencyGetAutocompleteV2) | **GET** /2/object/currency/getAutocomplete/{sSelector} | Retrieve Currencies and IDs
 *ObjectCustomerAPI* | [**ObjectCustomerAPI_customerCreateObjectV1**](docs/ObjectCustomerAPI.md#ObjectCustomerAPI_customerCreateObjectV1) | **POST** /1/object/customer | Create a new Customer
 *ObjectCustomerAPI* | [**ObjectCustomerAPI_customerGetObjectV2**](docs/ObjectCustomerAPI.md#ObjectCustomerAPI_customerGetObjectV2) | **GET** /2/object/customer/{pkiCustomerID} | Retrieve an existing Customer
 *ObjectDepartmentAPI* | [**ObjectDepartmentAPI_departmentGetAutocompleteV2**](docs/ObjectDepartmentAPI.md#ObjectDepartmentAPI_departmentGetAutocompleteV2) | **GET** /2/object/department/getAutocomplete/{sSelector} | Retrieve Departments and IDs
@@ -795,6 +796,9 @@ Category | Method | HTTP request | Description
  - [creditcardtype_autocomplete_element_response_t](docs/creditcardtype_autocomplete_element_response.md)
  - [creditcardtype_get_autocomplete_v2_response_t](docs/creditcardtype_get_autocomplete_v2_response.md)
  - [creditcardtype_get_autocomplete_v2_response_m_payload_t](docs/creditcardtype_get_autocomplete_v2_response_m_payload.md)
+ - [currency_autocomplete_element_response_t](docs/currency_autocomplete_element_response.md)
+ - [currency_get_autocomplete_v2_response_t](docs/currency_get_autocomplete_v2_response.md)
+ - [currency_get_autocomplete_v2_response_m_payload_t](docs/currency_get_autocomplete_v2_response_m_payload.md)
  - [custom_apikey_t](docs/custom_apikey.md)
  - [custom_apikeyfederation_t](docs/custom_apikeyfederation.md)
  - [custom_attachment_response_t](docs/custom_attachment_response.md)

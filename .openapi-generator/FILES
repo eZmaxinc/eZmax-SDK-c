@@ -49,6 +49,8 @@ api/ObjectCreditcardmerchantAPI.c
 api/ObjectCreditcardmerchantAPI.h
 api/ObjectCreditcardtypeAPI.c
 api/ObjectCreditcardtypeAPI.h
+api/ObjectCurrencyAPI.c
+api/ObjectCurrencyAPI.h
 api/ObjectCustomerAPI.c
 api/ObjectCustomerAPI.h
 api/ObjectDepartmentAPI.c
@@ -248,6 +250,7 @@ docs/ObjectCountryAPI.md
 docs/ObjectCreditcardclientAPI.md
 docs/ObjectCreditcardmerchantAPI.md
 docs/ObjectCreditcardtypeAPI.md
+docs/ObjectCurrencyAPI.md
 docs/ObjectCustomerAPI.md
 docs/ObjectDepartmentAPI.md
 docs/ObjectDiscussionAPI.md
@@ -597,6 +600,9 @@ docs/creditcardmerchant_response_compound.md
 docs/creditcardtype_autocomplete_element_response.md
 docs/creditcardtype_get_autocomplete_v2_response.md
 docs/creditcardtype_get_autocomplete_v2_response_m_payload.md
+docs/currency_autocomplete_element_response.md
+docs/currency_get_autocomplete_v2_response.md
+docs/currency_get_autocomplete_v2_response_m_payload.md
 docs/custom_apikey.md
 docs/custom_apikeyfederation.md
 docs/custom_attachment_response.md
@@ -2526,6 +2532,12 @@ model/creditcardtype_get_autocomplete_v2_response.c
 model/creditcardtype_get_autocomplete_v2_response.h
 model/creditcardtype_get_autocomplete_v2_response_m_payload.c
 model/creditcardtype_get_autocomplete_v2_response_m_payload.h
+model/currency_autocomplete_element_response.c
+model/currency_autocomplete_element_response.h
+model/currency_get_autocomplete_v2_response.c
+model/currency_get_autocomplete_v2_response.h
+model/currency_get_autocomplete_v2_response_m_payload.c
+model/currency_get_autocomplete_v2_response_m_payload.h
 model/custom_apikey.c
 model/custom_apikey.h
 model/custom_apikeyfederation.c
