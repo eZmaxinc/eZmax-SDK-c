@@ -8,7 +8,8 @@
 static common_reportsubsection_t *common_reportsubsection_create_internal(
     common_reportsubsectionpart_t *obj_reportsubsectionpart_header,
     common_reportsubsectionpart_t *obj_reportsubsectionpart_body,
-    common_reportsubsectionpart_t *obj_reportsubsectionpart_footer
+    common_reportsubsectionpart_t *obj_reportsubsectionpart_footer,
+    char *s_reportsubsection_title
     ) {
     common_reportsubsection_t *common_reportsubsection_local_var = malloc(sizeof(common_reportsubsection_t));
     if (!common_reportsubsection_local_var) {
@@ -17,6 +18,7 @@ static common_reportsubsection_t *common_reportsubsection_create_internal(
     common_reportsubsection_local_var->obj_reportsubsectionpart_header = obj_reportsubsectionpart_header;
     common_reportsubsection_local_var->obj_reportsubsectionpart_body = obj_reportsubsectionpart_body;
     common_reportsubsection_local_var->obj_reportsubsectionpart_footer = obj_reportsubsectionpart_footer;
+    common_reportsubsection_local_var->s_reportsubsection_title = s_reportsubsection_title;
 
     common_reportsubsection_local_var->_library_owned = 1;
     return common_reportsubsection_local_var;
@@ -25,12 +27,14 @@ static common_reportsubsection_t *common_reportsubsection_create_internal(
 __attribute__((deprecated)) common_reportsubsection_t *common_reportsubsection_create(
     common_reportsubsectionpart_t *obj_reportsubsectionpart_header,
     common_reportsubsectionpart_t *obj_reportsubsectionpart_body,
-    common_reportsubsectionpart_t *obj_reportsubsectionpart_footer
+    common_reportsubsectionpart_t *obj_reportsubsectionpart_footer,
+    char *s_reportsubsection_title
     ) {
     return common_reportsubsection_create_internal (
         obj_reportsubsectionpart_header,
         obj_reportsubsectionpart_body,
-        obj_reportsubsectionpart_footer
+        obj_reportsubsectionpart_footer,
+        s_reportsubsection_title
         );
 }
 
@@ -54,6 +58,10 @@ void common_reportsubsection_free(common_reportsubsection_t *common_reportsubsec
     if (common_reportsubsection->obj_reportsubsectionpart_footer) {
         common_reportsubsectionpart_free(common_reportsubsection->obj_reportsubsectionpart_footer);
         common_reportsubsection->obj_reportsubsectionpart_footer = NULL;
+    }
+    if (common_reportsubsection->s_reportsubsection_title) {
+        free(common_reportsubsection->s_reportsubsection_title);
+        common_reportsubsection->s_reportsubsection_title = NULL;
     }
     free(common_reportsubsection);
 }
@@ -100,6 +108,14 @@ cJSON *common_reportsubsection_convertToJSON(common_reportsubsection_t *common_r
     cJSON_AddItemToObject(item, "objReportsubsectionpartFooter", obj_reportsubsectionpart_footer_local_JSON);
     if(item->child == NULL) {
     goto fail;
+    }
+
+
+    // common_reportsubsection->s_reportsubsection_title
+    if(common_reportsubsection->s_reportsubsection_title) {
+    if(cJSON_AddStringToObject(item, "sReportsubsectionTitle", common_reportsubsection->s_reportsubsection_title) == NULL) {
+    goto fail; //String
+    }
     }
 
     return item;
@@ -159,11 +175,24 @@ common_reportsubsection_t *common_reportsubsection_parseFromJSON(cJSON *common_r
     
     obj_reportsubsectionpart_footer_local_nonprim = common_reportsubsectionpart_parseFromJSON(obj_reportsubsectionpart_footer); //nonprimitive
 
+    // common_reportsubsection->s_reportsubsection_title
+    cJSON *s_reportsubsection_title = cJSON_GetObjectItemCaseSensitive(common_reportsubsectionJSON, "sReportsubsectionTitle");
+    if (cJSON_IsNull(s_reportsubsection_title)) {
+        s_reportsubsection_title = NULL;
+    }
+    if (s_reportsubsection_title) { 
+    if(!cJSON_IsString(s_reportsubsection_title) && !cJSON_IsNull(s_reportsubsection_title))
+    {
+    goto end; //String
+    }
+    }
+
 
     common_reportsubsection_local_var = common_reportsubsection_create_internal (
         obj_reportsubsectionpart_header_local_nonprim,
         obj_reportsubsectionpart_body_local_nonprim,
-        obj_reportsubsectionpart_footer_local_nonprim
+        obj_reportsubsectionpart_footer_local_nonprim,
+        s_reportsubsection_title && !cJSON_IsNull(s_reportsubsection_title) ? strdup(s_reportsubsection_title->valuestring) : NULL
         );
 
     return common_reportsubsection_local_var;

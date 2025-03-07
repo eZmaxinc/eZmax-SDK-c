@@ -11,6 +11,7 @@ static ezsignsignature_response_t *ezsignsignature_response_create_internal(
     int fki_ezsignfoldersignerassociation_id,
     int fki_ezsignsigningreason_id,
     int fki_font_id,
+    char *s_currency_description_x,
     char *s_ezsignsigningreason_description_x,
     int i_ezsignpage_pagenumber,
     int i_ezsignsignature_x,
@@ -53,6 +54,7 @@ static ezsignsignature_response_t *ezsignsignature_response_create_internal(
     ezsignsignature_response_local_var->fki_ezsignfoldersignerassociation_id = fki_ezsignfoldersignerassociation_id;
     ezsignsignature_response_local_var->fki_ezsignsigningreason_id = fki_ezsignsigningreason_id;
     ezsignsignature_response_local_var->fki_font_id = fki_font_id;
+    ezsignsignature_response_local_var->s_currency_description_x = s_currency_description_x;
     ezsignsignature_response_local_var->s_ezsignsigningreason_description_x = s_ezsignsigningreason_description_x;
     ezsignsignature_response_local_var->i_ezsignpage_pagenumber = i_ezsignpage_pagenumber;
     ezsignsignature_response_local_var->i_ezsignsignature_x = i_ezsignsignature_x;
@@ -96,6 +98,7 @@ __attribute__((deprecated)) ezsignsignature_response_t *ezsignsignature_response
     int fki_ezsignfoldersignerassociation_id,
     int fki_ezsignsigningreason_id,
     int fki_font_id,
+    char *s_currency_description_x,
     char *s_ezsignsigningreason_description_x,
     int i_ezsignpage_pagenumber,
     int i_ezsignsignature_x,
@@ -135,6 +138,7 @@ __attribute__((deprecated)) ezsignsignature_response_t *ezsignsignature_response
         fki_ezsignfoldersignerassociation_id,
         fki_ezsignsigningreason_id,
         fki_font_id,
+        s_currency_description_x,
         s_ezsignsigningreason_description_x,
         i_ezsignpage_pagenumber,
         i_ezsignsignature_x,
@@ -179,6 +183,10 @@ void ezsignsignature_response_free(ezsignsignature_response_t *ezsignsignature_r
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsignsignature_response->s_currency_description_x) {
+        free(ezsignsignature_response->s_currency_description_x);
+        ezsignsignature_response->s_currency_description_x = NULL;
+    }
     if (ezsignsignature_response->s_ezsignsigningreason_description_x) {
         free(ezsignsignature_response->s_ezsignsigningreason_description_x);
         ezsignsignature_response->s_ezsignsigningreason_description_x = NULL;
@@ -268,6 +276,14 @@ cJSON *ezsignsignature_response_convertToJSON(ezsignsignature_response_t *ezsign
     if(ezsignsignature_response->fki_font_id) {
     if(cJSON_AddNumberToObject(item, "fkiFontID", ezsignsignature_response->fki_font_id) == NULL) {
     goto fail; //Numeric
+    }
+    }
+
+
+    // ezsignsignature_response->s_currency_description_x
+    if(ezsignsignature_response->s_currency_description_x) {
+    if(cJSON_AddStringToObject(item, "sCurrencyDescriptionX", ezsignsignature_response->s_currency_description_x) == NULL) {
+    goto fail; //String
     }
     }
 
@@ -694,6 +710,18 @@ ezsignsignature_response_t *ezsignsignature_response_parseFromJSON(cJSON *ezsign
     }
     }
 
+    // ezsignsignature_response->s_currency_description_x
+    cJSON *s_currency_description_x = cJSON_GetObjectItemCaseSensitive(ezsignsignature_responseJSON, "sCurrencyDescriptionX");
+    if (cJSON_IsNull(s_currency_description_x)) {
+        s_currency_description_x = NULL;
+    }
+    if (s_currency_description_x) { 
+    if(!cJSON_IsString(s_currency_description_x) && !cJSON_IsNull(s_currency_description_x))
+    {
+    goto end; //String
+    }
+    }
+
     // ezsignsignature_response->s_ezsignsigningreason_description_x
     cJSON *s_ezsignsigningreason_description_x = cJSON_GetObjectItemCaseSensitive(ezsignsignature_responseJSON, "sEzsignsigningreasonDescriptionX");
     if (cJSON_IsNull(s_ezsignsigningreason_description_x)) {
@@ -1073,6 +1101,7 @@ ezsignsignature_response_t *ezsignsignature_response_parseFromJSON(cJSON *ezsign
         fki_ezsignfoldersignerassociation_id->valuedouble,
         fki_ezsignsigningreason_id ? fki_ezsignsigningreason_id->valuedouble : 0,
         fki_font_id ? fki_font_id->valuedouble : 0,
+        s_currency_description_x && !cJSON_IsNull(s_currency_description_x) ? strdup(s_currency_description_x->valuestring) : NULL,
         s_ezsignsigningreason_description_x && !cJSON_IsNull(s_ezsignsigningreason_description_x) ? strdup(s_ezsignsigningreason_description_x->valuestring) : NULL,
         i_ezsignpage_pagenumber->valuedouble,
         i_ezsignsignature_x->valuedouble,

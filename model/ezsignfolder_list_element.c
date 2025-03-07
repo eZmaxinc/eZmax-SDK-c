@@ -26,6 +26,9 @@ static ezsignfolder_list_element_t *ezsignfolder_list_element_create_internal(
     char *d_ezsignfolder_completedpercentage,
     char *d_ezsignfolder_formcompletedpercentage,
     char *d_ezsignfolder_signaturecompletedpercentage,
+    char *dt_ezsignfolder_close,
+    char *dt_ezsignfolder_archive,
+    char *dt_ezsignfolder_dispose,
     int b_ezsignfolder_signer
     ) {
     ezsignfolder_list_element_t *ezsignfolder_list_element_local_var = malloc(sizeof(ezsignfolder_list_element_t));
@@ -52,6 +55,9 @@ static ezsignfolder_list_element_t *ezsignfolder_list_element_create_internal(
     ezsignfolder_list_element_local_var->d_ezsignfolder_completedpercentage = d_ezsignfolder_completedpercentage;
     ezsignfolder_list_element_local_var->d_ezsignfolder_formcompletedpercentage = d_ezsignfolder_formcompletedpercentage;
     ezsignfolder_list_element_local_var->d_ezsignfolder_signaturecompletedpercentage = d_ezsignfolder_signaturecompletedpercentage;
+    ezsignfolder_list_element_local_var->dt_ezsignfolder_close = dt_ezsignfolder_close;
+    ezsignfolder_list_element_local_var->dt_ezsignfolder_archive = dt_ezsignfolder_archive;
+    ezsignfolder_list_element_local_var->dt_ezsignfolder_dispose = dt_ezsignfolder_dispose;
     ezsignfolder_list_element_local_var->b_ezsignfolder_signer = b_ezsignfolder_signer;
 
     ezsignfolder_list_element_local_var->_library_owned = 1;
@@ -79,6 +85,9 @@ __attribute__((deprecated)) ezsignfolder_list_element_t *ezsignfolder_list_eleme
     char *d_ezsignfolder_completedpercentage,
     char *d_ezsignfolder_formcompletedpercentage,
     char *d_ezsignfolder_signaturecompletedpercentage,
+    char *dt_ezsignfolder_close,
+    char *dt_ezsignfolder_archive,
+    char *dt_ezsignfolder_dispose,
     int b_ezsignfolder_signer
     ) {
     return ezsignfolder_list_element_create_internal (
@@ -102,6 +111,9 @@ __attribute__((deprecated)) ezsignfolder_list_element_t *ezsignfolder_list_eleme
         d_ezsignfolder_completedpercentage,
         d_ezsignfolder_formcompletedpercentage,
         d_ezsignfolder_signaturecompletedpercentage,
+        dt_ezsignfolder_close,
+        dt_ezsignfolder_archive,
+        dt_ezsignfolder_dispose,
         b_ezsignfolder_signer
         );
 }
@@ -150,6 +162,18 @@ void ezsignfolder_list_element_free(ezsignfolder_list_element_t *ezsignfolder_li
     if (ezsignfolder_list_element->d_ezsignfolder_signaturecompletedpercentage) {
         free(ezsignfolder_list_element->d_ezsignfolder_signaturecompletedpercentage);
         ezsignfolder_list_element->d_ezsignfolder_signaturecompletedpercentage = NULL;
+    }
+    if (ezsignfolder_list_element->dt_ezsignfolder_close) {
+        free(ezsignfolder_list_element->dt_ezsignfolder_close);
+        ezsignfolder_list_element->dt_ezsignfolder_close = NULL;
+    }
+    if (ezsignfolder_list_element->dt_ezsignfolder_archive) {
+        free(ezsignfolder_list_element->dt_ezsignfolder_archive);
+        ezsignfolder_list_element->dt_ezsignfolder_archive = NULL;
+    }
+    if (ezsignfolder_list_element->dt_ezsignfolder_dispose) {
+        free(ezsignfolder_list_element->dt_ezsignfolder_dispose);
+        ezsignfolder_list_element->dt_ezsignfolder_dispose = NULL;
     }
     free(ezsignfolder_list_element);
 }
@@ -340,6 +364,30 @@ cJSON *ezsignfolder_list_element_convertToJSON(ezsignfolder_list_element_t *ezsi
     }
     if(cJSON_AddStringToObject(item, "dEzsignfolderSignaturecompletedpercentage", ezsignfolder_list_element->d_ezsignfolder_signaturecompletedpercentage) == NULL) {
     goto fail; //String
+    }
+
+
+    // ezsignfolder_list_element->dt_ezsignfolder_close
+    if(ezsignfolder_list_element->dt_ezsignfolder_close) {
+    if(cJSON_AddStringToObject(item, "dtEzsignfolderClose", ezsignfolder_list_element->dt_ezsignfolder_close) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // ezsignfolder_list_element->dt_ezsignfolder_archive
+    if(ezsignfolder_list_element->dt_ezsignfolder_archive) {
+    if(cJSON_AddStringToObject(item, "dtEzsignfolderArchive", ezsignfolder_list_element->dt_ezsignfolder_archive) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // ezsignfolder_list_element->dt_ezsignfolder_dispose
+    if(ezsignfolder_list_element->dt_ezsignfolder_dispose) {
+    if(cJSON_AddStringToObject(item, "dtEzsignfolderDispose", ezsignfolder_list_element->dt_ezsignfolder_dispose) == NULL) {
+    goto fail; //String
+    }
     }
 
 
@@ -650,6 +698,42 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_parseFromJSON(cJSON *ezsi
     goto end; //String
     }
 
+    // ezsignfolder_list_element->dt_ezsignfolder_close
+    cJSON *dt_ezsignfolder_close = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "dtEzsignfolderClose");
+    if (cJSON_IsNull(dt_ezsignfolder_close)) {
+        dt_ezsignfolder_close = NULL;
+    }
+    if (dt_ezsignfolder_close) { 
+    if(!cJSON_IsString(dt_ezsignfolder_close) && !cJSON_IsNull(dt_ezsignfolder_close))
+    {
+    goto end; //String
+    }
+    }
+
+    // ezsignfolder_list_element->dt_ezsignfolder_archive
+    cJSON *dt_ezsignfolder_archive = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "dtEzsignfolderArchive");
+    if (cJSON_IsNull(dt_ezsignfolder_archive)) {
+        dt_ezsignfolder_archive = NULL;
+    }
+    if (dt_ezsignfolder_archive) { 
+    if(!cJSON_IsString(dt_ezsignfolder_archive) && !cJSON_IsNull(dt_ezsignfolder_archive))
+    {
+    goto end; //String
+    }
+    }
+
+    // ezsignfolder_list_element->dt_ezsignfolder_dispose
+    cJSON *dt_ezsignfolder_dispose = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "dtEzsignfolderDispose");
+    if (cJSON_IsNull(dt_ezsignfolder_dispose)) {
+        dt_ezsignfolder_dispose = NULL;
+    }
+    if (dt_ezsignfolder_dispose) { 
+    if(!cJSON_IsString(dt_ezsignfolder_dispose) && !cJSON_IsNull(dt_ezsignfolder_dispose))
+    {
+    goto end; //String
+    }
+    }
+
     // ezsignfolder_list_element->b_ezsignfolder_signer
     cJSON *b_ezsignfolder_signer = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "bEzsignfolderSigner");
     if (cJSON_IsNull(b_ezsignfolder_signer)) {
@@ -684,6 +768,9 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_parseFromJSON(cJSON *ezsi
         strdup(d_ezsignfolder_completedpercentage->valuestring),
         strdup(d_ezsignfolder_formcompletedpercentage->valuestring),
         strdup(d_ezsignfolder_signaturecompletedpercentage->valuestring),
+        dt_ezsignfolder_close && !cJSON_IsNull(dt_ezsignfolder_close) ? strdup(dt_ezsignfolder_close->valuestring) : NULL,
+        dt_ezsignfolder_archive && !cJSON_IsNull(dt_ezsignfolder_archive) ? strdup(dt_ezsignfolder_archive->valuestring) : NULL,
+        dt_ezsignfolder_dispose && !cJSON_IsNull(dt_ezsignfolder_dispose) ? strdup(dt_ezsignfolder_dispose->valuestring) : NULL,
         b_ezsignfolder_signer ? b_ezsignfolder_signer->valueint : 0
         );
 

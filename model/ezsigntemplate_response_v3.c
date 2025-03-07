@@ -9,6 +9,7 @@ static ezsigntemplate_response_v3_t *ezsigntemplate_response_v3_create_internal(
     int pki_ezsigntemplate_id,
     int fki_ezsigntemplatedocument_id,
     int fki_ezsignfoldertype_id,
+    custom_ezsignfoldertype_template_response_t *obj_ezsignfoldertype,
     int fki_language_id,
     int fki_ezdoctemplatedocument_id,
     char *s_ezdoctemplatedocument_name_x,
@@ -31,6 +32,7 @@ static ezsigntemplate_response_v3_t *ezsigntemplate_response_v3_create_internal(
     ezsigntemplate_response_v3_local_var->pki_ezsigntemplate_id = pki_ezsigntemplate_id;
     ezsigntemplate_response_v3_local_var->fki_ezsigntemplatedocument_id = fki_ezsigntemplatedocument_id;
     ezsigntemplate_response_v3_local_var->fki_ezsignfoldertype_id = fki_ezsignfoldertype_id;
+    ezsigntemplate_response_v3_local_var->obj_ezsignfoldertype = obj_ezsignfoldertype;
     ezsigntemplate_response_v3_local_var->fki_language_id = fki_language_id;
     ezsigntemplate_response_v3_local_var->fki_ezdoctemplatedocument_id = fki_ezdoctemplatedocument_id;
     ezsigntemplate_response_v3_local_var->s_ezdoctemplatedocument_name_x = s_ezdoctemplatedocument_name_x;
@@ -54,6 +56,7 @@ __attribute__((deprecated)) ezsigntemplate_response_v3_t *ezsigntemplate_respons
     int pki_ezsigntemplate_id,
     int fki_ezsigntemplatedocument_id,
     int fki_ezsignfoldertype_id,
+    custom_ezsignfoldertype_template_response_t *obj_ezsignfoldertype,
     int fki_language_id,
     int fki_ezdoctemplatedocument_id,
     char *s_ezdoctemplatedocument_name_x,
@@ -73,6 +76,7 @@ __attribute__((deprecated)) ezsigntemplate_response_v3_t *ezsigntemplate_respons
         pki_ezsigntemplate_id,
         fki_ezsigntemplatedocument_id,
         fki_ezsignfoldertype_id,
+        obj_ezsignfoldertype,
         fki_language_id,
         fki_ezdoctemplatedocument_id,
         s_ezdoctemplatedocument_name_x,
@@ -99,6 +103,10 @@ void ezsigntemplate_response_v3_free(ezsigntemplate_response_v3_t *ezsigntemplat
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsigntemplate_response_v3->obj_ezsignfoldertype) {
+        custom_ezsignfoldertype_template_response_free(ezsigntemplate_response_v3->obj_ezsignfoldertype);
+        ezsigntemplate_response_v3->obj_ezsignfoldertype = NULL;
+    }
     if (ezsigntemplate_response_v3->s_ezdoctemplatedocument_name_x) {
         free(ezsigntemplate_response_v3->s_ezdoctemplatedocument_name_x);
         ezsigntemplate_response_v3->s_ezdoctemplatedocument_name_x = NULL;
@@ -158,6 +166,19 @@ cJSON *ezsigntemplate_response_v3_convertToJSON(ezsigntemplate_response_v3_t *ez
     if(ezsigntemplate_response_v3->fki_ezsignfoldertype_id) {
     if(cJSON_AddNumberToObject(item, "fkiEzsignfoldertypeID", ezsigntemplate_response_v3->fki_ezsignfoldertype_id) == NULL) {
     goto fail; //Numeric
+    }
+    }
+
+
+    // ezsigntemplate_response_v3->obj_ezsignfoldertype
+    if(ezsigntemplate_response_v3->obj_ezsignfoldertype) {
+    cJSON *obj_ezsignfoldertype_local_JSON = custom_ezsignfoldertype_template_response_convertToJSON(ezsigntemplate_response_v3->obj_ezsignfoldertype);
+    if(obj_ezsignfoldertype_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objEzsignfoldertype", obj_ezsignfoldertype_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
     }
     }
 
@@ -306,6 +327,9 @@ ezsigntemplate_response_v3_t *ezsigntemplate_response_v3_parseFromJSON(cJSON *ez
 
     ezsigntemplate_response_v3_t *ezsigntemplate_response_v3_local_var = NULL;
 
+    // define the local variable for ezsigntemplate_response_v3->obj_ezsignfoldertype
+    custom_ezsignfoldertype_template_response_t *obj_ezsignfoldertype_local_nonprim = NULL;
+
     // define the local variable for ezsigntemplate_response_v3->e_ezsigntemplate_recognition
     ezmax_api_definition__full_field_e_ezsigntemplate_recognition__e e_ezsigntemplate_recognition_local_nonprim = 0;
 
@@ -352,6 +376,15 @@ ezsigntemplate_response_v3_t *ezsigntemplate_response_v3_parseFromJSON(cJSON *ez
     {
     goto end; //Numeric
     }
+    }
+
+    // ezsigntemplate_response_v3->obj_ezsignfoldertype
+    cJSON *obj_ezsignfoldertype = cJSON_GetObjectItemCaseSensitive(ezsigntemplate_response_v3JSON, "objEzsignfoldertype");
+    if (cJSON_IsNull(obj_ezsignfoldertype)) {
+        obj_ezsignfoldertype = NULL;
+    }
+    if (obj_ezsignfoldertype) { 
+    obj_ezsignfoldertype_local_nonprim = custom_ezsignfoldertype_template_response_parseFromJSON(obj_ezsignfoldertype); //nonprimitive
     }
 
     // ezsigntemplate_response_v3->fki_language_id
@@ -536,6 +569,7 @@ ezsigntemplate_response_v3_t *ezsigntemplate_response_v3_parseFromJSON(cJSON *ez
         pki_ezsigntemplate_id->valuedouble,
         fki_ezsigntemplatedocument_id ? fki_ezsigntemplatedocument_id->valuedouble : 0,
         fki_ezsignfoldertype_id ? fki_ezsignfoldertype_id->valuedouble : 0,
+        obj_ezsignfoldertype ? obj_ezsignfoldertype_local_nonprim : NULL,
         fki_language_id->valuedouble,
         fki_ezdoctemplatedocument_id ? fki_ezdoctemplatedocument_id->valuedouble : 0,
         s_ezdoctemplatedocument_name_x && !cJSON_IsNull(s_ezdoctemplatedocument_name_x) ? strdup(s_ezdoctemplatedocument_name_x->valuestring) : NULL,
@@ -554,6 +588,10 @@ ezsigntemplate_response_v3_t *ezsigntemplate_response_v3_parseFromJSON(cJSON *ez
 
     return ezsigntemplate_response_v3_local_var;
 end:
+    if (obj_ezsignfoldertype_local_nonprim) {
+        custom_ezsignfoldertype_template_response_free(obj_ezsignfoldertype_local_nonprim);
+        obj_ezsignfoldertype_local_nonprim = NULL;
+    }
     if (e_ezsigntemplate_recognition_local_nonprim) {
         e_ezsigntemplate_recognition_local_nonprim = 0;
     }

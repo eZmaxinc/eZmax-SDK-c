@@ -7,6 +7,7 @@
 
 static common_reportrow_t *common_reportrow_create_internal(
     list_t *a_obj_reportcell,
+    list_t* obj_variableobject,
     int i_reportrow_height
     ) {
     common_reportrow_t *common_reportrow_local_var = malloc(sizeof(common_reportrow_t));
@@ -14,6 +15,7 @@ static common_reportrow_t *common_reportrow_create_internal(
         return NULL;
     }
     common_reportrow_local_var->a_obj_reportcell = a_obj_reportcell;
+    common_reportrow_local_var->obj_variableobject = obj_variableobject;
     common_reportrow_local_var->i_reportrow_height = i_reportrow_height;
 
     common_reportrow_local_var->_library_owned = 1;
@@ -22,10 +24,12 @@ static common_reportrow_t *common_reportrow_create_internal(
 
 __attribute__((deprecated)) common_reportrow_t *common_reportrow_create(
     list_t *a_obj_reportcell,
+    list_t* obj_variableobject,
     int i_reportrow_height
     ) {
     return common_reportrow_create_internal (
         a_obj_reportcell,
+        obj_variableobject,
         i_reportrow_height
         );
 }
@@ -45,6 +49,16 @@ void common_reportrow_free(common_reportrow_t *common_reportrow) {
         }
         list_freeList(common_reportrow->a_obj_reportcell);
         common_reportrow->a_obj_reportcell = NULL;
+    }
+    if (common_reportrow->obj_variableobject) {
+        list_ForEach(listEntry, common_reportrow->obj_variableobject) {
+            keyValuePair_t *localKeyValue = listEntry->data;
+            free (localKeyValue->key);
+            free (localKeyValue->value);
+            keyValuePair_free(localKeyValue);
+        }
+        list_freeList(common_reportrow->obj_variableobject);
+        common_reportrow->obj_variableobject = NULL;
     }
     free(common_reportrow);
 }
@@ -73,6 +87,23 @@ cJSON *common_reportrow_convertToJSON(common_reportrow_t *common_reportrow) {
     }
 
 
+    // common_reportrow->obj_variableobject
+    if (!common_reportrow->obj_variableobject) {
+        goto fail;
+    }
+    cJSON *obj_variableobject = cJSON_AddObjectToObject(item, "objVariableobject");
+    if(obj_variableobject == NULL) {
+        goto fail; //primitive map container
+    }
+    cJSON *localMapObject = obj_variableobject;
+    listEntry_t *obj_variableobjectListEntry;
+    if (common_reportrow->obj_variableobject) {
+    list_ForEach(obj_variableobjectListEntry, common_reportrow->obj_variableobject) {
+        keyValuePair_t *localKeyValue = obj_variableobjectListEntry->data;
+    }
+    }
+
+
     // common_reportrow->i_reportrow_height
     if (!common_reportrow->i_reportrow_height) {
         goto fail;
@@ -95,6 +126,9 @@ common_reportrow_t *common_reportrow_parseFromJSON(cJSON *common_reportrowJSON){
 
     // define the local list for common_reportrow->a_obj_reportcell
     list_t *a_obj_reportcellList = NULL;
+
+    // define the local map for common_reportrow->obj_variableobject
+    list_t *obj_variableobjectList = NULL;
 
     // common_reportrow->a_obj_reportcell
     cJSON *a_obj_reportcell = cJSON_GetObjectItemCaseSensitive(common_reportrowJSON, "a_objReportcell");
@@ -123,6 +157,32 @@ common_reportrow_t *common_reportrow_parseFromJSON(cJSON *common_reportrowJSON){
         list_addElement(a_obj_reportcellList, a_obj_reportcellItem);
     }
 
+    // common_reportrow->obj_variableobject
+    cJSON *obj_variableobject = cJSON_GetObjectItemCaseSensitive(common_reportrowJSON, "objVariableobject");
+    if (cJSON_IsNull(obj_variableobject)) {
+        obj_variableobject = NULL;
+    }
+    if (!obj_variableobject) {
+        goto end;
+    }
+
+    
+    cJSON *obj_variableobject_local_map = NULL;
+    if(!cJSON_IsObject(obj_variableobject) && !cJSON_IsNull(obj_variableobject))
+    {
+        goto end;//primitive map container
+    }
+    if(cJSON_IsObject(obj_variableobject))
+    {
+        obj_variableobjectList = list_createList();
+        keyValuePair_t *localMapKeyPair;
+        cJSON_ArrayForEach(obj_variableobject_local_map, obj_variableobject)
+        {
+            cJSON *localMapObject = obj_variableobject_local_map;
+            list_addElement(obj_variableobjectList , localMapKeyPair);
+        }
+    }
+
     // common_reportrow->i_reportrow_height
     cJSON *i_reportrow_height = cJSON_GetObjectItemCaseSensitive(common_reportrowJSON, "iReportrowHeight");
     if (cJSON_IsNull(i_reportrow_height)) {
@@ -141,6 +201,7 @@ common_reportrow_t *common_reportrow_parseFromJSON(cJSON *common_reportrowJSON){
 
     common_reportrow_local_var = common_reportrow_create_internal (
         a_obj_reportcellList,
+        obj_variableobjectList,
         i_reportrow_height->valuedouble
         );
 
@@ -154,6 +215,18 @@ end:
         }
         list_freeList(a_obj_reportcellList);
         a_obj_reportcellList = NULL;
+    }
+    if (obj_variableobjectList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, obj_variableobjectList) {
+            keyValuePair_t *localKeyValue = listEntry->data;
+            free(localKeyValue->key);
+            localKeyValue->key = NULL;
+            keyValuePair_free(localKeyValue);
+            localKeyValue = NULL;
+        }
+        list_freeList(obj_variableobjectList);
+        obj_variableobjectList = NULL;
     }
     return NULL;
 

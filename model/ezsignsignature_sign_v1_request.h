@@ -16,6 +16,7 @@
 typedef struct ezsignsignature_sign_v1_request_t ezsignsignature_sign_v1_request_t;
 
 #include "common_file.h"
+#include "custom_creditcard_request.h"
 
 // Enum EATTACHMENTSCONFIRMATIONDECISION for ezsignsignature_sign_v1_request
 
@@ -35,6 +36,7 @@ typedef struct ezsignsignature_sign_v1_request_t {
     char *s_attachments_refusal_reason; // string
     char *s_svg; // string
     list_t *a_obj_file; //nonprimitive container
+    struct custom_creditcard_request_t *obj_creditcard; //model
     int b_is_automatic; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -48,6 +50,7 @@ __attribute__((deprecated)) ezsignsignature_sign_v1_request_t *ezsignsignature_s
     char *s_attachments_refusal_reason,
     char *s_svg,
     list_t *a_obj_file,
+    custom_creditcard_request_t *obj_creditcard,
     int b_is_automatic
 );
 

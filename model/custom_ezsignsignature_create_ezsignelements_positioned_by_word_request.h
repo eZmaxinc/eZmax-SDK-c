@@ -31,6 +31,7 @@ typedef struct custom_ezsignsignature_create_ezsignelements_positioned_by_word_r
 typedef struct custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_t {
     int pki_ezsignsignature_id; //numeric
     int fki_ezsignfoldersignerassociation_id; //numeric
+    int fki_paymentgateway_id; //numeric
     int i_ezsignpage_pagenumber; //numeric
     int i_ezsignsignature_x; //numeric
     int i_ezsignsignature_y; //numeric
@@ -67,6 +68,7 @@ typedef struct custom_ezsignsignature_create_ezsignelements_positioned_by_word_r
 __attribute__((deprecated)) custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_t *custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_create(
     int pki_ezsignsignature_id,
     int fki_ezsignfoldersignerassociation_id,
+    int fki_paymentgateway_id,
     int i_ezsignpage_pagenumber,
     int i_ezsignsignature_x,
     int i_ezsignsignature_y,

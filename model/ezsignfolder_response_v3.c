@@ -29,6 +29,8 @@ static ezsignfolder_response_v3_t *ezsignfolder_response_v3_create_internal(
     char *dt_ezsignfolder_scheduleddispose,
     ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step,
     char *dt_ezsignfolder_close,
+    char *dt_ezsignfolder_archive,
+    char *dt_ezsignfolder_dispose,
     char *t_ezsignfolder_message,
     common_audit_t *obj_audit,
     char *s_ezsignfolder_externalid,
@@ -61,6 +63,8 @@ static ezsignfolder_response_v3_t *ezsignfolder_response_v3_create_internal(
     ezsignfolder_response_v3_local_var->dt_ezsignfolder_scheduleddispose = dt_ezsignfolder_scheduleddispose;
     ezsignfolder_response_v3_local_var->e_ezsignfolder_step = e_ezsignfolder_step;
     ezsignfolder_response_v3_local_var->dt_ezsignfolder_close = dt_ezsignfolder_close;
+    ezsignfolder_response_v3_local_var->dt_ezsignfolder_archive = dt_ezsignfolder_archive;
+    ezsignfolder_response_v3_local_var->dt_ezsignfolder_dispose = dt_ezsignfolder_dispose;
     ezsignfolder_response_v3_local_var->t_ezsignfolder_message = t_ezsignfolder_message;
     ezsignfolder_response_v3_local_var->obj_audit = obj_audit;
     ezsignfolder_response_v3_local_var->s_ezsignfolder_externalid = s_ezsignfolder_externalid;
@@ -94,6 +98,8 @@ __attribute__((deprecated)) ezsignfolder_response_v3_t *ezsignfolder_response_v3
     char *dt_ezsignfolder_scheduleddispose,
     ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step,
     char *dt_ezsignfolder_close,
+    char *dt_ezsignfolder_archive,
+    char *dt_ezsignfolder_dispose,
     char *t_ezsignfolder_message,
     common_audit_t *obj_audit,
     char *s_ezsignfolder_externalid,
@@ -123,6 +129,8 @@ __attribute__((deprecated)) ezsignfolder_response_v3_t *ezsignfolder_response_v3
         dt_ezsignfolder_scheduleddispose,
         e_ezsignfolder_step,
         dt_ezsignfolder_close,
+        dt_ezsignfolder_archive,
+        dt_ezsignfolder_dispose,
         t_ezsignfolder_message,
         obj_audit,
         s_ezsignfolder_externalid,
@@ -186,6 +194,14 @@ void ezsignfolder_response_v3_free(ezsignfolder_response_v3_t *ezsignfolder_resp
     if (ezsignfolder_response_v3->dt_ezsignfolder_close) {
         free(ezsignfolder_response_v3->dt_ezsignfolder_close);
         ezsignfolder_response_v3->dt_ezsignfolder_close = NULL;
+    }
+    if (ezsignfolder_response_v3->dt_ezsignfolder_archive) {
+        free(ezsignfolder_response_v3->dt_ezsignfolder_archive);
+        ezsignfolder_response_v3->dt_ezsignfolder_archive = NULL;
+    }
+    if (ezsignfolder_response_v3->dt_ezsignfolder_dispose) {
+        free(ezsignfolder_response_v3->dt_ezsignfolder_dispose);
+        ezsignfolder_response_v3->dt_ezsignfolder_dispose = NULL;
     }
     if (ezsignfolder_response_v3->t_ezsignfolder_message) {
         free(ezsignfolder_response_v3->t_ezsignfolder_message);
@@ -407,6 +423,22 @@ cJSON *ezsignfolder_response_v3_convertToJSON(ezsignfolder_response_v3_t *ezsign
     // ezsignfolder_response_v3->dt_ezsignfolder_close
     if(ezsignfolder_response_v3->dt_ezsignfolder_close) {
     if(cJSON_AddStringToObject(item, "dtEzsignfolderClose", ezsignfolder_response_v3->dt_ezsignfolder_close) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // ezsignfolder_response_v3->dt_ezsignfolder_archive
+    if(ezsignfolder_response_v3->dt_ezsignfolder_archive) {
+    if(cJSON_AddStringToObject(item, "dtEzsignfolderArchive", ezsignfolder_response_v3->dt_ezsignfolder_archive) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // ezsignfolder_response_v3->dt_ezsignfolder_dispose
+    if(ezsignfolder_response_v3->dt_ezsignfolder_dispose) {
+    if(cJSON_AddStringToObject(item, "dtEzsignfolderDispose", ezsignfolder_response_v3->dt_ezsignfolder_dispose) == NULL) {
     goto fail; //String
     }
     }
@@ -756,6 +788,30 @@ ezsignfolder_response_v3_t *ezsignfolder_response_v3_parseFromJSON(cJSON *ezsign
     }
     }
 
+    // ezsignfolder_response_v3->dt_ezsignfolder_archive
+    cJSON *dt_ezsignfolder_archive = cJSON_GetObjectItemCaseSensitive(ezsignfolder_response_v3JSON, "dtEzsignfolderArchive");
+    if (cJSON_IsNull(dt_ezsignfolder_archive)) {
+        dt_ezsignfolder_archive = NULL;
+    }
+    if (dt_ezsignfolder_archive) { 
+    if(!cJSON_IsString(dt_ezsignfolder_archive) && !cJSON_IsNull(dt_ezsignfolder_archive))
+    {
+    goto end; //String
+    }
+    }
+
+    // ezsignfolder_response_v3->dt_ezsignfolder_dispose
+    cJSON *dt_ezsignfolder_dispose = cJSON_GetObjectItemCaseSensitive(ezsignfolder_response_v3JSON, "dtEzsignfolderDispose");
+    if (cJSON_IsNull(dt_ezsignfolder_dispose)) {
+        dt_ezsignfolder_dispose = NULL;
+    }
+    if (dt_ezsignfolder_dispose) { 
+    if(!cJSON_IsString(dt_ezsignfolder_dispose) && !cJSON_IsNull(dt_ezsignfolder_dispose))
+    {
+    goto end; //String
+    }
+    }
+
     // ezsignfolder_response_v3->t_ezsignfolder_message
     cJSON *t_ezsignfolder_message = cJSON_GetObjectItemCaseSensitive(ezsignfolder_response_v3JSON, "tEzsignfolderMessage");
     if (cJSON_IsNull(t_ezsignfolder_message)) {
@@ -823,6 +879,8 @@ ezsignfolder_response_v3_t *ezsignfolder_response_v3_parseFromJSON(cJSON *ezsign
         dt_ezsignfolder_scheduleddispose && !cJSON_IsNull(dt_ezsignfolder_scheduleddispose) ? strdup(dt_ezsignfolder_scheduleddispose->valuestring) : NULL,
         e_ezsignfolder_step ? e_ezsignfolder_step_local_nonprim : 0,
         dt_ezsignfolder_close && !cJSON_IsNull(dt_ezsignfolder_close) ? strdup(dt_ezsignfolder_close->valuestring) : NULL,
+        dt_ezsignfolder_archive && !cJSON_IsNull(dt_ezsignfolder_archive) ? strdup(dt_ezsignfolder_archive->valuestring) : NULL,
+        dt_ezsignfolder_dispose && !cJSON_IsNull(dt_ezsignfolder_dispose) ? strdup(dt_ezsignfolder_dispose->valuestring) : NULL,
         t_ezsignfolder_message && !cJSON_IsNull(t_ezsignfolder_message) ? strdup(t_ezsignfolder_message->valuestring) : NULL,
         obj_audit ? obj_audit_local_nonprim : NULL,
         s_ezsignfolder_externalid && !cJSON_IsNull(s_ezsignfolder_externalid) ? strdup(s_ezsignfolder_externalid->valuestring) : NULL,

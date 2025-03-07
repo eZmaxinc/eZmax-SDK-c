@@ -41,6 +41,9 @@ typedef struct ezsignfolder_list_element_t {
     char *d_ezsignfolder_completedpercentage; // string
     char *d_ezsignfolder_formcompletedpercentage; // string
     char *d_ezsignfolder_signaturecompletedpercentage; // string
+    char *dt_ezsignfolder_close; // string
+    char *dt_ezsignfolder_archive; // string
+    char *dt_ezsignfolder_dispose; // string
     int b_ezsignfolder_signer; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -67,6 +70,9 @@ __attribute__((deprecated)) ezsignfolder_list_element_t *ezsignfolder_list_eleme
     char *d_ezsignfolder_completedpercentage,
     char *d_ezsignfolder_formcompletedpercentage,
     char *d_ezsignfolder_signaturecompletedpercentage,
+    char *dt_ezsignfolder_close,
+    char *dt_ezsignfolder_archive,
+    char *dt_ezsignfolder_dispose,
     int b_ezsignfolder_signer
 );
 

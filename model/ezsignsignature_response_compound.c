@@ -11,6 +11,7 @@ static ezsignsignature_response_compound_t *ezsignsignature_response_compound_cr
     int fki_ezsignfoldersignerassociation_id,
     int fki_ezsignsigningreason_id,
     int fki_font_id,
+    char *s_currency_description_x,
     char *s_ezsignsigningreason_description_x,
     int i_ezsignpage_pagenumber,
     int i_ezsignsignature_x,
@@ -49,7 +50,8 @@ static ezsignsignature_response_compound_t *ezsignsignature_response_compound_cr
     list_t *a_obj_ezsignsignaturecustomdate,
     custom_creditcardtransaction_response_t *obj_creditcardtransaction,
     list_t *a_obj_ezsignelementdependency,
-    custom_timezone_with_code_response_t *obj_timezone
+    custom_timezone_with_code_response_t *obj_timezone,
+    list_t *a_obj_ezsignsignaturepaymentdetail
     ) {
     ezsignsignature_response_compound_t *ezsignsignature_response_compound_local_var = malloc(sizeof(ezsignsignature_response_compound_t));
     if (!ezsignsignature_response_compound_local_var) {
@@ -60,6 +62,7 @@ static ezsignsignature_response_compound_t *ezsignsignature_response_compound_cr
     ezsignsignature_response_compound_local_var->fki_ezsignfoldersignerassociation_id = fki_ezsignfoldersignerassociation_id;
     ezsignsignature_response_compound_local_var->fki_ezsignsigningreason_id = fki_ezsignsigningreason_id;
     ezsignsignature_response_compound_local_var->fki_font_id = fki_font_id;
+    ezsignsignature_response_compound_local_var->s_currency_description_x = s_currency_description_x;
     ezsignsignature_response_compound_local_var->s_ezsignsigningreason_description_x = s_ezsignsigningreason_description_x;
     ezsignsignature_response_compound_local_var->i_ezsignpage_pagenumber = i_ezsignpage_pagenumber;
     ezsignsignature_response_compound_local_var->i_ezsignsignature_x = i_ezsignsignature_x;
@@ -99,6 +102,7 @@ static ezsignsignature_response_compound_t *ezsignsignature_response_compound_cr
     ezsignsignature_response_compound_local_var->obj_creditcardtransaction = obj_creditcardtransaction;
     ezsignsignature_response_compound_local_var->a_obj_ezsignelementdependency = a_obj_ezsignelementdependency;
     ezsignsignature_response_compound_local_var->obj_timezone = obj_timezone;
+    ezsignsignature_response_compound_local_var->a_obj_ezsignsignaturepaymentdetail = a_obj_ezsignsignaturepaymentdetail;
 
     ezsignsignature_response_compound_local_var->_library_owned = 1;
     return ezsignsignature_response_compound_local_var;
@@ -110,6 +114,7 @@ __attribute__((deprecated)) ezsignsignature_response_compound_t *ezsignsignature
     int fki_ezsignfoldersignerassociation_id,
     int fki_ezsignsigningreason_id,
     int fki_font_id,
+    char *s_currency_description_x,
     char *s_ezsignsigningreason_description_x,
     int i_ezsignpage_pagenumber,
     int i_ezsignsignature_x,
@@ -148,7 +153,8 @@ __attribute__((deprecated)) ezsignsignature_response_compound_t *ezsignsignature
     list_t *a_obj_ezsignsignaturecustomdate,
     custom_creditcardtransaction_response_t *obj_creditcardtransaction,
     list_t *a_obj_ezsignelementdependency,
-    custom_timezone_with_code_response_t *obj_timezone
+    custom_timezone_with_code_response_t *obj_timezone,
+    list_t *a_obj_ezsignsignaturepaymentdetail
     ) {
     return ezsignsignature_response_compound_create_internal (
         pki_ezsignsignature_id,
@@ -156,6 +162,7 @@ __attribute__((deprecated)) ezsignsignature_response_compound_t *ezsignsignature
         fki_ezsignfoldersignerassociation_id,
         fki_ezsignsigningreason_id,
         fki_font_id,
+        s_currency_description_x,
         s_ezsignsigningreason_description_x,
         i_ezsignpage_pagenumber,
         i_ezsignsignature_x,
@@ -194,7 +201,8 @@ __attribute__((deprecated)) ezsignsignature_response_compound_t *ezsignsignature
         a_obj_ezsignsignaturecustomdate,
         obj_creditcardtransaction,
         a_obj_ezsignelementdependency,
-        obj_timezone
+        obj_timezone,
+        a_obj_ezsignsignaturepaymentdetail
         );
 }
 
@@ -207,6 +215,10 @@ void ezsignsignature_response_compound_free(ezsignsignature_response_compound_t 
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsignsignature_response_compound->s_currency_description_x) {
+        free(ezsignsignature_response_compound->s_currency_description_x);
+        ezsignsignature_response_compound->s_currency_description_x = NULL;
+    }
     if (ezsignsignature_response_compound->s_ezsignsigningreason_description_x) {
         free(ezsignsignature_response_compound->s_ezsignsigningreason_description_x);
         ezsignsignature_response_compound->s_ezsignsigningreason_description_x = NULL;
@@ -281,6 +293,13 @@ void ezsignsignature_response_compound_free(ezsignsignature_response_compound_t 
         custom_timezone_with_code_response_free(ezsignsignature_response_compound->obj_timezone);
         ezsignsignature_response_compound->obj_timezone = NULL;
     }
+    if (ezsignsignature_response_compound->a_obj_ezsignsignaturepaymentdetail) {
+        list_ForEach(listEntry, ezsignsignature_response_compound->a_obj_ezsignsignaturepaymentdetail) {
+            ezsignsignaturepaymentdetail_request_compound_free(listEntry->data);
+        }
+        list_freeList(ezsignsignature_response_compound->a_obj_ezsignsignaturepaymentdetail);
+        ezsignsignature_response_compound->a_obj_ezsignsignaturepaymentdetail = NULL;
+    }
     free(ezsignsignature_response_compound);
 }
 
@@ -326,6 +345,14 @@ cJSON *ezsignsignature_response_compound_convertToJSON(ezsignsignature_response_
     if(ezsignsignature_response_compound->fki_font_id) {
     if(cJSON_AddNumberToObject(item, "fkiFontID", ezsignsignature_response_compound->fki_font_id) == NULL) {
     goto fail; //Numeric
+    }
+    }
+
+
+    // ezsignsignature_response_compound->s_currency_description_x
+    if(ezsignsignature_response_compound->s_currency_description_x) {
+    if(cJSON_AddStringToObject(item, "sCurrencyDescriptionX", ezsignsignature_response_compound->s_currency_description_x) == NULL) {
+    goto fail; //String
     }
     }
 
@@ -731,6 +758,26 @@ cJSON *ezsignsignature_response_compound_convertToJSON(ezsignsignature_response_
     }
     }
 
+
+    // ezsignsignature_response_compound->a_obj_ezsignsignaturepaymentdetail
+    if(ezsignsignature_response_compound->a_obj_ezsignsignaturepaymentdetail) {
+    cJSON *a_obj_ezsignsignaturepaymentdetail = cJSON_AddArrayToObject(item, "a_objEzsignsignaturepaymentdetail");
+    if(a_obj_ezsignsignaturepaymentdetail == NULL) {
+    goto fail; //nonprimitive container
+    }
+
+    listEntry_t *a_obj_ezsignsignaturepaymentdetailListEntry;
+    if (ezsignsignature_response_compound->a_obj_ezsignsignaturepaymentdetail) {
+    list_ForEach(a_obj_ezsignsignaturepaymentdetailListEntry, ezsignsignature_response_compound->a_obj_ezsignsignaturepaymentdetail) {
+    cJSON *itemLocal = ezsignsignaturepaymentdetail_request_compound_convertToJSON(a_obj_ezsignsignaturepaymentdetailListEntry->data);
+    if(itemLocal == NULL) {
+    goto fail;
+    }
+    cJSON_AddItemToArray(a_obj_ezsignsignaturepaymentdetail, itemLocal);
+    }
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -784,6 +831,9 @@ ezsignsignature_response_compound_t *ezsignsignature_response_compound_parseFrom
 
     // define the local variable for ezsignsignature_response_compound->obj_timezone
     custom_timezone_with_code_response_t *obj_timezone_local_nonprim = NULL;
+
+    // define the local list for ezsignsignature_response_compound->a_obj_ezsignsignaturepaymentdetail
+    list_t *a_obj_ezsignsignaturepaymentdetailList = NULL;
 
     // ezsignsignature_response_compound->pki_ezsignsignature_id
     cJSON *pki_ezsignsignature_id = cJSON_GetObjectItemCaseSensitive(ezsignsignature_response_compoundJSON, "pkiEzsignsignatureID");
@@ -851,6 +901,18 @@ ezsignsignature_response_compound_t *ezsignsignature_response_compound_parseFrom
     if(!cJSON_IsNumber(fki_font_id))
     {
     goto end; //Numeric
+    }
+    }
+
+    // ezsignsignature_response_compound->s_currency_description_x
+    cJSON *s_currency_description_x = cJSON_GetObjectItemCaseSensitive(ezsignsignature_response_compoundJSON, "sCurrencyDescriptionX");
+    if (cJSON_IsNull(s_currency_description_x)) {
+        s_currency_description_x = NULL;
+    }
+    if (s_currency_description_x) { 
+    if(!cJSON_IsString(s_currency_description_x) && !cJSON_IsNull(s_currency_description_x))
+    {
+    goto end; //String
     }
     }
 
@@ -1328,6 +1390,30 @@ ezsignsignature_response_compound_t *ezsignsignature_response_compound_parseFrom
     obj_timezone_local_nonprim = custom_timezone_with_code_response_parseFromJSON(obj_timezone); //nonprimitive
     }
 
+    // ezsignsignature_response_compound->a_obj_ezsignsignaturepaymentdetail
+    cJSON *a_obj_ezsignsignaturepaymentdetail = cJSON_GetObjectItemCaseSensitive(ezsignsignature_response_compoundJSON, "a_objEzsignsignaturepaymentdetail");
+    if (cJSON_IsNull(a_obj_ezsignsignaturepaymentdetail)) {
+        a_obj_ezsignsignaturepaymentdetail = NULL;
+    }
+    if (a_obj_ezsignsignaturepaymentdetail) { 
+    cJSON *a_obj_ezsignsignaturepaymentdetail_local_nonprimitive = NULL;
+    if(!cJSON_IsArray(a_obj_ezsignsignaturepaymentdetail)){
+        goto end; //nonprimitive container
+    }
+
+    a_obj_ezsignsignaturepaymentdetailList = list_createList();
+
+    cJSON_ArrayForEach(a_obj_ezsignsignaturepaymentdetail_local_nonprimitive,a_obj_ezsignsignaturepaymentdetail )
+    {
+        if(!cJSON_IsObject(a_obj_ezsignsignaturepaymentdetail_local_nonprimitive)){
+            goto end;
+        }
+        ezsignsignaturepaymentdetail_request_compound_t *a_obj_ezsignsignaturepaymentdetailItem = ezsignsignaturepaymentdetail_request_compound_parseFromJSON(a_obj_ezsignsignaturepaymentdetail_local_nonprimitive);
+
+        list_addElement(a_obj_ezsignsignaturepaymentdetailList, a_obj_ezsignsignaturepaymentdetailItem);
+    }
+    }
+
 
     ezsignsignature_response_compound_local_var = ezsignsignature_response_compound_create_internal (
         pki_ezsignsignature_id->valuedouble,
@@ -1335,6 +1421,7 @@ ezsignsignature_response_compound_t *ezsignsignature_response_compound_parseFrom
         fki_ezsignfoldersignerassociation_id->valuedouble,
         fki_ezsignsigningreason_id ? fki_ezsignsigningreason_id->valuedouble : 0,
         fki_font_id ? fki_font_id->valuedouble : 0,
+        s_currency_description_x && !cJSON_IsNull(s_currency_description_x) ? strdup(s_currency_description_x->valuestring) : NULL,
         s_ezsignsigningreason_description_x && !cJSON_IsNull(s_ezsignsigningreason_description_x) ? strdup(s_ezsignsigningreason_description_x->valuestring) : NULL,
         i_ezsignpage_pagenumber->valuedouble,
         i_ezsignsignature_x->valuedouble,
@@ -1373,7 +1460,8 @@ ezsignsignature_response_compound_t *ezsignsignature_response_compound_parseFrom
         a_obj_ezsignsignaturecustomdate ? a_obj_ezsignsignaturecustomdateList : NULL,
         obj_creditcardtransaction ? obj_creditcardtransaction_local_nonprim : NULL,
         a_obj_ezsignelementdependency ? a_obj_ezsignelementdependencyList : NULL,
-        obj_timezone ? obj_timezone_local_nonprim : NULL
+        obj_timezone ? obj_timezone_local_nonprim : NULL,
+        a_obj_ezsignsignaturepaymentdetail ? a_obj_ezsignsignaturepaymentdetailList : NULL
         );
 
     return ezsignsignature_response_compound_local_var;
@@ -1436,6 +1524,15 @@ end:
     if (obj_timezone_local_nonprim) {
         custom_timezone_with_code_response_free(obj_timezone_local_nonprim);
         obj_timezone_local_nonprim = NULL;
+    }
+    if (a_obj_ezsignsignaturepaymentdetailList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_ezsignsignaturepaymentdetailList) {
+            ezsignsignaturepaymentdetail_request_compound_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_ezsignsignaturepaymentdetailList);
+        a_obj_ezsignsignaturepaymentdetailList = NULL;
     }
     return NULL;
 

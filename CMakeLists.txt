@@ -195,6 +195,7 @@ set(SRCS
     model/common_reportcellstyle.c
     model/common_reportcolumn.c
     model/common_reportgroup.c
+    model/common_reportgroup_parameter.c
     model/common_reportrow.c
     model/common_reportsection.c
     model/common_reportsubsection.c
@@ -234,6 +235,7 @@ set(SRCS
     model/computed_e_communication_direction.c
     model/computed_e_ezsigndocument_steptype.c
     model/computed_e_ezsignfolder_access.c
+    model/computed_e_ezsignimportfolder_status.c
     model/contact_request.c
     model/contact_request_compound.c
     model/contact_request_compound_v2.c
@@ -289,12 +291,6 @@ set(SRCS
     model/creditcarddetail_response.c
     model/creditcarddetail_response_compound.c
     model/creditcardmerchant_autocomplete_element_response.c
-    model/creditcardmerchant_create_object_v1_request.c
-    model/creditcardmerchant_create_object_v1_response.c
-    model/creditcardmerchant_create_object_v1_response_m_payload.c
-    model/creditcardmerchant_delete_object_v1_response.c
-    model/creditcardmerchant_edit_object_v1_request.c
-    model/creditcardmerchant_edit_object_v1_response.c
     model/creditcardmerchant_get_autocomplete_v2_response.c
     model/creditcardmerchant_get_autocomplete_v2_response_m_payload.c
     model/creditcardmerchant_get_list_v1_response.c
@@ -325,6 +321,7 @@ set(SRCS
     model/custom_communicationsender_response.c
     model/custom_contact_name_response.c
     model/custom_create_ezsignelements_positioned_by_word_request.c
+    model/custom_creditcard_request.c
     model/custom_creditcardtransaction_response.c
     model/custom_creditcardtransactionresponse_response.c
     model/custom_discussionconfiguration_response.c
@@ -347,11 +344,13 @@ set(SRCS
     model/custom_ezsignfoldertransmission_response.c
     model/custom_ezsignfoldertransmission_signer_response.c
     model/custom_ezsignfoldertype_response.c
+    model/custom_ezsignfoldertype_template_response.c
     model/custom_ezsignformfield_request.c
     model/custom_ezsignformfielderror_response.c
     model/custom_ezsignformfielderrortest_response.c
     model/custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request.c
     model/custom_ezsignformfieldgroup_request.c
+    model/custom_ezsignimportdocument_response.c
     model/custom_ezsignsignature_create_ezsignelements_positioned_by_word_request.c
     model/custom_ezsignsignature_ezsignsignatures_automatic_response.c
     model/custom_ezsignsignaturestatus_response.c
@@ -363,15 +362,19 @@ set(SRCS
     model/custom_import_ezsigntemplatepackage_relation_request.c
     model/custom_notificationsubsectiongetnotificationtests_response.c
     model/custom_notificationtestgetnotificationtests_response.c
+    model/custom_prefill_ezsignform_value_request.c
     model/custom_timezone_with_code_response.c
     model/custom_user_name_response.c
     model/custom_webhook_response.c
     model/custom_webhooklog_response.c
     model/custom_word_position_occurence_response.c
     model/custom_word_position_word_response.c
+    model/customer_autocomplete_element_response.c
     model/customer_create_object_v1_request.c
     model/customer_create_object_v1_response.c
     model/customer_create_object_v1_response_m_payload.c
+    model/customer_get_autocomplete_v2_response.c
+    model/customer_get_autocomplete_v2_response_m_payload.c
     model/customer_get_object_v2_response.c
     model/customer_get_object_v2_response_m_payload.c
     model/customer_request.c
@@ -446,6 +449,7 @@ set(SRCS
     model/enum_fontunderline.c
     model/enum_fontweight.c
     model/enum_horizontalalignment.c
+    model/enum_reportdata_type.c
     model/enum_textvalidation.c
     model/enum_verticalalignment.c
     model/ezdoctemplatedocument_autocomplete_element_response.c
@@ -474,6 +478,9 @@ set(SRCS
     model/ezdoctemplatetype_autocomplete_element_response.c
     model/ezdoctemplatetype_get_autocomplete_v2_response.c
     model/ezdoctemplatetype_get_autocomplete_v2_response_m_payload.c
+    model/ezmaxcase_patch_object_v1_request.c
+    model/ezmaxcase_patch_object_v1_response.c
+    model/ezmaxcase_request_patch.c
     model/ezmaxinvoicing_autocomplete_element_response.c
     model/ezmaxinvoicing_get_autocomplete_v2_response.c
     model/ezmaxinvoicing_get_autocomplete_v2_response_m_payload.c
@@ -651,6 +658,8 @@ set(SRCS
     model/ezsigndocument_matchingtemplate_v3_response.c
     model/ezsigndocument_patch_object_v1_request.c
     model/ezsigndocument_patch_object_v1_response.c
+    model/ezsigndocument_prefill_ezsignform_v1_request.c
+    model/ezsigndocument_prefill_ezsignform_v1_response.c
     model/ezsigndocument_request.c
     model/ezsigndocument_request_compound.c
     model/ezsigndocument_request_patch.c
@@ -810,6 +819,15 @@ set(SRCS
     model/ezsignformfieldgroupsigner_request_compound.c
     model/ezsignformfieldgroupsigner_response.c
     model/ezsignformfieldgroupsigner_response_compound.c
+    model/ezsignimportdocument_download_v1_response.c
+    model/ezsignimportfolder_delete_object_v1_response.c
+    model/ezsignimportfolder_get_list_v1_response.c
+    model/ezsignimportfolder_get_list_v1_response_m_payload.c
+    model/ezsignimportfolder_get_object_v2_response.c
+    model/ezsignimportfolder_get_object_v2_response_m_payload.c
+    model/ezsignimportfolder_list_element.c
+    model/ezsignimportfolder_response.c
+    model/ezsignimportfolder_response_compound.c
     model/ezsignpage_consult_v1_response.c
     model/ezsignpage_response.c
     model/ezsignpage_response_compound.c
@@ -849,6 +867,10 @@ set(SRCS
     model/ezsignsignaturecustomdate_response_compound.c
     model/ezsignsignaturecustomdate_response_compound_v2.c
     model/ezsignsignaturecustomdate_response_v2.c
+    model/ezsignsignaturepaymentdetail_request.c
+    model/ezsignsignaturepaymentdetail_request_compound.c
+    model/ezsignsignaturepaymentdetail_response.c
+    model/ezsignsignaturepaymentdetail_response_compound.c
     model/ezsignsigner_request.c
     model/ezsignsigner_request_compound.c
     model/ezsignsigner_request_compound_contact.c
@@ -1198,6 +1220,7 @@ set(SRCS
     model/field_e_ezsignsignature_font.c
     model/field_e_ezsignsignature_tooltipposition.c
     model/field_e_ezsignsignature_type.c
+    model/field_e_ezsignsignaturepaymentdetail_taxable.c
     model/field_e_ezsigntemplate_recognition.c
     model/field_e_ezsigntemplate_type.c
     model/field_e_ezsigntemplatedocumentpagerecognition_operator.c
@@ -1224,6 +1247,7 @@ set(SRCS
     model/field_e_ezsigntemplatesignature_type.c
     model/field_e_ezsigntemplatesigner_mapping.c
     model/field_e_notificationpreference_status.c
+    model/field_e_paymentgateway_processor.c
     model/field_e_paymentterm_type.c
     model/field_e_phone_type.c
     model/field_e_sessionhistory_endby.c
@@ -1330,6 +1354,7 @@ set(SRCS
     model/multilingual_ezsignsigningreason_description.c
     model/multilingual_notificationsubsection_name.c
     model/multilingual_notificationtest_name.c
+    model/multilingual_paymentgateway_description.c
     model/multilingual_paymentterm_description.c
     model/multilingual_subnet_description.c
     model/multilingual_supply_description.c
@@ -1351,6 +1376,23 @@ set(SRCS
     model/otherincome_get_communicationrecipients_v1_response_m_payload.c
     model/otherincome_get_communicationsenders_v1_response.c
     model/otherincome_get_communicationsenders_v1_response_m_payload.c
+    model/paymentgateway_autocomplete_element_response.c
+    model/paymentgateway_create_object_v1_request.c
+    model/paymentgateway_create_object_v1_response.c
+    model/paymentgateway_create_object_v1_response_m_payload.c
+    model/paymentgateway_edit_object_v1_request.c
+    model/paymentgateway_edit_object_v1_response.c
+    model/paymentgateway_get_autocomplete_v2_response.c
+    model/paymentgateway_get_autocomplete_v2_response_m_payload.c
+    model/paymentgateway_get_list_v1_response.c
+    model/paymentgateway_get_list_v1_response_m_payload.c
+    model/paymentgateway_get_object_v2_response.c
+    model/paymentgateway_get_object_v2_response_m_payload.c
+    model/paymentgateway_list_element.c
+    model/paymentgateway_request.c
+    model/paymentgateway_request_compound.c
+    model/paymentgateway_response.c
+    model/paymentgateway_response_compound.c
     model/paymentterm_autocomplete_element_response.c
     model/paymentterm_create_object_v1_request.c
     model/paymentterm_create_object_v1_response.c
@@ -1745,6 +1787,7 @@ set(SRCS
     api/ObjectEzdoctemplatedocumentAPI.c
     api/ObjectEzdoctemplatefieldtypecategoryAPI.c
     api/ObjectEzdoctemplatetypeAPI.c
+    api/ObjectEzmaxcaseAPI.c
     api/ObjectEzmaxinvoicingAPI.c
     api/ObjectEzmaxproductAPI.c
     api/ObjectEzsignannotationAPI.c
@@ -1758,6 +1801,8 @@ set(SRCS
     api/ObjectEzsignfoldersignerassociationAPI.c
     api/ObjectEzsignfoldertypeAPI.c
     api/ObjectEzsignformfieldgroupAPI.c
+    api/ObjectEzsignimportdocumentAPI.c
+    api/ObjectEzsignimportfolderAPI.c
     api/ObjectEzsignpageAPI.c
     api/ObjectEzsignsignatureAPI.c
     api/ObjectEzsignsignergroupAPI.c
@@ -1793,6 +1838,7 @@ set(SRCS
     api/ObjectNotificationsectionAPI.c
     api/ObjectNotificationtestAPI.c
     api/ObjectOtherincomeAPI.c
+    api/ObjectPaymentgatewayAPI.c
     api/ObjectPaymenttermAPI.c
     api/ObjectPdfalevelAPI.c
     api/ObjectPeriodAPI.c
@@ -1980,6 +2026,7 @@ set(HDRS
     model/common_reportcellstyle.h
     model/common_reportcolumn.h
     model/common_reportgroup.h
+    model/common_reportgroup_parameter.h
     model/common_reportrow.h
     model/common_reportsection.h
     model/common_reportsubsection.h
@@ -2019,6 +2066,7 @@ set(HDRS
     model/computed_e_communication_direction.h
     model/computed_e_ezsigndocument_steptype.h
     model/computed_e_ezsignfolder_access.h
+    model/computed_e_ezsignimportfolder_status.h
     model/contact_request.h
     model/contact_request_compound.h
     model/contact_request_compound_v2.h
@@ -2074,12 +2122,6 @@ set(HDRS
     model/creditcarddetail_response.h
     model/creditcarddetail_response_compound.h
     model/creditcardmerchant_autocomplete_element_response.h
-    model/creditcardmerchant_create_object_v1_request.h
-    model/creditcardmerchant_create_object_v1_response.h
-    model/creditcardmerchant_create_object_v1_response_m_payload.h
-    model/creditcardmerchant_delete_object_v1_response.h
-    model/creditcardmerchant_edit_object_v1_request.h
-    model/creditcardmerchant_edit_object_v1_response.h
     model/creditcardmerchant_get_autocomplete_v2_response.h
     model/creditcardmerchant_get_autocomplete_v2_response_m_payload.h
     model/creditcardmerchant_get_list_v1_response.h
@@ -2110,6 +2152,7 @@ set(HDRS
     model/custom_communicationsender_response.h
     model/custom_contact_name_response.h
     model/custom_create_ezsignelements_positioned_by_word_request.h
+    model/custom_creditcard_request.h
     model/custom_creditcardtransaction_response.h
     model/custom_creditcardtransactionresponse_response.h
     model/custom_discussionconfiguration_response.h
@@ -2132,11 +2175,13 @@ set(HDRS
     model/custom_ezsignfoldertransmission_response.h
     model/custom_ezsignfoldertransmission_signer_response.h
     model/custom_ezsignfoldertype_response.h
+    model/custom_ezsignfoldertype_template_response.h
     model/custom_ezsignformfield_request.h
     model/custom_ezsignformfielderror_response.h
     model/custom_ezsignformfielderrortest_response.h
     model/custom_ezsignformfieldgroup_create_ezsignelements_positioned_by_word_request.h
     model/custom_ezsignformfieldgroup_request.h
+    model/custom_ezsignimportdocument_response.h
     model/custom_ezsignsignature_create_ezsignelements_positioned_by_word_request.h
     model/custom_ezsignsignature_ezsignsignatures_automatic_response.h
     model/custom_ezsignsignaturestatus_response.h
@@ -2148,15 +2193,19 @@ set(HDRS
     model/custom_import_ezsigntemplatepackage_relation_request.h
     model/custom_notificationsubsectiongetnotificationtests_response.h
     model/custom_notificationtestgetnotificationtests_response.h
+    model/custom_prefill_ezsignform_value_request.h
     model/custom_timezone_with_code_response.h
     model/custom_user_name_response.h
     model/custom_webhook_response.h
     model/custom_webhooklog_response.h
     model/custom_word_position_occurence_response.h
     model/custom_word_position_word_response.h
+    model/customer_autocomplete_element_response.h
     model/customer_create_object_v1_request.h
     model/customer_create_object_v1_response.h
     model/customer_create_object_v1_response_m_payload.h
+    model/customer_get_autocomplete_v2_response.h
+    model/customer_get_autocomplete_v2_response_m_payload.h
     model/customer_get_object_v2_response.h
     model/customer_get_object_v2_response_m_payload.h
     model/customer_request.h
@@ -2231,6 +2280,7 @@ set(HDRS
     model/enum_fontunderline.h
     model/enum_fontweight.h
     model/enum_horizontalalignment.h
+    model/enum_reportdata_type.h
     model/enum_textvalidation.h
     model/enum_verticalalignment.h
     model/ezdoctemplatedocument_autocomplete_element_response.h
@@ -2259,6 +2309,9 @@ set(HDRS
     model/ezdoctemplatetype_autocomplete_element_response.h
     model/ezdoctemplatetype_get_autocomplete_v2_response.h
     model/ezdoctemplatetype_get_autocomplete_v2_response_m_payload.h
+    model/ezmaxcase_patch_object_v1_request.h
+    model/ezmaxcase_patch_object_v1_response.h
+    model/ezmaxcase_request_patch.h
     model/ezmaxinvoicing_autocomplete_element_response.h
     model/ezmaxinvoicing_get_autocomplete_v2_response.h
     model/ezmaxinvoicing_get_autocomplete_v2_response_m_payload.h
@@ -2436,6 +2489,8 @@ set(HDRS
     model/ezsigndocument_matchingtemplate_v3_response.h
     model/ezsigndocument_patch_object_v1_request.h
     model/ezsigndocument_patch_object_v1_response.h
+    model/ezsigndocument_prefill_ezsignform_v1_request.h
+    model/ezsigndocument_prefill_ezsignform_v1_response.h
     model/ezsigndocument_request.h
     model/ezsigndocument_request_compound.h
     model/ezsigndocument_request_patch.h
@@ -2595,6 +2650,15 @@ set(HDRS
     model/ezsignformfieldgroupsigner_request_compound.h
     model/ezsignformfieldgroupsigner_response.h
     model/ezsignformfieldgroupsigner_response_compound.h
+    model/ezsignimportdocument_download_v1_response.h
+    model/ezsignimportfolder_delete_object_v1_response.h
+    model/ezsignimportfolder_get_list_v1_response.h
+    model/ezsignimportfolder_get_list_v1_response_m_payload.h
+    model/ezsignimportfolder_get_object_v2_response.h
+    model/ezsignimportfolder_get_object_v2_response_m_payload.h
+    model/ezsignimportfolder_list_element.h
+    model/ezsignimportfolder_response.h
+    model/ezsignimportfolder_response_compound.h
     model/ezsignpage_consult_v1_response.h
     model/ezsignpage_response.h
     model/ezsignpage_response_compound.h
@@ -2634,6 +2698,10 @@ set(HDRS
     model/ezsignsignaturecustomdate_response_compound.h
     model/ezsignsignaturecustomdate_response_compound_v2.h
     model/ezsignsignaturecustomdate_response_v2.h
+    model/ezsignsignaturepaymentdetail_request.h
+    model/ezsignsignaturepaymentdetail_request_compound.h
+    model/ezsignsignaturepaymentdetail_response.h
+    model/ezsignsignaturepaymentdetail_response_compound.h
     model/ezsignsigner_request.h
     model/ezsignsigner_request_compound.h
     model/ezsignsigner_request_compound_contact.h
@@ -2983,6 +3051,7 @@ set(HDRS
     model/field_e_ezsignsignature_font.h
     model/field_e_ezsignsignature_tooltipposition.h
     model/field_e_ezsignsignature_type.h
+    model/field_e_ezsignsignaturepaymentdetail_taxable.h
     model/field_e_ezsigntemplate_recognition.h
     model/field_e_ezsigntemplate_type.h
     model/field_e_ezsigntemplatedocumentpagerecognition_operator.h
@@ -3009,6 +3078,7 @@ set(HDRS
     model/field_e_ezsigntemplatesignature_type.h
     model/field_e_ezsigntemplatesigner_mapping.h
     model/field_e_notificationpreference_status.h
+    model/field_e_paymentgateway_processor.h
     model/field_e_paymentterm_type.h
     model/field_e_phone_type.h
     model/field_e_sessionhistory_endby.h
@@ -3115,6 +3185,7 @@ set(HDRS
     model/multilingual_ezsignsigningreason_description.h
     model/multilingual_notificationsubsection_name.h
     model/multilingual_notificationtest_name.h
+    model/multilingual_paymentgateway_description.h
     model/multilingual_paymentterm_description.h
     model/multilingual_subnet_description.h
     model/multilingual_supply_description.h
@@ -3136,6 +3207,23 @@ set(HDRS
     model/otherincome_get_communicationrecipients_v1_response_m_payload.h
     model/otherincome_get_communicationsenders_v1_response.h
     model/otherincome_get_communicationsenders_v1_response_m_payload.h
+    model/paymentgateway_autocomplete_element_response.h
+    model/paymentgateway_create_object_v1_request.h
+    model/paymentgateway_create_object_v1_response.h
+    model/paymentgateway_create_object_v1_response_m_payload.h
+    model/paymentgateway_edit_object_v1_request.h
+    model/paymentgateway_edit_object_v1_response.h
+    model/paymentgateway_get_autocomplete_v2_response.h
+    model/paymentgateway_get_autocomplete_v2_response_m_payload.h
+    model/paymentgateway_get_list_v1_response.h
+    model/paymentgateway_get_list_v1_response_m_payload.h
+    model/paymentgateway_get_object_v2_response.h
+    model/paymentgateway_get_object_v2_response_m_payload.h
+    model/paymentgateway_list_element.h
+    model/paymentgateway_request.h
+    model/paymentgateway_request_compound.h
+    model/paymentgateway_response.h
+    model/paymentgateway_response_compound.h
     model/paymentterm_autocomplete_element_response.h
     model/paymentterm_create_object_v1_request.h
     model/paymentterm_create_object_v1_response.h
@@ -3530,6 +3618,7 @@ set(HDRS
     api/ObjectEzdoctemplatedocumentAPI.h
     api/ObjectEzdoctemplatefieldtypecategoryAPI.h
     api/ObjectEzdoctemplatetypeAPI.h
+    api/ObjectEzmaxcaseAPI.h
     api/ObjectEzmaxinvoicingAPI.h
     api/ObjectEzmaxproductAPI.h
     api/ObjectEzsignannotationAPI.h
@@ -3543,6 +3632,8 @@ set(HDRS
     api/ObjectEzsignfoldersignerassociationAPI.h
     api/ObjectEzsignfoldertypeAPI.h
     api/ObjectEzsignformfieldgroupAPI.h
+    api/ObjectEzsignimportdocumentAPI.h
+    api/ObjectEzsignimportfolderAPI.h
     api/ObjectEzsignpageAPI.h
     api/ObjectEzsignsignatureAPI.h
     api/ObjectEzsignsignergroupAPI.h
@@ -3578,6 +3669,7 @@ set(HDRS
     api/ObjectNotificationsectionAPI.h
     api/ObjectNotificationtestAPI.h
     api/ObjectOtherincomeAPI.h
+    api/ObjectPaymentgatewayAPI.h
     api/ObjectPaymenttermAPI.h
     api/ObjectPdfalevelAPI.h
     api/ObjectPeriodAPI.h
@@ -3723,6 +3815,7 @@ set(HDRS "")
 #    unit-tests/manual-ObjectEzdoctemplatedocumentAPI.c
 #    unit-tests/manual-ObjectEzdoctemplatefieldtypecategoryAPI.c
 #    unit-tests/manual-ObjectEzdoctemplatetypeAPI.c
+#    unit-tests/manual-ObjectEzmaxcaseAPI.c
 #    unit-tests/manual-ObjectEzmaxinvoicingAPI.c
 #    unit-tests/manual-ObjectEzmaxproductAPI.c
 #    unit-tests/manual-ObjectEzsignannotationAPI.c
@@ -3736,6 +3829,8 @@ set(HDRS "")
 #    unit-tests/manual-ObjectEzsignfoldersignerassociationAPI.c
 #    unit-tests/manual-ObjectEzsignfoldertypeAPI.c
 #    unit-tests/manual-ObjectEzsignformfieldgroupAPI.c
+#    unit-tests/manual-ObjectEzsignimportdocumentAPI.c
+#    unit-tests/manual-ObjectEzsignimportfolderAPI.c
 #    unit-tests/manual-ObjectEzsignpageAPI.c
 #    unit-tests/manual-ObjectEzsignsignatureAPI.c
 #    unit-tests/manual-ObjectEzsignsignergroupAPI.c
@@ -3771,6 +3866,7 @@ set(HDRS "")
 #    unit-tests/manual-ObjectNotificationsectionAPI.c
 #    unit-tests/manual-ObjectNotificationtestAPI.c
 #    unit-tests/manual-ObjectOtherincomeAPI.c
+#    unit-tests/manual-ObjectPaymentgatewayAPI.c
 #    unit-tests/manual-ObjectPaymenttermAPI.c
 #    unit-tests/manual-ObjectPdfalevelAPI.c
 #    unit-tests/manual-ObjectPeriodAPI.c

@@ -23,6 +23,7 @@ typedef struct common_reportsubsection_t {
     struct common_reportsubsectionpart_t *obj_reportsubsectionpart_header; //model
     struct common_reportsubsectionpart_t *obj_reportsubsectionpart_body; //model
     struct common_reportsubsectionpart_t *obj_reportsubsectionpart_footer; //model
+    char *s_reportsubsection_title; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } common_reportsubsection_t;
@@ -30,7 +31,8 @@ typedef struct common_reportsubsection_t {
 __attribute__((deprecated)) common_reportsubsection_t *common_reportsubsection_create(
     common_reportsubsectionpart_t *obj_reportsubsectionpart_header,
     common_reportsubsectionpart_t *obj_reportsubsectionpart_body,
-    common_reportsubsectionpart_t *obj_reportsubsectionpart_footer
+    common_reportsubsectionpart_t *obj_reportsubsectionpart_footer,
+    char *s_reportsubsection_title
 );
 
 void common_reportsubsection_free(common_reportsubsection_t *common_reportsubsection);

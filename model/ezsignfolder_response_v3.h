@@ -48,6 +48,8 @@ typedef struct ezsignfolder_response_v3_t {
     char *dt_ezsignfolder_scheduleddispose; // string
     ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step; //referenced enum
     char *dt_ezsignfolder_close; // string
+    char *dt_ezsignfolder_archive; // string
+    char *dt_ezsignfolder_dispose; // string
     char *t_ezsignfolder_message; // string
     struct common_audit_t *obj_audit; //model
     char *s_ezsignfolder_externalid; // string
@@ -80,6 +82,8 @@ __attribute__((deprecated)) ezsignfolder_response_v3_t *ezsignfolder_response_v3
     char *dt_ezsignfolder_scheduleddispose,
     ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step,
     char *dt_ezsignfolder_close,
+    char *dt_ezsignfolder_archive,
+    char *dt_ezsignfolder_dispose,
     char *t_ezsignfolder_message,
     common_audit_t *obj_audit,
     char *s_ezsignfolder_externalid,

@@ -33,6 +33,7 @@ typedef struct ezsignsignature_response_t {
     int fki_ezsignfoldersignerassociation_id; //numeric
     int fki_ezsignsigningreason_id; //numeric
     int fki_font_id; //numeric
+    char *s_currency_description_x; // string
     char *s_ezsignsigningreason_description_x; // string
     int i_ezsignpage_pagenumber; //numeric
     int i_ezsignsignature_x; //numeric
@@ -75,6 +76,7 @@ __attribute__((deprecated)) ezsignsignature_response_t *ezsignsignature_response
     int fki_ezsignfoldersignerassociation_id,
     int fki_ezsignsigningreason_id,
     int fki_font_id,
+    char *s_currency_description_x,
     char *s_ezsignsigningreason_description_x,
     int i_ezsignpage_pagenumber,
     int i_ezsignsignature_x,

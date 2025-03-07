@@ -16,6 +16,7 @@
 typedef struct ezsigntemplate_response_v3_t ezsigntemplate_response_v3_t;
 
 #include "common_audit.h"
+#include "custom_ezsignfoldertype_template_response.h"
 #include "field_e_ezsigntemplate_recognition.h"
 #include "field_e_ezsigntemplate_type.h"
 
@@ -25,6 +26,7 @@ typedef struct ezsigntemplate_response_v3_t {
     int pki_ezsigntemplate_id; //numeric
     int fki_ezsigntemplatedocument_id; //numeric
     int fki_ezsignfoldertype_id; //numeric
+    struct custom_ezsignfoldertype_template_response_t *obj_ezsignfoldertype; //model
     int fki_language_id; //numeric
     int fki_ezdoctemplatedocument_id; //numeric
     char *s_ezdoctemplatedocument_name_x; // string
@@ -47,6 +49,7 @@ __attribute__((deprecated)) ezsigntemplate_response_v3_t *ezsigntemplate_respons
     int pki_ezsigntemplate_id,
     int fki_ezsigntemplatedocument_id,
     int fki_ezsignfoldertype_id,
+    custom_ezsignfoldertype_template_response_t *obj_ezsignfoldertype,
     int fki_language_id,
     int fki_ezdoctemplatedocument_id,
     char *s_ezdoctemplatedocument_name_x,

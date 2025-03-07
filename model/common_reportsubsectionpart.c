@@ -24,7 +24,8 @@ ezmax_api_definition__full_common_reportsubsectionpart_EREPORTSUBSECTIONPARTTYPE
 
 static common_reportsubsectionpart_t *common_reportsubsectionpart_create_internal(
     ezmax_api_definition__full_common_reportsubsectionpart_EREPORTSUBSECTIONPARTTYPE_e e_reportsubsectionpart_type,
-    list_t *a_obj_reportrow
+    list_t *a_obj_reportrow,
+    list_t *a_s_variableobject_property
     ) {
     common_reportsubsectionpart_t *common_reportsubsectionpart_local_var = malloc(sizeof(common_reportsubsectionpart_t));
     if (!common_reportsubsectionpart_local_var) {
@@ -32,6 +33,7 @@ static common_reportsubsectionpart_t *common_reportsubsectionpart_create_interna
     }
     common_reportsubsectionpart_local_var->e_reportsubsectionpart_type = e_reportsubsectionpart_type;
     common_reportsubsectionpart_local_var->a_obj_reportrow = a_obj_reportrow;
+    common_reportsubsectionpart_local_var->a_s_variableobject_property = a_s_variableobject_property;
 
     common_reportsubsectionpart_local_var->_library_owned = 1;
     return common_reportsubsectionpart_local_var;
@@ -39,11 +41,13 @@ static common_reportsubsectionpart_t *common_reportsubsectionpart_create_interna
 
 __attribute__((deprecated)) common_reportsubsectionpart_t *common_reportsubsectionpart_create(
     ezmax_api_definition__full_common_reportsubsectionpart_EREPORTSUBSECTIONPARTTYPE_e e_reportsubsectionpart_type,
-    list_t *a_obj_reportrow
+    list_t *a_obj_reportrow,
+    list_t *a_s_variableobject_property
     ) {
     return common_reportsubsectionpart_create_internal (
         e_reportsubsectionpart_type,
-        a_obj_reportrow
+        a_obj_reportrow,
+        a_s_variableobject_property
         );
 }
 
@@ -62,6 +66,13 @@ void common_reportsubsectionpart_free(common_reportsubsectionpart_t *common_repo
         }
         list_freeList(common_reportsubsectionpart->a_obj_reportrow);
         common_reportsubsectionpart->a_obj_reportrow = NULL;
+    }
+    if (common_reportsubsectionpart->a_s_variableobject_property) {
+        list_ForEach(listEntry, common_reportsubsectionpart->a_s_variableobject_property) {
+            free(listEntry->data);
+        }
+        list_freeList(common_reportsubsectionpart->a_s_variableobject_property);
+        common_reportsubsectionpart->a_s_variableobject_property = NULL;
     }
     free(common_reportsubsectionpart);
 }
@@ -99,6 +110,24 @@ cJSON *common_reportsubsectionpart_convertToJSON(common_reportsubsectionpart_t *
     }
     }
 
+
+    // common_reportsubsectionpart->a_s_variableobject_property
+    if (!common_reportsubsectionpart->a_s_variableobject_property) {
+        goto fail;
+    }
+    cJSON *a_s_variableobject_property = cJSON_AddArrayToObject(item, "a_sVariableobjectProperty");
+    if(a_s_variableobject_property == NULL) {
+        goto fail; //primitive container
+    }
+
+    listEntry_t *a_s_variableobject_propertyListEntry;
+    list_ForEach(a_s_variableobject_propertyListEntry, common_reportsubsectionpart->a_s_variableobject_property) {
+    if(cJSON_AddStringToObject(a_s_variableobject_property, "", a_s_variableobject_propertyListEntry->data) == NULL)
+    {
+        goto fail;
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -113,6 +142,9 @@ common_reportsubsectionpart_t *common_reportsubsectionpart_parseFromJSON(cJSON *
 
     // define the local list for common_reportsubsectionpart->a_obj_reportrow
     list_t *a_obj_reportrowList = NULL;
+
+    // define the local list for common_reportsubsectionpart->a_s_variableobject_property
+    list_t *a_s_variableobject_propertyList = NULL;
 
     // common_reportsubsectionpart->e_reportsubsectionpart_type
     cJSON *e_reportsubsectionpart_type = cJSON_GetObjectItemCaseSensitive(common_reportsubsectionpartJSON, "eReportsubsectionpartType");
@@ -158,10 +190,36 @@ common_reportsubsectionpart_t *common_reportsubsectionpart_parseFromJSON(cJSON *
         list_addElement(a_obj_reportrowList, a_obj_reportrowItem);
     }
 
+    // common_reportsubsectionpart->a_s_variableobject_property
+    cJSON *a_s_variableobject_property = cJSON_GetObjectItemCaseSensitive(common_reportsubsectionpartJSON, "a_sVariableobjectProperty");
+    if (cJSON_IsNull(a_s_variableobject_property)) {
+        a_s_variableobject_property = NULL;
+    }
+    if (!a_s_variableobject_property) {
+        goto end;
+    }
+
+    
+    cJSON *a_s_variableobject_property_local = NULL;
+    if(!cJSON_IsArray(a_s_variableobject_property)) {
+        goto end;//primitive container
+    }
+    a_s_variableobject_propertyList = list_createList();
+
+    cJSON_ArrayForEach(a_s_variableobject_property_local, a_s_variableobject_property)
+    {
+        if(!cJSON_IsString(a_s_variableobject_property_local))
+        {
+            goto end;
+        }
+        list_addElement(a_s_variableobject_propertyList , strdup(a_s_variableobject_property_local->valuestring));
+    }
+
 
     common_reportsubsectionpart_local_var = common_reportsubsectionpart_create_internal (
         e_reportsubsectionpart_typeVariable,
-        a_obj_reportrowList
+        a_obj_reportrowList,
+        a_s_variableobject_propertyList
         );
 
     return common_reportsubsectionpart_local_var;
@@ -174,6 +232,15 @@ end:
         }
         list_freeList(a_obj_reportrowList);
         a_obj_reportrowList = NULL;
+    }
+    if (a_s_variableobject_propertyList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_s_variableobject_propertyList) {
+            free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_s_variableobject_propertyList);
+        a_s_variableobject_propertyList = NULL;
     }
     return NULL;
 

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 **pki_ezsigntemplate_id** | **int** | The unique ID of the Ezsigntemplate | 
 **fki_ezsigntemplatedocument_id** | **int** | The unique ID of the Ezsigntemplatedocument | [optional] 
 **fki_ezsignfoldertype_id** | **int** | The unique ID of the Ezsignfoldertype. | [optional] 
+**obj_ezsignfoldertype** | [**custom_ezsignfoldertype_template_response_t**](custom_ezsignfoldertype_template_response.md) \* |  | [optional] 
 **fki_language_id** | **int** | The unique ID of the Language.  Valid values:  |Value|Description| |-|-| |1|French| |2|English| | 
 **fki_ezdoctemplatedocument_id** | **int** | The unique ID of the Ezdoctemplatedocument | [optional] 
 **s_ezdoctemplatedocument_name_x** | **char \*** | The name of the Ezdoctemplatedocument in the language of the requester | [optional] 

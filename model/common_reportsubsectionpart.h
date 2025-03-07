@@ -30,13 +30,15 @@ ezmax_api_definition__full_common_reportsubsectionpart_EREPORTSUBSECTIONPARTTYPE
 typedef struct common_reportsubsectionpart_t {
     ezmax_api_definition__full_common_reportsubsectionpart_EREPORTSUBSECTIONPARTTYPE_e e_reportsubsectionpart_type; //enum
     list_t *a_obj_reportrow; //nonprimitive container
+    list_t *a_s_variableobject_property; //primitive container
 
     int _library_owned; // Is the library responsible for freeing this object?
 } common_reportsubsectionpart_t;
 
 __attribute__((deprecated)) common_reportsubsectionpart_t *common_reportsubsectionpart_create(
     ezmax_api_definition__full_common_reportsubsectionpart_EREPORTSUBSECTIONPARTTYPE_e e_reportsubsectionpart_type,
-    list_t *a_obj_reportrow
+    list_t *a_obj_reportrow,
+    list_t *a_s_variableobject_property
 );
 
 void common_reportsubsectionpart_free(common_reportsubsectionpart_t *common_reportsubsectionpart);

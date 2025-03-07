@@ -1,0 +1,175 @@
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include "ezsignimportdocument_download_v1_response.h"
+
+
+
+static ezsignimportdocument_download_v1_response_t *ezsignimportdocument_download_v1_response_create_internal(
+    common_response_obj_debug_payload_t *obj_debug_payload,
+    common_response_obj_debug_t *obj_debug,
+    object_t *m_payload
+    ) {
+    ezsignimportdocument_download_v1_response_t *ezsignimportdocument_download_v1_response_local_var = malloc(sizeof(ezsignimportdocument_download_v1_response_t));
+    if (!ezsignimportdocument_download_v1_response_local_var) {
+        return NULL;
+    }
+    ezsignimportdocument_download_v1_response_local_var->obj_debug_payload = obj_debug_payload;
+    ezsignimportdocument_download_v1_response_local_var->obj_debug = obj_debug;
+    ezsignimportdocument_download_v1_response_local_var->m_payload = m_payload;
+
+    ezsignimportdocument_download_v1_response_local_var->_library_owned = 1;
+    return ezsignimportdocument_download_v1_response_local_var;
+}
+
+__attribute__((deprecated)) ezsignimportdocument_download_v1_response_t *ezsignimportdocument_download_v1_response_create(
+    common_response_obj_debug_payload_t *obj_debug_payload,
+    common_response_obj_debug_t *obj_debug,
+    object_t *m_payload
+    ) {
+    return ezsignimportdocument_download_v1_response_create_internal (
+        obj_debug_payload,
+        obj_debug,
+        m_payload
+        );
+}
+
+void ezsignimportdocument_download_v1_response_free(ezsignimportdocument_download_v1_response_t *ezsignimportdocument_download_v1_response) {
+    if(NULL == ezsignimportdocument_download_v1_response){
+        return ;
+    }
+    if(ezsignimportdocument_download_v1_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsignimportdocument_download_v1_response_free");
+        return ;
+    }
+    listEntry_t *listEntry;
+    if (ezsignimportdocument_download_v1_response->obj_debug_payload) {
+        common_response_obj_debug_payload_free(ezsignimportdocument_download_v1_response->obj_debug_payload);
+        ezsignimportdocument_download_v1_response->obj_debug_payload = NULL;
+    }
+    if (ezsignimportdocument_download_v1_response->obj_debug) {
+        common_response_obj_debug_free(ezsignimportdocument_download_v1_response->obj_debug);
+        ezsignimportdocument_download_v1_response->obj_debug = NULL;
+    }
+    if (ezsignimportdocument_download_v1_response->m_payload) {
+        object_free(ezsignimportdocument_download_v1_response->m_payload);
+        ezsignimportdocument_download_v1_response->m_payload = NULL;
+    }
+    free(ezsignimportdocument_download_v1_response);
+}
+
+cJSON *ezsignimportdocument_download_v1_response_convertToJSON(ezsignimportdocument_download_v1_response_t *ezsignimportdocument_download_v1_response) {
+    cJSON *item = cJSON_CreateObject();
+
+    // ezsignimportdocument_download_v1_response->obj_debug_payload
+    if (!ezsignimportdocument_download_v1_response->obj_debug_payload) {
+        goto fail;
+    }
+    cJSON *obj_debug_payload_local_JSON = common_response_obj_debug_payload_convertToJSON(ezsignimportdocument_download_v1_response->obj_debug_payload);
+    if(obj_debug_payload_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objDebugPayload", obj_debug_payload_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
+
+    // ezsignimportdocument_download_v1_response->obj_debug
+    if(ezsignimportdocument_download_v1_response->obj_debug) {
+    cJSON *obj_debug_local_JSON = common_response_obj_debug_convertToJSON(ezsignimportdocument_download_v1_response->obj_debug);
+    if(obj_debug_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objDebug", obj_debug_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+    }
+
+
+    // ezsignimportdocument_download_v1_response->m_payload
+    if (!ezsignimportdocument_download_v1_response->m_payload) {
+        goto fail;
+    }
+    cJSON *m_payload_object = object_convertToJSON(ezsignimportdocument_download_v1_response->m_payload);
+    if(m_payload_object == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "mPayload", m_payload_object);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
+    return item;
+fail:
+    if (item) {
+        cJSON_Delete(item);
+    }
+    return NULL;
+}
+
+ezsignimportdocument_download_v1_response_t *ezsignimportdocument_download_v1_response_parseFromJSON(cJSON *ezsignimportdocument_download_v1_responseJSON){
+
+    ezsignimportdocument_download_v1_response_t *ezsignimportdocument_download_v1_response_local_var = NULL;
+
+    // define the local variable for ezsignimportdocument_download_v1_response->obj_debug_payload
+    common_response_obj_debug_payload_t *obj_debug_payload_local_nonprim = NULL;
+
+    // define the local variable for ezsignimportdocument_download_v1_response->obj_debug
+    common_response_obj_debug_t *obj_debug_local_nonprim = NULL;
+
+    // ezsignimportdocument_download_v1_response->obj_debug_payload
+    cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(ezsignimportdocument_download_v1_responseJSON, "objDebugPayload");
+    if (cJSON_IsNull(obj_debug_payload)) {
+        obj_debug_payload = NULL;
+    }
+    if (!obj_debug_payload) {
+        goto end;
+    }
+
+    
+    obj_debug_payload_local_nonprim = common_response_obj_debug_payload_parseFromJSON(obj_debug_payload); //nonprimitive
+
+    // ezsignimportdocument_download_v1_response->obj_debug
+    cJSON *obj_debug = cJSON_GetObjectItemCaseSensitive(ezsignimportdocument_download_v1_responseJSON, "objDebug");
+    if (cJSON_IsNull(obj_debug)) {
+        obj_debug = NULL;
+    }
+    if (obj_debug) { 
+    obj_debug_local_nonprim = common_response_obj_debug_parseFromJSON(obj_debug); //nonprimitive
+    }
+
+    // ezsignimportdocument_download_v1_response->m_payload
+    cJSON *m_payload = cJSON_GetObjectItemCaseSensitive(ezsignimportdocument_download_v1_responseJSON, "mPayload");
+    if (cJSON_IsNull(m_payload)) {
+        m_payload = NULL;
+    }
+    if (!m_payload) {
+        goto end;
+    }
+
+    object_t *m_payload_local_object = NULL;
+    
+    m_payload_local_object = object_parseFromJSON(m_payload); //object
+
+
+    ezsignimportdocument_download_v1_response_local_var = ezsignimportdocument_download_v1_response_create_internal (
+        obj_debug_payload_local_nonprim,
+        obj_debug ? obj_debug_local_nonprim : NULL,
+        m_payload_local_object
+        );
+
+    return ezsignimportdocument_download_v1_response_local_var;
+end:
+    if (obj_debug_payload_local_nonprim) {
+        common_response_obj_debug_payload_free(obj_debug_payload_local_nonprim);
+        obj_debug_payload_local_nonprim = NULL;
+    }
+    if (obj_debug_local_nonprim) {
+        common_response_obj_debug_free(obj_debug_local_nonprim);
+        obj_debug_local_nonprim = NULL;
+    }
+    return NULL;
+
+}

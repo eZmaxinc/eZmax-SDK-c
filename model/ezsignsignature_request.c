@@ -8,6 +8,7 @@
 static ezsignsignature_request_t *ezsignsignature_request_create_internal(
     int pki_ezsignsignature_id,
     int fki_ezsignfoldersignerassociation_id,
+    int fki_paymentgateway_id,
     int i_ezsignpage_pagenumber,
     int i_ezsignsignature_x,
     int i_ezsignsignature_y,
@@ -40,6 +41,7 @@ static ezsignsignature_request_t *ezsignsignature_request_create_internal(
     }
     ezsignsignature_request_local_var->pki_ezsignsignature_id = pki_ezsignsignature_id;
     ezsignsignature_request_local_var->fki_ezsignfoldersignerassociation_id = fki_ezsignfoldersignerassociation_id;
+    ezsignsignature_request_local_var->fki_paymentgateway_id = fki_paymentgateway_id;
     ezsignsignature_request_local_var->i_ezsignpage_pagenumber = i_ezsignpage_pagenumber;
     ezsignsignature_request_local_var->i_ezsignsignature_x = i_ezsignsignature_x;
     ezsignsignature_request_local_var->i_ezsignsignature_y = i_ezsignsignature_y;
@@ -73,6 +75,7 @@ static ezsignsignature_request_t *ezsignsignature_request_create_internal(
 __attribute__((deprecated)) ezsignsignature_request_t *ezsignsignature_request_create(
     int pki_ezsignsignature_id,
     int fki_ezsignfoldersignerassociation_id,
+    int fki_paymentgateway_id,
     int i_ezsignpage_pagenumber,
     int i_ezsignsignature_x,
     int i_ezsignsignature_y,
@@ -102,6 +105,7 @@ __attribute__((deprecated)) ezsignsignature_request_t *ezsignsignature_request_c
     return ezsignsignature_request_create_internal (
         pki_ezsignsignature_id,
         fki_ezsignfoldersignerassociation_id,
+        fki_paymentgateway_id,
         i_ezsignpage_pagenumber,
         i_ezsignsignature_x,
         i_ezsignsignature_y,
@@ -179,6 +183,14 @@ cJSON *ezsignsignature_request_convertToJSON(ezsignsignature_request_t *ezsignsi
     }
     if(cJSON_AddNumberToObject(item, "fkiEzsignfoldersignerassociationID", ezsignsignature_request->fki_ezsignfoldersignerassociation_id) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // ezsignsignature_request->fki_paymentgateway_id
+    if(ezsignsignature_request->fki_paymentgateway_id) {
+    if(cJSON_AddNumberToObject(item, "fkiPaymentgatewayID", ezsignsignature_request->fki_paymentgateway_id) == NULL) {
+    goto fail; //Numeric
+    }
     }
 
 
@@ -482,6 +494,18 @@ ezsignsignature_request_t *ezsignsignature_request_parseFromJSON(cJSON *ezsignsi
     goto end; //Numeric
     }
 
+    // ezsignsignature_request->fki_paymentgateway_id
+    cJSON *fki_paymentgateway_id = cJSON_GetObjectItemCaseSensitive(ezsignsignature_requestJSON, "fkiPaymentgatewayID");
+    if (cJSON_IsNull(fki_paymentgateway_id)) {
+        fki_paymentgateway_id = NULL;
+    }
+    if (fki_paymentgateway_id) { 
+    if(!cJSON_IsNumber(fki_paymentgateway_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
     // ezsignsignature_request->i_ezsignpage_pagenumber
     cJSON *i_ezsignpage_pagenumber = cJSON_GetObjectItemCaseSensitive(ezsignsignature_requestJSON, "iEzsignpagePagenumber");
     if (cJSON_IsNull(i_ezsignpage_pagenumber)) {
@@ -783,6 +807,7 @@ ezsignsignature_request_t *ezsignsignature_request_parseFromJSON(cJSON *ezsignsi
     ezsignsignature_request_local_var = ezsignsignature_request_create_internal (
         pki_ezsignsignature_id ? pki_ezsignsignature_id->valuedouble : 0,
         fki_ezsignfoldersignerassociation_id->valuedouble,
+        fki_paymentgateway_id ? fki_paymentgateway_id->valuedouble : 0,
         i_ezsignpage_pagenumber->valuedouble,
         i_ezsignsignature_x->valuedouble,
         i_ezsignsignature_y->valuedouble,

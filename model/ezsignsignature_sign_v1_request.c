@@ -30,6 +30,7 @@ static ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_create
     char *s_attachments_refusal_reason,
     char *s_svg,
     list_t *a_obj_file,
+    custom_creditcard_request_t *obj_creditcard,
     int b_is_automatic
     ) {
     ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_local_var = malloc(sizeof(ezsignsignature_sign_v1_request_t));
@@ -43,6 +44,7 @@ static ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_create
     ezsignsignature_sign_v1_request_local_var->s_attachments_refusal_reason = s_attachments_refusal_reason;
     ezsignsignature_sign_v1_request_local_var->s_svg = s_svg;
     ezsignsignature_sign_v1_request_local_var->a_obj_file = a_obj_file;
+    ezsignsignature_sign_v1_request_local_var->obj_creditcard = obj_creditcard;
     ezsignsignature_sign_v1_request_local_var->b_is_automatic = b_is_automatic;
 
     ezsignsignature_sign_v1_request_local_var->_library_owned = 1;
@@ -57,6 +59,7 @@ __attribute__((deprecated)) ezsignsignature_sign_v1_request_t *ezsignsignature_s
     char *s_attachments_refusal_reason,
     char *s_svg,
     list_t *a_obj_file,
+    custom_creditcard_request_t *obj_creditcard,
     int b_is_automatic
     ) {
     return ezsignsignature_sign_v1_request_create_internal (
@@ -67,6 +70,7 @@ __attribute__((deprecated)) ezsignsignature_sign_v1_request_t *ezsignsignature_s
         s_attachments_refusal_reason,
         s_svg,
         a_obj_file,
+        obj_creditcard,
         b_is_automatic
         );
 }
@@ -98,6 +102,10 @@ void ezsignsignature_sign_v1_request_free(ezsignsignature_sign_v1_request_t *ezs
         }
         list_freeList(ezsignsignature_sign_v1_request->a_obj_file);
         ezsignsignature_sign_v1_request->a_obj_file = NULL;
+    }
+    if (ezsignsignature_sign_v1_request->obj_creditcard) {
+        custom_creditcard_request_free(ezsignsignature_sign_v1_request->obj_creditcard);
+        ezsignsignature_sign_v1_request->obj_creditcard = NULL;
     }
     free(ezsignsignature_sign_v1_request);
 }
@@ -174,6 +182,19 @@ cJSON *ezsignsignature_sign_v1_request_convertToJSON(ezsignsignature_sign_v1_req
     }
 
 
+    // ezsignsignature_sign_v1_request->obj_creditcard
+    if(ezsignsignature_sign_v1_request->obj_creditcard) {
+    cJSON *obj_creditcard_local_JSON = custom_creditcard_request_convertToJSON(ezsignsignature_sign_v1_request->obj_creditcard);
+    if(obj_creditcard_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objCreditcard", obj_creditcard_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+    }
+
+
     // ezsignsignature_sign_v1_request->b_is_automatic
     if (!ezsignsignature_sign_v1_request->b_is_automatic) {
         goto fail;
@@ -196,6 +217,9 @@ ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_parseFromJSON
 
     // define the local list for ezsignsignature_sign_v1_request->a_obj_file
     list_t *a_obj_fileList = NULL;
+
+    // define the local variable for ezsignsignature_sign_v1_request->obj_creditcard
+    custom_creditcard_request_t *obj_creditcard_local_nonprim = NULL;
 
     // ezsignsignature_sign_v1_request->fki_ezsignsigningreason_id
     cJSON *fki_ezsignsigningreason_id = cJSON_GetObjectItemCaseSensitive(ezsignsignature_sign_v1_requestJSON, "fkiEzsignsigningreasonID");
@@ -295,6 +319,15 @@ ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_parseFromJSON
     }
     }
 
+    // ezsignsignature_sign_v1_request->obj_creditcard
+    cJSON *obj_creditcard = cJSON_GetObjectItemCaseSensitive(ezsignsignature_sign_v1_requestJSON, "objCreditcard");
+    if (cJSON_IsNull(obj_creditcard)) {
+        obj_creditcard = NULL;
+    }
+    if (obj_creditcard) { 
+    obj_creditcard_local_nonprim = custom_creditcard_request_parseFromJSON(obj_creditcard); //nonprimitive
+    }
+
     // ezsignsignature_sign_v1_request->b_is_automatic
     cJSON *b_is_automatic = cJSON_GetObjectItemCaseSensitive(ezsignsignature_sign_v1_requestJSON, "bIsAutomatic");
     if (cJSON_IsNull(b_is_automatic)) {
@@ -319,6 +352,7 @@ ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_parseFromJSON
         s_attachments_refusal_reason && !cJSON_IsNull(s_attachments_refusal_reason) ? strdup(s_attachments_refusal_reason->valuestring) : NULL,
         s_svg && !cJSON_IsNull(s_svg) ? strdup(s_svg->valuestring) : NULL,
         a_obj_file ? a_obj_fileList : NULL,
+        obj_creditcard ? obj_creditcard_local_nonprim : NULL,
         b_is_automatic->valueint
         );
 
@@ -332,6 +366,10 @@ end:
         }
         list_freeList(a_obj_fileList);
         a_obj_fileList = NULL;
+    }
+    if (obj_creditcard_local_nonprim) {
+        custom_creditcard_request_free(obj_creditcard_local_nonprim);
+        obj_creditcard_local_nonprim = NULL;
     }
     return NULL;
 

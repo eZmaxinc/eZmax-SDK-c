@@ -55,6 +55,8 @@
 #include "../model/ezsigndocument_get_words_positions_v1_response.h"
 #include "../model/ezsigndocument_patch_object_v1_request.h"
 #include "../model/ezsigndocument_patch_object_v1_response.h"
+#include "../model/ezsigndocument_prefill_ezsignform_v1_request.h"
+#include "../model/ezsigndocument_prefill_ezsignform_v1_response.h"
 #include "../model/ezsigndocument_submit_ezsignform_v1_request.h"
 #include "../model/ezsigndocument_submit_ezsignform_v1_response.h"
 #include "../model/ezsigndocument_unsend_v1_response.h"
@@ -316,6 +318,14 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1(apiClient_t *apiClient
 //
 ezsigndocument_patch_object_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_patch_object_v1_request_t *ezsigndocument_patch_object_v1_request);
+
+
+// Prefill an Ezsignform
+//
+// Using this endpoint, you can prefill an Ezsignform.
+//
+ezsigndocument_prefill_ezsignform_v1_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentPrefillEzsignformV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_prefill_ezsignform_v1_request_t *ezsigndocument_prefill_ezsignform_v1_request);
 
 
 // Submit the Ezsignform

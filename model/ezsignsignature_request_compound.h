@@ -30,6 +30,7 @@ typedef struct ezsignsignature_request_compound_t ezsignsignature_request_compou
 typedef struct ezsignsignature_request_compound_t {
     int pki_ezsignsignature_id; //numeric
     int fki_ezsignfoldersignerassociation_id; //numeric
+    int fki_paymentgateway_id; //numeric
     int i_ezsignpage_pagenumber; //numeric
     int i_ezsignsignature_x; //numeric
     int i_ezsignsignature_y; //numeric
@@ -65,6 +66,7 @@ typedef struct ezsignsignature_request_compound_t {
 __attribute__((deprecated)) ezsignsignature_request_compound_t *ezsignsignature_request_compound_create(
     int pki_ezsignsignature_id,
     int fki_ezsignfoldersignerassociation_id,
+    int fki_paymentgateway_id,
     int i_ezsignpage_pagenumber,
     int i_ezsignsignature_x,
     int i_ezsignsignature_y,

@@ -18,6 +18,7 @@ typedef struct ezsignsignature_request_compound_v2_t ezsignsignature_request_com
 #include "enum_textvalidation.h"
 #include "ezsignelementdependency_request_compound.h"
 #include "ezsignsignaturecustomdate_request_compound_v2.h"
+#include "ezsignsignaturepaymentdetail_request_compound.h"
 #include "field_e_ezsignsignature_attachmentnamesource.h"
 #include "field_e_ezsignsignature_consultationtrigger.h"
 #include "field_e_ezsignsignature_dependencyrequirement.h"
@@ -30,6 +31,7 @@ typedef struct ezsignsignature_request_compound_v2_t ezsignsignature_request_com
 typedef struct ezsignsignature_request_compound_v2_t {
     int pki_ezsignsignature_id; //numeric
     int fki_ezsignfoldersignerassociation_id; //numeric
+    int fki_paymentgateway_id; //numeric
     int i_ezsignpage_pagenumber; //numeric
     int i_ezsignsignature_x; //numeric
     int i_ezsignsignature_y; //numeric
@@ -58,6 +60,7 @@ typedef struct ezsignsignature_request_compound_v2_t {
     int b_ezsignsignature_customdate; //boolean
     list_t *a_obj_ezsignsignaturecustomdate; //nonprimitive container
     list_t *a_obj_ezsignelementdependency; //nonprimitive container
+    list_t *a_obj_ezsignsignaturepaymentdetail; //nonprimitive container
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsignature_request_compound_v2_t;
@@ -65,6 +68,7 @@ typedef struct ezsignsignature_request_compound_v2_t {
 __attribute__((deprecated)) ezsignsignature_request_compound_v2_t *ezsignsignature_request_compound_v2_create(
     int pki_ezsignsignature_id,
     int fki_ezsignfoldersignerassociation_id,
+    int fki_paymentgateway_id,
     int i_ezsignpage_pagenumber,
     int i_ezsignsignature_x,
     int i_ezsignsignature_y,
@@ -92,7 +96,8 @@ __attribute__((deprecated)) ezsignsignature_request_compound_v2_t *ezsignsignatu
     ezmax_api_definition__full_field_e_ezsignsignature_dependencyrequirement__e e_ezsignsignature_dependencyrequirement,
     int b_ezsignsignature_customdate,
     list_t *a_obj_ezsignsignaturecustomdate,
-    list_t *a_obj_ezsignelementdependency
+    list_t *a_obj_ezsignelementdependency,
+    list_t *a_obj_ezsignsignaturepaymentdetail
 );
 
 void ezsignsignature_request_compound_v2_free(ezsignsignature_request_compound_v2_t *ezsignsignature_request_compound_v2);

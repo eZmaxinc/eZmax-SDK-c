@@ -1,0 +1,32 @@
+/*
+ * computed_e_ezsignimportfolder_status.h
+ *
+ * The Status of Ezsignimportfolder.
+ */
+
+#ifndef _computed_e_ezsignimportfolder_status_H_
+#define _computed_e_ezsignimportfolder_status_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct computed_e_ezsignimportfolder_status_t computed_e_ezsignimportfolder_status_t;
+
+
+// Enum  for computed_e_ezsignimportfolder_status
+
+typedef enum { ezmax_api_definition__full_computed_e_ezsignimportfolder_status__NULL = 0, ezmax_api_definition__full_computed_e_ezsignimportfolder_status__Pending, ezmax_api_definition__full_computed_e_ezsignimportfolder_status__Complete } ezmax_api_definition__full_computed_e_ezsignimportfolder_status__e;
+
+char* computed_e_ezsignimportfolder_status_computed_e_ezsignimportfolder_status_ToString(ezmax_api_definition__full_computed_e_ezsignimportfolder_status__e computed_e_ezsignimportfolder_status);
+
+ezmax_api_definition__full_computed_e_ezsignimportfolder_status__e computed_e_ezsignimportfolder_status_computed_e_ezsignimportfolder_status_FromString(char* computed_e_ezsignimportfolder_status);
+
+cJSON *computed_e_ezsignimportfolder_status_convertToJSON(ezmax_api_definition__full_computed_e_ezsignimportfolder_status__e computed_e_ezsignimportfolder_status);
+
+ezmax_api_definition__full_computed_e_ezsignimportfolder_status__e computed_e_ezsignimportfolder_status_parseFromJSON(cJSON *computed_e_ezsignimportfolder_statusJSON);
+
+#endif /* _computed_e_ezsignimportfolder_status_H_ */
+

@@ -18,7 +18,7 @@ typedef struct ezsigndocument_request_t ezsigndocument_request_t;
 
 // Enum EEZSIGNDOCUMENTSOURCE for ezsigndocument_request
 
-typedef enum  { ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_NULL = 0, ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_Base64, ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_Ezsigntemplate, ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_Url } ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_e;
+typedef enum  { ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_NULL = 0, ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_Base64, ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_Ezsignimportdocument, ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_Ezsigntemplate, ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_Url } ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_e;
 
 char* ezsigndocument_request_e_ezsigndocument_source_ToString(ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_e e_ezsigndocument_source);
 
@@ -47,6 +47,7 @@ typedef struct ezsigndocument_request_t {
     int fki_ezsignfolder_id; //numeric
     int fki_ezsigntemplate_id; //numeric
     int fki_ezsignfoldersignerassociation_id; //numeric
+    int fki_ezsignimportdocument_id; //numeric
     int fki_language_id; //numeric
     ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_e e_ezsigndocument_source; //enum
     ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTFORMAT_e e_ezsigndocument_format; //enum
@@ -67,6 +68,7 @@ __attribute__((deprecated)) ezsigndocument_request_t *ezsigndocument_request_cre
     int fki_ezsignfolder_id,
     int fki_ezsigntemplate_id,
     int fki_ezsignfoldersignerassociation_id,
+    int fki_ezsignimportdocument_id,
     int fki_language_id,
     ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTSOURCE_e e_ezsigndocument_source,
     ezmax_api_definition__full_ezsigndocument_request_EEZSIGNDOCUMENTFORMAT_e e_ezsigndocument_format,

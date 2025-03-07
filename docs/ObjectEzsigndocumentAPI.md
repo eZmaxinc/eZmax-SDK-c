@@ -36,6 +36,7 @@ Method | HTTP request | Description
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetTemporaryProofV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetTemporaryProofV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getTemporaryProof | Retrieve the temporary proof
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetWordsPositionsV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getWordsPositions | Retrieve positions X,Y of given words from a Ezsigndocument
 [**ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1) | **PATCH** /1/object/ezsigndocument/{pkiEzsigndocumentID} | Patch an existing Ezsigndocument
+[**ObjectEzsigndocumentAPI_ezsigndocumentPrefillEzsignformV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentPrefillEzsignformV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/prefillEzsignform | Prefill an Ezsignform
 [**ObjectEzsigndocumentAPI_ezsigndocumentSubmitEzsignformV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentSubmitEzsignformV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/submitEzsignform | Submit the Ezsignform
 [**ObjectEzsigndocumentAPI_ezsigndocumentUnsendV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentUnsendV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/unsend | Unsend the Ezsigndocument
 
@@ -1032,6 +1033,38 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsigndocument_patch_object_v1_response_t](ezsigndocument_patch_object_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsigndocumentAPI_ezsigndocumentPrefillEzsignformV1**
+```c
+// Prefill an Ezsignform
+//
+// Using this endpoint, you can prefill an Ezsignform.
+//
+ezsigndocument_prefill_ezsignform_v1_response_t* ObjectEzsigndocumentAPI_ezsigndocumentPrefillEzsignformV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_prefill_ezsignform_v1_request_t *ezsigndocument_prefill_ezsignform_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsigndocumentID** | **int \*** |  | 
+**ezsigndocument_prefill_ezsignform_v1_request** | **[ezsigndocument_prefill_ezsignform_v1_request_t](ezsigndocument_prefill_ezsignform_v1_request.md) \*** |  | 
+
+### Return type
+
+[ezsigndocument_prefill_ezsignform_v1_response_t](ezsigndocument_prefill_ezsignform_v1_response.md) *
 
 
 ### Authorization

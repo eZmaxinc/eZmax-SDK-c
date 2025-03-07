@@ -6,11 +6,6 @@
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
-#include "../model/creditcardmerchant_create_object_v1_request.h"
-#include "../model/creditcardmerchant_create_object_v1_response.h"
-#include "../model/creditcardmerchant_delete_object_v1_response.h"
-#include "../model/creditcardmerchant_edit_object_v1_request.h"
-#include "../model/creditcardmerchant_edit_object_v1_response.h"
 #include "../model/creditcardmerchant_get_autocomplete_v2_response.h"
 #include "../model/creditcardmerchant_get_list_v1_response.h"
 #include "../model/creditcardmerchant_get_object_v2_response.h"
@@ -30,30 +25,6 @@ typedef enum  { ezmax_api_definition__full_creditcardmerchantGetListV1_EORDERBY_
 
 // Enum  for ObjectCreditcardmerchantAPI_creditcardmerchantGetListV1
 typedef enum  { ezmax_api_definition__full_creditcardmerchantGetListV1__NULL = 0, ezmax_api_definition__full_creditcardmerchantGetListV1__*, ezmax_api_definition__full_creditcardmerchantGetListV1__en, ezmax_api_definition__full_creditcardmerchantGetListV1__fr } ezmax_api_definition__full_creditcardmerchantGetListV1_Accept-Language_e;
-
-
-// Create a new Creditcardmerchant
-//
-// The endpoint allows to create one or many elements at once.
-//
-creditcardmerchant_create_object_v1_response_t*
-ObjectCreditcardmerchantAPI_creditcardmerchantCreateObjectV1(apiClient_t *apiClient, creditcardmerchant_create_object_v1_request_t *creditcardmerchant_create_object_v1_request);
-
-
-// Delete an existing Creditcardmerchant
-//
-// 
-//
-creditcardmerchant_delete_object_v1_response_t*
-ObjectCreditcardmerchantAPI_creditcardmerchantDeleteObjectV1(apiClient_t *apiClient, int *pkiCreditcardmerchantID);
-
-
-// Edit an existing Creditcardmerchant
-//
-// 
-//
-creditcardmerchant_edit_object_v1_response_t*
-ObjectCreditcardmerchantAPI_creditcardmerchantEditObjectV1(apiClient_t *apiClient, int *pkiCreditcardmerchantID, creditcardmerchant_edit_object_v1_request_t *creditcardmerchant_edit_object_v1_request);
 
 
 // Retrieve Creditcardmerchants and IDs

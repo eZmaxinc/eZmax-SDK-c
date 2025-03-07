@@ -8,6 +8,7 @@
 static custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_t *custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_create_internal(
     int pki_ezsignsignature_id,
     int fki_ezsignfoldersignerassociation_id,
+    int fki_paymentgateway_id,
     int i_ezsignpage_pagenumber,
     int i_ezsignsignature_x,
     int i_ezsignsignature_y,
@@ -44,6 +45,7 @@ static custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_t
     }
     custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_local_var->pki_ezsignsignature_id = pki_ezsignsignature_id;
     custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_local_var->fki_ezsignfoldersignerassociation_id = fki_ezsignfoldersignerassociation_id;
+    custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_local_var->fki_paymentgateway_id = fki_paymentgateway_id;
     custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_local_var->i_ezsignpage_pagenumber = i_ezsignpage_pagenumber;
     custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_local_var->i_ezsignsignature_x = i_ezsignsignature_x;
     custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_local_var->i_ezsignsignature_y = i_ezsignsignature_y;
@@ -81,6 +83,7 @@ static custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_t
 __attribute__((deprecated)) custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_t *custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_create(
     int pki_ezsignsignature_id,
     int fki_ezsignfoldersignerassociation_id,
+    int fki_paymentgateway_id,
     int i_ezsignpage_pagenumber,
     int i_ezsignsignature_x,
     int i_ezsignsignature_y,
@@ -114,6 +117,7 @@ __attribute__((deprecated)) custom_ezsignsignature_create_ezsignelements_positio
     return custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_create_internal (
         pki_ezsignsignature_id,
         fki_ezsignfoldersignerassociation_id,
+        fki_paymentgateway_id,
         i_ezsignpage_pagenumber,
         i_ezsignsignature_x,
         i_ezsignsignature_y,
@@ -213,6 +217,14 @@ cJSON *custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_c
     }
     if(cJSON_AddNumberToObject(item, "fkiEzsignfoldersignerassociationID", custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->fki_ezsignfoldersignerassociation_id) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->fki_paymentgateway_id
+    if(custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->fki_paymentgateway_id) {
+    if(cJSON_AddNumberToObject(item, "fkiPaymentgatewayID", custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->fki_paymentgateway_id) == NULL) {
+    goto fail; //Numeric
+    }
     }
 
 
@@ -585,6 +597,18 @@ custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_t *custo
     if(!cJSON_IsNumber(fki_ezsignfoldersignerassociation_id))
     {
     goto end; //Numeric
+    }
+
+    // custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->fki_paymentgateway_id
+    cJSON *fki_paymentgateway_id = cJSON_GetObjectItemCaseSensitive(custom_ezsignsignature_create_ezsignelements_positioned_by_word_requestJSON, "fkiPaymentgatewayID");
+    if (cJSON_IsNull(fki_paymentgateway_id)) {
+        fki_paymentgateway_id = NULL;
+    }
+    if (fki_paymentgateway_id) { 
+    if(!cJSON_IsNumber(fki_paymentgateway_id))
+    {
+    goto end; //Numeric
+    }
     }
 
     // custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->i_ezsignpage_pagenumber
@@ -960,6 +984,7 @@ custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_t *custo
     custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_local_var = custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_create_internal (
         pki_ezsignsignature_id ? pki_ezsignsignature_id->valuedouble : 0,
         fki_ezsignfoldersignerassociation_id->valuedouble,
+        fki_paymentgateway_id ? fki_paymentgateway_id->valuedouble : 0,
         i_ezsignpage_pagenumber->valuedouble,
         i_ezsignsignature_x->valuedouble,
         i_ezsignsignature_y->valuedouble,

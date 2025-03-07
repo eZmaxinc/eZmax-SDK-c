@@ -7,7 +7,9 @@
 
 static common_reportgroup_t *common_reportgroup_create_internal(
     list_t *a_obj_report,
-    list_t *a_obj_reportcellstyle_custom
+    list_t *a_obj_reportcellstyle_custom,
+    list_t *a_obj_reportgroup_parameter,
+    char *s_reportgroup_filename
     ) {
     common_reportgroup_t *common_reportgroup_local_var = malloc(sizeof(common_reportgroup_t));
     if (!common_reportgroup_local_var) {
@@ -15,6 +17,8 @@ static common_reportgroup_t *common_reportgroup_create_internal(
     }
     common_reportgroup_local_var->a_obj_report = a_obj_report;
     common_reportgroup_local_var->a_obj_reportcellstyle_custom = a_obj_reportcellstyle_custom;
+    common_reportgroup_local_var->a_obj_reportgroup_parameter = a_obj_reportgroup_parameter;
+    common_reportgroup_local_var->s_reportgroup_filename = s_reportgroup_filename;
 
     common_reportgroup_local_var->_library_owned = 1;
     return common_reportgroup_local_var;
@@ -22,11 +26,15 @@ static common_reportgroup_t *common_reportgroup_create_internal(
 
 __attribute__((deprecated)) common_reportgroup_t *common_reportgroup_create(
     list_t *a_obj_report,
-    list_t *a_obj_reportcellstyle_custom
+    list_t *a_obj_reportcellstyle_custom,
+    list_t *a_obj_reportgroup_parameter,
+    char *s_reportgroup_filename
     ) {
     return common_reportgroup_create_internal (
         a_obj_report,
-        a_obj_reportcellstyle_custom
+        a_obj_reportcellstyle_custom,
+        a_obj_reportgroup_parameter,
+        s_reportgroup_filename
         );
 }
 
@@ -52,6 +60,17 @@ void common_reportgroup_free(common_reportgroup_t *common_reportgroup) {
         }
         list_freeList(common_reportgroup->a_obj_reportcellstyle_custom);
         common_reportgroup->a_obj_reportcellstyle_custom = NULL;
+    }
+    if (common_reportgroup->a_obj_reportgroup_parameter) {
+        list_ForEach(listEntry, common_reportgroup->a_obj_reportgroup_parameter) {
+            common_reportgroup_parameter_free(listEntry->data);
+        }
+        list_freeList(common_reportgroup->a_obj_reportgroup_parameter);
+        common_reportgroup->a_obj_reportgroup_parameter = NULL;
+    }
+    if (common_reportgroup->s_reportgroup_filename) {
+        free(common_reportgroup->s_reportgroup_filename);
+        common_reportgroup->s_reportgroup_filename = NULL;
     }
     free(common_reportgroup);
 }
@@ -100,6 +119,36 @@ cJSON *common_reportgroup_convertToJSON(common_reportgroup_t *common_reportgroup
     }
     }
 
+
+    // common_reportgroup->a_obj_reportgroup_parameter
+    if (!common_reportgroup->a_obj_reportgroup_parameter) {
+        goto fail;
+    }
+    cJSON *a_obj_reportgroup_parameter = cJSON_AddArrayToObject(item, "a_objReportgroupParameter");
+    if(a_obj_reportgroup_parameter == NULL) {
+    goto fail; //nonprimitive container
+    }
+
+    listEntry_t *a_obj_reportgroup_parameterListEntry;
+    if (common_reportgroup->a_obj_reportgroup_parameter) {
+    list_ForEach(a_obj_reportgroup_parameterListEntry, common_reportgroup->a_obj_reportgroup_parameter) {
+    cJSON *itemLocal = common_reportgroup_parameter_convertToJSON(a_obj_reportgroup_parameterListEntry->data);
+    if(itemLocal == NULL) {
+    goto fail;
+    }
+    cJSON_AddItemToArray(a_obj_reportgroup_parameter, itemLocal);
+    }
+    }
+
+
+    // common_reportgroup->s_reportgroup_filename
+    if (!common_reportgroup->s_reportgroup_filename) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "sReportgroupFilename", common_reportgroup->s_reportgroup_filename) == NULL) {
+    goto fail; //String
+    }
+
     return item;
 fail:
     if (item) {
@@ -117,6 +166,9 @@ common_reportgroup_t *common_reportgroup_parseFromJSON(cJSON *common_reportgroup
 
     // define the local list for common_reportgroup->a_obj_reportcellstyle_custom
     list_t *a_obj_reportcellstyle_customList = NULL;
+
+    // define the local list for common_reportgroup->a_obj_reportgroup_parameter
+    list_t *a_obj_reportgroup_parameterList = NULL;
 
     // common_reportgroup->a_obj_report
     cJSON *a_obj_report = cJSON_GetObjectItemCaseSensitive(common_reportgroupJSON, "a_objReport");
@@ -172,10 +224,54 @@ common_reportgroup_t *common_reportgroup_parseFromJSON(cJSON *common_reportgroup
         list_addElement(a_obj_reportcellstyle_customList, a_obj_reportcellstyle_customItem);
     }
 
+    // common_reportgroup->a_obj_reportgroup_parameter
+    cJSON *a_obj_reportgroup_parameter = cJSON_GetObjectItemCaseSensitive(common_reportgroupJSON, "a_objReportgroupParameter");
+    if (cJSON_IsNull(a_obj_reportgroup_parameter)) {
+        a_obj_reportgroup_parameter = NULL;
+    }
+    if (!a_obj_reportgroup_parameter) {
+        goto end;
+    }
+
+    
+    cJSON *a_obj_reportgroup_parameter_local_nonprimitive = NULL;
+    if(!cJSON_IsArray(a_obj_reportgroup_parameter)){
+        goto end; //nonprimitive container
+    }
+
+    a_obj_reportgroup_parameterList = list_createList();
+
+    cJSON_ArrayForEach(a_obj_reportgroup_parameter_local_nonprimitive,a_obj_reportgroup_parameter )
+    {
+        if(!cJSON_IsObject(a_obj_reportgroup_parameter_local_nonprimitive)){
+            goto end;
+        }
+        common_reportgroup_parameter_t *a_obj_reportgroup_parameterItem = common_reportgroup_parameter_parseFromJSON(a_obj_reportgroup_parameter_local_nonprimitive);
+
+        list_addElement(a_obj_reportgroup_parameterList, a_obj_reportgroup_parameterItem);
+    }
+
+    // common_reportgroup->s_reportgroup_filename
+    cJSON *s_reportgroup_filename = cJSON_GetObjectItemCaseSensitive(common_reportgroupJSON, "sReportgroupFilename");
+    if (cJSON_IsNull(s_reportgroup_filename)) {
+        s_reportgroup_filename = NULL;
+    }
+    if (!s_reportgroup_filename) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_reportgroup_filename))
+    {
+    goto end; //String
+    }
+
 
     common_reportgroup_local_var = common_reportgroup_create_internal (
         a_obj_reportList,
-        a_obj_reportcellstyle_customList
+        a_obj_reportcellstyle_customList,
+        a_obj_reportgroup_parameterList,
+        strdup(s_reportgroup_filename->valuestring)
         );
 
     return common_reportgroup_local_var;
@@ -197,6 +293,15 @@ end:
         }
         list_freeList(a_obj_reportcellstyle_customList);
         a_obj_reportcellstyle_customList = NULL;
+    }
+    if (a_obj_reportgroup_parameterList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_reportgroup_parameterList) {
+            common_reportgroup_parameter_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_reportgroup_parameterList);
+        a_obj_reportgroup_parameterList = NULL;
     }
     return NULL;
 

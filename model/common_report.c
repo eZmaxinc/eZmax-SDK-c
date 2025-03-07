@@ -6,23 +6,31 @@
 
 
 static common_report_t *common_report_create_internal(
-    list_t *a_obj_reportsection
+    list_t *a_obj_reportsection,
+    int b_report_paginate,
+    char *s_report_title
     ) {
     common_report_t *common_report_local_var = malloc(sizeof(common_report_t));
     if (!common_report_local_var) {
         return NULL;
     }
     common_report_local_var->a_obj_reportsection = a_obj_reportsection;
+    common_report_local_var->b_report_paginate = b_report_paginate;
+    common_report_local_var->s_report_title = s_report_title;
 
     common_report_local_var->_library_owned = 1;
     return common_report_local_var;
 }
 
 __attribute__((deprecated)) common_report_t *common_report_create(
-    list_t *a_obj_reportsection
+    list_t *a_obj_reportsection,
+    int b_report_paginate,
+    char *s_report_title
     ) {
     return common_report_create_internal (
-        a_obj_reportsection
+        a_obj_reportsection,
+        b_report_paginate,
+        s_report_title
         );
 }
 
@@ -41,6 +49,10 @@ void common_report_free(common_report_t *common_report) {
         }
         list_freeList(common_report->a_obj_reportsection);
         common_report->a_obj_reportsection = NULL;
+    }
+    if (common_report->s_report_title) {
+        free(common_report->s_report_title);
+        common_report->s_report_title = NULL;
     }
     free(common_report);
 }
@@ -65,6 +77,22 @@ cJSON *common_report_convertToJSON(common_report_t *common_report) {
     goto fail;
     }
     cJSON_AddItemToArray(a_obj_reportsection, itemLocal);
+    }
+    }
+
+
+    // common_report->b_report_paginate
+    if(common_report->b_report_paginate) {
+    if(cJSON_AddBoolToObject(item, "bReportPaginate", common_report->b_report_paginate) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
+    // common_report->s_report_title
+    if(common_report->s_report_title) {
+    if(cJSON_AddStringToObject(item, "sReportTitle", common_report->s_report_title) == NULL) {
+    goto fail; //String
     }
     }
 
@@ -110,9 +138,35 @@ common_report_t *common_report_parseFromJSON(cJSON *common_reportJSON){
         list_addElement(a_obj_reportsectionList, a_obj_reportsectionItem);
     }
 
+    // common_report->b_report_paginate
+    cJSON *b_report_paginate = cJSON_GetObjectItemCaseSensitive(common_reportJSON, "bReportPaginate");
+    if (cJSON_IsNull(b_report_paginate)) {
+        b_report_paginate = NULL;
+    }
+    if (b_report_paginate) { 
+    if(!cJSON_IsBool(b_report_paginate))
+    {
+    goto end; //Bool
+    }
+    }
+
+    // common_report->s_report_title
+    cJSON *s_report_title = cJSON_GetObjectItemCaseSensitive(common_reportJSON, "sReportTitle");
+    if (cJSON_IsNull(s_report_title)) {
+        s_report_title = NULL;
+    }
+    if (s_report_title) { 
+    if(!cJSON_IsString(s_report_title) && !cJSON_IsNull(s_report_title))
+    {
+    goto end; //String
+    }
+    }
+
 
     common_report_local_var = common_report_create_internal (
-        a_obj_reportsectionList
+        a_obj_reportsectionList,
+        b_report_paginate ? b_report_paginate->valueint : 0,
+        s_report_title && !cJSON_IsNull(s_report_title) ? strdup(s_report_title->valuestring) : NULL
         );
 
     return common_report_local_var;
