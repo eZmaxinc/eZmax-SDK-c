@@ -478,9 +478,6 @@ set(SRCS
     model/ezdoctemplatetype_autocomplete_element_response.c
     model/ezdoctemplatetype_get_autocomplete_v2_response.c
     model/ezdoctemplatetype_get_autocomplete_v2_response_m_payload.c
-    model/ezmaxcase_patch_object_v1_request.c
-    model/ezmaxcase_patch_object_v1_response.c
-    model/ezmaxcase_request_patch.c
     model/ezmaxinvoicing_autocomplete_element_response.c
     model/ezmaxinvoicing_get_autocomplete_v2_response.c
     model/ezmaxinvoicing_get_autocomplete_v2_response_m_payload.c
@@ -1787,7 +1784,6 @@ set(SRCS
     api/ObjectEzdoctemplatedocumentAPI.c
     api/ObjectEzdoctemplatefieldtypecategoryAPI.c
     api/ObjectEzdoctemplatetypeAPI.c
-    api/ObjectEzmaxcaseAPI.c
     api/ObjectEzmaxinvoicingAPI.c
     api/ObjectEzmaxproductAPI.c
     api/ObjectEzsignannotationAPI.c
@@ -2309,9 +2305,6 @@ set(HDRS
     model/ezdoctemplatetype_autocomplete_element_response.h
     model/ezdoctemplatetype_get_autocomplete_v2_response.h
     model/ezdoctemplatetype_get_autocomplete_v2_response_m_payload.h
-    model/ezmaxcase_patch_object_v1_request.h
-    model/ezmaxcase_patch_object_v1_response.h
-    model/ezmaxcase_request_patch.h
     model/ezmaxinvoicing_autocomplete_element_response.h
     model/ezmaxinvoicing_get_autocomplete_v2_response.h
     model/ezmaxinvoicing_get_autocomplete_v2_response_m_payload.h
@@ -3618,7 +3611,6 @@ set(HDRS
     api/ObjectEzdoctemplatedocumentAPI.h
     api/ObjectEzdoctemplatefieldtypecategoryAPI.h
     api/ObjectEzdoctemplatetypeAPI.h
-    api/ObjectEzmaxcaseAPI.h
     api/ObjectEzmaxinvoicingAPI.h
     api/ObjectEzmaxproductAPI.h
     api/ObjectEzsignannotationAPI.h
@@ -3815,7 +3807,6 @@ set(HDRS "")
 #    unit-tests/manual-ObjectEzdoctemplatedocumentAPI.c
 #    unit-tests/manual-ObjectEzdoctemplatefieldtypecategoryAPI.c
 #    unit-tests/manual-ObjectEzdoctemplatetypeAPI.c
-#    unit-tests/manual-ObjectEzmaxcaseAPI.c
 #    unit-tests/manual-ObjectEzmaxinvoicingAPI.c
 #    unit-tests/manual-ObjectEzmaxproductAPI.c
 #    unit-tests/manual-ObjectEzsignannotationAPI.c

@@ -165,7 +165,6 @@ Category | Method | HTTP request | Description
 *ObjectEzdoctemplatedocumentAPI* | [**ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentPatchObjectV1**](docs/ObjectEzdoctemplatedocumentAPI.md#ObjectEzdoctemplatedocumentAPI_ezdoctemplatedocumentPatchObjectV1) | **PATCH** /1/object/ezdoctemplatedocument/{pkiEzdoctemplatedocumentID} | Patch an existing Ezdoctemplatedocument
 *ObjectEzdoctemplatefieldtypecategoryAPI* | [**ObjectEzdoctemplatefieldtypecategoryAPI_ezdoctemplatefieldtypecategoryGetAutocompleteV2**](docs/ObjectEzdoctemplatefieldtypecategoryAPI.md#ObjectEzdoctemplatefieldtypecategoryAPI_ezdoctemplatefieldtypecategoryGetAutocompleteV2) | **GET** /2/object/ezdoctemplatefieldtypecategory/getAutocomplete/{sSelector} | Retrieve Ezdoctemplatefieldtypecategorys and IDs
 *ObjectEzdoctemplatetypeAPI* | [**ObjectEzdoctemplatetypeAPI_ezdoctemplatetypeGetAutocompleteV2**](docs/ObjectEzdoctemplatetypeAPI.md#ObjectEzdoctemplatetypeAPI_ezdoctemplatetypeGetAutocompleteV2) | **GET** /2/object/ezdoctemplatetype/getAutocomplete/{sSelector} | Retrieve Ezdoctemplatetypes and IDs
-*ObjectEzmaxcaseAPI* | [**ObjectEzmaxcaseAPI_ezmaxcasePatchObjectV1**](docs/ObjectEzmaxcaseAPI.md#ObjectEzmaxcaseAPI_ezmaxcasePatchObjectV1) | **PATCH** /1/object/ezmaxcase/{pkiEzmaxcaseID} | Patch an existing Ezmaxcase
 *ObjectEzmaxinvoicingAPI* | [**ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetAutocompleteV2**](docs/ObjectEzmaxinvoicingAPI.md#ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetAutocompleteV2) | **GET** /2/object/ezmaxinvoicing/getAutocomplete/{sSelector} | Retrieve Ezmaxinvoicings and IDs
 *ObjectEzmaxinvoicingAPI* | [**ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetObjectV2**](docs/ObjectEzmaxinvoicingAPI.md#ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetObjectV2) | **GET** /2/object/ezmaxinvoicing/{pkiEzmaxinvoicingID} | Retrieve an existing Ezmaxinvoicing
 *ObjectEzmaxinvoicingAPI* | [**ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetProvisionalV1**](docs/ObjectEzmaxinvoicingAPI.md#ObjectEzmaxinvoicingAPI_ezmaxinvoicingGetProvisionalV1) | **GET** /1/object/ezmaxinvoicing/getProvisional | Retrieve provisional Ezmaxinvoicing
@@ -974,9 +973,6 @@ Category | Method | HTTP request | Description
  - [ezdoctemplatetype_autocomplete_element_response_t](docs/ezdoctemplatetype_autocomplete_element_response.md)
  - [ezdoctemplatetype_get_autocomplete_v2_response_t](docs/ezdoctemplatetype_get_autocomplete_v2_response.md)
  - [ezdoctemplatetype_get_autocomplete_v2_response_m_payload_t](docs/ezdoctemplatetype_get_autocomplete_v2_response_m_payload.md)
- - [ezmaxcase_patch_object_v1_request_t](docs/ezmaxcase_patch_object_v1_request.md)
- - [ezmaxcase_patch_object_v1_response_t](docs/ezmaxcase_patch_object_v1_response.md)
- - [ezmaxcase_request_patch_t](docs/ezmaxcase_request_patch.md)
  - [ezmaxinvoicing_autocomplete_element_response_t](docs/ezmaxinvoicing_autocomplete_element_response.md)
  - [ezmaxinvoicing_get_autocomplete_v2_response_t](docs/ezmaxinvoicing_get_autocomplete_v2_response.md)
  - [ezmaxinvoicing_get_autocomplete_v2_response_m_payload_t](docs/ezmaxinvoicing_get_autocomplete_v2_response_m_payload.md)
