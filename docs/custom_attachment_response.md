@@ -57,7 +57,7 @@ Name | Type | Description | Notes
 **e_attachment_type** | **field_e_attachment_type_t \*** |  | 
 **i_attachment_size** | **int** | The size of the Attachment | 
 **i_attachment_ed_mmoduleflag** | **int** | The edmmoduleflag of the Attachment | [optional] 
-**s_attachment_md5** | **char \*** | The md5 of the Attachment | 
+**s_attachment_md5** | **char \*** | The MD5 of the Attachment | 
 **b_attachment_deleted** | **int** | Whether if it&#39;s deleted | 
 **b_attachment_valid** | **int** | Whether if it&#39;s valid | 
 **e_attachment_verified** | **field_e_attachment_verified_t \*** |  | 

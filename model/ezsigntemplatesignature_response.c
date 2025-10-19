@@ -10,6 +10,7 @@ static ezsigntemplatesignature_response_t *ezsigntemplatesignature_response_crea
     int fki_ezsigntemplatedocument_id,
     int fki_ezsigntemplatesigner_id,
     int fki_ezsigntemplatesigner_id_validation,
+    int fki_paymentgateway_id,
     int b_ezsigntemplatesignature_handwritten,
     int b_ezsigntemplatesignature_reason,
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioning__e e_ezsigntemplatesignature_positioning,
@@ -37,7 +38,9 @@ static ezsigntemplatesignature_response_t *ezsigntemplatesignature_response_crea
     char *s_ezsigntemplatesignature_positioningpattern,
     int i_ezsigntemplatesignature_positioningoffsetx,
     int i_ezsigntemplatesignature_positioningoffsety,
-    ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioningoccurence__e e_ezsigntemplatesignature_positioningoccurence
+    ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioningoccurence__e e_ezsigntemplatesignature_positioningoccurence,
+    char *s_ezsigntemplatesignature_creditcardamountdescription,
+    char *d_ezsigntemplatesignature_creditcardamount
     ) {
     ezsigntemplatesignature_response_t *ezsigntemplatesignature_response_local_var = malloc(sizeof(ezsigntemplatesignature_response_t));
     if (!ezsigntemplatesignature_response_local_var) {
@@ -47,6 +50,7 @@ static ezsigntemplatesignature_response_t *ezsigntemplatesignature_response_crea
     ezsigntemplatesignature_response_local_var->fki_ezsigntemplatedocument_id = fki_ezsigntemplatedocument_id;
     ezsigntemplatesignature_response_local_var->fki_ezsigntemplatesigner_id = fki_ezsigntemplatesigner_id;
     ezsigntemplatesignature_response_local_var->fki_ezsigntemplatesigner_id_validation = fki_ezsigntemplatesigner_id_validation;
+    ezsigntemplatesignature_response_local_var->fki_paymentgateway_id = fki_paymentgateway_id;
     ezsigntemplatesignature_response_local_var->b_ezsigntemplatesignature_handwritten = b_ezsigntemplatesignature_handwritten;
     ezsigntemplatesignature_response_local_var->b_ezsigntemplatesignature_reason = b_ezsigntemplatesignature_reason;
     ezsigntemplatesignature_response_local_var->e_ezsigntemplatesignature_positioning = e_ezsigntemplatesignature_positioning;
@@ -75,6 +79,8 @@ static ezsigntemplatesignature_response_t *ezsigntemplatesignature_response_crea
     ezsigntemplatesignature_response_local_var->i_ezsigntemplatesignature_positioningoffsetx = i_ezsigntemplatesignature_positioningoffsetx;
     ezsigntemplatesignature_response_local_var->i_ezsigntemplatesignature_positioningoffsety = i_ezsigntemplatesignature_positioningoffsety;
     ezsigntemplatesignature_response_local_var->e_ezsigntemplatesignature_positioningoccurence = e_ezsigntemplatesignature_positioningoccurence;
+    ezsigntemplatesignature_response_local_var->s_ezsigntemplatesignature_creditcardamountdescription = s_ezsigntemplatesignature_creditcardamountdescription;
+    ezsigntemplatesignature_response_local_var->d_ezsigntemplatesignature_creditcardamount = d_ezsigntemplatesignature_creditcardamount;
 
     ezsigntemplatesignature_response_local_var->_library_owned = 1;
     return ezsigntemplatesignature_response_local_var;
@@ -85,6 +91,7 @@ __attribute__((deprecated)) ezsigntemplatesignature_response_t *ezsigntemplatesi
     int fki_ezsigntemplatedocument_id,
     int fki_ezsigntemplatesigner_id,
     int fki_ezsigntemplatesigner_id_validation,
+    int fki_paymentgateway_id,
     int b_ezsigntemplatesignature_handwritten,
     int b_ezsigntemplatesignature_reason,
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioning__e e_ezsigntemplatesignature_positioning,
@@ -112,13 +119,16 @@ __attribute__((deprecated)) ezsigntemplatesignature_response_t *ezsigntemplatesi
     char *s_ezsigntemplatesignature_positioningpattern,
     int i_ezsigntemplatesignature_positioningoffsetx,
     int i_ezsigntemplatesignature_positioningoffsety,
-    ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioningoccurence__e e_ezsigntemplatesignature_positioningoccurence
+    ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioningoccurence__e e_ezsigntemplatesignature_positioningoccurence,
+    char *s_ezsigntemplatesignature_creditcardamountdescription,
+    char *d_ezsigntemplatesignature_creditcardamount
     ) {
     return ezsigntemplatesignature_response_create_internal (
         pki_ezsigntemplatesignature_id,
         fki_ezsigntemplatedocument_id,
         fki_ezsigntemplatesigner_id,
         fki_ezsigntemplatesigner_id_validation,
+        fki_paymentgateway_id,
         b_ezsigntemplatesignature_handwritten,
         b_ezsigntemplatesignature_reason,
         e_ezsigntemplatesignature_positioning,
@@ -146,7 +156,9 @@ __attribute__((deprecated)) ezsigntemplatesignature_response_t *ezsigntemplatesi
         s_ezsigntemplatesignature_positioningpattern,
         i_ezsigntemplatesignature_positioningoffsetx,
         i_ezsigntemplatesignature_positioningoffsety,
-        e_ezsigntemplatesignature_positioningoccurence
+        e_ezsigntemplatesignature_positioningoccurence,
+        s_ezsigntemplatesignature_creditcardamountdescription,
+        d_ezsigntemplatesignature_creditcardamount
         );
 }
 
@@ -182,6 +194,14 @@ void ezsigntemplatesignature_response_free(ezsigntemplatesignature_response_t *e
     if (ezsigntemplatesignature_response->s_ezsigntemplatesignature_positioningpattern) {
         free(ezsigntemplatesignature_response->s_ezsigntemplatesignature_positioningpattern);
         ezsigntemplatesignature_response->s_ezsigntemplatesignature_positioningpattern = NULL;
+    }
+    if (ezsigntemplatesignature_response->s_ezsigntemplatesignature_creditcardamountdescription) {
+        free(ezsigntemplatesignature_response->s_ezsigntemplatesignature_creditcardamountdescription);
+        ezsigntemplatesignature_response->s_ezsigntemplatesignature_creditcardamountdescription = NULL;
+    }
+    if (ezsigntemplatesignature_response->d_ezsigntemplatesignature_creditcardamount) {
+        free(ezsigntemplatesignature_response->d_ezsigntemplatesignature_creditcardamount);
+        ezsigntemplatesignature_response->d_ezsigntemplatesignature_creditcardamount = NULL;
     }
     free(ezsigntemplatesignature_response);
 }
@@ -219,6 +239,14 @@ cJSON *ezsigntemplatesignature_response_convertToJSON(ezsigntemplatesignature_re
     // ezsigntemplatesignature_response->fki_ezsigntemplatesigner_id_validation
     if(ezsigntemplatesignature_response->fki_ezsigntemplatesigner_id_validation) {
     if(cJSON_AddNumberToObject(item, "fkiEzsigntemplatesignerIDValidation", ezsigntemplatesignature_response->fki_ezsigntemplatesigner_id_validation) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // ezsigntemplatesignature_response->fki_paymentgateway_id
+    if(ezsigntemplatesignature_response->fki_paymentgateway_id) {
+    if(cJSON_AddNumberToObject(item, "fkiPaymentgatewayID", ezsigntemplatesignature_response->fki_paymentgateway_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -495,6 +523,22 @@ cJSON *ezsigntemplatesignature_response_convertToJSON(ezsigntemplatesignature_re
     }
     }
 
+
+    // ezsigntemplatesignature_response->s_ezsigntemplatesignature_creditcardamountdescription
+    if(ezsigntemplatesignature_response->s_ezsigntemplatesignature_creditcardamountdescription) {
+    if(cJSON_AddStringToObject(item, "sEzsigntemplatesignatureCreditcardamountdescription", ezsigntemplatesignature_response->s_ezsigntemplatesignature_creditcardamountdescription) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // ezsigntemplatesignature_response->d_ezsigntemplatesignature_creditcardamount
+    if(ezsigntemplatesignature_response->d_ezsigntemplatesignature_creditcardamount) {
+    if(cJSON_AddStringToObject(item, "dEzsigntemplatesignatureCreditcardamount", ezsigntemplatesignature_response->d_ezsigntemplatesignature_creditcardamount) == NULL) {
+    goto fail; //String
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -586,6 +630,18 @@ ezsigntemplatesignature_response_t *ezsigntemplatesignature_response_parseFromJS
     }
     if (fki_ezsigntemplatesigner_id_validation) { 
     if(!cJSON_IsNumber(fki_ezsigntemplatesigner_id_validation))
+    {
+    goto end; //Numeric
+    }
+    }
+
+    // ezsigntemplatesignature_response->fki_paymentgateway_id
+    cJSON *fki_paymentgateway_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatesignature_responseJSON, "fkiPaymentgatewayID");
+    if (cJSON_IsNull(fki_paymentgateway_id)) {
+        fki_paymentgateway_id = NULL;
+    }
+    if (fki_paymentgateway_id) { 
+    if(!cJSON_IsNumber(fki_paymentgateway_id))
     {
     goto end; //Numeric
     }
@@ -909,12 +965,37 @@ ezsigntemplatesignature_response_t *ezsigntemplatesignature_response_parseFromJS
     e_ezsigntemplatesignature_positioningoccurence_local_nonprim = field_e_ezsigntemplatesignature_positioningoccurence_parseFromJSON(e_ezsigntemplatesignature_positioningoccurence); //custom
     }
 
+    // ezsigntemplatesignature_response->s_ezsigntemplatesignature_creditcardamountdescription
+    cJSON *s_ezsigntemplatesignature_creditcardamountdescription = cJSON_GetObjectItemCaseSensitive(ezsigntemplatesignature_responseJSON, "sEzsigntemplatesignatureCreditcardamountdescription");
+    if (cJSON_IsNull(s_ezsigntemplatesignature_creditcardamountdescription)) {
+        s_ezsigntemplatesignature_creditcardamountdescription = NULL;
+    }
+    if (s_ezsigntemplatesignature_creditcardamountdescription) { 
+    if(!cJSON_IsString(s_ezsigntemplatesignature_creditcardamountdescription) && !cJSON_IsNull(s_ezsigntemplatesignature_creditcardamountdescription))
+    {
+    goto end; //String
+    }
+    }
+
+    // ezsigntemplatesignature_response->d_ezsigntemplatesignature_creditcardamount
+    cJSON *d_ezsigntemplatesignature_creditcardamount = cJSON_GetObjectItemCaseSensitive(ezsigntemplatesignature_responseJSON, "dEzsigntemplatesignatureCreditcardamount");
+    if (cJSON_IsNull(d_ezsigntemplatesignature_creditcardamount)) {
+        d_ezsigntemplatesignature_creditcardamount = NULL;
+    }
+    if (d_ezsigntemplatesignature_creditcardamount) { 
+    if(!cJSON_IsString(d_ezsigntemplatesignature_creditcardamount) && !cJSON_IsNull(d_ezsigntemplatesignature_creditcardamount))
+    {
+    goto end; //String
+    }
+    }
+
 
     ezsigntemplatesignature_response_local_var = ezsigntemplatesignature_response_create_internal (
         pki_ezsigntemplatesignature_id->valuedouble,
         fki_ezsigntemplatedocument_id->valuedouble,
         fki_ezsigntemplatesigner_id->valuedouble,
         fki_ezsigntemplatesigner_id_validation ? fki_ezsigntemplatesigner_id_validation->valuedouble : 0,
+        fki_paymentgateway_id ? fki_paymentgateway_id->valuedouble : 0,
         b_ezsigntemplatesignature_handwritten ? b_ezsigntemplatesignature_handwritten->valueint : 0,
         b_ezsigntemplatesignature_reason ? b_ezsigntemplatesignature_reason->valueint : 0,
         e_ezsigntemplatesignature_positioning ? e_ezsigntemplatesignature_positioning_local_nonprim : 0,
@@ -942,7 +1023,9 @@ ezsigntemplatesignature_response_t *ezsigntemplatesignature_response_parseFromJS
         s_ezsigntemplatesignature_positioningpattern && !cJSON_IsNull(s_ezsigntemplatesignature_positioningpattern) ? strdup(s_ezsigntemplatesignature_positioningpattern->valuestring) : NULL,
         i_ezsigntemplatesignature_positioningoffsetx ? i_ezsigntemplatesignature_positioningoffsetx->valuedouble : 0,
         i_ezsigntemplatesignature_positioningoffsety ? i_ezsigntemplatesignature_positioningoffsety->valuedouble : 0,
-        e_ezsigntemplatesignature_positioningoccurence ? e_ezsigntemplatesignature_positioningoccurence_local_nonprim : 0
+        e_ezsigntemplatesignature_positioningoccurence ? e_ezsigntemplatesignature_positioningoccurence_local_nonprim : 0,
+        s_ezsigntemplatesignature_creditcardamountdescription && !cJSON_IsNull(s_ezsigntemplatesignature_creditcardamountdescription) ? strdup(s_ezsigntemplatesignature_creditcardamountdescription->valuestring) : NULL,
+        d_ezsigntemplatesignature_creditcardamount && !cJSON_IsNull(d_ezsigntemplatesignature_creditcardamount) ? strdup(d_ezsigntemplatesignature_creditcardamount->valuestring) : NULL
         );
 
     return ezsigntemplatesignature_response_local_var;

@@ -5,13 +5,13 @@
 
 
 char* field_e_ezsigntemplateformfield_positioningoccurence_field_e_ezsigntemplateformfield_positioningoccurence_ToString(ezmax_api_definition__full_field_e_ezsigntemplateformfield_positioningoccurence__e field_e_ezsigntemplateformfield_positioningoccurence) {
-    char *field_e_ezsigntemplateformfield_positioningoccurenceArray[] =  { "NULL", "All", "First", "Last" };
+    char *field_e_ezsigntemplateformfield_positioningoccurenceArray[] =  { "NULL", "First", "Last" };
     return field_e_ezsigntemplateformfield_positioningoccurenceArray[field_e_ezsigntemplateformfield_positioningoccurence];
 }
 
 ezmax_api_definition__full_field_e_ezsigntemplateformfield_positioningoccurence__e field_e_ezsigntemplateformfield_positioningoccurence_field_e_ezsigntemplateformfield_positioningoccurence_FromString(char* field_e_ezsigntemplateformfield_positioningoccurence) {
     int stringToReturn = 0;
-    char *field_e_ezsigntemplateformfield_positioningoccurenceArray[] =  { "NULL", "All", "First", "Last" };
+    char *field_e_ezsigntemplateformfield_positioningoccurenceArray[] =  { "NULL", "First", "Last" };
     size_t sizeofArray = sizeof(field_e_ezsigntemplateformfield_positioningoccurenceArray) / sizeof(field_e_ezsigntemplateformfield_positioningoccurenceArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(field_e_ezsigntemplateformfield_positioningoccurence, field_e_ezsigntemplateformfield_positioningoccurenceArray[stringToReturn]) == 0) {

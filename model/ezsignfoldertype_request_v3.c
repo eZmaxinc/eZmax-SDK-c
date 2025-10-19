@@ -21,6 +21,7 @@ static ezsignfoldertype_request_v3_t *ezsignfoldertype_request_v3_create_interna
     list_t *a_fki_usergroup_id_restricted,
     list_t *a_fki_usergroup_id_template,
     ezmax_api_definition__full_field_e_ezsignfoldertype_documentdependency__e e_ezsignfoldertype_documentdependency,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__e e_ezsignfoldertype_documentmerge,
     char *s_email_address_signed,
     char *s_email_address_summary,
     ezmax_api_definition__full_field_e_ezsignfoldertype_pdfarequirement__e e_ezsignfoldertype_pdfarequirement,
@@ -47,13 +48,18 @@ static ezsignfoldertype_request_v3_t *ezsignfoldertype_request_v3_create_interna
     int b_ezsignfoldertype_sendsignedtoezsignsigner,
     int b_ezsignfoldertype_sendsignedtouser,
     int b_ezsignfoldertype_sendattachmentezsignsigner,
+    int b_ezsignfoldertype_sendsignatureattachmentezsignsigner,
+    int b_ezsignfoldertype_sendsignatureattachment,
     int b_ezsignfoldertype_sendproofezsignsigner,
     int b_ezsignfoldertype_sendattachmentuser,
+    int b_ezsignfoldertype_sendsignatureattachmentuser,
     int b_ezsignfoldertype_sendproofuser,
     int b_ezsignfoldertype_sendproofemail,
     int b_ezsignfoldertype_allowdownloadattachmentezsignsigner,
+    int b_ezsignfoldertype_allowdownloadsignatureattachmentezsignsigner,
     int b_ezsignfoldertype_allowdownloadproofezsignsigner,
     int b_ezsignfoldertype_sendproofreceivealldocument,
+    int b_ezsignfoldertype_sendsignatureattachmentreceivealldocument,
     int b_ezsignfoldertype_sendsignedtodocumentowner,
     int b_ezsignfoldertype_sendsignedtofolderowner,
     int b_ezsignfoldertype_sendsignedtofullgroup,
@@ -86,6 +92,7 @@ static ezsignfoldertype_request_v3_t *ezsignfoldertype_request_v3_create_interna
     ezsignfoldertype_request_v3_local_var->a_fki_usergroup_id_restricted = a_fki_usergroup_id_restricted;
     ezsignfoldertype_request_v3_local_var->a_fki_usergroup_id_template = a_fki_usergroup_id_template;
     ezsignfoldertype_request_v3_local_var->e_ezsignfoldertype_documentdependency = e_ezsignfoldertype_documentdependency;
+    ezsignfoldertype_request_v3_local_var->e_ezsignfoldertype_documentmerge = e_ezsignfoldertype_documentmerge;
     ezsignfoldertype_request_v3_local_var->s_email_address_signed = s_email_address_signed;
     ezsignfoldertype_request_v3_local_var->s_email_address_summary = s_email_address_summary;
     ezsignfoldertype_request_v3_local_var->e_ezsignfoldertype_pdfarequirement = e_ezsignfoldertype_pdfarequirement;
@@ -112,13 +119,18 @@ static ezsignfoldertype_request_v3_t *ezsignfoldertype_request_v3_create_interna
     ezsignfoldertype_request_v3_local_var->b_ezsignfoldertype_sendsignedtoezsignsigner = b_ezsignfoldertype_sendsignedtoezsignsigner;
     ezsignfoldertype_request_v3_local_var->b_ezsignfoldertype_sendsignedtouser = b_ezsignfoldertype_sendsignedtouser;
     ezsignfoldertype_request_v3_local_var->b_ezsignfoldertype_sendattachmentezsignsigner = b_ezsignfoldertype_sendattachmentezsignsigner;
+    ezsignfoldertype_request_v3_local_var->b_ezsignfoldertype_sendsignatureattachmentezsignsigner = b_ezsignfoldertype_sendsignatureattachmentezsignsigner;
+    ezsignfoldertype_request_v3_local_var->b_ezsignfoldertype_sendsignatureattachment = b_ezsignfoldertype_sendsignatureattachment;
     ezsignfoldertype_request_v3_local_var->b_ezsignfoldertype_sendproofezsignsigner = b_ezsignfoldertype_sendproofezsignsigner;
     ezsignfoldertype_request_v3_local_var->b_ezsignfoldertype_sendattachmentuser = b_ezsignfoldertype_sendattachmentuser;
+    ezsignfoldertype_request_v3_local_var->b_ezsignfoldertype_sendsignatureattachmentuser = b_ezsignfoldertype_sendsignatureattachmentuser;
     ezsignfoldertype_request_v3_local_var->b_ezsignfoldertype_sendproofuser = b_ezsignfoldertype_sendproofuser;
     ezsignfoldertype_request_v3_local_var->b_ezsignfoldertype_sendproofemail = b_ezsignfoldertype_sendproofemail;
     ezsignfoldertype_request_v3_local_var->b_ezsignfoldertype_allowdownloadattachmentezsignsigner = b_ezsignfoldertype_allowdownloadattachmentezsignsigner;
+    ezsignfoldertype_request_v3_local_var->b_ezsignfoldertype_allowdownloadsignatureattachmentezsignsigner = b_ezsignfoldertype_allowdownloadsignatureattachmentezsignsigner;
     ezsignfoldertype_request_v3_local_var->b_ezsignfoldertype_allowdownloadproofezsignsigner = b_ezsignfoldertype_allowdownloadproofezsignsigner;
     ezsignfoldertype_request_v3_local_var->b_ezsignfoldertype_sendproofreceivealldocument = b_ezsignfoldertype_sendproofreceivealldocument;
+    ezsignfoldertype_request_v3_local_var->b_ezsignfoldertype_sendsignatureattachmentreceivealldocument = b_ezsignfoldertype_sendsignatureattachmentreceivealldocument;
     ezsignfoldertype_request_v3_local_var->b_ezsignfoldertype_sendsignedtodocumentowner = b_ezsignfoldertype_sendsignedtodocumentowner;
     ezsignfoldertype_request_v3_local_var->b_ezsignfoldertype_sendsignedtofolderowner = b_ezsignfoldertype_sendsignedtofolderowner;
     ezsignfoldertype_request_v3_local_var->b_ezsignfoldertype_sendsignedtofullgroup = b_ezsignfoldertype_sendsignedtofullgroup;
@@ -152,6 +164,7 @@ __attribute__((deprecated)) ezsignfoldertype_request_v3_t *ezsignfoldertype_requ
     list_t *a_fki_usergroup_id_restricted,
     list_t *a_fki_usergroup_id_template,
     ezmax_api_definition__full_field_e_ezsignfoldertype_documentdependency__e e_ezsignfoldertype_documentdependency,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__e e_ezsignfoldertype_documentmerge,
     char *s_email_address_signed,
     char *s_email_address_summary,
     ezmax_api_definition__full_field_e_ezsignfoldertype_pdfarequirement__e e_ezsignfoldertype_pdfarequirement,
@@ -178,13 +191,18 @@ __attribute__((deprecated)) ezsignfoldertype_request_v3_t *ezsignfoldertype_requ
     int b_ezsignfoldertype_sendsignedtoezsignsigner,
     int b_ezsignfoldertype_sendsignedtouser,
     int b_ezsignfoldertype_sendattachmentezsignsigner,
+    int b_ezsignfoldertype_sendsignatureattachmentezsignsigner,
+    int b_ezsignfoldertype_sendsignatureattachment,
     int b_ezsignfoldertype_sendproofezsignsigner,
     int b_ezsignfoldertype_sendattachmentuser,
+    int b_ezsignfoldertype_sendsignatureattachmentuser,
     int b_ezsignfoldertype_sendproofuser,
     int b_ezsignfoldertype_sendproofemail,
     int b_ezsignfoldertype_allowdownloadattachmentezsignsigner,
+    int b_ezsignfoldertype_allowdownloadsignatureattachmentezsignsigner,
     int b_ezsignfoldertype_allowdownloadproofezsignsigner,
     int b_ezsignfoldertype_sendproofreceivealldocument,
+    int b_ezsignfoldertype_sendsignatureattachmentreceivealldocument,
     int b_ezsignfoldertype_sendsignedtodocumentowner,
     int b_ezsignfoldertype_sendsignedtofolderowner,
     int b_ezsignfoldertype_sendsignedtofullgroup,
@@ -214,6 +232,7 @@ __attribute__((deprecated)) ezsignfoldertype_request_v3_t *ezsignfoldertype_requ
         a_fki_usergroup_id_restricted,
         a_fki_usergroup_id_template,
         e_ezsignfoldertype_documentdependency,
+        e_ezsignfoldertype_documentmerge,
         s_email_address_signed,
         s_email_address_summary,
         e_ezsignfoldertype_pdfarequirement,
@@ -240,13 +259,18 @@ __attribute__((deprecated)) ezsignfoldertype_request_v3_t *ezsignfoldertype_requ
         b_ezsignfoldertype_sendsignedtoezsignsigner,
         b_ezsignfoldertype_sendsignedtouser,
         b_ezsignfoldertype_sendattachmentezsignsigner,
+        b_ezsignfoldertype_sendsignatureattachmentezsignsigner,
+        b_ezsignfoldertype_sendsignatureattachment,
         b_ezsignfoldertype_sendproofezsignsigner,
         b_ezsignfoldertype_sendattachmentuser,
+        b_ezsignfoldertype_sendsignatureattachmentuser,
         b_ezsignfoldertype_sendproofuser,
         b_ezsignfoldertype_sendproofemail,
         b_ezsignfoldertype_allowdownloadattachmentezsignsigner,
+        b_ezsignfoldertype_allowdownloadsignatureattachmentezsignsigner,
         b_ezsignfoldertype_allowdownloadproofezsignsigner,
         b_ezsignfoldertype_sendproofreceivealldocument,
+        b_ezsignfoldertype_sendsignatureattachmentreceivealldocument,
         b_ezsignfoldertype_sendsignedtodocumentowner,
         b_ezsignfoldertype_sendsignedtofolderowner,
         b_ezsignfoldertype_sendsignedtofullgroup,
@@ -502,6 +526,19 @@ cJSON *ezsignfoldertype_request_v3_convertToJSON(ezsignfoldertype_request_v3_t *
     }
 
 
+    // ezsignfoldertype_request_v3->e_ezsignfoldertype_documentmerge
+    if(ezsignfoldertype_request_v3->e_ezsignfoldertype_documentmerge != ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__NULL) {
+    cJSON *e_ezsignfoldertype_documentmerge_local_JSON = field_e_ezsignfoldertype_documentmerge_convertToJSON(ezsignfoldertype_request_v3->e_ezsignfoldertype_documentmerge);
+    if(e_ezsignfoldertype_documentmerge_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsignfoldertypeDocumentmerge", e_ezsignfoldertype_documentmerge_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
+    }
+
+
     // ezsignfoldertype_request_v3->s_email_address_signed
     if(ezsignfoldertype_request_v3->s_email_address_signed) {
     if(cJSON_AddStringToObject(item, "sEmailAddressSigned", ezsignfoldertype_request_v3->s_email_address_signed) == NULL) {
@@ -740,6 +777,22 @@ cJSON *ezsignfoldertype_request_v3_convertToJSON(ezsignfoldertype_request_v3_t *
     }
 
 
+    // ezsignfoldertype_request_v3->b_ezsignfoldertype_sendsignatureattachmentezsignsigner
+    if(ezsignfoldertype_request_v3->b_ezsignfoldertype_sendsignatureattachmentezsignsigner) {
+    if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeSendsignatureattachmentezsignsigner", ezsignfoldertype_request_v3->b_ezsignfoldertype_sendsignatureattachmentezsignsigner) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
+    // ezsignfoldertype_request_v3->b_ezsignfoldertype_sendsignatureattachment
+    if(ezsignfoldertype_request_v3->b_ezsignfoldertype_sendsignatureattachment) {
+    if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeSendsignatureattachment", ezsignfoldertype_request_v3->b_ezsignfoldertype_sendsignatureattachment) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
     // ezsignfoldertype_request_v3->b_ezsignfoldertype_sendproofezsignsigner
     if(ezsignfoldertype_request_v3->b_ezsignfoldertype_sendproofezsignsigner) {
     if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeSendproofezsignsigner", ezsignfoldertype_request_v3->b_ezsignfoldertype_sendproofezsignsigner) == NULL) {
@@ -751,6 +804,14 @@ cJSON *ezsignfoldertype_request_v3_convertToJSON(ezsignfoldertype_request_v3_t *
     // ezsignfoldertype_request_v3->b_ezsignfoldertype_sendattachmentuser
     if(ezsignfoldertype_request_v3->b_ezsignfoldertype_sendattachmentuser) {
     if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeSendattachmentuser", ezsignfoldertype_request_v3->b_ezsignfoldertype_sendattachmentuser) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
+    // ezsignfoldertype_request_v3->b_ezsignfoldertype_sendsignatureattachmentuser
+    if(ezsignfoldertype_request_v3->b_ezsignfoldertype_sendsignatureattachmentuser) {
+    if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeSendsignatureattachmentuser", ezsignfoldertype_request_v3->b_ezsignfoldertype_sendsignatureattachmentuser) == NULL) {
     goto fail; //Bool
     }
     }
@@ -780,6 +841,14 @@ cJSON *ezsignfoldertype_request_v3_convertToJSON(ezsignfoldertype_request_v3_t *
     }
 
 
+    // ezsignfoldertype_request_v3->b_ezsignfoldertype_allowdownloadsignatureattachmentezsignsigner
+    if(ezsignfoldertype_request_v3->b_ezsignfoldertype_allowdownloadsignatureattachmentezsignsigner) {
+    if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeAllowdownloadsignatureattachmentezsignsigner", ezsignfoldertype_request_v3->b_ezsignfoldertype_allowdownloadsignatureattachmentezsignsigner) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
     // ezsignfoldertype_request_v3->b_ezsignfoldertype_allowdownloadproofezsignsigner
     if(ezsignfoldertype_request_v3->b_ezsignfoldertype_allowdownloadproofezsignsigner) {
     if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeAllowdownloadproofezsignsigner", ezsignfoldertype_request_v3->b_ezsignfoldertype_allowdownloadproofezsignsigner) == NULL) {
@@ -791,6 +860,14 @@ cJSON *ezsignfoldertype_request_v3_convertToJSON(ezsignfoldertype_request_v3_t *
     // ezsignfoldertype_request_v3->b_ezsignfoldertype_sendproofreceivealldocument
     if(ezsignfoldertype_request_v3->b_ezsignfoldertype_sendproofreceivealldocument) {
     if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeSendproofreceivealldocument", ezsignfoldertype_request_v3->b_ezsignfoldertype_sendproofreceivealldocument) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
+    // ezsignfoldertype_request_v3->b_ezsignfoldertype_sendsignatureattachmentreceivealldocument
+    if(ezsignfoldertype_request_v3->b_ezsignfoldertype_sendsignatureattachmentreceivealldocument) {
+    if(cJSON_AddBoolToObject(item, "bEzsignfoldertypeSendsignatureattachmentreceivealldocument", ezsignfoldertype_request_v3->b_ezsignfoldertype_sendsignatureattachmentreceivealldocument) == NULL) {
     goto fail; //Bool
     }
     }
@@ -935,6 +1012,9 @@ ezsignfoldertype_request_v3_t *ezsignfoldertype_request_v3_parseFromJSON(cJSON *
 
     // define the local variable for ezsignfoldertype_request_v3->e_ezsignfoldertype_documentdependency
     ezmax_api_definition__full_field_e_ezsignfoldertype_documentdependency__e e_ezsignfoldertype_documentdependency_local_nonprim = 0;
+
+    // define the local variable for ezsignfoldertype_request_v3->e_ezsignfoldertype_documentmerge
+    ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__e e_ezsignfoldertype_documentmerge_local_nonprim = 0;
 
     // define the local variable for ezsignfoldertype_request_v3->e_ezsignfoldertype_pdfarequirement
     ezmax_api_definition__full_field_e_ezsignfoldertype_pdfarequirement__e e_ezsignfoldertype_pdfarequirement_local_nonprim = 0;
@@ -1215,6 +1295,15 @@ ezsignfoldertype_request_v3_t *ezsignfoldertype_request_v3_parseFromJSON(cJSON *
     }
     if (e_ezsignfoldertype_documentdependency) { 
     e_ezsignfoldertype_documentdependency_local_nonprim = field_e_ezsignfoldertype_documentdependency_parseFromJSON(e_ezsignfoldertype_documentdependency); //custom
+    }
+
+    // ezsignfoldertype_request_v3->e_ezsignfoldertype_documentmerge
+    cJSON *e_ezsignfoldertype_documentmerge = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_request_v3JSON, "eEzsignfoldertypeDocumentmerge");
+    if (cJSON_IsNull(e_ezsignfoldertype_documentmerge)) {
+        e_ezsignfoldertype_documentmerge = NULL;
+    }
+    if (e_ezsignfoldertype_documentmerge) { 
+    e_ezsignfoldertype_documentmerge_local_nonprim = field_e_ezsignfoldertype_documentmerge_parseFromJSON(e_ezsignfoldertype_documentmerge); //custom
     }
 
     // ezsignfoldertype_request_v3->s_email_address_signed
@@ -1529,6 +1618,30 @@ ezsignfoldertype_request_v3_t *ezsignfoldertype_request_v3_parseFromJSON(cJSON *
     }
     }
 
+    // ezsignfoldertype_request_v3->b_ezsignfoldertype_sendsignatureattachmentezsignsigner
+    cJSON *b_ezsignfoldertype_sendsignatureattachmentezsignsigner = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_request_v3JSON, "bEzsignfoldertypeSendsignatureattachmentezsignsigner");
+    if (cJSON_IsNull(b_ezsignfoldertype_sendsignatureattachmentezsignsigner)) {
+        b_ezsignfoldertype_sendsignatureattachmentezsignsigner = NULL;
+    }
+    if (b_ezsignfoldertype_sendsignatureattachmentezsignsigner) { 
+    if(!cJSON_IsBool(b_ezsignfoldertype_sendsignatureattachmentezsignsigner))
+    {
+    goto end; //Bool
+    }
+    }
+
+    // ezsignfoldertype_request_v3->b_ezsignfoldertype_sendsignatureattachment
+    cJSON *b_ezsignfoldertype_sendsignatureattachment = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_request_v3JSON, "bEzsignfoldertypeSendsignatureattachment");
+    if (cJSON_IsNull(b_ezsignfoldertype_sendsignatureattachment)) {
+        b_ezsignfoldertype_sendsignatureattachment = NULL;
+    }
+    if (b_ezsignfoldertype_sendsignatureattachment) { 
+    if(!cJSON_IsBool(b_ezsignfoldertype_sendsignatureattachment))
+    {
+    goto end; //Bool
+    }
+    }
+
     // ezsignfoldertype_request_v3->b_ezsignfoldertype_sendproofezsignsigner
     cJSON *b_ezsignfoldertype_sendproofezsignsigner = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_request_v3JSON, "bEzsignfoldertypeSendproofezsignsigner");
     if (cJSON_IsNull(b_ezsignfoldertype_sendproofezsignsigner)) {
@@ -1548,6 +1661,18 @@ ezsignfoldertype_request_v3_t *ezsignfoldertype_request_v3_parseFromJSON(cJSON *
     }
     if (b_ezsignfoldertype_sendattachmentuser) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_sendattachmentuser))
+    {
+    goto end; //Bool
+    }
+    }
+
+    // ezsignfoldertype_request_v3->b_ezsignfoldertype_sendsignatureattachmentuser
+    cJSON *b_ezsignfoldertype_sendsignatureattachmentuser = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_request_v3JSON, "bEzsignfoldertypeSendsignatureattachmentuser");
+    if (cJSON_IsNull(b_ezsignfoldertype_sendsignatureattachmentuser)) {
+        b_ezsignfoldertype_sendsignatureattachmentuser = NULL;
+    }
+    if (b_ezsignfoldertype_sendsignatureattachmentuser) { 
+    if(!cJSON_IsBool(b_ezsignfoldertype_sendsignatureattachmentuser))
     {
     goto end; //Bool
     }
@@ -1589,6 +1714,18 @@ ezsignfoldertype_request_v3_t *ezsignfoldertype_request_v3_parseFromJSON(cJSON *
     }
     }
 
+    // ezsignfoldertype_request_v3->b_ezsignfoldertype_allowdownloadsignatureattachmentezsignsigner
+    cJSON *b_ezsignfoldertype_allowdownloadsignatureattachmentezsignsigner = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_request_v3JSON, "bEzsignfoldertypeAllowdownloadsignatureattachmentezsignsigner");
+    if (cJSON_IsNull(b_ezsignfoldertype_allowdownloadsignatureattachmentezsignsigner)) {
+        b_ezsignfoldertype_allowdownloadsignatureattachmentezsignsigner = NULL;
+    }
+    if (b_ezsignfoldertype_allowdownloadsignatureattachmentezsignsigner) { 
+    if(!cJSON_IsBool(b_ezsignfoldertype_allowdownloadsignatureattachmentezsignsigner))
+    {
+    goto end; //Bool
+    }
+    }
+
     // ezsignfoldertype_request_v3->b_ezsignfoldertype_allowdownloadproofezsignsigner
     cJSON *b_ezsignfoldertype_allowdownloadproofezsignsigner = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_request_v3JSON, "bEzsignfoldertypeAllowdownloadproofezsignsigner");
     if (cJSON_IsNull(b_ezsignfoldertype_allowdownloadproofezsignsigner)) {
@@ -1608,6 +1745,18 @@ ezsignfoldertype_request_v3_t *ezsignfoldertype_request_v3_parseFromJSON(cJSON *
     }
     if (b_ezsignfoldertype_sendproofreceivealldocument) { 
     if(!cJSON_IsBool(b_ezsignfoldertype_sendproofreceivealldocument))
+    {
+    goto end; //Bool
+    }
+    }
+
+    // ezsignfoldertype_request_v3->b_ezsignfoldertype_sendsignatureattachmentreceivealldocument
+    cJSON *b_ezsignfoldertype_sendsignatureattachmentreceivealldocument = cJSON_GetObjectItemCaseSensitive(ezsignfoldertype_request_v3JSON, "bEzsignfoldertypeSendsignatureattachmentreceivealldocument");
+    if (cJSON_IsNull(b_ezsignfoldertype_sendsignatureattachmentreceivealldocument)) {
+        b_ezsignfoldertype_sendsignatureattachmentreceivealldocument = NULL;
+    }
+    if (b_ezsignfoldertype_sendsignatureattachmentreceivealldocument) { 
+    if(!cJSON_IsBool(b_ezsignfoldertype_sendsignatureattachmentreceivealldocument))
     {
     goto end; //Bool
     }
@@ -1792,6 +1941,7 @@ ezsignfoldertype_request_v3_t *ezsignfoldertype_request_v3_parseFromJSON(cJSON *
         a_fki_usergroup_id_restricted ? a_fki_usergroup_id_restrictedList : NULL,
         a_fki_usergroup_id_template ? a_fki_usergroup_id_templateList : NULL,
         e_ezsignfoldertype_documentdependency ? e_ezsignfoldertype_documentdependency_local_nonprim : 0,
+        e_ezsignfoldertype_documentmerge ? e_ezsignfoldertype_documentmerge_local_nonprim : 0,
         s_email_address_signed && !cJSON_IsNull(s_email_address_signed) ? strdup(s_email_address_signed->valuestring) : NULL,
         s_email_address_summary && !cJSON_IsNull(s_email_address_summary) ? strdup(s_email_address_summary->valuestring) : NULL,
         e_ezsignfoldertype_pdfarequirement ? e_ezsignfoldertype_pdfarequirement_local_nonprim : 0,
@@ -1818,13 +1968,18 @@ ezsignfoldertype_request_v3_t *ezsignfoldertype_request_v3_parseFromJSON(cJSON *
         b_ezsignfoldertype_sendsignedtoezsignsigner ? b_ezsignfoldertype_sendsignedtoezsignsigner->valueint : 0,
         b_ezsignfoldertype_sendsignedtouser ? b_ezsignfoldertype_sendsignedtouser->valueint : 0,
         b_ezsignfoldertype_sendattachmentezsignsigner ? b_ezsignfoldertype_sendattachmentezsignsigner->valueint : 0,
+        b_ezsignfoldertype_sendsignatureattachmentezsignsigner ? b_ezsignfoldertype_sendsignatureattachmentezsignsigner->valueint : 0,
+        b_ezsignfoldertype_sendsignatureattachment ? b_ezsignfoldertype_sendsignatureattachment->valueint : 0,
         b_ezsignfoldertype_sendproofezsignsigner ? b_ezsignfoldertype_sendproofezsignsigner->valueint : 0,
         b_ezsignfoldertype_sendattachmentuser ? b_ezsignfoldertype_sendattachmentuser->valueint : 0,
+        b_ezsignfoldertype_sendsignatureattachmentuser ? b_ezsignfoldertype_sendsignatureattachmentuser->valueint : 0,
         b_ezsignfoldertype_sendproofuser ? b_ezsignfoldertype_sendproofuser->valueint : 0,
         b_ezsignfoldertype_sendproofemail ? b_ezsignfoldertype_sendproofemail->valueint : 0,
         b_ezsignfoldertype_allowdownloadattachmentezsignsigner ? b_ezsignfoldertype_allowdownloadattachmentezsignsigner->valueint : 0,
+        b_ezsignfoldertype_allowdownloadsignatureattachmentezsignsigner ? b_ezsignfoldertype_allowdownloadsignatureattachmentezsignsigner->valueint : 0,
         b_ezsignfoldertype_allowdownloadproofezsignsigner ? b_ezsignfoldertype_allowdownloadproofezsignsigner->valueint : 0,
         b_ezsignfoldertype_sendproofreceivealldocument ? b_ezsignfoldertype_sendproofreceivealldocument->valueint : 0,
+        b_ezsignfoldertype_sendsignatureattachmentreceivealldocument ? b_ezsignfoldertype_sendsignatureattachmentreceivealldocument->valueint : 0,
         b_ezsignfoldertype_sendsignedtodocumentowner->valueint,
         b_ezsignfoldertype_sendsignedtofolderowner->valueint,
         b_ezsignfoldertype_sendsignedtofullgroup ? b_ezsignfoldertype_sendsignedtofullgroup->valueint : 0,
@@ -1892,6 +2047,9 @@ end:
     }
     if (e_ezsignfoldertype_documentdependency_local_nonprim) {
         e_ezsignfoldertype_documentdependency_local_nonprim = 0;
+    }
+    if (e_ezsignfoldertype_documentmerge_local_nonprim) {
+        e_ezsignfoldertype_documentmerge_local_nonprim = 0;
     }
     if (e_ezsignfoldertype_pdfarequirement_local_nonprim) {
         e_ezsignfoldertype_pdfarequirement_local_nonprim = 0;

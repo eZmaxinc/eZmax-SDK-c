@@ -50,6 +50,7 @@ typedef struct custom_webhook_response_t {
     char *s_authenticationexternal_description; // string
     struct common_audit_t *obj_audit; //model
     char *s_webhook_event; // string
+    char *s_webhook_authentificationexternalerror; // string
     list_t *a_obj_webhookheader; //nonprimitive container
     char *pks_customer_code; // string
     int b_webhook_test; //boolean
@@ -77,6 +78,7 @@ __attribute__((deprecated)) custom_webhook_response_t *custom_webhook_response_c
     char *s_authenticationexternal_description,
     common_audit_t *obj_audit,
     char *s_webhook_event,
+    char *s_webhook_authentificationexternalerror,
     list_t *a_obj_webhookheader,
     char *pks_customer_code,
     int b_webhook_test,

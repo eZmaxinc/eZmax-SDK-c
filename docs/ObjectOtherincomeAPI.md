@@ -8,6 +8,8 @@ Method | HTTP request | Description
 [**ObjectOtherincomeAPI_otherincomeGetCommunicationListV1**](ObjectOtherincomeAPI.md#ObjectOtherincomeAPI_otherincomeGetCommunicationListV1) | **GET** /1/object/otherincome/{pkiOtherincomeID}/getCommunicationList | Retrieve Communication list
 [**ObjectOtherincomeAPI_otherincomeGetCommunicationrecipientsV1**](ObjectOtherincomeAPI.md#ObjectOtherincomeAPI_otherincomeGetCommunicationrecipientsV1) | **GET** /1/object/otherincome/{pkiOtherincomeID}/getCommunicationrecipients | Retrieve Otherincome&#39;s Communicationrecipient
 [**ObjectOtherincomeAPI_otherincomeGetCommunicationsendersV1**](ObjectOtherincomeAPI.md#ObjectOtherincomeAPI_otherincomeGetCommunicationsendersV1) | **GET** /1/object/otherincome/{pkiOtherincomeID}/getCommunicationsenders | Retrieve Otherincome&#39;s Communicationsender
+[**ObjectOtherincomeAPI_otherincomeGetListV1**](ObjectOtherincomeAPI.md#ObjectOtherincomeAPI_otherincomeGetListV1) | **GET** /1/object/otherincome/getList | Retrieve Otherincome list
+[**ObjectOtherincomeAPI_otherincomeImportIntoEDMV1**](ObjectOtherincomeAPI.md#ObjectOtherincomeAPI_otherincomeImportIntoEDMV1) | **POST** /1/object/otherincome/{pkiOtherincomeID}/importIntoEDM | Import attachments into the Otherincome
 
 
 # **ObjectOtherincomeAPI_otherincomeGetCommunicationCountV1**
@@ -130,6 +132,73 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectOtherincomeAPI_otherincomeGetListV1**
+```c
+// Retrieve Otherincome list
+//
+// Enum values that can be filtered in query parameter *sFilter*:  | Variable | Valid values | |---|---| | eOtherincomeRemunerationtype | Dollars<br>DollarsTaxesIncluded |
+//
+otherincome_get_list_v1_response_t* ObjectOtherincomeAPI_otherincomeGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_otherincomeGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**eOrderBy** | **ezmax_api_definition__full_otherincomeGetListV1_eOrderBy_e** | Specify how you want the results to be sorted | [optional] 
+**iRowMax** | **int \*** |  | [optional] 
+**iRowOffset** | **int \*** |  | [optional] [default to 0]
+**Accept_Language** | **header_accept_language_e** |  | [optional] 
+**sFilter** | **char \*** |  | [optional] 
+
+### Return type
+
+[otherincome_get_list_v1_response_t](otherincome_get_list_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectOtherincomeAPI_otherincomeImportIntoEDMV1**
+```c
+// Import attachments into the Otherincome
+//
+// 
+//
+otherincome_import_into_edm_v1_response_t* ObjectOtherincomeAPI_otherincomeImportIntoEDMV1(apiClient_t *apiClient, int *pkiOtherincomeID, otherincome_import_into_edm_v1_request_t *otherincome_import_into_edm_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiOtherincomeID** | **int \*** |  | 
+**otherincome_import_into_edm_v1_request** | **[otherincome_import_into_edm_v1_request_t](otherincome_import_into_edm_v1_request.md) \*** |  | 
+
+### Return type
+
+[otherincome_import_into_edm_v1_response_t](otherincome_import_into_edm_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

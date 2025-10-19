@@ -54,6 +54,8 @@ typedef struct ezsignsignature_request_t {
     char *s_ezsignsignature_textvalidationcustommessage; // string
     char *s_ezsignsignature_regexp; // string
     ezmax_api_definition__full_field_e_ezsignsignature_dependencyrequirement__e e_ezsignsignature_dependencyrequirement; //referenced enum
+    char *s_ezsignsignature_creditcardamountdescription; // string
+    char *d_ezsignsignature_creditcardamount; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsignature_request_t;
@@ -86,7 +88,9 @@ __attribute__((deprecated)) ezsignsignature_request_t *ezsignsignature_request_c
     ezmax_api_definition__full_enum_textvalidation__e e_ezsignsignature_textvalidation,
     char *s_ezsignsignature_textvalidationcustommessage,
     char *s_ezsignsignature_regexp,
-    ezmax_api_definition__full_field_e_ezsignsignature_dependencyrequirement__e e_ezsignsignature_dependencyrequirement
+    ezmax_api_definition__full_field_e_ezsignsignature_dependencyrequirement__e e_ezsignsignature_dependencyrequirement,
+    char *s_ezsignsignature_creditcardamountdescription,
+    char *d_ezsignsignature_creditcardamount
 );
 
 void ezsignsignature_request_free(ezsignsignature_request_t *ezsignsignature_request);

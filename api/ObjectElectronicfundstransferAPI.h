@@ -10,6 +10,8 @@
 #include "../model/electronicfundstransfer_get_communication_list_v1_response.h"
 #include "../model/electronicfundstransfer_get_communicationrecipients_v1_response.h"
 #include "../model/electronicfundstransfer_get_communicationsenders_v1_response.h"
+#include "../model/electronicfundstransfer_import_into_edm_v1_request.h"
+#include "../model/electronicfundstransfer_import_into_edm_v1_response.h"
 
 
 // Retrieve Communication count
@@ -42,5 +44,13 @@ ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationrecipien
 //
 electronicfundstransfer_get_communicationsenders_v1_response_t*
 ObjectElectronicfundstransferAPI_electronicfundstransferGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiElectronicfundstransferID);
+
+
+// Import attachments into the Electronicfundstransfer
+//
+// 
+//
+electronicfundstransfer_import_into_edm_v1_response_t*
+ObjectElectronicfundstransferAPI_electronicfundstransferImportIntoEDMV1(apiClient_t *apiClient, int *pkiElectronicfundstransferID, electronicfundstransfer_import_into_edm_v1_request_t *electronicfundstransfer_import_into_edm_v1_request);
 
 

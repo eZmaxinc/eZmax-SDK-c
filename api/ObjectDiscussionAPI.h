@@ -6,6 +6,8 @@
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
+#include "../model/discussion_chat_v1_200_response.h"
+#include "../model/discussion_chat_v1_request.h"
 #include "../model/discussion_create_object_v1_request.h"
 #include "../model/discussion_create_object_v1_response.h"
 #include "../model/discussion_delete_object_v1_response.h"
@@ -14,6 +16,14 @@
 #include "../model/discussion_patch_object_v1_response.h"
 #include "../model/discussion_update_discussionreadstatus_v1_request.h"
 #include "../model/discussion_update_discussionreadstatus_v1_response.h"
+
+
+// Have a Discussion with the AI Chatbot
+//
+// The endpoint allows to create one or many elements at once.
+//
+discussion_chat_v1_200_response_t*
+ObjectDiscussionAPI_discussionChatV1(apiClient_t *apiClient, discussion_chat_v1_request_t *discussion_chat_v1_request);
 
 
 // Create a new Discussion

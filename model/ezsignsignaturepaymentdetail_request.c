@@ -74,10 +74,11 @@ cJSON *ezsignsignaturepaymentdetail_request_convertToJSON(ezsignsignaturepayment
 
 
     // ezsignsignaturepaymentdetail_request->fki_glaccountcontainer_id
-    if(ezsignsignaturepaymentdetail_request->fki_glaccountcontainer_id) {
+    if (!ezsignsignaturepaymentdetail_request->fki_glaccountcontainer_id) {
+        goto fail;
+    }
     if(cJSON_AddNumberToObject(item, "fkiGlaccountcontainerID", ezsignsignaturepaymentdetail_request->fki_glaccountcontainer_id) == NULL) {
     goto fail; //Numeric
-    }
     }
 
 
@@ -144,11 +145,14 @@ ezsignsignaturepaymentdetail_request_t *ezsignsignaturepaymentdetail_request_par
     if (cJSON_IsNull(fki_glaccountcontainer_id)) {
         fki_glaccountcontainer_id = NULL;
     }
-    if (fki_glaccountcontainer_id) { 
+    if (!fki_glaccountcontainer_id) {
+        goto end;
+    }
+
+    
     if(!cJSON_IsNumber(fki_glaccountcontainer_id))
     {
     goto end; //Numeric
-    }
     }
 
     // ezsignsignaturepaymentdetail_request->t_ezsignsignaturepaymentdetail_description
@@ -196,7 +200,7 @@ ezsignsignaturepaymentdetail_request_t *ezsignsignaturepaymentdetail_request_par
 
     ezsignsignaturepaymentdetail_request_local_var = ezsignsignaturepaymentdetail_request_create_internal (
         pki_ezsignsignaturepaymentdetail_id ? pki_ezsignsignaturepaymentdetail_id->valuedouble : 0,
-        fki_glaccountcontainer_id ? fki_glaccountcontainer_id->valuedouble : 0,
+        fki_glaccountcontainer_id->valuedouble,
         strdup(t_ezsignsignaturepaymentdetail_description->valuestring),
         strdup(d_ezsignsignaturepaymentdetail_amount->valuestring),
         e_ezsignsignaturepaymentdetail_taxable_local_nonprim

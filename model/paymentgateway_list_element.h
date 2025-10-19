@@ -24,6 +24,7 @@ typedef struct paymentgateway_list_element_t {
     int fki_creditcardmerchant_id; //numeric
     ezmax_api_definition__full_field_e_paymentgateway_processor__e e_paymentgateway_processor; //referenced enum
     char *s_paymentgateway_description_x; // string
+    int b_paymentgateway_isactive; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
 } paymentgateway_list_element_t;
@@ -32,7 +33,8 @@ __attribute__((deprecated)) paymentgateway_list_element_t *paymentgateway_list_e
     int pki_paymentgateway_id,
     int fki_creditcardmerchant_id,
     ezmax_api_definition__full_field_e_paymentgateway_processor__e e_paymentgateway_processor,
-    char *s_paymentgateway_description_x
+    char *s_paymentgateway_description_x,
+    int b_paymentgateway_isactive
 );
 
 void paymentgateway_list_element_free(paymentgateway_list_element_t *paymentgateway_list_element);

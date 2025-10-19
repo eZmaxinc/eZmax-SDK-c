@@ -7,6 +7,7 @@
 
 static customer_autocomplete_element_response_t *customer_autocomplete_element_response_create_internal(
     int pki_customer_id,
+    int fki_department_id,
     char *s_customer_name,
     int b_customer_isactive
     ) {
@@ -15,6 +16,7 @@ static customer_autocomplete_element_response_t *customer_autocomplete_element_r
         return NULL;
     }
     customer_autocomplete_element_response_local_var->pki_customer_id = pki_customer_id;
+    customer_autocomplete_element_response_local_var->fki_department_id = fki_department_id;
     customer_autocomplete_element_response_local_var->s_customer_name = s_customer_name;
     customer_autocomplete_element_response_local_var->b_customer_isactive = b_customer_isactive;
 
@@ -24,11 +26,13 @@ static customer_autocomplete_element_response_t *customer_autocomplete_element_r
 
 __attribute__((deprecated)) customer_autocomplete_element_response_t *customer_autocomplete_element_response_create(
     int pki_customer_id,
+    int fki_department_id,
     char *s_customer_name,
     int b_customer_isactive
     ) {
     return customer_autocomplete_element_response_create_internal (
         pki_customer_id,
+        fki_department_id,
         s_customer_name,
         b_customer_isactive
         );
@@ -58,6 +62,15 @@ cJSON *customer_autocomplete_element_response_convertToJSON(customer_autocomplet
         goto fail;
     }
     if(cJSON_AddNumberToObject(item, "pkiCustomerID", customer_autocomplete_element_response->pki_customer_id) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // customer_autocomplete_element_response->fki_department_id
+    if (!customer_autocomplete_element_response->fki_department_id) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "fkiDepartmentID", customer_autocomplete_element_response->fki_department_id) == NULL) {
     goto fail; //Numeric
     }
 
@@ -106,6 +119,21 @@ customer_autocomplete_element_response_t *customer_autocomplete_element_response
     goto end; //Numeric
     }
 
+    // customer_autocomplete_element_response->fki_department_id
+    cJSON *fki_department_id = cJSON_GetObjectItemCaseSensitive(customer_autocomplete_element_responseJSON, "fkiDepartmentID");
+    if (cJSON_IsNull(fki_department_id)) {
+        fki_department_id = NULL;
+    }
+    if (!fki_department_id) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(fki_department_id))
+    {
+    goto end; //Numeric
+    }
+
     // customer_autocomplete_element_response->s_customer_name
     cJSON *s_customer_name = cJSON_GetObjectItemCaseSensitive(customer_autocomplete_element_responseJSON, "sCustomerName");
     if (cJSON_IsNull(s_customer_name)) {
@@ -139,6 +167,7 @@ customer_autocomplete_element_response_t *customer_autocomplete_element_response
 
     customer_autocomplete_element_response_local_var = customer_autocomplete_element_response_create_internal (
         pki_customer_id->valuedouble,
+        fki_department_id->valuedouble,
         strdup(s_customer_name->valuestring),
         b_customer_isactive->valueint
         );

@@ -1,0 +1,987 @@
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include "ezsigndocument_response_compound_v3.h"
+
+
+
+static ezsigndocument_response_compound_v3_t *ezsigndocument_response_compound_v3_create_internal(
+    int pki_ezsigndocument_id,
+    int fki_ezsignfolder_id,
+    int fki_ezsignfoldersignerassociation_id_declinedtosign,
+    char *dt_ezsigndocument_duedate,
+    char *dt_ezsignform_completed,
+    int fki_language_id,
+    char *s_ezsigndocument_name,
+    ezmax_api_definition__full_field_e_ezsigndocument_step__e e_ezsigndocument_step,
+    char *dt_ezsigndocument_firstsend,
+    char *dt_ezsigndocument_lastsend,
+    int i_ezsigndocument_order,
+    int i_ezsigndocument_pagetotal,
+    int i_ezsigndocument_signaturesigned,
+    int i_ezsigndocument_signaturetotal,
+    int i_ezsigndocument_formfieldtotal,
+    char *s_ezsigndocument_md5initial,
+    char *t_ezsigndocument_declinedtosignreason,
+    char *s_ezsigndocument_md5signed,
+    int b_ezsigndocument_ezsignform,
+    int b_ezsigndocument_hassignedsignatures,
+    int b_ezsigndocument_sendtoged,
+    common_audit_t *obj_audit,
+    char *s_ezsigndocument_externalid,
+    int i_ezsigndocument_ezsignsignatureattachmenttotal,
+    int i_ezsigndocument_ezsigndiscussiontotal,
+    int i_ezsigndocument_steptotal,
+    int i_ezsigndocument_stepcurrent,
+    list_t *a_obj_ezsignfoldersignerassociationstatus,
+    list_t *a_obj_ezsigndocumentdependency
+    ) {
+    ezsigndocument_response_compound_v3_t *ezsigndocument_response_compound_v3_local_var = malloc(sizeof(ezsigndocument_response_compound_v3_t));
+    if (!ezsigndocument_response_compound_v3_local_var) {
+        return NULL;
+    }
+    ezsigndocument_response_compound_v3_local_var->pki_ezsigndocument_id = pki_ezsigndocument_id;
+    ezsigndocument_response_compound_v3_local_var->fki_ezsignfolder_id = fki_ezsignfolder_id;
+    ezsigndocument_response_compound_v3_local_var->fki_ezsignfoldersignerassociation_id_declinedtosign = fki_ezsignfoldersignerassociation_id_declinedtosign;
+    ezsigndocument_response_compound_v3_local_var->dt_ezsigndocument_duedate = dt_ezsigndocument_duedate;
+    ezsigndocument_response_compound_v3_local_var->dt_ezsignform_completed = dt_ezsignform_completed;
+    ezsigndocument_response_compound_v3_local_var->fki_language_id = fki_language_id;
+    ezsigndocument_response_compound_v3_local_var->s_ezsigndocument_name = s_ezsigndocument_name;
+    ezsigndocument_response_compound_v3_local_var->e_ezsigndocument_step = e_ezsigndocument_step;
+    ezsigndocument_response_compound_v3_local_var->dt_ezsigndocument_firstsend = dt_ezsigndocument_firstsend;
+    ezsigndocument_response_compound_v3_local_var->dt_ezsigndocument_lastsend = dt_ezsigndocument_lastsend;
+    ezsigndocument_response_compound_v3_local_var->i_ezsigndocument_order = i_ezsigndocument_order;
+    ezsigndocument_response_compound_v3_local_var->i_ezsigndocument_pagetotal = i_ezsigndocument_pagetotal;
+    ezsigndocument_response_compound_v3_local_var->i_ezsigndocument_signaturesigned = i_ezsigndocument_signaturesigned;
+    ezsigndocument_response_compound_v3_local_var->i_ezsigndocument_signaturetotal = i_ezsigndocument_signaturetotal;
+    ezsigndocument_response_compound_v3_local_var->i_ezsigndocument_formfieldtotal = i_ezsigndocument_formfieldtotal;
+    ezsigndocument_response_compound_v3_local_var->s_ezsigndocument_md5initial = s_ezsigndocument_md5initial;
+    ezsigndocument_response_compound_v3_local_var->t_ezsigndocument_declinedtosignreason = t_ezsigndocument_declinedtosignreason;
+    ezsigndocument_response_compound_v3_local_var->s_ezsigndocument_md5signed = s_ezsigndocument_md5signed;
+    ezsigndocument_response_compound_v3_local_var->b_ezsigndocument_ezsignform = b_ezsigndocument_ezsignform;
+    ezsigndocument_response_compound_v3_local_var->b_ezsigndocument_hassignedsignatures = b_ezsigndocument_hassignedsignatures;
+    ezsigndocument_response_compound_v3_local_var->b_ezsigndocument_sendtoged = b_ezsigndocument_sendtoged;
+    ezsigndocument_response_compound_v3_local_var->obj_audit = obj_audit;
+    ezsigndocument_response_compound_v3_local_var->s_ezsigndocument_externalid = s_ezsigndocument_externalid;
+    ezsigndocument_response_compound_v3_local_var->i_ezsigndocument_ezsignsignatureattachmenttotal = i_ezsigndocument_ezsignsignatureattachmenttotal;
+    ezsigndocument_response_compound_v3_local_var->i_ezsigndocument_ezsigndiscussiontotal = i_ezsigndocument_ezsigndiscussiontotal;
+    ezsigndocument_response_compound_v3_local_var->i_ezsigndocument_steptotal = i_ezsigndocument_steptotal;
+    ezsigndocument_response_compound_v3_local_var->i_ezsigndocument_stepcurrent = i_ezsigndocument_stepcurrent;
+    ezsigndocument_response_compound_v3_local_var->a_obj_ezsignfoldersignerassociationstatus = a_obj_ezsignfoldersignerassociationstatus;
+    ezsigndocument_response_compound_v3_local_var->a_obj_ezsigndocumentdependency = a_obj_ezsigndocumentdependency;
+
+    ezsigndocument_response_compound_v3_local_var->_library_owned = 1;
+    return ezsigndocument_response_compound_v3_local_var;
+}
+
+__attribute__((deprecated)) ezsigndocument_response_compound_v3_t *ezsigndocument_response_compound_v3_create(
+    int pki_ezsigndocument_id,
+    int fki_ezsignfolder_id,
+    int fki_ezsignfoldersignerassociation_id_declinedtosign,
+    char *dt_ezsigndocument_duedate,
+    char *dt_ezsignform_completed,
+    int fki_language_id,
+    char *s_ezsigndocument_name,
+    ezmax_api_definition__full_field_e_ezsigndocument_step__e e_ezsigndocument_step,
+    char *dt_ezsigndocument_firstsend,
+    char *dt_ezsigndocument_lastsend,
+    int i_ezsigndocument_order,
+    int i_ezsigndocument_pagetotal,
+    int i_ezsigndocument_signaturesigned,
+    int i_ezsigndocument_signaturetotal,
+    int i_ezsigndocument_formfieldtotal,
+    char *s_ezsigndocument_md5initial,
+    char *t_ezsigndocument_declinedtosignreason,
+    char *s_ezsigndocument_md5signed,
+    int b_ezsigndocument_ezsignform,
+    int b_ezsigndocument_hassignedsignatures,
+    int b_ezsigndocument_sendtoged,
+    common_audit_t *obj_audit,
+    char *s_ezsigndocument_externalid,
+    int i_ezsigndocument_ezsignsignatureattachmenttotal,
+    int i_ezsigndocument_ezsigndiscussiontotal,
+    int i_ezsigndocument_steptotal,
+    int i_ezsigndocument_stepcurrent,
+    list_t *a_obj_ezsignfoldersignerassociationstatus,
+    list_t *a_obj_ezsigndocumentdependency
+    ) {
+    return ezsigndocument_response_compound_v3_create_internal (
+        pki_ezsigndocument_id,
+        fki_ezsignfolder_id,
+        fki_ezsignfoldersignerassociation_id_declinedtosign,
+        dt_ezsigndocument_duedate,
+        dt_ezsignform_completed,
+        fki_language_id,
+        s_ezsigndocument_name,
+        e_ezsigndocument_step,
+        dt_ezsigndocument_firstsend,
+        dt_ezsigndocument_lastsend,
+        i_ezsigndocument_order,
+        i_ezsigndocument_pagetotal,
+        i_ezsigndocument_signaturesigned,
+        i_ezsigndocument_signaturetotal,
+        i_ezsigndocument_formfieldtotal,
+        s_ezsigndocument_md5initial,
+        t_ezsigndocument_declinedtosignreason,
+        s_ezsigndocument_md5signed,
+        b_ezsigndocument_ezsignform,
+        b_ezsigndocument_hassignedsignatures,
+        b_ezsigndocument_sendtoged,
+        obj_audit,
+        s_ezsigndocument_externalid,
+        i_ezsigndocument_ezsignsignatureattachmenttotal,
+        i_ezsigndocument_ezsigndiscussiontotal,
+        i_ezsigndocument_steptotal,
+        i_ezsigndocument_stepcurrent,
+        a_obj_ezsignfoldersignerassociationstatus,
+        a_obj_ezsigndocumentdependency
+        );
+}
+
+void ezsigndocument_response_compound_v3_free(ezsigndocument_response_compound_v3_t *ezsigndocument_response_compound_v3) {
+    if(NULL == ezsigndocument_response_compound_v3){
+        return ;
+    }
+    if(ezsigndocument_response_compound_v3->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "ezsigndocument_response_compound_v3_free");
+        return ;
+    }
+    listEntry_t *listEntry;
+    if (ezsigndocument_response_compound_v3->dt_ezsigndocument_duedate) {
+        free(ezsigndocument_response_compound_v3->dt_ezsigndocument_duedate);
+        ezsigndocument_response_compound_v3->dt_ezsigndocument_duedate = NULL;
+    }
+    if (ezsigndocument_response_compound_v3->dt_ezsignform_completed) {
+        free(ezsigndocument_response_compound_v3->dt_ezsignform_completed);
+        ezsigndocument_response_compound_v3->dt_ezsignform_completed = NULL;
+    }
+    if (ezsigndocument_response_compound_v3->s_ezsigndocument_name) {
+        free(ezsigndocument_response_compound_v3->s_ezsigndocument_name);
+        ezsigndocument_response_compound_v3->s_ezsigndocument_name = NULL;
+    }
+    if (ezsigndocument_response_compound_v3->dt_ezsigndocument_firstsend) {
+        free(ezsigndocument_response_compound_v3->dt_ezsigndocument_firstsend);
+        ezsigndocument_response_compound_v3->dt_ezsigndocument_firstsend = NULL;
+    }
+    if (ezsigndocument_response_compound_v3->dt_ezsigndocument_lastsend) {
+        free(ezsigndocument_response_compound_v3->dt_ezsigndocument_lastsend);
+        ezsigndocument_response_compound_v3->dt_ezsigndocument_lastsend = NULL;
+    }
+    if (ezsigndocument_response_compound_v3->s_ezsigndocument_md5initial) {
+        free(ezsigndocument_response_compound_v3->s_ezsigndocument_md5initial);
+        ezsigndocument_response_compound_v3->s_ezsigndocument_md5initial = NULL;
+    }
+    if (ezsigndocument_response_compound_v3->t_ezsigndocument_declinedtosignreason) {
+        free(ezsigndocument_response_compound_v3->t_ezsigndocument_declinedtosignreason);
+        ezsigndocument_response_compound_v3->t_ezsigndocument_declinedtosignreason = NULL;
+    }
+    if (ezsigndocument_response_compound_v3->s_ezsigndocument_md5signed) {
+        free(ezsigndocument_response_compound_v3->s_ezsigndocument_md5signed);
+        ezsigndocument_response_compound_v3->s_ezsigndocument_md5signed = NULL;
+    }
+    if (ezsigndocument_response_compound_v3->obj_audit) {
+        common_audit_free(ezsigndocument_response_compound_v3->obj_audit);
+        ezsigndocument_response_compound_v3->obj_audit = NULL;
+    }
+    if (ezsigndocument_response_compound_v3->s_ezsigndocument_externalid) {
+        free(ezsigndocument_response_compound_v3->s_ezsigndocument_externalid);
+        ezsigndocument_response_compound_v3->s_ezsigndocument_externalid = NULL;
+    }
+    if (ezsigndocument_response_compound_v3->a_obj_ezsignfoldersignerassociationstatus) {
+        list_ForEach(listEntry, ezsigndocument_response_compound_v3->a_obj_ezsignfoldersignerassociationstatus) {
+            custom_ezsignfoldersignerassociationstatus_response_v3_free(listEntry->data);
+        }
+        list_freeList(ezsigndocument_response_compound_v3->a_obj_ezsignfoldersignerassociationstatus);
+        ezsigndocument_response_compound_v3->a_obj_ezsignfoldersignerassociationstatus = NULL;
+    }
+    if (ezsigndocument_response_compound_v3->a_obj_ezsigndocumentdependency) {
+        list_ForEach(listEntry, ezsigndocument_response_compound_v3->a_obj_ezsigndocumentdependency) {
+            ezsigndocumentdependency_response_free(listEntry->data);
+        }
+        list_freeList(ezsigndocument_response_compound_v3->a_obj_ezsigndocumentdependency);
+        ezsigndocument_response_compound_v3->a_obj_ezsigndocumentdependency = NULL;
+    }
+    free(ezsigndocument_response_compound_v3);
+}
+
+cJSON *ezsigndocument_response_compound_v3_convertToJSON(ezsigndocument_response_compound_v3_t *ezsigndocument_response_compound_v3) {
+    cJSON *item = cJSON_CreateObject();
+
+    // ezsigndocument_response_compound_v3->pki_ezsigndocument_id
+    if (!ezsigndocument_response_compound_v3->pki_ezsigndocument_id) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "pkiEzsigndocumentID", ezsigndocument_response_compound_v3->pki_ezsigndocument_id) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // ezsigndocument_response_compound_v3->fki_ezsignfolder_id
+    if (!ezsigndocument_response_compound_v3->fki_ezsignfolder_id) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "fkiEzsignfolderID", ezsigndocument_response_compound_v3->fki_ezsignfolder_id) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // ezsigndocument_response_compound_v3->fki_ezsignfoldersignerassociation_id_declinedtosign
+    if(ezsigndocument_response_compound_v3->fki_ezsignfoldersignerassociation_id_declinedtosign) {
+    if(cJSON_AddNumberToObject(item, "fkiEzsignfoldersignerassociationIDDeclinedtosign", ezsigndocument_response_compound_v3->fki_ezsignfoldersignerassociation_id_declinedtosign) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // ezsigndocument_response_compound_v3->dt_ezsigndocument_duedate
+    if (!ezsigndocument_response_compound_v3->dt_ezsigndocument_duedate) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "dtEzsigndocumentDuedate", ezsigndocument_response_compound_v3->dt_ezsigndocument_duedate) == NULL) {
+    goto fail; //String
+    }
+
+
+    // ezsigndocument_response_compound_v3->dt_ezsignform_completed
+    if(ezsigndocument_response_compound_v3->dt_ezsignform_completed) {
+    if(cJSON_AddStringToObject(item, "dtEzsignformCompleted", ezsigndocument_response_compound_v3->dt_ezsignform_completed) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // ezsigndocument_response_compound_v3->fki_language_id
+    if(ezsigndocument_response_compound_v3->fki_language_id) {
+    if(cJSON_AddNumberToObject(item, "fkiLanguageID", ezsigndocument_response_compound_v3->fki_language_id) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // ezsigndocument_response_compound_v3->s_ezsigndocument_name
+    if (!ezsigndocument_response_compound_v3->s_ezsigndocument_name) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "sEzsigndocumentName", ezsigndocument_response_compound_v3->s_ezsigndocument_name) == NULL) {
+    goto fail; //String
+    }
+
+
+    // ezsigndocument_response_compound_v3->e_ezsigndocument_step
+    if (ezmax_api_definition__full_field_e_ezsigndocument_step__NULL == ezsigndocument_response_compound_v3->e_ezsigndocument_step) {
+        goto fail;
+    }
+    cJSON *e_ezsigndocument_step_local_JSON = field_e_ezsigndocument_step_convertToJSON(ezsigndocument_response_compound_v3->e_ezsigndocument_step);
+    if(e_ezsigndocument_step_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsigndocumentStep", e_ezsigndocument_step_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
+
+
+    // ezsigndocument_response_compound_v3->dt_ezsigndocument_firstsend
+    if(ezsigndocument_response_compound_v3->dt_ezsigndocument_firstsend) {
+    if(cJSON_AddStringToObject(item, "dtEzsigndocumentFirstsend", ezsigndocument_response_compound_v3->dt_ezsigndocument_firstsend) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // ezsigndocument_response_compound_v3->dt_ezsigndocument_lastsend
+    if(ezsigndocument_response_compound_v3->dt_ezsigndocument_lastsend) {
+    if(cJSON_AddStringToObject(item, "dtEzsigndocumentLastsend", ezsigndocument_response_compound_v3->dt_ezsigndocument_lastsend) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // ezsigndocument_response_compound_v3->i_ezsigndocument_order
+    if (!ezsigndocument_response_compound_v3->i_ezsigndocument_order) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iEzsigndocumentOrder", ezsigndocument_response_compound_v3->i_ezsigndocument_order) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // ezsigndocument_response_compound_v3->i_ezsigndocument_pagetotal
+    if (!ezsigndocument_response_compound_v3->i_ezsigndocument_pagetotal) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iEzsigndocumentPagetotal", ezsigndocument_response_compound_v3->i_ezsigndocument_pagetotal) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // ezsigndocument_response_compound_v3->i_ezsigndocument_signaturesigned
+    if (!ezsigndocument_response_compound_v3->i_ezsigndocument_signaturesigned) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iEzsigndocumentSignaturesigned", ezsigndocument_response_compound_v3->i_ezsigndocument_signaturesigned) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // ezsigndocument_response_compound_v3->i_ezsigndocument_signaturetotal
+    if (!ezsigndocument_response_compound_v3->i_ezsigndocument_signaturetotal) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iEzsigndocumentSignaturetotal", ezsigndocument_response_compound_v3->i_ezsigndocument_signaturetotal) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // ezsigndocument_response_compound_v3->i_ezsigndocument_formfieldtotal
+    if (!ezsigndocument_response_compound_v3->i_ezsigndocument_formfieldtotal) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iEzsigndocumentFormfieldtotal", ezsigndocument_response_compound_v3->i_ezsigndocument_formfieldtotal) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // ezsigndocument_response_compound_v3->s_ezsigndocument_md5initial
+    if(ezsigndocument_response_compound_v3->s_ezsigndocument_md5initial) {
+    if(cJSON_AddStringToObject(item, "sEzsigndocumentMD5initial", ezsigndocument_response_compound_v3->s_ezsigndocument_md5initial) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // ezsigndocument_response_compound_v3->t_ezsigndocument_declinedtosignreason
+    if(ezsigndocument_response_compound_v3->t_ezsigndocument_declinedtosignreason) {
+    if(cJSON_AddStringToObject(item, "tEzsigndocumentDeclinedtosignreason", ezsigndocument_response_compound_v3->t_ezsigndocument_declinedtosignreason) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // ezsigndocument_response_compound_v3->s_ezsigndocument_md5signed
+    if(ezsigndocument_response_compound_v3->s_ezsigndocument_md5signed) {
+    if(cJSON_AddStringToObject(item, "sEzsigndocumentMD5signed", ezsigndocument_response_compound_v3->s_ezsigndocument_md5signed) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // ezsigndocument_response_compound_v3->b_ezsigndocument_ezsignform
+    if(ezsigndocument_response_compound_v3->b_ezsigndocument_ezsignform) {
+    if(cJSON_AddBoolToObject(item, "bEzsigndocumentEzsignform", ezsigndocument_response_compound_v3->b_ezsigndocument_ezsignform) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
+    // ezsigndocument_response_compound_v3->b_ezsigndocument_hassignedsignatures
+    if(ezsigndocument_response_compound_v3->b_ezsigndocument_hassignedsignatures) {
+    if(cJSON_AddBoolToObject(item, "bEzsigndocumentHassignedsignatures", ezsigndocument_response_compound_v3->b_ezsigndocument_hassignedsignatures) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
+    // ezsigndocument_response_compound_v3->b_ezsigndocument_sendtoged
+    if(ezsigndocument_response_compound_v3->b_ezsigndocument_sendtoged) {
+    if(cJSON_AddBoolToObject(item, "bEzsigndocumentSendtoged", ezsigndocument_response_compound_v3->b_ezsigndocument_sendtoged) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
+    // ezsigndocument_response_compound_v3->obj_audit
+    if(ezsigndocument_response_compound_v3->obj_audit) {
+    cJSON *obj_audit_local_JSON = common_audit_convertToJSON(ezsigndocument_response_compound_v3->obj_audit);
+    if(obj_audit_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objAudit", obj_audit_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+    }
+
+
+    // ezsigndocument_response_compound_v3->s_ezsigndocument_externalid
+    if(ezsigndocument_response_compound_v3->s_ezsigndocument_externalid) {
+    if(cJSON_AddStringToObject(item, "sEzsigndocumentExternalid", ezsigndocument_response_compound_v3->s_ezsigndocument_externalid) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // ezsigndocument_response_compound_v3->i_ezsigndocument_ezsignsignatureattachmenttotal
+    if (!ezsigndocument_response_compound_v3->i_ezsigndocument_ezsignsignatureattachmenttotal) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iEzsigndocumentEzsignsignatureattachmenttotal", ezsigndocument_response_compound_v3->i_ezsigndocument_ezsignsignatureattachmenttotal) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // ezsigndocument_response_compound_v3->i_ezsigndocument_ezsigndiscussiontotal
+    if (!ezsigndocument_response_compound_v3->i_ezsigndocument_ezsigndiscussiontotal) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iEzsigndocumentEzsigndiscussiontotal", ezsigndocument_response_compound_v3->i_ezsigndocument_ezsigndiscussiontotal) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // ezsigndocument_response_compound_v3->i_ezsigndocument_steptotal
+    if (!ezsigndocument_response_compound_v3->i_ezsigndocument_steptotal) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iEzsigndocumentSteptotal", ezsigndocument_response_compound_v3->i_ezsigndocument_steptotal) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // ezsigndocument_response_compound_v3->i_ezsigndocument_stepcurrent
+    if (!ezsigndocument_response_compound_v3->i_ezsigndocument_stepcurrent) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iEzsigndocumentStepcurrent", ezsigndocument_response_compound_v3->i_ezsigndocument_stepcurrent) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // ezsigndocument_response_compound_v3->a_obj_ezsignfoldersignerassociationstatus
+    if (!ezsigndocument_response_compound_v3->a_obj_ezsignfoldersignerassociationstatus) {
+        goto fail;
+    }
+    cJSON *a_obj_ezsignfoldersignerassociationstatus = cJSON_AddArrayToObject(item, "a_objEzsignfoldersignerassociationstatus");
+    if(a_obj_ezsignfoldersignerassociationstatus == NULL) {
+    goto fail; //nonprimitive container
+    }
+
+    listEntry_t *a_obj_ezsignfoldersignerassociationstatusListEntry;
+    if (ezsigndocument_response_compound_v3->a_obj_ezsignfoldersignerassociationstatus) {
+    list_ForEach(a_obj_ezsignfoldersignerassociationstatusListEntry, ezsigndocument_response_compound_v3->a_obj_ezsignfoldersignerassociationstatus) {
+    cJSON *itemLocal = custom_ezsignfoldersignerassociationstatus_response_v3_convertToJSON(a_obj_ezsignfoldersignerassociationstatusListEntry->data);
+    if(itemLocal == NULL) {
+    goto fail;
+    }
+    cJSON_AddItemToArray(a_obj_ezsignfoldersignerassociationstatus, itemLocal);
+    }
+    }
+
+
+    // ezsigndocument_response_compound_v3->a_obj_ezsigndocumentdependency
+    if(ezsigndocument_response_compound_v3->a_obj_ezsigndocumentdependency) {
+    cJSON *a_obj_ezsigndocumentdependency = cJSON_AddArrayToObject(item, "a_objEzsigndocumentdependency");
+    if(a_obj_ezsigndocumentdependency == NULL) {
+    goto fail; //nonprimitive container
+    }
+
+    listEntry_t *a_obj_ezsigndocumentdependencyListEntry;
+    if (ezsigndocument_response_compound_v3->a_obj_ezsigndocumentdependency) {
+    list_ForEach(a_obj_ezsigndocumentdependencyListEntry, ezsigndocument_response_compound_v3->a_obj_ezsigndocumentdependency) {
+    cJSON *itemLocal = ezsigndocumentdependency_response_convertToJSON(a_obj_ezsigndocumentdependencyListEntry->data);
+    if(itemLocal == NULL) {
+    goto fail;
+    }
+    cJSON_AddItemToArray(a_obj_ezsigndocumentdependency, itemLocal);
+    }
+    }
+    }
+
+    return item;
+fail:
+    if (item) {
+        cJSON_Delete(item);
+    }
+    return NULL;
+}
+
+ezsigndocument_response_compound_v3_t *ezsigndocument_response_compound_v3_parseFromJSON(cJSON *ezsigndocument_response_compound_v3JSON){
+
+    ezsigndocument_response_compound_v3_t *ezsigndocument_response_compound_v3_local_var = NULL;
+
+    // define the local variable for ezsigndocument_response_compound_v3->e_ezsigndocument_step
+    ezmax_api_definition__full_field_e_ezsigndocument_step__e e_ezsigndocument_step_local_nonprim = 0;
+
+    // define the local variable for ezsigndocument_response_compound_v3->obj_audit
+    common_audit_t *obj_audit_local_nonprim = NULL;
+
+    // define the local list for ezsigndocument_response_compound_v3->a_obj_ezsignfoldersignerassociationstatus
+    list_t *a_obj_ezsignfoldersignerassociationstatusList = NULL;
+
+    // define the local list for ezsigndocument_response_compound_v3->a_obj_ezsigndocumentdependency
+    list_t *a_obj_ezsigndocumentdependencyList = NULL;
+
+    // ezsigndocument_response_compound_v3->pki_ezsigndocument_id
+    cJSON *pki_ezsigndocument_id = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "pkiEzsigndocumentID");
+    if (cJSON_IsNull(pki_ezsigndocument_id)) {
+        pki_ezsigndocument_id = NULL;
+    }
+    if (!pki_ezsigndocument_id) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(pki_ezsigndocument_id))
+    {
+    goto end; //Numeric
+    }
+
+    // ezsigndocument_response_compound_v3->fki_ezsignfolder_id
+    cJSON *fki_ezsignfolder_id = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "fkiEzsignfolderID");
+    if (cJSON_IsNull(fki_ezsignfolder_id)) {
+        fki_ezsignfolder_id = NULL;
+    }
+    if (!fki_ezsignfolder_id) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(fki_ezsignfolder_id))
+    {
+    goto end; //Numeric
+    }
+
+    // ezsigndocument_response_compound_v3->fki_ezsignfoldersignerassociation_id_declinedtosign
+    cJSON *fki_ezsignfoldersignerassociation_id_declinedtosign = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "fkiEzsignfoldersignerassociationIDDeclinedtosign");
+    if (cJSON_IsNull(fki_ezsignfoldersignerassociation_id_declinedtosign)) {
+        fki_ezsignfoldersignerassociation_id_declinedtosign = NULL;
+    }
+    if (fki_ezsignfoldersignerassociation_id_declinedtosign) { 
+    if(!cJSON_IsNumber(fki_ezsignfoldersignerassociation_id_declinedtosign))
+    {
+    goto end; //Numeric
+    }
+    }
+
+    // ezsigndocument_response_compound_v3->dt_ezsigndocument_duedate
+    cJSON *dt_ezsigndocument_duedate = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "dtEzsigndocumentDuedate");
+    if (cJSON_IsNull(dt_ezsigndocument_duedate)) {
+        dt_ezsigndocument_duedate = NULL;
+    }
+    if (!dt_ezsigndocument_duedate) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(dt_ezsigndocument_duedate))
+    {
+    goto end; //String
+    }
+
+    // ezsigndocument_response_compound_v3->dt_ezsignform_completed
+    cJSON *dt_ezsignform_completed = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "dtEzsignformCompleted");
+    if (cJSON_IsNull(dt_ezsignform_completed)) {
+        dt_ezsignform_completed = NULL;
+    }
+    if (dt_ezsignform_completed) { 
+    if(!cJSON_IsString(dt_ezsignform_completed) && !cJSON_IsNull(dt_ezsignform_completed))
+    {
+    goto end; //String
+    }
+    }
+
+    // ezsigndocument_response_compound_v3->fki_language_id
+    cJSON *fki_language_id = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "fkiLanguageID");
+    if (cJSON_IsNull(fki_language_id)) {
+        fki_language_id = NULL;
+    }
+    if (fki_language_id) { 
+    if(!cJSON_IsNumber(fki_language_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
+    // ezsigndocument_response_compound_v3->s_ezsigndocument_name
+    cJSON *s_ezsigndocument_name = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "sEzsigndocumentName");
+    if (cJSON_IsNull(s_ezsigndocument_name)) {
+        s_ezsigndocument_name = NULL;
+    }
+    if (!s_ezsigndocument_name) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_ezsigndocument_name))
+    {
+    goto end; //String
+    }
+
+    // ezsigndocument_response_compound_v3->e_ezsigndocument_step
+    cJSON *e_ezsigndocument_step = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "eEzsigndocumentStep");
+    if (cJSON_IsNull(e_ezsigndocument_step)) {
+        e_ezsigndocument_step = NULL;
+    }
+    if (!e_ezsigndocument_step) {
+        goto end;
+    }
+
+    
+    e_ezsigndocument_step_local_nonprim = field_e_ezsigndocument_step_parseFromJSON(e_ezsigndocument_step); //custom
+
+    // ezsigndocument_response_compound_v3->dt_ezsigndocument_firstsend
+    cJSON *dt_ezsigndocument_firstsend = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "dtEzsigndocumentFirstsend");
+    if (cJSON_IsNull(dt_ezsigndocument_firstsend)) {
+        dt_ezsigndocument_firstsend = NULL;
+    }
+    if (dt_ezsigndocument_firstsend) { 
+    if(!cJSON_IsString(dt_ezsigndocument_firstsend) && !cJSON_IsNull(dt_ezsigndocument_firstsend))
+    {
+    goto end; //String
+    }
+    }
+
+    // ezsigndocument_response_compound_v3->dt_ezsigndocument_lastsend
+    cJSON *dt_ezsigndocument_lastsend = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "dtEzsigndocumentLastsend");
+    if (cJSON_IsNull(dt_ezsigndocument_lastsend)) {
+        dt_ezsigndocument_lastsend = NULL;
+    }
+    if (dt_ezsigndocument_lastsend) { 
+    if(!cJSON_IsString(dt_ezsigndocument_lastsend) && !cJSON_IsNull(dt_ezsigndocument_lastsend))
+    {
+    goto end; //String
+    }
+    }
+
+    // ezsigndocument_response_compound_v3->i_ezsigndocument_order
+    cJSON *i_ezsigndocument_order = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "iEzsigndocumentOrder");
+    if (cJSON_IsNull(i_ezsigndocument_order)) {
+        i_ezsigndocument_order = NULL;
+    }
+    if (!i_ezsigndocument_order) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_ezsigndocument_order))
+    {
+    goto end; //Numeric
+    }
+
+    // ezsigndocument_response_compound_v3->i_ezsigndocument_pagetotal
+    cJSON *i_ezsigndocument_pagetotal = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "iEzsigndocumentPagetotal");
+    if (cJSON_IsNull(i_ezsigndocument_pagetotal)) {
+        i_ezsigndocument_pagetotal = NULL;
+    }
+    if (!i_ezsigndocument_pagetotal) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_ezsigndocument_pagetotal))
+    {
+    goto end; //Numeric
+    }
+
+    // ezsigndocument_response_compound_v3->i_ezsigndocument_signaturesigned
+    cJSON *i_ezsigndocument_signaturesigned = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "iEzsigndocumentSignaturesigned");
+    if (cJSON_IsNull(i_ezsigndocument_signaturesigned)) {
+        i_ezsigndocument_signaturesigned = NULL;
+    }
+    if (!i_ezsigndocument_signaturesigned) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_ezsigndocument_signaturesigned))
+    {
+    goto end; //Numeric
+    }
+
+    // ezsigndocument_response_compound_v3->i_ezsigndocument_signaturetotal
+    cJSON *i_ezsigndocument_signaturetotal = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "iEzsigndocumentSignaturetotal");
+    if (cJSON_IsNull(i_ezsigndocument_signaturetotal)) {
+        i_ezsigndocument_signaturetotal = NULL;
+    }
+    if (!i_ezsigndocument_signaturetotal) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_ezsigndocument_signaturetotal))
+    {
+    goto end; //Numeric
+    }
+
+    // ezsigndocument_response_compound_v3->i_ezsigndocument_formfieldtotal
+    cJSON *i_ezsigndocument_formfieldtotal = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "iEzsigndocumentFormfieldtotal");
+    if (cJSON_IsNull(i_ezsigndocument_formfieldtotal)) {
+        i_ezsigndocument_formfieldtotal = NULL;
+    }
+    if (!i_ezsigndocument_formfieldtotal) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_ezsigndocument_formfieldtotal))
+    {
+    goto end; //Numeric
+    }
+
+    // ezsigndocument_response_compound_v3->s_ezsigndocument_md5initial
+    cJSON *s_ezsigndocument_md5initial = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "sEzsigndocumentMD5initial");
+    if (cJSON_IsNull(s_ezsigndocument_md5initial)) {
+        s_ezsigndocument_md5initial = NULL;
+    }
+    if (s_ezsigndocument_md5initial) { 
+    if(!cJSON_IsString(s_ezsigndocument_md5initial) && !cJSON_IsNull(s_ezsigndocument_md5initial))
+    {
+    goto end; //String
+    }
+    }
+
+    // ezsigndocument_response_compound_v3->t_ezsigndocument_declinedtosignreason
+    cJSON *t_ezsigndocument_declinedtosignreason = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "tEzsigndocumentDeclinedtosignreason");
+    if (cJSON_IsNull(t_ezsigndocument_declinedtosignreason)) {
+        t_ezsigndocument_declinedtosignreason = NULL;
+    }
+    if (t_ezsigndocument_declinedtosignreason) { 
+    if(!cJSON_IsString(t_ezsigndocument_declinedtosignreason) && !cJSON_IsNull(t_ezsigndocument_declinedtosignreason))
+    {
+    goto end; //String
+    }
+    }
+
+    // ezsigndocument_response_compound_v3->s_ezsigndocument_md5signed
+    cJSON *s_ezsigndocument_md5signed = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "sEzsigndocumentMD5signed");
+    if (cJSON_IsNull(s_ezsigndocument_md5signed)) {
+        s_ezsigndocument_md5signed = NULL;
+    }
+    if (s_ezsigndocument_md5signed) { 
+    if(!cJSON_IsString(s_ezsigndocument_md5signed) && !cJSON_IsNull(s_ezsigndocument_md5signed))
+    {
+    goto end; //String
+    }
+    }
+
+    // ezsigndocument_response_compound_v3->b_ezsigndocument_ezsignform
+    cJSON *b_ezsigndocument_ezsignform = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "bEzsigndocumentEzsignform");
+    if (cJSON_IsNull(b_ezsigndocument_ezsignform)) {
+        b_ezsigndocument_ezsignform = NULL;
+    }
+    if (b_ezsigndocument_ezsignform) { 
+    if(!cJSON_IsBool(b_ezsigndocument_ezsignform))
+    {
+    goto end; //Bool
+    }
+    }
+
+    // ezsigndocument_response_compound_v3->b_ezsigndocument_hassignedsignatures
+    cJSON *b_ezsigndocument_hassignedsignatures = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "bEzsigndocumentHassignedsignatures");
+    if (cJSON_IsNull(b_ezsigndocument_hassignedsignatures)) {
+        b_ezsigndocument_hassignedsignatures = NULL;
+    }
+    if (b_ezsigndocument_hassignedsignatures) { 
+    if(!cJSON_IsBool(b_ezsigndocument_hassignedsignatures))
+    {
+    goto end; //Bool
+    }
+    }
+
+    // ezsigndocument_response_compound_v3->b_ezsigndocument_sendtoged
+    cJSON *b_ezsigndocument_sendtoged = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "bEzsigndocumentSendtoged");
+    if (cJSON_IsNull(b_ezsigndocument_sendtoged)) {
+        b_ezsigndocument_sendtoged = NULL;
+    }
+    if (b_ezsigndocument_sendtoged) { 
+    if(!cJSON_IsBool(b_ezsigndocument_sendtoged))
+    {
+    goto end; //Bool
+    }
+    }
+
+    // ezsigndocument_response_compound_v3->obj_audit
+    cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "objAudit");
+    if (cJSON_IsNull(obj_audit)) {
+        obj_audit = NULL;
+    }
+    if (obj_audit) { 
+    obj_audit_local_nonprim = common_audit_parseFromJSON(obj_audit); //nonprimitive
+    }
+
+    // ezsigndocument_response_compound_v3->s_ezsigndocument_externalid
+    cJSON *s_ezsigndocument_externalid = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "sEzsigndocumentExternalid");
+    if (cJSON_IsNull(s_ezsigndocument_externalid)) {
+        s_ezsigndocument_externalid = NULL;
+    }
+    if (s_ezsigndocument_externalid) { 
+    if(!cJSON_IsString(s_ezsigndocument_externalid) && !cJSON_IsNull(s_ezsigndocument_externalid))
+    {
+    goto end; //String
+    }
+    }
+
+    // ezsigndocument_response_compound_v3->i_ezsigndocument_ezsignsignatureattachmenttotal
+    cJSON *i_ezsigndocument_ezsignsignatureattachmenttotal = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "iEzsigndocumentEzsignsignatureattachmenttotal");
+    if (cJSON_IsNull(i_ezsigndocument_ezsignsignatureattachmenttotal)) {
+        i_ezsigndocument_ezsignsignatureattachmenttotal = NULL;
+    }
+    if (!i_ezsigndocument_ezsignsignatureattachmenttotal) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_ezsigndocument_ezsignsignatureattachmenttotal))
+    {
+    goto end; //Numeric
+    }
+
+    // ezsigndocument_response_compound_v3->i_ezsigndocument_ezsigndiscussiontotal
+    cJSON *i_ezsigndocument_ezsigndiscussiontotal = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "iEzsigndocumentEzsigndiscussiontotal");
+    if (cJSON_IsNull(i_ezsigndocument_ezsigndiscussiontotal)) {
+        i_ezsigndocument_ezsigndiscussiontotal = NULL;
+    }
+    if (!i_ezsigndocument_ezsigndiscussiontotal) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_ezsigndocument_ezsigndiscussiontotal))
+    {
+    goto end; //Numeric
+    }
+
+    // ezsigndocument_response_compound_v3->i_ezsigndocument_steptotal
+    cJSON *i_ezsigndocument_steptotal = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "iEzsigndocumentSteptotal");
+    if (cJSON_IsNull(i_ezsigndocument_steptotal)) {
+        i_ezsigndocument_steptotal = NULL;
+    }
+    if (!i_ezsigndocument_steptotal) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_ezsigndocument_steptotal))
+    {
+    goto end; //Numeric
+    }
+
+    // ezsigndocument_response_compound_v3->i_ezsigndocument_stepcurrent
+    cJSON *i_ezsigndocument_stepcurrent = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "iEzsigndocumentStepcurrent");
+    if (cJSON_IsNull(i_ezsigndocument_stepcurrent)) {
+        i_ezsigndocument_stepcurrent = NULL;
+    }
+    if (!i_ezsigndocument_stepcurrent) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_ezsigndocument_stepcurrent))
+    {
+    goto end; //Numeric
+    }
+
+    // ezsigndocument_response_compound_v3->a_obj_ezsignfoldersignerassociationstatus
+    cJSON *a_obj_ezsignfoldersignerassociationstatus = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "a_objEzsignfoldersignerassociationstatus");
+    if (cJSON_IsNull(a_obj_ezsignfoldersignerassociationstatus)) {
+        a_obj_ezsignfoldersignerassociationstatus = NULL;
+    }
+    if (!a_obj_ezsignfoldersignerassociationstatus) {
+        goto end;
+    }
+
+    
+    cJSON *a_obj_ezsignfoldersignerassociationstatus_local_nonprimitive = NULL;
+    if(!cJSON_IsArray(a_obj_ezsignfoldersignerassociationstatus)){
+        goto end; //nonprimitive container
+    }
+
+    a_obj_ezsignfoldersignerassociationstatusList = list_createList();
+
+    cJSON_ArrayForEach(a_obj_ezsignfoldersignerassociationstatus_local_nonprimitive,a_obj_ezsignfoldersignerassociationstatus )
+    {
+        if(!cJSON_IsObject(a_obj_ezsignfoldersignerassociationstatus_local_nonprimitive)){
+            goto end;
+        }
+        custom_ezsignfoldersignerassociationstatus_response_v3_t *a_obj_ezsignfoldersignerassociationstatusItem = custom_ezsignfoldersignerassociationstatus_response_v3_parseFromJSON(a_obj_ezsignfoldersignerassociationstatus_local_nonprimitive);
+
+        list_addElement(a_obj_ezsignfoldersignerassociationstatusList, a_obj_ezsignfoldersignerassociationstatusItem);
+    }
+
+    // ezsigndocument_response_compound_v3->a_obj_ezsigndocumentdependency
+    cJSON *a_obj_ezsigndocumentdependency = cJSON_GetObjectItemCaseSensitive(ezsigndocument_response_compound_v3JSON, "a_objEzsigndocumentdependency");
+    if (cJSON_IsNull(a_obj_ezsigndocumentdependency)) {
+        a_obj_ezsigndocumentdependency = NULL;
+    }
+    if (a_obj_ezsigndocumentdependency) { 
+    cJSON *a_obj_ezsigndocumentdependency_local_nonprimitive = NULL;
+    if(!cJSON_IsArray(a_obj_ezsigndocumentdependency)){
+        goto end; //nonprimitive container
+    }
+
+    a_obj_ezsigndocumentdependencyList = list_createList();
+
+    cJSON_ArrayForEach(a_obj_ezsigndocumentdependency_local_nonprimitive,a_obj_ezsigndocumentdependency )
+    {
+        if(!cJSON_IsObject(a_obj_ezsigndocumentdependency_local_nonprimitive)){
+            goto end;
+        }
+        ezsigndocumentdependency_response_t *a_obj_ezsigndocumentdependencyItem = ezsigndocumentdependency_response_parseFromJSON(a_obj_ezsigndocumentdependency_local_nonprimitive);
+
+        list_addElement(a_obj_ezsigndocumentdependencyList, a_obj_ezsigndocumentdependencyItem);
+    }
+    }
+
+
+    ezsigndocument_response_compound_v3_local_var = ezsigndocument_response_compound_v3_create_internal (
+        pki_ezsigndocument_id->valuedouble,
+        fki_ezsignfolder_id->valuedouble,
+        fki_ezsignfoldersignerassociation_id_declinedtosign ? fki_ezsignfoldersignerassociation_id_declinedtosign->valuedouble : 0,
+        strdup(dt_ezsigndocument_duedate->valuestring),
+        dt_ezsignform_completed && !cJSON_IsNull(dt_ezsignform_completed) ? strdup(dt_ezsignform_completed->valuestring) : NULL,
+        fki_language_id ? fki_language_id->valuedouble : 0,
+        strdup(s_ezsigndocument_name->valuestring),
+        e_ezsigndocument_step_local_nonprim,
+        dt_ezsigndocument_firstsend && !cJSON_IsNull(dt_ezsigndocument_firstsend) ? strdup(dt_ezsigndocument_firstsend->valuestring) : NULL,
+        dt_ezsigndocument_lastsend && !cJSON_IsNull(dt_ezsigndocument_lastsend) ? strdup(dt_ezsigndocument_lastsend->valuestring) : NULL,
+        i_ezsigndocument_order->valuedouble,
+        i_ezsigndocument_pagetotal->valuedouble,
+        i_ezsigndocument_signaturesigned->valuedouble,
+        i_ezsigndocument_signaturetotal->valuedouble,
+        i_ezsigndocument_formfieldtotal->valuedouble,
+        s_ezsigndocument_md5initial && !cJSON_IsNull(s_ezsigndocument_md5initial) ? strdup(s_ezsigndocument_md5initial->valuestring) : NULL,
+        t_ezsigndocument_declinedtosignreason && !cJSON_IsNull(t_ezsigndocument_declinedtosignreason) ? strdup(t_ezsigndocument_declinedtosignreason->valuestring) : NULL,
+        s_ezsigndocument_md5signed && !cJSON_IsNull(s_ezsigndocument_md5signed) ? strdup(s_ezsigndocument_md5signed->valuestring) : NULL,
+        b_ezsigndocument_ezsignform ? b_ezsigndocument_ezsignform->valueint : 0,
+        b_ezsigndocument_hassignedsignatures ? b_ezsigndocument_hassignedsignatures->valueint : 0,
+        b_ezsigndocument_sendtoged ? b_ezsigndocument_sendtoged->valueint : 0,
+        obj_audit ? obj_audit_local_nonprim : NULL,
+        s_ezsigndocument_externalid && !cJSON_IsNull(s_ezsigndocument_externalid) ? strdup(s_ezsigndocument_externalid->valuestring) : NULL,
+        i_ezsigndocument_ezsignsignatureattachmenttotal->valuedouble,
+        i_ezsigndocument_ezsigndiscussiontotal->valuedouble,
+        i_ezsigndocument_steptotal->valuedouble,
+        i_ezsigndocument_stepcurrent->valuedouble,
+        a_obj_ezsignfoldersignerassociationstatusList,
+        a_obj_ezsigndocumentdependency ? a_obj_ezsigndocumentdependencyList : NULL
+        );
+
+    return ezsigndocument_response_compound_v3_local_var;
+end:
+    if (e_ezsigndocument_step_local_nonprim) {
+        e_ezsigndocument_step_local_nonprim = 0;
+    }
+    if (obj_audit_local_nonprim) {
+        common_audit_free(obj_audit_local_nonprim);
+        obj_audit_local_nonprim = NULL;
+    }
+    if (a_obj_ezsignfoldersignerassociationstatusList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_ezsignfoldersignerassociationstatusList) {
+            custom_ezsignfoldersignerassociationstatus_response_v3_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_ezsignfoldersignerassociationstatusList);
+        a_obj_ezsignfoldersignerassociationstatusList = NULL;
+    }
+    if (a_obj_ezsigndocumentdependencyList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_ezsigndocumentdependencyList) {
+            ezsigndocumentdependency_response_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_ezsigndocumentdependencyList);
+        a_obj_ezsigndocumentdependencyList = NULL;
+    }
+    return NULL;
+
+}

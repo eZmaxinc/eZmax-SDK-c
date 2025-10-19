@@ -9,13 +9,13 @@
 // Functions for enum SSELECTOR for ObjectGlaccountcontainerAPI_glaccountcontainerGetAutocompleteV2
 
 static char* glaccountcontainerGetAutocompleteV2_SSELECTOR_ToString(ezmax_api_definition__full_glaccountcontainerGetAutocompleteV2_sSelector_e SSELECTOR){
-    char *SSELECTORArray[] =  { "NULL", "All", "Supply" };
+    char *SSELECTORArray[] =  { "NULL", "All", "AllWithoutSubsidiary", "Supply" };
     return SSELECTORArray[SSELECTOR];
 }
 
 static ezmax_api_definition__full_glaccountcontainerGetAutocompleteV2_sSelector_e glaccountcontainerGetAutocompleteV2_SSELECTOR_FromString(char* SSELECTOR){
     int stringToReturn = 0;
-    char *SSELECTORArray[] =  { "NULL", "All", "Supply" };
+    char *SSELECTORArray[] =  { "NULL", "All", "AllWithoutSubsidiary", "Supply" };
     size_t sizeofArray = sizeof(SSELECTORArray) / sizeof(SSELECTORArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(SSELECTOR, SSELECTORArray[stringToReturn]) == 0) {

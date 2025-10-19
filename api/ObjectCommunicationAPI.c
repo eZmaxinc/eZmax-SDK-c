@@ -7,7 +7,7 @@
 #define MAX_BUFFER_LENGTH 4096
 
 
-// Retrieve the communication body.
+// Retrieve the communication body
 //
 // This endpoint returns the communication body.
 //

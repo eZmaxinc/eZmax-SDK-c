@@ -10,6 +10,7 @@ static customer_request_compound_t *customer_request_compound_create_internal(
     int fki_company_id,
     int fki_customergroup_id,
     char *s_customer_name,
+    char *s_customer_note,
     int fki_contactinformations_id,
     int fki_contactcontainer_id,
     int fki_image_id,
@@ -66,6 +67,7 @@ static customer_request_compound_t *customer_request_compound_create_internal(
     customer_request_compound_local_var->fki_company_id = fki_company_id;
     customer_request_compound_local_var->fki_customergroup_id = fki_customergroup_id;
     customer_request_compound_local_var->s_customer_name = s_customer_name;
+    customer_request_compound_local_var->s_customer_note = s_customer_note;
     customer_request_compound_local_var->fki_contactinformations_id = fki_contactinformations_id;
     customer_request_compound_local_var->fki_contactcontainer_id = fki_contactcontainer_id;
     customer_request_compound_local_var->fki_image_id = fki_image_id;
@@ -123,6 +125,7 @@ __attribute__((deprecated)) customer_request_compound_t *customer_request_compou
     int fki_company_id,
     int fki_customergroup_id,
     char *s_customer_name,
+    char *s_customer_note,
     int fki_contactinformations_id,
     int fki_contactcontainer_id,
     int fki_image_id,
@@ -176,6 +179,7 @@ __attribute__((deprecated)) customer_request_compound_t *customer_request_compou
         fki_company_id,
         fki_customergroup_id,
         s_customer_name,
+        s_customer_note,
         fki_contactinformations_id,
         fki_contactcontainer_id,
         fki_image_id,
@@ -238,6 +242,10 @@ void customer_request_compound_free(customer_request_compound_t *customer_reques
     if (customer_request_compound->s_customer_name) {
         free(customer_request_compound->s_customer_name);
         customer_request_compound->s_customer_name = NULL;
+    }
+    if (customer_request_compound->s_customer_note) {
+        free(customer_request_compound->s_customer_note);
+        customer_request_compound->s_customer_note = NULL;
     }
     if (customer_request_compound->efks_customer_code) {
         free(customer_request_compound->efks_customer_code);
@@ -317,6 +325,14 @@ cJSON *customer_request_compound_convertToJSON(customer_request_compound_t *cust
     }
     if(cJSON_AddStringToObject(item, "sCustomerName", customer_request_compound->s_customer_name) == NULL) {
     goto fail; //String
+    }
+
+
+    // customer_request_compound->s_customer_note
+    if(customer_request_compound->s_customer_note) {
+    if(cJSON_AddStringToObject(item, "sCustomerNote", customer_request_compound->s_customer_note) == NULL) {
+    goto fail; //String
+    }
     }
 
 
@@ -822,6 +838,18 @@ customer_request_compound_t *customer_request_compound_parseFromJSON(cJSON *cust
     if(!cJSON_IsString(s_customer_name))
     {
     goto end; //String
+    }
+
+    // customer_request_compound->s_customer_note
+    cJSON *s_customer_note = cJSON_GetObjectItemCaseSensitive(customer_request_compoundJSON, "sCustomerNote");
+    if (cJSON_IsNull(s_customer_note)) {
+        s_customer_note = NULL;
+    }
+    if (s_customer_note) { 
+    if(!cJSON_IsString(s_customer_note) && !cJSON_IsNull(s_customer_note))
+    {
+    goto end; //String
+    }
     }
 
     // customer_request_compound->fki_contactinformations_id
@@ -1520,6 +1548,7 @@ customer_request_compound_t *customer_request_compound_parseFromJSON(cJSON *cust
         fki_company_id->valuedouble,
         fki_customergroup_id->valuedouble,
         strdup(s_customer_name->valuestring),
+        s_customer_note && !cJSON_IsNull(s_customer_note) ? strdup(s_customer_note->valuestring) : NULL,
         fki_contactinformations_id->valuedouble,
         fki_contactcontainer_id->valuedouble,
         fki_image_id->valuedouble,

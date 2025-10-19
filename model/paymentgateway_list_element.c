@@ -9,7 +9,8 @@ static paymentgateway_list_element_t *paymentgateway_list_element_create_interna
     int pki_paymentgateway_id,
     int fki_creditcardmerchant_id,
     ezmax_api_definition__full_field_e_paymentgateway_processor__e e_paymentgateway_processor,
-    char *s_paymentgateway_description_x
+    char *s_paymentgateway_description_x,
+    int b_paymentgateway_isactive
     ) {
     paymentgateway_list_element_t *paymentgateway_list_element_local_var = malloc(sizeof(paymentgateway_list_element_t));
     if (!paymentgateway_list_element_local_var) {
@@ -19,6 +20,7 @@ static paymentgateway_list_element_t *paymentgateway_list_element_create_interna
     paymentgateway_list_element_local_var->fki_creditcardmerchant_id = fki_creditcardmerchant_id;
     paymentgateway_list_element_local_var->e_paymentgateway_processor = e_paymentgateway_processor;
     paymentgateway_list_element_local_var->s_paymentgateway_description_x = s_paymentgateway_description_x;
+    paymentgateway_list_element_local_var->b_paymentgateway_isactive = b_paymentgateway_isactive;
 
     paymentgateway_list_element_local_var->_library_owned = 1;
     return paymentgateway_list_element_local_var;
@@ -28,13 +30,15 @@ __attribute__((deprecated)) paymentgateway_list_element_t *paymentgateway_list_e
     int pki_paymentgateway_id,
     int fki_creditcardmerchant_id,
     ezmax_api_definition__full_field_e_paymentgateway_processor__e e_paymentgateway_processor,
-    char *s_paymentgateway_description_x
+    char *s_paymentgateway_description_x,
+    int b_paymentgateway_isactive
     ) {
     return paymentgateway_list_element_create_internal (
         pki_paymentgateway_id,
         fki_creditcardmerchant_id,
         e_paymentgateway_processor,
-        s_paymentgateway_description_x
+        s_paymentgateway_description_x,
+        b_paymentgateway_isactive
         );
 }
 
@@ -95,6 +99,15 @@ cJSON *paymentgateway_list_element_convertToJSON(paymentgateway_list_element_t *
     }
     if(cJSON_AddStringToObject(item, "sPaymentgatewayDescriptionX", paymentgateway_list_element->s_paymentgateway_description_x) == NULL) {
     goto fail; //String
+    }
+
+
+    // paymentgateway_list_element->b_paymentgateway_isactive
+    if (!paymentgateway_list_element->b_paymentgateway_isactive) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "bPaymentgatewayIsactive", paymentgateway_list_element->b_paymentgateway_isactive) == NULL) {
+    goto fail; //Bool
     }
 
     return item;
@@ -169,12 +182,28 @@ paymentgateway_list_element_t *paymentgateway_list_element_parseFromJSON(cJSON *
     goto end; //String
     }
 
+    // paymentgateway_list_element->b_paymentgateway_isactive
+    cJSON *b_paymentgateway_isactive = cJSON_GetObjectItemCaseSensitive(paymentgateway_list_elementJSON, "bPaymentgatewayIsactive");
+    if (cJSON_IsNull(b_paymentgateway_isactive)) {
+        b_paymentgateway_isactive = NULL;
+    }
+    if (!b_paymentgateway_isactive) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(b_paymentgateway_isactive))
+    {
+    goto end; //Bool
+    }
+
 
     paymentgateway_list_element_local_var = paymentgateway_list_element_create_internal (
         pki_paymentgateway_id->valuedouble,
         fki_creditcardmerchant_id->valuedouble,
         e_paymentgateway_processor_local_nonprim,
-        strdup(s_paymentgateway_description_x->valuestring)
+        strdup(s_paymentgateway_description_x->valuestring),
+        b_paymentgateway_isactive->valueint
         );
 
     return paymentgateway_list_element_local_var;

@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **s_authenticationexternal_description** | **char \*** | The description of the Authenticationexternal | [optional] 
 **obj_audit** | [**common_audit_t**](common_audit.md) \* |  | 
 **s_webhook_event** | **char \*** | The concatenated string to describe the Webhook event | [optional] 
+**s_webhook_authentificationexternalerror** | **char \*** | Error message when token renewal failed or is not configured. Only if an Authenticationexternal is set. | [optional] 
 **a_obj_webhookheader** | [**list_t**](webhookheader_response_compound.md) \* |  | [optional] 
 **pks_customer_code** | **char \*** | The customer code assigned to your account | 
 **b_webhook_test** | **int** | Wheter the webhook received is a manual test or a real event | 

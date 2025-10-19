@@ -9,10 +9,12 @@ Name | Type | Description | Notes
 **s_user_firstname** | **char \*** | The first name of the user | 
 **s_user_lastname** | **char \*** | The last name of the user | 
 **s_email_address** | **char \*** | The email address. | [optional] 
+**b_user_addmeinezsignfolder** | **int** | Whether if I want to automatically add myself during the creation of Ezsignfolder of which I am the owner | 
 **e_user_ezsignsendreminderfrequency** | **field_e_user_ezsignsendreminderfrequency_t \*** |  | 
 **i_user_interfacecolor** | **int** | The int32 representation of the interface color. For example, RGB color #39435B would be 3752795 | 
 **b_user_interfacedark** | **int** | Whether to use a dark mode interface | 
 **i_user_listresult** | **int** | The number of rows to return by default in lists | 
+**i_user_frontendgoal** | **int** | Goals save as bit wise (one bit per goal) | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

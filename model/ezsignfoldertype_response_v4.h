@@ -19,6 +19,7 @@ typedef struct ezsignfoldertype_response_v4_t ezsignfoldertype_response_v4_t;
 #include "field_e_ezsignfoldertype_completion.h"
 #include "field_e_ezsignfoldertype_disposal.h"
 #include "field_e_ezsignfoldertype_documentdependency.h"
+#include "field_e_ezsignfoldertype_documentmerge.h"
 #include "field_e_ezsignfoldertype_pdfanoncompliantaction.h"
 #include "field_e_ezsignfoldertype_pdfarequirement.h"
 #include "field_e_ezsignfoldertype_privacylevel.h"
@@ -48,6 +49,7 @@ typedef struct ezsignfoldertype_response_v4_t {
     ezmax_api_definition__full_field_e_ezsignfoldertype_pdfarequirement__e e_ezsignfoldertype_pdfarequirement; //referenced enum
     ezmax_api_definition__full_field_e_ezsignfoldertype_pdfanoncompliantaction__e e_ezsignfoldertype_pdfanoncompliantaction; //referenced enum
     ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel; //referenced enum
+    ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__e e_ezsignfoldertype_documentmerge; //referenced enum
     int i_ezsignfoldertype_fontsizeannotation; //numeric
     int i_ezsignfoldertype_fontsizeformfield; //numeric
     int i_ezsignfoldertype_sendreminderfirstdays; //numeric
@@ -69,13 +71,18 @@ typedef struct ezsignfoldertype_response_v4_t {
     int b_ezsignfoldertype_sendsignedtoezsignsigner; //boolean
     int b_ezsignfoldertype_sendsignedtouser; //boolean
     int b_ezsignfoldertype_sendattachmentezsignsigner; //boolean
+    int b_ezsignfoldertype_sendsignatureattachmentezsignsigner; //boolean
+    int b_ezsignfoldertype_sendsignatureattachment; //boolean
     int b_ezsignfoldertype_sendproofezsignsigner; //boolean
     int b_ezsignfoldertype_sendattachmentuser; //boolean
+    int b_ezsignfoldertype_sendsignatureattachmentuser; //boolean
     int b_ezsignfoldertype_sendproofuser; //boolean
     int b_ezsignfoldertype_sendproofemail; //boolean
     int b_ezsignfoldertype_allowdownloadattachmentezsignsigner; //boolean
+    int b_ezsignfoldertype_allowdownloadsignatureattachmentezsignsigner; //boolean
     int b_ezsignfoldertype_allowdownloadproofezsignsigner; //boolean
     int b_ezsignfoldertype_sendproofreceivealldocument; //boolean
+    int b_ezsignfoldertype_sendsignatureattachmentreceivealldocument; //boolean
     int b_ezsignfoldertype_sendsignedtodocumentowner; //boolean
     int b_ezsignfoldertype_sendsignedtofolderowner; //boolean
     int b_ezsignfoldertype_sendsignedtofullgroup; //boolean
@@ -117,6 +124,7 @@ __attribute__((deprecated)) ezsignfoldertype_response_v4_t *ezsignfoldertype_res
     ezmax_api_definition__full_field_e_ezsignfoldertype_pdfarequirement__e e_ezsignfoldertype_pdfarequirement,
     ezmax_api_definition__full_field_e_ezsignfoldertype_pdfanoncompliantaction__e e_ezsignfoldertype_pdfanoncompliantaction,
     ezmax_api_definition__full_field_e_ezsignfoldertype_privacylevel__e e_ezsignfoldertype_privacylevel,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__e e_ezsignfoldertype_documentmerge,
     int i_ezsignfoldertype_fontsizeannotation,
     int i_ezsignfoldertype_fontsizeformfield,
     int i_ezsignfoldertype_sendreminderfirstdays,
@@ -138,13 +146,18 @@ __attribute__((deprecated)) ezsignfoldertype_response_v4_t *ezsignfoldertype_res
     int b_ezsignfoldertype_sendsignedtoezsignsigner,
     int b_ezsignfoldertype_sendsignedtouser,
     int b_ezsignfoldertype_sendattachmentezsignsigner,
+    int b_ezsignfoldertype_sendsignatureattachmentezsignsigner,
+    int b_ezsignfoldertype_sendsignatureattachment,
     int b_ezsignfoldertype_sendproofezsignsigner,
     int b_ezsignfoldertype_sendattachmentuser,
+    int b_ezsignfoldertype_sendsignatureattachmentuser,
     int b_ezsignfoldertype_sendproofuser,
     int b_ezsignfoldertype_sendproofemail,
     int b_ezsignfoldertype_allowdownloadattachmentezsignsigner,
+    int b_ezsignfoldertype_allowdownloadsignatureattachmentezsignsigner,
     int b_ezsignfoldertype_allowdownloadproofezsignsigner,
     int b_ezsignfoldertype_sendproofreceivealldocument,
+    int b_ezsignfoldertype_sendsignatureattachmentreceivealldocument,
     int b_ezsignfoldertype_sendsignedtodocumentowner,
     int b_ezsignfoldertype_sendsignedtofolderowner,
     int b_ezsignfoldertype_sendsignedtofullgroup,

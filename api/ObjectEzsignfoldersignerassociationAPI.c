@@ -116,6 +116,115 @@ end:
 
 }
 
+// Creates an Url to allow embedded signing
+//
+// This endpoint creates an Url that can be used in a browser or embedded in an I-Frame to allow signing.  The signer Login type must be configured as Embedded.
+//
+ezsignfoldersignerassociation_create_embedded_url_v2_response_t*
+ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateEmbeddedUrlV2(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_create_embedded_url_v2_request_t *ezsignfoldersignerassociation_create_embedded_url_v2_request)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/2/object/ezsignfoldersignerassociation/{pkiEzsignfoldersignerassociationID}/createEmbeddedUrl");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsignfoldersignerassociationID =  + sizeof("{ pkiEzsignfoldersignerassociationID }") - 1;
+    if(pkiEzsignfoldersignerassociationID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsignfoldersignerassociationID = malloc(sizeOfPathParams_pkiEzsignfoldersignerassociationID);
+    snprintf(localVarToReplace_pkiEzsignfoldersignerassociationID, sizeOfPathParams_pkiEzsignfoldersignerassociationID, "{%s}", "pkiEzsignfoldersignerassociationID");
+
+    char localVarBuff_pkiEzsignfoldersignerassociationID[256];
+    snprintf(localVarBuff_pkiEzsignfoldersignerassociationID, sizeof localVarBuff_pkiEzsignfoldersignerassociationID, "%ld", (long)*pkiEzsignfoldersignerassociationID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfoldersignerassociationID, localVarBuff_pkiEzsignfoldersignerassociationID);
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_ezsignfoldersignerassociation_create_embedded_url_v2_request = NULL;
+    if (ezsignfoldersignerassociation_create_embedded_url_v2_request != NULL)
+    {
+        //not string, not binary
+        localVarSingleItemJSON_ezsignfoldersignerassociation_create_embedded_url_v2_request = ezsignfoldersignerassociation_create_embedded_url_v2_request_convertToJSON(ezsignfoldersignerassociation_create_embedded_url_v2_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignfoldersignerassociation_create_embedded_url_v2_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "POST");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    ezsignfoldersignerassociation_create_embedded_url_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfoldersignerassociationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfoldersignerassociation_create_embedded_url_v2_response_parseFromJSON(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfoldersignerassociationAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsignfoldersignerassociationID);
+    if (localVarSingleItemJSON_ezsignfoldersignerassociation_create_embedded_url_v2_request) {
+        cJSON_Delete(localVarSingleItemJSON_ezsignfoldersignerassociation_create_embedded_url_v2_request);
+        localVarSingleItemJSON_ezsignfoldersignerassociation_create_embedded_url_v2_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Create a new Ezsignfoldersignerassociation
 //
 // The endpoint allows to create one or many elements at once.  The array can contain simple (Just the object) or compound (The object and its child) objects.  Creating compound elements allows to reduce the multiple requests to create all child objects.

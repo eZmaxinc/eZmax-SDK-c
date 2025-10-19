@@ -7,6 +7,7 @@
 
 static ezsignbulksend_create_ezsignbulksendtransmission_v2_request_t *ezsignbulksend_create_ezsignbulksendtransmission_v2_request_create_internal(
     int fki_userlogintype_id,
+    int fki_secretquestion_id,
     int fki_ezsigntsarequirement_id,
     char *s_ezsignbulksendtransmission_description,
     char *dt_ezsigndocument_duedate,
@@ -20,6 +21,7 @@ static ezsignbulksend_create_ezsignbulksendtransmission_v2_request_t *ezsignbulk
         return NULL;
     }
     ezsignbulksend_create_ezsignbulksendtransmission_v2_request_local_var->fki_userlogintype_id = fki_userlogintype_id;
+    ezsignbulksend_create_ezsignbulksendtransmission_v2_request_local_var->fki_secretquestion_id = fki_secretquestion_id;
     ezsignbulksend_create_ezsignbulksendtransmission_v2_request_local_var->fki_ezsigntsarequirement_id = fki_ezsigntsarequirement_id;
     ezsignbulksend_create_ezsignbulksendtransmission_v2_request_local_var->s_ezsignbulksendtransmission_description = s_ezsignbulksendtransmission_description;
     ezsignbulksend_create_ezsignbulksendtransmission_v2_request_local_var->dt_ezsigndocument_duedate = dt_ezsigndocument_duedate;
@@ -34,6 +36,7 @@ static ezsignbulksend_create_ezsignbulksendtransmission_v2_request_t *ezsignbulk
 
 __attribute__((deprecated)) ezsignbulksend_create_ezsignbulksendtransmission_v2_request_t *ezsignbulksend_create_ezsignbulksendtransmission_v2_request_create(
     int fki_userlogintype_id,
+    int fki_secretquestion_id,
     int fki_ezsigntsarequirement_id,
     char *s_ezsignbulksendtransmission_description,
     char *dt_ezsigndocument_duedate,
@@ -44,6 +47,7 @@ __attribute__((deprecated)) ezsignbulksend_create_ezsignbulksendtransmission_v2_
     ) {
     return ezsignbulksend_create_ezsignbulksendtransmission_v2_request_create_internal (
         fki_userlogintype_id,
+        fki_secretquestion_id,
         fki_ezsigntsarequirement_id,
         s_ezsignbulksendtransmission_description,
         dt_ezsigndocument_duedate,
@@ -91,6 +95,14 @@ cJSON *ezsignbulksend_create_ezsignbulksendtransmission_v2_request_convertToJSON
     }
     if(cJSON_AddNumberToObject(item, "fkiUserlogintypeID", ezsignbulksend_create_ezsignbulksendtransmission_v2_request->fki_userlogintype_id) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // ezsignbulksend_create_ezsignbulksendtransmission_v2_request->fki_secretquestion_id
+    if(ezsignbulksend_create_ezsignbulksendtransmission_v2_request->fki_secretquestion_id) {
+    if(cJSON_AddNumberToObject(item, "fkiSecretquestionID", ezsignbulksend_create_ezsignbulksendtransmission_v2_request->fki_secretquestion_id) == NULL) {
+    goto fail; //Numeric
+    }
     }
 
 
@@ -180,6 +192,18 @@ ezsignbulksend_create_ezsignbulksendtransmission_v2_request_t *ezsignbulksend_cr
     if(!cJSON_IsNumber(fki_userlogintype_id))
     {
     goto end; //Numeric
+    }
+
+    // ezsignbulksend_create_ezsignbulksendtransmission_v2_request->fki_secretquestion_id
+    cJSON *fki_secretquestion_id = cJSON_GetObjectItemCaseSensitive(ezsignbulksend_create_ezsignbulksendtransmission_v2_requestJSON, "fkiSecretquestionID");
+    if (cJSON_IsNull(fki_secretquestion_id)) {
+        fki_secretquestion_id = NULL;
+    }
+    if (fki_secretquestion_id) { 
+    if(!cJSON_IsNumber(fki_secretquestion_id))
+    {
+    goto end; //Numeric
+    }
     }
 
     // ezsignbulksend_create_ezsignbulksendtransmission_v2_request->fki_ezsigntsarequirement_id
@@ -287,6 +311,7 @@ ezsignbulksend_create_ezsignbulksendtransmission_v2_request_t *ezsignbulksend_cr
 
     ezsignbulksend_create_ezsignbulksendtransmission_v2_request_local_var = ezsignbulksend_create_ezsignbulksendtransmission_v2_request_create_internal (
         fki_userlogintype_id->valuedouble,
+        fki_secretquestion_id ? fki_secretquestion_id->valuedouble : 0,
         fki_ezsigntsarequirement_id ? fki_ezsigntsarequirement_id->valuedouble : 0,
         strdup(s_ezsignbulksendtransmission_description->valuestring),
         strdup(dt_ezsigndocument_duedate->valuestring),

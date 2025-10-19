@@ -1,0 +1,32 @@
+/*
+ * field_e_ezsignfoldertype_documentmerge.h
+ *
+ * Indicates if document can be merged into one
+ */
+
+#ifndef _field_e_ezsignfoldertype_documentmerge_H_
+#define _field_e_ezsignfoldertype_documentmerge_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_ezsignfoldertype_documentmerge_t field_e_ezsignfoldertype_documentmerge_t;
+
+
+// Enum  for field_e_ezsignfoldertype_documentmerge
+
+typedef enum { ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__NULL = 0, ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__No, ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__YesWithWatermark, ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__Yes } ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__e;
+
+char* field_e_ezsignfoldertype_documentmerge_field_e_ezsignfoldertype_documentmerge_ToString(ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__e field_e_ezsignfoldertype_documentmerge);
+
+ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__e field_e_ezsignfoldertype_documentmerge_field_e_ezsignfoldertype_documentmerge_FromString(char* field_e_ezsignfoldertype_documentmerge);
+
+cJSON *field_e_ezsignfoldertype_documentmerge_convertToJSON(ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__e field_e_ezsignfoldertype_documentmerge);
+
+ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__e field_e_ezsignfoldertype_documentmerge_parseFromJSON(cJSON *field_e_ezsignfoldertype_documentmergeJSON);
+
+#endif /* _field_e_ezsignfoldertype_documentmerge_H_ */
+

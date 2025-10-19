@@ -347,6 +347,92 @@ end:
 
 }
 
+// Create a new Ezsignbulksend
+//
+// The endpoint allows to create one or many elements at once.
+//
+ezsignbulksend_create_object_v2_response_t*
+ObjectEzsignbulksendAPI_ezsignbulksendCreateObjectV2(apiClient_t *apiClient, ezsignbulksend_create_object_v2_request_t *ezsignbulksend_create_object_v2_request)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/2/object/ezsignbulksend");
+
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_ezsignbulksend_create_object_v2_request = NULL;
+    if (ezsignbulksend_create_object_v2_request != NULL)
+    {
+        //not string, not binary
+        localVarSingleItemJSON_ezsignbulksend_create_object_v2_request = ezsignbulksend_create_object_v2_request_convertToJSON(ezsignbulksend_create_object_v2_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignbulksend_create_object_v2_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "POST");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 201) {
+    //    printf("%s\n","Successful response");
+    //}
+    //nonprimitive not container
+    ezsignbulksend_create_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignbulksendAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignbulksend_create_object_v2_response_parseFromJSON(ObjectEzsignbulksendAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignbulksendAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    if (localVarSingleItemJSON_ezsignbulksend_create_object_v2_request) {
+        cJSON_Delete(localVarSingleItemJSON_ezsignbulksend_create_object_v2_request);
+        localVarSingleItemJSON_ezsignbulksend_create_object_v2_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
 // Delete an existing Ezsignbulksend
 //
 // 
@@ -542,6 +628,304 @@ ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV1(apiClient_t *apiClient, int *
         localVarSingleItemJSON_ezsignbulksend_edit_object_v1_request = NULL;
     }
     free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Edit an existing Ezsignbulksend
+//
+// 
+//
+ezsignbulksend_edit_object_v2_response_t*
+ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV2(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_edit_object_v2_request_t *ezsignbulksend_edit_object_v2_request)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/2/object/ezsignbulksend/{pkiEzsignbulksendID}");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsignbulksendID =  + sizeof("{ pkiEzsignbulksendID }") - 1;
+    if(pkiEzsignbulksendID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsignbulksendID = malloc(sizeOfPathParams_pkiEzsignbulksendID);
+    snprintf(localVarToReplace_pkiEzsignbulksendID, sizeOfPathParams_pkiEzsignbulksendID, "{%s}", "pkiEzsignbulksendID");
+
+    char localVarBuff_pkiEzsignbulksendID[256];
+    snprintf(localVarBuff_pkiEzsignbulksendID, sizeof localVarBuff_pkiEzsignbulksendID, "%ld", (long)*pkiEzsignbulksendID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksendID, localVarBuff_pkiEzsignbulksendID);
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_ezsignbulksend_edit_object_v2_request = NULL;
+    if (ezsignbulksend_edit_object_v2_request != NULL)
+    {
+        //not string, not binary
+        localVarSingleItemJSON_ezsignbulksend_edit_object_v2_request = ezsignbulksend_edit_object_v2_request_convertToJSON(ezsignbulksend_edit_object_v2_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignbulksend_edit_object_v2_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "PUT");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    ezsignbulksend_edit_object_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignbulksendAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignbulksend_edit_object_v2_response_parseFromJSON(ObjectEzsignbulksendAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignbulksendAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsignbulksendID);
+    if (localVarSingleItemJSON_ezsignbulksend_edit_object_v2_request) {
+        cJSON_Delete(localVarSingleItemJSON_ezsignbulksend_edit_object_v2_request);
+        localVarSingleItemJSON_ezsignbulksend_edit_object_v2_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve file to download documents in batch
+//
+binary_t*
+ObjectEzsignbulksendAPI_ezsignbulksendGetBatchFileV1(apiClient_t *apiClient, int *pkiEzsignbulksendID, int *bIncludeSigned, int *bIncludeAttachment, int *bIncludeProofdocument, int *bIncludeProof)
+{
+    list_t    *localVarQueryParameters = list_createList();
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/ezsignbulksend/{pkiEzsignbulksendID}/getBatchFile");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsignbulksendID =  + sizeof("{ pkiEzsignbulksendID }") - 1;
+    if(pkiEzsignbulksendID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsignbulksendID = malloc(sizeOfPathParams_pkiEzsignbulksendID);
+    snprintf(localVarToReplace_pkiEzsignbulksendID, sizeOfPathParams_pkiEzsignbulksendID, "{%s}", "pkiEzsignbulksendID");
+
+    char localVarBuff_pkiEzsignbulksendID[256];
+    snprintf(localVarBuff_pkiEzsignbulksendID, sizeof localVarBuff_pkiEzsignbulksendID, "%ld", (long)*pkiEzsignbulksendID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksendID, localVarBuff_pkiEzsignbulksendID);
+
+
+
+
+    // query parameters
+    char *keyQuery_bIncludeSigned = NULL;
+    char * valueQuery_bIncludeSigned = NULL;
+    keyValuePair_t *keyPairQuery_bIncludeSigned = 0;
+    if (bIncludeSigned)
+    {
+        keyQuery_bIncludeSigned = strdup("bIncludeSigned");
+        valueQuery_bIncludeSigned = calloc(1,MAX_NUMBER_LENGTH);
+        snprintf(valueQuery_bIncludeSigned, MAX_NUMBER_LENGTH, "%d", *bIncludeSigned);
+        keyPairQuery_bIncludeSigned = keyValuePair_create(keyQuery_bIncludeSigned, valueQuery_bIncludeSigned);
+        list_addElement(localVarQueryParameters,keyPairQuery_bIncludeSigned);
+    }
+
+    // query parameters
+    char *keyQuery_bIncludeAttachment = NULL;
+    char * valueQuery_bIncludeAttachment = NULL;
+    keyValuePair_t *keyPairQuery_bIncludeAttachment = 0;
+    if (bIncludeAttachment)
+    {
+        keyQuery_bIncludeAttachment = strdup("bIncludeAttachment");
+        valueQuery_bIncludeAttachment = calloc(1,MAX_NUMBER_LENGTH);
+        snprintf(valueQuery_bIncludeAttachment, MAX_NUMBER_LENGTH, "%d", *bIncludeAttachment);
+        keyPairQuery_bIncludeAttachment = keyValuePair_create(keyQuery_bIncludeAttachment, valueQuery_bIncludeAttachment);
+        list_addElement(localVarQueryParameters,keyPairQuery_bIncludeAttachment);
+    }
+
+    // query parameters
+    char *keyQuery_bIncludeProofdocument = NULL;
+    char * valueQuery_bIncludeProofdocument = NULL;
+    keyValuePair_t *keyPairQuery_bIncludeProofdocument = 0;
+    if (bIncludeProofdocument)
+    {
+        keyQuery_bIncludeProofdocument = strdup("bIncludeProofdocument");
+        valueQuery_bIncludeProofdocument = calloc(1,MAX_NUMBER_LENGTH);
+        snprintf(valueQuery_bIncludeProofdocument, MAX_NUMBER_LENGTH, "%d", *bIncludeProofdocument);
+        keyPairQuery_bIncludeProofdocument = keyValuePair_create(keyQuery_bIncludeProofdocument, valueQuery_bIncludeProofdocument);
+        list_addElement(localVarQueryParameters,keyPairQuery_bIncludeProofdocument);
+    }
+
+    // query parameters
+    char *keyQuery_bIncludeProof = NULL;
+    char * valueQuery_bIncludeProof = NULL;
+    keyValuePair_t *keyPairQuery_bIncludeProof = 0;
+    if (bIncludeProof)
+    {
+        keyQuery_bIncludeProof = strdup("bIncludeProof");
+        valueQuery_bIncludeProof = calloc(1,MAX_NUMBER_LENGTH);
+        snprintf(valueQuery_bIncludeProof, MAX_NUMBER_LENGTH, "%d", *bIncludeProof);
+        keyPairQuery_bIncludeProof = keyValuePair_create(keyQuery_bIncludeProof, valueQuery_bIncludeProof);
+        list_addElement(localVarQueryParameters,keyPairQuery_bIncludeProof);
+    }
+    list_addElement(localVarHeaderType,"text/xml"); //produces
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 406) {
+    //    printf("%s\n","The URL is valid, but one of the Accept header is not defined or invalid. For example, you set the header \&quot;Accept: application/json\&quot; but the function can only return \&quot;Content-type: image/png\&quot;");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //}
+    //primitive return type simple binary
+    binary_t* elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300)
+        elementToReturn = instantiate_binary_t(apiClient->dataReceived, apiClient->dataReceivedLen);
+
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    list_freeList(localVarQueryParameters);
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsignbulksendID);
+    if(keyQuery_bIncludeSigned){
+        free(keyQuery_bIncludeSigned);
+        keyQuery_bIncludeSigned = NULL;
+    }
+    if(valueQuery_bIncludeSigned){
+        free(valueQuery_bIncludeSigned);
+        valueQuery_bIncludeSigned = NULL;
+    }
+    if(keyPairQuery_bIncludeSigned){
+        keyValuePair_free(keyPairQuery_bIncludeSigned);
+        keyPairQuery_bIncludeSigned = NULL;
+    }
+    if(keyQuery_bIncludeAttachment){
+        free(keyQuery_bIncludeAttachment);
+        keyQuery_bIncludeAttachment = NULL;
+    }
+    if(valueQuery_bIncludeAttachment){
+        free(valueQuery_bIncludeAttachment);
+        valueQuery_bIncludeAttachment = NULL;
+    }
+    if(keyPairQuery_bIncludeAttachment){
+        keyValuePair_free(keyPairQuery_bIncludeAttachment);
+        keyPairQuery_bIncludeAttachment = NULL;
+    }
+    if(keyQuery_bIncludeProofdocument){
+        free(keyQuery_bIncludeProofdocument);
+        keyQuery_bIncludeProofdocument = NULL;
+    }
+    if(valueQuery_bIncludeProofdocument){
+        free(valueQuery_bIncludeProofdocument);
+        valueQuery_bIncludeProofdocument = NULL;
+    }
+    if(keyPairQuery_bIncludeProofdocument){
+        keyValuePair_free(keyPairQuery_bIncludeProofdocument);
+        keyPairQuery_bIncludeProofdocument = NULL;
+    }
+    if(keyQuery_bIncludeProof){
+        free(keyQuery_bIncludeProof);
+        keyQuery_bIncludeProof = NULL;
+    }
+    if(valueQuery_bIncludeProof){
+        free(valueQuery_bIncludeProof);
+        valueQuery_bIncludeProof = NULL;
+    }
+    if(keyPairQuery_bIncludeProof){
+        keyValuePair_free(keyPairQuery_bIncludeProof);
+        keyPairQuery_bIncludeProof = NULL;
+    }
     return elementToReturn;
 end:
     free(localVarPath);
@@ -1187,6 +1571,95 @@ ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV2(apiClient_t *apiClient, int *p
     if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
         cJSON *ObjectEzsignbulksendAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
         elementToReturn = ezsignbulksend_get_object_v2_response_parseFromJSON(ObjectEzsignbulksendAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignbulksendAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsignbulksendID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve an existing Ezsignbulksend
+//
+// 
+//
+ezsignbulksend_get_object_v3_response_t*
+ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV3(apiClient_t *apiClient, int *pkiEzsignbulksendID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/3/object/ezsignbulksend/{pkiEzsignbulksendID}");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsignbulksendID =  + sizeof("{ pkiEzsignbulksendID }") - 1;
+    if(pkiEzsignbulksendID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsignbulksendID = malloc(sizeOfPathParams_pkiEzsignbulksendID);
+    snprintf(localVarToReplace_pkiEzsignbulksendID, sizeOfPathParams_pkiEzsignbulksendID, "{%s}", "pkiEzsignbulksendID");
+
+    char localVarBuff_pkiEzsignbulksendID[256];
+    snprintf(localVarBuff_pkiEzsignbulksendID, sizeof localVarBuff_pkiEzsignbulksendID, "%ld", (long)*pkiEzsignbulksendID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignbulksendID, localVarBuff_pkiEzsignbulksendID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    ezsignbulksend_get_object_v3_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignbulksendAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignbulksend_get_object_v3_response_parseFromJSON(ObjectEzsignbulksendAPIlocalVarJSON);
         cJSON_Delete(ObjectEzsignbulksendAPIlocalVarJSON);
         if(elementToReturn == NULL) {
             // return 0;

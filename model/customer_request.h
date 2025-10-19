@@ -25,6 +25,7 @@ typedef struct customer_request_t {
     int fki_company_id; //numeric
     int fki_customergroup_id; //numeric
     char *s_customer_name; // string
+    char *s_customer_note; // string
     int fki_contactinformations_id; //numeric
     int fki_contactcontainer_id; //numeric
     int fki_image_id; //numeric
@@ -81,6 +82,7 @@ __attribute__((deprecated)) customer_request_t *customer_request_create(
     int fki_company_id,
     int fki_customergroup_id,
     char *s_customer_name,
+    char *s_customer_note,
     int fki_contactinformations_id,
     int fki_contactcontainer_id,
     int fki_image_id,

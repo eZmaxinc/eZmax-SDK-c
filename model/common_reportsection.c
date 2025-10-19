@@ -7,10 +7,7 @@
 
 static common_reportsection_t *common_reportsection_create_internal(
     list_t *a_obj_reportsubsection,
-    list_t *a_obj_reportcolumn,
     ezmax_api_definition__full_enum_horizontalalignment__e e_reportsection_horizontalalignment,
-    int i_reportsection_columncount,
-    int i_reportsection_width,
     char *s_reportsection_title
     ) {
     common_reportsection_t *common_reportsection_local_var = malloc(sizeof(common_reportsection_t));
@@ -18,10 +15,7 @@ static common_reportsection_t *common_reportsection_create_internal(
         return NULL;
     }
     common_reportsection_local_var->a_obj_reportsubsection = a_obj_reportsubsection;
-    common_reportsection_local_var->a_obj_reportcolumn = a_obj_reportcolumn;
     common_reportsection_local_var->e_reportsection_horizontalalignment = e_reportsection_horizontalalignment;
-    common_reportsection_local_var->i_reportsection_columncount = i_reportsection_columncount;
-    common_reportsection_local_var->i_reportsection_width = i_reportsection_width;
     common_reportsection_local_var->s_reportsection_title = s_reportsection_title;
 
     common_reportsection_local_var->_library_owned = 1;
@@ -30,18 +24,12 @@ static common_reportsection_t *common_reportsection_create_internal(
 
 __attribute__((deprecated)) common_reportsection_t *common_reportsection_create(
     list_t *a_obj_reportsubsection,
-    list_t *a_obj_reportcolumn,
     ezmax_api_definition__full_enum_horizontalalignment__e e_reportsection_horizontalalignment,
-    int i_reportsection_columncount,
-    int i_reportsection_width,
     char *s_reportsection_title
     ) {
     return common_reportsection_create_internal (
         a_obj_reportsubsection,
-        a_obj_reportcolumn,
         e_reportsection_horizontalalignment,
-        i_reportsection_columncount,
-        i_reportsection_width,
         s_reportsection_title
         );
 }
@@ -61,13 +49,6 @@ void common_reportsection_free(common_reportsection_t *common_reportsection) {
         }
         list_freeList(common_reportsection->a_obj_reportsubsection);
         common_reportsection->a_obj_reportsubsection = NULL;
-    }
-    if (common_reportsection->a_obj_reportcolumn) {
-        list_ForEach(listEntry, common_reportsection->a_obj_reportcolumn) {
-            common_reportcolumn_free(listEntry->data);
-        }
-        list_freeList(common_reportsection->a_obj_reportcolumn);
-        common_reportsection->a_obj_reportcolumn = NULL;
     }
     if (common_reportsection->s_reportsection_title) {
         free(common_reportsection->s_reportsection_title);
@@ -100,27 +81,6 @@ cJSON *common_reportsection_convertToJSON(common_reportsection_t *common_reports
     }
 
 
-    // common_reportsection->a_obj_reportcolumn
-    if (!common_reportsection->a_obj_reportcolumn) {
-        goto fail;
-    }
-    cJSON *a_obj_reportcolumn = cJSON_AddArrayToObject(item, "a_objReportcolumn");
-    if(a_obj_reportcolumn == NULL) {
-    goto fail; //nonprimitive container
-    }
-
-    listEntry_t *a_obj_reportcolumnListEntry;
-    if (common_reportsection->a_obj_reportcolumn) {
-    list_ForEach(a_obj_reportcolumnListEntry, common_reportsection->a_obj_reportcolumn) {
-    cJSON *itemLocal = common_reportcolumn_convertToJSON(a_obj_reportcolumnListEntry->data);
-    if(itemLocal == NULL) {
-    goto fail;
-    }
-    cJSON_AddItemToArray(a_obj_reportcolumn, itemLocal);
-    }
-    }
-
-
     // common_reportsection->e_reportsection_horizontalalignment
     if (ezmax_api_definition__full_enum_horizontalalignment__NULL == common_reportsection->e_reportsection_horizontalalignment) {
         goto fail;
@@ -132,24 +92,6 @@ cJSON *common_reportsection_convertToJSON(common_reportsection_t *common_reports
     cJSON_AddItemToObject(item, "eReportsectionHorizontalalignment", e_reportsection_horizontalalignment_local_JSON);
     if(item->child == NULL) {
         goto fail;
-    }
-
-
-    // common_reportsection->i_reportsection_columncount
-    if (!common_reportsection->i_reportsection_columncount) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "iReportsectionColumncount", common_reportsection->i_reportsection_columncount) == NULL) {
-    goto fail; //Numeric
-    }
-
-
-    // common_reportsection->i_reportsection_width
-    if (!common_reportsection->i_reportsection_width) {
-        goto fail;
-    }
-    if(cJSON_AddNumberToObject(item, "iReportsectionWidth", common_reportsection->i_reportsection_width) == NULL) {
-    goto fail; //Numeric
     }
 
 
@@ -174,9 +116,6 @@ common_reportsection_t *common_reportsection_parseFromJSON(cJSON *common_reports
 
     // define the local list for common_reportsection->a_obj_reportsubsection
     list_t *a_obj_reportsubsectionList = NULL;
-
-    // define the local list for common_reportsection->a_obj_reportcolumn
-    list_t *a_obj_reportcolumnList = NULL;
 
     // define the local variable for common_reportsection->e_reportsection_horizontalalignment
     ezmax_api_definition__full_enum_horizontalalignment__e e_reportsection_horizontalalignment_local_nonprim = 0;
@@ -208,33 +147,6 @@ common_reportsection_t *common_reportsection_parseFromJSON(cJSON *common_reports
         list_addElement(a_obj_reportsubsectionList, a_obj_reportsubsectionItem);
     }
 
-    // common_reportsection->a_obj_reportcolumn
-    cJSON *a_obj_reportcolumn = cJSON_GetObjectItemCaseSensitive(common_reportsectionJSON, "a_objReportcolumn");
-    if (cJSON_IsNull(a_obj_reportcolumn)) {
-        a_obj_reportcolumn = NULL;
-    }
-    if (!a_obj_reportcolumn) {
-        goto end;
-    }
-
-    
-    cJSON *a_obj_reportcolumn_local_nonprimitive = NULL;
-    if(!cJSON_IsArray(a_obj_reportcolumn)){
-        goto end; //nonprimitive container
-    }
-
-    a_obj_reportcolumnList = list_createList();
-
-    cJSON_ArrayForEach(a_obj_reportcolumn_local_nonprimitive,a_obj_reportcolumn )
-    {
-        if(!cJSON_IsObject(a_obj_reportcolumn_local_nonprimitive)){
-            goto end;
-        }
-        common_reportcolumn_t *a_obj_reportcolumnItem = common_reportcolumn_parseFromJSON(a_obj_reportcolumn_local_nonprimitive);
-
-        list_addElement(a_obj_reportcolumnList, a_obj_reportcolumnItem);
-    }
-
     // common_reportsection->e_reportsection_horizontalalignment
     cJSON *e_reportsection_horizontalalignment = cJSON_GetObjectItemCaseSensitive(common_reportsectionJSON, "eReportsectionHorizontalalignment");
     if (cJSON_IsNull(e_reportsection_horizontalalignment)) {
@@ -246,36 +158,6 @@ common_reportsection_t *common_reportsection_parseFromJSON(cJSON *common_reports
 
     
     e_reportsection_horizontalalignment_local_nonprim = enum_horizontalalignment_parseFromJSON(e_reportsection_horizontalalignment); //custom
-
-    // common_reportsection->i_reportsection_columncount
-    cJSON *i_reportsection_columncount = cJSON_GetObjectItemCaseSensitive(common_reportsectionJSON, "iReportsectionColumncount");
-    if (cJSON_IsNull(i_reportsection_columncount)) {
-        i_reportsection_columncount = NULL;
-    }
-    if (!i_reportsection_columncount) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsNumber(i_reportsection_columncount))
-    {
-    goto end; //Numeric
-    }
-
-    // common_reportsection->i_reportsection_width
-    cJSON *i_reportsection_width = cJSON_GetObjectItemCaseSensitive(common_reportsectionJSON, "iReportsectionWidth");
-    if (cJSON_IsNull(i_reportsection_width)) {
-        i_reportsection_width = NULL;
-    }
-    if (!i_reportsection_width) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsNumber(i_reportsection_width))
-    {
-    goto end; //Numeric
-    }
 
     // common_reportsection->s_reportsection_title
     cJSON *s_reportsection_title = cJSON_GetObjectItemCaseSensitive(common_reportsectionJSON, "sReportsectionTitle");
@@ -292,10 +174,7 @@ common_reportsection_t *common_reportsection_parseFromJSON(cJSON *common_reports
 
     common_reportsection_local_var = common_reportsection_create_internal (
         a_obj_reportsubsectionList,
-        a_obj_reportcolumnList,
         e_reportsection_horizontalalignment_local_nonprim,
-        i_reportsection_columncount->valuedouble,
-        i_reportsection_width->valuedouble,
         s_reportsection_title && !cJSON_IsNull(s_reportsection_title) ? strdup(s_reportsection_title->valuestring) : NULL
         );
 
@@ -309,15 +188,6 @@ end:
         }
         list_freeList(a_obj_reportsubsectionList);
         a_obj_reportsubsectionList = NULL;
-    }
-    if (a_obj_reportcolumnList) {
-        listEntry_t *listEntry = NULL;
-        list_ForEach(listEntry, a_obj_reportcolumnList) {
-            common_reportcolumn_free(listEntry->data);
-            listEntry->data = NULL;
-        }
-        list_freeList(a_obj_reportcolumnList);
-        a_obj_reportcolumnList = NULL;
     }
     if (e_reportsection_horizontalalignment_local_nonprim) {
         e_reportsection_horizontalalignment_local_nonprim = 0;

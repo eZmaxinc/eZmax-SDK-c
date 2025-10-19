@@ -15,6 +15,7 @@
 
 typedef struct custom_ezsignfoldertype_response_t custom_ezsignfoldertype_response_t;
 
+#include "field_e_ezsignfoldertype_documentmerge.h"
 
 
 
@@ -36,6 +37,7 @@ typedef struct custom_ezsignfoldertype_response_t {
     int i_ezsignfoldertype_deadlinedays; //numeric
     int i_ezsignfoldertype_fontsizeannotation; //numeric
     int i_ezsignfoldertype_fontsizeformfield; //numeric
+    ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__e e_ezsignfoldertype_documentmerge; //referenced enum
 
     int _library_owned; // Is the library responsible for freeing this object?
 } custom_ezsignfoldertype_response_t;
@@ -57,7 +59,8 @@ __attribute__((deprecated)) custom_ezsignfoldertype_response_t *custom_ezsignfol
     int b_ezsignfoldertype_reassigngroup,
     int i_ezsignfoldertype_deadlinedays,
     int i_ezsignfoldertype_fontsizeannotation,
-    int i_ezsignfoldertype_fontsizeformfield
+    int i_ezsignfoldertype_fontsizeformfield,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__e e_ezsignfoldertype_documentmerge
 );
 
 void custom_ezsignfoldertype_response_free(custom_ezsignfoldertype_response_t *custom_ezsignfoldertype_response);

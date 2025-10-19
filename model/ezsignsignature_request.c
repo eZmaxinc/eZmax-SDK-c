@@ -33,7 +33,9 @@ static ezsignsignature_request_t *ezsignsignature_request_create_internal(
     ezmax_api_definition__full_enum_textvalidation__e e_ezsignsignature_textvalidation,
     char *s_ezsignsignature_textvalidationcustommessage,
     char *s_ezsignsignature_regexp,
-    ezmax_api_definition__full_field_e_ezsignsignature_dependencyrequirement__e e_ezsignsignature_dependencyrequirement
+    ezmax_api_definition__full_field_e_ezsignsignature_dependencyrequirement__e e_ezsignsignature_dependencyrequirement,
+    char *s_ezsignsignature_creditcardamountdescription,
+    char *d_ezsignsignature_creditcardamount
     ) {
     ezsignsignature_request_t *ezsignsignature_request_local_var = malloc(sizeof(ezsignsignature_request_t));
     if (!ezsignsignature_request_local_var) {
@@ -67,6 +69,8 @@ static ezsignsignature_request_t *ezsignsignature_request_create_internal(
     ezsignsignature_request_local_var->s_ezsignsignature_textvalidationcustommessage = s_ezsignsignature_textvalidationcustommessage;
     ezsignsignature_request_local_var->s_ezsignsignature_regexp = s_ezsignsignature_regexp;
     ezsignsignature_request_local_var->e_ezsignsignature_dependencyrequirement = e_ezsignsignature_dependencyrequirement;
+    ezsignsignature_request_local_var->s_ezsignsignature_creditcardamountdescription = s_ezsignsignature_creditcardamountdescription;
+    ezsignsignature_request_local_var->d_ezsignsignature_creditcardamount = d_ezsignsignature_creditcardamount;
 
     ezsignsignature_request_local_var->_library_owned = 1;
     return ezsignsignature_request_local_var;
@@ -100,7 +104,9 @@ __attribute__((deprecated)) ezsignsignature_request_t *ezsignsignature_request_c
     ezmax_api_definition__full_enum_textvalidation__e e_ezsignsignature_textvalidation,
     char *s_ezsignsignature_textvalidationcustommessage,
     char *s_ezsignsignature_regexp,
-    ezmax_api_definition__full_field_e_ezsignsignature_dependencyrequirement__e e_ezsignsignature_dependencyrequirement
+    ezmax_api_definition__full_field_e_ezsignsignature_dependencyrequirement__e e_ezsignsignature_dependencyrequirement,
+    char *s_ezsignsignature_creditcardamountdescription,
+    char *d_ezsignsignature_creditcardamount
     ) {
     return ezsignsignature_request_create_internal (
         pki_ezsignsignature_id,
@@ -130,7 +136,9 @@ __attribute__((deprecated)) ezsignsignature_request_t *ezsignsignature_request_c
         e_ezsignsignature_textvalidation,
         s_ezsignsignature_textvalidationcustommessage,
         s_ezsignsignature_regexp,
-        e_ezsignsignature_dependencyrequirement
+        e_ezsignsignature_dependencyrequirement,
+        s_ezsignsignature_creditcardamountdescription,
+        d_ezsignsignature_creditcardamount
         );
 }
 
@@ -162,6 +170,14 @@ void ezsignsignature_request_free(ezsignsignature_request_t *ezsignsignature_req
     if (ezsignsignature_request->s_ezsignsignature_regexp) {
         free(ezsignsignature_request->s_ezsignsignature_regexp);
         ezsignsignature_request->s_ezsignsignature_regexp = NULL;
+    }
+    if (ezsignsignature_request->s_ezsignsignature_creditcardamountdescription) {
+        free(ezsignsignature_request->s_ezsignsignature_creditcardamountdescription);
+        ezsignsignature_request->s_ezsignsignature_creditcardamountdescription = NULL;
+    }
+    if (ezsignsignature_request->d_ezsignsignature_creditcardamount) {
+        free(ezsignsignature_request->d_ezsignsignature_creditcardamount);
+        ezsignsignature_request->d_ezsignsignature_creditcardamount = NULL;
     }
     free(ezsignsignature_request);
 }
@@ -431,6 +447,22 @@ cJSON *ezsignsignature_request_convertToJSON(ezsignsignature_request_t *ezsignsi
     cJSON_AddItemToObject(item, "eEzsignsignatureDependencyrequirement", e_ezsignsignature_dependencyrequirement_local_JSON);
     if(item->child == NULL) {
         goto fail;
+    }
+    }
+
+
+    // ezsignsignature_request->s_ezsignsignature_creditcardamountdescription
+    if(ezsignsignature_request->s_ezsignsignature_creditcardamountdescription) {
+    if(cJSON_AddStringToObject(item, "sEzsignsignatureCreditcardamountdescription", ezsignsignature_request->s_ezsignsignature_creditcardamountdescription) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // ezsignsignature_request->d_ezsignsignature_creditcardamount
+    if(ezsignsignature_request->d_ezsignsignature_creditcardamount) {
+    if(cJSON_AddStringToObject(item, "dEzsignsignatureCreditcardamount", ezsignsignature_request->d_ezsignsignature_creditcardamount) == NULL) {
+    goto fail; //String
     }
     }
 
@@ -803,6 +835,30 @@ ezsignsignature_request_t *ezsignsignature_request_parseFromJSON(cJSON *ezsignsi
     e_ezsignsignature_dependencyrequirement_local_nonprim = field_e_ezsignsignature_dependencyrequirement_parseFromJSON(e_ezsignsignature_dependencyrequirement); //custom
     }
 
+    // ezsignsignature_request->s_ezsignsignature_creditcardamountdescription
+    cJSON *s_ezsignsignature_creditcardamountdescription = cJSON_GetObjectItemCaseSensitive(ezsignsignature_requestJSON, "sEzsignsignatureCreditcardamountdescription");
+    if (cJSON_IsNull(s_ezsignsignature_creditcardamountdescription)) {
+        s_ezsignsignature_creditcardamountdescription = NULL;
+    }
+    if (s_ezsignsignature_creditcardamountdescription) { 
+    if(!cJSON_IsString(s_ezsignsignature_creditcardamountdescription) && !cJSON_IsNull(s_ezsignsignature_creditcardamountdescription))
+    {
+    goto end; //String
+    }
+    }
+
+    // ezsignsignature_request->d_ezsignsignature_creditcardamount
+    cJSON *d_ezsignsignature_creditcardamount = cJSON_GetObjectItemCaseSensitive(ezsignsignature_requestJSON, "dEzsignsignatureCreditcardamount");
+    if (cJSON_IsNull(d_ezsignsignature_creditcardamount)) {
+        d_ezsignsignature_creditcardamount = NULL;
+    }
+    if (d_ezsignsignature_creditcardamount) { 
+    if(!cJSON_IsString(d_ezsignsignature_creditcardamount) && !cJSON_IsNull(d_ezsignsignature_creditcardamount))
+    {
+    goto end; //String
+    }
+    }
+
 
     ezsignsignature_request_local_var = ezsignsignature_request_create_internal (
         pki_ezsignsignature_id ? pki_ezsignsignature_id->valuedouble : 0,
@@ -832,7 +888,9 @@ ezsignsignature_request_t *ezsignsignature_request_parseFromJSON(cJSON *ezsignsi
         e_ezsignsignature_textvalidation ? e_ezsignsignature_textvalidation_local_nonprim : 0,
         s_ezsignsignature_textvalidationcustommessage && !cJSON_IsNull(s_ezsignsignature_textvalidationcustommessage) ? strdup(s_ezsignsignature_textvalidationcustommessage->valuestring) : NULL,
         s_ezsignsignature_regexp && !cJSON_IsNull(s_ezsignsignature_regexp) ? strdup(s_ezsignsignature_regexp->valuestring) : NULL,
-        e_ezsignsignature_dependencyrequirement ? e_ezsignsignature_dependencyrequirement_local_nonprim : 0
+        e_ezsignsignature_dependencyrequirement ? e_ezsignsignature_dependencyrequirement_local_nonprim : 0,
+        s_ezsignsignature_creditcardamountdescription && !cJSON_IsNull(s_ezsignsignature_creditcardamountdescription) ? strdup(s_ezsignsignature_creditcardamountdescription->valuestring) : NULL,
+        d_ezsignsignature_creditcardamount && !cJSON_IsNull(d_ezsignsignature_creditcardamount) ? strdup(d_ezsignsignature_creditcardamount->valuestring) : NULL
         );
 
     return ezsignsignature_request_local_var;

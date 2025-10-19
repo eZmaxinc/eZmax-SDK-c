@@ -57,6 +57,7 @@ typedef struct activesession_get_current_v1_response_m_payload_t {
     ezmax_api_definition__full_field_e_user_ezsignprepaid__e e_user_ezsignprepaid; //referenced enum
     int b_user_ezsigntrial; //boolean
     char *dt_user_ezsignprepaidexpiration; // string
+    char *dt_user_npsrequest; // string
     list_t *a_pki_permission_id; //primitive container
     struct activesession_response_compound_user_t *obj_user_real; //model
     struct activesession_response_compound_user_t *obj_user_cloned; //model
@@ -93,6 +94,7 @@ __attribute__((deprecated)) activesession_get_current_v1_response_m_payload_t *a
     ezmax_api_definition__full_field_e_user_ezsignprepaid__e e_user_ezsignprepaid,
     int b_user_ezsigntrial,
     char *dt_user_ezsignprepaidexpiration,
+    char *dt_user_npsrequest,
     list_t *a_pki_permission_id,
     activesession_response_compound_user_t *obj_user_real,
     activesession_response_compound_user_t *obj_user_cloned,

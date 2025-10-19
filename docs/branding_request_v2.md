@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **pki_branding_id** | **int** | The unique ID of the Branding | [optional] 
+**fki_domain_id** | **int** | The unique ID of the Domain | [optional] 
 **obj_branding_description** | [**multilingual_branding_description_t**](multilingual_branding_description.md) \* |  | 
 **e_branding_logo** | **field_e_branding_logo_t \*** |  | 
 **e_branding_alignlogo** | **field_e_branding_alignlogo_t \*** |  | [optional] 

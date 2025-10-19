@@ -7,6 +7,8 @@
 
 static branding_response_compound_v3_t *branding_response_compound_v3_create_internal(
     int pki_branding_id,
+    int fki_domain_id,
+    char *s_domain_name,
     int fki_email_id,
     multilingual_branding_description_t *obj_branding_description,
     char *s_branding_description_x,
@@ -25,6 +27,8 @@ static branding_response_compound_v3_t *branding_response_compound_v3_create_int
         return NULL;
     }
     branding_response_compound_v3_local_var->pki_branding_id = pki_branding_id;
+    branding_response_compound_v3_local_var->fki_domain_id = fki_domain_id;
+    branding_response_compound_v3_local_var->s_domain_name = s_domain_name;
     branding_response_compound_v3_local_var->fki_email_id = fki_email_id;
     branding_response_compound_v3_local_var->obj_branding_description = obj_branding_description;
     branding_response_compound_v3_local_var->s_branding_description_x = s_branding_description_x;
@@ -44,6 +48,8 @@ static branding_response_compound_v3_t *branding_response_compound_v3_create_int
 
 __attribute__((deprecated)) branding_response_compound_v3_t *branding_response_compound_v3_create(
     int pki_branding_id,
+    int fki_domain_id,
+    char *s_domain_name,
     int fki_email_id,
     multilingual_branding_description_t *obj_branding_description,
     char *s_branding_description_x,
@@ -59,6 +65,8 @@ __attribute__((deprecated)) branding_response_compound_v3_t *branding_response_c
     ) {
     return branding_response_compound_v3_create_internal (
         pki_branding_id,
+        fki_domain_id,
+        s_domain_name,
         fki_email_id,
         obj_branding_description,
         s_branding_description_x,
@@ -83,6 +91,10 @@ void branding_response_compound_v3_free(branding_response_compound_v3_t *brandin
         return ;
     }
     listEntry_t *listEntry;
+    if (branding_response_compound_v3->s_domain_name) {
+        free(branding_response_compound_v3->s_domain_name);
+        branding_response_compound_v3->s_domain_name = NULL;
+    }
     if (branding_response_compound_v3->obj_branding_description) {
         multilingual_branding_description_free(branding_response_compound_v3->obj_branding_description);
         branding_response_compound_v3->obj_branding_description = NULL;
@@ -123,6 +135,22 @@ cJSON *branding_response_compound_v3_convertToJSON(branding_response_compound_v3
     }
     if(cJSON_AddNumberToObject(item, "pkiBrandingID", branding_response_compound_v3->pki_branding_id) == NULL) {
     goto fail; //Numeric
+    }
+
+
+    // branding_response_compound_v3->fki_domain_id
+    if(branding_response_compound_v3->fki_domain_id) {
+    if(cJSON_AddNumberToObject(item, "fkiDomainID", branding_response_compound_v3->fki_domain_id) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // branding_response_compound_v3->s_domain_name
+    if(branding_response_compound_v3->s_domain_name) {
+    if(cJSON_AddStringToObject(item, "sDomainName", branding_response_compound_v3->s_domain_name) == NULL) {
+    goto fail; //String
+    }
     }
 
 
@@ -276,6 +304,30 @@ branding_response_compound_v3_t *branding_response_compound_v3_parseFromJSON(cJS
     if(!cJSON_IsNumber(pki_branding_id))
     {
     goto end; //Numeric
+    }
+
+    // branding_response_compound_v3->fki_domain_id
+    cJSON *fki_domain_id = cJSON_GetObjectItemCaseSensitive(branding_response_compound_v3JSON, "fkiDomainID");
+    if (cJSON_IsNull(fki_domain_id)) {
+        fki_domain_id = NULL;
+    }
+    if (fki_domain_id) { 
+    if(!cJSON_IsNumber(fki_domain_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
+    // branding_response_compound_v3->s_domain_name
+    cJSON *s_domain_name = cJSON_GetObjectItemCaseSensitive(branding_response_compound_v3JSON, "sDomainName");
+    if (cJSON_IsNull(s_domain_name)) {
+        s_domain_name = NULL;
+    }
+    if (s_domain_name) { 
+    if(!cJSON_IsString(s_domain_name) && !cJSON_IsNull(s_domain_name))
+    {
+    goto end; //String
+    }
     }
 
     // branding_response_compound_v3->fki_email_id
@@ -434,6 +486,8 @@ branding_response_compound_v3_t *branding_response_compound_v3_parseFromJSON(cJS
 
     branding_response_compound_v3_local_var = branding_response_compound_v3_create_internal (
         pki_branding_id->valuedouble,
+        fki_domain_id ? fki_domain_id->valuedouble : 0,
+        s_domain_name && !cJSON_IsNull(s_domain_name) ? strdup(s_domain_name->valuestring) : NULL,
         fki_email_id ? fki_email_id->valuedouble : 0,
         obj_branding_description_local_nonprim,
         strdup(s_branding_description_x->valuestring),

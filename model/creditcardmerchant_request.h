@@ -22,6 +22,7 @@ typedef struct creditcardmerchant_request_t {
     int pki_creditcardmerchant_id; //numeric
     int fki_bankaccount_id; //numeric
     int fki_language_id; //numeric
+    int fki_currency_id; //numeric
     int b_creditcardmerchant_denyvisa; //boolean
     int b_creditcardmerchant_denymastercard; //boolean
     int b_creditcardmerchant_denyamex; //boolean
@@ -37,6 +38,7 @@ __attribute__((deprecated)) creditcardmerchant_request_t *creditcardmerchant_req
     int pki_creditcardmerchant_id,
     int fki_bankaccount_id,
     int fki_language_id,
+    int fki_currency_id,
     int b_creditcardmerchant_denyvisa,
     int b_creditcardmerchant_denymastercard,
     int b_creditcardmerchant_denyamex,

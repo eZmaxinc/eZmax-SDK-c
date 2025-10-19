@@ -22,6 +22,7 @@ typedef struct ezsignbulksendsignermapping_response_t {
     int pki_ezsignbulksendsignermapping_id; //numeric
     int fki_ezsignbulksend_id; //numeric
     int fki_user_id; //numeric
+    int b_ezsignbulksendsignermapping_receivecopy; //boolean
     char *s_ezsignbulksendsignermapping_description; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -31,6 +32,7 @@ __attribute__((deprecated)) ezsignbulksendsignermapping_response_t *ezsignbulkse
     int pki_ezsignbulksendsignermapping_id,
     int fki_ezsignbulksend_id,
     int fki_user_id,
+    int b_ezsignbulksendsignermapping_receivecopy,
     char *s_ezsignbulksendsignermapping_description
 );
 

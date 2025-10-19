@@ -10,14 +10,19 @@
 #include "../model/ezsignbulksend_create_ezsignbulksendtransmission_v2_response.h"
 #include "../model/ezsignbulksend_create_object_v1_request.h"
 #include "../model/ezsignbulksend_create_object_v1_response.h"
+#include "../model/ezsignbulksend_create_object_v2_request.h"
+#include "../model/ezsignbulksend_create_object_v2_response.h"
 #include "../model/ezsignbulksend_delete_object_v1_response.h"
 #include "../model/ezsignbulksend_edit_object_v1_request.h"
 #include "../model/ezsignbulksend_edit_object_v1_response.h"
+#include "../model/ezsignbulksend_edit_object_v2_request.h"
+#include "../model/ezsignbulksend_edit_object_v2_response.h"
 #include "../model/ezsignbulksend_get_ezsignbulksendtransmissions_v1_response.h"
 #include "../model/ezsignbulksend_get_ezsignsignatures_automatic_v1_response.h"
 #include "../model/ezsignbulksend_get_forms_data_v1_response.h"
 #include "../model/ezsignbulksend_get_list_v1_response.h"
 #include "../model/ezsignbulksend_get_object_v2_response.h"
+#include "../model/ezsignbulksend_get_object_v3_response.h"
 #include "../model/ezsignbulksend_reorder_v1_request.h"
 #include "../model/ezsignbulksend_reorder_v1_response.h"
 #include "../model/header_accept_language.h"
@@ -46,6 +51,14 @@ ezsignbulksend_create_object_v1_response_t*
 ObjectEzsignbulksendAPI_ezsignbulksendCreateObjectV1(apiClient_t *apiClient, ezsignbulksend_create_object_v1_request_t *ezsignbulksend_create_object_v1_request);
 
 
+// Create a new Ezsignbulksend
+//
+// The endpoint allows to create one or many elements at once.
+//
+ezsignbulksend_create_object_v2_response_t*
+ObjectEzsignbulksendAPI_ezsignbulksendCreateObjectV2(apiClient_t *apiClient, ezsignbulksend_create_object_v2_request_t *ezsignbulksend_create_object_v2_request);
+
+
 // Delete an existing Ezsignbulksend
 //
 // 
@@ -60,6 +73,20 @@ ObjectEzsignbulksendAPI_ezsignbulksendDeleteObjectV1(apiClient_t *apiClient, int
 //
 ezsignbulksend_edit_object_v1_response_t*
 ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_edit_object_v1_request_t *ezsignbulksend_edit_object_v1_request);
+
+
+// Edit an existing Ezsignbulksend
+//
+// 
+//
+ezsignbulksend_edit_object_v2_response_t*
+ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV2(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_edit_object_v2_request_t *ezsignbulksend_edit_object_v2_request);
+
+
+// Retrieve file to download documents in batch
+//
+binary_t*
+ObjectEzsignbulksendAPI_ezsignbulksendGetBatchFileV1(apiClient_t *apiClient, int *pkiEzsignbulksendID, int *bIncludeSigned, int *bIncludeAttachment, int *bIncludeProofdocument, int *bIncludeProof);
 
 
 // Retrieve an existing Ezsignbulksend's empty Csv template
@@ -108,6 +135,14 @@ ObjectEzsignbulksendAPI_ezsignbulksendGetListV1(apiClient_t *apiClient, ezmax_ap
 //
 ezsignbulksend_get_object_v2_response_t*
 ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV2(apiClient_t *apiClient, int *pkiEzsignbulksendID);
+
+
+// Retrieve an existing Ezsignbulksend
+//
+// 
+//
+ezsignbulksend_get_object_v3_response_t*
+ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV3(apiClient_t *apiClient, int *pkiEzsignbulksendID);
 
 
 // Reorder Ezsignbulksenddocumentmappings in the Ezsignbulksend

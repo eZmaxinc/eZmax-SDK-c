@@ -1,0 +1,32 @@
+/*
+ * field_e_inscription_step.h
+ *
+ * The step of the Inscription
+ */
+
+#ifndef _field_e_inscription_step_H_
+#define _field_e_inscription_step_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_inscription_step_t field_e_inscription_step_t;
+
+
+// Enum  for field_e_inscription_step
+
+typedef enum { ezmax_api_definition__full_field_e_inscription_step__NULL = 0, ezmax_api_definition__full_field_e_inscription_step__TemporaryNotAuthenticated, ezmax_api_definition__full_field_e_inscription_step__ImportedInscription, ezmax_api_definition__full_field_e_inscription_step__Inscription, ezmax_api_definition__full_field_e_inscription_step__ModifiedInscription, ezmax_api_definition__full_field_e_inscription_step__ContractEnded, ezmax_api_definition__full_field_e_inscription_step__ExpiredInscription, ezmax_api_definition__full_field_e_inscription_step__Out_market, ezmax_api_definition__full_field_e_inscription_step__ImportedNotauthenticated, ezmax_api_definition__full_field_e_inscription_step__NotAuthenticated, ezmax_api_definition__full_field_e_inscription_step__ModifiedNotauthenticated, ezmax_api_definition__full_field_e_inscription_step__Authenticated } ezmax_api_definition__full_field_e_inscription_step__e;
+
+char* field_e_inscription_step_field_e_inscription_step_ToString(ezmax_api_definition__full_field_e_inscription_step__e field_e_inscription_step);
+
+ezmax_api_definition__full_field_e_inscription_step__e field_e_inscription_step_field_e_inscription_step_FromString(char* field_e_inscription_step);
+
+cJSON *field_e_inscription_step_convertToJSON(ezmax_api_definition__full_field_e_inscription_step__e field_e_inscription_step);
+
+ezmax_api_definition__full_field_e_inscription_step__e field_e_inscription_step_parseFromJSON(cJSON *field_e_inscription_stepJSON);
+
+#endif /* _field_e_inscription_step_H_ */
+

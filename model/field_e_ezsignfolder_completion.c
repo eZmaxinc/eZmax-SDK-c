@@ -5,13 +5,13 @@
 
 
 char* field_e_ezsignfolder_completion_field_e_ezsignfolder_completion_ToString(ezmax_api_definition__full_field_e_ezsignfolder_completion__e field_e_ezsignfolder_completion) {
-    char *field_e_ezsignfolder_completionArray[] =  { "NULL", "PerEzsigndocument", "PerEzsignfolder" };
+    char *field_e_ezsignfolder_completionArray[] =  { "NULL", "PerEzsigndocument", "PerEzsignfolder", "PerEzsignfolderStepSync" };
     return field_e_ezsignfolder_completionArray[field_e_ezsignfolder_completion];
 }
 
 ezmax_api_definition__full_field_e_ezsignfolder_completion__e field_e_ezsignfolder_completion_field_e_ezsignfolder_completion_FromString(char* field_e_ezsignfolder_completion) {
     int stringToReturn = 0;
-    char *field_e_ezsignfolder_completionArray[] =  { "NULL", "PerEzsigndocument", "PerEzsignfolder" };
+    char *field_e_ezsignfolder_completionArray[] =  { "NULL", "PerEzsigndocument", "PerEzsignfolder", "PerEzsignfolderStepSync" };
     size_t sizeofArray = sizeof(field_e_ezsignfolder_completionArray) / sizeof(field_e_ezsignfolder_completionArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(field_e_ezsignfolder_completion, field_e_ezsignfolder_completionArray[stringToReturn]) == 0) {

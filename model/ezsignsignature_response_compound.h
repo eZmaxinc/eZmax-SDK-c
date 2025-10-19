@@ -21,7 +21,7 @@ typedef struct ezsignsignature_response_compound_t ezsignsignature_response_comp
 #include "enum_textvalidation.h"
 #include "ezsignelementdependency_response_compound.h"
 #include "ezsignsignaturecustomdate_response_compound.h"
-#include "ezsignsignaturepaymentdetail_request_compound.h"
+#include "ezsignsignaturepaymentdetail_response_compound.h"
 #include "field_e_ezsignsignature_attachmentnamesource.h"
 #include "field_e_ezsignsignature_consultationtrigger.h"
 #include "field_e_ezsignsignature_dependencyrequirement.h"
@@ -38,7 +38,10 @@ typedef struct ezsignsignature_response_compound_t {
     int fki_ezsignfoldersignerassociation_id; //numeric
     int fki_ezsignsigningreason_id; //numeric
     int fki_font_id; //numeric
+    int fki_paymentgateway_id; //numeric
     char *s_currency_description_x; // string
+    char *d_ezsignsignature_creditcardamount; // string
+    char *s_ezsignsignature_creditcardamountdescription; // string
     char *s_ezsignsigningreason_description_x; // string
     int i_ezsignpage_pagenumber; //numeric
     int i_ezsignsignature_x; //numeric
@@ -89,7 +92,10 @@ __attribute__((deprecated)) ezsignsignature_response_compound_t *ezsignsignature
     int fki_ezsignfoldersignerassociation_id,
     int fki_ezsignsigningreason_id,
     int fki_font_id,
+    int fki_paymentgateway_id,
     char *s_currency_description_x,
+    char *d_ezsignsignature_creditcardamount,
+    char *s_ezsignsignature_creditcardamountdescription,
     char *s_ezsignsigningreason_description_x,
     int i_ezsignpage_pagenumber,
     int i_ezsignsignature_x,

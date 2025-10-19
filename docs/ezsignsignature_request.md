@@ -31,6 +31,8 @@ Name | Type | Description | Notes
 **s_ezsignsignature_textvalidationcustommessage** | **char \*** | Description of validation rule. Show by signatory. | [optional] 
 **s_ezsignsignature_regexp** | **char \*** | A regular expression to indicate what values are acceptable for the Ezsignsignature.  This can only be set if eEzsignsignatureType is **FieldText** or **FieldTextarea** and eEzsignsignatureTextvalidation is **Custom** | [optional] 
 **e_ezsignsignature_dependencyrequirement** | **field_e_ezsignsignature_dependencyrequirement_t \*** |  | [optional] 
+**s_ezsignsignature_creditcardamountdescription** | **char \*** | The description of the Creditcard signature | [optional] 
+**d_ezsignsignature_creditcardamount** | **char \*** | The amount of the Creditcard signature | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

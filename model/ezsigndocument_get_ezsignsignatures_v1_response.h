@@ -1,7 +1,7 @@
 /*
  * ezsigndocument_get_ezsignsignatures_v1_response.h
  *
- * Response for GET /1/object/ezsigndocument/{pkiEzsigndocument}/getEzsignsignatures
+ * Response for GET /1/object/ezsigndocument/{pkiEzsigndocumentID}/getEzsignsignatures
  */
 
 #ifndef _ezsigndocument_get_ezsignsignatures_v1_response_H_

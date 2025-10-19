@@ -15,6 +15,7 @@
 
 typedef struct ezsignsignature_sign_v1_response_m_payload_t ezsignsignature_sign_v1_response_m_payload_t;
 
+#include "custom_creditcardtransaction_response.h"
 #include "custom_timezone_with_code_response.h"
 
 
@@ -22,13 +23,15 @@ typedef struct ezsignsignature_sign_v1_response_m_payload_t ezsignsignature_sign
 typedef struct ezsignsignature_sign_v1_response_m_payload_t {
     char *dt_ezsignsignature_date_in_folder_timezone; // string
     struct custom_timezone_with_code_response_t *obj_timezone; //model
+    struct custom_creditcardtransaction_response_t *obj_creditcardtransaction; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsignsignature_sign_v1_response_m_payload_t;
 
 __attribute__((deprecated)) ezsignsignature_sign_v1_response_m_payload_t *ezsignsignature_sign_v1_response_m_payload_create(
     char *dt_ezsignsignature_date_in_folder_timezone,
-    custom_timezone_with_code_response_t *obj_timezone
+    custom_timezone_with_code_response_t *obj_timezone,
+    custom_creditcardtransaction_response_t *obj_creditcardtransaction
 );
 
 void ezsignsignature_sign_v1_response_m_payload_free(ezsignsignature_sign_v1_response_m_payload_t *ezsignsignature_sign_v1_response_m_payload);

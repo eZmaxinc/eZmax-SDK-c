@@ -34,9 +34,12 @@ static custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_t
     char *s_ezsignsignature_textvalidationcustommessage,
     char *s_ezsignsignature_regexp,
     ezmax_api_definition__full_field_e_ezsignsignature_dependencyrequirement__e e_ezsignsignature_dependencyrequirement,
+    char *s_ezsignsignature_creditcardamountdescription,
+    char *d_ezsignsignature_creditcardamount,
     int b_ezsignsignature_customdate,
     list_t *a_obj_ezsignsignaturecustomdate,
     list_t *a_obj_ezsignelementdependency,
+    list_t *a_obj_ezsignsignaturepaymentdetail,
     custom_create_ezsignelements_positioned_by_word_request_t *obj_createezsignelementspositionedbyword
     ) {
     custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_t *custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_local_var = malloc(sizeof(custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_t));
@@ -71,9 +74,12 @@ static custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_t
     custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_local_var->s_ezsignsignature_textvalidationcustommessage = s_ezsignsignature_textvalidationcustommessage;
     custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_local_var->s_ezsignsignature_regexp = s_ezsignsignature_regexp;
     custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_local_var->e_ezsignsignature_dependencyrequirement = e_ezsignsignature_dependencyrequirement;
+    custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_local_var->s_ezsignsignature_creditcardamountdescription = s_ezsignsignature_creditcardamountdescription;
+    custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_local_var->d_ezsignsignature_creditcardamount = d_ezsignsignature_creditcardamount;
     custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_local_var->b_ezsignsignature_customdate = b_ezsignsignature_customdate;
     custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_local_var->a_obj_ezsignsignaturecustomdate = a_obj_ezsignsignaturecustomdate;
     custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_local_var->a_obj_ezsignelementdependency = a_obj_ezsignelementdependency;
+    custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_local_var->a_obj_ezsignsignaturepaymentdetail = a_obj_ezsignsignaturepaymentdetail;
     custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_local_var->obj_createezsignelementspositionedbyword = obj_createezsignelementspositionedbyword;
 
     custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_local_var->_library_owned = 1;
@@ -109,9 +115,12 @@ __attribute__((deprecated)) custom_ezsignsignature_create_ezsignelements_positio
     char *s_ezsignsignature_textvalidationcustommessage,
     char *s_ezsignsignature_regexp,
     ezmax_api_definition__full_field_e_ezsignsignature_dependencyrequirement__e e_ezsignsignature_dependencyrequirement,
+    char *s_ezsignsignature_creditcardamountdescription,
+    char *d_ezsignsignature_creditcardamount,
     int b_ezsignsignature_customdate,
     list_t *a_obj_ezsignsignaturecustomdate,
     list_t *a_obj_ezsignelementdependency,
+    list_t *a_obj_ezsignsignaturepaymentdetail,
     custom_create_ezsignelements_positioned_by_word_request_t *obj_createezsignelementspositionedbyword
     ) {
     return custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_create_internal (
@@ -143,9 +152,12 @@ __attribute__((deprecated)) custom_ezsignsignature_create_ezsignelements_positio
         s_ezsignsignature_textvalidationcustommessage,
         s_ezsignsignature_regexp,
         e_ezsignsignature_dependencyrequirement,
+        s_ezsignsignature_creditcardamountdescription,
+        d_ezsignsignature_creditcardamount,
         b_ezsignsignature_customdate,
         a_obj_ezsignsignaturecustomdate,
         a_obj_ezsignelementdependency,
+        a_obj_ezsignsignaturepaymentdetail,
         obj_createezsignelementspositionedbyword
         );
 }
@@ -179,6 +191,14 @@ void custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_fre
         free(custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->s_ezsignsignature_regexp);
         custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->s_ezsignsignature_regexp = NULL;
     }
+    if (custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->s_ezsignsignature_creditcardamountdescription) {
+        free(custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->s_ezsignsignature_creditcardamountdescription);
+        custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->s_ezsignsignature_creditcardamountdescription = NULL;
+    }
+    if (custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->d_ezsignsignature_creditcardamount) {
+        free(custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->d_ezsignsignature_creditcardamount);
+        custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->d_ezsignsignature_creditcardamount = NULL;
+    }
     if (custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->a_obj_ezsignsignaturecustomdate) {
         list_ForEach(listEntry, custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->a_obj_ezsignsignaturecustomdate) {
             ezsignsignaturecustomdate_request_compound_free(listEntry->data);
@@ -192,6 +212,13 @@ void custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_fre
         }
         list_freeList(custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->a_obj_ezsignelementdependency);
         custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->a_obj_ezsignelementdependency = NULL;
+    }
+    if (custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->a_obj_ezsignsignaturepaymentdetail) {
+        list_ForEach(listEntry, custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->a_obj_ezsignsignaturepaymentdetail) {
+            ezsignsignaturepaymentdetail_request_compound_free(listEntry->data);
+        }
+        list_freeList(custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->a_obj_ezsignsignaturepaymentdetail);
+        custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->a_obj_ezsignsignaturepaymentdetail = NULL;
     }
     if (custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->obj_createezsignelementspositionedbyword) {
         custom_create_ezsignelements_positioned_by_word_request_free(custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->obj_createezsignelementspositionedbyword);
@@ -469,6 +496,22 @@ cJSON *custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_c
     }
 
 
+    // custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->s_ezsignsignature_creditcardamountdescription
+    if(custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->s_ezsignsignature_creditcardamountdescription) {
+    if(cJSON_AddStringToObject(item, "sEzsignsignatureCreditcardamountdescription", custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->s_ezsignsignature_creditcardamountdescription) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->d_ezsignsignature_creditcardamount
+    if(custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->d_ezsignsignature_creditcardamount) {
+    if(cJSON_AddStringToObject(item, "dEzsignsignatureCreditcardamount", custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->d_ezsignsignature_creditcardamount) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
     // custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->b_ezsignsignature_customdate
     if(custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->b_ezsignsignature_customdate) {
     if(cJSON_AddBoolToObject(item, "bEzsignsignatureCustomdate", custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->b_ezsignsignature_customdate) == NULL) {
@@ -512,6 +555,26 @@ cJSON *custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_c
     goto fail;
     }
     cJSON_AddItemToArray(a_obj_ezsignelementdependency, itemLocal);
+    }
+    }
+    }
+
+
+    // custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->a_obj_ezsignsignaturepaymentdetail
+    if(custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->a_obj_ezsignsignaturepaymentdetail) {
+    cJSON *a_obj_ezsignsignaturepaymentdetail = cJSON_AddArrayToObject(item, "a_objEzsignsignaturepaymentdetail");
+    if(a_obj_ezsignsignaturepaymentdetail == NULL) {
+    goto fail; //nonprimitive container
+    }
+
+    listEntry_t *a_obj_ezsignsignaturepaymentdetailListEntry;
+    if (custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->a_obj_ezsignsignaturepaymentdetail) {
+    list_ForEach(a_obj_ezsignsignaturepaymentdetailListEntry, custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->a_obj_ezsignsignaturepaymentdetail) {
+    cJSON *itemLocal = ezsignsignaturepaymentdetail_request_compound_convertToJSON(a_obj_ezsignsignaturepaymentdetailListEntry->data);
+    if(itemLocal == NULL) {
+    goto fail;
+    }
+    cJSON_AddItemToArray(a_obj_ezsignsignaturepaymentdetail, itemLocal);
     }
     }
     }
@@ -568,6 +631,9 @@ custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_t *custo
 
     // define the local list for custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->a_obj_ezsignelementdependency
     list_t *a_obj_ezsignelementdependencyList = NULL;
+
+    // define the local list for custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->a_obj_ezsignsignaturepaymentdetail
+    list_t *a_obj_ezsignsignaturepaymentdetailList = NULL;
 
     // define the local variable for custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->obj_createezsignelementspositionedbyword
     custom_create_ezsignelements_positioned_by_word_request_t *obj_createezsignelementspositionedbyword_local_nonprim = NULL;
@@ -908,6 +974,30 @@ custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_t *custo
     e_ezsignsignature_dependencyrequirement_local_nonprim = field_e_ezsignsignature_dependencyrequirement_parseFromJSON(e_ezsignsignature_dependencyrequirement); //custom
     }
 
+    // custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->s_ezsignsignature_creditcardamountdescription
+    cJSON *s_ezsignsignature_creditcardamountdescription = cJSON_GetObjectItemCaseSensitive(custom_ezsignsignature_create_ezsignelements_positioned_by_word_requestJSON, "sEzsignsignatureCreditcardamountdescription");
+    if (cJSON_IsNull(s_ezsignsignature_creditcardamountdescription)) {
+        s_ezsignsignature_creditcardamountdescription = NULL;
+    }
+    if (s_ezsignsignature_creditcardamountdescription) { 
+    if(!cJSON_IsString(s_ezsignsignature_creditcardamountdescription) && !cJSON_IsNull(s_ezsignsignature_creditcardamountdescription))
+    {
+    goto end; //String
+    }
+    }
+
+    // custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->d_ezsignsignature_creditcardamount
+    cJSON *d_ezsignsignature_creditcardamount = cJSON_GetObjectItemCaseSensitive(custom_ezsignsignature_create_ezsignelements_positioned_by_word_requestJSON, "dEzsignsignatureCreditcardamount");
+    if (cJSON_IsNull(d_ezsignsignature_creditcardamount)) {
+        d_ezsignsignature_creditcardamount = NULL;
+    }
+    if (d_ezsignsignature_creditcardamount) { 
+    if(!cJSON_IsString(d_ezsignsignature_creditcardamount) && !cJSON_IsNull(d_ezsignsignature_creditcardamount))
+    {
+    goto end; //String
+    }
+    }
+
     // custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->b_ezsignsignature_customdate
     cJSON *b_ezsignsignature_customdate = cJSON_GetObjectItemCaseSensitive(custom_ezsignsignature_create_ezsignelements_positioned_by_word_requestJSON, "bEzsignsignatureCustomdate");
     if (cJSON_IsNull(b_ezsignsignature_customdate)) {
@@ -968,6 +1058,30 @@ custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_t *custo
     }
     }
 
+    // custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->a_obj_ezsignsignaturepaymentdetail
+    cJSON *a_obj_ezsignsignaturepaymentdetail = cJSON_GetObjectItemCaseSensitive(custom_ezsignsignature_create_ezsignelements_positioned_by_word_requestJSON, "a_objEzsignsignaturepaymentdetail");
+    if (cJSON_IsNull(a_obj_ezsignsignaturepaymentdetail)) {
+        a_obj_ezsignsignaturepaymentdetail = NULL;
+    }
+    if (a_obj_ezsignsignaturepaymentdetail) { 
+    cJSON *a_obj_ezsignsignaturepaymentdetail_local_nonprimitive = NULL;
+    if(!cJSON_IsArray(a_obj_ezsignsignaturepaymentdetail)){
+        goto end; //nonprimitive container
+    }
+
+    a_obj_ezsignsignaturepaymentdetailList = list_createList();
+
+    cJSON_ArrayForEach(a_obj_ezsignsignaturepaymentdetail_local_nonprimitive,a_obj_ezsignsignaturepaymentdetail )
+    {
+        if(!cJSON_IsObject(a_obj_ezsignsignaturepaymentdetail_local_nonprimitive)){
+            goto end;
+        }
+        ezsignsignaturepaymentdetail_request_compound_t *a_obj_ezsignsignaturepaymentdetailItem = ezsignsignaturepaymentdetail_request_compound_parseFromJSON(a_obj_ezsignsignaturepaymentdetail_local_nonprimitive);
+
+        list_addElement(a_obj_ezsignsignaturepaymentdetailList, a_obj_ezsignsignaturepaymentdetailItem);
+    }
+    }
+
     // custom_ezsignsignature_create_ezsignelements_positioned_by_word_request->obj_createezsignelementspositionedbyword
     cJSON *obj_createezsignelementspositionedbyword = cJSON_GetObjectItemCaseSensitive(custom_ezsignsignature_create_ezsignelements_positioned_by_word_requestJSON, "objCreateezsignelementspositionedbyword");
     if (cJSON_IsNull(obj_createezsignelementspositionedbyword)) {
@@ -1010,9 +1124,12 @@ custom_ezsignsignature_create_ezsignelements_positioned_by_word_request_t *custo
         s_ezsignsignature_textvalidationcustommessage && !cJSON_IsNull(s_ezsignsignature_textvalidationcustommessage) ? strdup(s_ezsignsignature_textvalidationcustommessage->valuestring) : NULL,
         s_ezsignsignature_regexp && !cJSON_IsNull(s_ezsignsignature_regexp) ? strdup(s_ezsignsignature_regexp->valuestring) : NULL,
         e_ezsignsignature_dependencyrequirement ? e_ezsignsignature_dependencyrequirement_local_nonprim : 0,
+        s_ezsignsignature_creditcardamountdescription && !cJSON_IsNull(s_ezsignsignature_creditcardamountdescription) ? strdup(s_ezsignsignature_creditcardamountdescription->valuestring) : NULL,
+        d_ezsignsignature_creditcardamount && !cJSON_IsNull(d_ezsignsignature_creditcardamount) ? strdup(d_ezsignsignature_creditcardamount->valuestring) : NULL,
         b_ezsignsignature_customdate ? b_ezsignsignature_customdate->valueint : 0,
         a_obj_ezsignsignaturecustomdate ? a_obj_ezsignsignaturecustomdateList : NULL,
         a_obj_ezsignelementdependency ? a_obj_ezsignelementdependencyList : NULL,
+        a_obj_ezsignsignaturepaymentdetail ? a_obj_ezsignsignaturepaymentdetailList : NULL,
         obj_createezsignelementspositionedbyword_local_nonprim
         );
 
@@ -1056,6 +1173,15 @@ end:
         }
         list_freeList(a_obj_ezsignelementdependencyList);
         a_obj_ezsignelementdependencyList = NULL;
+    }
+    if (a_obj_ezsignsignaturepaymentdetailList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_ezsignsignaturepaymentdetailList) {
+            ezsignsignaturepaymentdetail_request_compound_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_ezsignsignaturepaymentdetailList);
+        a_obj_ezsignsignaturepaymentdetailList = NULL;
     }
     if (obj_createezsignelementspositionedbyword_local_nonprim) {
         custom_create_ezsignelements_positioned_by_word_request_free(obj_createezsignelementspositionedbyword_local_nonprim);

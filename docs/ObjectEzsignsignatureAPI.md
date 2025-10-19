@@ -7,11 +7,14 @@ Method | HTTP request | Description
 [**ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV1**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV1) | **POST** /1/object/ezsignsignature | Create a new Ezsignsignature
 [**ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV2**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV2) | **POST** /2/object/ezsignsignature | Create a new Ezsignsignature
 [**ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV3**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV3) | **POST** /3/object/ezsignsignature | Create a new Ezsignsignature
+[**ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV4**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV4) | **POST** /4/object/ezsignsignature | Create a new Ezsignsignature
 [**ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1) | **DELETE** /1/object/ezsignsignature/{pkiEzsignsignatureID} | Delete an existing Ezsignsignature
 [**ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV2**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV2) | **PUT** /2/object/ezsignsignature/{pkiEzsignsignatureID} | Edit an existing Ezsignsignature
+[**ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV3**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV3) | **PUT** /3/object/ezsignsignature/{pkiEzsignsignatureID} | Edit an existing Ezsignsignature
 [**ObjectEzsignsignatureAPI_ezsignsignatureGetEzsignsignatureattachmentV1**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureGetEzsignsignatureattachmentV1) | **GET** /1/object/ezsignsignature/{pkiEzsignsignatureID}/getEzsignsignatureattachment | Retrieve an existing Ezsignsignature&#39;s Ezsignsignatureattachments
 [**ObjectEzsignsignatureAPI_ezsignsignatureGetEzsignsignaturesAutomaticV1**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureGetEzsignsignaturesAutomaticV1) | **GET** /1/object/ezsignsignature/getEzsignsignaturesAutomatic | Retrieve all automatic Ezsignsignatures
 [**ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV3**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV3) | **GET** /3/object/ezsignsignature/{pkiEzsignsignatureID} | Retrieve an existing Ezsignsignature
+[**ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV4**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV4) | **GET** /4/object/ezsignsignature/{pkiEzsignsignatureID} | Retrieve an existing Ezsignsignature
 [**ObjectEzsignsignatureAPI_ezsignsignatureSignV1**](ObjectEzsignsignatureAPI.md#ObjectEzsignsignatureAPI_ezsignsignatureSignV1) | **POST** /1/object/ezsignsignature/{pkiEzsignsignatureID}/sign | Sign the Ezsignsignature
 
 
@@ -19,7 +22,7 @@ Method | HTTP request | Description
 ```c
 // Create a new Ezsignsignature
 //
-// The endpoint allows to create one or many elements at once.  The array can contain simple (Just the object) or compound (The object and its child) objects.  Creating compound elements allows to reduce the multiple requests to create all child objects.
+// The endpoint allows to create one or many elements at once.  The array can contain simple (Just the object) or compound (The object and its child) objects.  Creating compound elements allows to reduce the multiple requests to create all child objects.  Major step overhaul.  Endpoints that existed before version 1.3 do not allow you to combine forms and signatures in the same step. The step numbers are different from those indicated by endpoints added since version 1.3. This endpoint is compatible with endpoints that existed before 1.3 but are not compatible with those added since 1.3.
 //
 ezsignsignature_create_object_v1_response_t* ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV1(apiClient_t *apiClient, list_t *ezsignsignature_create_object_v1_request);
 ```
@@ -50,7 +53,7 @@ Name | Type | Description  | Notes
 ```c
 // Create a new Ezsignsignature
 //
-// The endpoint allows to create one or many elements at once.
+// The endpoint allows to create one or many elements at once.  Major step overhaul.  Endpoints that existed before version 1.3 do not allow you to combine forms and signatures in the same step. The step numbers are different from those indicated by endpoints added since version 1.3. This endpoint is compatible with endpoints that existed before 1.3 but are not compatible with those added since 1.3.
 //
 ezsignsignature_create_object_v2_response_t* ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV2(apiClient_t *apiClient, ezsignsignature_create_object_v2_request_t *ezsignsignature_create_object_v2_request);
 ```
@@ -81,7 +84,7 @@ Name | Type | Description  | Notes
 ```c
 // Create a new Ezsignsignature
 //
-// The endpoint allows to create one or many elements at once.
+// The endpoint allows to create one or many elements at once.  Major step overhaul.  Endpoints that existed before version 1.3 do not allow you to combine forms and signatures in the same step. The step numbers are different from those indicated by endpoints added since version 1.3. This endpoint is compatible with endpoints that existed before 1.3 but are not compatible with those added since 1.3.
 //
 ezsignsignature_create_object_v3_response_t* ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV3(apiClient_t *apiClient, ezsignsignature_create_object_v3_request_t *ezsignsignature_create_object_v3_request);
 ```
@@ -95,6 +98,37 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsignsignature_create_object_v3_response_t](ezsignsignature_create_object_v3_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV4**
+```c
+// Create a new Ezsignsignature
+//
+// The endpoint allows to create one or many elements at once.
+//
+ezsignsignature_create_object_v4_response_t* ObjectEzsignsignatureAPI_ezsignsignatureCreateObjectV4(apiClient_t *apiClient, ezsignsignature_create_object_v4_request_t *ezsignsignature_create_object_v4_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**ezsignsignature_create_object_v4_request** | **[ezsignsignature_create_object_v4_request_t](ezsignsignature_create_object_v4_request.md) \*** |  | 
+
+### Return type
+
+[ezsignsignature_create_object_v4_response_t](ezsignsignature_create_object_v4_response.md) *
 
 
 ### Authorization
@@ -143,7 +177,7 @@ Name | Type | Description  | Notes
 ```c
 // Edit an existing Ezsignsignature
 //
-// 
+// Major step overhaul.  Endpoints that existed before version 1.3 do not allow you to combine forms and signatures in the same step. The step numbers are different from those indicated by endpoints added since version 1.3. This endpoint is compatible with endpoints that existed before 1.3 but are not compatible with those added since 1.3.
 //
 ezsignsignature_edit_object_v2_response_t* ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV2(apiClient_t *apiClient, int *pkiEzsignsignatureID, ezsignsignature_edit_object_v2_request_t *ezsignsignature_edit_object_v2_request);
 ```
@@ -158,6 +192,38 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsignsignature_edit_object_v2_response_t](ezsignsignature_edit_object_v2_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV3**
+```c
+// Edit an existing Ezsignsignature
+//
+// 
+//
+ezsignsignature_edit_object_v3_response_t* ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV3(apiClient_t *apiClient, int *pkiEzsignsignatureID, ezsignsignature_edit_object_v3_request_t *ezsignsignature_edit_object_v3_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsignsignatureID** | **int \*** |  | 
+**ezsignsignature_edit_object_v3_request** | **[ezsignsignature_edit_object_v3_request_t](ezsignsignature_edit_object_v3_request.md) \*** |  | 
+
+### Return type
+
+[ezsignsignature_edit_object_v3_response_t](ezsignsignature_edit_object_v3_response.md) *
 
 
 ### Authorization
@@ -234,7 +300,7 @@ Name | Type | Description  | Notes
 ```c
 // Retrieve an existing Ezsignsignature
 //
-// 
+// Major step overhaul.  Endpoints that existed before version 1.3 do not allow you to combine forms and signatures in the same step. The step numbers are different from those indicated by endpoints added since version 1.3. This endpoint is compatible with endpoints that existed before 1.3 but are not compatible with those added since 1.3.
 //
 ezsignsignature_get_object_v3_response_t* ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV3(apiClient_t *apiClient, int *pkiEzsignsignatureID);
 ```
@@ -248,6 +314,37 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsignsignature_get_object_v3_response_t](ezsignsignature_get_object_v3_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV4**
+```c
+// Retrieve an existing Ezsignsignature
+//
+// 
+//
+ezsignsignature_get_object_v4_response_t* ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV4(apiClient_t *apiClient, int *pkiEzsignsignatureID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsignsignatureID** | **int \*** |  | 
+
+### Return type
+
+[ezsignsignature_get_object_v4_response_t](ezsignsignature_get_object_v4_response.md) *
 
 
 ### Authorization

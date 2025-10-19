@@ -15,6 +15,8 @@
 #include "../model/ezsigntemplatedocument_edit_ezsigntemplateformfieldgroups_v1_response.h"
 #include "../model/ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request.h"
 #include "../model/ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response.h"
+#include "../model/ezsigntemplatedocument_edit_ezsigntemplatesignatures_v2_request.h"
+#include "../model/ezsigntemplatedocument_edit_ezsigntemplatesignatures_v2_response.h"
 #include "../model/ezsigntemplatedocument_edit_object_v1_request.h"
 #include "../model/ezsigntemplatedocument_edit_object_v1_response.h"
 #include "../model/ezsigntemplatedocument_extract_text_v1_request.h"
@@ -24,6 +26,7 @@
 #include "../model/ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response.h"
 #include "../model/ezsigntemplatedocument_get_ezsigntemplateformfieldgroups_v1_response.h"
 #include "../model/ezsigntemplatedocument_get_ezsigntemplatesignatures_v1_response.h"
+#include "../model/ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response.h"
 #include "../model/ezsigntemplatedocument_get_object_v2_response.h"
 #include "../model/ezsigntemplatedocument_get_words_positions_v1_request.h"
 #include "../model/ezsigntemplatedocument_get_words_positions_v1_response.h"
@@ -58,10 +61,18 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditEzsigntemplateformfiel
 
 // Edit multiple Ezsigntemplatesignatures
 //
-// Using this endpoint, you can edit multiple Ezsigntemplatesignatures at the same time.
+// Using this endpoint, you can edit multiple Ezsigntemplatesignatures at the same time.  Major step overhaul.  Endpoints that existed before version 1.3 do not allow you to combine forms and signatures in the same step. The step numbers are different from those indicated by endpoints added since version 1.3. This endpoint is compatible with endpoints that existed before 1.3 but are not compatible with those added since 1.3.
 //
 ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_t*
 ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditEzsigntemplatesignaturesV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request_t *ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request);
+
+
+// Edit multiple Ezsigntemplatesignatures
+//
+// Using this endpoint, you can edit multiple Ezsigntemplatesignatures at the same time.
+//
+ezsigntemplatedocument_edit_ezsigntemplatesignatures_v2_response_t*
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentEditEzsigntemplatesignaturesV2(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID, ezsigntemplatedocument_edit_ezsigntemplatesignatures_v2_request_t *ezsigntemplatedocument_edit_ezsigntemplatesignatures_v2_request);
 
 
 // Edit an existing Ezsigntemplatedocument
@@ -114,10 +125,18 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplateformfield
 
 // Retrieve an existing Ezsigntemplatedocument's Ezsigntemplatesignatures
 //
-// 
+// Major step overhaul.  Endpoints that existed before version 1.3 do not allow you to combine forms and signatures in the same step. The step numbers are different from those indicated by endpoints added since version 1.3. This endpoint is compatible with endpoints that existed before 1.3 but are not compatible with those added since 1.3.
 //
 ezsigntemplatedocument_get_ezsigntemplatesignatures_v1_response_t*
 ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatesignaturesV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID);
+
+
+// Retrieve an existing Ezsigntemplatedocument's Ezsigntemplatesignatures
+//
+// 
+//
+ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response_t*
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatesignaturesV2(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID);
 
 
 // Retrieve an existing Ezsigntemplatedocument

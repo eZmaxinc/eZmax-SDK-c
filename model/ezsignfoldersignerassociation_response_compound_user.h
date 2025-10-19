@@ -15,6 +15,7 @@
 
 typedef struct ezsignfoldersignerassociation_response_compound_user_t ezsignfoldersignerassociation_response_compound_user_t;
 
+#include "field_e_user_type.h"
 
 
 
@@ -24,6 +25,7 @@ typedef struct ezsignfoldersignerassociation_response_compound_user_t {
     char *s_user_firstname; // string
     char *s_user_lastname; // string
     char *s_email_address; // string
+    ezmax_api_definition__full_field_e_user_type__e e_user_type; //referenced enum
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsignfoldersignerassociation_response_compound_user_t;
@@ -33,7 +35,8 @@ __attribute__((deprecated)) ezsignfoldersignerassociation_response_compound_user
     int fki_language_id,
     char *s_user_firstname,
     char *s_user_lastname,
-    char *s_email_address
+    char *s_email_address,
+    ezmax_api_definition__full_field_e_user_type__e e_user_type
 );
 
 void ezsignfoldersignerassociation_response_compound_user_free(ezsignfoldersignerassociation_response_compound_user_t *ezsignfoldersignerassociation_response_compound_user);

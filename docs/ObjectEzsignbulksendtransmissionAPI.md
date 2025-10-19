@@ -4,11 +4,46 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetBatchFileV1**](ObjectEzsignbulksendtransmissionAPI.md#ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetBatchFileV1) | **GET** /1/object/ezsignbulksendtransmission/{pkiEzsignbulksendtransmissionID}/getBatchFile | Retrieve file to download documents in batch
 [**ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetCsvErrorsV1**](ObjectEzsignbulksendtransmissionAPI.md#ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetCsvErrorsV1) | **GET** /1/object/ezsignbulksendtransmission/{pkiEzsignbulksendtransmissionID}/getCsvErrors | Retrieve an existing Ezsignbulksendtransmission&#39;s Csv containing errors
 [**ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetEzsignsignaturesAutomaticV1**](ObjectEzsignbulksendtransmissionAPI.md#ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetEzsignsignaturesAutomaticV1) | **GET** /1/object/ezsignbulksendtransmission/{pkiEzsignbulksendtransmissionID}/getEzsignsignaturesAutomatic | Retrieve an existing Ezsignbulksendtransmission&#39;s automatic Ezsignsignatures
 [**ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetFormsDataV1**](ObjectEzsignbulksendtransmissionAPI.md#ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetFormsDataV1) | **GET** /1/object/ezsignbulksendtransmission/{pkiEzsignbulksendtransmissionID}/getFormsData | Retrieve an existing Ezsignbulksendtransmission&#39;s forms data
 [**ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetObjectV2**](ObjectEzsignbulksendtransmissionAPI.md#ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetObjectV2) | **GET** /2/object/ezsignbulksendtransmission/{pkiEzsignbulksendtransmissionID} | Retrieve an existing Ezsignbulksendtransmission
 
+
+# **ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetBatchFileV1**
+```c
+// Retrieve file to download documents in batch
+//
+binary_t** ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetBatchFileV1(apiClient_t *apiClient, int *pkiEzsignbulksendtransmissionID, int *bIncludeSigned, int *bIncludeAttachment, int *bIncludeProofdocument, int *bIncludeProof);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsignbulksendtransmissionID** | **int \*** |  | 
+**bIncludeSigned** | **int \*** | Include final document once all signatures were applied | [optional] 
+**bIncludeAttachment** | **int \*** | Include attached files in signatures | [optional] 
+**bIncludeProofdocument** | **int \*** | Include the evidence report | [optional] 
+**bIncludeProof** | **int \*** | include the complete evidence archive including all of the above and more | [optional] 
+
+### Return type
+
+binary_t**
+
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/xml, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetCsvErrorsV1**
 ```c

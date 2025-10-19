@@ -57,6 +57,8 @@ typedef struct ezsignsignature_request_compound_v2_t {
     char *s_ezsignsignature_textvalidationcustommessage; // string
     char *s_ezsignsignature_regexp; // string
     ezmax_api_definition__full_field_e_ezsignsignature_dependencyrequirement__e e_ezsignsignature_dependencyrequirement; //referenced enum
+    char *s_ezsignsignature_creditcardamountdescription; // string
+    char *d_ezsignsignature_creditcardamount; // string
     int b_ezsignsignature_customdate; //boolean
     list_t *a_obj_ezsignsignaturecustomdate; //nonprimitive container
     list_t *a_obj_ezsignelementdependency; //nonprimitive container
@@ -94,6 +96,8 @@ __attribute__((deprecated)) ezsignsignature_request_compound_v2_t *ezsignsignatu
     char *s_ezsignsignature_textvalidationcustommessage,
     char *s_ezsignsignature_regexp,
     ezmax_api_definition__full_field_e_ezsignsignature_dependencyrequirement__e e_ezsignsignature_dependencyrequirement,
+    char *s_ezsignsignature_creditcardamountdescription,
+    char *d_ezsignsignature_creditcardamount,
     int b_ezsignsignature_customdate,
     list_t *a_obj_ezsignsignaturecustomdate,
     list_t *a_obj_ezsignelementdependency,

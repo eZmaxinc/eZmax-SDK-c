@@ -26,10 +26,12 @@ typedef struct activesession_response_compound_user_t {
     char *s_user_firstname; // string
     char *s_user_lastname; // string
     char *s_email_address; // string
+    int b_user_addmeinezsignfolder; //boolean
     ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__e e_user_ezsignsendreminderfrequency; //referenced enum
     int i_user_interfacecolor; //numeric
     int b_user_interfacedark; //boolean
     int i_user_listresult; //numeric
+    int i_user_frontendgoal; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } activesession_response_compound_user_t;
@@ -41,10 +43,12 @@ __attribute__((deprecated)) activesession_response_compound_user_t *activesessio
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_email_address,
+    int b_user_addmeinezsignfolder,
     ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__e e_user_ezsignsendreminderfrequency,
     int i_user_interfacecolor,
     int b_user_interfacedark,
-    int i_user_listresult
+    int i_user_listresult,
+    int i_user_frontendgoal
 );
 
 void activesession_response_compound_user_free(activesession_response_compound_user_t *activesession_response_compound_user);

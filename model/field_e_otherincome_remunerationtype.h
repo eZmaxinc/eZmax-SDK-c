@@ -1,0 +1,32 @@
+/*
+ * field_e_otherincome_remunerationtype.h
+ *
+ * The remunerationtype of the Otherincome
+ */
+
+#ifndef _field_e_otherincome_remunerationtype_H_
+#define _field_e_otherincome_remunerationtype_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_otherincome_remunerationtype_t field_e_otherincome_remunerationtype_t;
+
+
+// Enum  for field_e_otherincome_remunerationtype
+
+typedef enum { ezmax_api_definition__full_field_e_otherincome_remunerationtype__NULL = 0, ezmax_api_definition__full_field_e_otherincome_remunerationtype__Dollars, ezmax_api_definition__full_field_e_otherincome_remunerationtype__DollarsTaxesIncluded } ezmax_api_definition__full_field_e_otherincome_remunerationtype__e;
+
+char* field_e_otherincome_remunerationtype_field_e_otherincome_remunerationtype_ToString(ezmax_api_definition__full_field_e_otherincome_remunerationtype__e field_e_otherincome_remunerationtype);
+
+ezmax_api_definition__full_field_e_otherincome_remunerationtype__e field_e_otherincome_remunerationtype_field_e_otherincome_remunerationtype_FromString(char* field_e_otherincome_remunerationtype);
+
+cJSON *field_e_otherincome_remunerationtype_convertToJSON(ezmax_api_definition__full_field_e_otherincome_remunerationtype__e field_e_otherincome_remunerationtype);
+
+ezmax_api_definition__full_field_e_otherincome_remunerationtype__e field_e_otherincome_remunerationtype_parseFromJSON(cJSON *field_e_otherincome_remunerationtypeJSON);
+
+#endif /* _field_e_otherincome_remunerationtype_H_ */
+

@@ -12,6 +12,7 @@ static ezsignfolder_list_element_t *ezsignfolder_list_element_create_internal(
     char *s_ezsignfoldertype_name_x,
     char *s_ezsignfolder_description,
     ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step,
+    ezmax_api_definition__full_field_e_ezsignfolder_completion__e e_ezsignfolder_completion,
     char *dt_created_date,
     char *dt_ezsignfolder_delayedsenddate,
     char *dt_ezsignfolder_sentdate,
@@ -41,6 +42,7 @@ static ezsignfolder_list_element_t *ezsignfolder_list_element_create_internal(
     ezsignfolder_list_element_local_var->s_ezsignfoldertype_name_x = s_ezsignfoldertype_name_x;
     ezsignfolder_list_element_local_var->s_ezsignfolder_description = s_ezsignfolder_description;
     ezsignfolder_list_element_local_var->e_ezsignfolder_step = e_ezsignfolder_step;
+    ezsignfolder_list_element_local_var->e_ezsignfolder_completion = e_ezsignfolder_completion;
     ezsignfolder_list_element_local_var->dt_created_date = dt_created_date;
     ezsignfolder_list_element_local_var->dt_ezsignfolder_delayedsenddate = dt_ezsignfolder_delayedsenddate;
     ezsignfolder_list_element_local_var->dt_ezsignfolder_sentdate = dt_ezsignfolder_sentdate;
@@ -71,6 +73,7 @@ __attribute__((deprecated)) ezsignfolder_list_element_t *ezsignfolder_list_eleme
     char *s_ezsignfoldertype_name_x,
     char *s_ezsignfolder_description,
     ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step,
+    ezmax_api_definition__full_field_e_ezsignfolder_completion__e e_ezsignfolder_completion,
     char *dt_created_date,
     char *dt_ezsignfolder_delayedsenddate,
     char *dt_ezsignfolder_sentdate,
@@ -97,6 +100,7 @@ __attribute__((deprecated)) ezsignfolder_list_element_t *ezsignfolder_list_eleme
         s_ezsignfoldertype_name_x,
         s_ezsignfolder_description,
         e_ezsignfolder_step,
+        e_ezsignfolder_completion,
         dt_created_date,
         dt_ezsignfolder_delayedsenddate,
         dt_ezsignfolder_sentdate,
@@ -240,6 +244,20 @@ cJSON *ezsignfolder_list_element_convertToJSON(ezsignfolder_list_element_t *ezsi
         goto fail; // custom
     }
     cJSON_AddItemToObject(item, "eEzsignfolderStep", e_ezsignfolder_step_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
+
+
+    // ezsignfolder_list_element->e_ezsignfolder_completion
+    if (ezmax_api_definition__full_field_e_ezsignfolder_completion__NULL == ezsignfolder_list_element->e_ezsignfolder_completion) {
+        goto fail;
+    }
+    cJSON *e_ezsignfolder_completion_local_JSON = field_e_ezsignfolder_completion_convertToJSON(ezsignfolder_list_element->e_ezsignfolder_completion);
+    if(e_ezsignfolder_completion_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsignfolderCompletion", e_ezsignfolder_completion_local_JSON);
     if(item->child == NULL) {
         goto fail;
     }
@@ -416,6 +434,9 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_parseFromJSON(cJSON *ezsi
     // define the local variable for ezsignfolder_list_element->e_ezsignfolder_step
     ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step_local_nonprim = 0;
 
+    // define the local variable for ezsignfolder_list_element->e_ezsignfolder_completion
+    ezmax_api_definition__full_field_e_ezsignfolder_completion__e e_ezsignfolder_completion_local_nonprim = 0;
+
     // ezsignfolder_list_element->pki_ezsignfolder_id
     cJSON *pki_ezsignfolder_id = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "pkiEzsignfolderID");
     if (cJSON_IsNull(pki_ezsignfolder_id)) {
@@ -499,6 +520,18 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_parseFromJSON(cJSON *ezsi
 
     
     e_ezsignfolder_step_local_nonprim = field_e_ezsignfolder_step_parseFromJSON(e_ezsignfolder_step); //custom
+
+    // ezsignfolder_list_element->e_ezsignfolder_completion
+    cJSON *e_ezsignfolder_completion = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "eEzsignfolderCompletion");
+    if (cJSON_IsNull(e_ezsignfolder_completion)) {
+        e_ezsignfolder_completion = NULL;
+    }
+    if (!e_ezsignfolder_completion) {
+        goto end;
+    }
+
+    
+    e_ezsignfolder_completion_local_nonprim = field_e_ezsignfolder_completion_parseFromJSON(e_ezsignfolder_completion); //custom
 
     // ezsignfolder_list_element->dt_created_date
     cJSON *dt_created_date = cJSON_GetObjectItemCaseSensitive(ezsignfolder_list_elementJSON, "dtCreatedDate");
@@ -754,6 +787,7 @@ ezsignfolder_list_element_t *ezsignfolder_list_element_parseFromJSON(cJSON *ezsi
         strdup(s_ezsignfoldertype_name_x->valuestring),
         strdup(s_ezsignfolder_description->valuestring),
         e_ezsignfolder_step_local_nonprim,
+        e_ezsignfolder_completion_local_nonprim,
         strdup(dt_created_date->valuestring),
         dt_ezsignfolder_delayedsenddate && !cJSON_IsNull(dt_ezsignfolder_delayedsenddate) ? strdup(dt_ezsignfolder_delayedsenddate->valuestring) : NULL,
         dt_ezsignfolder_sentdate && !cJSON_IsNull(dt_ezsignfolder_sentdate) ? strdup(dt_ezsignfolder_sentdate->valuestring) : NULL,
@@ -781,6 +815,9 @@ end:
     }
     if (e_ezsignfolder_step_local_nonprim) {
         e_ezsignfolder_step_local_nonprim = 0;
+    }
+    if (e_ezsignfolder_completion_local_nonprim) {
+        e_ezsignfolder_completion_local_nonprim = 0;
     }
     return NULL;
 

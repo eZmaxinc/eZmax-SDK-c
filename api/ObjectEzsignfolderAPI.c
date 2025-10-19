@@ -9,13 +9,13 @@
 // Functions for enum EORDERBY for ObjectEzsignfolderAPI_ezsignfolderGetListV1
 
 static char* ezsignfolderGetListV1_EORDERBY_ToString(ezmax_api_definition__full_ezsignfolderGetListV1_eOrderBy_e EORDERBY){
-    char *EORDERBYArray[] =  { "NULL", "pkiEzsignfolderID_ASC", "pkiEzsignfolderID_DESC", "sEzsignfolderDescription_ASC", "sEzsignfolderDescription_DESC", "dtCreatedDate_ASC", "dtCreatedDate_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC", "eEzsignfolderStep_ASC", "eEzsignfolderStep_DESC", "dtEzsignfolderSentdate_ASC", "dtEzsignfolderSentdate_DESC", "dtEzsignfolderDuedate_ASC", "dtEzsignfolderDuedate_DESC", "iEzsigndocument_ASC", "iEzsigndocument_DESC", "iEzsigndocumentEdm_ASC", "iEzsigndocumentEdm_DESC", "iEzsignsignature_ASC", "iEzsignsignature_DESC", "iEzsignsignatureSigned_ASC", "iEzsignsignatureSigned_DESC", "iEzsignformfieldgroup_ASC", "iEzsignformfieldgroup_DESC", "iEzsignformfieldgroupCompleted_ASC", "iEzsignformfieldgroupCompleted_DESC", "dEzsignfolderCompletedpercentage_ASC", "dEzsignfolderCompletedpercentage_DESC", "dEzsignfolderFormcompletedpercentage_ASC", "dEzsignfolderFormcompletedpercentage_DESC", "dEzsignfolderSignaturecompletedpercentage_ASC", "dEzsignfolderSignaturecompletedpercentagee_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiEzsignfolderID_ASC", "pkiEzsignfolderID_DESC", "sEzsignfolderDescription_ASC", "sEzsignfolderDescription_DESC", "dtCreatedDate_ASC", "dtCreatedDate_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC", "eEzsignfolderStep_ASC", "eEzsignfolderStep_DESC", "eEzsignfolderCompletion_ASC", "eEzsignfolderCompletion_DESC", "dtEzsignfolderSentdate_ASC", "dtEzsignfolderSentdate_DESC", "dtEzsignfolderDuedate_ASC", "dtEzsignfolderDuedate_DESC", "iEzsigndocument_ASC", "iEzsigndocument_DESC", "iEzsigndocumentEdm_ASC", "iEzsigndocumentEdm_DESC", "iEzsignsignature_ASC", "iEzsignsignature_DESC", "iEzsignsignatureSigned_ASC", "iEzsignsignatureSigned_DESC", "iEzsignformfieldgroup_ASC", "iEzsignformfieldgroup_DESC", "iEzsignformfieldgroupCompleted_ASC", "iEzsignformfieldgroupCompleted_DESC", "dEzsignfolderCompletedpercentage_ASC", "dEzsignfolderCompletedpercentage_DESC", "dEzsignfolderFormcompletedpercentage_ASC", "dEzsignfolderFormcompletedpercentage_DESC", "dEzsignfolderSignaturecompletedpercentage_ASC", "dEzsignfolderSignaturecompletedpercentagee_DESC" };
     return EORDERBYArray[EORDERBY];
 }
 
 static ezmax_api_definition__full_ezsignfolderGetListV1_eOrderBy_e ezsignfolderGetListV1_EORDERBY_FromString(char* EORDERBY){
     int stringToReturn = 0;
-    char *EORDERBYArray[] =  { "NULL", "pkiEzsignfolderID_ASC", "pkiEzsignfolderID_DESC", "sEzsignfolderDescription_ASC", "sEzsignfolderDescription_DESC", "dtCreatedDate_ASC", "dtCreatedDate_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC", "eEzsignfolderStep_ASC", "eEzsignfolderStep_DESC", "dtEzsignfolderSentdate_ASC", "dtEzsignfolderSentdate_DESC", "dtEzsignfolderDuedate_ASC", "dtEzsignfolderDuedate_DESC", "iEzsigndocument_ASC", "iEzsigndocument_DESC", "iEzsigndocumentEdm_ASC", "iEzsigndocumentEdm_DESC", "iEzsignsignature_ASC", "iEzsignsignature_DESC", "iEzsignsignatureSigned_ASC", "iEzsignsignatureSigned_DESC", "iEzsignformfieldgroup_ASC", "iEzsignformfieldgroup_DESC", "iEzsignformfieldgroupCompleted_ASC", "iEzsignformfieldgroupCompleted_DESC", "dEzsignfolderCompletedpercentage_ASC", "dEzsignfolderCompletedpercentage_DESC", "dEzsignfolderFormcompletedpercentage_ASC", "dEzsignfolderFormcompletedpercentage_DESC", "dEzsignfolderSignaturecompletedpercentage_ASC", "dEzsignfolderSignaturecompletedpercentagee_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiEzsignfolderID_ASC", "pkiEzsignfolderID_DESC", "sEzsignfolderDescription_ASC", "sEzsignfolderDescription_DESC", "dtCreatedDate_ASC", "dtCreatedDate_DESC", "fkiEzsignfoldertypeID_ASC", "fkiEzsignfoldertypeID_DESC", "sEzsignfoldertypeNameX_ASC", "sEzsignfoldertypeNameX_DESC", "eEzsignfolderStep_ASC", "eEzsignfolderStep_DESC", "eEzsignfolderCompletion_ASC", "eEzsignfolderCompletion_DESC", "dtEzsignfolderSentdate_ASC", "dtEzsignfolderSentdate_DESC", "dtEzsignfolderDuedate_ASC", "dtEzsignfolderDuedate_DESC", "iEzsigndocument_ASC", "iEzsigndocument_DESC", "iEzsigndocumentEdm_ASC", "iEzsigndocumentEdm_DESC", "iEzsignsignature_ASC", "iEzsignsignature_DESC", "iEzsignsignatureSigned_ASC", "iEzsignsignatureSigned_DESC", "iEzsignformfieldgroup_ASC", "iEzsignformfieldgroup_DESC", "iEzsignformfieldgroupCompleted_ASC", "iEzsignformfieldgroupCompleted_DESC", "dEzsignfolderCompletedpercentage_ASC", "dEzsignfolderCompletedpercentage_DESC", "dEzsignfolderFormcompletedpercentage_ASC", "dEzsignfolderFormcompletedpercentage_DESC", "dEzsignfolderSignaturecompletedpercentage_ASC", "dEzsignfolderSignaturecompletedpercentagee_DESC" };
     size_t sizeofArray = sizeof(EORDERBYArray) / sizeof(EORDERBYArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(EORDERBY, EORDERBYArray[stringToReturn]) == 0) {
@@ -258,6 +258,7 @@ ObjectEzsignfolderAPI_ezsignfolderBatchDownloadV1(apiClient_t *apiClient, int *p
         localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/zip"); //produces
+    list_addElement(localVarHeaderType,"application/pdf"); //produces
     list_addElement(localVarHeaderType,"application/json"); //produces
     list_addElement(localVarContentType,"application/json"); //consumes
     apiClient_invoke(apiClient,
@@ -1116,7 +1117,7 @@ end:
 
 // Retrieve actionable elements for the Ezsignfolder
 //
-// Return the Ezsignsignatures that can be signed and Ezsignformfieldgroups that can be filled by the current user at the current step in the process
+// Return the Ezsignsignatures that can be signed and Ezsignformfieldgroups that can be filled by the current user at the current step in the process.    Major step overhaul.  Endpoints that existed before version 1.3 do not allow you to combine forms and signatures in the same step. The step numbers are different from those indicated by endpoints added since version 1.3. This endpoint is compatible with endpoints that existed before 1.3 but are not compatible with those added since 1.3.
 //
 ezsignfolder_get_actionable_elements_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV1(apiClient_t *apiClient, int *pkiEzsignfolderID)
@@ -1181,6 +1182,99 @@ ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV1(apiClient_t *apiClient
     if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
         cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
         elementToReturn = ezsignfolder_get_actionable_elements_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsignfolderID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve actionable elements for the Ezsignfolder
+//
+// Return the Ezsignsignatures that can be signed and Ezsignformfieldgroups that can be filled by the current user at the current step in the process
+//
+ezsignfolder_get_actionable_elements_v2_response_t*
+ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV2(apiClient_t *apiClient, int *pkiEzsignfolderID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/2/object/ezsignfolder/{pkiEzsignfolderID}/getActionableElements");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
+    if(pkiEzsignfolderID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsignfolderID = malloc(sizeOfPathParams_pkiEzsignfolderID);
+    snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
+
+    char localVarBuff_pkiEzsignfolderID[256];
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    ezsignfolder_get_actionable_elements_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_get_actionable_elements_v2_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
         cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
         if(elementToReturn == NULL) {
             // return 0;
@@ -1743,7 +1837,7 @@ end:
 
 // Retrieve an existing Ezsignfolder's Ezsigndocuments
 //
-// 
+// Major step overhaul.  Endpoints that existed before version 1.3 do not allow you to combine forms and signatures in the same step. The step numbers are different from those indicated by endpoints added since version 1.3. This endpoint is compatible with endpoints that existed before 1.3 but are not compatible with those added since 1.3.
 //
 ezsignfolder_get_ezsigndocuments_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1(apiClient_t *apiClient, int *pkiEzsignfolderID)
@@ -1804,6 +1898,95 @@ ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV1(apiClient_t *apiClient, i
     if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
         cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
         elementToReturn = ezsignfolder_get_ezsigndocuments_v1_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsignfolderID);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Retrieve an existing Ezsignfolder's Ezsigndocuments
+//
+// 
+//
+ezsignfolder_get_ezsigndocuments_v2_response_t*
+ObjectEzsignfolderAPI_ezsignfolderGetEzsigndocumentsV2(apiClient_t *apiClient, int *pkiEzsignfolderID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/2/object/ezsignfolder/{pkiEzsignfolderID}/getEzsigndocuments");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
+    if(pkiEzsignfolderID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsignfolderID = malloc(sizeOfPathParams_pkiEzsignfolderID);
+    snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
+
+    char localVarBuff_pkiEzsignfolderID[256];
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    ezsignfolder_get_ezsigndocuments_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_get_ezsigndocuments_v2_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
         cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
         if(elementToReturn == NULL) {
             // return 0;
@@ -2671,9 +2854,9 @@ end:
 
 }
 
-// Import an Ezsigntemplatepackage in the Ezsignfolder.
+// Import an Ezsigntemplatepackage in the Ezsignfolder
 //
-// This endpoint imports all of the Ezsigntemplates from the Ezsigntemplatepackage into the Ezsignfolder as Ezsigndocuments.  This allows to automatically apply all the Ezsigntemplateformfieldgroups and Ezsigntemplatesignatures on the newly created Ezsigndocuments in a single step.
+// This endpoint imports all of the Ezsigntemplates from the Ezsigntemplatepackage into the Ezsignfolder as Ezsigndocuments.  This allows to automatically apply all the Ezsigntemplateformfieldgroups and Ezsigntemplatesignatures on the newly created Ezsigndocuments in a single step.  Major step overhaul.  Endpoints that existed before version 1.3 do not allow you to combine forms and signatures in the same step. The step numbers are different from those indicated by endpoints added since version 1.3. This endpoint is compatible with endpoints that existed before 1.3 but are not compatible with those added since 1.3.
 //
 ezsignfolder_import_ezsigntemplatepackage_v1_response_t*
 ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_import_ezsigntemplatepackage_v1_request_t *ezsignfolder_import_ezsigntemplatepackage_v1_request)
@@ -2771,6 +2954,115 @@ ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV1(apiClient_t *api
     if (localVarSingleItemJSON_ezsignfolder_import_ezsigntemplatepackage_v1_request) {
         cJSON_Delete(localVarSingleItemJSON_ezsignfolder_import_ezsigntemplatepackage_v1_request);
         localVarSingleItemJSON_ezsignfolder_import_ezsigntemplatepackage_v1_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Import an Ezsigntemplatepackage in the Ezsignfolder
+//
+// This endpoint imports all of the Ezsigntemplates from the Ezsigntemplatepackage into the Ezsignfolder as Ezsigndocuments.  This allows to automatically apply all the Ezsigntemplateformfieldgroups and Ezsigntemplatesignatures on the newly created Ezsigndocuments in a single step.
+//
+ezsignfolder_import_ezsigntemplatepackage_v2_response_t*
+ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV2(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_import_ezsigntemplatepackage_v2_request_t *ezsignfolder_import_ezsigntemplatepackage_v2_request)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/2/object/ezsignfolder/{pkiEzsignfolderID}/importEzsigntemplatepackage");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsignfolderID =  + sizeof("{ pkiEzsignfolderID }") - 1;
+    if(pkiEzsignfolderID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsignfolderID = malloc(sizeOfPathParams_pkiEzsignfolderID);
+    snprintf(localVarToReplace_pkiEzsignfolderID, sizeOfPathParams_pkiEzsignfolderID, "{%s}", "pkiEzsignfolderID");
+
+    char localVarBuff_pkiEzsignfolderID[256];
+    snprintf(localVarBuff_pkiEzsignfolderID, sizeof localVarBuff_pkiEzsignfolderID, "%ld", (long)*pkiEzsignfolderID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_ezsignfolder_import_ezsigntemplatepackage_v2_request = NULL;
+    if (ezsignfolder_import_ezsigntemplatepackage_v2_request != NULL)
+    {
+        //not string, not binary
+        localVarSingleItemJSON_ezsignfolder_import_ezsigntemplatepackage_v2_request = ezsignfolder_import_ezsigntemplatepackage_v2_request_convertToJSON(ezsignfolder_import_ezsigntemplatepackage_v2_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignfolder_import_ezsigntemplatepackage_v2_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "POST");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 422) {
+    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    ezsignfolder_import_ezsigntemplatepackage_v2_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEzsignfolderAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = ezsignfolder_import_ezsigntemplatepackage_v2_response_parseFromJSON(ObjectEzsignfolderAPIlocalVarJSON);
+        cJSON_Delete(ObjectEzsignfolderAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsignfolderID);
+    if (localVarSingleItemJSON_ezsignfolder_import_ezsigntemplatepackage_v2_request) {
+        cJSON_Delete(localVarSingleItemJSON_ezsignfolder_import_ezsigntemplatepackage_v2_request);
+        localVarSingleItemJSON_ezsignfolder_import_ezsigntemplatepackage_v2_request = NULL;
     }
     free(localVarBodyParameters);
     return elementToReturn;

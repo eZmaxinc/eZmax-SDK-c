@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **s_modulesection_name_x** | **char \*** | The Name of the Modulesection in the language of the requester | [optional] 
 **e_versionhistory_usertype** | **field_e_versionhistory_usertype_t \*** |  | [optional] 
 **obj_versionhistory_detail** | [**multilingual_versionhistory_detail_t**](multilingual_versionhistory_detail.md) \* |  | 
-**dt_versionhistory_date** | **char \*** | The date  at which the Versionhistory was published or should be published | 
-**dt_versionhistory_dateend** | **char \*** | The date  at which the Versionhistory will no longer be visible | [optional] 
+**dt_versionhistory_date** | **char \*** | The date at which the Versionhistory was published or should be published | 
+**dt_versionhistory_dateend** | **char \*** | The date at which the Versionhistory will no longer be visible | [optional] 
 **e_versionhistory_type** | **field_e_versionhistory_type_t \*** |  | 
 **b_versionhistory_draft** | **int** | Whether the Versionhistory is published or still a draft | 
 

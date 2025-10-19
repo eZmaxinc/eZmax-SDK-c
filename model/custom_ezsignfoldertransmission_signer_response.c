@@ -8,7 +8,8 @@
 static custom_ezsignfoldertransmission_signer_response_t *custom_ezsignfoldertransmission_signer_response_create_internal(
     int fki_user_id,
     char *s_contact_firstname,
-    char *s_contact_lastname
+    char *s_contact_lastname,
+    char *s_ezsignsignergroup_description_x
     ) {
     custom_ezsignfoldertransmission_signer_response_t *custom_ezsignfoldertransmission_signer_response_local_var = malloc(sizeof(custom_ezsignfoldertransmission_signer_response_t));
     if (!custom_ezsignfoldertransmission_signer_response_local_var) {
@@ -17,6 +18,7 @@ static custom_ezsignfoldertransmission_signer_response_t *custom_ezsignfoldertra
     custom_ezsignfoldertransmission_signer_response_local_var->fki_user_id = fki_user_id;
     custom_ezsignfoldertransmission_signer_response_local_var->s_contact_firstname = s_contact_firstname;
     custom_ezsignfoldertransmission_signer_response_local_var->s_contact_lastname = s_contact_lastname;
+    custom_ezsignfoldertransmission_signer_response_local_var->s_ezsignsignergroup_description_x = s_ezsignsignergroup_description_x;
 
     custom_ezsignfoldertransmission_signer_response_local_var->_library_owned = 1;
     return custom_ezsignfoldertransmission_signer_response_local_var;
@@ -25,12 +27,14 @@ static custom_ezsignfoldertransmission_signer_response_t *custom_ezsignfoldertra
 __attribute__((deprecated)) custom_ezsignfoldertransmission_signer_response_t *custom_ezsignfoldertransmission_signer_response_create(
     int fki_user_id,
     char *s_contact_firstname,
-    char *s_contact_lastname
+    char *s_contact_lastname,
+    char *s_ezsignsignergroup_description_x
     ) {
     return custom_ezsignfoldertransmission_signer_response_create_internal (
         fki_user_id,
         s_contact_firstname,
-        s_contact_lastname
+        s_contact_lastname,
+        s_ezsignsignergroup_description_x
         );
 }
 
@@ -51,6 +55,10 @@ void custom_ezsignfoldertransmission_signer_response_free(custom_ezsignfoldertra
         free(custom_ezsignfoldertransmission_signer_response->s_contact_lastname);
         custom_ezsignfoldertransmission_signer_response->s_contact_lastname = NULL;
     }
+    if (custom_ezsignfoldertransmission_signer_response->s_ezsignsignergroup_description_x) {
+        free(custom_ezsignfoldertransmission_signer_response->s_ezsignsignergroup_description_x);
+        custom_ezsignfoldertransmission_signer_response->s_ezsignsignergroup_description_x = NULL;
+    }
     free(custom_ezsignfoldertransmission_signer_response);
 }
 
@@ -66,20 +74,26 @@ cJSON *custom_ezsignfoldertransmission_signer_response_convertToJSON(custom_ezsi
 
 
     // custom_ezsignfoldertransmission_signer_response->s_contact_firstname
-    if (!custom_ezsignfoldertransmission_signer_response->s_contact_firstname) {
-        goto fail;
-    }
+    if(custom_ezsignfoldertransmission_signer_response->s_contact_firstname) {
     if(cJSON_AddStringToObject(item, "sContactFirstname", custom_ezsignfoldertransmission_signer_response->s_contact_firstname) == NULL) {
     goto fail; //String
+    }
     }
 
 
     // custom_ezsignfoldertransmission_signer_response->s_contact_lastname
-    if (!custom_ezsignfoldertransmission_signer_response->s_contact_lastname) {
-        goto fail;
-    }
+    if(custom_ezsignfoldertransmission_signer_response->s_contact_lastname) {
     if(cJSON_AddStringToObject(item, "sContactLastname", custom_ezsignfoldertransmission_signer_response->s_contact_lastname) == NULL) {
     goto fail; //String
+    }
+    }
+
+
+    // custom_ezsignfoldertransmission_signer_response->s_ezsignsignergroup_description_x
+    if(custom_ezsignfoldertransmission_signer_response->s_ezsignsignergroup_description_x) {
+    if(cJSON_AddStringToObject(item, "sEzsignsignergroupDescriptionX", custom_ezsignfoldertransmission_signer_response->s_ezsignsignergroup_description_x) == NULL) {
+    goto fail; //String
+    }
     }
 
     return item;
@@ -111,14 +125,11 @@ custom_ezsignfoldertransmission_signer_response_t *custom_ezsignfoldertransmissi
     if (cJSON_IsNull(s_contact_firstname)) {
         s_contact_firstname = NULL;
     }
-    if (!s_contact_firstname) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(s_contact_firstname))
+    if (s_contact_firstname) { 
+    if(!cJSON_IsString(s_contact_firstname) && !cJSON_IsNull(s_contact_firstname))
     {
     goto end; //String
+    }
     }
 
     // custom_ezsignfoldertransmission_signer_response->s_contact_lastname
@@ -126,21 +137,31 @@ custom_ezsignfoldertransmission_signer_response_t *custom_ezsignfoldertransmissi
     if (cJSON_IsNull(s_contact_lastname)) {
         s_contact_lastname = NULL;
     }
-    if (!s_contact_lastname) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(s_contact_lastname))
+    if (s_contact_lastname) { 
+    if(!cJSON_IsString(s_contact_lastname) && !cJSON_IsNull(s_contact_lastname))
     {
     goto end; //String
+    }
+    }
+
+    // custom_ezsignfoldertransmission_signer_response->s_ezsignsignergroup_description_x
+    cJSON *s_ezsignsignergroup_description_x = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldertransmission_signer_responseJSON, "sEzsignsignergroupDescriptionX");
+    if (cJSON_IsNull(s_ezsignsignergroup_description_x)) {
+        s_ezsignsignergroup_description_x = NULL;
+    }
+    if (s_ezsignsignergroup_description_x) { 
+    if(!cJSON_IsString(s_ezsignsignergroup_description_x) && !cJSON_IsNull(s_ezsignsignergroup_description_x))
+    {
+    goto end; //String
+    }
     }
 
 
     custom_ezsignfoldertransmission_signer_response_local_var = custom_ezsignfoldertransmission_signer_response_create_internal (
         fki_user_id ? fki_user_id->valuedouble : 0,
-        strdup(s_contact_firstname->valuestring),
-        strdup(s_contact_lastname->valuestring)
+        s_contact_firstname && !cJSON_IsNull(s_contact_firstname) ? strdup(s_contact_firstname->valuestring) : NULL,
+        s_contact_lastname && !cJSON_IsNull(s_contact_lastname) ? strdup(s_contact_lastname->valuestring) : NULL,
+        s_ezsignsignergroup_description_x && !cJSON_IsNull(s_ezsignsignergroup_description_x) ? strdup(s_ezsignsignergroup_description_x->valuestring) : NULL
         );
 
     return custom_ezsignfoldertransmission_signer_response_local_var;

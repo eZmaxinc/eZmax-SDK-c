@@ -10,6 +10,7 @@ static ezsigntemplatesignature_response_compound_v3_t *ezsigntemplatesignature_r
     int fki_ezsigntemplatedocument_id,
     int fki_ezsigntemplatesigner_id,
     int fki_ezsigntemplatesigner_id_validation,
+    int fki_paymentgateway_id,
     int b_ezsigntemplatesignature_handwritten,
     int b_ezsigntemplatesignature_reason,
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioning__e e_ezsigntemplatesignature_positioning,
@@ -38,9 +39,12 @@ static ezsigntemplatesignature_response_compound_v3_t *ezsigntemplatesignature_r
     int i_ezsigntemplatesignature_positioningoffsetx,
     int i_ezsigntemplatesignature_positioningoffsety,
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioningoccurence__e e_ezsigntemplatesignature_positioningoccurence,
+    char *s_ezsigntemplatesignature_creditcardamountdescription,
+    char *d_ezsigntemplatesignature_creditcardamount,
     int b_ezsigntemplatesignature_customdate,
     list_t *a_obj_ezsigntemplatesignaturecustomdate,
-    list_t *a_obj_ezsigntemplateelementdependency
+    list_t *a_obj_ezsigntemplateelementdependency,
+    list_t *a_obj_ezsigntemplatesignaturepaymentdetail
     ) {
     ezsigntemplatesignature_response_compound_v3_t *ezsigntemplatesignature_response_compound_v3_local_var = malloc(sizeof(ezsigntemplatesignature_response_compound_v3_t));
     if (!ezsigntemplatesignature_response_compound_v3_local_var) {
@@ -50,6 +54,7 @@ static ezsigntemplatesignature_response_compound_v3_t *ezsigntemplatesignature_r
     ezsigntemplatesignature_response_compound_v3_local_var->fki_ezsigntemplatedocument_id = fki_ezsigntemplatedocument_id;
     ezsigntemplatesignature_response_compound_v3_local_var->fki_ezsigntemplatesigner_id = fki_ezsigntemplatesigner_id;
     ezsigntemplatesignature_response_compound_v3_local_var->fki_ezsigntemplatesigner_id_validation = fki_ezsigntemplatesigner_id_validation;
+    ezsigntemplatesignature_response_compound_v3_local_var->fki_paymentgateway_id = fki_paymentgateway_id;
     ezsigntemplatesignature_response_compound_v3_local_var->b_ezsigntemplatesignature_handwritten = b_ezsigntemplatesignature_handwritten;
     ezsigntemplatesignature_response_compound_v3_local_var->b_ezsigntemplatesignature_reason = b_ezsigntemplatesignature_reason;
     ezsigntemplatesignature_response_compound_v3_local_var->e_ezsigntemplatesignature_positioning = e_ezsigntemplatesignature_positioning;
@@ -78,9 +83,12 @@ static ezsigntemplatesignature_response_compound_v3_t *ezsigntemplatesignature_r
     ezsigntemplatesignature_response_compound_v3_local_var->i_ezsigntemplatesignature_positioningoffsetx = i_ezsigntemplatesignature_positioningoffsetx;
     ezsigntemplatesignature_response_compound_v3_local_var->i_ezsigntemplatesignature_positioningoffsety = i_ezsigntemplatesignature_positioningoffsety;
     ezsigntemplatesignature_response_compound_v3_local_var->e_ezsigntemplatesignature_positioningoccurence = e_ezsigntemplatesignature_positioningoccurence;
+    ezsigntemplatesignature_response_compound_v3_local_var->s_ezsigntemplatesignature_creditcardamountdescription = s_ezsigntemplatesignature_creditcardamountdescription;
+    ezsigntemplatesignature_response_compound_v3_local_var->d_ezsigntemplatesignature_creditcardamount = d_ezsigntemplatesignature_creditcardamount;
     ezsigntemplatesignature_response_compound_v3_local_var->b_ezsigntemplatesignature_customdate = b_ezsigntemplatesignature_customdate;
     ezsigntemplatesignature_response_compound_v3_local_var->a_obj_ezsigntemplatesignaturecustomdate = a_obj_ezsigntemplatesignaturecustomdate;
     ezsigntemplatesignature_response_compound_v3_local_var->a_obj_ezsigntemplateelementdependency = a_obj_ezsigntemplateelementdependency;
+    ezsigntemplatesignature_response_compound_v3_local_var->a_obj_ezsigntemplatesignaturepaymentdetail = a_obj_ezsigntemplatesignaturepaymentdetail;
 
     ezsigntemplatesignature_response_compound_v3_local_var->_library_owned = 1;
     return ezsigntemplatesignature_response_compound_v3_local_var;
@@ -91,6 +99,7 @@ __attribute__((deprecated)) ezsigntemplatesignature_response_compound_v3_t *ezsi
     int fki_ezsigntemplatedocument_id,
     int fki_ezsigntemplatesigner_id,
     int fki_ezsigntemplatesigner_id_validation,
+    int fki_paymentgateway_id,
     int b_ezsigntemplatesignature_handwritten,
     int b_ezsigntemplatesignature_reason,
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioning__e e_ezsigntemplatesignature_positioning,
@@ -119,15 +128,19 @@ __attribute__((deprecated)) ezsigntemplatesignature_response_compound_v3_t *ezsi
     int i_ezsigntemplatesignature_positioningoffsetx,
     int i_ezsigntemplatesignature_positioningoffsety,
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioningoccurence__e e_ezsigntemplatesignature_positioningoccurence,
+    char *s_ezsigntemplatesignature_creditcardamountdescription,
+    char *d_ezsigntemplatesignature_creditcardamount,
     int b_ezsigntemplatesignature_customdate,
     list_t *a_obj_ezsigntemplatesignaturecustomdate,
-    list_t *a_obj_ezsigntemplateelementdependency
+    list_t *a_obj_ezsigntemplateelementdependency,
+    list_t *a_obj_ezsigntemplatesignaturepaymentdetail
     ) {
     return ezsigntemplatesignature_response_compound_v3_create_internal (
         pki_ezsigntemplatesignature_id,
         fki_ezsigntemplatedocument_id,
         fki_ezsigntemplatesigner_id,
         fki_ezsigntemplatesigner_id_validation,
+        fki_paymentgateway_id,
         b_ezsigntemplatesignature_handwritten,
         b_ezsigntemplatesignature_reason,
         e_ezsigntemplatesignature_positioning,
@@ -156,9 +169,12 @@ __attribute__((deprecated)) ezsigntemplatesignature_response_compound_v3_t *ezsi
         i_ezsigntemplatesignature_positioningoffsetx,
         i_ezsigntemplatesignature_positioningoffsety,
         e_ezsigntemplatesignature_positioningoccurence,
+        s_ezsigntemplatesignature_creditcardamountdescription,
+        d_ezsigntemplatesignature_creditcardamount,
         b_ezsigntemplatesignature_customdate,
         a_obj_ezsigntemplatesignaturecustomdate,
-        a_obj_ezsigntemplateelementdependency
+        a_obj_ezsigntemplateelementdependency,
+        a_obj_ezsigntemplatesignaturepaymentdetail
         );
 }
 
@@ -195,6 +211,14 @@ void ezsigntemplatesignature_response_compound_v3_free(ezsigntemplatesignature_r
         free(ezsigntemplatesignature_response_compound_v3->s_ezsigntemplatesignature_positioningpattern);
         ezsigntemplatesignature_response_compound_v3->s_ezsigntemplatesignature_positioningpattern = NULL;
     }
+    if (ezsigntemplatesignature_response_compound_v3->s_ezsigntemplatesignature_creditcardamountdescription) {
+        free(ezsigntemplatesignature_response_compound_v3->s_ezsigntemplatesignature_creditcardamountdescription);
+        ezsigntemplatesignature_response_compound_v3->s_ezsigntemplatesignature_creditcardamountdescription = NULL;
+    }
+    if (ezsigntemplatesignature_response_compound_v3->d_ezsigntemplatesignature_creditcardamount) {
+        free(ezsigntemplatesignature_response_compound_v3->d_ezsigntemplatesignature_creditcardamount);
+        ezsigntemplatesignature_response_compound_v3->d_ezsigntemplatesignature_creditcardamount = NULL;
+    }
     if (ezsigntemplatesignature_response_compound_v3->a_obj_ezsigntemplatesignaturecustomdate) {
         list_ForEach(listEntry, ezsigntemplatesignature_response_compound_v3->a_obj_ezsigntemplatesignaturecustomdate) {
             ezsigntemplatesignaturecustomdate_response_compound_v2_free(listEntry->data);
@@ -208,6 +232,13 @@ void ezsigntemplatesignature_response_compound_v3_free(ezsigntemplatesignature_r
         }
         list_freeList(ezsigntemplatesignature_response_compound_v3->a_obj_ezsigntemplateelementdependency);
         ezsigntemplatesignature_response_compound_v3->a_obj_ezsigntemplateelementdependency = NULL;
+    }
+    if (ezsigntemplatesignature_response_compound_v3->a_obj_ezsigntemplatesignaturepaymentdetail) {
+        list_ForEach(listEntry, ezsigntemplatesignature_response_compound_v3->a_obj_ezsigntemplatesignaturepaymentdetail) {
+            ezsigntemplatesignaturepaymentdetail_response_compound_free(listEntry->data);
+        }
+        list_freeList(ezsigntemplatesignature_response_compound_v3->a_obj_ezsigntemplatesignaturepaymentdetail);
+        ezsigntemplatesignature_response_compound_v3->a_obj_ezsigntemplatesignaturepaymentdetail = NULL;
     }
     free(ezsigntemplatesignature_response_compound_v3);
 }
@@ -245,6 +276,14 @@ cJSON *ezsigntemplatesignature_response_compound_v3_convertToJSON(ezsigntemplate
     // ezsigntemplatesignature_response_compound_v3->fki_ezsigntemplatesigner_id_validation
     if(ezsigntemplatesignature_response_compound_v3->fki_ezsigntemplatesigner_id_validation) {
     if(cJSON_AddNumberToObject(item, "fkiEzsigntemplatesignerIDValidation", ezsigntemplatesignature_response_compound_v3->fki_ezsigntemplatesigner_id_validation) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // ezsigntemplatesignature_response_compound_v3->fki_paymentgateway_id
+    if(ezsigntemplatesignature_response_compound_v3->fki_paymentgateway_id) {
+    if(cJSON_AddNumberToObject(item, "fkiPaymentgatewayID", ezsigntemplatesignature_response_compound_v3->fki_paymentgateway_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -522,6 +561,22 @@ cJSON *ezsigntemplatesignature_response_compound_v3_convertToJSON(ezsigntemplate
     }
 
 
+    // ezsigntemplatesignature_response_compound_v3->s_ezsigntemplatesignature_creditcardamountdescription
+    if(ezsigntemplatesignature_response_compound_v3->s_ezsigntemplatesignature_creditcardamountdescription) {
+    if(cJSON_AddStringToObject(item, "sEzsigntemplatesignatureCreditcardamountdescription", ezsigntemplatesignature_response_compound_v3->s_ezsigntemplatesignature_creditcardamountdescription) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // ezsigntemplatesignature_response_compound_v3->d_ezsigntemplatesignature_creditcardamount
+    if(ezsigntemplatesignature_response_compound_v3->d_ezsigntemplatesignature_creditcardamount) {
+    if(cJSON_AddStringToObject(item, "dEzsigntemplatesignatureCreditcardamount", ezsigntemplatesignature_response_compound_v3->d_ezsigntemplatesignature_creditcardamount) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
     // ezsigntemplatesignature_response_compound_v3->b_ezsigntemplatesignature_customdate
     if(ezsigntemplatesignature_response_compound_v3->b_ezsigntemplatesignature_customdate) {
     if(cJSON_AddBoolToObject(item, "bEzsigntemplatesignatureCustomdate", ezsigntemplatesignature_response_compound_v3->b_ezsigntemplatesignature_customdate) == NULL) {
@@ -565,6 +620,26 @@ cJSON *ezsigntemplatesignature_response_compound_v3_convertToJSON(ezsigntemplate
     goto fail;
     }
     cJSON_AddItemToArray(a_obj_ezsigntemplateelementdependency, itemLocal);
+    }
+    }
+    }
+
+
+    // ezsigntemplatesignature_response_compound_v3->a_obj_ezsigntemplatesignaturepaymentdetail
+    if(ezsigntemplatesignature_response_compound_v3->a_obj_ezsigntemplatesignaturepaymentdetail) {
+    cJSON *a_obj_ezsigntemplatesignaturepaymentdetail = cJSON_AddArrayToObject(item, "a_objEzsigntemplatesignaturepaymentdetail");
+    if(a_obj_ezsigntemplatesignaturepaymentdetail == NULL) {
+    goto fail; //nonprimitive container
+    }
+
+    listEntry_t *a_obj_ezsigntemplatesignaturepaymentdetailListEntry;
+    if (ezsigntemplatesignature_response_compound_v3->a_obj_ezsigntemplatesignaturepaymentdetail) {
+    list_ForEach(a_obj_ezsigntemplatesignaturepaymentdetailListEntry, ezsigntemplatesignature_response_compound_v3->a_obj_ezsigntemplatesignaturepaymentdetail) {
+    cJSON *itemLocal = ezsigntemplatesignaturepaymentdetail_response_compound_convertToJSON(a_obj_ezsigntemplatesignaturepaymentdetailListEntry->data);
+    if(itemLocal == NULL) {
+    goto fail;
+    }
+    cJSON_AddItemToArray(a_obj_ezsigntemplatesignaturepaymentdetail, itemLocal);
     }
     }
     }
@@ -613,6 +688,9 @@ ezsigntemplatesignature_response_compound_v3_t *ezsigntemplatesignature_response
 
     // define the local list for ezsigntemplatesignature_response_compound_v3->a_obj_ezsigntemplateelementdependency
     list_t *a_obj_ezsigntemplateelementdependencyList = NULL;
+
+    // define the local list for ezsigntemplatesignature_response_compound_v3->a_obj_ezsigntemplatesignaturepaymentdetail
+    list_t *a_obj_ezsigntemplatesignaturepaymentdetailList = NULL;
 
     // ezsigntemplatesignature_response_compound_v3->pki_ezsigntemplatesignature_id
     cJSON *pki_ezsigntemplatesignature_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatesignature_response_compound_v3JSON, "pkiEzsigntemplatesignatureID");
@@ -666,6 +744,18 @@ ezsigntemplatesignature_response_compound_v3_t *ezsigntemplatesignature_response
     }
     if (fki_ezsigntemplatesigner_id_validation) { 
     if(!cJSON_IsNumber(fki_ezsigntemplatesigner_id_validation))
+    {
+    goto end; //Numeric
+    }
+    }
+
+    // ezsigntemplatesignature_response_compound_v3->fki_paymentgateway_id
+    cJSON *fki_paymentgateway_id = cJSON_GetObjectItemCaseSensitive(ezsigntemplatesignature_response_compound_v3JSON, "fkiPaymentgatewayID");
+    if (cJSON_IsNull(fki_paymentgateway_id)) {
+        fki_paymentgateway_id = NULL;
+    }
+    if (fki_paymentgateway_id) { 
+    if(!cJSON_IsNumber(fki_paymentgateway_id))
     {
     goto end; //Numeric
     }
@@ -989,6 +1079,30 @@ ezsigntemplatesignature_response_compound_v3_t *ezsigntemplatesignature_response
     e_ezsigntemplatesignature_positioningoccurence_local_nonprim = field_e_ezsigntemplatesignature_positioningoccurence_parseFromJSON(e_ezsigntemplatesignature_positioningoccurence); //custom
     }
 
+    // ezsigntemplatesignature_response_compound_v3->s_ezsigntemplatesignature_creditcardamountdescription
+    cJSON *s_ezsigntemplatesignature_creditcardamountdescription = cJSON_GetObjectItemCaseSensitive(ezsigntemplatesignature_response_compound_v3JSON, "sEzsigntemplatesignatureCreditcardamountdescription");
+    if (cJSON_IsNull(s_ezsigntemplatesignature_creditcardamountdescription)) {
+        s_ezsigntemplatesignature_creditcardamountdescription = NULL;
+    }
+    if (s_ezsigntemplatesignature_creditcardamountdescription) { 
+    if(!cJSON_IsString(s_ezsigntemplatesignature_creditcardamountdescription) && !cJSON_IsNull(s_ezsigntemplatesignature_creditcardamountdescription))
+    {
+    goto end; //String
+    }
+    }
+
+    // ezsigntemplatesignature_response_compound_v3->d_ezsigntemplatesignature_creditcardamount
+    cJSON *d_ezsigntemplatesignature_creditcardamount = cJSON_GetObjectItemCaseSensitive(ezsigntemplatesignature_response_compound_v3JSON, "dEzsigntemplatesignatureCreditcardamount");
+    if (cJSON_IsNull(d_ezsigntemplatesignature_creditcardamount)) {
+        d_ezsigntemplatesignature_creditcardamount = NULL;
+    }
+    if (d_ezsigntemplatesignature_creditcardamount) { 
+    if(!cJSON_IsString(d_ezsigntemplatesignature_creditcardamount) && !cJSON_IsNull(d_ezsigntemplatesignature_creditcardamount))
+    {
+    goto end; //String
+    }
+    }
+
     // ezsigntemplatesignature_response_compound_v3->b_ezsigntemplatesignature_customdate
     cJSON *b_ezsigntemplatesignature_customdate = cJSON_GetObjectItemCaseSensitive(ezsigntemplatesignature_response_compound_v3JSON, "bEzsigntemplatesignatureCustomdate");
     if (cJSON_IsNull(b_ezsigntemplatesignature_customdate)) {
@@ -1049,12 +1163,37 @@ ezsigntemplatesignature_response_compound_v3_t *ezsigntemplatesignature_response
     }
     }
 
+    // ezsigntemplatesignature_response_compound_v3->a_obj_ezsigntemplatesignaturepaymentdetail
+    cJSON *a_obj_ezsigntemplatesignaturepaymentdetail = cJSON_GetObjectItemCaseSensitive(ezsigntemplatesignature_response_compound_v3JSON, "a_objEzsigntemplatesignaturepaymentdetail");
+    if (cJSON_IsNull(a_obj_ezsigntemplatesignaturepaymentdetail)) {
+        a_obj_ezsigntemplatesignaturepaymentdetail = NULL;
+    }
+    if (a_obj_ezsigntemplatesignaturepaymentdetail) { 
+    cJSON *a_obj_ezsigntemplatesignaturepaymentdetail_local_nonprimitive = NULL;
+    if(!cJSON_IsArray(a_obj_ezsigntemplatesignaturepaymentdetail)){
+        goto end; //nonprimitive container
+    }
+
+    a_obj_ezsigntemplatesignaturepaymentdetailList = list_createList();
+
+    cJSON_ArrayForEach(a_obj_ezsigntemplatesignaturepaymentdetail_local_nonprimitive,a_obj_ezsigntemplatesignaturepaymentdetail )
+    {
+        if(!cJSON_IsObject(a_obj_ezsigntemplatesignaturepaymentdetail_local_nonprimitive)){
+            goto end;
+        }
+        ezsigntemplatesignaturepaymentdetail_response_compound_t *a_obj_ezsigntemplatesignaturepaymentdetailItem = ezsigntemplatesignaturepaymentdetail_response_compound_parseFromJSON(a_obj_ezsigntemplatesignaturepaymentdetail_local_nonprimitive);
+
+        list_addElement(a_obj_ezsigntemplatesignaturepaymentdetailList, a_obj_ezsigntemplatesignaturepaymentdetailItem);
+    }
+    }
+
 
     ezsigntemplatesignature_response_compound_v3_local_var = ezsigntemplatesignature_response_compound_v3_create_internal (
         pki_ezsigntemplatesignature_id->valuedouble,
         fki_ezsigntemplatedocument_id->valuedouble,
         fki_ezsigntemplatesigner_id->valuedouble,
         fki_ezsigntemplatesigner_id_validation ? fki_ezsigntemplatesigner_id_validation->valuedouble : 0,
+        fki_paymentgateway_id ? fki_paymentgateway_id->valuedouble : 0,
         b_ezsigntemplatesignature_handwritten ? b_ezsigntemplatesignature_handwritten->valueint : 0,
         b_ezsigntemplatesignature_reason ? b_ezsigntemplatesignature_reason->valueint : 0,
         e_ezsigntemplatesignature_positioning ? e_ezsigntemplatesignature_positioning_local_nonprim : 0,
@@ -1083,9 +1222,12 @@ ezsigntemplatesignature_response_compound_v3_t *ezsigntemplatesignature_response
         i_ezsigntemplatesignature_positioningoffsetx ? i_ezsigntemplatesignature_positioningoffsetx->valuedouble : 0,
         i_ezsigntemplatesignature_positioningoffsety ? i_ezsigntemplatesignature_positioningoffsety->valuedouble : 0,
         e_ezsigntemplatesignature_positioningoccurence ? e_ezsigntemplatesignature_positioningoccurence_local_nonprim : 0,
+        s_ezsigntemplatesignature_creditcardamountdescription && !cJSON_IsNull(s_ezsigntemplatesignature_creditcardamountdescription) ? strdup(s_ezsigntemplatesignature_creditcardamountdescription->valuestring) : NULL,
+        d_ezsigntemplatesignature_creditcardamount && !cJSON_IsNull(d_ezsigntemplatesignature_creditcardamount) ? strdup(d_ezsigntemplatesignature_creditcardamount->valuestring) : NULL,
         b_ezsigntemplatesignature_customdate ? b_ezsigntemplatesignature_customdate->valueint : 0,
         a_obj_ezsigntemplatesignaturecustomdate ? a_obj_ezsigntemplatesignaturecustomdateList : NULL,
-        a_obj_ezsigntemplateelementdependency ? a_obj_ezsigntemplateelementdependencyList : NULL
+        a_obj_ezsigntemplateelementdependency ? a_obj_ezsigntemplateelementdependencyList : NULL,
+        a_obj_ezsigntemplatesignaturepaymentdetail ? a_obj_ezsigntemplatesignaturepaymentdetailList : NULL
         );
 
     return ezsigntemplatesignature_response_compound_v3_local_var;
@@ -1134,6 +1276,15 @@ end:
         }
         list_freeList(a_obj_ezsigntemplateelementdependencyList);
         a_obj_ezsigntemplateelementdependencyList = NULL;
+    }
+    if (a_obj_ezsigntemplatesignaturepaymentdetailList) {
+        listEntry_t *listEntry = NULL;
+        list_ForEach(listEntry, a_obj_ezsigntemplatesignaturepaymentdetailList) {
+            ezsigntemplatesignaturepaymentdetail_response_compound_free(listEntry->data);
+            listEntry->data = NULL;
+        }
+        list_freeList(a_obj_ezsigntemplatesignaturepaymentdetailList);
+        a_obj_ezsigntemplatesignaturepaymentdetailList = NULL;
     }
     return NULL;
 

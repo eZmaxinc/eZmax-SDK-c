@@ -1,0 +1,45 @@
+/*
+ * inscriptiontemp_import_into_edm_v1_response.h
+ *
+ * Response for POST /1/object/inscriptiontemp/{pkiInscriptiontempID}/importIntoEDM
+ */
+
+#ifndef _inscriptiontemp_import_into_edm_v1_response_H_
+#define _inscriptiontemp_import_into_edm_v1_response_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct inscriptiontemp_import_into_edm_v1_response_t inscriptiontemp_import_into_edm_v1_response_t;
+
+#include "common_response_obj_debug.h"
+#include "common_response_obj_debug_payload.h"
+#include "inscriptiontemp_import_into_edm_v1_response_m_payload.h"
+
+
+
+typedef struct inscriptiontemp_import_into_edm_v1_response_t {
+    struct common_response_obj_debug_payload_t *obj_debug_payload; //model
+    struct common_response_obj_debug_t *obj_debug; //model
+    struct inscriptiontemp_import_into_edm_v1_response_m_payload_t *m_payload; //model
+
+    int _library_owned; // Is the library responsible for freeing this object?
+} inscriptiontemp_import_into_edm_v1_response_t;
+
+__attribute__((deprecated)) inscriptiontemp_import_into_edm_v1_response_t *inscriptiontemp_import_into_edm_v1_response_create(
+    common_response_obj_debug_payload_t *obj_debug_payload,
+    common_response_obj_debug_t *obj_debug,
+    inscriptiontemp_import_into_edm_v1_response_m_payload_t *m_payload
+);
+
+void inscriptiontemp_import_into_edm_v1_response_free(inscriptiontemp_import_into_edm_v1_response_t *inscriptiontemp_import_into_edm_v1_response);
+
+inscriptiontemp_import_into_edm_v1_response_t *inscriptiontemp_import_into_edm_v1_response_parseFromJSON(cJSON *inscriptiontemp_import_into_edm_v1_responseJSON);
+
+cJSON *inscriptiontemp_import_into_edm_v1_response_convertToJSON(inscriptiontemp_import_into_edm_v1_response_t *inscriptiontemp_import_into_edm_v1_response);
+
+#endif /* _inscriptiontemp_import_into_edm_v1_response_H_ */
+

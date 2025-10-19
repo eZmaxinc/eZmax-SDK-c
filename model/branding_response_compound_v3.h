@@ -23,6 +23,8 @@ typedef struct branding_response_compound_v3_t branding_response_compound_v3_t;
 
 typedef struct branding_response_compound_v3_t {
     int pki_branding_id; //numeric
+    int fki_domain_id; //numeric
+    char *s_domain_name; // string
     int fki_email_id; //numeric
     struct multilingual_branding_description_t *obj_branding_description; //model
     char *s_branding_description_x; // string
@@ -41,6 +43,8 @@ typedef struct branding_response_compound_v3_t {
 
 __attribute__((deprecated)) branding_response_compound_v3_t *branding_response_compound_v3_create(
     int pki_branding_id,
+    int fki_domain_id,
+    char *s_domain_name,
     int fki_email_id,
     multilingual_branding_description_t *obj_branding_description,
     char *s_branding_description_x,

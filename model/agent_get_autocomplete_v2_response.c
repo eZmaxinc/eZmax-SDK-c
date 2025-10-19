@@ -1,0 +1,181 @@
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include "agent_get_autocomplete_v2_response.h"
+
+
+
+static agent_get_autocomplete_v2_response_t *agent_get_autocomplete_v2_response_create_internal(
+    common_response_obj_debug_payload_t *obj_debug_payload,
+    common_response_obj_debug_t *obj_debug,
+    agent_get_autocomplete_v2_response_m_payload_t *m_payload
+    ) {
+    agent_get_autocomplete_v2_response_t *agent_get_autocomplete_v2_response_local_var = malloc(sizeof(agent_get_autocomplete_v2_response_t));
+    if (!agent_get_autocomplete_v2_response_local_var) {
+        return NULL;
+    }
+    agent_get_autocomplete_v2_response_local_var->obj_debug_payload = obj_debug_payload;
+    agent_get_autocomplete_v2_response_local_var->obj_debug = obj_debug;
+    agent_get_autocomplete_v2_response_local_var->m_payload = m_payload;
+
+    agent_get_autocomplete_v2_response_local_var->_library_owned = 1;
+    return agent_get_autocomplete_v2_response_local_var;
+}
+
+__attribute__((deprecated)) agent_get_autocomplete_v2_response_t *agent_get_autocomplete_v2_response_create(
+    common_response_obj_debug_payload_t *obj_debug_payload,
+    common_response_obj_debug_t *obj_debug,
+    agent_get_autocomplete_v2_response_m_payload_t *m_payload
+    ) {
+    return agent_get_autocomplete_v2_response_create_internal (
+        obj_debug_payload,
+        obj_debug,
+        m_payload
+        );
+}
+
+void agent_get_autocomplete_v2_response_free(agent_get_autocomplete_v2_response_t *agent_get_autocomplete_v2_response) {
+    if(NULL == agent_get_autocomplete_v2_response){
+        return ;
+    }
+    if(agent_get_autocomplete_v2_response->_library_owned != 1){
+        fprintf(stderr, "WARNING: %s() does NOT free objects allocated by the user\n", "agent_get_autocomplete_v2_response_free");
+        return ;
+    }
+    listEntry_t *listEntry;
+    if (agent_get_autocomplete_v2_response->obj_debug_payload) {
+        common_response_obj_debug_payload_free(agent_get_autocomplete_v2_response->obj_debug_payload);
+        agent_get_autocomplete_v2_response->obj_debug_payload = NULL;
+    }
+    if (agent_get_autocomplete_v2_response->obj_debug) {
+        common_response_obj_debug_free(agent_get_autocomplete_v2_response->obj_debug);
+        agent_get_autocomplete_v2_response->obj_debug = NULL;
+    }
+    if (agent_get_autocomplete_v2_response->m_payload) {
+        agent_get_autocomplete_v2_response_m_payload_free(agent_get_autocomplete_v2_response->m_payload);
+        agent_get_autocomplete_v2_response->m_payload = NULL;
+    }
+    free(agent_get_autocomplete_v2_response);
+}
+
+cJSON *agent_get_autocomplete_v2_response_convertToJSON(agent_get_autocomplete_v2_response_t *agent_get_autocomplete_v2_response) {
+    cJSON *item = cJSON_CreateObject();
+
+    // agent_get_autocomplete_v2_response->obj_debug_payload
+    if (!agent_get_autocomplete_v2_response->obj_debug_payload) {
+        goto fail;
+    }
+    cJSON *obj_debug_payload_local_JSON = common_response_obj_debug_payload_convertToJSON(agent_get_autocomplete_v2_response->obj_debug_payload);
+    if(obj_debug_payload_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objDebugPayload", obj_debug_payload_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
+
+    // agent_get_autocomplete_v2_response->obj_debug
+    if(agent_get_autocomplete_v2_response->obj_debug) {
+    cJSON *obj_debug_local_JSON = common_response_obj_debug_convertToJSON(agent_get_autocomplete_v2_response->obj_debug);
+    if(obj_debug_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objDebug", obj_debug_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+    }
+
+
+    // agent_get_autocomplete_v2_response->m_payload
+    if (!agent_get_autocomplete_v2_response->m_payload) {
+        goto fail;
+    }
+    cJSON *m_payload_local_JSON = agent_get_autocomplete_v2_response_m_payload_convertToJSON(agent_get_autocomplete_v2_response->m_payload);
+    if(m_payload_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "mPayload", m_payload_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+
+    return item;
+fail:
+    if (item) {
+        cJSON_Delete(item);
+    }
+    return NULL;
+}
+
+agent_get_autocomplete_v2_response_t *agent_get_autocomplete_v2_response_parseFromJSON(cJSON *agent_get_autocomplete_v2_responseJSON){
+
+    agent_get_autocomplete_v2_response_t *agent_get_autocomplete_v2_response_local_var = NULL;
+
+    // define the local variable for agent_get_autocomplete_v2_response->obj_debug_payload
+    common_response_obj_debug_payload_t *obj_debug_payload_local_nonprim = NULL;
+
+    // define the local variable for agent_get_autocomplete_v2_response->obj_debug
+    common_response_obj_debug_t *obj_debug_local_nonprim = NULL;
+
+    // define the local variable for agent_get_autocomplete_v2_response->m_payload
+    agent_get_autocomplete_v2_response_m_payload_t *m_payload_local_nonprim = NULL;
+
+    // agent_get_autocomplete_v2_response->obj_debug_payload
+    cJSON *obj_debug_payload = cJSON_GetObjectItemCaseSensitive(agent_get_autocomplete_v2_responseJSON, "objDebugPayload");
+    if (cJSON_IsNull(obj_debug_payload)) {
+        obj_debug_payload = NULL;
+    }
+    if (!obj_debug_payload) {
+        goto end;
+    }
+
+    
+    obj_debug_payload_local_nonprim = common_response_obj_debug_payload_parseFromJSON(obj_debug_payload); //nonprimitive
+
+    // agent_get_autocomplete_v2_response->obj_debug
+    cJSON *obj_debug = cJSON_GetObjectItemCaseSensitive(agent_get_autocomplete_v2_responseJSON, "objDebug");
+    if (cJSON_IsNull(obj_debug)) {
+        obj_debug = NULL;
+    }
+    if (obj_debug) { 
+    obj_debug_local_nonprim = common_response_obj_debug_parseFromJSON(obj_debug); //nonprimitive
+    }
+
+    // agent_get_autocomplete_v2_response->m_payload
+    cJSON *m_payload = cJSON_GetObjectItemCaseSensitive(agent_get_autocomplete_v2_responseJSON, "mPayload");
+    if (cJSON_IsNull(m_payload)) {
+        m_payload = NULL;
+    }
+    if (!m_payload) {
+        goto end;
+    }
+
+    
+    m_payload_local_nonprim = agent_get_autocomplete_v2_response_m_payload_parseFromJSON(m_payload); //nonprimitive
+
+
+    agent_get_autocomplete_v2_response_local_var = agent_get_autocomplete_v2_response_create_internal (
+        obj_debug_payload_local_nonprim,
+        obj_debug ? obj_debug_local_nonprim : NULL,
+        m_payload_local_nonprim
+        );
+
+    return agent_get_autocomplete_v2_response_local_var;
+end:
+    if (obj_debug_payload_local_nonprim) {
+        common_response_obj_debug_payload_free(obj_debug_payload_local_nonprim);
+        obj_debug_payload_local_nonprim = NULL;
+    }
+    if (obj_debug_local_nonprim) {
+        common_response_obj_debug_free(obj_debug_local_nonprim);
+        obj_debug_local_nonprim = NULL;
+    }
+    if (m_payload_local_nonprim) {
+        agent_get_autocomplete_v2_response_m_payload_free(m_payload_local_nonprim);
+        m_payload_local_nonprim = NULL;
+    }
+    return NULL;
+
+}

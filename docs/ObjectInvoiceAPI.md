@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**ObjectInvoiceAPI_invoiceGetCommunicationListV1**](ObjectInvoiceAPI.md#ObjectInvoiceAPI_invoiceGetCommunicationListV1) | **GET** /1/object/invoice/{pkiInvoiceID}/getCommunicationList | Retrieve Communication list
 [**ObjectInvoiceAPI_invoiceGetCommunicationrecipientsV1**](ObjectInvoiceAPI.md#ObjectInvoiceAPI_invoiceGetCommunicationrecipientsV1) | **GET** /1/object/invoice/{pkiInvoiceID}/getCommunicationrecipients | Retrieve Invoice&#39;s Communicationrecipient
 [**ObjectInvoiceAPI_invoiceGetCommunicationsendersV1**](ObjectInvoiceAPI.md#ObjectInvoiceAPI_invoiceGetCommunicationsendersV1) | **GET** /1/object/invoice/{pkiInvoiceID}/getCommunicationsenders | Retrieve Invoice&#39;s Communicationsender
+[**ObjectInvoiceAPI_invoiceImportIntoEDMV1**](ObjectInvoiceAPI.md#ObjectInvoiceAPI_invoiceImportIntoEDMV1) | **POST** /1/object/invoice/{pkiInvoiceID}/importIntoEDM | Import attachments into the Invoice
 
 
 # **ObjectInvoiceAPI_invoiceGetAttachmentsV1**
@@ -162,6 +163,38 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectInvoiceAPI_invoiceImportIntoEDMV1**
+```c
+// Import attachments into the Invoice
+//
+// 
+//
+invoice_import_into_edm_v1_response_t* ObjectInvoiceAPI_invoiceImportIntoEDMV1(apiClient_t *apiClient, int *pkiInvoiceID, invoice_import_into_edm_v1_request_t *invoice_import_into_edm_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiInvoiceID** | **int \*** |  | 
+**invoice_import_into_edm_v1_request** | **[invoice_import_into_edm_v1_request_t](invoice_import_into_edm_v1_request.md) \*** |  | 
+
+### Return type
+
+[invoice_import_into_edm_v1_response_t](invoice_import_into_edm_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

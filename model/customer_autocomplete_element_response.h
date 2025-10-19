@@ -20,6 +20,7 @@ typedef struct customer_autocomplete_element_response_t customer_autocomplete_el
 
 typedef struct customer_autocomplete_element_response_t {
     int pki_customer_id; //numeric
+    int fki_department_id; //numeric
     char *s_customer_name; // string
     int b_customer_isactive; //boolean
 
@@ -28,6 +29,7 @@ typedef struct customer_autocomplete_element_response_t {
 
 __attribute__((deprecated)) customer_autocomplete_element_response_t *customer_autocomplete_element_response_create(
     int pki_customer_id,
+    int fki_department_id,
     char *s_customer_name,
     int b_customer_isactive
 );

@@ -11,7 +11,10 @@ static ezsignsignature_response_compound_v3_t *ezsignsignature_response_compound
     int fki_ezsignfoldersignerassociation_id,
     int fki_ezsignsigningreason_id,
     int fki_font_id,
+    int fki_paymentgateway_id,
     char *s_currency_description_x,
+    char *d_ezsignsignature_creditcardamount,
+    char *s_ezsignsignature_creditcardamountdescription,
     char *s_ezsignsigningreason_description_x,
     int i_ezsignpage_pagenumber,
     int i_ezsignsignature_x,
@@ -60,7 +63,10 @@ static ezsignsignature_response_compound_v3_t *ezsignsignature_response_compound
     ezsignsignature_response_compound_v3_local_var->fki_ezsignfoldersignerassociation_id = fki_ezsignfoldersignerassociation_id;
     ezsignsignature_response_compound_v3_local_var->fki_ezsignsigningreason_id = fki_ezsignsigningreason_id;
     ezsignsignature_response_compound_v3_local_var->fki_font_id = fki_font_id;
+    ezsignsignature_response_compound_v3_local_var->fki_paymentgateway_id = fki_paymentgateway_id;
     ezsignsignature_response_compound_v3_local_var->s_currency_description_x = s_currency_description_x;
+    ezsignsignature_response_compound_v3_local_var->d_ezsignsignature_creditcardamount = d_ezsignsignature_creditcardamount;
+    ezsignsignature_response_compound_v3_local_var->s_ezsignsignature_creditcardamountdescription = s_ezsignsignature_creditcardamountdescription;
     ezsignsignature_response_compound_v3_local_var->s_ezsignsigningreason_description_x = s_ezsignsigningreason_description_x;
     ezsignsignature_response_compound_v3_local_var->i_ezsignpage_pagenumber = i_ezsignpage_pagenumber;
     ezsignsignature_response_compound_v3_local_var->i_ezsignsignature_x = i_ezsignsignature_x;
@@ -110,7 +116,10 @@ __attribute__((deprecated)) ezsignsignature_response_compound_v3_t *ezsignsignat
     int fki_ezsignfoldersignerassociation_id,
     int fki_ezsignsigningreason_id,
     int fki_font_id,
+    int fki_paymentgateway_id,
     char *s_currency_description_x,
+    char *d_ezsignsignature_creditcardamount,
+    char *s_ezsignsignature_creditcardamountdescription,
     char *s_ezsignsigningreason_description_x,
     int i_ezsignpage_pagenumber,
     int i_ezsignsignature_x,
@@ -156,7 +165,10 @@ __attribute__((deprecated)) ezsignsignature_response_compound_v3_t *ezsignsignat
         fki_ezsignfoldersignerassociation_id,
         fki_ezsignsigningreason_id,
         fki_font_id,
+        fki_paymentgateway_id,
         s_currency_description_x,
+        d_ezsignsignature_creditcardamount,
+        s_ezsignsignature_creditcardamountdescription,
         s_ezsignsigningreason_description_x,
         i_ezsignpage_pagenumber,
         i_ezsignsignature_x,
@@ -210,6 +222,14 @@ void ezsignsignature_response_compound_v3_free(ezsignsignature_response_compound
     if (ezsignsignature_response_compound_v3->s_currency_description_x) {
         free(ezsignsignature_response_compound_v3->s_currency_description_x);
         ezsignsignature_response_compound_v3->s_currency_description_x = NULL;
+    }
+    if (ezsignsignature_response_compound_v3->d_ezsignsignature_creditcardamount) {
+        free(ezsignsignature_response_compound_v3->d_ezsignsignature_creditcardamount);
+        ezsignsignature_response_compound_v3->d_ezsignsignature_creditcardamount = NULL;
+    }
+    if (ezsignsignature_response_compound_v3->s_ezsignsignature_creditcardamountdescription) {
+        free(ezsignsignature_response_compound_v3->s_ezsignsignature_creditcardamountdescription);
+        ezsignsignature_response_compound_v3->s_ezsignsignature_creditcardamountdescription = NULL;
     }
     if (ezsignsignature_response_compound_v3->s_ezsignsigningreason_description_x) {
         free(ezsignsignature_response_compound_v3->s_ezsignsigningreason_description_x);
@@ -333,9 +353,33 @@ cJSON *ezsignsignature_response_compound_v3_convertToJSON(ezsignsignature_respon
     }
 
 
+    // ezsignsignature_response_compound_v3->fki_paymentgateway_id
+    if(ezsignsignature_response_compound_v3->fki_paymentgateway_id) {
+    if(cJSON_AddNumberToObject(item, "fkiPaymentgatewayID", ezsignsignature_response_compound_v3->fki_paymentgateway_id) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
     // ezsignsignature_response_compound_v3->s_currency_description_x
     if(ezsignsignature_response_compound_v3->s_currency_description_x) {
     if(cJSON_AddStringToObject(item, "sCurrencyDescriptionX", ezsignsignature_response_compound_v3->s_currency_description_x) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // ezsignsignature_response_compound_v3->d_ezsignsignature_creditcardamount
+    if(ezsignsignature_response_compound_v3->d_ezsignsignature_creditcardamount) {
+    if(cJSON_AddStringToObject(item, "dEzsignsignatureCreditcardamount", ezsignsignature_response_compound_v3->d_ezsignsignature_creditcardamount) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // ezsignsignature_response_compound_v3->s_ezsignsignature_creditcardamountdescription
+    if(ezsignsignature_response_compound_v3->s_ezsignsignature_creditcardamountdescription) {
+    if(cJSON_AddStringToObject(item, "sEzsignsignatureCreditcardamountdescription", ezsignsignature_response_compound_v3->s_ezsignsignature_creditcardamountdescription) == NULL) {
     goto fail; //String
     }
     }
@@ -864,6 +908,18 @@ ezsignsignature_response_compound_v3_t *ezsignsignature_response_compound_v3_par
     }
     }
 
+    // ezsignsignature_response_compound_v3->fki_paymentgateway_id
+    cJSON *fki_paymentgateway_id = cJSON_GetObjectItemCaseSensitive(ezsignsignature_response_compound_v3JSON, "fkiPaymentgatewayID");
+    if (cJSON_IsNull(fki_paymentgateway_id)) {
+        fki_paymentgateway_id = NULL;
+    }
+    if (fki_paymentgateway_id) { 
+    if(!cJSON_IsNumber(fki_paymentgateway_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
     // ezsignsignature_response_compound_v3->s_currency_description_x
     cJSON *s_currency_description_x = cJSON_GetObjectItemCaseSensitive(ezsignsignature_response_compound_v3JSON, "sCurrencyDescriptionX");
     if (cJSON_IsNull(s_currency_description_x)) {
@@ -871,6 +927,30 @@ ezsignsignature_response_compound_v3_t *ezsignsignature_response_compound_v3_par
     }
     if (s_currency_description_x) { 
     if(!cJSON_IsString(s_currency_description_x) && !cJSON_IsNull(s_currency_description_x))
+    {
+    goto end; //String
+    }
+    }
+
+    // ezsignsignature_response_compound_v3->d_ezsignsignature_creditcardamount
+    cJSON *d_ezsignsignature_creditcardamount = cJSON_GetObjectItemCaseSensitive(ezsignsignature_response_compound_v3JSON, "dEzsignsignatureCreditcardamount");
+    if (cJSON_IsNull(d_ezsignsignature_creditcardamount)) {
+        d_ezsignsignature_creditcardamount = NULL;
+    }
+    if (d_ezsignsignature_creditcardamount) { 
+    if(!cJSON_IsString(d_ezsignsignature_creditcardamount) && !cJSON_IsNull(d_ezsignsignature_creditcardamount))
+    {
+    goto end; //String
+    }
+    }
+
+    // ezsignsignature_response_compound_v3->s_ezsignsignature_creditcardamountdescription
+    cJSON *s_ezsignsignature_creditcardamountdescription = cJSON_GetObjectItemCaseSensitive(ezsignsignature_response_compound_v3JSON, "sEzsignsignatureCreditcardamountdescription");
+    if (cJSON_IsNull(s_ezsignsignature_creditcardamountdescription)) {
+        s_ezsignsignature_creditcardamountdescription = NULL;
+    }
+    if (s_ezsignsignature_creditcardamountdescription) { 
+    if(!cJSON_IsString(s_ezsignsignature_creditcardamountdescription) && !cJSON_IsNull(s_ezsignsignature_creditcardamountdescription))
     {
     goto end; //String
     }
@@ -1360,7 +1440,10 @@ ezsignsignature_response_compound_v3_t *ezsignsignature_response_compound_v3_par
         fki_ezsignfoldersignerassociation_id->valuedouble,
         fki_ezsignsigningreason_id ? fki_ezsignsigningreason_id->valuedouble : 0,
         fki_font_id ? fki_font_id->valuedouble : 0,
+        fki_paymentgateway_id ? fki_paymentgateway_id->valuedouble : 0,
         s_currency_description_x && !cJSON_IsNull(s_currency_description_x) ? strdup(s_currency_description_x->valuestring) : NULL,
+        d_ezsignsignature_creditcardamount && !cJSON_IsNull(d_ezsignsignature_creditcardamount) ? strdup(d_ezsignsignature_creditcardamount->valuestring) : NULL,
+        s_ezsignsignature_creditcardamountdescription && !cJSON_IsNull(s_ezsignsignature_creditcardamountdescription) ? strdup(s_ezsignsignature_creditcardamountdescription->valuestring) : NULL,
         s_ezsignsigningreason_description_x && !cJSON_IsNull(s_ezsignsigningreason_description_x) ? strdup(s_ezsignsigningreason_description_x->valuestring) : NULL,
         i_ezsignpage_pagenumber->valuedouble,
         i_ezsignsignature_x->valuedouble,

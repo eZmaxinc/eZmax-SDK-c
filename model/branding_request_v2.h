@@ -23,6 +23,7 @@ typedef struct branding_request_v2_t branding_request_v2_t;
 
 typedef struct branding_request_v2_t {
     int pki_branding_id; //numeric
+    int fki_domain_id; //numeric
     struct multilingual_branding_description_t *obj_branding_description; //model
     ezmax_api_definition__full_field_e_branding_logo__e e_branding_logo; //referenced enum
     ezmax_api_definition__full_field_e_branding_alignlogo__e e_branding_alignlogo; //referenced enum
@@ -37,6 +38,7 @@ typedef struct branding_request_v2_t {
 
 __attribute__((deprecated)) branding_request_v2_t *branding_request_v2_create(
     int pki_branding_id,
+    int fki_domain_id,
     multilingual_branding_description_t *obj_branding_description,
     ezmax_api_definition__full_field_e_branding_logo__e e_branding_logo,
     ezmax_api_definition__full_field_e_branding_alignlogo__e e_branding_alignlogo,

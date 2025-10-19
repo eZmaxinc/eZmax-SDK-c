@@ -11,6 +11,12 @@
 #include "../model/ezsignbulksendtransmission_get_object_v2_response.h"
 
 
+// Retrieve file to download documents in batch
+//
+binary_t*
+ObjectEzsignbulksendtransmissionAPI_ezsignbulksendtransmissionGetBatchFileV1(apiClient_t *apiClient, int *pkiEzsignbulksendtransmissionID, int *bIncludeSigned, int *bIncludeAttachment, int *bIncludeProofdocument, int *bIncludeProof);
+
+
 // Retrieve an existing Ezsignbulksendtransmission's Csv containing errors
 //
 // 

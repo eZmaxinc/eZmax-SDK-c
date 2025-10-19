@@ -7,6 +7,7 @@
 
 static branding_request_compound_v2_t *branding_request_compound_v2_create_internal(
     int pki_branding_id,
+    int fki_domain_id,
     multilingual_branding_description_t *obj_branding_description,
     ezmax_api_definition__full_field_e_branding_logo__e e_branding_logo,
     ezmax_api_definition__full_field_e_branding_alignlogo__e e_branding_alignlogo,
@@ -21,6 +22,7 @@ static branding_request_compound_v2_t *branding_request_compound_v2_create_inter
         return NULL;
     }
     branding_request_compound_v2_local_var->pki_branding_id = pki_branding_id;
+    branding_request_compound_v2_local_var->fki_domain_id = fki_domain_id;
     branding_request_compound_v2_local_var->obj_branding_description = obj_branding_description;
     branding_request_compound_v2_local_var->e_branding_logo = e_branding_logo;
     branding_request_compound_v2_local_var->e_branding_alignlogo = e_branding_alignlogo;
@@ -36,6 +38,7 @@ static branding_request_compound_v2_t *branding_request_compound_v2_create_inter
 
 __attribute__((deprecated)) branding_request_compound_v2_t *branding_request_compound_v2_create(
     int pki_branding_id,
+    int fki_domain_id,
     multilingual_branding_description_t *obj_branding_description,
     ezmax_api_definition__full_field_e_branding_logo__e e_branding_logo,
     ezmax_api_definition__full_field_e_branding_alignlogo__e e_branding_alignlogo,
@@ -47,6 +50,7 @@ __attribute__((deprecated)) branding_request_compound_v2_t *branding_request_com
     ) {
     return branding_request_compound_v2_create_internal (
         pki_branding_id,
+        fki_domain_id,
         obj_branding_description,
         e_branding_logo,
         e_branding_alignlogo,
@@ -92,6 +96,14 @@ cJSON *branding_request_compound_v2_convertToJSON(branding_request_compound_v2_t
     // branding_request_compound_v2->pki_branding_id
     if(branding_request_compound_v2->pki_branding_id) {
     if(cJSON_AddNumberToObject(item, "pkiBrandingID", branding_request_compound_v2->pki_branding_id) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // branding_request_compound_v2->fki_domain_id
+    if(branding_request_compound_v2->fki_domain_id) {
+    if(cJSON_AddNumberToObject(item, "fkiDomainID", branding_request_compound_v2->fki_domain_id) == NULL) {
     goto fail; //Numeric
     }
     }
@@ -212,6 +224,18 @@ branding_request_compound_v2_t *branding_request_compound_v2_parseFromJSON(cJSON
     }
     }
 
+    // branding_request_compound_v2->fki_domain_id
+    cJSON *fki_domain_id = cJSON_GetObjectItemCaseSensitive(branding_request_compound_v2JSON, "fkiDomainID");
+    if (cJSON_IsNull(fki_domain_id)) {
+        fki_domain_id = NULL;
+    }
+    if (fki_domain_id) { 
+    if(!cJSON_IsNumber(fki_domain_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
     // branding_request_compound_v2->obj_branding_description
     cJSON *obj_branding_description = cJSON_GetObjectItemCaseSensitive(branding_request_compound_v2JSON, "objBrandingDescription");
     if (cJSON_IsNull(obj_branding_description)) {
@@ -314,6 +338,7 @@ branding_request_compound_v2_t *branding_request_compound_v2_parseFromJSON(cJSON
 
     branding_request_compound_v2_local_var = branding_request_compound_v2_create_internal (
         pki_branding_id ? pki_branding_id->valuedouble : 0,
+        fki_domain_id ? fki_domain_id->valuedouble : 0,
         obj_branding_description_local_nonprim,
         e_branding_logo_local_nonprim,
         e_branding_alignlogo ? e_branding_alignlogo_local_nonprim : 0,

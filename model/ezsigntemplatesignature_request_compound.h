@@ -18,6 +18,7 @@ typedef struct ezsigntemplatesignature_request_compound_t ezsigntemplatesignatur
 #include "enum_textvalidation.h"
 #include "ezsigntemplateelementdependency_request_compound.h"
 #include "ezsigntemplatesignaturecustomdate_request_compound.h"
+#include "ezsigntemplatesignaturepaymentdetail_request_compound.h"
 #include "field_e_ezsigntemplatesignature_attachmentnamesource.h"
 #include "field_e_ezsigntemplatesignature_consultationtrigger.h"
 #include "field_e_ezsigntemplatesignature_dependencyrequirement.h"
@@ -34,6 +35,7 @@ typedef struct ezsigntemplatesignature_request_compound_t {
     int fki_ezsigntemplatedocument_id; //numeric
     int fki_ezsigntemplatesigner_id; //numeric
     int fki_ezsigntemplatesigner_id_validation; //numeric
+    int fki_paymentgateway_id; //numeric
     int b_ezsigntemplatesignature_handwritten; //boolean
     int b_ezsigntemplatesignature_reason; //boolean
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioning__e e_ezsigntemplatesignature_positioning; //referenced enum
@@ -62,9 +64,12 @@ typedef struct ezsigntemplatesignature_request_compound_t {
     int i_ezsigntemplatesignature_positioningoffsetx; //numeric
     int i_ezsigntemplatesignature_positioningoffsety; //numeric
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioningoccurence__e e_ezsigntemplatesignature_positioningoccurence; //referenced enum
+    char *s_ezsigntemplatesignature_creditcardamountdescription; // string
+    char *d_ezsigntemplatesignature_creditcardamount; // string
     int b_ezsigntemplatesignature_customdate; //boolean
     list_t *a_obj_ezsigntemplatesignaturecustomdate; //nonprimitive container
     list_t *a_obj_ezsigntemplateelementdependency; //nonprimitive container
+    list_t *a_obj_ezsigntemplatesignaturepaymentdetail; //nonprimitive container
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatesignature_request_compound_t;
@@ -74,6 +79,7 @@ __attribute__((deprecated)) ezsigntemplatesignature_request_compound_t *ezsignte
     int fki_ezsigntemplatedocument_id,
     int fki_ezsigntemplatesigner_id,
     int fki_ezsigntemplatesigner_id_validation,
+    int fki_paymentgateway_id,
     int b_ezsigntemplatesignature_handwritten,
     int b_ezsigntemplatesignature_reason,
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioning__e e_ezsigntemplatesignature_positioning,
@@ -102,9 +108,12 @@ __attribute__((deprecated)) ezsigntemplatesignature_request_compound_t *ezsignte
     int i_ezsigntemplatesignature_positioningoffsetx,
     int i_ezsigntemplatesignature_positioningoffsety,
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioningoccurence__e e_ezsigntemplatesignature_positioningoccurence,
+    char *s_ezsigntemplatesignature_creditcardamountdescription,
+    char *d_ezsigntemplatesignature_creditcardamount,
     int b_ezsigntemplatesignature_customdate,
     list_t *a_obj_ezsigntemplatesignaturecustomdate,
-    list_t *a_obj_ezsigntemplateelementdependency
+    list_t *a_obj_ezsigntemplateelementdependency,
+    list_t *a_obj_ezsigntemplatesignaturepaymentdetail
 );
 
 void ezsigntemplatesignature_request_compound_free(ezsigntemplatesignature_request_compound_t *ezsigntemplatesignature_request_compound);

@@ -18,6 +18,7 @@ typedef struct ezsignfoldertype_request_compound_v3_t ezsignfoldertype_request_c
 #include "field_e_ezsignfoldertype_completion.h"
 #include "field_e_ezsignfoldertype_disposal.h"
 #include "field_e_ezsignfoldertype_documentdependency.h"
+#include "field_e_ezsignfoldertype_documentmerge.h"
 #include "field_e_ezsignfoldertype_pdfanoncompliantaction.h"
 #include "field_e_ezsignfoldertype_pdfarequirement.h"
 #include "field_e_ezsignfoldertype_privacylevel.h"
@@ -42,6 +43,7 @@ typedef struct ezsignfoldertype_request_compound_v3_t {
     list_t *a_fki_usergroup_id_restricted; //primitive container
     list_t *a_fki_usergroup_id_template; //primitive container
     ezmax_api_definition__full_field_e_ezsignfoldertype_documentdependency__e e_ezsignfoldertype_documentdependency; //referenced enum
+    ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__e e_ezsignfoldertype_documentmerge; //referenced enum
     char *s_email_address_signed; // string
     char *s_email_address_summary; // string
     ezmax_api_definition__full_field_e_ezsignfoldertype_pdfarequirement__e e_ezsignfoldertype_pdfarequirement; //referenced enum
@@ -68,13 +70,18 @@ typedef struct ezsignfoldertype_request_compound_v3_t {
     int b_ezsignfoldertype_sendsignedtoezsignsigner; //boolean
     int b_ezsignfoldertype_sendsignedtouser; //boolean
     int b_ezsignfoldertype_sendattachmentezsignsigner; //boolean
+    int b_ezsignfoldertype_sendsignatureattachmentezsignsigner; //boolean
+    int b_ezsignfoldertype_sendsignatureattachment; //boolean
     int b_ezsignfoldertype_sendproofezsignsigner; //boolean
     int b_ezsignfoldertype_sendattachmentuser; //boolean
+    int b_ezsignfoldertype_sendsignatureattachmentuser; //boolean
     int b_ezsignfoldertype_sendproofuser; //boolean
     int b_ezsignfoldertype_sendproofemail; //boolean
     int b_ezsignfoldertype_allowdownloadattachmentezsignsigner; //boolean
+    int b_ezsignfoldertype_allowdownloadsignatureattachmentezsignsigner; //boolean
     int b_ezsignfoldertype_allowdownloadproofezsignsigner; //boolean
     int b_ezsignfoldertype_sendproofreceivealldocument; //boolean
+    int b_ezsignfoldertype_sendsignatureattachmentreceivealldocument; //boolean
     int b_ezsignfoldertype_sendsignedtodocumentowner; //boolean
     int b_ezsignfoldertype_sendsignedtofolderowner; //boolean
     int b_ezsignfoldertype_sendsignedtofullgroup; //boolean
@@ -109,6 +116,7 @@ __attribute__((deprecated)) ezsignfoldertype_request_compound_v3_t *ezsignfolder
     list_t *a_fki_usergroup_id_restricted,
     list_t *a_fki_usergroup_id_template,
     ezmax_api_definition__full_field_e_ezsignfoldertype_documentdependency__e e_ezsignfoldertype_documentdependency,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__e e_ezsignfoldertype_documentmerge,
     char *s_email_address_signed,
     char *s_email_address_summary,
     ezmax_api_definition__full_field_e_ezsignfoldertype_pdfarequirement__e e_ezsignfoldertype_pdfarequirement,
@@ -135,13 +143,18 @@ __attribute__((deprecated)) ezsignfoldertype_request_compound_v3_t *ezsignfolder
     int b_ezsignfoldertype_sendsignedtoezsignsigner,
     int b_ezsignfoldertype_sendsignedtouser,
     int b_ezsignfoldertype_sendattachmentezsignsigner,
+    int b_ezsignfoldertype_sendsignatureattachmentezsignsigner,
+    int b_ezsignfoldertype_sendsignatureattachment,
     int b_ezsignfoldertype_sendproofezsignsigner,
     int b_ezsignfoldertype_sendattachmentuser,
+    int b_ezsignfoldertype_sendsignatureattachmentuser,
     int b_ezsignfoldertype_sendproofuser,
     int b_ezsignfoldertype_sendproofemail,
     int b_ezsignfoldertype_allowdownloadattachmentezsignsigner,
+    int b_ezsignfoldertype_allowdownloadsignatureattachmentezsignsigner,
     int b_ezsignfoldertype_allowdownloadproofezsignsigner,
     int b_ezsignfoldertype_sendproofreceivealldocument,
+    int b_ezsignfoldertype_sendsignatureattachmentreceivealldocument,
     int b_ezsignfoldertype_sendsignedtodocumentowner,
     int b_ezsignfoldertype_sendsignedtofolderowner,
     int b_ezsignfoldertype_sendsignedtofullgroup,

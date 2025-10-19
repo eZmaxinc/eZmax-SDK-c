@@ -22,6 +22,7 @@ typedef struct custom_ezsignfoldertransmission_signer_response_t {
     int fki_user_id; //numeric
     char *s_contact_firstname; // string
     char *s_contact_lastname; // string
+    char *s_ezsignsignergroup_description_x; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } custom_ezsignfoldertransmission_signer_response_t;
@@ -29,7 +30,8 @@ typedef struct custom_ezsignfoldertransmission_signer_response_t {
 __attribute__((deprecated)) custom_ezsignfoldertransmission_signer_response_t *custom_ezsignfoldertransmission_signer_response_create(
     int fki_user_id,
     char *s_contact_firstname,
-    char *s_contact_lastname
+    char *s_contact_lastname,
+    char *s_ezsignsignergroup_description_x
 );
 
 void custom_ezsignfoldertransmission_signer_response_free(custom_ezsignfoldertransmission_signer_response_t *custom_ezsignfoldertransmission_signer_response);

@@ -15,6 +15,7 @@
 
 typedef struct ezsignfolder_list_element_t ezsignfolder_list_element_t;
 
+#include "field_e_ezsignfolder_completion.h"
 #include "field_e_ezsignfolder_step.h"
 #include "field_e_ezsignfoldertype_privacylevel.h"
 
@@ -27,6 +28,7 @@ typedef struct ezsignfolder_list_element_t {
     char *s_ezsignfoldertype_name_x; // string
     char *s_ezsignfolder_description; // string
     ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step; //referenced enum
+    ezmax_api_definition__full_field_e_ezsignfolder_completion__e e_ezsignfolder_completion; //referenced enum
     char *dt_created_date; // string
     char *dt_ezsignfolder_delayedsenddate; // string
     char *dt_ezsignfolder_sentdate; // string
@@ -56,6 +58,7 @@ __attribute__((deprecated)) ezsignfolder_list_element_t *ezsignfolder_list_eleme
     char *s_ezsignfoldertype_name_x,
     char *s_ezsignfolder_description,
     ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step,
+    ezmax_api_definition__full_field_e_ezsignfolder_completion__e e_ezsignfolder_completion,
     char *dt_created_date,
     char *dt_ezsignfolder_delayedsenddate,
     char *dt_ezsignfolder_sentdate,

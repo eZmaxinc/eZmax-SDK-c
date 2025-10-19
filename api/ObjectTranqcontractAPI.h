@@ -10,6 +10,8 @@
 #include "../model/tranqcontract_get_communication_list_v1_response.h"
 #include "../model/tranqcontract_get_communicationrecipients_v1_response.h"
 #include "../model/tranqcontract_get_communicationsenders_v1_response.h"
+#include "../model/tranqcontract_import_into_edm_v1_request.h"
+#include "../model/tranqcontract_import_into_edm_v1_response.h"
 
 
 // Retrieve Communication count
@@ -42,5 +44,13 @@ ObjectTranqcontractAPI_tranqcontractGetCommunicationrecipientsV1(apiClient_t *ap
 //
 tranqcontract_get_communicationsenders_v1_response_t*
 ObjectTranqcontractAPI_tranqcontractGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiTranqcontractID);
+
+
+// Import attachments into the Tranqcontract
+//
+// 
+//
+tranqcontract_import_into_edm_v1_response_t*
+ObjectTranqcontractAPI_tranqcontractImportIntoEDMV1(apiClient_t *apiClient, int *pkiTranqcontractID, tranqcontract_import_into_edm_v1_request_t *tranqcontract_import_into_edm_v1_request);
 
 

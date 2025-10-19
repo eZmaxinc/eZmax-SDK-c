@@ -8,6 +8,8 @@
 static custom_ezsignimportdocument_response_t *custom_ezsignimportdocument_response_create_internal(
     int pki_ezsignimportdocument_id,
     char *s_ezsignimportdocument_name,
+    int fki_ezsigntemplateglobal_id,
+    char *s_ezsigntemplateglobal_description,
     int fki_ezsignfolder_id,
     char *s_ezsignfolder_description
     ) {
@@ -17,6 +19,8 @@ static custom_ezsignimportdocument_response_t *custom_ezsignimportdocument_respo
     }
     custom_ezsignimportdocument_response_local_var->pki_ezsignimportdocument_id = pki_ezsignimportdocument_id;
     custom_ezsignimportdocument_response_local_var->s_ezsignimportdocument_name = s_ezsignimportdocument_name;
+    custom_ezsignimportdocument_response_local_var->fki_ezsigntemplateglobal_id = fki_ezsigntemplateglobal_id;
+    custom_ezsignimportdocument_response_local_var->s_ezsigntemplateglobal_description = s_ezsigntemplateglobal_description;
     custom_ezsignimportdocument_response_local_var->fki_ezsignfolder_id = fki_ezsignfolder_id;
     custom_ezsignimportdocument_response_local_var->s_ezsignfolder_description = s_ezsignfolder_description;
 
@@ -27,12 +31,16 @@ static custom_ezsignimportdocument_response_t *custom_ezsignimportdocument_respo
 __attribute__((deprecated)) custom_ezsignimportdocument_response_t *custom_ezsignimportdocument_response_create(
     int pki_ezsignimportdocument_id,
     char *s_ezsignimportdocument_name,
+    int fki_ezsigntemplateglobal_id,
+    char *s_ezsigntemplateglobal_description,
     int fki_ezsignfolder_id,
     char *s_ezsignfolder_description
     ) {
     return custom_ezsignimportdocument_response_create_internal (
         pki_ezsignimportdocument_id,
         s_ezsignimportdocument_name,
+        fki_ezsigntemplateglobal_id,
+        s_ezsigntemplateglobal_description,
         fki_ezsignfolder_id,
         s_ezsignfolder_description
         );
@@ -50,6 +58,10 @@ void custom_ezsignimportdocument_response_free(custom_ezsignimportdocument_respo
     if (custom_ezsignimportdocument_response->s_ezsignimportdocument_name) {
         free(custom_ezsignimportdocument_response->s_ezsignimportdocument_name);
         custom_ezsignimportdocument_response->s_ezsignimportdocument_name = NULL;
+    }
+    if (custom_ezsignimportdocument_response->s_ezsigntemplateglobal_description) {
+        free(custom_ezsignimportdocument_response->s_ezsigntemplateglobal_description);
+        custom_ezsignimportdocument_response->s_ezsigntemplateglobal_description = NULL;
     }
     if (custom_ezsignimportdocument_response->s_ezsignfolder_description) {
         free(custom_ezsignimportdocument_response->s_ezsignfolder_description);
@@ -76,6 +88,22 @@ cJSON *custom_ezsignimportdocument_response_convertToJSON(custom_ezsignimportdoc
     }
     if(cJSON_AddStringToObject(item, "sEzsignimportdocumentName", custom_ezsignimportdocument_response->s_ezsignimportdocument_name) == NULL) {
     goto fail; //String
+    }
+
+
+    // custom_ezsignimportdocument_response->fki_ezsigntemplateglobal_id
+    if(custom_ezsignimportdocument_response->fki_ezsigntemplateglobal_id) {
+    if(cJSON_AddNumberToObject(item, "fkiEzsigntemplateglobalID", custom_ezsignimportdocument_response->fki_ezsigntemplateglobal_id) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
+
+    // custom_ezsignimportdocument_response->s_ezsigntemplateglobal_description
+    if(custom_ezsignimportdocument_response->s_ezsigntemplateglobal_description) {
+    if(cJSON_AddStringToObject(item, "sEzsigntemplateglobalDescription", custom_ezsignimportdocument_response->s_ezsigntemplateglobal_description) == NULL) {
+    goto fail; //String
+    }
     }
 
 
@@ -136,6 +164,30 @@ custom_ezsignimportdocument_response_t *custom_ezsignimportdocument_response_par
     goto end; //String
     }
 
+    // custom_ezsignimportdocument_response->fki_ezsigntemplateglobal_id
+    cJSON *fki_ezsigntemplateglobal_id = cJSON_GetObjectItemCaseSensitive(custom_ezsignimportdocument_responseJSON, "fkiEzsigntemplateglobalID");
+    if (cJSON_IsNull(fki_ezsigntemplateglobal_id)) {
+        fki_ezsigntemplateglobal_id = NULL;
+    }
+    if (fki_ezsigntemplateglobal_id) { 
+    if(!cJSON_IsNumber(fki_ezsigntemplateglobal_id))
+    {
+    goto end; //Numeric
+    }
+    }
+
+    // custom_ezsignimportdocument_response->s_ezsigntemplateglobal_description
+    cJSON *s_ezsigntemplateglobal_description = cJSON_GetObjectItemCaseSensitive(custom_ezsignimportdocument_responseJSON, "sEzsigntemplateglobalDescription");
+    if (cJSON_IsNull(s_ezsigntemplateglobal_description)) {
+        s_ezsigntemplateglobal_description = NULL;
+    }
+    if (s_ezsigntemplateglobal_description) { 
+    if(!cJSON_IsString(s_ezsigntemplateglobal_description) && !cJSON_IsNull(s_ezsigntemplateglobal_description))
+    {
+    goto end; //String
+    }
+    }
+
     // custom_ezsignimportdocument_response->fki_ezsignfolder_id
     cJSON *fki_ezsignfolder_id = cJSON_GetObjectItemCaseSensitive(custom_ezsignimportdocument_responseJSON, "fkiEzsignfolderID");
     if (cJSON_IsNull(fki_ezsignfolder_id)) {
@@ -164,6 +216,8 @@ custom_ezsignimportdocument_response_t *custom_ezsignimportdocument_response_par
     custom_ezsignimportdocument_response_local_var = custom_ezsignimportdocument_response_create_internal (
         pki_ezsignimportdocument_id->valuedouble,
         strdup(s_ezsignimportdocument_name->valuestring),
+        fki_ezsigntemplateglobal_id ? fki_ezsigntemplateglobal_id->valuedouble : 0,
+        s_ezsigntemplateglobal_description && !cJSON_IsNull(s_ezsigntemplateglobal_description) ? strdup(s_ezsigntemplateglobal_description->valuestring) : NULL,
         fki_ezsignfolder_id ? fki_ezsignfolder_id->valuedouble : 0,
         s_ezsignfolder_description && !cJSON_IsNull(s_ezsignfolder_description) ? strdup(s_ezsignfolder_description->valuestring) : NULL
         );

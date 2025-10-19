@@ -22,7 +22,8 @@ static custom_ezsignfoldertype_response_t *custom_ezsignfoldertype_response_crea
     int b_ezsignfoldertype_reassigngroup,
     int i_ezsignfoldertype_deadlinedays,
     int i_ezsignfoldertype_fontsizeannotation,
-    int i_ezsignfoldertype_fontsizeformfield
+    int i_ezsignfoldertype_fontsizeformfield,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__e e_ezsignfoldertype_documentmerge
     ) {
     custom_ezsignfoldertype_response_t *custom_ezsignfoldertype_response_local_var = malloc(sizeof(custom_ezsignfoldertype_response_t));
     if (!custom_ezsignfoldertype_response_local_var) {
@@ -45,6 +46,7 @@ static custom_ezsignfoldertype_response_t *custom_ezsignfoldertype_response_crea
     custom_ezsignfoldertype_response_local_var->i_ezsignfoldertype_deadlinedays = i_ezsignfoldertype_deadlinedays;
     custom_ezsignfoldertype_response_local_var->i_ezsignfoldertype_fontsizeannotation = i_ezsignfoldertype_fontsizeannotation;
     custom_ezsignfoldertype_response_local_var->i_ezsignfoldertype_fontsizeformfield = i_ezsignfoldertype_fontsizeformfield;
+    custom_ezsignfoldertype_response_local_var->e_ezsignfoldertype_documentmerge = e_ezsignfoldertype_documentmerge;
 
     custom_ezsignfoldertype_response_local_var->_library_owned = 1;
     return custom_ezsignfoldertype_response_local_var;
@@ -67,7 +69,8 @@ __attribute__((deprecated)) custom_ezsignfoldertype_response_t *custom_ezsignfol
     int b_ezsignfoldertype_reassigngroup,
     int i_ezsignfoldertype_deadlinedays,
     int i_ezsignfoldertype_fontsizeannotation,
-    int i_ezsignfoldertype_fontsizeformfield
+    int i_ezsignfoldertype_fontsizeformfield,
+    ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__e e_ezsignfoldertype_documentmerge
     ) {
     return custom_ezsignfoldertype_response_create_internal (
         pki_ezsignfoldertype_id,
@@ -86,7 +89,8 @@ __attribute__((deprecated)) custom_ezsignfoldertype_response_t *custom_ezsignfol
         b_ezsignfoldertype_reassigngroup,
         i_ezsignfoldertype_deadlinedays,
         i_ezsignfoldertype_fontsizeannotation,
-        i_ezsignfoldertype_fontsizeformfield
+        i_ezsignfoldertype_fontsizeformfield,
+        e_ezsignfoldertype_documentmerge
         );
 }
 
@@ -245,6 +249,19 @@ cJSON *custom_ezsignfoldertype_response_convertToJSON(custom_ezsignfoldertype_re
     }
     }
 
+
+    // custom_ezsignfoldertype_response->e_ezsignfoldertype_documentmerge
+    if(custom_ezsignfoldertype_response->e_ezsignfoldertype_documentmerge != ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__NULL) {
+    cJSON *e_ezsignfoldertype_documentmerge_local_JSON = field_e_ezsignfoldertype_documentmerge_convertToJSON(custom_ezsignfoldertype_response->e_ezsignfoldertype_documentmerge);
+    if(e_ezsignfoldertype_documentmerge_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsignfoldertypeDocumentmerge", e_ezsignfoldertype_documentmerge_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -256,6 +273,9 @@ fail:
 custom_ezsignfoldertype_response_t *custom_ezsignfoldertype_response_parseFromJSON(cJSON *custom_ezsignfoldertype_responseJSON){
 
     custom_ezsignfoldertype_response_t *custom_ezsignfoldertype_response_local_var = NULL;
+
+    // define the local variable for custom_ezsignfoldertype_response->e_ezsignfoldertype_documentmerge
+    ezmax_api_definition__full_field_e_ezsignfoldertype_documentmerge__e e_ezsignfoldertype_documentmerge_local_nonprim = 0;
 
     // custom_ezsignfoldertype_response->pki_ezsignfoldertype_id
     cJSON *pki_ezsignfoldertype_id = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldertype_responseJSON, "pkiEzsignfoldertypeID");
@@ -464,6 +484,15 @@ custom_ezsignfoldertype_response_t *custom_ezsignfoldertype_response_parseFromJS
     }
     }
 
+    // custom_ezsignfoldertype_response->e_ezsignfoldertype_documentmerge
+    cJSON *e_ezsignfoldertype_documentmerge = cJSON_GetObjectItemCaseSensitive(custom_ezsignfoldertype_responseJSON, "eEzsignfoldertypeDocumentmerge");
+    if (cJSON_IsNull(e_ezsignfoldertype_documentmerge)) {
+        e_ezsignfoldertype_documentmerge = NULL;
+    }
+    if (e_ezsignfoldertype_documentmerge) { 
+    e_ezsignfoldertype_documentmerge_local_nonprim = field_e_ezsignfoldertype_documentmerge_parseFromJSON(e_ezsignfoldertype_documentmerge); //custom
+    }
+
 
     custom_ezsignfoldertype_response_local_var = custom_ezsignfoldertype_response_create_internal (
         pki_ezsignfoldertype_id->valuedouble,
@@ -482,11 +511,15 @@ custom_ezsignfoldertype_response_t *custom_ezsignfoldertype_response_parseFromJS
         b_ezsignfoldertype_reassigngroup ? b_ezsignfoldertype_reassigngroup->valueint : 0,
         i_ezsignfoldertype_deadlinedays ? i_ezsignfoldertype_deadlinedays->valuedouble : 0,
         i_ezsignfoldertype_fontsizeannotation ? i_ezsignfoldertype_fontsizeannotation->valuedouble : 0,
-        i_ezsignfoldertype_fontsizeformfield ? i_ezsignfoldertype_fontsizeformfield->valuedouble : 0
+        i_ezsignfoldertype_fontsizeformfield ? i_ezsignfoldertype_fontsizeformfield->valuedouble : 0,
+        e_ezsignfoldertype_documentmerge ? e_ezsignfoldertype_documentmerge_local_nonprim : 0
         );
 
     return custom_ezsignfoldertype_response_local_var;
 end:
+    if (e_ezsignfoldertype_documentmerge_local_nonprim) {
+        e_ezsignfoldertype_documentmerge_local_nonprim = 0;
+    }
     return NULL;
 
 }

@@ -9,6 +9,7 @@ static creditcardmerchant_request_compound_t *creditcardmerchant_request_compoun
     int pki_creditcardmerchant_id,
     int fki_bankaccount_id,
     int fki_language_id,
+    int fki_currency_id,
     int b_creditcardmerchant_denyvisa,
     int b_creditcardmerchant_denymastercard,
     int b_creditcardmerchant_denyamex,
@@ -24,6 +25,7 @@ static creditcardmerchant_request_compound_t *creditcardmerchant_request_compoun
     creditcardmerchant_request_compound_local_var->pki_creditcardmerchant_id = pki_creditcardmerchant_id;
     creditcardmerchant_request_compound_local_var->fki_bankaccount_id = fki_bankaccount_id;
     creditcardmerchant_request_compound_local_var->fki_language_id = fki_language_id;
+    creditcardmerchant_request_compound_local_var->fki_currency_id = fki_currency_id;
     creditcardmerchant_request_compound_local_var->b_creditcardmerchant_denyvisa = b_creditcardmerchant_denyvisa;
     creditcardmerchant_request_compound_local_var->b_creditcardmerchant_denymastercard = b_creditcardmerchant_denymastercard;
     creditcardmerchant_request_compound_local_var->b_creditcardmerchant_denyamex = b_creditcardmerchant_denyamex;
@@ -40,6 +42,7 @@ __attribute__((deprecated)) creditcardmerchant_request_compound_t *creditcardmer
     int pki_creditcardmerchant_id,
     int fki_bankaccount_id,
     int fki_language_id,
+    int fki_currency_id,
     int b_creditcardmerchant_denyvisa,
     int b_creditcardmerchant_denymastercard,
     int b_creditcardmerchant_denyamex,
@@ -52,6 +55,7 @@ __attribute__((deprecated)) creditcardmerchant_request_compound_t *creditcardmer
         pki_creditcardmerchant_id,
         fki_bankaccount_id,
         fki_language_id,
+        fki_currency_id,
         b_creditcardmerchant_denyvisa,
         b_creditcardmerchant_denymastercard,
         b_creditcardmerchant_denyamex,
@@ -98,19 +102,28 @@ cJSON *creditcardmerchant_request_compound_convertToJSON(creditcardmerchant_requ
 
 
     // creditcardmerchant_request_compound->fki_bankaccount_id
-    if (!creditcardmerchant_request_compound->fki_bankaccount_id) {
-        goto fail;
-    }
+    if(creditcardmerchant_request_compound->fki_bankaccount_id) {
     if(cJSON_AddNumberToObject(item, "fkiBankaccountID", creditcardmerchant_request_compound->fki_bankaccount_id) == NULL) {
     goto fail; //Numeric
+    }
     }
 
 
     // creditcardmerchant_request_compound->fki_language_id
-    if(creditcardmerchant_request_compound->fki_language_id) {
+    if (!creditcardmerchant_request_compound->fki_language_id) {
+        goto fail;
+    }
     if(cJSON_AddNumberToObject(item, "fkiLanguageID", creditcardmerchant_request_compound->fki_language_id) == NULL) {
     goto fail; //Numeric
     }
+
+
+    // creditcardmerchant_request_compound->fki_currency_id
+    if (!creditcardmerchant_request_compound->fki_currency_id) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "fkiCurrencyID", creditcardmerchant_request_compound->fki_currency_id) == NULL) {
+    goto fail; //Numeric
     }
 
 
@@ -204,14 +217,11 @@ creditcardmerchant_request_compound_t *creditcardmerchant_request_compound_parse
     if (cJSON_IsNull(fki_bankaccount_id)) {
         fki_bankaccount_id = NULL;
     }
-    if (!fki_bankaccount_id) {
-        goto end;
-    }
-
-    
+    if (fki_bankaccount_id) { 
     if(!cJSON_IsNumber(fki_bankaccount_id))
     {
     goto end; //Numeric
+    }
     }
 
     // creditcardmerchant_request_compound->fki_language_id
@@ -219,11 +229,29 @@ creditcardmerchant_request_compound_t *creditcardmerchant_request_compound_parse
     if (cJSON_IsNull(fki_language_id)) {
         fki_language_id = NULL;
     }
-    if (fki_language_id) { 
+    if (!fki_language_id) {
+        goto end;
+    }
+
+    
     if(!cJSON_IsNumber(fki_language_id))
     {
     goto end; //Numeric
     }
+
+    // creditcardmerchant_request_compound->fki_currency_id
+    cJSON *fki_currency_id = cJSON_GetObjectItemCaseSensitive(creditcardmerchant_request_compoundJSON, "fkiCurrencyID");
+    if (cJSON_IsNull(fki_currency_id)) {
+        fki_currency_id = NULL;
+    }
+    if (!fki_currency_id) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(fki_currency_id))
+    {
+    goto end; //Numeric
     }
 
     // creditcardmerchant_request_compound->b_creditcardmerchant_denyvisa
@@ -331,8 +359,9 @@ creditcardmerchant_request_compound_t *creditcardmerchant_request_compound_parse
 
     creditcardmerchant_request_compound_local_var = creditcardmerchant_request_compound_create_internal (
         pki_creditcardmerchant_id ? pki_creditcardmerchant_id->valuedouble : 0,
-        fki_bankaccount_id->valuedouble,
-        fki_language_id ? fki_language_id->valuedouble : 0,
+        fki_bankaccount_id ? fki_bankaccount_id->valuedouble : 0,
+        fki_language_id->valuedouble,
+        fki_currency_id->valuedouble,
         b_creditcardmerchant_denyvisa->valueint,
         b_creditcardmerchant_denymastercard->valueint,
         b_creditcardmerchant_denyamex->valueint,

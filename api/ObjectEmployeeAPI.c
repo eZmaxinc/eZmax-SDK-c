@@ -1,0 +1,396 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <ctype.h>
+#include "ObjectEmployeeAPI.h"
+
+#define MAX_NUMBER_LENGTH 16
+#define MAX_BUFFER_LENGTH 4096
+
+// Functions for enum EORDERBY for ObjectEmployeeAPI_employeeGetListV1
+
+static char* employeeGetListV1_EORDERBY_ToString(ezmax_api_definition__full_employeeGetListV1_eOrderBy_e EORDERBY){
+    char *EORDERBYArray[] =  { "NULL", "pkiEmployeeID_ASC", "pkiEmployeeID_DESC", "fkiDepartmentID_ASC", "fkiDepartmentID_DESC", "sEmployeeCode_ASC", "sEmployeeCode_DESC", "sEmployeeInternalcode_ASC", "sEmployeeInternalcode_DESC", "bEmployeeIsactive_ASC", "bEmployeeIsactive_DESC", "dtEmployeeHiredate_ASC", "dtEmployeeHiredate_DESC", "dtEmployeeLeavedate_ASC", "dtEmployeeLeavedate_DESC", "sDepartmentNameX_ASC", "sDepartmentNameX_DESC", "sContactFirstname_ASC", "sContactFirstname_DESC", "sContactLastname_ASC", "sContactLastname_DESC", "sPhoneE164_ASC", "sPhoneE164_DESC", "sEmailAddress_ASC", "sEmailAddress_DESC", "sAddressCivic_ASC", "sAddressCivic_DESC", "sAddressStreet_ASC", "sAddressStreet_DESC", "sAddressSuite_ASC", "sAddressSuite_DESC", "sAddressCity_ASC", "sAddressCity_DESC", "sAddressZip_ASC", "sAddressZip_DESC", "sProvinceNameX_ASC", "sProvinceNameX_DESC", "sCountryNameX_ASC", "sCountryNameX_DESC" };
+    return EORDERBYArray[EORDERBY];
+}
+
+static ezmax_api_definition__full_employeeGetListV1_eOrderBy_e employeeGetListV1_EORDERBY_FromString(char* EORDERBY){
+    int stringToReturn = 0;
+    char *EORDERBYArray[] =  { "NULL", "pkiEmployeeID_ASC", "pkiEmployeeID_DESC", "fkiDepartmentID_ASC", "fkiDepartmentID_DESC", "sEmployeeCode_ASC", "sEmployeeCode_DESC", "sEmployeeInternalcode_ASC", "sEmployeeInternalcode_DESC", "bEmployeeIsactive_ASC", "bEmployeeIsactive_DESC", "dtEmployeeHiredate_ASC", "dtEmployeeHiredate_DESC", "dtEmployeeLeavedate_ASC", "dtEmployeeLeavedate_DESC", "sDepartmentNameX_ASC", "sDepartmentNameX_DESC", "sContactFirstname_ASC", "sContactFirstname_DESC", "sContactLastname_ASC", "sContactLastname_DESC", "sPhoneE164_ASC", "sPhoneE164_DESC", "sEmailAddress_ASC", "sEmailAddress_DESC", "sAddressCivic_ASC", "sAddressCivic_DESC", "sAddressStreet_ASC", "sAddressStreet_DESC", "sAddressSuite_ASC", "sAddressSuite_DESC", "sAddressCity_ASC", "sAddressCity_DESC", "sAddressZip_ASC", "sAddressZip_DESC", "sProvinceNameX_ASC", "sProvinceNameX_DESC", "sCountryNameX_ASC", "sCountryNameX_DESC" };
+    size_t sizeofArray = sizeof(EORDERBYArray) / sizeof(EORDERBYArray[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(EORDERBY, EORDERBYArray[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
+
+/*
+// Function employeeGetListV1_EORDERBY_convertToJSON is not currently used,
+// since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
+//
+static cJSON *employeeGetListV1_EORDERBY_convertToJSON(ezmax_api_definition__full_employeeGetListV1_eOrderBy_e EORDERBY) {
+    cJSON *item = cJSON_CreateObject();
+    if(cJSON_AddStringToObject(item, "eOrderBy", employeeGetListV1_EORDERBY_ToString(EORDERBY)) == NULL) {
+        goto fail;
+    }
+    return item;
+    fail:
+    cJSON_Delete(item);
+    return NULL;
+}
+
+// Function employeeGetListV1_EORDERBY_parseFromJSON is not currently used,
+// since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
+//
+static ezmax_api_definition__full_employeeGetListV1_eOrderBy_e employeeGetListV1_EORDERBY_parseFromJSON(cJSON* EORDERBYJSON) {
+    ezmax_api_definition__full_employeeGetListV1_eOrderBy_e EORDERBYVariable = 0;
+    cJSON *EORDERBYVar = cJSON_GetObjectItemCaseSensitive(EORDERBYJSON, "eOrderBy");
+    if(!cJSON_IsString(EORDERBYVar) || (EORDERBYVar->valuestring == NULL))
+    {
+        goto end;
+    }
+    EORDERBYVariable = employeeGetListV1_EORDERBY_FromString(EORDERBYVar->valuestring);
+    return EORDERBYVariable;
+end:
+    return 0;
+}
+*/
+
+// Functions for enum  for ObjectEmployeeAPI_employeeGetListV1
+
+static char* employeeGetListV1__ToString(ezmax_api_definition__full_employeeGetListV1_Accept-Language_e ){
+    char *Array[] =  { "NULL", "*", "en", "fr" };
+    return Array[];
+}
+
+static ezmax_api_definition__full_employeeGetListV1_Accept-Language_e employeeGetListV1__FromString(char* ){
+    int stringToReturn = 0;
+    char *Array[] =  { "NULL", "*", "en", "fr" };
+    size_t sizeofArray = sizeof(Array) / sizeof(Array[0]);
+    while(stringToReturn < sizeofArray) {
+        if(strcmp(, Array[stringToReturn]) == 0) {
+            return stringToReturn;
+        }
+        stringToReturn++;
+    }
+    return 0;
+}
+
+/*
+// Function employeeGetListV1__convertToJSON is not currently used,
+// since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
+//
+static cJSON *employeeGetListV1__convertToJSON(ezmax_api_definition__full_employeeGetListV1_Accept-Language_e ) {
+    cJSON *item = cJSON_CreateObject();
+    return item;
+    fail:
+    cJSON_Delete(item);
+    return NULL;
+}
+
+// Function employeeGetListV1__parseFromJSON is not currently used,
+// since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
+//
+static ezmax_api_definition__full_employeeGetListV1_Accept-Language_e employeeGetListV1__parseFromJSON(cJSON* JSON) {
+    ezmax_api_definition__full_employeeGetListV1_Accept-Language_e Variable = 0;
+    return Variable;
+end:
+    return 0;
+}
+*/
+
+
+// Retrieve Employee list
+//
+// 
+//
+employee_get_list_v1_response_t*
+ObjectEmployeeAPI_employeeGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_employeeGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter)
+{
+    list_t    *localVarQueryParameters = list_createList();
+    list_t    *localVarHeaderParameters = list_createList();
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/employee/getList");
+
+
+
+
+
+    // header parameters
+    char *keyHeader_Accept_Language = NULL;
+    header_accept_language_e valueHeader_Accept_Language = 0;
+    keyValuePair_t *keyPairHeader_Accept_Language = 0;
+    if (Accept_Language) {
+        keyHeader_Accept_Language = strdup("Accept-Language");
+        valueHeader_Accept_Language = (Accept_Language);
+        keyPairHeader_Accept_Language = keyValuePair_create(keyHeader_Accept_Language, (void *)&valueHeader_Accept_Language);
+        list_addElement(localVarHeaderParameters,keyPairHeader_Accept_Language);
+    }
+
+
+    // query parameters
+    char *keyQuery_eOrderBy = NULL;
+    ezmax_api_definition__full_employeeGetListV1_eOrderBy_e valueQuery_eOrderBy ;
+    keyValuePair_t *keyPairQuery_eOrderBy = 0;
+    if (eOrderBy)
+    {
+        keyQuery_eOrderBy = strdup("eOrderBy");
+        valueQuery_eOrderBy = (eOrderBy);
+        keyPairQuery_eOrderBy = keyValuePair_create(keyQuery_eOrderBy, strdup(employeeGetListV1_EORDERBY_ToString(
+        valueQuery_eOrderBy)));
+        list_addElement(localVarQueryParameters,keyPairQuery_eOrderBy);
+    }
+
+    // query parameters
+    char *keyQuery_iRowMax = NULL;
+    char * valueQuery_iRowMax = NULL;
+    keyValuePair_t *keyPairQuery_iRowMax = 0;
+    if (iRowMax)
+    {
+        keyQuery_iRowMax = strdup("iRowMax");
+        valueQuery_iRowMax = calloc(1,MAX_NUMBER_LENGTH);
+        snprintf(valueQuery_iRowMax, MAX_NUMBER_LENGTH, "%d", *iRowMax);
+        keyPairQuery_iRowMax = keyValuePair_create(keyQuery_iRowMax, valueQuery_iRowMax);
+        list_addElement(localVarQueryParameters,keyPairQuery_iRowMax);
+    }
+
+    // query parameters
+    char *keyQuery_iRowOffset = NULL;
+    char * valueQuery_iRowOffset = NULL;
+    keyValuePair_t *keyPairQuery_iRowOffset = 0;
+    if (iRowOffset)
+    {
+        keyQuery_iRowOffset = strdup("iRowOffset");
+        valueQuery_iRowOffset = calloc(1,MAX_NUMBER_LENGTH);
+        snprintf(valueQuery_iRowOffset, MAX_NUMBER_LENGTH, "%d", *iRowOffset);
+        keyPairQuery_iRowOffset = keyValuePair_create(keyQuery_iRowOffset, valueQuery_iRowOffset);
+        list_addElement(localVarQueryParameters,keyPairQuery_iRowOffset);
+    }
+
+    // query parameters
+    char *keyQuery_sFilter = NULL;
+    char * valueQuery_sFilter = NULL;
+    keyValuePair_t *keyPairQuery_sFilter = 0;
+    if (sFilter)
+    {
+        keyQuery_sFilter = strdup("sFilter");
+        valueQuery_sFilter = strdup((sFilter));
+        keyPairQuery_sFilter = keyValuePair_create(keyQuery_sFilter, valueQuery_sFilter);
+        list_addElement(localVarQueryParameters,keyPairQuery_sFilter);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarHeaderType,"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 406) {
+    //    printf("%s\n","The URL is valid, but one of the Accept header is not defined or invalid. For example, you set the header \&quot;Accept: application/json\&quot; but the function can only return \&quot;Content-type: image/png\&quot;");
+    //}
+    //nonprimitive not container
+    employee_get_list_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEmployeeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = employee_get_list_v1_response_parseFromJSON(ObjectEmployeeAPIlocalVarJSON);
+        cJSON_Delete(ObjectEmployeeAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    list_freeList(localVarQueryParameters);
+    list_freeList(localVarHeaderParameters);
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    if (keyHeader_Accept_Language) {
+        free(keyHeader_Accept_Language);
+        keyHeader_Accept_Language = NULL;
+    }
+    free(keyPairHeader_Accept_Language);
+    if(keyQuery_eOrderBy){
+        free(keyQuery_eOrderBy);
+        keyQuery_eOrderBy = NULL;
+    }
+    if(keyPairQuery_eOrderBy){
+        keyValuePair_free(keyPairQuery_eOrderBy);
+        keyPairQuery_eOrderBy = NULL;
+    }
+    if(keyQuery_iRowMax){
+        free(keyQuery_iRowMax);
+        keyQuery_iRowMax = NULL;
+    }
+    if(valueQuery_iRowMax){
+        free(valueQuery_iRowMax);
+        valueQuery_iRowMax = NULL;
+    }
+    if(keyPairQuery_iRowMax){
+        keyValuePair_free(keyPairQuery_iRowMax);
+        keyPairQuery_iRowMax = NULL;
+    }
+    if(keyQuery_iRowOffset){
+        free(keyQuery_iRowOffset);
+        keyQuery_iRowOffset = NULL;
+    }
+    if(valueQuery_iRowOffset){
+        free(valueQuery_iRowOffset);
+        valueQuery_iRowOffset = NULL;
+    }
+    if(keyPairQuery_iRowOffset){
+        keyValuePair_free(keyPairQuery_iRowOffset);
+        keyPairQuery_iRowOffset = NULL;
+    }
+    if(keyQuery_sFilter){
+        free(keyQuery_sFilter);
+        keyQuery_sFilter = NULL;
+    }
+    if(valueQuery_sFilter){
+        free(valueQuery_sFilter);
+        valueQuery_sFilter = NULL;
+    }
+    if(keyPairQuery_sFilter){
+        keyValuePair_free(keyPairQuery_sFilter);
+        keyPairQuery_sFilter = NULL;
+    }
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+
+// Import attachments into the Employee
+//
+// 
+//
+employee_import_into_edm_v1_response_t*
+ObjectEmployeeAPI_employeeImportIntoEDMV1(apiClient_t *apiClient, int *pkiEmployeeID, employee_import_into_edm_v1_request_t *employee_import_into_edm_v1_request)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = list_createList();
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/employee/{pkiEmployeeID}/importIntoEDM");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEmployeeID =  + sizeof("{ pkiEmployeeID }") - 1;
+    if(pkiEmployeeID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEmployeeID = malloc(sizeOfPathParams_pkiEmployeeID);
+    snprintf(localVarToReplace_pkiEmployeeID, sizeOfPathParams_pkiEmployeeID, "{%s}", "pkiEmployeeID");
+
+    char localVarBuff_pkiEmployeeID[256];
+    snprintf(localVarBuff_pkiEmployeeID, sizeof localVarBuff_pkiEmployeeID, "%ld", (long)*pkiEmployeeID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEmployeeID, localVarBuff_pkiEmployeeID);
+
+
+
+
+    // Body Param
+    cJSON *localVarSingleItemJSON_employee_import_into_edm_v1_request = NULL;
+    if (employee_import_into_edm_v1_request != NULL)
+    {
+        //not string, not binary
+        localVarSingleItemJSON_employee_import_into_edm_v1_request = employee_import_into_edm_v1_request_convertToJSON(employee_import_into_edm_v1_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_employee_import_into_edm_v1_request);
+        localVarBodyLength = strlen(localVarBodyParameters);
+    }
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    list_addElement(localVarContentType,"application/json"); //consumes
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "POST");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 200) {
+    //    printf("%s\n","Successful response");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //nonprimitive not container
+    employee_import_into_edm_v1_response_t *elementToReturn = NULL;
+    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
+        cJSON *ObjectEmployeeAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
+        elementToReturn = employee_import_into_edm_v1_response_parseFromJSON(ObjectEmployeeAPIlocalVarJSON);
+        cJSON_Delete(ObjectEmployeeAPIlocalVarJSON);
+        if(elementToReturn == NULL) {
+            // return 0;
+        }
+    }
+
+    //return type
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    list_freeList(localVarContentType);
+    free(localVarPath);
+    free(localVarToReplace_pkiEmployeeID);
+    if (localVarSingleItemJSON_employee_import_into_edm_v1_request) {
+        cJSON_Delete(localVarSingleItemJSON_employee_import_into_edm_v1_request);
+        localVarSingleItemJSON_employee_import_into_edm_v1_request = NULL;
+    }
+    free(localVarBodyParameters);
+    return elementToReturn;
+end:
+    free(localVarPath);
+    return NULL;
+
+}
+

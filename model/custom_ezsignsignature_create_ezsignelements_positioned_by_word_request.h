@@ -19,6 +19,7 @@ typedef struct custom_ezsignsignature_create_ezsignelements_positioned_by_word_r
 #include "enum_textvalidation.h"
 #include "ezsignelementdependency_request_compound.h"
 #include "ezsignsignaturecustomdate_request_compound.h"
+#include "ezsignsignaturepaymentdetail_request_compound.h"
 #include "field_e_ezsignsignature_attachmentnamesource.h"
 #include "field_e_ezsignsignature_consultationtrigger.h"
 #include "field_e_ezsignsignature_dependencyrequirement.h"
@@ -57,9 +58,12 @@ typedef struct custom_ezsignsignature_create_ezsignelements_positioned_by_word_r
     char *s_ezsignsignature_textvalidationcustommessage; // string
     char *s_ezsignsignature_regexp; // string
     ezmax_api_definition__full_field_e_ezsignsignature_dependencyrequirement__e e_ezsignsignature_dependencyrequirement; //referenced enum
+    char *s_ezsignsignature_creditcardamountdescription; // string
+    char *d_ezsignsignature_creditcardamount; // string
     int b_ezsignsignature_customdate; //boolean
     list_t *a_obj_ezsignsignaturecustomdate; //nonprimitive container
     list_t *a_obj_ezsignelementdependency; //nonprimitive container
+    list_t *a_obj_ezsignsignaturepaymentdetail; //nonprimitive container
     struct custom_create_ezsignelements_positioned_by_word_request_t *obj_createezsignelementspositionedbyword; //model
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -94,9 +98,12 @@ __attribute__((deprecated)) custom_ezsignsignature_create_ezsignelements_positio
     char *s_ezsignsignature_textvalidationcustommessage,
     char *s_ezsignsignature_regexp,
     ezmax_api_definition__full_field_e_ezsignsignature_dependencyrequirement__e e_ezsignsignature_dependencyrequirement,
+    char *s_ezsignsignature_creditcardamountdescription,
+    char *d_ezsignsignature_creditcardamount,
     int b_ezsignsignature_customdate,
     list_t *a_obj_ezsignsignaturecustomdate,
     list_t *a_obj_ezsignelementdependency,
+    list_t *a_obj_ezsignsignaturepaymentdetail,
     custom_create_ezsignelements_positioned_by_word_request_t *obj_createezsignelementspositionedbyword
 );
 

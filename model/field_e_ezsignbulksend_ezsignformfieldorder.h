@@ -1,0 +1,32 @@
+/*
+ * field_e_ezsignbulksend_ezsignformfieldorder.h
+ *
+ * The order by for the Ezsignformfield in the CSV file.
+ */
+
+#ifndef _field_e_ezsignbulksend_ezsignformfieldorder_H_
+#define _field_e_ezsignbulksend_ezsignformfieldorder_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_ezsignbulksend_ezsignformfieldorder_t field_e_ezsignbulksend_ezsignformfieldorder_t;
+
+
+// Enum  for field_e_ezsignbulksend_ezsignformfieldorder
+
+typedef enum { ezmax_api_definition__full_field_e_ezsignbulksend_ezsignformfieldorder__NULL = 0, ezmax_api_definition__full_field_e_ezsignbulksend_ezsignformfieldorder__Position, ezmax_api_definition__full_field_e_ezsignbulksend_ezsignformfieldorder__Name } ezmax_api_definition__full_field_e_ezsignbulksend_ezsignformfieldorder__e;
+
+char* field_e_ezsignbulksend_ezsignformfieldorder_field_e_ezsignbulksend_ezsignformfieldorder_ToString(ezmax_api_definition__full_field_e_ezsignbulksend_ezsignformfieldorder__e field_e_ezsignbulksend_ezsignformfieldorder);
+
+ezmax_api_definition__full_field_e_ezsignbulksend_ezsignformfieldorder__e field_e_ezsignbulksend_ezsignformfieldorder_field_e_ezsignbulksend_ezsignformfieldorder_FromString(char* field_e_ezsignbulksend_ezsignformfieldorder);
+
+cJSON *field_e_ezsignbulksend_ezsignformfieldorder_convertToJSON(ezmax_api_definition__full_field_e_ezsignbulksend_ezsignformfieldorder__e field_e_ezsignbulksend_ezsignformfieldorder);
+
+ezmax_api_definition__full_field_e_ezsignbulksend_ezsignformfieldorder__e field_e_ezsignbulksend_ezsignformfieldorder_parseFromJSON(cJSON *field_e_ezsignbulksend_ezsignformfieldorderJSON);
+
+#endif /* _field_e_ezsignbulksend_ezsignformfieldorder_H_ */
+

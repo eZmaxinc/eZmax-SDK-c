@@ -21,6 +21,8 @@ typedef struct custom_ezsignimportdocument_response_t custom_ezsignimportdocumen
 typedef struct custom_ezsignimportdocument_response_t {
     int pki_ezsignimportdocument_id; //numeric
     char *s_ezsignimportdocument_name; // string
+    int fki_ezsigntemplateglobal_id; //numeric
+    char *s_ezsigntemplateglobal_description; // string
     int fki_ezsignfolder_id; //numeric
     char *s_ezsignfolder_description; // string
 
@@ -30,6 +32,8 @@ typedef struct custom_ezsignimportdocument_response_t {
 __attribute__((deprecated)) custom_ezsignimportdocument_response_t *custom_ezsignimportdocument_response_create(
     int pki_ezsignimportdocument_id,
     char *s_ezsignimportdocument_name,
+    int fki_ezsigntemplateglobal_id,
+    char *s_ezsigntemplateglobal_description,
     int fki_ezsignfolder_id,
     char *s_ezsignfolder_description
 );

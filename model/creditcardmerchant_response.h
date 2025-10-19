@@ -21,9 +21,11 @@ typedef struct creditcardmerchant_response_t creditcardmerchant_response_t;
 typedef struct creditcardmerchant_response_t {
     int pki_creditcardmerchant_id; //numeric
     int fki_bankaccount_id; //numeric
-    char *s_bankaccount_bankname; // string
     int fki_language_id; //numeric
     char *s_language_name_x; // string
+    int fki_currency_id; //numeric
+    char *s_currency_description_x; // string
+    char *s_bankaccount_bankname; // string
     int b_creditcardmerchant_denyvisa; //boolean
     int b_creditcardmerchant_denymastercard; //boolean
     int b_creditcardmerchant_denyamex; //boolean
@@ -37,9 +39,11 @@ typedef struct creditcardmerchant_response_t {
 __attribute__((deprecated)) creditcardmerchant_response_t *creditcardmerchant_response_create(
     int pki_creditcardmerchant_id,
     int fki_bankaccount_id,
-    char *s_bankaccount_bankname,
     int fki_language_id,
     char *s_language_name_x,
+    int fki_currency_id,
+    char *s_currency_description_x,
+    char *s_bankaccount_bankname,
     int b_creditcardmerchant_denyvisa,
     int b_creditcardmerchant_denymastercard,
     int b_creditcardmerchant_denyamex,

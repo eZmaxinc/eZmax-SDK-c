@@ -15,7 +15,6 @@
 
 typedef struct common_reportsection_t common_reportsection_t;
 
-#include "common_reportcolumn.h"
 #include "common_reportsubsection.h"
 #include "enum_horizontalalignment.h"
 
@@ -23,10 +22,7 @@ typedef struct common_reportsection_t common_reportsection_t;
 
 typedef struct common_reportsection_t {
     list_t *a_obj_reportsubsection; //nonprimitive container
-    list_t *a_obj_reportcolumn; //nonprimitive container
     ezmax_api_definition__full_enum_horizontalalignment__e e_reportsection_horizontalalignment; //referenced enum
-    int i_reportsection_columncount; //numeric
-    int i_reportsection_width; //numeric
     char *s_reportsection_title; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -34,10 +30,7 @@ typedef struct common_reportsection_t {
 
 __attribute__((deprecated)) common_reportsection_t *common_reportsection_create(
     list_t *a_obj_reportsubsection,
-    list_t *a_obj_reportcolumn,
     ezmax_api_definition__full_enum_horizontalalignment__e e_reportsection_horizontalalignment,
-    int i_reportsection_columncount,
-    int i_reportsection_width,
     char *s_reportsection_title
 );
 

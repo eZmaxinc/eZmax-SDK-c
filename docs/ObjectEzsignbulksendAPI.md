@@ -6,14 +6,18 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ObjectEzsignbulksendAPI_ezsignbulksendCreateEzsignbulksendtransmissionV2**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendCreateEzsignbulksendtransmissionV2) | **POST** /2/object/ezsignbulksend/{pkiEzsignbulksendID}/createEzsignbulksendtransmission | Create a new Ezsignbulksendtransmission in the Ezsignbulksend
 [**ObjectEzsignbulksendAPI_ezsignbulksendCreateObjectV1**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendCreateObjectV1) | **POST** /1/object/ezsignbulksend | Create a new Ezsignbulksend
+[**ObjectEzsignbulksendAPI_ezsignbulksendCreateObjectV2**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendCreateObjectV2) | **POST** /2/object/ezsignbulksend | Create a new Ezsignbulksend
 [**ObjectEzsignbulksendAPI_ezsignbulksendDeleteObjectV1**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendDeleteObjectV1) | **DELETE** /1/object/ezsignbulksend/{pkiEzsignbulksendID} | Delete an existing Ezsignbulksend
 [**ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV1**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV1) | **PUT** /1/object/ezsignbulksend/{pkiEzsignbulksendID} | Edit an existing Ezsignbulksend
+[**ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV2**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV2) | **PUT** /2/object/ezsignbulksend/{pkiEzsignbulksendID} | Edit an existing Ezsignbulksend
+[**ObjectEzsignbulksendAPI_ezsignbulksendGetBatchFileV1**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendGetBatchFileV1) | **GET** /1/object/ezsignbulksend/{pkiEzsignbulksendID}/getBatchFile | Retrieve file to download documents in batch
 [**ObjectEzsignbulksendAPI_ezsignbulksendGetCsvTemplateV1**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendGetCsvTemplateV1) | **GET** /1/object/ezsignbulksend/{pkiEzsignbulksendID}/getCsvTemplate | Retrieve an existing Ezsignbulksend&#39;s empty Csv template
 [**ObjectEzsignbulksendAPI_ezsignbulksendGetEzsignbulksendtransmissionsV1**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendGetEzsignbulksendtransmissionsV1) | **GET** /1/object/ezsignbulksend/{pkiEzsignbulksendID}/getEzsignbulksendtransmissions | Retrieve an existing Ezsignbulksend&#39;s Ezsignbulksendtransmissions
 [**ObjectEzsignbulksendAPI_ezsignbulksendGetEzsignsignaturesAutomaticV1**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendGetEzsignsignaturesAutomaticV1) | **GET** /1/object/ezsignbulksend/{pkiEzsignbulksendID}/getEzsignsignaturesAutomatic | Retrieve an existing Ezsignbulksend&#39;s automatic Ezsignsignatures
 [**ObjectEzsignbulksendAPI_ezsignbulksendGetFormsDataV1**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendGetFormsDataV1) | **GET** /1/object/ezsignbulksend/{pkiEzsignbulksendID}/getFormsData | Retrieve an existing Ezsignbulksend&#39;s forms data
 [**ObjectEzsignbulksendAPI_ezsignbulksendGetListV1**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendGetListV1) | **GET** /1/object/ezsignbulksend/getList | Retrieve Ezsignbulksend list
 [**ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV2**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV2) | **GET** /2/object/ezsignbulksend/{pkiEzsignbulksendID} | Retrieve an existing Ezsignbulksend
+[**ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV3**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV3) | **GET** /3/object/ezsignbulksend/{pkiEzsignbulksendID} | Retrieve an existing Ezsignbulksend
 [**ObjectEzsignbulksendAPI_ezsignbulksendReorderV1**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendReorderV1) | **POST** /1/object/ezsignbulksend/{pkiEzsignbulksendID}/reorder | Reorder Ezsignbulksenddocumentmappings in the Ezsignbulksend
 
 
@@ -65,6 +69,37 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsignbulksend_create_object_v1_response_t](ezsignbulksend_create_object_v1_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsignbulksendAPI_ezsignbulksendCreateObjectV2**
+```c
+// Create a new Ezsignbulksend
+//
+// The endpoint allows to create one or many elements at once.
+//
+ezsignbulksend_create_object_v2_response_t* ObjectEzsignbulksendAPI_ezsignbulksendCreateObjectV2(apiClient_t *apiClient, ezsignbulksend_create_object_v2_request_t *ezsignbulksend_create_object_v2_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**ezsignbulksend_create_object_v2_request** | **[ezsignbulksend_create_object_v2_request_t](ezsignbulksend_create_object_v2_request.md) \*** |  | 
+
+### Return type
+
+[ezsignbulksend_create_object_v2_response_t](ezsignbulksend_create_object_v2_response.md) *
 
 
 ### Authorization
@@ -138,6 +173,72 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV2**
+```c
+// Edit an existing Ezsignbulksend
+//
+// 
+//
+ezsignbulksend_edit_object_v2_response_t* ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV2(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_edit_object_v2_request_t *ezsignbulksend_edit_object_v2_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsignbulksendID** | **int \*** |  | 
+**ezsignbulksend_edit_object_v2_request** | **[ezsignbulksend_edit_object_v2_request_t](ezsignbulksend_edit_object_v2_request.md) \*** |  | 
+
+### Return type
+
+[ezsignbulksend_edit_object_v2_response_t](ezsignbulksend_edit_object_v2_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsignbulksendAPI_ezsignbulksendGetBatchFileV1**
+```c
+// Retrieve file to download documents in batch
+//
+binary_t** ObjectEzsignbulksendAPI_ezsignbulksendGetBatchFileV1(apiClient_t *apiClient, int *pkiEzsignbulksendID, int *bIncludeSigned, int *bIncludeAttachment, int *bIncludeProofdocument, int *bIncludeProof);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsignbulksendID** | **int \*** |  | 
+**bIncludeSigned** | **int \*** | Include final document once all signatures were applied | [optional] 
+**bIncludeAttachment** | **int \*** | Include attached files in signatures | [optional] 
+**bIncludeProofdocument** | **int \*** | Include the evidence report | [optional] 
+**bIncludeProof** | **int \*** | include the complete evidence archive including all of the above and more | [optional] 
+
+### Return type
+
+binary_t**
+
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/xml, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -320,6 +421,37 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsignbulksend_get_object_v2_response_t](ezsignbulksend_get_object_v2_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV3**
+```c
+// Retrieve an existing Ezsignbulksend
+//
+// 
+//
+ezsignbulksend_get_object_v3_response_t* ObjectEzsignbulksendAPI_ezsignbulksendGetObjectV3(apiClient_t *apiClient, int *pkiEzsignbulksendID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsignbulksendID** | **int \*** |  | 
+
+### Return type
+
+[ezsignbulksend_get_object_v3_response_t](ezsignbulksend_get_object_v3_response.md) *
 
 
 ### Authorization

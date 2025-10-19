@@ -24,7 +24,6 @@ typedef struct custom_ezmaxinvoicing_ezsignfolder_response_t {
     char *s_ezsignfolder_description; // string
     int b_ezsigntsarequirement_billable; //boolean
     int b_ezsignfolder_mfaused; //boolean
-    int b_ezsignfolder_paymentused; //boolean
     int b_ezsignfolder_allowed; //boolean
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -36,7 +35,6 @@ __attribute__((deprecated)) custom_ezmaxinvoicing_ezsignfolder_response_t *custo
     char *s_ezsignfolder_description,
     int b_ezsigntsarequirement_billable,
     int b_ezsignfolder_mfaused,
-    int b_ezsignfolder_paymentused,
     int b_ezsignfolder_allowed
 );
 

@@ -12,10 +12,12 @@ static activesession_response_compound_user_t *activesession_response_compound_u
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_email_address,
+    int b_user_addmeinezsignfolder,
     ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__e e_user_ezsignsendreminderfrequency,
     int i_user_interfacecolor,
     int b_user_interfacedark,
-    int i_user_listresult
+    int i_user_listresult,
+    int i_user_frontendgoal
     ) {
     activesession_response_compound_user_t *activesession_response_compound_user_local_var = malloc(sizeof(activesession_response_compound_user_t));
     if (!activesession_response_compound_user_local_var) {
@@ -27,10 +29,12 @@ static activesession_response_compound_user_t *activesession_response_compound_u
     activesession_response_compound_user_local_var->s_user_firstname = s_user_firstname;
     activesession_response_compound_user_local_var->s_user_lastname = s_user_lastname;
     activesession_response_compound_user_local_var->s_email_address = s_email_address;
+    activesession_response_compound_user_local_var->b_user_addmeinezsignfolder = b_user_addmeinezsignfolder;
     activesession_response_compound_user_local_var->e_user_ezsignsendreminderfrequency = e_user_ezsignsendreminderfrequency;
     activesession_response_compound_user_local_var->i_user_interfacecolor = i_user_interfacecolor;
     activesession_response_compound_user_local_var->b_user_interfacedark = b_user_interfacedark;
     activesession_response_compound_user_local_var->i_user_listresult = i_user_listresult;
+    activesession_response_compound_user_local_var->i_user_frontendgoal = i_user_frontendgoal;
 
     activesession_response_compound_user_local_var->_library_owned = 1;
     return activesession_response_compound_user_local_var;
@@ -43,10 +47,12 @@ __attribute__((deprecated)) activesession_response_compound_user_t *activesessio
     char *s_user_firstname,
     char *s_user_lastname,
     char *s_email_address,
+    int b_user_addmeinezsignfolder,
     ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__e e_user_ezsignsendreminderfrequency,
     int i_user_interfacecolor,
     int b_user_interfacedark,
-    int i_user_listresult
+    int i_user_listresult,
+    int i_user_frontendgoal
     ) {
     return activesession_response_compound_user_create_internal (
         pki_user_id,
@@ -55,10 +61,12 @@ __attribute__((deprecated)) activesession_response_compound_user_t *activesessio
         s_user_firstname,
         s_user_lastname,
         s_email_address,
+        b_user_addmeinezsignfolder,
         e_user_ezsignsendreminderfrequency,
         i_user_interfacecolor,
         b_user_interfacedark,
-        i_user_listresult
+        i_user_listresult,
+        i_user_frontendgoal
         );
 }
 
@@ -145,6 +153,15 @@ cJSON *activesession_response_compound_user_convertToJSON(activesession_response
     }
 
 
+    // activesession_response_compound_user->b_user_addmeinezsignfolder
+    if (!activesession_response_compound_user->b_user_addmeinezsignfolder) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "bUserAddmeinezsignfolder", activesession_response_compound_user->b_user_addmeinezsignfolder) == NULL) {
+    goto fail; //Bool
+    }
+
+
     // activesession_response_compound_user->e_user_ezsignsendreminderfrequency
     if (ezmax_api_definition__full_field_e_user_ezsignsendreminderfrequency__NULL == activesession_response_compound_user->e_user_ezsignsendreminderfrequency) {
         goto fail;
@@ -182,6 +199,15 @@ cJSON *activesession_response_compound_user_convertToJSON(activesession_response
         goto fail;
     }
     if(cJSON_AddNumberToObject(item, "iUserListresult", activesession_response_compound_user->i_user_listresult) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // activesession_response_compound_user->i_user_frontendgoal
+    if (!activesession_response_compound_user->i_user_frontendgoal) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iUserFrontendgoal", activesession_response_compound_user->i_user_frontendgoal) == NULL) {
     goto fail; //Numeric
     }
 
@@ -284,6 +310,21 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
     }
     }
 
+    // activesession_response_compound_user->b_user_addmeinezsignfolder
+    cJSON *b_user_addmeinezsignfolder = cJSON_GetObjectItemCaseSensitive(activesession_response_compound_userJSON, "bUserAddmeinezsignfolder");
+    if (cJSON_IsNull(b_user_addmeinezsignfolder)) {
+        b_user_addmeinezsignfolder = NULL;
+    }
+    if (!b_user_addmeinezsignfolder) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(b_user_addmeinezsignfolder))
+    {
+    goto end; //Bool
+    }
+
     // activesession_response_compound_user->e_user_ezsignsendreminderfrequency
     cJSON *e_user_ezsignsendreminderfrequency = cJSON_GetObjectItemCaseSensitive(activesession_response_compound_userJSON, "eUserEzsignsendreminderfrequency");
     if (cJSON_IsNull(e_user_ezsignsendreminderfrequency)) {
@@ -341,6 +382,21 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
     goto end; //Numeric
     }
 
+    // activesession_response_compound_user->i_user_frontendgoal
+    cJSON *i_user_frontendgoal = cJSON_GetObjectItemCaseSensitive(activesession_response_compound_userJSON, "iUserFrontendgoal");
+    if (cJSON_IsNull(i_user_frontendgoal)) {
+        i_user_frontendgoal = NULL;
+    }
+    if (!i_user_frontendgoal) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_user_frontendgoal))
+    {
+    goto end; //Numeric
+    }
+
 
     activesession_response_compound_user_local_var = activesession_response_compound_user_create_internal (
         pki_user_id->valuedouble,
@@ -349,10 +405,12 @@ activesession_response_compound_user_t *activesession_response_compound_user_par
         strdup(s_user_firstname->valuestring),
         strdup(s_user_lastname->valuestring),
         s_email_address && !cJSON_IsNull(s_email_address) ? strdup(s_email_address->valuestring) : NULL,
+        b_user_addmeinezsignfolder->valueint,
         e_user_ezsignsendreminderfrequency_local_nonprim,
         i_user_interfacecolor->valuedouble,
         b_user_interfacedark->valueint,
-        i_user_listresult->valuedouble
+        i_user_listresult->valuedouble,
+        i_user_frontendgoal->valuedouble
         );
 
     return activesession_response_compound_user_local_var;

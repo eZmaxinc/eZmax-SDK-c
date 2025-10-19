@@ -32,6 +32,7 @@ static activesession_response_compound_t *activesession_response_compound_create
     ezmax_api_definition__full_field_e_user_ezsignprepaid__e e_user_ezsignprepaid,
     int b_user_ezsigntrial,
     char *dt_user_ezsignprepaidexpiration,
+    char *dt_user_npsrequest,
     list_t *a_pki_permission_id,
     activesession_response_compound_user_t *obj_user_real,
     activesession_response_compound_user_t *obj_user_cloned,
@@ -68,6 +69,7 @@ static activesession_response_compound_t *activesession_response_compound_create
     activesession_response_compound_local_var->e_user_ezsignprepaid = e_user_ezsignprepaid;
     activesession_response_compound_local_var->b_user_ezsigntrial = b_user_ezsigntrial;
     activesession_response_compound_local_var->dt_user_ezsignprepaidexpiration = dt_user_ezsignprepaidexpiration;
+    activesession_response_compound_local_var->dt_user_npsrequest = dt_user_npsrequest;
     activesession_response_compound_local_var->a_pki_permission_id = a_pki_permission_id;
     activesession_response_compound_local_var->obj_user_real = obj_user_real;
     activesession_response_compound_local_var->obj_user_cloned = obj_user_cloned;
@@ -105,6 +107,7 @@ __attribute__((deprecated)) activesession_response_compound_t *activesession_res
     ezmax_api_definition__full_field_e_user_ezsignprepaid__e e_user_ezsignprepaid,
     int b_user_ezsigntrial,
     char *dt_user_ezsignprepaidexpiration,
+    char *dt_user_npsrequest,
     list_t *a_pki_permission_id,
     activesession_response_compound_user_t *obj_user_real,
     activesession_response_compound_user_t *obj_user_cloned,
@@ -138,6 +141,7 @@ __attribute__((deprecated)) activesession_response_compound_t *activesession_res
         e_user_ezsignprepaid,
         b_user_ezsigntrial,
         dt_user_ezsignprepaidexpiration,
+        dt_user_npsrequest,
         a_pki_permission_id,
         obj_user_real,
         obj_user_cloned,
@@ -170,6 +174,10 @@ void activesession_response_compound_free(activesession_response_compound_t *act
     if (activesession_response_compound->dt_user_ezsignprepaidexpiration) {
         free(activesession_response_compound->dt_user_ezsignprepaidexpiration);
         activesession_response_compound->dt_user_ezsignprepaidexpiration = NULL;
+    }
+    if (activesession_response_compound->dt_user_npsrequest) {
+        free(activesession_response_compound->dt_user_npsrequest);
+        activesession_response_compound->dt_user_npsrequest = NULL;
     }
     if (activesession_response_compound->a_pki_permission_id) {
         list_ForEach(listEntry, activesession_response_compound->a_pki_permission_id) {
@@ -468,6 +476,14 @@ cJSON *activesession_response_compound_convertToJSON(activesession_response_comp
     // activesession_response_compound->dt_user_ezsignprepaidexpiration
     if(activesession_response_compound->dt_user_ezsignprepaidexpiration) {
     if(cJSON_AddStringToObject(item, "dtUserEzsignprepaidexpiration", activesession_response_compound->dt_user_ezsignprepaidexpiration) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // activesession_response_compound->dt_user_npsrequest
+    if(activesession_response_compound->dt_user_npsrequest) {
+    if(cJSON_AddStringToObject(item, "dtUserNpsrequest", activesession_response_compound->dt_user_npsrequest) == NULL) {
     goto fail; //String
     }
     }
@@ -923,6 +939,18 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
     }
     }
 
+    // activesession_response_compound->dt_user_npsrequest
+    cJSON *dt_user_npsrequest = cJSON_GetObjectItemCaseSensitive(activesession_response_compoundJSON, "dtUserNpsrequest");
+    if (cJSON_IsNull(dt_user_npsrequest)) {
+        dt_user_npsrequest = NULL;
+    }
+    if (dt_user_npsrequest) { 
+    if(!cJSON_IsString(dt_user_npsrequest) && !cJSON_IsNull(dt_user_npsrequest))
+    {
+    goto end; //String
+    }
+    }
+
     // activesession_response_compound->a_pki_permission_id
     cJSON *a_pki_permission_id = cJSON_GetObjectItemCaseSensitive(activesession_response_compoundJSON, "a_pkiPermissionID");
     if (cJSON_IsNull(a_pki_permission_id)) {
@@ -1037,6 +1065,7 @@ activesession_response_compound_t *activesession_response_compound_parseFromJSON
         e_user_ezsignprepaid ? e_user_ezsignprepaid_local_nonprim : 0,
         b_user_ezsigntrial ? b_user_ezsigntrial->valueint : 0,
         dt_user_ezsignprepaidexpiration && !cJSON_IsNull(dt_user_ezsignprepaidexpiration) ? strdup(dt_user_ezsignprepaidexpiration->valuestring) : NULL,
+        dt_user_npsrequest && !cJSON_IsNull(dt_user_npsrequest) ? strdup(dt_user_npsrequest->valuestring) : NULL,
         a_pki_permission_idList,
         obj_user_real_local_nonprim,
         obj_user_cloned ? obj_user_cloned_local_nonprim : NULL,

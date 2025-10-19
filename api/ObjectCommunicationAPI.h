@@ -10,7 +10,7 @@
 #include "../model/communication_send_v1_response.h"
 
 
-// Retrieve the communication body.
+// Retrieve the communication body
 //
 // This endpoint returns the communication body.
 //

@@ -1,7 +1,7 @@
 /*
  * field_e_ezsignfoldertype_completion.h
  *
- * Indicates if the Ezsigndocument is completed when all signatures of this Ezsigndocument were applied or when all signatures of all Ezsigndocument  were applied
+ * Indicates if the Ezsigndocument is completed when all signatures of this Ezsigndocument were applied or when all signatures of all Ezsigndocument were applied. When eEzsignfoldertypeCompletion equals PerEzsignfolderStepSync, the document steps are synchronized. All documents move to a new step when all forms or signatures from the previous step have been completed for all documents.
  */
 
 #ifndef _field_e_ezsignfoldertype_completion_H_
@@ -18,7 +18,7 @@ typedef struct field_e_ezsignfoldertype_completion_t field_e_ezsignfoldertype_co
 
 // Enum  for field_e_ezsignfoldertype_completion
 
-typedef enum { ezmax_api_definition__full_field_e_ezsignfoldertype_completion__NULL = 0, ezmax_api_definition__full_field_e_ezsignfoldertype_completion__PerEzsigndocument, ezmax_api_definition__full_field_e_ezsignfoldertype_completion__PerEzsignfolder } ezmax_api_definition__full_field_e_ezsignfoldertype_completion__e;
+typedef enum { ezmax_api_definition__full_field_e_ezsignfoldertype_completion__NULL = 0, ezmax_api_definition__full_field_e_ezsignfoldertype_completion__PerEzsigndocument, ezmax_api_definition__full_field_e_ezsignfoldertype_completion__PerEzsignfolder, ezmax_api_definition__full_field_e_ezsignfoldertype_completion__PerEzsignfolderStepSync } ezmax_api_definition__full_field_e_ezsignfoldertype_completion__e;
 
 char* field_e_ezsignfoldertype_completion_field_e_ezsignfoldertype_completion_ToString(ezmax_api_definition__full_field_e_ezsignfoldertype_completion__e field_e_ezsignfoldertype_completion);
 

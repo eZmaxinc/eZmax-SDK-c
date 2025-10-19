@@ -16,6 +16,8 @@
 #include "../model/ezsigndocument_apply_ezsigntemplateglobal_v1_response.h"
 #include "../model/ezsigndocument_create_ezsignelements_positioned_by_word_v1_request.h"
 #include "../model/ezsigndocument_create_ezsignelements_positioned_by_word_v1_response.h"
+#include "../model/ezsigndocument_create_ezsignelements_positioned_by_word_v2_request.h"
+#include "../model/ezsigndocument_create_ezsignelements_positioned_by_word_v2_response.h"
 #include "../model/ezsigndocument_create_object_v1_request.h"
 #include "../model/ezsigndocument_create_object_v1_response.h"
 #include "../model/ezsigndocument_create_object_v2_request.h"
@@ -31,6 +33,8 @@
 #include "../model/ezsigndocument_edit_ezsignformfieldgroups_v1_response.h"
 #include "../model/ezsigndocument_edit_ezsignsignatures_v1_request.h"
 #include "../model/ezsigndocument_edit_ezsignsignatures_v1_response.h"
+#include "../model/ezsigndocument_edit_ezsignsignatures_v2_request.h"
+#include "../model/ezsigndocument_edit_ezsignsignatures_v2_response.h"
 #include "../model/ezsigndocument_edit_object_v1_request.h"
 #include "../model/ezsigndocument_edit_object_v1_response.h"
 #include "../model/ezsigndocument_end_prematurely_v1_response.h"
@@ -38,8 +42,10 @@
 #include "../model/ezsigndocument_extract_text_v1_response.h"
 #include "../model/ezsigndocument_flatten_v1_response.h"
 #include "../model/ezsigndocument_get_actionable_elements_v1_response.h"
+#include "../model/ezsigndocument_get_actionable_elements_v2_response.h"
 #include "../model/ezsigndocument_get_attachments_v1_response.h"
 #include "../model/ezsigndocument_get_completed_elements_v1_response.h"
+#include "../model/ezsigndocument_get_completed_elements_v2_response.h"
 #include "../model/ezsigndocument_get_download_url_v1_response.h"
 #include "../model/ezsigndocument_get_ezsignannotations_v1_response.h"
 #include "../model/ezsigndocument_get_ezsigndiscussions_v1_response.h"
@@ -47,9 +53,11 @@
 #include "../model/ezsigndocument_get_ezsignpages_v1_response.h"
 #include "../model/ezsigndocument_get_ezsignsignatures_automatic_v1_response.h"
 #include "../model/ezsigndocument_get_ezsignsignatures_v1_response.h"
+#include "../model/ezsigndocument_get_ezsignsignatures_v2_response.h"
 #include "../model/ezsigndocument_get_form_data_v1_response.h"
 #include "../model/ezsigndocument_get_object_v1_response.h"
 #include "../model/ezsigndocument_get_object_v2_response.h"
+#include "../model/ezsigndocument_get_object_v3_response.h"
 #include "../model/ezsigndocument_get_temporary_proof_v1_response.h"
 #include "../model/ezsigndocument_get_words_positions_v1_request.h"
 #include "../model/ezsigndocument_get_words_positions_v1_response.h"
@@ -63,10 +71,10 @@
 #include "../model/object.h"
 
 // Enum EDOCUMENTTYPE for ObjectEzsigndocumentAPI_ezsigndocumentGetDownloadUrlV1
-typedef enum  { ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_NULL = 0, ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_Initial, ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_SignatureReady, ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE__Signed, ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_Proof, ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_Proofdocument } ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_eDocumentType_e;
+typedef enum  { ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_NULL = 0, ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_Original, ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_Initial, ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_SignatureReady, ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE__Signed, ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_Proof, ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_EDOCUMENTTYPE_Proofdocument } ezmax_api_definition__full_ezsigndocumentGetDownloadUrlV1_eDocumentType_e;
 
 
-// Apply an Ezsigntemplate to the Ezsigndocument.
+// Apply an Ezsigntemplate to the Ezsigndocument
 //
 // This function is deprecated. Please use *applyEzsigntemplate* instead which is doing the same thing but with a capital \"E\" to normalize the nomenclature.  This endpoint applies a predefined template to the ezsign document. This allows to automatically apply all the form and signature fields on a document in a single step.  The document must not already have fields otherwise an error will be returned.
 //
@@ -74,7 +82,7 @@ ezsigndocument_apply_ezsigntemplate_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_apply_ezsigntemplate_v1_request_t *ezsigndocument_apply_ezsigntemplate_v1_request);
 
 
-// Apply an Ezsigntemplate to the Ezsigndocument.
+// Apply an Ezsigntemplate to the Ezsigndocument
 //
 // This endpoint applies a predefined template to the ezsign document. This allows to automatically apply all the form and signature fields on a document in a single step.  The document must not already have fields otherwise an error will be returned.
 //
@@ -82,7 +90,7 @@ ezsigndocument_apply_ezsigntemplate_v2_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateV2(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_apply_ezsigntemplate_v2_request_t *ezsigndocument_apply_ezsigntemplate_v2_request);
 
 
-// Apply an Ezsigntemplateglobal to the Ezsigndocument.
+// Apply an Ezsigntemplateglobal to the Ezsigndocument
 //
 // This endpoint applies a predefined template to the ezsign document. This allows to automatically apply all the form and signature fields on a document in a single step.  The document must not already have fields otherwise an error will be returned.
 //
@@ -92,10 +100,18 @@ ObjectEzsigndocumentAPI_ezsigndocumentApplyEzsigntemplateglobalV1(apiClient_t *a
 
 // Create multiple Ezsignsignatures/Ezsignformfieldgroups
 //
-// Using this endpoint, you can create multiple Ezsignsignatures/Ezsignformfieldgroups positioned by word at the same time.
+// Using this endpoint, you can create multiple Ezsignsignatures/Ezsignformfieldgroups positioned by word at the same time.  Major step overhaul.  Endpoints that existed before version 1.3 do not allow you to combine forms and signatures in the same step. The step numbers are different from those indicated by endpoints added since version 1.3. This endpoint is compatible with endpoints that existed before 1.3 but are not compatible with those added since 1.3.
 //
 ezsigndocument_create_ezsignelements_positioned_by_word_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentCreateEzsignelementsPositionedByWordV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_create_ezsignelements_positioned_by_word_v1_request_t *ezsigndocument_create_ezsignelements_positioned_by_word_v1_request);
+
+
+// Create multiple Ezsignsignatures/Ezsignformfieldgroups
+//
+// Using this endpoint, you can create multiple Ezsignsignatures/Ezsignformfieldgroups positioned by word at the same time.
+//
+ezsigndocument_create_ezsignelements_positioned_by_word_v2_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentCreateEzsignelementsPositionedByWordV2(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_create_ezsignelements_positioned_by_word_v2_request_t *ezsigndocument_create_ezsignelements_positioned_by_word_v2_request);
 
 
 // Create a new Ezsigndocument
@@ -156,10 +172,18 @@ ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignformfieldgroupsV1(apiClient_t *a
 
 // Edit multiple Ezsignsignatures
 //
-// Using this endpoint, you can edit multiple Ezsignsignatures at the same time.
+// Using this endpoint, you can edit multiple Ezsignsignatures at the same time.  Major step overhaul.  Endpoints that existed before version 1.3 do not allow you to combine forms and signatures in the same step. The step numbers are different from those indicated by endpoints added since version 1.3. This endpoint is compatible with endpoints that existed before 1.3 but are not compatible with those added since 1.3.
 //
 ezsigndocument_edit_ezsignsignatures_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_edit_ezsignsignatures_v1_request_t *ezsigndocument_edit_ezsignsignatures_v1_request);
+
+
+// Edit multiple Ezsignsignatures
+//
+// Using this endpoint, you can edit multiple Ezsignsignatures at the same time.
+//
+ezsigndocument_edit_ezsignsignatures_v2_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV2(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_edit_ezsignsignatures_v2_request_t *ezsigndocument_edit_ezsignsignatures_v2_request);
 
 
 // Edit an existing Ezsigndocument
@@ -196,10 +220,18 @@ ObjectEzsigndocumentAPI_ezsigndocumentFlattenV1(apiClient_t *apiClient, int *pki
 
 // Retrieve actionable elements for the Ezsigndocument
 //
-// Return the Ezsignsignatures that can be signed and Ezsignformfieldgroups that can be filled by the current user at the current step in the process
+// Return the Ezsignsignatures that can be signed and Ezsignformfieldgroups that can be filled by the current user at the current step in the process.  Major step overhaul.  Endpoints that existed before version 1.3 do not allow you to combine forms and signatures in the same step. The step numbers are different from those indicated by endpoints added since version 1.3. This endpoint is compatible with endpoints that existed before 1.3 but are not compatible with those added since 1.3. 
 //
 ezsigndocument_get_actionable_elements_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsV1(apiClient_t *apiClient, int *pkiEzsigndocumentID);
+
+
+// Retrieve actionable elements for the Ezsigndocument
+//
+// Return the Ezsignsignatures that can be signed and Ezsignformfieldgroups that can be filled by the current user at the current step in the process
+//
+ezsigndocument_get_actionable_elements_v2_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsV2(apiClient_t *apiClient, int *pkiEzsigndocumentID);
 
 
 // Retrieve Ezsigndocument's Attachments
@@ -212,13 +244,21 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetAttachmentsV1(apiClient_t *apiClient, i
 
 // Retrieve completed elements for the Ezsigndocument
 //
-// Return the completed Ezsignsignatures, Ezsignformfieldgroups and Ezsignannotations at the current step in the process
+// Return the completed Ezsignsignatures, Ezsignformfieldgroups and Ezsignannotations at the current step in the process  Major step overhaul.  Endpoints that existed before version 1.3 do not allow you to combine forms and signatures in the same step. The step numbers are different from those indicated by endpoints added since version 1.3. This endpoint is compatible with endpoints that existed before 1.3 but are not compatible with those added since 1.3.
 //
 ezsigndocument_get_completed_elements_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetCompletedElementsV1(apiClient_t *apiClient, int *pkiEzsigndocumentID);
 
 
-// Retrieve a URL to download documents.
+// Retrieve completed elements for the Ezsigndocument
+//
+// Return the completed Ezsignsignatures, Ezsignformfieldgroups and Ezsignannotations at the current step in the process
+//
+ezsigndocument_get_completed_elements_v2_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentGetCompletedElementsV2(apiClient_t *apiClient, int *pkiEzsigndocumentID);
+
+
+// Retrieve a URL to download documents
 //
 // This endpoint returns URLs to different files that can be downloaded during the signing process.  These links will expire after 5 minutes so the download of the file should be made soon after retrieving the link.
 //
@@ -268,10 +308,18 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignsignaturesAutomaticV1(apiClient_t
 
 // Retrieve an existing Ezsigndocument's Ezsignsignatures
 //
-// 
+// Major step overhaul.  Endpoints that existed before version 1.3 do not allow you to combine forms and signatures in the same step. The step numbers are different from those indicated by endpoints added since version 1.3. This endpoint is compatible with endpoints that existed before 1.3 but are not compatible with those added since 1.3.
 //
 ezsigndocument_get_ezsignsignatures_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignsignaturesV1(apiClient_t *apiClient, int *pkiEzsigndocumentID);
+
+
+// Retrieve an existing Ezsigndocument's Ezsignsignatures
+//
+// 
+//
+ezsigndocument_get_ezsignsignatures_v2_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentGetEzsignsignaturesV2(apiClient_t *apiClient, int *pkiEzsigndocumentID);
 
 
 // Retrieve an existing Ezsigndocument's Form Data
@@ -284,16 +332,26 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetFormDataV1(apiClient_t *apiClient, int 
 
 // Retrieve an existing Ezsigndocument
 //
+// Major step overhaul.  Endpoints that existed before version 1.3 do not allow you to combine forms and signatures in the same step. The step numbers are different from those indicated by endpoints added since version 1.3. This endpoint is compatible with endpoints that existed before 1.3 but are not compatible with those added since 1.3.
+//
 ezsigndocument_get_object_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV1(apiClient_t *apiClient, int *pkiEzsigndocumentID);
 
 
 // Retrieve an existing Ezsigndocument
 //
-// 
+// Major step overhaul.  Endpoints that existed before version 1.3 do not allow you to combine forms and signatures in the same step. The step numbers are different from those indicated by endpoints added since version 1.3. This endpoint is compatible with endpoints that existed before 1.3 but are not compatible with those added since 1.3.
 //
 ezsigndocument_get_object_v2_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV2(apiClient_t *apiClient, int *pkiEzsigndocumentID);
+
+
+// Retrieve an existing Ezsigndocument
+//
+// 
+//
+ezsigndocument_get_object_v3_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentGetObjectV3(apiClient_t *apiClient, int *pkiEzsigndocumentID);
 
 
 // Retrieve the temporary proof
@@ -322,7 +380,7 @@ ObjectEzsigndocumentAPI_ezsigndocumentPatchObjectV1(apiClient_t *apiClient, int 
 
 // Prefill an Ezsignform
 //
-// Using this endpoint, you can prefill an Ezsignform.
+// Using this endpoint, you can prefill an Ezsignform.  To fill Ezsignformfield with type **Dropdown**, **Text**, **Textarea**, **Checkbox**, **Date**, **Number**, you must provide properties sEzsignformfieldgroupLabel and sEzsignformfieldLabel.  To fill Ezsignformfield with type **Radio**, you must provide only the property sEzsignformfieldgroupLabel.  In **PowerAutomate** if you need to add a line feed in sEzsignformfieldEnteredvalue, you should do it like this: concat('string1',decodeUriComponent('%0A'),'string2',decodeUriComponent('%0A'),'string3')
 //
 ezsigndocument_prefill_ezsignform_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentPrefillEzsignformV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_prefill_ezsignform_v1_request_t *ezsigndocument_prefill_ezsignform_v1_request);

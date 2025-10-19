@@ -4,12 +4,44 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**ObjectDiscussionAPI_discussionChatV1**](ObjectDiscussionAPI.md#ObjectDiscussionAPI_discussionChatV1) | **POST** /1/object/discussion/chat | Have a Discussion with the AI Chatbot
 [**ObjectDiscussionAPI_discussionCreateObjectV1**](ObjectDiscussionAPI.md#ObjectDiscussionAPI_discussionCreateObjectV1) | **POST** /1/object/discussion | Create a new Discussion
 [**ObjectDiscussionAPI_discussionDeleteObjectV1**](ObjectDiscussionAPI.md#ObjectDiscussionAPI_discussionDeleteObjectV1) | **DELETE** /1/object/discussion/{pkiDiscussionID} | Delete an existing Discussion
 [**ObjectDiscussionAPI_discussionGetObjectV2**](ObjectDiscussionAPI.md#ObjectDiscussionAPI_discussionGetObjectV2) | **GET** /2/object/discussion/{pkiDiscussionID} | Retrieve an existing Discussion
 [**ObjectDiscussionAPI_discussionPatchObjectV1**](ObjectDiscussionAPI.md#ObjectDiscussionAPI_discussionPatchObjectV1) | **PATCH** /1/object/discussion/{pkiDiscussionID} | Patch an existing Discussion
 [**ObjectDiscussionAPI_discussionUpdateDiscussionreadstatusV1**](ObjectDiscussionAPI.md#ObjectDiscussionAPI_discussionUpdateDiscussionreadstatusV1) | **POST** /1/object/discussion/{pkiDiscussionID}/updateDiscussionreadstatus | Update the read status of the discussion
 
+
+# **ObjectDiscussionAPI_discussionChatV1**
+```c
+// Have a Discussion with the AI Chatbot
+//
+// The endpoint allows to create one or many elements at once.
+//
+discussion_chat_v1_200_response_t* ObjectDiscussionAPI_discussionChatV1(apiClient_t *apiClient, discussion_chat_v1_request_t *discussion_chat_v1_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**discussion_chat_v1_request** | **[discussion_chat_v1_request_t](discussion_chat_v1_request.md) \*** |  | 
+
+### Return type
+
+[discussion_chat_v1_200_response_t](discussion_chat_v1_200_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: text/event-stream
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ObjectDiscussionAPI_discussionCreateObjectV1**
 ```c

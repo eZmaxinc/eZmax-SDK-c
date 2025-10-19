@@ -28,6 +28,7 @@ static ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_
     char *dt_ezsignfolder_scheduledarchive,
     char *dt_ezsignfolder_scheduleddispose,
     ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step,
+    ezmax_api_definition__full_field_e_ezsignfolder_messageorder__e e_ezsignfolder_messageorder,
     char *dt_ezsignfolder_close,
     char *t_ezsignfolder_message,
     common_audit_t *obj_audit,
@@ -60,6 +61,7 @@ static ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_
     ezsignfolder_get_object_v1_response_m_payload_local_var->dt_ezsignfolder_scheduledarchive = dt_ezsignfolder_scheduledarchive;
     ezsignfolder_get_object_v1_response_m_payload_local_var->dt_ezsignfolder_scheduleddispose = dt_ezsignfolder_scheduleddispose;
     ezsignfolder_get_object_v1_response_m_payload_local_var->e_ezsignfolder_step = e_ezsignfolder_step;
+    ezsignfolder_get_object_v1_response_m_payload_local_var->e_ezsignfolder_messageorder = e_ezsignfolder_messageorder;
     ezsignfolder_get_object_v1_response_m_payload_local_var->dt_ezsignfolder_close = dt_ezsignfolder_close;
     ezsignfolder_get_object_v1_response_m_payload_local_var->t_ezsignfolder_message = t_ezsignfolder_message;
     ezsignfolder_get_object_v1_response_m_payload_local_var->obj_audit = obj_audit;
@@ -93,6 +95,7 @@ __attribute__((deprecated)) ezsignfolder_get_object_v1_response_m_payload_t *ezs
     char *dt_ezsignfolder_scheduledarchive,
     char *dt_ezsignfolder_scheduleddispose,
     ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step,
+    ezmax_api_definition__full_field_e_ezsignfolder_messageorder__e e_ezsignfolder_messageorder,
     char *dt_ezsignfolder_close,
     char *t_ezsignfolder_message,
     common_audit_t *obj_audit,
@@ -122,6 +125,7 @@ __attribute__((deprecated)) ezsignfolder_get_object_v1_response_m_payload_t *ezs
         dt_ezsignfolder_scheduledarchive,
         dt_ezsignfolder_scheduleddispose,
         e_ezsignfolder_step,
+        e_ezsignfolder_messageorder,
         dt_ezsignfolder_close,
         t_ezsignfolder_message,
         obj_audit,
@@ -408,6 +412,19 @@ cJSON *ezsignfolder_get_object_v1_response_m_payload_convertToJSON(ezsignfolder_
     }
 
 
+    // ezsignfolder_get_object_v1_response_m_payload->e_ezsignfolder_messageorder
+    if(ezsignfolder_get_object_v1_response_m_payload->e_ezsignfolder_messageorder != ezmax_api_definition__full_field_e_ezsignfolder_messageorder__NULL) {
+    cJSON *e_ezsignfolder_messageorder_local_JSON = field_e_ezsignfolder_messageorder_convertToJSON(ezsignfolder_get_object_v1_response_m_payload->e_ezsignfolder_messageorder);
+    if(e_ezsignfolder_messageorder_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsignfolderMessageorder", e_ezsignfolder_messageorder_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
+    }
+
+
     // ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_close
     if(ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_close) {
     if(cJSON_AddStringToObject(item, "dtEzsignfolderClose", ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_close) == NULL) {
@@ -480,6 +497,9 @@ ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_resp
 
     // define the local variable for ezsignfolder_get_object_v1_response_m_payload->e_ezsignfolder_step
     ezmax_api_definition__full_field_e_ezsignfolder_step__e e_ezsignfolder_step_local_nonprim = 0;
+
+    // define the local variable for ezsignfolder_get_object_v1_response_m_payload->e_ezsignfolder_messageorder
+    ezmax_api_definition__full_field_e_ezsignfolder_messageorder__e e_ezsignfolder_messageorder_local_nonprim = 0;
 
     // define the local variable for ezsignfolder_get_object_v1_response_m_payload->obj_audit
     common_audit_t *obj_audit_local_nonprim = NULL;
@@ -748,6 +768,15 @@ ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_resp
     e_ezsignfolder_step_local_nonprim = field_e_ezsignfolder_step_parseFromJSON(e_ezsignfolder_step); //custom
     }
 
+    // ezsignfolder_get_object_v1_response_m_payload->e_ezsignfolder_messageorder
+    cJSON *e_ezsignfolder_messageorder = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_object_v1_response_m_payloadJSON, "eEzsignfolderMessageorder");
+    if (cJSON_IsNull(e_ezsignfolder_messageorder)) {
+        e_ezsignfolder_messageorder = NULL;
+    }
+    if (e_ezsignfolder_messageorder) { 
+    e_ezsignfolder_messageorder_local_nonprim = field_e_ezsignfolder_messageorder_parseFromJSON(e_ezsignfolder_messageorder); //custom
+    }
+
     // ezsignfolder_get_object_v1_response_m_payload->dt_ezsignfolder_close
     cJSON *dt_ezsignfolder_close = cJSON_GetObjectItemCaseSensitive(ezsignfolder_get_object_v1_response_m_payloadJSON, "dtEzsignfolderClose");
     if (cJSON_IsNull(dt_ezsignfolder_close)) {
@@ -826,6 +855,7 @@ ezsignfolder_get_object_v1_response_m_payload_t *ezsignfolder_get_object_v1_resp
         dt_ezsignfolder_scheduledarchive && !cJSON_IsNull(dt_ezsignfolder_scheduledarchive) ? strdup(dt_ezsignfolder_scheduledarchive->valuestring) : NULL,
         dt_ezsignfolder_scheduleddispose && !cJSON_IsNull(dt_ezsignfolder_scheduleddispose) ? strdup(dt_ezsignfolder_scheduleddispose->valuestring) : NULL,
         e_ezsignfolder_step ? e_ezsignfolder_step_local_nonprim : 0,
+        e_ezsignfolder_messageorder ? e_ezsignfolder_messageorder_local_nonprim : 0,
         dt_ezsignfolder_close && !cJSON_IsNull(dt_ezsignfolder_close) ? strdup(dt_ezsignfolder_close->valuestring) : NULL,
         t_ezsignfolder_message && !cJSON_IsNull(t_ezsignfolder_message) ? strdup(t_ezsignfolder_message->valuestring) : NULL,
         obj_audit ? obj_audit_local_nonprim : NULL,
@@ -847,6 +877,9 @@ end:
     }
     if (e_ezsignfolder_step_local_nonprim) {
         e_ezsignfolder_step_local_nonprim = 0;
+    }
+    if (e_ezsignfolder_messageorder_local_nonprim) {
+        e_ezsignfolder_messageorder_local_nonprim = 0;
     }
     if (obj_audit_local_nonprim) {
         common_audit_free(obj_audit_local_nonprim);

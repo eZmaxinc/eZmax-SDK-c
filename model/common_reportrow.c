@@ -8,7 +8,8 @@
 static common_reportrow_t *common_reportrow_create_internal(
     list_t *a_obj_reportcell,
     list_t* obj_variableobject,
-    int i_reportrow_height
+    int i_reportrow_height,
+    common_reportcellstylecustom_t *obj_reportcellstyle_custom
     ) {
     common_reportrow_t *common_reportrow_local_var = malloc(sizeof(common_reportrow_t));
     if (!common_reportrow_local_var) {
@@ -17,6 +18,7 @@ static common_reportrow_t *common_reportrow_create_internal(
     common_reportrow_local_var->a_obj_reportcell = a_obj_reportcell;
     common_reportrow_local_var->obj_variableobject = obj_variableobject;
     common_reportrow_local_var->i_reportrow_height = i_reportrow_height;
+    common_reportrow_local_var->obj_reportcellstyle_custom = obj_reportcellstyle_custom;
 
     common_reportrow_local_var->_library_owned = 1;
     return common_reportrow_local_var;
@@ -25,12 +27,14 @@ static common_reportrow_t *common_reportrow_create_internal(
 __attribute__((deprecated)) common_reportrow_t *common_reportrow_create(
     list_t *a_obj_reportcell,
     list_t* obj_variableobject,
-    int i_reportrow_height
+    int i_reportrow_height,
+    common_reportcellstylecustom_t *obj_reportcellstyle_custom
     ) {
     return common_reportrow_create_internal (
         a_obj_reportcell,
         obj_variableobject,
-        i_reportrow_height
+        i_reportrow_height,
+        obj_reportcellstyle_custom
         );
 }
 
@@ -59,6 +63,10 @@ void common_reportrow_free(common_reportrow_t *common_reportrow) {
         }
         list_freeList(common_reportrow->obj_variableobject);
         common_reportrow->obj_variableobject = NULL;
+    }
+    if (common_reportrow->obj_reportcellstyle_custom) {
+        common_reportcellstylecustom_free(common_reportrow->obj_reportcellstyle_custom);
+        common_reportrow->obj_reportcellstyle_custom = NULL;
     }
     free(common_reportrow);
 }
@@ -112,6 +120,19 @@ cJSON *common_reportrow_convertToJSON(common_reportrow_t *common_reportrow) {
     goto fail; //Numeric
     }
 
+
+    // common_reportrow->obj_reportcellstyle_custom
+    if(common_reportrow->obj_reportcellstyle_custom) {
+    cJSON *obj_reportcellstyle_custom_local_JSON = common_reportcellstylecustom_convertToJSON(common_reportrow->obj_reportcellstyle_custom);
+    if(obj_reportcellstyle_custom_local_JSON == NULL) {
+    goto fail; //model
+    }
+    cJSON_AddItemToObject(item, "objReportcellstyleCustom", obj_reportcellstyle_custom_local_JSON);
+    if(item->child == NULL) {
+    goto fail;
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -129,6 +150,9 @@ common_reportrow_t *common_reportrow_parseFromJSON(cJSON *common_reportrowJSON){
 
     // define the local map for common_reportrow->obj_variableobject
     list_t *obj_variableobjectList = NULL;
+
+    // define the local variable for common_reportrow->obj_reportcellstyle_custom
+    common_reportcellstylecustom_t *obj_reportcellstyle_custom_local_nonprim = NULL;
 
     // common_reportrow->a_obj_reportcell
     cJSON *a_obj_reportcell = cJSON_GetObjectItemCaseSensitive(common_reportrowJSON, "a_objReportcell");
@@ -198,11 +222,21 @@ common_reportrow_t *common_reportrow_parseFromJSON(cJSON *common_reportrowJSON){
     goto end; //Numeric
     }
 
+    // common_reportrow->obj_reportcellstyle_custom
+    cJSON *obj_reportcellstyle_custom = cJSON_GetObjectItemCaseSensitive(common_reportrowJSON, "objReportcellstyleCustom");
+    if (cJSON_IsNull(obj_reportcellstyle_custom)) {
+        obj_reportcellstyle_custom = NULL;
+    }
+    if (obj_reportcellstyle_custom) { 
+    obj_reportcellstyle_custom_local_nonprim = common_reportcellstylecustom_parseFromJSON(obj_reportcellstyle_custom); //nonprimitive
+    }
+
 
     common_reportrow_local_var = common_reportrow_create_internal (
         a_obj_reportcellList,
         obj_variableobjectList,
-        i_reportrow_height->valuedouble
+        i_reportrow_height->valuedouble,
+        obj_reportcellstyle_custom ? obj_reportcellstyle_custom_local_nonprim : NULL
         );
 
     return common_reportrow_local_var;
@@ -227,6 +261,10 @@ end:
         }
         list_freeList(obj_variableobjectList);
         obj_variableobjectList = NULL;
+    }
+    if (obj_reportcellstyle_custom_local_nonprim) {
+        common_reportcellstylecustom_free(obj_reportcellstyle_custom_local_nonprim);
+        obj_reportcellstyle_custom_local_nonprim = NULL;
     }
     return NULL;
 

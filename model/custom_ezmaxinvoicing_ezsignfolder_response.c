@@ -11,7 +11,6 @@ static custom_ezmaxinvoicing_ezsignfolder_response_t *custom_ezmaxinvoicing_ezsi
     char *s_ezsignfolder_description,
     int b_ezsigntsarequirement_billable,
     int b_ezsignfolder_mfaused,
-    int b_ezsignfolder_paymentused,
     int b_ezsignfolder_allowed
     ) {
     custom_ezmaxinvoicing_ezsignfolder_response_t *custom_ezmaxinvoicing_ezsignfolder_response_local_var = malloc(sizeof(custom_ezmaxinvoicing_ezsignfolder_response_t));
@@ -23,7 +22,6 @@ static custom_ezmaxinvoicing_ezsignfolder_response_t *custom_ezmaxinvoicing_ezsi
     custom_ezmaxinvoicing_ezsignfolder_response_local_var->s_ezsignfolder_description = s_ezsignfolder_description;
     custom_ezmaxinvoicing_ezsignfolder_response_local_var->b_ezsigntsarequirement_billable = b_ezsigntsarequirement_billable;
     custom_ezmaxinvoicing_ezsignfolder_response_local_var->b_ezsignfolder_mfaused = b_ezsignfolder_mfaused;
-    custom_ezmaxinvoicing_ezsignfolder_response_local_var->b_ezsignfolder_paymentused = b_ezsignfolder_paymentused;
     custom_ezmaxinvoicing_ezsignfolder_response_local_var->b_ezsignfolder_allowed = b_ezsignfolder_allowed;
 
     custom_ezmaxinvoicing_ezsignfolder_response_local_var->_library_owned = 1;
@@ -36,7 +34,6 @@ __attribute__((deprecated)) custom_ezmaxinvoicing_ezsignfolder_response_t *custo
     char *s_ezsignfolder_description,
     int b_ezsigntsarequirement_billable,
     int b_ezsignfolder_mfaused,
-    int b_ezsignfolder_paymentused,
     int b_ezsignfolder_allowed
     ) {
     return custom_ezmaxinvoicing_ezsignfolder_response_create_internal (
@@ -45,7 +42,6 @@ __attribute__((deprecated)) custom_ezmaxinvoicing_ezsignfolder_response_t *custo
         s_ezsignfolder_description,
         b_ezsigntsarequirement_billable,
         b_ezsignfolder_mfaused,
-        b_ezsignfolder_paymentused,
         b_ezsignfolder_allowed
         );
 }
@@ -109,15 +105,6 @@ cJSON *custom_ezmaxinvoicing_ezsignfolder_response_convertToJSON(custom_ezmaxinv
         goto fail;
     }
     if(cJSON_AddBoolToObject(item, "bEzsignfolderMfaused", custom_ezmaxinvoicing_ezsignfolder_response->b_ezsignfolder_mfaused) == NULL) {
-    goto fail; //Bool
-    }
-
-
-    // custom_ezmaxinvoicing_ezsignfolder_response->b_ezsignfolder_paymentused
-    if (!custom_ezmaxinvoicing_ezsignfolder_response->b_ezsignfolder_paymentused) {
-        goto fail;
-    }
-    if(cJSON_AddBoolToObject(item, "bEzsignfolderPaymentused", custom_ezmaxinvoicing_ezsignfolder_response->b_ezsignfolder_paymentused) == NULL) {
     goto fail; //Bool
     }
 
@@ -214,21 +201,6 @@ custom_ezmaxinvoicing_ezsignfolder_response_t *custom_ezmaxinvoicing_ezsignfolde
     goto end; //Bool
     }
 
-    // custom_ezmaxinvoicing_ezsignfolder_response->b_ezsignfolder_paymentused
-    cJSON *b_ezsignfolder_paymentused = cJSON_GetObjectItemCaseSensitive(custom_ezmaxinvoicing_ezsignfolder_responseJSON, "bEzsignfolderPaymentused");
-    if (cJSON_IsNull(b_ezsignfolder_paymentused)) {
-        b_ezsignfolder_paymentused = NULL;
-    }
-    if (!b_ezsignfolder_paymentused) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsBool(b_ezsignfolder_paymentused))
-    {
-    goto end; //Bool
-    }
-
     // custom_ezmaxinvoicing_ezsignfolder_response->b_ezsignfolder_allowed
     cJSON *b_ezsignfolder_allowed = cJSON_GetObjectItemCaseSensitive(custom_ezmaxinvoicing_ezsignfolder_responseJSON, "bEzsignfolderAllowed");
     if (cJSON_IsNull(b_ezsignfolder_allowed)) {
@@ -251,7 +223,6 @@ custom_ezmaxinvoicing_ezsignfolder_response_t *custom_ezmaxinvoicing_ezsignfolde
         strdup(s_ezsignfolder_description->valuestring),
         b_ezsigntsarequirement_billable->valueint,
         b_ezsignfolder_mfaused->valueint,
-        b_ezsignfolder_paymentused->valueint,
         b_ezsignfolder_allowed->valueint
         );
 

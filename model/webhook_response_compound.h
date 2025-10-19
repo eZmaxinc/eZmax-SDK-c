@@ -42,6 +42,7 @@ typedef struct webhook_response_compound_t {
     char *s_authenticationexternal_description; // string
     struct common_audit_t *obj_audit; //model
     char *s_webhook_event; // string
+    char *s_webhook_authentificationexternalerror; // string
     list_t *a_obj_webhookheader; //nonprimitive container
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -66,6 +67,7 @@ __attribute__((deprecated)) webhook_response_compound_t *webhook_response_compou
     char *s_authenticationexternal_description,
     common_audit_t *obj_audit,
     char *s_webhook_event,
+    char *s_webhook_authentificationexternalerror,
     list_t *a_obj_webhookheader
 );
 

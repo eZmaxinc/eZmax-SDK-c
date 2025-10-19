@@ -66,6 +66,18 @@ set(SRCS
     model/address_request_compound.c
     model/address_response.c
     model/address_response_compound.c
+    model/agent_autocomplete_element_response.c
+    model/agent_get_autocomplete_v2_response.c
+    model/agent_get_autocomplete_v2_response_m_payload.c
+    model/agent_get_list_v1_response.c
+    model/agent_get_list_v1_response_m_payload.c
+    model/agent_import_into_edm_v1_request.c
+    model/agent_import_into_edm_v1_response.c
+    model/agent_import_into_edm_v1_response_m_payload.c
+    model/agent_list_element.c
+    model/agenttype_autocomplete_element_response.c
+    model/agenttype_get_autocomplete_v2_response.c
+    model/agenttype_get_autocomplete_v2_response_m_payload.c
     model/apikey_create_object_v2_request.c
     model/apikey_create_object_v2_response.c
     model/apikey_create_object_v2_response_m_payload.c
@@ -169,6 +181,18 @@ set(SRCS
     model/branding_request_v2.c
     model/branding_response_compound_v3.c
     model/branding_response_v3.c
+    model/broker_autocomplete_element_response.c
+    model/broker_get_autocomplete_v2_response.c
+    model/broker_get_autocomplete_v2_response_m_payload.c
+    model/broker_get_list_v1_response.c
+    model/broker_get_list_v1_response_m_payload.c
+    model/broker_import_into_edm_v1_request.c
+    model/broker_import_into_edm_v1_response.c
+    model/broker_import_into_edm_v1_response_m_payload.c
+    model/broker_list_element.c
+    model/brokertype_autocomplete_element_response.c
+    model/brokertype_get_autocomplete_v2_response.c
+    model/brokertype_get_autocomplete_v2_response_m_payload.c
     model/buyercontract_get_communication_count_v1_response.c
     model/buyercontract_get_communication_count_v1_response_m_payload.c
     model/buyercontract_get_communication_list_v1_response.c
@@ -177,6 +201,12 @@ set(SRCS
     model/buyercontract_get_communicationrecipients_v1_response_m_payload.c
     model/buyercontract_get_communicationsenders_v1_response.c
     model/buyercontract_get_communicationsenders_v1_response_m_payload.c
+    model/buyercontract_get_list_v1_response.c
+    model/buyercontract_get_list_v1_response_m_payload.c
+    model/buyercontract_import_into_edm_v1_request.c
+    model/buyercontract_import_into_edm_v1_response.c
+    model/buyercontract_import_into_edm_v1_response_m_payload.c
+    model/buyercontract_list_element.c
     model/clonehistory_get_list_v1_response.c
     model/clonehistory_get_list_v1_response_m_payload.c
     model/clonehistory_list_element.c
@@ -193,6 +223,7 @@ set(SRCS
     model/common_report.c
     model/common_reportcell.c
     model/common_reportcellstyle.c
+    model/common_reportcellstylecustom.c
     model/common_reportcolumn.c
     model/common_reportgroup.c
     model/common_reportgroup_parameter.c
@@ -310,6 +341,10 @@ set(SRCS
     model/currency_get_autocomplete_v2_response_m_payload.c
     model/custom_apikey.c
     model/custom_apikeyfederation.c
+    model/custom_attachment_import_into_edm_request.c
+    model/custom_attachment_import_into_edm_response.c
+    model/custom_attachment_prepare_files_transfer_request.c
+    model/custom_attachment_prepare_files_transfer_response.c
     model/custom_attachment_response.c
     model/custom_attachmentdocumenttype_response.c
     model/custom_branding_response.c
@@ -341,6 +376,7 @@ set(SRCS
     model/custom_ezsignfolderezsigntemplatepublic_signer_response.c
     model/custom_ezsignfoldersignerassociation_actionable_element_response.c
     model/custom_ezsignfoldersignerassociationstatus_response.c
+    model/custom_ezsignfoldersignerassociationstatus_response_v3.c
     model/custom_ezsignfoldertransmission_response.c
     model/custom_ezsignfoldertransmission_signer_response.c
     model/custom_ezsignfoldertype_response.c
@@ -361,6 +397,7 @@ set(SRCS
     model/custom_forms_data_folder_response.c
     model/custom_import_ezsigntemplatepackage_relation_request.c
     model/custom_notificationsubsectiongetnotificationtests_response.c
+    model/custom_notificationtestgetelements_response.c
     model/custom_notificationtestgetnotificationtests_response.c
     model/custom_prefill_ezsignform_value_request.c
     model/custom_timezone_with_code_response.c
@@ -375,8 +412,14 @@ set(SRCS
     model/customer_create_object_v1_response_m_payload.c
     model/customer_get_autocomplete_v2_response.c
     model/customer_get_autocomplete_v2_response_m_payload.c
+    model/customer_get_list_v1_response.c
+    model/customer_get_list_v1_response_m_payload.c
     model/customer_get_object_v2_response.c
     model/customer_get_object_v2_response_m_payload.c
+    model/customer_import_into_edm_v1_request.c
+    model/customer_import_into_edm_v1_response.c
+    model/customer_import_into_edm_v1_response_m_payload.c
+    model/customer_list_element.c
     model/customer_request.c
     model/customer_request_compound.c
     model/customer_response.c
@@ -384,6 +427,8 @@ set(SRCS
     model/department_autocomplete_element_response.c
     model/department_get_autocomplete_v2_response.c
     model/department_get_autocomplete_v2_response_m_payload.c
+    model/discussion_chat_v1_200_response.c
+    model/discussion_chat_v1_request.c
     model/discussion_create_object_v1_request.c
     model/discussion_create_object_v1_response.c
     model/discussion_create_object_v1_response_m_payload.c
@@ -418,10 +463,13 @@ set(SRCS
     model/discussionmessage_request_patch.c
     model/discussionmessage_response.c
     model/discussionmessage_response_compound.c
+    model/domain_autocomplete_element_response.c
     model/domain_create_object_v1_request.c
     model/domain_create_object_v1_response.c
     model/domain_create_object_v1_response_m_payload.c
     model/domain_delete_object_v1_response.c
+    model/domain_get_autocomplete_v2_response.c
+    model/domain_get_autocomplete_v2_response_m_payload.c
     model/domain_get_list_v1_response.c
     model/domain_get_list_v1_response_m_payload.c
     model/domain_get_object_v2_response.c
@@ -439,6 +487,9 @@ set(SRCS
     model/electronicfundstransfer_get_communicationrecipients_v1_response_m_payload.c
     model/electronicfundstransfer_get_communicationsenders_v1_response.c
     model/electronicfundstransfer_get_communicationsenders_v1_response_m_payload.c
+    model/electronicfundstransfer_import_into_edm_v1_request.c
+    model/electronicfundstransfer_import_into_edm_v1_response.c
+    model/electronicfundstransfer_import_into_edm_v1_response_m_payload.c
     model/email_request.c
     model/email_request_compound.c
     model/email_response.c
@@ -446,12 +497,21 @@ set(SRCS
     model/emailtype_autocomplete_element_response.c
     model/emailtype_get_autocomplete_v2_response.c
     model/emailtype_get_autocomplete_v2_response_m_payload.c
+    model/employee_get_list_v1_response.c
+    model/employee_get_list_v1_response_m_payload.c
+    model/employee_import_into_edm_v1_request.c
+    model/employee_import_into_edm_v1_response.c
+    model/employee_import_into_edm_v1_response_m_payload.c
+    model/employee_list_element.c
     model/enum_fontunderline.c
     model/enum_fontweight.c
     model/enum_horizontalalignment.c
     model/enum_reportdata_type.c
     model/enum_textvalidation.c
     model/enum_verticalalignment.c
+    model/externalbroker_import_into_edm_v1_request.c
+    model/externalbroker_import_into_edm_v1_response.c
+    model/externalbroker_import_into_edm_v1_response_m_payload.c
     model/ezdoctemplatedocument_autocomplete_element_response.c
     model/ezdoctemplatedocument_create_object_v1_request.c
     model/ezdoctemplatedocument_create_object_v1_response.c
@@ -478,6 +538,12 @@ set(SRCS
     model/ezdoctemplatetype_autocomplete_element_response.c
     model/ezdoctemplatetype_get_autocomplete_v2_response.c
     model/ezdoctemplatetype_get_autocomplete_v2_response_m_payload.c
+    model/ezmaxcustomer_patch_object_v1_request.c
+    model/ezmaxcustomer_patch_object_v1_response.c
+    model/ezmaxcustomer_request_patch.c
+    model/ezmaxcustomeruser_patch_object_v1_request.c
+    model/ezmaxcustomeruser_patch_object_v1_response.c
+    model/ezmaxcustomeruser_request_patch.c
     model/ezmaxinvoicing_autocomplete_element_response.c
     model/ezmaxinvoicing_get_autocomplete_v2_response.c
     model/ezmaxinvoicing_get_autocomplete_v2_response_m_payload.c
@@ -526,9 +592,14 @@ set(SRCS
     model/ezsignbulksend_create_object_v1_request.c
     model/ezsignbulksend_create_object_v1_response.c
     model/ezsignbulksend_create_object_v1_response_m_payload.c
+    model/ezsignbulksend_create_object_v2_request.c
+    model/ezsignbulksend_create_object_v2_response.c
+    model/ezsignbulksend_create_object_v2_response_m_payload.c
     model/ezsignbulksend_delete_object_v1_response.c
     model/ezsignbulksend_edit_object_v1_request.c
     model/ezsignbulksend_edit_object_v1_response.c
+    model/ezsignbulksend_edit_object_v2_request.c
+    model/ezsignbulksend_edit_object_v2_response.c
     model/ezsignbulksend_get_ezsignbulksendtransmissions_v1_response.c
     model/ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload.c
     model/ezsignbulksend_get_ezsignsignatures_automatic_v1_response.c
@@ -539,13 +610,19 @@ set(SRCS
     model/ezsignbulksend_get_list_v1_response_m_payload.c
     model/ezsignbulksend_get_object_v2_response.c
     model/ezsignbulksend_get_object_v2_response_m_payload.c
+    model/ezsignbulksend_get_object_v3_response.c
+    model/ezsignbulksend_get_object_v3_response_m_payload.c
     model/ezsignbulksend_list_element.c
     model/ezsignbulksend_reorder_v1_request.c
     model/ezsignbulksend_reorder_v1_response.c
     model/ezsignbulksend_request.c
     model/ezsignbulksend_request_compound.c
+    model/ezsignbulksend_request_compound_v2.c
+    model/ezsignbulksend_request_v2.c
     model/ezsignbulksend_response.c
     model/ezsignbulksend_response_compound.c
+    model/ezsignbulksend_response_compound_v3.c
+    model/ezsignbulksend_response_v3.c
     model/ezsignbulksenddocumentmapping_create_object_v1_request.c
     model/ezsignbulksenddocumentmapping_create_object_v1_response.c
     model/ezsignbulksenddocumentmapping_create_object_v1_response_m_payload.c
@@ -594,6 +671,9 @@ set(SRCS
     model/ezsigndocument_create_ezsignelements_positioned_by_word_v1_request.c
     model/ezsigndocument_create_ezsignelements_positioned_by_word_v1_response.c
     model/ezsigndocument_create_ezsignelements_positioned_by_word_v1_response_m_payload.c
+    model/ezsigndocument_create_ezsignelements_positioned_by_word_v2_request.c
+    model/ezsigndocument_create_ezsignelements_positioned_by_word_v2_response.c
+    model/ezsigndocument_create_ezsignelements_positioned_by_word_v2_response_m_payload.c
     model/ezsigndocument_create_object_v1_request.c
     model/ezsigndocument_create_object_v1_response.c
     model/ezsigndocument_create_object_v1_response_m_payload.c
@@ -615,6 +695,9 @@ set(SRCS
     model/ezsigndocument_edit_ezsignsignatures_v1_request.c
     model/ezsigndocument_edit_ezsignsignatures_v1_response.c
     model/ezsigndocument_edit_ezsignsignatures_v1_response_m_payload.c
+    model/ezsigndocument_edit_ezsignsignatures_v2_request.c
+    model/ezsigndocument_edit_ezsignsignatures_v2_response.c
+    model/ezsigndocument_edit_ezsignsignatures_v2_response_m_payload.c
     model/ezsigndocument_edit_object_v1_request.c
     model/ezsigndocument_edit_object_v1_response.c
     model/ezsigndocument_end_prematurely_v1_response.c
@@ -624,10 +707,14 @@ set(SRCS
     model/ezsigndocument_flatten_v1_response.c
     model/ezsigndocument_get_actionable_elements_v1_response.c
     model/ezsigndocument_get_actionable_elements_v1_response_m_payload.c
+    model/ezsigndocument_get_actionable_elements_v2_response.c
+    model/ezsigndocument_get_actionable_elements_v2_response_m_payload.c
     model/ezsigndocument_get_attachments_v1_response.c
     model/ezsigndocument_get_attachments_v1_response_m_payload.c
     model/ezsigndocument_get_completed_elements_v1_response.c
     model/ezsigndocument_get_completed_elements_v1_response_m_payload.c
+    model/ezsigndocument_get_completed_elements_v2_response.c
+    model/ezsigndocument_get_completed_elements_v2_response_m_payload.c
     model/ezsigndocument_get_download_url_v1_response.c
     model/ezsigndocument_get_download_url_v1_response_m_payload.c
     model/ezsigndocument_get_ezsignannotations_v1_response.c
@@ -642,12 +729,16 @@ set(SRCS
     model/ezsigndocument_get_ezsignsignatures_automatic_v1_response_m_payload.c
     model/ezsigndocument_get_ezsignsignatures_v1_response.c
     model/ezsigndocument_get_ezsignsignatures_v1_response_m_payload.c
+    model/ezsigndocument_get_ezsignsignatures_v2_response.c
+    model/ezsigndocument_get_ezsignsignatures_v2_response_m_payload.c
     model/ezsigndocument_get_form_data_v1_response.c
     model/ezsigndocument_get_form_data_v1_response_m_payload.c
     model/ezsigndocument_get_object_v1_response.c
     model/ezsigndocument_get_object_v1_response_m_payload.c
     model/ezsigndocument_get_object_v2_response.c
     model/ezsigndocument_get_object_v2_response_m_payload.c
+    model/ezsigndocument_get_object_v3_response.c
+    model/ezsigndocument_get_object_v3_response_m_payload.c
     model/ezsigndocument_get_temporary_proof_v1_response.c
     model/ezsigndocument_get_temporary_proof_v1_response_m_payload.c
     model/ezsigndocument_get_words_positions_v1_request.c
@@ -662,6 +753,7 @@ set(SRCS
     model/ezsigndocument_request_patch.c
     model/ezsigndocument_response.c
     model/ezsigndocument_response_compound.c
+    model/ezsigndocument_response_compound_v3.c
     model/ezsigndocument_submit_ezsignform_v1_request.c
     model/ezsigndocument_submit_ezsignform_v1_response.c
     model/ezsigndocument_unsend_v1_response.c
@@ -694,6 +786,8 @@ set(SRCS
     model/ezsignfolder_end_prematurely_v1_response.c
     model/ezsignfolder_get_actionable_elements_v1_response.c
     model/ezsignfolder_get_actionable_elements_v1_response_m_payload.c
+    model/ezsignfolder_get_actionable_elements_v2_response.c
+    model/ezsignfolder_get_actionable_elements_v2_response_m_payload.c
     model/ezsignfolder_get_attachment_count_v1_response.c
     model/ezsignfolder_get_attachment_count_v1_response_m_payload.c
     model/ezsignfolder_get_attachments_v1_response.c
@@ -708,6 +802,8 @@ set(SRCS
     model/ezsignfolder_get_communicationsenders_v1_response_m_payload.c
     model/ezsignfolder_get_ezsigndocuments_v1_response.c
     model/ezsignfolder_get_ezsigndocuments_v1_response_m_payload.c
+    model/ezsignfolder_get_ezsigndocuments_v2_response.c
+    model/ezsignfolder_get_ezsigndocuments_v2_response_m_payload.c
     model/ezsignfolder_get_ezsignfoldersignerassociations_v1_response.c
     model/ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload.c
     model/ezsignfolder_get_ezsignsignatures_automatic_v1_response.c
@@ -728,6 +824,9 @@ set(SRCS
     model/ezsignfolder_import_ezsigntemplatepackage_v1_request.c
     model/ezsignfolder_import_ezsigntemplatepackage_v1_response.c
     model/ezsignfolder_import_ezsigntemplatepackage_v1_response_m_payload.c
+    model/ezsignfolder_import_ezsigntemplatepackage_v2_request.c
+    model/ezsignfolder_import_ezsigntemplatepackage_v2_response.c
+    model/ezsignfolder_import_ezsigntemplatepackage_v2_response_m_payload.c
     model/ezsignfolder_list_element.c
     model/ezsignfolder_reorder_v1_request.c
     model/ezsignfolder_reorder_v1_response.c
@@ -749,6 +848,9 @@ set(SRCS
     model/ezsignfoldersignerassociation_create_embedded_url_v1_request.c
     model/ezsignfoldersignerassociation_create_embedded_url_v1_response.c
     model/ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload.c
+    model/ezsignfoldersignerassociation_create_embedded_url_v2_request.c
+    model/ezsignfoldersignerassociation_create_embedded_url_v2_response.c
+    model/ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload.c
     model/ezsignfoldersignerassociation_create_object_v1_request.c
     model/ezsignfoldersignerassociation_create_object_v1_response.c
     model/ezsignfoldersignerassociation_create_object_v1_response_m_payload.c
@@ -837,15 +939,22 @@ set(SRCS
     model/ezsignsignature_create_object_v3_request.c
     model/ezsignsignature_create_object_v3_response.c
     model/ezsignsignature_create_object_v3_response_m_payload.c
+    model/ezsignsignature_create_object_v4_request.c
+    model/ezsignsignature_create_object_v4_response.c
+    model/ezsignsignature_create_object_v4_response_m_payload.c
     model/ezsignsignature_delete_object_v1_response.c
     model/ezsignsignature_edit_object_v2_request.c
     model/ezsignsignature_edit_object_v2_response.c
+    model/ezsignsignature_edit_object_v3_request.c
+    model/ezsignsignature_edit_object_v3_response.c
     model/ezsignsignature_get_ezsignsignatureattachment_v1_response.c
     model/ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload.c
     model/ezsignsignature_get_ezsignsignatures_automatic_v1_response.c
     model/ezsignsignature_get_ezsignsignatures_automatic_v1_response_m_payload.c
     model/ezsignsignature_get_object_v3_response.c
     model/ezsignsignature_get_object_v3_response_m_payload.c
+    model/ezsignsignature_get_object_v4_response.c
+    model/ezsignsignature_get_object_v4_response_m_payload.c
     model/ezsignsignature_request.c
     model/ezsignsignature_request_compound.c
     model/ezsignsignature_request_compound_v2.c
@@ -953,6 +1062,9 @@ set(SRCS
     model/ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request.c
     model/ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response.c
     model/ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_m_payload.c
+    model/ezsigntemplatedocument_edit_ezsigntemplatesignatures_v2_request.c
+    model/ezsigntemplatedocument_edit_ezsigntemplatesignatures_v2_response.c
+    model/ezsigntemplatedocument_edit_ezsigntemplatesignatures_v2_response_m_payload.c
     model/ezsigntemplatedocument_edit_object_v1_request.c
     model/ezsigntemplatedocument_edit_object_v1_response.c
     model/ezsigntemplatedocument_extract_text_v1_request.c
@@ -967,6 +1079,8 @@ set(SRCS
     model/ezsigntemplatedocument_get_ezsigntemplateformfieldgroups_v1_response_m_payload.c
     model/ezsigntemplatedocument_get_ezsigntemplatesignatures_v1_response.c
     model/ezsigntemplatedocument_get_ezsigntemplatesignatures_v1_response_m_payload.c
+    model/ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response.c
+    model/ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response_m_payload.c
     model/ezsigntemplatedocument_get_object_v2_response.c
     model/ezsigntemplatedocument_get_object_v2_response_m_payload.c
     model/ezsigntemplatedocument_get_words_positions_v1_request.c
@@ -1111,17 +1225,25 @@ set(SRCS
     model/ezsigntemplatesignature_create_object_v2_request.c
     model/ezsigntemplatesignature_create_object_v2_response.c
     model/ezsigntemplatesignature_create_object_v2_response_m_payload.c
+    model/ezsigntemplatesignature_create_object_v3_request.c
+    model/ezsigntemplatesignature_create_object_v3_response.c
+    model/ezsigntemplatesignature_create_object_v3_response_m_payload.c
     model/ezsigntemplatesignature_delete_object_v1_response.c
     model/ezsigntemplatesignature_edit_object_v2_request.c
     model/ezsigntemplatesignature_edit_object_v2_response.c
+    model/ezsigntemplatesignature_edit_object_v3_request.c
+    model/ezsigntemplatesignature_edit_object_v3_response.c
     model/ezsigntemplatesignature_get_object_v3_response.c
     model/ezsigntemplatesignature_get_object_v3_response_m_payload.c
+    model/ezsigntemplatesignature_get_object_v4_response.c
+    model/ezsigntemplatesignature_get_object_v4_response_m_payload.c
     model/ezsigntemplatesignature_request.c
     model/ezsigntemplatesignature_request_compound.c
     model/ezsigntemplatesignature_request_compound_v2.c
     model/ezsigntemplatesignature_response.c
     model/ezsigntemplatesignature_response_compound.c
     model/ezsigntemplatesignature_response_compound_v3.c
+    model/ezsigntemplatesignature_response_compound_v4.c
     model/ezsigntemplatesignaturecustomdate_request.c
     model/ezsigntemplatesignaturecustomdate_request_compound.c
     model/ezsigntemplatesignaturecustomdate_request_compound_v2.c
@@ -1130,6 +1252,10 @@ set(SRCS
     model/ezsigntemplatesignaturecustomdate_response_compound.c
     model/ezsigntemplatesignaturecustomdate_response_compound_v2.c
     model/ezsigntemplatesignaturecustomdate_response_v2.c
+    model/ezsigntemplatesignaturepaymentdetail_request.c
+    model/ezsigntemplatesignaturepaymentdetail_request_compound.c
+    model/ezsigntemplatesignaturepaymentdetail_response.c
+    model/ezsigntemplatesignaturepaymentdetail_response_compound.c
     model/ezsigntemplatesigner_create_object_v1_request.c
     model/ezsigntemplatesigner_create_object_v1_response.c
     model/ezsigntemplatesigner_create_object_v1_response_m_payload.c
@@ -1168,6 +1294,8 @@ set(SRCS
     model/field_e_authenticationexternal_type.c
     model/field_e_branding_alignlogo.c
     model/field_e_branding_logo.c
+    model/field_e_buyercontract_step.c
+    model/field_e_buyercontract_type.c
     model/field_e_colleague_ezsign.c
     model/field_e_colleague_realestateinprogess.c
     model/field_e_communication_importance.c
@@ -1181,6 +1309,7 @@ set(SRCS
     model/field_e_creditcardtype_codename.c
     model/field_e_customer_marketingcorrespondence.c
     model/field_e_customer_type.c
+    model/field_e_discussion_robot.c
     model/field_e_discussionmessage_status.c
     model/field_e_error_code.c
     model/field_e_ezdoctemplatedocument_privacylevel.c
@@ -1190,6 +1319,7 @@ set(SRCS
     model/field_e_ezmaxinvoicingcontract_paymenttype.c
     model/field_e_ezmaxinvoicinguser_variationezsign.c
     model/field_e_ezsignannotation_type.c
+    model/field_e_ezsignbulksend_ezsignformfieldorder.c
     model/field_e_ezsigndocument_step.c
     model/field_e_ezsigndocumentlog_type.c
     model/field_e_ezsignelementdependency_operator.c
@@ -1202,6 +1332,7 @@ set(SRCS
     model/field_e_ezsignfoldertype_completion.c
     model/field_e_ezsignfoldertype_disposal.c
     model/field_e_ezsignfoldertype_documentdependency.c
+    model/field_e_ezsignfoldertype_documentmerge.c
     model/field_e_ezsignfoldertype_pdfanoncompliantaction.c
     model/field_e_ezsignfoldertype_pdfarequirement.c
     model/field_e_ezsignfoldertype_privacylevel.c
@@ -1242,8 +1373,13 @@ set(SRCS
     model/field_e_ezsigntemplatesignature_positioningoccurence.c
     model/field_e_ezsigntemplatesignature_tooltipposition.c
     model/field_e_ezsigntemplatesignature_type.c
+    model/field_e_ezsigntemplatesignaturepaymentdetail_taxable.c
     model/field_e_ezsigntemplatesigner_mapping.c
+    model/field_e_inscription_step.c
+    model/field_e_inscriptiontemp_status.c
+    model/field_e_lead_status.c
     model/field_e_notificationpreference_status.c
+    model/field_e_otherincome_remunerationtype.c
     model/field_e_paymentgateway_processor.c
     model/field_e_paymentterm_type.c
     model/field_e_phone_type.c
@@ -1301,6 +1437,20 @@ set(SRCS
     model/inscription_get_communicationrecipients_v1_response_m_payload.c
     model/inscription_get_communicationsenders_v1_response.c
     model/inscription_get_communicationsenders_v1_response_m_payload.c
+    model/inscription_get_list_v1_response.c
+    model/inscription_get_list_v1_response_m_payload.c
+    model/inscription_import_into_edm_v1_request.c
+    model/inscription_import_into_edm_v1_response.c
+    model/inscription_import_into_edm_v1_response_m_payload.c
+    model/inscription_list_element.c
+    model/inscription_prepare_files_transfer_v1_request.c
+    model/inscription_prepare_files_transfer_v1_response.c
+    model/inscription_prepare_files_transfer_v1_response_m_payload.c
+    model/inscriptionchecklist_autocomplete_element_response.c
+    model/inscriptionchecklist_get_autocomplete_v2_response.c
+    model/inscriptionchecklist_get_autocomplete_v2_response_m_payload.c
+    model/inscriptionchecklist_get_autocomplete_v3_response.c
+    model/inscriptionchecklist_get_autocomplete_v3_response_m_payload.c
     model/inscriptionnotauthenticated_get_communication_count_v1_response.c
     model/inscriptionnotauthenticated_get_communication_count_v1_response_m_payload.c
     model/inscriptionnotauthenticated_get_communication_list_v1_response.c
@@ -1309,6 +1459,12 @@ set(SRCS
     model/inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload.c
     model/inscriptionnotauthenticated_get_communicationsenders_v1_response.c
     model/inscriptionnotauthenticated_get_communicationsenders_v1_response_m_payload.c
+    model/inscriptionnotauthenticated_get_list_v1_response.c
+    model/inscriptionnotauthenticated_get_list_v1_response_m_payload.c
+    model/inscriptionnotauthenticated_import_into_edm_v1_request.c
+    model/inscriptionnotauthenticated_import_into_edm_v1_response.c
+    model/inscriptionnotauthenticated_import_into_edm_v1_response_m_payload.c
+    model/inscriptionnotauthenticated_list_element.c
     model/inscriptiontemp_get_communication_count_v1_response.c
     model/inscriptiontemp_get_communication_count_v1_response_m_payload.c
     model/inscriptiontemp_get_communication_list_v1_response.c
@@ -1317,6 +1473,15 @@ set(SRCS
     model/inscriptiontemp_get_communicationrecipients_v1_response_m_payload.c
     model/inscriptiontemp_get_communicationsenders_v1_response.c
     model/inscriptiontemp_get_communicationsenders_v1_response_m_payload.c
+    model/inscriptiontemp_get_list_v1_response.c
+    model/inscriptiontemp_get_list_v1_response_m_payload.c
+    model/inscriptiontemp_import_into_edm_v1_request.c
+    model/inscriptiontemp_import_into_edm_v1_response.c
+    model/inscriptiontemp_import_into_edm_v1_response_m_payload.c
+    model/inscriptiontemp_list_element.c
+    model/inscriptiontype_autocomplete_element_response.c
+    model/inscriptiontype_get_autocomplete_v2_response.c
+    model/inscriptiontype_get_autocomplete_v2_response_m_payload.c
     model/invoice_get_attachments_v1_response.c
     model/invoice_get_attachments_v1_response_m_payload.c
     model/invoice_get_communication_count_v1_response.c
@@ -1327,9 +1492,21 @@ set(SRCS
     model/invoice_get_communicationrecipients_v1_response_m_payload.c
     model/invoice_get_communicationsenders_v1_response.c
     model/invoice_get_communicationsenders_v1_response_m_payload.c
+    model/invoice_import_into_edm_v1_request.c
+    model/invoice_import_into_edm_v1_response.c
+    model/invoice_import_into_edm_v1_response_m_payload.c
     model/language_autocomplete_element_response.c
     model/language_get_autocomplete_v2_response.c
     model/language_get_autocomplete_v2_response_m_payload.c
+    model/lead_get_list_v1_response.c
+    model/lead_get_list_v1_response_m_payload.c
+    model/lead_import_into_edm_v1_request.c
+    model/lead_import_into_edm_v1_response.c
+    model/lead_import_into_edm_v1_response_m_payload.c
+    model/lead_list_element.c
+    model/leadsource_autocomplete_element_response.c
+    model/leadsource_get_autocomplete_v2_response.c
+    model/leadsource_get_autocomplete_v2_response_m_payload.c
     model/module_autocomplete_element_response.c
     model/module_get_autocomplete_v2_response.c
     model/module_get_autocomplete_v2_response_m_payload.c
@@ -1345,6 +1522,8 @@ set(SRCS
     model/multilingual_billingentityinternal_description.c
     model/multilingual_branding_description.c
     model/multilingual_ezdoctemplatedocument_name.c
+    model/multilingual_ezmaxcustomer_note.c
+    model/multilingual_ezmaxcustomeruser_note.c
     model/multilingual_ezmaxinvoicingsummaryinternal_description.c
     model/multilingual_ezsignfoldertype_name.c
     model/multilingual_ezsignsignergroup_description.c
@@ -1364,6 +1543,8 @@ set(SRCS
     model/notificationsubsection_response.c
     model/notificationtest_get_elements_v1_response.c
     model/notificationtest_get_elements_v1_response_m_payload.c
+    model/notificationtest_get_elements_v2_response.c
+    model/notificationtest_get_elements_v2_response_m_payload.c
     model/notificationtest_response.c
     model/otherincome_get_communication_count_v1_response.c
     model/otherincome_get_communication_count_v1_response_m_payload.c
@@ -1373,6 +1554,15 @@ set(SRCS
     model/otherincome_get_communicationrecipients_v1_response_m_payload.c
     model/otherincome_get_communicationsenders_v1_response.c
     model/otherincome_get_communicationsenders_v1_response_m_payload.c
+    model/otherincome_get_list_v1_response.c
+    model/otherincome_get_list_v1_response_m_payload.c
+    model/otherincome_import_into_edm_v1_request.c
+    model/otherincome_import_into_edm_v1_response.c
+    model/otherincome_import_into_edm_v1_response_m_payload.c
+    model/otherincome_list_element.c
+    model/otherincometype_autocomplete_element_response.c
+    model/otherincometype_get_autocomplete_v2_response.c
+    model/otherincometype_get_autocomplete_v2_response_m_payload.c
     model/paymentgateway_autocomplete_element_response.c
     model/paymentgateway_create_object_v1_request.c
     model/paymentgateway_create_object_v1_response.c
@@ -1390,6 +1580,9 @@ set(SRCS
     model/paymentgateway_request_compound.c
     model/paymentgateway_response.c
     model/paymentgateway_response_compound.c
+    model/paymentmethod_autocomplete_element_response.c
+    model/paymentmethod_get_autocomplete_v2_response.c
+    model/paymentmethod_get_autocomplete_v2_response_m_payload.c
     model/paymentterm_autocomplete_element_response.c
     model/paymentterm_create_object_v1_request.c
     model/paymentterm_create_object_v1_response.c
@@ -1445,6 +1638,12 @@ set(SRCS
     model/rejectedoffertopurchase_get_communicationrecipients_v1_response_m_payload.c
     model/rejectedoffertopurchase_get_communicationsenders_v1_response.c
     model/rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload.c
+    model/rejectedoffertopurchase_get_list_v1_response.c
+    model/rejectedoffertopurchase_get_list_v1_response_m_payload.c
+    model/rejectedoffertopurchase_import_into_edm_v1_request.c
+    model/rejectedoffertopurchase_import_into_edm_v1_response.c
+    model/rejectedoffertopurchase_import_into_edm_v1_response_m_payload.c
+    model/rejectedoffertopurchase_list_element.c
     model/scim_authentication_scheme.c
     model/scim_email.c
     model/scim_group.c
@@ -1492,6 +1691,12 @@ set(SRCS
     model/subnet_request_compound.c
     model/subnet_response.c
     model/subnet_response_compound.c
+    model/supplier_get_list_v1_response.c
+    model/supplier_get_list_v1_response_m_payload.c
+    model/supplier_import_into_edm_v1_request.c
+    model/supplier_import_into_edm_v1_response.c
+    model/supplier_import_into_edm_v1_response_m_payload.c
+    model/supplier_list_element.c
     model/supply_autocomplete_element_response.c
     model/supply_create_object_v1_request.c
     model/supply_create_object_v1_response.c
@@ -1536,6 +1741,9 @@ set(SRCS
     model/tranqcontract_get_communicationrecipients_v1_response_m_payload.c
     model/tranqcontract_get_communicationsenders_v1_response.c
     model/tranqcontract_get_communicationsenders_v1_response_m_payload.c
+    model/tranqcontract_import_into_edm_v1_request.c
+    model/tranqcontract_import_into_edm_v1_response.c
+    model/tranqcontract_import_into_edm_v1_response_m_payload.c
     model/user_autocomplete_element_response.c
     model/user_create_ezsignuser_v1_request.c
     model/user_create_ezsignuser_v1_response.c
@@ -1755,6 +1963,8 @@ set(SRCS
     api/ModuleReportAPI.c
     api/ModuleUserAPI.c
     api/ObjectActivesessionAPI.c
+    api/ObjectAgentAPI.c
+    api/ObjectAgenttypeAPI.c
     api/ObjectApikeyAPI.c
     api/ObjectAttachmentAPI.c
     api/ObjectAuthenticationexternalAPI.c
@@ -1762,6 +1972,8 @@ set(SRCS
     api/ObjectBillingentityexternalAPI.c
     api/ObjectBillingentityinternalAPI.c
     api/ObjectBrandingAPI.c
+    api/ObjectBrokerAPI.c
+    api/ObjectBrokertypeAPI.c
     api/ObjectBuyercontractAPI.c
     api/ObjectClonehistoryAPI.c
     api/ObjectCommunicationAPI.c
@@ -1781,9 +1993,13 @@ set(SRCS
     api/ObjectDomainAPI.c
     api/ObjectElectronicfundstransferAPI.c
     api/ObjectEmailtypeAPI.c
+    api/ObjectEmployeeAPI.c
+    api/ObjectExternalbrokerAPI.c
     api/ObjectEzdoctemplatedocumentAPI.c
     api/ObjectEzdoctemplatefieldtypecategoryAPI.c
     api/ObjectEzdoctemplatetypeAPI.c
+    api/ObjectEzmaxcustomerAPI.c
+    api/ObjectEzmaxcustomeruserAPI.c
     api/ObjectEzmaxinvoicingAPI.c
     api/ObjectEzmaxproductAPI.c
     api/ObjectEzsignannotationAPI.c
@@ -1825,16 +2041,22 @@ set(SRCS
     api/ObjectGlaccountAPI.c
     api/ObjectGlaccountcontainerAPI.c
     api/ObjectInscriptionAPI.c
+    api/ObjectInscriptionchecklistAPI.c
     api/ObjectInscriptionnotauthenticatedAPI.c
     api/ObjectInscriptiontempAPI.c
+    api/ObjectInscriptiontypeAPI.c
     api/ObjectInvoiceAPI.c
     api/ObjectLanguageAPI.c
+    api/ObjectLeadAPI.c
+    api/ObjectLeadsourceAPI.c
     api/ObjectModuleAPI.c
     api/ObjectModulegroupAPI.c
     api/ObjectNotificationsectionAPI.c
     api/ObjectNotificationtestAPI.c
     api/ObjectOtherincomeAPI.c
+    api/ObjectOtherincometypeAPI.c
     api/ObjectPaymentgatewayAPI.c
+    api/ObjectPaymentmethodAPI.c
     api/ObjectPaymenttermAPI.c
     api/ObjectPdfalevelAPI.c
     api/ObjectPeriodAPI.c
@@ -1846,6 +2068,7 @@ set(SRCS
     api/ObjectSessionhistoryAPI.c
     api/ObjectSignatureAPI.c
     api/ObjectSubnetAPI.c
+    api/ObjectSupplierAPI.c
     api/ObjectSupplyAPI.c
     api/ObjectSystemconfigurationAPI.c
     api/ObjectTaxassignmentAPI.c
@@ -1893,6 +2116,18 @@ set(HDRS
     model/address_request_compound.h
     model/address_response.h
     model/address_response_compound.h
+    model/agent_autocomplete_element_response.h
+    model/agent_get_autocomplete_v2_response.h
+    model/agent_get_autocomplete_v2_response_m_payload.h
+    model/agent_get_list_v1_response.h
+    model/agent_get_list_v1_response_m_payload.h
+    model/agent_import_into_edm_v1_request.h
+    model/agent_import_into_edm_v1_response.h
+    model/agent_import_into_edm_v1_response_m_payload.h
+    model/agent_list_element.h
+    model/agenttype_autocomplete_element_response.h
+    model/agenttype_get_autocomplete_v2_response.h
+    model/agenttype_get_autocomplete_v2_response_m_payload.h
     model/apikey_create_object_v2_request.h
     model/apikey_create_object_v2_response.h
     model/apikey_create_object_v2_response_m_payload.h
@@ -1996,6 +2231,18 @@ set(HDRS
     model/branding_request_v2.h
     model/branding_response_compound_v3.h
     model/branding_response_v3.h
+    model/broker_autocomplete_element_response.h
+    model/broker_get_autocomplete_v2_response.h
+    model/broker_get_autocomplete_v2_response_m_payload.h
+    model/broker_get_list_v1_response.h
+    model/broker_get_list_v1_response_m_payload.h
+    model/broker_import_into_edm_v1_request.h
+    model/broker_import_into_edm_v1_response.h
+    model/broker_import_into_edm_v1_response_m_payload.h
+    model/broker_list_element.h
+    model/brokertype_autocomplete_element_response.h
+    model/brokertype_get_autocomplete_v2_response.h
+    model/brokertype_get_autocomplete_v2_response_m_payload.h
     model/buyercontract_get_communication_count_v1_response.h
     model/buyercontract_get_communication_count_v1_response_m_payload.h
     model/buyercontract_get_communication_list_v1_response.h
@@ -2004,6 +2251,12 @@ set(HDRS
     model/buyercontract_get_communicationrecipients_v1_response_m_payload.h
     model/buyercontract_get_communicationsenders_v1_response.h
     model/buyercontract_get_communicationsenders_v1_response_m_payload.h
+    model/buyercontract_get_list_v1_response.h
+    model/buyercontract_get_list_v1_response_m_payload.h
+    model/buyercontract_import_into_edm_v1_request.h
+    model/buyercontract_import_into_edm_v1_response.h
+    model/buyercontract_import_into_edm_v1_response_m_payload.h
+    model/buyercontract_list_element.h
     model/clonehistory_get_list_v1_response.h
     model/clonehistory_get_list_v1_response_m_payload.h
     model/clonehistory_list_element.h
@@ -2020,6 +2273,7 @@ set(HDRS
     model/common_report.h
     model/common_reportcell.h
     model/common_reportcellstyle.h
+    model/common_reportcellstylecustom.h
     model/common_reportcolumn.h
     model/common_reportgroup.h
     model/common_reportgroup_parameter.h
@@ -2137,6 +2391,10 @@ set(HDRS
     model/currency_get_autocomplete_v2_response_m_payload.h
     model/custom_apikey.h
     model/custom_apikeyfederation.h
+    model/custom_attachment_import_into_edm_request.h
+    model/custom_attachment_import_into_edm_response.h
+    model/custom_attachment_prepare_files_transfer_request.h
+    model/custom_attachment_prepare_files_transfer_response.h
     model/custom_attachment_response.h
     model/custom_attachmentdocumenttype_response.h
     model/custom_branding_response.h
@@ -2168,6 +2426,7 @@ set(HDRS
     model/custom_ezsignfolderezsigntemplatepublic_signer_response.h
     model/custom_ezsignfoldersignerassociation_actionable_element_response.h
     model/custom_ezsignfoldersignerassociationstatus_response.h
+    model/custom_ezsignfoldersignerassociationstatus_response_v3.h
     model/custom_ezsignfoldertransmission_response.h
     model/custom_ezsignfoldertransmission_signer_response.h
     model/custom_ezsignfoldertype_response.h
@@ -2188,6 +2447,7 @@ set(HDRS
     model/custom_forms_data_folder_response.h
     model/custom_import_ezsigntemplatepackage_relation_request.h
     model/custom_notificationsubsectiongetnotificationtests_response.h
+    model/custom_notificationtestgetelements_response.h
     model/custom_notificationtestgetnotificationtests_response.h
     model/custom_prefill_ezsignform_value_request.h
     model/custom_timezone_with_code_response.h
@@ -2202,8 +2462,14 @@ set(HDRS
     model/customer_create_object_v1_response_m_payload.h
     model/customer_get_autocomplete_v2_response.h
     model/customer_get_autocomplete_v2_response_m_payload.h
+    model/customer_get_list_v1_response.h
+    model/customer_get_list_v1_response_m_payload.h
     model/customer_get_object_v2_response.h
     model/customer_get_object_v2_response_m_payload.h
+    model/customer_import_into_edm_v1_request.h
+    model/customer_import_into_edm_v1_response.h
+    model/customer_import_into_edm_v1_response_m_payload.h
+    model/customer_list_element.h
     model/customer_request.h
     model/customer_request_compound.h
     model/customer_response.h
@@ -2211,6 +2477,8 @@ set(HDRS
     model/department_autocomplete_element_response.h
     model/department_get_autocomplete_v2_response.h
     model/department_get_autocomplete_v2_response_m_payload.h
+    model/discussion_chat_v1_200_response.h
+    model/discussion_chat_v1_request.h
     model/discussion_create_object_v1_request.h
     model/discussion_create_object_v1_response.h
     model/discussion_create_object_v1_response_m_payload.h
@@ -2245,10 +2513,13 @@ set(HDRS
     model/discussionmessage_request_patch.h
     model/discussionmessage_response.h
     model/discussionmessage_response_compound.h
+    model/domain_autocomplete_element_response.h
     model/domain_create_object_v1_request.h
     model/domain_create_object_v1_response.h
     model/domain_create_object_v1_response_m_payload.h
     model/domain_delete_object_v1_response.h
+    model/domain_get_autocomplete_v2_response.h
+    model/domain_get_autocomplete_v2_response_m_payload.h
     model/domain_get_list_v1_response.h
     model/domain_get_list_v1_response_m_payload.h
     model/domain_get_object_v2_response.h
@@ -2266,6 +2537,9 @@ set(HDRS
     model/electronicfundstransfer_get_communicationrecipients_v1_response_m_payload.h
     model/electronicfundstransfer_get_communicationsenders_v1_response.h
     model/electronicfundstransfer_get_communicationsenders_v1_response_m_payload.h
+    model/electronicfundstransfer_import_into_edm_v1_request.h
+    model/electronicfundstransfer_import_into_edm_v1_response.h
+    model/electronicfundstransfer_import_into_edm_v1_response_m_payload.h
     model/email_request.h
     model/email_request_compound.h
     model/email_response.h
@@ -2273,12 +2547,21 @@ set(HDRS
     model/emailtype_autocomplete_element_response.h
     model/emailtype_get_autocomplete_v2_response.h
     model/emailtype_get_autocomplete_v2_response_m_payload.h
+    model/employee_get_list_v1_response.h
+    model/employee_get_list_v1_response_m_payload.h
+    model/employee_import_into_edm_v1_request.h
+    model/employee_import_into_edm_v1_response.h
+    model/employee_import_into_edm_v1_response_m_payload.h
+    model/employee_list_element.h
     model/enum_fontunderline.h
     model/enum_fontweight.h
     model/enum_horizontalalignment.h
     model/enum_reportdata_type.h
     model/enum_textvalidation.h
     model/enum_verticalalignment.h
+    model/externalbroker_import_into_edm_v1_request.h
+    model/externalbroker_import_into_edm_v1_response.h
+    model/externalbroker_import_into_edm_v1_response_m_payload.h
     model/ezdoctemplatedocument_autocomplete_element_response.h
     model/ezdoctemplatedocument_create_object_v1_request.h
     model/ezdoctemplatedocument_create_object_v1_response.h
@@ -2305,6 +2588,12 @@ set(HDRS
     model/ezdoctemplatetype_autocomplete_element_response.h
     model/ezdoctemplatetype_get_autocomplete_v2_response.h
     model/ezdoctemplatetype_get_autocomplete_v2_response_m_payload.h
+    model/ezmaxcustomer_patch_object_v1_request.h
+    model/ezmaxcustomer_patch_object_v1_response.h
+    model/ezmaxcustomer_request_patch.h
+    model/ezmaxcustomeruser_patch_object_v1_request.h
+    model/ezmaxcustomeruser_patch_object_v1_response.h
+    model/ezmaxcustomeruser_request_patch.h
     model/ezmaxinvoicing_autocomplete_element_response.h
     model/ezmaxinvoicing_get_autocomplete_v2_response.h
     model/ezmaxinvoicing_get_autocomplete_v2_response_m_payload.h
@@ -2353,9 +2642,14 @@ set(HDRS
     model/ezsignbulksend_create_object_v1_request.h
     model/ezsignbulksend_create_object_v1_response.h
     model/ezsignbulksend_create_object_v1_response_m_payload.h
+    model/ezsignbulksend_create_object_v2_request.h
+    model/ezsignbulksend_create_object_v2_response.h
+    model/ezsignbulksend_create_object_v2_response_m_payload.h
     model/ezsignbulksend_delete_object_v1_response.h
     model/ezsignbulksend_edit_object_v1_request.h
     model/ezsignbulksend_edit_object_v1_response.h
+    model/ezsignbulksend_edit_object_v2_request.h
+    model/ezsignbulksend_edit_object_v2_response.h
     model/ezsignbulksend_get_ezsignbulksendtransmissions_v1_response.h
     model/ezsignbulksend_get_ezsignbulksendtransmissions_v1_response_m_payload.h
     model/ezsignbulksend_get_ezsignsignatures_automatic_v1_response.h
@@ -2366,13 +2660,19 @@ set(HDRS
     model/ezsignbulksend_get_list_v1_response_m_payload.h
     model/ezsignbulksend_get_object_v2_response.h
     model/ezsignbulksend_get_object_v2_response_m_payload.h
+    model/ezsignbulksend_get_object_v3_response.h
+    model/ezsignbulksend_get_object_v3_response_m_payload.h
     model/ezsignbulksend_list_element.h
     model/ezsignbulksend_reorder_v1_request.h
     model/ezsignbulksend_reorder_v1_response.h
     model/ezsignbulksend_request.h
     model/ezsignbulksend_request_compound.h
+    model/ezsignbulksend_request_compound_v2.h
+    model/ezsignbulksend_request_v2.h
     model/ezsignbulksend_response.h
     model/ezsignbulksend_response_compound.h
+    model/ezsignbulksend_response_compound_v3.h
+    model/ezsignbulksend_response_v3.h
     model/ezsignbulksenddocumentmapping_create_object_v1_request.h
     model/ezsignbulksenddocumentmapping_create_object_v1_response.h
     model/ezsignbulksenddocumentmapping_create_object_v1_response_m_payload.h
@@ -2421,6 +2721,9 @@ set(HDRS
     model/ezsigndocument_create_ezsignelements_positioned_by_word_v1_request.h
     model/ezsigndocument_create_ezsignelements_positioned_by_word_v1_response.h
     model/ezsigndocument_create_ezsignelements_positioned_by_word_v1_response_m_payload.h
+    model/ezsigndocument_create_ezsignelements_positioned_by_word_v2_request.h
+    model/ezsigndocument_create_ezsignelements_positioned_by_word_v2_response.h
+    model/ezsigndocument_create_ezsignelements_positioned_by_word_v2_response_m_payload.h
     model/ezsigndocument_create_object_v1_request.h
     model/ezsigndocument_create_object_v1_response.h
     model/ezsigndocument_create_object_v1_response_m_payload.h
@@ -2442,6 +2745,9 @@ set(HDRS
     model/ezsigndocument_edit_ezsignsignatures_v1_request.h
     model/ezsigndocument_edit_ezsignsignatures_v1_response.h
     model/ezsigndocument_edit_ezsignsignatures_v1_response_m_payload.h
+    model/ezsigndocument_edit_ezsignsignatures_v2_request.h
+    model/ezsigndocument_edit_ezsignsignatures_v2_response.h
+    model/ezsigndocument_edit_ezsignsignatures_v2_response_m_payload.h
     model/ezsigndocument_edit_object_v1_request.h
     model/ezsigndocument_edit_object_v1_response.h
     model/ezsigndocument_end_prematurely_v1_response.h
@@ -2451,10 +2757,14 @@ set(HDRS
     model/ezsigndocument_flatten_v1_response.h
     model/ezsigndocument_get_actionable_elements_v1_response.h
     model/ezsigndocument_get_actionable_elements_v1_response_m_payload.h
+    model/ezsigndocument_get_actionable_elements_v2_response.h
+    model/ezsigndocument_get_actionable_elements_v2_response_m_payload.h
     model/ezsigndocument_get_attachments_v1_response.h
     model/ezsigndocument_get_attachments_v1_response_m_payload.h
     model/ezsigndocument_get_completed_elements_v1_response.h
     model/ezsigndocument_get_completed_elements_v1_response_m_payload.h
+    model/ezsigndocument_get_completed_elements_v2_response.h
+    model/ezsigndocument_get_completed_elements_v2_response_m_payload.h
     model/ezsigndocument_get_download_url_v1_response.h
     model/ezsigndocument_get_download_url_v1_response_m_payload.h
     model/ezsigndocument_get_ezsignannotations_v1_response.h
@@ -2469,12 +2779,16 @@ set(HDRS
     model/ezsigndocument_get_ezsignsignatures_automatic_v1_response_m_payload.h
     model/ezsigndocument_get_ezsignsignatures_v1_response.h
     model/ezsigndocument_get_ezsignsignatures_v1_response_m_payload.h
+    model/ezsigndocument_get_ezsignsignatures_v2_response.h
+    model/ezsigndocument_get_ezsignsignatures_v2_response_m_payload.h
     model/ezsigndocument_get_form_data_v1_response.h
     model/ezsigndocument_get_form_data_v1_response_m_payload.h
     model/ezsigndocument_get_object_v1_response.h
     model/ezsigndocument_get_object_v1_response_m_payload.h
     model/ezsigndocument_get_object_v2_response.h
     model/ezsigndocument_get_object_v2_response_m_payload.h
+    model/ezsigndocument_get_object_v3_response.h
+    model/ezsigndocument_get_object_v3_response_m_payload.h
     model/ezsigndocument_get_temporary_proof_v1_response.h
     model/ezsigndocument_get_temporary_proof_v1_response_m_payload.h
     model/ezsigndocument_get_words_positions_v1_request.h
@@ -2489,6 +2803,7 @@ set(HDRS
     model/ezsigndocument_request_patch.h
     model/ezsigndocument_response.h
     model/ezsigndocument_response_compound.h
+    model/ezsigndocument_response_compound_v3.h
     model/ezsigndocument_submit_ezsignform_v1_request.h
     model/ezsigndocument_submit_ezsignform_v1_response.h
     model/ezsigndocument_unsend_v1_response.h
@@ -2521,6 +2836,8 @@ set(HDRS
     model/ezsignfolder_end_prematurely_v1_response.h
     model/ezsignfolder_get_actionable_elements_v1_response.h
     model/ezsignfolder_get_actionable_elements_v1_response_m_payload.h
+    model/ezsignfolder_get_actionable_elements_v2_response.h
+    model/ezsignfolder_get_actionable_elements_v2_response_m_payload.h
     model/ezsignfolder_get_attachment_count_v1_response.h
     model/ezsignfolder_get_attachment_count_v1_response_m_payload.h
     model/ezsignfolder_get_attachments_v1_response.h
@@ -2535,6 +2852,8 @@ set(HDRS
     model/ezsignfolder_get_communicationsenders_v1_response_m_payload.h
     model/ezsignfolder_get_ezsigndocuments_v1_response.h
     model/ezsignfolder_get_ezsigndocuments_v1_response_m_payload.h
+    model/ezsignfolder_get_ezsigndocuments_v2_response.h
+    model/ezsignfolder_get_ezsigndocuments_v2_response_m_payload.h
     model/ezsignfolder_get_ezsignfoldersignerassociations_v1_response.h
     model/ezsignfolder_get_ezsignfoldersignerassociations_v1_response_m_payload.h
     model/ezsignfolder_get_ezsignsignatures_automatic_v1_response.h
@@ -2555,6 +2874,9 @@ set(HDRS
     model/ezsignfolder_import_ezsigntemplatepackage_v1_request.h
     model/ezsignfolder_import_ezsigntemplatepackage_v1_response.h
     model/ezsignfolder_import_ezsigntemplatepackage_v1_response_m_payload.h
+    model/ezsignfolder_import_ezsigntemplatepackage_v2_request.h
+    model/ezsignfolder_import_ezsigntemplatepackage_v2_response.h
+    model/ezsignfolder_import_ezsigntemplatepackage_v2_response_m_payload.h
     model/ezsignfolder_list_element.h
     model/ezsignfolder_reorder_v1_request.h
     model/ezsignfolder_reorder_v1_response.h
@@ -2576,6 +2898,9 @@ set(HDRS
     model/ezsignfoldersignerassociation_create_embedded_url_v1_request.h
     model/ezsignfoldersignerassociation_create_embedded_url_v1_response.h
     model/ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload.h
+    model/ezsignfoldersignerassociation_create_embedded_url_v2_request.h
+    model/ezsignfoldersignerassociation_create_embedded_url_v2_response.h
+    model/ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload.h
     model/ezsignfoldersignerassociation_create_object_v1_request.h
     model/ezsignfoldersignerassociation_create_object_v1_response.h
     model/ezsignfoldersignerassociation_create_object_v1_response_m_payload.h
@@ -2664,15 +2989,22 @@ set(HDRS
     model/ezsignsignature_create_object_v3_request.h
     model/ezsignsignature_create_object_v3_response.h
     model/ezsignsignature_create_object_v3_response_m_payload.h
+    model/ezsignsignature_create_object_v4_request.h
+    model/ezsignsignature_create_object_v4_response.h
+    model/ezsignsignature_create_object_v4_response_m_payload.h
     model/ezsignsignature_delete_object_v1_response.h
     model/ezsignsignature_edit_object_v2_request.h
     model/ezsignsignature_edit_object_v2_response.h
+    model/ezsignsignature_edit_object_v3_request.h
+    model/ezsignsignature_edit_object_v3_response.h
     model/ezsignsignature_get_ezsignsignatureattachment_v1_response.h
     model/ezsignsignature_get_ezsignsignatureattachment_v1_response_m_payload.h
     model/ezsignsignature_get_ezsignsignatures_automatic_v1_response.h
     model/ezsignsignature_get_ezsignsignatures_automatic_v1_response_m_payload.h
     model/ezsignsignature_get_object_v3_response.h
     model/ezsignsignature_get_object_v3_response_m_payload.h
+    model/ezsignsignature_get_object_v4_response.h
+    model/ezsignsignature_get_object_v4_response_m_payload.h
     model/ezsignsignature_request.h
     model/ezsignsignature_request_compound.h
     model/ezsignsignature_request_compound_v2.h
@@ -2780,6 +3112,9 @@ set(HDRS
     model/ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_request.h
     model/ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response.h
     model/ezsigntemplatedocument_edit_ezsigntemplatesignatures_v1_response_m_payload.h
+    model/ezsigntemplatedocument_edit_ezsigntemplatesignatures_v2_request.h
+    model/ezsigntemplatedocument_edit_ezsigntemplatesignatures_v2_response.h
+    model/ezsigntemplatedocument_edit_ezsigntemplatesignatures_v2_response_m_payload.h
     model/ezsigntemplatedocument_edit_object_v1_request.h
     model/ezsigntemplatedocument_edit_object_v1_response.h
     model/ezsigntemplatedocument_extract_text_v1_request.h
@@ -2794,6 +3129,8 @@ set(HDRS
     model/ezsigntemplatedocument_get_ezsigntemplateformfieldgroups_v1_response_m_payload.h
     model/ezsigntemplatedocument_get_ezsigntemplatesignatures_v1_response.h
     model/ezsigntemplatedocument_get_ezsigntemplatesignatures_v1_response_m_payload.h
+    model/ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response.h
+    model/ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response_m_payload.h
     model/ezsigntemplatedocument_get_object_v2_response.h
     model/ezsigntemplatedocument_get_object_v2_response_m_payload.h
     model/ezsigntemplatedocument_get_words_positions_v1_request.h
@@ -2938,17 +3275,25 @@ set(HDRS
     model/ezsigntemplatesignature_create_object_v2_request.h
     model/ezsigntemplatesignature_create_object_v2_response.h
     model/ezsigntemplatesignature_create_object_v2_response_m_payload.h
+    model/ezsigntemplatesignature_create_object_v3_request.h
+    model/ezsigntemplatesignature_create_object_v3_response.h
+    model/ezsigntemplatesignature_create_object_v3_response_m_payload.h
     model/ezsigntemplatesignature_delete_object_v1_response.h
     model/ezsigntemplatesignature_edit_object_v2_request.h
     model/ezsigntemplatesignature_edit_object_v2_response.h
+    model/ezsigntemplatesignature_edit_object_v3_request.h
+    model/ezsigntemplatesignature_edit_object_v3_response.h
     model/ezsigntemplatesignature_get_object_v3_response.h
     model/ezsigntemplatesignature_get_object_v3_response_m_payload.h
+    model/ezsigntemplatesignature_get_object_v4_response.h
+    model/ezsigntemplatesignature_get_object_v4_response_m_payload.h
     model/ezsigntemplatesignature_request.h
     model/ezsigntemplatesignature_request_compound.h
     model/ezsigntemplatesignature_request_compound_v2.h
     model/ezsigntemplatesignature_response.h
     model/ezsigntemplatesignature_response_compound.h
     model/ezsigntemplatesignature_response_compound_v3.h
+    model/ezsigntemplatesignature_response_compound_v4.h
     model/ezsigntemplatesignaturecustomdate_request.h
     model/ezsigntemplatesignaturecustomdate_request_compound.h
     model/ezsigntemplatesignaturecustomdate_request_compound_v2.h
@@ -2957,6 +3302,10 @@ set(HDRS
     model/ezsigntemplatesignaturecustomdate_response_compound.h
     model/ezsigntemplatesignaturecustomdate_response_compound_v2.h
     model/ezsigntemplatesignaturecustomdate_response_v2.h
+    model/ezsigntemplatesignaturepaymentdetail_request.h
+    model/ezsigntemplatesignaturepaymentdetail_request_compound.h
+    model/ezsigntemplatesignaturepaymentdetail_response.h
+    model/ezsigntemplatesignaturepaymentdetail_response_compound.h
     model/ezsigntemplatesigner_create_object_v1_request.h
     model/ezsigntemplatesigner_create_object_v1_response.h
     model/ezsigntemplatesigner_create_object_v1_response_m_payload.h
@@ -2995,6 +3344,8 @@ set(HDRS
     model/field_e_authenticationexternal_type.h
     model/field_e_branding_alignlogo.h
     model/field_e_branding_logo.h
+    model/field_e_buyercontract_step.h
+    model/field_e_buyercontract_type.h
     model/field_e_colleague_ezsign.h
     model/field_e_colleague_realestateinprogess.h
     model/field_e_communication_importance.h
@@ -3008,6 +3359,7 @@ set(HDRS
     model/field_e_creditcardtype_codename.h
     model/field_e_customer_marketingcorrespondence.h
     model/field_e_customer_type.h
+    model/field_e_discussion_robot.h
     model/field_e_discussionmessage_status.h
     model/field_e_error_code.h
     model/field_e_ezdoctemplatedocument_privacylevel.h
@@ -3017,6 +3369,7 @@ set(HDRS
     model/field_e_ezmaxinvoicingcontract_paymenttype.h
     model/field_e_ezmaxinvoicinguser_variationezsign.h
     model/field_e_ezsignannotation_type.h
+    model/field_e_ezsignbulksend_ezsignformfieldorder.h
     model/field_e_ezsigndocument_step.h
     model/field_e_ezsigndocumentlog_type.h
     model/field_e_ezsignelementdependency_operator.h
@@ -3029,6 +3382,7 @@ set(HDRS
     model/field_e_ezsignfoldertype_completion.h
     model/field_e_ezsignfoldertype_disposal.h
     model/field_e_ezsignfoldertype_documentdependency.h
+    model/field_e_ezsignfoldertype_documentmerge.h
     model/field_e_ezsignfoldertype_pdfanoncompliantaction.h
     model/field_e_ezsignfoldertype_pdfarequirement.h
     model/field_e_ezsignfoldertype_privacylevel.h
@@ -3069,8 +3423,13 @@ set(HDRS
     model/field_e_ezsigntemplatesignature_positioningoccurence.h
     model/field_e_ezsigntemplatesignature_tooltipposition.h
     model/field_e_ezsigntemplatesignature_type.h
+    model/field_e_ezsigntemplatesignaturepaymentdetail_taxable.h
     model/field_e_ezsigntemplatesigner_mapping.h
+    model/field_e_inscription_step.h
+    model/field_e_inscriptiontemp_status.h
+    model/field_e_lead_status.h
     model/field_e_notificationpreference_status.h
+    model/field_e_otherincome_remunerationtype.h
     model/field_e_paymentgateway_processor.h
     model/field_e_paymentterm_type.h
     model/field_e_phone_type.h
@@ -3128,6 +3487,20 @@ set(HDRS
     model/inscription_get_communicationrecipients_v1_response_m_payload.h
     model/inscription_get_communicationsenders_v1_response.h
     model/inscription_get_communicationsenders_v1_response_m_payload.h
+    model/inscription_get_list_v1_response.h
+    model/inscription_get_list_v1_response_m_payload.h
+    model/inscription_import_into_edm_v1_request.h
+    model/inscription_import_into_edm_v1_response.h
+    model/inscription_import_into_edm_v1_response_m_payload.h
+    model/inscription_list_element.h
+    model/inscription_prepare_files_transfer_v1_request.h
+    model/inscription_prepare_files_transfer_v1_response.h
+    model/inscription_prepare_files_transfer_v1_response_m_payload.h
+    model/inscriptionchecklist_autocomplete_element_response.h
+    model/inscriptionchecklist_get_autocomplete_v2_response.h
+    model/inscriptionchecklist_get_autocomplete_v2_response_m_payload.h
+    model/inscriptionchecklist_get_autocomplete_v3_response.h
+    model/inscriptionchecklist_get_autocomplete_v3_response_m_payload.h
     model/inscriptionnotauthenticated_get_communication_count_v1_response.h
     model/inscriptionnotauthenticated_get_communication_count_v1_response_m_payload.h
     model/inscriptionnotauthenticated_get_communication_list_v1_response.h
@@ -3136,6 +3509,12 @@ set(HDRS
     model/inscriptionnotauthenticated_get_communicationrecipients_v1_response_m_payload.h
     model/inscriptionnotauthenticated_get_communicationsenders_v1_response.h
     model/inscriptionnotauthenticated_get_communicationsenders_v1_response_m_payload.h
+    model/inscriptionnotauthenticated_get_list_v1_response.h
+    model/inscriptionnotauthenticated_get_list_v1_response_m_payload.h
+    model/inscriptionnotauthenticated_import_into_edm_v1_request.h
+    model/inscriptionnotauthenticated_import_into_edm_v1_response.h
+    model/inscriptionnotauthenticated_import_into_edm_v1_response_m_payload.h
+    model/inscriptionnotauthenticated_list_element.h
     model/inscriptiontemp_get_communication_count_v1_response.h
     model/inscriptiontemp_get_communication_count_v1_response_m_payload.h
     model/inscriptiontemp_get_communication_list_v1_response.h
@@ -3144,6 +3523,15 @@ set(HDRS
     model/inscriptiontemp_get_communicationrecipients_v1_response_m_payload.h
     model/inscriptiontemp_get_communicationsenders_v1_response.h
     model/inscriptiontemp_get_communicationsenders_v1_response_m_payload.h
+    model/inscriptiontemp_get_list_v1_response.h
+    model/inscriptiontemp_get_list_v1_response_m_payload.h
+    model/inscriptiontemp_import_into_edm_v1_request.h
+    model/inscriptiontemp_import_into_edm_v1_response.h
+    model/inscriptiontemp_import_into_edm_v1_response_m_payload.h
+    model/inscriptiontemp_list_element.h
+    model/inscriptiontype_autocomplete_element_response.h
+    model/inscriptiontype_get_autocomplete_v2_response.h
+    model/inscriptiontype_get_autocomplete_v2_response_m_payload.h
     model/invoice_get_attachments_v1_response.h
     model/invoice_get_attachments_v1_response_m_payload.h
     model/invoice_get_communication_count_v1_response.h
@@ -3154,9 +3542,21 @@ set(HDRS
     model/invoice_get_communicationrecipients_v1_response_m_payload.h
     model/invoice_get_communicationsenders_v1_response.h
     model/invoice_get_communicationsenders_v1_response_m_payload.h
+    model/invoice_import_into_edm_v1_request.h
+    model/invoice_import_into_edm_v1_response.h
+    model/invoice_import_into_edm_v1_response_m_payload.h
     model/language_autocomplete_element_response.h
     model/language_get_autocomplete_v2_response.h
     model/language_get_autocomplete_v2_response_m_payload.h
+    model/lead_get_list_v1_response.h
+    model/lead_get_list_v1_response_m_payload.h
+    model/lead_import_into_edm_v1_request.h
+    model/lead_import_into_edm_v1_response.h
+    model/lead_import_into_edm_v1_response_m_payload.h
+    model/lead_list_element.h
+    model/leadsource_autocomplete_element_response.h
+    model/leadsource_get_autocomplete_v2_response.h
+    model/leadsource_get_autocomplete_v2_response_m_payload.h
     model/module_autocomplete_element_response.h
     model/module_get_autocomplete_v2_response.h
     model/module_get_autocomplete_v2_response_m_payload.h
@@ -3172,6 +3572,8 @@ set(HDRS
     model/multilingual_billingentityinternal_description.h
     model/multilingual_branding_description.h
     model/multilingual_ezdoctemplatedocument_name.h
+    model/multilingual_ezmaxcustomer_note.h
+    model/multilingual_ezmaxcustomeruser_note.h
     model/multilingual_ezmaxinvoicingsummaryinternal_description.h
     model/multilingual_ezsignfoldertype_name.h
     model/multilingual_ezsignsignergroup_description.h
@@ -3191,6 +3593,8 @@ set(HDRS
     model/notificationsubsection_response.h
     model/notificationtest_get_elements_v1_response.h
     model/notificationtest_get_elements_v1_response_m_payload.h
+    model/notificationtest_get_elements_v2_response.h
+    model/notificationtest_get_elements_v2_response_m_payload.h
     model/notificationtest_response.h
     model/otherincome_get_communication_count_v1_response.h
     model/otherincome_get_communication_count_v1_response_m_payload.h
@@ -3200,6 +3604,15 @@ set(HDRS
     model/otherincome_get_communicationrecipients_v1_response_m_payload.h
     model/otherincome_get_communicationsenders_v1_response.h
     model/otherincome_get_communicationsenders_v1_response_m_payload.h
+    model/otherincome_get_list_v1_response.h
+    model/otherincome_get_list_v1_response_m_payload.h
+    model/otherincome_import_into_edm_v1_request.h
+    model/otherincome_import_into_edm_v1_response.h
+    model/otherincome_import_into_edm_v1_response_m_payload.h
+    model/otherincome_list_element.h
+    model/otherincometype_autocomplete_element_response.h
+    model/otherincometype_get_autocomplete_v2_response.h
+    model/otherincometype_get_autocomplete_v2_response_m_payload.h
     model/paymentgateway_autocomplete_element_response.h
     model/paymentgateway_create_object_v1_request.h
     model/paymentgateway_create_object_v1_response.h
@@ -3217,6 +3630,9 @@ set(HDRS
     model/paymentgateway_request_compound.h
     model/paymentgateway_response.h
     model/paymentgateway_response_compound.h
+    model/paymentmethod_autocomplete_element_response.h
+    model/paymentmethod_get_autocomplete_v2_response.h
+    model/paymentmethod_get_autocomplete_v2_response_m_payload.h
     model/paymentterm_autocomplete_element_response.h
     model/paymentterm_create_object_v1_request.h
     model/paymentterm_create_object_v1_response.h
@@ -3272,6 +3688,12 @@ set(HDRS
     model/rejectedoffertopurchase_get_communicationrecipients_v1_response_m_payload.h
     model/rejectedoffertopurchase_get_communicationsenders_v1_response.h
     model/rejectedoffertopurchase_get_communicationsenders_v1_response_m_payload.h
+    model/rejectedoffertopurchase_get_list_v1_response.h
+    model/rejectedoffertopurchase_get_list_v1_response_m_payload.h
+    model/rejectedoffertopurchase_import_into_edm_v1_request.h
+    model/rejectedoffertopurchase_import_into_edm_v1_response.h
+    model/rejectedoffertopurchase_import_into_edm_v1_response_m_payload.h
+    model/rejectedoffertopurchase_list_element.h
     model/scim_authentication_scheme.h
     model/scim_email.h
     model/scim_group.h
@@ -3319,6 +3741,12 @@ set(HDRS
     model/subnet_request_compound.h
     model/subnet_response.h
     model/subnet_response_compound.h
+    model/supplier_get_list_v1_response.h
+    model/supplier_get_list_v1_response_m_payload.h
+    model/supplier_import_into_edm_v1_request.h
+    model/supplier_import_into_edm_v1_response.h
+    model/supplier_import_into_edm_v1_response_m_payload.h
+    model/supplier_list_element.h
     model/supply_autocomplete_element_response.h
     model/supply_create_object_v1_request.h
     model/supply_create_object_v1_response.h
@@ -3363,6 +3791,9 @@ set(HDRS
     model/tranqcontract_get_communicationrecipients_v1_response_m_payload.h
     model/tranqcontract_get_communicationsenders_v1_response.h
     model/tranqcontract_get_communicationsenders_v1_response_m_payload.h
+    model/tranqcontract_import_into_edm_v1_request.h
+    model/tranqcontract_import_into_edm_v1_response.h
+    model/tranqcontract_import_into_edm_v1_response_m_payload.h
     model/user_autocomplete_element_response.h
     model/user_create_ezsignuser_v1_request.h
     model/user_create_ezsignuser_v1_response.h
@@ -3582,6 +4013,8 @@ set(HDRS
     api/ModuleReportAPI.h
     api/ModuleUserAPI.h
     api/ObjectActivesessionAPI.h
+    api/ObjectAgentAPI.h
+    api/ObjectAgenttypeAPI.h
     api/ObjectApikeyAPI.h
     api/ObjectAttachmentAPI.h
     api/ObjectAuthenticationexternalAPI.h
@@ -3589,6 +4022,8 @@ set(HDRS
     api/ObjectBillingentityexternalAPI.h
     api/ObjectBillingentityinternalAPI.h
     api/ObjectBrandingAPI.h
+    api/ObjectBrokerAPI.h
+    api/ObjectBrokertypeAPI.h
     api/ObjectBuyercontractAPI.h
     api/ObjectClonehistoryAPI.h
     api/ObjectCommunicationAPI.h
@@ -3608,9 +4043,13 @@ set(HDRS
     api/ObjectDomainAPI.h
     api/ObjectElectronicfundstransferAPI.h
     api/ObjectEmailtypeAPI.h
+    api/ObjectEmployeeAPI.h
+    api/ObjectExternalbrokerAPI.h
     api/ObjectEzdoctemplatedocumentAPI.h
     api/ObjectEzdoctemplatefieldtypecategoryAPI.h
     api/ObjectEzdoctemplatetypeAPI.h
+    api/ObjectEzmaxcustomerAPI.h
+    api/ObjectEzmaxcustomeruserAPI.h
     api/ObjectEzmaxinvoicingAPI.h
     api/ObjectEzmaxproductAPI.h
     api/ObjectEzsignannotationAPI.h
@@ -3652,16 +4091,22 @@ set(HDRS
     api/ObjectGlaccountAPI.h
     api/ObjectGlaccountcontainerAPI.h
     api/ObjectInscriptionAPI.h
+    api/ObjectInscriptionchecklistAPI.h
     api/ObjectInscriptionnotauthenticatedAPI.h
     api/ObjectInscriptiontempAPI.h
+    api/ObjectInscriptiontypeAPI.h
     api/ObjectInvoiceAPI.h
     api/ObjectLanguageAPI.h
+    api/ObjectLeadAPI.h
+    api/ObjectLeadsourceAPI.h
     api/ObjectModuleAPI.h
     api/ObjectModulegroupAPI.h
     api/ObjectNotificationsectionAPI.h
     api/ObjectNotificationtestAPI.h
     api/ObjectOtherincomeAPI.h
+    api/ObjectOtherincometypeAPI.h
     api/ObjectPaymentgatewayAPI.h
+    api/ObjectPaymentmethodAPI.h
     api/ObjectPaymenttermAPI.h
     api/ObjectPdfalevelAPI.h
     api/ObjectPeriodAPI.h
@@ -3673,6 +4118,7 @@ set(HDRS
     api/ObjectSessionhistoryAPI.h
     api/ObjectSignatureAPI.h
     api/ObjectSubnetAPI.h
+    api/ObjectSupplierAPI.h
     api/ObjectSupplyAPI.h
     api/ObjectSystemconfigurationAPI.h
     api/ObjectTaxassignmentAPI.h
@@ -3699,7 +4145,11 @@ include(PreTarget.cmake OPTIONAL)
 set(PROJECT_VERSION_STRING "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}")
 
 # Add library with project file with project name as library name
-add_library(${pkgName} ${SRCS} ${HDRS})
+if(NOT BUILD_STATIC_LIBS)
+  add_library(${pkgName} ${SRCS} ${HDRS})
+else()
+  add_library(${pkgName} STATIC ${SRCS} ${HDRS})
+endif()
 # Link dependent libraries
 if(NOT CMAKE_VERSION VERSION_LESS 3.4)
     target_link_libraries(${pkgName} PRIVATE OpenSSL::SSL OpenSSL::Crypto)
@@ -3778,6 +4228,8 @@ set(HDRS "")
 #    unit-tests/manual-ModuleReportAPI.c
 #    unit-tests/manual-ModuleUserAPI.c
 #    unit-tests/manual-ObjectActivesessionAPI.c
+#    unit-tests/manual-ObjectAgentAPI.c
+#    unit-tests/manual-ObjectAgenttypeAPI.c
 #    unit-tests/manual-ObjectApikeyAPI.c
 #    unit-tests/manual-ObjectAttachmentAPI.c
 #    unit-tests/manual-ObjectAuthenticationexternalAPI.c
@@ -3785,6 +4237,8 @@ set(HDRS "")
 #    unit-tests/manual-ObjectBillingentityexternalAPI.c
 #    unit-tests/manual-ObjectBillingentityinternalAPI.c
 #    unit-tests/manual-ObjectBrandingAPI.c
+#    unit-tests/manual-ObjectBrokerAPI.c
+#    unit-tests/manual-ObjectBrokertypeAPI.c
 #    unit-tests/manual-ObjectBuyercontractAPI.c
 #    unit-tests/manual-ObjectClonehistoryAPI.c
 #    unit-tests/manual-ObjectCommunicationAPI.c
@@ -3804,9 +4258,13 @@ set(HDRS "")
 #    unit-tests/manual-ObjectDomainAPI.c
 #    unit-tests/manual-ObjectElectronicfundstransferAPI.c
 #    unit-tests/manual-ObjectEmailtypeAPI.c
+#    unit-tests/manual-ObjectEmployeeAPI.c
+#    unit-tests/manual-ObjectExternalbrokerAPI.c
 #    unit-tests/manual-ObjectEzdoctemplatedocumentAPI.c
 #    unit-tests/manual-ObjectEzdoctemplatefieldtypecategoryAPI.c
 #    unit-tests/manual-ObjectEzdoctemplatetypeAPI.c
+#    unit-tests/manual-ObjectEzmaxcustomerAPI.c
+#    unit-tests/manual-ObjectEzmaxcustomeruserAPI.c
 #    unit-tests/manual-ObjectEzmaxinvoicingAPI.c
 #    unit-tests/manual-ObjectEzmaxproductAPI.c
 #    unit-tests/manual-ObjectEzsignannotationAPI.c
@@ -3848,16 +4306,22 @@ set(HDRS "")
 #    unit-tests/manual-ObjectGlaccountAPI.c
 #    unit-tests/manual-ObjectGlaccountcontainerAPI.c
 #    unit-tests/manual-ObjectInscriptionAPI.c
+#    unit-tests/manual-ObjectInscriptionchecklistAPI.c
 #    unit-tests/manual-ObjectInscriptionnotauthenticatedAPI.c
 #    unit-tests/manual-ObjectInscriptiontempAPI.c
+#    unit-tests/manual-ObjectInscriptiontypeAPI.c
 #    unit-tests/manual-ObjectInvoiceAPI.c
 #    unit-tests/manual-ObjectLanguageAPI.c
+#    unit-tests/manual-ObjectLeadAPI.c
+#    unit-tests/manual-ObjectLeadsourceAPI.c
 #    unit-tests/manual-ObjectModuleAPI.c
 #    unit-tests/manual-ObjectModulegroupAPI.c
 #    unit-tests/manual-ObjectNotificationsectionAPI.c
 #    unit-tests/manual-ObjectNotificationtestAPI.c
 #    unit-tests/manual-ObjectOtherincomeAPI.c
+#    unit-tests/manual-ObjectOtherincometypeAPI.c
 #    unit-tests/manual-ObjectPaymentgatewayAPI.c
+#    unit-tests/manual-ObjectPaymentmethodAPI.c
 #    unit-tests/manual-ObjectPaymenttermAPI.c
 #    unit-tests/manual-ObjectPdfalevelAPI.c
 #    unit-tests/manual-ObjectPeriodAPI.c
@@ -3869,6 +4333,7 @@ set(HDRS "")
 #    unit-tests/manual-ObjectSessionhistoryAPI.c
 #    unit-tests/manual-ObjectSignatureAPI.c
 #    unit-tests/manual-ObjectSubnetAPI.c
+#    unit-tests/manual-ObjectSupplierAPI.c
 #    unit-tests/manual-ObjectSupplyAPI.c
 #    unit-tests/manual-ObjectSystemconfigurationAPI.c
 #    unit-tests/manual-ObjectTaxassignmentAPI.c

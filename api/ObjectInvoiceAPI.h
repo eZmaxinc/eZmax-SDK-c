@@ -11,6 +11,8 @@
 #include "../model/invoice_get_communication_list_v1_response.h"
 #include "../model/invoice_get_communicationrecipients_v1_response.h"
 #include "../model/invoice_get_communicationsenders_v1_response.h"
+#include "../model/invoice_import_into_edm_v1_request.h"
+#include "../model/invoice_import_into_edm_v1_response.h"
 
 
 // Retrieve Invoice's Attachments
@@ -51,5 +53,13 @@ ObjectInvoiceAPI_invoiceGetCommunicationrecipientsV1(apiClient_t *apiClient, int
 //
 invoice_get_communicationsenders_v1_response_t*
 ObjectInvoiceAPI_invoiceGetCommunicationsendersV1(apiClient_t *apiClient, int *pkiInvoiceID);
+
+
+// Import attachments into the Invoice
+//
+// 
+//
+invoice_import_into_edm_v1_response_t*
+ObjectInvoiceAPI_invoiceImportIntoEDMV1(apiClient_t *apiClient, int *pkiInvoiceID, invoice_import_into_edm_v1_request_t *invoice_import_into_edm_v1_request);
 
 

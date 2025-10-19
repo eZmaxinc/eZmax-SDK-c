@@ -26,6 +26,7 @@ static ezsigndocument_response_t *ezsigndocument_response_create_internal(
     char *s_ezsigndocument_md5signed,
     int b_ezsigndocument_ezsignform,
     int b_ezsigndocument_hassignedsignatures,
+    int b_ezsigndocument_sendtoged,
     common_audit_t *obj_audit,
     char *s_ezsigndocument_externalid,
     int i_ezsigndocument_ezsignsignatureattachmenttotal,
@@ -55,6 +56,7 @@ static ezsigndocument_response_t *ezsigndocument_response_create_internal(
     ezsigndocument_response_local_var->s_ezsigndocument_md5signed = s_ezsigndocument_md5signed;
     ezsigndocument_response_local_var->b_ezsigndocument_ezsignform = b_ezsigndocument_ezsignform;
     ezsigndocument_response_local_var->b_ezsigndocument_hassignedsignatures = b_ezsigndocument_hassignedsignatures;
+    ezsigndocument_response_local_var->b_ezsigndocument_sendtoged = b_ezsigndocument_sendtoged;
     ezsigndocument_response_local_var->obj_audit = obj_audit;
     ezsigndocument_response_local_var->s_ezsigndocument_externalid = s_ezsigndocument_externalid;
     ezsigndocument_response_local_var->i_ezsigndocument_ezsignsignatureattachmenttotal = i_ezsigndocument_ezsignsignatureattachmenttotal;
@@ -85,6 +87,7 @@ __attribute__((deprecated)) ezsigndocument_response_t *ezsigndocument_response_c
     char *s_ezsigndocument_md5signed,
     int b_ezsigndocument_ezsignform,
     int b_ezsigndocument_hassignedsignatures,
+    int b_ezsigndocument_sendtoged,
     common_audit_t *obj_audit,
     char *s_ezsigndocument_externalid,
     int i_ezsigndocument_ezsignsignatureattachmenttotal,
@@ -111,6 +114,7 @@ __attribute__((deprecated)) ezsigndocument_response_t *ezsigndocument_response_c
         s_ezsigndocument_md5signed,
         b_ezsigndocument_ezsignform,
         b_ezsigndocument_hassignedsignatures,
+        b_ezsigndocument_sendtoged,
         obj_audit,
         s_ezsigndocument_externalid,
         i_ezsigndocument_ezsignsignatureattachmenttotal,
@@ -343,6 +347,14 @@ cJSON *ezsigndocument_response_convertToJSON(ezsigndocument_response_t *ezsigndo
     // ezsigndocument_response->b_ezsigndocument_hassignedsignatures
     if(ezsigndocument_response->b_ezsigndocument_hassignedsignatures) {
     if(cJSON_AddBoolToObject(item, "bEzsigndocumentHassignedsignatures", ezsigndocument_response->b_ezsigndocument_hassignedsignatures) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
+    // ezsigndocument_response->b_ezsigndocument_sendtoged
+    if(ezsigndocument_response->b_ezsigndocument_sendtoged) {
+    if(cJSON_AddBoolToObject(item, "bEzsigndocumentSendtoged", ezsigndocument_response->b_ezsigndocument_sendtoged) == NULL) {
     goto fail; //Bool
     }
     }
@@ -671,6 +683,18 @@ ezsigndocument_response_t *ezsigndocument_response_parseFromJSON(cJSON *ezsigndo
     }
     }
 
+    // ezsigndocument_response->b_ezsigndocument_sendtoged
+    cJSON *b_ezsigndocument_sendtoged = cJSON_GetObjectItemCaseSensitive(ezsigndocument_responseJSON, "bEzsigndocumentSendtoged");
+    if (cJSON_IsNull(b_ezsigndocument_sendtoged)) {
+        b_ezsigndocument_sendtoged = NULL;
+    }
+    if (b_ezsigndocument_sendtoged) { 
+    if(!cJSON_IsBool(b_ezsigndocument_sendtoged))
+    {
+    goto end; //Bool
+    }
+    }
+
     // ezsigndocument_response->obj_audit
     cJSON *obj_audit = cJSON_GetObjectItemCaseSensitive(ezsigndocument_responseJSON, "objAudit");
     if (cJSON_IsNull(obj_audit)) {
@@ -744,6 +768,7 @@ ezsigndocument_response_t *ezsigndocument_response_parseFromJSON(cJSON *ezsigndo
         s_ezsigndocument_md5signed && !cJSON_IsNull(s_ezsigndocument_md5signed) ? strdup(s_ezsigndocument_md5signed->valuestring) : NULL,
         b_ezsigndocument_ezsignform ? b_ezsigndocument_ezsignform->valueint : 0,
         b_ezsigndocument_hassignedsignatures ? b_ezsigndocument_hassignedsignatures->valueint : 0,
+        b_ezsigndocument_sendtoged ? b_ezsigndocument_sendtoged->valueint : 0,
         obj_audit ? obj_audit_local_nonprim : NULL,
         s_ezsigndocument_externalid && !cJSON_IsNull(s_ezsigndocument_externalid) ? strdup(s_ezsigndocument_externalid->valuestring) : NULL,
         i_ezsigndocument_ezsignsignatureattachmenttotal->valuedouble,

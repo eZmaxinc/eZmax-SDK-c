@@ -32,6 +32,7 @@ typedef struct ezsigntemplatesignature_request_t {
     int fki_ezsigntemplatedocument_id; //numeric
     int fki_ezsigntemplatesigner_id; //numeric
     int fki_ezsigntemplatesigner_id_validation; //numeric
+    int fki_paymentgateway_id; //numeric
     int b_ezsigntemplatesignature_handwritten; //boolean
     int b_ezsigntemplatesignature_reason; //boolean
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioning__e e_ezsigntemplatesignature_positioning; //referenced enum
@@ -60,6 +61,8 @@ typedef struct ezsigntemplatesignature_request_t {
     int i_ezsigntemplatesignature_positioningoffsetx; //numeric
     int i_ezsigntemplatesignature_positioningoffsety; //numeric
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioningoccurence__e e_ezsigntemplatesignature_positioningoccurence; //referenced enum
+    char *s_ezsigntemplatesignature_creditcardamountdescription; // string
+    char *d_ezsigntemplatesignature_creditcardamount; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
 } ezsigntemplatesignature_request_t;
@@ -69,6 +72,7 @@ __attribute__((deprecated)) ezsigntemplatesignature_request_t *ezsigntemplatesig
     int fki_ezsigntemplatedocument_id,
     int fki_ezsigntemplatesigner_id,
     int fki_ezsigntemplatesigner_id_validation,
+    int fki_paymentgateway_id,
     int b_ezsigntemplatesignature_handwritten,
     int b_ezsigntemplatesignature_reason,
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioning__e e_ezsigntemplatesignature_positioning,
@@ -96,7 +100,9 @@ __attribute__((deprecated)) ezsigntemplatesignature_request_t *ezsigntemplatesig
     char *s_ezsigntemplatesignature_positioningpattern,
     int i_ezsigntemplatesignature_positioningoffsetx,
     int i_ezsigntemplatesignature_positioningoffsety,
-    ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioningoccurence__e e_ezsigntemplatesignature_positioningoccurence
+    ezmax_api_definition__full_field_e_ezsigntemplatesignature_positioningoccurence__e e_ezsigntemplatesignature_positioningoccurence,
+    char *s_ezsigntemplatesignature_creditcardamountdescription,
+    char *d_ezsigntemplatesignature_creditcardamount
 );
 
 void ezsigntemplatesignature_request_free(ezsigntemplatesignature_request_t *ezsigntemplatesignature_request);

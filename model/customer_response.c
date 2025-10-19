@@ -10,6 +10,7 @@ static customer_response_t *customer_response_create_internal(
     int fki_company_id,
     int fki_customergroup_id,
     char *s_customer_name,
+    char *s_customer_note,
     int fki_contactinformations_id,
     int fki_contactcontainer_id,
     int fki_image_id,
@@ -66,6 +67,7 @@ static customer_response_t *customer_response_create_internal(
     customer_response_local_var->fki_company_id = fki_company_id;
     customer_response_local_var->fki_customergroup_id = fki_customergroup_id;
     customer_response_local_var->s_customer_name = s_customer_name;
+    customer_response_local_var->s_customer_note = s_customer_note;
     customer_response_local_var->fki_contactinformations_id = fki_contactinformations_id;
     customer_response_local_var->fki_contactcontainer_id = fki_contactcontainer_id;
     customer_response_local_var->fki_image_id = fki_image_id;
@@ -123,6 +125,7 @@ __attribute__((deprecated)) customer_response_t *customer_response_create(
     int fki_company_id,
     int fki_customergroup_id,
     char *s_customer_name,
+    char *s_customer_note,
     int fki_contactinformations_id,
     int fki_contactcontainer_id,
     int fki_image_id,
@@ -176,6 +179,7 @@ __attribute__((deprecated)) customer_response_t *customer_response_create(
         fki_company_id,
         fki_customergroup_id,
         s_customer_name,
+        s_customer_note,
         fki_contactinformations_id,
         fki_contactcontainer_id,
         fki_image_id,
@@ -238,6 +242,10 @@ void customer_response_free(customer_response_t *customer_response) {
     if (customer_response->s_customer_name) {
         free(customer_response->s_customer_name);
         customer_response->s_customer_name = NULL;
+    }
+    if (customer_response->s_customer_note) {
+        free(customer_response->s_customer_note);
+        customer_response->s_customer_note = NULL;
     }
     if (customer_response->efks_customer_code) {
         free(customer_response->efks_customer_code);
@@ -318,6 +326,14 @@ cJSON *customer_response_convertToJSON(customer_response_t *customer_response) {
     }
     if(cJSON_AddStringToObject(item, "sCustomerName", customer_response->s_customer_name) == NULL) {
     goto fail; //String
+    }
+
+
+    // customer_response->s_customer_note
+    if(customer_response->s_customer_note) {
+    if(cJSON_AddStringToObject(item, "sCustomerNote", customer_response->s_customer_note) == NULL) {
+    goto fail; //String
+    }
     }
 
 
@@ -826,6 +842,18 @@ customer_response_t *customer_response_parseFromJSON(cJSON *customer_responseJSO
     if(!cJSON_IsString(s_customer_name))
     {
     goto end; //String
+    }
+
+    // customer_response->s_customer_note
+    cJSON *s_customer_note = cJSON_GetObjectItemCaseSensitive(customer_responseJSON, "sCustomerNote");
+    if (cJSON_IsNull(s_customer_note)) {
+        s_customer_note = NULL;
+    }
+    if (s_customer_note) { 
+    if(!cJSON_IsString(s_customer_note) && !cJSON_IsNull(s_customer_note))
+    {
+    goto end; //String
+    }
     }
 
     // customer_response->fki_contactinformations_id
@@ -1524,6 +1552,7 @@ customer_response_t *customer_response_parseFromJSON(cJSON *customer_responseJSO
         fki_company_id->valuedouble,
         fki_customergroup_id->valuedouble,
         strdup(s_customer_name->valuestring),
+        s_customer_note && !cJSON_IsNull(s_customer_note) ? strdup(s_customer_note->valuestring) : NULL,
         fki_contactinformations_id->valuedouble,
         fki_contactcontainer_id->valuedouble,
         fki_image_id->valuedouble,

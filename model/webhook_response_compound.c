@@ -24,6 +24,7 @@ static webhook_response_compound_t *webhook_response_compound_create_internal(
     char *s_authenticationexternal_description,
     common_audit_t *obj_audit,
     char *s_webhook_event,
+    char *s_webhook_authentificationexternalerror,
     list_t *a_obj_webhookheader
     ) {
     webhook_response_compound_t *webhook_response_compound_local_var = malloc(sizeof(webhook_response_compound_t));
@@ -48,6 +49,7 @@ static webhook_response_compound_t *webhook_response_compound_create_internal(
     webhook_response_compound_local_var->s_authenticationexternal_description = s_authenticationexternal_description;
     webhook_response_compound_local_var->obj_audit = obj_audit;
     webhook_response_compound_local_var->s_webhook_event = s_webhook_event;
+    webhook_response_compound_local_var->s_webhook_authentificationexternalerror = s_webhook_authentificationexternalerror;
     webhook_response_compound_local_var->a_obj_webhookheader = a_obj_webhookheader;
 
     webhook_response_compound_local_var->_library_owned = 1;
@@ -73,6 +75,7 @@ __attribute__((deprecated)) webhook_response_compound_t *webhook_response_compou
     char *s_authenticationexternal_description,
     common_audit_t *obj_audit,
     char *s_webhook_event,
+    char *s_webhook_authentificationexternalerror,
     list_t *a_obj_webhookheader
     ) {
     return webhook_response_compound_create_internal (
@@ -94,6 +97,7 @@ __attribute__((deprecated)) webhook_response_compound_t *webhook_response_compou
         s_authenticationexternal_description,
         obj_audit,
         s_webhook_event,
+        s_webhook_authentificationexternalerror,
         a_obj_webhookheader
         );
 }
@@ -142,6 +146,10 @@ void webhook_response_compound_free(webhook_response_compound_t *webhook_respons
     if (webhook_response_compound->s_webhook_event) {
         free(webhook_response_compound->s_webhook_event);
         webhook_response_compound->s_webhook_event = NULL;
+    }
+    if (webhook_response_compound->s_webhook_authentificationexternalerror) {
+        free(webhook_response_compound->s_webhook_authentificationexternalerror);
+        webhook_response_compound->s_webhook_authentificationexternalerror = NULL;
     }
     if (webhook_response_compound->a_obj_webhookheader) {
         list_ForEach(listEntry, webhook_response_compound->a_obj_webhookheader) {
@@ -324,6 +332,14 @@ cJSON *webhook_response_compound_convertToJSON(webhook_response_compound_t *webh
     // webhook_response_compound->s_webhook_event
     if(webhook_response_compound->s_webhook_event) {
     if(cJSON_AddStringToObject(item, "sWebhookEvent", webhook_response_compound->s_webhook_event) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // webhook_response_compound->s_webhook_authentificationexternalerror
+    if(webhook_response_compound->s_webhook_authentificationexternalerror) {
+    if(cJSON_AddStringToObject(item, "sWebhookAuthentificationexternalerror", webhook_response_compound->s_webhook_authentificationexternalerror) == NULL) {
     goto fail; //String
     }
     }
@@ -606,6 +622,18 @@ webhook_response_compound_t *webhook_response_compound_parseFromJSON(cJSON *webh
     }
     }
 
+    // webhook_response_compound->s_webhook_authentificationexternalerror
+    cJSON *s_webhook_authentificationexternalerror = cJSON_GetObjectItemCaseSensitive(webhook_response_compoundJSON, "sWebhookAuthentificationexternalerror");
+    if (cJSON_IsNull(s_webhook_authentificationexternalerror)) {
+        s_webhook_authentificationexternalerror = NULL;
+    }
+    if (s_webhook_authentificationexternalerror) { 
+    if(!cJSON_IsString(s_webhook_authentificationexternalerror) && !cJSON_IsNull(s_webhook_authentificationexternalerror))
+    {
+    goto end; //String
+    }
+    }
+
     // webhook_response_compound->a_obj_webhookheader
     cJSON *a_obj_webhookheader = cJSON_GetObjectItemCaseSensitive(webhook_response_compoundJSON, "a_objWebhookheader");
     if (cJSON_IsNull(a_obj_webhookheader)) {
@@ -650,6 +678,7 @@ webhook_response_compound_t *webhook_response_compound_parseFromJSON(cJSON *webh
         s_authenticationexternal_description && !cJSON_IsNull(s_authenticationexternal_description) ? strdup(s_authenticationexternal_description->valuestring) : NULL,
         obj_audit_local_nonprim,
         s_webhook_event && !cJSON_IsNull(s_webhook_event) ? strdup(s_webhook_event->valuestring) : NULL,
+        s_webhook_authentificationexternalerror && !cJSON_IsNull(s_webhook_authentificationexternalerror) ? strdup(s_webhook_authentificationexternalerror->valuestring) : NULL,
         a_obj_webhookheader ? a_obj_webhookheaderList : NULL
         );
 

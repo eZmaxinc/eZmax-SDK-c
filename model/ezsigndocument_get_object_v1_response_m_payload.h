@@ -44,6 +44,7 @@ typedef struct ezsigndocument_get_object_v1_response_m_payload_t {
     char *s_ezsigndocument_md5signed; // string
     int b_ezsigndocument_ezsignform; //boolean
     int b_ezsigndocument_hassignedsignatures; //boolean
+    int b_ezsigndocument_sendtoged; //boolean
     struct common_audit_t *obj_audit; //model
     char *s_ezsigndocument_externalid; // string
     int i_ezsigndocument_ezsignsignatureattachmenttotal; //numeric
@@ -80,6 +81,7 @@ __attribute__((deprecated)) ezsigndocument_get_object_v1_response_m_payload_t *e
     char *s_ezsigndocument_md5signed,
     int b_ezsigndocument_ezsignform,
     int b_ezsigndocument_hassignedsignatures,
+    int b_ezsigndocument_sendtoged,
     common_audit_t *obj_audit,
     char *s_ezsigndocument_externalid,
     int i_ezsigndocument_ezsignsignatureattachmenttotal,

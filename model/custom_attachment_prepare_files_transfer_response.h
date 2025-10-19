@@ -1,0 +1,50 @@
+/*
+ * custom_attachment_prepare_files_transfer_response.h
+ *
+ * A AttachmentPrepareFilesTransfer object
+ */
+
+#ifndef _custom_attachment_prepare_files_transfer_response_H_
+#define _custom_attachment_prepare_files_transfer_response_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct custom_attachment_prepare_files_transfer_response_t custom_attachment_prepare_files_transfer_response_t;
+
+
+// Enum EATTACHMENTACTION for custom_attachment_prepare_files_transfer_response
+
+typedef enum  { ezmax_api_definition__full_custom_attachment_prepare_files_transfer_response_EATTACHMENTACTION_NULL = 0, ezmax_api_definition__full_custom_attachment_prepare_files_transfer_response_EATTACHMENTACTION_Accept, ezmax_api_definition__full_custom_attachment_prepare_files_transfer_response_EATTACHMENTACTION_Discard, ezmax_api_definition__full_custom_attachment_prepare_files_transfer_response_EATTACHMENTACTION_Overwrite, ezmax_api_definition__full_custom_attachment_prepare_files_transfer_response_EATTACHMENTACTION_Reject, ezmax_api_definition__full_custom_attachment_prepare_files_transfer_response_EATTACHMENTACTION_Restore } ezmax_api_definition__full_custom_attachment_prepare_files_transfer_response_EATTACHMENTACTION_e;
+
+char* custom_attachment_prepare_files_transfer_response_e_attachment_action_ToString(ezmax_api_definition__full_custom_attachment_prepare_files_transfer_response_EATTACHMENTACTION_e e_attachment_action);
+
+ezmax_api_definition__full_custom_attachment_prepare_files_transfer_response_EATTACHMENTACTION_e custom_attachment_prepare_files_transfer_response_e_attachment_action_FromString(char* e_attachment_action);
+
+
+
+typedef struct custom_attachment_prepare_files_transfer_response_t {
+    char *s_attachment_name; // string
+    char *s_attachment_md5; // string
+    ezmax_api_definition__full_custom_attachment_prepare_files_transfer_response_EATTACHMENTACTION_e e_attachment_action; //enum
+
+    int _library_owned; // Is the library responsible for freeing this object?
+} custom_attachment_prepare_files_transfer_response_t;
+
+__attribute__((deprecated)) custom_attachment_prepare_files_transfer_response_t *custom_attachment_prepare_files_transfer_response_create(
+    char *s_attachment_name,
+    char *s_attachment_md5,
+    ezmax_api_definition__full_custom_attachment_prepare_files_transfer_response_EATTACHMENTACTION_e e_attachment_action
+);
+
+void custom_attachment_prepare_files_transfer_response_free(custom_attachment_prepare_files_transfer_response_t *custom_attachment_prepare_files_transfer_response);
+
+custom_attachment_prepare_files_transfer_response_t *custom_attachment_prepare_files_transfer_response_parseFromJSON(cJSON *custom_attachment_prepare_files_transfer_responseJSON);
+
+cJSON *custom_attachment_prepare_files_transfer_response_convertToJSON(custom_attachment_prepare_files_transfer_response_t *custom_attachment_prepare_files_transfer_response);
+
+#endif /* _custom_attachment_prepare_files_transfer_response_H_ */
+

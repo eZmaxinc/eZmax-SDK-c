@@ -41,6 +41,7 @@ static custom_webhook_response_t *custom_webhook_response_create_internal(
     char *s_authenticationexternal_description,
     common_audit_t *obj_audit,
     char *s_webhook_event,
+    char *s_webhook_authentificationexternalerror,
     list_t *a_obj_webhookheader,
     char *pks_customer_code,
     int b_webhook_test,
@@ -68,6 +69,7 @@ static custom_webhook_response_t *custom_webhook_response_create_internal(
     custom_webhook_response_local_var->s_authenticationexternal_description = s_authenticationexternal_description;
     custom_webhook_response_local_var->obj_audit = obj_audit;
     custom_webhook_response_local_var->s_webhook_event = s_webhook_event;
+    custom_webhook_response_local_var->s_webhook_authentificationexternalerror = s_webhook_authentificationexternalerror;
     custom_webhook_response_local_var->a_obj_webhookheader = a_obj_webhookheader;
     custom_webhook_response_local_var->pks_customer_code = pks_customer_code;
     custom_webhook_response_local_var->b_webhook_test = b_webhook_test;
@@ -96,6 +98,7 @@ __attribute__((deprecated)) custom_webhook_response_t *custom_webhook_response_c
     char *s_authenticationexternal_description,
     common_audit_t *obj_audit,
     char *s_webhook_event,
+    char *s_webhook_authentificationexternalerror,
     list_t *a_obj_webhookheader,
     char *pks_customer_code,
     int b_webhook_test,
@@ -120,6 +123,7 @@ __attribute__((deprecated)) custom_webhook_response_t *custom_webhook_response_c
         s_authenticationexternal_description,
         obj_audit,
         s_webhook_event,
+        s_webhook_authentificationexternalerror,
         a_obj_webhookheader,
         pks_customer_code,
         b_webhook_test,
@@ -171,6 +175,10 @@ void custom_webhook_response_free(custom_webhook_response_t *custom_webhook_resp
     if (custom_webhook_response->s_webhook_event) {
         free(custom_webhook_response->s_webhook_event);
         custom_webhook_response->s_webhook_event = NULL;
+    }
+    if (custom_webhook_response->s_webhook_authentificationexternalerror) {
+        free(custom_webhook_response->s_webhook_authentificationexternalerror);
+        custom_webhook_response->s_webhook_authentificationexternalerror = NULL;
     }
     if (custom_webhook_response->a_obj_webhookheader) {
         list_ForEach(listEntry, custom_webhook_response->a_obj_webhookheader) {
@@ -357,6 +365,14 @@ cJSON *custom_webhook_response_convertToJSON(custom_webhook_response_t *custom_w
     // custom_webhook_response->s_webhook_event
     if(custom_webhook_response->s_webhook_event) {
     if(cJSON_AddStringToObject(item, "sWebhookEvent", custom_webhook_response->s_webhook_event) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // custom_webhook_response->s_webhook_authentificationexternalerror
+    if(custom_webhook_response->s_webhook_authentificationexternalerror) {
+    if(cJSON_AddStringToObject(item, "sWebhookAuthentificationexternalerror", custom_webhook_response->s_webhook_authentificationexternalerror) == NULL) {
     goto fail; //String
     }
     }
@@ -666,6 +682,18 @@ custom_webhook_response_t *custom_webhook_response_parseFromJSON(cJSON *custom_w
     }
     }
 
+    // custom_webhook_response->s_webhook_authentificationexternalerror
+    cJSON *s_webhook_authentificationexternalerror = cJSON_GetObjectItemCaseSensitive(custom_webhook_responseJSON, "sWebhookAuthentificationexternalerror");
+    if (cJSON_IsNull(s_webhook_authentificationexternalerror)) {
+        s_webhook_authentificationexternalerror = NULL;
+    }
+    if (s_webhook_authentificationexternalerror) { 
+    if(!cJSON_IsString(s_webhook_authentificationexternalerror) && !cJSON_IsNull(s_webhook_authentificationexternalerror))
+    {
+    goto end; //String
+    }
+    }
+
     // custom_webhook_response->a_obj_webhookheader
     cJSON *a_obj_webhookheader = cJSON_GetObjectItemCaseSensitive(custom_webhook_responseJSON, "a_objWebhookheader");
     if (cJSON_IsNull(a_obj_webhookheader)) {
@@ -754,6 +782,7 @@ custom_webhook_response_t *custom_webhook_response_parseFromJSON(cJSON *custom_w
         s_authenticationexternal_description && !cJSON_IsNull(s_authenticationexternal_description) ? strdup(s_authenticationexternal_description->valuestring) : NULL,
         obj_audit_local_nonprim,
         s_webhook_event && !cJSON_IsNull(s_webhook_event) ? strdup(s_webhook_event->valuestring) : NULL,
+        s_webhook_authentificationexternalerror && !cJSON_IsNull(s_webhook_authentificationexternalerror) ? strdup(s_webhook_authentificationexternalerror->valuestring) : NULL,
         a_obj_webhookheader ? a_obj_webhookheaderList : NULL,
         strdup(pks_customer_code->valuestring),
         b_webhook_test->valueint,
