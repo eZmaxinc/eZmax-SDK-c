@@ -21,6 +21,8 @@ static ezsigntemplatesignature_response_t *ezsigntemplatesignature_response_crea
     int i_ezsigntemplatesignature_height,
     int i_ezsigntemplatesignature_step,
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_type__e e_ezsigntemplatesignature_type,
+    ezmax_api_definition__full_field_e_ezsigntemplatesignature_signaturepad__e e_ezsigntemplatesignature_signaturepad,
+    ezmax_api_definition__full_field_e_ezsigntemplatesignature_signaturepadrequired__e e_ezsigntemplatesignature_signaturepadrequired,
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_consultationtrigger__e e_ezsigntemplatesignature_consultationtrigger,
     char *t_ezsigntemplatesignature_tooltip,
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_tooltipposition__e e_ezsigntemplatesignature_tooltipposition,
@@ -61,6 +63,8 @@ static ezsigntemplatesignature_response_t *ezsigntemplatesignature_response_crea
     ezsigntemplatesignature_response_local_var->i_ezsigntemplatesignature_height = i_ezsigntemplatesignature_height;
     ezsigntemplatesignature_response_local_var->i_ezsigntemplatesignature_step = i_ezsigntemplatesignature_step;
     ezsigntemplatesignature_response_local_var->e_ezsigntemplatesignature_type = e_ezsigntemplatesignature_type;
+    ezsigntemplatesignature_response_local_var->e_ezsigntemplatesignature_signaturepad = e_ezsigntemplatesignature_signaturepad;
+    ezsigntemplatesignature_response_local_var->e_ezsigntemplatesignature_signaturepadrequired = e_ezsigntemplatesignature_signaturepadrequired;
     ezsigntemplatesignature_response_local_var->e_ezsigntemplatesignature_consultationtrigger = e_ezsigntemplatesignature_consultationtrigger;
     ezsigntemplatesignature_response_local_var->t_ezsigntemplatesignature_tooltip = t_ezsigntemplatesignature_tooltip;
     ezsigntemplatesignature_response_local_var->e_ezsigntemplatesignature_tooltipposition = e_ezsigntemplatesignature_tooltipposition;
@@ -102,6 +106,8 @@ __attribute__((deprecated)) ezsigntemplatesignature_response_t *ezsigntemplatesi
     int i_ezsigntemplatesignature_height,
     int i_ezsigntemplatesignature_step,
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_type__e e_ezsigntemplatesignature_type,
+    ezmax_api_definition__full_field_e_ezsigntemplatesignature_signaturepad__e e_ezsigntemplatesignature_signaturepad,
+    ezmax_api_definition__full_field_e_ezsigntemplatesignature_signaturepadrequired__e e_ezsigntemplatesignature_signaturepadrequired,
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_consultationtrigger__e e_ezsigntemplatesignature_consultationtrigger,
     char *t_ezsigntemplatesignature_tooltip,
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_tooltipposition__e e_ezsigntemplatesignature_tooltipposition,
@@ -139,6 +145,8 @@ __attribute__((deprecated)) ezsigntemplatesignature_response_t *ezsigntemplatesi
         i_ezsigntemplatesignature_height,
         i_ezsigntemplatesignature_step,
         e_ezsigntemplatesignature_type,
+        e_ezsigntemplatesignature_signaturepad,
+        e_ezsigntemplatesignature_signaturepadrequired,
         e_ezsigntemplatesignature_consultationtrigger,
         t_ezsigntemplatesignature_tooltip,
         e_ezsigntemplatesignature_tooltipposition,
@@ -342,6 +350,32 @@ cJSON *ezsigntemplatesignature_response_convertToJSON(ezsigntemplatesignature_re
     cJSON_AddItemToObject(item, "eEzsigntemplatesignatureType", e_ezsigntemplatesignature_type_local_JSON);
     if(item->child == NULL) {
         goto fail;
+    }
+
+
+    // ezsigntemplatesignature_response->e_ezsigntemplatesignature_signaturepad
+    if(ezsigntemplatesignature_response->e_ezsigntemplatesignature_signaturepad != ezmax_api_definition__full_field_e_ezsigntemplatesignature_signaturepad__NULL) {
+    cJSON *e_ezsigntemplatesignature_signaturepad_local_JSON = field_e_ezsigntemplatesignature_signaturepad_convertToJSON(ezsigntemplatesignature_response->e_ezsigntemplatesignature_signaturepad);
+    if(e_ezsigntemplatesignature_signaturepad_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsigntemplatesignatureSignaturepad", e_ezsigntemplatesignature_signaturepad_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
+    }
+
+
+    // ezsigntemplatesignature_response->e_ezsigntemplatesignature_signaturepadrequired
+    if(ezsigntemplatesignature_response->e_ezsigntemplatesignature_signaturepadrequired != ezmax_api_definition__full_field_e_ezsigntemplatesignature_signaturepadrequired__NULL) {
+    cJSON *e_ezsigntemplatesignature_signaturepadrequired_local_JSON = field_e_ezsigntemplatesignature_signaturepadrequired_convertToJSON(ezsigntemplatesignature_response->e_ezsigntemplatesignature_signaturepadrequired);
+    if(e_ezsigntemplatesignature_signaturepadrequired_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsigntemplatesignatureSignaturepadrequired", e_ezsigntemplatesignature_signaturepadrequired_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
     }
 
 
@@ -557,6 +591,12 @@ ezsigntemplatesignature_response_t *ezsigntemplatesignature_response_parseFromJS
     // define the local variable for ezsigntemplatesignature_response->e_ezsigntemplatesignature_type
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_type__e e_ezsigntemplatesignature_type_local_nonprim = 0;
 
+    // define the local variable for ezsigntemplatesignature_response->e_ezsigntemplatesignature_signaturepad
+    ezmax_api_definition__full_field_e_ezsigntemplatesignature_signaturepad__e e_ezsigntemplatesignature_signaturepad_local_nonprim = 0;
+
+    // define the local variable for ezsigntemplatesignature_response->e_ezsigntemplatesignature_signaturepadrequired
+    ezmax_api_definition__full_field_e_ezsigntemplatesignature_signaturepadrequired__e e_ezsigntemplatesignature_signaturepadrequired_local_nonprim = 0;
+
     // define the local variable for ezsigntemplatesignature_response->e_ezsigntemplatesignature_consultationtrigger
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_consultationtrigger__e e_ezsigntemplatesignature_consultationtrigger_local_nonprim = 0;
 
@@ -769,6 +809,24 @@ ezsigntemplatesignature_response_t *ezsigntemplatesignature_response_parseFromJS
 
     
     e_ezsigntemplatesignature_type_local_nonprim = field_e_ezsigntemplatesignature_type_parseFromJSON(e_ezsigntemplatesignature_type); //custom
+
+    // ezsigntemplatesignature_response->e_ezsigntemplatesignature_signaturepad
+    cJSON *e_ezsigntemplatesignature_signaturepad = cJSON_GetObjectItemCaseSensitive(ezsigntemplatesignature_responseJSON, "eEzsigntemplatesignatureSignaturepad");
+    if (cJSON_IsNull(e_ezsigntemplatesignature_signaturepad)) {
+        e_ezsigntemplatesignature_signaturepad = NULL;
+    }
+    if (e_ezsigntemplatesignature_signaturepad) { 
+    e_ezsigntemplatesignature_signaturepad_local_nonprim = field_e_ezsigntemplatesignature_signaturepad_parseFromJSON(e_ezsigntemplatesignature_signaturepad); //custom
+    }
+
+    // ezsigntemplatesignature_response->e_ezsigntemplatesignature_signaturepadrequired
+    cJSON *e_ezsigntemplatesignature_signaturepadrequired = cJSON_GetObjectItemCaseSensitive(ezsigntemplatesignature_responseJSON, "eEzsigntemplatesignatureSignaturepadrequired");
+    if (cJSON_IsNull(e_ezsigntemplatesignature_signaturepadrequired)) {
+        e_ezsigntemplatesignature_signaturepadrequired = NULL;
+    }
+    if (e_ezsigntemplatesignature_signaturepadrequired) { 
+    e_ezsigntemplatesignature_signaturepadrequired_local_nonprim = field_e_ezsigntemplatesignature_signaturepadrequired_parseFromJSON(e_ezsigntemplatesignature_signaturepadrequired); //custom
+    }
 
     // ezsigntemplatesignature_response->e_ezsigntemplatesignature_consultationtrigger
     cJSON *e_ezsigntemplatesignature_consultationtrigger = cJSON_GetObjectItemCaseSensitive(ezsigntemplatesignature_responseJSON, "eEzsigntemplatesignatureConsultationtrigger");
@@ -1006,6 +1064,8 @@ ezsigntemplatesignature_response_t *ezsigntemplatesignature_response_parseFromJS
         i_ezsigntemplatesignature_height ? i_ezsigntemplatesignature_height->valuedouble : 0,
         i_ezsigntemplatesignature_step->valuedouble,
         e_ezsigntemplatesignature_type_local_nonprim,
+        e_ezsigntemplatesignature_signaturepad ? e_ezsigntemplatesignature_signaturepad_local_nonprim : 0,
+        e_ezsigntemplatesignature_signaturepadrequired ? e_ezsigntemplatesignature_signaturepadrequired_local_nonprim : 0,
         e_ezsigntemplatesignature_consultationtrigger ? e_ezsigntemplatesignature_consultationtrigger_local_nonprim : 0,
         t_ezsigntemplatesignature_tooltip && !cJSON_IsNull(t_ezsigntemplatesignature_tooltip) ? strdup(t_ezsigntemplatesignature_tooltip->valuestring) : NULL,
         e_ezsigntemplatesignature_tooltipposition ? e_ezsigntemplatesignature_tooltipposition_local_nonprim : 0,
@@ -1035,6 +1095,12 @@ end:
     }
     if (e_ezsigntemplatesignature_type_local_nonprim) {
         e_ezsigntemplatesignature_type_local_nonprim = 0;
+    }
+    if (e_ezsigntemplatesignature_signaturepad_local_nonprim) {
+        e_ezsigntemplatesignature_signaturepad_local_nonprim = 0;
+    }
+    if (e_ezsigntemplatesignature_signaturepadrequired_local_nonprim) {
+        e_ezsigntemplatesignature_signaturepadrequired_local_nonprim = 0;
     }
     if (e_ezsigntemplatesignature_consultationtrigger_local_nonprim) {
         e_ezsigntemplatesignature_consultationtrigger_local_nonprim = 0;

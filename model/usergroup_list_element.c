@@ -8,7 +8,8 @@
 static usergroup_list_element_t *usergroup_list_element_create_internal(
     int pki_usergroup_id,
     char *s_usergroup_name_x,
-    int i_count_user
+    int i_count_user,
+    int i_count_inactiveuser
     ) {
     usergroup_list_element_t *usergroup_list_element_local_var = malloc(sizeof(usergroup_list_element_t));
     if (!usergroup_list_element_local_var) {
@@ -17,6 +18,7 @@ static usergroup_list_element_t *usergroup_list_element_create_internal(
     usergroup_list_element_local_var->pki_usergroup_id = pki_usergroup_id;
     usergroup_list_element_local_var->s_usergroup_name_x = s_usergroup_name_x;
     usergroup_list_element_local_var->i_count_user = i_count_user;
+    usergroup_list_element_local_var->i_count_inactiveuser = i_count_inactiveuser;
 
     usergroup_list_element_local_var->_library_owned = 1;
     return usergroup_list_element_local_var;
@@ -25,12 +27,14 @@ static usergroup_list_element_t *usergroup_list_element_create_internal(
 __attribute__((deprecated)) usergroup_list_element_t *usergroup_list_element_create(
     int pki_usergroup_id,
     char *s_usergroup_name_x,
-    int i_count_user
+    int i_count_user,
+    int i_count_inactiveuser
     ) {
     return usergroup_list_element_create_internal (
         pki_usergroup_id,
         s_usergroup_name_x,
-        i_count_user
+        i_count_user,
+        i_count_inactiveuser
         );
 }
 
@@ -76,6 +80,15 @@ cJSON *usergroup_list_element_convertToJSON(usergroup_list_element_t *usergroup_
         goto fail;
     }
     if(cJSON_AddNumberToObject(item, "iCountUser", usergroup_list_element->i_count_user) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // usergroup_list_element->i_count_inactiveuser
+    if (!usergroup_list_element->i_count_inactiveuser) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "iCountInactiveuser", usergroup_list_element->i_count_inactiveuser) == NULL) {
     goto fail; //Numeric
     }
 
@@ -136,11 +149,27 @@ usergroup_list_element_t *usergroup_list_element_parseFromJSON(cJSON *usergroup_
     goto end; //Numeric
     }
 
+    // usergroup_list_element->i_count_inactiveuser
+    cJSON *i_count_inactiveuser = cJSON_GetObjectItemCaseSensitive(usergroup_list_elementJSON, "iCountInactiveuser");
+    if (cJSON_IsNull(i_count_inactiveuser)) {
+        i_count_inactiveuser = NULL;
+    }
+    if (!i_count_inactiveuser) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(i_count_inactiveuser))
+    {
+    goto end; //Numeric
+    }
+
 
     usergroup_list_element_local_var = usergroup_list_element_create_internal (
         pki_usergroup_id->valuedouble,
         strdup(s_usergroup_name_x->valuestring),
-        i_count_user->valuedouble
+        i_count_user->valuedouble,
+        i_count_inactiveuser->valuedouble
         );
 
     return usergroup_list_element_local_var;

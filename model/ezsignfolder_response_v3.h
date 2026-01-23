@@ -20,6 +20,7 @@ typedef struct ezsignfolder_response_v3_t ezsignfolder_response_v3_t;
 #include "custom_ezsignfoldertype_response.h"
 #include "field_e_ezsignfolder_completion.h"
 #include "field_e_ezsignfolder_documentdependency.h"
+#include "field_e_ezsignfolder_messageorder.h"
 #include "field_e_ezsignfolder_step.h"
 
 
@@ -51,6 +52,7 @@ typedef struct ezsignfolder_response_v3_t {
     char *dt_ezsignfolder_archive; // string
     char *dt_ezsignfolder_dispose; // string
     char *t_ezsignfolder_message; // string
+    ezmax_api_definition__full_field_e_ezsignfolder_messageorder__e e_ezsignfolder_messageorder; //referenced enum
     struct common_audit_t *obj_audit; //model
     char *s_ezsignfolder_externalid; // string
     ezmax_api_definition__full_computed_e_ezsignfolder_access__e e_ezsignfolder_access; //referenced enum
@@ -85,6 +87,7 @@ __attribute__((deprecated)) ezsignfolder_response_v3_t *ezsignfolder_response_v3
     char *dt_ezsignfolder_archive,
     char *dt_ezsignfolder_dispose,
     char *t_ezsignfolder_message,
+    ezmax_api_definition__full_field_e_ezsignfolder_messageorder__e e_ezsignfolder_messageorder,
     common_audit_t *obj_audit,
     char *s_ezsignfolder_externalid,
     ezmax_api_definition__full_computed_e_ezsignfolder_access__e e_ezsignfolder_access

@@ -4,17 +4,17 @@ All URIs are relative to *https://prod.api.appcluster01.ca-central-1.ezmax.com/r
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1**](ObjectSystemconfigurationAPI.md#ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1) | **PUT** /1/object/systemconfiguration/{pkiSystemconfigurationID} | Edit an existing Systemconfiguration
+[**ObjectSystemconfigurationAPI_systemconfigurationEditObjectV2**](ObjectSystemconfigurationAPI.md#ObjectSystemconfigurationAPI_systemconfigurationEditObjectV2) | **PUT** /2/object/systemconfiguration/{pkiSystemconfigurationID} | Edit an existing Systemconfiguration
 [**ObjectSystemconfigurationAPI_systemconfigurationGetObjectV2**](ObjectSystemconfigurationAPI.md#ObjectSystemconfigurationAPI_systemconfigurationGetObjectV2) | **GET** /2/object/systemconfiguration/{pkiSystemconfigurationID} | Retrieve an existing Systemconfiguration
 
 
-# **ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1**
+# **ObjectSystemconfigurationAPI_systemconfigurationEditObjectV2**
 ```c
 // Edit an existing Systemconfiguration
 //
 // 
 //
-systemconfiguration_edit_object_v1_response_t* ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1(apiClient_t *apiClient, int *pkiSystemconfigurationID, systemconfiguration_edit_object_v1_request_t *systemconfiguration_edit_object_v1_request);
+systemconfiguration_edit_object_v2_response_t* ObjectSystemconfigurationAPI_systemconfigurationEditObjectV2(apiClient_t *apiClient, int *pkiSystemconfigurationID, systemconfiguration_edit_object_v2_request_t *systemconfiguration_edit_object_v2_request);
 ```
 
 ### Parameters
@@ -22,11 +22,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **pkiSystemconfigurationID** | **int \*** | The unique ID of the Systemconfiguration | 
-**systemconfiguration_edit_object_v1_request** | **[systemconfiguration_edit_object_v1_request_t](systemconfiguration_edit_object_v1_request.md) \*** |  | 
+**systemconfiguration_edit_object_v2_request** | **[systemconfiguration_edit_object_v2_request_t](systemconfiguration_edit_object_v2_request.md) \*** |  | 
 
 ### Return type
 
-[systemconfiguration_edit_object_v1_response_t](systemconfiguration_edit_object_v1_response.md) *
+[systemconfiguration_edit_object_v2_response_t](systemconfiguration_edit_object_v2_response.md) *
 
 
 ### Authorization

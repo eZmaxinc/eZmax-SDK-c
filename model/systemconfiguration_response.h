@@ -28,6 +28,8 @@ typedef struct systemconfiguration_response_t {
     int pki_systemconfiguration_id; //numeric
     int fki_systemconfigurationtype_id; //numeric
     int fki_branding_id; //numeric
+    int fki_timezone_id_default; //numeric
+    char *s_timezone_name_default; // string
     char *s_systemconfigurationtype_description_x; // string
     ezmax_api_definition__full_field_e_systemconfiguration_newexternaluseraction__e e_systemconfiguration_newexternaluseraction; //referenced enum
     ezmax_api_definition__full_field_e_systemconfiguration_language1__e e_systemconfiguration_language1; //referenced enum
@@ -42,6 +44,7 @@ typedef struct systemconfiguration_response_t {
     char *dt_systemconfiguration_readonlyexpirationstart; // string
     char *dt_systemconfiguration_readonlyexpirationend; // string
     struct custom_branding_response_t *obj_branding; //model
+    int i_systemconfiguration_ezsignreminderhoursend; //numeric
 
     int _library_owned; // Is the library responsible for freeing this object?
 } systemconfiguration_response_t;
@@ -50,6 +53,8 @@ __attribute__((deprecated)) systemconfiguration_response_t *systemconfiguration_
     int pki_systemconfiguration_id,
     int fki_systemconfigurationtype_id,
     int fki_branding_id,
+    int fki_timezone_id_default,
+    char *s_timezone_name_default,
     char *s_systemconfigurationtype_description_x,
     ezmax_api_definition__full_field_e_systemconfiguration_newexternaluseraction__e e_systemconfiguration_newexternaluseraction,
     ezmax_api_definition__full_field_e_systemconfiguration_language1__e e_systemconfiguration_language1,
@@ -63,7 +68,8 @@ __attribute__((deprecated)) systemconfiguration_response_t *systemconfiguration_
     int b_systemconfiguration_sspr,
     char *dt_systemconfiguration_readonlyexpirationstart,
     char *dt_systemconfiguration_readonlyexpirationend,
-    custom_branding_response_t *obj_branding
+    custom_branding_response_t *obj_branding,
+    int i_systemconfiguration_ezsignreminderhoursend
 );
 
 void systemconfiguration_response_free(systemconfiguration_response_t *systemconfiguration_response);

@@ -15,6 +15,7 @@ static usergroupmembership_response_compound_t *usergroupmembership_response_com
     char *s_user_loginname,
     char *s_email_address,
     char *s_usergroup_name_x,
+    int b_user_isactive,
     char *s_usergroupexternal_name
     ) {
     usergroupmembership_response_compound_t *usergroupmembership_response_compound_local_var = malloc(sizeof(usergroupmembership_response_compound_t));
@@ -30,6 +31,7 @@ static usergroupmembership_response_compound_t *usergroupmembership_response_com
     usergroupmembership_response_compound_local_var->s_user_loginname = s_user_loginname;
     usergroupmembership_response_compound_local_var->s_email_address = s_email_address;
     usergroupmembership_response_compound_local_var->s_usergroup_name_x = s_usergroup_name_x;
+    usergroupmembership_response_compound_local_var->b_user_isactive = b_user_isactive;
     usergroupmembership_response_compound_local_var->s_usergroupexternal_name = s_usergroupexternal_name;
 
     usergroupmembership_response_compound_local_var->_library_owned = 1;
@@ -46,6 +48,7 @@ __attribute__((deprecated)) usergroupmembership_response_compound_t *usergroupme
     char *s_user_loginname,
     char *s_email_address,
     char *s_usergroup_name_x,
+    int b_user_isactive,
     char *s_usergroupexternal_name
     ) {
     return usergroupmembership_response_compound_create_internal (
@@ -58,6 +61,7 @@ __attribute__((deprecated)) usergroupmembership_response_compound_t *usergroupme
         s_user_loginname,
         s_email_address,
         s_usergroup_name_x,
+        b_user_isactive,
         s_usergroupexternal_name
         );
 }
@@ -173,6 +177,14 @@ cJSON *usergroupmembership_response_compound_convertToJSON(usergroupmembership_r
     }
     if(cJSON_AddStringToObject(item, "sUsergroupNameX", usergroupmembership_response_compound->s_usergroup_name_x) == NULL) {
     goto fail; //String
+    }
+
+
+    // usergroupmembership_response_compound->b_user_isactive
+    if(usergroupmembership_response_compound->b_user_isactive) {
+    if(cJSON_AddBoolToObject(item, "bUserIsactive", usergroupmembership_response_compound->b_user_isactive) == NULL) {
+    goto fail; //Bool
+    }
     }
 
 
@@ -312,6 +324,18 @@ usergroupmembership_response_compound_t *usergroupmembership_response_compound_p
     goto end; //String
     }
 
+    // usergroupmembership_response_compound->b_user_isactive
+    cJSON *b_user_isactive = cJSON_GetObjectItemCaseSensitive(usergroupmembership_response_compoundJSON, "bUserIsactive");
+    if (cJSON_IsNull(b_user_isactive)) {
+        b_user_isactive = NULL;
+    }
+    if (b_user_isactive) { 
+    if(!cJSON_IsBool(b_user_isactive))
+    {
+    goto end; //Bool
+    }
+    }
+
     // usergroupmembership_response_compound->s_usergroupexternal_name
     cJSON *s_usergroupexternal_name = cJSON_GetObjectItemCaseSensitive(usergroupmembership_response_compoundJSON, "sUsergroupexternalName");
     if (cJSON_IsNull(s_usergroupexternal_name)) {
@@ -335,6 +359,7 @@ usergroupmembership_response_compound_t *usergroupmembership_response_compound_p
         s_user_loginname && !cJSON_IsNull(s_user_loginname) ? strdup(s_user_loginname->valuestring) : NULL,
         s_email_address && !cJSON_IsNull(s_email_address) ? strdup(s_email_address->valuestring) : NULL,
         strdup(s_usergroup_name_x->valuestring),
+        b_user_isactive ? b_user_isactive->valueint : 0,
         s_usergroupexternal_name && !cJSON_IsNull(s_usergroupexternal_name) ? strdup(s_usergroupexternal_name->valuestring) : NULL
         );
 

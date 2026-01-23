@@ -1,0 +1,28 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include "../include/apiClient.h"
+#include "../include/list.h"
+#include "../external/cJSON.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+#include "../model/header_accept_language.h"
+#include "../model/systemconfigurationtype_get_autocomplete_v2_response.h"
+
+// Enum SSELECTOR for ObjectSystemconfigurationtypeAPI_systemconfigurationtypeGetAutocompleteV2
+typedef enum  { ezmax_api_definition__full_systemconfigurationtypeGetAutocompleteV2_SSELECTOR_NULL = 0, ezmax_api_definition__full_systemconfigurationtypeGetAutocompleteV2_SSELECTOR_All } ezmax_api_definition__full_systemconfigurationtypeGetAutocompleteV2_sSelector_e;
+
+// Enum EFILTERACTIVE for ObjectSystemconfigurationtypeAPI_systemconfigurationtypeGetAutocompleteV2
+typedef enum  { ezmax_api_definition__full_systemconfigurationtypeGetAutocompleteV2_EFILTERACTIVE_NULL = 0, ezmax_api_definition__full_systemconfigurationtypeGetAutocompleteV2_EFILTERACTIVE_All, ezmax_api_definition__full_systemconfigurationtypeGetAutocompleteV2_EFILTERACTIVE_Active, ezmax_api_definition__full_systemconfigurationtypeGetAutocompleteV2_EFILTERACTIVE_Inactive } ezmax_api_definition__full_systemconfigurationtypeGetAutocompleteV2_eFilterActive_e;
+
+// Enum  for ObjectSystemconfigurationtypeAPI_systemconfigurationtypeGetAutocompleteV2
+typedef enum  { ezmax_api_definition__full_systemconfigurationtypeGetAutocompleteV2__NULL = 0, ezmax_api_definition__full_systemconfigurationtypeGetAutocompleteV2__*, ezmax_api_definition__full_systemconfigurationtypeGetAutocompleteV2__en, ezmax_api_definition__full_systemconfigurationtypeGetAutocompleteV2__fr } ezmax_api_definition__full_systemconfigurationtypeGetAutocompleteV2_Accept-Language_e;
+
+
+// Retrieve Systemconfigurationtype and IDs
+//
+// Get the list of Systemconfigurationtype to be used in a dropdown or autocomplete control.
+//
+systemconfigurationtype_get_autocomplete_v2_response_t*
+ObjectSystemconfigurationtypeAPI_systemconfigurationtypeGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_systemconfigurationtypeGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_systemconfigurationtypeGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
+
+

@@ -9,6 +9,8 @@ static systemconfiguration_response_compound_t *systemconfiguration_response_com
     int pki_systemconfiguration_id,
     int fki_systemconfigurationtype_id,
     int fki_branding_id,
+    int fki_timezone_id_default,
+    char *s_timezone_name_default,
     char *s_systemconfigurationtype_description_x,
     ezmax_api_definition__full_field_e_systemconfiguration_newexternaluseraction__e e_systemconfiguration_newexternaluseraction,
     ezmax_api_definition__full_field_e_systemconfiguration_language1__e e_systemconfiguration_language1,
@@ -22,7 +24,8 @@ static systemconfiguration_response_compound_t *systemconfiguration_response_com
     int b_systemconfiguration_sspr,
     char *dt_systemconfiguration_readonlyexpirationstart,
     char *dt_systemconfiguration_readonlyexpirationend,
-    custom_branding_response_t *obj_branding
+    custom_branding_response_t *obj_branding,
+    int i_systemconfiguration_ezsignreminderhoursend
     ) {
     systemconfiguration_response_compound_t *systemconfiguration_response_compound_local_var = malloc(sizeof(systemconfiguration_response_compound_t));
     if (!systemconfiguration_response_compound_local_var) {
@@ -31,6 +34,8 @@ static systemconfiguration_response_compound_t *systemconfiguration_response_com
     systemconfiguration_response_compound_local_var->pki_systemconfiguration_id = pki_systemconfiguration_id;
     systemconfiguration_response_compound_local_var->fki_systemconfigurationtype_id = fki_systemconfigurationtype_id;
     systemconfiguration_response_compound_local_var->fki_branding_id = fki_branding_id;
+    systemconfiguration_response_compound_local_var->fki_timezone_id_default = fki_timezone_id_default;
+    systemconfiguration_response_compound_local_var->s_timezone_name_default = s_timezone_name_default;
     systemconfiguration_response_compound_local_var->s_systemconfigurationtype_description_x = s_systemconfigurationtype_description_x;
     systemconfiguration_response_compound_local_var->e_systemconfiguration_newexternaluseraction = e_systemconfiguration_newexternaluseraction;
     systemconfiguration_response_compound_local_var->e_systemconfiguration_language1 = e_systemconfiguration_language1;
@@ -45,6 +50,7 @@ static systemconfiguration_response_compound_t *systemconfiguration_response_com
     systemconfiguration_response_compound_local_var->dt_systemconfiguration_readonlyexpirationstart = dt_systemconfiguration_readonlyexpirationstart;
     systemconfiguration_response_compound_local_var->dt_systemconfiguration_readonlyexpirationend = dt_systemconfiguration_readonlyexpirationend;
     systemconfiguration_response_compound_local_var->obj_branding = obj_branding;
+    systemconfiguration_response_compound_local_var->i_systemconfiguration_ezsignreminderhoursend = i_systemconfiguration_ezsignreminderhoursend;
 
     systemconfiguration_response_compound_local_var->_library_owned = 1;
     return systemconfiguration_response_compound_local_var;
@@ -54,6 +60,8 @@ __attribute__((deprecated)) systemconfiguration_response_compound_t *systemconfi
     int pki_systemconfiguration_id,
     int fki_systemconfigurationtype_id,
     int fki_branding_id,
+    int fki_timezone_id_default,
+    char *s_timezone_name_default,
     char *s_systemconfigurationtype_description_x,
     ezmax_api_definition__full_field_e_systemconfiguration_newexternaluseraction__e e_systemconfiguration_newexternaluseraction,
     ezmax_api_definition__full_field_e_systemconfiguration_language1__e e_systemconfiguration_language1,
@@ -67,12 +75,15 @@ __attribute__((deprecated)) systemconfiguration_response_compound_t *systemconfi
     int b_systemconfiguration_sspr,
     char *dt_systemconfiguration_readonlyexpirationstart,
     char *dt_systemconfiguration_readonlyexpirationend,
-    custom_branding_response_t *obj_branding
+    custom_branding_response_t *obj_branding,
+    int i_systemconfiguration_ezsignreminderhoursend
     ) {
     return systemconfiguration_response_compound_create_internal (
         pki_systemconfiguration_id,
         fki_systemconfigurationtype_id,
         fki_branding_id,
+        fki_timezone_id_default,
+        s_timezone_name_default,
         s_systemconfigurationtype_description_x,
         e_systemconfiguration_newexternaluseraction,
         e_systemconfiguration_language1,
@@ -86,7 +97,8 @@ __attribute__((deprecated)) systemconfiguration_response_compound_t *systemconfi
         b_systemconfiguration_sspr,
         dt_systemconfiguration_readonlyexpirationstart,
         dt_systemconfiguration_readonlyexpirationend,
-        obj_branding
+        obj_branding,
+        i_systemconfiguration_ezsignreminderhoursend
         );
 }
 
@@ -99,6 +111,10 @@ void systemconfiguration_response_compound_free(systemconfiguration_response_com
         return ;
     }
     listEntry_t *listEntry;
+    if (systemconfiguration_response_compound->s_timezone_name_default) {
+        free(systemconfiguration_response_compound->s_timezone_name_default);
+        systemconfiguration_response_compound->s_timezone_name_default = NULL;
+    }
     if (systemconfiguration_response_compound->s_systemconfigurationtype_description_x) {
         free(systemconfiguration_response_compound->s_systemconfigurationtype_description_x);
         systemconfiguration_response_compound->s_systemconfigurationtype_description_x = NULL;
@@ -144,6 +160,24 @@ cJSON *systemconfiguration_response_compound_convertToJSON(systemconfiguration_r
     if(cJSON_AddNumberToObject(item, "fkiBrandingID", systemconfiguration_response_compound->fki_branding_id) == NULL) {
     goto fail; //Numeric
     }
+    }
+
+
+    // systemconfiguration_response_compound->fki_timezone_id_default
+    if (!systemconfiguration_response_compound->fki_timezone_id_default) {
+        goto fail;
+    }
+    if(cJSON_AddNumberToObject(item, "fkiTimezoneIDDefault", systemconfiguration_response_compound->fki_timezone_id_default) == NULL) {
+    goto fail; //Numeric
+    }
+
+
+    // systemconfiguration_response_compound->s_timezone_name_default
+    if (!systemconfiguration_response_compound->s_timezone_name_default) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "sTimezoneNameDefault", systemconfiguration_response_compound->s_timezone_name_default) == NULL) {
+    goto fail; //String
     }
 
 
@@ -294,6 +328,14 @@ cJSON *systemconfiguration_response_compound_convertToJSON(systemconfiguration_r
     }
     }
 
+
+    // systemconfiguration_response_compound->i_systemconfiguration_ezsignreminderhoursend
+    if(systemconfiguration_response_compound->i_systemconfiguration_ezsignreminderhoursend) {
+    if(cJSON_AddNumberToObject(item, "iSystemconfigurationEzsignreminderhoursend", systemconfiguration_response_compound->i_systemconfiguration_ezsignreminderhoursend) == NULL) {
+    goto fail; //Numeric
+    }
+    }
+
     return item;
 fail:
     if (item) {
@@ -364,6 +406,36 @@ systemconfiguration_response_compound_t *systemconfiguration_response_compound_p
     {
     goto end; //Numeric
     }
+    }
+
+    // systemconfiguration_response_compound->fki_timezone_id_default
+    cJSON *fki_timezone_id_default = cJSON_GetObjectItemCaseSensitive(systemconfiguration_response_compoundJSON, "fkiTimezoneIDDefault");
+    if (cJSON_IsNull(fki_timezone_id_default)) {
+        fki_timezone_id_default = NULL;
+    }
+    if (!fki_timezone_id_default) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsNumber(fki_timezone_id_default))
+    {
+    goto end; //Numeric
+    }
+
+    // systemconfiguration_response_compound->s_timezone_name_default
+    cJSON *s_timezone_name_default = cJSON_GetObjectItemCaseSensitive(systemconfiguration_response_compoundJSON, "sTimezoneNameDefault");
+    if (cJSON_IsNull(s_timezone_name_default)) {
+        s_timezone_name_default = NULL;
+    }
+    if (!s_timezone_name_default) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_timezone_name_default))
+    {
+    goto end; //String
     }
 
     // systemconfiguration_response_compound->s_systemconfigurationtype_description_x
@@ -534,11 +606,25 @@ systemconfiguration_response_compound_t *systemconfiguration_response_compound_p
     obj_branding_local_nonprim = custom_branding_response_parseFromJSON(obj_branding); //nonprimitive
     }
 
+    // systemconfiguration_response_compound->i_systemconfiguration_ezsignreminderhoursend
+    cJSON *i_systemconfiguration_ezsignreminderhoursend = cJSON_GetObjectItemCaseSensitive(systemconfiguration_response_compoundJSON, "iSystemconfigurationEzsignreminderhoursend");
+    if (cJSON_IsNull(i_systemconfiguration_ezsignreminderhoursend)) {
+        i_systemconfiguration_ezsignreminderhoursend = NULL;
+    }
+    if (i_systemconfiguration_ezsignreminderhoursend) { 
+    if(!cJSON_IsNumber(i_systemconfiguration_ezsignreminderhoursend))
+    {
+    goto end; //Numeric
+    }
+    }
+
 
     systemconfiguration_response_compound_local_var = systemconfiguration_response_compound_create_internal (
         pki_systemconfiguration_id->valuedouble,
         fki_systemconfigurationtype_id->valuedouble,
         fki_branding_id ? fki_branding_id->valuedouble : 0,
+        fki_timezone_id_default->valuedouble,
+        strdup(s_timezone_name_default->valuestring),
         strdup(s_systemconfigurationtype_description_x->valuestring),
         e_systemconfiguration_newexternaluseraction_local_nonprim,
         e_systemconfiguration_language1_local_nonprim,
@@ -552,7 +638,8 @@ systemconfiguration_response_compound_t *systemconfiguration_response_compound_p
         b_systemconfiguration_sspr->valueint,
         dt_systemconfiguration_readonlyexpirationstart && !cJSON_IsNull(dt_systemconfiguration_readonlyexpirationstart) ? strdup(dt_systemconfiguration_readonlyexpirationstart->valuestring) : NULL,
         dt_systemconfiguration_readonlyexpirationend && !cJSON_IsNull(dt_systemconfiguration_readonlyexpirationend) ? strdup(dt_systemconfiguration_readonlyexpirationend->valuestring) : NULL,
-        obj_branding ? obj_branding_local_nonprim : NULL
+        obj_branding ? obj_branding_local_nonprim : NULL,
+        i_systemconfiguration_ezsignreminderhoursend ? i_systemconfiguration_ezsignreminderhoursend->valuedouble : 0
         );
 
     return systemconfiguration_response_compound_local_var;

@@ -25,6 +25,7 @@ ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMAT
 static ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_create_internal(
     int fki_ezsignsigningreason_id,
     int fki_font_id,
+    char *d_ezsignsignature_creditcardamount,
     char *s_value,
     ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_e e_attachments_confirmation_decision,
     char *s_attachments_refusal_reason,
@@ -39,6 +40,7 @@ static ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_create
     }
     ezsignsignature_sign_v1_request_local_var->fki_ezsignsigningreason_id = fki_ezsignsigningreason_id;
     ezsignsignature_sign_v1_request_local_var->fki_font_id = fki_font_id;
+    ezsignsignature_sign_v1_request_local_var->d_ezsignsignature_creditcardamount = d_ezsignsignature_creditcardamount;
     ezsignsignature_sign_v1_request_local_var->s_value = s_value;
     ezsignsignature_sign_v1_request_local_var->e_attachments_confirmation_decision = e_attachments_confirmation_decision;
     ezsignsignature_sign_v1_request_local_var->s_attachments_refusal_reason = s_attachments_refusal_reason;
@@ -54,6 +56,7 @@ static ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_create
 __attribute__((deprecated)) ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_create(
     int fki_ezsignsigningreason_id,
     int fki_font_id,
+    char *d_ezsignsignature_creditcardamount,
     char *s_value,
     ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_e e_attachments_confirmation_decision,
     char *s_attachments_refusal_reason,
@@ -65,6 +68,7 @@ __attribute__((deprecated)) ezsignsignature_sign_v1_request_t *ezsignsignature_s
     return ezsignsignature_sign_v1_request_create_internal (
         fki_ezsignsigningreason_id,
         fki_font_id,
+        d_ezsignsignature_creditcardamount,
         s_value,
         e_attachments_confirmation_decision,
         s_attachments_refusal_reason,
@@ -84,6 +88,10 @@ void ezsignsignature_sign_v1_request_free(ezsignsignature_sign_v1_request_t *ezs
         return ;
     }
     listEntry_t *listEntry;
+    if (ezsignsignature_sign_v1_request->d_ezsignsignature_creditcardamount) {
+        free(ezsignsignature_sign_v1_request->d_ezsignsignature_creditcardamount);
+        ezsignsignature_sign_v1_request->d_ezsignsignature_creditcardamount = NULL;
+    }
     if (ezsignsignature_sign_v1_request->s_value) {
         free(ezsignsignature_sign_v1_request->s_value);
         ezsignsignature_sign_v1_request->s_value = NULL;
@@ -125,6 +133,14 @@ cJSON *ezsignsignature_sign_v1_request_convertToJSON(ezsignsignature_sign_v1_req
     if(ezsignsignature_sign_v1_request->fki_font_id) {
     if(cJSON_AddNumberToObject(item, "fkiFontID", ezsignsignature_sign_v1_request->fki_font_id) == NULL) {
     goto fail; //Numeric
+    }
+    }
+
+
+    // ezsignsignature_sign_v1_request->d_ezsignsignature_creditcardamount
+    if(ezsignsignature_sign_v1_request->d_ezsignsignature_creditcardamount) {
+    if(cJSON_AddStringToObject(item, "dEzsignsignatureCreditcardamount", ezsignsignature_sign_v1_request->d_ezsignsignature_creditcardamount) == NULL) {
+    goto fail; //String
     }
     }
 
@@ -245,6 +261,18 @@ ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_parseFromJSON
     }
     }
 
+    // ezsignsignature_sign_v1_request->d_ezsignsignature_creditcardamount
+    cJSON *d_ezsignsignature_creditcardamount = cJSON_GetObjectItemCaseSensitive(ezsignsignature_sign_v1_requestJSON, "dEzsignsignatureCreditcardamount");
+    if (cJSON_IsNull(d_ezsignsignature_creditcardamount)) {
+        d_ezsignsignature_creditcardamount = NULL;
+    }
+    if (d_ezsignsignature_creditcardamount) { 
+    if(!cJSON_IsString(d_ezsignsignature_creditcardamount) && !cJSON_IsNull(d_ezsignsignature_creditcardamount))
+    {
+    goto end; //String
+    }
+    }
+
     // ezsignsignature_sign_v1_request->s_value
     cJSON *s_value = cJSON_GetObjectItemCaseSensitive(ezsignsignature_sign_v1_requestJSON, "sValue");
     if (cJSON_IsNull(s_value)) {
@@ -347,6 +375,7 @@ ezsignsignature_sign_v1_request_t *ezsignsignature_sign_v1_request_parseFromJSON
     ezsignsignature_sign_v1_request_local_var = ezsignsignature_sign_v1_request_create_internal (
         fki_ezsignsigningreason_id ? fki_ezsignsigningreason_id->valuedouble : 0,
         fki_font_id ? fki_font_id->valuedouble : 0,
+        d_ezsignsignature_creditcardamount && !cJSON_IsNull(d_ezsignsignature_creditcardamount) ? strdup(d_ezsignsignature_creditcardamount->valuestring) : NULL,
         s_value && !cJSON_IsNull(s_value) ? strdup(s_value->valuestring) : NULL,
         e_attachments_confirmation_decision ? e_attachments_confirmation_decisionVariable : ezmax_api_definition__full_ezsignsignature_sign_v1_request_EATTACHMENTSCONFIRMATIONDECISION_NULL,
         s_attachments_refusal_reason && !cJSON_IsNull(s_attachments_refusal_reason) ? strdup(s_attachments_refusal_reason->valuestring) : NULL,

@@ -1,10 +1,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
+
 #include "ObjectEzsignsignatureAPI.h"
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
+#define MAX_NUMBER_LENGTH_LONG 21
 
 
 // Create a new Ezsignsignature
@@ -474,115 +476,6 @@ end:
 
 // Edit an existing Ezsignsignature
 //
-// Major step overhaul.  Endpoints that existed before version 1.3 do not allow you to combine forms and signatures in the same step. The step numbers are different from those indicated by endpoints added since version 1.3. This endpoint is compatible with endpoints that existed before 1.3 but are not compatible with those added since 1.3.
-//
-ezsignsignature_edit_object_v2_response_t*
-ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV2(apiClient_t *apiClient, int *pkiEzsignsignatureID, ezsignsignature_edit_object_v2_request_t *ezsignsignature_edit_object_v2_request)
-{
-    list_t    *localVarQueryParameters = NULL;
-    list_t    *localVarHeaderParameters = NULL;
-    list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_createList();
-    list_t *localVarContentType = list_createList();
-    char      *localVarBodyParameters = NULL;
-    size_t     localVarBodyLength = 0;
-
-    // clear the error code from the previous api call
-    apiClient->response_code = 0;
-
-    // create the path
-    char *localVarPath = strdup("/2/object/ezsignsignature/{pkiEzsignsignatureID}");
-
-
-
-    // Path Params
-    long sizeOfPathParams_pkiEzsignsignatureID =  + sizeof("{ pkiEzsignsignatureID }") - 1;
-    if(pkiEzsignsignatureID == 0){
-        goto end;
-    }
-    char* localVarToReplace_pkiEzsignsignatureID = malloc(sizeOfPathParams_pkiEzsignsignatureID);
-    snprintf(localVarToReplace_pkiEzsignsignatureID, sizeOfPathParams_pkiEzsignsignatureID, "{%s}", "pkiEzsignsignatureID");
-
-    char localVarBuff_pkiEzsignsignatureID[256];
-    snprintf(localVarBuff_pkiEzsignsignatureID, sizeof localVarBuff_pkiEzsignsignatureID, "%ld", (long)*pkiEzsignsignatureID);
-
-    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignsignatureID, localVarBuff_pkiEzsignsignatureID);
-
-
-
-
-    // Body Param
-    cJSON *localVarSingleItemJSON_ezsignsignature_edit_object_v2_request = NULL;
-    if (ezsignsignature_edit_object_v2_request != NULL)
-    {
-        //not string, not binary
-        localVarSingleItemJSON_ezsignsignature_edit_object_v2_request = ezsignsignature_edit_object_v2_request_convertToJSON(ezsignsignature_edit_object_v2_request);
-        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_ezsignsignature_edit_object_v2_request);
-        localVarBodyLength = strlen(localVarBodyParameters);
-    }
-    list_addElement(localVarHeaderType,"application/json"); //produces
-    list_addElement(localVarContentType,"application/json"); //consumes
-    apiClient_invoke(apiClient,
-                    localVarPath,
-                    localVarQueryParameters,
-                    localVarHeaderParameters,
-                    localVarFormParameters,
-                    localVarHeaderType,
-                    localVarContentType,
-                    localVarBodyParameters,
-                    localVarBodyLength,
-                    "PUT");
-
-    // uncomment below to debug the error response
-    //if (apiClient->response_code == 200) {
-    //    printf("%s\n","Successful response");
-    //}
-    // uncomment below to debug the error response
-    //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
-    //}
-    // uncomment below to debug the error response
-    //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
-    //}
-    //nonprimitive not container
-    ezsignsignature_edit_object_v2_response_t *elementToReturn = NULL;
-    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
-        cJSON *ObjectEzsignsignatureAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-        elementToReturn = ezsignsignature_edit_object_v2_response_parseFromJSON(ObjectEzsignsignatureAPIlocalVarJSON);
-        cJSON_Delete(ObjectEzsignsignatureAPIlocalVarJSON);
-        if(elementToReturn == NULL) {
-            // return 0;
-        }
-    }
-
-    //return type
-    if (apiClient->dataReceived) {
-        free(apiClient->dataReceived);
-        apiClient->dataReceived = NULL;
-        apiClient->dataReceivedLen = 0;
-    }
-    
-    
-    
-    list_freeList(localVarHeaderType);
-    list_freeList(localVarContentType);
-    free(localVarPath);
-    free(localVarToReplace_pkiEzsignsignatureID);
-    if (localVarSingleItemJSON_ezsignsignature_edit_object_v2_request) {
-        cJSON_Delete(localVarSingleItemJSON_ezsignsignature_edit_object_v2_request);
-        localVarSingleItemJSON_ezsignsignature_edit_object_v2_request = NULL;
-    }
-    free(localVarBodyParameters);
-    return elementToReturn;
-end:
-    free(localVarPath);
-    return NULL;
-
-}
-
-// Edit an existing Ezsignsignature
-//
 // 
 //
 ezsignsignature_edit_object_v3_response_t*
@@ -844,95 +737,6 @@ ObjectEzsignsignatureAPI_ezsignsignatureGetEzsignsignaturesAutomaticV1(apiClient
     list_freeList(localVarHeaderType);
     
     free(localVarPath);
-    return elementToReturn;
-end:
-    free(localVarPath);
-    return NULL;
-
-}
-
-// Retrieve an existing Ezsignsignature
-//
-// Major step overhaul.  Endpoints that existed before version 1.3 do not allow you to combine forms and signatures in the same step. The step numbers are different from those indicated by endpoints added since version 1.3. This endpoint is compatible with endpoints that existed before 1.3 but are not compatible with those added since 1.3.
-//
-ezsignsignature_get_object_v3_response_t*
-ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV3(apiClient_t *apiClient, int *pkiEzsignsignatureID)
-{
-    list_t    *localVarQueryParameters = NULL;
-    list_t    *localVarHeaderParameters = NULL;
-    list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_createList();
-    list_t *localVarContentType = NULL;
-    char      *localVarBodyParameters = NULL;
-    size_t     localVarBodyLength = 0;
-
-    // clear the error code from the previous api call
-    apiClient->response_code = 0;
-
-    // create the path
-    char *localVarPath = strdup("/3/object/ezsignsignature/{pkiEzsignsignatureID}");
-
-
-
-    // Path Params
-    long sizeOfPathParams_pkiEzsignsignatureID =  + sizeof("{ pkiEzsignsignatureID }") - 1;
-    if(pkiEzsignsignatureID == 0){
-        goto end;
-    }
-    char* localVarToReplace_pkiEzsignsignatureID = malloc(sizeOfPathParams_pkiEzsignsignatureID);
-    snprintf(localVarToReplace_pkiEzsignsignatureID, sizeOfPathParams_pkiEzsignsignatureID, "{%s}", "pkiEzsignsignatureID");
-
-    char localVarBuff_pkiEzsignsignatureID[256];
-    snprintf(localVarBuff_pkiEzsignsignatureID, sizeof localVarBuff_pkiEzsignsignatureID, "%ld", (long)*pkiEzsignsignatureID);
-
-    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignsignatureID, localVarBuff_pkiEzsignsignatureID);
-
-
-
-    list_addElement(localVarHeaderType,"application/json"); //produces
-    apiClient_invoke(apiClient,
-                    localVarPath,
-                    localVarQueryParameters,
-                    localVarHeaderParameters,
-                    localVarFormParameters,
-                    localVarHeaderType,
-                    localVarContentType,
-                    localVarBodyParameters,
-                    localVarBodyLength,
-                    "GET");
-
-    // uncomment below to debug the error response
-    //if (apiClient->response_code == 200) {
-    //    printf("%s\n","Successful response");
-    //}
-    // uncomment below to debug the error response
-    //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
-    //}
-    //nonprimitive not container
-    ezsignsignature_get_object_v3_response_t *elementToReturn = NULL;
-    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
-        cJSON *ObjectEzsignsignatureAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-        elementToReturn = ezsignsignature_get_object_v3_response_parseFromJSON(ObjectEzsignsignatureAPIlocalVarJSON);
-        cJSON_Delete(ObjectEzsignsignatureAPIlocalVarJSON);
-        if(elementToReturn == NULL) {
-            // return 0;
-        }
-    }
-
-    //return type
-    if (apiClient->dataReceived) {
-        free(apiClient->dataReceived);
-        apiClient->dataReceived = NULL;
-        apiClient->dataReceivedLen = 0;
-    }
-    
-    
-    
-    list_freeList(localVarHeaderType);
-    
-    free(localVarPath);
-    free(localVarToReplace_pkiEzsignsignatureID);
     return elementToReturn;
 end:
     free(localVarPath);

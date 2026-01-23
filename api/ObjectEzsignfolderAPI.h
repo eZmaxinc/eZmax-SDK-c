@@ -23,6 +23,7 @@
 #include "../model/ezsignfolder_end_prematurely_v1_response.h"
 #include "../model/ezsignfolder_get_actionable_elements_v1_response.h"
 #include "../model/ezsignfolder_get_actionable_elements_v2_response.h"
+#include "../model/ezsignfolder_get_actionable_elements_v3_response.h"
 #include "../model/ezsignfolder_get_attachment_count_v1_response.h"
 #include "../model/ezsignfolder_get_attachments_v1_response.h"
 #include "../model/ezsignfolder_get_communication_count_v1_response.h"
@@ -44,8 +45,6 @@
 #include "../model/ezsignfolder_import_ezsigntemplatepackage_v1_response.h"
 #include "../model/ezsignfolder_import_ezsigntemplatepackage_v2_request.h"
 #include "../model/ezsignfolder_import_ezsigntemplatepackage_v2_response.h"
-#include "../model/ezsignfolder_reorder_v1_request.h"
-#include "../model/ezsignfolder_reorder_v1_response.h"
 #include "../model/ezsignfolder_reorder_v2_request.h"
 #include "../model/ezsignfolder_reorder_v2_response.h"
 #include "../model/ezsignfolder_send_v1_request.h"
@@ -153,6 +152,14 @@ ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV1(apiClient_t *apiClient
 //
 ezsignfolder_get_actionable_elements_v2_response_t*
 ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV2(apiClient_t *apiClient, int *pkiEzsignfolderID);
+
+
+// Retrieve actionable elements for the Ezsignfolder
+//
+// Return the Ezsignsignatures that can be signed and Ezsignformfieldgroups that can be filled by the current user at the current step in the process
+//
+ezsignfolder_get_actionable_elements_v3_response_t*
+ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV3(apiClient_t *apiClient, int *pkiEzsignfolderID);
 
 
 // Retrieve Attachment count
@@ -295,12 +302,6 @@ ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV1(apiClient_t *api
 //
 ezsignfolder_import_ezsigntemplatepackage_v2_response_t*
 ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV2(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_import_ezsigntemplatepackage_v2_request_t *ezsignfolder_import_ezsigntemplatepackage_v2_request);
-
-
-// Reorder Ezsigndocuments in the Ezsignfolder
-//
-ezsignfolder_reorder_v1_response_t*
-ObjectEzsignfolderAPI_ezsignfolderReorderV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_reorder_v1_request_t *ezsignfolder_reorder_v1_request);
 
 
 // Reorder Ezsigndocuments in the Ezsignfolder

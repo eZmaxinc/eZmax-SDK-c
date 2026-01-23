@@ -287,11 +287,10 @@ cJSON *ezsigndocument_request_compound_convertToJSON(ezsigndocument_request_comp
 
 
     // ezsigndocument_request_compound->dt_ezsigndocument_duedate
-    if (!ezsigndocument_request_compound->dt_ezsigndocument_duedate) {
-        goto fail;
-    }
+    if(ezsigndocument_request_compound->dt_ezsigndocument_duedate) {
     if(cJSON_AddStringToObject(item, "dtEzsigndocumentDuedate", ezsigndocument_request_compound->dt_ezsigndocument_duedate) == NULL) {
     goto fail; //String
+    }
     }
 
 
@@ -499,14 +498,11 @@ ezsigndocument_request_compound_t *ezsigndocument_request_compound_parseFromJSON
     if (cJSON_IsNull(dt_ezsigndocument_duedate)) {
         dt_ezsigndocument_duedate = NULL;
     }
-    if (!dt_ezsigndocument_duedate) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(dt_ezsigndocument_duedate))
+    if (dt_ezsigndocument_duedate) { 
+    if(!cJSON_IsString(dt_ezsigndocument_duedate) && !cJSON_IsNull(dt_ezsigndocument_duedate))
     {
     goto end; //String
+    }
     }
 
     // ezsigndocument_request_compound->s_ezsigndocument_name
@@ -551,7 +547,7 @@ ezsigndocument_request_compound_t *ezsigndocument_request_compound_parseFromJSON
         b_ezsigndocument_forcerepair ? b_ezsigndocument_forcerepair->valueint : 0,
         s_ezsigndocument_password && !cJSON_IsNull(s_ezsigndocument_password) ? strdup(s_ezsigndocument_password->valuestring) : NULL,
         e_ezsigndocument_form ? e_ezsigndocument_formVariable : ezmax_api_definition__full_ezsigndocument_request_compound_EEZSIGNDOCUMENTFORM_NULL,
-        strdup(dt_ezsigndocument_duedate->valuestring),
+        dt_ezsigndocument_duedate && !cJSON_IsNull(dt_ezsigndocument_duedate) ? strdup(dt_ezsigndocument_duedate->valuestring) : NULL,
         strdup(s_ezsigndocument_name->valuestring),
         s_ezsigndocument_externalid && !cJSON_IsNull(s_ezsigndocument_externalid) ? strdup(s_ezsigndocument_externalid->valuestring) : NULL
         );

@@ -25,7 +25,6 @@
 #include "../model/ezsigntemplatedocument_get_ezsigntemplatedocumentpagerecognitions_v1_response.h"
 #include "../model/ezsigntemplatedocument_get_ezsigntemplatedocumentpages_v1_response.h"
 #include "../model/ezsigntemplatedocument_get_ezsigntemplateformfieldgroups_v1_response.h"
-#include "../model/ezsigntemplatedocument_get_ezsigntemplatesignatures_v1_response.h"
 #include "../model/ezsigntemplatedocument_get_ezsigntemplatesignatures_v2_response.h"
 #include "../model/ezsigntemplatedocument_get_object_v2_response.h"
 #include "../model/ezsigntemplatedocument_get_words_positions_v1_request.h"
@@ -41,6 +40,14 @@
 //
 ezsigntemplatedocument_create_object_v1_response_t*
 ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentCreateObjectV1(apiClient_t *apiClient, ezsigntemplatedocument_create_object_v1_request_t *ezsigntemplatedocument_create_object_v1_request);
+
+
+// Retrieve an existing Ezsigntemplatedocument's original file
+//
+// 
+//
+void
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentDownloadV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID);
 
 
 // Edit multiple Ezsigntemplatedocumentpagerecognitions
@@ -121,14 +128,6 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatedocumentp
 //
 ezsigntemplatedocument_get_ezsigntemplateformfieldgroups_v1_response_t*
 ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplateformfieldgroupsV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID);
-
-
-// Retrieve an existing Ezsigntemplatedocument's Ezsigntemplatesignatures
-//
-// Major step overhaul.  Endpoints that existed before version 1.3 do not allow you to combine forms and signatures in the same step. The step numbers are different from those indicated by endpoints added since version 1.3. This endpoint is compatible with endpoints that existed before 1.3 but are not compatible with those added since 1.3.
-//
-ezsigntemplatedocument_get_ezsigntemplatesignatures_v1_response_t*
-ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatesignaturesV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID);
 
 
 // Retrieve an existing Ezsigntemplatedocument's Ezsigntemplatesignatures

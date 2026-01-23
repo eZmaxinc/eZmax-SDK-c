@@ -31,6 +31,8 @@
 #include "../model/ezsigndocument_edit_ezsignannotations_v1_response.h"
 #include "../model/ezsigndocument_edit_ezsignformfieldgroups_v1_request.h"
 #include "../model/ezsigndocument_edit_ezsignformfieldgroups_v1_response.h"
+#include "../model/ezsigndocument_edit_ezsignformfieldgroups_v2_request.h"
+#include "../model/ezsigndocument_edit_ezsignformfieldgroups_v2_response.h"
 #include "../model/ezsigndocument_edit_ezsignsignatures_v1_request.h"
 #include "../model/ezsigndocument_edit_ezsignsignatures_v1_response.h"
 #include "../model/ezsigndocument_edit_ezsignsignatures_v2_request.h"
@@ -43,6 +45,7 @@
 #include "../model/ezsigndocument_flatten_v1_response.h"
 #include "../model/ezsigndocument_get_actionable_elements_v1_response.h"
 #include "../model/ezsigndocument_get_actionable_elements_v2_response.h"
+#include "../model/ezsigndocument_get_actionable_elements_v3_response.h"
 #include "../model/ezsigndocument_get_attachments_v1_response.h"
 #include "../model/ezsigndocument_get_completed_elements_v1_response.h"
 #include "../model/ezsigndocument_get_completed_elements_v2_response.h"
@@ -170,6 +173,14 @@ ezsigndocument_edit_ezsignformfieldgroups_v1_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignformfieldgroupsV1(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_edit_ezsignformfieldgroups_v1_request_t *ezsigndocument_edit_ezsignformfieldgroups_v1_request);
 
 
+// Edit multiple Ezsignformfieldgroups
+//
+// Using this endpoint, you can edit multiple Ezsignformfieldgroups at the same time.
+//
+ezsigndocument_edit_ezsignformfieldgroups_v2_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignformfieldgroupsV2(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_edit_ezsignformfieldgroups_v2_request_t *ezsigndocument_edit_ezsignformfieldgroups_v2_request);
+
+
 // Edit multiple Ezsignsignatures
 //
 // Using this endpoint, you can edit multiple Ezsignsignatures at the same time.  Major step overhaul.  Endpoints that existed before version 1.3 do not allow you to combine forms and signatures in the same step. The step numbers are different from those indicated by endpoints added since version 1.3. This endpoint is compatible with endpoints that existed before 1.3 but are not compatible with those added since 1.3.
@@ -232,6 +243,14 @@ ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsV1(apiClient_t *apiCl
 //
 ezsigndocument_get_actionable_elements_v2_response_t*
 ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsV2(apiClient_t *apiClient, int *pkiEzsigndocumentID);
+
+
+// Retrieve actionable elements for the Ezsigndocument
+//
+// Return the Ezsignsignatures that can be signed and Ezsignformfieldgroups that can be filled by the current user at the current step in the process
+//
+ezsigndocument_get_actionable_elements_v3_response_t*
+ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsV3(apiClient_t *apiClient, int *pkiEzsigndocumentID);
 
 
 // Retrieve Ezsigndocument's Attachments

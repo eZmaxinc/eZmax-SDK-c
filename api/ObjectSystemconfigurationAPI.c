@@ -1,18 +1,20 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
+
 #include "ObjectSystemconfigurationAPI.h"
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
+#define MAX_NUMBER_LENGTH_LONG 21
 
 
 // Edit an existing Systemconfiguration
 //
 // 
 //
-systemconfiguration_edit_object_v1_response_t*
-ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1(apiClient_t *apiClient, int *pkiSystemconfigurationID, systemconfiguration_edit_object_v1_request_t *systemconfiguration_edit_object_v1_request)
+systemconfiguration_edit_object_v2_response_t*
+ObjectSystemconfigurationAPI_systemconfigurationEditObjectV2(apiClient_t *apiClient, int *pkiSystemconfigurationID, systemconfiguration_edit_object_v2_request_t *systemconfiguration_edit_object_v2_request)
 {
     list_t    *localVarQueryParameters = NULL;
     list_t    *localVarHeaderParameters = NULL;
@@ -26,7 +28,7 @@ ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1(apiClient_t *apiCli
     apiClient->response_code = 0;
 
     // create the path
-    char *localVarPath = strdup("/1/object/systemconfiguration/{pkiSystemconfigurationID}");
+    char *localVarPath = strdup("/2/object/systemconfiguration/{pkiSystemconfigurationID}");
 
 
 
@@ -47,12 +49,12 @@ ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1(apiClient_t *apiCli
 
 
     // Body Param
-    cJSON *localVarSingleItemJSON_systemconfiguration_edit_object_v1_request = NULL;
-    if (systemconfiguration_edit_object_v1_request != NULL)
+    cJSON *localVarSingleItemJSON_systemconfiguration_edit_object_v2_request = NULL;
+    if (systemconfiguration_edit_object_v2_request != NULL)
     {
         //not string, not binary
-        localVarSingleItemJSON_systemconfiguration_edit_object_v1_request = systemconfiguration_edit_object_v1_request_convertToJSON(systemconfiguration_edit_object_v1_request);
-        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_systemconfiguration_edit_object_v1_request);
+        localVarSingleItemJSON_systemconfiguration_edit_object_v2_request = systemconfiguration_edit_object_v2_request_convertToJSON(systemconfiguration_edit_object_v2_request);
+        localVarBodyParameters = cJSON_Print(localVarSingleItemJSON_systemconfiguration_edit_object_v2_request);
         localVarBodyLength = strlen(localVarBodyParameters);
     }
     list_addElement(localVarHeaderType,"application/json"); //produces
@@ -81,10 +83,10 @@ ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1(apiClient_t *apiCli
     //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
     //}
     //nonprimitive not container
-    systemconfiguration_edit_object_v1_response_t *elementToReturn = NULL;
+    systemconfiguration_edit_object_v2_response_t *elementToReturn = NULL;
     if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
         cJSON *ObjectSystemconfigurationAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-        elementToReturn = systemconfiguration_edit_object_v1_response_parseFromJSON(ObjectSystemconfigurationAPIlocalVarJSON);
+        elementToReturn = systemconfiguration_edit_object_v2_response_parseFromJSON(ObjectSystemconfigurationAPIlocalVarJSON);
         cJSON_Delete(ObjectSystemconfigurationAPIlocalVarJSON);
         if(elementToReturn == NULL) {
             // return 0;
@@ -104,9 +106,9 @@ ObjectSystemconfigurationAPI_systemconfigurationEditObjectV1(apiClient_t *apiCli
     list_freeList(localVarContentType);
     free(localVarPath);
     free(localVarToReplace_pkiSystemconfigurationID);
-    if (localVarSingleItemJSON_systemconfiguration_edit_object_v1_request) {
-        cJSON_Delete(localVarSingleItemJSON_systemconfiguration_edit_object_v1_request);
-        localVarSingleItemJSON_systemconfiguration_edit_object_v1_request = NULL;
+    if (localVarSingleItemJSON_systemconfiguration_edit_object_v2_request) {
+        cJSON_Delete(localVarSingleItemJSON_systemconfiguration_edit_object_v2_request);
+        localVarSingleItemJSON_systemconfiguration_edit_object_v2_request = NULL;
     }
     free(localVarBodyParameters);
     return elementToReturn;

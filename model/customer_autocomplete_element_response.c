@@ -9,6 +9,7 @@ static customer_autocomplete_element_response_t *customer_autocomplete_element_r
     int pki_customer_id,
     int fki_department_id,
     char *s_customer_name,
+    char *s_customer_code,
     int b_customer_isactive
     ) {
     customer_autocomplete_element_response_t *customer_autocomplete_element_response_local_var = malloc(sizeof(customer_autocomplete_element_response_t));
@@ -18,6 +19,7 @@ static customer_autocomplete_element_response_t *customer_autocomplete_element_r
     customer_autocomplete_element_response_local_var->pki_customer_id = pki_customer_id;
     customer_autocomplete_element_response_local_var->fki_department_id = fki_department_id;
     customer_autocomplete_element_response_local_var->s_customer_name = s_customer_name;
+    customer_autocomplete_element_response_local_var->s_customer_code = s_customer_code;
     customer_autocomplete_element_response_local_var->b_customer_isactive = b_customer_isactive;
 
     customer_autocomplete_element_response_local_var->_library_owned = 1;
@@ -28,12 +30,14 @@ __attribute__((deprecated)) customer_autocomplete_element_response_t *customer_a
     int pki_customer_id,
     int fki_department_id,
     char *s_customer_name,
+    char *s_customer_code,
     int b_customer_isactive
     ) {
     return customer_autocomplete_element_response_create_internal (
         pki_customer_id,
         fki_department_id,
         s_customer_name,
+        s_customer_code,
         b_customer_isactive
         );
 }
@@ -50,6 +54,10 @@ void customer_autocomplete_element_response_free(customer_autocomplete_element_r
     if (customer_autocomplete_element_response->s_customer_name) {
         free(customer_autocomplete_element_response->s_customer_name);
         customer_autocomplete_element_response->s_customer_name = NULL;
+    }
+    if (customer_autocomplete_element_response->s_customer_code) {
+        free(customer_autocomplete_element_response->s_customer_code);
+        customer_autocomplete_element_response->s_customer_code = NULL;
     }
     free(customer_autocomplete_element_response);
 }
@@ -80,6 +88,15 @@ cJSON *customer_autocomplete_element_response_convertToJSON(customer_autocomplet
         goto fail;
     }
     if(cJSON_AddStringToObject(item, "sCustomerName", customer_autocomplete_element_response->s_customer_name) == NULL) {
+    goto fail; //String
+    }
+
+
+    // customer_autocomplete_element_response->s_customer_code
+    if (!customer_autocomplete_element_response->s_customer_code) {
+        goto fail;
+    }
+    if(cJSON_AddStringToObject(item, "sCustomerCode", customer_autocomplete_element_response->s_customer_code) == NULL) {
     goto fail; //String
     }
 
@@ -149,6 +166,21 @@ customer_autocomplete_element_response_t *customer_autocomplete_element_response
     goto end; //String
     }
 
+    // customer_autocomplete_element_response->s_customer_code
+    cJSON *s_customer_code = cJSON_GetObjectItemCaseSensitive(customer_autocomplete_element_responseJSON, "sCustomerCode");
+    if (cJSON_IsNull(s_customer_code)) {
+        s_customer_code = NULL;
+    }
+    if (!s_customer_code) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsString(s_customer_code))
+    {
+    goto end; //String
+    }
+
     // customer_autocomplete_element_response->b_customer_isactive
     cJSON *b_customer_isactive = cJSON_GetObjectItemCaseSensitive(customer_autocomplete_element_responseJSON, "bCustomerIsactive");
     if (cJSON_IsNull(b_customer_isactive)) {
@@ -169,6 +201,7 @@ customer_autocomplete_element_response_t *customer_autocomplete_element_response
         pki_customer_id->valuedouble,
         fki_department_id->valuedouble,
         strdup(s_customer_name->valuestring),
+        strdup(s_customer_code->valuestring),
         b_customer_isactive->valueint
         );
 

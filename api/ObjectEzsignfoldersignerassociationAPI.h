@@ -6,8 +6,6 @@
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
-#include "../model/ezsignfoldersignerassociation_create_embedded_url_v1_request.h"
-#include "../model/ezsignfoldersignerassociation_create_embedded_url_v1_response.h"
 #include "../model/ezsignfoldersignerassociation_create_embedded_url_v2_request.h"
 #include "../model/ezsignfoldersignerassociation_create_embedded_url_v2_response.h"
 #include "../model/ezsignfoldersignerassociation_create_object_v1_request.h"
@@ -30,15 +28,7 @@
 
 // Creates an Url to allow embedded signing
 //
-// This endpoint creates an Url that can be used in a browser or embedded in an I-Frame to allow signing.  The signer Login type must be configured as Embedded.
-//
-ezsignfoldersignerassociation_create_embedded_url_v1_response_t*
-ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateEmbeddedUrlV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_create_embedded_url_v1_request_t *ezsignfoldersignerassociation_create_embedded_url_v1_request);
-
-
-// Creates an Url to allow embedded signing
-//
-// This endpoint creates an Url that can be used in a browser or embedded in an I-Frame to allow signing.  The signer Login type must be configured as Embedded.
+// This endpoint creates an Url that can be used in a browser or embedded in an I-Frame to allow signing.  The signer Login type must be configured as Embedded.  ### Iframe Communication (postMessage)  If the signing page is embedded in an `iframe`, the application sends events to the parent window via `window.postMessage`.  The message structure is defined as follows:  ```json {   \"source\": \"ezsign\",   \"type\": \"eEzsignEvent\",   \"payload\": \"CompletedEzsignfolder\" } ```  * **source**: Always `'ezsign'`. * **type**: Always `'eEzsignEvent'`. * **payload**: Corresponds to the **eEzsignEvent** values listed in the table above (e.g., `SessionTimeout`, `CompletedStep`, etc.).  #### Example listener  ```javascript window.addEventListener('message', (event) => {     const { source, type, payload } = event.data;         if (source === 'ezsign' && type === 'eEzsignEvent') {         console.log('Event received:', payload);     } }); ``` 
 //
 ezsignfoldersignerassociation_create_embedded_url_v2_response_t*
 ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateEmbeddedUrlV2(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_create_embedded_url_v2_request_t *ezsignfoldersignerassociation_create_embedded_url_v2_request);

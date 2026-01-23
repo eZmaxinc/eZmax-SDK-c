@@ -132,11 +132,10 @@ cJSON *activesession_list_element_convertToJSON(activesession_list_element_t *ac
 
 
     // activesession_list_element->fki_computer_id
-    if (!activesession_list_element->fki_computer_id) {
-        goto fail;
-    }
+    if(activesession_list_element->fki_computer_id) {
     if(cJSON_AddNumberToObject(item, "fkiComputerID", activesession_list_element->fki_computer_id) == NULL) {
     goto fail; //Numeric
+    }
     }
 
 
@@ -186,11 +185,10 @@ cJSON *activesession_list_element_convertToJSON(activesession_list_element_t *ac
 
 
     // activesession_list_element->s_computer_description
-    if (!activesession_list_element->s_computer_description) {
-        goto fail;
-    }
+    if(activesession_list_element->s_computer_description) {
     if(cJSON_AddStringToObject(item, "sComputerDescription", activesession_list_element->s_computer_description) == NULL) {
     goto fail; //String
+    }
     }
 
 
@@ -267,14 +265,11 @@ activesession_list_element_t *activesession_list_element_parseFromJSON(cJSON *ac
     if (cJSON_IsNull(fki_computer_id)) {
         fki_computer_id = NULL;
     }
-    if (!fki_computer_id) {
-        goto end;
-    }
-
-    
+    if (fki_computer_id) { 
     if(!cJSON_IsNumber(fki_computer_id))
     {
     goto end; //Numeric
+    }
     }
 
     // activesession_list_element->fki_company_id
@@ -357,14 +352,11 @@ activesession_list_element_t *activesession_list_element_parseFromJSON(cJSON *ac
     if (cJSON_IsNull(s_computer_description)) {
         s_computer_description = NULL;
     }
-    if (!s_computer_description) {
-        goto end;
-    }
-
-    
-    if(!cJSON_IsString(s_computer_description))
+    if (s_computer_description) { 
+    if(!cJSON_IsString(s_computer_description) && !cJSON_IsNull(s_computer_description))
     {
     goto end; //String
+    }
     }
 
     // activesession_list_element->dt_activesession_firsthit
@@ -416,13 +408,13 @@ activesession_list_element_t *activesession_list_element_parseFromJSON(cJSON *ac
     activesession_list_element_local_var = activesession_list_element_create_internal (
         pki_activesession_id->valuedouble,
         fki_user_id->valuedouble,
-        fki_computer_id->valuedouble,
+        fki_computer_id ? fki_computer_id->valuedouble : 0,
         fki_company_id->valuedouble,
         fki_department_id->valuedouble,
         strdup(s_company_name_x->valuestring),
         strdup(s_department_name_x->valuestring),
         strdup(s_activesession_loginname->valuestring),
-        strdup(s_computer_description->valuestring),
+        s_computer_description && !cJSON_IsNull(s_computer_description) ? strdup(s_computer_description->valuestring) : NULL,
         strdup(dt_activesession_firsthit->valuestring),
         strdup(dt_activesession_lasthit->valuestring),
         strdup(s_activesession_ip->valuestring)

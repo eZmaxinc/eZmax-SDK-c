@@ -1,0 +1,39 @@
+/*
+ * systemconfiguration_edit_object_v2_request.h
+ *
+ * Request for PUT /2/object/systemconfiguration/{pkiSystemconfigurationID}
+ */
+
+#ifndef _systemconfiguration_edit_object_v2_request_H_
+#define _systemconfiguration_edit_object_v2_request_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct systemconfiguration_edit_object_v2_request_t systemconfiguration_edit_object_v2_request_t;
+
+#include "systemconfiguration_request_compound_v2.h"
+
+
+
+typedef struct systemconfiguration_edit_object_v2_request_t {
+    struct systemconfiguration_request_compound_v2_t *obj_systemconfiguration; //model
+
+    int _library_owned; // Is the library responsible for freeing this object?
+} systemconfiguration_edit_object_v2_request_t;
+
+__attribute__((deprecated)) systemconfiguration_edit_object_v2_request_t *systemconfiguration_edit_object_v2_request_create(
+    systemconfiguration_request_compound_v2_t *obj_systemconfiguration
+);
+
+void systemconfiguration_edit_object_v2_request_free(systemconfiguration_edit_object_v2_request_t *systemconfiguration_edit_object_v2_request);
+
+systemconfiguration_edit_object_v2_request_t *systemconfiguration_edit_object_v2_request_parseFromJSON(cJSON *systemconfiguration_edit_object_v2_requestJSON);
+
+cJSON *systemconfiguration_edit_object_v2_request_convertToJSON(systemconfiguration_edit_object_v2_request_t *systemconfiguration_edit_object_v2_request);
+
+#endif /* _systemconfiguration_edit_object_v2_request_H_ */
+

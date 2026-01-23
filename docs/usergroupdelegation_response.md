@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **s_user_lastname** | **char \*** | The last name of the user | 
 **s_user_loginname** | **char \*** | The login name of the User. | 
 **s_email_address** | **char \*** | The email address. | [optional] 
+**b_user_isactive** | **int** | Whether the User is active or not | 
 **s_usergroup_name_x** | **char \*** | The Name of the Usergroup in the language of the requester | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentDeleteObjectV1) | **DELETE** /1/object/ezsigndocument/{pkiEzsigndocumentID} | Delete an existing Ezsigndocument
 [**ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignannotationsV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignannotationsV1) | **PUT** /1/object/ezsigndocument/{pkiEzsigndocumentID}/editEzsignannotations | Edit multiple Ezsignannotations
 [**ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignformfieldgroupsV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignformfieldgroupsV1) | **PUT** /1/object/ezsigndocument/{pkiEzsigndocumentID}/editEzsignformfieldgroups | Edit multiple Ezsignformfieldgroups
+[**ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignformfieldgroupsV2**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignformfieldgroupsV2) | **PUT** /2/object/ezsigndocument/{pkiEzsigndocumentID}/editEzsignformfieldgroups | Edit multiple Ezsignformfieldgroups
 [**ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1) | **PUT** /1/object/ezsigndocument/{pkiEzsigndocumentID}/editEzsignsignatures | Edit multiple Ezsignsignatures
 [**ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV2**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV2) | **PUT** /2/object/ezsigndocument/{pkiEzsigndocumentID}/editEzsignsignatures | Edit multiple Ezsignsignatures
 [**ObjectEzsigndocumentAPI_ezsigndocumentEditObjectV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentEditObjectV1) | **PUT** /1/object/ezsigndocument/{pkiEzsigndocumentID} | Edit an existing Ezsigndocument
@@ -24,6 +25,7 @@ Method | HTTP request | Description
 [**ObjectEzsigndocumentAPI_ezsigndocumentFlattenV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentFlattenV1) | **POST** /1/object/ezsigndocument/{pkiEzsigndocumentID}/flatten | Flatten
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getActionableElements | Retrieve actionable elements for the Ezsigndocument
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsV2**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsV2) | **GET** /2/object/ezsigndocument/{pkiEzsigndocumentID}/getActionableElements | Retrieve actionable elements for the Ezsigndocument
+[**ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsV3**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsV3) | **GET** /3/object/ezsigndocument/{pkiEzsigndocumentID}/getActionableElements | Retrieve actionable elements for the Ezsigndocument
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetAttachmentsV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetAttachmentsV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getAttachments | Retrieve Ezsigndocument&#39;s Attachments
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetCompletedElementsV1**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetCompletedElementsV1) | **GET** /1/object/ezsigndocument/{pkiEzsigndocumentID}/getCompletedElements | Retrieve completed elements for the Ezsigndocument
 [**ObjectEzsigndocumentAPI_ezsigndocumentGetCompletedElementsV2**](ObjectEzsigndocumentAPI.md#ObjectEzsigndocumentAPI_ezsigndocumentGetCompletedElementsV2) | **GET** /2/object/ezsigndocument/{pkiEzsigndocumentID}/getCompletedElements | Retrieve completed elements for the Ezsigndocument
@@ -427,6 +429,38 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignformfieldgroupsV2**
+```c
+// Edit multiple Ezsignformfieldgroups
+//
+// Using this endpoint, you can edit multiple Ezsignformfieldgroups at the same time.
+//
+ezsigndocument_edit_ezsignformfieldgroups_v2_response_t* ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignformfieldgroupsV2(apiClient_t *apiClient, int *pkiEzsigndocumentID, ezsigndocument_edit_ezsignformfieldgroups_v2_request_t *ezsigndocument_edit_ezsignformfieldgroups_v2_request);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsigndocumentID** | **int \*** |  | 
+**ezsigndocument_edit_ezsignformfieldgroups_v2_request** | **[ezsigndocument_edit_ezsignformfieldgroups_v2_request_t](ezsigndocument_edit_ezsignformfieldgroups_v2_request.md) \*** |  | 
+
+### Return type
+
+[ezsigndocument_edit_ezsignformfieldgroups_v2_response_t](ezsigndocument_edit_ezsignformfieldgroups_v2_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **ObjectEzsigndocumentAPI_ezsigndocumentEditEzsignsignaturesV1**
 ```c
 // Edit multiple Ezsignsignatures
@@ -668,6 +702,37 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsigndocument_get_actionable_elements_v2_response_t](ezsigndocument_get_actionable_elements_v2_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsV3**
+```c
+// Retrieve actionable elements for the Ezsigndocument
+//
+// Return the Ezsignsignatures that can be signed and Ezsignformfieldgroups that can be filled by the current user at the current step in the process
+//
+ezsigndocument_get_actionable_elements_v3_response_t* ObjectEzsigndocumentAPI_ezsigndocumentGetActionableElementsV3(apiClient_t *apiClient, int *pkiEzsigndocumentID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsigndocumentID** | **int \*** |  | 
+
+### Return type
+
+[ezsigndocument_get_actionable_elements_v3_response_t](ezsigndocument_get_actionable_elements_v3_response.md) *
 
 
 ### Authorization

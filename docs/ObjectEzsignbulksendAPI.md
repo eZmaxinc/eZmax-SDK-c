@@ -8,7 +8,6 @@ Method | HTTP request | Description
 [**ObjectEzsignbulksendAPI_ezsignbulksendCreateObjectV1**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendCreateObjectV1) | **POST** /1/object/ezsignbulksend | Create a new Ezsignbulksend
 [**ObjectEzsignbulksendAPI_ezsignbulksendCreateObjectV2**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendCreateObjectV2) | **POST** /2/object/ezsignbulksend | Create a new Ezsignbulksend
 [**ObjectEzsignbulksendAPI_ezsignbulksendDeleteObjectV1**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendDeleteObjectV1) | **DELETE** /1/object/ezsignbulksend/{pkiEzsignbulksendID} | Delete an existing Ezsignbulksend
-[**ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV1**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV1) | **PUT** /1/object/ezsignbulksend/{pkiEzsignbulksendID} | Edit an existing Ezsignbulksend
 [**ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV2**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV2) | **PUT** /2/object/ezsignbulksend/{pkiEzsignbulksendID} | Edit an existing Ezsignbulksend
 [**ObjectEzsignbulksendAPI_ezsignbulksendGetBatchFileV1**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendGetBatchFileV1) | **GET** /1/object/ezsignbulksend/{pkiEzsignbulksendID}/getBatchFile | Retrieve file to download documents in batch
 [**ObjectEzsignbulksendAPI_ezsignbulksendGetCsvTemplateV1**](ObjectEzsignbulksendAPI.md#ObjectEzsignbulksendAPI_ezsignbulksendGetCsvTemplateV1) | **GET** /1/object/ezsignbulksend/{pkiEzsignbulksendID}/getCsvTemplate | Retrieve an existing Ezsignbulksend&#39;s empty Csv template
@@ -140,38 +139,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV1**
-```c
-// Edit an existing Ezsignbulksend
-//
-// 
-//
-ezsignbulksend_edit_object_v1_response_t* ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_edit_object_v1_request_t *ezsignbulksend_edit_object_v1_request);
-```
-
-### Parameters
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignbulksendID** | **int \*** |  | 
-**ezsignbulksend_edit_object_v1_request** | **[ezsignbulksend_edit_object_v1_request_t](ezsignbulksend_edit_object_v1_request.md) \*** |  | 
-
-### Return type
-
-[ezsignbulksend_edit_object_v1_response_t](ezsignbulksend_edit_object_v1_response.md) *
-
-
-### Authorization
-
-[Authorization](../README.md#Authorization)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **s_currency_description_x** | **char \*** | The description of the Currency in the language of the requester | [optional] 
 **d_ezsignsignature_creditcardamount** | **char \*** | The amount of the Creditcard signature | [optional] 
 **s_ezsignsignature_creditcardamountdescription** | **char \*** | The description of the Creditcard signature | [optional] 
+**b_ezsignsignature_creditcardcustomamount** | **int** | Whether we can enter a custom amount while signing an Ezsignsignature &#39;Creditcard&#39; or not | [optional] 
 **s_ezsignsigningreason_description_x** | **char \*** | The description of the Ezsignsigningreason in the language of the requester | [optional] 
 **i_ezsignpage_pagenumber** | **int** | The page number in the Ezsigndocument | 
 **i_ezsignsignature_x** | **int** | The X coordinate (Horizontal) where to put the Ezsignsignature on the page.  Coordinate is calculated at 100dpi (dot per inch). So for example, if you want to put the Ezsignsignature 2 inches from the left border of the page, you would use \&quot;200\&quot; for the X coordinate. | 
@@ -21,6 +22,8 @@ Name | Type | Description | Notes
 **i_ezsignsignature_step** | **int** | The step when the Ezsignsigner will be invited to sign | 
 **i_ezsignsignature_stepadjusted** | **int** | The step when the Ezsignsigner will be invited to sign | [optional] 
 **e_ezsignsignature_type** | **field_e_ezsignsignature_type_t \*** |  | 
+**e_ezsignsignature_signaturepad** | **field_e_ezsignsignature_signaturepad_t \*** |  | [optional] 
+**e_ezsignsignature_signaturepadrequired** | **field_e_ezsignsignature_signaturepadrequired_t \*** |  | [optional] 
 **t_ezsignsignature_tooltip** | **char \*** | A tooltip that will be presented to Ezsignsigner about the Ezsignsignature | [optional] 
 **e_ezsignsignature_tooltipposition** | **field_e_ezsignsignature_tooltipposition_t \*** |  | [optional] 
 **e_ezsignsignature_font** | **field_e_ezsignsignature_font_t \*** |  | [optional] 

@@ -25,6 +25,8 @@ typedef struct ezsigntemplatesignature_request_compound_t ezsigntemplatesignatur
 #include "field_e_ezsigntemplatesignature_font.h"
 #include "field_e_ezsigntemplatesignature_positioning.h"
 #include "field_e_ezsigntemplatesignature_positioningoccurence.h"
+#include "field_e_ezsigntemplatesignature_signaturepad.h"
+#include "field_e_ezsigntemplatesignature_signaturepadrequired.h"
 #include "field_e_ezsigntemplatesignature_tooltipposition.h"
 #include "field_e_ezsigntemplatesignature_type.h"
 
@@ -46,6 +48,8 @@ typedef struct ezsigntemplatesignature_request_compound_t {
     int i_ezsigntemplatesignature_height; //numeric
     int i_ezsigntemplatesignature_step; //numeric
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_type__e e_ezsigntemplatesignature_type; //referenced enum
+    ezmax_api_definition__full_field_e_ezsigntemplatesignature_signaturepad__e e_ezsigntemplatesignature_signaturepad; //referenced enum
+    ezmax_api_definition__full_field_e_ezsigntemplatesignature_signaturepadrequired__e e_ezsigntemplatesignature_signaturepadrequired; //referenced enum
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_consultationtrigger__e e_ezsigntemplatesignature_consultationtrigger; //referenced enum
     char *t_ezsigntemplatesignature_tooltip; // string
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_tooltipposition__e e_ezsigntemplatesignature_tooltipposition; //referenced enum
@@ -90,6 +94,8 @@ __attribute__((deprecated)) ezsigntemplatesignature_request_compound_t *ezsignte
     int i_ezsigntemplatesignature_height,
     int i_ezsigntemplatesignature_step,
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_type__e e_ezsigntemplatesignature_type,
+    ezmax_api_definition__full_field_e_ezsigntemplatesignature_signaturepad__e e_ezsigntemplatesignature_signaturepad,
+    ezmax_api_definition__full_field_e_ezsigntemplatesignature_signaturepadrequired__e e_ezsigntemplatesignature_signaturepadrequired,
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_consultationtrigger__e e_ezsigntemplatesignature_consultationtrigger,
     char *t_ezsigntemplatesignature_tooltip,
     ezmax_api_definition__full_field_e_ezsigntemplatesignature_tooltipposition__e e_ezsigntemplatesignature_tooltipposition,

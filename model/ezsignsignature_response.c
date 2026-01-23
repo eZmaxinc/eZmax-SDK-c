@@ -15,6 +15,7 @@ static ezsignsignature_response_t *ezsignsignature_response_create_internal(
     char *s_currency_description_x,
     char *d_ezsignsignature_creditcardamount,
     char *s_ezsignsignature_creditcardamountdescription,
+    int b_ezsignsignature_creditcardcustomamount,
     char *s_ezsignsigningreason_description_x,
     int i_ezsignpage_pagenumber,
     int i_ezsignsignature_x,
@@ -24,6 +25,8 @@ static ezsignsignature_response_t *ezsignsignature_response_create_internal(
     int i_ezsignsignature_step,
     int i_ezsignsignature_stepadjusted,
     ezmax_api_definition__full_field_e_ezsignsignature_type__e e_ezsignsignature_type,
+    ezmax_api_definition__full_field_e_ezsignsignature_signaturepad__e e_ezsignsignature_signaturepad,
+    ezmax_api_definition__full_field_e_ezsignsignature_signaturepadrequired__e e_ezsignsignature_signaturepadrequired,
     char *t_ezsignsignature_tooltip,
     ezmax_api_definition__full_field_e_ezsignsignature_tooltipposition__e e_ezsignsignature_tooltipposition,
     ezmax_api_definition__full_field_e_ezsignsignature_font__e e_ezsignsignature_font,
@@ -61,6 +64,7 @@ static ezsignsignature_response_t *ezsignsignature_response_create_internal(
     ezsignsignature_response_local_var->s_currency_description_x = s_currency_description_x;
     ezsignsignature_response_local_var->d_ezsignsignature_creditcardamount = d_ezsignsignature_creditcardamount;
     ezsignsignature_response_local_var->s_ezsignsignature_creditcardamountdescription = s_ezsignsignature_creditcardamountdescription;
+    ezsignsignature_response_local_var->b_ezsignsignature_creditcardcustomamount = b_ezsignsignature_creditcardcustomamount;
     ezsignsignature_response_local_var->s_ezsignsigningreason_description_x = s_ezsignsigningreason_description_x;
     ezsignsignature_response_local_var->i_ezsignpage_pagenumber = i_ezsignpage_pagenumber;
     ezsignsignature_response_local_var->i_ezsignsignature_x = i_ezsignsignature_x;
@@ -70,6 +74,8 @@ static ezsignsignature_response_t *ezsignsignature_response_create_internal(
     ezsignsignature_response_local_var->i_ezsignsignature_step = i_ezsignsignature_step;
     ezsignsignature_response_local_var->i_ezsignsignature_stepadjusted = i_ezsignsignature_stepadjusted;
     ezsignsignature_response_local_var->e_ezsignsignature_type = e_ezsignsignature_type;
+    ezsignsignature_response_local_var->e_ezsignsignature_signaturepad = e_ezsignsignature_signaturepad;
+    ezsignsignature_response_local_var->e_ezsignsignature_signaturepadrequired = e_ezsignsignature_signaturepadrequired;
     ezsignsignature_response_local_var->t_ezsignsignature_tooltip = t_ezsignsignature_tooltip;
     ezsignsignature_response_local_var->e_ezsignsignature_tooltipposition = e_ezsignsignature_tooltipposition;
     ezsignsignature_response_local_var->e_ezsignsignature_font = e_ezsignsignature_font;
@@ -108,6 +114,7 @@ __attribute__((deprecated)) ezsignsignature_response_t *ezsignsignature_response
     char *s_currency_description_x,
     char *d_ezsignsignature_creditcardamount,
     char *s_ezsignsignature_creditcardamountdescription,
+    int b_ezsignsignature_creditcardcustomamount,
     char *s_ezsignsigningreason_description_x,
     int i_ezsignpage_pagenumber,
     int i_ezsignsignature_x,
@@ -117,6 +124,8 @@ __attribute__((deprecated)) ezsignsignature_response_t *ezsignsignature_response
     int i_ezsignsignature_step,
     int i_ezsignsignature_stepadjusted,
     ezmax_api_definition__full_field_e_ezsignsignature_type__e e_ezsignsignature_type,
+    ezmax_api_definition__full_field_e_ezsignsignature_signaturepad__e e_ezsignsignature_signaturepad,
+    ezmax_api_definition__full_field_e_ezsignsignature_signaturepadrequired__e e_ezsignsignature_signaturepadrequired,
     char *t_ezsignsignature_tooltip,
     ezmax_api_definition__full_field_e_ezsignsignature_tooltipposition__e e_ezsignsignature_tooltipposition,
     ezmax_api_definition__full_field_e_ezsignsignature_font__e e_ezsignsignature_font,
@@ -151,6 +160,7 @@ __attribute__((deprecated)) ezsignsignature_response_t *ezsignsignature_response
         s_currency_description_x,
         d_ezsignsignature_creditcardamount,
         s_ezsignsignature_creditcardamountdescription,
+        b_ezsignsignature_creditcardcustomamount,
         s_ezsignsigningreason_description_x,
         i_ezsignpage_pagenumber,
         i_ezsignsignature_x,
@@ -160,6 +170,8 @@ __attribute__((deprecated)) ezsignsignature_response_t *ezsignsignature_response
         i_ezsignsignature_step,
         i_ezsignsignature_stepadjusted,
         e_ezsignsignature_type,
+        e_ezsignsignature_signaturepad,
+        e_ezsignsignature_signaturepadrequired,
         t_ezsignsignature_tooltip,
         e_ezsignsignature_tooltipposition,
         e_ezsignsignature_font,
@@ -332,6 +344,14 @@ cJSON *ezsignsignature_response_convertToJSON(ezsignsignature_response_t *ezsign
     }
 
 
+    // ezsignsignature_response->b_ezsignsignature_creditcardcustomamount
+    if(ezsignsignature_response->b_ezsignsignature_creditcardcustomamount) {
+    if(cJSON_AddBoolToObject(item, "bEzsignsignatureCreditcardcustomamount", ezsignsignature_response->b_ezsignsignature_creditcardcustomamount) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
     // ezsignsignature_response->s_ezsignsigningreason_description_x
     if(ezsignsignature_response->s_ezsignsigningreason_description_x) {
     if(cJSON_AddStringToObject(item, "sEzsignsigningreasonDescriptionX", ezsignsignature_response->s_ezsignsigningreason_description_x) == NULL) {
@@ -411,6 +431,32 @@ cJSON *ezsignsignature_response_convertToJSON(ezsignsignature_response_t *ezsign
     cJSON_AddItemToObject(item, "eEzsignsignatureType", e_ezsignsignature_type_local_JSON);
     if(item->child == NULL) {
         goto fail;
+    }
+
+
+    // ezsignsignature_response->e_ezsignsignature_signaturepad
+    if(ezsignsignature_response->e_ezsignsignature_signaturepad != ezmax_api_definition__full_field_e_ezsignsignature_signaturepad__NULL) {
+    cJSON *e_ezsignsignature_signaturepad_local_JSON = field_e_ezsignsignature_signaturepad_convertToJSON(ezsignsignature_response->e_ezsignsignature_signaturepad);
+    if(e_ezsignsignature_signaturepad_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsignsignatureSignaturepad", e_ezsignsignature_signaturepad_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
+    }
+
+
+    // ezsignsignature_response->e_ezsignsignature_signaturepadrequired
+    if(ezsignsignature_response->e_ezsignsignature_signaturepadrequired != ezmax_api_definition__full_field_e_ezsignsignature_signaturepadrequired__NULL) {
+    cJSON *e_ezsignsignature_signaturepadrequired_local_JSON = field_e_ezsignsignature_signaturepadrequired_convertToJSON(ezsignsignature_response->e_ezsignsignature_signaturepadrequired);
+    if(e_ezsignsignature_signaturepadrequired_local_JSON == NULL) {
+        goto fail; // custom
+    }
+    cJSON_AddItemToObject(item, "eEzsignsignatureSignaturepadrequired", e_ezsignsignature_signaturepadrequired_local_JSON);
+    if(item->child == NULL) {
+        goto fail;
+    }
     }
 
 
@@ -658,6 +704,12 @@ ezsignsignature_response_t *ezsignsignature_response_parseFromJSON(cJSON *ezsign
     // define the local variable for ezsignsignature_response->e_ezsignsignature_type
     ezmax_api_definition__full_field_e_ezsignsignature_type__e e_ezsignsignature_type_local_nonprim = 0;
 
+    // define the local variable for ezsignsignature_response->e_ezsignsignature_signaturepad
+    ezmax_api_definition__full_field_e_ezsignsignature_signaturepad__e e_ezsignsignature_signaturepad_local_nonprim = 0;
+
+    // define the local variable for ezsignsignature_response->e_ezsignsignature_signaturepadrequired
+    ezmax_api_definition__full_field_e_ezsignsignature_signaturepadrequired__e e_ezsignsignature_signaturepadrequired_local_nonprim = 0;
+
     // define the local variable for ezsignsignature_response->e_ezsignsignature_tooltipposition
     ezmax_api_definition__full_field_e_ezsignsignature_tooltipposition__e e_ezsignsignature_tooltipposition_local_nonprim = 0;
 
@@ -802,6 +854,18 @@ ezsignsignature_response_t *ezsignsignature_response_parseFromJSON(cJSON *ezsign
     }
     }
 
+    // ezsignsignature_response->b_ezsignsignature_creditcardcustomamount
+    cJSON *b_ezsignsignature_creditcardcustomamount = cJSON_GetObjectItemCaseSensitive(ezsignsignature_responseJSON, "bEzsignsignatureCreditcardcustomamount");
+    if (cJSON_IsNull(b_ezsignsignature_creditcardcustomamount)) {
+        b_ezsignsignature_creditcardcustomamount = NULL;
+    }
+    if (b_ezsignsignature_creditcardcustomamount) { 
+    if(!cJSON_IsBool(b_ezsignsignature_creditcardcustomamount))
+    {
+    goto end; //Bool
+    }
+    }
+
     // ezsignsignature_response->s_ezsignsigningreason_description_x
     cJSON *s_ezsignsigningreason_description_x = cJSON_GetObjectItemCaseSensitive(ezsignsignature_responseJSON, "sEzsignsigningreasonDescriptionX");
     if (cJSON_IsNull(s_ezsignsigningreason_description_x)) {
@@ -921,6 +985,24 @@ ezsignsignature_response_t *ezsignsignature_response_parseFromJSON(cJSON *ezsign
 
     
     e_ezsignsignature_type_local_nonprim = field_e_ezsignsignature_type_parseFromJSON(e_ezsignsignature_type); //custom
+
+    // ezsignsignature_response->e_ezsignsignature_signaturepad
+    cJSON *e_ezsignsignature_signaturepad = cJSON_GetObjectItemCaseSensitive(ezsignsignature_responseJSON, "eEzsignsignatureSignaturepad");
+    if (cJSON_IsNull(e_ezsignsignature_signaturepad)) {
+        e_ezsignsignature_signaturepad = NULL;
+    }
+    if (e_ezsignsignature_signaturepad) { 
+    e_ezsignsignature_signaturepad_local_nonprim = field_e_ezsignsignature_signaturepad_parseFromJSON(e_ezsignsignature_signaturepad); //custom
+    }
+
+    // ezsignsignature_response->e_ezsignsignature_signaturepadrequired
+    cJSON *e_ezsignsignature_signaturepadrequired = cJSON_GetObjectItemCaseSensitive(ezsignsignature_responseJSON, "eEzsignsignatureSignaturepadrequired");
+    if (cJSON_IsNull(e_ezsignsignature_signaturepadrequired)) {
+        e_ezsignsignature_signaturepadrequired = NULL;
+    }
+    if (e_ezsignsignature_signaturepadrequired) { 
+    e_ezsignsignature_signaturepadrequired_local_nonprim = field_e_ezsignsignature_signaturepadrequired_parseFromJSON(e_ezsignsignature_signaturepadrequired); //custom
+    }
 
     // ezsignsignature_response->t_ezsignsignature_tooltip
     cJSON *t_ezsignsignature_tooltip = cJSON_GetObjectItemCaseSensitive(ezsignsignature_responseJSON, "tEzsignsignatureTooltip");
@@ -1185,6 +1267,7 @@ ezsignsignature_response_t *ezsignsignature_response_parseFromJSON(cJSON *ezsign
         s_currency_description_x && !cJSON_IsNull(s_currency_description_x) ? strdup(s_currency_description_x->valuestring) : NULL,
         d_ezsignsignature_creditcardamount && !cJSON_IsNull(d_ezsignsignature_creditcardamount) ? strdup(d_ezsignsignature_creditcardamount->valuestring) : NULL,
         s_ezsignsignature_creditcardamountdescription && !cJSON_IsNull(s_ezsignsignature_creditcardamountdescription) ? strdup(s_ezsignsignature_creditcardamountdescription->valuestring) : NULL,
+        b_ezsignsignature_creditcardcustomamount ? b_ezsignsignature_creditcardcustomamount->valueint : 0,
         s_ezsignsigningreason_description_x && !cJSON_IsNull(s_ezsignsigningreason_description_x) ? strdup(s_ezsignsigningreason_description_x->valuestring) : NULL,
         i_ezsignpage_pagenumber->valuedouble,
         i_ezsignsignature_x->valuedouble,
@@ -1194,6 +1277,8 @@ ezsignsignature_response_t *ezsignsignature_response_parseFromJSON(cJSON *ezsign
         i_ezsignsignature_step->valuedouble,
         i_ezsignsignature_stepadjusted ? i_ezsignsignature_stepadjusted->valuedouble : 0,
         e_ezsignsignature_type_local_nonprim,
+        e_ezsignsignature_signaturepad ? e_ezsignsignature_signaturepad_local_nonprim : 0,
+        e_ezsignsignature_signaturepadrequired ? e_ezsignsignature_signaturepadrequired_local_nonprim : 0,
         t_ezsignsignature_tooltip && !cJSON_IsNull(t_ezsignsignature_tooltip) ? strdup(t_ezsignsignature_tooltip->valuestring) : NULL,
         e_ezsignsignature_tooltipposition ? e_ezsignsignature_tooltipposition_local_nonprim : 0,
         e_ezsignsignature_font ? e_ezsignsignature_font_local_nonprim : 0,
@@ -1223,6 +1308,12 @@ ezsignsignature_response_t *ezsignsignature_response_parseFromJSON(cJSON *ezsign
 end:
     if (e_ezsignsignature_type_local_nonprim) {
         e_ezsignsignature_type_local_nonprim = 0;
+    }
+    if (e_ezsignsignature_signaturepad_local_nonprim) {
+        e_ezsignsignature_signaturepad_local_nonprim = 0;
+    }
+    if (e_ezsignsignature_signaturepadrequired_local_nonprim) {
+        e_ezsignsignature_signaturepadrequired_local_nonprim = 0;
     }
     if (e_ezsignsignature_tooltipposition_local_nonprim) {
         e_ezsignsignature_tooltipposition_local_nonprim = 0;

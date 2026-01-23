@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **dt_lead_expiration** | **char \*** | The expiration of the Lead | 
 **b_lead_isactive** | **int** | Whether the lead is active or not | 
 **s_lead_code** | **char \*** | The code of the Lead | 
+**s_lead_contacts** | **char \*** | The contacts&#39; name of the Lead | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

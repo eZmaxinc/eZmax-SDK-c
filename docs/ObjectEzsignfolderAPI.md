@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**ObjectEzsignfolderAPI_ezsignfolderEndPrematurelyV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderEndPrematurelyV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/endPrematurely | End prematurely
 [**ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getActionableElements | Retrieve actionable elements for the Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV2**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV2) | **GET** /2/object/ezsignfolder/{pkiEzsignfolderID}/getActionableElements | Retrieve actionable elements for the Ezsignfolder
+[**ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV3**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV3) | **GET** /3/object/ezsignfolder/{pkiEzsignfolderID}/getActionableElements | Retrieve actionable elements for the Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderGetAttachmentCountV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetAttachmentCountV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getAttachmentCount | Retrieve Attachment count
 [**ObjectEzsignfolderAPI_ezsignfolderGetAttachmentsV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetAttachmentsV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getAttachments | Retrieve Ezsignfolder&#39;s Attachments
 [**ObjectEzsignfolderAPI_ezsignfolderGetCommunicationCountV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderGetCommunicationCountV1) | **GET** /1/object/ezsignfolder/{pkiEzsignfolderID}/getCommunicationCount | Retrieve Communication count
@@ -34,7 +35,6 @@ Method | HTTP request | Description
 [**ObjectEzsignfolderAPI_ezsignfolderImportEzsignfoldersignerassociationsV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderImportEzsignfoldersignerassociationsV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/importEzsignfoldersignerassociations | Import an existing Ezsignfoldersignerassociation into this Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/importEzsigntemplatepackage | Import an Ezsigntemplatepackage in the Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV2**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderImportEzsigntemplatepackageV2) | **POST** /2/object/ezsignfolder/{pkiEzsignfolderID}/importEzsigntemplatepackage | Import an Ezsigntemplatepackage in the Ezsignfolder
-[**ObjectEzsignfolderAPI_ezsignfolderReorderV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderReorderV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/reorder | Reorder Ezsigndocuments in the Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderReorderV2**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderReorderV2) | **POST** /2/object/ezsignfolder/{pkiEzsignfolderID}/reorder | Reorder Ezsigndocuments in the Ezsignfolder
 [**ObjectEzsignfolderAPI_ezsignfolderSendV1**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderSendV1) | **POST** /1/object/ezsignfolder/{pkiEzsignfolderID}/send | Send the Ezsignfolder to the signatories for signature
 [**ObjectEzsignfolderAPI_ezsignfolderSendV3**](ObjectEzsignfolderAPI.md#ObjectEzsignfolderAPI_ezsignfolderSendV3) | **POST** /3/object/ezsignfolder/{pkiEzsignfolderID}/send | Send the Ezsignfolder to the signatories for signature
@@ -402,6 +402,37 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsignfolder_get_actionable_elements_v2_response_t](ezsignfolder_get_actionable_elements_v2_response.md) *
+
+
+### Authorization
+
+[Authorization](../README.md#Authorization)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV3**
+```c
+// Retrieve actionable elements for the Ezsignfolder
+//
+// Return the Ezsignsignatures that can be signed and Ezsignformfieldgroups that can be filled by the current user at the current step in the process
+//
+ezsignfolder_get_actionable_elements_v3_response_t* ObjectEzsignfolderAPI_ezsignfolderGetActionableElementsV3(apiClient_t *apiClient, int *pkiEzsignfolderID);
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**apiClient** | **apiClient_t \*** | context containing the client configuration |
+**pkiEzsignfolderID** | **int \*** |  | 
+
+### Return type
+
+[ezsignfolder_get_actionable_elements_v3_response_t](ezsignfolder_get_actionable_elements_v3_response.md) *
 
 
 ### Authorization
@@ -965,36 +996,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [ezsignfolder_import_ezsigntemplatepackage_v2_response_t](ezsignfolder_import_ezsigntemplatepackage_v2_response.md) *
-
-
-### Authorization
-
-[Authorization](../README.md#Authorization)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **ObjectEzsignfolderAPI_ezsignfolderReorderV1**
-```c
-// Reorder Ezsigndocuments in the Ezsignfolder
-//
-ezsignfolder_reorder_v1_response_t* ObjectEzsignfolderAPI_ezsignfolderReorderV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_reorder_v1_request_t *ezsignfolder_reorder_v1_request);
-```
-
-### Parameters
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**apiClient** | **apiClient_t \*** | context containing the client configuration |
-**pkiEzsignfolderID** | **int \*** |  | 
-**ezsignfolder_reorder_v1_request** | **[ezsignfolder_reorder_v1_request_t](ezsignfolder_reorder_v1_request.md) \*** |  | 
-
-### Return type
-
-[ezsignfolder_reorder_v1_response_t](ezsignfolder_reorder_v1_response.md) *
 
 
 ### Authorization

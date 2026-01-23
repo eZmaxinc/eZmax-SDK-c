@@ -13,6 +13,7 @@ static usergroupdelegation_response_t *usergroupdelegation_response_create_inter
     char *s_user_lastname,
     char *s_user_loginname,
     char *s_email_address,
+    int b_user_isactive,
     char *s_usergroup_name_x
     ) {
     usergroupdelegation_response_t *usergroupdelegation_response_local_var = malloc(sizeof(usergroupdelegation_response_t));
@@ -26,6 +27,7 @@ static usergroupdelegation_response_t *usergroupdelegation_response_create_inter
     usergroupdelegation_response_local_var->s_user_lastname = s_user_lastname;
     usergroupdelegation_response_local_var->s_user_loginname = s_user_loginname;
     usergroupdelegation_response_local_var->s_email_address = s_email_address;
+    usergroupdelegation_response_local_var->b_user_isactive = b_user_isactive;
     usergroupdelegation_response_local_var->s_usergroup_name_x = s_usergroup_name_x;
 
     usergroupdelegation_response_local_var->_library_owned = 1;
@@ -40,6 +42,7 @@ __attribute__((deprecated)) usergroupdelegation_response_t *usergroupdelegation_
     char *s_user_lastname,
     char *s_user_loginname,
     char *s_email_address,
+    int b_user_isactive,
     char *s_usergroup_name_x
     ) {
     return usergroupdelegation_response_create_internal (
@@ -50,6 +53,7 @@ __attribute__((deprecated)) usergroupdelegation_response_t *usergroupdelegation_
         s_user_lastname,
         s_user_loginname,
         s_email_address,
+        b_user_isactive,
         s_usergroup_name_x
         );
 }
@@ -148,6 +152,15 @@ cJSON *usergroupdelegation_response_convertToJSON(usergroupdelegation_response_t
     if(cJSON_AddStringToObject(item, "sEmailAddress", usergroupdelegation_response->s_email_address) == NULL) {
     goto fail; //String
     }
+    }
+
+
+    // usergroupdelegation_response->b_user_isactive
+    if (!usergroupdelegation_response->b_user_isactive) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "bUserIsactive", usergroupdelegation_response->b_user_isactive) == NULL) {
+    goto fail; //Bool
     }
 
 
@@ -273,6 +286,21 @@ usergroupdelegation_response_t *usergroupdelegation_response_parseFromJSON(cJSON
     }
     }
 
+    // usergroupdelegation_response->b_user_isactive
+    cJSON *b_user_isactive = cJSON_GetObjectItemCaseSensitive(usergroupdelegation_responseJSON, "bUserIsactive");
+    if (cJSON_IsNull(b_user_isactive)) {
+        b_user_isactive = NULL;
+    }
+    if (!b_user_isactive) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(b_user_isactive))
+    {
+    goto end; //Bool
+    }
+
     // usergroupdelegation_response->s_usergroup_name_x
     cJSON *s_usergroup_name_x = cJSON_GetObjectItemCaseSensitive(usergroupdelegation_responseJSON, "sUsergroupNameX");
     if (cJSON_IsNull(s_usergroup_name_x)) {
@@ -297,6 +325,7 @@ usergroupdelegation_response_t *usergroupdelegation_response_parseFromJSON(cJSON
         strdup(s_user_lastname->valuestring),
         strdup(s_user_loginname->valuestring),
         s_email_address && !cJSON_IsNull(s_email_address) ? strdup(s_email_address->valuestring) : NULL,
+        b_user_isactive->valueint,
         strdup(s_usergroup_name_x->valuestring)
         );
 

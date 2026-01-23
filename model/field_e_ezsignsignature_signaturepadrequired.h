@@ -1,0 +1,32 @@
+/*
+ * field_e_ezsignsignature_signaturepadrequired.h
+ *
+ * Whether the signature pad is required or not.
+ */
+
+#ifndef _field_e_ezsignsignature_signaturepadrequired_H_
+#define _field_e_ezsignsignature_signaturepadrequired_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct field_e_ezsignsignature_signaturepadrequired_t field_e_ezsignsignature_signaturepadrequired_t;
+
+
+// Enum  for field_e_ezsignsignature_signaturepadrequired
+
+typedef enum { ezmax_api_definition__full_field_e_ezsignsignature_signaturepadrequired__NULL = 0, ezmax_api_definition__full_field_e_ezsignsignature_signaturepadrequired__No, ezmax_api_definition__full_field_e_ezsignsignature_signaturepadrequired__BestEffort, ezmax_api_definition__full_field_e_ezsignsignature_signaturepadrequired__Mandatory } ezmax_api_definition__full_field_e_ezsignsignature_signaturepadrequired__e;
+
+char* field_e_ezsignsignature_signaturepadrequired_field_e_ezsignsignature_signaturepadrequired_ToString(ezmax_api_definition__full_field_e_ezsignsignature_signaturepadrequired__e field_e_ezsignsignature_signaturepadrequired);
+
+ezmax_api_definition__full_field_e_ezsignsignature_signaturepadrequired__e field_e_ezsignsignature_signaturepadrequired_field_e_ezsignsignature_signaturepadrequired_FromString(char* field_e_ezsignsignature_signaturepadrequired);
+
+cJSON *field_e_ezsignsignature_signaturepadrequired_convertToJSON(ezmax_api_definition__full_field_e_ezsignsignature_signaturepadrequired__e field_e_ezsignsignature_signaturepadrequired);
+
+ezmax_api_definition__full_field_e_ezsignsignature_signaturepadrequired__e field_e_ezsignsignature_signaturepadrequired_parseFromJSON(cJSON *field_e_ezsignsignature_signaturepadrequiredJSON);
+
+#endif /* _field_e_ezsignsignature_signaturepadrequired_H_ */
+

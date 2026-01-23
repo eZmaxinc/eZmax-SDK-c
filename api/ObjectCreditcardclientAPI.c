@@ -1,10 +1,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
+
 #include "ObjectCreditcardclientAPI.h"
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
+#define MAX_NUMBER_LENGTH_LONG 21
 
 // Functions for enum SSELECTOR for ObjectCreditcardclientAPI_creditcardclientGetAutocompleteV2
 
@@ -156,13 +158,13 @@ end:
 // Functions for enum EORDERBY for ObjectCreditcardclientAPI_creditcardclientGetListV1
 
 static char* creditcardclientGetListV1_EORDERBY_ToString(ezmax_api_definition__full_creditcardclientGetListV1_eOrderBy_e EORDERBY){
-    char *EORDERBYArray[] =  { "NULL", "pkiCreditcardclientID_ASC", "pkiCreditcardclientID_DESC", "fkiCreditcarddetailID_ASC", "fkiCreditcarddetailID_DESC", "fkiCreditcardtypeID_ASC", "fkiCreditcardtypeID_DESC", "bCreditcardclientrelationIsdefault_ASC", "bCreditcardclientrelationIsdefault_DESC", "sCreditcardclientDescription_ASC", "sCreditcardclientDescription_DESC", "bCreditcardclientIsactive_ASC", "bCreditcardclientIsactive_DESC", "bCreditcardclientAllowedagencypayment_ASC", "bCreditcardclientAllowedagencypayment_DESC", "bCreditcardclientAllowedtranquillit_ASC", "bCreditcardclientAllowedtranquillit_DESC", "iCreditcarddetailExpirationmonth_ASC", "iCreditcarddetailExpirationmonth_DESC", "iCreditcarddetailExpirationyear_ASC", "iCreditcarddetailExpirationyear_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiCreditcardclientID_ASC", "pkiCreditcardclientID_DESC", "fkiCreditcarddetailID_ASC", "fkiCreditcarddetailID_DESC", "fkiCreditcardtypeID_ASC", "fkiCreditcardtypeID_DESC", "bCreditcardclientrelationIsdefault_ASC", "bCreditcardclientrelationIsdefault_DESC", "bCreditcardclientLegacy_ASC", "bCreditcardclientLegacy_DESC", "sCreditcardclientDescription_ASC", "sCreditcardclientDescription_DESC", "bCreditcardclientIsactive_ASC", "bCreditcardclientIsactive_DESC", "bCreditcardclientAllowedagencypayment_ASC", "bCreditcardclientAllowedagencypayment_DESC", "bCreditcardclientAllowedtranquillit_ASC", "bCreditcardclientAllowedtranquillit_DESC", "iCreditcarddetailExpirationmonth_ASC", "iCreditcarddetailExpirationmonth_DESC", "iCreditcarddetailExpirationyear_ASC", "iCreditcarddetailExpirationyear_DESC" };
     return EORDERBYArray[EORDERBY];
 }
 
 static ezmax_api_definition__full_creditcardclientGetListV1_eOrderBy_e creditcardclientGetListV1_EORDERBY_FromString(char* EORDERBY){
     int stringToReturn = 0;
-    char *EORDERBYArray[] =  { "NULL", "pkiCreditcardclientID_ASC", "pkiCreditcardclientID_DESC", "fkiCreditcarddetailID_ASC", "fkiCreditcarddetailID_DESC", "fkiCreditcardtypeID_ASC", "fkiCreditcardtypeID_DESC", "bCreditcardclientrelationIsdefault_ASC", "bCreditcardclientrelationIsdefault_DESC", "sCreditcardclientDescription_ASC", "sCreditcardclientDescription_DESC", "bCreditcardclientIsactive_ASC", "bCreditcardclientIsactive_DESC", "bCreditcardclientAllowedagencypayment_ASC", "bCreditcardclientAllowedagencypayment_DESC", "bCreditcardclientAllowedtranquillit_ASC", "bCreditcardclientAllowedtranquillit_DESC", "iCreditcarddetailExpirationmonth_ASC", "iCreditcarddetailExpirationmonth_DESC", "iCreditcarddetailExpirationyear_ASC", "iCreditcarddetailExpirationyear_DESC" };
+    char *EORDERBYArray[] =  { "NULL", "pkiCreditcardclientID_ASC", "pkiCreditcardclientID_DESC", "fkiCreditcarddetailID_ASC", "fkiCreditcarddetailID_DESC", "fkiCreditcardtypeID_ASC", "fkiCreditcardtypeID_DESC", "bCreditcardclientrelationIsdefault_ASC", "bCreditcardclientrelationIsdefault_DESC", "bCreditcardclientLegacy_ASC", "bCreditcardclientLegacy_DESC", "sCreditcardclientDescription_ASC", "sCreditcardclientDescription_DESC", "bCreditcardclientIsactive_ASC", "bCreditcardclientIsactive_DESC", "bCreditcardclientAllowedagencypayment_ASC", "bCreditcardclientAllowedagencypayment_DESC", "bCreditcardclientAllowedtranquillit_ASC", "bCreditcardclientAllowedtranquillit_DESC", "iCreditcarddetailExpirationmonth_ASC", "iCreditcarddetailExpirationmonth_DESC", "iCreditcarddetailExpirationyear_ASC", "iCreditcarddetailExpirationyear_DESC" };
     size_t sizeofArray = sizeof(EORDERBYArray) / sizeof(EORDERBYArray[0]);
     while(stringToReturn < sizeofArray) {
         if(strcmp(EORDERBY, EORDERBYArray[stringToReturn]) == 0) {

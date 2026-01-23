@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **i_ezsignsignature_height** | **int** | The height of the Ezsignsignature.  Size is calculated at 100dpi (dot per inch). So for example, if you want the Ezsignsignature to have an height of 2 inches, you would use \&quot;200\&quot; for the iEzsignsignatureHeight. | [optional] 
 **i_ezsignsignature_step** | **int** | The step when the Ezsignsigner will be invited to sign | 
 **e_ezsignsignature_type** | **field_e_ezsignsignature_type_t \*** |  | 
+**e_ezsignsignature_signaturepad** | **field_e_ezsignsignature_signaturepad_t \*** |  | [optional] 
+**e_ezsignsignature_signaturepadrequired** | **field_e_ezsignsignature_signaturepadrequired_t \*** |  | [optional] 
 **fki_ezsigndocument_id** | **int** | The unique ID of the Ezsigndocument | 
 **t_ezsignsignature_tooltip** | **char \*** | A tooltip that will be presented to Ezsignsigner about the Ezsignsignature | [optional] 
 **e_ezsignsignature_tooltipposition** | **field_e_ezsignsignature_tooltipposition_t \*** |  | [optional] 
@@ -33,6 +35,7 @@ Name | Type | Description | Notes
 **e_ezsignsignature_dependencyrequirement** | **field_e_ezsignsignature_dependencyrequirement_t \*** |  | [optional] 
 **s_ezsignsignature_creditcardamountdescription** | **char \*** | The description of the Creditcard signature | [optional] 
 **d_ezsignsignature_creditcardamount** | **char \*** | The amount of the Creditcard signature | [optional] 
+**b_ezsignsignature_creditcardcustomamount** | **int** | Whether we can enter a custom amount while signing an Ezsignsignature &#39;Creditcard&#39; or not | [optional] 
 **b_ezsignsignature_customdate** | **int** | Whether the Ezsignsignature has a custom date format or not. (Only possible when eEzsignsignatureType is **Name** or **Handwritten**) | [optional] 
 **a_obj_ezsignsignaturecustomdate** | [**list_t**](ezsignsignaturecustomdate_request_compound_v2.md) \* | An array of custom date blocks that will be filled at the time of signature.  Can only be used if bEzsignsignatureCustomdate is true.  Use an empty array if you don&#39;t want to have a date at all. | [optional] 
 **a_obj_ezsignelementdependency** | [**list_t**](ezsignelementdependency_request_compound.md) \* |  | [optional] 

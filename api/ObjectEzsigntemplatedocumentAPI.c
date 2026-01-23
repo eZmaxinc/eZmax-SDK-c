@@ -1,10 +1,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
+
 #include "ObjectEzsigntemplatedocumentAPI.h"
 
 #define MAX_NUMBER_LENGTH 16
 #define MAX_BUFFER_LENGTH 4096
+#define MAX_NUMBER_LENGTH_LONG 21
 
 
 // Create a new Ezsigntemplatedocument
@@ -98,6 +100,81 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentCreateObjectV1(apiClient_t
 end:
     free(localVarPath);
     return NULL;
+
+}
+
+// Retrieve an existing Ezsigntemplatedocument's original file
+//
+// 
+//
+void
+ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentDownloadV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID)
+{
+    list_t    *localVarQueryParameters = NULL;
+    list_t    *localVarHeaderParameters = NULL;
+    list_t    *localVarFormParameters = NULL;
+    list_t *localVarHeaderType = list_createList();
+    list_t *localVarContentType = NULL;
+    char      *localVarBodyParameters = NULL;
+    size_t     localVarBodyLength = 0;
+
+    // clear the error code from the previous api call
+    apiClient->response_code = 0;
+
+    // create the path
+    char *localVarPath = strdup("/1/object/ezsigntemplatedocument/{pkiEzsigntemplatedocumentID}/download");
+
+
+
+    // Path Params
+    long sizeOfPathParams_pkiEzsigntemplatedocumentID =  + sizeof("{ pkiEzsigntemplatedocumentID }") - 1;
+    if(pkiEzsigntemplatedocumentID == 0){
+        goto end;
+    }
+    char* localVarToReplace_pkiEzsigntemplatedocumentID = malloc(sizeOfPathParams_pkiEzsigntemplatedocumentID);
+    snprintf(localVarToReplace_pkiEzsigntemplatedocumentID, sizeOfPathParams_pkiEzsigntemplatedocumentID, "{%s}", "pkiEzsigntemplatedocumentID");
+
+    char localVarBuff_pkiEzsigntemplatedocumentID[256];
+    snprintf(localVarBuff_pkiEzsigntemplatedocumentID, sizeof localVarBuff_pkiEzsigntemplatedocumentID, "%ld", (long)*pkiEzsigntemplatedocumentID);
+
+    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatedocumentID, localVarBuff_pkiEzsigntemplatedocumentID);
+
+
+
+    list_addElement(localVarHeaderType,"application/json"); //produces
+    apiClient_invoke(apiClient,
+                    localVarPath,
+                    localVarQueryParameters,
+                    localVarHeaderParameters,
+                    localVarFormParameters,
+                    localVarHeaderType,
+                    localVarContentType,
+                    localVarBodyParameters,
+                    localVarBodyLength,
+                    "GET");
+
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 302) {
+    //    printf("%s\n","The user has been redirected");
+    //}
+    // uncomment below to debug the error response
+    //if (apiClient->response_code == 404) {
+    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
+    //}
+    //No return type
+end:
+    if (apiClient->dataReceived) {
+        free(apiClient->dataReceived);
+        apiClient->dataReceived = NULL;
+        apiClient->dataReceivedLen = 0;
+    }
+    
+    
+    
+    list_freeList(localVarHeaderType);
+    
+    free(localVarPath);
+    free(localVarToReplace_pkiEzsigntemplatedocumentID);
 
 }
 
@@ -1113,99 +1190,6 @@ ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplateformfield
     if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
         cJSON *ObjectEzsigntemplatedocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
         elementToReturn = ezsigntemplatedocument_get_ezsigntemplateformfieldgroups_v1_response_parseFromJSON(ObjectEzsigntemplatedocumentAPIlocalVarJSON);
-        cJSON_Delete(ObjectEzsigntemplatedocumentAPIlocalVarJSON);
-        if(elementToReturn == NULL) {
-            // return 0;
-        }
-    }
-
-    //return type
-    if (apiClient->dataReceived) {
-        free(apiClient->dataReceived);
-        apiClient->dataReceived = NULL;
-        apiClient->dataReceivedLen = 0;
-    }
-    
-    
-    
-    list_freeList(localVarHeaderType);
-    
-    free(localVarPath);
-    free(localVarToReplace_pkiEzsigntemplatedocumentID);
-    return elementToReturn;
-end:
-    free(localVarPath);
-    return NULL;
-
-}
-
-// Retrieve an existing Ezsigntemplatedocument's Ezsigntemplatesignatures
-//
-// Major step overhaul.  Endpoints that existed before version 1.3 do not allow you to combine forms and signatures in the same step. The step numbers are different from those indicated by endpoints added since version 1.3. This endpoint is compatible with endpoints that existed before 1.3 but are not compatible with those added since 1.3.
-//
-ezsigntemplatedocument_get_ezsigntemplatesignatures_v1_response_t*
-ObjectEzsigntemplatedocumentAPI_ezsigntemplatedocumentGetEzsigntemplatesignaturesV1(apiClient_t *apiClient, int *pkiEzsigntemplatedocumentID)
-{
-    list_t    *localVarQueryParameters = NULL;
-    list_t    *localVarHeaderParameters = NULL;
-    list_t    *localVarFormParameters = NULL;
-    list_t *localVarHeaderType = list_createList();
-    list_t *localVarContentType = NULL;
-    char      *localVarBodyParameters = NULL;
-    size_t     localVarBodyLength = 0;
-
-    // clear the error code from the previous api call
-    apiClient->response_code = 0;
-
-    // create the path
-    char *localVarPath = strdup("/1/object/ezsigntemplatedocument/{pkiEzsigntemplatedocumentID}/getEzsigntemplatesignatures");
-
-
-
-    // Path Params
-    long sizeOfPathParams_pkiEzsigntemplatedocumentID =  + sizeof("{ pkiEzsigntemplatedocumentID }") - 1;
-    if(pkiEzsigntemplatedocumentID == 0){
-        goto end;
-    }
-    char* localVarToReplace_pkiEzsigntemplatedocumentID = malloc(sizeOfPathParams_pkiEzsigntemplatedocumentID);
-    snprintf(localVarToReplace_pkiEzsigntemplatedocumentID, sizeOfPathParams_pkiEzsigntemplatedocumentID, "{%s}", "pkiEzsigntemplatedocumentID");
-
-    char localVarBuff_pkiEzsigntemplatedocumentID[256];
-    snprintf(localVarBuff_pkiEzsigntemplatedocumentID, sizeof localVarBuff_pkiEzsigntemplatedocumentID, "%ld", (long)*pkiEzsigntemplatedocumentID);
-
-    localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsigntemplatedocumentID, localVarBuff_pkiEzsigntemplatedocumentID);
-
-
-
-    list_addElement(localVarHeaderType,"application/json"); //produces
-    apiClient_invoke(apiClient,
-                    localVarPath,
-                    localVarQueryParameters,
-                    localVarHeaderParameters,
-                    localVarFormParameters,
-                    localVarHeaderType,
-                    localVarContentType,
-                    localVarBodyParameters,
-                    localVarBodyLength,
-                    "GET");
-
-    // uncomment below to debug the error response
-    //if (apiClient->response_code == 200) {
-    //    printf("%s\n","Successful response");
-    //}
-    // uncomment below to debug the error response
-    //if (apiClient->response_code == 404) {
-    //    printf("%s\n","The request failed. The element on which you were trying to work does not exists. Look for detail about the error in the body");
-    //}
-    // uncomment below to debug the error response
-    //if (apiClient->response_code == 422) {
-    //    printf("%s\n","The request was syntactically valid but failed because of an interdependance condition. Look for detail about the error in the body");
-    //}
-    //nonprimitive not container
-    ezsigntemplatedocument_get_ezsigntemplatesignatures_v1_response_t *elementToReturn = NULL;
-    if(apiClient->response_code >= 200 && apiClient->response_code < 300) {
-        cJSON *ObjectEzsigntemplatedocumentAPIlocalVarJSON = cJSON_Parse(apiClient->dataReceived);
-        elementToReturn = ezsigntemplatedocument_get_ezsigntemplatesignatures_v1_response_parseFromJSON(ObjectEzsigntemplatedocumentAPIlocalVarJSON);
         cJSON_Delete(ObjectEzsigntemplatedocumentAPIlocalVarJSON);
         if(elementToReturn == NULL) {
             // return 0;

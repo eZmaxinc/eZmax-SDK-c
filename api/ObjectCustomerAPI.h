@@ -6,10 +6,7 @@
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
-#include "../model/customer_create_object_v1_request.h"
-#include "../model/customer_create_object_v1_response.h"
 #include "../model/customer_get_autocomplete_v2_response.h"
-#include "../model/customer_get_list_v1_response.h"
 #include "../model/customer_get_object_v2_response.h"
 #include "../model/customer_import_into_edm_v1_request.h"
 #include "../model/customer_import_into_edm_v1_response.h"
@@ -24,20 +21,6 @@ typedef enum  { ezmax_api_definition__full_customerGetAutocompleteV2_EFILTERACTI
 // Enum  for ObjectCustomerAPI_customerGetAutocompleteV2
 typedef enum  { ezmax_api_definition__full_customerGetAutocompleteV2__NULL = 0, ezmax_api_definition__full_customerGetAutocompleteV2__*, ezmax_api_definition__full_customerGetAutocompleteV2__en, ezmax_api_definition__full_customerGetAutocompleteV2__fr } ezmax_api_definition__full_customerGetAutocompleteV2_Accept-Language_e;
 
-// Enum EORDERBY for ObjectCustomerAPI_customerGetListV1
-typedef enum  { ezmax_api_definition__full_customerGetListV1_EORDERBY_NULL = 0, ezmax_api_definition__full_customerGetListV1_EORDERBY_pkiCustomerID_ASC, ezmax_api_definition__full_customerGetListV1_EORDERBY_pkiCustomerID_DESC, ezmax_api_definition__full_customerGetListV1_EORDERBY_sCustomerName_ASC, ezmax_api_definition__full_customerGetListV1_EORDERBY_sCustomerName_DESC, ezmax_api_definition__full_customerGetListV1_EORDERBY_sCustomerNote_ASC, ezmax_api_definition__full_customerGetListV1_EORDERBY_sCustomerNote_DESC, ezmax_api_definition__full_customerGetListV1_EORDERBY_sCustomerCode_ASC, ezmax_api_definition__full_customerGetListV1_EORDERBY_sCustomerCode_DESC, ezmax_api_definition__full_customerGetListV1_EORDERBY_bCustomerIsactive_ASC, ezmax_api_definition__full_customerGetListV1_EORDERBY_bCustomerIsactive_DESC, ezmax_api_definition__full_customerGetListV1_EORDERBY_sPhoneE164_ASC, ezmax_api_definition__full_customerGetListV1_EORDERBY_sPhoneE164_DESC, ezmax_api_definition__full_customerGetListV1_EORDERBY_sEmailAddress_ASC, ezmax_api_definition__full_customerGetListV1_EORDERBY_sEmailAddress_DESC, ezmax_api_definition__full_customerGetListV1_EORDERBY_sAddressCivic_ASC, ezmax_api_definition__full_customerGetListV1_EORDERBY_sAddressCivic_DESC, ezmax_api_definition__full_customerGetListV1_EORDERBY_sAddressStreet_ASC, ezmax_api_definition__full_customerGetListV1_EORDERBY_sAddressStreet_DESC, ezmax_api_definition__full_customerGetListV1_EORDERBY_sAddressSuite_ASC, ezmax_api_definition__full_customerGetListV1_EORDERBY_sAddressSuite_DESC, ezmax_api_definition__full_customerGetListV1_EORDERBY_sAddressCity_ASC, ezmax_api_definition__full_customerGetListV1_EORDERBY_sAddressCity_DESC, ezmax_api_definition__full_customerGetListV1_EORDERBY_sAddressZip_ASC, ezmax_api_definition__full_customerGetListV1_EORDERBY_sAddressZip_DESC, ezmax_api_definition__full_customerGetListV1_EORDERBY_sProvinceNameX_ASC, ezmax_api_definition__full_customerGetListV1_EORDERBY_sProvinceNameX_DESC, ezmax_api_definition__full_customerGetListV1_EORDERBY_sCountryNameX_ASC, ezmax_api_definition__full_customerGetListV1_EORDERBY_sCountryNameX_DESC } ezmax_api_definition__full_customerGetListV1_eOrderBy_e;
-
-// Enum  for ObjectCustomerAPI_customerGetListV1
-typedef enum  { ezmax_api_definition__full_customerGetListV1__NULL = 0, ezmax_api_definition__full_customerGetListV1__*, ezmax_api_definition__full_customerGetListV1__en, ezmax_api_definition__full_customerGetListV1__fr } ezmax_api_definition__full_customerGetListV1_Accept-Language_e;
-
-
-// Create a new Customer
-//
-// The endpoint allows to create one or many elements at once.
-//
-customer_create_object_v1_response_t*
-ObjectCustomerAPI_customerCreateObjectV1(apiClient_t *apiClient, customer_create_object_v1_request_t *customer_create_object_v1_request);
-
 
 // Retrieve Customers and IDs
 //
@@ -45,14 +28,6 @@ ObjectCustomerAPI_customerCreateObjectV1(apiClient_t *apiClient, customer_create
 //
 customer_get_autocomplete_v2_response_t*
 ObjectCustomerAPI_customerGetAutocompleteV2(apiClient_t *apiClient, ezmax_api_definition__full_customerGetAutocompleteV2_sSelector_e sSelector, ezmax_api_definition__full_customerGetAutocompleteV2_eFilterActive_e eFilterActive, char *sQuery, header_accept_language_e Accept_Language);
-
-
-// Retrieve Customer list
-//
-// 
-//
-customer_get_list_v1_response_t*
-ObjectCustomerAPI_customerGetListV1(apiClient_t *apiClient, ezmax_api_definition__full_customerGetListV1_eOrderBy_e eOrderBy, int *iRowMax, int *iRowOffset, header_accept_language_e Accept_Language, char *sFilter);
 
 
 // Retrieve an existing Customer
@@ -63,7 +38,7 @@ customer_get_object_v2_response_t*
 ObjectCustomerAPI_customerGetObjectV2(apiClient_t *apiClient, int *pkiCustomerID);
 
 
-// Import attachments into the Buyercontract
+// Import attachments into the Customer
 //
 // 
 //

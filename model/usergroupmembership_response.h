@@ -28,6 +28,7 @@ typedef struct usergroupmembership_response_t {
     char *s_user_loginname; // string
     char *s_email_address; // string
     char *s_usergroup_name_x; // string
+    int b_user_isactive; //boolean
     char *s_usergroupexternal_name; // string
 
     int _library_owned; // Is the library responsible for freeing this object?
@@ -43,6 +44,7 @@ __attribute__((deprecated)) usergroupmembership_response_t *usergroupmembership_
     char *s_user_loginname,
     char *s_email_address,
     char *s_usergroup_name_x,
+    int b_user_isactive,
     char *s_usergroupexternal_name
 );
 

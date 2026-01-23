@@ -13,8 +13,6 @@
 #include "../model/ezsignbulksend_create_object_v2_request.h"
 #include "../model/ezsignbulksend_create_object_v2_response.h"
 #include "../model/ezsignbulksend_delete_object_v1_response.h"
-#include "../model/ezsignbulksend_edit_object_v1_request.h"
-#include "../model/ezsignbulksend_edit_object_v1_response.h"
 #include "../model/ezsignbulksend_edit_object_v2_request.h"
 #include "../model/ezsignbulksend_edit_object_v2_response.h"
 #include "../model/ezsignbulksend_get_ezsignbulksendtransmissions_v1_response.h"
@@ -65,14 +63,6 @@ ObjectEzsignbulksendAPI_ezsignbulksendCreateObjectV2(apiClient_t *apiClient, ezs
 //
 ezsignbulksend_delete_object_v1_response_t*
 ObjectEzsignbulksendAPI_ezsignbulksendDeleteObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksendID);
-
-
-// Edit an existing Ezsignbulksend
-//
-// 
-//
-ezsignbulksend_edit_object_v1_response_t*
-ObjectEzsignbulksendAPI_ezsignbulksendEditObjectV1(apiClient_t *apiClient, int *pkiEzsignbulksendID, ezsignbulksend_edit_object_v1_request_t *ezsignbulksend_edit_object_v1_request);
 
 
 // Edit an existing Ezsignbulksend

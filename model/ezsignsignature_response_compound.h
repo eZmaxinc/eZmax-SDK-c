@@ -26,6 +26,8 @@ typedef struct ezsignsignature_response_compound_t ezsignsignature_response_comp
 #include "field_e_ezsignsignature_consultationtrigger.h"
 #include "field_e_ezsignsignature_dependencyrequirement.h"
 #include "field_e_ezsignsignature_font.h"
+#include "field_e_ezsignsignature_signaturepad.h"
+#include "field_e_ezsignsignature_signaturepadrequired.h"
 #include "field_e_ezsignsignature_tooltipposition.h"
 #include "field_e_ezsignsignature_type.h"
 #include "signature_response_compound.h"
@@ -42,6 +44,7 @@ typedef struct ezsignsignature_response_compound_t {
     char *s_currency_description_x; // string
     char *d_ezsignsignature_creditcardamount; // string
     char *s_ezsignsignature_creditcardamountdescription; // string
+    int b_ezsignsignature_creditcardcustomamount; //boolean
     char *s_ezsignsigningreason_description_x; // string
     int i_ezsignpage_pagenumber; //numeric
     int i_ezsignsignature_x; //numeric
@@ -51,6 +54,8 @@ typedef struct ezsignsignature_response_compound_t {
     int i_ezsignsignature_step; //numeric
     int i_ezsignsignature_stepadjusted; //numeric
     ezmax_api_definition__full_field_e_ezsignsignature_type__e e_ezsignsignature_type; //referenced enum
+    ezmax_api_definition__full_field_e_ezsignsignature_signaturepad__e e_ezsignsignature_signaturepad; //referenced enum
+    ezmax_api_definition__full_field_e_ezsignsignature_signaturepadrequired__e e_ezsignsignature_signaturepadrequired; //referenced enum
     char *t_ezsignsignature_tooltip; // string
     ezmax_api_definition__full_field_e_ezsignsignature_tooltipposition__e e_ezsignsignature_tooltipposition; //referenced enum
     ezmax_api_definition__full_field_e_ezsignsignature_font__e e_ezsignsignature_font; //referenced enum
@@ -96,6 +101,7 @@ __attribute__((deprecated)) ezsignsignature_response_compound_t *ezsignsignature
     char *s_currency_description_x,
     char *d_ezsignsignature_creditcardamount,
     char *s_ezsignsignature_creditcardamountdescription,
+    int b_ezsignsignature_creditcardcustomamount,
     char *s_ezsignsigningreason_description_x,
     int i_ezsignpage_pagenumber,
     int i_ezsignsignature_x,
@@ -105,6 +111,8 @@ __attribute__((deprecated)) ezsignsignature_response_compound_t *ezsignsignature
     int i_ezsignsignature_step,
     int i_ezsignsignature_stepadjusted,
     ezmax_api_definition__full_field_e_ezsignsignature_type__e e_ezsignsignature_type,
+    ezmax_api_definition__full_field_e_ezsignsignature_signaturepad__e e_ezsignsignature_signaturepad,
+    ezmax_api_definition__full_field_e_ezsignsignature_signaturepadrequired__e e_ezsignsignature_signaturepadrequired,
     char *t_ezsignsignature_tooltip,
     ezmax_api_definition__full_field_e_ezsignsignature_tooltipposition__e e_ezsignsignature_tooltipposition,
     ezmax_api_definition__full_field_e_ezsignsignature_font__e e_ezsignsignature_font,

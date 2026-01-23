@@ -12,7 +12,8 @@ static lead_list_element_t *lead_list_element_create_internal(
     ezmax_api_definition__full_field_e_lead_status__e e_lead_status,
     char *dt_lead_expiration,
     int b_lead_isactive,
-    char *s_lead_code
+    char *s_lead_code,
+    char *s_lead_contacts
     ) {
     lead_list_element_t *lead_list_element_local_var = malloc(sizeof(lead_list_element_t));
     if (!lead_list_element_local_var) {
@@ -25,6 +26,7 @@ static lead_list_element_t *lead_list_element_create_internal(
     lead_list_element_local_var->dt_lead_expiration = dt_lead_expiration;
     lead_list_element_local_var->b_lead_isactive = b_lead_isactive;
     lead_list_element_local_var->s_lead_code = s_lead_code;
+    lead_list_element_local_var->s_lead_contacts = s_lead_contacts;
 
     lead_list_element_local_var->_library_owned = 1;
     return lead_list_element_local_var;
@@ -37,7 +39,8 @@ __attribute__((deprecated)) lead_list_element_t *lead_list_element_create(
     ezmax_api_definition__full_field_e_lead_status__e e_lead_status,
     char *dt_lead_expiration,
     int b_lead_isactive,
-    char *s_lead_code
+    char *s_lead_code,
+    char *s_lead_contacts
     ) {
     return lead_list_element_create_internal (
         pki_lead_id,
@@ -46,7 +49,8 @@ __attribute__((deprecated)) lead_list_element_t *lead_list_element_create(
         e_lead_status,
         dt_lead_expiration,
         b_lead_isactive,
-        s_lead_code
+        s_lead_code,
+        s_lead_contacts
         );
 }
 
@@ -70,6 +74,10 @@ void lead_list_element_free(lead_list_element_t *lead_list_element) {
     if (lead_list_element->s_lead_code) {
         free(lead_list_element->s_lead_code);
         lead_list_element->s_lead_code = NULL;
+    }
+    if (lead_list_element->s_lead_contacts) {
+        free(lead_list_element->s_lead_contacts);
+        lead_list_element->s_lead_contacts = NULL;
     }
     free(lead_list_element);
 }
@@ -142,6 +150,14 @@ cJSON *lead_list_element_convertToJSON(lead_list_element_t *lead_list_element) {
     }
     if(cJSON_AddStringToObject(item, "sLeadCode", lead_list_element->s_lead_code) == NULL) {
     goto fail; //String
+    }
+
+
+    // lead_list_element->s_lead_contacts
+    if(lead_list_element->s_lead_contacts) {
+    if(cJSON_AddStringToObject(item, "sLeadContacts", lead_list_element->s_lead_contacts) == NULL) {
+    goto fail; //String
+    }
     }
 
     return item;
@@ -261,6 +277,18 @@ lead_list_element_t *lead_list_element_parseFromJSON(cJSON *lead_list_elementJSO
     goto end; //String
     }
 
+    // lead_list_element->s_lead_contacts
+    cJSON *s_lead_contacts = cJSON_GetObjectItemCaseSensitive(lead_list_elementJSON, "sLeadContacts");
+    if (cJSON_IsNull(s_lead_contacts)) {
+        s_lead_contacts = NULL;
+    }
+    if (s_lead_contacts) { 
+    if(!cJSON_IsString(s_lead_contacts) && !cJSON_IsNull(s_lead_contacts))
+    {
+    goto end; //String
+    }
+    }
+
 
     lead_list_element_local_var = lead_list_element_create_internal (
         pki_lead_id->valuedouble,
@@ -269,7 +297,8 @@ lead_list_element_t *lead_list_element_parseFromJSON(cJSON *lead_list_elementJSO
         e_lead_status_local_nonprim,
         strdup(dt_lead_expiration->valuestring),
         b_lead_isactive->valueint,
-        strdup(s_lead_code->valuestring)
+        strdup(s_lead_code->valuestring),
+        s_lead_contacts && !cJSON_IsNull(s_lead_contacts) ? strdup(s_lead_contacts->valuestring) : NULL
         );
 
     return lead_list_element_local_var;

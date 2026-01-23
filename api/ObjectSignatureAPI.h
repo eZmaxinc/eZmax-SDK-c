@@ -11,7 +11,6 @@
 #include "../model/signature_delete_object_v1_response.h"
 #include "../model/signature_edit_object_v1_request.h"
 #include "../model/signature_edit_object_v1_response.h"
-#include "../model/signature_get_object_v2_response.h"
 #include "../model/signature_get_object_v3_response.h"
 
 
@@ -37,14 +36,6 @@ ObjectSignatureAPI_signatureDeleteObjectV1(apiClient_t *apiClient, int *pkiSigna
 //
 signature_edit_object_v1_response_t*
 ObjectSignatureAPI_signatureEditObjectV1(apiClient_t *apiClient, int *pkiSignatureID, signature_edit_object_v1_request_t *signature_edit_object_v1_request);
-
-
-// Retrieve an existing Signature
-//
-// 
-//
-signature_get_object_v2_response_t*
-ObjectSignatureAPI_signatureGetObjectV2(apiClient_t *apiClient, int *pkiSignatureID);
 
 
 // Retrieve an existing Signature

@@ -15,13 +15,10 @@
 #include "../model/ezsignsignature_create_object_v4_request.h"
 #include "../model/ezsignsignature_create_object_v4_response.h"
 #include "../model/ezsignsignature_delete_object_v1_response.h"
-#include "../model/ezsignsignature_edit_object_v2_request.h"
-#include "../model/ezsignsignature_edit_object_v2_response.h"
 #include "../model/ezsignsignature_edit_object_v3_request.h"
 #include "../model/ezsignsignature_edit_object_v3_response.h"
 #include "../model/ezsignsignature_get_ezsignsignatureattachment_v1_response.h"
 #include "../model/ezsignsignature_get_ezsignsignatures_automatic_v1_response.h"
-#include "../model/ezsignsignature_get_object_v3_response.h"
 #include "../model/ezsignsignature_get_object_v4_response.h"
 #include "../model/ezsignsignature_sign_v1_request.h"
 #include "../model/ezsignsignature_sign_v1_response.h"
@@ -69,14 +66,6 @@ ObjectEzsignsignatureAPI_ezsignsignatureDeleteObjectV1(apiClient_t *apiClient, i
 
 // Edit an existing Ezsignsignature
 //
-// Major step overhaul.  Endpoints that existed before version 1.3 do not allow you to combine forms and signatures in the same step. The step numbers are different from those indicated by endpoints added since version 1.3. This endpoint is compatible with endpoints that existed before 1.3 but are not compatible with those added since 1.3.
-//
-ezsignsignature_edit_object_v2_response_t*
-ObjectEzsignsignatureAPI_ezsignsignatureEditObjectV2(apiClient_t *apiClient, int *pkiEzsignsignatureID, ezsignsignature_edit_object_v2_request_t *ezsignsignature_edit_object_v2_request);
-
-
-// Edit an existing Ezsignsignature
-//
 // 
 //
 ezsignsignature_edit_object_v3_response_t*
@@ -95,14 +84,6 @@ ObjectEzsignsignatureAPI_ezsignsignatureGetEzsignsignatureattachmentV1(apiClient
 //
 ezsignsignature_get_ezsignsignatures_automatic_v1_response_t*
 ObjectEzsignsignatureAPI_ezsignsignatureGetEzsignsignaturesAutomaticV1(apiClient_t *apiClient);
-
-
-// Retrieve an existing Ezsignsignature
-//
-// Major step overhaul.  Endpoints that existed before version 1.3 do not allow you to combine forms and signatures in the same step. The step numbers are different from those indicated by endpoints added since version 1.3. This endpoint is compatible with endpoints that existed before 1.3 but are not compatible with those added since 1.3.
-//
-ezsignsignature_get_object_v3_response_t*
-ObjectEzsignsignatureAPI_ezsignsignatureGetObjectV3(apiClient_t *apiClient, int *pkiEzsignsignatureID);
 
 
 // Retrieve an existing Ezsignsignature

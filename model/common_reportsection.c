@@ -8,7 +8,8 @@
 static common_reportsection_t *common_reportsection_create_internal(
     list_t *a_obj_reportsubsection,
     ezmax_api_definition__full_enum_horizontalalignment__e e_reportsection_horizontalalignment,
-    char *s_reportsection_title
+    char *s_reportsection_title,
+    char *s_reportsection_tabname
     ) {
     common_reportsection_t *common_reportsection_local_var = malloc(sizeof(common_reportsection_t));
     if (!common_reportsection_local_var) {
@@ -17,6 +18,7 @@ static common_reportsection_t *common_reportsection_create_internal(
     common_reportsection_local_var->a_obj_reportsubsection = a_obj_reportsubsection;
     common_reportsection_local_var->e_reportsection_horizontalalignment = e_reportsection_horizontalalignment;
     common_reportsection_local_var->s_reportsection_title = s_reportsection_title;
+    common_reportsection_local_var->s_reportsection_tabname = s_reportsection_tabname;
 
     common_reportsection_local_var->_library_owned = 1;
     return common_reportsection_local_var;
@@ -25,12 +27,14 @@ static common_reportsection_t *common_reportsection_create_internal(
 __attribute__((deprecated)) common_reportsection_t *common_reportsection_create(
     list_t *a_obj_reportsubsection,
     ezmax_api_definition__full_enum_horizontalalignment__e e_reportsection_horizontalalignment,
-    char *s_reportsection_title
+    char *s_reportsection_title,
+    char *s_reportsection_tabname
     ) {
     return common_reportsection_create_internal (
         a_obj_reportsubsection,
         e_reportsection_horizontalalignment,
-        s_reportsection_title
+        s_reportsection_title,
+        s_reportsection_tabname
         );
 }
 
@@ -53,6 +57,10 @@ void common_reportsection_free(common_reportsection_t *common_reportsection) {
     if (common_reportsection->s_reportsection_title) {
         free(common_reportsection->s_reportsection_title);
         common_reportsection->s_reportsection_title = NULL;
+    }
+    if (common_reportsection->s_reportsection_tabname) {
+        free(common_reportsection->s_reportsection_tabname);
+        common_reportsection->s_reportsection_tabname = NULL;
     }
     free(common_reportsection);
 }
@@ -98,6 +106,14 @@ cJSON *common_reportsection_convertToJSON(common_reportsection_t *common_reports
     // common_reportsection->s_reportsection_title
     if(common_reportsection->s_reportsection_title) {
     if(cJSON_AddStringToObject(item, "sReportsectionTitle", common_reportsection->s_reportsection_title) == NULL) {
+    goto fail; //String
+    }
+    }
+
+
+    // common_reportsection->s_reportsection_tabname
+    if(common_reportsection->s_reportsection_tabname) {
+    if(cJSON_AddStringToObject(item, "sReportsectionTabname", common_reportsection->s_reportsection_tabname) == NULL) {
     goto fail; //String
     }
     }
@@ -171,11 +187,24 @@ common_reportsection_t *common_reportsection_parseFromJSON(cJSON *common_reports
     }
     }
 
+    // common_reportsection->s_reportsection_tabname
+    cJSON *s_reportsection_tabname = cJSON_GetObjectItemCaseSensitive(common_reportsectionJSON, "sReportsectionTabname");
+    if (cJSON_IsNull(s_reportsection_tabname)) {
+        s_reportsection_tabname = NULL;
+    }
+    if (s_reportsection_tabname) { 
+    if(!cJSON_IsString(s_reportsection_tabname) && !cJSON_IsNull(s_reportsection_tabname))
+    {
+    goto end; //String
+    }
+    }
+
 
     common_reportsection_local_var = common_reportsection_create_internal (
         a_obj_reportsubsectionList,
         e_reportsection_horizontalalignment_local_nonprim,
-        s_reportsection_title && !cJSON_IsNull(s_reportsection_title) ? strdup(s_reportsection_title->valuestring) : NULL
+        s_reportsection_title && !cJSON_IsNull(s_reportsection_title) ? strdup(s_reportsection_title->valuestring) : NULL,
+        s_reportsection_tabname && !cJSON_IsNull(s_reportsection_tabname) ? strdup(s_reportsection_tabname->valuestring) : NULL
         );
 
     return common_reportsection_local_var;

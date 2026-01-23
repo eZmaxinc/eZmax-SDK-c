@@ -10,6 +10,7 @@ static creditcardclient_list_element_t *creditcardclient_list_element_create_int
     int fki_creditcarddetail_id,
     int fki_creditcardtype_id,
     int b_creditcardclientrelation_isdefault,
+    int b_creditcardclient_legacy,
     char *s_creditcardclient_description,
     int b_creditcardclient_allowedcompanypayment,
     int b_creditcardclient_allowedtranquillit,
@@ -25,6 +26,7 @@ static creditcardclient_list_element_t *creditcardclient_list_element_create_int
     creditcardclient_list_element_local_var->fki_creditcarddetail_id = fki_creditcarddetail_id;
     creditcardclient_list_element_local_var->fki_creditcardtype_id = fki_creditcardtype_id;
     creditcardclient_list_element_local_var->b_creditcardclientrelation_isdefault = b_creditcardclientrelation_isdefault;
+    creditcardclient_list_element_local_var->b_creditcardclient_legacy = b_creditcardclient_legacy;
     creditcardclient_list_element_local_var->s_creditcardclient_description = s_creditcardclient_description;
     creditcardclient_list_element_local_var->b_creditcardclient_allowedcompanypayment = b_creditcardclient_allowedcompanypayment;
     creditcardclient_list_element_local_var->b_creditcardclient_allowedtranquillit = b_creditcardclient_allowedtranquillit;
@@ -41,6 +43,7 @@ __attribute__((deprecated)) creditcardclient_list_element_t *creditcardclient_li
     int fki_creditcarddetail_id,
     int fki_creditcardtype_id,
     int b_creditcardclientrelation_isdefault,
+    int b_creditcardclient_legacy,
     char *s_creditcardclient_description,
     int b_creditcardclient_allowedcompanypayment,
     int b_creditcardclient_allowedtranquillit,
@@ -53,6 +56,7 @@ __attribute__((deprecated)) creditcardclient_list_element_t *creditcardclient_li
         fki_creditcarddetail_id,
         fki_creditcardtype_id,
         b_creditcardclientrelation_isdefault,
+        b_creditcardclient_legacy,
         s_creditcardclient_description,
         b_creditcardclient_allowedcompanypayment,
         b_creditcardclient_allowedtranquillit,
@@ -113,6 +117,15 @@ cJSON *creditcardclient_list_element_convertToJSON(creditcardclient_list_element
         goto fail;
     }
     if(cJSON_AddBoolToObject(item, "bCreditcardclientrelationIsdefault", creditcardclient_list_element->b_creditcardclientrelation_isdefault) == NULL) {
+    goto fail; //Bool
+    }
+
+
+    // creditcardclient_list_element->b_creditcardclient_legacy
+    if (!creditcardclient_list_element->b_creditcardclient_legacy) {
+        goto fail;
+    }
+    if(cJSON_AddBoolToObject(item, "bCreditcardclientLegacy", creditcardclient_list_element->b_creditcardclient_legacy) == NULL) {
     goto fail; //Bool
     }
 
@@ -242,6 +255,21 @@ creditcardclient_list_element_t *creditcardclient_list_element_parseFromJSON(cJS
     goto end; //Bool
     }
 
+    // creditcardclient_list_element->b_creditcardclient_legacy
+    cJSON *b_creditcardclient_legacy = cJSON_GetObjectItemCaseSensitive(creditcardclient_list_elementJSON, "bCreditcardclientLegacy");
+    if (cJSON_IsNull(b_creditcardclient_legacy)) {
+        b_creditcardclient_legacy = NULL;
+    }
+    if (!b_creditcardclient_legacy) {
+        goto end;
+    }
+
+    
+    if(!cJSON_IsBool(b_creditcardclient_legacy))
+    {
+    goto end; //Bool
+    }
+
     // creditcardclient_list_element->s_creditcardclient_description
     cJSON *s_creditcardclient_description = cJSON_GetObjectItemCaseSensitive(creditcardclient_list_elementJSON, "sCreditcardclientDescription");
     if (cJSON_IsNull(s_creditcardclient_description)) {
@@ -338,6 +366,7 @@ creditcardclient_list_element_t *creditcardclient_list_element_parseFromJSON(cJS
         fki_creditcarddetail_id->valuedouble,
         fki_creditcardtype_id->valuedouble,
         b_creditcardclientrelation_isdefault->valueint,
+        b_creditcardclient_legacy->valueint,
         strdup(s_creditcardclient_description->valuestring),
         b_creditcardclient_allowedcompanypayment->valueint,
         b_creditcardclient_allowedtranquillit->valueint,
