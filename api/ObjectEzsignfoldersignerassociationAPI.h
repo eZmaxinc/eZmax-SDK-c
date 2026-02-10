@@ -6,6 +6,8 @@
 #include "../include/keyValuePair.h"
 #include "../include/binary.h"
 #include "../model/common_response_error.h"
+#include "../model/ezsignfoldersignerassociation_create_embedded_url_v1_request.h"
+#include "../model/ezsignfoldersignerassociation_create_embedded_url_v1_response.h"
 #include "../model/ezsignfoldersignerassociation_create_embedded_url_v2_request.h"
 #include "../model/ezsignfoldersignerassociation_create_embedded_url_v2_response.h"
 #include "../model/ezsignfoldersignerassociation_create_object_v1_request.h"
@@ -24,6 +26,14 @@
 #include "../model/ezsignfoldersignerassociation_reassign_v1_request.h"
 #include "../model/ezsignfoldersignerassociation_reassign_v1_response.h"
 #include "../model/object.h"
+
+
+// Creates an Url to allow embedded signing
+//
+// This endpoint creates an Url that can be used in a browser or embedded in an I-Frame to allow signing.  The signer Login type must be configured as Embedded.
+//
+ezsignfoldersignerassociation_create_embedded_url_v1_response_t*
+ObjectEzsignfoldersignerassociationAPI_ezsignfoldersignerassociationCreateEmbeddedUrlV1(apiClient_t *apiClient, int *pkiEzsignfoldersignerassociationID, ezsignfoldersignerassociation_create_embedded_url_v1_request_t *ezsignfoldersignerassociation_create_embedded_url_v1_request);
 
 
 // Creates an Url to allow embedded signing

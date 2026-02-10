@@ -1,0 +1,65 @@
+/*
+ * ezsigntemplateannotation_request.h
+ *
+ * A Ezsigntemplateannotation Object
+ */
+
+#ifndef _ezsigntemplateannotation_request_H_
+#define _ezsigntemplateannotation_request_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct ezsigntemplateannotation_request_t ezsigntemplateannotation_request_t;
+
+#include "field_e_ezsigntemplateannotation_horizontalalignment.h"
+#include "field_e_ezsigntemplateannotation_type.h"
+#include "field_e_ezsigntemplateannotation_verticalalignment.h"
+
+
+
+typedef struct ezsigntemplateannotation_request_t {
+    int pki_ezsigntemplateannotation_id; //numeric
+    int fki_ezsigntemplatedocumentpage_id; //numeric
+    int fki_textstylestatic_id; //numeric
+    ezmax_api_definition__full_field_e_ezsigntemplateannotation_horizontalalignment__e e_ezsigntemplateannotation_horizontalalignment; //referenced enum
+    ezmax_api_definition__full_field_e_ezsigntemplateannotation_verticalalignment__e e_ezsigntemplateannotation_verticalalignment; //referenced enum
+    ezmax_api_definition__full_field_e_ezsigntemplateannotation_type__e e_ezsigntemplateannotation_type; //referenced enum
+    int i_ezsigntemplateannotation_x; //numeric
+    int i_ezsigntemplateannotation_y; //numeric
+    int i_ezsigntemplateannotation_width; //numeric
+    int i_ezsigntemplateannotation_height; //numeric
+    char *s_ezsigntemplateannotation_description; // string
+    char *s_ezsigntemplateannotation_defaulttext; // string
+    char *s_ezsigntemplateannotationn_dropdownvalues; // string
+
+    int _library_owned; // Is the library responsible for freeing this object?
+} ezsigntemplateannotation_request_t;
+
+__attribute__((deprecated)) ezsigntemplateannotation_request_t *ezsigntemplateannotation_request_create(
+    int pki_ezsigntemplateannotation_id,
+    int fki_ezsigntemplatedocumentpage_id,
+    int fki_textstylestatic_id,
+    ezmax_api_definition__full_field_e_ezsigntemplateannotation_horizontalalignment__e e_ezsigntemplateannotation_horizontalalignment,
+    ezmax_api_definition__full_field_e_ezsigntemplateannotation_verticalalignment__e e_ezsigntemplateannotation_verticalalignment,
+    ezmax_api_definition__full_field_e_ezsigntemplateannotation_type__e e_ezsigntemplateannotation_type,
+    int i_ezsigntemplateannotation_x,
+    int i_ezsigntemplateannotation_y,
+    int i_ezsigntemplateannotation_width,
+    int i_ezsigntemplateannotation_height,
+    char *s_ezsigntemplateannotation_description,
+    char *s_ezsigntemplateannotation_defaulttext,
+    char *s_ezsigntemplateannotationn_dropdownvalues
+);
+
+void ezsigntemplateannotation_request_free(ezsigntemplateannotation_request_t *ezsigntemplateannotation_request);
+
+ezsigntemplateannotation_request_t *ezsigntemplateannotation_request_parseFromJSON(cJSON *ezsigntemplateannotation_requestJSON);
+
+cJSON *ezsigntemplateannotation_request_convertToJSON(ezsigntemplateannotation_request_t *ezsigntemplateannotation_request);
+
+#endif /* _ezsigntemplateannotation_request_H_ */
+

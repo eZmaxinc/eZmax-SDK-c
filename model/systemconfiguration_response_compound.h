@@ -40,6 +40,7 @@ typedef struct systemconfiguration_response_compound_t {
     int b_systemconfiguration_ezsignpersonnal; //boolean
     int b_systemconfiguration_hascreditcardmerchant; //boolean
     int b_systemconfiguration_isdisposalactive; //boolean
+    int b_systemconfiguration_allowcomplexcreditcardsignature; //boolean
     int b_systemconfiguration_sspr; //boolean
     char *dt_systemconfiguration_readonlyexpirationstart; // string
     char *dt_systemconfiguration_readonlyexpirationend; // string
@@ -65,6 +66,7 @@ __attribute__((deprecated)) systemconfiguration_response_compound_t *systemconfi
     int b_systemconfiguration_ezsignpersonnal,
     int b_systemconfiguration_hascreditcardmerchant,
     int b_systemconfiguration_isdisposalactive,
+    int b_systemconfiguration_allowcomplexcreditcardsignature,
     int b_systemconfiguration_sspr,
     char *dt_systemconfiguration_readonlyexpirationstart,
     char *dt_systemconfiguration_readonlyexpirationend,

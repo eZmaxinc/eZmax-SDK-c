@@ -1,0 +1,39 @@
+/*
+ * ezsigntemplateglobalannotation_get_object_v2_response_m_payload.h
+ *
+ * Payload for GET /2/object/ezsigntemplateglobalannotation/{pkiEzsigntemplateglobalannotationID}
+ */
+
+#ifndef _ezsigntemplateglobalannotation_get_object_v2_response_m_payload_H_
+#define _ezsigntemplateglobalannotation_get_object_v2_response_m_payload_H_
+
+#include <string.h>
+#include "../external/cJSON.h"
+#include "../include/list.h"
+#include "../include/keyValuePair.h"
+#include "../include/binary.h"
+
+typedef struct ezsigntemplateglobalannotation_get_object_v2_response_m_payload_t ezsigntemplateglobalannotation_get_object_v2_response_m_payload_t;
+
+#include "ezsigntemplateglobalannotation_response_compound.h"
+
+
+
+typedef struct ezsigntemplateglobalannotation_get_object_v2_response_m_payload_t {
+    struct ezsigntemplateglobalannotation_response_compound_t *obj_ezsigntemplateglobalannotation; //model
+
+    int _library_owned; // Is the library responsible for freeing this object?
+} ezsigntemplateglobalannotation_get_object_v2_response_m_payload_t;
+
+__attribute__((deprecated)) ezsigntemplateglobalannotation_get_object_v2_response_m_payload_t *ezsigntemplateglobalannotation_get_object_v2_response_m_payload_create(
+    ezsigntemplateglobalannotation_response_compound_t *obj_ezsigntemplateglobalannotation
+);
+
+void ezsigntemplateglobalannotation_get_object_v2_response_m_payload_free(ezsigntemplateglobalannotation_get_object_v2_response_m_payload_t *ezsigntemplateglobalannotation_get_object_v2_response_m_payload);
+
+ezsigntemplateglobalannotation_get_object_v2_response_m_payload_t *ezsigntemplateglobalannotation_get_object_v2_response_m_payload_parseFromJSON(cJSON *ezsigntemplateglobalannotation_get_object_v2_response_m_payloadJSON);
+
+cJSON *ezsigntemplateglobalannotation_get_object_v2_response_m_payload_convertToJSON(ezsigntemplateglobalannotation_get_object_v2_response_m_payload_t *ezsigntemplateglobalannotation_get_object_v2_response_m_payload);
+
+#endif /* _ezsigntemplateglobalannotation_get_object_v2_response_m_payload_H_ */
+

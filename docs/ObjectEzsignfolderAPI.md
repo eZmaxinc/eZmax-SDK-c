@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 ```c
 // Download multiples files from an Ezsignfolder
 //
-binary_t** ObjectEzsignfolderAPI_ezsignfolderBatchDownloadV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_batch_download_v1_request_t *ezsignfolder_batch_download_v1_request);
+binary_t** ObjectEzsignfolderAPI_ezsignfolderBatchDownloadV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_batch_download_v1_request_t *ezsignfolder_batch_download_v1_request, ezmax_api_definition__full_ezsignfolderBatchDownloadV1_Accept_e Accept);
 ```
 
 ### Parameters
@@ -86,6 +86,7 @@ Name | Type | Description  | Notes
 **apiClient** | **apiClient_t \*** | context containing the client configuration |
 **pkiEzsignfolderID** | **int \*** |  | 
 **ezsignfolder_batch_download_v1_request** | **[ezsignfolder_batch_download_v1_request_t](ezsignfolder_batch_download_v1_request.md) \*** |  | 
+**Accept** | **ezmax_api_definition__full_ezsignfolderBatchDownloadV1_Accept_e** | Test csharp | [optional] 
 
 ### Return type
 

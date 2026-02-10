@@ -840,6 +840,9 @@ set(SRCS
     model/ezsignfolder_send_v3_request.c
     model/ezsignfolder_send_v3_response.c
     model/ezsignfolder_unsend_v1_response.c
+    model/ezsignfoldersignerassociation_create_embedded_url_v1_request.c
+    model/ezsignfoldersignerassociation_create_embedded_url_v1_response.c
+    model/ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload.c
     model/ezsignfoldersignerassociation_create_embedded_url_v2_request.c
     model/ezsignfoldersignerassociation_create_embedded_url_v2_response.c
     model/ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload.c
@@ -1038,6 +1041,18 @@ set(SRCS
     model/ezsigntemplate_response_compound.c
     model/ezsigntemplate_response_compound_v3.c
     model/ezsigntemplate_response_v3.c
+    model/ezsigntemplateannotation_create_object_v1_request.c
+    model/ezsigntemplateannotation_create_object_v1_response.c
+    model/ezsigntemplateannotation_create_object_v1_response_m_payload.c
+    model/ezsigntemplateannotation_delete_object_v1_response.c
+    model/ezsigntemplateannotation_edit_object_v1_request.c
+    model/ezsigntemplateannotation_edit_object_v1_response.c
+    model/ezsigntemplateannotation_get_object_v2_response.c
+    model/ezsigntemplateannotation_get_object_v2_response_m_payload.c
+    model/ezsigntemplateannotation_request.c
+    model/ezsigntemplateannotation_request_compound.c
+    model/ezsigntemplateannotation_response.c
+    model/ezsigntemplateannotation_response_compound.c
     model/ezsigntemplatedocument_create_object_v1_request.c
     model/ezsigntemplatedocument_create_object_v1_response.c
     model/ezsigntemplatedocument_create_object_v1_response_m_payload.c
@@ -1123,6 +1138,10 @@ set(SRCS
     model/ezsigntemplateglobal_get_object_v2_response_m_payload.c
     model/ezsigntemplateglobal_response.c
     model/ezsigntemplateglobal_response_compound.c
+    model/ezsigntemplateglobalannotation_get_object_v2_response.c
+    model/ezsigntemplateglobalannotation_get_object_v2_response_m_payload.c
+    model/ezsigntemplateglobalannotation_response.c
+    model/ezsigntemplateglobalannotation_response_compound.c
     model/ezsigntemplateglobaldocument_response.c
     model/ezsigntemplateglobalsigner_response.c
     model/ezsigntemplateglobalsigner_response_compound.c
@@ -1334,6 +1353,9 @@ set(SRCS
     model/field_e_ezsignsignaturepaymentdetail_taxable.c
     model/field_e_ezsigntemplate_recognition.c
     model/field_e_ezsigntemplate_type.c
+    model/field_e_ezsigntemplateannotation_horizontalalignment.c
+    model/field_e_ezsigntemplateannotation_type.c
+    model/field_e_ezsigntemplateannotation_verticalalignment.c
     model/field_e_ezsigntemplatedocumentpagerecognition_operator.c
     model/field_e_ezsigntemplatedocumentpagerecognition_section.c
     model/field_e_ezsigntemplateelementdependency_operator.c
@@ -1346,6 +1368,9 @@ set(SRCS
     model/field_e_ezsigntemplateformfieldgroup_type.c
     model/field_e_ezsigntemplateglobal_module.c
     model/field_e_ezsigntemplateglobal_supplier.c
+    model/field_e_ezsigntemplateglobalannotation_horizontalalignment.c
+    model/field_e_ezsigntemplateglobalannotation_type.c
+    model/field_e_ezsigntemplateglobalannotation_verticalalignment.c
     model/field_e_ezsigntemplatepackagesigner_mapping.c
     model/field_e_ezsigntemplatepublic_limittype.c
     model/field_e_ezsigntemplatesignature_attachmentnamesource.c
@@ -2012,10 +2037,12 @@ set(SRCS
     api/ObjectEzsignsignergroupmembershipAPI.c
     api/ObjectEzsignsigningreasonAPI.c
     api/ObjectEzsigntemplateAPI.c
+    api/ObjectEzsigntemplateannotationAPI.c
     api/ObjectEzsigntemplatedocumentAPI.c
     api/ObjectEzsigntemplatedocumentpagerecognitionAPI.c
     api/ObjectEzsigntemplateformfieldgroupAPI.c
     api/ObjectEzsigntemplateglobalAPI.c
+    api/ObjectEzsigntemplateglobalannotationAPI.c
     api/ObjectEzsigntemplatepackageAPI.c
     api/ObjectEzsigntemplatepackagemembershipAPI.c
     api/ObjectEzsigntemplatepackagesignerAPI.c
@@ -2885,6 +2912,9 @@ set(HDRS
     model/ezsignfolder_send_v3_request.h
     model/ezsignfolder_send_v3_response.h
     model/ezsignfolder_unsend_v1_response.h
+    model/ezsignfoldersignerassociation_create_embedded_url_v1_request.h
+    model/ezsignfoldersignerassociation_create_embedded_url_v1_response.h
+    model/ezsignfoldersignerassociation_create_embedded_url_v1_response_m_payload.h
     model/ezsignfoldersignerassociation_create_embedded_url_v2_request.h
     model/ezsignfoldersignerassociation_create_embedded_url_v2_response.h
     model/ezsignfoldersignerassociation_create_embedded_url_v2_response_m_payload.h
@@ -3083,6 +3113,18 @@ set(HDRS
     model/ezsigntemplate_response_compound.h
     model/ezsigntemplate_response_compound_v3.h
     model/ezsigntemplate_response_v3.h
+    model/ezsigntemplateannotation_create_object_v1_request.h
+    model/ezsigntemplateannotation_create_object_v1_response.h
+    model/ezsigntemplateannotation_create_object_v1_response_m_payload.h
+    model/ezsigntemplateannotation_delete_object_v1_response.h
+    model/ezsigntemplateannotation_edit_object_v1_request.h
+    model/ezsigntemplateannotation_edit_object_v1_response.h
+    model/ezsigntemplateannotation_get_object_v2_response.h
+    model/ezsigntemplateannotation_get_object_v2_response_m_payload.h
+    model/ezsigntemplateannotation_request.h
+    model/ezsigntemplateannotation_request_compound.h
+    model/ezsigntemplateannotation_response.h
+    model/ezsigntemplateannotation_response_compound.h
     model/ezsigntemplatedocument_create_object_v1_request.h
     model/ezsigntemplatedocument_create_object_v1_response.h
     model/ezsigntemplatedocument_create_object_v1_response_m_payload.h
@@ -3168,6 +3210,10 @@ set(HDRS
     model/ezsigntemplateglobal_get_object_v2_response_m_payload.h
     model/ezsigntemplateglobal_response.h
     model/ezsigntemplateglobal_response_compound.h
+    model/ezsigntemplateglobalannotation_get_object_v2_response.h
+    model/ezsigntemplateglobalannotation_get_object_v2_response_m_payload.h
+    model/ezsigntemplateglobalannotation_response.h
+    model/ezsigntemplateglobalannotation_response_compound.h
     model/ezsigntemplateglobaldocument_response.h
     model/ezsigntemplateglobalsigner_response.h
     model/ezsigntemplateglobalsigner_response_compound.h
@@ -3379,6 +3425,9 @@ set(HDRS
     model/field_e_ezsignsignaturepaymentdetail_taxable.h
     model/field_e_ezsigntemplate_recognition.h
     model/field_e_ezsigntemplate_type.h
+    model/field_e_ezsigntemplateannotation_horizontalalignment.h
+    model/field_e_ezsigntemplateannotation_type.h
+    model/field_e_ezsigntemplateannotation_verticalalignment.h
     model/field_e_ezsigntemplatedocumentpagerecognition_operator.h
     model/field_e_ezsigntemplatedocumentpagerecognition_section.h
     model/field_e_ezsigntemplateelementdependency_operator.h
@@ -3391,6 +3440,9 @@ set(HDRS
     model/field_e_ezsigntemplateformfieldgroup_type.h
     model/field_e_ezsigntemplateglobal_module.h
     model/field_e_ezsigntemplateglobal_supplier.h
+    model/field_e_ezsigntemplateglobalannotation_horizontalalignment.h
+    model/field_e_ezsigntemplateglobalannotation_type.h
+    model/field_e_ezsigntemplateglobalannotation_verticalalignment.h
     model/field_e_ezsigntemplatepackagesigner_mapping.h
     model/field_e_ezsigntemplatepublic_limittype.h
     model/field_e_ezsigntemplatesignature_attachmentnamesource.h
@@ -4057,10 +4109,12 @@ set(HDRS
     api/ObjectEzsignsignergroupmembershipAPI.h
     api/ObjectEzsignsigningreasonAPI.h
     api/ObjectEzsigntemplateAPI.h
+    api/ObjectEzsigntemplateannotationAPI.h
     api/ObjectEzsigntemplatedocumentAPI.h
     api/ObjectEzsigntemplatedocumentpagerecognitionAPI.h
     api/ObjectEzsigntemplateformfieldgroupAPI.h
     api/ObjectEzsigntemplateglobalAPI.h
+    api/ObjectEzsigntemplateglobalannotationAPI.h
     api/ObjectEzsigntemplatepackageAPI.h
     api/ObjectEzsigntemplatepackagemembershipAPI.h
     api/ObjectEzsigntemplatepackagesignerAPI.h
@@ -4276,10 +4330,12 @@ set(HDRS "")
 #    unit-tests/manual-ObjectEzsignsignergroupmembershipAPI.c
 #    unit-tests/manual-ObjectEzsignsigningreasonAPI.c
 #    unit-tests/manual-ObjectEzsigntemplateAPI.c
+#    unit-tests/manual-ObjectEzsigntemplateannotationAPI.c
 #    unit-tests/manual-ObjectEzsigntemplatedocumentAPI.c
 #    unit-tests/manual-ObjectEzsigntemplatedocumentpagerecognitionAPI.c
 #    unit-tests/manual-ObjectEzsigntemplateformfieldgroupAPI.c
 #    unit-tests/manual-ObjectEzsigntemplateglobalAPI.c
+#    unit-tests/manual-ObjectEzsigntemplateglobalannotationAPI.c
 #    unit-tests/manual-ObjectEzsigntemplatepackageAPI.c
 #    unit-tests/manual-ObjectEzsigntemplatepackagemembershipAPI.c
 #    unit-tests/manual-ObjectEzsigntemplatepackagesignerAPI.c

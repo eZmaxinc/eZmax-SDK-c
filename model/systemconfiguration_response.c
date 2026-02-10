@@ -21,6 +21,7 @@ static systemconfiguration_response_t *systemconfiguration_response_create_inter
     int b_systemconfiguration_ezsignpersonnal,
     int b_systemconfiguration_hascreditcardmerchant,
     int b_systemconfiguration_isdisposalactive,
+    int b_systemconfiguration_allowcomplexcreditcardsignature,
     int b_systemconfiguration_sspr,
     char *dt_systemconfiguration_readonlyexpirationstart,
     char *dt_systemconfiguration_readonlyexpirationend,
@@ -46,6 +47,7 @@ static systemconfiguration_response_t *systemconfiguration_response_create_inter
     systemconfiguration_response_local_var->b_systemconfiguration_ezsignpersonnal = b_systemconfiguration_ezsignpersonnal;
     systemconfiguration_response_local_var->b_systemconfiguration_hascreditcardmerchant = b_systemconfiguration_hascreditcardmerchant;
     systemconfiguration_response_local_var->b_systemconfiguration_isdisposalactive = b_systemconfiguration_isdisposalactive;
+    systemconfiguration_response_local_var->b_systemconfiguration_allowcomplexcreditcardsignature = b_systemconfiguration_allowcomplexcreditcardsignature;
     systemconfiguration_response_local_var->b_systemconfiguration_sspr = b_systemconfiguration_sspr;
     systemconfiguration_response_local_var->dt_systemconfiguration_readonlyexpirationstart = dt_systemconfiguration_readonlyexpirationstart;
     systemconfiguration_response_local_var->dt_systemconfiguration_readonlyexpirationend = dt_systemconfiguration_readonlyexpirationend;
@@ -72,6 +74,7 @@ __attribute__((deprecated)) systemconfiguration_response_t *systemconfiguration_
     int b_systemconfiguration_ezsignpersonnal,
     int b_systemconfiguration_hascreditcardmerchant,
     int b_systemconfiguration_isdisposalactive,
+    int b_systemconfiguration_allowcomplexcreditcardsignature,
     int b_systemconfiguration_sspr,
     char *dt_systemconfiguration_readonlyexpirationstart,
     char *dt_systemconfiguration_readonlyexpirationend,
@@ -94,6 +97,7 @@ __attribute__((deprecated)) systemconfiguration_response_t *systemconfiguration_
         b_systemconfiguration_ezsignpersonnal,
         b_systemconfiguration_hascreditcardmerchant,
         b_systemconfiguration_isdisposalactive,
+        b_systemconfiguration_allowcomplexcreditcardsignature,
         b_systemconfiguration_sspr,
         dt_systemconfiguration_readonlyexpirationstart,
         dt_systemconfiguration_readonlyexpirationend,
@@ -286,6 +290,14 @@ cJSON *systemconfiguration_response_convertToJSON(systemconfiguration_response_t
     // systemconfiguration_response->b_systemconfiguration_isdisposalactive
     if(systemconfiguration_response->b_systemconfiguration_isdisposalactive) {
     if(cJSON_AddBoolToObject(item, "bSystemconfigurationIsdisposalactive", systemconfiguration_response->b_systemconfiguration_isdisposalactive) == NULL) {
+    goto fail; //Bool
+    }
+    }
+
+
+    // systemconfiguration_response->b_systemconfiguration_allowcomplexcreditcardsignature
+    if(systemconfiguration_response->b_systemconfiguration_allowcomplexcreditcardsignature) {
+    if(cJSON_AddBoolToObject(item, "bSystemconfigurationAllowcomplexcreditcardsignature", systemconfiguration_response->b_systemconfiguration_allowcomplexcreditcardsignature) == NULL) {
     goto fail; //Bool
     }
     }
@@ -558,6 +570,18 @@ systemconfiguration_response_t *systemconfiguration_response_parseFromJSON(cJSON
     }
     }
 
+    // systemconfiguration_response->b_systemconfiguration_allowcomplexcreditcardsignature
+    cJSON *b_systemconfiguration_allowcomplexcreditcardsignature = cJSON_GetObjectItemCaseSensitive(systemconfiguration_responseJSON, "bSystemconfigurationAllowcomplexcreditcardsignature");
+    if (cJSON_IsNull(b_systemconfiguration_allowcomplexcreditcardsignature)) {
+        b_systemconfiguration_allowcomplexcreditcardsignature = NULL;
+    }
+    if (b_systemconfiguration_allowcomplexcreditcardsignature) { 
+    if(!cJSON_IsBool(b_systemconfiguration_allowcomplexcreditcardsignature))
+    {
+    goto end; //Bool
+    }
+    }
+
     // systemconfiguration_response->b_systemconfiguration_sspr
     cJSON *b_systemconfiguration_sspr = cJSON_GetObjectItemCaseSensitive(systemconfiguration_responseJSON, "bSystemconfigurationSspr");
     if (cJSON_IsNull(b_systemconfiguration_sspr)) {
@@ -635,6 +659,7 @@ systemconfiguration_response_t *systemconfiguration_response_parseFromJSON(cJSON
         b_systemconfiguration_ezsignpersonnal->valueint,
         b_systemconfiguration_hascreditcardmerchant ? b_systemconfiguration_hascreditcardmerchant->valueint : 0,
         b_systemconfiguration_isdisposalactive ? b_systemconfiguration_isdisposalactive->valueint : 0,
+        b_systemconfiguration_allowcomplexcreditcardsignature ? b_systemconfiguration_allowcomplexcreditcardsignature->valueint : 0,
         b_systemconfiguration_sspr->valueint,
         dt_systemconfiguration_readonlyexpirationstart && !cJSON_IsNull(dt_systemconfiguration_readonlyexpirationstart) ? strdup(dt_systemconfiguration_readonlyexpirationstart->valuestring) : NULL,
         dt_systemconfiguration_readonlyexpirationend && !cJSON_IsNull(dt_systemconfiguration_readonlyexpirationend) ? strdup(dt_systemconfiguration_readonlyexpirationend->valuestring) : NULL,
