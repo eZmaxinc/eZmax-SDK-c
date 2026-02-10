@@ -8,58 +8,6 @@
 #define MAX_BUFFER_LENGTH 4096
 #define MAX_NUMBER_LENGTH_LONG 21
 
-// Functions for enum ACCEPT for ObjectEzsignfolderAPI_ezsignfolderBatchDownloadV1
-
-static char* ezsignfolderBatchDownloadV1_ACCEPT_ToString(ezmax_api_definition__full_ezsignfolderBatchDownloadV1_Accept_e ACCEPT){
-    char *ACCEPTArray[] =  { "NULL", "application/json", "application/zip", "application/pdf" };
-    return ACCEPTArray[ACCEPT];
-}
-
-static ezmax_api_definition__full_ezsignfolderBatchDownloadV1_Accept_e ezsignfolderBatchDownloadV1_ACCEPT_FromString(char* ACCEPT){
-    int stringToReturn = 0;
-    char *ACCEPTArray[] =  { "NULL", "application/json", "application/zip", "application/pdf" };
-    size_t sizeofArray = sizeof(ACCEPTArray) / sizeof(ACCEPTArray[0]);
-    while(stringToReturn < sizeofArray) {
-        if(strcmp(ACCEPT, ACCEPTArray[stringToReturn]) == 0) {
-            return stringToReturn;
-        }
-        stringToReturn++;
-    }
-    return 0;
-}
-
-/*
-// Function ezsignfolderBatchDownloadV1_ACCEPT_convertToJSON is not currently used,
-// since conversion to JSON passes through the conversion of the model, and ToString. The function is kept for future reference.
-//
-static cJSON *ezsignfolderBatchDownloadV1_ACCEPT_convertToJSON(ezmax_api_definition__full_ezsignfolderBatchDownloadV1_Accept_e ACCEPT) {
-    cJSON *item = cJSON_CreateObject();
-    if(cJSON_AddStringToObject(item, "Accept", ezsignfolderBatchDownloadV1_ACCEPT_ToString(ACCEPT)) == NULL) {
-        goto fail;
-    }
-    return item;
-    fail:
-    cJSON_Delete(item);
-    return NULL;
-}
-
-// Function ezsignfolderBatchDownloadV1_ACCEPT_parseFromJSON is not currently used,
-// since conversion from JSON passes through the conversion of the model, and FromString. The function is kept for future reference.
-//
-static ezmax_api_definition__full_ezsignfolderBatchDownloadV1_Accept_e ezsignfolderBatchDownloadV1_ACCEPT_parseFromJSON(cJSON* ACCEPTJSON) {
-    ezmax_api_definition__full_ezsignfolderBatchDownloadV1_Accept_e ACCEPTVariable = 0;
-    cJSON *ACCEPTVar = cJSON_GetObjectItemCaseSensitive(ACCEPTJSON, "Accept");
-    if(!cJSON_IsString(ACCEPTVar) || (ACCEPTVar->valuestring == NULL))
-    {
-        goto end;
-    }
-    ACCEPTVariable = ezsignfolderBatchDownloadV1_ACCEPT_FromString(ACCEPTVar->valuestring);
-    return ACCEPTVariable;
-end:
-    return 0;
-}
-*/
-
 // Functions for enum EORDERBY for ObjectEzsignfolderAPI_ezsignfolderGetListV1
 
 static char* ezsignfolderGetListV1_EORDERBY_ToString(ezmax_api_definition__full_ezsignfolderGetListV1_eOrderBy_e EORDERBY){
@@ -268,10 +216,10 @@ end:
 // Download multiples files from an Ezsignfolder
 //
 binary_t*
-ObjectEzsignfolderAPI_ezsignfolderBatchDownloadV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_batch_download_v1_request_t *ezsignfolder_batch_download_v1_request, ezmax_api_definition__full_ezsignfolderBatchDownloadV1_Accept_e Accept)
+ObjectEzsignfolderAPI_ezsignfolderBatchDownloadV1(apiClient_t *apiClient, int *pkiEzsignfolderID, ezsignfolder_batch_download_v1_request_t *ezsignfolder_batch_download_v1_request)
 {
     list_t    *localVarQueryParameters = NULL;
-    list_t    *localVarHeaderParameters = list_createList();
+    list_t    *localVarHeaderParameters = NULL;
     list_t    *localVarFormParameters = NULL;
     list_t *localVarHeaderType = list_createList();
     list_t *localVarContentType = list_createList();
@@ -300,18 +248,6 @@ ObjectEzsignfolderAPI_ezsignfolderBatchDownloadV1(apiClient_t *apiClient, int *p
     localVarPath = strReplace(localVarPath, localVarToReplace_pkiEzsignfolderID, localVarBuff_pkiEzsignfolderID);
 
 
-
-
-    // header parameters
-    char *keyHeader_Accept = NULL;
-    ezmax_api_definition__full_ezsignfolderBatchDownloadV1_Accept_e valueHeader_Accept = 0;
-    keyValuePair_t *keyPairHeader_Accept = 0;
-    if (Accept) {
-        keyHeader_Accept = strdup("Accept");
-        valueHeader_Accept = (Accept);
-        keyPairHeader_Accept = keyValuePair_create(keyHeader_Accept, (void *)valueHeader_Accept);
-        list_addElement(localVarHeaderParameters,keyPairHeader_Accept);
-    }
 
 
     // Body Param
@@ -365,21 +301,12 @@ ObjectEzsignfolderAPI_ezsignfolderBatchDownloadV1(apiClient_t *apiClient, int *p
         apiClient->dataReceivedLen = 0;
     }
     
-    list_freeList(localVarHeaderParameters);
+    
     
     list_freeList(localVarHeaderType);
     list_freeList(localVarContentType);
     free(localVarPath);
     free(localVarToReplace_pkiEzsignfolderID);
-    if (keyHeader_Accept) {
-        free(keyHeader_Accept);
-        keyHeader_Accept = NULL;
-    }
-    if (valueHeader_Accept) {
-        free(valueHeader_Accept);
-        valueHeader_Accept = NULL;
-    }
-    free(keyPairHeader_Accept);
     if (localVarSingleItemJSON_ezsignfolder_batch_download_v1_request) {
         cJSON_Delete(localVarSingleItemJSON_ezsignfolder_batch_download_v1_request);
         localVarSingleItemJSON_ezsignfolder_batch_download_v1_request = NULL;
